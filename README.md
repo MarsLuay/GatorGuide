@@ -310,7 +310,7 @@ pip install -r requirements.txt
 
 ## 📚 Documentation
 
-- **Agent Details:** See [model/agent/README.md](model/agent/README.md)
+- **Agent Details:** See [model/agent/Agent.md](model/agent/Agent.md)
 - **Code Docstrings:** Comprehensive docstrings in all Python files
 - **Data Models:** See `model/schemas/` directory
 
