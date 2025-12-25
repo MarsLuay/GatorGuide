@@ -17,7 +17,7 @@ User Query
     ├→ OpenAI GPT-5-nano decides which tools to call (search_colleges, get_weather, etc.)
     ├→ [Tool Execution] → Fetch college data & weather
     ├→ [Data Enrichment] → Normalize data, add real-time weather
-    ├→ Claude processes results
+    ├→ OpenAI GPT-5-nano processes results
     └→ Repeat if needed
     ↓
 [Response Parsing] → Parse advisor response + school list into AdvisorResponse
@@ -236,7 +236,7 @@ Automatically fetches current weather for each campus location using Open-Meteo 
 - Adds to the "student life" consideration
 
 ### 🔄 Multi-Turn Agentic Loop
-Claude can:
+OpenAI GPT-5-nano can:
 1. Decide which tools to call
 2. Process initial results
 3. Ask for follow-up data
@@ -298,7 +298,7 @@ export OPENAI_MODEL="gpt-4o"
 | `intent.py` | Student query classification |
 | `dispatcher.py` | Tool routing & execution |
 | `tools.py` | College search & weather lookup implementations |
-| `tools_schema.py` | Tool definitions for Claude |
+| `tools_schema.py` | Tool definitions for OpenAI GPT-5-nano |
 | `schemas/advisorResponse.py` | Response data model |
 | `schemas/school.py` | School data model |
 | `schemas/studentIntent.py` | Intent classification model |
