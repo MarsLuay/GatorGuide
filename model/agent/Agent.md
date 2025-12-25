@@ -6,7 +6,30 @@ The intelligent college recommendation engine powered by OpenAI GPT-5-nano.
 
 The advisor agent is an **agentic AI system** that interprets natural language queries from students and provides personalized college recommendations with comprehensive data (acceptance rates, tuition, weather, etc.).
 
-### Architecture
+### Architecture Flow
+
+```mermaid
+graph TD
+    A[User Query] --> B[LLM 1: Extract Intent]
+    B --> C{Confidence ≥ 0.5?}
+    C -->|Fail| D[Return None]
+    C -->|Pass| E[LLM 2: Tool Calling]
+    E --> F{Tools Selected?}
+    F -->|search_colleges| G[Execute: College Scorecard API]
+    F -->|state_search_colleges| G
+    F -->|get_weather| H[Execute: Weather API]
+    F -->|No tools| I[Direct Response]
+    G --> J[Enrich with Weather Data]
+    H --> J
+    J --> K[Normalize Data Structure]
+    K --> L[LLM 3: Parse Response]
+    I --> L
+    L --> M[AdvisorResponse: advice + schools]
+    M --> N[Return to Frontend]
+    D --> N
+```
+
+### Detailed Architecture
 
 ```
 User Query
