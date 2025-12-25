@@ -5,4 +5,4 @@ class StudentIntent(BaseModel):
     intent: str = Field(description="Intent such as 'school_search', 'comparison', or 'general_advice'")
     school_name: Optional[str] = Field(description="School name if mentioned")
     state: Optional[str] = Field(description="US state if mentioned")
-    confidence: float = Field(description="Confidence score 0-1")
+    confidence_score: float = Field(description="Confidence score 0-1")

@@ -2,20 +2,19 @@ import os
 import json
 import logging
 import requests
-from typing import Optional, List
+from typing import Optional
 from dotenv import load_dotenv
-from pydantic import BaseModel, Field
 from openai import OpenAI
-from advisorResponse import AdvisorResponse
-from school import School
-from studentIntent import StudentIntent
+
+from model.schemas.advisorResponse import AdvisorResponse
+from model.schemas.studentIntent import StudentIntent
+
 # --------------------------------------------------------------
 # Setup
 # --------------------------------------------------------------
 
 load_dotenv()
 
-# Set up logging configuration
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
@@ -30,7 +29,7 @@ COLLEGE_SCORECARD_API_KEY = os.getenv("COLLEGE_SCORECARD_API_KEY")
 COLLEGE_SCORECARD_URL = "https://api.data.gov/ed/collegescorecard/v1/schools"
 
 # --------------------------------------------------------------
-# Step 2: Defines functions
+# Tool Functions
 # --------------------------------------------------------------
 
 def search_colleges(
@@ -38,8 +37,8 @@ def search_colleges(
     state: Optional[str] = None,
     limit: int = 3,
 ):
-    """set up calling to college Scorecard API, extract school info"""
-    logger.info("Calling College Scorecard API")
+    logger.info("🔧 Tool: search_colleges called")
+    logger.info(f"Arguments: school_name={school_name}, state={state}, limit={limit}")
 
     params = {
         "api_key": COLLEGE_SCORECARD_API_KEY,
@@ -57,22 +56,32 @@ def search_colleges(
     if state:
         params["school.state"] = state
 
-    res = requests.get(COLLEGE_SCORECARD_URL, params=params)
-    res.raise_for_status()
+    logger.info("🌐 Calling College Scorecard API")
+    response = requests.get(COLLEGE_SCORECARD_URL, params=params)
+    response.raise_for_status()
 
     results = []
-    for s in res.json()["results"]:
+    for s in response.json()["results"]:
         results.append(
             {
                 "name": s.get("school.name"),
                 "city": s.get("school.city"),
                 "state": s.get("school.state"),
-                "acceptance_rate": s.get("latest.admissions.admission_rate.overall"),
-                "tuition_in_state": s.get("latest.cost.tuition.in_state"),
-                "tuition_out_state": s.get("latest.cost.tuition.out_of_state"),
+                "acceptance_rate": s.get(
+                    "latest.admissions.admission_rate.overall"
+                ),
+                "tuition_in_state": s.get(
+                    "latest.cost.tuition.in_state"
+                ),
+                "tuition_out_state": s.get(
+                    "latest.cost.tuition.out_of_state"
+                ),
             }
         )
+
+    logger.info(f"✅ Tool returned {len(results)} schools")
     return results
+
 
 def state_search_colleges(
     state: str,
@@ -82,7 +91,12 @@ def state_search_colleges(
     sat_score_range: Optional[str] = None,
     limit: int = 5,
 ):
-    """set up calling to college Scorecard API, extract schools's info in a state"""
+    logger.info("🔧 Tool: state_search_colleges called")
+    logger.info(
+        f"Arguments: state={state}, acceptance={acceptance_rate_range}, "
+        f"tuition={in_state_tuition_range}, SAT={sat_score_range}"
+    )
+
     params = {
         "api_key": COLLEGE_SCORECARD_API_KEY,
         "fields": (
@@ -98,22 +112,24 @@ def state_search_colleges(
 
     if school_name:
         params["school.name"] = school_name
-
     if acceptance_rate_range:
         params["latest.admissions.admission_rate.overall__range"] = acceptance_rate_range
-
     if in_state_tuition_range:
         params["latest.cost.tuition.in_state__range"] = in_state_tuition_range
-
     if sat_score_range:
         params["latest.admissions.sat_scores.average.overall__range"] = sat_score_range
 
+    logger.info("🌐 Calling College Scorecard API")
     response = requests.get(COLLEGE_SCORECARD_URL, params=params)
     response.raise_for_status()
-    return response.json()["results"]
+
+    results = response.json()["results"]
+    logger.info(f"✅ Tool returned {len(results)} schools")
+    return results
+
 
 # --------------------------------------------------------------
-# Step 3: Tool Schema (FOR THE MODEL)
+# Tool Schema
 # --------------------------------------------------------------
 
 tools = [
@@ -121,13 +137,13 @@ tools = [
         "type": "function",
         "function": {
             "name": "search_colleges",
-            "description": "Search colleges using official College Scorecard data",
+            "description": "Search colleges using College Scorecard data",
             "parameters": {
                 "type": "object",
                 "properties": {
                     "school_name": {"type": "string"},
                     "state": {"type": "string"},
-                    "limit": {"type": "integer", "default": 3},
+                    "limit": {"type": "integer"},
                 },
             },
         },
@@ -136,170 +152,162 @@ tools = [
         "type": "function",
         "function": {
             "name": "state_search_colleges",
-            "description": (
-                "Search for colleges within a U.S. state. "
-                "You may optionally filter by acceptance rate, tuition, "
-                "or SAT score using range strings like '0.3..0.7'."
-            ),
+            "description": "Search colleges in a specific U.S. state",
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "state": {
-                        "type": "string",
-                        "description": "Two-letter U.S. state code (e.g. WA, CA)"
-                    },
-                    "school_name": {
-                        "type": "string",
-                        "description": "Optional school name filter"
-                    },
-                    "acceptance_rate_range": {
-                        "type": "string",
-                        "description": (
-                            "Acceptance rate range using min..max format "
-                            "(example: '0.3..0.6')"
-                        )
-                    },
-                    "in_state_tuition_range": {
-                        "type": "string",
-                        "description": (
-                            "In-state tuition range in USD using min..max "
-                            "(example: '8000..20000')"
-                        )
-                    },
-                    "sat_score_range": {
-                        "type": "string",
-                        "description": (
-                            "Average SAT score range using min..max "
-                            "(example: '1200..1400')"
-                        )
-                    },
-                    "limit": {
-                        "type": "integer",
-                        "default": 5
-                    }
+                    "state": {"type": "string"},
+                    "school_name": {"type": "string"},
+                    "acceptance_rate_range": {"type": "string"},
+                    "in_state_tuition_range": {"type": "string"},
+                    "sat_score_range": {"type": "string"},
+                    "limit": {"type": "integer"},
                 },
-                "required": ["state"]
-            }
-        }
-    }
+                "required": ["state"],
+            },
+        },
+    },
 ]
 
 # --------------------------------------------------------------
-# Step 4: Intent Extraction (LLM → Pydantic)
+# tools executor
+# --------------------------------------------------------------
+
+def execute_tool(tool_name: str, args: dict):
+    """
+    Centralized tool dispatcher for OpenAI function calls
+    """
+    logger.info(f"🛠 Executing tool: {tool_name}")
+    logger.debug(f"Tool arguments: {args}")
+
+    TOOL_REGISTRY = {
+        "search_colleges": search_colleges,
+        "state_search_colleges": state_search_colleges,
+    }
+
+    if tool_name not in TOOL_REGISTRY:
+        logger.error(f"❌ Unknown tool requested: {tool_name}")
+        raise ValueError(f"Unknown tool: {tool_name}")
+
+    result = TOOL_REGISTRY[tool_name](**args)
+
+    logger.info(f"✅ Tool {tool_name} executed successfully")
+    return result
+
+# --------------------------------------------------------------
+# Intent Extraction
 # --------------------------------------------------------------
 
 def extract_student_intent(user_input: str) -> StudentIntent:
-    """First LLM call to determine if input is a student intention for college advising"""
-    completion = client.beta.chat.completions.parse(
+    logger.info("🧠 Extracting student intent")
+
+    response = client.beta.chat.completions.parse(
         model=MODEL,
         messages=[
             {
                 "role": "system",
                 "content": (
-                    "Extract the student's intent for college advising. "
-                    "Identify intent, school name, and state if present."
+                    "Extract student intent for college advising. "
+                    "Return structured data only."
                 ),
             },
             {"role": "user", "content": user_input},
         ],
         response_format=StudentIntent,
     )
-    result = completion.choices[0].message.parsed
-    logger.info(
-        f"Extraction complete - Confidence: {result.confidence_score:.2f}"
-    )
-    return result
+
+    intent = response.choices[0].message.parsed
+    logger.info(f"Intent confidence: {intent.confidence_score:.2f}")
+    return intent
 
 
 # --------------------------------------------------------------
-# Step 5: Advisor Agent (TOOL + DATA MODELS)
+# Advisor Agent (Function Calling Loop)
 # --------------------------------------------------------------
 
 def run_advisor_agent(user_input: str) -> Optional[AdvisorResponse]:
-    intent = extract_student_intent(user_input)
+    logger.info("🚀 Advisor agent started")
 
-    if(intent.confidence_score < 0.7):
-        logger.warning(
-            f"Gate check failed, confidence: {intent.confidence_score:.2f}"
-        )
+    intent = extract_student_intent(user_input)
+    if intent.confidence_score < 0.7:
+        logger.warning("❌ Gate failed: low confidence")
         return None
 
-    logger.info("Gate check passed, proceeding with advising processing")
     messages = [
         {
             "role": "system",
             "content": (
-                "You are a knowledgeable college advisor. "
-                "Use College Scorecard data when helpful."
+                "You are a college advisor. "
+                "Use tools when helpful and respond in structured JSON."
             ),
         },
         {"role": "user", "content": user_input},
     ]
 
-    # -----------------------------------
-    # Ask model (tool-aware)
-    # -----------------------------------
+    logger.info("🤖 Sending request to OpenAI (tool-aware)")
     response = client.chat.completions.create(
         model=MODEL,
         messages=messages,
         tools=tools,
     )
 
-    assistant_msg = response.choices[0].message
+    assistant_message = response.choices[0].message
 
-    # -----------------------------------
-    # Tool call handling
-    # -----------------------------------
-    if assistant_msg.tool_calls:
-        messages.append(assistant_msg)
+    # ----------------------------------------------------------
+    # Handle tool calls (OpenAI-recommended flow)
+    # ----------------------------------------------------------
 
-        for tool_call in assistant_msg.tool_calls:
-            tool_name = tool_call.function.name
-            args = json.loads(tool_call.function.arguments)
+    if assistant_message.tool_calls:
+        logger.info(f"🛠 Model requested {len(assistant_message.tool_calls)} tool call(s)")
+        messages.append(assistant_message)
 
-            if tool_name == "state_search_colleges":
-                tool_result = state_search_colleges(**args)
+        for call in assistant_message.tool_calls:
+            tool_name = call.function.name
+            args = json.loads(call.function.arguments)
 
-            elif tool_name == "search_colleges":
-                tool_result = search_colleges(**args)
+            logger.info(f"➡️ Executing tool: {tool_name}")
 
-            else:
-                raise ValueError(f"Unknown tool called: {tool_name}")
+            result = execute_tool(tool_name, args)
 
             messages.append(
                 {
                     "role": "tool",
-                    "tool_call_id": tool_call.id,
-                    "content": json.dumps(tool_result),
+                    "tool_call_id": call.id,
+                    "content": json.dumps(result),
                 }
             )
 
+        logger.info("🔁 Sending tool results back to OpenAI")
         final = client.beta.chat.completions.parse(
             model=MODEL,
             messages=messages,
             response_format=AdvisorResponse,
         )
 
+        logger.info("✅ Final response generated")
         return final.choices[0].message.parsed
 
-    # -----------------------------------
+    # ----------------------------------------------------------
     # No tool needed
-    # -----------------------------------
+    # ----------------------------------------------------------
+
+    logger.info("ℹ️ No tools required")
     final = client.beta.chat.completions.parse(
         model=MODEL,
-        messages=messages + [assistant_msg],
+        messages=messages + [assistant_message],
         response_format=AdvisorResponse,
     )
 
+    logger.info("✅ Final response generated")
     return final.choices[0].message.parsed
 
 
 # --------------------------------------------------------------
-# Step 6: CLI Chat
+# CLI
 # --------------------------------------------------------------
 
 if __name__ == "__main__":
-    print("🎓 College Advisor AI")
+    print("🎓 College Advisor AI (Function Calling)")
     print("Type 'exit' to quit\n")
 
     while True:
@@ -308,6 +316,10 @@ if __name__ == "__main__":
             break
 
         result = run_advisor_agent(user_input)
+
+        if not result:
+            print("\nAdvisor: I'm not confident I understood your request.\n")
+            continue
 
         print("\nAdvisor:", result.response)
 
