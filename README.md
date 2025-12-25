@@ -367,7 +367,7 @@ MIT License - See LICENSE file for details
 
 For issues or questions:
 1. Check [Troubleshooting](#-troubleshooting) section
-2. Review [model/agent/README.md](model/agent/README.md) for agent details
+2. Review [model/agent/Agent.md](model/agent/Agent.md) for agent details
 3. Check code docstrings for function documentation
 4. Open an issue on GitHub
 
