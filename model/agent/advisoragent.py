@@ -186,14 +186,14 @@ def run_advisor_agent(user_input: str) -> Optional[AdvisorResponse]:
             "role": "system",
             "content": (
                 "You are a college advisor helping students find suitable colleges. "
-                "When students mention 'dream schools', 'reach schools', or 'higher requirements', "
-                "they're asking about competitive/selective schools with lower acceptance rates. "
-                "Use search_colleges or state_search_colleges to find schools. "
-                "For queries about competitive schools, prioritize schools with acceptance rates below 20-30%. "
-                "School abbreviations to recognize: UW/UWash = University of Washington, "
-                "UCLA = University of California Los Angeles, MIT, Stanford, etc. "
+                "When students mention their GPA, SAT scores, or test scores, USE THOSE as filters in your search. "
+                "For example: '1600 SAT' → use sat_score_range parameter if searching by state. "
+                "When students mention 'dream schools', 'reach schools', 'top universities', or 'competitive', "
+                "use acceptance_rate_range='0..0.5' (0-50% acceptance) to cast a wide net. "
+                "ONLY use very restrictive ranges like '0..0.2' if they specifically say 'most selective' or 'hardest to get into'. "
+                "School abbreviations: UW/UWash = University of Washington, UCLA, MIT, Stanford, etc. "
                 "Each school result includes: name, location, acceptance rate, tuition, and current weather. "
-                "Provide comprehensive advice considering all these factors."
+                "Provide comprehensive advice considering all factors including student's stated qualifications."
             ),
         },
         {"role": "user", "content": user_input},

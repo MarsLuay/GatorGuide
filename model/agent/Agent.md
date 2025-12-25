@@ -108,7 +108,7 @@ Search for colleges by name/state. Returns College Scorecard data with:
 
 **Example:**
 ```python
-search_colleges(school_name="Stanford", state="CA", limit=3)
+search_colleges(school_name="Stanford", state="CA", limit=5)
 # Returns: [{"school.name": "Stanford", "location.lat": 37.43, ...}]
 ```
 
@@ -217,17 +217,20 @@ AdvisorResponse(
 ## Key Features
 
 ### 🎯 Intelligent Query Understanding
-- Recognizes **implicit queries**: "dream schools" = competitive schools
+- Recognizes **implicit queries**: "dream schools" = competitive schools, "top universities" = 0-50% acceptance
+- Extracts **student qualifications**: "1600 SAT" → uses sat_score_range parameter
 - Expands **abbreviations**: UW → University of Washington
 - Handles **various intents**: search, compare, get requirements
+- Adapts acceptance filters: "top" = 0-50%, "most selective" = 0-20%
 - Low confidence threshold (0.5) accepts implicit queries
 
 ### 📊 Comprehensive Data
 Each recommended school includes:
-- **Admissions**: Acceptance rate
+- **Admissions**: Acceptance rate (auto-detects decimal 0-1 or percentage 0-100 format)
 - **Financial**: In-state and out-of-state tuition
 - **Location**: City, state, coordinates
 - **Student Life**: Real-time campus weather
+- **Filtering**: SAT scores extracted from student queries and used in searches
 
 ### 🌤️ Real-Time Weather Integration
 Automatically fetches current weather for each campus location using Open-Meteo API:

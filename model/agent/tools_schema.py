@@ -17,7 +17,7 @@ tools = [
                     },
                     "limit": {
                         "type": "integer",
-                        "description": "Maximum number of results to return (default: 3, increase for broader searches)",
+                        "description": "Maximum number of results to return (default: 5, increase for broader searches)",
                     },
                 },
                 "required": [],

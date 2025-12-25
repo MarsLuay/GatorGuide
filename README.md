@@ -112,11 +112,12 @@ The agent understands various natural language queries:
 | Query | Agent Response |
 |-------|---|
 | "Show me MIT" | Searches for MIT, returns acceptance rate, tuition, weather |
-| "I want dream schools" | Searches for highly selective schools (low acceptance rates) |
+| "I have 1600 SAT, 3.95 GPA. Top universities in Washington" | Uses SAT filter, searches top WA schools (0-50% acceptance) |
+| "I want dream schools" | Searches for competitive schools with broader range (0-50%) |
 | "Universities in Texas" | Lists colleges in TX with comprehensive data |
 | "UW vs UCLA" | Compares University of Washington and UCLA |
 | "What are reach schools?" | Provides advising on school tiers |
-| "Show me affordable colleges in California" | Filters by tuition in CA |
+| "Show me most selective colleges in California" | Very restrictive filter (0-20% acceptance) |
 
 ## 🔧 Core Components
 
@@ -198,7 +199,11 @@ Key components:
 ```python
 # model/config.py
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-MODEL = "gpt-5-nano"  # Latest OpenAI model
+MODEL = "gpt-5-nano"  # OpenAI model for agent reasoning
+
+# Default search settings
+DEFAULT_SEARCH_LIMIT = 5  # Returns 5 schools per query
+DEFAULT_ACCEPTANCE_RANGE = "0..0.5"  # 0-50% for "top" schools
 ```
 
 ### Frontend Configuration
@@ -252,7 +257,7 @@ print(f"Found {len(response.schools)} schools")
 | Intent extraction | ~500ms |
 | College search API call | ~1-2s |
 | Weather fetch per school | ~200ms |
-| Full agent pipeline | 5-10s |
+| Full agent pipeline (5 schools) | 5-10s |
 | Frontend response display | <100ms |
 
 ### Optimization Tips

@@ -49,7 +49,7 @@ def get_weather(latitude: float, longitude: float) -> dict:
 def search_colleges(
     school_name: Optional[str] = None,
     state: Optional[str] = None,
-    limit: int = 3,
+    limit: int = 5,
 ) -> list:
     """
     Search for colleges by name and/or state using College Scorecard API.
@@ -62,7 +62,7 @@ def search_colleges(
         school_name (Optional[str]): Full or partial college name to search for
             (e.g., "MIT", "University of Washington", "Washington")
         state (Optional[str]): Two-letter US state code (e.g., "MA", "WA", "CA")
-        limit (int): Maximum number of results to return (default: 3, max recommended: 10)
+        limit (int): Maximum number of results to return (default: 5, max recommended: 10)
         
     Returns:
         list: List of school dictionaries with keys:

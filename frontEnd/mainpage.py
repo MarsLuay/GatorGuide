@@ -74,7 +74,9 @@ def render_chat_messages():
                     
                     with col1:
                         if acceptance is not None:
-                            st.metric("Acceptance Rate", f"{acceptance * 100:.1f}%")
+                            # Handle both decimal (0.39) and percentage (39) formats
+                            rate = acceptance if acceptance > 1 else acceptance * 100
+                            st.metric("Acceptance Rate", f"{rate:.1f}%")
                         if tuition_in is not None:
                             st.metric("In-State Tuition", f"${tuition_in:,.0f}/yr")
                     
@@ -170,7 +172,9 @@ def main():
                         
                         with col1:
                             if acceptance is not None:
-                                st.metric("Acceptance Rate", f"{acceptance * 100:.1f}%")
+                                # Handle both decimal (0.39) and percentage (39) formats
+                                rate = acceptance if acceptance > 1 else acceptance * 100
+                                st.metric("Acceptance Rate", f"{rate:.1f}%")
                             if tuition_in is not None:
                                 st.metric("In-State Tuition", f"${tuition_in:,.0f}/yr")
                         
