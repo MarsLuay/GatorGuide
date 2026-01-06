@@ -36,7 +36,7 @@ COLLEGE_SCORECARD_API_KEY=your_key_here
 
 # Optional: OpenAI API key (defaults to environment)
 OPENAI_API_KEY=your_key_here
-OPENAI_MODEL=gpt-4o
+OPENAI_MODEL=gpt-5-nano
 ```
 
 ### 3. Run the Backend API
@@ -265,7 +265,7 @@ print(f"Found {len(response.schools)} schools")
 1. **Increase timeout for slow connections:** `export GATORGUIDE_API_TIMEOUT="300"`
 2. **Cache College Scorecard results** (future enhancement)
 3. **Batch weather requests** instead of sequential calls
-4. **Use gpt-4o-mini** for faster, cheaper responses
+4. **Use gpt-5-nano-mini** for faster, cheaper responses
 
 ## 🐛 Troubleshooting
 
@@ -309,7 +309,7 @@ pip install -r requirements.txt
 |----------|---------|----------|---------|
 | `COLLEGE_SCORECARD_API_KEY` | College data access | Yes | `abc123def456` |
 | `OPENAI_API_KEY` | Claude API access | Yes | `sk-proj-...` |
-| `OPENAI_MODEL` | Claude model to use | No | `gpt-4o` |
+| `OPENAI_MODEL` | Claude model to use | No | `gpt-5-nano` |
 | `GATORGUIDE_API_URL` | API endpoint (frontend) | No | `http://localhost:8000` |
 | `GATORGUIDE_API_TIMEOUT` | Request timeout (frontend) | No | `180` |
 
