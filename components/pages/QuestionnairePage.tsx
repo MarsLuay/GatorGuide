@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { View, Text, TextInput, Pressable, ScrollView } from "react-native";
 import { router } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
+import * as Haptics from "expo-haptics";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppData } from "@/hooks/use-app-data";
@@ -132,7 +133,13 @@ export default function QuestionnairePage() {
         <View className="max-w-md w-full self-center">
           {/* Header */}
           <View className="px-6 pt-8 pb-4 flex-row items-center">
-            <Pressable onPress={handleBack} className="mr-4">
+            <Pressable
+              onPress={() => {
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                handleBack();
+              }}
+              className="mr-4"
+            >
               <MaterialIcons name="arrow-back" size={24} color={isDark ? "#9CA3AF" : "#6B7280"} />
             </Pressable>
 
@@ -186,7 +193,10 @@ export default function QuestionnairePage() {
                     return (
                       <Pressable
                         key={option}
-                        onPress={() => handleAnswer(currentQuestion.id, option)}
+                        onPress={() => {
+                          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                          handleAnswer(currentQuestion.id, option);
+                        }}
                         className={`w-full px-4 py-4 rounded-lg border ${
                           isSelected
                             ? "bg-green-500/10 border-green-500"
@@ -208,7 +218,10 @@ export default function QuestionnairePage() {
               {/* Footer */}
               <View className={`mt-6 pt-6 border-t ${borderClass} gap-3`}>
                 <Pressable
-                  onPress={handleNext}
+                  onPress={() => {
+                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                    handleNext();
+                  }}
                   className={`w-full bg-green-500 rounded-lg py-4 items-center ${!isHydrated ? "opacity-60" : ""}`}
                   disabled={!isHydrated}
                 >
@@ -218,7 +231,10 @@ export default function QuestionnairePage() {
                 </Pressable>
 
                 <Pressable
-                  onPress={handleSaveAndExit}
+                  onPress={() => {
+                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+                    handleSaveAndExit();
+                  }}
                   className={`w-full ${isDark ? "bg-gray-800 border-gray-700" : "bg-gray-100 border-gray-300"} border rounded-lg py-4 items-center ${!isHydrated ? "opacity-60" : ""}`}
                   disabled={!isHydrated}
                 >

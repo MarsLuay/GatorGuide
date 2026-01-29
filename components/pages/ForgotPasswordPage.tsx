@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import { View, Text, Pressable, Alert } from "react-native";
 import { router } from "expo-router";
 import { FontAwesome5, MaterialIcons } from "@expo/vector-icons";
+import * as Haptics from "expo-haptics";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { FormInput } from "@/components/ui/FormInput";
@@ -68,7 +69,13 @@ export default function ForgotPasswordPage() {
     <ScreenBackground>
       <View className="flex-1 px-6 py-8">
         <View className="w-full max-w-md self-center">
-          <Pressable onPress={() => router.back()} className="mb-8 flex-row items-center">
+          <Pressable
+            onPress={() => {
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+              router.back();
+            }}
+            className="mb-8 flex-row items-center"
+          >
             <MaterialIcons name="arrow-back" size={20} color={styles.placeholderColor} />
             <Text className={`${styles.secondaryTextClass} ml-2`}>Back to Login</Text>
           </Pressable>

@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { View, Text, TextInput, Pressable, ScrollView } from "react-native";
 import { router } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
+import * as Haptics from "expo-haptics";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppData } from "@/hooks/use-app-data";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
@@ -170,15 +171,21 @@ export default function ProfileSetupPage() {
             {/* Navigation Buttons */}
             <View className="flex-row gap-4 pt-6">
               <Pressable
-                onPress={handleBack}
+                onPress={() => {
+                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                  handleBack();
+                }}
                 className={`flex-1 rounded-lg py-4 items-center border ${styles.cardBgClass}`}
               >
-                <Text className={styles.secondaryTextClass}>{step === 1 ? "Back" : "Previous"}</Text>
+                <Text className={styles.secondaryTextClass}>{step === 1 ? "Exit" : "Previous"}</Text>
               </Pressable>
 
               {step < 3 ? (
                 <Pressable
-                  onPress={handleNext}
+                  onPress={() => {
+                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                    handleNext();
+                  }}
                   className="flex-1 bg-green-500 rounded-lg py-4 items-center flex-row justify-center"
                 >
                   <Text className="text-black font-semibold mr-2">Next</Text>
@@ -186,7 +193,10 @@ export default function ProfileSetupPage() {
                 </Pressable>
               ) : (
                 <Pressable
-                  onPress={handleContinue}
+                  onPress={() => {
+                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+                    handleContinue();
+                  }}
                   className="flex-1 bg-green-500 rounded-lg py-4 items-center flex-row justify-center"
                 >
                   <Text className="text-black font-semibold mr-2">Continue</Text>

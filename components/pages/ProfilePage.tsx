@@ -1,15 +1,20 @@
 import { useEffect, useMemo, useState } from "react";
-import { View, Text, Pressable, ScrollView } from "react-native";
+import { View, Text, TextInput, Pressable, ScrollView } from "react-native";
 import { router } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
+import * as Haptics from "expo-haptics";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppData } from "@/hooks/use-app-data";
 import { ProfileField } from "@/components/ui/ProfileField";
 
+type Question =
+  | { id: string; question: string; type: "text" | "textarea"; placeholder: string }
+  | { id: string; question: string; type: "radio"; options: string[] };
+
 export default function ProfilePage() {
   const { isDark } = useAppTheme();
-  const { isHydrated, state, updateUser } = useAppData();
+  const { isHydrated, state, updateUser, setQuestionnaireAnswers } = useAppData();
 
   const user = state.user;
 
@@ -21,6 +26,81 @@ export default function ProfilePage() {
     resume: "",
   });
 
+  const [showQuestionnaire, setShowQuestionnaire] = useState(false);
+  const [questionnaireAnswers, setLocalAnswers] = useState<Record<string, string>>({});
+
+  const questions = useMemo<Question[]>(
+    () => [
+      {
+        id: "volunteerActivities",
+        question: "What volunteer activities have you participated in?",
+        placeholder: "Describe your volunteer experiences...",
+        type: "textarea",
+      },
+      {
+        id: "extracurriculars",
+        question: "What extracurricular activities are you involved in?",
+        placeholder: "List your activities and roles...",
+        type: "textarea",
+      },
+      {
+        id: "collegeSetting",
+        question: "What type of college setting do you prefer?",
+        options: ["Urban", "Suburban", "Rural", "No Preference"],
+        type: "radio",
+      },
+      {
+        id: "collegeSize",
+        question: "What size college are you looking for?",
+        options: ["Small (< 5,000)", "Medium (5,000-15,000)", "Large (> 15,000)", "No Preference"],
+        type: "radio",
+      },
+      {
+        id: "environment",
+        question: "What kind of campus environment appeals to you?",
+        options: ["Research-focused", "Liberal Arts", "Technical/Engineering", "Pre-professional", "Mixed"],
+        type: "radio",
+      },
+      {
+        id: "programs",
+        question: "Are there specific programs or resources you're looking for?",
+        placeholder: "e.g., Study abroad, research opportunities, internships...",
+        type: "textarea",
+      },
+      {
+        id: "budget",
+        question: "What is your budget range for annual tuition?",
+        options: ["< $20,000", "$20,000 - $40,000", "$40,000 - $60,000", "> $60,000", "Need financial aid"],
+        type: "radio",
+      },
+      {
+        id: "location",
+        question: "Do you have a preferred geographic location?",
+        placeholder: "Enter preferred states, regions, or countries...",
+        type: "text",
+      },
+      {
+        id: "housingPreference",
+        question: "What are your housing preferences?",
+        options: ["On-campus dormitory", "Off-campus apartment", "Commute from home", "No preference"],
+        type: "radio",
+      },
+      {
+        id: "careerGoals",
+        question: "What are your career goals after graduation?",
+        placeholder: "Describe your aspirations and career path...",
+        type: "textarea",
+      },
+    ],
+    []
+  );
+
+  const blankAnswers = useMemo(() => {
+    const init: Record<string, string> = {};
+    for (const q of questions) init[q.id] = "";
+    return init;
+  }, [questions]);
+
   useEffect(() => {
     if (!isHydrated) return;
     setEditData({
@@ -29,7 +109,8 @@ export default function ProfilePage() {
       testScores: user?.testScores ?? "",
       resume: user?.resume ?? "",
     });
-  }, [isHydrated, user?.major, user?.gpa, user?.testScores, user?.resume]);
+    setLocalAnswers({ ...blankAnswers, ...(state.questionnaireAnswers ?? {}) });
+  }, [isHydrated, user?.major, user?.gpa, user?.testScores, user?.resume, blankAnswers, state.questionnaireAnswers]);
 
   const textClass = isDark ? "text-white" : "text-gray-900";
   const secondaryTextClass = isDark ? "text-gray-400" : "text-gray-600";
@@ -69,6 +150,15 @@ export default function ProfilePage() {
     setEditData((p) => ({ ...p, resume: "resume.pdf" }));
   };
 
+  const handleQuestionnaireAnswer = (id: string, value: string) => {
+    setLocalAnswers((p) => ({ ...p, [id]: value }));
+  };
+
+  const handleSaveQuestionnaire = async () => {
+    await setQuestionnaireAnswers(questionnaireAnswers);
+    setShowQuestionnaire(false);
+  };
+
   // If not signed in yet, show a simple prompt (prevents null crashes)
   if (!user) {
     return (
@@ -102,6 +192,7 @@ export default function ProfilePage() {
 
             <Pressable
               onPress={() => {
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
                 if (isEditing) {
                   handleSave();
                 } else {
@@ -217,7 +308,12 @@ export default function ProfilePage() {
                   <Text className={`text-lg ${textClass} ml-3`}>Questionnaire</Text>
                 </View>
 
-                <Pressable onPress={() => router.push("/questionnaire")}>
+                <Pressable
+                  onPress={() => {
+                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                    setShowQuestionnaire(!showQuestionnaire);
+                  }}
+                >
                   <Text className="text-green-500 text-sm">{hasQuestionnaireData ? "Edit" : "Complete"}</Text>
                 </Pressable>
               </View>
@@ -227,6 +323,85 @@ export default function ProfilePage() {
                   ? "Your preferences have been saved. Tap Edit to update your responses."
                   : "Complete the questionnaire to get personalized college recommendations."}
               </Text>
+
+              {/* Questionnaire Expanded View - All Questions at Once */}
+              {showQuestionnaire && (
+                <View className={`mt-6 pt-6 border-t ${borderClass}`}>
+                  <ScrollView nestedScrollEnabled>
+                    <View className="gap-6">
+                      {questions.map((question) => (
+                        <View key={question.id}>
+                          <Text className={`text-sm font-semibold ${textClass} mb-3`}>{question.question}</Text>
+
+                          {/* Text/Textarea Input */}
+                          {(question.type === "text" || question.type === "textarea") && (
+                            <TextInput
+                              value={questionnaireAnswers[question.id] ?? ""}
+                              onChangeText={(value) => handleQuestionnaireAnswer(question.id, value)}
+                              placeholder={question.placeholder}
+                              placeholderTextColor={placeholderColor}
+                              multiline={question.type === "textarea"}
+                              textAlignVertical={question.type === "textarea" ? "top" : undefined}
+                              className={`${inputClass} ${question.type === "textarea" ? "min-h-[100px]" : "min-h-[44px]"}`}
+                            />
+                          )}
+
+                          {/* Radio Options */}
+                          {question.type === "radio" && (
+                            <View className="gap-2">
+                              {question.options.map((option) => {
+                                const isSelected = questionnaireAnswers[question.id] === option;
+                                return (
+                                  <Pressable
+                                    key={option}
+                                    onPress={() => {
+                                      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                                      handleQuestionnaireAnswer(question.id, option);
+                                    }}
+                                    className={`px-4 py-3 rounded-lg border ${
+                                      isSelected
+                                        ? "bg-green-500/10 border-green-500"
+                                        : borderClass
+                                    }`}
+                                  >
+                                    <View className="flex-row items-center justify-between">
+                                      <Text className={isSelected ? "text-green-500 font-semibold" : textClass}>{option}</Text>
+                                      {isSelected && <MaterialIcons name="check-circle" size={18} color="#22C55E" />}
+                                    </View>
+                                  </Pressable>
+                                );
+                              })}
+                            </View>
+                          )}
+                        </View>
+                      ))}
+                    </View>
+                  </ScrollView>
+
+                  {/* Save/Close Buttons */}
+                  <View className="flex-row gap-3 mt-6 pt-6 border-t border-gray-300">
+                    <Pressable
+                      onPress={() => {
+                        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                        setShowQuestionnaire(false);
+                      }}
+                      className={`flex-1 rounded-lg py-3 items-center border ${borderClass}`}
+                    >
+                      <Text className={secondaryTextClass}>Close</Text>
+                    </Pressable>
+
+                    <Pressable
+                      onPress={() => {
+                        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+                        handleSaveQuestionnaire();
+                      }}
+                      className="flex-1 bg-green-500 rounded-lg py-3 items-center"
+                    >
+                      <Text className="text-black font-semibold">Save Answers</Text>
+                    </Pressable>
+                  </View>
+                </View>
+              )}
             </View>
           </View>
         </View>

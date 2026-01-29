@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { View, Text, Pressable, Alert } from "react-native";
 import { router } from "expo-router";
 import { FontAwesome5 } from "@expo/vector-icons";
+import * as Haptics from "expo-haptics";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppData } from "@/hooks/use-app-data";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
@@ -46,6 +47,7 @@ export default function AuthPage() {
       return;
     }
 
+    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     await signIn({ name: n, email: e });
     router.replace("/profile-setup");
   };
@@ -66,7 +68,10 @@ export default function AuthPage() {
           <View className={`${styles.cardBgClass} border rounded-2xl p-6`}>
             <View className="flex-row gap-4 mb-6">
               <Pressable
-                onPress={() => setIsSignUp(true)}
+                onPress={() => {
+                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                  setIsSignUp(true);
+                }}
                 className={`flex-1 py-3 rounded-lg items-center ${isSignUp ? "bg-green-500" : styles.inactiveButtonClass}`}
                 disabled={!isHydrated}
               >
@@ -74,7 +79,10 @@ export default function AuthPage() {
               </Pressable>
 
               <Pressable
-                onPress={() => setIsSignUp(false)}
+                onPress={() => {
+                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                  setIsSignUp(false);
+                }}
                 className={`flex-1 py-3 rounded-lg items-center ${!isSignUp ? "bg-green-500" : styles.inactiveButtonClass}`}
                 disabled={!isHydrated}
               >
