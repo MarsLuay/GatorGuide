@@ -1,4 +1,6 @@
+// components/pages/SettingsPage.tsx
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
+import { useAppData } from "@/hooks/use-app-data";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { MaterialIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
@@ -27,12 +29,12 @@ export default function SettingsPage() {
   const [selectedLanguage] = useState("English");
 
   const { theme, setTheme, isDark } = useAppTheme();
-  const isDarkMode = isDark;
+  const { isHydrated, signOut, clearAll } = useAppData();
 
-  const textClass = isDarkMode ? "text-white" : "text-gray-900";
-  const secondaryTextClass = isDarkMode ? "text-gray-400" : "text-gray-600";
-  const cardBgClass = isDarkMode ? "bg-gray-900/80 border-gray-800" : "bg-white/90 border-gray-200";
-  const cardBorderClass = isDarkMode ? "border-gray-800" : "border-gray-200";
+  const textClass = isDark ? "text-white" : "text-gray-900";
+  const secondaryTextClass = isDark ? "text-gray-400" : "text-gray-600";
+  const cardBgClass = isDark ? "bg-gray-900/80 border-gray-800" : "bg-white/90 border-gray-200";
+  const cardBorderClass = isDark ? "border-gray-800" : "border-gray-200";
 
   const sections = useMemo(
     () => [
@@ -76,8 +78,17 @@ export default function SettingsPage() {
     [theme, isNotificationsEnabled, selectedLanguage, setTheme]
   );
 
-  const handleLogout = () => router.replace("/login");
-  const handleDeleteConfirm = () => router.replace("/login");
+  const handleLogout = async () => {
+    if (!isHydrated) return;
+    await signOut();
+    router.replace("/login");
+  };
+
+  const handleDeleteConfirm = async () => {
+    if (!isHydrated) return;
+    await clearAll();
+    router.replace("/login");
+  };
 
   if (showDeleteConfirm) {
     return (
@@ -97,7 +108,11 @@ export default function SettingsPage() {
                 <Text className={textClass}>Cancel</Text>
               </Pressable>
 
-              <Pressable onPress={handleDeleteConfirm} className="flex-1 bg-red-500 rounded-lg py-4 items-center">
+              <Pressable
+                onPress={handleDeleteConfirm}
+                className={`flex-1 bg-red-500 rounded-lg py-4 items-center ${!isHydrated ? "opacity-60" : ""}`}
+                disabled={!isHydrated}
+              >
                 <Text className="text-white font-semibold">Delete</Text>
               </Pressable>
             </View>
@@ -135,7 +150,7 @@ export default function SettingsPage() {
                       {item.type === "toggle" ? (
                         <View
                           className={`w-12 h-6 rounded-full ${
-                            item.enabled ? "bg-green-500" : isDarkMode ? "bg-gray-700" : "bg-gray-300"
+                            item.enabled ? "bg-green-500" : isDark ? "bg-gray-700" : "bg-gray-300"
                           }`}
                         >
                           <View className={`w-5 h-5 bg-white rounded-full mt-0.5 ${item.enabled ? "ml-6" : "ml-0.5"}`} />
@@ -143,7 +158,7 @@ export default function SettingsPage() {
                       ) : item.value ? (
                         <Text className={secondaryTextClass}>{item.value}</Text>
                       ) : (
-                        <MaterialIcons name="chevron-right" size={22} color={isDarkMode ? "#9CA3AF" : "#6B7280"} />
+                        <MaterialIcons name="chevron-right" size={22} color={isDark ? "#9CA3AF" : "#6B7280"} />
                       )}
                     </Pressable>
                   ))}
@@ -153,9 +168,10 @@ export default function SettingsPage() {
 
             <Pressable
               onPress={handleLogout}
+              disabled={!isHydrated}
               className={`w-full ${
-                isDarkMode ? "bg-red-500/10 border-red-500/20" : "bg-red-50 border-red-200"
-              } border rounded-2xl px-4 py-5 flex-row items-center`}
+                isDark ? "bg-red-500/10 border-red-500/20" : "bg-red-50 border-red-200"
+              } border rounded-2xl px-4 py-5 flex-row items-center ${!isHydrated ? "opacity-60" : ""}`}
             >
               <MaterialIcons name="logout" size={20} color="#EF4444" />
               <Text className="flex-1 ml-3 text-red-500">Logout</Text>
@@ -163,15 +179,16 @@ export default function SettingsPage() {
 
             <Pressable
               onPress={() => setShowDeleteConfirm(true)}
+              disabled={!isHydrated}
               className={`w-full ${
-                isDarkMode ? "bg-red-500/10 border-red-500/20" : "bg-red-50 border-red-200"
-              } border rounded-2xl px-4 py-5 flex-row items-center`}
+                isDark ? "bg-red-500/10 border-red-500/20" : "bg-red-50 border-red-200"
+              } border rounded-2xl px-4 py-5 flex-row items-center ${!isHydrated ? "opacity-60" : ""}`}
             >
               <MaterialIcons name="delete" size={20} color="#EF4444" />
               <Text className="flex-1 ml-3 text-red-500">Delete Account</Text>
             </Pressable>
 
-            <Text className={`text-center text-sm ${isDarkMode ? "text-gray-600" : "text-gray-400"} mt-2`}>
+            <Text className={`text-center text-sm ${isDark ? "text-gray-600" : "text-gray-400"} mt-2`}>
               Gator Guide v1.0.0
             </Text>
           </View>
