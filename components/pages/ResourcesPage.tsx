@@ -300,8 +300,8 @@ export default function ResourcesPage() {
           </Text>
 
           <View className="relative mb-6">
-            <View className="absolute left-4 top-1/2 -translate-y-1/2">
-              <Ionicons name="search" size={18} color={placeholderTextColor} />
+            <View className="absolute left-4 top-4 z-10">
+              <Ionicons name="search" size={20} color={placeholderTextColor} />
             </View>
 
             <TextInput

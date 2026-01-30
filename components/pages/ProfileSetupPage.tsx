@@ -98,7 +98,7 @@ export default function ProfileSetupPage() {
         keyboardShouldPersistTaps="handled"
         onScrollBeginDrag={Keyboard.dismiss}
       >
-        <View className="w-full max-w-md self-center px-6 pt-8">
+        <View className="w-full max-w-md self-center px-6 pt-20">
           <Pressable onPress={handleBack} className="mb-6 flex-row items-center">
             <MaterialIcons name="arrow-back" size={20} color={styles.placeholderColor} />
           </Pressable>

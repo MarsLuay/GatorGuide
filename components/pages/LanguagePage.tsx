@@ -48,7 +48,7 @@ export default function LanguagePage() {
     <ScreenBackground>
       <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 32 }}>
         <View className="max-w-md w-full self-center">
-          <View className="px-6 pt-8 pb-6">
+          <View className="px-6 pt-20 pb-6">
             <Pressable onPress={() => router.back()} className="mb-4 flex-row items-center">
               <MaterialIcons name="arrow-back" size={20} color={iconColor} />
               <Text className={`${secondaryTextClass} ml-2`}>Back</Text>

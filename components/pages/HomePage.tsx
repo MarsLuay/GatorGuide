@@ -54,19 +54,26 @@ export default function HomePage() {
           <Text className={`${secondaryTextClass} mb-6`}>Find your perfect college match</Text>
 
           <View className="relative mb-4">
-            <View className="absolute left-4 top-1/2 -translate-y-1/2">
-              <Ionicons name="search" size={18} color={placeholderTextColor} />
+            <View className="absolute left-4 top-4 z-10">
+              <Ionicons name="search" size={20} color={placeholderTextColor} />
             </View>
 
             <TextInput
               value={searchQuery}
               onChangeText={setSearchQuery}
               onSubmitEditing={handleSearch}
-              placeholder="What are you looking for in a college?"
+              placeholder="Press Enter to start"
               placeholderTextColor={placeholderTextColor}
-              className={`w-full ${inputClass} ${textClass} border rounded-2xl pl-12 pr-4 py-4`}
+              className={`w-full ${inputClass} ${textClass} border rounded-2xl pl-12 pr-24 py-4`}
               returnKeyType="search"
             />
+
+            <Pressable
+              onPress={handleSearch}
+              className="absolute right-2 top-2 bg-green-500 rounded-xl px-4 py-2"
+            >
+              <Text className="text-black font-semibold">Search</Text>
+            </Pressable>
           </View>
 
           {!hasCompletedQuestionnaire && (

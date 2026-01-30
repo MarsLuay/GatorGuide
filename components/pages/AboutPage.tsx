@@ -19,7 +19,7 @@ export default function AboutPage() {
       <ScrollView contentContainerStyle={{ paddingBottom: 32 }}>
         <View className="max-w-md w-full self-center">
           {/* Header */}
-          <View className="px-6 pt-8 pb-6">
+          <View className="px-6 pt-20 pb-6">
             <Pressable
               onPress={() => router.back()}
               className="mb-4 flex-row items-center"

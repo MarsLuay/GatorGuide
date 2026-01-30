@@ -1,14 +1,17 @@
 // app/index.tsx
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { router } from "expo-router";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { useAppData } from "@/hooks/use-app-data";
 
 export default function Index() {
   const { isHydrated, state } = useAppData();
+  const hasNavigated = useRef(false);
 
   useEffect(() => {
-    if (!isHydrated) return;
+    if (!isHydrated || hasNavigated.current) return;
+    
+    hasNavigated.current = true;
     
     if (state.user) {
       // Check if user has completed profile setup
