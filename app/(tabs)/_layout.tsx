@@ -91,9 +91,6 @@ export default function TabLayout() {
           ),
         }}
       />
-
-      {/* Hide Plan if app/(tabs)/plan.tsx still exists */}
-      <Tabs.Screen name="plan" options={{ href: null }} />
     </Tabs>
   );
 }
