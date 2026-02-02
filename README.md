@@ -1,76 +1,96 @@
-# Welcome to your Expo app 👋
-Gator Guide
+# Welcome to Gator Guide 👋
 
-Welcome to Gator Guide, the app designed to help students find their perfect transfer college. Gator Guide learns about your academic profile, including your major, transcripts, activities, and interests, and uses AI-powered insights to recommend colleges that are the best fit for you. It also lets you interact with AI to ask questions, get advice, and explore schools in a personalized way.
+Gator Guide is a mobile app designed to help students find their perfect transfer college. It learns about your academic profile (major, transcripts, activities, interests) and uses AI-powered insights to recommend the best-fit schools. You can also ask questions, get advice, and explore schools in a personalized way.
 
-What the App Does
+## What the App Does
 
 Gator Guide helps you:
 
-Discover your ideal college match, based on your profile and preferences, the app suggests schools where you are most likely to thrive.
-
-Interact with AI, ask questions, get advice, and explore colleges in an interactive, personalized way.
-
-Easily track your information, keep your academic records, activities, and interests organized in one place.
+- Discover your ideal college match based on your profile and preferences.
+- Interact with AI to get advice, application guidance, and school info.
+- Track your academic records, activities, and interests in one place.
 
 We achieve this by combining data collection, AI analysis, and mobile-first design to make the process simple, intuitive, and helpful.
 
-Teams:
-AI Team, develops and integrates the AI features, ensuring the app can give personalized insights and recommendations.
+## Teams
 
-Mobile Development Team, builds the app’s UI and UX, integrating AI insights and data into the functional, user-friendly app.
+- **AI Team:** Builds and integrates AI features that deliver personalized insights and recommendations.
+- **Mobile Development Team:** Builds the app UI/UX and integrates AI/data into a usable mobile experience.
+- **Data Scraping Team:** Collects and organizes college data to power recommendations and search.
 
-Data Scraping Team, collects and organizes information from colleges and other sources to feed both the AI and the app with accurate, up-to-date data.
+## Setup: Download and Run (Windows)
 
+### 1) Install required tools
 
+- Download VS Code: https://code.visualstudio.com/download
+- Download Node.js (prebuilt version): https://nodejs.org/en/download
+- Download Git (use VS Code instead of Vim): https://git-scm.com/install/windows
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
-
-## Get started
-
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+Verify installs:
 
 ```bash
-npm run reset-project
+npm.cmd -v
+npx.cmd -v
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### 2) Clone and install the project
 
-## Learn more
+```bash
+cd $env:USERPROFILE
 
-To learn more about developing your project with Expo, look at the following resources:
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\GatorGuide\GatorGuideV2" | Out-Null
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+git clone https://github.com/MarsLuay/GatorGuide.git "$env:USERPROFILE\GatorGuide\GatorGuideV2\Front-end"
 
-## Join the community
+cd "$env:USERPROFILE\GatorGuide\GatorGuideV2\Front-end"
+npm.cmd install
+npx.cmd expo start
+# add --tunnel manually if you want to host online (to connect with phone)
+# then copy the http://localhost:8081/ URL into your browser to view the app
+```
 
-Join our community of developers creating universal apps.
+### 3) Open in VS Code (edit files)
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Open VS Code → File → Open Folder →
+
+```
+C:\Users\<you>\GatorGuide\GatorGuideV2\Front-end
+```
+
+## Test on Phone (Expo Go)
+
+```bash
+Npx.cmd expo start --tunnel
+# make sure to type the -- manually (word docs can break formatting)
+# scan the QR code with Expo Go
+```
+
+## Before You Start Coding (Always)
+
+```bash
+cd $env:USERPROFILE\GatorGuide\GatorGuideV2\Front-end
+git checkout main
+git pull origin main
+```
+
+## Commit and Push Changes
+
+First time only (set your info):
+
+```bash
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+```
+
+Then:
+
+```bash
+cd $env:USERPROFILE\GatorGuide\GatorGuideV2\Front-end
+git status
+git branch
+git add .
+git commit -m "WIP: updates"
+git pull --rebase origin main
+git push origin main
+# paste any error messages to ChatGPT if they appear
+```

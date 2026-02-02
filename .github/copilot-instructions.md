@@ -117,9 +117,11 @@ npm run reset-project
 Moves starter code to `app-example/` and creates fresh `app/` directory. **Warning:** This is destructive!
 
 ### Build Configuration
-- **Metro bundler:** Configured in `metro.config.js` with NativeWind integration via `withNativeWind()`
-- **Global CSS:** All Tailwind styles loaded through `global.css` (imported in `app/_layout.tsx`)
+- **Metro bundler:** Configured in `metro.config.js` with NativeWind integration via `withNativeWind(config, { input: "./global.css" })`
+- **Babel:** Uses `babel-preset-expo` with `jsxImportSource: "nativewind"` and `nativewind/babel` preset (see `babel.config.js`)
+- **Global CSS:** All Tailwind styles loaded through `global.css` (imported once in `app/_layout.tsx`); uses NativeWind preset from `tailwind.config.js`
 - **Tailwind content paths:** Configured in `tailwind.config.js` to scan `app/`, `components/`, and `src/` directories
+- **Expo config:** `app.json` enables new architecture (`newArchEnabled: true`), React Compiler (`reactCompiler: true`), and typed routes (`typedRoutes: true`)
 
 ## Critical Integration Points
 
@@ -187,12 +189,24 @@ All API integrations are centralized in the `services/` folder with a **stub-fir
 16. **Path aliases**: TypeScript configured with `@/*` alias mapping to workspace root (see `tsconfig.json`); always use for imports: `import { useAppData } from "@/hooks/use-app-data"`
 17. **Error handling in services**: All service methods return Promises; stub implementations simulate network delays (200-500ms) for realistic UX testing; errors thrown with descriptive messages when real APIs not configured
 
+## Environment Variables
+
+No `.env` file exists by default. To configure real APIs:
+1. Create `.env` file in project root (not tracked in git)
+2. Add keys: `EXPO_PUBLIC_USE_STUB_DATA=false`, `EXPO_PUBLIC_FIREBASE_API_KEY=...`, etc.
+3. Access via `process.env.EXPO_PUBLIC_*` (only `EXPO_PUBLIC_` prefixed vars are exposed to client)
+4. See [services/config.ts](services/config.ts) for all available env vars
+
+**Security note:** Never commit API keys; use environment variables. Firebase Functions should handle server-side API calls (Gemini) to avoid exposing keys to client.
+
 ## Files to Reference
 
 - Navigation: [app/_layout.tsx](app/_layout.tsx), [app/(tabs)/_layout.tsx](app/(tabs)/_layout.tsx), [app/index.tsx](app/index.tsx)
 - State: [hooks/use-app-data.tsx](hooks/use-app-data.tsx), [hooks/use-app-theme.tsx](hooks/use-app-theme.tsx)
-- Styling: [tailwind.config.js](tailwind.config.js), [constants/theme.ts](constants/theme.ts), [global.css](global.css)
+- Styling: [tailwind.config.js](tailwind.config.js), [constants/theme.ts](constants/theme.ts), [global.css](global.css), [babel.config.js](babel.config.js)
 - Layout: [components/layouts/ScreenBackground.tsx](components/layouts/ScreenBackground.tsx)
+- UI Components: [components/ui/FormInput.tsx](components/ui/FormInput.tsx) (theme-aware input), [components/ui/ProfileField.tsx](components/ui/ProfileField.tsx)
 - Example pages: [components/pages/ProfilePage.tsx](components/pages/ProfilePage.tsx) (editing pattern), [components/pages/ProfileSetupPage.tsx](components/pages/ProfileSetupPage.tsx) (multi-step form)
 - Route wrapping: [app/profile-setup.tsx](app/profile-setup.tsx) (demonstrates thin route wrapper pattern)
 - Services: [services/README.md](services/README.md) (stub/real API setup), [services/config.ts](services/config.ts) (API configuration)
+- Config: [app.json](app.json) (Expo configuration), [metro.config.js](metro.config.js) (bundler setup)
