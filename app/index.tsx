@@ -14,8 +14,9 @@ export default function Index() {
     hasNavigated.current = true;
     
     if (state.user) {
-      // Check if user has completed profile setup
-      const hasCompletedSetup = state.user.major || state.user.gpa;
+      // Check if user has completed profile setup (non-empty major or gpa)
+      const hasCompletedSetup = (state.user.major && state.user.major.trim() !== "") || 
+                                (state.user.gpa && state.user.gpa.trim() !== "");
       
       if (hasCompletedSetup) {
         router.replace("/(tabs)");

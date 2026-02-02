@@ -25,6 +25,10 @@ export default function AuthPage() {
     return trimmed && !isEmailValid(trimmed) ? "Enter a valid email." : undefined;
   }, [email]);
 
+  const passwordError = useMemo(() => {
+    return password && password.length < 6 ? "6 characters minimum" : undefined;
+  }, [password]);
+
   const canSubmit = useMemo(() => {
     if (isSignUp) {
       return !!name.trim() && isEmailValid(email.trim()) && password.length >= 6;
@@ -135,6 +139,7 @@ export default function AuthPage() {
                 value={password}
                 onChangeText={setPassword}
                 placeholder={isSignUp ? "Create a password (min 6 characters)" : "Enter your password"}
+                error={passwordError}
                 textClass={styles.textClass}
                 secondaryTextClass={styles.secondaryTextClass}
                 inputBgClass={styles.inputBgClass}
@@ -241,6 +246,7 @@ export default function AuthPage() {
                 value={password}
                 onChangeText={setPassword}
                 placeholder={isSignUp ? "Create a password (min 6 characters)" : "Enter your password"}
+                error={passwordError}
                 textClass={styles.textClass}
                 secondaryTextClass={styles.secondaryTextClass}
                 inputBgClass={styles.inputBgClass}
