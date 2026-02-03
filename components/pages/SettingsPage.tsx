@@ -143,9 +143,9 @@ export default function SettingsPage() {
         t('settings.importConfirm'),
         t('settings.importOverwriteMessage'),
         [
-          { text: "Cancel", style: "cancel" },
+          { text: t('general.cancel'), style: "cancel" },
           {
-            text: "Import",
+            text: t('settings.import'),
             style: "destructive",
             onPress: async () => {
               await restoreData(parsed.data);
@@ -254,7 +254,7 @@ export default function SettingsPage() {
                 className={`flex-1 bg-red-500 rounded-lg py-4 items-center ${!isHydrated ? "opacity-60" : ""}`}
                 disabled={!isHydrated}
               >
-                <Text className="text-white font-semibold">Delete</Text>
+                <Text className="text-white font-semibold">{t("general.delete")}</Text>
               </Pressable>
             </View>
           </View>

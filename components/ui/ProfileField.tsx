@@ -1,5 +1,6 @@
 import { View, Text, TextInput, Pressable, TextInputProps } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+import { useAppLanguage } from "@/hooks/use-app-language";
 
 type BaseFieldProps = {
   icon: keyof typeof MaterialIcons.glyphMap;
@@ -44,6 +45,7 @@ type LinkFieldProps = BaseFieldProps & {
 type ProfileFieldProps = TextFieldProps | UploadFieldProps | DisplayOnlyFieldProps | LinkFieldProps;
 
 export function ProfileField(props: ProfileFieldProps) {
+  const { t } = useAppLanguage();
   const {
     icon,
     label,
@@ -52,8 +54,9 @@ export function ProfileField(props: ProfileFieldProps) {
     textClass,
     secondaryTextClass,
     borderClass,
-    emptyText = "Not specified",
+    emptyText,
   } = props;
+  const resolvedEmptyText = emptyText ?? t("general.notSpecified");
 
   return (
     <View className={`border-t ${borderClass} pt-4 mt-4`}>
@@ -65,11 +68,11 @@ export function ProfileField(props: ProfileFieldProps) {
           {props.type === "link" ? (
             <Pressable onPress={props.onPress}>
               <Text className="text-green-500 underline">
-                {props.linkText || value || emptyText}
+                {props.linkText || value || resolvedEmptyText}
               </Text>
             </Pressable>
           ) : !isEditing || props.type === "display" ? (
-            <Text className={textClass}>{value || emptyText}</Text>
+            <Text className={textClass}>{value || resolvedEmptyText}</Text>
           ) : props.type === "text" || props.type === "textarea" ? (
             <TextInput
               value={props.editValue}
@@ -87,7 +90,7 @@ export function ProfileField(props: ProfileFieldProps) {
               className={`${props.inputBgClass} border rounded-lg px-3 py-3 flex-row items-center justify-between`}
             >
               <Text className={`${textClass} text-sm`}>
-                {props.editValue || props.uploadText || "Upload file"}
+                {props.editValue || props.uploadText || t("general.uploadFile")}
               </Text>
               <MaterialIcons name="upload" size={18} color="#22C55E" />
             </Pressable>

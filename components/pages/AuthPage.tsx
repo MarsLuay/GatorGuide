@@ -25,11 +25,11 @@ export default function AuthPage() {
 
   const emailError = useMemo(() => {
     const trimmed = email.trim();
-    return trimmed && !isEmailValid(trimmed) ? t("auth.email") + " invalid" : undefined;
+    return trimmed && !isEmailValid(trimmed) ? t("auth.emailInvalid") : undefined;
   }, [email, t]);
 
   const passwordError = useMemo(() => {
-    return password && password.length < 6 ? "6 " + t("general.cancel").toLowerCase() + " minimum" : undefined;
+    return password && password.length < 6 ? t("auth.passwordMinimumShort") : undefined;
   }, [password, t]);
 
   const canSubmit = useMemo(() => {
@@ -44,22 +44,22 @@ export default function AuthPage() {
     const e = email.trim();
 
     if (isSignUp && !n) {
-      Alert.alert(t("general.error"), "Please enter your name.");
+      Alert.alert(t("general.error"), t("auth.pleaseEnterName"));
       return;
     }
 
     if (!isEmailValid(e)) {
-      Alert.alert(t("general.error"), t("auth.email") + " invalid");
+      Alert.alert(t("general.error"), t("auth.emailInvalid"));
       return;
     }
 
     if (password.length < 6) {
-      Alert.alert(t("general.error"), "Password must be at least 6 characters.");
+      Alert.alert(t("general.error"), t("auth.passwordMinimum"));
       return;
     }
 
     await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    await signIn({ name: n || "User", email: e, password, isSignUp }); // Use "User" if logging in without name
+    await signIn({ name: n || t("auth.defaultUser"), email: e, password, isSignUp }); // Use default if logging in without name
     
     // If signing up, check for pending guest data and restore it
     if (isSignUp) {

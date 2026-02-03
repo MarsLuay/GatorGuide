@@ -267,8 +267,8 @@ export default function ResourcesPage() {
 
           {filteredSections.length === 0 ? (
             <View className={`${cardClass} border rounded-2xl p-5`}>
-              <Text className={`${textClass} mb-1`}>No matches found</Text>
-              <Text className={`${secondaryTextClass} text-sm`}>Try a different search term.</Text>
+              <Text className={`${textClass} mb-1`}>{t("resources.noMatches")}</Text>
+              <Text className={`${secondaryTextClass} text-sm`}>{t("resources.tryDifferentSearch")}</Text>
             </View>
           ) : (
             <View className="gap-6">

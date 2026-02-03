@@ -128,7 +128,7 @@ export default function ProfilePage() {
         t("settings.importConfirm"),
         t("settings.importOverwriteMessage"),
         [
-          { text: "Cancel", style: "cancel" },
+          { text: t("general.cancel"), style: "cancel" },
           {
             text: t("settings.import"),
             style: "destructive",
@@ -161,7 +161,7 @@ export default function ProfilePage() {
       await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
       router.push("/login");
     } catch {
-      Alert.alert(t("general.error"), "Could not prepare data. Please try again.");
+      Alert.alert(t("general.error"), t("profile.prepareDataError"));
     }
   };
   const confettiRef = useRef<any>(null);
@@ -170,66 +170,66 @@ export default function ProfilePage() {
     () => [
       {
         id: "volunteerActivities",
-        question: "What volunteer activities have you participated in?",
-        placeholder: "Describe your volunteer experiences...",
+        question: t("questionnaire.volunteerActivities"),
+        placeholder: t("questionnaire.volunteerPlaceholder"),
         type: "textarea",
       },
       {
         id: "extracurriculars",
-        question: "What extracurricular activities are you involved in?",
-        placeholder: "List your activities and roles...",
+        question: t("questionnaire.extracurriculars"),
+        placeholder: t("questionnaire.extracurricularsPlaceholder"),
         type: "textarea",
       },
       {
         id: "collegeSetting",
-        question: "What type of college setting do you prefer?",
-        options: ["Urban", "Suburban", "Rural", "No Preference"],
+        question: t("questionnaire.collegeSetting"),
+        options: [t("questionnaire.urban"), t("questionnaire.suburban"), t("questionnaire.rural"), t("questionnaire.noPreference")],
         type: "radio",
       },
       {
         id: "collegeSize",
-        question: "What size college are you looking for?",
-        options: ["Small (< 5,000)", "Medium (5,000-15,000)", "Large (> 15,000)", "No Preference"],
+        question: t("questionnaire.collegeSize"),
+        options: [t("questionnaire.small"), t("questionnaire.medium"), t("questionnaire.large"), t("questionnaire.noPreference")],
         type: "radio",
       },
       {
         id: "environment",
-        question: "What kind of campus environment appeals to you?",
-        options: ["Research-focused", "Liberal Arts", "Technical/Engineering", "Pre-professional", "Mixed"],
+        question: t("questionnaire.environment"),
+        options: [t("questionnaire.researchFocused"), t("questionnaire.liberalArts"), t("questionnaire.technical"), t("questionnaire.preProfessional"), t("questionnaire.mixed")],
         type: "radio",
       },
       {
         id: "programs",
-        question: "Are there specific programs or resources you're looking for?",
-        placeholder: "e.g., Study abroad, research opportunities, internships...",
+        question: t("questionnaire.programs"),
+        placeholder: t("questionnaire.programsPlaceholder"),
         type: "textarea",
       },
       {
         id: "budget",
-        question: "What is your budget range for annual tuition?",
-        options: ["< $20,000", "$20,000 - $40,000", "$40,000 - $60,000", "> $60,000", "Need financial aid"],
+        question: t("questionnaire.budget"),
+        options: [t("questionnaire.under20k"), t("questionnaire.20to40k"), t("questionnaire.40to60k"), t("questionnaire.over60k"), t("questionnaire.needFinancialAid")],
         type: "radio",
       },
       {
         id: "location",
-        question: "Do you have a preferred geographic location?",
-        placeholder: "Enter preferred states, regions, or countries...",
+        question: t("questionnaire.location"),
+        placeholder: t("questionnaire.locationPlaceholder"),
         type: "text",
       },
       {
         id: "housingPreference",
-        question: "What are your housing preferences?",
-        options: ["On-campus dormitory", "Off-campus apartment", "Commute from home", "No preference"],
+        question: t("questionnaire.housingPreference"),
+        options: [t("questionnaire.onCampus"), t("questionnaire.offCampus"), t("questionnaire.commute"), t("questionnaire.noPreference")],
         type: "radio",
       },
       {
         id: "careerGoals",
-        question: "What are your career goals after graduation?",
-        placeholder: "Describe your aspirations and career path...",
+        question: t("questionnaire.careerGoals"),
+        placeholder: t("questionnaire.careerGoalsPlaceholder"),
         type: "textarea",
       },
     ],
-    []
+    [t]
   );
 
   const blankAnswers = useMemo(() => {
@@ -486,12 +486,12 @@ export default function ProfilePage() {
                 <ProfileField
                   type="text"
                   icon="person"
-                  label="Name"
+                  label={t("profile.name")}
                   value={capitalizeWords(user.name)}
                   isEditing={isEditing}
                   editValue={editData.name}
                   onChangeText={(t) => setEditData((p) => ({ ...p, name: t }))}
-                  placeholder="Enter your name"
+                  placeholder={t("profile.enterYourName")}
                   placeholderColor={placeholderColor}
                   inputBgClass={inputBgClass}
                   inputClass={inputClass}
@@ -519,7 +519,7 @@ export default function ProfilePage() {
                 <ProfileField
                   type="display"
                   icon="mail"
-                  label="Email"
+                  label={t("profile.email")}
                   value={user.email}
                   isEditing={false}
                   textClass={textClass}
@@ -531,12 +531,12 @@ export default function ProfilePage() {
               <ProfileField
                 type="text"
                 icon="school"
-                label="Major"
-                value={capitalizeWords(user.major) || "Undecided"}
+                label={t("profile.major")}
+                value={capitalizeWords(user.major) || t("profile.undecided")}
                 isEditing={isEditing}
                 editValue={editData.major}
                 onChangeText={(t) => setEditData((p) => ({ ...p, major: t }))}
-                placeholder="e.g., Computer Science"
+                placeholder={t("profile.majorPlaceholder")}
                 placeholderColor={placeholderColor}
                 inputBgClass={inputBgClass}
                 inputClass={inputClass}
@@ -548,12 +548,12 @@ export default function ProfilePage() {
               <ProfileField
                 type="text"
                 icon="description"
-                label="GPA (0.0 - 4.0)"
+                label={t("profile.gpa")}
                 value={user.gpa}
                 isEditing={isEditing}
                 editValue={editData.gpa}
                 onChangeText={handleGpaChange}
-                placeholder="e.g., 3.8"
+                placeholder={t("profile.gpaPlaceholder")}
                 placeholderColor={placeholderColor}
                 inputBgClass={inputBgClass}
                 inputClass={inputClass}
@@ -566,12 +566,12 @@ export default function ProfilePage() {
               <ProfileField
                 type="text"
                 icon="notes"
-                label="SAT Score"
+                label={t("profile.sat")}
                 value={user.sat}
                 isEditing={isEditing}
                 editValue={editData.sat}
                 onChangeText={(t) => setEditData((p) => ({ ...p, sat: t }))}
-                placeholder="e.g., 1450"
+                placeholder={t("profile.satPlaceholder")}
                 placeholderColor={placeholderColor}
                 inputBgClass={inputBgClass}
                 inputClass={inputClass}
@@ -583,12 +583,12 @@ export default function ProfilePage() {
               <ProfileField
                 type="text"
                 icon="notes"
-                label="ACT Score"
+                label={t("profile.act")}
                 value={user.act}
                 isEditing={isEditing}
                 editValue={editData.act}
                 onChangeText={(t) => setEditData((p) => ({ ...p, act: t }))}
-                placeholder="e.g., 32"
+                placeholder={t("profile.actPlaceholder")}
                 placeholderColor={placeholderColor}
                 inputBgClass={inputBgClass}
                 inputClass={inputClass}
@@ -600,13 +600,13 @@ export default function ProfilePage() {
               <ProfileField
                 type="upload"
                 icon="upload-file"
-                label="Resume"
+                label={t("profile.resume")}
                 value={user.resume}
                 isEditing={isEditing}
                 editValue={editData.resume}
                 onPress={handlePickResume}
-                uploadText="Upload resume"
-                emptyText="Not uploaded"
+                uploadText={t("profile.uploadResume")}
+                emptyText={t("profile.notUploaded")}
                 inputBgClass={inputBgClass}
                 textClass={textClass}
                 secondaryTextClass={secondaryTextClass}
@@ -616,13 +616,13 @@ export default function ProfilePage() {
               <ProfileField
                 type="upload"
                 icon="upload-file"
-                label="Unofficial Transcript"
+                label={t("profile.transcript")}
                 value={user.transcript}
                 isEditing={isEditing}
                 editValue={editData.transcript}
                 onPress={handlePickTranscript}
-                uploadText="Upload transcript"
-                emptyText="Not uploaded"
+                uploadText={t("profile.uploadTranscript")}
+                emptyText={t("profile.notUploaded")}
                 inputBgClass={inputBgClass}
                 textClass={textClass}
                 secondaryTextClass={secondaryTextClass}
@@ -634,7 +634,7 @@ export default function ProfilePage() {
               <View className="flex-row items-center justify-between mb-4">
                 <View className="flex-row items-center">
                   <MaterialIcons name="assignment" size={20} color="#22C55E" />
-                  <Text className={`text-lg ${textClass} ml-3`}>Questionnaire</Text>
+                  <Text className={`text-lg ${textClass} ml-3`}>{t("profile.questionnaire")}</Text>
                 </View>
 
                 <Pressable
@@ -643,14 +643,16 @@ export default function ProfilePage() {
                     setShowQuestionnaire(!showQuestionnaire);
                   }}
                 >
-                  <Text className="text-green-500 text-sm">{hasQuestionnaireData ? "Edit" : "Complete"}</Text>
+                  <Text className="text-green-500 text-sm">
+                    {hasQuestionnaireData ? t("profile.edit") : t("profile.complete")}
+                  </Text>
                 </Pressable>
               </View>
 
               <Text className={`text-sm ${secondaryTextClass}`}>
                 {hasQuestionnaireData
-                  ? "Your preferences have been saved. Tap Edit to update your responses."
-                  : "Complete the questionnaire to get personalized college recommendations."}
+                  ? t("profile.questionnaireCompleted")
+                  : t("profile.questionnairePrompt")}
               </Text>
 
               {/* Questionnaire Expanded View - All Questions at Once */}
@@ -716,7 +718,7 @@ export default function ProfilePage() {
                       }}
                       className={`flex-1 rounded-lg py-3 items-center border ${borderClass}`}
                     >
-                      <Text className={secondaryTextClass}>Close</Text>
+                      <Text className={secondaryTextClass}>{t("general.close")}</Text>
                     </Pressable>
 
                     <Pressable
@@ -726,7 +728,7 @@ export default function ProfilePage() {
                       }}
                       className="flex-1 bg-green-500 rounded-lg py-3 items-center"
                     >
-                      <Text className="text-black font-semibold">Save Answers</Text>
+                      <Text className="text-black font-semibold">{t("profile.saveAnswers")}</Text>
                     </Pressable>
                   </View>
                 </View>

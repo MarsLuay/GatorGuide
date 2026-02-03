@@ -125,7 +125,7 @@ export default function ProfileSetupPage() {
                   label={t("setup.major")}
                   value={major}
                   onChangeText={setMajor}
-                  placeholder="e.g., Computer Science"
+                  placeholder={t("setup.majorPlaceholder")}
                   textClass={styles.textClass}
                   secondaryTextClass={styles.secondaryTextClass}
                   inputBgClass={styles.inputBgClass}
@@ -140,7 +140,7 @@ export default function ProfileSetupPage() {
                     label={t("setup.gpa")}
                     value={gpa}
                     onChangeText={handleGpaChange}
-                    placeholder="e.g., 3.8"
+                    placeholder={t("setup.gpaPlaceholder")}
                     keyboardType="decimal-pad"
                     textClass={styles.textClass}
                     secondaryTextClass={styles.secondaryTextClass}
@@ -152,7 +152,7 @@ export default function ProfileSetupPage() {
                     label={t("setup.sat")}
                     value={sat}
                     onChangeText={setSat}
-                    placeholder="e.g., 1450"
+                    placeholder={t("setup.satPlaceholder")}
                     keyboardType="number-pad"
                     textClass={styles.textClass}
                     secondaryTextClass={styles.secondaryTextClass}
@@ -164,7 +164,7 @@ export default function ProfileSetupPage() {
                     label={t("setup.act")}
                     value={act}
                     onChangeText={setAct}
-                    placeholder="e.g., 32"
+                    placeholder={t("setup.actPlaceholder")}
                     keyboardType="number-pad"
                     textClass={styles.textClass}
                     secondaryTextClass={styles.secondaryTextClass}

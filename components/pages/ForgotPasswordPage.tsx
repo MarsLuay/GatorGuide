@@ -5,6 +5,7 @@ import { router } from "expo-router";
 import { FontAwesome5, MaterialIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
+import { useAppLanguage } from "@/hooks/use-app-language";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { FormInput } from "@/components/ui/FormInput";
 
@@ -12,14 +13,15 @@ const isEmailValid = (value: string) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value.
 
 export default function ForgotPasswordPage() {
   const styles = useThemeStyles();
+  const { t } = useAppLanguage();
 
   const [email, setEmail] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
 
   const emailError = useMemo(() => {
     const trimmed = email.trim();
-    return trimmed && !isEmailValid(trimmed) ? "Enter a valid email." : undefined;
-  }, [email]);
+    return trimmed && !isEmailValid(trimmed) ? t("auth.enterValidEmail") : undefined;
+  }, [email, t]);
 
   const canSubmit = useMemo(() => isEmailValid(email), [email]);
 
@@ -27,7 +29,7 @@ export default function ForgotPasswordPage() {
     const e = email.trim();
 
     if (!isEmailValid(e)) {
-      Alert.alert("Invalid email", "Enter a valid email.");
+      Alert.alert(t("auth.invalidEmail"), t("auth.enterValidEmail"));
       return;
     }
 
@@ -49,14 +51,14 @@ export default function ForgotPasswordPage() {
               </View>
             </View>
 
-            <Text className={`text-3xl text-center ${styles.textClass} mb-2`}>Check Your Email</Text>
+            <Text className={`text-3xl text-center ${styles.textClass} mb-2`}>{t("auth.checkYourEmail")}</Text>
             <Text className={`${styles.secondaryTextClass} text-center mb-8`}>
-              We&apos;ve sent a password reset link to {email.trim()}
+              {t("auth.passwordResetSent")} {email.trim()}
             </Text>
 
             <View className={`${styles.cardBgClass} border rounded-2xl p-6`}>
               <Text className={`text-sm ${styles.secondaryTextClass} text-center`}>
-                Click the link in the email to reset your password. If you don&apos;t see it, check your spam folder.
+                {t("auth.passwordResetInstructions")}
               </Text>
             </View>
           </View>
@@ -81,7 +83,7 @@ export default function ForgotPasswordPage() {
             })}
           >
             <MaterialIcons name="arrow-back" size={20} color={styles.placeholderColor} />
-            <Text className={`${styles.secondaryTextClass} ml-2`}>Back to Login</Text>
+            <Text className={`${styles.secondaryTextClass} ml-2`}>{t("auth.backToLogin")}</Text>
           </Pressable>
 
           <View className="items-center mb-8">
@@ -90,18 +92,18 @@ export default function ForgotPasswordPage() {
             </View>
           </View>
 
-          <Text className={`text-3xl text-center ${styles.textClass} mb-2`}>Forgot Password?</Text>
+          <Text className={`text-3xl text-center ${styles.textClass} mb-2`}>{t("auth.forgotPasswordTitle")}</Text>
           <Text className={`${styles.secondaryTextClass} text-center mb-8`}>
-            Enter your email and we&apos;ll send you a reset link
+            {t("auth.forgotPasswordMessage")}
           </Text>
 
           <View className={`${styles.cardBgClass} border rounded-2xl p-6`}>
             <View className="gap-4">
               <FormInput
-                label="Email Address"
+                label={t("auth.emailAddress")}
                 value={email}
                 onChangeText={setEmail}
-                placeholder="Enter your email"
+                placeholder={t("auth.enterEmail")}
                 error={emailError}
                 textClass={styles.textClass}
                 secondaryTextClass={styles.secondaryTextClass}
@@ -121,7 +123,7 @@ export default function ForgotPasswordPage() {
                   opacity: pressed && canSubmit ? 0.7 : undefined,
                 })}
               >
-                <Text className="text-black font-semibold">Send Reset Link</Text>
+                <Text className="text-black font-semibold">{t("auth.sendResetLink")}</Text>
               </Pressable>
             </View>
           </View>

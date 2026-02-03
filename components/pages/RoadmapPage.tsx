@@ -303,8 +303,8 @@ export default function RoadmapPage() {
 
   const formatDocLabel = (key: string) => {
     if (key === 'personalStatement') return t('roadmap.personalStatement');
-    if (key === 'recommendation1') return 'Recommendation (1)';
-    if (key === 'recommendation2') return 'Recommendation (2)';
+    if (key === 'recommendation1') return t('roadmap.recommendation1');
+    if (key === 'recommendation2') return t('roadmap.recommendation2');
     return key.charAt(0).toUpperCase() + key.slice(1);
   };
 
@@ -327,9 +327,9 @@ export default function RoadmapPage() {
                   <MaterialIcons name="map" size={48} color="black" />
                 </View>
                 
-                <Text className={`text-3xl ${textClass} text-center font-semibold mb-3`}>Your College Roadmap</Text>
+                <Text className={`text-3xl ${textClass} text-center font-semibold mb-3`}>{t("roadmap.yourCollegeRoadmap")}</Text>
                 <Text className={`${secondaryTextClass} text-center text-base`}>
-                  Create an account to unlock a personalized college application journey with:
+                  {t("roadmap.unlockJourney")}
                 </Text>
               </View>
 
@@ -340,8 +340,8 @@ export default function RoadmapPage() {
                       <Ionicons name="checkmark-circle" size={24} color="#22C55E" />
                     </View>
                     <View className="flex-1">
-                      <Text className={`${textClass} font-semibold mb-1`}>Application Checklist</Text>
-                      <Text className={secondaryTextClass}>Track all requirements and deadlines</Text>
+                      <Text className={`${textClass} font-semibold mb-1`}>{t("roadmap.applicationChecklist")}</Text>
+                      <Text className={secondaryTextClass}>{t("roadmap.trackRequirements")}</Text>
                     </View>
                   </View>
 
@@ -350,8 +350,8 @@ export default function RoadmapPage() {
                       <Ionicons name="document-text" size={24} color="#22C55E" />
                     </View>
                     <View className="flex-1">
-                      <Text className={`${textClass} font-semibold mb-1`}>Document Management</Text>
-                      <Text className={secondaryTextClass}>Upload and organize essays, transcripts & more</Text>
+                      <Text className={`${textClass} font-semibold mb-1`}>{t("roadmap.documentManagement")}</Text>
+                      <Text className={secondaryTextClass}>{t("roadmap.organizeDocuments")}</Text>
                     </View>
                   </View>
 
@@ -360,8 +360,8 @@ export default function RoadmapPage() {
                       <Ionicons name="sparkles" size={24} color="#22C55E" />
                     </View>
                     <View className="flex-1">
-                      <Text className={`${textClass} font-semibold mb-1`}>AI-Powered Guidance</Text>
-                      <Text className={secondaryTextClass}>Get personalized advice and task suggestions</Text>
+                      <Text className={`${textClass} font-semibold mb-1`}>{t("roadmap.aiGuidance")}</Text>
+                      <Text className={secondaryTextClass}>{t("roadmap.aiGuidanceDescription")}</Text>
                     </View>
                   </View>
 
@@ -370,8 +370,8 @@ export default function RoadmapPage() {
                       <Ionicons name="calendar" size={24} color="#22C55E" />
                     </View>
                     <View className="flex-1">
-                      <Text className={`${textClass} font-semibold mb-1`}>Timeline & Progress</Text>
-                      <Text className={secondaryTextClass}>Stay on track with milestones and deadlines</Text>
+                      <Text className={`${textClass} font-semibold mb-1`}>{t("roadmap.timelineProgress")}</Text>
+                      <Text className={secondaryTextClass}>{t("roadmap.timelineDescription")}</Text>
                     </View>
                   </View>
                 </View>
@@ -382,7 +382,7 @@ export default function RoadmapPage() {
                 className="bg-green-500 rounded-lg py-4 px-6 items-center flex-row justify-center mb-3"
               >
                 <MaterialIcons name="arrow-forward" size={20} color="black" />
-                <Text className="text-black font-semibold ml-2">Create Profile to Get Started</Text>
+                <Text className="text-black font-semibold ml-2">{t("roadmap.createProfileToStart")}</Text>
               </Pressable>
 
               <Pressable
@@ -392,7 +392,7 @@ export default function RoadmapPage() {
                 }}
                 className={`${cardBgClass} border rounded-lg py-3 px-6 items-center`}
               >
-                <Text className={secondaryTextClass}>Continue as Guest</Text>
+                <Text className={secondaryTextClass}>{t("profile.continueAsGuest")}</Text>
               </Pressable>
             </View>
           </View>
@@ -409,21 +409,21 @@ export default function RoadmapPage() {
             <View className="px-6 pt-6">
               <View className={`${cardBgClass} border rounded-2xl p-4 flex-row items-center justify-between`}>
                 <View>
-                  <Text className={textClass}>Guest tools</Text>
-                  <Text className={`${secondaryTextClass} text-sm`}>Import or export your data</Text>
+                  <Text className={textClass}>{t("roadmap.guestTools")}</Text>
+                  <Text className={`${secondaryTextClass} text-sm`}>{t("roadmap.importExport")}</Text>
                 </View>
                 <View className="flex-row gap-2">
                   <Pressable
                     onPress={handleImportData}
                     className="bg-green-500 rounded-lg px-3 py-2"
                   >
-                    <Text className="text-black font-semibold text-xs">Import</Text>
+                    <Text className="text-black font-semibold text-xs">{t("settings.import")}</Text>
                   </Pressable>
                   <Pressable
                     onPress={handleExportData}
                     className={`${cardBgClass} border rounded-lg px-3 py-2`}
                   >
-                    <Text className={secondaryTextClass + " text-xs"}>Export</Text>
+                    <Text className={secondaryTextClass + " text-xs"}>{t("settings.export")}</Text>
                   </Pressable>
                 </View>
               </View>
@@ -434,10 +434,10 @@ export default function RoadmapPage() {
           <View className="px-6 pt-8 pb-6">
             <Pressable onPress={() => router.back()} className="mb-4 flex-row items-center">
               <MaterialIcons name="arrow-back" size={20} color={styles.placeholderColor} />
-              <Text className={`${secondaryTextClass} ml-2`}>Back</Text>
+              <Text className={`${secondaryTextClass} ml-2`}>{t("roadmap.back")}</Text>
             </Pressable>
-            <Text className={`text-2xl ${textClass}`}>Roadmap</Text>
-            <Text className={`${secondaryTextClass} mt-2`}>Personalized transfer plan checklist</Text>
+            <Text className={`text-2xl ${textClass}`}>{t("roadmap.roadmapTitle")}</Text>
+            <Text className={`${secondaryTextClass} mt-2`}>{t("roadmap.subtitleChecklist")}</Text>
             <View className="mt-4 h-4 w-full bg-gray-300 rounded-full overflow-hidden">
               <Animated.View style={{ width: `${progress}%`, height: 16, backgroundColor: "#22C55E", borderRadius: 8 }} />
             </View>
@@ -446,26 +446,26 @@ export default function RoadmapPage() {
           {/* AI Assistant */}
           <View className="px-6 mb-4">
             <View className={`${cardBgClass} border rounded-2xl p-5`}>
-              <Text className={`${textClass} text-base mb-2`}>Personal AI Assistant</Text>
+              <Text className={`${textClass} text-base mb-2`}>{t("roadmap.personalAssistant")}</Text>
               <TextInput
                 value={aiInput}
                 onChangeText={setAiInput}
-                placeholder="Ask your AI assistant..."
+                placeholder={t("roadmap.askAssistant")}
                 placeholderTextColor={styles.placeholderColor}
                 onSubmitEditing={handleSendAI}
                 className={`border p-2 rounded-lg mb-2 ${styles.inputBgClass} ${textClass}`}
               />
               <Pressable onPress={handleSendAI} className="bg-green-500 rounded-lg px-4 py-2 mb-2 items-center">
-                <Text className="text-black font-semibold">Send</Text>
+                <Text className="text-black font-semibold">{t("roadmap.sendMessage")}</Text>
               </Pressable>
               {aiMessages.map((msg) => (
                 <View key={msg.id} className="mb-2">
                   <Text className={`${textClass} text-sm`}>
-                    {msg.role === 'user' ? `You: ${msg.content}` : msg.content}
+                    {msg.role === 'user' ? t("roadmap.youPrefix").replace("{message}", msg.content) : msg.content}
                   </Text>
                   {msg.role === 'assistant' && msg.source && msg.source !== 'live' ? (
                     <Text className={`${secondaryTextClass} text-xs mt-0.5`}>
-                      {msg.source === 'cached' ? 'Cached response' : 'Sample response'}
+                      {msg.source === 'cached' ? t("roadmap.cachedResponse") : t("roadmap.sampleResponse")}
                     </Text>
                   ) : null}
                 </View>
@@ -515,10 +515,12 @@ export default function RoadmapPage() {
                                       {activeUpload === docKey && (
                                         <View className="mt-2 border-2 border-dashed border-gray-300 dark:border-zinc-700 rounded-xl p-6 items-center justify-center bg-gray-50/50 dark:bg-zinc-900/30">
                                             <Ionicons name="cloud-upload" size={28} color="#22C55E" />
-                                            <Text className={`${textClass} mt-2 text-sm font-medium`}>Upload {formatDocLabel(docKey)}</Text>
-                                            <Text className={`${secondaryTextClass} text-xs`}>PDF, DOCX or PNG up to 10MB</Text>
+                                          <Text className={`${textClass} mt-2 text-sm font-medium`}>
+                                            {t("roadmap.uploadDocument").replace("{document}", formatDocLabel(docKey))}
+                                          </Text>
+                                          <Text className={`${secondaryTextClass} text-xs`}>{t("roadmap.supportedFormats")}</Text>
                                             <Pressable className="mt-3 bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 px-4 py-1.5 rounded-lg">
-                                                <Text className={`${textClass} text-xs font-bold`}>Select File</Text>
+                                            <Text className={`${textClass} text-xs font-bold`}>{t("roadmap.selectFile")}</Text>
                                             </Pressable>
                                         </View>
                                       )}
@@ -528,7 +530,7 @@ export default function RoadmapPage() {
                               )}
                               
                               <TextInput
-                                placeholder="Add a note..."
+                                placeholder={t("roadmap.addNotePlaceholder")}
                                 placeholderTextColor={styles.placeholderColor}
                                 onSubmitEditing={(e) => addNote(task.id, e.nativeEvent.text)}
                                 className={`mt-4 border p-2 rounded-lg ${styles.inputBgClass} ${textClass}`}
@@ -547,7 +549,7 @@ export default function RoadmapPage() {
           {/* Active Clubs */}
           <View className="px-6 mt-6 mb-8">
             <View className={`${cardBgClass} border rounded-2xl p-5`}>
-              <Text className={`${textClass} text-base mb-2 font-bold`}>Active Clubs</Text>
+              <Text className={`${textClass} text-base mb-2 font-bold`}>{t("roadmap.activeClubs")}</Text>
               <View className="flex-row flex-wrap">
                 {activeClubs.map((club, i) => (
                   <View key={i} className="bg-green-500 px-3 py-1 rounded-full mr-2 mb-2">
