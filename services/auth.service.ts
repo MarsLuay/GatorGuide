@@ -1,31 +1,32 @@
-// services/auth.service.ts
-// Authentication service - handles Firebase Auth
-// Currently uses stub data, will connect to Firebase later
+import { 
+  signInWithEmailAndPassword, 
+  createUserWithEmailAndPassword, 
+  signOut as firebaseSignOut,
+  sendPasswordResetEmail 
+} from 'firebase/auth';
+import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
 
+import { auth, db } from './firebase'; 
 import { isStubMode } from './config';
 
 export type AuthUser = {
   uid: string;
   email: string;
   name: string;
+  major?: string;
+  gpa?: string;
 };
 
 export type SignInCredentials = {
   email: string;
   name: string;
+  password?: string; 
 };
 
 class AuthService {
-  /**
-   * Sign in or create user account
-   * STUB: Returns mock user data
-   * TODO: Replace with Firebase createUserWithEmailAndPassword / signInWithEmailAndPassword
-   */
   async signIn(credentials: SignInCredentials): Promise<AuthUser> {
     if (isStubMode()) {
-      // Stub implementation - simulate network delay
       await new Promise((resolve) => setTimeout(resolve, 500));
-      
       return {
         uid: `stub-${Date.now()}`,
         email: credentials.email,
@@ -33,50 +34,68 @@ class AuthService {
       };
     }
 
-    // TODO: Real Firebase implementation
-    // const auth = getAuth();
-    // const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    // return userCredential.user;
-    
-    throw new Error('Firebase Auth not configured yet');
+    try {
+      const password = credentials.password || "TemporaryPassword123!"; 
+      let userCredential;
+
+      try {
+        userCredential = await signInWithEmailAndPassword(auth, credentials.email, password);
+      } catch (error: any) {
+     
+        if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
+          userCredential = await createUserWithEmailAndPassword(auth, credentials.email, password);
+        } else {
+          throw error;
+        }
+      }
+
+      const user = userCredential.user;
+      const userDocRef = doc(db, 'users', user.uid);
+      
+      const userSnap = await getDoc(userDocRef);
+      const cloudData = userSnap.exists() ? userSnap.data() : {};
+
+      setDoc(userDocRef, {
+        uid: user.uid,
+        email: user.email,
+        displayName: credentials.name || cloudData.displayName || cloudData.name,
+        lastLogin: serverTimestamp(), 
+      }, { merge: true }).catch(console.warn);
+
+      return {
+        uid: user.uid,
+        email: user.email!,
+        name: cloudData.displayName || cloudData.name || credentials.name,
+        major: cloudData.major || cloudData.profileData?.major || "",
+        gpa: cloudData.gpa || cloudData.profileData?.gpa || "",
+      };
+    } catch (error) {
+      throw error;
+    }
   }
 
-  /**
-   * Send password reset email
-   * STUB: Returns success immediately
-   * TODO: Replace with Firebase sendPasswordResetEmail
-   */
   async sendPasswordReset(email: string): Promise<void> {
-    if (isStubMode()) {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-      console.log(`[STUB] Password reset email sent to ${email}`);
-      return;
-    }
-
-    // TODO: Real Firebase implementation
-    // const auth = getAuth();
-    // await sendPasswordResetEmail(auth, email);
-    
-    throw new Error('Firebase Auth not configured yet');
+    if (isStubMode()) return;
+    await sendPasswordResetEmail(auth, email);
   }
 
-  /**
-   * Sign out current user
-   * STUB: Clears local data only
-   * TODO: Replace with Firebase signOut
-   */
   async signOut(): Promise<void> {
-    if (isStubMode()) {
-      await new Promise((resolve) => setTimeout(resolve, 200));
-      console.log('[STUB] User signed out');
-      return;
-    }
+    if (isStubMode()) return;
+    await firebaseSignOut(auth);
+  }
 
-    // TODO: Real Firebase implementation
-    // const auth = getAuth();
-    // await signOut(auth);
-    
-    throw new Error('Firebase Auth not configured yet');
+  async updateUserProfile(uid: string, data: any): Promise<void> {
+    if (isStubMode()) return;
+    try {
+      const userDocRef = doc(db, 'users', uid);
+      await setDoc(userDocRef, {
+        ...data,
+        isProfileComplete: true,
+        updatedAt: serverTimestamp(),
+      }, { merge: true });
+    } catch (error) {
+      throw error;
+    }
   }
 }
 

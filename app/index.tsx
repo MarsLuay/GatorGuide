@@ -1,4 +1,3 @@
-// app/index.tsx
 import { useEffect, useRef } from "react";
 import { router } from "expo-router";
 import { LoadingScreen } from "@/components/LoadingScreen";
@@ -10,6 +9,7 @@ export default function Index() {
 
   useEffect(() => {
     if (!isHydrated || hasNavigated.current) return;
+<<<<<<< HEAD
     
     hasNavigated.current = true;
     
@@ -20,17 +20,34 @@ export default function Index() {
       
       if (hasCompletedSetup) {
         router.replace("/(tabs)");
+=======
+
+    const performNavigation = async () => {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+
+      if (hasNavigated.current) return;
+      hasNavigated.current = true;
+
+      if (state.user) {
+        const hasCompletedSetup = !!(
+          state.user.major || 
+          state.user.gpa || 
+          state.user.isProfileComplete
+        );
+
+        if (hasCompletedSetup) {
+          router.replace("/(tabs)");
+        } else {
+          router.replace("/profile-setup");
+        }
+>>>>>>> 596bfb5 (WIP: updates)
       } else {
-        router.replace("/profile-setup");
+        router.replace("/login");
       }
-    } else {
-      router.replace("/login");
-    }
+    };
+
+    performNavigation();
   }, [isHydrated, state.user]);
 
-  if (!isHydrated) {
-    return <LoadingScreen message="Preparing your data" />;
-  }
-
-  return null;
+  return <LoadingScreen message="Preparing your data" />;
 }

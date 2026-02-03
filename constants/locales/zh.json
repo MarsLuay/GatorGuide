@@ -1,0 +1,152 @@
+{
+  "common": {
+    "search": "搜索",
+    "settings": "设置",
+    "language": "语言设置",
+    "logout": "退出登录",
+    "back": "返回",
+    "next": "下一步",
+    "finish": "完成",
+    "complete": "完成",
+    "save": "保存",
+    "saving": "保存中...",
+    "save_failed": "保存失败，请稍后重试",
+    "edit": "编辑",
+    "exit": "退出",
+    "save_exit": "保存并退出",
+    "error": "错误",
+    "loading": "加载中...",
+    "close": "关闭",
+    "not_signed_in": "未登录",
+    "select_file": "选择文件",
+    "no_matches": "未找到匹配结果",
+    "try_different_search": "请尝试其他搜索词。",
+    "browser_hint": "链接将在设备的浏览器中打开。"
+  },
+  "settings": {
+    "preferences": "偏好设置",
+    "notifications": "通知",
+    "theme": "外观主题",
+    "support": "支持与关于",
+    "about": "关于应用"
+  },
+  "theme": {
+    "system": "跟随系统",
+    "dark": "深色模式",
+    "light": "浅色模式"
+  },
+  "roadmap": {
+    "title": "转学路线图",
+    "loading_msg": "正在加载您的个人路线图...",
+    "plan_for": "{{major}} 专业规划 - {{name}}",
+    "progress_label": "完成进度 {{progress}}%",
+    "ai_advisor": {
+      "title": "AI 顾问",
+      "placeholder": "咨询转学要求...",
+      "button": "获取建议",
+      "analyzing": "AI: 正在分析您的 {{major}} 路径..."
+    },
+    "categories": {
+      "Documents": "文件准备",
+      "Academics": "学术课程",
+      "Applications": "申请流程",
+      "Interests": "背景提升"
+    },
+    "task_details": "针对 {{category}} 的任务详情"
+  },
+  "resources": {
+    "title": "资源中心",
+    "subtitle": "提供转学规划、课程转分指南、奖学金及实习的官方链接",
+    "search_placeholder": "搜索资源 (如：UW, 勤工俭学, 奖学金)",
+    "sections": {
+      "student_tools": "学生工具",
+      "grc_planning": "Green River 转学规划",
+      "wa_universities": "华盛顿州常用四年制大学",
+      "transfer_guides": "转学指南 (Green River → 各大学)",
+      "scholarships": "奖学金 (华盛顿州)",
+      "internships": "实习与工作",
+      "international": "国际实习"
+    }
+  },
+  "auth": {
+    "sign_up": "注册",
+    "login": "登录",
+    "create_account": "创建账户",
+    "sign_in": "登录账户",
+    "go_to_login": "前往登录",
+    "login_prompt": "创建账户或登录以编辑您的资料。",
+    "name": "姓名",
+    "name_placeholder": "请输入您的姓名",
+    "email": "电子邮箱",
+    "email_placeholder": "请输入您的邮箱地址",
+    "password": "密码",
+    "password_placeholder_create": "设置密码 (最少6位)",
+    "password_placeholder_enter": "请输入您的密码",
+    "forgot_password": "忘记密码？",
+    "back_to_login": "返回登录",
+    "forgot_password_title": "找回密码",
+    "forgot_password_desc": "输入您的邮箱，我们将向您发送重置链接",
+    "send_reset_link": "发送重置链接",
+    "check_email_title": "请查收邮件",
+    "check_email_desc": "我们已向 {{email}} 发送了重置链接",
+    "check_email_hint": "点击邮件中的链接重置密码。如果您没看到邮件，请检查垃圾邮件夹。",
+    "validation": {
+      "invalid_email": "请输入有效的邮箱地址。",
+      "name_required": "请输入您的姓名。",
+      "password_too_short": "密码长度至少需要6位。",
+      "failed_title": "认证失败",
+      "failed_message": "请检查您的网络连接或账户信息。"
+    }
+  },
+  "profile": {
+    "title": "个人资料",
+    "major": "专业",
+    "major_placeholder": "例如：计算机科学",
+    "gpa_label": "GPA 成绩 (0.0 - 4.0)",
+    "sat_label": "SAT 分数",
+    "act_label": "ACT 分数",
+    "resume_label": "简历",
+    "upload_resume": "上传简历",
+    "not_uploaded": "未上传",
+    "undecided": "未决定"
+  },
+  "setup": {
+    "title": "设置您的资料",
+    "subtitle": "告诉我们您的情况，以便为您定制个性化的转学路线图。",
+    "major": "意向专业",
+    "major_placeholder": "您想学习什么？",
+    "gpa": "当前 GPA",
+    "gpa_placeholder": "例如: 3.8",
+    "sat": "SAT 分数",
+    "sat_placeholder": "可选",
+    "act": "ACT 分数",
+    "act_placeholder": "可选",
+    "resume": "您的简历 (可选)",
+    "transcript": "您的成绩单 (可选)",
+    "transcript_label": "成绩单"
+  },
+  "questionnaire": {
+    "detailed_title": "详细调查问卷",
+    "step_label": "第 {{current}} 步，共 {{total}} 步",
+    "edit_btn": "编辑",
+    "complete_btn": "去完成",
+    "saved_desc": "您的偏好已保存。点击编辑可更新回答。",
+    "empty_desc": "完成问卷以获取个性化的大学推荐。",
+    "save_answers": "保存回答",
+    "questions": {
+      "volunteer": { "title": "你参加过哪些志愿者活动？", "placeholder": "描述您的志愿服务经历..." },
+      "extracurriculars": { "title": "你参加了哪些课外活动？", "placeholder": "列出您的活动和担任的角色..." },
+      "setting": { "title": "你更倾向于哪种校园环境？", "options": ["城市", "郊区", "乡村", "无偏好"] },
+      "size": { "title": "你理想的学校规模是多大？", "options": ["小型 (< 5,000人)", "中型 (5,000-15,000人)", "大型 (> 15,000人)", "无偏好"] },
+      "environment": { "title": "什么样的学术氛围吸引你？", "options": ["研究型", "博雅教育", "技术/工程", "职业预科", "综合型"] },
+      "programs": { "title": "是否有特定的项目或资源是您正在寻找的？", "placeholder": "例如：海外留学、研究机会、实习等..." },
+      "budget": { "title": "您每年的学费预算是多少？", "options": ["< $20,000", "$20,000 - $40,000", "$40,000 - $60,000", "> $60,000", "需要助学金"] },
+      "location": { "title": "是否有偏好的地理位置？", "placeholder": "输入偏好的州、地区或国家..." },
+      "housing": { "title": "您的住宿偏好是什么？", "options": ["校内宿舍", "校外公寓", "家里通勤", "无偏好"] },
+      "goals": { "title": "您毕业后的职业目标是什么？", "placeholder": "描述您的抱负和职业路径..." }
+    }
+  },
+  "startup": {
+    "subtitle": "专为 GRC 学生打造的转学指南"
+  }
+}

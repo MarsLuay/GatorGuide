@@ -1,0 +1,149 @@
+{
+  "common": {
+    "search": "Suche",
+    "settings": "Einstellungen",
+    "language": "Spracheinstellungen",
+    "logout": "Abmelden",
+    "back": "Zurück",
+    "next": "Weiter",
+    "finish": "Beenden",
+    "complete": "Abgeschlossen",
+    "save": "Speichern",
+    "saving": "Wird gespeichert...",
+    "save_failed": "Speichern fehlgeschlagen, bitte versuchen Sie es später erneut",
+    "edit": "Bearbeiten",
+    "exit": "Beenden",
+    "save_exit": "Speichern & Beenden",
+    "error": "Fehler",
+    "loading": "Wird geladen...",
+    "close": "Schließen",
+    "not_signed_in": "Nicht angemeldet",
+    "select_file": "Datei auswählen",
+    "no_matches": "Keine Treffer gefunden",
+    "try_different_search": "Bitte versuchen Sie es mit anderen Suchbegriffen.",
+    "browser_hint": "Links werden im Browser Ihres Geräts geöffnet."
+  },
+  "settings": {
+    "preferences": "Präferenzen",
+    "notifications": "Benachrichtigungen",
+    "theme": "Erscheinungsbild",
+    "support": "Support & Info",
+    "about": "Über die App"
+  },
+  "theme": {
+    "system": "Systemstandard",
+    "dark": "Dunkelmodus",
+    "light": "Hellmodus"
+  },
+  "roadmap": {
+    "title": "Transfer-Roadmap",
+    "loading_msg": "Ihre persönliche Roadmap wird geladen...",
+    "plan_for": "{{major}}-Plan für {{name}}",
+    "progress_label": "{{progress}}% abgeschlossen",
+    "ai_advisor": {
+      "title": "KI-Berater",
+      "placeholder": "Fragen zu Transferanforderungen...",
+      "button": "Rat einholen",
+      "analyzing": "KI: Analysiere Ihren {{major}}-Pfad..."
+    },
+    "categories": {
+      "Documents": "Unterlagen",
+      "Academics": "Akademische Kurse",
+      "Applications": "Bewerbungsprozess",
+      "Interests": "Profilbildung"
+    },
+    "task_details": "Aufgabendetails für {{category}}"
+  },
+  "resources": {
+    "title": "Ressourcen-Zentrum",
+    "subtitle": "Offizielle Links für Transferplanung, Kursäquivalenzen, Stipendien und Praktika",
+    "search_placeholder": "Ressourcen suchen (z. B. UW, Stipendien, Praktika)",
+    "sections": {
+      "student_tools": "Studenten-Tools",
+      "grc_planning": "Green River Transferplanung",
+      "wa_universities": "Bekannte 4-Jahres-Unis in WA",
+      "transfer_guides": "Transfer-Leitfäden (GRC → Universitäten)",
+      "scholarships": "Stipendien (Staat Washington)",
+      "internships": "Jobs & Praktika",
+      "international": "Internationale Praktika"
+    }
+  },
+  "auth": {
+    "sign_up": "Registrieren",
+    "login": "Login",
+    "create_account": "Konto erstellen",
+    "sign_in": "Anmelden",
+    "go_to_login": "Zum Login",
+    "login_prompt": "Erstellen Sie ein Konto oder melden Sie sich an, um Ihr Profil zu bearbeiten.",
+    "name": "Name",
+    "name_placeholder": "Bitte geben Sie Ihren Namen ein",
+    "email": "E-Mail",
+    "email_placeholder": "Bitte geben Sie Ihre E-Mail-Adresse ein",
+    "password": "Passwort",
+    "password_placeholder_create": "Passwort festlegen (min. 6 Zeichen)",
+    "password_placeholder_enter": "Bitte geben Sie Ihr Passwort ein",
+    "forgot_password": "Passwort vergessen?",
+    "back_to_login": "Zurück zum Login",
+    "forgot_password_title": "Passwort zurücksetzen",
+    "forgot_password_desc": "Geben Sie Ihre E-Mail ein, und wir senden Ihnen einen Link",
+    "send_reset_link": "Link senden",
+    "check_email_title": "Bitte E-Mails prüfen",
+    "check_email_desc": "Wir haben einen Link an {{email}} gesendet",
+    "check_email_hint": "Klicken Sie auf den Link in der E-Mail. Prüfen Sie ggf. Ihren Spam-Ordner.",
+    "validation": {
+      "invalid_email": "Bitte eine gültige E-Mail-Adresse eingeben.",
+      "name_required": "Name ist erforderlich.",
+      "password_too_short": "Das Passwort muss mindestens 6 Zeichen lang sein.",
+      "failed_title": "Authentifizierung fehlgeschlagen",
+      "failed_message": "Prüfen Sie Ihre Verbindung oder Ihre Kontodaten."
+    }
+  },
+  "profile": {
+    "title": "Profil",
+    "major": "Fachbereich",
+    "major_placeholder": "z. B. Informatik",
+    "gpa_label": "GPA (0.0 - 4.0)",
+    "sat_label": "SAT-Punktzahl",
+    "act_label": "ACT-Punktzahl",
+    "resume_label": "Lebenslauf",
+    "upload_resume": "Lebenslauf hochladen",
+    "not_uploaded": "Nicht hochgeladen",
+    "undecided": "Unentschlossen"
+  },
+  "setup": {
+    "title": "Profil einrichten",
+    "subtitle": "Erzählen Sie uns von sich, um Ihre Roadmap zu personalisieren.",
+    "major": "Angestrebter Fachbereich",
+    "major_placeholder": "Was möchten Sie studieren?",
+    "gpa": "Aktueller GPA",
+    "gpa_placeholder": "z. B. 3.8",
+    "sat": "SAT-Punktzahl",
+    "sat_placeholder": "Optional",
+    "act": "ACT-Punktzahl",
+    "act_placeholder": "Optional",
+    "resume": "Ihr Lebenslauf (Optional)",
+    "transcript": "Ihr Zeugnis (Optional)",
+    "transcript_label": "Notenspiegel"
+  },
+  "questionnaire": {
+    "detailed_title": "Detaillierter Fragebogen",
+    "step_label": "Schritt {{current}} von {{total}}",
+    "edit_btn": "Bearbeiten",
+    "complete_btn": "Jetzt ausfüllen",
+    "saved_desc": "Ihre Präferenzen wurden gespeichert. Zum Aktualisieren auf Bearbeiten klicken.",
+    "empty_desc": "Fragebogen ausfüllen, um Uni-Empfehlungen zu erhalten.",
+    "save_answers": "Antworten speichern",
+    "questions": {
+      "volunteer": { "title": "Ehrenamtliche Tätigkeiten?", "placeholder": "Beschreiben Sie Ihre Erfahrungen..." },
+      "extracurriculars": { "title": "Außerschulische Aktivitäten?", "placeholder": "Listen Sie Aktivitäten und Rollen auf..." },
+      "setting": { "title": "Bevorzugte Campus-Umgebung?", "options": ["Städtisch", "Vorstädtisch", "Ländlich", "Keine Präferenz"] },
+      "size": { "title": "Ideale Größe der Hochschule?", "options": ["Klein (< 5.000)", "Mittel (5.000-15.000)", "Groß (> 15.000)", "Keine Präferenz"] },
+      "environment": { "title": "Welches akademische Umfeld zieht Sie an?", "options": ["Forschungsorientiert", "Liberal Arts", "Technisch", "Berufsvorbereitend", "Umfassend"] },
+      "programs": { "title": "Bestimmte Programme oder Ressourcen gesucht?", "placeholder": "z. B. Auslandsstudium, Forschung, Praktika..." },
+      "budget": { "title": "Jährliches Budget für Studiengebühren?", "options": ["< $20.000", "$20.000 - $40.000", "$40.000 - $60.000", "> $60.000", "Finanzielle Hilfe benötigt"] },
+      "location": { "title": "Geografische Präferenz?", "placeholder": "Bevorzugte Bundesstaaten, Regionen oder Länder..." },
+      "housing": { "title": "Bevorzugte Wohnform?", "options": ["Auf dem Campus", "Wohnung außerhalb", "Pendeln von zu Hause", "Keine Präferenz"] },
+      "goals": { "title": "Karriereziele nach dem Abschluss?", "placeholder": "Beschreiben Sie Ihre Ambitionen..." }
+    }
+  }
+}

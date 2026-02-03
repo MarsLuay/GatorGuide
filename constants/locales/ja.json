@@ -1,0 +1,149 @@
+{
+  "common": {
+    "search": "検索",
+    "settings": "設定",
+    "language": "言語設定",
+    "logout": "ログアウト",
+    "back": "戻る",
+    "next": "次へ",
+    "finish": "完了",
+    "complete": "完了",
+    "save": "保存",
+    "saving": "保存中...",
+    "save_failed": "保存に失敗しました。後でもう一度お試しください",
+    "edit": "編集",
+    "exit": "終了",
+    "save_exit": "保存して終了",
+    "error": "エラー",
+    "loading": "読み込み中...",
+    "close": "閉じる",
+    "not_signed_in": "ログインしていません",
+    "select_file": "ファイルを選択",
+    "no_matches": "一致する結果が見つかりません",
+    "try_different_search": "別の検索ワードを試してください。",
+    "browser_hint": "リンクはデバイスのブラウザで開きます。"
+  },
+  "settings": {
+    "preferences": "基本設定",
+    "notifications": "通知",
+    "theme": "外観テーマ",
+    "support": "サポートと情報",
+    "about": "アプリについて"
+  },
+  "theme": {
+    "system": "システム設定に従う",
+    "dark": "ダークモード",
+    "light": "ライトモード"
+  },
+  "roadmap": {
+    "title": "編入ロードマップ",
+    "loading_msg": "個人用ロードマップを読み込み中...",
+    "plan_for": "{{name}} さんのための {{major}} 計画",
+    "progress_label": "進捗状況 {{progress}}%",
+    "ai_advisor": {
+      "title": "AIアドバイザー",
+      "placeholder": "編入要件について質問する...",
+      "button": "アドバイスをもらう",
+      "analyzing": "AI: {{major}} の進路を分析しています..."
+    },
+    "categories": {
+      "Documents": "書類準備",
+      "Academics": "学業・コース",
+      "Applications": "出願プロセス",
+      "Interests": "課外活動・実績"
+    },
+    "task_details": "{{category}} に関するタスクの詳細"
+  },
+  "resources": {
+    "title": "リソースセンター",
+    "subtitle": "編入計画、単位換算、奨学金、インターンシップに関する公式リンク",
+    "search_placeholder": "リソースを検索 (例: UW, 学内就労, 奨学金)",
+    "sections": {
+      "student_tools": "学生用ツール",
+      "grc_planning": "Green River 編入計画",
+      "wa_universities": "ワシントン州の主な4年制大学",
+      "transfer_guides": "編入ガイド (GRC → 各大学)",
+      "scholarships": "奨学金 (ワシントン州)",
+      "internships": "求人とインターンシップ",
+      "international": "海外インターンシップ"
+    }
+  },
+  "auth": {
+    "sign_up": "新規登録",
+    "login": "ログイン",
+    "create_account": "アカウント作成",
+    "sign_in": "ログインする",
+    "go_to_login": "ログイン画面へ",
+    "login_prompt": "プロフィールを編集するには、アカウント作成またはログインしてください。",
+    "name": "氏名",
+    "name_placeholder": "名前を入力してください",
+    "email": "メールアドレス",
+    "email_placeholder": "メールアドレスを入力してください",
+    "password": "パスワード",
+    "password_placeholder_create": "パスワード設定 (6文字以上)",
+    "password_placeholder_enter": "パスワードを入力してください",
+    "forgot_password": "パスワードを忘れた場合",
+    "back_to_login": "ログインに戻る",
+    "forgot_password_title": "パスワード再設定",
+    "forgot_password_desc": "登録したメールアドレスを入力してください。再設定用リンクを送信します。",
+    "send_reset_link": "再設定リンクを送信",
+    "check_email_title": "メールを確認してください",
+    "check_email_desc": "{{email}} に再設定用リンクを送信しました",
+    "check_email_hint": "メール内のリンクをクリックしてパスワードを再設定してください。届かない場合は迷惑メールフォルダを確認してください。",
+    "validation": {
+      "invalid_email": "有効なメールアドレスを入力してください。",
+      "name_required": "名前を入力してください。",
+      "password_too_short": "パスワードは6文字以上で入力してください。",
+      "failed_title": "認証失敗",
+      "failed_message": "インターネット接続またはアカウント情報を確認してください。"
+    }
+  },
+  "profile": {
+    "title": "プロフィール",
+    "major": "専攻",
+    "major_placeholder": "例: コンピュータサイエンス",
+    "gpa_label": "GPA (0.0 - 4.0)",
+    "sat_label": "SATスコア",
+    "act_label": "ACTスコア",
+    "resume_label": "履歴書",
+    "upload_resume": "履歴書をアップロード",
+    "not_uploaded": "未アップロード",
+    "undecided": "未定"
+  },
+  "setup": {
+    "title": "プロフィールの設定",
+    "subtitle": "あなたに最適な編入ロードマップを作成するため、情報を入力してください。",
+    "major": "希望専攻",
+    "major_placeholder": "何を勉強したいですか？",
+    "gpa": "現在のGPA",
+    "gpa_placeholder": "例: 3.8",
+    "sat": "SATスコア",
+    "sat_placeholder": "任意",
+    "act": "ACTスコア",
+    "act_placeholder": "任意",
+    "resume": "履歴書 (任意)",
+    "transcript": "成績証明書 (任意)",
+    "transcript_label": "成績証明書"
+  },
+  "questionnaire": {
+    "detailed_title": "詳細アンケート",
+    "step_label": "ステップ {{current}} / {{total}}",
+    "edit_btn": "編集",
+    "complete_btn": "今すぐ回答する",
+    "saved_desc": "設定が保存されました。「編集」から回答を更新できます。",
+    "empty_desc": "アンケートに回答すると、あなたにぴったりの大学の推奨が表示されます。",
+    "save_answers": "回答を保存",
+    "questions": {
+      "volunteer": { "title": "どのようなボランティア活動に参加しましたか？", "placeholder": "経験したボランティアの内容..." },
+      "extracurriculars": { "title": "どのような課外活動に参加していますか？", "placeholder": "活動内容や役割..." },
+      "setting": { "title": "どのようなキャンパス環境を好みますか？", "options": ["都市部", "郊外", "地方", "特になし"] },
+      "size": { "title": "理想的な学校の規模は？", "options": ["小規模 (5,000人未満)", "中規模 (5,000-15,000人)", "大規模 (15,000人以上)", "特になし"] },
+      "environment": { "title": "どのような学問的環境に惹かれますか？", "options": ["研究重視", "リベラルアーツ", "技術・工学系", "職業予備", "総合型"] },
+      "programs": { "title": "特定のプログラムやリソースを探していますか？", "placeholder": "例: 留学、研究機会、インターンシップなど..." },
+      "budget": { "title": "年間の学費予算はどのくらいですか？", "options": ["$20,000未満", "$20,000 - $40,000", "$40,000 - $60,000", "$60,000以上", "返済不要の奨学金が必要"] },
+      "location": { "title": "希望する地域はありますか？", "placeholder": "希望する州、地域、国など..." },
+      "housing": { "title": "滞在方法の希望はありますか？", "options": ["寮(キャンパス内)", "アパート(キャンパス外)", "自宅から通学", "特になし"] },
+      "goals": { "title": "卒業後のキャリア目標は何ですか？", "placeholder": "あなたの野望やキャリアパス..." }
+    }
+  }
+}
