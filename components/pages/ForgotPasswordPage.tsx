@@ -76,6 +76,9 @@ export default function ForgotPasswordPage() {
               router.back();
             }}
             className="mb-8 flex-row items-center"
+            style={({ pressed }) => ({
+              opacity: pressed ? 0.7 : 1,
+            })}
           >
             <MaterialIcons name="arrow-back" size={20} color={styles.placeholderColor} />
             <Text className={`${styles.secondaryTextClass} ml-2`}>Back to Login</Text>
@@ -114,6 +117,9 @@ export default function ForgotPasswordPage() {
                 onPress={handleSubmit}
                 disabled={!canSubmit}
                 className={`w-full bg-green-500 rounded-lg py-4 items-center mt-2 ${!canSubmit ? "opacity-60" : ""}`}
+                style={({ pressed }) => ({
+                  opacity: pressed && canSubmit ? 0.7 : undefined,
+                })}
               >
                 <Text className="text-black font-semibold">Send Reset Link</Text>
               </Pressable>

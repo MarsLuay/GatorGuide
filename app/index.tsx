@@ -14,14 +14,19 @@ export default function Index() {
     hasNavigated.current = true;
     
     if (state.user) {
-      // Check if user has completed profile setup (non-empty major or gpa)
-      const hasCompletedSetup = (state.user.major && state.user.major.trim() !== "") || 
-                                (state.user.gpa && state.user.gpa.trim() !== "");
-      
-      if (hasCompletedSetup) {
+      // Skip profile setup for guests
+      if (state.user.isGuest) {
         router.replace("/(tabs)");
       } else {
-        router.replace("/profile-setup");
+        // Check if user has completed profile setup (non-empty major or gpa)
+        const hasCompletedSetup = (state.user.major && state.user.major.trim() !== "") || 
+                                  (state.user.gpa && state.user.gpa.trim() !== "");
+        
+        if (hasCompletedSetup) {
+          router.replace("/(tabs)");
+        } else {
+          router.replace("/profile-setup");
+        }
       }
     } else {
       router.replace("/login");

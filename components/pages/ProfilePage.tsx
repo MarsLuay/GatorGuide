@@ -224,6 +224,43 @@ export default function ProfilePage() {
     );
   }
 
+  // If guest user, show only create profile button
+  if (user.isGuest) {
+    return (
+      <ScreenBackground>
+        <View className="flex-1 items-center justify-center px-6">
+          <View className="w-full max-w-md">
+            <View className="items-center mb-8">
+              <View className="bg-green-500 p-4 rounded-full mb-4">
+                <MaterialIcons name="person-add" size={48} color="black" />
+              </View>
+              
+              <Text className={`text-3xl ${textClass} text-center font-semibold mb-2`}>Create Your Profile</Text>
+              <Text className={`${secondaryTextClass} text-center text-base`}>
+                Sign up to save your personalized recommendations, track your college application journey, and access exclusive resources
+              </Text>
+            </View>
+
+            <Pressable
+              onPress={() => router.push("/login")}
+              className="bg-green-500 rounded-lg py-4 px-6 items-center flex-row justify-center"
+            >
+              <MaterialIcons name="arrow-forward" size={20} color="black" />
+              <Text className="text-black font-semibold ml-2">Create Profile</Text>
+            </Pressable>
+
+            <Pressable
+              onPress={() => router.back()}
+              className={`${cardBgClass} border rounded-lg py-3 px-6 items-center mt-3`}
+            >
+              <Text className={secondaryTextClass}>Continue as Guest</Text>
+            </Pressable>
+          </View>
+        </View>
+      </ScreenBackground>
+    );
+  }
+
   return (
     <>
       <ScreenBackground>

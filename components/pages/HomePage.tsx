@@ -17,6 +17,7 @@ export default function HomePage() {
   const [results, setResults] = useState<string[]>([]);
   const [hasSubmittedSearch, setHasSubmittedSearch] = useState(false);
   const [isProfileExpanded, setIsProfileExpanded] = useState(false);
+  const [dismissedGuestPrompt, setDismissedGuestPrompt] = useState(false);
 
   const capitalizedName = user?.name 
     ? user.name.split(' ')[0].charAt(0).toUpperCase() + user.name.split(' ')[0].slice(1).toLowerCase()
@@ -52,6 +53,37 @@ export default function HomePage() {
         <View className="max-w-md w-full self-center px-6 pt-10">
           <Text className={`text-2xl ${textClass} mb-1`}>Welcome back, {capitalizedName}!</Text>
           <Text className={`${secondaryTextClass} mb-6`}>Find your perfect college match</Text>
+
+          {user?.isGuest && !dismissedGuestPrompt && (
+            <View className="mb-6 rounded-2xl p-4 bg-green-500">
+              <View className="flex-row items-start gap-3">
+                <View className="p-2 rounded-full bg-black/10 mt-1">
+                  <Ionicons name="person-add" size={20} color="black" />
+                </View>
+
+                <View className="flex-1">
+                  <Text className="font-semibold text-black text-base mb-1">Create your account</Text>
+                  <Text className="text-black/80 text-sm mb-3">Sign up to save your personalized recommendations and application progress</Text>
+
+                  <View className="flex-row gap-2">
+                    <Pressable
+                      onPress={() => router.push("/login")}
+                      className="flex-1 bg-black rounded-lg py-2 items-center"
+                    >
+                      <Text className="text-white font-semibold text-sm">Sign Up</Text>
+                    </Pressable>
+
+                    <Pressable
+                      onPress={() => setDismissedGuestPrompt(true)}
+                      className="flex-1 bg-black/20 rounded-lg py-2 items-center"
+                    >
+                      <Text className="text-black font-semibold text-sm">Later</Text>
+                    </Pressable>
+                  </View>
+                </View>
+              </View>
+            </View>
+          )}
 
           <View className="relative mb-4">
             <View className="absolute left-4 top-4 z-10">
