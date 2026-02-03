@@ -6,6 +6,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppData } from "@/hooks/use-app-data";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
+import { collegeService, College } from "@/services";
 
 export default function HomePage() {
   const { isDark } = useAppTheme();
@@ -14,10 +15,12 @@ export default function HomePage() {
   const user = state.user;
 
   const [searchQuery, setSearchQuery] = useState("");
-  const [results, setResults] = useState<string[]>([]);
+  const [results, setResults] = useState<College[]>([]);
   const [hasSubmittedSearch, setHasSubmittedSearch] = useState(false);
   const [isProfileExpanded, setIsProfileExpanded] = useState(false);
   const [dismissedGuestPrompt, setDismissedGuestPrompt] = useState(false);
+  const [resultsSource, setResultsSource] = useState<'live' | 'cached' | 'stub' | null>(null);
+  const [isSearching, setIsSearching] = useState(false);
 
   const capitalizedName = user?.name 
     ? user.name.split(' ')[0].charAt(0).toUpperCase() + user.name.split(' ')[0].slice(1).toLowerCase()
@@ -31,18 +34,19 @@ export default function HomePage() {
   const inputClass = isDark ? "bg-gray-900/80 border-gray-800" : "bg-white/90 border-gray-200";
   const placeholderTextColor = isDark ? "#9CA3AF" : "#6B7280";
 
-  const handleSearch = () => {
+  const handleSearch = async () => {
     if (!searchQuery.trim()) return;
 
     setHasSubmittedSearch(true);
+    setIsSearching(true);
 
-    setResults([
-      "Massachusetts Institute of Technology (MIT)",
-      "Stanford University",
-      "Harvard University",
-      "California Institute of Technology",
-      "University of California, Berkeley",
-    ]);
+    try {
+      const data = await collegeService.searchColleges(searchQuery.trim());
+      setResults(data);
+      setResultsSource(collegeService.getLastSource());
+    } finally {
+      setIsSearching(false);
+    }
   };
 
   const showExtraInfoPrompt = !hasSubmittedSearch;
@@ -210,16 +214,32 @@ export default function HomePage() {
 
           {results.length > 0 && (
             <View className="mt-8">
-              <Text className={`text-lg ${textClass} mb-4`}>Recommended Colleges</Text>
-
-              <View className="gap-3">
-                {results.map((college) => (
-                  <Pressable key={college} className={`${cardClass} border rounded-xl p-4`}>
-                    <Text className={textClass}>{college}</Text>
-                    <Text className={`text-sm ${secondaryTextClass} mt-1`}>Great match based on your profile</Text>
-                  </Pressable>
-                ))}
+              <View className="flex-row items-center justify-between mb-2">
+                <Text className={`text-lg ${textClass}`}>Recommended Colleges</Text>
+                {resultsSource && resultsSource !== 'live' ? (
+                  <Text className={`${secondaryTextClass} text-xs`}>
+                    {resultsSource === 'cached' ? 'Cached results' : 'Sample data'}
+                  </Text>
+                ) : null}
               </View>
+
+              {isSearching ? (
+                <Text className={`${secondaryTextClass} text-sm`}>Searching...</Text>
+              ) : (
+                <View className="gap-3">
+                  {results.map((college) => (
+                    <Pressable key={college.id} className={`${cardClass} border rounded-xl p-4`}>
+                      <Text className={textClass}>{college.name}</Text>
+                      <Text className={`text-sm ${secondaryTextClass} mt-1`}>
+                        {college.location.city ? `${college.location.city}, ` : ""}{college.location.state}
+                      </Text>
+                      <Text className={`text-sm ${secondaryTextClass} mt-1`}>
+                        Admission rate: {college.admissionRate ? `${Math.round(college.admissionRate * 100)}%` : "N/A"}
+                      </Text>
+                    </Pressable>
+                  ))}
+                </View>
+              )}
             </View>
           )}
 

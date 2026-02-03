@@ -4,6 +4,7 @@ import { View, Text, Pressable, Alert, Keyboard, TouchableWithoutFeedback, Platf
 import { router } from "expo-router";
 import { FontAwesome5 } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppData } from "@/hooks/use-app-data";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
@@ -12,7 +13,7 @@ import { FormInput } from "@/components/ui/FormInput";
 const isEmailValid = (value: string) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value.trim());
 
 export default function AuthPage() {
-  const { isHydrated, state, signIn, signInAsGuest } = useAppData();
+  const { isHydrated, state, signIn, signInAsGuest, updateUser, setQuestionnaireAnswers } = useAppData();
   const styles = useThemeStyles();
 
   const [name, setName] = useState("");
@@ -56,7 +57,36 @@ export default function AuthPage() {
     }
 
     await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    await signIn({ name: n || "User", email: e }); // Use "User" if logging in without name
+    await signIn({ name: n || "User", email: e, password, isSignUp }); // Use "User" if logging in without name
+    
+    // If signing up, check for pending guest data and restore it
+    if (isSignUp) {
+      try {
+        const pendingData = await AsyncStorage.getItem("gatorguide:pending-account-data");
+        if (pendingData) {
+          const parsed = JSON.parse(pendingData);
+          if (parsed.user) {
+            // Merge guest data with new account (keeping the new email/name)
+            await updateUser({
+              major: parsed.user.major,
+              gpa: parsed.user.gpa,
+              sat: parsed.user.sat,
+              act: parsed.user.act,
+              resume: parsed.user.resume,
+              transcript: parsed.user.transcript,
+            });
+          }
+          if (parsed.questionnaireAnswers) {
+            await setQuestionnaireAnswers(parsed.questionnaireAnswers);
+          }
+          // Clear the pending data
+          await AsyncStorage.removeItem("gatorguide:pending-account-data");
+        }
+      } catch {
+        // Silently fail - user can manually import if needed
+      }
+    }
+    
     // Go to index which will route to profile-setup or tabs based on completion
     router.replace("/");
   };

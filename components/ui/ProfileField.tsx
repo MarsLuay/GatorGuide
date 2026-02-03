@@ -35,7 +35,13 @@ type DisplayOnlyFieldProps = BaseFieldProps & {
   type: "display";
 };
 
-type ProfileFieldProps = TextFieldProps | UploadFieldProps | DisplayOnlyFieldProps;
+type LinkFieldProps = BaseFieldProps & {
+  type: "link";
+  onPress: () => void;
+  linkText?: string;
+};
+
+type ProfileFieldProps = TextFieldProps | UploadFieldProps | DisplayOnlyFieldProps | LinkFieldProps;
 
 export function ProfileField(props: ProfileFieldProps) {
   const {
@@ -56,7 +62,13 @@ export function ProfileField(props: ProfileFieldProps) {
         <View className="flex-1 ml-3">
           <Text className={`text-sm ${secondaryTextClass} mb-1`}>{label}</Text>
 
-          {!isEditing || props.type === "display" ? (
+          {props.type === "link" ? (
+            <Pressable onPress={props.onPress}>
+              <Text className="text-green-500 underline">
+                {props.linkText || value || emptyText}
+              </Text>
+            </Pressable>
+          ) : !isEditing || props.type === "display" ? (
             <Text className={textClass}>{value || emptyText}</Text>
           ) : props.type === "text" || props.type === "textarea" ? (
             <TextInput
