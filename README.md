@@ -1,4 +1,4 @@
-# Welcome to Gator Guide 👋
+# Welcome to Gator Guide!
 
 Gator Guide is a mobile app designed to help students find their perfect transfer college. It learns about your academic profile (major, transcripts, activities, interests) and uses AI-powered insights to recommend the best-fit schools. You can also ask questions, get advice, and explore schools in a personalized way.
 
