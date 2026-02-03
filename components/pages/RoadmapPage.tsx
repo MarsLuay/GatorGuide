@@ -4,6 +4,7 @@ import { router } from "expo-router";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
+import { useAppData } from "@/hooks/use-app-data";
 
 interface Task {
   id: string;
@@ -34,7 +35,10 @@ interface StudentProfile {
 
 export default function RoadmapPage() {
   const styles = useThemeStyles();
+  const { state } = useAppData();
   const { textClass, secondaryTextClass, cardBgClass, borderClass } = styles;
+
+  const user = state.user;
 
   const studentProfile: StudentProfile = {
     name: "Retee",
@@ -185,6 +189,96 @@ export default function RoadmapPage() {
     if (key === 'recommendation2') return 'Recommendation (2)';
     return key.charAt(0).toUpperCase() + key.slice(1);
   };
+
+  // If guest user, show roadmap benefits and create profile CTA
+  if (user?.isGuest) {
+    return (
+      <ScreenBackground>
+        <ScrollView contentContainerStyle={{ paddingBottom: 32 }}>
+          <View className="max-w-md w-full self-center">
+            <View className="px-6 pt-8 pb-6">
+              <Pressable onPress={() => router.back()} className="mb-4 flex-row items-center">
+                <MaterialIcons name="arrow-back" size={20} color={styles.placeholderColor} />
+                <Text className={`${secondaryTextClass} ml-2`}>Back</Text>
+              </Pressable>
+            </View>
+
+            <View className="px-6">
+              <View className="items-center mb-8">
+                <View className="bg-green-500 p-4 rounded-full mb-4">
+                  <MaterialIcons name="map" size={48} color="black" />
+                </View>
+                
+                <Text className={`text-3xl ${textClass} text-center font-semibold mb-3`}>Your College Roadmap</Text>
+                <Text className={`${secondaryTextClass} text-center text-base`}>
+                  Create an account to unlock a personalized college application journey with:
+                </Text>
+              </View>
+
+              <View className={`${cardBgClass} border rounded-2xl p-6 mb-6`}>
+                <View className="gap-4">
+                  <View className="flex-row gap-3">
+                    <View className="bg-green-500/20 rounded-full p-2 justify-center items-center w-10 h-10 flex-shrink-0">
+                      <Ionicons name="checkmark-circle" size={24} color="#22C55E" />
+                    </View>
+                    <View className="flex-1">
+                      <Text className={`${textClass} font-semibold mb-1`}>Application Checklist</Text>
+                      <Text className={secondaryTextClass}>Track all requirements and deadlines</Text>
+                    </View>
+                  </View>
+
+                  <View className="flex-row gap-3">
+                    <View className="bg-green-500/20 rounded-full p-2 justify-center items-center w-10 h-10 flex-shrink-0">
+                      <Ionicons name="document-text" size={24} color="#22C55E" />
+                    </View>
+                    <View className="flex-1">
+                      <Text className={`${textClass} font-semibold mb-1`}>Document Management</Text>
+                      <Text className={secondaryTextClass}>Upload and organize essays, transcripts & more</Text>
+                    </View>
+                  </View>
+
+                  <View className="flex-row gap-3">
+                    <View className="bg-green-500/20 rounded-full p-2 justify-center items-center w-10 h-10 flex-shrink-0">
+                      <Ionicons name="sparkles" size={24} color="#22C55E" />
+                    </View>
+                    <View className="flex-1">
+                      <Text className={`${textClass} font-semibold mb-1`}>AI-Powered Guidance</Text>
+                      <Text className={secondaryTextClass}>Get personalized advice and task suggestions</Text>
+                    </View>
+                  </View>
+
+                  <View className="flex-row gap-3">
+                    <View className="bg-green-500/20 rounded-full p-2 justify-center items-center w-10 h-10 flex-shrink-0">
+                      <Ionicons name="calendar" size={24} color="#22C55E" />
+                    </View>
+                    <View className="flex-1">
+                      <Text className={`${textClass} font-semibold mb-1`}>Timeline & Progress</Text>
+                      <Text className={secondaryTextClass}>Stay on track with milestones and deadlines</Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+
+              <Pressable
+                onPress={() => router.push("/login")}
+                className="bg-green-500 rounded-lg py-4 px-6 items-center flex-row justify-center mb-3"
+              >
+                <MaterialIcons name="arrow-forward" size={20} color="black" />
+                <Text className="text-black font-semibold ml-2">Create Profile to Get Started</Text>
+              </Pressable>
+
+              <Pressable
+                onPress={() => router.back()}
+                className={`${cardBgClass} border rounded-lg py-3 px-6 items-center`}
+              >
+                <Text className={secondaryTextClass}>Continue as Guest</Text>
+              </Pressable>
+            </View>
+          </View>
+        </ScrollView>
+      </ScreenBackground>
+    );
+  }
 
   return (
     <ScreenBackground>

@@ -33,7 +33,7 @@ export default function ProfileSetupPage() {
     if (step > 1) {
       setStep(step - 1);
     } else {
-      router.replace("/login");
+      router.replace("/(tabs)");
     }
   };
 
