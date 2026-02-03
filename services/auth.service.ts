@@ -2,7 +2,9 @@
 // Authentication service - handles Firebase Auth
 // Currently uses stub data, will connect to Firebase later
 
-import { isStubMode } from './config';
+import { createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword, signOut as firebaseSignOut, updateProfile } from "firebase/auth";
+import { isStubMode } from "./config";
+import { firebaseAuth } from "./firebase";
 
 export type AuthUser = {
   uid: string;
@@ -13,6 +15,8 @@ export type AuthUser = {
 export type SignInCredentials = {
   email: string;
   name: string;
+  password: string;
+  isSignUp: boolean;
 };
 
 class AuthService {
@@ -33,12 +37,39 @@ class AuthService {
       };
     }
 
-    // TODO: Real Firebase implementation
-    // const auth = getAuth();
-    // const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    // return userCredential.user;
-    
-    throw new Error('Firebase Auth not configured yet');
+    if (!firebaseAuth) {
+      throw new Error("Firebase Auth not configured yet");
+    }
+
+    if (credentials.isSignUp) {
+      const userCredential = await createUserWithEmailAndPassword(
+        firebaseAuth,
+        credentials.email,
+        credentials.password
+      );
+
+      if (credentials.name?.trim()) {
+        await updateProfile(userCredential.user, { displayName: credentials.name.trim() });
+      }
+
+      return {
+        uid: userCredential.user.uid,
+        email: userCredential.user.email ?? credentials.email,
+        name: userCredential.user.displayName ?? credentials.name,
+      };
+    }
+
+    const userCredential = await signInWithEmailAndPassword(
+      firebaseAuth,
+      credentials.email,
+      credentials.password
+    );
+
+    return {
+      uid: userCredential.user.uid,
+      email: userCredential.user.email ?? credentials.email,
+      name: userCredential.user.displayName ?? credentials.name,
+    };
   }
 
   /**
@@ -53,11 +84,11 @@ class AuthService {
       return;
     }
 
-    // TODO: Real Firebase implementation
-    // const auth = getAuth();
-    // await sendPasswordResetEmail(auth, email);
-    
-    throw new Error('Firebase Auth not configured yet');
+    if (!firebaseAuth) {
+      throw new Error("Firebase Auth not configured yet");
+    }
+
+    await sendPasswordResetEmail(firebaseAuth, email);
   }
 
   /**
@@ -72,11 +103,11 @@ class AuthService {
       return;
     }
 
-    // TODO: Real Firebase implementation
-    // const auth = getAuth();
-    // await signOut(auth);
-    
-    throw new Error('Firebase Auth not configured yet');
+    if (!firebaseAuth) {
+      throw new Error("Firebase Auth not configured yet");
+    }
+
+    await firebaseSignOut(firebaseAuth);
   }
 }
 

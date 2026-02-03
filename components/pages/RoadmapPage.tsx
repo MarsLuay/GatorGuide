@@ -1,10 +1,16 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { View, Text, Pressable, ScrollView, TextInput, Animated } from "react-native";
+import { View, Text, Pressable, ScrollView, TextInput, Animated, Alert, Platform } from "react-native";
 import { router } from "expo-router";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useAppData } from "@/hooks/use-app-data";
+import { aiService, ChatMessage } from "@/services";
+import { useAppTheme } from "@/hooks/use-app-theme";
+import * as FileSystem from "expo-file-system";
+import * as Sharing from "expo-sharing";
+import * as DocumentPicker from "expo-document-picker";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface Task {
   id: string;
@@ -35,7 +41,8 @@ interface StudentProfile {
 
 export default function RoadmapPage() {
   const styles = useThemeStyles();
-  const { state } = useAppData();
+  const { theme, setTheme } = useAppTheme();
+  const { state, restoreData, isHydrated } = useAppData();
   const { textClass, secondaryTextClass, cardBgClass, borderClass } = styles;
 
   const user = state.user;
@@ -57,10 +64,18 @@ export default function RoadmapPage() {
 
   const [tasks, setTasks] = useState<Task[]>([]);
   const [aiInput, setAiInput] = useState("");
-  const [aiResponses, setAiResponses] = useState<string[]>([]);
+  const [aiMessages, setAiMessages] = useState<ChatMessage[]>([]);
   
   // Track which specific document is currently being "edited" or "uploaded"
   const [activeUpload, setActiveUpload] = useState<string | null>(null);
+  const [showGuestRoadmap, setShowGuestRoadmap] = useState(false);
+
+  useEffect(() => {
+    if (!user?.isGuest) return;
+    AsyncStorage.getItem("gatorguide:guestRoadmap:show").then((value) => {
+      if (value === "true") setShowGuestRoadmap(true);
+    });
+  }, [user?.isGuest]);
 
   const generateTasks = (profile: StudentProfile): Task[] => {
     const docTask: Task = {
@@ -154,10 +169,111 @@ export default function RoadmapPage() {
     );
   };
 
-  const handleSendAI = () => {
-    if (!aiInput) return;
-    setAiResponses((prev) => [...prev, `You: ${aiInput}`, `AI: Suggestion for "${aiInput}"`]);
+  const handleSendAI = async () => {
+    if (!aiInput.trim()) return;
+
+    const userMessage: ChatMessage = {
+      id: `msg-${Date.now()}-user`,
+      role: 'user',
+      content: aiInput.trim(),
+      timestamp: new Date(),
+    };
+
+    setAiMessages((prev) => [...prev, userMessage]);
     setAiInput("");
+
+    const aiReply = await aiService.chat(userMessage.content);
+    setAiMessages((prev) => [...prev, aiReply]);
+  };
+
+  const handleExportData = async () => {
+    if (!isHydrated) return;
+
+    try {
+      const payload = {
+        exportedAt: new Date().toISOString(),
+        app: "GatorGuide",
+        version: "1.0.0",
+        data: state,
+        theme,
+      };
+
+      if (Platform.OS === "web") {
+        const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "GatorGuide_export.json";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+        return;
+      }
+
+      const fileUri = new FileSystem.File(FileSystem.Paths.document, "GatorGuide_export.json").uri;
+      await FileSystem.writeAsStringAsync(fileUri, JSON.stringify(payload, null, 2), {
+        encoding: "utf8",
+      });
+
+      const canShare = await Sharing.isAvailableAsync();
+      if (!canShare) {
+        Alert.alert("Export ready", "Your export file was created on device, but sharing isn’t available on this platform.");
+        return;
+      }
+
+      await Sharing.shareAsync(fileUri);
+    } catch {
+      Alert.alert("Export failed", "We couldn’t export your data. Please try again.");
+    }
+  };
+
+  const handleImportData = async () => {
+    if (!isHydrated) return;
+
+    try {
+      const result = await DocumentPicker.getDocumentAsync({
+        type: "application/json",
+        copyToCacheDirectory: true,
+      });
+
+      if (result.canceled || !result.assets?.[0]?.uri) return;
+
+      const fileUri = result.assets[0].uri;
+      const raw = await FileSystem.readAsStringAsync(fileUri, {
+        encoding: "utf8",
+      });
+
+      const parsed = JSON.parse(raw) as {
+        data?: typeof state;
+        theme?: string;
+      };
+
+      if (!parsed?.data) {
+        Alert.alert("Invalid file", "This file doesn’t look like a GatorGuide export.");
+        return;
+      }
+
+      Alert.alert(
+        "Import data?",
+        "This will overwrite your current data on this device.",
+        [
+          { text: "Cancel", style: "cancel" },
+          {
+            text: "Import",
+            style: "destructive",
+            onPress: async () => {
+              await restoreData(parsed.data);
+              if (parsed.theme === "light" || parsed.theme === "dark" || parsed.theme === "system") {
+                setTheme(parsed.theme);
+              }
+            },
+          },
+        ]
+      );
+    } catch {
+      Alert.alert("Import failed", "We couldn’t import your data. Please try again.");
+    }
   };
 
   const completedCount = tasks.filter((t) => t.completed).length;
@@ -191,7 +307,7 @@ export default function RoadmapPage() {
   };
 
   // If guest user, show roadmap benefits and create profile CTA
-  if (user?.isGuest) {
+  if (user?.isGuest && !showGuestRoadmap) {
     return (
       <ScreenBackground>
         <ScrollView contentContainerStyle={{ paddingBottom: 32 }}>
@@ -268,7 +384,10 @@ export default function RoadmapPage() {
               </Pressable>
 
               <Pressable
-                onPress={() => router.back()}
+                onPress={() => {
+                  setShowGuestRoadmap(true);
+                  AsyncStorage.setItem("gatorguide:guestRoadmap:show", "true").catch(() => {});
+                }}
                 className={`${cardBgClass} border rounded-lg py-3 px-6 items-center`}
               >
                 <Text className={secondaryTextClass}>Continue as Guest</Text>
@@ -284,6 +403,31 @@ export default function RoadmapPage() {
     <ScreenBackground>
       <ScrollView contentContainerStyle={{ paddingBottom: 32 }}>
         <View className="max-w-md w-full self-center">
+          {user?.isGuest && showGuestRoadmap ? (
+            <View className="px-6 pt-6">
+              <View className={`${cardBgClass} border rounded-2xl p-4 flex-row items-center justify-between`}>
+                <View>
+                  <Text className={textClass}>Guest tools</Text>
+                  <Text className={`${secondaryTextClass} text-sm`}>Import or export your data</Text>
+                </View>
+                <View className="flex-row gap-2">
+                  <Pressable
+                    onPress={handleImportData}
+                    className="bg-green-500 rounded-lg px-3 py-2"
+                  >
+                    <Text className="text-black font-semibold text-xs">Import</Text>
+                  </Pressable>
+                  <Pressable
+                    onPress={handleExportData}
+                    className={`${cardBgClass} border rounded-lg px-3 py-2`}
+                  >
+                    <Text className={secondaryTextClass + " text-xs"}>Export</Text>
+                  </Pressable>
+                </View>
+              </View>
+            </View>
+          ) : null}
+
           {/* Header */}
           <View className="px-6 pt-8 pb-6">
             <Pressable onPress={() => router.back()} className="mb-4 flex-row items-center">
@@ -312,8 +456,17 @@ export default function RoadmapPage() {
               <Pressable onPress={handleSendAI} className="bg-green-500 rounded-lg px-4 py-2 mb-2 items-center">
                 <Text className="text-black font-semibold">Send</Text>
               </Pressable>
-              {aiResponses.map((r, i) => (
-                <Text key={i} className={`${textClass} text-sm mb-1`}>{r}</Text>
+              {aiMessages.map((msg) => (
+                <View key={msg.id} className="mb-2">
+                  <Text className={`${textClass} text-sm`}>
+                    {msg.role === 'user' ? `You: ${msg.content}` : msg.content}
+                  </Text>
+                  {msg.role === 'assistant' && msg.source && msg.source !== 'live' ? (
+                    <Text className={`${secondaryTextClass} text-xs mt-0.5`}>
+                      {msg.source === 'cached' ? 'Cached response' : 'Sample response'}
+                    </Text>
+                  ) : null}
+                </View>
               ))}
             </View>
           </View>

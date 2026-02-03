@@ -18,11 +18,10 @@ export const API_CONFIG = {
     apiKey: process.env.EXPO_PUBLIC_COLLEGE_SCORECARD_KEY || 'STUB',
   },
 
-  // Gemini API (server-side only, never exposed to client)
-  // This is just a placeholder - actual key goes in Firebase Functions
+  // Gemini API (free tier key via .env; client usage only if you accept exposure)
   gemini: {
-    // Don't put real key here - this is just for documentation
-    note: 'API key stored in Firebase Functions environment variables',
+    apiKey: process.env.EXPO_PUBLIC_GEMINI_API_KEY || 'STUB',
+    baseUrl: 'https://generativelanguage.googleapis.com/v1beta',
   },
 
   // Feature flags

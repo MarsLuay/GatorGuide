@@ -5,9 +5,12 @@ import { useAppTheme } from "@/hooks/use-app-theme";
 import { MaterialIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { useMemo, useState } from "react";
-import { Pressable, ScrollView, Text, View, Alert } from "react-native";
+import { Pressable, ScrollView, Text, View, Alert, Platform } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { notificationsService } from "@/services";
+import * as FileSystem from "expo-file-system";
+import * as Sharing from "expo-sharing";
+import * as DocumentPicker from "expo-document-picker";
 
 type SettingsItem =
   | {
@@ -30,7 +33,7 @@ export default function SettingsPage() {
   const [selectedLanguage] = useState("English");
 
   const { theme, setTheme, isDark } = useAppTheme();
-  const { isHydrated, state, signOut, clearAll, setNotificationsEnabled } = useAppData();
+  const { isHydrated, state, signOut, clearAll, setNotificationsEnabled, restoreData } = useAppData();
   const insets = useSafeAreaInsets();
 
   const textClass = isDark ? "text-white" : "text-gray-900";
@@ -59,6 +62,99 @@ export default function SettingsPage() {
       // User is disabling notifications
       await setNotificationsEnabled(false);
       await notificationsService.cancelAllNotifications();
+    }
+  };
+
+  const handleExportData = async () => {
+    if (!isHydrated) return;
+
+    try {
+      const payload = {
+        exportedAt: new Date().toISOString(),
+        app: "GatorGuide",
+        version: "1.0.0",
+        data: state,
+        theme,
+      };
+
+      if (Platform.OS === "web") {
+        const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "GatorGuide_export.json";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+        return;
+      }
+
+      const fileUri = new FileSystem.File(FileSystem.Paths.document, "GatorGuide_export.json").uri;
+      await FileSystem.writeAsStringAsync(fileUri, JSON.stringify(payload, null, 2), {
+        encoding: "utf8",
+      });
+
+      const canShare = await Sharing.isAvailableAsync();
+      if (!canShare || Platform.OS === "web") {
+        Alert.alert("Export ready", "Your export file was created on device, but sharing isn’t available on this platform.");
+        return;
+      }
+
+      await Sharing.shareAsync(fileUri);
+    } catch (error) {
+      Alert.alert("Export failed", "We couldn’t export your data. Please try again.");
+    }
+  };
+
+  const handleImportData = async () => {
+    if (!isHydrated) return;
+
+    try {
+      const result = await DocumentPicker.getDocumentAsync({
+        type: "application/json",
+        copyToCacheDirectory: true,
+      });
+
+      if (result.canceled || !result.assets?.[0]?.uri) return;
+
+      const fileUri = result.assets[0].uri;
+      const raw = await FileSystem.readAsStringAsync(fileUri, {
+        encoding: "utf8",
+      });
+
+      const parsed = JSON.parse(raw) as {
+        exportedAt?: string;
+        app?: string;
+        version?: string;
+        data?: typeof state;
+        theme?: string;
+      };
+
+      if (!parsed?.data) {
+        Alert.alert("Invalid file", "This file doesn’t look like a GatorGuide export.");
+        return;
+      }
+
+      Alert.alert(
+        "Import data?",
+        "This will overwrite your current data on this device.",
+        [
+          { text: "Cancel", style: "cancel" },
+          {
+            text: "Import",
+            style: "destructive",
+            onPress: async () => {
+              await restoreData(parsed.data);
+              if (parsed.theme === "light" || parsed.theme === "dark" || parsed.theme === "system") {
+                setTheme(parsed.theme);
+              }
+            },
+          },
+        ]
+      );
+    } catch (error) {
+      Alert.alert("Import failed", "We couldn’t import your data. Please try again.");
     }
   };
 
@@ -94,13 +190,30 @@ export default function SettingsPage() {
         ] as SettingsItem[],
       },
       {
+        title: "Data",
+        items: [
+          {
+            icon: "upload",
+            label: "Import Data",
+            type: "nav",
+            onPress: handleImportData,
+          },
+          {
+            icon: "download",
+            label: "Export Data",
+            type: "nav",
+            onPress: handleExportData,
+          },
+        ] as SettingsItem[],
+      },
+      {
         title: "Support",
         items: [
           { icon: "info", label: "About", type: "nav", onPress: () => router.push("/about") },
         ] as SettingsItem[],
       },
     ],
-    [theme, state.notificationsEnabled, selectedLanguage, setTheme, handleToggleNotifications]
+    [theme, state.notificationsEnabled, selectedLanguage, setTheme, handleToggleNotifications, handleExportData]
   );
 
   const handleLogout = async () => {

@@ -2,13 +2,18 @@
 // AI chat assistant service (Gemini API)
 // Currently returns stub responses, will connect to Firebase Function + Gemini later
 
-import { isStubMode } from './config';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { API_CONFIG, isStubMode } from './config';
+
+const AI_LAST_RESPONSE_KEY = 'ai:lastResponse';
+const AI_LAST_ROADMAP_KEY = 'ai:lastRoadmap';
 
 export type ChatMessage = {
   id: string;
   role: 'user' | 'assistant';
   content: string;
   timestamp: Date;
+  source?: 'live' | 'cached' | 'stub';
 };
 
 class AIService {
@@ -18,7 +23,7 @@ class AIService {
    * TODO: Replace with Firebase Function that calls Gemini API
    */
   async chat(message: string, context?: string): Promise<ChatMessage> {
-    if (isStubMode()) {
+    if (isStubMode() || API_CONFIG.gemini.apiKey === 'STUB') {
       // Simulate thinking delay
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
@@ -30,18 +35,53 @@ class AIService {
         role: 'assistant',
         content: response,
         timestamp: new Date(),
+        source: 'stub',
       };
     }
 
-    // TODO: Real implementation
-    // Call Firebase Function that uses Gemini API
-    // const result = await functions.httpsCallable('chatAssistant')({
-    //   message,
-    //   context,
-    // });
-    // return result.data;
+    try {
+      const response = await fetch(
+        `${API_CONFIG.gemini.baseUrl}/models/gemini-1.5-flash:generateContent?key=${API_CONFIG.gemini.apiKey}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [
+              {
+                role: 'user',
+                parts: [{ text: context ? `${context}\n\n${message}` : message }],
+              },
+            ],
+          }),
+        }
+      );
 
-    throw new Error('Gemini API not configured yet');
+      if (!response.ok) {
+        throw new Error('Gemini API request failed');
+      }
+
+      const data = await response.json();
+      const text = data?.candidates?.[0]?.content?.parts?.[0]?.text ??
+        "I'm here to help with your college journey. What would you like to know?";
+
+      const payload: ChatMessage = {
+        id: `msg-${Date.now()}`,
+        role: 'assistant',
+        content: text,
+        timestamp: new Date(),
+        source: 'live',
+      };
+
+      await AsyncStorage.setItem(AI_LAST_RESPONSE_KEY, JSON.stringify(payload));
+      return payload;
+    } catch (error) {
+      const cached = await AsyncStorage.getItem(AI_LAST_RESPONSE_KEY);
+      if (cached) {
+        const parsed = JSON.parse(cached) as ChatMessage;
+        return { ...parsed, id: `msg-${Date.now()}`, source: 'cached' };
+      }
+      throw error;
+    }
   }
 
   /**
@@ -80,7 +120,7 @@ class AIService {
    * TODO: Use Gemini to generate personalized tasks
    */
   async generateRoadmap(userProfile: any): Promise<string[]> {
-    if (isStubMode()) {
+    if (isStubMode() || API_CONFIG.gemini.apiKey === 'STUB') {
       await new Promise((resolve) => setTimeout(resolve, 800));
 
       return [
@@ -93,8 +133,54 @@ class AIService {
       ];
     }
 
-    // TODO: Real implementation with Gemini
-    throw new Error('Gemini API not configured yet');
+    try {
+      const response = await fetch(
+        `${API_CONFIG.gemini.baseUrl}/models/gemini-1.5-flash:generateContent?key=${API_CONFIG.gemini.apiKey}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [
+              {
+                role: 'user',
+                parts: [{
+                  text: `Generate 6 concise roadmap tasks for a student with this profile: ${JSON.stringify(userProfile)}`,
+                }],
+              },
+            ],
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error('Gemini API request failed');
+      }
+
+      const data = await response.json();
+      const text = data?.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
+      const lines = text
+        .split('\n')
+        .map((line: string) => line.replace(/^[-*\d.\s]+/, '').trim())
+        .filter(Boolean);
+
+      const tasks = lines.length ? lines.slice(0, 6) : [
+        'Research colleges that offer your major',
+        'Request transcripts from current institution',
+        'Draft personal statement about transfer reasons',
+        'Identify 2-3 professors for recommendation letters',
+        'Create spreadsheet tracking application deadlines',
+        'Review transfer credit policies at target schools',
+      ];
+
+      await AsyncStorage.setItem(AI_LAST_ROADMAP_KEY, JSON.stringify(tasks));
+      return tasks;
+    } catch (error) {
+      const cached = await AsyncStorage.getItem(AI_LAST_ROADMAP_KEY);
+      if (cached) {
+        return JSON.parse(cached) as string[];
+      }
+      throw error;
+    }
   }
 }
 
