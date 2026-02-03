@@ -4,6 +4,7 @@ import { router } from "expo-router";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
+import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppData } from "@/hooks/use-app-data";
 import { aiService, ChatMessage } from "@/services";
 import { useAppTheme } from "@/hooks/use-app-theme";
@@ -41,6 +42,7 @@ interface StudentProfile {
 
 export default function RoadmapPage() {
   const styles = useThemeStyles();
+  const { t } = useAppLanguage();
   const { theme, setTheme } = useAppTheme();
   const { state, restoreData, isHydrated } = useAppData();
   const { textClass, secondaryTextClass, cardBgClass, borderClass } = styles;
@@ -218,13 +220,13 @@ export default function RoadmapPage() {
 
       const canShare = await Sharing.isAvailableAsync();
       if (!canShare) {
-        Alert.alert("Export ready", "Your export file was created on device, but sharing isn’t available on this platform.");
+        Alert.alert(t('settings.exportReady'), t('settings.exportNotAvailable'));
         return;
       }
 
       await Sharing.shareAsync(fileUri);
     } catch {
-      Alert.alert("Export failed", "We couldn’t export your data. Please try again.");
+      Alert.alert(t('settings.exportFailed'), t('settings.exportError'));
     }
   };
 
@@ -250,17 +252,17 @@ export default function RoadmapPage() {
       };
 
       if (!parsed?.data) {
-        Alert.alert("Invalid file", "This file doesn’t look like a GatorGuide export.");
+        Alert.alert(t('settings.invalidFile'), t('settings.invalidFileMessage'));
         return;
       }
 
       Alert.alert(
-        "Import data?",
-        "This will overwrite your current data on this device.",
+        t('settings.importConfirm'),
+        t('settings.importOverwriteMessage'),
         [
-          { text: "Cancel", style: "cancel" },
+          { text: t('settings.cancel'), style: "cancel" },
           {
-            text: "Import",
+            text: t('settings.import'),
             style: "destructive",
             onPress: async () => {
               await restoreData(parsed.data);
@@ -272,7 +274,7 @@ export default function RoadmapPage() {
         ]
       );
     } catch {
-      Alert.alert("Import failed", "We couldn’t import your data. Please try again.");
+      Alert.alert(t('settings.importFailed'), t('settings.importError'));
     }
   };
 
@@ -281,12 +283,12 @@ export default function RoadmapPage() {
 
   const groupedTasks = useMemo(() => {
     return [
-      { name: "Documents", data: tasks.filter((t) => t.id === "documents-checklist") },
-      { name: "Current Courses", data: tasks.filter((t) => t.id.startsWith("course")) },
-      { name: "Applications", data: tasks.filter((t) => t.id.startsWith("submit")) },
-      { name: "Interests", data: tasks.filter((t) => t.id.startsWith("interest")) },
+      { name: t("roadmap.documents"), data: tasks.filter((t) => t.id === "documents-checklist") },
+      { name: t("roadmap.currentCourses"), data: tasks.filter((t) => t.id.startsWith("course")) },
+      { name: t("roadmap.applications"), data: tasks.filter((t) => t.id.startsWith("submit")) },
+      { name: t("roadmap.interests"), data: tasks.filter((t) => t.id.startsWith("interest")) },
     ];
-  }, [tasks]);
+  }, [tasks, t]);
 
   const getDocIcon = (key: string) => {
     switch(key) {
@@ -300,7 +302,7 @@ export default function RoadmapPage() {
   };
 
   const formatDocLabel = (key: string) => {
-    if (key === 'personalStatement') return 'Personal Statement';
+    if (key === 'personalStatement') return t('roadmap.personalStatement');
     if (key === 'recommendation1') return 'Recommendation (1)';
     if (key === 'recommendation2') return 'Recommendation (2)';
     return key.charAt(0).toUpperCase() + key.slice(1);
@@ -315,7 +317,7 @@ export default function RoadmapPage() {
             <View className="px-6 pt-8 pb-6">
               <Pressable onPress={() => router.back()} className="mb-4 flex-row items-center">
                 <MaterialIcons name="arrow-back" size={20} color={styles.placeholderColor} />
-                <Text className={`${secondaryTextClass} ml-2`}>Back</Text>
+                <Text className={`${secondaryTextClass} ml-2`}>{t("roadmap.back")}</Text>
               </Pressable>
             </View>
 

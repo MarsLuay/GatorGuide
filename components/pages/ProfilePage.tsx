@@ -8,6 +8,7 @@ import ConfettiCannon from "react-native-confetti-cannon";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppTheme } from "@/hooks/use-app-theme";
+import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppData } from "@/hooks/use-app-data";
 import { ProfileField } from "@/components/ui/ProfileField";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -21,6 +22,7 @@ type Question =
 
 export default function ProfilePage() {
   const { theme, setTheme, isDark } = useAppTheme();
+  const { t } = useAppLanguage();
   const { isHydrated, state, updateUser, setQuestionnaireAnswers, restoreData } = useAppData();
   const insets = useSafeAreaInsets();
 
@@ -84,13 +86,13 @@ export default function ProfilePage() {
 
       const canShare = await Sharing.isAvailableAsync();
       if (!canShare) {
-        Alert.alert("Export ready", "Your export file was created on device, but sharing isn’t available on this platform.");
+        Alert.alert(t("settings.exportReady"), t("settings.exportNotAvailable"));
         return;
       }
 
       await Sharing.shareAsync(fileUri);
     } catch {
-      Alert.alert("Export failed", "We couldn’t export your data. Please try again.");
+      Alert.alert(t("settings.exportFailed"), t("settings.exportError"));
     }
   };
 
@@ -116,19 +118,19 @@ export default function ProfilePage() {
       };
 
       if (!parsed?.data) {
-        Alert.alert("Invalid file", "This file doesn’t look like a GatorGuide export.");
+        Alert.alert(t("settings.invalidFile"), t("settings.invalidFileMessage"));
         return;
       }
 
       const dataToRestore = parsed.data as typeof state;
 
       Alert.alert(
-        "Import data?",
-        "This will overwrite your current data on this device.",
+        t("settings.importConfirm"),
+        t("settings.importOverwriteMessage"),
         [
           { text: "Cancel", style: "cancel" },
           {
-            text: "Import",
+            text: t("settings.import"),
             style: "destructive",
             onPress: async () => {
               await restoreData(dataToRestore);
@@ -140,7 +142,7 @@ export default function ProfilePage() {
         ]
       );
     } catch {
-      Alert.alert("Import failed", "We couldn’t import your data. Please try again.");
+      Alert.alert(t("settings.importFailed"), t("settings.importError"));
     }
   };
   const handleCreateAccount = async () => {
@@ -159,7 +161,7 @@ export default function ProfilePage() {
       await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
       router.push("/login");
     } catch {
-      Alert.alert("Error", "Could not prepare data. Please try again.");
+      Alert.alert(t("general.error"), "Could not prepare data. Please try again.");
     }
   };
   const confettiRef = useRef<any>(null);
@@ -328,16 +330,16 @@ export default function ProfilePage() {
       <ScreenBackground>
         <View className="flex-1 items-center justify-center px-6">
           <View className={`${cardBgClass} border rounded-2xl p-6 w-full max-w-md`}>
-            <Text className={`text-xl ${textClass} mb-2`}>Not signed in</Text>
+            <Text className={`text-xl ${textClass} mb-2`}>{t("profile.notSignedIn")}</Text>
             <Text className={`${secondaryTextClass} mb-4`}>
-              Create an account or sign in to edit your profile.
+              {t("profile.notSignedInMessage")}
             </Text>
             <Pressable
               onPress={() => router.replace("/login")}
               className="bg-green-500 rounded-lg py-4 items-center"
               disabled={!isHydrated}
             >
-              <Text className="text-black font-semibold">Go to Login</Text>
+              <Text className="text-black font-semibold">{t("profile.goToLogin")}</Text>
             </Pressable>
           </View>
         </View>
@@ -356,9 +358,9 @@ export default function ProfilePage() {
                 <MaterialIcons name="person-add" size={48} color="black" />
               </View>
               
-              <Text className={`text-3xl ${textClass} text-center font-semibold mb-2`}>Create Your Profile</Text>
+              <Text className={`text-3xl ${textClass} text-center font-semibold mb-2`}>{t("profile.createYourProfile")}</Text>
               <Text className={`${secondaryTextClass} text-center text-base`}>
-                Sign up to save your personalized recommendations, track your college application journey, and access exclusive resources
+                {t("profile.createProfileMessage")}
               </Text>
             </View>
 
@@ -367,7 +369,7 @@ export default function ProfilePage() {
               className="bg-green-500 rounded-lg py-4 px-6 items-center flex-row justify-center"
             >
               <MaterialIcons name="arrow-forward" size={20} color="black" />
-              <Text className="text-black font-semibold ml-2">Create Profile</Text>
+              <Text className="text-black font-semibold ml-2">{t("profile.createYourProfile")}</Text>
             </Pressable>
 
             <Pressable
@@ -377,7 +379,7 @@ export default function ProfilePage() {
               }}
               className={`${cardBgClass} border rounded-lg py-3 px-6 items-center mt-3`}
             >
-              <Text className={secondaryTextClass}>Continue as Guest</Text>
+              <Text className={secondaryTextClass}>{t("profile.continueAsGuest")}</Text>
             </Pressable>
           </View>
         </View>
@@ -403,8 +405,8 @@ export default function ProfilePage() {
                     <MaterialIcons name="cloud-upload" size={20} color="#22C55E" />
                   </View>
                   <View className="flex-1">
-                    <Text className={`${textClass} font-semibold`}>Guest Mode</Text>
-                    <Text className={`${secondaryTextClass} text-xs`}>Your data is saved locally</Text>
+                    <Text className={`${textClass} font-semibold`}>{t("profile.guestMode")}</Text>
+                    <Text className={`${secondaryTextClass} text-xs`}>{t("profile.yourDataSaved")}</Text>
                   </View>
                 </View>
                 <View className="flex-row gap-2">
@@ -413,14 +415,14 @@ export default function ProfilePage() {
                     className="flex-1 bg-green-500 rounded-xl px-4 py-3 flex-row items-center justify-center"
                   >
                     <MaterialIcons name="file-download" size={18} color="black" />
-                    <Text className="text-black font-semibold ml-2">Import</Text>
+                    <Text className="text-black font-semibold ml-2">{t("settings.import")}</Text>
                   </Pressable>
                   <Pressable
                     onPress={handleExportData}
                     className={`flex-1 ${cardBgClass} border-2 border-green-500 rounded-xl px-4 py-3 flex-row items-center justify-center`}
                   >
                     <MaterialIcons name="file-upload" size={18} color="#22C55E" />
-                    <Text className="text-green-500 font-semibold ml-2">Export</Text>
+                    <Text className="text-green-500 font-semibold ml-2">{t("settings.export")}</Text>
                   </Pressable>
                 </View>
               </View>
@@ -428,7 +430,7 @@ export default function ProfilePage() {
           ) : null}
           {/* Header */}
           <View className="px-6 pt-8 pb-6 flex-row items-center justify-between">
-            <Text className={`text-2xl ${textClass}`}>Profile</Text>
+            <Text className={`text-2xl ${textClass}`}>{t("profile.edit")}</Text>
 
             <Pressable
               onPress={() => {
@@ -442,7 +444,7 @@ export default function ProfilePage() {
               className="bg-green-500 rounded-lg px-4 py-3 flex-row items-center"
             >
               <MaterialIcons name={isEditing ? "save" : "edit"} size={16} color="black" />
-              <Text className="text-black font-semibold ml-2">{isEditing ? "Save" : "Edit"}</Text>
+              <Text className="text-black font-semibold ml-2">{isEditing ? t("profile.save") : t("profile.edit")}</Text>
             </Pressable>
           </View>
 
@@ -459,7 +461,7 @@ export default function ProfilePage() {
                     <View className="flex-1">
                       <Text className={`${textClass} text-2xl font-bold mb-1`}>{capitalizeWords(user.name)}</Text>
                       <View className="bg-green-500/20 rounded-full px-3 py-1 self-start">
-                        <Text className="text-green-500 text-xs font-semibold">Guest Mode</Text>
+                        <Text className="text-green-500 text-xs font-semibold">{t("profile.guestMode")}</Text>
                       </View>
                     </View>
                   </View>
@@ -507,9 +509,9 @@ export default function ProfilePage() {
                   <View className="flex-1 pr-3">
                     <View className="flex-row items-center mb-2">
                       <MaterialIcons name="stars" size={20} color="black" />
-                      <Text className="text-black font-bold text-base ml-2">Create Your Account</Text>
+                      <Text className="text-black font-bold text-base ml-2">{t("profile.createAccount")}</Text>
                     </View>
-                    <Text className="text-black/80 text-sm">Save your data across devices and unlock all features</Text>
+                    <Text className="text-black/80 text-sm">{t("profile.saveDataMessage")}</Text>
                   </View>
                   <MaterialIcons name="arrow-forward" size={24} color="black" />
                 </Pressable>

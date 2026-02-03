@@ -4,6 +4,7 @@ import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
+import { useAppLanguage } from "@/hooks/use-app-language";
 
 type ResourceItem = {
   title: string;
@@ -20,6 +21,7 @@ type ResourceSection = {
 
 export default function ResourcesPage() {
   const styles = useThemeStyles();
+  const { t } = useAppLanguage();
   const insets = useSafeAreaInsets();
   const [query, setQuery] = useState("");
 
@@ -31,24 +33,24 @@ export default function ResourcesPage() {
   const sections: ResourceSection[] = useMemo(
     () => [
       {
-        title: "Student Tools",
+        title: t("resources.studentTools"),
         icon: "account-circle",
         items: [
           {
-            title: "ctcLink",
-            description: "Login to registration, financials, and student account tools.",
+            title: t("resources.ctcLink"),
+            description: t("resources.ctcLinkDesc"),
             url: "https://myaccount.ctclink.us/",
             tags: ["portal", "ctclink", "registration", "financial aid"],
           },
           {
-            title: "Canvas (eGator)",
-            description: "Access course content, assignments, and announcements.",
+            title: t("resources.canvas"),
+            description: t("resources.canvasDesc"),
             url: "https://egator.greenriver.edu/login/saml",
             tags: ["canvas", "egator", "classes", "lms"],
           },
           {
-            title: "Work-Study & Student Employment (GRC)",
-            description: "Eligibility and info for work-study and on-campus jobs.",
+            title: t("resources.workStudy"),
+            description: t("resources.workStudyDesc"),
             url: "https://www.greenriver.edu/students/pay-for-college/financial-aid/student-employment/",
             tags: ["work-study", "jobs", "grc"],
           },
@@ -56,18 +58,18 @@ export default function ResourcesPage() {
       },
 
       {
-        title: "Green River Transfer Planning",
+        title: t("resources.greenRiverTransfer"),
         icon: "school",
         items: [
           {
-            title: "Transfer Students (GRC Advising)",
-            description: "Transfer advising services and resources for Green River students.",
+            title: t("resources.transferAdvising"),
+            description: t("resources.transferAdvisingDesc"),
             url: "https://www.greenriver.edu/students/academics/career-and-advising-center/advising/transfer-students.html",
             tags: ["transfer", "advising", "grc"],
           },
           {
-            title: "University & College Transfer Hub (GRC)",
-            description: "Transfer planning sheets, pathways, and transfer info.",
+            title: t("resources.transferHub"),
+            description: t("resources.transferHubDesc"),
             url: "https://www.greenriver.edu/students/academics/areas-of-interest/university-and-college-transfer/",
             tags: ["transfer", "planning", "grc"],
           },
@@ -75,31 +77,31 @@ export default function ResourcesPage() {
       },
 
       {
-        title: "Common WA 4-Year Universities (Transfer Pages)",
+        title: t("resources.commonWaUniversities"),
         icon: "map",
         items: [
           {
-            title: "University of Washington (UW) — Apply as a Transfer",
-            description: "Start here for UW transfer application info (all campuses).",
+            title: t("resources.uw"),
+            description: t("resources.uwDesc"),
             url: "https://admit.washington.edu/apply/",
             tags: ["uw", "transfer", "apply"],
           },
           {
-            title: "Western Washington University (WWU) — Transfer Students",
-            description: "Transfer admissions overview and help for prospective transfer students.",
+            title: t("resources.wwu"),
+            description: t("resources.wwuDesc"),
             url: "https://aasac.wwu.edu/transfer-students",
             tags: ["wwu", "transfer", "apply"],
           },
           {
-            title: "Washington State University (WSU) — Transfer Admission",
-            description: "Transfer admissions info for WSU.",
+            title: t("resources.wsu"),
+            description: t("resources.wsuDesc"),
             url: "https://admission.wsu.edu/apply/transfer/",
             tags: ["wsu", "transfer", "apply"],
           },
 
           {
-            title: "The Evergreen State College — Transfer Admission",
-            description: "Transfer admissions info for Evergreen.",
+            title: t("resources.evergreen"),
+            description: t("resources.evergreenDesc"),
             url: "https://www.evergreen.edu/admissions/transfer",
             tags: ["evergreen", "transfer", "apply"],
           },
@@ -107,24 +109,24 @@ export default function ResourcesPage() {
       },
 
       {
-        title: "Transfer Guides (Green River → Universities)",
+        title: t("resources.transferGuides"),
         icon: "find-in-page",
         items: [
           {
-            title: "University of Washington — Equivalency Guide (Green River)",
-            description: "Course-by-course equivalencies from Green River to UW.",
+            title: t("resources.uwEquivalency"),
+            description: t("resources.uwEquivalencyDesc"),
             url: "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
             tags: ["uw", "equivalency", "transfer credit", "grc"],
           },
           {
-            title: "UW Bothell — Green River Equivalency Guide",
-            description: "How Green River courses transfer to UW Bothell.",
+            title: t("resources.uwBothell"),
+            description: t("resources.uwBothellDesc"),
             url: "https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college",
             tags: ["uw bothell", "equivalency", "transfer credit", "grc"],
           },
           {
-            title: "The Evergreen State College — Green River Transfer Guide (PDF)",
-            description: "Evergreen transfer guide for Green River coursework.",
+            title: t("resources.evergreenGuide"),
+            description: t("resources.evergreenGuideDesc"),
             url: "https://www.evergreen.edu/sites/default/files/2023-06/GreenRiver.pdf",
             tags: ["evergreen", "pdf", "transfer", "grc"],
           },
@@ -132,24 +134,24 @@ export default function ResourcesPage() {
       },
 
       {
-        title: "Scholarships (WA-focused)",
+        title: t("resources.scholarships"),
         icon: "attach-money",
         items: [
           {
-            title: "CareerOneStop — Scholarship Finder (Washington)",
-            description: "Scholarship search filtered to Washington opportunities.",
+            title: t("resources.careerOneStop"),
+            description: t("resources.careerOneStopDesc"),
             url: "https://www.careeronestop.org/Toolkit/Training/find-scholarships.aspx?curPage=1&georestrictionfilter=Washington",
             tags: ["scholarships", "washington", "search"],
           },
           {
-            title: "BigFuture — Scholarship Search (WA)",
-            description: "College Board scholarship search filtered to Washington; nearest deadlines first.",
+            title: t("resources.bigFuture"),
+            description: t("resources.bigFutureDesc"),
             url: "https://bigfuture.collegeboard.org/scholarship-search?sort=deadline-nearest-first&cntry=US&stt=WA",
             tags: ["scholarships", "washington", "deadline"],
           },
           {
-            title: "Washington State Opportunity Scholarship (WSOS)",
-            description: "Scholarships and support for eligible WA students (plus job board).",
+            title: t("resources.wsos"),
+            description: t("resources.wsosDesc"),
             url: "https://waopportunityscholarship.org/",
             tags: ["wsos", "scholarships", "washington"],
           },
@@ -157,24 +159,24 @@ export default function ResourcesPage() {
       },
 
       {
-        title: "Internships & Jobs",
+        title: t("resources.internships"),
         icon: "work",
         items: [
           {
-            title: "Washington State Government Internships (GovernmentJobs)",
-            description: "Internship postings across WA state agencies (most recent first).",
+            title: t("resources.waGovernment"),
+            description: t("resources.waGovernmentDesc"),
             url: "https://www.governmentjobs.com/careers/washington?jobType[0]=Internship&sort=PostingDate%7CDescending",
             tags: ["internships", "washington", "government"],
           },
           {
-            title: "WSOS Job Board",
-            description: "Jobs and internships from WSOS partners and opportunities.",
+            title: t("resources.wsosJobs"),
+            description: t("resources.wsosJobsDesc"),
             url: "https://waopportunityscholarship.org/jobs/",
             tags: ["wsos", "jobs", "internships", "washington"],
           },
           {
-            title: "Parker Dewey Micro-Internships",
-            description: "Short-term paid projects to build experience.",
+            title: t("resources.parkerDewey"),
+            description: t("resources.parkerDeweyDesc"),
             url: "https://www.parkerdewey.com/",
             tags: ["micro-internships", "experience"],
           },
@@ -182,31 +184,31 @@ export default function ResourcesPage() {
       },
 
       {
-        title: "International Internships",
+        title: t("resources.internationalInternships"),
         icon: "public",
         items: [
           {
-            title: "AIESEC Global Talent",
-            description: "International internships and placements.",
+            title: t("resources.aiesec"),
+            description: t("resources.aiesecDesc"),
             url: "https://aiesec.org/global-talent",
             tags: ["international", "internships"],
           },
           {
-            title: "Go Overseas — Internships Abroad",
-            description: "Browse internship abroad programs and listings.",
+            title: t("resources.goOverseas"),
+            description: t("resources.goOverseasDesc"),
             url: "https://www.gooverseas.com/internships-abroad",
             tags: ["international", "internships", "abroad"],
           },
           {
-            title: "IAESTE — Internships",
-            description: "International STEM-focused internships (availability varies).",
+            title: t("resources.iaeste"),
+            description: t("resources.iaesteDesc"),
             url: "https://iaeste.org/internships",
             tags: ["international", "stem", "internships"],
           },
         ],
       },
     ],
-    []
+    [t]
   );
 
   const filteredSections = useMemo(() => {
@@ -228,12 +230,12 @@ export default function ResourcesPage() {
     try {
       const can = await Linking.canOpenURL(safeUrl);
       if (!can) {
-        Alert.alert("Cannot open link", "Your device could not open this link.");
+        Alert.alert(t('resources.cannotOpenLink'), t('resources.couldNotOpenLink'));
         return;
       }
       await Linking.openURL(safeUrl);
     } catch {
-      Alert.alert("Link error", "Something went wrong opening that link.");
+      Alert.alert(t('resources.linkError'), t('resources.linkErrorMessage'));
     }
   };
 
@@ -241,9 +243,9 @@ export default function ResourcesPage() {
     <ScreenBackground>
       <ScrollView className="flex-1" contentContainerStyle={{ paddingTop: insets.top, paddingBottom: 96 }}>
         <View className="max-w-md w-full self-center px-6 pt-10">
-          <Text className={`text-2xl ${textClass} mb-1`}>Resources</Text>
+          <Text className={`text-2xl ${textClass} mb-1`}>{t("resources.resources")}</Text>
           <Text className={`${secondaryTextClass} mb-6`}>
-            Official links for transfer planning, transfer guides, scholarships, and internships
+            {t("resources.resourcesDescription")}
           </Text>
 
           <View className="relative mb-6">
@@ -254,7 +256,7 @@ export default function ResourcesPage() {
             <TextInput
               value={query}
               onChangeText={setQuery}
-              placeholder="Search resources (e.g., UW, work-study, scholarships)"
+              placeholder={t("resources.searchPlaceholder")}
               placeholderTextColor={placeholderTextColor}
               className={`w-full ${inputClass} ${textClass} border rounded-2xl pl-12 pr-4 py-4`}
               returnKeyType="search"

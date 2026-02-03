@@ -2,6 +2,7 @@
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppTheme } from "@/hooks/use-app-theme";
+import { useAppLanguage } from "@/hooks/use-app-language";
 import { MaterialIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { useMemo, useState } from "react";
@@ -30,9 +31,9 @@ type SettingsItem =
 
 export default function SettingsPage() {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-  const [selectedLanguage] = useState("English");
 
   const { theme, setTheme, isDark } = useAppTheme();
+  const { t, language } = useAppLanguage();
   const { isHydrated, state, signOut, clearAll, setNotificationsEnabled, restoreData } = useAppData();
   const insets = useSafeAreaInsets();
 
@@ -40,6 +41,8 @@ export default function SettingsPage() {
   const secondaryTextClass = isDark ? "text-gray-400" : "text-gray-600";
   const cardBgClass = isDark ? "bg-gray-900/80 border-gray-800" : "bg-white/90 border-gray-200";
   const cardBorderClass = isDark ? "border-gray-800" : "border-gray-200";
+  const isRTL = language === "Arabic";
+  const flexDirection = isRTL ? "flex-row-reverse" : "flex-row";
 
   const handleToggleNotifications = async () => {
     const currentStatus = state.notificationsEnabled;
@@ -53,9 +56,9 @@ export default function SettingsPage() {
         notificationsService.configureNotificationHandler();
       } else if (permissionStatus === 'denied') {
         Alert.alert(
-          'Permission Denied',
-          'Notification permissions were denied. You can enable them in your device settings.',
-          [{ text: 'OK' }]
+          t('settings.permissionDenied'),
+          t('settings.notificationPermissionMessage'),
+          [{ text: t('general.close') }]
         );
       }
     } else {
@@ -97,13 +100,13 @@ export default function SettingsPage() {
 
       const canShare = await Sharing.isAvailableAsync();
       if (!canShare || Platform.OS === "web") {
-        Alert.alert("Export ready", "Your export file was created on device, but sharing isn’t available on this platform.");
+        Alert.alert(t('settings.exportReady'), t('settings.exportNotAvailable'));
         return;
       }
 
       await Sharing.shareAsync(fileUri);
     } catch (error) {
-      Alert.alert("Export failed", "We couldn’t export your data. Please try again.");
+      Alert.alert(t('settings.exportFailed'), t('settings.exportError'));
     }
   };
 
@@ -132,13 +135,13 @@ export default function SettingsPage() {
       };
 
       if (!parsed?.data) {
-        Alert.alert("Invalid file", "This file doesn’t look like a GatorGuide export.");
+        Alert.alert(t('settings.invalidFile'), t('settings.invalidFileMessage'));
         return;
       }
 
       Alert.alert(
-        "Import data?",
-        "This will overwrite your current data on this device.",
+        t('settings.importConfirm'),
+        t('settings.importOverwriteMessage'),
         [
           { text: "Cancel", style: "cancel" },
           {
@@ -154,27 +157,27 @@ export default function SettingsPage() {
         ]
       );
     } catch (error) {
-      Alert.alert("Import failed", "We couldn’t import your data. Please try again.");
+      Alert.alert(t('settings.importFailed'), t('settings.importError'));
     }
   };
 
   const sections = useMemo(
     () => [
       {
-        title: "Preferences",
+        title: t("settings.settings"),
         items: [
           {
             icon: "notifications",
-            label: "Notifications",
+            label: t("settings.notifications"),
             type: "toggle",
             enabled: state.notificationsEnabled,
             onPress: handleToggleNotifications,
           },
           {
             icon: "dark-mode",
-            label: "Theme",
+            label: t("settings.theme"),
             type: "nav",
-            value: theme === "system" ? "System" : theme === "dark" ? "Dark" : "Light",
+            value: theme === "system" ? t("settings.system") : theme === "dark" ? t("settings.dark") : t("settings.light"),
             onPress: () => {
               const next = theme === "system" ? "dark" : theme === "dark" ? "light" : "system";
               setTheme(next);
@@ -182,38 +185,38 @@ export default function SettingsPage() {
           },
           {
             icon: "language",
-            label: "Language",
+            label: t("settings.language"),
             type: "nav",
-            value: selectedLanguage,
+            value: language,
             onPress: () => router.push("/language"),
           },
         ] as SettingsItem[],
       },
       {
-        title: "Data",
+        title: t("settings.data"),
         items: [
           {
             icon: "upload",
-            label: "Import Data",
+            label: t("settings.import"),
             type: "nav",
             onPress: handleImportData,
           },
           {
             icon: "download",
-            label: "Export Data",
+            label: t("settings.export"),
             type: "nav",
             onPress: handleExportData,
           },
         ] as SettingsItem[],
       },
       {
-        title: "Support",
+        title: t("settings.about"),
         items: [
-          { icon: "info", label: "About", type: "nav", onPress: () => router.push("/about") },
+          { icon: "info", label: t("settings.about"), type: "nav", onPress: () => router.push("/about") },
         ] as SettingsItem[],
       },
     ],
-    [theme, state.notificationsEnabled, selectedLanguage, setTheme, handleToggleNotifications, handleExportData]
+    [theme, state.notificationsEnabled, language, setTheme, handleToggleNotifications, handleExportData, t]
   );
 
   const handleLogout = async () => {
@@ -233,17 +236,17 @@ export default function SettingsPage() {
       <ScreenBackground>
         <View className="flex-1 items-center justify-center px-6">
           <View className={`w-full max-w-md ${cardBgClass} border rounded-2xl p-6`}>
-            <Text className={`text-xl ${textClass} mb-4`}>Delete Account?</Text>
-            <Text className={`${secondaryTextClass} mb-6`}>
-              This action cannot be undone. All your data will be permanently deleted.
+            <Text className={`text-xl ${isRTL ? "text-right" : ""} ${textClass} mb-4`}>{t('settings.deleteAccount')}</Text>
+            <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} mb-6`}>
+              {t('settings.deleteWarning')}
             </Text>
 
-            <View className="flex-row gap-3">
+            <View className={`${flexDirection} gap-3`}>
               <Pressable
                 onPress={() => setShowDeleteConfirm(false)}
                 className={`flex-1 ${cardBgClass} border ${cardBorderClass} rounded-lg py-4 items-center`}
               >
-                <Text className={textClass}>Cancel</Text>
+                <Text className={textClass}>{t("general.cancel")}</Text>
               </Pressable>
 
               <Pressable
@@ -265,7 +268,7 @@ export default function SettingsPage() {
       <ScrollView contentContainerStyle={{ paddingTop: insets.top, paddingBottom: 32 }}>
         <View className="max-w-md w-full self-center">
           <View className="px-6 pt-8 pb-6">
-            <Text className={`text-2xl ${textClass}`}>Settings</Text>
+            <Text className={`text-2xl ${textClass}`}>{t("settings.settings")}</Text>
           </View>
 
           <View className="px-6 gap-6">
@@ -278,12 +281,12 @@ export default function SettingsPage() {
                     <Pressable
                       key={item.label}
                       onPress={item.onPress}
-                      className={`flex-row items-center px-4 py-5 ${
+                      className={`${flexDirection} items-center px-4 py-5 ${
                         index !== section.items.length - 1 ? `border-b ${cardBorderClass}` : ""
                       }`}
                     >
                       <MaterialIcons name={item.icon} size={20} color="#22C55E" />
-                      <Text className={`flex-1 ml-3 ${textClass}`}>{item.label}</Text>
+                      <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${textClass}`}>{item.label}</Text>
 
                       {item.type === "toggle" ? (
                         <View
@@ -294,9 +297,9 @@ export default function SettingsPage() {
                           <View className={`w-5 h-5 bg-white rounded-full mt-0.5 ${item.enabled ? "ml-6" : "ml-0.5"}`} />
                         </View>
                       ) : item.value ? (
-                        <Text className={secondaryTextClass}>{item.value}</Text>
+                        <Text className={`${isRTL ? "text-left" : ""} ${secondaryTextClass}`}>{item.value}</Text>
                       ) : (
-                        <MaterialIcons name="chevron-right" size={22} color={isDark ? "#9CA3AF" : "#6B7280"} />
+                        <MaterialIcons name={isRTL ? "chevron-left" : "chevron-right"} size={22} color={isDark ? "#9CA3AF" : "#6B7280"} />
                       )}
                     </Pressable>
                   ))}
@@ -308,26 +311,26 @@ export default function SettingsPage() {
               onPress={handleLogout}
               disabled={!isHydrated}
               className={`w-full ${
-                isDark ? "bg-red-500/10 border-red-500/20" : "bg-red-50 border-red-200"
-              } border rounded-2xl px-4 py-5 flex-row items-center ${!isHydrated ? "opacity-60" : ""}`}
+                isDark ? 'bg-red-500/10 border-red-500/20' : 'bg-red-50 border-red-200'
+              } border rounded-2xl px-4 py-5 ${flexDirection} items-center ${!isHydrated ? 'opacity-60' : ''}`}
             >
               <MaterialIcons name="logout" size={20} color="#EF4444" />
-              <Text className="flex-1 ml-3 text-red-500">Logout</Text>
+              <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} text-red-500`}>{t('settings.logout')}</Text>
             </Pressable>
 
             <Pressable
               onPress={() => setShowDeleteConfirm(true)}
               disabled={!isHydrated}
               className={`w-full ${
-                isDark ? "bg-red-500/10 border-red-500/20" : "bg-red-50 border-red-200"
-              } border rounded-2xl px-4 py-5 flex-row items-center ${!isHydrated ? "opacity-60" : ""}`}
+                isDark ? 'bg-red-500/10 border-red-500/20' : 'bg-red-50 border-red-200'
+              } border rounded-2xl px-4 py-5 ${flexDirection} items-center ${!isHydrated ? 'opacity-60' : ''}`}
             >
               <MaterialIcons name="delete" size={20} color="#EF4444" />
-              <Text className="flex-1 ml-3 text-red-500">Delete Account</Text>
+              <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} text-red-500`}>{t('settings.deleteAccount')}</Text>
             </Pressable>
 
-            <Text className={`text-center text-sm ${isDark ? "text-gray-600" : "text-gray-400"} mt-2`}>
-              Gator Guide v1.0.0
+            <Text className={`text-center text-sm ${isDark ? 'text-gray-600' : 'text-gray-400'} mt-2`}>
+              {t('settings.appVersion')}
             </Text>
           </View>
         </View>

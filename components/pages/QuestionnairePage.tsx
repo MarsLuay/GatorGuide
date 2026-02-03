@@ -6,6 +6,7 @@ import * as Haptics from "expo-haptics";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppData } from "@/hooks/use-app-data";
+import { useAppLanguage } from "@/hooks/use-app-language";
 
 type Question =
   | { id: string; question: string; type: "text" | "textarea"; placeholder: string }
@@ -14,71 +15,72 @@ type Question =
 export default function QuestionnairePage() {
   const { isDark } = useAppTheme();
   const { isHydrated, state, setQuestionnaireAnswers } = useAppData();
+  const { t } = useAppLanguage();
 
   const questions = useMemo<Question[]>(
     () => [
       {
         id: "volunteerActivities",
-        question: "What volunteer activities have you participated in?",
-        placeholder: "Describe your volunteer experiences...",
+        question: t("questionnaire.volunteerActivities"),
+        placeholder: t("questionnaire.volunteerPlaceholder"),
         type: "textarea",
       },
       {
         id: "extracurriculars",
-        question: "What extracurricular activities are you involved in?",
-        placeholder: "List your activities and roles...",
+        question: t("questionnaire.extracurriculars"),
+        placeholder: t("questionnaire.extracurricularsPlaceholder"),
         type: "textarea",
       },
       {
         id: "collegeSetting",
-        question: "What type of college setting do you prefer?",
-        options: ["Urban", "Suburban", "Rural", "No Preference"],
+        question: t("questionnaire.collegeSetting"),
+        options: [t("questionnaire.urban"), t("questionnaire.suburban"), t("questionnaire.rural"), t("questionnaire.noPreference")],
         type: "radio",
       },
       {
         id: "collegeSize",
-        question: "What size college are you looking for?",
-        options: ["Small (< 5,000)", "Medium (5,000-15,000)", "Large (> 15,000)", "No Preference"],
+        question: t("questionnaire.collegeSize"),
+        options: [t("questionnaire.small"), t("questionnaire.medium"), t("questionnaire.large"), t("questionnaire.noPreference")],
         type: "radio",
       },
       {
         id: "environment",
-        question: "What kind of campus environment appeals to you?",
-        options: ["Research-focused", "Liberal Arts", "Technical/Engineering", "Pre-professional", "Mixed"],
+        question: t("questionnaire.environment"),
+        options: [t("questionnaire.researchFocused"), t("questionnaire.liberalArts"), t("questionnaire.technical"), t("questionnaire.preProfessional"), t("questionnaire.mixed")],
         type: "radio",
       },
       {
         id: "programs",
-        question: "Are there specific programs or resources you're looking for?",
-        placeholder: "e.g., Study abroad, research opportunities, internships...",
+        question: t("questionnaire.programs"),
+        placeholder: t("questionnaire.programsPlaceholder"),
         type: "textarea",
       },
       {
         id: "budget",
-        question: "What is your budget range for annual tuition?",
-        options: ["< $20,000", "$20,000 - $40,000", "$40,000 - $60,000", "> $60,000", "Need financial aid"],
+        question: t("questionnaire.budget"),
+        options: [t("questionnaire.under20k"), t("questionnaire.20to40k"), t("questionnaire.40to60k"), t("questionnaire.over60k"), t("questionnaire.needFinancialAid")],
         type: "radio",
       },
       {
         id: "location",
-        question: "Do you have a preferred geographic location?",
-        placeholder: "Enter preferred states, regions, or countries...",
+        question: t("questionnaire.location"),
+        placeholder: t("questionnaire.locationPlaceholder"),
         type: "text",
       },
       {
         id: "housingPreference",
-        question: "What are your housing preferences?",
-        options: ["On-campus dormitory", "Off-campus apartment", "Commute from home", "No preference"],
+        question: t("questionnaire.housingPreference"),
+        options: [t("questionnaire.onCampus"), t("questionnaire.offCampus"), t("questionnaire.commute"), t("questionnaire.noPreference")],
         type: "radio",
       },
       {
         id: "careerGoals",
-        question: "What are your career goals after graduation?",
-        placeholder: "Describe your aspirations and career path...",
+        question: t("questionnaire.careerGoals"),
+        placeholder: t("questionnaire.careerGoalsPlaceholder"),
         type: "textarea",
       },
     ],
-    []
+    [t]
   );
 
   const blankAnswers = useMemo(() => {
@@ -144,9 +146,9 @@ export default function QuestionnairePage() {
             </Pressable>
 
             <View className="flex-1">
-              <Text className={`text-xl ${textClass}`}>Detailed Questionnaire</Text>
+              <Text className={`text-xl ${textClass}`}>{t("questionnaire.title")}</Text>
               <Text className={`text-sm ${secondaryTextClass}`}>
-                Step {currentStep + 1} of {questions.length}
+                {t("questionnaire.stepOf", { step: currentStep + 1, total: questions.length })}
               </Text>
             </View>
           </View>
@@ -226,7 +228,7 @@ export default function QuestionnairePage() {
                   disabled={!isHydrated}
                 >
                   <Text className="text-black font-semibold">
-                    {currentStep === questions.length - 1 ? "Complete" : "Next"}
+                    {currentStep === questions.length - 1 ? t("questionnaire.complete") : t("questionnaire.next")}
                   </Text>
                 </Pressable>
 
@@ -238,7 +240,7 @@ export default function QuestionnairePage() {
                   className={`w-full ${isDark ? "bg-gray-800 border-gray-700" : "bg-gray-100 border-gray-300"} border rounded-lg py-4 items-center ${!isHydrated ? "opacity-60" : ""}`}
                   disabled={!isHydrated}
                 >
-                  <Text className={`${textClass} font-semibold`}>Save & Exit</Text>
+                  <Text className={`${textClass} font-semibold`}>{t("questionnaire.saveAndExit")}</Text>
                 </Pressable>
               </View>
             </View>

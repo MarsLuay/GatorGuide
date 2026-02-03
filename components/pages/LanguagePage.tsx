@@ -1,16 +1,18 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { View, Text, Pressable, ScrollView } from "react-native";
 import { router } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
+import * as Haptics from "expo-haptics";
 import { useAppTheme } from "@/hooks/use-app-theme";
+import { useAppLanguage } from "@/hooks/use-app-language";
+import { Language } from "@/services/translations";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 
 export default function LanguagePage() {
   const { isDark } = useAppTheme();
+  const { language, setLanguage, t } = useAppLanguage();
 
-  const [selectedLanguage, setSelectedLanguage] = useState("English");
-
-  const languages = useMemo(
+  const languages = useMemo<Language[]>(
     () => [
       "English",
       "Spanish",
@@ -37,8 +39,9 @@ export default function LanguagePage() {
   const itemBorderClass = isDark ? "border-gray-800" : "border-gray-200";
   const iconColor = isDark ? "#9CA3AF" : "#6B7280";
 
-  const handleSelectLanguage = (language: string) => {
-    setSelectedLanguage(language);
+  const handleSelectLanguage = (lang: Language) => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    setLanguage(lang);
     setTimeout(() => {
       router.replace("/(tabs)/settings");
     }, 300);
@@ -51,26 +54,26 @@ export default function LanguagePage() {
           <View className="px-6 pt-20 pb-6">
             <Pressable onPress={() => router.back()} className="mb-4 flex-row items-center">
               <MaterialIcons name="arrow-back" size={20} color={iconColor} />
-              <Text className={`${secondaryTextClass} ml-2`}>Back</Text>
+              <Text className={`${secondaryTextClass} ml-2`}>{t("general.back")}</Text>
             </Pressable>
 
-            <Text className={`text-2xl ${textClass}`}>Language</Text>
+            <Text className={`text-2xl ${textClass}`}>{t("settings.language")}</Text>
           </View>
 
           <View className="px-6">
             <View className={`${cardBgClass} border rounded-2xl overflow-hidden`}>
-              {languages.map((language, index) => {
-                const isSelected = selectedLanguage === language;
+              {languages.map((lang, index) => {
+                const isSelected = language === lang;
 
                 return (
                   <Pressable
-                    key={language}
-                    onPress={() => handleSelectLanguage(language)}
+                    key={lang}
+                    onPress={() => handleSelectLanguage(lang)}
                     className={`flex-row items-center justify-between px-4 py-5 ${
                       index !== languages.length - 1 ? `border-b ${itemBorderClass}` : ""
                     }`}
                   >
-                    <Text className={textClass}>{language}</Text>
+                    <Text className={textClass}>{lang}</Text>
                     {isSelected ? <MaterialIcons name="check" size={20} color="#22C55E" /> : null}
                   </Pressable>
                 );

@@ -3,9 +3,11 @@ import { router } from "expo-router";
 import { MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppTheme } from "@/hooks/use-app-theme";
+import { useAppLanguage } from "@/hooks/use-app-language";
 
 export default function AboutPage() {
   const { isDark } = useAppTheme();
+  const { t } = useAppLanguage();
 
   const textClass = isDark ? "text-white" : "text-gray-900";
   const secondaryTextClass = isDark ? "text-gray-400" : "text-gray-600";
@@ -30,12 +32,12 @@ export default function AboutPage() {
                 color={isDark ? "#9CA3AF" : "#6B7280"}
               />
               <Text className={`${secondaryTextClass} ml-2`}>
-                Back
+                {t("general.back")}
               </Text>
             </Pressable>
 
             <Text className={`text-2xl ${textClass}`}>
-              About Gator Guide
+              {t("about.title")}
             </Text>
           </View>
 
@@ -60,8 +62,7 @@ export default function AboutPage() {
               <Text
                 className={`${secondaryTextClass} text-center text-sm`}
               >
-                Helping Green River College students find their perfect transfer
-                match
+                {t("about.subtitle")}
               </Text>
             </View>
           </View>
@@ -69,7 +70,7 @@ export default function AboutPage() {
           {/* How It Works */}
           <View className="px-6 mb-6">
             <Text className={`${textClass} mb-3 px-2`}>
-              How It Works
+              {t("about.howItWorks")}
             </Text>
 
             <View
@@ -78,27 +79,23 @@ export default function AboutPage() {
               {[
                 {
                   n: "1",
-                  title: "Profile Analysis",
-                  body:
-                    "The app analyzes your academic profile including GPA, test scores, major interests, and extracurricular activities.",
+                  title: t("about.step1Title"),
+                  body: t("about.step1Body"),
                 },
                 {
                   n: "2",
-                  title: "Preference Matching",
-                  body:
-                    "Your preferences for campus setting, location, size, and other factors are matched against our college database.",
+                  title: t("about.step2Title"),
+                  body: t("about.step2Body"),
                 },
                 {
                   n: "3",
-                  title: "Smart Recommendations",
-                  body:
-                    "Our algorithm weighs transfer credit policies, program strength, and admission probability to provide personalized recommendations.",
+                  title: t("about.step3Title"),
+                  body: t("about.step3Body"),
                 },
                 {
                   n: "4",
-                  title: "Continuous Updates",
-                  body:
-                    "As you update your profile and complete more coursework, recommendations are refined to reflect your evolving academic journey.",
+                  title: t("about.step4Title"),
+                  body: t("about.step4Body"),
                 },
               ].map((item) => (
                 <View key={item.n}>
@@ -125,7 +122,7 @@ export default function AboutPage() {
           {/* App Info */}
           <View className="px-6 mb-4">
             <Text className={`${textClass} mb-3 px-2`}>
-              App Information
+              {t("about.appInformation")}
             </Text>
 
             <View
@@ -134,8 +131,8 @@ export default function AboutPage() {
               <View
                 className={`px-4 py-4 flex-row items-center justify-between border-b ${borderClass}`}
               >
-                <Text className={secondaryTextClass}>Version</Text>
-                <Text className={textClass}>1.0.0</Text>
+                <Text className={secondaryTextClass}>{t("about.version")}</Text>
+                <Text className={textClass}>{t("about.versionNumber")}</Text>
               </View>
 
               <Pressable

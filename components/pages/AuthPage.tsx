@@ -7,6 +7,7 @@ import * as Haptics from "expo-haptics";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppData } from "@/hooks/use-app-data";
+import { useAppLanguage } from "@/hooks/use-app-language";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { FormInput } from "@/components/ui/FormInput";
 
@@ -14,6 +15,7 @@ const isEmailValid = (value: string) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value.
 
 export default function AuthPage() {
   const { isHydrated, state, signIn, signInAsGuest, updateUser, setQuestionnaireAnswers } = useAppData();
+  const { t } = useAppLanguage();
   const styles = useThemeStyles();
 
   const [name, setName] = useState("");
@@ -23,12 +25,12 @@ export default function AuthPage() {
 
   const emailError = useMemo(() => {
     const trimmed = email.trim();
-    return trimmed && !isEmailValid(trimmed) ? "Enter a valid email." : undefined;
-  }, [email]);
+    return trimmed && !isEmailValid(trimmed) ? t("auth.email") + " invalid" : undefined;
+  }, [email, t]);
 
   const passwordError = useMemo(() => {
-    return password && password.length < 6 ? "6 characters minimum" : undefined;
-  }, [password]);
+    return password && password.length < 6 ? "6 " + t("general.cancel").toLowerCase() + " minimum" : undefined;
+  }, [password, t]);
 
   const canSubmit = useMemo(() => {
     if (isSignUp) {
@@ -42,17 +44,17 @@ export default function AuthPage() {
     const e = email.trim();
 
     if (isSignUp && !n) {
-      Alert.alert("Missing info", "Please enter your name.");
+      Alert.alert(t("general.error"), "Please enter your name.");
       return;
     }
 
     if (!isEmailValid(e)) {
-      Alert.alert("Invalid email", "Enter a valid email.");
+      Alert.alert(t("general.error"), t("auth.email") + " invalid");
       return;
     }
 
     if (password.length < 6) {
-      Alert.alert("Invalid password", "Password must be at least 6 characters.");
+      Alert.alert(t("general.error"), "Password must be at least 6 characters.");
       return;
     }
 
@@ -111,8 +113,8 @@ export default function AuthPage() {
         </View>
       </View>
 
-      <Text className={`text-3xl text-center ${styles.textClass} mb-2`}>Gator Guide</Text>
-      <Text className={`${styles.secondaryTextClass} text-center mb-8`}>Find your perfect college match</Text>
+      <Text className={`text-3xl text-center ${styles.textClass} mb-2`}>{t("auth.gatorguide")}</Text>
+      <Text className={`${styles.secondaryTextClass} text-center mb-8`}>{t("auth.findCollege")}</Text>
 
       <View className={`${styles.cardBgClass} border rounded-2xl p-6 ${isWeb ? "shadow-lg" : ""}`}>
         <View className="flex-row gap-4 mb-6">
@@ -124,7 +126,7 @@ export default function AuthPage() {
             className={`flex-1 py-3 rounded-lg items-center ${isSignUp ? "bg-green-500" : styles.inactiveButtonClass}`}
             disabled={!isHydrated}
           >
-            <Text className={isSignUp ? "text-black" : styles.secondaryTextClass}>Sign Up</Text>
+            <Text className={isSignUp ? "text-black" : styles.secondaryTextClass}>{t("auth.signUp")}</Text>
           </Pressable>
 
           <Pressable
@@ -135,17 +137,17 @@ export default function AuthPage() {
             className={`flex-1 py-3 rounded-lg items-center ${!isSignUp ? "bg-green-500" : styles.inactiveButtonClass}`}
             disabled={!isHydrated}
           >
-            <Text className={!isSignUp ? "text-black" : styles.secondaryTextClass}>Login</Text>
+            <Text className={!isSignUp ? "text-black" : styles.secondaryTextClass}>{t("auth.logIn")}</Text>
           </Pressable>
         </View>
 
         <View className="gap-4">
           {isSignUp && (
             <FormInput
-              label="Name"
+              label={t("auth.name")}
               value={name}
               onChangeText={setName}
-              placeholder="Enter your name"
+              placeholder={t("auth.name")}
               textClass={styles.textClass}
               secondaryTextClass={styles.secondaryTextClass}
               inputBgClass={styles.inputBgClass}
@@ -156,10 +158,10 @@ export default function AuthPage() {
           )}
 
           <FormInput
-            label="Email"
+            label={t("auth.email")}
             value={email}
             onChangeText={setEmail}
-            placeholder="Enter your email"
+            placeholder={t("auth.email")}
             error={emailError}
             textClass={styles.textClass}
             secondaryTextClass={styles.secondaryTextClass}
@@ -173,10 +175,10 @@ export default function AuthPage() {
           />
 
           <FormInput
-            label="Password"
+            label={t("auth.password")}
             value={password}
             onChangeText={setPassword}
-            placeholder={isSignUp ? "Create a password (min 6 characters)" : "Enter your password"}
+            placeholder={isSignUp ? t("auth.password") : t("auth.password")}
             error={passwordError}
             textClass={styles.textClass}
             secondaryTextClass={styles.secondaryTextClass}
@@ -190,7 +192,7 @@ export default function AuthPage() {
           {!isSignUp && (
             <View className="items-end">
               <Pressable onPress={() => router.push("/forgot-password")} disabled={!isHydrated}>
-                <Text className="text-sm text-green-500">Forgot password?</Text>
+                <Text className="text-sm text-green-500">{t("auth.forgotPassword")}</Text>
               </Pressable>
             </View>
           )}
@@ -202,7 +204,7 @@ export default function AuthPage() {
               !isHydrated || !canSubmit ? "opacity-60" : ""
             }`}
           >
-            <Text className="text-black font-semibold">{isSignUp ? "Create Account" : "Sign In"}</Text>
+            <Text className="text-black font-semibold">{isSignUp ? t("auth.createAccount") : t("auth.logIn")}</Text>
           </Pressable>
 
           <View className="items-center mt-4">
@@ -213,7 +215,7 @@ export default function AuthPage() {
                 !isHydrated ? "opacity-60" : ""
               }`}
             >
-              <Text className="text-gray-800 dark:text-gray-200 font-semibold">Continue as Guest</Text>
+              <Text className="text-gray-800 dark:text-gray-200 font-semibold">{t("auth.continueAsGuest")}</Text>
             </Pressable>
           </View>
         </View>
