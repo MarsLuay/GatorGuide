@@ -1,36 +1,52 @@
-# GatorGuide AI coding guide
+# GatorGuide AI Coding Guide
 
-## Big picture
-- React Native Expo app with file-based routing under [app/](../app/) and UI pages under [components/pages/](../components/pages/).
-- Global providers live in [app/_layout.tsx](../app/_layout.tsx): `SafeAreaProvider`, `AppThemeProvider`, `AppDataProvider`.
-- Services are stub-first in [services/](../services/), with real API toggles in [services/config.ts](../services/config.ts).
+## Big Picture
+React Native Expo app: file-based routing under [app/](../app/), page components under [components/pages/](../components/pages/). Global providers in [app/_layout.tsx](../app/_layout.tsx): `SafeAreaProvider`, `AppThemeProvider`, `AppLanguageProvider`, `AppDataProvider` (in that order). Services are stub-first; toggle real APIs via `EXPO_PUBLIC_USE_STUB_DATA=false` + env keys.
 
-## Navigation + data flow
-- Route files are thin wrappers that render page components (e.g., [app/profile-setup.tsx](../app/profile-setup.tsx) → `ProfileSetupPage`).
-- Auth/hydration guards live in [app/index.tsx](../app/index.tsx) and [app/(tabs)/_layout.tsx](../app/(tabs)/_layout.tsx); always check `isHydrated` before using `state`.
-- Use `router.replace()` for guard redirects and `router.push()` for user-driven navigation.
+## Navigation & Auth Guards
+- Route files → page components (e.g., [app/profile-setup.tsx](../app/profile-setup.tsx) renders `ProfileSetupPage`).
+- **Always check `isHydrated`** before accessing `state` (AsyncStorage load timing).
+- Auth guards: [app/index.tsx](../app/index.tsx) (global), [app/(tabs)/_layout.tsx](../app/(tabs)/_layout.tsx) (tabs).
+- Use `router.replace()` for redirects, `router.push()` for user navigation.
 
-## State + storage conventions
-- `AppDataProvider` persists to AsyncStorage key `gatorguide:appdata:v1`; `AppThemeProvider` uses `app-theme`.
-- `signIn()` initializes optional user fields to empty strings to avoid controlled/uncontrolled inputs.
-- Questionnaire answers are `Record<string, string>`; prefer `useMemo` for derived checks.
+## State & Storage
+- `AppDataProvider` → AsyncStorage `gatorguide:appdata:v1`: user, questionnaireAnswers, notificationsEnabled.
+- `AppThemeProvider` → `app-theme`: "light" | "dark" | "system".
+- `AppLanguageProvider` → `app-language`: persisted Language enum (15 supported languages).
+- `signIn()` initializes optional fields to "" (prevents controlled/uncontrolled input warnings).
+- Questionnaire: `Record<string, string>` (id → answer); use `useMemo` for derived state.
 
-## Styling rules
-- NativeWind/Tailwind only (no `StyleSheet.create()`); use `className` everywhere.
-- Theme-aware classes read `isDark` from `useAppTheme()`; see [hooks/use-app-theme.tsx](../hooks/use-app-theme.tsx).
-- Global Tailwind styles load from [global.css](../global.css) in [app/_layout.tsx](../app/_layout.tsx).
+## Styling
+- **NativeWind/Tailwind only** (no `StyleSheet.create()`). Theme colors via `useThemeStyles()`:
+  - `textClass`, `secondaryTextClass`, `cardBgClass`, `inputBgClass`, `borderClass`, `progressBgClass`, `placeholderColor`.
+- Read `isDark` from `useAppTheme()` for conditional logic (e.g., tab bar color).
+- Global reset in [global.css](../global.css) + [tailwind.config.js](../tailwind.config.js).
 
-## Service layer (stub-first)
-- Import via barrel: `import { authService, collegeService } from "@/services"`.
-- Stub mode default; switch via `EXPO_PUBLIC_USE_STUB_DATA=false` and API keys (see [services/README.md](../services/README.md)).
-- All services return Promises and simulate latency in stub mode.
+## Services (Stub-First)
+- Import via barrel: `import { authService, collegeService, aiService } from "@/services"`.
+- Default stub mode; switch via `EXPO_PUBLIC_USE_STUB_DATA=false` + API keys (see [services/README.md](../services/README.md)).
+- All services: async, return Promises, simulate latency in stub mode.
+- College service returns `College[]` with fallback source tracking (`getLastSource()`).
 
-## Workflow commands (Windows)
-- Dev: `npm install` then `npx expo start` (or `npm run android|ios|web`).
-- Lint: `npm run lint` (ESLint v9 flat config in [eslint.config.js](../eslint.config.js)).
-- Reset project: `npm run reset-project` (destructive).
+## Internationalization
+- Use `useAppLanguage()` → `t('translation.key')` for all user-facing strings.
+- Keys defined in [services/translations.ts](../services/translations.ts); 15 language support (English, Spanish, Chinese, French, etc.).
+- Settings page lets users switch language; persists immediately.
 
-## Examples to follow
-- Auth guard + loading: [app/index.tsx](../app/index.tsx).
-- Multi-step form pattern: [components/pages/ProfileSetupPage.tsx](../components/pages/ProfileSetupPage.tsx).
-- Theme-aware inputs: [components/ui/FormInput.tsx](../components/ui/FormInput.tsx).
+## Common Patterns
+- **Multi-step forms:** Track `step` state, validate on next, save on final submit (see [ProfileSetupPage](../components/pages/ProfileSetupPage.tsx)).
+- **Search with loading:** Track `isSearching`, prevent submit while loading, handle empty results.
+- **Haptic feedback:** Import `expo-haptics`, call `Haptics.impactAsync()` on interactions.
+- **SafeAreaInsets:** Wrap pages with `ScreenBackground`, use `useSafeAreaInsets()` for padding.
+
+## Workflow (Windows)
+- Dev: `npm install` → `npx expo start` (or `npm run android|ios|web`).
+- Lint: `npm run lint` (ESLint v9 flat config).
+- Reset: `npm run reset-project` (clears all local state/cache).
+- Phone: `npx expo start --tunnel` + scan QR in Expo Go app.
+
+## Key Files
+- Auth flow: [app/index.tsx](../app/index.tsx), [app/login.tsx](../app/login.tsx), [AuthPage](../components/pages/AuthPage.tsx).
+- Data persistence: [hooks/use-app-data.tsx](../hooks/use-app-data.tsx).
+- UI components: [components/ui/FormInput.tsx](../components/ui/FormInput.tsx), [ScreenBackground](../components/layouts/ScreenBackground.tsx).
+- Questionnaire: [QuestionnairePage](../components/pages/QuestionnairePage.tsx) (dynamic Q&A with radio/textarea types).

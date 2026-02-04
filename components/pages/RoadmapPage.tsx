@@ -82,8 +82,8 @@ export default function RoadmapPage() {
   const generateTasks = (profile: StudentProfile): Task[] => {
     const docTask: Task = {
       id: "documents-checklist",
-      title: "Documents",
-      description: "Manage your application files",
+      title: t("roadmap.tasksDocuments"),
+      description: t("roadmap.tasksDocumentsDesc"),
       completed: false,
       notes: [],
       expanded: true,
@@ -98,8 +98,8 @@ export default function RoadmapPage() {
 
     const courseTasks: Task[] = profile.currentCourses.map((course) => ({
       id: `course-${course}`,
-      title: `Complete ${course}`,
-      description: `Finish all assignments and exams for ${course}.`,
+      title: `${t("roadmap.tasksCompletePrefix")}${course}`,
+      description: `${t("roadmap.tasksCompleteDesc")}${course}.`,
       completed: false,
       notes: [],
       expanded: false,
@@ -107,8 +107,8 @@ export default function RoadmapPage() {
 
     const appTasks: Task[] = profile.targetSchools.map((school) => ({
       id: `submit-${school.toLowerCase()}`,
-      title: `Submit application for ${school}`,
-      description: `Complete the final submission for ${school}.`,
+      title: `${t("roadmap.tasksSubmitPrefix")}${school}`,
+      description: `${t("roadmap.tasksSubmitDesc")}${school}.`,
       completed: false,
       notes: [],
       expanded: false,
@@ -116,8 +116,8 @@ export default function RoadmapPage() {
 
     const interestTasks: Task[] = profile.interests.map((interest, idx) => ({
       id: `interest-${idx}`,
-      title: `Join ${interest}`,
-      description: `Participate in ${interest} activities.`,
+      title: `${t("roadmap.tasksJoinPrefix")}${interest}`,
+      description: `${t("roadmap.tasksJoinDesc")}activities.`,
       completed: false,
       notes: [],
       expanded: false,
@@ -407,23 +407,27 @@ export default function RoadmapPage() {
         <View className="max-w-md w-full self-center">
           {user?.isGuest && showGuestRoadmap ? (
             <View className="px-6 pt-6">
-              <View className={`${cardBgClass} border rounded-2xl p-4 flex-row items-center justify-between`}>
+              <View className={`${cardBgClass} border rounded-2xl p-4`}>
                 <View>
                   <Text className={textClass}>{t("roadmap.guestTools")}</Text>
                   <Text className={`${secondaryTextClass} text-sm`}>{t("roadmap.importExport")}</Text>
                 </View>
-                <View className="flex-row gap-2">
+                <View className="mt-3 gap-2">
                   <Pressable
                     onPress={handleImportData}
-                    className="bg-green-500 rounded-lg px-3 py-2"
+                    className="bg-green-500 rounded-lg px-4 py-3 items-center"
                   >
-                    <Text className="text-black font-semibold text-xs">{t("settings.import")}</Text>
+                    <Text className="text-black font-semibold text-sm text-center leading-5">
+                      {t("settings.import")}
+                    </Text>
                   </Pressable>
                   <Pressable
                     onPress={handleExportData}
-                    className={`${cardBgClass} border rounded-lg px-3 py-2`}
+                    className={`${cardBgClass} border rounded-lg px-4 py-3 items-center`}
                   >
-                    <Text className={secondaryTextClass + " text-xs"}>{t("settings.export")}</Text>
+                    <Text className={secondaryTextClass + " text-sm text-center leading-5"}>
+                      {t("settings.export")}
+                    </Text>
                   </Pressable>
                 </View>
               </View>
