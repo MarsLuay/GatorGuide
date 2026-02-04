@@ -185,7 +185,7 @@ export default function SettingsPage() {
     } catch (error) {
       Alert.alert(t('settings.importFailed'), t('settings.importError'));
     }
-  };
+    };
 
   const hasExportableData = useMemo(() => {
     if (!state) return false;
@@ -199,66 +199,17 @@ export default function SettingsPage() {
     return hasUserData || hasQuestionnaire;
   }, [state]);
 
-  const handleLogout = useCallback(() => {
-    if (!hasExportableData) {
-      // No data to export, just confirm logout
-      Alert.alert(
-        t("settings.logout"),
-        t("settings.deleteWarning"),
-        [
-          { text: t("general.cancel"), style: "cancel" },
-          {
-            text: t("settings.logout"),
-            style: "destructive",
-            onPress: async () => {
-              await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-              await signOut();
-            },
-          },
-        ]
-      );
-      return;
+  const handleLogout = useCallback(async () => {
+    // Simplified logout: directly sign out and navigate to login
+    try {
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+      await signOut();
+    } catch (e) {
+      // ignore signOut errors for now
+    } finally {
+      router.replace("/login");
     }
-
-    // Data exists, offer export before logout
-    Alert.alert(
-      t("settings.logout"),
-      t("settings.exportReady") + "\n\n" + t("settings.export") + " before logging out?",
-      [
-        {
-          text: t("settings.export"),
-          onPress: async () => {
-            await handleExportData();
-            // After export, show confirm logout
-            Alert.alert(
-              t("settings.logout"),
-              t("settings.deleteWarning"),
-              [
-                { text: t("general.cancel"), style: "cancel" },
-                {
-                  text: t("settings.logout"),
-                  style: "destructive",
-                  onPress: async () => {
-                    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-                    await signOut();
-                  },
-                },
-              ]
-            );
-          },
-        },
-        {
-          text: t("settings.logout"),
-          style: "destructive",
-          onPress: async () => {
-            await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-            await signOut();
-          },
-        },
-        { text: t("general.cancel"), style: "cancel" },
-      ]
-    );
-  }, [hasExportableData, t, handleExportData, signOut]);
+  }, [signOut]);
 
   const sections = useMemo(
     () => [
@@ -306,12 +257,6 @@ export default function SettingsPage() {
             type: "nav",
             onPress: handleExportData,
           },
-          {
-            icon: "logout",
-            label: t("settings.logout"),
-            type: "nav",
-            onPress: handleLogout,
-          },
         ] as SettingsItem[],
       },
       {
@@ -323,82 +268,6 @@ export default function SettingsPage() {
     ],
     [theme, state.notificationsEnabled, language, setTheme, handleToggleNotifications, handleExportData, handleLogout, t]
   );
-
-  const hasExportableData = useMemo(() => {
-    if (!state) return false;
-    // Check if user has filled any profile fields or questionnaire answers
-    const { user, questionnaireAnswers } = state;
-    if (!user) return false;
-    // Check for any non-empty user fields except uid, email, isGuest
-    const userFields = ["name", "major", "gpa", "sat", "act", "resume", "transcript"];
-    const hasUserData = userFields.some((key) => !!(user as any)[key]);
-    const hasQuestionnaire = questionnaireAnswers && Object.values(questionnaireAnswers).some((v) => !!v);
-    return hasUserData || hasQuestionnaire;
-  }, [state]);
-
-  const handleLogout = useCallback(() => {
-    if (!hasExportableData) {
-      // No data to export, just confirm logout
-      Alert.alert(
-        t("settings.logout"),
-        t("settings.deleteWarning"),
-        [
-          { text: t("general.cancel"), style: "cancel" },
-          {
-            text: t("settings.logout"),
-            style: "destructive",
-            onPress: async () => {
-              await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-              await signOut();
-              router.replace("/login");
-            },
-          },
-        ]
-      );
-      return;
-    }
-
-    // Data exists, offer export before logout
-    Alert.alert(
-      t("settings.logout"),
-      t("settings.exportReady") + "\n\n" + t("settings.export") + " before logging out?",
-      [
-        {
-          text: t("settings.export"),
-          onPress: async () => {
-            await handleExportData();
-            // After export, show confirm logout
-            Alert.alert(
-              t("settings.logout"),
-              t("settings.deleteWarning"),
-              [
-                { text: t("general.cancel"), style: "cancel" },
-                {
-                  text: t("settings.logout"),
-                  style: "destructive",
-                  onPress: async () => {
-                    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-                    await signOut();
-                    router.replace("/login");
-                  },
-                },
-              ]
-            );
-          },
-        },
-        {
-          text: t("settings.logout"),
-          style: "destructive",
-          onPress: async () => {
-            await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-            await signOut();
-            router.replace("/login");
-          },
-        },
-        { text: t("general.cancel"), style: "cancel" },
-      ]
-    );
-  }, [hasExportableData, t, handleExportData, signOut]);
 
   const handleDeleteConfirm = async () => {
     if (!isHydrated) return;
