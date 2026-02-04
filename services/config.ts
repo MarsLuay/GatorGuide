@@ -23,7 +23,17 @@ export const API_CONFIG = {
     baseUrl: 'https://generativelanguage.googleapis.com/v1beta',
   },
 
-  useStubData: false, 
+  // default to true for local development; override with EXPO_PUBLIC_USE_STUB_DATA=false
+  useStubData: true,
 };
 
-export const isStubMode = () => false;
+export const isStubMode = () => {
+  try {
+    // Allow explicit override from environment variable
+    const env = process.env.EXPO_PUBLIC_USE_STUB_DATA;
+    if (typeof env === 'string') return env === 'true';
+  } catch {
+    // ignore
+  }
+  return !!API_CONFIG.useStubData;
+};

@@ -11,6 +11,8 @@ type BaseFieldProps = {
   secondaryTextClass: string;
   borderClass: string;
   emptyText?: string;
+  noTopSpacing?: boolean;
+  noDivider?: boolean;
 };
 
 type TextFieldProps = BaseFieldProps & {
@@ -42,10 +44,15 @@ type LinkFieldProps = BaseFieldProps & {
   linkText?: string;
 };
 
-type ProfileFieldProps = TextFieldProps | UploadFieldProps | DisplayOnlyFieldProps | LinkFieldProps;
+type ProfileFieldProps =
+  | TextFieldProps
+  | UploadFieldProps
+  | DisplayOnlyFieldProps
+  | LinkFieldProps;
 
 export function ProfileField(props: ProfileFieldProps) {
   const { t } = useAppLanguage();
+
   const {
     icon,
     label,
@@ -56,10 +63,18 @@ export function ProfileField(props: ProfileFieldProps) {
     borderClass,
     emptyText,
   } = props;
+
   const resolvedEmptyText = emptyText ?? t("general.notSpecified");
 
+  const wrapperClass = [
+    props.noDivider ? "" : `border-t ${borderClass}`,
+    props.noTopSpacing ? "" : "pt-4 mt-4",
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   return (
-    <View className={`border-t ${borderClass} pt-4 mt-4`}>
+    <View className={wrapperClass}>
       <View className="flex-row items-start">
         <MaterialIcons name={icon} size={20} color="#22C55E" />
         <View className="flex-1 ml-3">

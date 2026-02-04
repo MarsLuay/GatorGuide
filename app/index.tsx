@@ -9,15 +9,6 @@ export default function Index() {
 
   useEffect(() => {
     if (!isHydrated || hasNavigated.current) return;
-<<<<<<< HEAD
-    
-    hasNavigated.current = true;
-    
-    if (state.user) {
-      // Skip profile setup for guests
-      if (state.user.isGuest) {
-        router.replace("/(tabs)");
-=======
 
     const performNavigation = async () => {
       await new Promise((resolve) => setTimeout(resolve, 100));
@@ -26,6 +17,13 @@ export default function Index() {
       hasNavigated.current = true;
 
       if (state.user) {
+        // Skip profile setup for guests
+        if (state.user.isGuest) {
+          router.replace("/(tabs)");
+          return;
+        }
+
+        // Check if user has completed profile setup
         const hasCompletedSetup = !!(
           state.user.major || 
           state.user.gpa || 
@@ -37,17 +35,8 @@ export default function Index() {
         } else {
           router.replace("/profile-setup");
         }
->>>>>>> 596bfb5 (WIP: updates)
       } else {
-        // Check if user has completed profile setup (non-empty major or gpa)
-        const hasCompletedSetup = (state.user.major && state.user.major.trim() !== "") || 
-                                  (state.user.gpa && state.user.gpa.trim() !== "");
-        
-        if (hasCompletedSetup) {
-          router.replace("/(tabs)");
-        } else {
-          router.replace("/profile-setup");
-        }
+        router.replace("/login");
       }
     };
 

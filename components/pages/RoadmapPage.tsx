@@ -82,8 +82,8 @@ export default function RoadmapPage() {
   const generateTasks = (profile: StudentProfile): Task[] => {
     const docTask: Task = {
       id: "documents-checklist",
-      title: t("roadmap.tasksDocuments"),
-      description: t("roadmap.tasksDocumentsDesc"),
+      title: t("roadmap.documents"),
+      description: t("roadmap.organizeDocuments"),
       completed: false,
       notes: [],
       expanded: true,
@@ -98,8 +98,8 @@ export default function RoadmapPage() {
 
     const courseTasks: Task[] = profile.currentCourses.map((course) => ({
       id: `course-${course}`,
-      title: `${t("roadmap.tasksCompletePrefix")}${course}`,
-      description: `${t("roadmap.tasksCompleteDesc")}${course}.`,
+      title: `${t("roadmap.currentCourses")}: ${course}`,
+      description: t("roadmap.trackRequirements"),
       completed: false,
       notes: [],
       expanded: false,
@@ -107,8 +107,8 @@ export default function RoadmapPage() {
 
     const appTasks: Task[] = profile.targetSchools.map((school) => ({
       id: `submit-${school.toLowerCase()}`,
-      title: `${t("roadmap.tasksSubmitPrefix")}${school}`,
-      description: `${t("roadmap.tasksSubmitDesc")}${school}.`,
+      title: `${t("roadmap.applications")}: ${school}`,
+      description: t("roadmap.applicationChecklist"),
       completed: false,
       notes: [],
       expanded: false,
@@ -116,8 +116,8 @@ export default function RoadmapPage() {
 
     const interestTasks: Task[] = profile.interests.map((interest, idx) => ({
       id: `interest-${idx}`,
-      title: `${t("roadmap.tasksJoinPrefix")}${interest}`,
-      description: `${t("roadmap.tasksJoinDesc")}activities.`,
+      title: `${t("roadmap.interests")}: ${interest}`,
+      description: t("roadmap.aiGuidanceDescription"),
       completed: false,
       notes: [],
       expanded: false,
@@ -256,16 +256,18 @@ export default function RoadmapPage() {
         return;
       }
 
+      const dataToRestore = parsed.data as typeof state;
+
       Alert.alert(
         t('settings.importConfirm'),
         t('settings.importOverwriteMessage'),
         [
-          { text: t('settings.cancel'), style: "cancel" },
+          { text: t('general.cancel'), style: "cancel" },
           {
             text: t('settings.import'),
             style: "destructive",
             onPress: async () => {
-              await restoreData(parsed.data);
+              await restoreData(dataToRestore);
               if (parsed.theme === "light" || parsed.theme === "dark" || parsed.theme === "system") {
                 setTheme(parsed.theme);
               }

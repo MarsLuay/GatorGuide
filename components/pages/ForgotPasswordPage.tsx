@@ -15,16 +15,13 @@ import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { FormInput } from "@/components/ui/FormInput";
-import { useTranslation } from "react-i18next";
-import { auth } from "@/services/firebase";
-import { sendPasswordResetEmail } from "firebase/auth";
+import { authService } from "@/services";
 
 const isEmailValid = (value: string) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value.trim());
 
 export default function ForgotPasswordPage() {
-  const { t } = useTranslation();
-  const styles = useThemeStyles();
   const { t } = useAppLanguage();
+  const styles = useThemeStyles();
 
   const [email, setEmail] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
@@ -49,7 +46,7 @@ export default function ForgotPasswordPage() {
     Keyboard.dismiss();
 
     try {
-      await sendPasswordResetEmail(auth, e);
+      await authService.sendPasswordReset(e);
       await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       setIsSuccess(true);
     } catch (error: any) {
@@ -75,7 +72,7 @@ export default function ForgotPasswordPage() {
       <ScreenBackground>
         <View className="flex-1 items-center justify-center px-6">
           <View className="w-full max-w-md">
-            <div className="items-center mb-8">
+            <View className="items-center mb-8">
               <View className="bg-green-500 p-4 rounded-full">
                 <MaterialIcons name="check-circle" size={48} color="black" />
               </View>
@@ -164,6 +161,7 @@ export default function ForgotPasswordPage() {
               </Pressable>
             </View>
           </View>
+        </View>
         </View>
       </TouchableWithoutFeedback>
     </ScreenBackground>

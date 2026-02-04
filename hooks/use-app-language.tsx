@@ -17,9 +17,8 @@ const AppLanguageContext = createContext<AppLanguageContextValue | null>(null);
 
 const supportedLanguages = Object.keys(translations) as Language[];
 
-const pickLanguageFromLocale = (languageCode?: string, scriptCode?: string, regionCode?: string, languageTag?: string): Language => {
+const pickLanguageFromLocale = (languageCode?: string | null, regionCode?: string | null, languageTag?: string | null): Language => {
   const normalizedLang = (languageCode || "").toLowerCase();
-  const normalizedScript = (scriptCode || "").toLowerCase();
   const normalizedRegion = (regionCode || "").toLowerCase();
   const normalizedTag = (languageTag || "").toLowerCase();
 
@@ -38,7 +37,7 @@ const pickLanguageFromLocale = (languageCode?: string, scriptCode?: string, regi
   if (normalizedLang === "tl") return "Tagalog";
 
   if (normalizedLang === "zh") {
-    const isTraditional = normalizedScript === "hant" || normalizedTag.includes("-hant") || normalizedRegion === "tw" || normalizedRegion === "hk" || normalizedRegion === "mo";
+    const isTraditional = normalizedTag.includes("-hant") || normalizedRegion === "tw" || normalizedRegion === "hk" || normalizedRegion === "mo";
     return isTraditional ? "Chinese (Traditional)" : "Chinese (Simplified)";
   }
 
@@ -62,10 +61,9 @@ export function AppLanguageProvider({ children }: { children: React.ReactNode })
         } else {
           const [deviceLocale] = Localization.getLocales();
           const detected = pickLanguageFromLocale(
-            deviceLocale?.languageCode,
-            deviceLocale?.scriptCode,
-            deviceLocale?.regionCode,
-            deviceLocale?.languageTag
+            deviceLocale?.languageCode ?? null,
+            deviceLocale?.regionCode ?? null,
+            deviceLocale?.languageTag ?? null
           );
 
           const safeLanguage = supportedLanguages.includes(detected) ? detected : DEFAULT_LANGUAGE;
@@ -88,7 +86,8 @@ export function AppLanguageProvider({ children }: { children: React.ReactNode })
   };
 
   const t = (key: TranslationKey): string => {
-    return translations[language][key] || translations[DEFAULT_LANGUAGE][key] || key;
+    const bundle = translations as Record<Language, Record<string, string>>;
+    return bundle[language]?.[key] || bundle[DEFAULT_LANGUAGE]?.[key] || key;
   };
 
   const value = useMemo<AppLanguageContextValue>(

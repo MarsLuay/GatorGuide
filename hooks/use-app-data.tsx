@@ -35,13 +35,8 @@ const initialState: AppDataState = {
 type AppDataContextValue = {
   isHydrated: boolean;
   state: AppDataState;
-<<<<<<< HEAD
-
   signIn: (user: Pick<User, "name" | "email"> & { password: string; isSignUp: boolean }) => Promise<void>;
   signInAsGuest: () => Promise<void>;
-=======
-  signIn: (user: Partial<User> & { uid: string; email: string; name: string }) => Promise<void>;
->>>>>>> 596bfb5 (WIP: updates)
   signOut: () => Promise<void>;
   updateUser: (patch: Partial<User>) => Promise<void>;
   setQuestionnaireAnswers: (answers: QuestionnaireAnswers) => Promise<void>;
@@ -94,6 +89,7 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
           ...prev,
           user: {
             ...prev.user,
+            uid: authUser.uid,
             name: authUser.name || u.name, // Update name in case it changed
           },
         };
@@ -103,6 +99,7 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
       return {
         ...prev,
         user: {
+          uid: authUser.uid,
           name: authUser.name || u.name,
           email: authUser.email,
           isGuest: false,
@@ -115,30 +112,13 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
         },
       };
     });
-=======
-  const signIn = useCallback(async (u: Partial<User> & { uid: string; email: string; name: string }) => {
-    setState((prev) => ({
-      ...prev,
-      user: {
-        uid: u.uid,
-        name: u.name,
-        email: u.email,
-        major: u.major || prev.user?.major || "",
-        gpa: u.gpa || prev.user?.gpa || "",
-        sat: u.sat || prev.user?.sat || "",
-        act: u.act || prev.user?.act || "",
-        resume: u.resume || prev.user?.resume || "",
-        transcript: u.transcript || prev.user?.transcript || "",
-        isProfileComplete: u.isProfileComplete || prev.user?.isProfileComplete || false,
-      },
-    }));
->>>>>>> 596bfb5 (WIP: updates)
   }, []);
 
   const signInAsGuest = useCallback(async () => {
     setState((prev) => ({
       ...prev,
       user: {
+        uid: `guest-${Date.now()}`,
         name: "Guest User",
         email: `guest-${Date.now()}@gatorguide.local`,
         isGuest: true,
@@ -188,7 +168,6 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
     setState(initialState);
   }, []);
 
-<<<<<<< HEAD
   const value = useMemo<AppDataContextValue>(
     () => ({
       isHydrated,
@@ -204,11 +183,6 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
     }),
     [isHydrated, state, signIn, signInAsGuest, signOut, updateUser, setQuestionnaireAnswers, setNotificationsEnabled, restoreData, clearAll]
   );
-=======
-  const value = useMemo(() => ({
-    isHydrated, state, signIn, signOut, updateUser, setQuestionnaireAnswers, setNotificationsEnabled, clearAll
-  }), [isHydrated, state, signIn, signOut, updateUser, setQuestionnaireAnswers, setNotificationsEnabled, clearAll]);
->>>>>>> 596bfb5 (WIP: updates)
 
   return <AppDataContext.Provider value={value}>{children}</AppDataContext.Provider>;
 }

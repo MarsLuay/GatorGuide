@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import { View } from 'react-native';
+import '../global.css';
+import * as SplashScreen from 'expo-splash-screen';
+import StartupAnimation from '@/components/pages/StartupAnimation';
 import { Stack } from "expo-router";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { AppThemeProvider } from "@/hooks/use-app-theme";

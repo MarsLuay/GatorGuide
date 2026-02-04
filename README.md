@@ -138,8 +138,8 @@ Front-end
 │  └─ storage.service.ts
 ├─ tailwind.config.js
 └─ tsconfig.json
+```
 
-<<<<<<< HEAD
 ### 2) Clone and install the project
 
 ```bash
@@ -201,8 +201,9 @@ git pull --rebase origin main
 git push origin main
 # paste any error messages to ChatGPT if they appear
 ```
-=======
-```
+
+## Detailed Project Structure
+
 ```
 Front-end
 ├─ app

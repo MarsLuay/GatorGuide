@@ -348,7 +348,7 @@ export default function ProfilePage() {
   }
 
   // If guest user, show only create profile button
-  if (user.isGuest && !showGuestProfile) {
+  if (user?.isGuest && !showGuestProfile) {
     return (
       <ScreenBackground>
         <View className="flex-1 items-center justify-center px-6">
@@ -387,17 +387,18 @@ export default function ProfilePage() {
     );
   }
 
+  // Main profile page
   return (
     <>
       <ScreenBackground>
       <ScrollView
         className="flex-1"
-        contentContainerStyle={{ paddingTop: insets.top, paddingBottom: 32 }}
+        contentContainerStyle={{ paddingTop: insets.top + 16, paddingBottom: 96 }}
         keyboardShouldPersistTaps="handled"
         onScrollBeginDrag={Keyboard.dismiss}
       >
         <View className="max-w-md w-full self-center">
-          {user.isGuest && showGuestProfile ? (
+          {user?.isGuest && showGuestProfile ? (
             <View className="px-6 pt-6">
               <View className={`${cardBgClass} border-2 border-green-500/20 rounded-2xl p-5 mb-4`}>
                 <View className="flex-row items-center mb-3">
@@ -429,8 +430,11 @@ export default function ProfilePage() {
             </View>
           ) : null}
           {/* Header */}
-          <View className="px-6 pt-8 pb-6 flex-row items-center justify-between">
-            <Text className={`text-2xl ${textClass}`}>{t("profile.edit")}</Text>
+          <View className="px-6 pt-6 pb-2 flex-row items-center justify-between">
+            <View>
+              <Text className={`text-2xl ${textClass} font-semibold`}>{t("home.yourProfile")}</Text>
+              <Text className={`${secondaryTextClass} text-sm mt-1`}>{t("profile.yourDataSaved")}</Text>
+            </View>
 
             <Pressable
               onPress={() => {
@@ -441,10 +445,9 @@ export default function ProfilePage() {
                   setIsEditing(true);
                 }
               }}
-              className="bg-green-500 rounded-lg px-4 py-3 flex-row items-center"
+              className="bg-green-500 p-3 rounded-full"
             >
-              <MaterialIcons name={isEditing ? "save" : "edit"} size={16} color="black" />
-              <Text className="text-black font-semibold ml-2">{isEditing ? t("profile.save") : t("profile.edit")}</Text>
+              <MaterialIcons name={isEditing ? "save" : "edit"} size={18} color="black" />
             </Pressable>
           </View>
 
@@ -452,14 +455,14 @@ export default function ProfilePage() {
             {/* Profile Card */}
             <View className={`${cardBgClass} border rounded-2xl overflow-hidden`}>
               {/* Header with gradient effect for guests */}
-              {user.isGuest ? (
-                <View className="bg-gradient-to-br from-green-500/10 to-green-500/5 px-6 py-6 border-b border-green-500/20">
+              {user?.isGuest ? (
+                <View className="bg-gradient-to-br from-green-500/10 to-green-500/5 px-6 py-4 border-b border-green-500/20">
                   <View className="flex-row items-center">
-                    <View className="w-20 h-20 bg-green-500 rounded-full items-center justify-center mr-4 shadow-lg">
-                      <MaterialIcons name="person" size={36} color="black" />
+                    <View className="w-14 h-14 bg-green-500 rounded-full items-center justify-center mr-3 shadow-md">
+                      <MaterialIcons name="person" size={26} color="black" />
                     </View>
                     <View className="flex-1">
-                      <Text className={`${textClass} text-2xl font-bold mb-1`}>{capitalizeWords(user.name)}</Text>
+                      <Text className={`${textClass} text-lg font-bold mb-1`}>{capitalizeWords(user?.name ?? "")}</Text>
                       <View className="bg-green-500/20 rounded-full px-3 py-1 self-start">
                         <Text className="text-green-500 text-xs font-semibold">{t("profile.guestMode")}</Text>
                       </View>
@@ -467,41 +470,43 @@ export default function ProfilePage() {
                   </View>
                 </View>
               ) : (
-                <View className="px-6 pt-6 pb-4">
-                  <View className="flex-row items-center mb-2">
-                    <View className="w-20 h-20 bg-green-500 rounded-full items-center justify-center mr-4">
-                      <Text className="text-black text-2xl font-bold">{user.name.charAt(0).toUpperCase()}</Text>
+                // Regular header for signed-in users
+                <View className="bg-gradient-to-br from-green-500/10 to-green-500/5 px-6 py-4 border-b border-green-500/20">
+                  <View className="flex-row items-center">
+                    <View className="w-14 h-14 bg-green-500 rounded-full items-center justify-center mr-3">
+                      <Text className="text-black text-lg font-bold">{(user?.name?.[0] ?? "").toUpperCase()}</Text>
                     </View>
                     <View className="flex-1">
-                      <Text className={`${textClass} text-xl font-semibold mb-1`}>{capitalizeWords(user.name)}</Text>
-                      <Text className={secondaryTextClass}>{user.email}</Text>
+                      <Text className={`${textClass} text-lg font-semibold mb-0`}>{capitalizeWords(user?.name ?? "")}</Text>
                     </View>
                   </View>
                 </View>
               )}
-
+              
+              {/* Profile Fields */}
               <View className="px-6 py-6">
+              {!(user?.isGuest) && ( //name
+              <ProfileField
+                noDivider
+                noTopSpacing
+                type="text"
+                icon="person"
+                label={t("profile.name")}
+                value={capitalizeWords(user?.name ?? "")}
+                isEditing={isEditing}
+                editValue={editData.name}
+                onChangeText={(t) => setEditData((p) => ({ ...p, name: t }))}
+                placeholder={t("profile.enterYourName")}
+                placeholderColor={placeholderColor}
+                inputBgClass={inputBgClass}
+                inputClass={inputClass}
+                textClass={textClass}
+                secondaryTextClass={secondaryTextClass}
+                borderClass={borderClass}
+              />
+            )}
 
-              {!user.isGuest && (
-                <ProfileField
-                  type="text"
-                  icon="person"
-                  label={t("profile.name")}
-                  value={capitalizeWords(user.name)}
-                  isEditing={isEditing}
-                  editValue={editData.name}
-                  onChangeText={(t) => setEditData((p) => ({ ...p, name: t }))}
-                  placeholder={t("profile.enterYourName")}
-                  placeholderColor={placeholderColor}
-                  inputBgClass={inputBgClass}
-                  inputClass={inputClass}
-                  textClass={textClass}
-                  secondaryTextClass={secondaryTextClass}
-                  borderClass={borderClass}
-                />
-              )}
-
-              {user.isGuest ? (
+              {user?.isGuest ? ( //email
                 <Pressable
                   onPress={handleCreateAccount}
                   className="bg-gradient-to-r from-green-500 to-green-600 rounded-xl p-5 flex-row items-center justify-between mb-4"
@@ -516,23 +521,23 @@ export default function ProfilePage() {
                   <MaterialIcons name="arrow-forward" size={24} color="black" />
                 </Pressable>
               ) : (
-                <ProfileField
+                
+                <ProfileField //email
                   type="display"
                   icon="mail"
                   label={t("profile.email")}
-                  value={user.email}
+                  value={user?.email ?? ""}
                   isEditing={false}
                   textClass={textClass}
                   secondaryTextClass={secondaryTextClass}
                   borderClass={borderClass}
                 />
               )}
-
-              <ProfileField
+              <ProfileField //major
                 type="text"
                 icon="school"
                 label={t("profile.major")}
-                value={capitalizeWords(user.major) || t("profile.undecided")}
+                value={capitalizeWords(user?.major ?? "") || t("profile.undecided")}
                 isEditing={isEditing}
                 editValue={editData.major}
                 onChangeText={(t) => setEditData((p) => ({ ...p, major: t }))}
@@ -545,11 +550,11 @@ export default function ProfilePage() {
                 borderClass={borderClass}
               />
 
-              <ProfileField
+              <ProfileField //GPA
                 type="text"
                 icon="description"
                 label={t("profile.gpa")}
-                value={user.gpa}
+                value={user?.gpa ?? ""}
                 isEditing={isEditing}
                 editValue={editData.gpa}
                 onChangeText={handleGpaChange}
@@ -563,11 +568,11 @@ export default function ProfilePage() {
                 borderClass={borderClass}
               />
 
-              <ProfileField
+              <ProfileField //SAT
                 type="text"
                 icon="notes"
                 label={t("profile.sat")}
-                value={user.sat}
+                value={user?.sat ?? ""}
                 isEditing={isEditing}
                 editValue={editData.sat}
                 onChangeText={(t) => setEditData((p) => ({ ...p, sat: t }))}
@@ -580,11 +585,11 @@ export default function ProfilePage() {
                 borderClass={borderClass}
               />
 
-              <ProfileField
+              <ProfileField //ACT
                 type="text"
                 icon="notes"
                 label={t("profile.act")}
-                value={user.act}
+                value={user?.act ?? ""}
                 isEditing={isEditing}
                 editValue={editData.act}
                 onChangeText={(t) => setEditData((p) => ({ ...p, act: t }))}
@@ -597,11 +602,11 @@ export default function ProfilePage() {
                 borderClass={borderClass}
               />
 
-              <ProfileField
+              <ProfileField //Resume
                 type="upload"
                 icon="upload-file"
                 label={t("profile.resume")}
-                value={user.resume}
+                value={user?.resume ?? ""}
                 isEditing={isEditing}
                 editValue={editData.resume}
                 onPress={handlePickResume}
@@ -613,11 +618,11 @@ export default function ProfilePage() {
                 borderClass={borderClass}
               />
 
-              <ProfileField
+              <ProfileField //Transcript
                 type="upload"
                 icon="upload-file"
                 label={t("profile.transcript")}
-                value={user.transcript}
+                value={user?.transcript ?? ""}
                 isEditing={isEditing}
                 editValue={editData.transcript}
                 onPress={handlePickTranscript}
@@ -627,7 +632,8 @@ export default function ProfilePage() {
                 textClass={textClass}
                 secondaryTextClass={secondaryTextClass}
                 borderClass={borderClass}
-              />              </View>            </View>
+              />
+              </View>            </View>
 
             {/* Questionnaire */}
             <View className={`${cardBgClass} border rounded-2xl p-6 mt-4`}>

@@ -12,7 +12,7 @@ type FormInputProps = {
   inputBgClass: string;
   placeholderColor: string;
   editable?: boolean; 
-} & Pick<TextInputProps, "keyboardType" | "autoCapitalize" | "autoCorrect" | "returnKeyType" | "secureTextEntry">;
+} & Partial<Pick<TextInputProps, "keyboardType" | "autoCapitalize" | "autoCorrect" | "returnKeyType" | "secureTextEntry">>;
 
 export function FormInput({
   label,

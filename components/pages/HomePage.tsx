@@ -10,12 +10,11 @@ import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { collegeService, College } from "@/services";
 
 export default function HomePage() {
-  const { t } = useTranslation();
   const { isDark } = useAppTheme();
   const { t } = useAppLanguage();
   const { state } = useAppData();
   const insets = useSafeAreaInsets();
-  
+
   const user = state.user;
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -23,14 +22,11 @@ export default function HomePage() {
   const [hasSubmittedSearch, setHasSubmittedSearch] = useState(false);
   const [isProfileExpanded, setIsProfileExpanded] = useState(false);
   const [dismissedGuestPrompt, setDismissedGuestPrompt] = useState(false);
+  const showExtraInfoPrompt = !hasSubmittedSearch;
   const [resultsSource, setResultsSource] = useState<'live' | 'cached' | 'stub' | null>(null);
   const [isSearching, setIsSearching] = useState(false);
 
   const capitalizedName = user?.name 
-    ? user.name.split(' ')[0].charAt(0).toUpperCase() + user.name.split(' ')[0].slice(1).toLowerCase()
-    : t("home.student");
-
-  const capitalizedName = user.name 
     ? user.name.split(' ')[0].charAt(0).toUpperCase() + user.name.split(' ')[0].slice(1).toLowerCase()
     : t("home.student");
 
@@ -145,7 +141,7 @@ export default function HomePage() {
             <Ionicons name="chevron-forward" size={18} color={placeholderTextColor} />
           </Pressable>
 
-          {user.major && (
+          {user && user.major ? (
             <View className="mt-4">
               <Pressable 
                 onPress={() => setIsProfileExpanded(!isProfileExpanded)}
@@ -164,26 +160,26 @@ export default function HomePage() {
                   <View className="mt-3">
                     <View className="flex-row justify-between mb-2">
                       <Text className={secondaryTextClass}>{t("home.major")}</Text>
-                      <Text className="text-green-500">{user.major || t("home.undecided")}</Text>
+                      <Text className="text-green-500">{user ? user.major || t("home.undecided") : t("home.undecided")}</Text>
                     </View>
-                    {user.gpa && (
+                    {user && user.gpa && (
                       <View className="flex-row justify-between mb-2">
                         <Text className={secondaryTextClass}>{t("home.gpa")}</Text>
-                        <Text className="text-green-500">{user.gpa}</Text>
+                        <Text className="text-green-500">{user ? user.gpa : ""}</Text>
                       </View>
                     )}
 
-                    {user.sat && (
+                    {user && user.sat && (
                       <View className="flex-row justify-between mb-2">
                         <Text className={secondaryTextClass}>{t("home.satScore")}</Text>
-                        <Text className="text-green-500">{user.sat}</Text>
+                        <Text className="text-green-500">{user ? user.sat : ""}</Text>
                       </View>
                     )}
 
-                    {user.act && (
+                    {user && user.act && (
                       <View className="flex-row justify-between">
                         <Text className={secondaryTextClass}>{t("home.actScore")}</Text>
-                        <Text className="text-green-500">{user.act}</Text>
+                        <Text className="text-green-500">{user ? user.act : ""}</Text>
                       </View>
                     )}
                   </View>

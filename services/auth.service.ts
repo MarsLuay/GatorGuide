@@ -1,12 +1,10 @@
 import { 
-  signInWithEmailAndPassword, 
   createUserWithEmailAndPassword, 
-  signOut as firebaseSignOut,
-  sendPasswordResetEmail 
-} from 'firebase/auth';
-import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
-
-import { createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword, signOut as firebaseSignOut, updateProfile } from "firebase/auth";
+  sendPasswordResetEmail, 
+  signInWithEmailAndPassword, 
+  signOut as firebaseSignOut, 
+  updateProfile 
+} from "firebase/auth";
 import { isStubMode } from "./config";
 import { firebaseAuth } from "./firebase";
 
@@ -87,8 +85,6 @@ class AuthService {
 
   async signOut(): Promise<void> {
     if (isStubMode()) return;
-    await firebaseSignOut(auth);
-  }
 
     if (!firebaseAuth) {
       throw new Error("Firebase Auth not configured yet");

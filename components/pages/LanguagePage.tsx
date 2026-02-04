@@ -7,30 +7,28 @@ import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { Language } from "@/services/translations";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
-import { useTranslation } from "react-i18next";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function LanguagePage() {
   const { isDark } = useAppTheme();
   const { language, setLanguage, t } = useAppLanguage();
 
-  const languages = useMemo<Language[]>(
+  const languages = useMemo(
     () => [
-      { name: "English", code: "en" },
-      { name: "Español", code: "es" },
-      { name: "简体中文", code: "zh" },
-      { name: "繁體中文", code: "zh-Hant" },
-      { name: "Français", code: "fr" },
-      { name: "Deutsch", code: "de" },
-      { name: "Italiano", code: "it" },
-      { name: "日本語", code: "ja" },
-      { name: "한국어", code: "ko" },
-      { name: "Português", code: "pt" },
-      { name: "Русский", code: "ru" },
-      { name: "العربية", code: "ar" },
-      { name: "हिन्दी", code: "hi" },
-      { name: "Tiếng Việt", code: "vi" },
-      { name: "Tagalog", code: "tl" },
+      { key: "English" as Language, label: "English" },
+      { key: "Spanish" as Language, label: "Español" },
+      { key: "Chinese (Simplified)" as Language, label: "简体中文" },
+      { key: "Chinese (Traditional)" as Language, label: "繁體中文" },
+      { key: "French" as Language, label: "Français" },
+      { key: "German" as Language, label: "Deutsch" },
+      { key: "Italian" as Language, label: "Italiano" },
+      { key: "Japanese" as Language, label: "日本語" },
+      { key: "Korean" as Language, label: "한국어" },
+      { key: "Portuguese" as Language, label: "Português" },
+      { key: "Russian" as Language, label: "Русский" },
+      { key: "Arabic" as Language, label: "العربية" },
+      { key: "Hindi" as Language, label: "हिन्दी" },
+      { key: "Vietnamese" as Language, label: "Tiếng Việt" },
+      { key: "Tagalog" as Language, label: "Tagalog" },
     ],
     []
   );
@@ -65,17 +63,17 @@ export default function LanguagePage() {
           <View className="px-6">
             <View className={`${cardBgClass} border rounded-2xl overflow-hidden`}>
               {languages.map((lang, index) => {
-                const isSelected = language === lang;
+                const isSelected = language === lang.key;
 
                 return (
                   <Pressable
-                    key={lang}
-                    onPress={() => handleSelectLanguage(lang)}
+                    key={lang.key}
+                    onPress={() => handleSelectLanguage(lang.key)}
                     className={`flex-row items-center justify-between px-4 py-5 ${
                       index !== languages.length - 1 ? `border-b ${itemBorderClass}` : ""
                     }`}
                   >
-                    <Text className={textClass}>{lang}</Text>
+                    <Text className={textClass}>{lang.label}</Text>
                     {isSelected ? <MaterialIcons name="check" size={20} color="#22C55E" /> : null}
                   </Pressable>
                 );

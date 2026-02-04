@@ -54,8 +54,8 @@ export default function SettingsPage() {
       vi: "Tiếng Việt",
       tl: "Tagalog",
     };
-    return langMap[i18n.language] || "English";
-  }, [i18n.language]);
+    return langMap[language] || "English";
+  }, [language]);
 
   const textClass = isDark ? "text-white" : "text-gray-900";
   const secondaryTextClass = isDark ? "text-gray-400" : "text-gray-600";
@@ -119,7 +119,9 @@ export default function SettingsPage() {
       });
 
       const canShare = await Sharing.isAvailableAsync();
-      if (!canShare || Platform.OS === "web") {
+      // Platform.OS does not include 'web' in React Native types, but Expo web sets Platform.OS to 'web' at runtime.
+      // To avoid type error, use (Platform as any).OS === 'web'.
+      if (!canShare || (Platform as any).OS === "web") {
         Alert.alert(t('settings.exportReady'), t('settings.exportNotAvailable'));
         return;
       }
@@ -168,7 +170,9 @@ export default function SettingsPage() {
             text: t('settings.import'),
             style: "destructive",
             onPress: async () => {
-              await restoreData(parsed.data);
+              if (parsed.data) {
+                await restoreData(parsed.data);
+              }
               if (parsed.theme === "light" || parsed.theme === "dark" || parsed.theme === "system") {
                 setTheme(parsed.theme);
               }
@@ -285,7 +289,7 @@ export default function SettingsPage() {
 
   return (
     <ScreenBackground>
-      <ScrollView contentContainerStyle={{ paddingTop: insets.top, paddingBottom: 32 }}>
+      <ScrollView contentContainerStyle={{ paddingTop: insets.top + 16, paddingBottom: 96 }}>
         <View className="max-w-md w-full self-center">
           <View className="px-6 pt-8 pb-6">
             <Text className={`text-2xl ${textClass}`}>{t("settings.settings")}</Text>

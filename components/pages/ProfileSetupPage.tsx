@@ -1,5 +1,5 @@
-import { useMemo, useRef, useState } from "react";
-import { View, Text, TextInput, Pressable, ScrollView, Keyboard, useWindowDimensions, Alert } from "react-native";
+import { useRef, useState } from "react";
+import { View, Text, Pressable, ScrollView, Keyboard, Alert, Dimensions } from "react-native";
 import { router } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
@@ -15,13 +15,13 @@ import { useAppLanguage } from "@/hooks/use-app-language";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { FormInput } from "@/components/ui/FormInput";
 import { roadmapService } from "@/services/roadmap.service";
-import { useTranslation } from "react-i18next";
 
 export default function ProfileSetupPage() {
-  const { updateUser } = useAppData();
+  const { updateUser, state } = useAppData();
   const { t } = useAppLanguage();
   const styles = useThemeStyles();
-  const { width } = useWindowDimensions();
+
+  const confettiRef = useRef<ConfettiCannon | null>(null);
 
   const cheerPlayer = useAudioPlayer('https://assets.mixkit.co/active_storage/sfx/2018/2018-preview.mp3');
 
@@ -61,6 +61,9 @@ export default function ProfileSetupPage() {
       console.error(err);
     }
   };
+
+  const handlePickResume = () => handlePickDocument('resume');
+  const handlePickTranscript = () => handlePickDocument('transcript');
 
   const handleBack = () => {
     if (step > 1) {
@@ -102,6 +105,8 @@ export default function ProfileSetupPage() {
 
       setIsUploading(true);
 
+      const canUseFirebase = !!db;
+
       const uploadFile = async (uri: string, folder: string) => {
         if (!uri || !uri.startsWith('file')) return uri;
         const response = await fetch(uri);
@@ -115,8 +120,10 @@ export default function ProfileSetupPage() {
       let finalResumeUrl = resume;
       let finalTranscriptUrl = transcript;
 
-      if (resume) finalResumeUrl = await uploadFile(resume, 'resumes');
-      if (transcript) finalTranscriptUrl = await uploadFile(transcript, 'transcripts');
+      if (canUseFirebase) {
+        if (resume) finalResumeUrl = await uploadFile(resume, 'resumes');
+        if (transcript) finalTranscriptUrl = await uploadFile(transcript, 'transcripts');
+      }
 
       const flatData = {
         major,
@@ -128,11 +135,13 @@ export default function ProfileSetupPage() {
         isProfileComplete: true, 
       };
 
-      const userDocRef = doc(db, 'users', userId);
-      await setDoc(userDocRef, {
-        ...flatData,
-        updatedAt: serverTimestamp(),
-      }, { merge: true });
+      if (db) {
+        const userDocRef = doc(db, 'users', userId);
+        await setDoc(userDocRef, {
+          ...flatData,
+          updatedAt: serverTimestamp(),
+        }, { merge: true });
+      }
 
       await updateUser(flatData);
       
@@ -146,7 +155,7 @@ export default function ProfileSetupPage() {
       router.replace("/(tabs)"); 
     } catch (error) {
       console.error(error);
-      Alert.alert(t('common.save_failed'));
+      Alert.alert(t("general.error"), t("profile.prepareDataError"));
     } finally {
       setIsUploading(false);
     }

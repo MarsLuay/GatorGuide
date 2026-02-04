@@ -59,154 +59,82 @@ export default function AuthPage() {
     }
 
     await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    await signIn({ name: n || t("auth.defaultUser"), email: e, password, isSignUp }); // Use default if logging in without name
-    
-    // If signing up, check for pending guest data and restore it
-    if (isSignUp) {
-      try {
-        const pendingData = await AsyncStorage.getItem("gatorguide:pending-account-data");
-        if (pendingData) {
-          const parsed = JSON.parse(pendingData);
-          if (parsed.user) {
-            // Merge guest data with new account (keeping the new email/name)
-            await updateUser({
-              major: parsed.user.major,
-              gpa: parsed.user.gpa,
-              sat: parsed.user.sat,
-              act: parsed.user.act,
-              resume: parsed.user.resume,
-              transcript: parsed.user.transcript,
-            });
+
+    const mapAuthError = (code: string | undefined) => {
+      switch (code) {
+        case 'auth/invalid-email':
+          return t('auth.invalidEmail') || 'Please enter a valid email address.';
+        case 'auth/user-not-found':
+          return t('auth.no_matches') || "We couldn't find an account with that email.";
+        case 'auth/wrong-password':
+          return t('auth.passwordMinimumShort') || 'Incorrect password. Please try again.';
+        case 'auth/email-already-in-use':
+          return t('auth.validation.failed_title') || 'An account with this email already exists.';
+        case 'auth/weak-password':
+          return t('auth.passwordMinimum') || 'Password must be at least 6 characters.';
+        case 'auth/too-many-requests':
+          return 'Too many attempts. Please wait a moment and try again.';
+        case 'auth/network-request-failed':
+          return 'Network error. Please check your internet connection and try again.';
+        case 'auth/user-disabled':
+          return 'This account has been disabled. Contact support if you think this is a mistake.';
+        case 'auth/operation-not-allowed':
+          return 'This sign-in method is not enabled. Please contact support.';
+        default:
+          return t('auth.validation.failed_message') || 'Authentication failed. Please try again.';
+      }
+    };
+
+    try {
+      await signIn({ name: n || t('auth.defaultUser'), email: e, password, isSignUp }); // Use default if logging in without name
+
+      // If signing up, check for pending guest data and restore it
+      if (isSignUp) {
+        try {
+          const pendingData = await AsyncStorage.getItem('gatorguide:pending-account-data');
+          if (pendingData) {
+            const parsed = JSON.parse(pendingData);
+            if (parsed.user) {
+              // Merge guest data with new account (keeping the new email/name)
+              await updateUser({
+                major: parsed.user.major,
+                gpa: parsed.user.gpa,
+                sat: parsed.user.sat,
+                act: parsed.user.act,
+                resume: parsed.user.resume,
+                transcript: parsed.user.transcript,
+              });
+            }
+            if (parsed.questionnaireAnswers) {
+              await setQuestionnaireAnswers(parsed.questionnaireAnswers);
+            }
+            // Clear the pending data
+            await AsyncStorage.removeItem('gatorguide:pending-account-data');
           }
-          if (parsed.questionnaireAnswers) {
-            await setQuestionnaireAnswers(parsed.questionnaireAnswers);
-          }
-          // Clear the pending data
-          await AsyncStorage.removeItem("gatorguide:pending-account-data");
+        } catch {
+          // Silently fail - user can manually import if needed
         }
-      } catch {
-        // Silently fail - user can manually import if needed
+
+      }
+
+      // Go to index which will route to profile-setup or tabs based on completion
+      router.replace('/');
+    } catch (err: any) {
+      console.error('Auth error', err);
+      const friendly = mapAuthError(err?.code);
+      if (friendly) {
+        Alert.alert(t('general.error'), friendly);
+      } else {
+        Alert.alert(t('general.error'), err?.message || 'Authentication failed.');
       }
     }
-    
-    // Go to index which will route to profile-setup or tabs based on completion
-    router.replace("/");
   };
 
-<<<<<<< HEAD
   const handleGuestSignIn = async () => {
     await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     await signInAsGuest();
     router.replace("/");
   };
-=======
-  const renderContent = () => (
-    <View className="flex-1 items-center justify-center px-6">
-      <View className="w-full max-w-md">
-        <View className="items-center mb-8">
-          <View className="bg-green-500 p-4 rounded-full">
-            <FontAwesome5 name="graduation-cap" size={48} color="black" />
-          </View>
-        </View>
-
-        <Text className={`text-3xl text-center ${styles.textClass} mb-2`}>Gator Guide</Text>
-        <Text className={`${styles.secondaryTextClass} text-center mb-8`}>Find your perfect college match</Text>
-
-        <View className={`${styles.cardBgClass} border rounded-2xl p-6`}>
-          <View className="flex-row gap-4 mb-6">
-            <Pressable
-              onPress={() => {
-                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                setIsSignUp(true);
-              }}
-              className={`flex-1 py-3 rounded-lg items-center ${isSignUp ? "bg-green-500" : styles.inactiveButtonClass}`}
-              disabled={!isHydrated}
-            >
-              <Text className={isSignUp ? "text-black" : styles.secondaryTextClass}>Sign Up</Text>
-            </Pressable>
-
-            <Pressable
-              onPress={() => {
-                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                setIsSignUp(false);
-              }}
-              className={`flex-1 py-3 rounded-lg items-center ${!isSignUp ? "bg-green-500" : styles.inactiveButtonClass}`}
-              disabled={!isHydrated}
-            >
-              <Text className={!isSignUp ? "text-black" : styles.secondaryTextClass}>Login</Text>
-            </Pressable>
-          </View>
-
-          <View className="gap-4">
-            {isSignUp && (
-              <FormInput
-                label="Name"
-                value={name}
-                onChangeText={setName}
-                placeholder="Enter your name"
-                textClass={styles.textClass}
-                secondaryTextClass={styles.secondaryTextClass}
-                inputBgClass={styles.inputBgClass}
-                placeholderColor={styles.placeholderColor}
-                isEnabled={isHydrated}
-                returnKeyType="next"
-              />
-            )}
-
-            <FormInput
-              label="Email"
-              value={email}
-              onChangeText={setEmail}
-              placeholder="Enter your email"
-              error={emailError}
-              textClass={styles.textClass}
-              secondaryTextClass={styles.secondaryTextClass}
-              inputBgClass={styles.inputBgClass}
-              placeholderColor={styles.placeholderColor}
-              isEnabled={isHydrated}
-              keyboardType="email-address"
-              autoCapitalize="none"
-              autoCorrect={false}
-              returnKeyType="next"
-            />
-
-            <FormInput
-              label="Password"
-              value={password}
-              onChangeText={setPassword}
-              placeholder={isSignUp ? "Create a password (min 6 characters)" : "Enter your password"}
-              textClass={styles.textClass}
-              secondaryTextClass={styles.secondaryTextClass}
-              inputBgClass={styles.inputBgClass}
-              placeholderColor={styles.placeholderColor}
-              isEnabled={isHydrated}
-              secureTextEntry
-              returnKeyType="done"
-            />
-
-            {!isSignUp && (
-              <View className="items-end">
-                <Pressable onPress={() => router.push("/forgot-password")} disabled={!isHydrated}>
-                  <Text className="text-sm text-green-500">Forgot password?</Text>
-                </Pressable>
-              </View>
-            )}
-
-            <Pressable
-              onPress={handleSubmit}
-              disabled={!isHydrated || !canSubmit}
-              className={`bg-green-500 rounded-lg py-4 items-center mt-2 ${
-                !isHydrated || !canSubmit ? "opacity-60" : ""
-              }`}
-            >
-              <Text className="text-black font-semibold">{isSignUp ? "Create Account" : "Sign In"}</Text>
-            </Pressable>
-          </View>
-        </View>
-      </View>
-    </View>
-  );
->>>>>>> 596bfb5 (WIP: updates)
 
   const isWeb = Platform.OS === 'web';
   const containerClass = isWeb 
@@ -261,7 +189,7 @@ export default function AuthPage() {
               secondaryTextClass={styles.secondaryTextClass}
               inputBgClass={styles.inputBgClass}
               placeholderColor={styles.placeholderColor}
-              isEnabled={isHydrated}
+              editable={isHydrated}
               returnKeyType="next"
             />
           )}
@@ -276,7 +204,7 @@ export default function AuthPage() {
             secondaryTextClass={styles.secondaryTextClass}
             inputBgClass={styles.inputBgClass}
             placeholderColor={styles.placeholderColor}
-            isEnabled={isHydrated}
+            editable={isHydrated}
             keyboardType="email-address"
             autoCapitalize="none"
             autoCorrect={false}
@@ -293,7 +221,7 @@ export default function AuthPage() {
             secondaryTextClass={styles.secondaryTextClass}
             inputBgClass={styles.inputBgClass}
             placeholderColor={styles.placeholderColor}
-            isEnabled={isHydrated}
+            editable={isHydrated}
             secureTextEntry
             returnKeyType="done"
           />
@@ -347,11 +275,6 @@ export default function AuthPage() {
           </View>
         </ScrollView>
       )}
-=======
-          {renderContent()}
-        </TouchableWithoutFeedback>
-      ) : renderContent()}
->>>>>>> 596bfb5 (WIP: updates)
     </ScreenBackground>
   );
 }
