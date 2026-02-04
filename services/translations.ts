@@ -199,16 +199,16 @@ export const translations = {
     "settings.deleteWarning": "This action cannot be undone. All your data will be permanently deleted.",
     "settings.logout": "Logout",
     "settings.appVersion": "Gator Guide v1.0.0",
-
     "resources.cannotOpenLink": "Cannot open link",
     "resources.couldNotOpenLink": "Your device could not open this link.",
     "resources.linkError": "Link error",
     "resources.linkErrorMessage": "Something went wrong opening that link.",
-    "resources.resources": "Tài nguyên",
-    "resources.resourcesDescription": "Các liên kết chính thức cho lập kế hoạch chuyển giao, hướng dẫn chuyển giao, học bổng và thực tập",
-    "resources.searchPlaceholder": "Tìm kiếm tài nguyên (ví dụ: UW, học-làm việc, học bổng)",
-    "resources.noMatches": "Không tìm thấy kết quả phù hợp",
-    "resources.tryDifferentSearch": "Hãy thử một thuật ngữ tìm kiếm khác.",
+    "resources.resources": "Resources",
+    "resources.resourcesDescription": "Official links for transfer planning, transfer guides, scholarships, and internships",
+    "resources.searchPlaceholder": "Search resources (e.g., UW, work-study, scholarship)",
+    "resources.noMatches": "No matches found",
+    "resources.tryDifferentSearch": "Try a different search term.",
+
 
     // Questionnaire
     "questionnaire.title": "Detailed Questionnaire",

@@ -405,8 +405,21 @@ export default function RoadmapPage() {
     <ScreenBackground>
       <ScrollView contentContainerStyle={{ paddingBottom: 32 }}>
         <View className="max-w-md w-full self-center">
+          {/* Header */}
+          <View className="px-6 pt-8 pb-6">
+            <Pressable onPress={() => router.back()} className="mb-4 flex-row items-center">
+              <MaterialIcons name="arrow-back" size={20} color={styles.placeholderColor} />
+              <Text className={`${secondaryTextClass} ml-2`}>{t("roadmap.back")}</Text>
+            </Pressable>
+            <Text className={`text-2xl ${textClass}`}>{t("roadmap.roadmapTitle")}</Text>
+            <Text className={`${secondaryTextClass} mt-2`}>{t("roadmap.subtitleChecklist")}</Text>
+            <View className="mt-4 h-4 w-full bg-gray-300 rounded-full overflow-hidden">
+              <Animated.View style={{ width: `${progress}%`, height: 16, backgroundColor: "#22C55E", borderRadius: 8 }} />
+            </View>
+          </View>
+
           {user?.isGuest && showGuestRoadmap ? (
-            <View className="px-6 pt-6">
+            <View className="px-6 pb-4">
               <View className={`${cardBgClass} border rounded-2xl p-4`}>
                 <View>
                   <Text className={textClass}>{t("roadmap.guestTools")}</Text>
@@ -433,19 +446,6 @@ export default function RoadmapPage() {
               </View>
             </View>
           ) : null}
-
-          {/* Header */}
-          <View className="px-6 pt-8 pb-6">
-            <Pressable onPress={() => router.back()} className="mb-4 flex-row items-center">
-              <MaterialIcons name="arrow-back" size={20} color={styles.placeholderColor} />
-              <Text className={`${secondaryTextClass} ml-2`}>{t("roadmap.back")}</Text>
-            </Pressable>
-            <Text className={`text-2xl ${textClass}`}>{t("roadmap.roadmapTitle")}</Text>
-            <Text className={`${secondaryTextClass} mt-2`}>{t("roadmap.subtitleChecklist")}</Text>
-            <View className="mt-4 h-4 w-full bg-gray-300 rounded-full overflow-hidden">
-              <Animated.View style={{ width: `${progress}%`, height: 16, backgroundColor: "#22C55E", borderRadius: 8 }} />
-            </View>
-          </View>
 
           {/* AI Assistant */}
           <View className="px-6 mb-4">
