@@ -1,0 +1,149 @@
+{
+  "common": {
+    "search": "Cerca",
+    "settings": "Impostazioni",
+    "language": "Lingua",
+    "logout": "Esci",
+    "back": "Indietro",
+    "next": "Avanti",
+    "finish": "Fine",
+    "complete": "Completato",
+    "save": "Salva",
+    "saving": "Salvataggio...",
+    "save_failed": "Salvataggio fallito, riprova più tardi",
+    "edit": "Modifica",
+    "exit": "Esci",
+    "save_exit": "Salva ed esci",
+    "error": "Errore",
+    "loading": "Caricamento...",
+    "close": "Chiudi",
+    "not_signed_in": "Accesso non effettuato",
+    "select_file": "Seleziona file",
+    "no_matches": "Nessun risultato trovato",
+    "try_different_search": "Prova con altri termini di ricerca.",
+    "browser_hint": "I link verranno aperti nel browser del tuo dispositivo."
+  },
+  "settings": {
+    "preferences": "Preferenze",
+    "notifications": "Notifiche",
+    "theme": "Tema grafico",
+    "support": "Supporto e Info",
+    "about": "Informazioni"
+  },
+  "theme": {
+    "system": "Segui sistema",
+    "dark": "Modalità scura",
+    "light": "Modalità chiara"
+  },
+  "roadmap": {
+    "title": "Percorso di Trasferimento",
+    "loading_msg": "Caricamento del tuo percorso personalizzato...",
+    "plan_for": "Piano {{major}} per {{name}}",
+    "progress_label": "{{progress}}% Completato",
+    "ai_advisor": {
+      "title": "Consulente AI",
+      "placeholder": "Chiedi sui requisiti di trasferimento...",
+      "button": "Chiedi consiglio",
+      "analyzing": "AI: Analizzando il tuo percorso in {{major}}..."
+    },
+    "categories": {
+      "Documents": "Documentazione",
+      "Academics": "Corsi Accademici",
+      "Applications": "Processo di Candidatura",
+      "Interests": "Profilo Personale"
+    },
+    "task_details": "Dettagli attività per {{category}}"
+  },
+  "resources": {
+    "title": "Centro Risorse",
+    "subtitle": "Link ufficiali per trasferimenti, equipollenza corsi, borse di studio e stage",
+    "search_placeholder": "Cerca risorse (es: UW, borse di studio, stage)",
+    "sections": {
+      "student_tools": "Strumenti per studenti",
+      "grc_planning": "Pianificazione Green River",
+      "wa_universities": "Università quadriennali in WA",
+      "transfer_guides": "Guide al trasferimento (GRC → Università)",
+      "scholarships": "Borse di studio (WA State)",
+      "internships": "Lavoro e Stage",
+      "international": "Stage Internazionali"
+    }
+  },
+  "auth": {
+    "sign_up": "Registrati",
+    "login": "Accedi",
+    "create_account": "Crea Account",
+    "sign_in": "Accedi",
+    "go_to_login": "Vai al Login",
+    "login_prompt": "Crea un account o accedi per modificare il tuo profilo.",
+    "name": "Nome",
+    "name_placeholder": "Inserisci il tuo nome",
+    "email": "Email",
+    "email_placeholder": "Inserisci il tuo indirizzo email",
+    "password": "Password",
+    "password_placeholder_create": "Imposta password (min. 6 caratteri)",
+    "password_placeholder_enter": "Inserisci la tua password",
+    "forgot_password": "Password dimenticata?",
+    "back_to_login": "Torna al Login",
+    "forgot_password_title": "Reimposta Password",
+    "forgot_password_desc": "Inserisci la tua email e ti invieremo un link di ripristino",
+    "send_reset_link": "Invia Link di Ripristino",
+    "check_email_title": "Controlla la tua Email",
+    "check_email_desc": "Abbiamo inviato un link di ripristino a {{email}}",
+    "check_email_hint": "Clicca sul link nell'email per reimpostare la password. Se non lo vedi, controlla la cartella spam.",
+    "validation": {
+      "invalid_email": "Inserisci un indirizzo email valido.",
+      "name_required": "Inserisci il tuo nome.",
+      "password_too_short": "La password deve contenere almeno 6 caratteri.",
+      "failed_title": "Autenticazione Fallita",
+      "failed_message": "Controlla la connessione internet o i dati dell'account."
+    }
+  },
+  "profile": {
+    "title": "Profilo",
+    "major": "Corso di studi",
+    "major_placeholder": "es: Informatica",
+    "gpa_label": "GPA (0.0 - 4.0)",
+    "sat_label": "Punteggio SAT",
+    "act_label": "Punteggio ACT",
+    "resume_label": "Curriculum",
+    "upload_resume": "Carica Curriculum",
+    "not_uploaded": "Non Caricato",
+    "undecided": "Indeciso"
+  },
+  "setup": {
+    "title": "Configura il tuo Profilo",
+    "subtitle": "Parlaci di te per personalizzare il tuo percorso di trasferimento.",
+    "major": "Corso di studi desiderato",
+    "major_placeholder": "Cosa vorresti studiare?",
+    "gpa": "GPA attuale",
+    "gpa_placeholder": "es: 3.8",
+    "sat": "Punteggio SAT",
+    "sat_placeholder": "Opzionale",
+    "act": "Punteggio ACT",
+    "act_placeholder": "Opzionale",
+    "resume": "Tuo Curriculum (Opzionale)",
+    "transcript": "Tua Certificazione Studi (Opzionale)",
+    "transcript_label": "Certificazione Studi"
+  },
+  "questionnaire": {
+    "detailed_title": "Questionario Dettagliato",
+    "step_label": "Passaggio {{current}} di {{total}}",
+    "edit_btn": "Modifica",
+    "complete_btn": "Completa ora",
+    "saved_desc": "Le tue preferenze sono salvate. Clicca su modifica per aggiornare le risposte.",
+    "empty_desc": "Completa il questionario per ricevere raccomandazioni universitarie personalizzate.",
+    "save_answers": "Salva Risposte",
+    "questions": {
+      "volunteer": { "title": "A quali attività di volontariato hai partecipato?", "placeholder": "Descrivi le tue esperienze..." },
+      "extracurriculars": { "title": "A quali attività extra-scolastiche partecipi?", "placeholder": "Elenca attività e ruoli..." },
+      "setting": { "title": "Che tipo di ambiente universitario preferisci?", "options": ["Urbano", "Suburbano", "Rurale", "Nessuna preferenza"] },
+      "size": { "title": "Qual è la dimensione ideale del campus?", "options": ["Piccolo (< 5.000)", "Medio (5.000-15.000)", "Grande (> 15.000)", "Nessuna preferenza"] },
+      "environment": { "title": "Che tipo di orientamento accademico ti attrae?", "options": ["Ricerca", "Discipline Umanistiche", "Tecnico/Ingegneristico", "Professionalizzante", "Generalista"] },
+      "programs": { "title": "Cerchi programmi o risorse specifiche?", "placeholder": "es: Studio all'estero, opportunità di ricerca, stage..." },
+      "budget": { "title": "Qual è il tuo budget annuale per le tasse scolastiche?", "options": ["< $20.000", "$20.000 - $40.000", "$40.000 - $60.000", "> $60.000", "Necessito di aiuti finanziari"] },
+      "location": { "title": "Hai una preferenza geografica?", "placeholder": "Inserisci stati, regioni o paesi preferiti..." },
+      "housing": { "title": "Qual è la tua preferenza per l'alloggio?", "options": ["Nel campus", "Appartamento fuori campus", "Pendolare da casa", "Nessuna preferenza"] },
+      "goals": { "title": "Quali sono i tuoi obiettivi di carriera dopo la laurea?", "placeholder": "Descrivi le tue ambizioni..." }
+    }
+  }
+}

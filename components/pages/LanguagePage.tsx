@@ -7,6 +7,8 @@ import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { Language } from "@/services/translations";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
+import { useTranslation } from "react-i18next";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function LanguagePage() {
   const { isDark } = useAppTheme();
@@ -14,21 +16,21 @@ export default function LanguagePage() {
 
   const languages = useMemo<Language[]>(
     () => [
-      "English",
-      "Spanish",
-      "Chinese (Simplified)",
-      "Chinese (Traditional)",
-      "French",
-      "German",
-      "Italian",
-      "Japanese",
-      "Korean",
-      "Portuguese",
-      "Russian",
-      "Arabic",
-      "Hindi",
-      "Vietnamese",
-      "Tagalog",
+      { name: "English", code: "en" },
+      { name: "Español", code: "es" },
+      { name: "简体中文", code: "zh" },
+      { name: "繁體中文", code: "zh-Hant" },
+      { name: "Français", code: "fr" },
+      { name: "Deutsch", code: "de" },
+      { name: "Italiano", code: "it" },
+      { name: "日本語", code: "ja" },
+      { name: "한국어", code: "ko" },
+      { name: "Português", code: "pt" },
+      { name: "Русский", code: "ru" },
+      { name: "العربية", code: "ar" },
+      { name: "हिन्दी", code: "hi" },
+      { name: "Tiếng Việt", code: "vi" },
+      { name: "Tagalog", code: "tl" },
     ],
     []
   );
@@ -51,7 +53,7 @@ export default function LanguagePage() {
     <ScreenBackground>
       <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 32 }}>
         <View className="max-w-md w-full self-center pt-20">
-          <View className="px-6 pt-20 pb-6">
+          <View className="px-6 pb-6">
             <Pressable onPress={() => router.back()} className="mb-4 flex-row items-center">
               <MaterialIcons name="arrow-back" size={20} color={iconColor} />
               <Text className={`${secondaryTextClass} ml-2`}>{t("general.back")}</Text>

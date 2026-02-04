@@ -30,10 +30,7 @@ const writeCache = async (key: string, data: College[] | College) => {
 export type College = {
   id: string;
   name: string;
-  location: {
-    city: string;
-    state: string;
-  };
+  location: { city: string; state: string; };
   tuition: number;
   size: 'small' | 'medium' | 'large';
   setting: 'urban' | 'suburban' | 'rural';
@@ -61,51 +58,55 @@ class CollegeService {
   }
 
   /**
-   * Get college matches based on user criteria
-   * STUB: Returns mock college data
-   * TODO: Replace with College Scorecard API + Firebase Function
+   * TASK: Firebase Questionnaire collection
+   * Saves user survey answers to Firestore
    */
+  async saveQuestionnaireResult(answers: any): Promise<string> {
+    if (isStubMode()) {
+      console.log('[STUB] Saving questionnaire:', answers);
+      return 'stub-id';
+    }
+
+    try {
+      const user = auth.currentUser;
+      if (!user) throw new Error("Authentication required");
+
+      const docRef = await addDoc(collection(db, 'questionnaires'), {
+        userId: user.uid,
+        answers: answers,
+        createdAt: serverTimestamp(),
+      });
+
+      return docRef.id;
+    } catch (error) {
+      console.error("Error saving questionnaire:", error);
+      throw error;
+    }
+  }
+
+  /**
+   * TASK: Firebase Saved Colleges collection
+   * Adds or removes a college from user's favorites
+   */
+  async toggleSavedCollege(collegeId: string, isSaved: boolean): Promise<void> {
+    if (isStubMode()) return;
+    const user = auth.currentUser;
+    if (!user) return;
+
+    const userRef = doc(db, 'users', user.uid);
+    await updateDoc(userRef, {
+      savedColleges: isSaved ? arrayUnion(collegeId) : arrayRemove(collegeId)
+    });
+  }
+
+  // --- Original Stub Methods (保持原样) ---
   async getMatches(criteria: CollegeMatchCriteria): Promise<College[]> {
     if (isStubMode() || API_CONFIG.collegeScorecard.apiKey === 'STUB') {
       this.lastSource = 'stub';
       // Simulate API delay
       await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      // Return stub data
       return [
-        {
-          id: '1',
-          name: 'University of Florida',
-          location: { city: 'Gainesville', state: 'FL' },
-          tuition: 28659,
-          size: 'large',
-          setting: 'suburban',
-          admissionRate: 0.23,
-          programs: ['Computer Science', 'Engineering', 'Business'],
-          matchScore: 95,
-        },
-        {
-          id: '2',
-          name: 'Florida State University',
-          location: { city: 'Tallahassee', state: 'FL' },
-          tuition: 21683,
-          size: 'large',
-          setting: 'suburban',
-          admissionRate: 0.32,
-          programs: ['Computer Science', 'Liberal Arts', 'Engineering'],
-          matchScore: 88,
-        },
-        {
-          id: '3',
-          name: 'University of Central Florida',
-          location: { city: 'Orlando', state: 'FL' },
-          tuition: 22467,
-          size: 'large',
-          setting: 'urban',
-          admissionRate: 0.41,
-          programs: ['Computer Science', 'Engineering', 'Hospitality'],
-          matchScore: 82,
-        },
+        { id: '1', name: 'University of Florida', location: { city: 'Gainesville', state: 'FL' }, tuition: 28659, size: 'large', setting: 'suburban', admissionRate: 0.23, programs: ['Computer Science'], matchScore: 95 },
       ];
     }
 
@@ -174,11 +175,6 @@ class CollegeService {
     }
   }
 
-  /**
-   * Get detailed info for a specific college
-   * STUB: Returns mock detail data
-   * TODO: Replace with College Scorecard API lookup
-   */
   async getCollegeDetails(collegeId: string): Promise<College> {
     if (isStubMode() || API_CONFIG.collegeScorecard.apiKey === 'STUB') {
       this.lastSource = 'stub';
@@ -258,11 +254,6 @@ class CollegeService {
     }
   }
 
-  /**
-   * Search colleges by name
-   * STUB: Returns filtered stub data
-   * TODO: Replace with College Scorecard search endpoint
-   */
   async searchColleges(query: string): Promise<College[]> {
     if (isStubMode() || API_CONFIG.collegeScorecard.apiKey === 'STUB') {
       this.lastSource = 'stub';

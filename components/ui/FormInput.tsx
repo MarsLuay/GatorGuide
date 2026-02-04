@@ -1,4 +1,5 @@
-import { View, Text, TextInput, TextInputProps } from "react-native";
+import React from "react";
+import { View, Text, TextInput, type TextInputProps } from "react-native";
 
 type FormInputProps = {
   label: string;
@@ -10,7 +11,7 @@ type FormInputProps = {
   secondaryTextClass: string;
   inputBgClass: string;
   placeholderColor: string;
-  isEnabled?: boolean;
+  editable?: boolean; 
 } & Pick<TextInputProps, "keyboardType" | "autoCapitalize" | "autoCorrect" | "returnKeyType" | "secureTextEntry">;
 
 export function FormInput({
@@ -23,22 +24,25 @@ export function FormInput({
   secondaryTextClass,
   inputBgClass,
   placeholderColor,
-  isEnabled = true,
+  editable = true, 
   ...textInputProps
 }: FormInputProps) {
   return (
-    <View>
-      <Text className={`text-sm ${secondaryTextClass} mb-2`}>{label}</Text>
+    <View className="mb-4">
+      <Text className={`text-sm ${secondaryTextClass} mb-2 font-medium`}>{label}</Text>
       <TextInput
         value={value}
         onChangeText={onChangeText}
         placeholder={placeholder}
         placeholderTextColor={placeholderColor}
-        className={`w-full ${inputBgClass} ${textClass} border rounded-lg px-4 py-3`}
-        editable={isEnabled}
+       
+        className={`w-full ${inputBgClass} ${textClass} border ${
+          error ? 'border-red-400' : 'border-transparent'
+        } rounded-lg px-4 py-3 ${!editable ? 'opacity-50' : ''}`}
+        editable={editable} 
         {...textInputProps}
       />
-      {error ? <Text className="text-xs text-red-400 mt-2">{error}</Text> : null}
+      {error && <Text className="text-xs text-red-400 mt-1">{error}</Text>}
     </View>
   );
 }

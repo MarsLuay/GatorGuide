@@ -1,6 +1,10 @@
-// services/auth.service.ts
-// Authentication service - handles Firebase Auth
-// Currently uses stub data, will connect to Firebase later
+import { 
+  signInWithEmailAndPassword, 
+  createUserWithEmailAndPassword, 
+  signOut as firebaseSignOut,
+  sendPasswordResetEmail 
+} from 'firebase/auth';
+import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
 
 import { createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword, signOut as firebaseSignOut, updateProfile } from "firebase/auth";
 import { isStubMode } from "./config";
@@ -10,6 +14,8 @@ export type AuthUser = {
   uid: string;
   email: string;
   name: string;
+  major?: string;
+  gpa?: string;
 };
 
 export type SignInCredentials = {
@@ -20,16 +26,9 @@ export type SignInCredentials = {
 };
 
 class AuthService {
-  /**
-   * Sign in or create user account
-   * STUB: Returns mock user data
-   * TODO: Replace with Firebase createUserWithEmailAndPassword / signInWithEmailAndPassword
-   */
   async signIn(credentials: SignInCredentials): Promise<AuthUser> {
     if (isStubMode()) {
-      // Stub implementation - simulate network delay
       await new Promise((resolve) => setTimeout(resolve, 500));
-      
       return {
         uid: `stub-${Date.now()}`,
         email: credentials.email,
@@ -72,11 +71,6 @@ class AuthService {
     };
   }
 
-  /**
-   * Send password reset email
-   * STUB: Returns success immediately
-   * TODO: Replace with Firebase sendPasswordResetEmail
-   */
   async sendPasswordReset(email: string): Promise<void> {
     if (isStubMode()) {
       await new Promise((resolve) => setTimeout(resolve, 500));
@@ -91,17 +85,10 @@ class AuthService {
     await sendPasswordResetEmail(firebaseAuth, email);
   }
 
-  /**
-   * Sign out current user
-   * STUB: Clears local data only
-   * TODO: Replace with Firebase signOut
-   */
   async signOut(): Promise<void> {
-    if (isStubMode()) {
-      await new Promise((resolve) => setTimeout(resolve, 200));
-      console.log('[STUB] User signed out');
-      return;
-    }
+    if (isStubMode()) return;
+    await firebaseSignOut(auth);
+  }
 
     if (!firebaseAuth) {
       throw new Error("Firebase Auth not configured yet");

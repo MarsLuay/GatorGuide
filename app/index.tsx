@@ -1,4 +1,3 @@
-// app/index.tsx
 import { useEffect, useRef } from "react";
 import { router } from "expo-router";
 import { LoadingScreen } from "@/components/LoadingScreen";
@@ -10,6 +9,7 @@ export default function Index() {
 
   useEffect(() => {
     if (!isHydrated || hasNavigated.current) return;
+<<<<<<< HEAD
     
     hasNavigated.current = true;
     
@@ -17,6 +17,27 @@ export default function Index() {
       // Skip profile setup for guests
       if (state.user.isGuest) {
         router.replace("/(tabs)");
+=======
+
+    const performNavigation = async () => {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+
+      if (hasNavigated.current) return;
+      hasNavigated.current = true;
+
+      if (state.user) {
+        const hasCompletedSetup = !!(
+          state.user.major || 
+          state.user.gpa || 
+          state.user.isProfileComplete
+        );
+
+        if (hasCompletedSetup) {
+          router.replace("/(tabs)");
+        } else {
+          router.replace("/profile-setup");
+        }
+>>>>>>> 596bfb5 (WIP: updates)
       } else {
         // Check if user has completed profile setup (non-empty major or gpa)
         const hasCompletedSetup = (state.user.major && state.user.major.trim() !== "") || 
@@ -28,14 +49,10 @@ export default function Index() {
           router.replace("/profile-setup");
         }
       }
-    } else {
-      router.replace("/login");
-    }
+    };
+
+    performNavigation();
   }, [isHydrated, state.user]);
 
-  if (!isHydrated) {
-    return <LoadingScreen message="Preparing your data" />;
-  }
-
-  return null;
+  return <LoadingScreen message="Preparing your data" />;
 }

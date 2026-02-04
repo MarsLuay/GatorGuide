@@ -31,8 +31,115 @@ Verify installs:
 ```bash
 npm.cmd -v
 npx.cmd -v
-```
+=======
 
+>>>>>>> 596bfb5 (WIP: updates)
+```
+Front-end
+├─ app
+│  ├─ (tabs)
+│  │  ├─ index.tsx
+│  │  ├─ profile.tsx
+│  │  ├─ resources.tsx
+│  │  ├─ settings.tsx
+│  │  └─ _layout.tsx
+│  ├─ +not-found.tsx
+│  ├─ about.tsx
+│  ├─ forgot-password.tsx
+│  ├─ index.tsx
+│  ├─ language.tsx
+│  ├─ login.tsx
+│  ├─ profile-setup.tsx
+│  ├─ questionnaire.tsx
+│  ├─ roadmap.tsx
+│  └─ _layout.tsx
+├─ app.json
+├─ assets
+│  └─ images
+│     ├─ android-icon-background.png
+│     ├─ android-icon-foreground.png
+│     ├─ android-icon-monochrome.png
+│     ├─ favicon.png
+│     ├─ icon.png
+│     ├─ partial-react-logo.png
+│     ├─ react-logo.png
+│     ├─ react-logo@2x.png
+│     ├─ react-logo@3x.png
+│     └─ splash-icon.png
+├─ babel.config.js
+├─ components
+│  ├─ haptic-tab.tsx
+│  ├─ layouts
+│  │  └─ ScreenBackground.tsx
+│  ├─ LoadingScreen.tsx
+│  ├─ pages
+│  │  ├─ AboutPage.tsx
+│  │  ├─ AuthPage.tsx
+│  │  ├─ ForgotPasswordPage.tsx
+│  │  ├─ HomePage.tsx
+│  │  ├─ LanguagePage.tsx
+│  │  ├─ ProfilePage.tsx
+│  │  ├─ ProfileSetupPage.tsx
+│  │  ├─ QuestionnairePage.tsx
+│  │  ├─ ResourcesPage.tsx
+│  │  ├─ RoadmapPage.tsx
+│  │  └─ SettingsPage.tsx
+│  └─ ui
+│     ├─ FormInput.tsx
+│     ├─ LanguageModal.tsx
+│     └─ ProfileField.tsx
+├─ constants
+│  ├─ locales
+│  │  ├─ ar.json
+│  │  ├─ de.json
+│  │  ├─ en.json
+│  │  ├─ es.json
+│  │  ├─ fr.json
+│  │  ├─ hi.json
+│  │  ├─ it.json
+│  │  ├─ ja.json
+│  │  ├─ ko.json
+│  │  ├─ pt.json
+│  │  ├─ ru.json
+│  │  ├─ tl.json
+│  │  ├─ vi.json
+│  │  ├─ zh-Hant.json
+│  │  └─ zh.json
+│  └─ theme.ts
+├─ eslint.config.js
+├─ global.css
+├─ hooks
+│  ├─ use-app-data.tsx
+│  ├─ use-app-theme.tsx
+│  ├─ use-color-scheme.ts
+│  ├─ use-color-scheme.web.ts
+│  ├─ use-theme-color.ts
+│  └─ use-theme-styles.ts
+├─ metro.config.js
+├─ mobile-notes.md
+├─ nativewind-env.d.ts
+├─ package-lock.json
+├─ package.json
+├─ README.md
+├─ scripts
+│  └─ reset-project.js
+├─ services
+│  ├─ ai.service.ts
+│  ├─ auth.service.ts
+│  ├─ college.service.ts
+│  ├─ config.ts
+│  ├─ firebase.client.ts
+│  ├─ firebase.ts
+│  ├─ i18n.ts
+│  ├─ index.ts
+│  ├─ notifications.service.ts
+│  ├─ README.md
+│  ├─ roadmap.service.ts
+│  └─ storage.service.ts
+├─ tailwind.config.js
+└─ tsconfig.json
+
+<<<<<<< HEAD
 ### 2) Clone and install the project
 
 ```bash
@@ -94,3 +201,113 @@ git pull --rebase origin main
 git push origin main
 # paste any error messages to ChatGPT if they appear
 ```
+=======
+```
+```
+Front-end
+├─ app
+│  ├─ (tabs)
+│  │  ├─ index.tsx
+│  │  ├─ profile.tsx
+│  │  ├─ resources.tsx
+│  │  ├─ settings.tsx
+│  │  └─ _layout.tsx
+│  ├─ +not-found.tsx
+│  ├─ about.tsx
+│  ├─ forgot-password.tsx
+│  ├─ index.tsx
+│  ├─ language.tsx
+│  ├─ login.tsx
+│  ├─ profile-setup.tsx
+│  ├─ questionnaire.tsx
+│  ├─ roadmap.tsx
+│  └─ _layout.tsx
+├─ app.json
+├─ assets
+│  └─ images
+│     ├─ android-icon-background.png
+│     ├─ android-icon-foreground.png
+│     ├─ android-icon-monochrome.png
+│     ├─ favicon.png
+│     ├─ icon.png
+│     ├─ partial-react-logo.png
+│     ├─ react-logo.png
+│     ├─ react-logo@2x.png
+│     ├─ react-logo@3x.png
+│     └─ splash-icon.png
+├─ babel.config.js
+├─ components
+│  ├─ haptic-tab.tsx
+│  ├─ layouts
+│  │  └─ ScreenBackground.tsx
+│  ├─ LoadingScreen.tsx
+│  ├─ pages
+│  │  ├─ AboutPage.tsx
+│  │  ├─ AuthPage.tsx
+│  │  ├─ ForgotPasswordPage.tsx
+│  │  ├─ HomePage.tsx
+│  │  ├─ LanguagePage.tsx
+│  │  ├─ ProfilePage.tsx
+│  │  ├─ ProfileSetupPage.tsx
+│  │  ├─ QuestionnairePage.tsx
+│  │  ├─ ResourcesPage.tsx
+│  │  ├─ RoadmapPage.tsx
+│  │  ├─ SettingsPage.tsx
+│  │  └─ StartupAnimation.tsx
+│  └─ ui
+│     ├─ FormInput.tsx
+│     ├─ LanguageModal.tsx
+│     └─ ProfileField.tsx
+├─ constants
+│  ├─ locales
+│  │  ├─ ar.json
+│  │  ├─ de.json
+│  │  ├─ en.json
+│  │  ├─ es.json
+│  │  ├─ fr.json
+│  │  ├─ hi.json
+│  │  ├─ it.json
+│  │  ├─ ja.json
+│  │  ├─ ko.json
+│  │  ├─ pt.json
+│  │  ├─ ru.json
+│  │  ├─ tl.json
+│  │  ├─ vi.json
+│  │  ├─ zh-Hant.json
+│  │  └─ zh.json
+│  └─ theme.ts
+├─ eslint.config.js
+├─ global.css
+├─ hooks
+│  ├─ use-app-data.tsx
+│  ├─ use-app-theme.tsx
+│  ├─ use-color-scheme.ts
+│  ├─ use-color-scheme.web.ts
+│  ├─ use-theme-color.ts
+│  └─ use-theme-styles.ts
+├─ metro.config.js
+├─ mobile-notes.md
+├─ nativewind-env.d.ts
+├─ package-lock.json
+├─ package.json
+├─ README.md
+├─ scripts
+│  └─ reset-project.js
+├─ services
+│  ├─ ai.service.ts
+│  ├─ auth.service.ts
+│  ├─ college.service.ts
+│  ├─ config.ts
+│  ├─ firebase.client.ts
+│  ├─ firebase.ts
+│  ├─ i18n.ts
+│  ├─ index.ts
+│  ├─ notifications.service.ts
+│  ├─ README.md
+│  ├─ roadmap.service.ts
+│  └─ storage.service.ts
+├─ tailwind.config.js
+└─ tsconfig.json
+
+```
+>>>>>>> 596bfb5 (WIP: updates)

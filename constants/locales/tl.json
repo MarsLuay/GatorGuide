@@ -1,0 +1,149 @@
+{
+  "common": {
+    "search": "Maghanap",
+    "settings": "Mga Setting",
+    "language": "Setting ng Wika",
+    "logout": "Mag-log Out",
+    "back": "Bumalik",
+    "next": "Susunod",
+    "finish": "Tapusin",
+    "complete": "Kumpletuhin",
+    "save": "I-save",
+    "saving": "Iní-save...",
+    "save_failed": "Bigo ang pag-save, pakisubukang muli mamaya",
+    "edit": "I-edit",
+    "exit": "Lumabas",
+    "save_exit": "I-save at Lumabas",
+    "error": "Error",
+    "loading": "Naglo-load...",
+    "close": "Isara",
+    "not_signed_in": "Hindi naka-sign in",
+    "select_file": "Pumili ng File",
+    "no_matches": "Walang nahanap na tugma",
+    "try_different_search": "Subukan ang ibang mga salita sa paghahanap.",
+    "browser_hint": "Ang mga link ay bubuksan sa browser ng iyong device."
+  },
+  "settings": {
+    "preferences": "Mga Kagustuhan",
+    "notifications": "Mga Notipikasyon",
+    "theme": "Tema ng Anyo",
+    "support": "Suporta at Tungkol sa App",
+    "about": "Tungkol sa App"
+  },
+  "theme": {
+    "system": "Sundin ang System",
+    "dark": "Dark Mode",
+    "light": "Light Mode"
+  },
+  "roadmap": {
+    "title": "Roadmap ng Paglipat",
+    "loading_msg": "Naglo-load ng iyong personal na roadmap...",
+    "plan_for": "{{major}} na Plano para kay {{name}}",
+    "progress_label": "{{progress}}% Kumpleto",
+    "ai_advisor": {
+      "title": "AI Advisor",
+      "placeholder": "Magtanong tungkol sa mga kinakailangan sa paglipat...",
+      "button": "Humingi ng Payo",
+      "analyzing": "AI: Sinusuri ang iyong landas sa {{major}}..."
+    },
+    "categories": {
+      "Documents": "Paghahanda ng Dokumento",
+      "Academics": "Mga Kursong Akademiko",
+      "Applications": "Proseso ng Aplikasyon",
+      "Interests": "Pagbuo ng Profile"
+    },
+    "task_details": "Mga detalye ng gawain para sa {{category}}"
+  },
+  "resources": {
+    "title": "Resource Center",
+    "subtitle": "Mga opisyal na link para sa pagpaplano ng paglipat, pagkakapantay-pantay ng kurso, mga scholarship, at internship",
+    "search_placeholder": "Maghanap ng mga resource (hal., UW, Work-study, Scholarship)",
+    "sections": {
+      "student_tools": "Mga Tool ng Mag-aaral",
+      "grc_planning": "Pagpaplano ng Paglipat sa Green River",
+      "wa_universities": "Karaniwang WA Four-Year Universities",
+      "transfer_guides": "Mga Gabay sa Paglipat (GRC → Mga Unibersidad)",
+      "scholarships": "Mga Scholarship (Washington State)",
+      "internships": "Mga Trabaho at Internship",
+      "international": "Mga Internasyonal na Internship"
+    }
+  },
+  "auth": {
+    "sign_up": "Mag-sign Up",
+    "login": "Mag-login",
+    "create_account": "Gumawa ng Account",
+    "sign_in": "Mag-sign In",
+    "go_to_login": "Pumunta sa Login",
+    "login_prompt": "Gumawa ng account o mag-log in upang i-edit ang iyong profile.",
+    "name": "Pangalan",
+    "name_placeholder": "Pakilagay ang iyong pangalan",
+    "email": "Email",
+    "email_placeholder": "Pakilagay ang iyong email address",
+    "password": "Password",
+    "password_placeholder_create": "Magtakda ng password (min. 6 na character)",
+    "password_placeholder_enter": "Pakilagay ang iyong password",
+    "forgot_password": "Nakalimutan ang Password?",
+    "back_to_login": "Bumalik sa Login",
+    "forgot_password_title": "I-reset ang Password",
+    "forgot_password_desc": "Ilagay ang iyong email at padadalhan ka namin ng link para sa pag-reset",
+    "send_reset_link": "Ipadala ang Link sa Pag-reset",
+    "check_email_title": "Pakisuri ang Iyong Email",
+    "check_email_desc": "Nagpadala kami ng link sa pag-reset sa {{email}}",
+    "check_email_hint": "I-click ang link sa email upang i-reset ang iyong password. Kung hindi mo ito makita, suriin ang iyong spam folder.",
+    "validation": {
+      "invalid_email": "Pakilagay ang isang wastong email address.",
+      "name_required": "Pakilagay ang iyong pangalan.",
+      "password_too_short": "Ang password ay dapat na hindi bababa sa 6 na character.",
+      "failed_title": "Bigo ang Pagpapatunay",
+      "failed_message": "Pakisuri ang iyong koneksyon sa internet o impormasyon ng account."
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "major": "Major",
+    "major_placeholder": "hal., Computer Science",
+    "gpa_label": "GPA (0.0 - 4.0)",
+    "sat_label": "SAT Score",
+    "act_label": "ACT Score",
+    "resume_label": "Resume",
+    "upload_resume": "I-upload ang Resume",
+    "not_uploaded": "Hindi Naka-upload",
+    "undecided": "Hindi pa sigurado"
+  },
+  "setup": {
+    "title": "I-set Up ang Iyong Profile",
+    "subtitle": "Sabihin sa amin ang tungkol sa iyong sarili para ma-customize namin ang iyong personalized na roadmap sa paglipat.",
+    "major": "Inaasahang Major",
+    "major_placeholder": "Ano ang gusto mong pag-aralan?",
+    "gpa": "Kasalukuyang GPA",
+    "gpa_placeholder": "hal., 3.8",
+    "sat": "SAT Score",
+    "sat_placeholder": "Opsyonal",
+    "act": "ACT Score",
+    "act_placeholder": "Opsyonal",
+    "resume": "Iyong Resume (Opsyonal)",
+    "transcript": "Iyong Transcript (Opsyonal)",
+    "transcript_label": "Transcript"
+  },
+  "questionnaire": {
+    "detailed_title": "Detalyadong Questionnaire",
+    "step_label": "Hakbang {{current}} ng {{total}}",
+    "edit_btn": "I-edit",
+    "complete_btn": "Kumpletuhin Ngayon",
+    "saved_desc": "Naka-save na ang iyong mga kagustuhan. I-click ang i-edit para i-update ang iyong mga sagot.",
+    "empty_desc": "Kumpletuhin ang questionnaire upang makakuha ng personalized na mga rekomendasyon sa unibersidad.",
+    "save_answers": "I-save ang mga Sagot",
+    "questions": {
+      "volunteer": { "title": "Anong mga aktibidad ng pagboluntaryo ang iyong sinalihan?", "placeholder": "Ilarawan ang iyong mga karanasan sa pagboluntaryo..." },
+      "extracurriculars": { "title": "Anong mga extracurricular activity ang iyong sinalihan?", "placeholder": "Ilista ang iyong mga aktibidad at tungkulin..." },
+      "setting": { "title": "Anong uri ng kapaligiran ng campus ang gusto mo?", "options": ["Urban", "Suburban", "Rural", "Walang Kagustuhan"] },
+      "size": { "title": "Ano ang iyong ideal na laki ng paaralan?", "options": ["Maliit (< 5,000)", "Katamtaman (5,000-15,000)", "Malaki (> 15,000)", "Walang Kagustuhan"] },
+      "environment": { "title": "Anong akademikong kapaligiran ang nakakaakit sa iyo?", "options": ["Nakatuon sa Pananaliksik", "Liberal Arts", "Teknikal/Engineering", "Pre-professional", "Komprehensibo"] },
+      "programs": { "title": "Mayroon bang partikular na mga programa o resource na iyong hinahanap?", "placeholder": "hal., Pag-aaral sa ibang bansa, mga pagkakataon sa pananaliksik, internship..." },
+      "budget": { "title": "Ano ang iyong taunang budget sa matrikula?", "options": ["< $20,000", "$20,000 - $40,000", "$40,000 - $60,000", "> $60,000", "Kailangan ng financial aid"] },
+      "location": { "title": "Mayroon ka bang gustong lokasyon?", "placeholder": "Ilagay ang mga gustong estado, rehiyon, o bansa..." },
+      "housing": { "title": "Ano ang iyong kagustuhan sa tirahan?", "options": ["Sa loob ng campus", "Apartment sa labas ng campus", "Nagbi-biyahe mula sa bahay", "Walang Kagustuhan"] },
+      "goals": { "title": "Ano ang iyong mga layunin sa karera pagkatapos ng graduation?", "placeholder": "Ilarawan ang iyong mga ambisyon at landas sa karera..." }
+    }
+  }
+}

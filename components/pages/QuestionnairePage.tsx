@@ -110,13 +110,22 @@ export default function QuestionnairePage() {
 
   const handleAnswer = (id: string, value: string) => setAnswers((p) => ({ ...p, [id]: value }));
 
-  const handleNext = async () => {
+  const handleNext = async () => { 
     if (currentStep < questions.length - 1) {
       setCurrentStep((s) => s + 1);
       return;
     }
-    await setQuestionnaireAnswers(answers);
-    router.back(); // returns to Profile (or wherever you came from)
+    
+    await setQuestionnaireAnswers(answers); 
+    
+    try {
+
+      await collegeService.saveQuestionnaireResult(answers); 
+    } catch (error) {
+      console.error("Firebase sync failed", error);
+    }
+    
+    router.back(); 
   };
 
   const handleBack = () => {
@@ -124,8 +133,15 @@ export default function QuestionnairePage() {
     else router.back();
   };
 
-  const handleSaveAndExit = async () => {
-    await setQuestionnaireAnswers(answers);
+  const handleSaveAndExit = async () => { 
+    await setQuestionnaireAnswers(answers); 
+    
+    try {
+      await collegeService.saveQuestionnaireResult(answers);
+    } catch (error) {
+      console.error("Firebase sync failed", error);
+    }
+    
     router.back();
   };
 
