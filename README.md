@@ -64,7 +64,7 @@ C:\Users\<you>\GatorGuide\GatorGuideV2\Front-end
 ```bash
 cd $env:USERPROFILE\GatorGuide\GatorGuideV2\Front-end
 git checkout main
-git pull origin main
+git pull --rebase origin main
 ```
 
 ## Commit and Push Changes
@@ -76,14 +76,11 @@ git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
 ```
 
-Then:
+After editing changes:
 
 ```bash
-cd $env:USERPROFILE\GatorGuide\GatorGuideV2\Front-end
-git status
-git branch
 git add .
-git commit -m "WIP: updates"
-git pull --rebase origin main
+git commit -m "enter descriptive message"
+git pull --rebase origin main # you may need to reedit and recommit after this
 git push origin main
 ```
