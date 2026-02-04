@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { authService } from "@/services";
 
 export type User = {
   uid: string;
@@ -36,7 +37,7 @@ type AppDataContextValue = {
   state: AppDataState;
 <<<<<<< HEAD
 
-  signIn: (user: Pick<User, "name" | "email">) => Promise<void>;
+  signIn: (user: Pick<User, "name" | "email"> & { password: string; isSignUp: boolean }) => Promise<void>;
   signInAsGuest: () => Promise<void>;
 =======
   signIn: (user: Partial<User> & { uid: string; email: string; name: string }) => Promise<void>;
@@ -45,6 +46,7 @@ type AppDataContextValue = {
   updateUser: (patch: Partial<User>) => Promise<void>;
   setQuestionnaireAnswers: (answers: QuestionnaireAnswers) => Promise<void>;
   setNotificationsEnabled: (enabled: boolean) => Promise<void>;
+  restoreData: (data: AppDataState) => Promise<void>;
   clearAll: () => Promise<void>;
 };
 
@@ -77,16 +79,22 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
     AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(state)).catch(() => {});
   }, [isHydrated, state]);
 
-<<<<<<< HEAD
-  const signIn = useCallback(async (u: Pick<User, "name" | "email">) => {
+  const signIn = useCallback(async (u: Pick<User, "name" | "email"> & { password: string; isSignUp: boolean }) => {
+    const authUser = await authService.signIn({
+      name: u.name,
+      email: u.email,
+      password: u.password,
+      isSignUp: u.isSignUp,
+    });
+
     setState((prev) => {
       // If user already exists with same email, preserve all their data
-      if (prev.user && prev.user.email === u.email) {
+      if (prev.user && prev.user.email === authUser.email) {
         return {
           ...prev,
           user: {
             ...prev.user,
-            name: u.name, // Update name in case it changed
+            name: authUser.name || u.name, // Update name in case it changed
           },
         };
       }
@@ -95,8 +103,8 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
       return {
         ...prev,
         user: {
-          name: u.name,
-          email: u.email,
+          name: authUser.name || u.name,
+          email: authUser.email,
           isGuest: false,
           major: "",
           gpa: "",
@@ -167,6 +175,14 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
     setState((prev) => ({ ...prev, notificationsEnabled: enabled }));
   }, []);
 
+  const restoreData = useCallback(async (data: AppDataState) => {
+    setState({
+      user: data.user ?? null,
+      questionnaireAnswers: data.questionnaireAnswers ?? {},
+      notificationsEnabled: data.notificationsEnabled ?? true,
+    });
+  }, []);
+
   const clearAll = useCallback(async () => {
     await AsyncStorage.removeItem(STORAGE_KEY).catch(() => {});
     setState(initialState);
@@ -183,9 +199,10 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
       updateUser,
       setQuestionnaireAnswers,
       setNotificationsEnabled,
+      restoreData,
       clearAll,
     }),
-    [isHydrated, state, signIn, signInAsGuest, signOut, updateUser, setQuestionnaireAnswers, setNotificationsEnabled, clearAll]
+    [isHydrated, state, signIn, signInAsGuest, signOut, updateUser, setQuestionnaireAnswers, setNotificationsEnabled, restoreData, clearAll]
   );
 =======
   const value = useMemo(() => ({

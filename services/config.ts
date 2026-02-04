@@ -17,6 +17,11 @@ export const API_CONFIG = {
     apiKey: process.env.EXPO_PUBLIC_COLLEGE_SCORECARD_KEY || 'STUB',
   },
 
+  // Gemini API (free tier key via .env; client usage only if you accept exposure)
+  gemini: {
+    apiKey: process.env.EXPO_PUBLIC_GEMINI_API_KEY || 'STUB',
+    baseUrl: 'https://generativelanguage.googleapis.com/v1beta',
+  },
 
   useStubData: false, 
 };

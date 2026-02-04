@@ -1,11 +1,7 @@
-import { 
-  ref, 
-  uploadBytes, 
-  getDownloadURL, 
-  deleteObject 
-} from 'firebase/storage';
-import { storage } from './firebase'; 
-import { isStubMode } from './config';
+// services/storage.service.ts
+// File storage service for resumes and transcripts
+// Local-only storage to avoid paid cloud storage
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export type UploadedFile = {
@@ -40,37 +36,60 @@ class StorageService {
   }
 
   async uploadResume(userId: string, fileUri: string): Promise<UploadedFile> {
-    if (isStubMode()) {
+    await new Promise((resolve) => setTimeout(resolve, 200));
 
-      const fileName = `resume_${Date.now()}.pdf`;
-      const stubData = { name: fileName, url: `stub://resumes/${userId}/${fileName}`, uploadedAt: new Date() };
-      await AsyncStorage.setItem(`resume:${userId}`, JSON.stringify(stubData));
-      return stubData;
-    }
+    const fileName = fileUri.split('/').pop() || `resume_${Date.now()}.pdf`;
+    const localData = {
+      name: fileName,
+      url: fileUri,
+      uploadedAt: new Date(),
+    };
 
-    return await this.uploadToFirebase(userId, fileUri, 'resumes');
+    await AsyncStorage.setItem(`resume:${userId}`, JSON.stringify(localData));
+    return localData;
   }
 
   async uploadTranscript(userId: string, fileUri: string): Promise<UploadedFile> {
-    if (isStubMode()) {
-      const fileName = `transcript_${Date.now()}.pdf`;
-      const stubData = { name: fileName, url: `stub://transcripts/${userId}/${fileName}`, uploadedAt: new Date() };
-      await AsyncStorage.setItem(`transcript:${userId}`, JSON.stringify(stubData));
-      return stubData;
-    }
+    await new Promise((resolve) => setTimeout(resolve, 200));
 
-    return await this.uploadToFirebase(userId, fileUri, 'transcripts');
+    const fileName = fileUri.split('/').pop() || `transcript_${Date.now()}.pdf`;
+    const localData = {
+      name: fileName,
+      url: fileUri,
+      uploadedAt: new Date(),
+    };
+
+    await AsyncStorage.setItem(`transcript:${userId}`, JSON.stringify(localData));
+    return localData;
   }
 
+  /**
+   * Get user's uploaded resume
+   * STUB: Retrieves from AsyncStorage
+   * TODO: Replace with Firebase Storage download URL
+   */
+  async getResume(userId: string): Promise<UploadedFile | null> {
+    const data = await AsyncStorage.getItem(`resume:${userId}`);
+    return data ? JSON.parse(data) : null;
+  }
 
-  async deleteFile(userId: string, fileType: 'resume' | 'transcript', fileName: string): Promise<void> {
-    if (isStubMode()) {
-      await AsyncStorage.removeItem(`${fileType}:${userId}`);
-      return;
-    }
+  /**
+   * Get user's uploaded transcript
+   * STUB: Retrieves from AsyncStorage
+   * TODO: Replace with Firebase Storage download URL
+   */
+  async getTranscript(userId: string): Promise<UploadedFile | null> {
+    const data = await AsyncStorage.getItem(`transcript:${userId}`);
+    return data ? JSON.parse(data) : null;
+  }
 
-    const fileRef = ref(storage, `${fileType}s/${userId}/${fileName}`);
-    await deleteObject(fileRef);
+  /**
+   * Delete uploaded file
+   * STUB: Removes from AsyncStorage
+   * TODO: Replace with Firebase Storage delete
+   */
+  async deleteFile(userId: string, fileType: 'resume' | 'transcript'): Promise<void> {
+    await AsyncStorage.removeItem(`${fileType}:${userId}`);
   }
 
 

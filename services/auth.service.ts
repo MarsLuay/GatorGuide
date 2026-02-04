@@ -6,8 +6,9 @@ import {
 } from 'firebase/auth';
 import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
 
-import { auth, db } from './firebase'; 
-import { isStubMode } from './config';
+import { createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword, signOut as firebaseSignOut, updateProfile } from "firebase/auth";
+import { isStubMode } from "./config";
+import { firebaseAuth } from "./firebase";
 
 export type AuthUser = {
   uid: string;
@@ -20,7 +21,8 @@ export type AuthUser = {
 export type SignInCredentials = {
   email: string;
   name: string;
-  password?: string; 
+  password: string;
+  isSignUp: boolean;
 };
 
 class AuthService {
@@ -34,49 +36,53 @@ class AuthService {
       };
     }
 
-    try {
-      const password = credentials.password || "TemporaryPassword123!"; 
-      let userCredential;
+    if (!firebaseAuth) {
+      throw new Error("Firebase Auth not configured yet");
+    }
 
-      try {
-        userCredential = await signInWithEmailAndPassword(auth, credentials.email, password);
-      } catch (error: any) {
-     
-        if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
-          userCredential = await createUserWithEmailAndPassword(auth, credentials.email, password);
-        } else {
-          throw error;
-        }
+    if (credentials.isSignUp) {
+      const userCredential = await createUserWithEmailAndPassword(
+        firebaseAuth,
+        credentials.email,
+        credentials.password
+      );
+
+      if (credentials.name?.trim()) {
+        await updateProfile(userCredential.user, { displayName: credentials.name.trim() });
       }
 
-      const user = userCredential.user;
-      const userDocRef = doc(db, 'users', user.uid);
-      
-      const userSnap = await getDoc(userDocRef);
-      const cloudData = userSnap.exists() ? userSnap.data() : {};
-
-      setDoc(userDocRef, {
-        uid: user.uid,
-        email: user.email,
-        displayName: credentials.name || cloudData.displayName || cloudData.name,
-        lastLogin: serverTimestamp(), 
-      }, { merge: true }).catch(console.warn);
-
       return {
-        uid: user.uid,
-        email: user.email!,
-        name: cloudData.displayName || cloudData.name || credentials.name,
-        major: cloudData.major || cloudData.profileData?.major || "",
-        gpa: cloudData.gpa || cloudData.profileData?.gpa || "",
+        uid: userCredential.user.uid,
+        email: userCredential.user.email ?? credentials.email,
+        name: userCredential.user.displayName ?? credentials.name,
       };
-    } catch (error) {
-      throw error;
     }
+
+    const userCredential = await signInWithEmailAndPassword(
+      firebaseAuth,
+      credentials.email,
+      credentials.password
+    );
+
+    return {
+      uid: userCredential.user.uid,
+      email: userCredential.user.email ?? credentials.email,
+      name: userCredential.user.displayName ?? credentials.name,
+    };
   }
 
   async sendPasswordReset(email: string): Promise<void> {
-    if (isStubMode()) return;
-    await sendPasswordResetEmail(auth, email);
+    if (isStubMode()) {
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      console.log(`[STUB] Password reset email sent to ${email}`);
+      return;
+    }
+
+    if (!firebaseAuth) {
+      throw new Error("Firebase Auth not configured yet");
+    }
+
+    await sendPasswordResetEmail(firebaseAuth, email);
   }
 
   async signOut(): Promise<void> {
@@ -84,18 +90,11 @@ class AuthService {
     await firebaseSignOut(auth);
   }
 
-  async updateUserProfile(uid: string, data: any): Promise<void> {
-    if (isStubMode()) return;
-    try {
-      const userDocRef = doc(db, 'users', uid);
-      await setDoc(userDocRef, {
-        ...data,
-        isProfileComplete: true,
-        updatedAt: serverTimestamp(),
-      }, { merge: true });
-    } catch (error) {
-      throw error;
+    if (!firebaseAuth) {
+      throw new Error("Firebase Auth not configured yet");
     }
+
+    await firebaseSignOut(firebaseAuth);
   }
 }
 

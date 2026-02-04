@@ -2,16 +2,19 @@ import { useMemo } from "react";
 import { View, Text, Pressable, ScrollView } from "react-native";
 import { router } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
+import * as Haptics from "expo-haptics";
 import { useAppTheme } from "@/hooks/use-app-theme";
+import { useAppLanguage } from "@/hooks/use-app-language";
+import { Language } from "@/services/translations";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useTranslation } from "react-i18next";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function LanguagePage() {
   const { isDark } = useAppTheme();
-  const { t, i18n } = useTranslation();
+  const { language, setLanguage, t } = useAppLanguage();
 
-  const languages = useMemo(
+  const languages = useMemo<Language[]>(
     () => [
       { name: "English", code: "en" },
       { name: "Español", code: "es" },
@@ -38,25 +41,12 @@ export default function LanguagePage() {
   const itemBorderClass = isDark ? "border-gray-800" : "border-gray-200";
   const iconColor = isDark ? "#9CA3AF" : "#6B7280";
 
-  const handleSelectLanguage = async (code: string) => {
-    try {
-     
-      await i18n.changeLanguage(code);
-      
-      
-      await AsyncStorage.setItem('settings.lang', code);
-
-   
-      setTimeout(() => {
-        if (router.canGoBack()) {
-          router.back();
-        } else {
-          router.replace("/(tabs)/settings");
-        }
-      }, 300);
-    } catch (error) {
-      console.error("Failed to change language:", error);
-    }
+  const handleSelectLanguage = (lang: Language) => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    setLanguage(lang);
+    setTimeout(() => {
+      router.replace("/(tabs)/settings");
+    }, 300);
   };
 
   return (
@@ -66,30 +56,27 @@ export default function LanguagePage() {
           <View className="px-6 pb-6">
             <Pressable onPress={() => router.back()} className="mb-4 flex-row items-center">
               <MaterialIcons name="arrow-back" size={20} color={iconColor} />
-              <Text className={`${secondaryTextClass} ml-2`}>{t('common.back')}</Text>
+              <Text className={`${secondaryTextClass} ml-2`}>{t("general.back")}</Text>
             </Pressable>
 
-            <Text className={`text-2xl ${textClass}`}>{t('common.language')}</Text>
+            <Text className={`text-2xl ${textClass}`}>{t("settings.language")}</Text>
           </View>
 
           <View className="px-6">
             <View className={`${cardBgClass} border rounded-2xl overflow-hidden`}>
               {languages.map((lang, index) => {
-                
-                const isSelected = i18n.language === lang.code || i18n.language.startsWith(lang.code);
+                const isSelected = language === lang;
 
                 return (
                   <Pressable
-                    key={lang.code}
-                    onPress={() => handleSelectLanguage(lang.code)}
+                    key={lang}
+                    onPress={() => handleSelectLanguage(lang)}
                     className={`flex-row items-center justify-between px-4 py-5 ${
                       index !== languages.length - 1 ? `border-b ${itemBorderClass}` : ""
                     }`}
                   >
-                    <Text className={textClass}>{lang.name}</Text>
-                    {isSelected ? (
-                      <MaterialIcons name="check" size={20} color="#22C55E" />
-                    ) : null}
+                    <Text className={textClass}>{lang}</Text>
+                    {isSelected ? <MaterialIcons name="check" size={20} color="#22C55E" /> : null}
                   </Pressable>
                 );
               })}
