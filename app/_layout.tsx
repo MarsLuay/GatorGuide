@@ -1,15 +1,10 @@
 import { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { Stack } from "expo-router";
-import * as SplashScreen from 'expo-splash-screen';
-import "../global.css";
-import "../services/i18n";
-import { AppDataProvider } from "../hooks/use-app-data"; 
-import { AppThemeProvider } from "../hooks/use-app-theme"; 
-import StartupAnimation from '../components/pages/StartupAnimation';
-
-
-SplashScreen.preventAutoHideAsync();
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { AppThemeProvider } from "@/hooks/use-app-theme";
+import { AppLanguageProvider } from "@/hooks/use-app-language";
+import { AppDataProvider } from "@/hooks/use-app-data";
 
 export default function RootLayout() {
   const [appIsReady, setAppIsReady] = useState(false);
@@ -39,15 +34,16 @@ export default function RootLayout() {
   }
 
   return (
-    <AppThemeProvider>
-      <AppDataProvider>
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="index" />
-          <Stack.Screen name="(tabs)" />
-          <Stack.Screen name="profile-setup" />
-          <Stack.Screen name="language" />
-        </Stack>
-      </AppDataProvider>
-    </AppThemeProvider>
+    <SafeAreaProvider>
+      <AppThemeProvider>
+        <AppLanguageProvider>
+          <AppDataProvider>
+            <Stack screenOptions={{ headerShown: false }}>
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            </Stack>
+          </AppDataProvider>
+        </AppLanguageProvider>
+      </AppThemeProvider>
+    </SafeAreaProvider>
   );
 }

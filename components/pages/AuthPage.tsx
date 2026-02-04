@@ -1,10 +1,12 @@
 import { useMemo, useState } from "react";
-import { View, Text, Pressable, Alert, Keyboard, TouchableWithoutFeedback, Platform } from "react-native";
+import { View, Text, Pressable, Alert, Keyboard, TouchableWithoutFeedback, Platform, ScrollView } from "react-native";
 import { router } from "expo-router";
 import { FontAwesome5 } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppData } from "@/hooks/use-app-data";
+import { useAppLanguage } from "@/hooks/use-app-language";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { FormInput } from "@/components/ui/FormInput";
 import { authService } from "@/services/auth.service";
@@ -12,11 +14,8 @@ import { authService } from "@/services/auth.service";
 const isEmailValid = (value: string) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value.trim());
 
 export default function AuthPage() {
-<<<<<<< HEAD
-  const { isHydrated, state, signIn, signInAsGuest } = useAppData();
-=======
-  const { isHydrated, signIn } = useAppData();
->>>>>>> 596bfb5 (WIP: updates)
+  const { isHydrated, state, signIn, signInAsGuest, updateUser, setQuestionnaireAnswers } = useAppData();
+  const { t } = useAppLanguage();
   const styles = useThemeStyles();
 
   const [name, setName] = useState("");
@@ -26,12 +25,12 @@ export default function AuthPage() {
 
   const emailError = useMemo(() => {
     const trimmed = email.trim();
-    return trimmed && !isEmailValid(trimmed) ? "Enter a valid email." : undefined;
-  }, [email]);
+    return trimmed && !isEmailValid(trimmed) ? t("auth.emailInvalid") : undefined;
+  }, [email, t]);
 
   const passwordError = useMemo(() => {
-    return password && password.length < 6 ? "6 characters minimum" : undefined;
-  }, [password]);
+    return password && password.length < 6 ? t("auth.passwordMinimumShort") : undefined;
+  }, [password, t]);
 
   const canSubmit = useMemo(() => {
     if (isSignUp) {
@@ -45,33 +44,53 @@ export default function AuthPage() {
     const e = email.trim();
 
     if (isSignUp && !n) {
-      Alert.alert("Error", "Please enter your name.");
-      return;
-    }
-    if (password.length < 6) {
-      Alert.alert("Error", "Password must be at least 6 characters.");
+      Alert.alert(t("general.error"), t("auth.pleaseEnterName"));
       return;
     }
 
-    try {
-      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-      
-      const firebaseUser = await authService.signIn({ 
-        name: n || "User", 
-        email: e,
-        password: password 
-      });
-      
-      await signIn({ 
-        uid: firebaseUser.uid,
-        name: firebaseUser.name, 
-        email: firebaseUser.email 
-      }); 
-      
-      router.replace("/");
-    } catch (error: any) {
-      Alert.alert("Auth Failed", error.message || "Please check your internet connection.");
+    if (!isEmailValid(e)) {
+      Alert.alert(t("general.error"), t("auth.emailInvalid"));
+      return;
     }
+
+    if (password.length < 6) {
+      Alert.alert(t("general.error"), t("auth.passwordMinimum"));
+      return;
+    }
+
+    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    await signIn({ name: n || t("auth.defaultUser"), email: e, password, isSignUp }); // Use default if logging in without name
+    
+    // If signing up, check for pending guest data and restore it
+    if (isSignUp) {
+      try {
+        const pendingData = await AsyncStorage.getItem("gatorguide:pending-account-data");
+        if (pendingData) {
+          const parsed = JSON.parse(pendingData);
+          if (parsed.user) {
+            // Merge guest data with new account (keeping the new email/name)
+            await updateUser({
+              major: parsed.user.major,
+              gpa: parsed.user.gpa,
+              sat: parsed.user.sat,
+              act: parsed.user.act,
+              resume: parsed.user.resume,
+              transcript: parsed.user.transcript,
+            });
+          }
+          if (parsed.questionnaireAnswers) {
+            await setQuestionnaireAnswers(parsed.questionnaireAnswers);
+          }
+          // Clear the pending data
+          await AsyncStorage.removeItem("gatorguide:pending-account-data");
+        }
+      } catch {
+        // Silently fail - user can manually import if needed
+      }
+    }
+    
+    // Go to index which will route to profile-setup or tabs based on completion
+    router.replace("/");
   };
 
 <<<<<<< HEAD
@@ -189,235 +208,144 @@ export default function AuthPage() {
   );
 >>>>>>> 596bfb5 (WIP: updates)
 
+  const isWeb = Platform.OS === 'web';
+  const containerClass = isWeb 
+    ? "flex-1 items-center justify-center px-4 py-12 min-h-screen"
+    : "flex-1 items-center justify-center px-6";
+  const cardMaxWidthClass = isWeb ? "w-full max-w-lg" : "w-full max-w-md";
+
+  const authContent = (
+    <View className={cardMaxWidthClass}>
+      <View className="items-center mb-8">
+        <View className="bg-green-500 p-4 rounded-full">
+          <FontAwesome5 name="graduation-cap" size={48} color="black" />
+        </View>
+      </View>
+
+      <Text className={`text-3xl text-center ${styles.textClass} mb-2`}>{t("auth.gatorguide")}</Text>
+      <Text className={`${styles.secondaryTextClass} text-center mb-8`}>{t("auth.findCollege")}</Text>
+
+      <View className={`${styles.cardBgClass} border rounded-2xl p-6 ${isWeb ? "shadow-lg" : ""}`}>
+        <View className="flex-row gap-4 mb-6">
+          <Pressable
+            onPress={() => {
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+              setIsSignUp(true);
+            }}
+            className={`flex-1 py-3 rounded-lg items-center ${isSignUp ? "bg-green-500" : styles.inactiveButtonClass}`}
+            disabled={!isHydrated}
+          >
+            <Text className={isSignUp ? "text-black" : styles.secondaryTextClass}>{t("auth.signUp")}</Text>
+          </Pressable>
+
+          <Pressable
+            onPress={() => {
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+              setIsSignUp(false);
+            }}
+            className={`flex-1 py-3 rounded-lg items-center ${!isSignUp ? "bg-green-500" : styles.inactiveButtonClass}`}
+            disabled={!isHydrated}
+          >
+            <Text className={!isSignUp ? "text-black" : styles.secondaryTextClass}>{t("auth.logIn")}</Text>
+          </Pressable>
+        </View>
+
+        <View className="gap-4">
+          {isSignUp && (
+            <FormInput
+              label={t("auth.name")}
+              value={name}
+              onChangeText={setName}
+              placeholder={t("auth.name")}
+              textClass={styles.textClass}
+              secondaryTextClass={styles.secondaryTextClass}
+              inputBgClass={styles.inputBgClass}
+              placeholderColor={styles.placeholderColor}
+              isEnabled={isHydrated}
+              returnKeyType="next"
+            />
+          )}
+
+          <FormInput
+            label={t("auth.email")}
+            value={email}
+            onChangeText={setEmail}
+            placeholder={t("auth.email")}
+            error={emailError}
+            textClass={styles.textClass}
+            secondaryTextClass={styles.secondaryTextClass}
+            inputBgClass={styles.inputBgClass}
+            placeholderColor={styles.placeholderColor}
+            isEnabled={isHydrated}
+            keyboardType="email-address"
+            autoCapitalize="none"
+            autoCorrect={false}
+            returnKeyType="next"
+          />
+
+          <FormInput
+            label={t("auth.password")}
+            value={password}
+            onChangeText={setPassword}
+            placeholder={isSignUp ? t("auth.password") : t("auth.password")}
+            error={passwordError}
+            textClass={styles.textClass}
+            secondaryTextClass={styles.secondaryTextClass}
+            inputBgClass={styles.inputBgClass}
+            placeholderColor={styles.placeholderColor}
+            isEnabled={isHydrated}
+            secureTextEntry
+            returnKeyType="done"
+          />
+
+          {!isSignUp && (
+            <View className="items-end">
+              <Pressable onPress={() => router.push("/forgot-password")} disabled={!isHydrated}>
+                <Text className="text-sm text-green-500">{t("auth.forgotPassword")}</Text>
+              </Pressable>
+            </View>
+          )}
+
+          <Pressable
+            onPress={handleSubmit}
+            disabled={!isHydrated || !canSubmit}
+            className={`bg-green-500 rounded-lg py-4 items-center mt-2 ${
+              !isHydrated || !canSubmit ? "opacity-60" : ""
+            }`}
+          >
+            <Text className="text-black font-semibold">{isSignUp ? t("auth.createAccount") : t("auth.logIn")}</Text>
+          </Pressable>
+
+          <View className="items-center mt-4">
+            <Pressable
+              onPress={handleGuestSignIn}
+              disabled={!isHydrated}
+              className={`bg-gray-200 dark:bg-gray-700 rounded-lg py-3 px-6 w-full items-center ${
+                !isHydrated ? "opacity-60" : ""
+              }`}
+            >
+              <Text className="text-gray-800 dark:text-gray-200 font-semibold">{t("auth.continueAsGuest")}</Text>
+            </Pressable>
+          </View>
+        </View>
+      </View>
+    </View>
+  );
+
   return (
     <ScreenBackground>
-      {Platform.OS !== 'web' ? (
+      {!isWeb ? (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-<<<<<<< HEAD
-          <View className="flex-1 items-center justify-center px-6">
-            <View className="w-full max-w-md">
-          <View className="items-center mb-8">
-            <View className="bg-green-500 p-4 rounded-full">
-              <FontAwesome5 name="graduation-cap" size={48} color="black" />
-            </View>
+          <View className={containerClass}>
+            {authContent}
           </View>
-
-          <Text className={`text-3xl text-center ${styles.textClass} mb-2`}>Gator Guide</Text>
-          <Text className={`${styles.secondaryTextClass} text-center mb-8`}>Find your perfect college match</Text>
-
-          <View className={`${styles.cardBgClass} border rounded-2xl p-6`}>
-            <View className="flex-row gap-4 mb-6">
-              <Pressable
-                onPress={() => {
-                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                  setIsSignUp(true);
-                }}
-                className={`flex-1 py-3 rounded-lg items-center ${isSignUp ? "bg-green-500" : styles.inactiveButtonClass}`}
-                disabled={!isHydrated}
-              >
-                <Text className={isSignUp ? "text-black" : styles.secondaryTextClass}>Sign Up</Text>
-              </Pressable>
-
-              <Pressable
-                onPress={() => {
-                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                  setIsSignUp(false);
-                }}
-                className={`flex-1 py-3 rounded-lg items-center ${!isSignUp ? "bg-green-500" : styles.inactiveButtonClass}`}
-                disabled={!isHydrated}
-              >
-                <Text className={!isSignUp ? "text-black" : styles.secondaryTextClass}>Login</Text>
-              </Pressable>
-            </View>
-
-            <View className="gap-4">
-              {isSignUp && (
-                <FormInput
-                  label="Name"
-                  value={name}
-                  onChangeText={setName}
-                  placeholder="Enter your name"
-                  textClass={styles.textClass}
-                  secondaryTextClass={styles.secondaryTextClass}
-                  inputBgClass={styles.inputBgClass}
-                  placeholderColor={styles.placeholderColor}
-                  isEnabled={isHydrated}
-                  returnKeyType="next"
-                />
-              )}
-
-              <FormInput
-                label="Email"
-                value={email}
-                onChangeText={setEmail}
-                placeholder="Enter your email"
-                error={emailError}
-                textClass={styles.textClass}
-                secondaryTextClass={styles.secondaryTextClass}
-                inputBgClass={styles.inputBgClass}
-                placeholderColor={styles.placeholderColor}
-                isEnabled={isHydrated}
-                keyboardType="email-address"
-                autoCapitalize="none"
-                autoCorrect={false}
-                returnKeyType="next"
-              />
-
-              <FormInput
-                label="Password"
-                value={password}
-                onChangeText={setPassword}
-                placeholder={isSignUp ? "Create a password (min 6 characters)" : "Enter your password"}
-                error={passwordError}
-                textClass={styles.textClass}
-                secondaryTextClass={styles.secondaryTextClass}
-                inputBgClass={styles.inputBgClass}
-                placeholderColor={styles.placeholderColor}
-                isEnabled={isHydrated}
-                secureTextEntry
-                returnKeyType="done"
-              />
-
-              {!isSignUp && (
-                <View className="items-end">
-                  <Pressable onPress={() => router.push("/forgot-password")} disabled={!isHydrated}>
-                    <Text className="text-sm text-green-500">Forgot password?</Text>
-                  </Pressable>
-                </View>
-              )}
-
-              <Pressable
-                onPress={handleSubmit}
-                disabled={!isHydrated || !canSubmit}
-                className={`bg-green-500 rounded-lg py-4 items-center mt-2 ${
-                  !isHydrated || !canSubmit ? "opacity-60" : ""
-                }`}
-              >
-                <Text className="text-black font-semibold">{isSignUp ? "Create Account" : "Sign In"}</Text>
-              </Pressable>
-            </View>
-          </View>
-          </View>
-        </View>
         </TouchableWithoutFeedback>
       ) : (
-        <View className="flex-1 items-center justify-center px-6">
-          <View className="w-full max-w-md">
-          <View className="items-center mb-8">
-            <View className="bg-green-500 p-4 rounded-full">
-              <FontAwesome5 name="graduation-cap" size={48} color="black" />
-            </View>
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }} className="flex-1">
+          <View className={containerClass}>
+            {authContent}
           </View>
-
-          <Text className={`text-3xl text-center ${styles.textClass} mb-2`}>Gator Guide</Text>
-          <Text className={`${styles.secondaryTextClass} text-center mb-8`}>Find your perfect college match</Text>
-
-          <View className={`${styles.cardBgClass} border rounded-2xl p-6`}>
-            <View className="flex-row gap-4 mb-6">
-              <Pressable
-                onPress={() => {
-                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                  setIsSignUp(true);
-                }}
-                className={`flex-1 py-3 rounded-lg items-center ${isSignUp ? "bg-green-500" : styles.inactiveButtonClass}`}
-                disabled={!isHydrated}
-              >
-                <Text className={isSignUp ? "text-black" : styles.secondaryTextClass}>Sign Up</Text>
-              </Pressable>
-
-              <Pressable
-                onPress={() => {
-                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                  setIsSignUp(false);
-                }}
-                className={`flex-1 py-3 rounded-lg items-center ${!isSignUp ? "bg-green-500" : styles.inactiveButtonClass}`}
-                disabled={!isHydrated}
-              >
-                <Text className={!isSignUp ? "text-black" : styles.secondaryTextClass}>Login</Text>
-              </Pressable>
-            </View>
-
-            <View className="gap-4">
-              {isSignUp && (
-                <FormInput
-                  label="Name"
-                  value={name}
-                  onChangeText={setName}
-                  placeholder="Enter your name"
-                  textClass={styles.textClass}
-                  secondaryTextClass={styles.secondaryTextClass}
-                  inputBgClass={styles.inputBgClass}
-                  placeholderColor={styles.placeholderColor}
-                  isEnabled={isHydrated}
-                  returnKeyType="next"
-                />
-              )}
-
-              <FormInput
-                label="Email"
-                value={email}
-                onChangeText={setEmail}
-                placeholder="Enter your email"
-                error={emailError}
-                textClass={styles.textClass}
-                secondaryTextClass={styles.secondaryTextClass}
-                inputBgClass={styles.inputBgClass}
-                placeholderColor={styles.placeholderColor}
-                isEnabled={isHydrated}
-                keyboardType="email-address"
-                autoCapitalize="none"
-                autoCorrect={false}
-                returnKeyType="next"
-              />
-
-              <FormInput
-                label="Password"
-                value={password}
-                onChangeText={setPassword}
-                placeholder={isSignUp ? "Create a password (min 6 characters)" : "Enter your password"}
-                error={passwordError}
-                textClass={styles.textClass}
-                secondaryTextClass={styles.secondaryTextClass}
-                inputBgClass={styles.inputBgClass}
-                placeholderColor={styles.placeholderColor}
-                isEnabled={isHydrated}
-                secureTextEntry
-                returnKeyType="done"
-              />
-
-              {!isSignUp && (
-                <View className="items-end">
-                  <Pressable onPress={() => router.push("/forgot-password")} disabled={!isHydrated}>
-                    <Text className="text-sm text-green-500">Forgot password?</Text>
-                  </Pressable>
-                </View>
-              )}
-
-              <Pressable
-                onPress={handleSubmit}
-                disabled={!isHydrated || !canSubmit}
-                className={`bg-green-500 rounded-lg py-4 items-center mt-2 ${
-                  !isHydrated || !canSubmit ? "opacity-60" : ""
-                }`}
-              >
-                <Text className="text-black font-semibold">{isSignUp ? "Create Account" : "Sign In"}</Text>
-              </Pressable>
-
-              <View className="items-center mt-4">
-                <Pressable
-                  onPress={handleGuestSignIn}
-                  disabled={!isHydrated}
-                  className={`bg-gray-200 dark:bg-gray-700 rounded-lg py-3 px-6 w-full items-center ${
-                    !isHydrated ? "opacity-60" : ""
-                  }`}
-                >
-                  <Text className="text-gray-800 dark:text-gray-200 font-semibold">Continue as Guest</Text>
-                </Pressable>
-              </View>
-            </View>
-          </View>
-          </View>
-        </View>
+        </ScrollView>
       )}
 =======
           {renderContent()}

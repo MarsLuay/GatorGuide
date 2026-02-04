@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
@@ -7,10 +7,29 @@ import { HapticTab } from "@/components/haptic-tab";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppData } from "@/hooks/use-app-data";
+import { useAppLanguage } from "@/hooks/use-app-language";
 
 export default function TabLayout() {
   const { isDark } = useAppTheme();
   const { isHydrated, state } = useAppData();
+  const { t } = useAppLanguage();
+  const [titles, setTitles] = useState({
+    home: "Home",
+    resources: "Resources",
+    profile: "Profile",
+    settings: "Settings",
+  });
+
+  // Update titles when language changes
+  useEffect(() => {
+    if (!isHydrated) return;
+    setTitles({
+      home: t("navigation.home"),
+      resources: t("navigation.resources"),
+      profile: t("navigation.profile"),
+      settings: t("navigation.settings"),
+    });
+  }, [isHydrated, t]);
 
   // Protect tabs from direct deep link access
   useEffect(() => {
@@ -55,7 +74,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Home",
+          title: titles.home,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home" size={size ?? 26} color={color} />
           ),
@@ -65,7 +84,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="resources"
         options={{
-          title: "Resources",
+          title: titles.resources,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="library" size={size ?? 26} color={color} />
           ),
@@ -75,7 +94,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="profile"
         options={{
-          title: "Profile",
+          title: titles.profile,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="person" size={size ?? 26} color={color} />
           ),
@@ -85,7 +104,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="settings"
         options={{
-          title: "Settings",
+          title: titles.settings,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="settings" size={size ?? 26} color={color} />
           ),
