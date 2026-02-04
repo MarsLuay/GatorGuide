@@ -1,4 +1,3 @@
-// components/pages/SettingsPage.tsx
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppTheme } from "@/hooks/use-app-theme";
@@ -36,6 +35,27 @@ export default function SettingsPage() {
   const { t, language } = useAppLanguage();
   const { isHydrated, state, signOut, clearAll, setNotificationsEnabled, restoreData } = useAppData();
   const insets = useSafeAreaInsets();
+
+  const currentLanguageName = useMemo(() => {
+    const langMap: Record<string, string> = {
+      en: "English",
+      zh: "简体中文",
+      "zh-Hant": "繁體中文",
+      es: "Español",
+      fr: "Français",
+      de: "Deutsch",
+      it: "Italiano",
+      ja: "日本語",
+      ko: "한국어",
+      pt: "Português",
+      ru: "Русский",
+      ar: "العربية",
+      hi: "हिन्दी",
+      vi: "Tiếng Việt",
+      tl: "Tagalog",
+    };
+    return langMap[i18n.language] || "English";
+  }, [i18n.language]);
 
   const textClass = isDark ? "text-white" : "text-gray-900";
   const secondaryTextClass = isDark ? "text-gray-400" : "text-gray-600";
@@ -270,12 +290,10 @@ export default function SettingsPage() {
           <View className="px-6 pt-8 pb-6">
             <Text className={`text-2xl ${textClass}`}>{t("settings.settings")}</Text>
           </View>
-
           <View className="px-6 gap-6">
             {sections.map((section) => (
               <View key={section.title}>
-                <Text className={`text-sm ${secondaryTextClass} mb-3 px-2`}>{section.title}</Text>
-
+                <Text className={`text-sm font-medium ${secondaryTextClass} mb-3 px-2`}>{section.title}</Text>
                 <View className={`${cardBgClass} border rounded-2xl overflow-hidden`}>
                   {section.items.map((item, index) => (
                     <Pressable
@@ -289,12 +307,8 @@ export default function SettingsPage() {
                       <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${textClass}`}>{item.label}</Text>
 
                       {item.type === "toggle" ? (
-                        <View
-                          className={`w-12 h-6 rounded-full ${
-                            item.enabled ? "bg-green-500" : isDark ? "bg-gray-700" : "bg-gray-300"
-                          }`}
-                        >
-                          <View className={`w-5 h-5 bg-white rounded-full mt-0.5 ${item.enabled ? "ml-6" : "ml-0.5"}`} />
+                        <View className={`w-12 h-6 rounded-full ${("enabled" in item && item.enabled) ? "bg-green-500" : isDark ? "bg-gray-700" : "bg-gray-300"}`}>
+                          <View className={`w-5 h-5 bg-white rounded-full mt-0.5 ${("enabled" in item && item.enabled) ? "ml-6" : "ml-0.5"}`} />
                         </View>
                       ) : item.value ? (
                         <Text className={`${isRTL ? "text-left" : ""} ${secondaryTextClass}`}>{item.value}</Text>
@@ -306,7 +320,6 @@ export default function SettingsPage() {
                 </View>
               </View>
             ))}
-
             <Pressable
               onPress={handleLogout}
               disabled={!isHydrated}

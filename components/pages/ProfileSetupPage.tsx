@@ -1,22 +1,28 @@
 import { useMemo, useRef, useState } from "react";
-import { View, Text, TextInput, Pressable, ScrollView, Keyboard, Dimensions } from "react-native";
+import { View, Text, TextInput, Pressable, ScrollView, Keyboard, useWindowDimensions, Alert } from "react-native";
 import { router } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { useAudioPlayer } from "expo-audio";
 import ConfettiCannon from "react-native-confetti-cannon";
+import * as DocumentPicker from 'expo-document-picker';
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from "@/services/firebase";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { FormInput } from "@/components/ui/FormInput";
+import { roadmapService } from "@/services/roadmap.service";
+import { useTranslation } from "react-i18next";
 
 export default function ProfileSetupPage() {
   const { updateUser } = useAppData();
   const { t } = useAppLanguage();
   const styles = useThemeStyles();
+  const { width } = useWindowDimensions();
 
-  // Initialize audio player for celebration sound
   const cheerPlayer = useAudioPlayer('https://assets.mixkit.co/active_storage/sfx/2018/2018-preview.mp3');
 
   const [step, setStep] = useState(1);
@@ -26,10 +32,35 @@ export default function ProfileSetupPage() {
   const [gpa, setGpa] = useState("");
   const [sat, setSat] = useState("");
   const [act, setAct] = useState("");
+  
   const [isConfettiPlaying, setIsConfettiPlaying] = useState(false);
   const [confettiCooldown, setConfettiCooldown] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
 
-  const confettiRef = useRef<any>(null);
+  const handlePickDocument = async (type: 'resume' | 'transcript') => {
+    try {
+      const result = await DocumentPicker.getDocumentAsync({
+        type: [
+          'application/pdf', 
+          'application/msword', 
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        ],
+        copyToCacheDirectory: true,
+      });
+
+      if (!result.canceled) {
+        const fileUri = result.assets[0].uri;
+        if (type === 'resume') {
+          setResume(fileUri);
+        } else {
+          setTranscript(fileUri);
+        }
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   const handleBack = () => {
     if (step > 1) {
@@ -44,52 +75,81 @@ export default function ProfileSetupPage() {
       const num = parseFloat(value);
       if (value === "" || (Number.isFinite(num) && num <= 4.0) || value === "0" || value === "0.") {
         setGpa(value);
-        // Celebrate perfect GPA! 🎉
-        if (num === 4.0 && value === "4" && !confettiCooldown) {
+        if (num === 4.0 && (value === "4" || value === "4.0") && !confettiCooldown) {
           setIsConfettiPlaying(true);
           setConfettiCooldown(true);
           setTimeout(() => setIsConfettiPlaying(false), 6000);
           setTimeout(() => setConfettiCooldown(false), 1000);
           Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-          // Play cheer sound
-          cheerPlayer.play();
-        } else if (value !== "4" && isConfettiPlaying) {
-          setIsConfettiPlaying(false);
+          if (cheerPlayer) cheerPlayer.play();
         }
       }
     }
   };
 
-  const handleSkip = () => {
-    router.replace("/(tabs)");
-  };
-
   const handleNext = () => {
-    if (step < 3) {
-      setStep(step + 1);
-    }
+    if (step < 3) setStep(step + 1);
   };
 
   const handleContinue = async () => {
-    await updateUser({
-      major,
-      gpa,
-      sat,
-      act,
-      resume,
-      transcript,
-    });
-    router.replace("/(tabs)");
-  };
+    try {
+      const userId = state.user?.uid;
+      
+      if (!userId) {
+        router.replace("/login");
+        return;
+      }
 
-  const handlePickResume = () => {
-    // stub for now (Expo Go file picking will be added later)
-    setResume("resume.pdf");
-  };
+      setIsUploading(true);
 
-  const handlePickTranscript = () => {
-    // stub for now (Expo Go file picking will be added later)
-    setTranscript("transcript.pdf");
+      const uploadFile = async (uri: string, folder: string) => {
+        if (!uri || !uri.startsWith('file')) return uri;
+        const response = await fetch(uri);
+        const blob = await response.blob();
+        const storage = getStorage();
+        const fileRef = ref(storage, `users/${userId}/${folder}/${Date.now()}`);
+        await uploadBytes(fileRef, blob);
+        return await getDownloadURL(fileRef);
+      };
+
+      let finalResumeUrl = resume;
+      let finalTranscriptUrl = transcript;
+
+      if (resume) finalResumeUrl = await uploadFile(resume, 'resumes');
+      if (transcript) finalTranscriptUrl = await uploadFile(transcript, 'transcripts');
+
+      const flatData = {
+        major,
+        gpa: gpa || "", 
+        sat: sat || "",
+        act: act || "",
+        resume: finalResumeUrl, 
+        transcript: finalTranscriptUrl, 
+        isProfileComplete: true, 
+      };
+
+      const userDocRef = doc(db, 'users', userId);
+      await setDoc(userDocRef, {
+        ...flatData,
+        updatedAt: serverTimestamp(),
+      }, { merge: true });
+
+      await updateUser(flatData);
+      
+      try {
+        await roadmapService.generateInitialRoadmap(userId, major, gpa);
+      } catch (e) {
+        console.warn("Roadmap generation failed, but profile saved.");
+      }
+
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      router.replace("/(tabs)"); 
+    } catch (error) {
+      console.error(error);
+      Alert.alert(t('common.save_failed'));
+    } finally {
+      setIsUploading(false);
+    }
   };
 
   return (

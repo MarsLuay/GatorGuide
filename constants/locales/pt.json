@@ -1,0 +1,149 @@
+{
+  "common": {
+    "search": "Buscar",
+    "settings": "Configurações",
+    "language": "Configurações de Idioma",
+    "logout": "Sair",
+    "back": "Voltar",
+    "next": "Próximo",
+    "finish": "Finalizar",
+    "complete": "Concluir",
+    "save": "Salvar",
+    "saving": "Salvando...",
+    "save_failed": "Falha ao salvar, tente novamente mais tarde",
+    "edit": "Editar",
+    "exit": "Sair",
+    "save_exit": "Salvar e Sair",
+    "error": "Erro",
+    "loading": "Carregando...",
+    "close": "Fechar",
+    "not_signed_in": "Não autenticado",
+    "select_file": "Selecionar Arquivo",
+    "no_matches": "Nenhum resultado encontrado",
+    "try_different_search": "Tente outros termos de busca.",
+    "browser_hint": "Os links serão abertos no navegador do seu dispositivo."
+  },
+  "settings": {
+    "preferences": "Preferências",
+    "notifications": "Notificações",
+    "theme": "Tema de Aparência",
+    "support": "Suporte e Sobre",
+    "about": "Sobre o App"
+  },
+  "theme": {
+    "system": "Seguir Sistema",
+    "dark": "Modo Escuro",
+    "light": "Modo Claro"
+  },
+  "roadmap": {
+    "title": "Roteiro de Transferência",
+    "loading_msg": "Carregando seu roteiro pessoal...",
+    "plan_for": "Plano de {{major}} para {{name}}",
+    "progress_label": "{{progress}}% Concluído",
+    "ai_advisor": {
+      "title": "Consultor de IA",
+      "placeholder": "Pergunte sobre requisitos de transferência...",
+      "button": "Obter Conselho",
+      "analyzing": "IA: Analisando seu caminho em {{major}}..."
+    },
+    "categories": {
+      "Documents": "Preparação de Documentos",
+      "Academics": "Cursos Acadêmicos",
+      "Applications": "Processo de Candidatura",
+      "Interests": "Construção de Perfil"
+    },
+    "task_details": "Detalhes da tarefa para {{category}}"
+  },
+  "resources": {
+    "title": "Centro de Recursos",
+    "subtitle": "Links oficiais para planejamento de transferência, equivalência de cursos, bolsas e estágios",
+    "search_placeholder": "Buscar recursos (ex: UW, Trabalho-estudo, Bolsas)",
+    "sections": {
+      "student_tools": "Ferramentas do Estudante",
+      "grc_planning": "Planejamento de Transferência Green River",
+      "wa_universities": "Universidades Comuns de Quatro Anos em WA",
+      "transfer_guides": "Guias de Transferência (GRC → Universidades)",
+      "scholarships": "Bolsas de Estudo (Estado de Washington)",
+      "internships": "Empregos e Estágios",
+      "international": "Estágios Internacionais"
+    }
+  },
+  "auth": {
+    "sign_up": "Cadastrar",
+    "login": "Entrar",
+    "create_account": "Criar Conta",
+    "sign_in": "Entrar",
+    "go_to_login": "Ir para Login",
+    "login_prompt": "Crie uma conta ou faça login para editar seu perfil.",
+    "name": "Nome",
+    "name_placeholder": "Por favor, insira seu nome",
+    "email": "E-mail",
+    "email_placeholder": "Por favor, insira seu endereço de e-mail",
+    "password": "Senha",
+    "password_placeholder_create": "Defina uma senha (mín. 6 caracteres)",
+    "password_placeholder_enter": "Por favor, insira sua senha",
+    "forgot_password": "Esqueceu a senha?",
+    "back_to_login": "Voltar para o Login",
+    "forgot_password_title": "Redefinir Senha",
+    "forgot_password_desc": "Insira seu e-mail e enviaremos um link de redefinição",
+    "send_reset_link": "Enviar Link de Redefinição",
+    "check_email_title": "Verifique seu E-mail",
+    "check_email_desc": "Enviamos um link de redefinição para {{email}}",
+    "check_email_hint": "Clique no link no e-mail para redefinir sua senha. Se não encontrar, verifique sua pasta de spam.",
+    "validation": {
+      "invalid_email": "Por favor, insira um endereço de e-mail válido.",
+      "name_required": "Por favor, insira seu nome.",
+      "password_too_short": "A senha deve ter pelo menos 6 caracteres.",
+      "failed_title": "Falha na Autenticação",
+      "failed_message": "Verifique sua conexão com a internet ou as informações da conta."
+    }
+  },
+  "profile": {
+    "title": "Perfil",
+    "major": "Curso/Major",
+    "major_placeholder": "ex: Ciência da Computação",
+    "gpa_label": "GPA (0.0 - 4.0)",
+    "sat_label": "Pontuação SAT",
+    "act_label": "Pontuação ACT",
+    "resume_label": "Currículo",
+    "upload_resume": "Upload de Currículo",
+    "not_uploaded": "Não Enviado",
+    "undecided": "Indeciso"
+  },
+  "setup": {
+    "title": "Configure seu Perfil",
+    "subtitle": "Conte-nos sobre você para que possamos personalizar seu roteiro de transferência.",
+    "major": "Curso Pretendido",
+    "major_placeholder": "O que você deseja estudar?",
+    "gpa": "GPA Atual",
+    "gpa_placeholder": "ex: 3.8",
+    "sat": "Pontuação SAT",
+    "sat_placeholder": "Opcional",
+    "act": "Pontuação ACT",
+    "act_placeholder": "Opcional",
+    "resume": "Seu Currículo (Opcional)",
+    "transcript": "Seu Histórico (Opcional)",
+    "transcript_label": "Histórico Escolar"
+  },
+  "questionnaire": {
+    "detailed_title": "Questionário Detalhado",
+    "step_label": "Passo {{current}} de {{total}}",
+    "edit_btn": "Editar",
+    "complete_btn": "Completar Agora",
+    "saved_desc": "Suas preferências foram salvas. Clique em editar para atualizar suas respostas.",
+    "empty_desc": "Complete o questionário para obter recomendações personalizadas de universidades.",
+    "save_answers": "Salvar Respostas",
+    "questions": {
+      "volunteer": { "title": "De quais atividades voluntárias você participou?", "placeholder": "Descreva suas experiências voluntárias..." },
+      "extracurriculars": { "title": "De quais atividades extracurriculares você participa?", "placeholder": "Liste suas atividades e funções..." },
+      "setting": { "title": "Que tipo de ambiente de campus você prefere?", "options": ["Urbano", "Suburbano", "Rural", "Sem Preferência"] },
+      "size": { "title": "Qual é o tamanho ideal de escola para você?", "options": ["Pequena (< 5.000)", "Média (5.000-15.000)", "Grande (> 15.000)", "Sem Preferência"] },
+      "environment": { "title": "Qual ambiente acadêmico atrai você?", "options": ["Focado em Pesquisa", "Artes Liberais", "Técnico/Engenharia", "Pré-profissional", "Abrangente"] },
+      "programs": { "title": "Existem programas ou recursos específicos que você procura?", "placeholder": "ex: Estudo no exterior, oportunidades de pesquisa, estágios..." },
+      "budget": { "title": "Qual é o seu orçamento anual para mensalidades?", "options": ["< $20.000", "$20.000 - $40.000", "$40.000 - $60.000", "> $60.000", "Necessito de ajuda financeira"] },
+      "location": { "title": "Você tem uma localização geográfica de preferência?", "placeholder": "Insira estados, regiões ou países preferidos..." },
+      "housing": { "title": "Qual é a sua preferência de moradia?", "options": ["No campus", "Apartamento fora do campus", "Morar com a família", "Sem Preferência"] },
+      "goals": { "title": "Quais são seus objetivos de carreira após a graduação?", "placeholder": "Descreva suas ambições e trajetória de carreira..." }
+    }
+  }
+}

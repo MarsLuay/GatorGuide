@@ -1,6 +1,5 @@
-// global.css is required
-import "../global.css";
-import React from "react";
+import { useEffect, useState } from 'react';
+import { View } from 'react-native';
 import { Stack } from "expo-router";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { AppThemeProvider } from "@/hooks/use-app-theme";
@@ -8,6 +7,32 @@ import { AppLanguageProvider } from "@/hooks/use-app-language";
 import { AppDataProvider } from "@/hooks/use-app-data";
 
 export default function RootLayout() {
+  const [appIsReady, setAppIsReady] = useState(false);
+  const [showAnimation, setShowAnimation] = useState(true);
+
+  useEffect(() => {
+    async function prepare() {
+      try {
+
+        await SplashScreen.hideAsync();
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        setAppIsReady(true);
+      }
+    }
+    prepare();
+  }, []);
+
+  if (!appIsReady) return null;
+
+
+  if (showAnimation) {
+    return (
+      <StartupAnimation onFinish={() => setShowAnimation(false)} />
+    );
+  }
+
   return (
     <SafeAreaProvider>
       <AppThemeProvider>

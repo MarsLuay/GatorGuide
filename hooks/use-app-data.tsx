@@ -3,6 +3,7 @@ import React, { createContext, useCallback, useContext, useEffect, useMemo, useS
 import { authService } from "@/services";
 
 export type User = {
+  uid: string;
   name: string;
   email: string;
   isGuest?: boolean; // true if user is logged in as guest
@@ -10,8 +11,9 @@ export type User = {
   gpa?: string;
   sat?: string;
   act?: string;
-  resume?: string; // store a filename or local URI later
-  transcript?: string; // store a filename or local URI later
+  resume?: string;
+  transcript?: string;
+  isProfileComplete?: boolean;
 };
 
 export type QuestionnaireAnswers = Record<string, string>;
@@ -33,13 +35,15 @@ const initialState: AppDataState = {
 type AppDataContextValue = {
   isHydrated: boolean;
   state: AppDataState;
+<<<<<<< HEAD
 
   signIn: (user: Pick<User, "name" | "email"> & { password: string; isSignUp: boolean }) => Promise<void>;
   signInAsGuest: () => Promise<void>;
+=======
+  signIn: (user: Partial<User> & { uid: string; email: string; name: string }) => Promise<void>;
+>>>>>>> 596bfb5 (WIP: updates)
   signOut: () => Promise<void>;
-
   updateUser: (patch: Partial<User>) => Promise<void>;
-
   setQuestionnaireAnswers: (answers: QuestionnaireAnswers) => Promise<void>;
   setNotificationsEnabled: (enabled: boolean) => Promise<void>;
   restoreData: (data: AppDataState) => Promise<void>;
@@ -52,36 +56,24 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
   const [isHydrated, setIsHydrated] = useState(false);
   const [state, setState] = useState<AppDataState>(initialState);
 
-  // Load once
   useEffect(() => {
     let mounted = true;
-
     (async () => {
       try {
         const raw = await AsyncStorage.getItem(STORAGE_KEY);
         if (!mounted) return;
-
         if (raw) {
           const parsed = JSON.parse(raw) as AppDataState;
-          setState({
-            user: parsed.user ?? null,
-            questionnaireAnswers: parsed.questionnaireAnswers ?? {},
-            notificationsEnabled: parsed.notificationsEnabled ?? true,
-          });
+          setState(parsed);
         }
       } catch {
-        // ignore corrupt storage; fall back to initialState
       } finally {
         if (mounted) setIsHydrated(true);
       }
     })();
-
-    return () => {
-      mounted = false;
-    };
+    return () => { mounted = false; };
   }, []);
 
-  // Persist on change (after hydration)
   useEffect(() => {
     if (!isHydrated) return;
     AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(state)).catch(() => {});
@@ -123,6 +115,24 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
         },
       };
     });
+=======
+  const signIn = useCallback(async (u: Partial<User> & { uid: string; email: string; name: string }) => {
+    setState((prev) => ({
+      ...prev,
+      user: {
+        uid: u.uid,
+        name: u.name,
+        email: u.email,
+        major: u.major || prev.user?.major || "",
+        gpa: u.gpa || prev.user?.gpa || "",
+        sat: u.sat || prev.user?.sat || "",
+        act: u.act || prev.user?.act || "",
+        resume: u.resume || prev.user?.resume || "",
+        transcript: u.transcript || prev.user?.transcript || "",
+        isProfileComplete: u.isProfileComplete || prev.user?.isProfileComplete || false,
+      },
+    }));
+>>>>>>> 596bfb5 (WIP: updates)
   }, []);
 
   const signInAsGuest = useCallback(async () => {
@@ -144,9 +154,10 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
 
   const signOut = useCallback(async () => {
     setState((prev) => ({ ...prev, user: null }));
+    await AsyncStorage.removeItem(STORAGE_KEY);
   }, []);
 
-  const updateUser = useCallback((patch: Partial<User>) => {
+  const updateUser = useCallback(async (patch: Partial<User>) => {
     setState((prev) => {
       if (!prev.user) return prev;
       return {
@@ -157,17 +168,11 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const setQuestionnaireAnswers = useCallback(async (answers: QuestionnaireAnswers) => {
-    setState((prev) => ({
-      ...prev,
-      questionnaireAnswers: { ...answers },
-    }));
+    setState((prev) => ({ ...prev, questionnaireAnswers: { ...answers } }));
   }, []);
 
   const setNotificationsEnabled = useCallback(async (enabled: boolean) => {
-    setState((prev) => ({
-      ...prev,
-      notificationsEnabled: enabled,
-    }));
+    setState((prev) => ({ ...prev, notificationsEnabled: enabled }));
   }, []);
 
   const restoreData = useCallback(async (data: AppDataState) => {
@@ -183,6 +188,7 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
     setState(initialState);
   }, []);
 
+<<<<<<< HEAD
   const value = useMemo<AppDataContextValue>(
     () => ({
       isHydrated,
@@ -198,14 +204,17 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
     }),
     [isHydrated, state, signIn, signInAsGuest, signOut, updateUser, setQuestionnaireAnswers, setNotificationsEnabled, restoreData, clearAll]
   );
+=======
+  const value = useMemo(() => ({
+    isHydrated, state, signIn, signOut, updateUser, setQuestionnaireAnswers, setNotificationsEnabled, clearAll
+  }), [isHydrated, state, signIn, signOut, updateUser, setQuestionnaireAnswers, setNotificationsEnabled, clearAll]);
+>>>>>>> 596bfb5 (WIP: updates)
 
   return <AppDataContext.Provider value={value}>{children}</AppDataContext.Provider>;
 }
 
 export function useAppData() {
   const ctx = useContext(AppDataContext);
-  if (!ctx) {
-    throw new Error("useAppData must be used within <AppDataProvider />");
-  }
+  if (!ctx) throw new Error("useAppData must be used within <AppDataProvider />");
   return ctx;
 }

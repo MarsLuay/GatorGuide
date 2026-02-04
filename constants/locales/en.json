@@ -1,0 +1,149 @@
+{
+  "common": {
+    "search": "Search",
+    "settings": "Settings",
+    "language": "Language Settings",
+    "logout": "Log Out",
+    "back": "Back",
+    "next": "Next",
+    "finish": "Finish",
+    "complete": "Complete",
+    "save": "Save",
+    "saving": "Saving...",
+    "save_failed": "Save failed, please try again later",
+    "edit": "Edit",
+    "exit": "Exit",
+    "save_exit": "Save & Exit",
+    "error": "Error",
+    "loading": "Loading...",
+    "close": "Close",
+    "not_signed_in": "Not signed in",
+    "select_file": "Select File",
+    "no_matches": "No matches found",
+    "try_different_search": "Please try different search terms.",
+    "browser_hint": "Links will open in your device's browser."
+  },
+  "settings": {
+    "preferences": "Preferences",
+    "notifications": "Notifications",
+    "theme": "Appearance Theme",
+    "support": "Support & About",
+    "about": "About App"
+  },
+  "theme": {
+    "system": "Follow System",
+    "dark": "Dark Mode",
+    "light": "Light Mode"
+  },
+  "roadmap": {
+    "title": "Transfer Roadmap",
+    "loading_msg": "Loading your personal roadmap...",
+    "plan_for": "{{major}} Plan for {{name}}",
+    "progress_label": "{{progress}}% Complete",
+    "ai_advisor": {
+      "title": "AI Advisor",
+      "placeholder": "Ask about transfer requirements...",
+      "button": "Get Advice",
+      "analyzing": "AI: Analyzing your {{major}} path..."
+    },
+    "categories": {
+      "Documents": "Document Prep",
+      "Academics": "Academic Courses",
+      "Applications": "Application Process",
+      "Interests": "Profile Building"
+    },
+    "task_details": "Task details for {{category}}"
+  },
+  "resources": {
+    "title": "Resource Center",
+    "subtitle": "Official links for transfer planning, course equivalencies, scholarships, and internships",
+    "search_placeholder": "Search resources (e.g., UW, Work-study, Scholarships)",
+    "sections": {
+      "student_tools": "Student Tools",
+      "grc_planning": "Green River Transfer Planning",
+      "wa_universities": "Common WA Four-Year Universities",
+      "transfer_guides": "Transfer Guides (GRC → Universities)",
+      "scholarships": "Scholarships (Washington State)",
+      "internships": "Jobs & Internships",
+      "international": "International Internships"
+    }
+  },
+  "auth": {
+    "sign_up": "Sign Up",
+    "login": "Login",
+    "create_account": "Create Account",
+    "sign_in": "Sign In",
+    "go_to_login": "Go to Login",
+    "login_prompt": "Create an account or log in to edit your profile.",
+    "name": "Name",
+    "name_placeholder": "Please enter your name",
+    "email": "Email",
+    "email_placeholder": "Please enter your email address",
+    "password": "Password",
+    "password_placeholder_create": "Set password (min. 6 characters)",
+    "password_placeholder_enter": "Please enter your password",
+    "forgot_password": "Forgot Password?",
+    "back_to_login": "Back to Login",
+    "forgot_password_title": "Reset Password",
+    "forgot_password_desc": "Enter your email and we will send you a reset link",
+    "send_reset_link": "Send Reset Link",
+    "check_email_title": "Please Check Your Email",
+    "check_email_desc": "We have sent a reset link to {{email}}",
+    "check_email_hint": "Click the link in the email to reset your password. If you don't see it, check your spam folder.",
+    "validation": {
+      "invalid_email": "Please enter a valid email address.",
+      "name_required": "Please enter your name.",
+      "password_too_short": "Password must be at least 6 characters.",
+      "failed_title": "Authentication Failed",
+      "failed_message": "Please check your internet connection or account information."
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "major": "Major",
+    "major_placeholder": "e.g., Computer Science",
+    "gpa_label": "GPA (0.0 - 4.0)",
+    "sat_label": "SAT Score",
+    "act_label": "ACT Score",
+    "resume_label": "Resume",
+    "upload_resume": "Upload Resume",
+    "not_uploaded": "Not Uploaded",
+    "undecided": "Undecided"
+  },
+  "setup": {
+    "title": "Set Up Your Profile",
+    "subtitle": "Tell us about yourself so we can customize your personalized transfer roadmap.",
+    "major": "Intended Major",
+    "major_placeholder": "What do you want to study?",
+    "gpa": "Current GPA",
+    "gpa_placeholder": "e.g., 3.8",
+    "sat": "SAT Score",
+    "sat_placeholder": "Optional",
+    "act": "ACT Score",
+    "act_placeholder": "Optional",
+    "resume": "Your Resume (Optional)",
+    "transcript": "Your Transcript (Optional)",
+    "transcript_label": "Transcript"
+  },
+  "questionnaire": {
+    "detailed_title": "Detailed Questionnaire",
+    "step_label": "Step {{current}} of {{total}}",
+    "edit_btn": "Edit",
+    "complete_btn": "Complete Now",
+    "saved_desc": "Your preferences are saved. Click edit to update your answers.",
+    "empty_desc": "Complete the questionnaire to get personalized university recommendations.",
+    "save_answers": "Save Answers",
+    "questions": {
+      "volunteer": { "title": "What volunteer activities have you participated in?", "placeholder": "Describe your volunteer experiences..." },
+      "extracurriculars": { "title": "What extracurricular activities do you participate in?", "placeholder": "List your activities and roles..." },
+      "setting": { "title": "What kind of campus setting do you prefer?", "options": ["Urban", "Suburban", "Rural", "No Preference"] },
+      "size": { "title": "What is your ideal school size?", "options": ["Small (< 5,000)", "Medium (5,000-15,000)", "Large (> 15,000)", "No Preference"] },
+      "environment": { "title": "What academic environment attracts you?", "options": ["Research-focused", "Liberal Arts", "Technical/Engineering", "Pre-professional", "Comprehensive"] },
+      "programs": { "title": "Are there specific programs or resources you are looking for?", "placeholder": "e.g., Study abroad, research opportunities, internships..." },
+      "budget": { "title": "What is your annual tuition budget?", "options": ["< $20,000", "$20,000 - $40,000", "$40,000 - $60,000", "> $60,000", "Financial aid needed"] },
+      "location": { "title": "Do you have a preferred geographic location?", "placeholder": "Enter preferred states, regions, or countries..." },
+      "housing": { "title": "What is your housing preference?", "options": ["On-campus", "Off-campus apartment", "Commute from home", "No Preference"] },
+      "goals": { "title": "What are your career goals after graduation?", "placeholder": "Describe your ambitions and career path..." }
+    }
+  }
+}

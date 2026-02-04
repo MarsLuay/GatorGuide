@@ -1,6 +1,13 @@
-// components/pages/ForgotPasswordPage.tsx
 import { useMemo, useState } from "react";
-import { View, Text, Pressable, Alert, Keyboard, TouchableWithoutFeedback } from "react-native";
+import { 
+  View, 
+  Text, 
+  Pressable, 
+  Alert, 
+  Keyboard, 
+  TouchableWithoutFeedback, 
+  ActivityIndicator 
+} from "react-native";
 import { router } from "expo-router";
 import { FontAwesome5, MaterialIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
@@ -8,24 +15,29 @@ import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { FormInput } from "@/components/ui/FormInput";
+import { useTranslation } from "react-i18next";
+import { auth } from "@/services/firebase";
+import { sendPasswordResetEmail } from "firebase/auth";
 
 const isEmailValid = (value: string) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value.trim());
 
 export default function ForgotPasswordPage() {
+  const { t } = useTranslation();
   const styles = useThemeStyles();
   const { t } = useAppLanguage();
 
   const [email, setEmail] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const emailError = useMemo(() => {
     const trimmed = email.trim();
     return trimmed && !isEmailValid(trimmed) ? t("auth.enterValidEmail") : undefined;
   }, [email, t]);
 
-  const canSubmit = useMemo(() => isEmailValid(email), [email]);
+  const canSubmit = useMemo(() => isEmailValid(email) && !isLoading, [email, isLoading]);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const e = email.trim();
 
     if (!isEmailValid(e)) {
@@ -33,11 +45,29 @@ export default function ForgotPasswordPage() {
       return;
     }
 
-    setIsSuccess(true);
+    setIsLoading(true);
+    Keyboard.dismiss();
 
-    setTimeout(() => {
-      router.replace("/login");
-    }, 3000);
+    try {
+      await sendPasswordResetEmail(auth, e);
+      await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      setIsSuccess(true);
+    } catch (error: any) {
+      await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+      
+      let message = t("auth.validation.failed_message");
+      if (error.code === 'auth/user-not-found') {
+        message = t("auth.no_matches"); 
+      } else if (error.code === 'auth/too-many-requests') {
+        message = "Too many requests. Please try again later.";
+      } else if (error.code === 'auth/invalid-email') {
+        message = t("auth.validation.invalid_email");
+      }
+      
+      Alert.alert(t("auth.validation.failed_title"), message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (isSuccess) {
@@ -45,7 +75,7 @@ export default function ForgotPasswordPage() {
       <ScreenBackground>
         <View className="flex-1 items-center justify-center px-6">
           <View className="w-full max-w-md">
-            <View className="items-center mb-8">
+            <div className="items-center mb-8">
               <View className="bg-green-500 p-4 rounded-full">
                 <MaterialIcons name="check-circle" size={48} color="black" />
               </View>
@@ -55,12 +85,19 @@ export default function ForgotPasswordPage() {
             <Text className={`${styles.secondaryTextClass} text-center mb-8`}>
               {t("auth.passwordResetSent")} {email.trim()}
             </Text>
-
             <View className={`${styles.cardBgClass} border rounded-2xl p-6`}>
               <Text className={`text-sm ${styles.secondaryTextClass} text-center`}>
                 {t("auth.passwordResetInstructions")}
               </Text>
             </View>
+            <Pressable 
+              onPress={() => router.replace("/login")}
+              className="mt-8 items-center bg-green-500 py-4 rounded-xl"
+            >
+              <Text className="text-black font-bold">
+                {t("auth.back_to_login") || "Back to Login"}
+              </Text>
+            </Pressable>
           </View>
         </View>
       </ScreenBackground>
@@ -126,7 +163,6 @@ export default function ForgotPasswordPage() {
                 <Text className="text-black font-semibold">{t("auth.sendResetLink")}</Text>
               </Pressable>
             </View>
-          </View>
           </View>
         </View>
       </TouchableWithoutFeedback>

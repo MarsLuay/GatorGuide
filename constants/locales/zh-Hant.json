@@ -1,0 +1,149 @@
+{
+  "common": {
+    "search": "搜尋",
+    "settings": "設定",
+    "language": "語言設置",
+    "logout": "登出",
+    "back": "返回",
+    "next": "下一步",
+    "finish": "完成",
+    "complete": "完成",
+    "save": "儲存",
+    "saving": "儲存中...",
+    "save_failed": "儲存失敗，請稍後重試",
+    "edit": "編輯",
+    "exit": "退出",
+    "save_exit": "儲存並退出",
+    "error": "錯誤",
+    "loading": "載入中...",
+    "close": "關閉",
+    "not_signed_in": "未登入",
+    "select_file": "選擇檔案",
+    "no_matches": "未找到匹配結果",
+    "try_different_search": "請嘗試其他搜尋詞。",
+    "browser_hint": "連結將在設備的瀏覽器中打開。"
+  },
+  "settings": {
+    "preferences": "偏好設置",
+    "notifications": "通知",
+    "theme": "外觀主題",
+    "support": "支持與關於",
+    "about": "關於應用"
+  },
+  "theme": {
+    "system": "跟隨系統",
+    "dark": "深色模式",
+    "light": "淺色模式"
+  },
+  "roadmap": {
+    "title": "轉學路線圖",
+    "loading_msg": "正在載入您的個人路線圖...",
+    "plan_for": "{{major}} 專業規劃 - {{name}}",
+    "progress_label": "完成進度 {{progress}}%",
+    "ai_advisor": {
+      "title": "AI 顧問",
+      "placeholder": "諮詢轉學要求...",
+      "button": "獲取建議",
+      "analyzing": "AI: 正在分析您的 {{major}} 路徑..."
+    },
+    "categories": {
+      "Documents": "文件準備",
+      "Academics": "學術課程",
+      "Applications": "申請流程",
+      "Interests": "背景提升"
+    },
+    "task_details": "針對 {{category}} 的任務詳情"
+  },
+  "resources": {
+    "title": "資源中心",
+    "subtitle": "提供轉學規劃、課程轉分指南、獎學金及實習的官方連結",
+    "search_placeholder": "搜尋資源 (如：UW, 勤工儉學, 獎學金)",
+    "sections": {
+      "student_tools": "學生工具",
+      "grc_planning": "Green River 轉學規劃",
+      "wa_universities": "華盛頓州常用四年制大學",
+      "transfer_guides": "轉學指南 (Green River → 各大學)",
+      "scholarships": "獎學金 (華盛頓州)",
+      "internships": "實習與工作",
+      "international": "國際實習"
+    }
+  },
+  "auth": {
+    "sign_up": "註冊",
+    "login": "登入",
+    "create_account": "建立帳戶",
+    "sign_in": "登入帳戶",
+    "go_to_login": "前往登入",
+    "login_prompt": "建立帳戶或登入以編輯您的資料。",
+    "name": "姓名",
+    "name_placeholder": "請輸入您的姓名",
+    "email": "電子郵件",
+    "email_placeholder": "請輸入您的郵箱地址",
+    "password": "密碼",
+    "password_placeholder_create": "設置密碼 (最少6位)",
+    "password_placeholder_enter": "請輸入您的密碼",
+    "forgot_password": "忘記密碼？",
+    "back_to_login": "返回登入",
+    "forgot_password_title": "找回密碼",
+    "forgot_password_desc": "輸入您的郵箱，我們將向您發送重設連結",
+    "send_reset_link": "發送重設連結",
+    "check_email_title": "請查收郵件",
+    "check_email_desc": "我們已向 {{email}} 發送了重設連結",
+    "check_email_hint": "點擊郵件中的連結重設密碼。如果您沒看到郵件，請檢查垃圾郵件匣。",
+    "validation": {
+      "invalid_email": "請輸入有效的郵箱地址。",
+      "name_required": "請輸入您的姓名。",
+      "password_too_short": "密碼長度至少需要6位。",
+      "failed_title": "認證失敗",
+      "failed_message": "請檢查您的網路連接或帳戶資訊。"
+    }
+  },
+  "profile": {
+    "title": "個人資料",
+    "major": "專業",
+    "major_placeholder": "例如：電腦科學",
+    "gpa_label": "GPA 成績 (0.0 - 4.0)",
+    "sat_label": "SAT 分數",
+    "act_label": "ACT 分數",
+    "resume_label": "簡歷",
+    "upload_resume": "上傳簡歷",
+    "not_uploaded": "未上傳",
+    "undecided": "未決定"
+  },
+  "setup": {
+    "title": "設置您的資料",
+    "subtitle": "告訴我們您的情況，以便為您定制個性化的轉學路線圖。",
+    "major": "意向專業",
+    "major_placeholder": "您想學習什麼？",
+    "gpa": "當前 GPA",
+    "gpa_placeholder": "例如: 3.8",
+    "sat": "SAT 分數",
+    "sat_placeholder": "可選",
+    "act": "ACT 分數",
+    "act_placeholder": "可選",
+    "resume": "您的簡歷 (可選)",
+    "transcript": "您的成績單 (可選)",
+    "transcript_label": "成績單"
+  },
+  "questionnaire": {
+    "detailed_title": "詳細調查問卷",
+    "step_label": "第 {{current}} 步，共 {{total}} 步",
+    "edit_btn": "編輯",
+    "complete_btn": "去完成",
+    "saved_desc": "您的偏好已儲存。點擊編輯可更新回答。",
+    "empty_desc": "完成問卷以獲取個性化的大學推薦。",
+    "save_answers": "儲存回答",
+    "questions": {
+      "volunteer": { "title": "你參加過哪些志願者活動？", "placeholder": "描述您的志願服務經歷..." },
+      "extracurriculars": { "title": "你參加了哪些課外活動？", "placeholder": "列出您的活動和擔任的角色..." },
+      "setting": { "title": "你更傾向於哪種校園環境？", "options": ["城市", "郊區", "鄉村", "無偏好"] },
+      "size": { "title": "你理想的學校規模是多大？", "options": ["小型 (< 5,000人)", "中型 (5,000-15,000人)", "大型 (> 15,000人)", "無偏好"] },
+      "environment": { "title": "什麼樣的學術氛圍吸引你？", "options": ["研究型", "博雅教育", "技術/工程", "職業預科", "綜合型"] },
+      "programs": { "title": "是否有特定的項目或資源是您正在尋找的？", "placeholder": "例如：海外留學、研究機會、實習等..." },
+      "budget": { "title": "您每年的學費預算是多少？", "options": ["< $20,000", "$20,000 - $40,000", "$40,000 - $60,000", "> $60,000", "需要助學金"] },
+      "location": { "title": "是否有偏好的地理位置？", "placeholder": "輸入偏好的州、地區或國家..." },
+      "housing": { "title": "您的住宿偏好是什麼？", "options": ["校內宿舍", "校外公寓", "家裡通勤", "無偏好"] },
+      "goals": { "title": "您畢業後的職業目標是什麼？", "placeholder": "描述您的抱負和職業路徑..." }
+    }
+  }
+}

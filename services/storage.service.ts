@@ -11,11 +11,30 @@ export type UploadedFile = {
 };
 
 class StorageService {
-  /**
-   * Upload resume file
-   * STUB: Saves filename to AsyncStorage
-   * TODO: Replace with Firebase Storage upload
-   */
+
+  private async uploadToFirebase(userId: string, fileUri: string, folder: 'resumes' | 'transcripts'): Promise<UploadedFile> {
+
+    const fileName = `${folder}_${Date.now()}.pdf`;
+    
+    const response = await fetch(fileUri);
+    const blob = await response.blob();
+
+
+    const storageRef = ref(storage, `${folder}/${userId}/${fileName}`);
+
+
+    const snapshot = await uploadBytes(storageRef, blob);
+
+
+    const downloadURL = await getDownloadURL(snapshot.ref);
+
+    return {
+      name: fileName,
+      url: downloadURL,
+      uploadedAt: new Date(),
+    };
+  }
+
   async uploadResume(userId: string, fileUri: string): Promise<UploadedFile> {
     await new Promise((resolve) => setTimeout(resolve, 200));
 
@@ -30,11 +49,6 @@ class StorageService {
     return localData;
   }
 
-  /**
-   * Upload transcript file
-   * STUB: Saves filename to AsyncStorage
-   * TODO: Replace with Firebase Storage upload
-   */
   async uploadTranscript(userId: string, fileUri: string): Promise<UploadedFile> {
     await new Promise((resolve) => setTimeout(resolve, 200));
 
@@ -77,6 +91,8 @@ class StorageService {
   async deleteFile(userId: string, fileType: 'resume' | 'transcript'): Promise<void> {
     await AsyncStorage.removeItem(`${fileType}:${userId}`);
   }
+
+
 }
 
 export const storageService = new StorageService();
