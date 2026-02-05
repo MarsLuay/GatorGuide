@@ -1,0 +1,149 @@
+{
+  "common": {
+    "search": "Tìm kiếm",
+    "settings": "Cài đặt",
+    "language": "Cài đặt ngôn ngữ",
+    "logout": "Đăng xuất",
+    "back": "Quay lại",
+    "next": "Tiếp theo",
+    "finish": "Hoàn tất",
+    "complete": "Hoàn thành",
+    "save": "Lưu",
+    "saving": "Đang lưu...",
+    "save_failed": "Lưu thất bại, vui lòng thử lại sau",
+    "edit": "Chỉnh sửa",
+    "exit": "Thoát",
+    "save_exit": "Lưu và Thoát",
+    "error": "Lỗi",
+    "loading": "Đang tải...",
+    "close": "Đóng",
+    "not_signed_in": "Chưa đăng nhập",
+    "select_file": "Chọn tệp",
+    "no_matches": "Không tìm thấy kết quả phù hợp",
+    "try_different_search": "Vui lòng thử các thuật ngữ tìm kiếm khác.",
+    "browser_hint": "Các liên kết sẽ được mở trong trình duyệt của thiết bị."
+  },
+  "settings": {
+    "preferences": "Tùy chọn",
+    "notifications": "Thông báo",
+    "theme": "Giao diện",
+    "support": "Hỗ trợ & Giới thiệu",
+    "about": "Về ứng dụng"
+  },
+  "theme": {
+    "system": "Theo hệ thống",
+    "dark": "Chế độ tối",
+    "light": "Chế độ sáng"
+  },
+  "roadmap": {
+    "title": "Lộ trình chuyển tiếp",
+    "loading_msg": "Đang tải lộ trình cá nhân của bạn...",
+    "plan_for": "Kế hoạch {{major}} cho {{name}}",
+    "progress_label": "Đã hoàn thành {{progress}}%",
+    "ai_advisor": {
+      "title": "Cố vấn AI",
+      "placeholder": "Hỏi về yêu cầu chuyển tiếp...",
+      "button": "Nhận lời khuyên",
+      "analyzing": "AI: Đang phân tích lộ trình {{major}} của bạn..."
+    },
+    "categories": {
+      "Documents": "Chuẩn bị hồ sơ",
+      "Academics": "Khóa học học thuật",
+      "Applications": "Quy trình nộp đơn",
+      "Interests": "Xây dựng hồ sơ"
+    },
+    "task_details": "Chi tiết nhiệm vụ cho {{category}}"
+  },
+  "resources": {
+    "title": "Trung tâm tài nguyên",
+    "subtitle": "Các liên kết chính thức về kế hoạch chuyển tiếp, tương đương khóa học, học bổng và thực tập",
+    "search_placeholder": "Tìm tài nguyên (vd: UW, Học vừa làm, Học bổng)",
+    "sections": {
+      "student_tools": "Công cụ sinh viên",
+      "grc_planning": "Lập kế hoạch chuyển tiếp Green River",
+      "wa_universities": "Các trường đại học 4 năm phổ biến tại WA",
+      "transfer_guides": "Hướng dẫn chuyển tiếp (GRC → Đại học)",
+      "scholarships": "Học bổng (Bang Washington)",
+      "internships": "Việc làm & Thực tập",
+      "international": "Thực tập quốc tế"
+    }
+  },
+  "auth": {
+    "sign_up": "Đăng ký",
+    "login": "Đăng nhập",
+    "create_account": "Tạo tài khoản",
+    "sign_in": "Đăng nhập",
+    "go_to_login": "Đi đến Đăng nhập",
+    "login_prompt": "Tạo tài khoản hoặc đăng nhập để chỉnh sửa hồ sơ của bạn.",
+    "name": "Họ và tên",
+    "name_placeholder": "Vui lòng nhập tên của bạn",
+    "email": "Email",
+    "email_placeholder": "Vui lòng nhập địa chỉ email của bạn",
+    "password": "Mật khẩu",
+    "password_placeholder_create": "Thiết lập mật khẩu (tối thiểu 6 ký tự)",
+    "password_placeholder_enter": "Vui lòng nhập mật khẩu của bạn",
+    "forgot_password": "Quên mật khẩu?",
+    "back_to_login": "Quay lại Đăng nhập",
+    "forgot_password_title": "Đặt lại mật khẩu",
+    "forgot_password_desc": "Nhập email của bạn và chúng tôi sẽ gửi liên kết đặt lại",
+    "send_reset_link": "Gửi liên kết đặt lại",
+    "check_email_title": "Vui lòng kiểm tra Email",
+    "check_email_desc": "Chúng tôi đã gửi liên kết đặt lại đến {{email}}",
+    "check_email_hint": "Nhấp vào liên kết trong email để đặt lại mật khẩu. Nếu không thấy, hãy kiểm tra thư mục rác.",
+    "validation": {
+      "invalid_email": "Vui lòng nhập địa chỉ email hợp lệ.",
+      "name_required": "Vui lòng nhập tên của bạn.",
+      "password_too_short": "Mật khẩu phải có ít nhất 6 ký tự.",
+      "failed_title": "Xác thực thất bại",
+      "failed_message": "Vui lòng kiểm tra kết nối internet hoặc thông tin tài khoản."
+    }
+  },
+  "profile": {
+    "title": "Hồ sơ",
+    "major": "Chuyên ngành",
+    "major_placeholder": "vd: Khoa học máy tính",
+    "gpa_label": "GPA (0.0 - 4.0)",
+    "sat_label": "Điểm SAT",
+    "act_label": "Điểm ACT",
+    "resume_label": "Sơ yếu lý lịch",
+    "upload_resume": "Tải lên Sơ yếu lý lịch",
+    "not_uploaded": "Chưa tải lên",
+    "undecided": "Chưa quyết định"
+  },
+  "setup": {
+    "title": "Thiết lập hồ sơ",
+    "subtitle": "Hãy cho chúng tôi biết về bạn để chúng tôi có thể tùy chỉnh lộ trình chuyển tiếp cá nhân hóa.",
+    "major": "Chuyên ngành dự định",
+    "major_placeholder": "Bạn muốn học ngành gì?",
+    "gpa": "GPA hiện tại",
+    "gpa_placeholder": "vd: 3.8",
+    "sat": "Điểm SAT",
+    "sat_placeholder": "Tùy chọn",
+    "act": "Điểm ACT",
+    "act_placeholder": "Tùy chọn",
+    "resume": "Sơ yếu lý lịch (Tùy chọn)",
+    "transcript": "Bảng điểm (Tùy chọn)",
+    "transcript_label": "Bảng điểm"
+  },
+  "questionnaire": {
+    "detailed_title": "Bảng câu hỏi chi tiết",
+    "step_label": "Bước {{current}} trên {{total}}",
+    "edit_btn": "Chỉnh sửa",
+    "complete_btn": "Hoàn thành ngay",
+    "saved_desc": "Tùy chọn của bạn đã được lưu. Nhấn chỉnh sửa để cập nhật câu trả lời.",
+    "empty_desc": "Hoàn thành bảng câu hỏi để nhận đề xuất đại học cá nhân hóa.",
+    "save_answers": "Lưu câu trả lời",
+    "questions": {
+      "volunteer": { "title": "Bạn đã tham gia những hoạt động tình nguyện nào?", "placeholder": "Mô tả trải nghiệm tình nguyện của bạn..." },
+      "extracurriculars": { "title": "Bạn tham gia những hoạt động ngoại khóa nào?", "placeholder": "Liệt kê các hoạt động và vai trò của bạn..." },
+      "setting": { "title": "Bạn thích môi trường khuôn viên trường như thế nào?", "options": ["Thành thị", "Ngoại ô", "Nông thôn", "Không ưu tiên"] },
+      "size": { "title": "Quy mô trường học lý tưởng của bạn là gì?", "options": ["Nhỏ (< 5,000)", "Trung bình (5,000-15,000)", "Lớn (> 15,000)", "Không ưu tiên"] },
+      "environment": { "title": "Môi trường học thuật nào thu hút bạn?", "options": ["Tập trung nghiên cứu", "Giáo dục khai phóng", "Kỹ thuật/Công nghệ", "Hướng nghiệp", "Tổng hợp"] },
+      "programs": { "title": "Có chương trình hoặc nguồn lực cụ thể nào bạn đang tìm kiếm không?", "placeholder": "vd: Du học, cơ hội nghiên cứu, thực tập..." },
+      "budget": { "title": "Ngân sách học phí hàng năm của bạn là bao nhiêu?", "options": ["< $20,000", "$20,000 - $40,000", "$40,000 - $60,000", "> $60,000", "Cần hỗ trợ tài chính"] },
+      "location": { "title": "Bạn có khu vực địa lý ưu tiên nào không?", "placeholder": "Nhập các bang, vùng hoặc quốc gia ưu tiên..." },
+      "housing": { "title": "Ưu tiên về chỗ ở của bạn là gì?", "options": ["Trong ký túc xá", "Căn hộ ngoài trường", "Đi lại từ nhà", "Không ưu tiên"] },
+      "goals": { "title": "Mục tiêu nghề nghiệp của bạn sau khi tốt nghiệp là gì?", "placeholder": "Mô tả hoài bão và con đường sự nghiệp của bạn..." }
+    }
+  }
+}
