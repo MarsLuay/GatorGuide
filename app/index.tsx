@@ -23,11 +23,11 @@ export default function Index() {
           return;
         }
 
-        // Check if user has completed profile setup
+        // User already completed profile setup → go to main (no need to fill again)
         const hasCompletedSetup = !!(
-          state.user.major || 
-          state.user.gpa || 
-          state.user.isProfileComplete
+          state.user.isProfileComplete ||
+          state.user.major ||
+          state.user.gpa
         );
 
         if (hasCompletedSetup) {

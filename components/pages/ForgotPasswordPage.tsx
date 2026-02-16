@@ -53,11 +53,11 @@ export default function ForgotPasswordPage() {
       await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
       
       let message = t("auth.validation.failed_message");
-      if (error.code === 'auth/user-not-found') {
-        message = t("auth.no_matches"); 
-      } else if (error.code === 'auth/too-many-requests') {
-        message = "Too many requests. Please try again later.";
-      } else if (error.code === 'auth/invalid-email') {
+      if (error?.code === 'auth/user-not-found' || error?.code === 'auth/invalid-credential') {
+        message = t("auth.no_matches");
+      } else if (error?.code === 'auth/too-many-requests') {
+        message = t("auth.tooManyAttempts");
+      } else if (error?.code === 'auth/invalid-email') {
         message = t("auth.validation.invalid_email");
       }
       
@@ -161,6 +161,10 @@ export default function ForgotPasswordPage() {
               </Pressable>
             </View>
           </View>
+
+          <Text className={`${styles.secondaryTextClass} text-xs text-center mt-6`}>
+            {t("general.needHelpEmail")}
+          </Text>
         </View>
         </View>
       </TouchableWithoutFeedback>

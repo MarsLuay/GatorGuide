@@ -1,6 +1,9 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { doc, getDoc } from "firebase/firestore";
 import { authService } from "@/services";
+import type { AuthUser } from "@/services/auth.service";
+import { db } from "@/services/firebase";
 
 export type User = {
   uid: string;
@@ -36,8 +39,10 @@ type AppDataContextValue = {
   isHydrated: boolean;
   state: AppDataState;
   signIn: (user: Pick<User, "name" | "email"> & { password: string; isSignUp: boolean }) => Promise<void>;
+  signInWithAuthUser: (authUser: AuthUser) => Promise<void>;
   signInAsGuest: () => Promise<void>;
   signOut: () => Promise<void>;
+  deleteAccount: () => Promise<void>;
   updateUser: (patch: Partial<User>) => Promise<void>;
   setQuestionnaireAnswers: (answers: QuestionnaireAnswers) => Promise<void>;
   setNotificationsEnabled: (enabled: boolean) => Promise<void>;
@@ -82,20 +87,40 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
       isSignUp: u.isSignUp,
     });
 
+    let profileFromServer: Partial<User> = {};
+    if (db) {
+      try {
+        const userDoc = await getDoc(doc(db, "users", authUser.uid));
+        if (userDoc.exists() && userDoc.data()) {
+          const data = userDoc.data();
+          profileFromServer = {
+            major: data.major ?? "",
+            gpa: data.gpa ?? "",
+            sat: data.sat ?? "",
+            act: data.act ?? "",
+            resume: data.resume ?? "",
+            transcript: data.transcript ?? "",
+            isProfileComplete: !!data.isProfileComplete,
+          };
+        }
+      } catch {
+        // Offline or missing doc: keep empty profile
+      }
+    }
+
     setState((prev) => {
-      // If user already exists with same email, preserve all their data
       if (prev.user && prev.user.email === authUser.email) {
         return {
           ...prev,
           user: {
             ...prev.user,
             uid: authUser.uid,
-            name: authUser.name || u.name, // Update name in case it changed
+            name: authUser.name || u.name,
+            ...profileFromServer,
           },
         };
       }
-      
-      // New user - create fresh profile
+
       return {
         ...prev,
         user: {
@@ -109,9 +134,49 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
           act: "",
           resume: "",
           transcript: "",
+          ...profileFromServer,
         },
       };
     });
+  }, []);
+
+  const signInWithAuthUser = useCallback(async (authUser: AuthUser) => {
+    let profileFromServer: Partial<User> = {};
+    if (db) {
+      try {
+        const userDoc = await getDoc(doc(db, "users", authUser.uid));
+        if (userDoc.exists() && userDoc.data()) {
+          const data = userDoc.data();
+          profileFromServer = {
+            major: data.major ?? "",
+            gpa: data.gpa ?? "",
+            sat: data.sat ?? "",
+            act: data.act ?? "",
+            resume: data.resume ?? "",
+            transcript: data.transcript ?? "",
+            isProfileComplete: !!data.isProfileComplete,
+          };
+        }
+      } catch {
+        // ignore
+      }
+    }
+    setState((prev) => ({
+      ...prev,
+      user: {
+        uid: authUser.uid,
+        name: authUser.name || "",
+        email: authUser.email,
+        isGuest: false,
+        major: "",
+        gpa: "",
+        sat: "",
+        act: "",
+        resume: "",
+        transcript: "",
+        ...profileFromServer,
+      },
+    }));
   }, []);
 
   const signInAsGuest = useCallback(async () => {
@@ -133,8 +198,22 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const signOut = useCallback(async () => {
+    try {
+      await authService.signOut();
+    } catch {
+      // ignore
+    }
     setState((prev) => ({ ...prev, user: null }));
     await AsyncStorage.removeItem(STORAGE_KEY);
+  }, []);
+
+  const deleteAccount = useCallback(async () => {
+    try {
+      await authService.deleteAccount();
+    } finally {
+      setState((prev) => ({ ...prev, user: null }));
+      await AsyncStorage.removeItem(STORAGE_KEY);
+    }
   }, []);
 
   const updateUser = useCallback(async (patch: Partial<User>) => {
@@ -173,15 +252,17 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
       isHydrated,
       state,
       signIn,
+      signInWithAuthUser,
       signInAsGuest,
       signOut,
+      deleteAccount,
       updateUser,
       setQuestionnaireAnswers,
       setNotificationsEnabled,
       restoreData,
       clearAll,
     }),
-    [isHydrated, state, signIn, signInAsGuest, signOut, updateUser, setQuestionnaireAnswers, setNotificationsEnabled, restoreData, clearAll]
+    [isHydrated, state, signIn, signInWithAuthUser, signInAsGuest, signOut, deleteAccount, updateUser, setQuestionnaireAnswers, setNotificationsEnabled, restoreData, clearAll]
   );
 
   return <AppDataContext.Provider value={value}>{children}</AppDataContext.Provider>;

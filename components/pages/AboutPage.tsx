@@ -189,6 +189,10 @@ export default function AboutPage() {
                 admission to any institution.
               </Text>
             </View>
+
+            <Text className={`${secondaryTextClass} text-xs text-center mt-6 mb-8`}>
+              {t("general.needHelpEmail")}
+            </Text>
           </View>
         </View>
       </ScrollView>

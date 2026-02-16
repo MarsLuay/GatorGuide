@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "789105310429",
+    "project_id": "gatorguide",
+    "storage_bucket": "gatorguide.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:789105310429:android:f1a0ada4f7ca55cf6f7934",
+        "android_client_info": {
+          "package_name": "com.mobiledevelopment.gatorguide"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "789105310429-bimgjg3oajd0uepqjhb1jmsc02si76jj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9g9M5wlSTjVoyPbdPEL64oQAQtPnuL6Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "789105310429-bimgjg3oajd0uepqjhb1jmsc02si76jj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "789105310429-egfhukbkki1qa7hospa4ter48p136ao9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mobiledevelopment.gatorguide"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -205,7 +205,7 @@ export default function HomePage() {
             </View>
           ) : null}
 
-          {results.length > 0 && (
+          {results.length > 0 ? (
             <View className="mt-8">
               <View className="flex-row items-center justify-between mb-2">
                 <Text className={`text-lg ${textClass}`}>{t("home.recommendedColleges")}</Text>
@@ -234,7 +234,7 @@ export default function HomePage() {
                 </View>
               )}
             </View>
-          )}
+          ) : null}
         </View>
       </ScrollView>
     </ScreenBackground>

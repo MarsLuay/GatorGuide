@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import { Alert, Linking, Pressable, ScrollView, Text, TextInput, View } from "react-native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { router } from "expo-router";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useAppLanguage } from "@/hooks/use-app-language";
@@ -32,6 +33,24 @@ export default function ResourcesPage() {
 
   const sections: ResourceSection[] = useMemo(
     () => [
+      {
+        title: t("resources.tools"),
+        icon: "build",
+        items: [
+          {
+            title: t("resources.compareColleges"),
+            description: t("resources.compareCollegesDesc"),
+            url: "app://compare",
+            tags: ["compare", "colleges", "tools"],
+          },
+          {
+            title: t("resources.costCalculator"),
+            description: t("resources.costCalculatorDesc"),
+            url: "app://cost-calculator",
+            tags: ["cost", "calculator", "tools"],
+          },
+        ],
+      },
       {
         title: t("resources.studentTools"),
         icon: "account-circle",
@@ -85,6 +104,12 @@ export default function ResourcesPage() {
             description: t("resources.uwDesc"),
             url: "https://admit.washington.edu/apply/",
             tags: ["uw", "transfer", "apply"],
+          },
+          {
+            title: t("resources.myPlan"),
+            description: t("resources.myPlanDesc"),
+            url: "https://myplan.uw.edu/home/",
+            tags: ["uw", "myplan", "planning", "courses"],
           },
           {
             title: t("resources.wwu"),
@@ -226,6 +251,11 @@ export default function ResourcesPage() {
   }, [query, sections]);
 
   const openLink = async (url: string) => {
+    if (url.startsWith("app://")) {
+      const path = url.replace("app://", "/");
+      router.push(path as any);
+      return;
+    }
     const safeUrl = url.startsWith("http://") || url.startsWith("https://") ? url : `https://${url}`;
     try {
       const can = await Linking.canOpenURL(safeUrl);

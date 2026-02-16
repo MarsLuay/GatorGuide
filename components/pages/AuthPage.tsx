@@ -1,20 +1,26 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { View, Text, Pressable, Alert, Keyboard, TouchableWithoutFeedback, Platform, ScrollView } from "react-native";
 import { router } from "expo-router";
 import { FontAwesome5 } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
+import * as WebBrowser from "expo-web-browser";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useIdTokenAuthRequest } from "expo-auth-session/providers/google";
+import { makeRedirectUri, useAuthRequest, useAutoDiscovery, ResponseType } from "expo-auth-session";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { FormInput } from "@/components/ui/FormInput";
 import { authService } from "@/services/auth.service";
+import { API_CONFIG } from "@/services/config";
+
+WebBrowser.maybeCompleteAuthSession();
 
 const isEmailValid = (value: string) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value.trim());
 
 export default function AuthPage() {
-  const { isHydrated, state, signIn, signInAsGuest, updateUser, setQuestionnaireAnswers } = useAppData();
+  const { isHydrated, state, signIn, signInWithAuthUser, signInAsGuest, updateUser, setQuestionnaireAnswers } = useAppData();
   const { t } = useAppLanguage();
   const styles = useThemeStyles();
 
@@ -22,6 +28,65 @@ export default function AuthPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSignUp, setIsSignUp] = useState(true);
+
+  const isNative = Platform.OS === "ios" || Platform.OS === "android";
+  const makeRedirect = makeRedirectUri({ useProxy: true });
+  const redirectUri = isNative
+    ? (makeRedirect.startsWith("exp://") ? `https://auth.expo.io/@${API_CONFIG.expoUsername}/gator-guide` : makeRedirect)
+    : makeRedirectUri({ scheme: "gatorguide", path: "auth" });
+  const microsoftDiscovery = useAutoDiscovery("https://login.microsoftonline.com/common/v2.0");
+
+  const [googleRequest, googleResponse, googlePromptAsync] = useIdTokenAuthRequest(
+    {
+      clientId: API_CONFIG.googleWebClientId || "dummy",
+      webClientId: API_CONFIG.googleWebClientId || undefined,
+    },
+    isNative
+      ? (makeRedirect.startsWith("exp://") ? { redirectUri } : { useProxy: true })
+      : { scheme: "gatorguide", path: "auth" }
+  );
+
+  const [microsoftRequest, microsoftResponse, microsoftPromptAsync] = useAuthRequest(
+    {
+      clientId: API_CONFIG.microsoftClientId || "dummy",
+      scopes: ["openid", "profile", "email"],
+      redirectUri,
+      responseType: ResponseType.IdToken,
+    },
+    microsoftDiscovery ?? undefined
+  );
+
+  useEffect(() => {
+    if (googleResponse?.type !== "success" || !isNative) return;
+    const idToken = (googleResponse.params as Record<string, string>).id_token;
+    if (!idToken) return;
+    (async () => {
+      try {
+        const authUser = await authService.signInWithGoogleCredential(idToken);
+        await signInWithAuthUser(authUser);
+        router.replace("/");
+      } catch (err: unknown) {
+        const msg = err instanceof Error ? err.message : t("auth.loginFailed");
+        Alert.alert(t("general.error"), msg);
+      }
+    })();
+  }, [googleResponse, isNative, signInWithAuthUser, t]);
+
+  useEffect(() => {
+    if (microsoftResponse?.type !== "success" || !isNative) return;
+    const idToken = (microsoftResponse.params as Record<string, string>).id_token;
+    if (!idToken) return;
+    (async () => {
+      try {
+        const authUser = await authService.signInWithMicrosoftCredential(idToken);
+        await signInWithAuthUser(authUser);
+        router.replace("/");
+      } catch (err: unknown) {
+        const msg = err instanceof Error ? err.message : t("auth.loginFailed");
+        Alert.alert(t("general.error"), msg);
+      }
+    })();
+  }, [microsoftResponse, isNative, signInWithAuthUser, t]);
 
   const emailError = useMemo(() => {
     const trimmed = email.trim();
@@ -63,25 +128,27 @@ export default function AuthPage() {
     const mapAuthError = (code: string | undefined) => {
       switch (code) {
         case 'auth/invalid-email':
-          return t('auth.invalidEmail') || 'Please enter a valid email address.';
+          return t('auth.invalidEmail');
         case 'auth/user-not-found':
-          return t('auth.no_matches') || "We couldn't find an account with that email.";
+          return t('auth.no_matches');
         case 'auth/wrong-password':
-          return t('auth.passwordMinimumShort') || 'Incorrect password. Please try again.';
+          return t('auth.wrongPassword');
+        case 'auth/invalid-credential':
+          return t('auth.invalidCredential');
         case 'auth/email-already-in-use':
-          return t('auth.validation.failed_title') || 'An account with this email already exists.';
+          return t('auth.validation.failed_title');
         case 'auth/weak-password':
-          return t('auth.passwordMinimum') || 'Password must be at least 6 characters.';
+          return t('auth.passwordMinimum');
         case 'auth/too-many-requests':
-          return 'Too many attempts. Please wait a moment and try again.';
+          return t('auth.tooManyAttempts');
         case 'auth/network-request-failed':
-          return 'Network error. Please check your internet connection and try again.';
+          return t('auth.networkError');
         case 'auth/user-disabled':
-          return 'This account has been disabled. Contact support if you think this is a mistake.';
+          return t('auth.accountDisabled');
         case 'auth/operation-not-allowed':
-          return 'This sign-in method is not enabled. Please contact support.';
+          return t('auth.signInMethodDisabled');
         default:
-          return t('auth.validation.failed_message') || 'Authentication failed. Please try again.';
+          return t('auth.loginFailed');
       }
     };
 
@@ -134,6 +201,53 @@ export default function AuthPage() {
     await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     await signInAsGuest();
     router.replace("/");
+  };
+
+  const handleProviderSignIn = async (provider: "google" | "microsoft") => {
+    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    const isWeb = Platform.OS === "web";
+    if (isWeb) {
+      try {
+        const authUser =
+          provider === "google"
+            ? await authService.signInWithGoogle()
+            : await authService.signInWithMicrosoft();
+        await signInWithAuthUser(authUser);
+        router.replace("/");
+      } catch (err: unknown) {
+        const msg =
+          err instanceof Error && (err.message.includes("available on web") || err.message.includes("web"))
+            ? t("auth.providerAvailableOnWeb")
+            : err instanceof Error ? err.message : t("auth.validation.failed_message");
+        Alert.alert(t("general.error"), msg);
+      }
+      return;
+    }
+    if (provider === "google") {
+      if (!API_CONFIG.googleWebClientId) {
+        Alert.alert(t("general.error"), t("auth.providerNotConfigured") || "Google sign-in is not configured. Set EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID.");
+        return;
+      }
+      try {
+        await googlePromptAsync();
+      } catch (err: unknown) {
+        const msg = err instanceof Error ? err.message : t("auth.loginFailed");
+        Alert.alert(t("general.error"), msg);
+      }
+      return;
+    }
+    if (provider === "microsoft") {
+      if (!API_CONFIG.microsoftClientId) {
+        Alert.alert(t("general.error"), t("auth.providerNotConfiguredMs") || "Microsoft sign-in is not configured. Set EXPO_PUBLIC_MICROSOFT_CLIENT_ID.");
+        return;
+      }
+      try {
+        await microsoftPromptAsync();
+      } catch (err: unknown) {
+        const msg = err instanceof Error ? err.message : t("auth.loginFailed");
+        Alert.alert(t("general.error"), msg);
+      }
+    }
   };
 
   const isWeb = Platform.OS === 'web';
@@ -244,6 +358,25 @@ export default function AuthPage() {
             <Text className="text-black font-semibold">{isSignUp ? t("auth.createAccount") : t("auth.logIn")}</Text>
           </Pressable>
 
+          <View className="flex-row gap-3 mt-4">
+            <Pressable
+              onPress={() => handleProviderSignIn("google")}
+              disabled={!isHydrated}
+              className={`flex-1 ${styles.cardBgClass} border ${styles.borderClass} rounded-lg py-3 flex-row items-center justify-center gap-2 ${!isHydrated ? "opacity-60" : ""}`}
+            >
+              <FontAwesome5 name="google" size={18} color="#4285F4" />
+              <Text className={styles.secondaryTextClass}>{t("auth.continueWithGoogle")}</Text>
+            </Pressable>
+            <Pressable
+              onPress={() => handleProviderSignIn("microsoft")}
+              disabled={!isHydrated}
+              className={`flex-1 ${styles.cardBgClass} border ${styles.borderClass} rounded-lg py-3 flex-row items-center justify-center gap-2 ${!isHydrated ? "opacity-60" : ""}`}
+            >
+              <FontAwesome5 name="microsoft" size={18} color="#00A4EF" />
+              <Text className={styles.secondaryTextClass}>{t("auth.continueWithMicrosoft")}</Text>
+            </Pressable>
+          </View>
+
           <View className="items-center mt-4">
             <Pressable
               onPress={handleGuestSignIn}
@@ -255,6 +388,10 @@ export default function AuthPage() {
               <Text className="text-gray-800 dark:text-gray-200 font-semibold">{t("auth.continueAsGuest")}</Text>
             </Pressable>
           </View>
+
+          <Text className={`${styles.secondaryTextClass} text-xs text-center mt-6`}>
+            {t("general.needHelpEmail")}
+          </Text>
         </View>
       </View>
     </View>
