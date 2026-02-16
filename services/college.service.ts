@@ -3,7 +3,10 @@
 // Currently returns stub data, will connect to College Scorecard API later
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { addDoc, collection, serverTimestamp, doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 import { API_CONFIG, isStubMode } from './config';
+import { db } from './firebase';
+import { firebaseAuth } from './firebase';
 
 const CACHE_TTL_MS = 1000 * 60 * 60 * 24; // 24 hours
 
@@ -66,17 +69,17 @@ class CollegeService {
       console.log('[STUB] Saving questionnaire:', answers);
       return 'stub-id';
     }
+    if (!db || !firebaseAuth?.currentUser) {
+      throw new Error("Authentication required");
+    }
 
     try {
-      const user = auth.currentUser;
-      if (!user) throw new Error("Authentication required");
-
+      const user = firebaseAuth.currentUser;
       const docRef = await addDoc(collection(db, 'questionnaires'), {
         userId: user.uid,
-        answers: answers,
+        answers,
         createdAt: serverTimestamp(),
       });
-
       return docRef.id;
     } catch (error) {
       console.error("Error saving questionnaire:", error);
@@ -89,13 +92,12 @@ class CollegeService {
    * Adds or removes a college from user's favorites
    */
   async toggleSavedCollege(collegeId: string, isSaved: boolean): Promise<void> {
-    if (isStubMode()) return;
-    const user = auth.currentUser;
-    if (!user) return;
+    if (isStubMode() || !db || !firebaseAuth?.currentUser) return;
 
+    const user = firebaseAuth.currentUser;
     const userRef = doc(db, 'users', user.uid);
     await updateDoc(userRef, {
-      savedColleges: isSaved ? arrayUnion(collegeId) : arrayRemove(collegeId)
+      savedColleges: isSaved ? arrayUnion(collegeId) : arrayRemove(collegeId),
     });
   }
 
@@ -103,10 +105,13 @@ class CollegeService {
   async getMatches(criteria: CollegeMatchCriteria): Promise<College[]> {
     if (isStubMode() || API_CONFIG.collegeScorecard.apiKey === 'STUB') {
       this.lastSource = 'stub';
-      // Simulate API delay
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 600));
       return [
-        { id: '1', name: 'University of Florida', location: { city: 'Gainesville', state: 'FL' }, tuition: 28659, size: 'large', setting: 'suburban', admissionRate: 0.23, programs: ['Computer Science'], matchScore: 95 },
+        { id: '1', name: 'University of Washington', location: { city: 'Seattle', state: 'WA' }, tuition: 12076, size: 'large', setting: 'urban', admissionRate: 0.53, programs: ['Computer Science', 'Engineering', 'Business'], matchScore: 92 },
+        { id: '2', name: 'Washington State University', location: { city: 'Pullman', state: 'WA' }, tuition: 12701, size: 'large', setting: 'rural', admissionRate: 0.86, programs: ['Business', 'Engineering', 'Agriculture'], matchScore: 88 },
+        { id: '3', name: 'Western Washington University', location: { city: 'Bellingham', state: 'WA' }, tuition: 9456, size: 'medium', setting: 'suburban', admissionRate: 0.93, programs: ['Education', 'Environmental Science', 'Business'], matchScore: 85 },
+        { id: '4', name: 'University of Florida', location: { city: 'Gainesville', state: 'FL' }, tuition: 28659, size: 'large', setting: 'suburban', admissionRate: 0.23, programs: ['Computer Science', 'Engineering'], matchScore: 95 },
+        { id: '5', name: 'Evergreen State College', location: { city: 'Olympia', state: 'WA' }, tuition: 10232, size: 'small', setting: 'suburban', admissionRate: 0.97, programs: ['Liberal Arts', 'Environmental Studies'], matchScore: 80 },
       ];
     }
 

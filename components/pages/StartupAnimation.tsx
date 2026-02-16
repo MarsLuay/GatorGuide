@@ -47,14 +47,12 @@ export default function StartupAnimation({ onFinish }: { onFinish: () => void })
   return (
     <View style={styles.container}>
       <Animated.View style={[styles.content, animatedStyle]}>
-        <Image 
-         
-          source={require('../../assets/images/icon.png')} 
-          style={styles.logo} 
+        <Image
+          source={require('../../assets/images/icon.png')}
+          style={styles.logo}
           resizeMode="contain"
         />
-        <Text style={styles.title}>GatorGuide</Text>
-        <Text style={styles.subtitle}>Your Transfer Guide for GRC Students.</Text>
+        <Text style={styles.title}>Gator Guide</Text>
       </Animated.View>
     </View>
   );
@@ -79,10 +77,6 @@ const styles = StyleSheet.create({
     fontSize: 36,
     fontWeight: '800',
     color: '#2a7a57',
+    marginTop: 16,
   },
-  subtitle: {
-    fontSize: 16,
-    color: '#6a7f73',
-    marginTop: 10,
-  }
 });

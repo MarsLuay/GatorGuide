@@ -220,7 +220,7 @@ export default function ProfileSetupPage() {
                   <FormInput
                     label={t("setup.sat")}
                     value={sat}
-                    onChangeText={setSat}
+                    onChangeText={(v) => setSat(v.replace(/\D/g, ""))}
                     placeholder={t("setup.satPlaceholder")}
                     keyboardType="number-pad"
                     textClass={styles.textClass}
@@ -232,7 +232,7 @@ export default function ProfileSetupPage() {
                   <FormInput
                     label={t("setup.act")}
                     value={act}
-                    onChangeText={setAct}
+                    onChangeText={(v) => setAct(v.replace(/\D/g, ""))}
                     placeholder={t("setup.actPlaceholder")}
                     keyboardType="number-pad"
                     textClass={styles.textClass}

@@ -35,7 +35,7 @@ export default function SettingsPage() {
 
   const { theme, setTheme, isDark } = useAppTheme();
   const { t, language } = useAppLanguage();
-  const { isHydrated, state, signOut, clearAll, setNotificationsEnabled, restoreData } = useAppData();
+  const { isHydrated, state, signOut, deleteAccount, setNotificationsEnabled, restoreData } = useAppData();
   const insets = useSafeAreaInsets();
 
   const currentLanguageName = useMemo(() => {
@@ -271,8 +271,20 @@ export default function SettingsPage() {
 
   const handleDeleteConfirm = async () => {
     if (!isHydrated) return;
-    await clearAll();
-    router.replace("/login");
+    try {
+      if (state.user?.isGuest) {
+        await signOut();
+      } else {
+        await deleteAccount();
+      }
+      router.replace("/login");
+    } catch (e) {
+      if (__DEV__) console.warn("Delete account failed", e);
+      Alert.alert(
+        t("general.error"),
+        t("settings.deleteWarning") || "Account deletion failed. You may need to sign in again and try again."
+      );
+    }
   };
 
   if (showDeleteConfirm) {
@@ -368,6 +380,9 @@ export default function SettingsPage() {
 
             <Text className={`text-center text-sm ${isDark ? 'text-gray-600' : 'text-gray-400'} mt-2`}>
               {t('settings.appVersion')}
+            </Text>
+            <Text className={`text-center text-xs ${secondaryTextClass} mt-4 mb-2`}>
+              {t("general.needHelpEmail")}
             </Text>
           </View>
         </View>

@@ -588,7 +588,7 @@ export default function ProfilePage() {
                 value={user?.sat ?? ""}
                 isEditing={isEditing}
                 editValue={editData.sat}
-                onChangeText={(t) => setEditData((p) => ({ ...p, sat: t }))}
+                onChangeText={(v) => setEditData((p) => ({ ...p, sat: v.replace(/\D/g, "") }))}
                 placeholder={t("profile.satPlaceholder")}
                 placeholderColor={placeholderColor}
                 inputBgClass={inputBgClass}
@@ -596,6 +596,7 @@ export default function ProfilePage() {
                 textClass={textClass}
                 secondaryTextClass={secondaryTextClass}
                 borderClass={borderClass}
+                keyboardType="number-pad"
               />
 
               <ProfileField //ACT
@@ -605,8 +606,9 @@ export default function ProfilePage() {
                 value={user?.act ?? ""}
                 isEditing={isEditing}
                 editValue={editData.act}
-                onChangeText={(t) => setEditData((p) => ({ ...p, act: t }))}
+                onChangeText={(v) => setEditData((p) => ({ ...p, act: v.replace(/\D/g, "") }))}
                 placeholder={t("profile.actPlaceholder")}
+                keyboardType="number-pad"
                 placeholderColor={placeholderColor}
                 inputBgClass={inputBgClass}
                 inputClass={inputClass}

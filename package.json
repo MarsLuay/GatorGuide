@@ -8,7 +8,12 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
-    "lint": "expo lint"
+    "lint": "expo lint",
+    "prebuild": "expo prebuild",
+    "prebuild:android": "expo prebuild --platform android",
+    "prebuild:ios": "expo prebuild --platform ios",
+    "eas:ios": "eas build --platform ios --profile preview",
+    "eas:android": "eas build --platform android --profile preview"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",
@@ -18,6 +23,8 @@
     "@react-navigation/native": "^7.1.8",
     "expo": "~54.0.33",
     "expo-audio": "^1.1.1",
+    "expo-auth-session": "~7.0.10",
+    "expo-crypto": "~15.0.8",
     "expo-document-picker": "^14.0.8",
     "expo-file-system": "^19.0.21",
     "expo-haptics": "~15.0.8",
@@ -48,6 +55,7 @@
   },
   "devDependencies": {
     "@types/react": "~19.1.0",
+    "eas-cli": "^18.0.1",
     "eslint": "^9.25.0",
     "eslint-config-expo": "~10.0.0",
     "tailwindcss": "^3.4.19",
