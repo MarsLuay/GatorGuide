@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { View, Text, Pressable, ScrollView, TextInput, Animated, Alert, Platform } from "react-native";
-import { router } from "expo-router";
+import { useRouter } from "expo-router";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
@@ -8,6 +8,7 @@ import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppData } from "@/hooks/use-app-data";
 import { aiService, ChatMessage } from "@/services";
 import { useAppTheme } from "@/hooks/use-app-theme";
+import useBack from "@/hooks/use-back";
 import * as FileSystem from "expo-file-system";
 import * as Sharing from "expo-sharing";
 import * as DocumentPicker from "expo-document-picker";
@@ -41,9 +42,11 @@ interface StudentProfile {
 }
 
 export default function RoadmapPage() {
+  const router = useRouter();
   const styles = useThemeStyles();
   const { t } = useAppLanguage();
   const { theme, setTheme } = useAppTheme();
+  const back = useBack();
   const { state, restoreData, isHydrated } = useAppData();
   const { textClass, secondaryTextClass, cardBgClass, borderClass } = styles;
 
@@ -317,7 +320,7 @@ export default function RoadmapPage() {
         <ScrollView contentContainerStyle={{ paddingBottom: 32 }}>
           <View className="max-w-md w-full self-center">
             <View className="px-6 pt-8 pb-6">
-              <Pressable onPress={() => router.back()} className="mb-4 flex-row items-center">
+              <Pressable onPress={back} className="mb-4 flex-row items-center">
                 <MaterialIcons name="arrow-back" size={20} color={styles.placeholderColor} />
                 <Text className={`${secondaryTextClass} ml-2`}>{t("roadmap.back")}</Text>
               </Pressable>
@@ -409,7 +412,7 @@ export default function RoadmapPage() {
         <View className="max-w-md w-full self-center">
           {/* Header */}
           <View className="px-6 pt-8 pb-6">
-            <Pressable onPress={() => router.back()} className="mb-4 flex-row items-center">
+            <Pressable onPress={back} className="mb-4 flex-row items-center">
               <MaterialIcons name="arrow-back" size={20} color={styles.placeholderColor} />
               <Text className={`${secondaryTextClass} ml-2`}>{t("roadmap.back")}</Text>
             </Pressable>
@@ -499,53 +502,53 @@ export default function RoadmapPage() {
                             {task.title}
                           </Text>
                           <Text className={`${secondaryTextClass} text-sm`}>{task.description}</Text>
-
-                          {task.expanded && (
-                            <View className="mt-2">
-                              {task.documents && (
-                                <View className="mt-2 gap-3">
-                                  {(Object.keys(task.documents) as (keyof DocumentChecklist)[]).map((docKey) => (
-                                    <View key={docKey}>
-                                      <Pressable
-                                        onPress={() => toggleDocument(task.id, docKey)}
-                                        className={`flex-row items-center p-3 rounded-xl ${task.documents![docKey] ? "bg-green-50 dark:bg-green-900/10" : "bg-zinc-50 dark:bg-zinc-800/50"}`}
-                                      >
-                                        <Ionicons name={getDocIcon(docKey)} size={18} color={task.documents![docKey] ? "#22C55E" : styles.placeholderColor} />
-                                        <Text className={`flex-1 ml-3 text-sm ${task.documents![docKey] ? "text-green-700 dark:text-green-400 font-medium" : textClass}`}>
-                                          {formatDocLabel(docKey)}
-                                        </Text>
-                                        <Ionicons name={task.documents![docKey] ? "checkmark-circle" : "cloud-upload-outline"} size={20} color={task.documents![docKey] ? "#22C55E" : borderClass} />
-                                      </Pressable>
-                                      
-                                      {/* Upload Box Logic */}
-                                      {activeUpload === docKey && (
-                                        <View className="mt-2 border-2 border-dashed border-gray-300 dark:border-zinc-700 rounded-xl p-6 items-center justify-center bg-gray-50/50 dark:bg-zinc-900/30">
-                                            <Ionicons name="cloud-upload" size={28} color="#22C55E" />
-                                          <Text className={`${textClass} mt-2 text-sm font-medium`}>
-                                            {t("roadmap.uploadDocument").replace("{document}", formatDocLabel(docKey))}
-                                          </Text>
-                                          <Text className={`${secondaryTextClass} text-xs`}>{t("roadmap.supportedFormats")}</Text>
-                                            <Pressable className="mt-3 bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 px-4 py-1.5 rounded-lg">
-                                            <Text className={`${textClass} text-xs font-bold`}>{t("roadmap.selectFile")}</Text>
-                                            </Pressable>
-                                        </View>
-                                      )}
-                                    </View>
-                                  ))}
-                                </View>
-                              )}
-                              
-                              <TextInput
-                                placeholder={t("roadmap.addNotePlaceholder")}
-                                placeholderTextColor={styles.placeholderColor}
-                                onSubmitEditing={(e) => addNote(task.id, e.nativeEvent.text)}
-                                className={`mt-4 border p-2 rounded-lg ${styles.inputBgClass} ${textClass}`}
-                              />
-                            </View>
-                          )}
                         </View>
                       </View>
                     </Pressable>
+
+                    {task.expanded && (
+                      <View className="px-5 pb-5">
+                        {task.documents && (
+                          <View className="mt-2 gap-3">
+                            {(Object.keys(task.documents) as (keyof DocumentChecklist)[]).map((docKey) => (
+                              <View key={docKey}>
+                                <Pressable
+                                  onPress={() => toggleDocument(task.id, docKey)}
+                                  className={`flex-row items-center p-3 rounded-xl ${task.documents![docKey] ? "bg-green-50 dark:bg-green-900/10" : "bg-zinc-50 dark:bg-zinc-800/50"}`}
+                                >
+                                  <Ionicons name={getDocIcon(docKey)} size={18} color={task.documents![docKey] ? "#22C55E" : styles.placeholderColor} />
+                                  <Text className={`flex-1 ml-3 text-sm ${task.documents![docKey] ? "text-green-700 dark:text-green-400 font-medium" : textClass}`}>
+                                    {formatDocLabel(docKey)}
+                                  </Text>
+                                  <Ionicons name={task.documents![docKey] ? "checkmark-circle" : "cloud-upload-outline"} size={20} color={task.documents![docKey] ? "#22C55E" : borderClass} />
+                                </Pressable>
+
+                                {/* Upload Box Logic */}
+                                {activeUpload === docKey && (
+                                  <View className="mt-2 border-2 border-dashed border-gray-300 dark:border-zinc-700 rounded-xl p-6 items-center justify-center bg-gray-50/50 dark:bg-zinc-900/30">
+                                    <Ionicons name="cloud-upload" size={28} color="#22C55E" />
+                                    <Text className={`${textClass} mt-2 text-sm font-medium`}>
+                                      {t("roadmap.uploadDocument").replace("{document}", formatDocLabel(docKey))}
+                                    </Text>
+                                    <Text className={`${secondaryTextClass} text-xs`}>{t("roadmap.supportedFormats")}</Text>
+                                    <Pressable className="mt-3 bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 px-4 py-1.5 rounded-lg">
+                                      <Text className={`${textClass} text-xs font-bold`}>{t("roadmap.selectFile")}</Text>
+                                    </Pressable>
+                                  </View>
+                                )}
+                              </View>
+                            ))}
+                          </View>
+                        )}
+
+                        <TextInput
+                          placeholder={t("roadmap.addNotePlaceholder")}
+                          placeholderTextColor={styles.placeholderColor}
+                          onSubmitEditing={(e) => addNote(task.id, e.nativeEvent.text)}
+                          className={`mt-4 border p-2 rounded-lg ${styles.inputBgClass} ${textClass}`}
+                        />
+                      </View>
+                    )}
                   </View>
                 ))}
               </View>

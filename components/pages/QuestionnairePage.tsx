@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { View, Text, TextInput, Pressable, ScrollView, Keyboard } from "react-native";
-import { router } from "expo-router";
+import { useRouter } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
@@ -15,6 +15,7 @@ type Question =
   | { id: string; question: string; type: "radio"; options: string[] };
 
 export default function QuestionnairePage() {
+  const router = useRouter();
   const { isDark } = useAppTheme();
   const { isHydrated, state, setQuestionnaireAnswers } = useAppData();
   const { t } = useAppLanguage();

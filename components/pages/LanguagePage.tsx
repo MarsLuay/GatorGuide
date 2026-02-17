@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { View, Text, Pressable, ScrollView } from "react-native";
-import { router } from "expo-router";
+import { useRouter } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { useAppTheme } from "@/hooks/use-app-theme";
@@ -11,6 +11,7 @@ import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 export default function LanguagePage() {
   const { isDark } = useAppTheme();
   const { language, setLanguage, t } = useAppLanguage();
+  const router = useRouter();
 
   const languages = useMemo(
     () => [
