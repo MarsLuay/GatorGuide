@@ -1,26 +1,18 @@
 import { useCallback } from "react";
 import { useRouter } from "expo-router";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, type NavigationProp, type ParamListBase } from "@react-navigation/native";
 
-export function useBack(fallback = "/") {
+type ReplaceArg = Parameters<ReturnType<typeof useRouter>["replace"]>[0];
+
+export default function useBack(fallback: ReplaceArg = "/") {
   const router = useRouter();
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp<ParamListBase>>();
 
   return useCallback(() => {
-    try {
-      // Prefer React Navigation's stack check (works on native)
-      const nav: any = navigation;
-      if (nav && typeof nav.canGoBack === "function" && nav.canGoBack()) {
-        nav.goBack();
-        return;
-      }
-    } catch {
-      // ignore and fall through to router.replace
+    if (navigation.canGoBack && navigation.canGoBack()) {
+      navigation.goBack();
+    } else {
+      router.replace(fallback);
     }
-
-    // Deterministic fallback: always replace to the provided fallback route
-    router.replace(fallback);
-  }, [router, navigation, fallback]);
+  }, [navigation, router, fallback]);
 }
-
-export default useBack;

@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { View, Text, TextInput, Pressable, ScrollView, Keyboard } from "react-native";
 import { useRouter } from "expo-router";
+import useBack from "@/hooks/use-back";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
@@ -16,6 +17,7 @@ type Question =
 
 export default function QuestionnairePage() {
   const router = useRouter();
+  const back = useBack();
   const { isDark } = useAppTheme();
   const { isHydrated, state, setQuestionnaireAnswers } = useAppData();
   const { t } = useAppLanguage();
@@ -145,7 +147,8 @@ export default function QuestionnairePage() {
             <Pressable
               onPress={() => {
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                handleBack();
+                if (currentStep > 0) handleBack();
+                else back();
               }}
               className="mr-4"
             >

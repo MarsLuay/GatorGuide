@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { View, Text, TextInput, Pressable, ScrollView } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
+import useBack from "@/hooks/use-back";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useAppLanguage } from "@/hooks/use-app-language";
 
 export default function CostCalculatorPage() {
-  const router = useRouter();
+  const back = useBack();
   const styles = useThemeStyles();
   const { t } = useAppLanguage();
   const insets = useSafeAreaInsets();
@@ -40,10 +40,7 @@ export default function CostCalculatorPage() {
         contentContainerStyle={{ paddingTop: insets.top, paddingBottom: 96 }}
       >
         <View className="max-w-md w-full self-center px-6 pt-6">
-          <Pressable
-            onPress={() => router.back()}
-            className="mb-4 flex-row items-center"
-          >
+          <Pressable onPress={back} className="mb-4 flex-row items-center">
             <MaterialIcons name="arrow-back" size={24} color={placeholderColor} />
             <Text className={`${secondaryTextClass} ml-2`}>{t("general.back")}</Text>
           </Pressable>

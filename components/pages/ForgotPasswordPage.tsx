@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { useRouter } from "expo-router";
 import { FontAwesome5, MaterialIcons } from "@expo/vector-icons";
+import useBack from "@/hooks/use-back";
 import * as Haptics from "expo-haptics";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppLanguage } from "@/hooks/use-app-language";
@@ -21,6 +22,7 @@ const isEmailValid = (value: string) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value.
 
 export default function ForgotPasswordPage() {
   const router = useRouter();
+  const back = useBack("/login");
   const { t } = useAppLanguage();
   const styles = useThemeStyles();
 
@@ -110,7 +112,7 @@ export default function ForgotPasswordPage() {
           <Pressable
             onPress={() => {
               Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-              router.back();
+              back();
             }}
             className="mb-8 flex-row items-center"
             style={({ pressed }) => ({
