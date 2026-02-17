@@ -1215,7 +1215,6 @@ export const translations = {
   "questionnaire.yearsToCompletePlaceholder": "例如：2、4",
   "questionnaire.demand": "该领域就业需求",
   "questionnaire.high": "高",
-  "questionnaire.medium": "中",
   "questionnaire.low": "低",
   "questionnaire.unsure": "不确定",
   "questionnaire.howCompetitive": "竞争程度（录取或就业）？",

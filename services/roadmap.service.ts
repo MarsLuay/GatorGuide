@@ -13,6 +13,15 @@ export interface RoadmapTask {
 export const roadmapService = {
 
   generateInitialRoadmap: async (userId: string, major: string, gpa: string) => {
+    if (!db) {
+      // Firebase not initialized (stub mode); return generated tasks without persisting
+      const fallbackTasks: RoadmapTask[] = [
+        { id: "doc-1", title: "Refine Resume", description: `Tailor your resume for ${major} internships.`, completed: false, category: "Documents" },
+        { id: "acad-1", title: "Target GPA Maintenance", description: `You're at ${gpa}. Keep it above 3.8 for top schools.`, completed: false, category: "Academics" },
+        { id: "app-1", title: "Research Transfer Credits", description: `Check how your current courses transfer to ${major} programs.`, completed: false, category: "Applications" },
+      ];
+      return fallbackTasks;
+    }
     const roadmapRef = doc(db, "roadmaps", userId);
     
     const tasks: RoadmapTask[] = [
@@ -31,12 +40,14 @@ export const roadmapService = {
 
 
   getUserRoadmap: async (userId: string) => {
+    if (!db) return [];
     const docSnap = await getDoc(doc(db, "roadmaps", userId));
-    return docSnap.exists() ? docSnap.data().tasks as RoadmapTask[] : [];
+    return docSnap.exists() ? (docSnap.data().tasks as RoadmapTask[]) : [];
   },
 
 
   toggleTaskStatus: async (userId: string, tasks: RoadmapTask[]) => {
+    if (!db) return;
     const roadmapRef = doc(db, "roadmaps", userId);
     await updateDoc(roadmapRef, { tasks });
   }

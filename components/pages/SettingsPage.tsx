@@ -11,7 +11,6 @@ import { notificationsService } from "@/services";
 import * as FileSystem from "expo-file-system";
 import * as Sharing from "expo-sharing";
 import * as DocumentPicker from "expo-document-picker";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Haptics from "expo-haptics";
 
 type SettingsItem =
@@ -39,26 +38,7 @@ export default function SettingsPage() {
   const { isHydrated, state, signOut, deleteAccount, setNotificationsEnabled, restoreData } = useAppData();
   const insets = useSafeAreaInsets();
 
-  const currentLanguageName = useMemo(() => {
-    const langMap: Record<string, string> = {
-      en: "English",
-      zh: "简体中文",
-      "zh-Hant": "繁體中文",
-      es: "Español",
-      fr: "Français",
-      de: "Deutsch",
-      it: "Italiano",
-      ja: "日本語",
-      ko: "한국어",
-      pt: "Português",
-      ru: "Русский",
-      ar: "العربية",
-      hi: "हिन्दी",
-      vi: "Tiếng Việt",
-      tl: "Tagalog",
-    };
-    return langMap[language] || "English";
-  }, [language]);
+  // removed currentLanguageName (unused) to satisfy linter
 
   const textClass = isDark ? "text-white" : "text-gray-900";
   const secondaryTextClass = isDark ? "text-gray-400" : "text-gray-600";
@@ -67,13 +47,13 @@ export default function SettingsPage() {
   const isRTL = language === "Arabic";
   const flexDirection = isRTL ? "flex-row-reverse" : "flex-row";
 
-  const handleToggleNotifications = async () => {
+  const handleToggleNotifications = useCallback(async () => {
     const currentStatus = state.notificationsEnabled;
-    
+
     if (!currentStatus) {
       // User is trying to enable notifications - request permission
       const permissionStatus = await notificationsService.requestPermissions();
-      
+
       if (permissionStatus === 'granted') {
         await setNotificationsEnabled(true);
         notificationsService.configureNotificationHandler();
@@ -89,9 +69,9 @@ export default function SettingsPage() {
       await setNotificationsEnabled(false);
       await notificationsService.cancelAllNotifications();
     }
-  };
+  }, [state.notificationsEnabled, setNotificationsEnabled, t]);
 
-  const handleExportData = async () => {
+  const handleExportData = useCallback(async () => {
     if (!isHydrated) return;
 
     try {
@@ -130,12 +110,12 @@ export default function SettingsPage() {
       }
 
       await Sharing.shareAsync(fileUri);
-    } catch (error) {
+    } catch {
       Alert.alert(t('settings.exportFailed'), t('settings.exportError'));
     }
-  };
+  }, [isHydrated, state, theme, t]);
 
-  const handleImportData = async () => {
+  const handleImportData = useCallback(async () => {
     if (!isHydrated) return;
 
     try {
@@ -183,34 +163,24 @@ export default function SettingsPage() {
           },
         ]
       );
-    } catch (error) {
+    } catch {
       Alert.alert(t('settings.importFailed'), t('settings.importError'));
     }
-    };
+    }, [isHydrated, restoreData, setTheme, t]);
 
-  const hasExportableData = useMemo(() => {
-    if (!state) return false;
-    // Check if user has filled any profile fields or questionnaire answers
-    const { user, questionnaireAnswers } = state;
-    if (!user) return false;
-    // Check for any non-empty user fields except uid, email, isGuest
-    const userFields = ["name", "major", "gpa", "sat", "act", "resume", "transcript"];
-    const hasUserData = userFields.some((key) => !!(user as any)[key]);
-    const hasQuestionnaire = questionnaireAnswers && Object.values(questionnaireAnswers).some((v) => !!v);
-    return hasUserData || hasQuestionnaire;
-  }, [state]);
+  // removed hasExportableData (unused) to satisfy linter
 
   const handleLogout = useCallback(async () => {
     // Simplified logout: directly sign out and navigate to login
     try {
       await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
       await signOut();
-    } catch (e) {
+    } catch {
       // ignore signOut errors for now
     } finally {
       router.replace("/login");
     }
-  }, [signOut]);
+  }, [signOut, router]);
 
   const sections = useMemo(
     () => [
@@ -267,7 +237,7 @@ export default function SettingsPage() {
         ] as SettingsItem[],
       },
     ],
-    [theme, state.notificationsEnabled, language, setTheme, handleToggleNotifications, handleExportData, handleLogout, t]
+    [theme, state.notificationsEnabled, language, setTheme, handleToggleNotifications, handleExportData, handleImportData, router, t]
   );
 
   const handleDeleteConfirm = async () => {
@@ -279,8 +249,7 @@ export default function SettingsPage() {
         await deleteAccount();
       }
       router.replace("/login");
-    } catch (e) {
-      if (__DEV__) console.warn("Delete account failed", e);
+    } catch {
       Alert.alert(
         t("general.error"),
         t("settings.deleteWarning") || "Account deletion failed. You may need to sign in again and try again."

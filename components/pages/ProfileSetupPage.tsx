@@ -36,7 +36,7 @@ export default function ProfileSetupPage() {
   
   const [isConfettiPlaying, setIsConfettiPlaying] = useState(false);
   const [confettiCooldown, setConfettiCooldown] = useState(false);
-  const [isUploading, setIsUploading] = useState(false);
+  const [, setIsUploading] = useState(false);
 
   const handlePickDocument = async (type: 'resume' | 'transcript') => {
     try {
@@ -148,7 +148,7 @@ export default function ProfileSetupPage() {
       
       try {
         await roadmapService.generateInitialRoadmap(userId, major, gpa);
-      } catch (e) {
+      } catch {
         console.warn("Roadmap generation failed, but profile saved.");
       }
 
