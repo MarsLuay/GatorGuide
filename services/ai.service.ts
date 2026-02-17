@@ -964,6 +964,16 @@ CONSTRAINT: The user STRICTLY requires colleges located in ${String(userProfile.
 
             const aiFitScore = this.parseAiFitScore(item?.aiFitScore);
             const reason = typeof item?.reason === 'string' ? item.reason : undefined;
+            const result = this.createRecommendResult(details, prefWeights, userProfile, questionnaire, reason, aiFitScore);
+            if (!result.reason) {
+              result.reason = `Top: ${Object.entries(result.breakdown ?? {})
+                .filter(([k]) => k !== 'final')
+                .sort((a, b) => (b[1] as number) - (a[1] as number))
+                .slice(0, 2)
+                .map(([k]) => k)
+                .join(', ')}`;
+            }
+            enrichedResults.push(result);
             enrichedResults.push(this.createRecommendResult(details, prefWeights, userProfile, questionnaire, reason, aiFitScore));
           } catch {
             // ignore
