@@ -974,6 +974,7 @@ CONSTRAINT: The user STRICTLY requires colleges located in ${String(userProfile.
                 .join(', ')}`;
             }
             enrichedResults.push(result);
+            enrichedResults.push(this.createRecommendResult(details, prefWeights, userProfile, questionnaire, reason, aiFitScore));
           } catch {
             // ignore
           }
