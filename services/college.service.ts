@@ -7,6 +7,7 @@ import { addDoc, collection, serverTimestamp, doc, updateDoc, arrayUnion, arrayR
 import { API_CONFIG, isStubMode } from './config';
 import { db } from './firebase';
 import { firebaseAuth } from './firebase';
+import { buildScorecardUrl, fetchScorecardUrl } from './scorecard';
 
 const CACHE_TTL_MS = 1000 * 60 * 60 * 24; // 24 hours
 
@@ -34,10 +35,17 @@ export type College = {
   id: string;
   name: string;
   location: { city: string; state: string; };
-  tuition: number;
-  size: 'small' | 'medium' | 'large';
+  tuition: number | null;
+  tuitionInState?: number | null;
+  tuitionOutOfState?: number | null;
+  // raw numeric student size from Scorecard (may be null)
+  studentSize?: number | null;
+  size: 'small' | 'medium' | 'large' | 'unknown';
   setting: 'urban' | 'suburban' | 'rural';
-  admissionRate: number;
+  admissionRate: number | null;
+  completionRate?: number | null;
+  website?: string | null;
+  priceCalculator?: string | null;
   programs: string[];
   matchScore?: number;
 };
@@ -107,11 +115,11 @@ class CollegeService {
       this.lastSource = 'stub';
       await new Promise((resolve) => setTimeout(resolve, 600));
       return [
-        { id: '1', name: 'University of Washington', location: { city: 'Seattle', state: 'WA' }, tuition: 12076, size: 'large', setting: 'urban', admissionRate: 0.53, programs: ['Computer Science', 'Engineering', 'Business'], matchScore: 92 },
-        { id: '2', name: 'Washington State University', location: { city: 'Pullman', state: 'WA' }, tuition: 12701, size: 'large', setting: 'rural', admissionRate: 0.86, programs: ['Business', 'Engineering', 'Agriculture'], matchScore: 88 },
-        { id: '3', name: 'Western Washington University', location: { city: 'Bellingham', state: 'WA' }, tuition: 9456, size: 'medium', setting: 'suburban', admissionRate: 0.93, programs: ['Education', 'Environmental Science', 'Business'], matchScore: 85 },
-        { id: '4', name: 'University of Florida', location: { city: 'Gainesville', state: 'FL' }, tuition: 28659, size: 'large', setting: 'suburban', admissionRate: 0.23, programs: ['Computer Science', 'Engineering'], matchScore: 95 },
-        { id: '5', name: 'Evergreen State College', location: { city: 'Olympia', state: 'WA' }, tuition: 10232, size: 'small', setting: 'suburban', admissionRate: 0.97, programs: ['Liberal Arts', 'Environmental Studies'], matchScore: 80 },
+        { id: '1', name: 'University of Washington', location: { city: 'Seattle', state: 'WA' }, tuition: 12076, tuitionInState: 12076, tuitionOutOfState: 42000, size: 'large', setting: 'urban', admissionRate: 0.53, programs: ['Computer Science', 'Engineering', 'Business'], matchScore: 92 },
+        { id: '2', name: 'Washington State University', location: { city: 'Pullman', state: 'WA' }, tuition: 12701, tuitionInState: 12701, tuitionOutOfState: 34000, size: 'large', setting: 'rural', admissionRate: 0.86, programs: ['Business', 'Engineering', 'Agriculture'], matchScore: 88 },
+        { id: '3', name: 'Western Washington University', location: { city: 'Bellingham', state: 'WA' }, tuition: 9456, tuitionInState: 9456, tuitionOutOfState: 20000, size: 'medium', setting: 'suburban', admissionRate: 0.93, programs: ['Education', 'Environmental Science', 'Business'], matchScore: 85 },
+        { id: '4', name: 'University of Florida', location: { city: 'Gainesville', state: 'FL' }, tuition: 28659, tuitionInState: 28659, tuitionOutOfState: 45000, size: 'large', setting: 'suburban', admissionRate: 0.23, programs: ['Computer Science', 'Engineering'], matchScore: 95 },
+        { id: '5', name: 'Evergreen State College', location: { city: 'Olympia', state: 'WA' }, tuition: 10232, tuitionInState: 10232, tuitionOutOfState: 25000, size: 'small', setting: 'suburban', admissionRate: 0.97, programs: ['Liberal Arts', 'Environmental Studies'], matchScore: 80 },
       ];
     }
 
@@ -121,37 +129,39 @@ class CollegeService {
       this.lastSource = 'cached';
       return cached;
     }
-
+    // Build fields and params for Scorecard
     const fields = [
       'id',
       'school.name',
       'school.city',
       'school.state',
+      'school.school_url',
       'latest.admissions.admission_rate.overall',
+      'latest.student.size',
       'latest.cost.tuition.in_state',
       'latest.cost.tuition.out_of_state',
-      'latest.student.size',
-      'school.degrees_awarded.predominant',
     ].join(',');
 
-    const params = new URLSearchParams({
-      api_key: API_CONFIG.collegeScorecard.apiKey,
+    const params: Record<string, string> = {
       fields,
-      per_page: '10',
-    });
+      per_page: '20',
+      sort: 'latest.student.size:desc',
+    };
 
-    if (criteria.location) params.set('school.state', criteria.location);
-    if (criteria.major) params.set('school.programs.cip_4_digit', criteria.major);
+    if (criteria.location) params['school.state'] = criteria.location;
+
+    const url = buildScorecardUrl(params);
 
     try {
-      const res = await fetch(`${API_CONFIG.collegeScorecard.baseUrl}/schools?${params.toString()}`);
-      if (!res.ok) throw new Error('College Scorecard API request failed');
-      const data = await res.json();
-
+      const data = await fetchScorecardUrl(url);
       const results = (data?.results ?? []).map((r: any, index: number) => {
-        const sizeVal = r?.latest?.student?.size ?? 0;
-        const size: College['size'] = sizeVal > 15000 ? 'large' : sizeVal > 5000 ? 'medium' : 'small';
-        const tuition = r?.latest?.cost?.tuition?.in_state ?? r?.latest?.cost?.tuition?.out_of_state ?? 0;
+        const studentSize = r?.latest?.student?.size ?? null;
+        const size: College['size'] = typeof studentSize === 'number' ? (studentSize > 15000 ? 'large' : studentSize > 5000 ? 'medium' : 'small') : 'unknown';
+        const tuitionInState = r?.latest?.cost?.tuition?.in_state ?? null;
+        const tuitionOutOfState = r?.latest?.cost?.tuition?.out_of_state ?? null;
+        const tuition = tuitionInState ?? tuitionOutOfState ?? null;
+        const locale = (r?.school?.locale || '').toString();
+        const setting: College['setting'] = locale.toLowerCase().includes('city') ? 'urban' : locale.toLowerCase().includes('rural') ? 'rural' : 'suburban';
 
         return {
           id: String(r?.id ?? index),
@@ -161,9 +171,13 @@ class CollegeService {
             state: r?.school?.state ?? '',
           },
           tuition,
+          tuitionInState,
+          tuitionOutOfState,
+          studentSize,
           size,
-          setting: 'suburban',
-          admissionRate: r?.latest?.admissions?.admission_rate?.overall ?? 0,
+          setting,
+          admissionRate: r?.latest?.admissions?.admission_rate?.overall ?? null,
+          website: r?.school?.school_url ?? null,
           programs: [],
         } as College;
       });
@@ -190,6 +204,8 @@ class CollegeService {
         name: 'University of Florida',
         location: { city: 'Gainesville', state: 'FL' },
         tuition: 28659,
+        tuitionInState: 28659,
+        tuitionOutOfState: 45000,
         size: 'large',
         setting: 'suburban',
         admissionRate: 0.23,
@@ -209,29 +225,33 @@ class CollegeService {
       'school.name',
       'school.city',
       'school.state',
+      'school.school_url',
       'latest.admissions.admission_rate.overall',
+      'latest.student.size',
       'latest.cost.tuition.in_state',
       'latest.cost.tuition.out_of_state',
-      'latest.student.size',
     ].join(',');
 
-    const params = new URLSearchParams({
-      api_key: API_CONFIG.collegeScorecard.apiKey,
+    const params: Record<string, string> = {
       fields,
       id: collegeId,
-    });
+      per_page: '1',
+    };
+
+    const url = buildScorecardUrl(params);
 
     try {
-      const res = await fetch(`${API_CONFIG.collegeScorecard.baseUrl}/schools?${params.toString()}`);
-      if (!res.ok) throw new Error('College Scorecard API request failed');
-      const data = await res.json();
+      const data = await fetchScorecardUrl(url);
       const r = data?.results?.[0];
-
       if (!r) throw new Error('College not found');
 
-      const sizeVal = r?.latest?.student?.size ?? 0;
-      const size: College['size'] = sizeVal > 15000 ? 'large' : sizeVal > 5000 ? 'medium' : 'small';
-      const tuition = r?.latest?.cost?.tuition?.in_state ?? r?.latest?.cost?.tuition?.out_of_state ?? 0;
+      const studentSize = r?.latest?.student?.size ?? null;
+      const size: College['size'] = typeof studentSize === 'number' ? (studentSize > 15000 ? 'large' : studentSize > 5000 ? 'medium' : 'small') : 'unknown';
+      const tuitionInState = r?.latest?.cost?.tuition?.in_state ?? null;
+      const tuitionOutOfState = r?.latest?.cost?.tuition?.out_of_state ?? null;
+      const tuition = tuitionInState ?? tuitionOutOfState ?? null;
+      const locale = (r?.school?.locale || '').toString();
+      const setting: College['setting'] = locale.toLowerCase().includes('city') ? 'urban' : locale.toLowerCase().includes('rural') ? 'rural' : 'suburban';
 
       const result: College = {
         id: String(r?.id ?? collegeId),
@@ -241,9 +261,13 @@ class CollegeService {
           state: r?.school?.state ?? '',
         },
         tuition,
+        studentSize,
         size,
-        setting: 'suburban',
-        admissionRate: r?.latest?.admissions?.admission_rate?.overall ?? 0,
+        setting,
+        admissionRate: r?.latest?.admissions?.admission_rate?.overall ?? null,
+        completionRate: r?.latest?.completion?.rate ?? r?.latest?.completion_rate ?? null,
+        website: r?.school?.school_url ?? null,
+        priceCalculator: r?.school?.price_calculator_url ?? r?.school?.school_url ?? null,
         programs: [],
       } as College;
 
@@ -260,17 +284,23 @@ class CollegeService {
   }
 
   async searchColleges(query: string): Promise<College[]> {
+    const q = query.trim();
+    if (q.length < 3) {
+      this.lastSource = isStubMode() ? 'stub' : 'cached';
+      return [];
+    }
+
     if (isStubMode() || API_CONFIG.collegeScorecard.apiKey === 'STUB') {
       this.lastSource = 'stub';
       await new Promise((resolve) => setTimeout(resolve, 300));
 
       const allColleges = await this.getMatches({});
       return allColleges.filter((c) =>
-        c.name.toLowerCase().includes(query.toLowerCase())
+        c.name.toLowerCase().includes(q.toLowerCase())
       );
     }
 
-    const cacheKey = getCacheKey('search', query);
+    const cacheKey = getCacheKey('search', q);
     const cached = await readCache(cacheKey);
     if (cached && Array.isArray(cached)) {
       this.lastSource = 'cached';
@@ -283,27 +313,29 @@ class CollegeService {
       'school.city',
       'school.state',
       'latest.admissions.admission_rate.overall',
-      'latest.cost.tuition.in_state',
-      'latest.cost.tuition.out_of_state',
       'latest.student.size',
+      'latest.cost.tuition.in_state',
     ].join(',');
 
-    const params = new URLSearchParams({
-      api_key: API_CONFIG.collegeScorecard.apiKey,
+    const params: Record<string, string> = {
       fields,
-      per_page: '10',
-      'school.name': query,
-    });
+      per_page: '20',
+      'school.name': q,
+    };
+
+    const url = buildScorecardUrl(params);
 
     try {
-      const res = await fetch(`${API_CONFIG.collegeScorecard.baseUrl}/schools?${params.toString()}`);
-      if (!res.ok) throw new Error('College Scorecard API request failed');
-      const data = await res.json();
+      const data = await fetchScorecardUrl(url);
 
       const results = (data?.results ?? []).map((r: any, index: number) => {
-        const sizeVal = r?.latest?.student?.size ?? 0;
-        const size: College['size'] = sizeVal > 15000 ? 'large' : sizeVal > 5000 ? 'medium' : 'small';
-        const tuition = r?.latest?.cost?.tuition?.in_state ?? r?.latest?.cost?.tuition?.out_of_state ?? 0;
+        const studentSize = r?.latest?.student?.size ?? null;
+        const size: College['size'] = typeof studentSize === 'number' ? (studentSize > 15000 ? 'large' : studentSize > 5000 ? 'medium' : 'small') : 'unknown';
+        const tuitionInState = r?.latest?.cost?.tuition?.in_state ?? null;
+        const tuitionOutOfState = r?.latest?.cost?.tuition?.out_of_state ?? null;
+        const tuition = tuitionInState ?? tuitionOutOfState ?? null;
+        const locale = (r?.school?.locale || '').toString();
+        const setting: College['setting'] = locale.toLowerCase().includes('city') ? 'urban' : locale.toLowerCase().includes('rural') ? 'rural' : 'suburban';
 
         return {
           id: String(r?.id ?? index),
@@ -313,9 +345,13 @@ class CollegeService {
             state: r?.school?.state ?? '',
           },
           tuition,
+          tuitionInState,
+          tuitionOutOfState,
+          studentSize,
           size,
-          setting: 'suburban',
-          admissionRate: r?.latest?.admissions?.admission_rate?.overall ?? 0,
+          setting,
+          admissionRate: r?.latest?.admissions?.admission_rate?.overall ?? null,
+          website: r?.school?.school_url ?? null,
           programs: [],
         } as College;
       });

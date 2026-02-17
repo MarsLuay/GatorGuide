@@ -470,7 +470,7 @@ export default function RoadmapPage() {
                   </Text>
                   {msg.role === 'assistant' && msg.source && msg.source !== 'live' ? (
                     <Text className={`${secondaryTextClass} text-xs mt-0.5`}>
-                      {msg.source === 'cached' ? t("roadmap.cachedResponse") : t("roadmap.sampleResponse")}
+                      {msg.source === 'cached' ? t("roadmap.cachedResponse") : msg.source === 'stub' ? t("roadmap.sampleResponse") : null}
                     </Text>
                   ) : null}
                 </View>

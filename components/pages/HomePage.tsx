@@ -26,6 +26,7 @@ export default function HomePage() {
   const showExtraInfoPrompt = !hasSubmittedSearch;
   const [resultsSource, setResultsSource] = useState<'live' | 'cached' | 'stub' | null>(null);
   const [isSearching, setIsSearching] = useState(false);
+  const [searchTooShort, setSearchTooShort] = useState(false);
 
   const capitalizedName = user?.name 
     ? user.name.split(' ')[0].charAt(0).toUpperCase() + user.name.split(' ')[0].slice(1).toLowerCase()
@@ -40,12 +41,21 @@ export default function HomePage() {
   const placeholderTextColor = isDark ? "#9CA3AF" : "#6B7280";
 
   const handleSearch = async () => {
-    if (!searchQuery.trim()) return;
+    const q = searchQuery.trim();
     setHasSubmittedSearch(true);
-    setIsSearching(true);
+    setSearchTooShort(false);
 
+    if (q.length < 3) {
+      setResults([]);
+      setSearchTooShort(true);
+      // let the service know we didn't hit network
+      try { collegeService.getLastSource(); } catch {}
+      return;
+    }
+
+    setIsSearching(true);
     try {
-      const data = await collegeService.searchColleges(searchQuery.trim());
+      const data = await collegeService.searchColleges(q);
       setResults(data);
       setResultsSource(collegeService.getLastSource());
     } finally {
@@ -97,7 +107,7 @@ export default function HomePage() {
             </View>
             <TextInput
               value={searchQuery}
-              onChangeText={setSearchQuery}
+              onChangeText={(v) => { setSearchQuery(v); setSearchTooShort(false); }}
               onSubmitEditing={handleSearch}
               placeholder={t("home.pressEnterToStart")}
               placeholderTextColor={placeholderTextColor}
@@ -210,25 +220,31 @@ export default function HomePage() {
             <View className="mt-8">
               <View className="flex-row items-center justify-between mb-2">
                 <Text className={`text-lg ${textClass}`}>{t("home.recommendedColleges")}</Text>
-                {resultsSource && resultsSource !== 'live' ? (
+                {resultsSource ? (
                   <Text className={`${secondaryTextClass} text-xs`}>
-                    {resultsSource === 'cached' ? t("home.cachedResults") : t("home.sampleData")}
+                    {resultsSource === 'cached' ? t("home.cachedResults") : resultsSource === 'stub' ? t("home.sampleData") : null}
                   </Text>
                 ) : null}
               </View>
 
               {isSearching ? (
                 <Text className={`${secondaryTextClass} text-sm`}>{t("home.searching")}</Text>
+              ) : searchTooShort ? (
+                <Text className={`${secondaryTextClass} text-sm`}>{t("home.searchTooShort")}</Text>
               ) : (
                 <View className="gap-3">
                   {results.map((college) => (
-                    <Pressable key={college.id} className={`${cardClass} border rounded-xl p-4`}>
+                    <Pressable
+                      key={college.id}
+                      className={`${cardClass} border rounded-xl p-4`}
+                      onPress={() => router.push({ pathname: "/college/[collegeId]", params: { collegeId: String(college.id) } })}
+                    >
                       <Text className={textClass}>{college.name}</Text>
                       <Text className={`text-sm ${secondaryTextClass} mt-1`}>
                         {college.location.city ? `${college.location.city}, ` : ""}{college.location.state}
                       </Text>
                       <Text className={`text-sm ${secondaryTextClass} mt-1`}>
-                        {t("home.admissionRate")}: {college.admissionRate ? `${Math.round(college.admissionRate * 100)}%` : t("home.notAvailable")}
+                        {t("home.admissionRate")}: {typeof college.admissionRate === 'number' ? `${Math.round(college.admissionRate * 100)}%` : t("home.notAvailable")}
                       </Text>
                     </Pressable>
                   ))}

@@ -273,6 +273,31 @@ export default function ProfilePage() {
     return text.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
   };
 
+  // Display helper for saved answers: normalizes translation keys and enums to readable text
+  const displayAnswer = (value: unknown): string => {
+    if (value == null) return "";
+    if (typeof value !== 'string') return String(value);
+    // If it's a full translation key like 'questionnaire.small'
+    if (value.startsWith('questionnaire.')) {
+      try {
+        return t(value as any);
+      } catch {
+        return value;
+      }
+    }
+    // If it's a short enum (e.g. 'small'), try mapping to questionnaire.<enum>
+    if (/^[a-z0-9_]+$/i.test(value)) {
+      try {
+        const mapped = `questionnaire.${value}`;
+        const translated = t(mapped as any);
+        if (translated && translated !== mapped) return translated;
+      } catch {
+        // fallthrough
+      }
+    }
+    return value;
+  };
+
   const handleSave = () => {
     if (!user) return;
     updateUser({
@@ -321,6 +346,60 @@ export default function ProfilePage() {
   const handleQuestionnaireAnswer = (id: string, value: string) => {
     setLocalAnswers((p) => ({ ...p, [id]: value }));
   };
+
+  // Migration: normalize existing collegeSetting stored value to canonical keys
+  const _collegeSettingMigrated = useRef(false);
+  useEffect(() => {
+    if (!isHydrated || _collegeSettingMigrated.current) return;
+    const optionKeys = ["urban", "suburban", "rural", "noPreference"];
+    const raw = questionnaireAnswers['collegeSetting'] ?? state.questionnaireAnswers?.collegeSetting ?? '';
+    const normalize = (val: unknown): string | undefined => {
+      if (typeof val !== 'string') return undefined;
+      if (val.startsWith('questionnaire.')) return val.replace(/^questionnaire\./, '');
+      if (optionKeys.includes(val)) return val;
+      for (const k of optionKeys) {
+        try {
+          if (t((`questionnaire.${k}`) as any) === val) return k;
+        } catch {
+          // ignore
+        }
+      }
+      return undefined;
+    };
+
+    const normalized = normalize(raw);
+    if (normalized && raw !== normalized) {
+      // update local answers to canonical key (do not immediately persist to server)
+      handleQuestionnaireAnswer('collegeSetting', normalized);
+    }
+    _collegeSettingMigrated.current = true;
+  }, [isHydrated]);
+
+  const _environmentMigrated = useRef(false);
+  useEffect(() => {
+    if (!isHydrated || _environmentMigrated.current) return;
+    const optionKeys = ["researchFocused","liberalArts","technical","preProfessional","mixed","noPreference"];
+    const raw = questionnaireAnswers['environment'] ?? state.questionnaireAnswers?.environment ?? '';
+    const normalize = (val: unknown): string | undefined => {
+      if (typeof val !== 'string') return undefined;
+      if (val.startsWith('questionnaire.')) return val.replace(/^questionnaire\./, '');
+      if (optionKeys.includes(val)) return val;
+      for (const k of optionKeys) {
+        try {
+          if (t((`questionnaire.${k}`) as any) === val) return k;
+        } catch {
+          // ignore
+        }
+      }
+      return undefined;
+    };
+
+    const normalized = normalize(raw);
+    if (normalized && raw !== normalized) {
+      handleQuestionnaireAnswer('environment', normalized);
+    }
+    _environmentMigrated.current = true;
+  }, [isHydrated]);
 
   const handleSaveQuestionnaire = async () => {
     await setQuestionnaireAnswers(questionnaireAnswers);
@@ -673,7 +752,11 @@ export default function ProfilePage() {
                     <View className="gap-6">
                       {questions.map((question) => (
                         <View key={question.id}>
-                          <Text className={`text-sm font-semibold ${textClass} mb-3`}>{question.question}</Text>
+                          <Text className={`text-sm font-semibold ${textClass} mb-3`}>{
+                            typeof question.question === 'string' && question.question.startsWith('questionnaire.')
+                              ? t((question.question) as any)
+                              : question.question
+                          }</Text>
 
                           {/* Text/Textarea Input */}
                           {(question.type === "text" || question.type === "textarea") && (
@@ -691,28 +774,137 @@ export default function ProfilePage() {
                           {/* Radio Options */}
                           {question.type === "radio" && (
                             <View className="gap-2">
-                              {question.options.map((option) => {
-                                const isSelected = questionnaireAnswers[question.id] === option;
-                                return (
-                                  <Pressable
-                                    key={option}
-                                    onPress={() => {
-                                      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                                      handleQuestionnaireAnswer(question.id, option);
-                                    }}
-                                    className={`px-4 py-3 rounded-lg border ${
-                                      isSelected
-                                        ? "bg-green-500/10 border-green-500"
-                                        : borderClass
-                                    }`}
-                                  >
-                                    <View className="flex-row items-center justify-between">
-                                      <Text className={isSelected ? "text-green-500 font-semibold" : textClass}>{option}</Text>
-                                      {isSelected && <MaterialIcons name="check-circle" size={18} color="#22C55E" />}
-                                    </View>
-                                  </Pressable>
-                                );
-                              })}
+                              {question.id === 'collegeSetting' ? (
+                                (() => {
+                                  const optionKeys = ["urban", "suburban", "rural", "noPreference"];
+                                  const stored = questionnaireAnswers[question.id];
+                                  // Normalize saved answer into canonical key without changing stored value
+                                  let savedKey: string | undefined = undefined;
+                                  if (typeof stored === 'string') {
+                                    if (stored.startsWith('questionnaire.')) {
+                                      savedKey = stored.replace(/^questionnaire\./, '');
+                                    } else if (optionKeys.includes(stored)) {
+                                      savedKey = stored;
+                                    } else {
+                                      // If stored equals a translated label, map back to key
+                                      for (const k of optionKeys) {
+                                        try {
+                                          if (t((`questionnaire.${k}`) as any) === stored) {
+                                            savedKey = k;
+                                            break;
+                                          }
+                                        } catch {
+                                          // ignore
+                                        }
+                                      }
+                                    }
+                                  }
+
+                                  return optionKeys.map((key) => {
+                                    const optionLabel = t((`questionnaire.${key}`) as any);
+                                    const isSelected = savedKey === key;
+                                    return (
+                                      <Pressable
+                                        key={key}
+                                        onPress={() => {
+                                              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                                              // Save canonical key for collegeSetting
+                                              handleQuestionnaireAnswer(question.id, key);
+                                            }}
+                                        className={`px-4 py-3 rounded-lg border ${
+                                          isSelected
+                                            ? "bg-green-500/10 border-green-500"
+                                            : borderClass
+                                        }`}
+                                      >
+                                        <View className="flex-row items-center justify-between">
+                                          <Text className={isSelected ? "text-green-500 font-semibold" : textClass}>{optionLabel}</Text>
+                                          {isSelected && <MaterialIcons name="check-circle" size={18} color="#22C55E" />}
+                                        </View>
+                                      </Pressable>
+                                    );
+                                  });
+                                })()
+                              ) : question.id === 'environment' ? (
+                                (() => {
+                                  const optionKeys = ["researchFocused","liberalArts","technical","preProfessional","mixed","noPreference"];
+                                  const stored = questionnaireAnswers[question.id];
+                                  let savedKey: string | undefined = undefined;
+                                  if (typeof stored === 'string') {
+                                    if (stored.startsWith('questionnaire.')) {
+                                      savedKey = stored.replace(/^questionnaire\./, '');
+                                    } else if (optionKeys.includes(stored)) {
+                                      savedKey = stored;
+                                    } else {
+                                      for (const k of optionKeys) {
+                                        try {
+                                          if (t((`questionnaire.${k}`) as any) === stored) {
+                                            savedKey = k;
+                                            break;
+                                          }
+                                        } catch {
+                                        }
+                                      }
+                                    }
+                                  }
+                                  return optionKeys.map((key) => {
+                                    const optionLabel = t((`questionnaire.${key}`) as any);
+                                    const isSelected = savedKey === key;
+                                    return (
+                                      <Pressable
+                                        key={key}
+                                        onPress={() => {
+                                          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                                          handleQuestionnaireAnswer(question.id, key);
+                                        }}
+                                        className={`px-4 py-3 rounded-lg border ${
+                                          isSelected
+                                            ? "bg-green-500/10 border-green-500"
+                                            : borderClass
+                                        }`}
+                                      >
+                                        <View className="flex-row items-center justify-between">
+                                          <Text className={isSelected ? "text-green-500 font-semibold" : textClass}>{optionLabel}</Text>
+                                          {isSelected && <MaterialIcons name="check-circle" size={18} color="#22C55E" />}
+                                        </View>
+                                      </Pressable>
+                                    );
+                                  });
+                                })()
+                              ) : (
+                                question.options.map((option) => {
+                                  const stored = questionnaireAnswers[question.id];
+                                  // Use displayAnswer helper to normalize stored answers for display
+                                  const storedDisplay = displayAnswer(stored);
+
+                                  // Option label may itself be a key or a translated string — normalize when rendering
+                                  const optionLabel = typeof option === 'string' && option.startsWith('questionnaire.') ? t(option as any) : option;
+
+                                  const isSelected = storedDisplay === optionLabel || stored === optionLabel || stored === option;
+
+                                  return (
+                                    <Pressable
+                                      key={option}
+                                      onPress={() => {
+                                        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                                        handleQuestionnaireAnswer(question.id, option);
+                                      }}
+                                      className={`px-4 py-3 rounded-lg border ${
+                                        isSelected
+                                          ? "bg-green-500/10 border-green-500"
+                                          : borderClass
+                                      }`}
+                                    >
+                                      <View className="flex-row items-center justify-between">
+                                        <Text className={isSelected ? "text-green-500 font-semibold" : textClass}>{
+                                          typeof option === 'string' && option.startsWith('questionnaire.') ? t(option as any) : option
+                                        }</Text>
+                                        {isSelected && <MaterialIcons name="check-circle" size={18} color="#22C55E" />}
+                                      </View>
+                                    </Pressable>
+                                  );
+                                })
+                              )}
                             </View>
                           )}
                         </View>

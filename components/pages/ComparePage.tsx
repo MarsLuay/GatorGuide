@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { View, Text, Pressable, ScrollView, ActivityIndicator } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import useBack from "@/hooks/use-back";
+import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
@@ -20,6 +21,7 @@ export default function ComparePage() {
   const [loading, setLoading] = useState(true);
 
   const { textClass, secondaryTextClass, borderClass, cardBgClass } = styles;
+  const router = useRouter();
 
   useEffect(() => {
     let cancelled = false;
@@ -44,9 +46,14 @@ export default function ComparePage() {
     }
   };
 
-  const formatTuition = (n: number) =>
-    n >= 1000 ? "$" + (n / 1000).toFixed(0) + "k" : "$" + n;
-  const formatRate = (r: number) => Math.round(r * 100) + "%";
+  const formatTuition = (n: number | null) => {
+    if (n === null || typeof n !== 'number') return t("home.notAvailable");
+    return n >= 1000 ? "$" + (n / 1000).toFixed(0) + "k" : "$" + n;
+  };
+  const formatRate = (r: number | null) => {
+    if (r === null || typeof r !== 'number') return t("home.notAvailable");
+    return Math.round(r * 100) + "%";
+  };
 
   return (
     <ScreenBackground>
@@ -86,10 +93,12 @@ export default function ComparePage() {
                       className={"flex-row items-center justify-between px-4 py-4 border-b " + borderClass + " last:border-b-0"}
                     >
                       <View className="flex-1">
-                        <Text className={textClass + " font-medium"}>{c.name}</Text>
-                        <Text className={secondaryTextClass + " text-sm"}>
-                          {c.location.city}, {c.location.state}
-                        </Text>
+                        <Pressable onPress={(e: any) => { e?.stopPropagation?.(); router.push({ pathname: "/college/[collegeId]", params: { collegeId: String(c.id) } }); }}>
+                          <Text className={textClass + " font-medium"}>{c.name}</Text>
+                          <Text className={secondaryTextClass + " text-sm"}>
+                            {c.location.city}, {c.location.state}
+                          </Text>
+                        </Pressable>
                       </View>
                       <View
                         className={
@@ -132,7 +141,7 @@ export default function ComparePage() {
                               {t("compare.admissionRate")}: {formatRate(c.admissionRate)}
                             </Text>
                             <Text className={secondaryTextClass + " text-xs"}>
-                              {t("compare.size")}: {c.size}
+                              {t("compare.size")}: {c.size === 'unknown' ? t('home.notAvailable') : c.size}
                             </Text>
                             <Text className={secondaryTextClass + " text-xs"}>
                               {t("compare.setting")}: {c.setting}
