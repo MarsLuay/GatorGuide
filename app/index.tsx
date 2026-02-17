@@ -42,7 +42,7 @@ export default function Index() {
     };
 
     performNavigation();
-  }, [isHydrated, state.user]);
+  }, [isHydrated, state.user, router]);
 
   return <LoadingScreen message="Preparing your data" />;
 }

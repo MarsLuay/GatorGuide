@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, useCallback } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { View, Text, TextInput, Pressable, ScrollView, Keyboard, Dimensions, Alert, Platform } from "react-native";
 import { useRouter } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -266,18 +266,7 @@ export default function ProfilePage() {
     [state.questionnaireAnswers]
   );
 
-  // --- Add this helper to check if there is any user data to export ---
-  const hasExportableData = useMemo(() => {
-    if (!state) return false;
-    // Check if user has filled any profile fields or questionnaire answers
-    const { user, questionnaireAnswers } = state;
-    if (!user) return false;
-    // Check for any non-empty user fields except uid, email, isGuest
-    const userFields = ["name", "major", "gpa", "sat", "act", "resume", "transcript"];
-    const hasUserData = userFields.some((key) => !!(user as any)[key]);
-    const hasQuestionnaire = questionnaireAnswers && Object.values(questionnaireAnswers).some((v) => !!v);
-    return hasUserData || hasQuestionnaire;
-  }, [state]);
+  // (removed unused hasExportableData helper to satisfy linter)
 
   const capitalizeWords = (text: string | undefined) => {
     if (!text) return "";

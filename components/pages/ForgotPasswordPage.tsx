@@ -5,8 +5,7 @@ import {
   Pressable, 
   Alert, 
   Keyboard, 
-  TouchableWithoutFeedback, 
-  ActivityIndicator 
+  TouchableWithoutFeedback
 } from "react-native";
 import { useRouter } from "expo-router";
 import { FontAwesome5, MaterialIcons } from "@expo/vector-icons";

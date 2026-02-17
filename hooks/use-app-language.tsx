@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Language, translations, TranslationKey } from "@/services/translations";
+import { Language, translations } from "@/services/translations";
 
 const STORAGE_KEY = "app-language";
 const DEFAULT_LANGUAGE: Language = "English";
@@ -8,7 +8,7 @@ const DEFAULT_LANGUAGE: Language = "English";
 type AppLanguageContextValue = {
   language: Language;
   setLanguage: (language: Language) => void;
-  t: (key: TranslationKey) => string;
+  t: (key: string, params?: Record<string, string | number>) => string;
   hydrated: boolean;
 };
 
@@ -48,9 +48,15 @@ export function AppLanguageProvider({ children }: { children: React.ReactNode })
     AsyncStorage.setItem(STORAGE_KEY, value).catch(() => {});
   };
 
-  const t = (key: TranslationKey): string => {
+  const t = (key: string, params?: Record<string, string | number>): string => {
     const bundle = translations as Record<Language, Record<string, string>>;
-    return bundle[language]?.[key] || bundle[DEFAULT_LANGUAGE]?.[key] || key;
+    let str = bundle[language]?.[key] || bundle[DEFAULT_LANGUAGE]?.[key] || key;
+    if (params) {
+      for (const [k, v] of Object.entries(params)) {
+        str = str.replace(new RegExp(`\\{${k}\\}`, "g"), String(v));
+      }
+    }
+    return str;
   };
 
   const value = useMemo<AppLanguageContextValue>(

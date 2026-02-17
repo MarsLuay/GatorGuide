@@ -21,7 +21,7 @@ const isEmailValid = (value: string) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value.
 
 export default function AuthPage() {
   const router = useRouter();
-  const { isHydrated, state, signIn, signInWithAuthUser, signInAsGuest, updateUser, setQuestionnaireAnswers } = useAppData();
+  const { isHydrated, signIn, signInWithAuthUser, signInAsGuest, updateUser, setQuestionnaireAnswers } = useAppData();
   const { t } = useAppLanguage();
   const styles = useThemeStyles();
 
@@ -31,30 +31,33 @@ export default function AuthPage() {
   const [isSignUp, setIsSignUp] = useState(true);
 
   const isNative = Platform.OS === "ios" || Platform.OS === "android";
-  const makeRedirect = makeRedirectUri({ useProxy: true });
+  // types for makeRedirectUri options vary across expo-auth-session versions; cast to any
+  const makeRedirect = makeRedirectUri({ useProxy: true } as any);
   const redirectUri = isNative
     ? (makeRedirect.startsWith("exp://") ? `https://auth.expo.io/@${API_CONFIG.expoUsername}/gator-guide` : makeRedirect)
     : makeRedirectUri({ scheme: "gatorguide", path: "auth" });
   const microsoftDiscovery = useAutoDiscovery("https://login.microsoftonline.com/common/v2.0");
 
-  const [googleRequest, googleResponse, googlePromptAsync] = useIdTokenAuthRequest(
+  const [, googleResponse, googlePromptAsync] = useIdTokenAuthRequest(
     {
       clientId: API_CONFIG.googleWebClientId || "dummy",
       webClientId: API_CONFIG.googleWebClientId || undefined,
     },
+    // The AuthRequest redirect options typing varies between versions; cast to any
     isNative
-      ? (makeRedirect.startsWith("exp://") ? { redirectUri } : { useProxy: true })
-      : { scheme: "gatorguide", path: "auth" }
+      ? (makeRedirect.startsWith("exp://") ? ({ redirectUri } as any) : ({ useProxy: true } as any))
+      : ({ scheme: "gatorguide", path: "auth" } as any)
   );
 
-  const [microsoftRequest, microsoftResponse, microsoftPromptAsync] = useAuthRequest(
+  const [, microsoftResponse, microsoftPromptAsync] = useAuthRequest(
     {
       clientId: API_CONFIG.microsoftClientId || "dummy",
       scopes: ["openid", "profile", "email"],
       redirectUri,
       responseType: ResponseType.IdToken,
     },
-    microsoftDiscovery ?? undefined
+    // useAuthRequest expects DiscoveryDocument | null — convert undefined to null
+    microsoftDiscovery ?? null
   );
 
   useEffect(() => {
@@ -71,7 +74,7 @@ export default function AuthPage() {
         Alert.alert(t("general.error"), msg);
       }
     })();
-  }, [googleResponse, isNative, signInWithAuthUser, t]);
+  }, [googleResponse, isNative, signInWithAuthUser, t, router]);
 
   useEffect(() => {
     if (microsoftResponse?.type !== "success" || !isNative) return;
@@ -87,7 +90,7 @@ export default function AuthPage() {
         Alert.alert(t("general.error"), msg);
       }
     })();
-  }, [microsoftResponse, isNative, signInWithAuthUser, t]);
+  }, [microsoftResponse, isNative, signInWithAuthUser, t, router]);
 
   const emailError = useMemo(() => {
     const trimmed = email.trim();

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { View, Text, Pressable, ScrollView, TextInput, Animated, Alert, Platform } from "react-native";
 import { useRouter } from "expo-router";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
@@ -52,20 +52,16 @@ export default function RoadmapPage() {
 
   const user = state.user;
 
-  const studentProfile: StudentProfile = {
+  const studentProfile = useMemo<StudentProfile>(() => ({
     name: "Retee",
     gradeLevel: 11,
     intendedMajor: "Computer Science",
     targetSchools: ["UW", "CWU"],
     currentCourses: ["Math 101", "English 101", "CS 50"],
     interests: ["Robotics Club", "Volunteer Work"],
-  };
+  }), []);
 
-  const [activeClubs, setActiveClubs] = useState<string[]>([
-    "Robotics Club",
-    "Dance Club",
-    "Math Club",
-  ]);
+  // activeClubs removed (unused) to satisfy lint; keep studentProfile and tasks generation stable
 
   const [tasks, setTasks] = useState<Task[]>([]);
   const [aiInput, setAiInput] = useState("");
@@ -82,7 +78,7 @@ export default function RoadmapPage() {
     });
   }, [user?.isGuest]);
 
-  const generateTasks = (profile: StudentProfile): Task[] => {
+  const generateTasks = useCallback((profile: StudentProfile): Task[] => {
     const docTask: Task = {
       id: "documents-checklist",
       title: t("roadmap.documents"),
@@ -127,11 +123,11 @@ export default function RoadmapPage() {
     }));
 
     return [docTask, ...courseTasks, ...appTasks, ...interestTasks];
-  };
+  }, [t]);
 
   useEffect(() => {
     setTasks(generateTasks(studentProfile));
-  }, []);
+  }, [generateTasks, studentProfile]);
 
   const toggleCompleted = (id: string) => {
     setTasks((prev) =>
@@ -560,7 +556,7 @@ export default function RoadmapPage() {
             <View className={`${cardBgClass} border rounded-2xl p-5`}>
               <Text className={`${textClass} text-base mb-2 font-bold`}>{t("roadmap.activeClubs")}</Text>
               <View className="flex-row flex-wrap">
-                {activeClubs.map((club, i) => (
+                {studentProfile.interests.map((club: string, i: number) => (
                   <View key={i} className="bg-green-500 px-3 py-1 rounded-full mr-2 mb-2">
                     <Text className="text-black text-sm font-medium">{club}</Text>
                   </View>

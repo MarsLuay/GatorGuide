@@ -37,7 +37,7 @@ export default function StartupAnimation({ onFinish }: { onFinish: () => void })
     }, 100);
 
     return () => clearTimeout(timer);
-  }, [onFinish]);
+  }, [onFinish, opacity, scale]);
 
   const animatedStyle = useAnimatedStyle(() => ({
     opacity: opacity.value,
