@@ -1,5 +1,5 @@
 import { useMemo, useState, useEffect } from "react";
-import { View, Text, Pressable, Alert, Keyboard, TouchableWithoutFeedback, Platform, ScrollView } from "react-native";
+import { View, Text, Pressable, Alert, Keyboard, TouchableWithoutFeedback, Platform, ScrollView, Linking } from "react-native";
 import { useRouter } from "expo-router";
 import { FontAwesome5 } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
@@ -11,6 +11,7 @@ import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
+import { useAppTheme } from "@/hooks/use-app-theme";
 import { FormInput } from "@/components/ui/FormInput";
 import { authService } from "@/services/auth.service";
 import { API_CONFIG } from "@/services/config";
@@ -24,6 +25,7 @@ export default function AuthPage() {
   const { isHydrated, signIn, signInWithAuthUser, signInAsGuest, updateUser, setQuestionnaireAnswers } = useAppData();
   const { t } = useAppLanguage();
   const styles = useThemeStyles();
+  const { isDark } = useAppTheme();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -393,9 +395,14 @@ export default function AuthPage() {
             </Pressable>
           </View>
 
-          <Text className={`${styles.secondaryTextClass} text-xs text-center mt-6`}>
-            {t("general.needHelpEmail")}
-          </Text>
+          <View className="mt-6">
+            <View className="flex-row justify-center items-center">
+              <Text className={`${styles.secondaryTextClass} text-sm mr-2`}>{t('general.needHelpQuestion') ?? 'Need Help?'}</Text>
+              <Pressable onPress={() => Linking.openURL('mailto:gatorguide_mobiledevelopmentteam@outlook.com')} accessibilityRole="link">
+                <Text className={`text-sm ${isDark ? 'text-green-300' : 'text-green-600'} underline font-semibold`}>{t('general.emailUs') ?? 'Email Us!'}</Text>
+              </Pressable>
+            </View>
+          </View>
         </View>
       </View>
     </View>

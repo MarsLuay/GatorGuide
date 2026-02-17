@@ -9,6 +9,7 @@ import { useAppData } from "@/hooks/use-app-data";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { College } from "@/services/college.service";
 import { aiService, collegeService } from "@/services";
+import type { EmptyState } from "@/services";
 
 export default function HomePage() {
   const router = useRouter();
@@ -22,6 +23,7 @@ export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
   type Recommended = { college: College; reason?: string; breakdown?: Record<string, number>; score?: number };
   const [results, setResults] = useState<Recommended[]>([]);
+  const [emptyState, setEmptyState] = useState<EmptyState | undefined>(undefined);
   const [useWeighted, setUseWeighted] = useState(true);
   const [hasSubmittedSearch, setHasSubmittedSearch] = useState(false);
   const [isProfileExpanded, setIsProfileExpanded] = useState(false);
@@ -80,8 +82,9 @@ export default function HomePage() {
     try {
       if (useWeighted) {
         // Weighted: AI recommender (profile + questionnaire + query)
-        const data = await aiService.recommendColleges({ query: q, userProfile: user, questionnaire: state.questionnaireAnswers, maxResults: 20 });
-        setResults(data as Recommended[]);
+        const resp = await aiService.recommendColleges({ query: q, userProfile: user, questionnaire: state.questionnaireAnswers, maxResults: 20 });
+        setResults(resp.results as Recommended[]);
+        setEmptyState(resp.emptyState);
         setResultsSource('live');
       } else {
         // Normal: run a plain college search and score locally
@@ -91,6 +94,7 @@ export default function HomePage() {
           return { college: c, reason: undefined, breakdown, score: breakdown.final } as Recommended;
         });
         setResults(mapped);
+        setEmptyState(undefined);
         setResultsSource(null);
       }
     } finally {
@@ -298,6 +302,11 @@ export default function HomePage() {
                 <Text className={`${secondaryTextClass} text-sm`}>{t("home.searching")}</Text>
               ) : searchTooShort ? (
                 <Text className={`${secondaryTextClass} text-sm`}>{t("home.searchTooShort")}</Text>
+              ) : results.length === 0 ? (
+                <View className="mt-4">
+                  <Text className={`${secondaryTextClass} text-sm`}>{emptyState?.title ?? 'No results'}</Text>
+                  <Text className={`${secondaryTextClass} text-sm`}>{emptyState?.message ?? 'Try adjusting your filters.'}</Text>
+                </View>
               ) : (
                 <View className="gap-3">
                   {results.map((r) => {
