@@ -672,6 +672,67 @@ class AIService {
     return { results: sortByScore(tagged).slice(0, maxResults) };
   }
 
+  private applyGuestModeFilter(results: RecommendResult[], effectiveState: string, maxResults: number): RecommendResponse {
+    const byState = results.filter((r) => this.stateMatches(r.college?.location?.state, effectiveState));
+    if (!byState.length) {
+      return {
+        results: [],
+        emptyState: {
+          code: 'IN_STATE_NO_MATCHES',
+          title: 'No in-state matches',
+          message: `We could not find any colleges in ${effectiveState} that match your preferences.`,
+        },
+      };
+    }
+
+    const sorted = [...byState].sort((a, b) => {
+      const aRate = this.normalizeRate(a.college.admissionRate) ?? 1;
+      const bRate = this.normalizeRate(b.college.admissionRate) ?? 1;
+      return aRate - bRate;
+    });
+
+    return { results: sorted.slice(0, maxResults) };
+  }
+
+  private createRecommendResult(
+    college: College,
+    prefWeights: Record<string, number>,
+    userProfile: UserProfile | null,
+    questionnaire: Questionnaire | null,
+    reason?: string,
+    aiFitScore?: number,
+  ): RecommendResult {
+    const breakdown = this.computePreferenceBreakdown(college, prefWeights, userProfile, questionnaire, aiFitScore);
+    const score = breakdown.final;
+    return {
+      college,
+      reason,
+      breakdown,
+      score,
+      breakdownHuman: this.formatBreakdown(breakdown, college),
+      scoreText: this.formatScoreText(score),
+    };
+  }
+
+  private parseAiFitScore(raw: unknown): number {
+    if (typeof raw === 'number' && !Number.isNaN(raw)) return Math.round(raw);
+    if (typeof raw === 'string' && raw.trim().length) {
+      const parsed = Number(raw);
+      if (!Number.isNaN(parsed)) return Math.round(parsed);
+    }
+    return 50;
+  }
+
+  private topDimensionsReason(breakdown: Record<string, number>): string {
+    const topDims = Object.entries(breakdown)
+      .filter(([k]) => k !== 'final')
+      .sort((a, b) => (b[1] as number) - (a[1] as number))
+      .slice(0, 2)
+      .map(([k, v]) => `${k}: ${v}`)
+      .join(', ');
+    return `Top Fit: ${topDims}`;
+  }
+
   
 
   /**
@@ -793,29 +854,17 @@ class AIService {
     // backwards-compatible with older string fields like "inStateOutOfState"
     // or `geography` that may contain text such as "In State".
     const geoRaw = questionnaire?.inStateOutOfState ?? questionnaire?.geography ?? questionnaire?.locationPreferences;
-    // Detect an explicit in-state preference from the questionnaire (legacy fields included)
     const explicitInState =
       questionnaire?.inStateOnly === true ||
       (typeof geoRaw === 'string' && geoRaw.toLowerCase().replace(/[-_]/g, ' ').includes('in state'));
 
-    // Strict in-state filtering only when explicitly requested by the questionnaire.
     const wantsInState = explicitInState;
     const strictInState = explicitInState;
 
-    // Effective state comes from profile if present (do not default to Washington silently here)
     let effectiveState = String(userProfile?.state || '').trim();
-
-    // Guest mode: force strict in-state Washington-only behavior and sort by acceptance rate
     const guestMode = Boolean(userProfile?.isGuest === true);
-    if (guestMode) {
-      // For guests we enforce Washington-only strict behavior
-      effectiveState = 'Washington';
-    }
+    if (guestMode) effectiveState = 'Washington';
 
-    // If the user explicitly requested strict in-state results but their profile
-    // doesn't include a state (and they're not a guest), surface an explicit
-    // empty-state so the UI can instruct them to set their state. This avoids
-    // silently returning out-of-state results when the user asked for in-state only.
     if (strictInState && !effectiveState && !guestMode) {
       return {
         results: [],
@@ -827,74 +876,57 @@ class AIService {
       };
     }
 
+    const prefWeights = this.buildPreferenceWeights(userProfile, questionnaire, query);
+    const applyStatePolicy = (results: RecommendResult[]): RecommendResponse => {
+      if (guestMode) return this.applyGuestModeFilter(results, effectiveState, maxResults);
+      return this.filterOrTagInState(results, wantsInState, effectiveState, maxResults, strictInState);
+    };
+
     if (isStubMode() || API_CONFIG.gemini.apiKey === 'STUB') {
       await new Promise((resolve) => setTimeout(resolve, 800));
-      // get candidate colleges (stub has lat/lon and matchScore)
       const candidates = await collegeService.getMatches({});
-
-      
-
-      // compute student preference weights and score colleges against them
-      const prefWeights = this.buildPreferenceWeights(userProfile, questionnaire, query);
-        const enriched = candidates.map((c) => {
+      const enriched = candidates.map((c) => {
         const base = (c.matchScore ?? 50) as number;
         const breakdown = this.computePreferenceBreakdown(c, prefWeights, userProfile, questionnaire);
-          const aiScore = breakdown.final;
-          const score = Math.round(base * 0.4 + aiScore * 0.6);
-        const topDims = Object.entries(breakdown)
-          .filter(([k]) => k !== 'final')
-          .sort((a, b) => (b[1] as number) - (a[1] as number))
-          .slice(0, 2)
-          .map(([k, v]) => `${k}: ${v}`)
-          .join(', ');
-        const reason = `Top Fit: ${topDims}`;
-        const breakdownHuman = this.formatBreakdown(breakdown, c);
-        const scoreText = this.formatScoreText(score);
-        return { college: c, score, breakdown, reason, breakdownHuman, scoreText } as RecommendResult;
+        const score = Math.round(base * 0.4 + breakdown.final * 0.6);
+        return {
+          college: c,
+          score,
+          breakdown,
+          reason: this.topDimensionsReason(breakdown),
+          breakdownHuman: this.formatBreakdown(breakdown, c),
+          scoreText: this.formatScoreText(score),
+        } as RecommendResult;
       });
 
-      // Guest: filter to Washington and sort by admission rate (hardest first)
-      if (guestMode) {
-        const byState = enriched.filter((r) => this.stateMatches(r.college?.location?.state, effectiveState));
-        if (!byState || byState.length === 0) {
-          return {
-            results: [],
-            emptyState: {
-              code: 'IN_STATE_NO_MATCHES',
-              title: 'No in-state matches',
-              message: `We could not find any colleges in ${effectiveState} that match your preferences.`,
-            },
-          };
-        }
-        const sortByAcceptance = (arr: RecommendResult[]) => [...arr].sort((a, b) => {
-          const aRate = this.normalizeRate(a.college.admissionRate) ?? 1;
-          const bRate = this.normalizeRate(b.college.admissionRate) ?? 1;
-          return aRate - bRate;
-        });
-        return { results: sortByAcceptance(byState).slice(0, maxResults) };
-      }
-
-      return this.filterOrTagInState(enriched, wantsInState, effectiveState, maxResults, strictInState);
+      return applyStatePolicy(enriched);
     }
 
     // Live mode: build a single prompt including profile, questionnaire, and supplementary query
     try {
-      const weights = this.buildPreferenceWeights(userProfile, questionnaire, query);
-      const prompt = `You are an assistant that recommends colleges. Return a JSON array (no surrounding text) of up to ${maxResults} college objects that are the best matches for this student. Each object should include at least one of: \n- \"id\" (Scorecard id) OR \"name\" (exact college name).\nInclude optional \"reason\" briefly explaining the match.\nAlso include an \"aiFitScore\" numeric property (0-100) that rates how well this college matches the Additional user search input (the \"Additional user search input\" field). If the search input is empty, return 50 for aiFitScore.\n\nStudent profile: ${JSON.stringify(userProfile)}\nQuestionnaire: ${JSON.stringify(questionnaire)}\nAdditional user search input (supplementary): ${JSON.stringify(query)}\nPreferences weights (derived from student profile/questionnaire): ${JSON.stringify(weights)}\n\nRespond ONLY with valid JSON (an array). Example: [{"id":"12345","name":"Example University","reason":"Matches major and budget","aiFitScore":78}]`;
+      const prompt = `You are an assistant that recommends colleges. Return a JSON array (no surrounding text) of up to ${maxResults} college objects that are the best matches for this student. Each object should include at least one of: 
+- "id" (Scorecard id) OR "name" (exact college name).
+Include optional "reason" briefly explaining the match.
+Also include an "aiFitScore" numeric property (0-100) that rates how well this college matches the Additional user search input (the "Additional user search input" field). If the search input is empty, return 50 for aiFitScore.
 
-      // If wantsInState, add strict instruction to the LLM prompt
+Student profile: ${JSON.stringify(userProfile)}
+Questionnaire: ${JSON.stringify(questionnaire)}
+Additional user search input (supplementary): ${JSON.stringify(query)}
+Preferences weights (derived from student profile/questionnaire): ${JSON.stringify(prefWeights)}
+
+Respond ONLY with valid JSON (an array). Example: [{"id":"12345","name":"Example University","reason":"Matches major and budget","aiFitScore":78}]`;
+
       const promptWithConstraint = wantsInState && userProfile?.state
-        ? `${prompt}\nCONSTRAINT: The user STRICTLY requires colleges located in ${String(userProfile.state)}. Do NOT return colleges from other states.`
+        ? `${prompt}
+CONSTRAINT: The user STRICTLY requires colleges located in ${String(userProfile.state)}. Do NOT return colleges from other states.`
         : prompt;
       const assistantMsg = await this.chat(promptWithConstraint);
       const text = assistantMsg?.content ?? '';
 
-      // helper: try to extract JSON substring from text
       const extractJson = (txt: string): any | null => {
         try {
           return JSON.parse(txt);
         } catch (e) {
-          // try to find first [...] or {...}
           const arrayMatch = txt.match(/\[\s*\{[\s\S]*\}\s*\]/m);
           if (arrayMatch) {
             try { return JSON.parse(arrayMatch[0]); } catch {}
@@ -908,10 +940,6 @@ class AIService {
       };
 
       const parsed = extractJson(text);
-
-      // compute preference weights here so we can apply them to AI results
-      const prefWeights = this.buildPreferenceWeights(userProfile, questionnaire, query);
-
       if (parsed && Array.isArray(parsed) && parsed.length > 0) {
         const enrichedResults: RecommendResult[] = [];
         for (const item of parsed) {
@@ -931,149 +959,33 @@ class AIService {
               } catch {}
             }
 
-            if (details) {
-              // Enforce strict in-state at enrichment time to avoid adding
-              // out-of-state colleges returned by the LLM when user requested strict in-state
-              try {
-                if (strictInState && effectiveState && !this.stateMatches(details.location?.state, effectiveState)) {
-                  continue; // drop out-of-state
-                }
-              } catch {}
-              // parse aiFitScore from assistant response (default 50)
-              let aiFitScore = 50;
-              try {
-                if (typeof item.aiFitScore === 'number' && !Number.isNaN(item.aiFitScore)) aiFitScore = Math.round(item.aiFitScore);
-                else if (typeof item.aiFitScore === 'string' && item.aiFitScore.trim().length) {
-                  const n = Number(item.aiFitScore);
-                  if (!Number.isNaN(n)) aiFitScore = Math.round(n);
-                }
-              } catch {}
+            if (!details) continue;
+            if (strictInState && effectiveState && !this.stateMatches(details.location?.state, effectiveState)) continue;
 
-              const breakdown = this.computePreferenceBreakdown(details, prefWeights, userProfile, questionnaire, aiFitScore);
-              const score = breakdown.final;
-              const reason = item?.reason ?? `Top: ${Object.entries(breakdown).filter(([k]) => k !== 'final').sort((a,b)=> (b[1] as number)-(a[1] as number)).slice(0,2).map(([k,v])=>k).join(', ')}`;
-              const breakdownHuman = this.formatBreakdown(breakdown, details);
-              const scoreText = this.formatScoreText(score);
-              enrichedResults.push({ college: details, reason, breakdown, score, breakdownHuman, scoreText });
-            }
+            const aiFitScore = this.parseAiFitScore(item?.aiFitScore);
+            const reason = typeof item?.reason === 'string' ? item.reason : undefined;
+            enrichedResults.push(this.createRecommendResult(details, prefWeights, userProfile, questionnaire, reason, aiFitScore));
           } catch {
             // ignore
           }
         }
 
-        // Apply in-state filtering / tagging in one place
-        if (enrichedResults.length) {
-          if (guestMode) {
-            const byState = enrichedResults.filter((r) => this.stateMatches(r.college?.location?.state, effectiveState));
-            if (!byState || byState.length === 0) {
-              return {
-                results: [],
-                emptyState: {
-                  code: 'IN_STATE_NO_MATCHES',
-                  title: 'No in-state matches',
-                  message: `We could not find any colleges in ${effectiveState} that match your preferences.`,
-                },
-              };
-            }
-            const sortByAcceptance = (arr: RecommendResult[]) => [...arr].sort((a, b) => {
-              const aRate = this.normalizeRate(a.college.admissionRate) ?? 1;
-              const bRate = this.normalizeRate(b.college.admissionRate) ?? 1;
-              return aRate - bRate;
-            });
-            return { results: sortByAcceptance(byState).slice(0, maxResults) };
-          }
-          return this.filterOrTagInState(enrichedResults, wantsInState, effectiveState, maxResults, strictInState);
-        }
-        // if parsing succeeded but we couldn't resolve details, fallthrough to fallback behavior
+        if (enrichedResults.length) return applyStatePolicy(enrichedResults);
       }
 
-      // parsing failed or no resolvable items — fallback: if user provided a substantive query, use search
-        if (query && query.trim().length >= 3) {
+      if (query && query.trim().length >= 3) {
         const list = await collegeService.searchColleges(query.trim());
-        const enriched = list.slice(0, maxResults).map((c) => {
-          const breakdown = this.computePreferenceBreakdown(c, prefWeights, userProfile, questionnaire);
-          const score = breakdown.final;
-          const breakdownHuman = this.formatBreakdown(breakdown, c);
-          const scoreText = this.formatScoreText(score);
-          return { college: c, reason: undefined, breakdown, score, breakdownHuman, scoreText } as RecommendResult;
-        });
-        if (guestMode) {
-          const byState = enriched.filter((r) => this.stateMatches(r.college?.location?.state, effectiveState));
-          if (!byState || byState.length === 0) {
-            return {
-              results: [],
-              emptyState: {
-                code: 'IN_STATE_NO_MATCHES',
-                title: 'No in-state matches',
-                message: `We could not find any colleges in ${effectiveState} that match your preferences.`,
-              },
-            };
-          }
-          const sortByAcceptance = (arr: RecommendResult[]) => [...arr].sort((a, b) => {
-            const aRate = this.normalizeRate(a.college.admissionRate) ?? 1;
-            const bRate = this.normalizeRate(b.college.admissionRate) ?? 1;
-            return aRate - bRate;
-          });
-          return { results: sortByAcceptance(byState).slice(0, maxResults) };
-        }
-        return this.filterOrTagInState(enriched, wantsInState, effectiveState, maxResults, strictInState);
+        const enriched = list.slice(0, maxResults).map((c) => this.createRecommendResult(c, prefWeights, userProfile, questionnaire));
+        return applyStatePolicy(enriched);
       }
 
       const matches = await collegeService.getMatches({});
-      let enrichedMatches = matches.slice(0, maxResults).map((c) => {
-        const breakdown = this.computePreferenceBreakdown(c, prefWeights, userProfile, questionnaire);
-        const score = breakdown.final;
-        const breakdownHuman = this.formatBreakdown(breakdown, c);
-        const scoreText = this.formatScoreText(score);
-        return { college: c, reason: undefined, breakdown, score, breakdownHuman, scoreText } as RecommendResult;
-      });
-      if (guestMode) {
-        const byState = enrichedMatches.filter((r) => this.stateMatches(r.college?.location?.state, effectiveState));
-        if (!byState || byState.length === 0) {
-          return {
-            results: [],
-            emptyState: {
-              code: 'IN_STATE_NO_MATCHES',
-              title: 'No in-state matches',
-              message: `We could not find any colleges in ${effectiveState} that match your preferences.`,
-            },
-          };
-        }
-        const sortByAcceptance = (arr: RecommendResult[]) => [...arr].sort((a, b) => {
-          const aRate = this.normalizeRate(a.college.admissionRate) ?? 1;
-          const bRate = this.normalizeRate(b.college.admissionRate) ?? 1;
-          return aRate - bRate;
-        });
-        return { results: sortByAcceptance(byState).slice(0, maxResults) };
-      }
-      return this.filterOrTagInState(enrichedMatches, wantsInState, effectiveState, maxResults, strictInState);
-    } catch (err) {
-      const prefWeights = this.buildPreferenceWeights(userProfile, questionnaire, query);
+      const enrichedMatches = matches.slice(0, maxResults).map((c) => this.createRecommendResult(c, prefWeights, userProfile, questionnaire));
+      return applyStatePolicy(enrichedMatches);
+    } catch {
       const matches = await collegeService.getMatches({});
-      let enrichedMatches = matches.slice(0, maxResults).map((c) => {
-        const breakdown = this.computePreferenceBreakdown(c, prefWeights, userProfile, questionnaire);
-        return { college: c, reason: undefined, breakdown, score: breakdown.final } as RecommendResult;
-      });
-      if (guestMode) {
-          const byState = enrichedMatches.filter((r) => this.stateMatches(r.college?.location?.state, effectiveState));
-          if (!byState || byState.length === 0) {
-            return {
-              results: [],
-              emptyState: {
-                code: 'IN_STATE_NO_MATCHES',
-                title: 'No in-state matches',
-                message: `We could not find any colleges in ${effectiveState} that match your preferences.`,
-              },
-            };
-          }
-          const sortByAcceptance = (arr: RecommendResult[]) => [...arr].sort((a, b) => {
-            const aRate = this.normalizeRate(a.college.admissionRate) ?? 1;
-            const bRate = this.normalizeRate(b.college.admissionRate) ?? 1;
-            return aRate - bRate;
-          });
-          return { results: sortByAcceptance(byState).slice(0, maxResults) };
-      }
-      return this.filterOrTagInState(enrichedMatches, wantsInState, effectiveState, maxResults, strictInState);
+      const enrichedMatches = matches.slice(0, maxResults).map((c) => this.createRecommendResult(c, prefWeights, userProfile, questionnaire));
+      return applyStatePolicy(enrichedMatches);
     }
   }
 }
