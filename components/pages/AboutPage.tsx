@@ -1,6 +1,6 @@
 import { View, Text, Pressable, ScrollView } from "react-native";
-import { useRouter } from "expo-router";
 import { MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
+import useBack from "@/hooks/use-back";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppLanguage } from "@/hooks/use-app-language";
@@ -8,7 +8,7 @@ import { useAppLanguage } from "@/hooks/use-app-language";
 export default function AboutPage() {
   const { isDark } = useAppTheme();
   const { t } = useAppLanguage();
-  const router = useRouter();
+  const back = useBack();
 
   const textClass = isDark ? "text-white" : "text-gray-900";
   const secondaryTextClass = isDark ? "text-gray-400" : "text-gray-600";
@@ -23,10 +23,7 @@ export default function AboutPage() {
         <View className="max-w-md w-full self-center">
           {/* Header */}
           <View className="px-6 pt-20 pb-6">
-            <Pressable
-              onPress={() => router.back()}
-              className="mb-4 flex-row items-center"
-            >
+            <Pressable onPress={back} className="mb-4 flex-row items-center">
               <MaterialIcons
                 name="arrow-back"
                 size={20}
