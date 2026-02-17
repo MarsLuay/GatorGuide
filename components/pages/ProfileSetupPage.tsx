@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { View, Text, Pressable, ScrollView, Keyboard, Alert, Dimensions } from "react-native";
-import { router } from "expo-router";
+import { useRouter } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { useAudioPlayer } from "expo-audio";
@@ -17,6 +17,7 @@ import { FormInput } from "@/components/ui/FormInput";
 import { roadmapService } from "@/services/roadmap.service";
 
 export default function ProfileSetupPage() {
+  const router = useRouter();
   const { updateUser, state } = useAppData();
   const { t } = useAppLanguage();
   const styles = useThemeStyles();

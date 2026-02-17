@@ -8,7 +8,7 @@ import {
   TouchableWithoutFeedback, 
   ActivityIndicator 
 } from "react-native";
-import { router } from "expo-router";
+import { useRouter } from "expo-router";
 import { FontAwesome5, MaterialIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
@@ -20,6 +20,7 @@ import { authService } from "@/services";
 const isEmailValid = (value: string) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value.trim());
 
 export default function ForgotPasswordPage() {
+  const router = useRouter();
   const { t } = useAppLanguage();
   const styles = useThemeStyles();
 

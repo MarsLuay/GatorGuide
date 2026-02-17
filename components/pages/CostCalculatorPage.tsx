@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { View, Text, TextInput, Pressable, ScrollView } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import { router } from "expo-router";
+import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useAppLanguage } from "@/hooks/use-app-language";
 
 export default function CostCalculatorPage() {
+  const router = useRouter();
   const styles = useThemeStyles();
   const { t } = useAppLanguage();
   const insets = useSafeAreaInsets();

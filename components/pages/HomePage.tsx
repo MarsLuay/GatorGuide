@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { View, Text, TextInput, Pressable, ScrollView } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { router } from "expo-router";
+import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppLanguage } from "@/hooks/use-app-language";
@@ -10,6 +10,7 @@ import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { collegeService, College } from "@/services";
 
 export default function HomePage() {
+  const router = useRouter();
   const { isDark } = useAppTheme();
   const { t } = useAppLanguage();
   const { state } = useAppData();

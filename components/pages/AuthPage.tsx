@@ -1,6 +1,6 @@
 import { useMemo, useState, useEffect } from "react";
 import { View, Text, Pressable, Alert, Keyboard, TouchableWithoutFeedback, Platform, ScrollView } from "react-native";
-import { router } from "expo-router";
+import { useRouter } from "expo-router";
 import { FontAwesome5 } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import * as WebBrowser from "expo-web-browser";
@@ -20,6 +20,7 @@ WebBrowser.maybeCompleteAuthSession();
 const isEmailValid = (value: string) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value.trim());
 
 export default function AuthPage() {
+  const router = useRouter();
   const { isHydrated, state, signIn, signInWithAuthUser, signInAsGuest, updateUser, setQuestionnaireAnswers } = useAppData();
   const { t } = useAppLanguage();
   const styles = useThemeStyles();

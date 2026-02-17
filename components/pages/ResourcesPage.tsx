@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import { Alert, Linking, Pressable, ScrollView, Text, TextInput, View } from "react-native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { router } from "expo-router";
+import { useRouter } from "expo-router";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useAppLanguage } from "@/hooks/use-app-language";
@@ -21,6 +21,7 @@ type ResourceSection = {
 };
 
 export default function ResourcesPage() {
+  const router = useRouter();
   const styles = useThemeStyles();
   const { t } = useAppLanguage();
   const insets = useSafeAreaInsets();
