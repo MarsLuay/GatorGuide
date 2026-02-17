@@ -5,7 +5,7 @@ import { useAppLanguage } from "@/hooks/use-app-language";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useMemo, useState, useCallback } from "react";
-import { Pressable, ScrollView, Text, View, Alert, Platform } from "react-native";
+import { Pressable, ScrollView, Text, View, Alert, Platform, Linking } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { notificationsService } from "@/services";
 import * as FileSystem from "expo-file-system";
@@ -351,9 +351,17 @@ export default function SettingsPage() {
             <Text className={`text-center text-sm ${isDark ? 'text-gray-600' : 'text-gray-400'} mt-2`}>
               {t('settings.appVersion')}
             </Text>
-            <Text className={`text-center text-xs ${secondaryTextClass} mt-4 mb-2`}>
-              {t("general.needHelpEmail")}
-            </Text>
+            <View className="mt-4 mb-2">
+              <Text className={`text-center text-xs ${secondaryTextClass} mb-2`}>Need help?</Text>
+              <View className="flex-row justify-center">
+                <Pressable
+                  onPress={() => Linking.openURL('mailto:gatorguide_mobiledevelopmentteam@outlook.com')}
+                  accessibilityRole="link"
+                >
+                  <Text className={`text-sm ${isDark ? 'text-blue-300' : 'text-blue-600'} underline`}>gatorguide_mobiledevelopmentteam@outlook.com</Text>
+                </Pressable>
+              </View>
+            </View>
           </View>
         </View>
       </ScrollView>

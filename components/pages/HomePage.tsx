@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { View, Text, TextInput, Pressable, ScrollView } from "react-native";
+import { useState, useEffect, useRef } from "react";
+import { View, Text, TextInput, Pressable, ScrollView, Switch } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -7,7 +7,8 @@ import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppData } from "@/hooks/use-app-data";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
-import { collegeService, College } from "@/services";
+import { College } from "@/services/college.service";
+import { aiService, collegeService } from "@/services";
 
 export default function HomePage() {
   const router = useRouter();
@@ -19,7 +20,9 @@ export default function HomePage() {
   const user = state.user;
 
   const [searchQuery, setSearchQuery] = useState("");
-  const [results, setResults] = useState<College[]>([]);
+  type Recommended = { college: College; reason?: string; breakdown?: Record<string, number>; score?: number };
+  const [results, setResults] = useState<Recommended[]>([]);
+  const [useWeighted, setUseWeighted] = useState(true);
   const [hasSubmittedSearch, setHasSubmittedSearch] = useState(false);
   const [isProfileExpanded, setIsProfileExpanded] = useState(false);
   const [dismissedGuestPrompt, setDismissedGuestPrompt] = useState(false);
@@ -27,6 +30,10 @@ export default function HomePage() {
   const [resultsSource, setResultsSource] = useState<'live' | 'cached' | 'stub' | null>(null);
   const [isSearching, setIsSearching] = useState(false);
   const [searchTooShort, setSearchTooShort] = useState(false);
+  const [cooldownUntil, setCooldownUntil] = useState<number | null>(null);
+  const [showCooldownPopup, setShowCooldownPopup] = useState(false);
+  const [remainingSeconds, setRemainingSeconds] = useState(0);
+  const cooldownRef = useRef<number | null>(null);
 
   const capitalizedName = user?.name 
     ? user.name.split(' ')[0].charAt(0).toUpperCase() + user.name.split(' ')[0].slice(1).toLowerCase()
@@ -45,6 +52,14 @@ export default function HomePage() {
     setHasSubmittedSearch(true);
     setSearchTooShort(false);
 
+    const now = Date.now();
+    if (cooldownUntil && now < cooldownUntil) {
+      const secs = Math.ceil((cooldownUntil - now) / 1000);
+      setRemainingSeconds(secs);
+      setShowCooldownPopup(true);
+      return;
+    }
+
     if (q.length < 3) {
       setResults([]);
       setSearchTooShort(true);
@@ -53,15 +68,59 @@ export default function HomePage() {
       return;
     }
 
+    // compute preference weights for non-AI scoring too
+    const prefWeights = aiService.buildPreferenceWeights(user, state.questionnaireAnswers);
+
+    // set cooldown (5 seconds)
+    const nextUntil = Date.now() + 5000;
+    setCooldownUntil(nextUntil);
+    cooldownRef.current = nextUntil;
+
     setIsSearching(true);
     try {
-      const data = await collegeService.searchColleges(q);
-      setResults(data);
-      setResultsSource(collegeService.getLastSource());
+      if (useWeighted) {
+        // Weighted: AI recommender (profile + questionnaire + query)
+        const data = await aiService.recommendColleges({ query: q, userProfile: user, questionnaire: state.questionnaireAnswers, maxResults: 20 });
+        setResults(data as Recommended[]);
+        setResultsSource('live');
+      } else {
+        // Normal: run a plain college search and score locally
+        const list = await collegeService.searchColleges(q);
+        const mapped = list.slice(0, 20).map((c) => {
+          const breakdown = aiService.computePreferenceBreakdown(c, prefWeights, user, state.questionnaireAnswers);
+          return { college: c, reason: undefined, breakdown, score: breakdown.final } as Recommended;
+        });
+        setResults(mapped);
+        setResultsSource(null);
+      }
     } finally {
       setIsSearching(false);
     }
   };
+
+  // countdown effect for cooldown popup
+  useEffect(() => {
+    if (!showCooldownPopup && !cooldownUntil) return;
+
+    let interval: number | null = null;
+    interval = setInterval(() => {
+      const now = Date.now();
+      const until = cooldownRef.current ?? cooldownUntil ?? 0;
+      const diff = Math.max(0, until - now);
+      const secs = Math.ceil(diff / 1000);
+      setRemainingSeconds(secs);
+      if (diff <= 0) {
+        setShowCooldownPopup(false);
+        setCooldownUntil(null);
+        cooldownRef.current = null;
+        if (interval) clearInterval(interval as any);
+      }
+    }, 250);
+
+    return () => {
+      if (interval) clearInterval(interval as any);
+    };
+  }, [showCooldownPopup, cooldownUntil]);
 
   return (
     <ScreenBackground>
@@ -116,9 +175,10 @@ export default function HomePage() {
             />
             <Pressable
               onPress={handleSearch}
-              className="absolute right-2 top-2 bg-green-500 rounded-xl px-4 py-2"
+              disabled={showCooldownPopup}
+              className={`absolute right-2 top-2 rounded-xl px-4 py-2 ${showCooldownPopup ? 'bg-gray-400' : 'bg-green-500'}`}
             >
-              <Text className="text-black font-semibold">{t("home.search")}</Text>
+              <Text className={`${showCooldownPopup ? 'text-gray-800' : 'text-black'} font-semibold`}>{t("home.search")}</Text>
             </Pressable>
           </View>
 
@@ -218,6 +278,13 @@ export default function HomePage() {
 
           {results.length > 0 ? (
             <View className="mt-8">
+              <View className="flex-row items-center justify-between mb-3">
+                <Text className={`${textClass} mr-2`}>{t("home.weightedSearch")}</Text>
+                <Switch
+                  value={useWeighted}
+                  onValueChange={(v) => setUseWeighted(v)}
+                />
+              </View>
               <View className="flex-row items-center justify-between mb-2">
                 <Text className={`text-lg ${textClass}`}>{t("home.recommendedColleges")}</Text>
                 {resultsSource ? (
@@ -233,23 +300,49 @@ export default function HomePage() {
                 <Text className={`${secondaryTextClass} text-sm`}>{t("home.searchTooShort")}</Text>
               ) : (
                 <View className="gap-3">
-                  {results.map((college) => (
-                    <Pressable
-                      key={college.id}
-                      className={`${cardClass} border rounded-xl p-4`}
-                      onPress={() => router.push({ pathname: "/college/[collegeId]", params: { collegeId: String(college.id) } })}
-                    >
-                      <Text className={textClass}>{college.name}</Text>
-                      <Text className={`text-sm ${secondaryTextClass} mt-1`}>
-                        {college.location.city ? `${college.location.city}, ` : ""}{college.location.state}
-                      </Text>
-                      <Text className={`text-sm ${secondaryTextClass} mt-1`}>
-                        {t("home.admissionRate")}: {typeof college.admissionRate === 'number' ? `${Math.round(college.admissionRate * 100)}%` : t("home.notAvailable")}
-                      </Text>
-                    </Pressable>
-                  ))}
+                  {results.map((r) => {
+                    const college = r.college;
+                    return (
+                      <Pressable
+                        key={college.id}
+                        className={`${cardClass} border rounded-xl p-4`}
+                        onPress={() => router.push({ pathname: "/college/[collegeId]", params: { collegeId: String(college.id) } })}
+                      >
+                        <Text className={textClass}>{college.name}</Text>
+                        { (r as any).scoreText ? (
+                          <Text className={`text-sm ${secondaryTextClass} mt-1`}>{(r as any).scoreText}</Text>
+                        ) : (
+                          <Text className={`text-sm ${secondaryTextClass} mt-1`}>{t("home.scoreNotAvailable")}</Text>
+                        ) }
+                        <Text className={`text-sm ${secondaryTextClass} mt-1`}>
+                          {college.location.city ? `${college.location.city}, ` : ""}{college.location.state}
+                        </Text>
+                        <Text className={`text-sm ${secondaryTextClass} mt-1`}>{t("home.admissionRate")}: {typeof college.admissionRate === 'number' ? `${Math.round(college.admissionRate * 100)}%` : t("home.notAvailable")}</Text>
+                        {r.reason ? (
+                          <Text className={`text-sm mt-2 ${secondaryTextClass}`}>{r.reason}</Text>
+                        ) : null}
+
+                        { (r as any).breakdownHuman ? (
+                          <Text className={`text-xs mt-2 ${secondaryTextClass}`}>
+                            {Object.entries((r as any).breakdownHuman).filter(([k])=>k!=='Overall').map(([k,v])=> `${k}: ${v}`).join(' • ')}
+                          </Text>
+                        ) : r.breakdown ? (
+                          <Text className={`text-xs mt-2 ${secondaryTextClass}`}>
+                            {Object.entries(r.breakdown).filter(([k])=>k!=='final').map(([k,v])=> `${k}: ${Math.round(v as number)}`).join(' • ')}
+                          </Text>
+                        ) : null}
+                      </Pressable>
+                    );
+                  })}
                 </View>
               )}
+            </View>
+          ) : null}
+          {showCooldownPopup ? (
+            <View className="absolute left-0 right-0 bottom-8 items-center px-4">
+              <View className="px-4 py-2 bg-black/70 rounded-full">
+                <Text className="text-white text-sm">Try again in {remainingSeconds}s</Text>
+              </View>
             </View>
           ) : null}
         </View>

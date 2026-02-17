@@ -169,66 +169,15 @@ export default function ProfilePage() {
 
   const questions = useMemo<Question[]>(
     () => [
-      {
-        id: "volunteerActivities",
-        question: t("questionnaire.volunteerActivities"),
-        placeholder: t("questionnaire.volunteerPlaceholder"),
-        type: "textarea",
-      },
-      {
-        id: "extracurriculars",
-        question: t("questionnaire.extracurriculars"),
-        placeholder: t("questionnaire.extracurricularsPlaceholder"),
-        type: "textarea",
-      },
-      {
-        id: "collegeSetting",
-        question: t("questionnaire.collegeSetting"),
-        options: [t("questionnaire.urban"), t("questionnaire.suburban"), t("questionnaire.rural"), t("questionnaire.noPreference")],
-        type: "radio",
-      },
-      {
-        id: "collegeSize",
-        question: t("questionnaire.collegeSize"),
-        options: [t("questionnaire.small"), t("questionnaire.medium"), t("questionnaire.large"), t("questionnaire.noPreference")],
-        type: "radio",
-      },
-      {
-        id: "environment",
-        question: t("questionnaire.environment"),
-        options: [t("questionnaire.researchFocused"), t("questionnaire.liberalArts"), t("questionnaire.technical"), t("questionnaire.preProfessional"), t("questionnaire.mixed")],
-        type: "radio",
-      },
-      {
-        id: "programs",
-        question: t("questionnaire.programs"),
-        placeholder: t("questionnaire.programsPlaceholder"),
-        type: "textarea",
-      },
-      {
-        id: "budget",
-        question: t("questionnaire.budget"),
-        options: [t("questionnaire.under20k"), t("questionnaire.20to40k"), t("questionnaire.40to60k"), t("questionnaire.over60k"), t("questionnaire.needFinancialAid")],
-        type: "radio",
-      },
-      {
-        id: "location",
-        question: t("questionnaire.location"),
-        placeholder: t("questionnaire.locationPlaceholder"),
-        type: "text",
-      },
-      {
-        id: "housingPreference",
-        question: t("questionnaire.housingPreference"),
-        options: [t("questionnaire.onCampus"), t("questionnaire.offCampus"), t("questionnaire.commute"), t("questionnaire.noPreference")],
-        type: "radio",
-      },
-      {
-        id: "careerGoals",
-        question: t("questionnaire.careerGoals"),
-        placeholder: t("questionnaire.careerGoalsPlaceholder"),
-        type: "textarea",
-      },
+      { id: "costOfAttendance", question: t("questionnaire.costOfAttendance"), options: [t("questionnaire.under20k"), t("questionnaire.20to40k"), t("questionnaire.40to60k"), t("questionnaire.over60k"), t("questionnaire.noPreference")], type: "radio" },
+      { id: "classSize", question: t("questionnaire.classSize"), options: [t("questionnaire.small"), t("questionnaire.large"), t("questionnaire.noPreference")], type: "radio" },
+      { id: "transportation", question: t("questionnaire.transportation"), options: [t("questionnaire.transportCar"), t("questionnaire.transportTransit"), t("questionnaire.transportBike"), t("questionnaire.transportWalk"), t("questionnaire.noPreference")], type: "radio" },
+      { id: "companiesNearby", question: t("questionnaire.companiesNearby"), placeholder: t("questionnaire.companiesNearbyPlaceholder"), type: "textarea" },
+      { id: "inStateOutOfState", question: t("questionnaire.inStateOutOfState"), options: [t("questionnaire.inState"), t("questionnaire.outOfState"), t("questionnaire.noPreference")], type: "radio" },
+      { id: "housing", question: t("questionnaire.housingPreference"), options: [t("questionnaire.onCampus"), t("questionnaire.offCampus"), t("questionnaire.commute"), t("questionnaire.noPreference")], type: "radio" },
+      { id: "ranking", question: t("questionnaire.ranking"), options: [t("questionnaire.veryImportant"), t("questionnaire.somewhatImportant"), t("questionnaire.notImportant")], type: "radio" },
+      { id: "continueEducation", question: t("questionnaire.continueEducation"), options: [t("questionnaire.yes"), t("questionnaire.no"), t("questionnaire.maybe")], type: "radio" },
+      { id: "extracurriculars", question: t("questionnaire.extracurriculars"), placeholder: t("questionnaire.extracurricularsPlaceholder"), type: "textarea" },
     ],
     [t]
   );
@@ -402,7 +351,11 @@ export default function ProfilePage() {
   }, [isHydrated]);
 
   const handleSaveQuestionnaire = async () => {
-    await setQuestionnaireAnswers(questionnaireAnswers);
+    const toSave = { ...questionnaireAnswers } as Record<string, string>;
+    // Major is captured on the user profile; do not store major in questionnaire
+    delete toSave.major;
+    delete toSave.majorChoice;
+    await setQuestionnaireAnswers(toSave);
     setShowQuestionnaire(false);
   };
 
@@ -717,7 +670,8 @@ export default function ProfilePage() {
                 secondaryTextClass={secondaryTextClass}
                 borderClass={borderClass}
               />
-              </View>            </View>
+              </View>
+            </View>
 
             {/* Questionnaire */}
             <View className={`${cardBgClass} border rounded-2xl p-6 mt-4`}>
