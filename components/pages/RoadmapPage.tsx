@@ -177,7 +177,7 @@ export default function RoadmapPage() {
       id: `msg-${Date.now()}-user`,
       role: 'user',
       content: aiInput.trim(),
-      timestamp: new Date(),
+      timestamp: new Date().toISOString(),
     };
 
     setAiMessages((prev) => [...prev, userMessage]);

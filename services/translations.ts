@@ -193,6 +193,8 @@ export const translations = {
     "general.error": "Error",
     "general.success": "Success",
     "general.needHelpEmail": "Need help? Email gatorguide_mobiledevelopmentteam@outlook.com",
+    "general.needHelpQuestion": "Need Help?",
+    "general.emailUs": "Email Us!",
     "general.cancel": "Cancel",
     "general.delete": "Delete",
     "general.save": "Save",

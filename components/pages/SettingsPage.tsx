@@ -352,13 +352,10 @@ export default function SettingsPage() {
               {t('settings.appVersion')}
             </Text>
             <View className="mt-4 mb-2">
-              <Text className={`text-center text-xs ${secondaryTextClass} mb-2`}>Need help?</Text>
-              <View className="flex-row justify-center">
-                <Pressable
-                  onPress={() => Linking.openURL('mailto:gatorguide_mobiledevelopmentteam@outlook.com')}
-                  accessibilityRole="link"
-                >
-                  <Text className={`text-sm ${isDark ? 'text-blue-300' : 'text-blue-600'} underline`}>gatorguide_mobiledevelopmentteam@outlook.com</Text>
+              <View className="flex-row justify-center items-center">
+                <Text className={`text-center text-sm ${secondaryTextClass} mr-2`}>{t('general.needHelpQuestion') ?? 'Need Help?'}</Text>
+                <Pressable onPress={() => Linking.openURL('mailto:gatorguide_mobiledevelopmentteam@outlook.com')} accessibilityRole="link">
+                  <Text className={`text-sm ${isDark ? 'text-green-300' : 'text-green-600'} underline font-semibold`}>{t('general.emailUs') ?? 'Email Us!'}</Text>
                 </Pressable>
               </View>
             </View>
