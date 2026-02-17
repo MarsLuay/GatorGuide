@@ -5,16 +5,24 @@ import { MaterialIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { useAudioPlayer } from "expo-audio";
 import ConfettiCannon from "react-native-confetti-cannon";
-import * as DocumentPicker from 'expo-document-picker';
+import * as DocumentPicker from "expo-document-picker";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "@/services/firebase";
+import { storageService } from "@/services/storage.service";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { FormInput } from "@/components/ui/FormInput";
 import { roadmapService } from "@/services/roadmap.service";
+
+type SelectedDocument = {
+  uri: string;
+  name: string;
+  mimeType?: string | null;
+  size?: number | null;
+};
 
 export default function ProfileSetupPage() {
   const router = useRouter();
@@ -23,55 +31,54 @@ export default function ProfileSetupPage() {
   const styles = useThemeStyles();
 
   const confettiRef = useRef<ConfettiCannon | null>(null);
-
-  const cheerPlayer = useAudioPlayer('https://assets.mixkit.co/active_storage/sfx/2018/2018-preview.mp3');
+  const cheerPlayer = useAudioPlayer("https://assets.mixkit.co/active_storage/sfx/2018/2018-preview.mp3");
 
   const [step, setStep] = useState(1);
   const [major, setMajor] = useState("");
-  const [resume, setResume] = useState("");
-  const [transcript, setTranscript] = useState("");
+  const [resumeDoc, setResumeDoc] = useState<SelectedDocument | null>(null);
+  const [transcriptDoc, setTranscriptDoc] = useState<SelectedDocument | null>(null);
   const [gpa, setGpa] = useState("");
   const [sat, setSat] = useState("");
   const [act, setAct] = useState("");
-  
+
   const [isConfettiPlaying, setIsConfettiPlaying] = useState(false);
   const [confettiCooldown, setConfettiCooldown] = useState(false);
-  const [, setIsUploading] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
 
-  const handlePickDocument = async (type: 'resume' | 'transcript') => {
+  const handlePickDocument = async (type: "resume" | "transcript") => {
     try {
       const result = await DocumentPicker.getDocumentAsync({
         type: [
-          'application/pdf', 
-          'application/msword', 
-          'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+          "application/pdf",
+          "application/msword",
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
         ],
         copyToCacheDirectory: true,
       });
 
-      if (!result.canceled) {
-        const fileUri = result.assets[0].uri;
-        if (type === 'resume') {
-          setResume(fileUri);
-        } else {
-          setTranscript(fileUri);
-        }
-        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-      }
+      if (result.canceled || !result.assets?.length) return;
+
+      const asset = result.assets[0];
+      const selected: SelectedDocument = {
+        uri: asset.uri,
+        name: asset.name || asset.uri.split("/").pop() || `${type}_${Date.now()}`,
+        mimeType: asset.mimeType,
+        size: asset.size,
+      };
+
+      if (type === "resume") setResumeDoc(selected);
+      else setTranscriptDoc(selected);
+
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     } catch (err) {
       console.error(err);
+      Alert.alert(t("general.error"), t("profile.prepareDataError"));
     }
   };
 
-  const handlePickResume = () => handlePickDocument('resume');
-  const handlePickTranscript = () => handlePickDocument('transcript');
-
   const handleBack = () => {
-    if (step > 1) {
-      setStep(step - 1);
-    } else {
-      router.replace("/(tabs)");
-    }
+    if (step > 1) setStep(step - 1);
+    else router.replace("/(tabs)");
   };
 
   const handleGpaChange = (value: string) => {
@@ -95,10 +102,39 @@ export default function ProfileSetupPage() {
     if (step < 3) setStep(step + 1);
   };
 
+  const uploadSelectedDocument = async (
+    userId: string,
+    selectedDoc: SelectedDocument | null,
+    folder: "resumes" | "transcripts",
+    type: "resume" | "transcript"
+  ): Promise<string> => {
+    if (!selectedDoc?.uri) return "";
+    if (!selectedDoc.uri.startsWith("file")) return selectedDoc.uri;
+
+    if (db) {
+      try {
+        const response = await fetch(selectedDoc.uri);
+        const blob = await response.blob();
+        const storage = getStorage();
+        const fileRef = ref(storage, `users/${userId}/${folder}/${Date.now()}-${selectedDoc.name}`);
+        await uploadBytes(fileRef, blob);
+        return await getDownloadURL(fileRef);
+      } catch (error) {
+        console.warn(`Failed to upload ${type} to Firebase, falling back to local storage.`, error);
+      }
+    }
+
+    if (type === "resume") {
+      const localFile = await storageService.uploadResume(userId, selectedDoc.uri);
+      return localFile.url;
+    }
+    const localFile = await storageService.uploadTranscript(userId, selectedDoc.uri);
+    return localFile.url;
+  };
+
   const handleContinue = async () => {
     try {
       const userId = state.user?.uid;
-      
       if (!userId) {
         router.replace("/login");
         return;
@@ -106,46 +142,35 @@ export default function ProfileSetupPage() {
 
       setIsUploading(true);
 
-      const canUseFirebase = !!db;
-
-      const uploadFile = async (uri: string, folder: string) => {
-        if (!uri || !uri.startsWith('file')) return uri;
-        const response = await fetch(uri);
-        const blob = await response.blob();
-        const storage = getStorage();
-        const fileRef = ref(storage, `users/${userId}/${folder}/${Date.now()}`);
-        await uploadBytes(fileRef, blob);
-        return await getDownloadURL(fileRef);
-      };
-
-      let finalResumeUrl = resume;
-      let finalTranscriptUrl = transcript;
-
-      if (canUseFirebase) {
-        if (resume) finalResumeUrl = await uploadFile(resume, 'resumes');
-        if (transcript) finalTranscriptUrl = await uploadFile(transcript, 'transcripts');
-      }
+      const finalResumeUrl = await uploadSelectedDocument(userId, resumeDoc, "resumes", "resume");
+      const finalTranscriptUrl = await uploadSelectedDocument(userId, transcriptDoc, "transcripts", "transcript");
 
       const flatData = {
         major,
-        gpa: gpa || "", 
+        gpa: gpa || "",
         sat: sat || "",
         act: act || "",
-        resume: finalResumeUrl, 
-        transcript: finalTranscriptUrl, 
-        isProfileComplete: true, 
+        resume: finalResumeUrl,
+        transcript: finalTranscriptUrl,
+        isProfileComplete: true,
       };
 
       if (db) {
-        const userDocRef = doc(db, 'users', userId);
-        await setDoc(userDocRef, {
-          ...flatData,
-          updatedAt: serverTimestamp(),
-        }, { merge: true });
+        const userDocRef = doc(db, "users", userId);
+        await setDoc(
+          userDocRef,
+          {
+            ...flatData,
+            resumeFileName: resumeDoc?.name || "",
+            transcriptFileName: transcriptDoc?.name || "",
+            updatedAt: serverTimestamp(),
+          },
+          { merge: true }
+        );
       }
 
       await updateUser(flatData);
-      
+
       try {
         await roadmapService.generateInitialRoadmap(userId, major, gpa);
       } catch {
@@ -153,7 +178,7 @@ export default function ProfileSetupPage() {
       }
 
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-      router.replace("/(tabs)"); 
+      router.replace("/(tabs)");
     } catch (error) {
       console.error(error);
       Alert.alert(t("general.error"), t("profile.prepareDataError"));
@@ -161,6 +186,36 @@ export default function ProfileSetupPage() {
       setIsUploading(false);
     }
   };
+
+  const renderUploadCard = (
+    label: string,
+    placeholder: string,
+    selectedDoc: SelectedDocument | null,
+    onPick: () => void,
+    onClear: () => void
+  ) => (
+    <View>
+      <Text className={`text-sm ${styles.secondaryTextClass} mb-2`}>{label}</Text>
+
+      <View className={`${styles.cardBgClass} border rounded-lg px-4 py-4`}>
+        <Pressable onPress={onPick} className="flex-row items-center justify-between">
+          <Text numberOfLines={1} className={`flex-1 mr-3 ${selectedDoc ? styles.textClass : styles.secondaryTextClass}`}>
+            {selectedDoc?.name || placeholder}
+          </Text>
+          <MaterialIcons name={selectedDoc ? "check-circle" : "upload-file"} size={20} color="#22C55E" />
+        </Pressable>
+
+        {!!selectedDoc && (
+          <View className="mt-3 pt-3 border-t border-zinc-300/40 dark:border-zinc-700/60 flex-row items-center justify-between">
+            <Text className={`text-xs ${styles.secondaryTextClass}`}>{selectedDoc.mimeType || "document"}</Text>
+            <Pressable onPress={onClear} hitSlop={8}>
+              <MaterialIcons name="delete-outline" size={18} color="#EF4444" />
+            </Pressable>
+          </View>
+        )}
+      </View>
+    </View>
+  );
 
   return (
     <>
@@ -172,24 +227,20 @@ export default function ProfileSetupPage() {
         >
           <View className="w-full max-w-md self-center px-6 pt-20">
             <Pressable onPress={handleBack} className="mb-6 flex-row items-center">
-              <MaterialIcons name="arrow-back" size={20} color={styles.placeholderColor} />
+              <MaterialIcons name="arrow-back" size={20} color={styles.secondaryTextClass.includes("white") ? "#9CA3AF" : "#6B7280"} />
+              <Text className={`ml-2 ${styles.secondaryTextClass}`}>{t("setup.previous")}</Text>
             </Pressable>
 
-            <View className="mb-8">
-              <Text className={`text-2xl ${styles.textClass} mb-2`}>{t("setup.setupProfile")}</Text>
-              <Text className={styles.secondaryTextClass}>
-                {t("setup.tellUs")}
-              </Text>
-            </View>
+            <View className={`${styles.cardBgClass} border rounded-2xl p-5`}>
+              <Text className={`text-2xl font-semibold ${styles.textClass}`}>{t("setup.title")}</Text>
+              <Text className={`${styles.secondaryTextClass} mt-1 mb-5`}>{t("setup.subtitle")}</Text>
 
-            <View className="flex-row gap-2 mb-8">
-              <View className={`h-1 flex-1 rounded ${step >= 1 ? "bg-green-500" : styles.progressBgClass}`} />
-              <View className={`h-1 flex-1 rounded ${step >= 2 ? "bg-green-500" : styles.progressBgClass}`} />
-              <View className={`h-1 flex-1 rounded ${step >= 3 ? "bg-green-500" : styles.progressBgClass}`} />
-            </View>
+              <View className="mb-4">
+                <View className="h-2 rounded-full bg-zinc-200 dark:bg-zinc-700 overflow-hidden">
+                  <View className="h-full bg-green-500" style={{ width: `${(step / 3) * 100}%` }} />
+                </View>
+              </View>
 
-            <View className="gap-4">
-              {/* Step 1: Major */}
               {step === 1 && (
                 <FormInput
                   label={t("setup.major")}
@@ -203,7 +254,6 @@ export default function ProfileSetupPage() {
                 />
               )}
 
-              {/* Step 2: GPA & Test Scores */}
               {step === 2 && (
                 <>
                   <FormInput
@@ -244,44 +294,26 @@ export default function ProfileSetupPage() {
                 </>
               )}
 
-              {/* Step 3: Resume & Transcript */}
               {step === 3 && (
                 <View className="gap-4">
-                  <View>
-                    <Text className={`text-sm ${styles.secondaryTextClass} mb-2`}>{t("setup.resume")}</Text>
+                  {renderUploadCard(
+                    t("setup.resume"),
+                    t("setup.uploadResume"),
+                    resumeDoc,
+                    () => handlePickDocument("resume"),
+                    () => setResumeDoc(null)
+                  )}
 
-                    <Pressable
-                      onPress={handlePickResume}
-                      className={`${styles.cardBgClass} border rounded-lg px-4 py-4 flex-row items-center justify-between`}
-                    >
-                      <Text className={resume ? styles.textClass : styles.secondaryTextClass}>{resume || t("setup.uploadResume")}</Text>
-                      <MaterialIcons name="upload-file" size={20} color="#22C55E" />
-                    </Pressable>
-
-                    <Text className={`text-xs ${styles.secondaryTextClass} mt-2`}>
-                      {t("setup.fileUploadStub")}
-                    </Text>
-                  </View>
-
-                  <View>
-                    <Text className={`text-sm ${styles.secondaryTextClass} mb-2`}>{t("setup.transcript")}</Text>
-
-                    <Pressable
-                      onPress={handlePickTranscript}
-                      className={`${styles.cardBgClass} border rounded-lg px-4 py-4 flex-row items-center justify-between`}
-                    >
-                      <Text className={transcript ? styles.textClass : styles.secondaryTextClass}>{transcript || t("setup.uploadTranscript")}</Text>
-                      <MaterialIcons name="upload-file" size={20} color="#22C55E" />
-                    </Pressable>
-
-                    <Text className={`text-xs ${styles.secondaryTextClass} mt-2`}>
-                      {t("setup.fileUploadStub")}
-                    </Text>
-                  </View>
+                  {renderUploadCard(
+                    t("setup.transcript"),
+                    t("setup.uploadTranscript"),
+                    transcriptDoc,
+                    () => handlePickDocument("transcript"),
+                    () => setTranscriptDoc(null)
+                  )}
                 </View>
               )}
 
-              {/* Navigation Buttons */}
               <View className="flex-row gap-4 pt-6">
                 <Pressable
                   onPress={() => {
@@ -292,6 +324,7 @@ export default function ProfileSetupPage() {
                 >
                   <Text className={styles.secondaryTextClass}>{step === 1 ? t("setup.exit") : t("setup.previous")}</Text>
                 </Pressable>
+
                 {step < 3 ? (
                   <Pressable
                     onPress={() => {
@@ -306,12 +339,13 @@ export default function ProfileSetupPage() {
                 ) : (
                   <Pressable
                     onPress={() => {
+                      if (isUploading) return;
                       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
                       handleContinue();
                     }}
                     className="flex-1 bg-green-500 rounded-lg py-4 items-center flex-row justify-center"
                   >
-                    <Text className="text-black font-semibold mr-2">{t("setup.continue")}</Text>
+                    <Text className="text-black font-semibold mr-2">{isUploading ? `${t("setup.continue")}...` : t("setup.continue")}</Text>
                     <MaterialIcons name="arrow-forward" size={18} color="black" />
                   </Pressable>
                 )}
@@ -320,17 +354,18 @@ export default function ProfileSetupPage() {
           </View>
         </ScrollView>
       </ScreenBackground>
-    {isConfettiPlaying && (
-      <ConfettiCannon
-        key="confetti"
-        ref={confettiRef}
-        count={150}
-        origin={{ x: Dimensions.get('window').width / 2, y: -10 }}
-        autoStart={true}
-        fadeOut={true}
-        fallSpeed={3000}
-      />
-    )}
+
+      {isConfettiPlaying && (
+        <ConfettiCannon
+          key="confetti"
+          ref={confettiRef}
+          count={150}
+          origin={{ x: Dimensions.get("window").width / 2, y: -10 }}
+          autoStart={true}
+          fadeOut={true}
+          fallSpeed={3000}
+        />
+      )}
     </>
   );
 }
