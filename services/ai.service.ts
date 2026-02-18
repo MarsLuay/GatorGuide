@@ -63,6 +63,45 @@ export type RecommendResponse = {
   emptyState?: EmptyState;
 };
 
+export type RecommendDebug = {
+  timestamp: string;
+  mode: 'weighted' | 'search';
+  query: string;
+  useWeightedSearch: boolean;
+  userProfile?: {
+    isGuest?: boolean;
+    major?: string | null;
+    gpa?: string | number | null;
+    state?: string | null;
+  };
+  normalizedQuestionnaire?: Record<string, any>;
+  wantsInState?: boolean;
+  rawUserState?: string;
+  effectiveState?: string;
+  usedWashingtonFallback?: boolean;
+  collegeSource?: 'live' | 'cached' | 'stub' | null;
+  counts?: {
+    fetched: number;
+    filtered: number;
+    deterministic: number;
+    aiCandidates: number;
+    returned: number;
+  };
+  emptyState?: EmptyState | null;
+  topResults?: Array<{
+    rank: number;
+    id: string;
+    name: string;
+    state: string;
+    score: number;
+    finalBaseScore: number;
+    aiFactor: number;
+    queryMatch: number | null;
+    reason?: string;
+  }>;
+  notes?: string[];
+};
+
 const AI_LAST_RESPONSE_KEY = 'ai:lastResponse';
 const AI_LAST_RESPONSE_MAP_KEY = 'ai:lastResponseMap';
 const AI_LAST_ROADMAP_KEY = 'ai:lastRoadmap';
@@ -77,6 +116,11 @@ export type ChatMessage = {
 
 class AIService {
   private readonly FETCH_TIMEOUT_MS = 15000; // 15 seconds
+  private lastRecommendDebug: RecommendDebug | null = null;
+
+  getLastRecommendDebug() {
+    return this.lastRecommendDebug;
+  }
   /**
    * Send message to AI assistant and get response
    * STUB: Returns canned responses
@@ -637,6 +681,16 @@ class AIService {
     return false;
   }
 
+  // Convert full state names to 2-letter codes for Scorecard filters.
+  private toStateAbbreviation(state?: string | null) {
+    const raw = String(state ?? '').trim();
+    if (!raw) return '';
+    if (raw.length === 2) return raw.toUpperCase();
+    const lower = raw.toLowerCase();
+    const found = Object.entries(AIService.ABBR_TO_NAME).find(([, name]) => name.toLowerCase() === lower);
+    return found ? found[0] : raw.toUpperCase();
+  }
+
   // Helper to apply in-state filtering once and either return the filtered list
   // or tag original results as out-of-state when none match (better UX than empty list)
   private filterOrTagInState<T extends { college?: College; reason?: string; score?: number }>(
@@ -866,12 +920,45 @@ class AIService {
 
   private normalizeQuestionnaire(questionnaire?: Questionnaire | null): Questionnaire {
     const q: any = { ...(questionnaire ?? {}) };
-    const normalizeKey = (v: any) => String(v ?? '').trim().toLowerCase();
-    q.costOfAttendance = normalizeKey(q.costOfAttendance || 'no_preference');
-    q.classSize = normalizeKey(q.classSize || 'no_preference');
+    const normalizeKey = (v: any) =>
+      String(v ?? '')
+        .trim()
+        .toLowerCase()
+        .replace(/[\s-]+/g, '_');
+
+    const mapCost = (v: any) => {
+      const k = normalizeKey(v);
+      if (!k) return 'no_preference';
+      if (k === 'under20k' || k === 'under_20k') return 'under_20k';
+      if (k === '20to40k' || k === '20k_to_40k' || k === '20_40k') return '20k_to_40k';
+      if (k === '40to60k' || k === '40k_to_60k' || k === '40_60k') return '40k_to_60k';
+      if (k === 'over60k' || k === 'over_60k') return 'over_60k';
+      if (k === 'no_preference' || k === 'none' || k === 'any') return 'no_preference';
+      return k;
+    };
+
+    const mapClassSize = (v: any) => {
+      const k = normalizeKey(v);
+      if (!k || k === 'no_preference') return 'no_preference';
+      if (k.includes('small')) return 'small';
+      if (k.includes('large')) return 'large';
+      return 'no_preference';
+    };
+
+    const mapHousing = (v: any) => {
+      const k = normalizeKey(v);
+      if (!k || k === 'no_preference') return 'no_preference';
+      if (k.includes('off_campus')) return 'off_campus';
+      if (k.includes('on_campus')) return 'on_campus';
+      if (k.includes('commute')) return 'commute';
+      return 'no_preference';
+    };
+
+    q.costOfAttendance = mapCost(q.costOfAttendance ?? q.budget);
+    q.classSize = mapClassSize(q.classSize ?? q.collegeSize);
     q.transportation = normalizeKey(q.transportation || 'no_preference');
     q.inStateOutOfState = normalizeKey(q.inStateOutOfState || 'no_preference');
-    q.housing = normalizeKey(q.housing || 'no_preference');
+    q.housing = mapHousing(q.housing ?? q.housingPreference);
     q.ranking = normalizeKey(q.ranking || 'somewhat_important');
     q.continueEducation = normalizeKey(q.continueEducation || 'maybe');
     return q;
@@ -1007,6 +1094,37 @@ class AIService {
     return text.length > max ? `${text.slice(0, max)}…` : text;
   }
 
+  private computeQueryMatchScore(college: College, query: string): number {
+    const q = String(query ?? '').trim().toLowerCase();
+    if (q.length < 2) return 50;
+
+    const tokens = q.split(/\s+/).filter(Boolean);
+    if (!tokens.length) return 50;
+
+    const name = String(college.name ?? '').toLowerCase();
+    const programs = Array.isArray(college.programs)
+      ? college.programs.map((p) => String(p ?? '').toLowerCase())
+      : [];
+
+    const tokenHits = tokens.reduce((acc, t) => {
+      const inName = name.includes(t);
+      const inPrograms = programs.some((p) => p.includes(t));
+      return acc + (inName || inPrograms ? 1 : 0);
+    }, 0);
+
+    const coverage = tokenHits / tokens.length;
+    const strongNameMatch = name.includes(q);
+    const strongProgramMatch = programs.some((p) => p.includes(q));
+
+    if (strongNameMatch) return 100;
+    if (strongProgramMatch) return 90;
+    if (coverage >= 1) return 85;
+    if (coverage >= 0.75) return 75;
+    if (coverage >= 0.5) return 65;
+    if (coverage > 0) return 55;
+    return 20;
+  }
+
   private async computeAiFactors(candidates: Array<{ college: College; finalBaseScore: number }>, userProfile: UserProfile | null, questionnaire: Questionnaire): Promise<Record<string, number>> {
     if (!candidates.length || isStubMode() || API_CONFIG.gemini.apiKey === 'STUB') {
       return Object.fromEntries(candidates.map((c) => [c.college.id, 50]));
@@ -1065,10 +1183,11 @@ Colleges: ${JSON.stringify(subset)}`;
 
   async recommendColleges(options: { query?: string; userProfile?: UserProfile | null; questionnaire?: Questionnaire | null; maxResults?: number; useWeightedSearch?: boolean } = {}): Promise<RecommendResponse> {
     const { query = '', userProfile = null, questionnaire = null, maxResults = 12, useWeightedSearch = true } = options;
+    const trimmedQuery = query.trim();
 
     if (!useWeightedSearch) {
-      if (query.trim().length < 2) {
-        return {
+      if (trimmedQuery.length < 2) {
+        const response: RecommendResponse = {
           results: [],
           emptyState: {
             code: 'QUERY_NO_RESULTS',
@@ -1076,36 +1195,78 @@ Colleges: ${JSON.stringify(subset)}`;
             message: 'Please enter at least 2 characters to search colleges by name.',
           },
         };
+        this.lastRecommendDebug = {
+          timestamp: new Date().toISOString(),
+          mode: 'search',
+          query: trimmedQuery,
+          useWeightedSearch,
+          emptyState: response.emptyState,
+          counts: { fetched: 0, filtered: 0, deterministic: 0, aiCandidates: 0, returned: 0 },
+          notes: ['Search mode rejected query with fewer than 2 characters.'],
+        };
+        return response;
       }
-      const raw = await collegeService.searchColleges(query.trim());
-      return {
+      const raw = await collegeService.searchColleges(trimmedQuery);
+      const response: RecommendResponse = {
         results: raw.slice(0, maxResults).map((college) => ({ college, reason: 'Search result', score: 50, scoreText: 'N/A' })),
       };
+      this.lastRecommendDebug = {
+        timestamp: new Date().toISOString(),
+        mode: 'search',
+        query: trimmedQuery,
+        useWeightedSearch,
+        collegeSource: collegeService.getLastSource(),
+        counts: {
+          fetched: raw.length,
+          filtered: raw.length,
+          deterministic: raw.length,
+          aiCandidates: 0,
+          returned: response.results.length,
+        },
+        topResults: response.results.slice(0, 10).map((r, idx) => ({
+          rank: idx + 1,
+          id: String(r.college.id),
+          name: r.college.name,
+          state: String(r.college.location?.state ?? ''),
+          score: Number(r.score ?? 50),
+          finalBaseScore: 50,
+          aiFactor: 50,
+          queryMatch: null,
+          reason: r.reason,
+        })),
+        notes: ['Search mode (non-weighted) uses direct name matching from collegeService.searchColleges.'],
+      };
+      return response;
     }
 
     const normalizedQuestionnaire = this.normalizeQuestionnaire(questionnaire);
     const { gpa, valid: hasValidGpa } = this.parseGpa(userProfile);
     const weight = this.rankImportanceAdjustments(normalizedQuestionnaire);
 
-    const wantsInState = normalizedQuestionnaire.inStateOutOfState === 'in_state';
-    const effectiveState = userProfile?.isGuest ? 'Washington' : String(userProfile?.state ?? '').trim();
+    const locationPref = String(normalizedQuestionnaire.location ?? '').trim();
+    const guestWantsWashington =
+      !!userProfile?.isGuest &&
+      (
+        normalizedQuestionnaire.inStateOutOfState === 'no_preference' ||
+        this.stateMatches(locationPref, 'Washington')
+      );
+    const wantsInState = normalizedQuestionnaire.inStateOutOfState === 'in_state' || guestWantsWashington;
+    const rawUserState = String(userProfile?.state ?? '').trim();
+    const usedWashingtonFallback = !userProfile?.isGuest && !rawUserState;
+    const effectiveState = userProfile?.isGuest ? 'Washington' : (rawUserState || 'Washington');
+    const stateApiFilter = wantsInState ? this.toStateAbbreviation(effectiveState) : '';
+    let usedBroadFetchFallback = false;
 
-    if (wantsInState && !effectiveState) {
-      return {
-        results: [],
-        emptyState: {
-          code: 'IN_STATE_STATE_MISSING',
-          title: 'State not set',
-          message: 'Set your state in profile to run in-state-only recommendations.',
-        },
-      };
+    let colleges = await collegeService.getMatches(wantsInState ? { location: stateApiFilter } : {});
+    if (wantsInState && colleges.length === 0) {
+      usedBroadFetchFallback = true;
+      colleges = await collegeService.getMatches({});
     }
-
-    const colleges = await collegeService.getMatches({});
     const filtered = wantsInState ? colleges.filter((c) => this.stateMatches(c.location?.state, effectiveState)) : colleges;
+    const collegeSource = collegeService.getLastSource();
 
     if (wantsInState && filtered.length === 0) {
-      return {
+      const response: RecommendResponse = {
         results: [],
         emptyState: {
           code: 'IN_STATE_NO_MATCHES',
@@ -1113,6 +1274,39 @@ Colleges: ${JSON.stringify(subset)}`;
           message: `No matching colleges found in ${effectiveState}.`,
         },
       };
+      this.lastRecommendDebug = {
+        timestamp: new Date().toISOString(),
+        mode: 'weighted',
+        query: trimmedQuery,
+        useWeightedSearch,
+        userProfile: {
+          isGuest: !!userProfile?.isGuest,
+          major: userProfile?.major ?? null,
+          gpa: userProfile?.gpa ?? null,
+          state: userProfile?.state ?? null,
+        },
+        normalizedQuestionnaire,
+        wantsInState,
+        rawUserState,
+        effectiveState,
+        usedWashingtonFallback,
+        collegeSource,
+        counts: {
+          fetched: colleges.length,
+          filtered: filtered.length,
+          deterministic: 0,
+          aiCandidates: 0,
+          returned: 0,
+        },
+        emptyState: response.emptyState,
+        notes: [
+          'In-state filter produced zero candidates.',
+          usedBroadFetchFallback
+            ? `State-scoped fetch returned 0 for "${stateApiFilter}", then broad fetch fallback also produced no in-state matches.`
+            : `State-scoped fetch returned candidates, but none matched "${effectiveState}" after normalization.`,
+        ],
+      };
+      return response;
     }
 
     const deterministic = filtered.map((college) => {
@@ -1138,20 +1332,30 @@ Colleges: ${JSON.stringify(subset)}`;
     const finalRanked = deterministic
       .map((item) => {
         const aiFactor = this.clamp(aiFactors[item.college.id] ?? 50);
-        const finalScore = this.clamp(Math.round(item.finalBaseScore * 0.9 + aiFactor * 0.1));
+        const queryActive = trimmedQuery.length >= 2;
+        const queryMatch = queryActive ? this.computeQueryMatchScore(item.college, trimmedQuery) : null;
+        const queryBoost = queryMatch === null ? 0 : Math.round((queryMatch / 100) * 10);
+        const finalScore = this.clamp(Math.round(item.finalBaseScore * 0.9 + aiFactor * 0.1 + queryBoost));
         const reasonPairs = [
           ['GPA fit', item.gpaFitScore],
           ['Prestige', item.prestigeScore],
           ['Major match', item.majorFit],
           ['Preference fit', item.preferenceFit],
           ['AI fit', aiFactor],
+          ...(queryMatch === null ? [] : [['Query match', queryMatch] as [string, number]]),
         ].sort((a, b) => Number(b[1]) - Number(a[1])).slice(0, 2);
+
+        const fallbackNote = wantsInState && usedWashingtonFallback
+          ? 'State fallback applied: Washington.'
+          : '';
+        const topFactors = `Top factors: ${reasonPairs.map(([k, v]) => `${k} (${v})`).join(', ')}`;
+        const reason = fallbackNote ? `${topFactors} ${fallbackNote}` : topFactors;
 
         return {
           college: item.college,
           score: finalScore,
           scoreText: `${finalScore}/100`,
-          reason: `Top factors: ${reasonPairs.map(([k, v]) => `${k} (${v})`).join(', ')}`,
+          reason,
           breakdown: {
             finalScore,
             finalBaseScore: item.finalBaseScore,
@@ -1160,11 +1364,62 @@ Colleges: ${JSON.stringify(subset)}`;
             majorFit: item.majorFit,
             preferenceFit: item.preferenceFit,
             aiFactor,
+            ...(queryMatch === null ? {} : { queryMatch }),
+            ...(wantsInState && usedWashingtonFallback ? { stateFallbackUsed: 1 } : {}),
           },
         } as RecommendResult;
       })
       .sort((a, b) => (b.score ?? 0) - (a.score ?? 0))
       .slice(0, maxResults);
+
+    this.lastRecommendDebug = {
+      timestamp: new Date().toISOString(),
+      mode: 'weighted',
+      query: trimmedQuery,
+      useWeightedSearch,
+      userProfile: {
+        isGuest: !!userProfile?.isGuest,
+        major: userProfile?.major ?? null,
+        gpa: userProfile?.gpa ?? null,
+        state: userProfile?.state ?? null,
+      },
+      normalizedQuestionnaire,
+      wantsInState,
+      rawUserState,
+      effectiveState,
+      usedWashingtonFallback,
+      collegeSource,
+      counts: {
+        fetched: colleges.length,
+        filtered: filtered.length,
+        deterministic: deterministic.length,
+        aiCandidates: aiCandidates.length,
+        returned: finalRanked.length,
+      },
+      topResults: finalRanked.slice(0, 10).map((r, idx) => ({
+        rank: idx + 1,
+        id: String(r.college.id),
+        name: r.college.name,
+        state: String(r.college.location?.state ?? ''),
+        score: Number(r.score ?? 0),
+        finalBaseScore: Number((r.breakdown as any)?.finalBaseScore ?? 0),
+        aiFactor: Number((r.breakdown as any)?.aiFactor ?? 50),
+        queryMatch: typeof (r.breakdown as any)?.queryMatch === 'number' ? Number((r.breakdown as any).queryMatch) : null,
+        reason: r.reason,
+      })),
+      notes: [
+        usedBroadFetchFallback
+          ? `State-scoped fetch returned 0 for "${stateApiFilter}", broad fetch fallback was used.`
+          : `State-scoped fetch used filter "${stateApiFilter}".`,
+        guestWantsWashington
+          ? 'Guest user with no explicit in-state preference: Washington in-state bias applied.'
+          : 'Guest WA in-state bias not applied.',
+        usedWashingtonFallback
+          ? 'Signed-in user had no profile state; Washington fallback was applied.'
+          : 'No state fallback used.',
+        wantsInState ? 'In-state filtering enabled.' : 'In-state filtering disabled.',
+      ],
+    };
 
     return { results: finalRanked };
   }

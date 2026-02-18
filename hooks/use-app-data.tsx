@@ -11,6 +11,7 @@ export type User = {
   name: string;
   email: string;
   isGuest?: boolean; // true if user is logged in as guest
+  state?: string;
   major?: string;
   gpa?: string;
   sat?: string;

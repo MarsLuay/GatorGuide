@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { View, Text, TextInput, Pressable, ScrollView, Switch } from "react-native";
+import { View, Text, TextInput, Pressable, ScrollView, Switch, Platform } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -9,7 +9,7 @@ import { useAppData } from "@/hooks/use-app-data";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { College } from "@/services/college.service";
 import { aiService, collegeService } from "@/services";
-import type { EmptyState } from "@/services";
+import type { EmptyState, RecommendDebug } from "@/services";
 
 export default function HomePage() {
   const router = useRouter();
@@ -36,6 +36,10 @@ export default function HomePage() {
   const [showCooldownPopup, setShowCooldownPopup] = useState(false);
   const [remainingSeconds, setRemainingSeconds] = useState(0);
   const cooldownRef = useRef<number | null>(null);
+  const [showDebugConsole, setShowDebugConsole] = useState(false);
+  const [debugSnapshot, setDebugSnapshot] = useState<RecommendDebug | null>(null);
+  const [debugHotkeyEnabled, setDebugHotkeyEnabled] = useState(false);
+  const [copyStatus, setCopyStatus] = useState<"" | "copied" | "failed">("");
 
   const capitalizedName = user?.name 
     ? user.name.split(' ')[0].charAt(0).toUpperCase() + user.name.split(' ')[0].slice(1).toLowerCase()
@@ -86,8 +90,38 @@ export default function HomePage() {
       setResults(resp.results as Recommended[]);
       setEmptyState(resp.emptyState);
       setResultsSource('live');
+      setDebugSnapshot(aiService.getLastRecommendDebug());
     } finally {
       setIsSearching(false);
+    }
+  };
+
+  const refreshDebugSnapshot = () => {
+    setDebugSnapshot(aiService.getLastRecommendDebug());
+  };
+
+  const logDebugSnapshot = () => {
+    const snap = aiService.getLastRecommendDebug();
+    setDebugSnapshot(snap);
+    console.log('[RecommendDebug]', JSON.stringify(snap, null, 2));
+  };
+
+  const copyDebugSnapshot = async () => {
+    try {
+      const snap = aiService.getLastRecommendDebug();
+      const text = JSON.stringify(snap, null, 2);
+      if (!text) {
+        setCopyStatus("failed");
+        return;
+      }
+      if (typeof navigator === "undefined" || !navigator.clipboard?.writeText) {
+        setCopyStatus("failed");
+        return;
+      }
+      await navigator.clipboard.writeText(text);
+      setCopyStatus("copied");
+    } catch {
+      setCopyStatus("failed");
     }
   };
 
@@ -124,6 +158,19 @@ export default function HomePage() {
       if (interval) clearInterval(interval as any);
     };
   }, [showCooldownPopup, cooldownUntil]);
+
+  useEffect(() => {
+    if (!__DEV__ || Platform.OS !== "web") return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "~" || event.key === "`" || event.code === "Backquote") {
+        setDebugHotkeyEnabled((v) => !v);
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   return (
     <ScreenBackground>
@@ -184,6 +231,41 @@ export default function HomePage() {
               <Text className={`${showCooldownPopup ? 'text-gray-800' : 'text-black'} font-semibold`}>{t("home.search")}</Text>
             </Pressable>
           </View>
+
+          {__DEV__ && debugHotkeyEnabled ? (
+            <View className={`${cardClass} border rounded-2xl p-3 mb-4`}>
+              <View className="flex-row items-center justify-between">
+                <Text className={`${textClass} font-semibold`}>Recommendation Dev Console</Text>
+                <Pressable
+                  onPress={() => setShowDebugConsole((v) => !v)}
+                  className="px-3 py-1 rounded-lg bg-green-500"
+                >
+                  <Text className="text-black font-semibold">{showDebugConsole ? 'Hide' : 'Show'}</Text>
+                </Pressable>
+              </View>
+              <View className="flex-row gap-2 mt-3">
+                <Pressable onPress={refreshDebugSnapshot} className="px-3 py-2 rounded-lg bg-gray-300">
+                  <Text className="text-black text-xs font-semibold">Refresh Snapshot</Text>
+                </Pressable>
+                <Pressable onPress={logDebugSnapshot} className="px-3 py-2 rounded-lg bg-gray-300">
+                  <Text className="text-black text-xs font-semibold">Log Snapshot</Text>
+                </Pressable>
+                <Pressable onPress={copyDebugSnapshot} className="px-3 py-2 rounded-lg bg-gray-300">
+                  <Text className="text-black text-xs font-semibold">Copy Snapshot</Text>
+                </Pressable>
+              </View>
+              {copyStatus ? (
+                <Text className={`${secondaryTextClass} text-xs mt-2`}>
+                  {copyStatus === "copied" ? "Snapshot copied to clipboard." : "Clipboard copy failed."}
+                </Text>
+              ) : null}
+              {showDebugConsole ? (
+                <Text selectable className={`${secondaryTextClass} text-xs mt-3`}>
+                  {debugSnapshot ? JSON.stringify(debugSnapshot, null, 2) : "Run a search first, then tap Refresh Snapshot."}
+                </Text>
+              ) : null}
+            </View>
+          ) : null}
 
           {!hasCompletedQuestionnaire && (
             <Pressable

@@ -11,9 +11,10 @@ import { buildScorecardUrl, fetchScorecardUrl } from './scorecard';
 
 const CACHE_TTL_MS = 1000 * 60 * 60 * 24; // 24 hours
 const ZIP_CACHE_TTL_MS = 1000 * 60 * 60 * 24 * 3; // 3 days for ZIP geocode cache
+const CACHE_VERSION = 'v2';
 
 const getCacheKey = (type: 'matches' | 'search' | 'details', payload: string) =>
-  `college:${type}:${payload}`;
+  `college:${CACHE_VERSION}:${type}:${payload}`;
 
 const readCache = async (key: string): Promise<College[] | College | null> => {
   const raw = await AsyncStorage.getItem(key);
@@ -178,7 +179,7 @@ class CollegeService {
 
     const params: Record<string, string> = {
       fields,
-      per_page: '20',
+      per_page: '100',
       sort: 'latest.student.size:desc',
     };
 
@@ -211,8 +212,19 @@ class CollegeService {
           size,
           setting,
           admissionRate: r?.latest?.admissions?.admission_rate?.overall ?? null,
+          completionRate: r?.latest?.completion?.rate ?? r?.latest?.completion_rate ?? null,
           website: r?.school?.school_url ?? null,
+          priceCalculator: r?.school?.price_calculator_url ?? r?.school?.school_url ?? null,
           programs: [],
+          degreesAwarded: {
+            highest: r?.school?.degrees_awarded?.highest ?? null,
+            predominant: r?.school?.degrees_awarded?.predominant ?? null,
+          },
+          locale: r?.school?.locale ?? null,
+          avgNetPriceOverall: r?.latest?.cost?.avg_net_price?.overall ?? null,
+          attendanceAcademicYear: r?.latest?.cost?.attendance?.academic_year ?? null,
+          pellGrantRate: r?.latest?.aid?.pell_grant_rate ?? null,
+          medianDebtCompletersOverall: r?.latest?.aid?.median_debt?.completers?.overall ?? null,
         } as College;
       });
 
