@@ -51,7 +51,7 @@ Run these from repo root:
 
 ## High-value files to inspect first
 - Providers/layout: [app/_layout.tsx](../app/_layout.tsx)
-- Routing guards/tabs: [app/index.tsx](../app/index.tsx), [app/(tabs)/_layout.tsx](../app/(tabs)/_layout.tsx)
+- Routing guards/tabs: [app/index.tsx](../app/index.tsx)
 - Persisted app data model: [hooks/use-app-data.tsx](../hooks/use-app-data.tsx)
 - Service entry points: [services/index.ts](../services/index.ts), [services/README.md](../services/README.md)
 - AI + recommendations: [services/ai.service.ts](../services/ai.service.ts)
