@@ -1,0 +1,322 @@
+{
+  "totalKeys": 485,
+  "unusedCount": 159,
+  "unusedKeys": [
+    "details.priceCalculator",
+    "details.tuition",
+    "general.language",
+    "general.save",
+    "general.success",
+    "home.actScore",
+    "home.admissionRate",
+    "home.matching",
+    "home.noResults",
+    "home.recommendations",
+    "home.satScore",
+    "home.searchColleges",
+    "home.tryAdjusting",
+    "profile.act",
+    "profile.actPlaceholder",
+    "profile.enterAct",
+    "profile.enterGpa",
+    "profile.enterSat",
+    "profile.enterYourEmail",
+    "profile.enterYourMajor",
+    "profile.questionnaireCompleted",
+    "profile.sat",
+    "profile.satPlaceholder",
+    "profile.save",
+    "questionnaire.20to40k",
+    "questionnaire.40to60k",
+    "questionnaire.acceptanceRate",
+    "questionnaire.advisor",
+    "questionnaire.advisorPlaceholder",
+    "questionnaire.allOfTheAbove",
+    "questionnaire.associatesForTransfer",
+    "questionnaire.budget",
+    "questionnaire.careerGoals",
+    "questionnaire.certifications",
+    "questionnaire.certificationsPlaceholder",
+    "questionnaire.collegeSetting",
+    "questionnaire.collegeSize",
+    "questionnaire.collegeVibe",
+    "questionnaire.collegeVibePlaceholder",
+    "questionnaire.commute",
+    "questionnaire.considering",
+    "questionnaire.deadline",
+    "questionnaire.deadlinePlaceholder",
+    "questionnaire.demand",
+    "questionnaire.entryLevelPosition",
+    "questionnaire.entryLevelPositionPlaceholder",
+    "questionnaire.environment",
+    "questionnaire.gpa",
+    "questionnaire.gpaPlaceholder",
+    "questionnaire.graduationDate",
+    "questionnaire.graduationDatePlaceholder",
+    "questionnaire.graduationRate",
+    "questionnaire.grammar",
+    "questionnaire.high",
+    "questionnaire.howCompetitive",
+    "questionnaire.inState",
+    "questionnaire.internationalStudentRatio",
+    "questionnaire.internships",
+    "questionnaire.internshipsPlaceholder",
+    "questionnaire.large",
+    "questionnaire.lessCompetitive",
+    "questionnaire.liberalArts",
+    "questionnaire.location",
+    "questionnaire.locationPlaceholder",
+    "questionnaire.low",
+    "questionnaire.major",
+    "questionnaire.majorChoice",
+    "questionnaire.majorExploration",
+    "questionnaire.majorExplorationPlaceholder",
+    "questionnaire.majorPlaceholder",
+    "questionnaire.maybe",
+    "questionnaire.medium",
+    "questionnaire.mixed",
+    "questionnaire.moderate",
+    "questionnaire.needFinancialAid",
+    "questionnaire.no",
+    "questionnaire.noPreference",
+    "questionnaire.notImportant",
+    "questionnaire.offCampus",
+    "questionnaire.onCampus",
+    "questionnaire.opportunitiesToExpatriate",
+    "questionnaire.outOfState",
+    "questionnaire.over60k",
+    "questionnaire.personalInterest",
+    "questionnaire.personalInterestPlaceholder",
+    "questionnaire.personalStatementFocus",
+    "questionnaire.platforms",
+    "questionnaire.platformsPlaceholder",
+    "questionnaire.preProfessional",
+    "questionnaire.programs",
+    "questionnaire.punctuation",
+    "questionnaire.quarter",
+    "questionnaire.quarterSemesterSystem",
+    "questionnaire.ratioPlaceholder",
+    "questionnaire.recommendedCourses",
+    "questionnaire.recommendedCoursesPlaceholder",
+    "questionnaire.requiredCourses",
+    "questionnaire.requiredCoursesPlaceholder",
+    "questionnaire.researchFocused",
+    "questionnaire.researchOpportunities",
+    "questionnaire.researchOpportunitiesPlaceholder",
+    "questionnaire.resourcesOnCampus",
+    "questionnaire.resourcesOnCampusPlaceholder",
+    "questionnaire.resumeSkills",
+    "questionnaire.resumeSkillsPlaceholder",
+    "questionnaire.rural",
+    "questionnaire.salary",
+    "questionnaire.salaryPlaceholder",
+    "questionnaire.sectionAcademicPlan",
+    "questionnaire.sectionDataWeNeed",
+    "questionnaire.sectionOccupation",
+    "questionnaire.sectionPersonalStatement",
+    "questionnaire.semester",
+    "questionnaire.small",
+    "questionnaire.somewhatImportant",
+    "questionnaire.specifyMajor",
+    "questionnaire.spelling",
+    "questionnaire.stepOf",
+    "questionnaire.studentStaffRatio",
+    "questionnaire.studentStaffRatioPlaceholder",
+    "questionnaire.suburban",
+    "questionnaire.taxRates",
+    "questionnaire.taxRatesPlaceholder",
+    "questionnaire.technical",
+    "questionnaire.timeZone",
+    "questionnaire.timeZonePlaceholder",
+    "questionnaire.transferStudentRate",
+    "questionnaire.transportBike",
+    "questionnaire.transportCar",
+    "questionnaire.transportTransit",
+    "questionnaire.transportWalk",
+    "questionnaire.typesOfOccupation",
+    "questionnaire.typesOfOccupationPlaceholder",
+    "questionnaire.undecided",
+    "questionnaire.under20k",
+    "questionnaire.unsure",
+    "questionnaire.urban",
+    "questionnaire.veryCompetitive",
+    "questionnaire.veryImportant",
+    "questionnaire.volunteerActivities",
+    "questionnaire.weather",
+    "questionnaire.weatherCold",
+    "questionnaire.weatherMild",
+    "questionnaire.weatherWarm",
+    "questionnaire.workEnvironment",
+    "questionnaire.workEnvironmentPlaceholder",
+    "questionnaire.yearsToComplete",
+    "questionnaire.yearsToCompletePlaceholder",
+    "questionnaire.yes",
+    "roadmap.applicationRoadmap",
+    "settings.cacheClearedMessage",
+    "setup.act",
+    "setup.actPlaceholder",
+    "setup.fileUploadStub",
+    "setup.sat",
+    "setup.satPlaceholder",
+    "setup.setupProfile",
+    "setup.skip",
+    "setup.tellUs"
+  ],
+  "sampleUsages": {
+    "auth.signUp": [
+      "components\\pages\\AuthPage.tsx"
+    ],
+    "auth.logIn": [
+      "components\\pages\\AuthPage.tsx"
+    ],
+    "auth.email": [
+      "components\\pages\\AuthPage.tsx"
+    ],
+    "auth.password": [
+      "components\\pages\\AuthPage.tsx"
+    ],
+    "auth.name": [
+      "components\\pages\\AuthPage.tsx"
+    ],
+    "auth.createAccount": [
+      "components\\pages\\AuthPage.tsx"
+    ],
+    "auth.gatorguide": [
+      "components\\pages\\AuthPage.tsx"
+    ],
+    "auth.findCollege": [
+      "components\\pages\\AuthPage.tsx"
+    ],
+    "auth.forgotPassword": [
+      "components\\pages\\AuthPage.tsx"
+    ],
+    "auth.continueAsGuest": [
+      "components\\pages\\AuthPage.tsx"
+    ],
+    "auth.continueWithGoogle": [
+      "components\\pages\\AuthPage.tsx"
+    ],
+    "auth.continueWithMicrosoft": [
+      "components\\pages\\AuthPage.tsx"
+    ],
+    "auth.providerAvailableOnWeb": [
+      "components\\pages\\AuthPage.tsx"
+    ],
+    "auth.providerNotConfigured": [
+      "components\\pages\\AuthPage.tsx"
+    ],
+    "auth.providerNotConfiguredMs": [
+      "components\\pages\\AuthPage.tsx"
+    ],
+    "auth.pleaseEnterName": [
+      "components\\pages\\AuthPage.tsx"
+    ],
+    "auth.emailInvalid": [
+      "components\\pages\\AuthPage.tsx"
+    ],
+    "auth.passwordMinimum": [
+      "components\\pages\\AuthPage.tsx"
+    ],
+    "auth.passwordMinimumShort": [
+      "components\\pages\\AuthPage.tsx"
+    ],
+    "auth.defaultUser": [
+      "components\\pages\\AuthPage.tsx"
+    ],
+    "auth.checkYourEmail": [
+      "components\\pages\\ForgotPasswordPage.tsx"
+    ],
+    "auth.passwordResetSent": [
+      "components\\pages\\ForgotPasswordPage.tsx"
+    ],
+    "auth.passwordResetInstructions": [
+      "components\\pages\\ForgotPasswordPage.tsx"
+    ],
+    "auth.backToLogin": [
+      "components\\pages\\ForgotPasswordPage.tsx"
+    ],
+    "auth.forgotPasswordTitle": [
+      "components\\pages\\ForgotPasswordPage.tsx"
+    ],
+    "auth.forgotPasswordMessage": [
+      "components\\pages\\ForgotPasswordPage.tsx"
+    ],
+    "auth.invalidEmail": [
+      "components\\pages\\ForgotPasswordPage.tsx",
+      "components\\pages\\AuthPage.tsx"
+    ],
+    "auth.enterValidEmail": [
+      "components\\pages\\ForgotPasswordPage.tsx"
+    ],
+    "auth.emailAddress": [
+      "components\\pages\\ForgotPasswordPage.tsx"
+    ],
+    "auth.enterEmail": [
+      "components\\pages\\ForgotPasswordPage.tsx"
+    ],
+    "auth.sendResetLink": [
+      "components\\pages\\ForgotPasswordPage.tsx"
+    ],
+    "auth.validation.failed_message": [
+      "components\\pages\\ForgotPasswordPage.tsx",
+      "components\\pages\\AuthPage.tsx"
+    ],
+    "auth.loginFailed": [
+      "components\\pages\\AuthPage.tsx"
+    ],
+    "auth.tooManyAttempts": [
+      "components\\pages\\ForgotPasswordPage.tsx",
+      "components\\pages\\AuthPage.tsx"
+    ],
+    "auth.networkError": [
+      "components\\pages\\AuthPage.tsx"
+    ],
+    "auth.accountDisabled": [
+      "components\\pages\\AuthPage.tsx"
+    ],
+    "auth.signInMethodDisabled": [
+      "components\\pages\\AuthPage.tsx"
+    ],
+    "auth.validation.failed_title": [
+      "components\\pages\\ForgotPasswordPage.tsx",
+      "components\\pages\\AuthPage.tsx"
+    ],
+    "auth.validation.invalid_email": [
+      "components\\pages\\ForgotPasswordPage.tsx"
+    ],
+    "auth.no_matches": [
+      "components\\pages\\ForgotPasswordPage.tsx",
+      "components\\pages\\AuthPage.tsx"
+    ],
+    "auth.wrongPassword": [
+      "components\\pages\\AuthPage.tsx"
+    ],
+    "auth.invalidCredential": [
+      "components\\pages\\AuthPage.tsx"
+    ],
+    "auth.back_to_login": [
+      "components\\pages\\ForgotPasswordPage.tsx"
+    ],
+    "profile.edit": [
+      "components\\pages\\ProfilePage.tsx"
+    ],
+    "profile.name": [
+      "components\\pages\\ProfilePage.tsx"
+    ],
+    "profile.major": [
+      "components\\pages\\ProfilePage.tsx"
+    ],
+    "profile.gpa": [
+      "components\\pages\\ProfilePage.tsx"
+    ],
+    "profile.email": [
+      "components\\pages\\ProfilePage.tsx"
+    ],
+    "profile.resume": [
+      "components\\pages\\ProfilePage.tsx"
+    ],
+    "profile.transcript": [
+      "components\\pages\\ProfilePage.tsx"
+    ]
+  }
+}

@@ -14,8 +14,6 @@ export type User = {
   state?: string;
   major?: string;
   gpa?: string;
-  sat?: string;
-  act?: string;
   resume?: string;
   transcript?: string;
   isProfileComplete?: boolean;
@@ -96,10 +94,9 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
         if (userDoc.exists() && userDoc.data()) {
           const data = userDoc.data();
           profileFromServer = {
+            state: data.state ?? "",
             major: data.major ?? "",
             gpa: data.gpa ?? "",
-            sat: data.sat ?? "",
-            act: data.act ?? "",
             resume: data.resume ?? "",
             transcript: data.transcript ?? "",
             isProfileComplete: !!data.isProfileComplete,
@@ -131,9 +128,8 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
           email: authUser.email,
           isGuest: false,
           major: "",
+          state: "",
           gpa: "",
-          sat: "",
-          act: "",
           resume: "",
           transcript: "",
           ...profileFromServer,
@@ -150,10 +146,9 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
         if (userDoc.exists() && userDoc.data()) {
           const data = userDoc.data();
           profileFromServer = {
+            state: data.state ?? "",
             major: data.major ?? "",
             gpa: data.gpa ?? "",
-            sat: data.sat ?? "",
-            act: data.act ?? "",
             resume: data.resume ?? "",
             transcript: data.transcript ?? "",
             isProfileComplete: !!data.isProfileComplete,
@@ -171,9 +166,8 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
         email: authUser.email,
         isGuest: false,
         major: "",
+        state: "",
         gpa: "",
-        sat: "",
-        act: "",
         resume: "",
         transcript: "",
         ...profileFromServer,
@@ -190,9 +184,8 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
         email: `guest-${Date.now()}@gatorguide.local`,
         isGuest: true,
         major: "",
+        state: "",
         gpa: "",
-        sat: "",
-        act: "",
         resume: "",
         transcript: "",
       },

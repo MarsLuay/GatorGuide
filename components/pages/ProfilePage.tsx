@@ -37,10 +37,9 @@ export default function ProfilePage() {
   const [isEditing, setIsEditing] = useState(false);
   const [editData, setEditData] = useState({
     name: "",
+    state: "",
     major: "",
     gpa: "",
-    sat: "",
-    act: "",
     resume: "",
     transcript: "",
   });
@@ -194,15 +193,14 @@ export default function ProfilePage() {
     if (!isHydrated) return;
     setEditData({
       name: user?.name ?? "",
+      state: user?.state ?? "",
       major: user?.major ?? "",
       gpa: user?.gpa ?? "",
-      sat: user?.sat ?? "",
-      act: user?.act ?? "",
       resume: user?.resume ?? "",
       transcript: user?.transcript ?? "",
     });
     setLocalAnswers({ ...blankAnswers, ...normalizeQuestionnaireAnswers(state.questionnaireAnswers ?? {}, language) });
-  }, [isHydrated, user?.name, user?.major, user?.gpa, user?.sat, user?.act, user?.resume, user?.transcript, blankAnswers, state.questionnaireAnswers, language]);
+  }, [isHydrated, user?.name, user?.state, user?.major, user?.gpa, user?.resume, user?.transcript, blankAnswers, state.questionnaireAnswers, language]);
 
   const textClass = isDark ? "text-white" : "text-gray-900";
   const secondaryTextClass = isDark ? "text-gray-400" : "text-gray-600";
@@ -228,10 +226,9 @@ export default function ProfilePage() {
     if (!user) return;
     updateUser({
       name: editData.name,
+      state: editData.state,
       major: editData.major,
       gpa: editData.gpa,
-      sat: editData.sat,
-      act: editData.act,
       resume: editData.resume,
       transcript: editData.transcript,
     });
@@ -562,6 +559,23 @@ export default function ProfilePage() {
                 borderClass={borderClass}
               />
 
+              <ProfileField //state
+                type="text"
+                icon="place"
+                label={"State"}
+                value={String(user?.state ?? "").toUpperCase()}
+                isEditing={isEditing}
+                editValue={editData.state}
+                onChangeText={(v) => setEditData((p) => ({ ...p, state: v.toUpperCase().replace(/[^A-Z\s]/g, "").slice(0, 20) }))}
+                placeholder={"e.g. WA or Washington"}
+                placeholderColor={placeholderColor}
+                inputBgClass={inputBgClass}
+                inputClass={inputClass}
+                textClass={textClass}
+                secondaryTextClass={secondaryTextClass}
+                borderClass={borderClass}
+              />
+
               <ProfileField //GPA
                 type="text"
                 icon="description"
@@ -575,42 +589,6 @@ export default function ProfilePage() {
                 inputBgClass={inputBgClass}
                 inputClass={inputClass}
                 keyboardType="decimal-pad"
-                textClass={textClass}
-                secondaryTextClass={secondaryTextClass}
-                borderClass={borderClass}
-              />
-
-              <ProfileField //SAT
-                type="text"
-                icon="notes"
-                label={t("profile.sat")}
-                value={user?.sat ?? ""}
-                isEditing={isEditing}
-                editValue={editData.sat}
-                onChangeText={(v) => setEditData((p) => ({ ...p, sat: v.replace(/\D/g, "") }))}
-                placeholder={t("profile.satPlaceholder")}
-                placeholderColor={placeholderColor}
-                inputBgClass={inputBgClass}
-                inputClass={inputClass}
-                textClass={textClass}
-                secondaryTextClass={secondaryTextClass}
-                borderClass={borderClass}
-                keyboardType="number-pad"
-              />
-
-              <ProfileField //ACT
-                type="text"
-                icon="notes"
-                label={t("profile.act")}
-                value={user?.act ?? ""}
-                isEditing={isEditing}
-                editValue={editData.act}
-                onChangeText={(v) => setEditData((p) => ({ ...p, act: v.replace(/\D/g, "") }))}
-                placeholder={t("profile.actPlaceholder")}
-                keyboardType="number-pad"
-                placeholderColor={placeholderColor}
-                inputBgClass={inputBgClass}
-                inputClass={inputClass}
                 textClass={textClass}
                 secondaryTextClass={secondaryTextClass}
                 borderClass={borderClass}
@@ -670,11 +648,9 @@ export default function ProfilePage() {
                 </Pressable>
               </View>
 
-              <Text className={`text-sm ${secondaryTextClass}`}>
-                {hasQuestionnaireData
-                  ? t("profile.questionnaireCompleted")
-                  : t("profile.questionnairePrompt")}
-              </Text>
+              {!hasQuestionnaireData ? (
+                <Text className={`text-sm ${secondaryTextClass}`}>{t("profile.questionnairePrompt")}</Text>
+              ) : null}
 
               {/* Questionnaire Expanded View - All Questions at Once */}
               {showQuestionnaire && (

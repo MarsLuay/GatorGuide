@@ -172,8 +172,6 @@ export default function AuthPage() {
               await updateUser({
                 major: parsed.user.major,
                 gpa: parsed.user.gpa,
-                sat: parsed.user.sat,
-                act: parsed.user.act,
                 resume: parsed.user.resume,
                 transcript: parsed.user.transcript,
               });

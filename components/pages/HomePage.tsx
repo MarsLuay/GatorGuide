@@ -1,15 +1,37 @@
 import { useState, useEffect, useRef } from "react";
-import { View, Text, TextInput, Pressable, ScrollView, Switch, Platform } from "react-native";
+import { View, Text, TextInput, Pressable, ScrollView, Switch, Platform, ActivityIndicator } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppData } from "@/hooks/use-app-data";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { College } from "@/services/college.service";
 import { aiService, collegeService } from "@/services";
-import type { EmptyState, RecommendDebug } from "@/services";
+import type { DisabledInfluences, EmptyState, RecommendDebug } from "@/services";
+
+const AI_USAGE_STORAGE_KEY = "gatorguide:ai-usage:v1";
+const GUEST_DAILY_AI_LIMIT = 15;
+const USER_DAILY_AI_LIMIT = 50;
+
+type DailyUsageRecord = {
+  date: string;
+  count: number;
+};
+
+type DailyUsageStore = Record<string, DailyUsageRecord>;
+type DebugAiLimitMeta = {
+  reached: boolean;
+  limit: number;
+  requestedWeighted: boolean;
+  effectiveWeighted: boolean;
+  aiComponentEnabled: boolean;
+};
+type DebugSnapshotWithLimit = RecommendDebug & {
+  aiLimit?: DebugAiLimitMeta;
+};
 
 export default function HomePage() {
   const router = useRouter();
@@ -37,9 +59,24 @@ export default function HomePage() {
   const [remainingSeconds, setRemainingSeconds] = useState(0);
   const cooldownRef = useRef<number | null>(null);
   const [showDebugConsole, setShowDebugConsole] = useState(false);
-  const [debugSnapshot, setDebugSnapshot] = useState<RecommendDebug | null>(null);
+  const [debugSnapshot, setDebugSnapshot] = useState<DebugSnapshotWithLimit | null>(null);
   const [debugHotkeyEnabled, setDebugHotkeyEnabled] = useState(false);
   const [copyStatus, setCopyStatus] = useState<"" | "copied" | "failed">("");
+  const [aiLimitNotice, setAiLimitNotice] = useState<string | null>(null);
+  const [lastAiLimitMeta, setLastAiLimitMeta] = useState<DebugAiLimitMeta>({
+    reached: false,
+    limit: GUEST_DAILY_AI_LIMIT,
+    requestedWeighted: true,
+    effectiveWeighted: true,
+    aiComponentEnabled: true,
+  });
+  const [showAdvancedSearch, setShowAdvancedSearch] = useState(false);
+  const [disabledInfluences, setDisabledInfluences] = useState<DisabledInfluences>({});
+  type SearchRunOptions = {
+    overrideUseWeighted?: boolean;
+    overrideDisabledInfluences?: DisabledInfluences;
+    bypassCooldown?: boolean;
+  };
 
   const capitalizedName = user?.name 
     ? user.name.split(' ')[0].charAt(0).toUpperCase() + user.name.split(' ')[0].slice(1).toLowerCase()
@@ -53,20 +90,102 @@ export default function HomePage() {
   const inputClass = isDark ? "bg-gray-900/80 border-gray-800" : "bg-white/90 border-gray-200";
   const placeholderTextColor = isDark ? "#9CA3AF" : "#6B7280";
 
-  const handleSearch = async () => {
+  const formatPercent = (value: unknown) => {
+    const n = Number(value);
+    if (!Number.isFinite(n)) return null;
+    return `${Math.round(n)}%`;
+  };
+
+  const getMatchText = (item: Recommended) => {
+    const scoreText = (item as any)?.scoreText;
+    if (typeof scoreText === "string" && scoreText.trim().length) return scoreText;
+    const score = Number((item as any)?.score);
+    if (Number.isFinite(score)) return `${Math.round(score)}/100`;
+    return t("home.scoreNotAvailable");
+  };
+
+  const buildSimpleWhy = (item: Recommended): string[] => {
+    const b = ((item as any)?.breakdown ?? {}) as Record<string, unknown>;
+    const lines: string[] = [];
+
+    const majorFit = Number(b.majorFit);
+    if (Number.isFinite(majorFit) && majorFit >= 75) lines.push("Strong major/program alignment");
+    const queryMatch = Number(b.queryMatch);
+    if (Number.isFinite(queryMatch) && queryMatch >= 75) lines.push("Matches your search intent");
+    const preferenceFit = Number(b.preferenceFit);
+    if (Number.isFinite(preferenceFit) && preferenceFit >= 55) lines.push("Fits your preferences");
+    if (Number(b.waMrpParticipant ?? 0) > 0) lines.push("Washington transfer pathway support");
+    if (!lines.length) {
+      const admission = formatPercent((item.college as any)?.admissionRate ? Number((item.college as any).admissionRate) * 100 : null);
+      lines.push(admission ? `Admission rate: ${admission}` : "General profile match");
+    }
+    return lines.slice(0, 2);
+  };
+
+  const getLocalDateKey = () => {
+    const d = new Date();
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    return `${y}-${m}-${day}`;
+  };
+
+  const getAiUsageUserKey = () => {
+    const uid = user?.uid || "anonymous";
+    return user?.isGuest ? `guest:${uid}` : `user:${uid}`;
+  };
+
+  const consumeAiUsageIfAllowed = async (): Promise<{ allowed: boolean; limit: number }> => {
+    const limit = user?.isGuest ? GUEST_DAILY_AI_LIMIT : USER_DAILY_AI_LIMIT;
+    const today = getLocalDateKey();
+    const userKey = getAiUsageUserKey();
+
+    let store: DailyUsageStore = {};
+    try {
+      const raw = await AsyncStorage.getItem(AI_USAGE_STORAGE_KEY);
+      if (raw) store = JSON.parse(raw) as DailyUsageStore;
+    } catch {
+      store = {};
+    }
+
+    const current = store[userKey];
+    const currentCount = current?.date === today ? current.count : 0;
+    if (currentCount >= limit) return { allowed: false, limit };
+
+    store[userKey] = { date: today, count: currentCount + 1 };
+    try {
+      await AsyncStorage.setItem(AI_USAGE_STORAGE_KEY, JSON.stringify(store));
+    } catch {
+      // Ignore persistence failure; request still proceeds.
+    }
+    return { allowed: true, limit };
+  };
+
+  const withAiLimitMeta = (snap: RecommendDebug | null, override?: DebugAiLimitMeta): DebugSnapshotWithLimit | null => {
+    if (!snap) return null;
+    return {
+      ...snap,
+      aiLimit: override ?? lastAiLimitMeta,
+    };
+  };
+
+  const handleSearch = async (runOptions: SearchRunOptions = {}) => {
+    const activeUseWeighted = runOptions.overrideUseWeighted ?? useWeighted;
+    const activeDisabledInfluences = runOptions.overrideDisabledInfluences ?? disabledInfluences;
     const q = searchQuery.trim();
     setHasSubmittedSearch(true);
     setSearchTooShort(false);
+    setAiLimitNotice(null);
 
     const now = Date.now();
-    if (cooldownUntil && now < cooldownUntil) {
+    if (!runOptions.bypassCooldown && cooldownUntil && now < cooldownUntil) {
       const secs = Math.ceil((cooldownUntil - now) / 1000);
       setRemainingSeconds(secs);
       setShowCooldownPopup(true);
       return;
     }
 
-    if (useWeighted && q.length < 2) {
+    if (activeUseWeighted && q.length < 2) {
       setResults([]);
       setSearchTooShort(true);
       try { collegeService.getLastSource(); } catch {}
@@ -78,6 +197,40 @@ export default function HomePage() {
     setCooldownUntil(nextUntil);
     cooldownRef.current = nextUntil;
 
+    let effectiveUseWeighted = activeUseWeighted;
+    let disableAiComponent = false;
+    const defaultLimit = user?.isGuest ? GUEST_DAILY_AI_LIMIT : USER_DAILY_AI_LIMIT;
+    let aiLimitMeta: DebugAiLimitMeta = {
+      reached: false,
+      limit: defaultLimit,
+      requestedWeighted: activeUseWeighted,
+      effectiveWeighted: effectiveUseWeighted,
+      aiComponentEnabled: true,
+    };
+    if (activeUseWeighted) {
+      const quota = await consumeAiUsageIfAllowed();
+      if (!quota.allowed) {
+        disableAiComponent = true;
+        aiLimitMeta = {
+          reached: true,
+          limit: quota.limit,
+          requestedWeighted: activeUseWeighted,
+          effectiveWeighted: true,
+          aiComponentEnabled: false,
+        };
+        setAiLimitNotice(`Daily AI limit reached (${quota.limit}). Weighted search stays on; AI factor is disabled.`);
+      } else {
+        aiLimitMeta = {
+          reached: false,
+          limit: quota.limit,
+          requestedWeighted: activeUseWeighted,
+          effectiveWeighted: true,
+          aiComponentEnabled: true,
+        };
+      }
+    }
+    setLastAiLimitMeta(aiLimitMeta);
+
     setIsSearching(true);
     try {
       const resp = await aiService.recommendColleges({
@@ -85,30 +238,40 @@ export default function HomePage() {
         userProfile: user,
         questionnaire: state.questionnaireAnswers,
         maxResults: 20,
-        useWeightedSearch: useWeighted,
+        useWeightedSearch: effectiveUseWeighted,
+        disableAiComponent,
+        disabledInfluences: activeDisabledInfluences,
       });
       setResults(resp.results as Recommended[]);
       setEmptyState(resp.emptyState);
       setResultsSource('live');
-      setDebugSnapshot(aiService.getLastRecommendDebug());
+      setDebugSnapshot(withAiLimitMeta(aiService.getLastRecommendDebug(), aiLimitMeta));
+    } catch (e) {
+      setResults([]);
+      setEmptyState({
+        code: "UPSTREAM_ERROR",
+        title: "Search temporarily unavailable",
+        message: "The college data service is taking too long. Please try again in a moment.",
+      });
+      setAiLimitNotice((e as any)?.message || "Search failed. Please try again.");
     } finally {
       setIsSearching(false);
     }
   };
 
   const refreshDebugSnapshot = () => {
-    setDebugSnapshot(aiService.getLastRecommendDebug());
+    setDebugSnapshot(withAiLimitMeta(aiService.getLastRecommendDebug()));
   };
 
   const logDebugSnapshot = () => {
-    const snap = aiService.getLastRecommendDebug();
+    const snap = withAiLimitMeta(aiService.getLastRecommendDebug());
     setDebugSnapshot(snap);
     console.log('[RecommendDebug]', JSON.stringify(snap, null, 2));
   };
 
   const copyDebugSnapshot = async () => {
     try {
-      const snap = aiService.getLastRecommendDebug();
+      const snap = withAiLimitMeta(aiService.getLastRecommendDebug());
       const text = JSON.stringify(snap, null, 2);
       if (!text) {
         setCopyStatus("failed");
@@ -134,6 +297,20 @@ export default function HomePage() {
   const handleToggleWeighted = async (v: boolean) => {
     setUseWeighted(v);
     await setQuestionnaireAnswers({ ...state.questionnaireAnswers, useWeightedSearch: v } as any);
+    if (searchQuery.trim().length > 0 || hasSubmittedSearch || results.length > 0) {
+      await handleSearch({ overrideUseWeighted: v, bypassCooldown: true });
+    }
+  };
+
+  const toggleDisabledInfluence = (key: keyof DisabledInfluences, value: boolean) => {
+    const next = {
+      ...disabledInfluences,
+      [key]: value,
+    };
+    setDisabledInfluences(next);
+    if (searchQuery.trim().length > 0 || hasSubmittedSearch || results.length > 0) {
+      void handleSearch({ overrideDisabledInfluences: next, bypassCooldown: true });
+    }
   };
   // countdown effect for cooldown popup
   useEffect(() => {
@@ -217,20 +394,36 @@ export default function HomePage() {
             <TextInput
               value={searchQuery}
               onChangeText={(v) => { setSearchQuery(v); setSearchTooShort(false); }}
-              onSubmitEditing={handleSearch}
+              onSubmitEditing={() => { void handleSearch(); }}
               placeholder={t("home.pressEnterToStart")}
               placeholderTextColor={placeholderTextColor}
               className={`w-full ${inputClass} ${textClass} border rounded-2xl pl-12 pr-24 py-4`}
               returnKeyType="search"
             />
             <Pressable
-              onPress={handleSearch}
-              disabled={showCooldownPopup}
-              className={`absolute right-2 top-2 rounded-xl px-4 py-2 ${showCooldownPopup ? 'bg-gray-400' : 'bg-green-500'}`}
+              onPress={() => { void handleSearch(); }}
+              disabled={showCooldownPopup || isSearching}
+              className={`absolute right-2 top-2 rounded-xl px-4 py-2 ${showCooldownPopup || isSearching ? 'bg-gray-400' : 'bg-green-500'}`}
             >
-              <Text className={`${showCooldownPopup ? 'text-gray-800' : 'text-black'} font-semibold`}>{t("home.search")}</Text>
+              {isSearching ? (
+                <View className="flex-row items-center gap-2">
+                  <ActivityIndicator size="small" color="#111827" />
+                  <Text className="text-gray-800 font-semibold">{t("home.searching")}</Text>
+                </View>
+              ) : (
+                <Text className={`${showCooldownPopup ? 'text-gray-800' : 'text-black'} font-semibold`}>{t("home.search")}</Text>
+              )}
             </Pressable>
           </View>
+          {isSearching ? (
+            <View className="flex-row items-center gap-2 mb-3">
+              <ActivityIndicator size="small" color={isDark ? "#9CA3AF" : "#6B7280"} />
+              <Text className={`${secondaryTextClass} text-sm`}>{t("home.searching")}</Text>
+            </View>
+          ) : null}
+          {aiLimitNotice ? (
+            <Text className={`${secondaryTextClass} text-sm mb-3`}>{aiLimitNotice}</Text>
+          ) : null}
 
           {__DEV__ && debugHotkeyEnabled ? (
             <View className={`${cardClass} border rounded-2xl p-3 mb-4`}>
@@ -325,19 +518,6 @@ export default function HomePage() {
                       </View>
                     )}
 
-                    {user && user.sat && (
-                      <View className="flex-row justify-between mb-2">
-                        <Text className={secondaryTextClass}>{t("home.satScore")}</Text>
-                        <Text className="text-green-500">{user ? user.sat : ""}</Text>
-                      </View>
-                    )}
-
-                    {user && user.act && (
-                      <View className="flex-row justify-between">
-                        <Text className={secondaryTextClass}>{t("home.actScore")}</Text>
-                        <Text className="text-green-500">{user ? user.act : ""}</Text>
-                      </View>
-                    )}
                   </View>
                 )}
               </Pressable>
@@ -370,6 +550,44 @@ export default function HomePage() {
                   onValueChange={handleToggleWeighted}
                 />
               </View>
+              {useWeighted ? (
+                <View className="mb-3">
+                  <Pressable
+                    onPress={() => setShowAdvancedSearch((v) => !v)}
+                    className={`${cardClass} border rounded-xl px-3 py-2 flex-row items-center justify-between`}
+                  >
+                    <Text className={`${textClass} font-medium`}>Advanced search</Text>
+                    <Ionicons
+                      name={showAdvancedSearch ? "chevron-up" : "chevron-down"}
+                      size={18}
+                      color={placeholderTextColor}
+                    />
+                  </Pressable>
+                  {showAdvancedSearch ? (
+                    <View className={`${cardClass} border rounded-xl p-3 mt-2`}>
+                      <Text className={`${secondaryTextClass} text-xs mb-2`}>
+                        Switch ON to include a factor in ranking. Switch OFF to ignore it.
+                      </Text>
+                      {([
+                        ["gpa", "GPA / academic profile"],
+                        ["prestige", "School reputation"],
+                        ["major", "Major and program match"],
+                        ["preference", "Your questionnaire preferences"],
+                        ["query", "Search text relevance"],
+                        ["ai", "AI personalization"],
+                      ] as [keyof DisabledInfluences, string][]).map(([key, label]) => (
+                        <View key={key} className="flex-row items-center justify-between py-1.5">
+                          <Text className={textClass}>{label}</Text>
+                          <Switch
+                            value={!Boolean(disabledInfluences[key])}
+                            onValueChange={(v) => toggleDisabledInfluence(key, !v)}
+                          />
+                        </View>
+                      ))}
+                    </View>
+                  ) : null}
+                </View>
+              ) : null}
               <View className="flex-row items-center justify-between mb-2">
                 <Text className={`text-lg ${textClass}`}>{t("home.recommendedColleges")}</Text>
                 {resultsSource ? (
@@ -398,28 +616,19 @@ export default function HomePage() {
                         className={`${cardClass} border rounded-xl p-4`}
                         onPress={() => router.push({ pathname: "/college/[collegeId]", params: { collegeId: String(college.id) } })}
                       >
-                        <Text className={textClass}>{college.name}</Text>
-                        { (r as any).scoreText ? (
-                          <Text className={`text-sm ${secondaryTextClass} mt-1`}>{(r as any).scoreText}</Text>
-                        ) : (
-                          <Text className={`text-sm ${secondaryTextClass} mt-1`}>{t("home.scoreNotAvailable")}</Text>
-                        ) }
+                        <View className="flex-row items-center justify-between">
+                          <Text className={textClass}>{college.name}</Text>
+                          <Text className="text-green-500 font-semibold">Match {getMatchText(r)}</Text>
+                        </View>
                         <Text className={`text-sm ${secondaryTextClass} mt-1`}>
                           {college.location.city ? `${college.location.city}, ` : ""}{college.location.state}
                         </Text>
-                        <Text className={`text-sm ${secondaryTextClass} mt-1`}>{t("home.admissionRate")}: {typeof college.admissionRate === 'number' ? `${Math.round(college.admissionRate * 100)}%` : t("home.notAvailable")}</Text>
-                        {r.reason ? (
-                          <Text className={`text-sm mt-2 ${secondaryTextClass}`}>{r.reason}</Text>
-                        ) : null}
-
-                        { (r as any).breakdownHuman ? (
-                          <Text className={`text-xs mt-2 ${secondaryTextClass}`}>
-                            {Object.entries((r as any).breakdownHuman).filter(([k])=>k!=='Overall').map(([k,v])=> `${k}: ${v}`).join(' • ')}
-                          </Text>
-                        ) : r.breakdown ? (
-                          <Text className={`text-xs mt-2 ${secondaryTextClass}`}>
-                            {Object.entries(r.breakdown).filter(([k])=>k!=='final').map(([k,v])=> `${k}: ${Math.round(v as number)}`).join(' • ')}
-                          </Text>
+                        {buildSimpleWhy(r).length ? (
+                          <View className="mt-2">
+                            {buildSimpleWhy(r).map((line) => (
+                              <Text key={`${college.id}-${line}`} className={`text-xs ${secondaryTextClass}`}>{line}</Text>
+                            ))}
+                          </View>
                         ) : null}
                       </Pressable>
                     );
