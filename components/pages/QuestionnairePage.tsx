@@ -9,29 +9,32 @@ import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { collegeService } from "@/services/college.service";
+import { normalizeQuestionnaireAnswers, QUESTIONNAIRE_RADIO_OPTIONS } from "@/services/questionnaire.enums";
+
+type RadioOption = { key: string; label: string };
 
 type Question =
   | { id: string; question: string; type: "section" }
   | { id: string; question: string; type: "text" | "textarea"; placeholder: string }
-  | { id: string; question: string; type: "radio"; options: string[] };
+  | { id: string; question: string; type: "radio"; options: RadioOption[] };
 
 export default function QuestionnairePage() {
   const router = useRouter();
   const back = useBack();
   const { isDark } = useAppTheme();
   const { isHydrated, state, setQuestionnaireAnswers } = useAppData();
-  const { t } = useAppLanguage();
+  const { t, language } = useAppLanguage();
 
   const questions = useMemo<Question[]>(
     () => [
-      { id: "costOfAttendance", question: t("questionnaire.costOfAttendance"), options: [t("questionnaire.under20k"), t("questionnaire.20to40k"), t("questionnaire.40to60k"), t("questionnaire.over60k"), t("questionnaire.noPreference")], type: "radio" },
-      { id: "classSize", question: t("questionnaire.classSize"), options: [t("questionnaire.small"), t("questionnaire.large"), t("questionnaire.noPreference")], type: "radio" },
-      { id: "transportation", question: t("questionnaire.transportation"), options: [t("questionnaire.transportCar"), t("questionnaire.transportTransit"), t("questionnaire.transportBike"), t("questionnaire.transportWalk"), t("questionnaire.noPreference")], type: "radio" },
+      { id: "costOfAttendance", question: t("questionnaire.costOfAttendance"), options: QUESTIONNAIRE_RADIO_OPTIONS.costOfAttendance.map((o) => ({ key: o.key, label: t(o.labelKey) })), type: "radio" },
+      { id: "classSize", question: t("questionnaire.classSize"), options: QUESTIONNAIRE_RADIO_OPTIONS.classSize.map((o) => ({ key: o.key, label: t(o.labelKey) })), type: "radio" },
+      { id: "transportation", question: t("questionnaire.transportation"), options: QUESTIONNAIRE_RADIO_OPTIONS.transportation.map((o) => ({ key: o.key, label: t(o.labelKey) })), type: "radio" },
       { id: "companiesNearby", question: t("questionnaire.companiesNearby"), placeholder: t("questionnaire.companiesNearbyPlaceholder"), type: "textarea" },
-      { id: "inStateOutOfState", question: t("questionnaire.inStateOutOfState"), options: [t("questionnaire.inState"), t("questionnaire.outOfState"), t("questionnaire.noPreference")], type: "radio" },
-      { id: "housing", question: t("questionnaire.housingPreference"), options: [t("questionnaire.onCampus"), t("questionnaire.offCampus"), t("questionnaire.commute"), t("questionnaire.noPreference")], type: "radio" },
-      { id: "ranking", question: t("questionnaire.ranking"), options: [t("questionnaire.veryImportant"), t("questionnaire.somewhatImportant"), t("questionnaire.notImportant")], type: "radio" },
-      { id: "continueEducation", question: t("questionnaire.continueEducation"), options: [t("questionnaire.yes"), t("questionnaire.no"), t("questionnaire.maybe")], type: "radio" },
+      { id: "inStateOutOfState", question: t("questionnaire.inStateOutOfState"), options: QUESTIONNAIRE_RADIO_OPTIONS.inStateOutOfState.map((o) => ({ key: o.key, label: t(o.labelKey) })), type: "radio" },
+      { id: "housing", question: t("questionnaire.housingPreference"), options: QUESTIONNAIRE_RADIO_OPTIONS.housing.map((o) => ({ key: o.key, label: t(o.labelKey) })), type: "radio" },
+      { id: "ranking", question: t("questionnaire.ranking"), options: QUESTIONNAIRE_RADIO_OPTIONS.ranking.map((o) => ({ key: o.key, label: t(o.labelKey) })), type: "radio" },
+      { id: "continueEducation", question: t("questionnaire.continueEducation"), options: QUESTIONNAIRE_RADIO_OPTIONS.continueEducation.map((o) => ({ key: o.key, label: t(o.labelKey) })), type: "radio" },
       { id: "extracurriculars", question: t("questionnaire.extracurriculars"), placeholder: t("questionnaire.extracurricularsPlaceholder"), type: "textarea" },
     ],
     [t]
@@ -48,8 +51,8 @@ export default function QuestionnairePage() {
 
   useEffect(() => {
     if (!isHydrated) return;
-    setAnswers({ ...blankAnswers, ...(state.questionnaireAnswers ?? {}) });
-  }, [isHydrated, blankAnswers, state.questionnaireAnswers]);
+    setAnswers({ ...blankAnswers, ...normalizeQuestionnaireAnswers(state.questionnaireAnswers ?? {}, language) });
+  }, [isHydrated, blankAnswers, state.questionnaireAnswers, language]);
 
   const currentQuestion = questions[currentStep];
   const progress = Math.round(((currentStep + 1) / questions.length) * 100);
@@ -72,7 +75,7 @@ export default function QuestionnairePage() {
       return;
     }
     // final step: do not store major in questionnaire; major lives on the profile
-    const toSave = { ...answers };
+    const toSave = normalizeQuestionnaireAnswers({ ...answers }, language);
     delete toSave.major;
     delete toSave.majorChoice;
 
@@ -93,7 +96,7 @@ export default function QuestionnairePage() {
   };
 
   const handleSaveAndExit = async () => { 
-    const toSave = { ...answers };
+    const toSave = normalizeQuestionnaireAnswers({ ...answers }, language);
     delete toSave.major;
     delete toSave.majorChoice;
     await setQuestionnaireAnswers(toSave); 
@@ -173,14 +176,14 @@ export default function QuestionnairePage() {
               {currentQuestion.type === "radio" ? (
                 <View className="gap-3">
                   {currentQuestion.options.map((option) => {
-                    const isSelected = answers[currentQuestion.id] === option;
+                    const isSelected = answers[currentQuestion.id] === option.key;
 
                     return (
                       <Pressable
-                        key={option}
+                        key={option.key}
                         onPress={() => {
                           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                          handleAnswer(currentQuestion.id, option);
+                          handleAnswer(currentQuestion.id, option.key);
                         }}
                         className={`w-full px-4 py-4 rounded-lg border ${
                           isSelected
@@ -191,7 +194,7 @@ export default function QuestionnairePage() {
                         }`}
                       >
                         <View className="flex-row items-center justify-between">
-                          <Text className={isSelected ? "text-green-500" : textClass}>{option}</Text>
+                          <Text className={isSelected ? "text-green-500" : textClass}>{option.label}</Text>
                           {isSelected ? <MaterialIcons name="check-circle" size={20} color="#22C55E" /> : null}
                         </View>
                       </Pressable>

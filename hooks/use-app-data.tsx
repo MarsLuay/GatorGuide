@@ -4,6 +4,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { authService } from "@/services";
 import type { AuthUser } from "@/services/auth.service";
 import { db } from "@/services/firebase";
+import { normalizeQuestionnaireAnswers } from "@/services/questionnaire.enums";
 
 export type User = {
   uid: string;
@@ -19,7 +20,7 @@ export type User = {
   isProfileComplete?: boolean;
 };
 
-export type QuestionnaireAnswers = Record<string, string>;
+export type QuestionnaireAnswers = Record<string, any>;
 
 export type AppDataState = {
   user: User | null;
@@ -64,7 +65,7 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
         if (!mounted) return;
         if (raw) {
           const parsed = JSON.parse(raw) as AppDataState;
-          setState(parsed);
+          setState({ ...parsed, questionnaireAnswers: normalizeQuestionnaireAnswers(parsed.questionnaireAnswers ?? {}) });
         }
       } catch {
       } finally {
@@ -227,7 +228,8 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const setQuestionnaireAnswers = useCallback(async (answers: QuestionnaireAnswers) => {
-    setState((prev) => ({ ...prev, questionnaireAnswers: { ...answers } }));
+    const normalized = normalizeQuestionnaireAnswers(answers);
+    setState((prev) => ({ ...prev, questionnaireAnswers: { ...normalized } }));
   }, []);
 
   const setNotificationsEnabled = useCallback(async (enabled: boolean) => {
@@ -237,7 +239,7 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
   const restoreData = useCallback(async (data: AppDataState) => {
     setState({
       user: data.user ?? null,
-      questionnaireAnswers: data.questionnaireAnswers ?? {},
+      questionnaireAnswers: normalizeQuestionnaireAnswers(data.questionnaireAnswers ?? {}),
       notificationsEnabled: data.notificationsEnabled ?? true,
     });
   }, []);
