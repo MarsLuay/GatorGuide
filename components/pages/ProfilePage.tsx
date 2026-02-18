@@ -9,6 +9,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppLanguage } from "@/hooks/use-app-language";
+import { normalizeQuestionnaireAnswers, QUESTIONNAIRE_RADIO_OPTIONS } from "@/services/questionnaire.enums";
 import { useAppData } from "@/hooks/use-app-data";
 import { ProfileField } from "@/components/ui/ProfileField";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -16,14 +17,15 @@ import * as FileSystem from "expo-file-system";
 import * as Sharing from "expo-sharing";
 import * as DocumentPicker from "expo-document-picker";
 
+type RadioOption = { key: string; label: string };
 type Question =
   | { id: string; question: string; type: "text" | "textarea"; placeholder: string }
-  | { id: string; question: string; type: "radio"; options: string[] };
+  | { id: string; question: string; type: "radio"; options: RadioOption[] };
 
 export default function ProfilePage() {
   const router = useRouter();
   const { theme, setTheme, isDark } = useAppTheme();
-  const { t } = useAppLanguage();
+  const { t, language } = useAppLanguage();
   const { isHydrated, state, updateUser, setQuestionnaireAnswers, restoreData } = useAppData();
   const insets = useSafeAreaInsets();
 
@@ -169,14 +171,14 @@ export default function ProfilePage() {
 
   const questions = useMemo<Question[]>(
     () => [
-      { id: "costOfAttendance", question: t("questionnaire.costOfAttendance"), options: [t("questionnaire.under20k"), t("questionnaire.20to40k"), t("questionnaire.40to60k"), t("questionnaire.over60k"), t("questionnaire.noPreference")], type: "radio" },
-      { id: "classSize", question: t("questionnaire.classSize"), options: [t("questionnaire.small"), t("questionnaire.large"), t("questionnaire.noPreference")], type: "radio" },
-      { id: "transportation", question: t("questionnaire.transportation"), options: [t("questionnaire.transportCar"), t("questionnaire.transportTransit"), t("questionnaire.transportBike"), t("questionnaire.transportWalk"), t("questionnaire.noPreference")], type: "radio" },
+      { id: "costOfAttendance", question: t("questionnaire.costOfAttendance"), options: QUESTIONNAIRE_RADIO_OPTIONS.costOfAttendance.map((o) => ({ key: o.key, label: t(o.labelKey) })), type: "radio" },
+      { id: "classSize", question: t("questionnaire.classSize"), options: QUESTIONNAIRE_RADIO_OPTIONS.classSize.map((o) => ({ key: o.key, label: t(o.labelKey) })), type: "radio" },
+      { id: "transportation", question: t("questionnaire.transportation"), options: QUESTIONNAIRE_RADIO_OPTIONS.transportation.map((o) => ({ key: o.key, label: t(o.labelKey) })), type: "radio" },
       { id: "companiesNearby", question: t("questionnaire.companiesNearby"), placeholder: t("questionnaire.companiesNearbyPlaceholder"), type: "textarea" },
-      { id: "inStateOutOfState", question: t("questionnaire.inStateOutOfState"), options: [t("questionnaire.inState"), t("questionnaire.outOfState"), t("questionnaire.noPreference")], type: "radio" },
-      { id: "housing", question: t("questionnaire.housingPreference"), options: [t("questionnaire.onCampus"), t("questionnaire.offCampus"), t("questionnaire.commute"), t("questionnaire.noPreference")], type: "radio" },
-      { id: "ranking", question: t("questionnaire.ranking"), options: [t("questionnaire.veryImportant"), t("questionnaire.somewhatImportant"), t("questionnaire.notImportant")], type: "radio" },
-      { id: "continueEducation", question: t("questionnaire.continueEducation"), options: [t("questionnaire.yes"), t("questionnaire.no"), t("questionnaire.maybe")], type: "radio" },
+      { id: "inStateOutOfState", question: t("questionnaire.inStateOutOfState"), options: QUESTIONNAIRE_RADIO_OPTIONS.inStateOutOfState.map((o) => ({ key: o.key, label: t(o.labelKey) })), type: "radio" },
+      { id: "housing", question: t("questionnaire.housingPreference"), options: QUESTIONNAIRE_RADIO_OPTIONS.housing.map((o) => ({ key: o.key, label: t(o.labelKey) })), type: "radio" },
+      { id: "ranking", question: t("questionnaire.ranking"), options: QUESTIONNAIRE_RADIO_OPTIONS.ranking.map((o) => ({ key: o.key, label: t(o.labelKey) })), type: "radio" },
+      { id: "continueEducation", question: t("questionnaire.continueEducation"), options: QUESTIONNAIRE_RADIO_OPTIONS.continueEducation.map((o) => ({ key: o.key, label: t(o.labelKey) })), type: "radio" },
       { id: "extracurriculars", question: t("questionnaire.extracurriculars"), placeholder: t("questionnaire.extracurricularsPlaceholder"), type: "textarea" },
     ],
     [t]
@@ -199,8 +201,8 @@ export default function ProfilePage() {
       resume: user?.resume ?? "",
       transcript: user?.transcript ?? "",
     });
-    setLocalAnswers({ ...blankAnswers, ...(state.questionnaireAnswers ?? {}) });
-  }, [isHydrated, user?.name, user?.major, user?.gpa, user?.sat, user?.act, user?.resume, user?.transcript, blankAnswers, state.questionnaireAnswers]);
+    setLocalAnswers({ ...blankAnswers, ...normalizeQuestionnaireAnswers(state.questionnaireAnswers ?? {}, language) });
+  }, [isHydrated, user?.name, user?.major, user?.gpa, user?.sat, user?.act, user?.resume, user?.transcript, blankAnswers, state.questionnaireAnswers, language]);
 
   const textClass = isDark ? "text-white" : "text-gray-900";
   const secondaryTextClass = isDark ? "text-gray-400" : "text-gray-600";
@@ -220,31 +222,6 @@ export default function ProfilePage() {
   const capitalizeWords = (text: string | undefined) => {
     if (!text) return "";
     return text.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
-  };
-
-  // Display helper for saved answers: normalizes translation keys and enums to readable text
-  const displayAnswer = (value: unknown): string => {
-    if (value == null) return "";
-    if (typeof value !== 'string') return String(value);
-    // If it's a full translation key like 'questionnaire.small'
-    if (value.startsWith('questionnaire.')) {
-      try {
-        return t(value as any);
-      } catch {
-        return value;
-      }
-    }
-    // If it's a short enum (e.g. 'small'), try mapping to questionnaire.<enum>
-    if (/^[a-z0-9_]+$/i.test(value)) {
-      try {
-        const mapped = `questionnaire.${value}`;
-        const translated = t(mapped as any);
-        if (translated && translated !== mapped) return translated;
-      } catch {
-        // fallthrough
-      }
-    }
-    return value;
   };
 
   const handleSave = () => {
@@ -351,7 +328,7 @@ export default function ProfilePage() {
   }, [isHydrated]);
 
   const handleSaveQuestionnaire = async () => {
-    const toSave = { ...questionnaireAnswers } as Record<string, string>;
+    const toSave = normalizeQuestionnaireAnswers({ ...questionnaireAnswers }, language) as Record<string, string>;
     // Major is captured on the user profile; do not store major in questionnaire
     delete toSave.major;
     delete toSave.majorChoice;
@@ -828,20 +805,14 @@ export default function ProfilePage() {
                               ) : (
                                 question.options.map((option) => {
                                   const stored = questionnaireAnswers[question.id];
-                                  // Use displayAnswer helper to normalize stored answers for display
-                                  const storedDisplay = displayAnswer(stored);
-
-                                  // Option label may itself be a key or a translated string — normalize when rendering
-                                  const optionLabel = typeof option === 'string' && option.startsWith('questionnaire.') ? t(option as any) : option;
-
-                                  const isSelected = storedDisplay === optionLabel || stored === optionLabel || stored === option;
+                                  const isSelected = stored === option.key;
 
                                   return (
                                     <Pressable
-                                      key={option}
+                                      key={option.key}
                                       onPress={() => {
                                         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                                        handleQuestionnaireAnswer(question.id, option);
+                                        handleQuestionnaireAnswer(question.id, option.key);
                                       }}
                                       className={`px-4 py-3 rounded-lg border ${
                                         isSelected
@@ -850,9 +821,7 @@ export default function ProfilePage() {
                                       }`}
                                     >
                                       <View className="flex-row items-center justify-between">
-                                        <Text className={isSelected ? "text-green-500 font-semibold" : textClass}>{
-                                          typeof option === 'string' && option.startsWith('questionnaire.') ? t(option as any) : option
-                                        }</Text>
+                                        <Text className={isSelected ? "text-green-500 font-semibold" : textClass}>{option.label}</Text>
                                         {isSelected && <MaterialIcons name="check-circle" size={18} color="#22C55E" />}
                                       </View>
                                     </Pressable>

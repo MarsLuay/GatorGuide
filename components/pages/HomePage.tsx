@@ -15,7 +15,7 @@ export default function HomePage() {
   const router = useRouter();
   const { isDark } = useAppTheme();
   const { t } = useAppLanguage();
-  const { state } = useAppData();
+  const { state, setQuestionnaireAnswers } = useAppData();
   const insets = useSafeAreaInsets();
 
   const user = state.user;
@@ -24,7 +24,7 @@ export default function HomePage() {
   type Recommended = { college: College; reason?: string; breakdown?: Record<string, number>; score?: number };
   const [results, setResults] = useState<Recommended[]>([]);
   const [emptyState, setEmptyState] = useState<EmptyState | undefined>(undefined);
-  const [useWeighted, setUseWeighted] = useState(true);
+  const [useWeighted, setUseWeighted] = useState<boolean>(state.questionnaireAnswers?.useWeightedSearch !== "false" && state.questionnaireAnswers?.useWeightedSearch !== false);
   const [hasSubmittedSearch, setHasSubmittedSearch] = useState(false);
   const [isProfileExpanded, setIsProfileExpanded] = useState(false);
   const [dismissedGuestPrompt, setDismissedGuestPrompt] = useState(false);
@@ -62,16 +62,12 @@ export default function HomePage() {
       return;
     }
 
-    if (q.length < 3) {
+    if (useWeighted && q.length < 2) {
       setResults([]);
       setSearchTooShort(true);
-      // let the service know we didn't hit network
       try { collegeService.getLastSource(); } catch {}
       return;
     }
-
-    // compute preference weights for non-AI scoring too
-    const prefWeights = aiService.buildPreferenceWeights(user, state.questionnaireAnswers);
 
     // set cooldown (5 seconds)
     const nextUntil = Date.now() + 5000;
@@ -80,28 +76,31 @@ export default function HomePage() {
 
     setIsSearching(true);
     try {
-      if (useWeighted) {
-        // Weighted: AI recommender (profile + questionnaire + query)
-        const resp = await aiService.recommendColleges({ query: q, userProfile: user, questionnaire: state.questionnaireAnswers, maxResults: 20 });
-        setResults(resp.results as Recommended[]);
-        setEmptyState(resp.emptyState);
-        setResultsSource('live');
-      } else {
-        // Normal: run a plain college search and score locally
-        const list = await collegeService.searchColleges(q);
-        const mapped = list.slice(0, 20).map((c) => {
-          const breakdown = aiService.computePreferenceBreakdown(c, prefWeights, user, state.questionnaireAnswers);
-          return { college: c, reason: undefined, breakdown, score: breakdown.final } as Recommended;
-        });
-        setResults(mapped);
-        setEmptyState(undefined);
-        setResultsSource(null);
-      }
+      const resp = await aiService.recommendColleges({
+        query: q,
+        userProfile: user,
+        questionnaire: state.questionnaireAnswers,
+        maxResults: 20,
+        useWeightedSearch: useWeighted,
+      });
+      setResults(resp.results as Recommended[]);
+      setEmptyState(resp.emptyState);
+      setResultsSource('live');
     } finally {
       setIsSearching(false);
     }
   };
 
+
+  useEffect(() => {
+    const stored = state.questionnaireAnswers?.useWeightedSearch;
+    if (typeof stored === 'boolean') setUseWeighted(stored);
+  }, [state.questionnaireAnswers?.useWeightedSearch]);
+
+  const handleToggleWeighted = async (v: boolean) => {
+    setUseWeighted(v);
+    await setQuestionnaireAnswers({ ...state.questionnaireAnswers, useWeightedSearch: v } as any);
+  };
   // countdown effect for cooldown popup
   useEffect(() => {
     if (!showCooldownPopup && !cooldownUntil) return;
@@ -286,7 +285,7 @@ export default function HomePage() {
                 <Text className={`${textClass} mr-2`}>{t("home.weightedSearch")}</Text>
                 <Switch
                   value={useWeighted}
-                  onValueChange={(v) => setUseWeighted(v)}
+                  onValueChange={handleToggleWeighted}
                 />
               </View>
               <View className="flex-row items-center justify-between mb-2">
