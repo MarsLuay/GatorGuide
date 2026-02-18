@@ -4,10 +4,10 @@ import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import { useMemo, useState, useCallback } from "react";
+import { useMemo, useState, useCallback, useEffect } from "react";
 import { Pressable, ScrollView, Text, View, Alert, Platform, Linking } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { notificationsService } from "@/services";
+import { notificationsService, cacheManagerService } from "@/services";
 import * as FileSystem from "expo-file-system";
 import * as Sharing from "expo-sharing";
 import * as DocumentPicker from "expo-document-picker";
@@ -32,6 +32,12 @@ type SettingsItem =
 export default function SettingsPage() {
   const router = useRouter();
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [showClearCacheConfirm, setShowClearCacheConfirm] = useState(false);
+  const [showCacheClearedPopup, setShowCacheClearedPopup] = useState(false);
+  const [cacheClearedCount, setCacheClearedCount] = useState(0);
+  const [isClearingCache, setIsClearingCache] = useState(false);
+  const [showAdvancedSettings, setShowAdvancedSettings] = useState(false);
+  const [autoClearCacheEnabled, setAutoClearCacheEnabled] = useState(false);
 
   const { theme, setTheme, isDark } = useAppTheme();
   const { t, language } = useAppLanguage();
@@ -182,6 +188,33 @@ export default function SettingsPage() {
     }
   }, [signOut, router]);
 
+  const loadAutoClearSetting = useCallback(async () => {
+    const enabled = await cacheManagerService.getAutoClearEnabled();
+    setAutoClearCacheEnabled(enabled);
+  }, []);
+
+  const handleToggleAutoClearCache = useCallback(async () => {
+    const next = !autoClearCacheEnabled;
+    setAutoClearCacheEnabled(next);
+    await cacheManagerService.setAutoClearEnabled(next);
+  }, [autoClearCacheEnabled]);
+
+  const handleClearCacheNow = useCallback(() => {
+    setShowClearCacheConfirm(true);
+  }, []);
+
+  const handleConfirmClearCache = useCallback(async () => {
+    try {
+      setIsClearingCache(true);
+      const { clearedCount } = await cacheManagerService.clearRelevantCaches();
+      setCacheClearedCount(clearedCount);
+      setShowClearCacheConfirm(false);
+      setShowCacheClearedPopup(true);
+    } finally {
+      setIsClearingCache(false);
+    }
+  }, []);
+
   const sections = useMemo(
     () => [
       {
@@ -257,6 +290,10 @@ export default function SettingsPage() {
     }
   };
 
+  useEffect(() => {
+    void loadAutoClearSetting();
+  }, [loadAutoClearSetting]);
+
   if (showDeleteConfirm) {
     return (
       <ScreenBackground>
@@ -326,6 +363,55 @@ export default function SettingsPage() {
                 </View>
               </View>
             ))}
+
+            <View>
+              <Text className={`text-sm font-medium ${secondaryTextClass} mb-3 px-2`}>{t("settings.advanced")}</Text>
+              <View className={`${cardBgClass} border rounded-2xl overflow-hidden`}>
+                <Pressable
+                  onPress={() => setShowAdvancedSettings((v) => !v)}
+                  className={`${flexDirection} items-center px-4 py-5`}
+                >
+                  <MaterialIcons name="tune" size={20} color="#22C55E" />
+                  <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${textClass}`}>{t("settings.cacheSettings")}</Text>
+                  <MaterialIcons name={showAdvancedSettings ? "expand-less" : "expand-more"} size={22} color={isDark ? "#9CA3AF" : "#6B7280"} />
+                </Pressable>
+
+                {showAdvancedSettings ? (
+                  <>
+                    <Pressable
+                      onPress={handleToggleAutoClearCache}
+                      className={`${flexDirection} items-center px-4 py-5 border-t ${cardBorderClass}`}
+                    >
+                      <MaterialIcons name="autorenew" size={20} color="#22C55E" />
+                      <View className={`flex-1 ${isRTL ? "mr-3" : "ml-3"}`}>
+                        <Text className={`${isRTL ? "text-right" : ""} ${textClass}`}>{t("settings.cacheAutoClear5d")}</Text>
+                        <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} text-xs mt-1`}>
+                          {t("settings.cacheAutoClearDescription")}
+                        </Text>
+                      </View>
+                      <View className={`w-12 h-6 rounded-full ${autoClearCacheEnabled ? "bg-green-500" : isDark ? "bg-gray-700" : "bg-gray-300"}`}>
+                        <View className={`w-5 h-5 bg-white rounded-full mt-0.5 ${autoClearCacheEnabled ? "ml-6" : "ml-0.5"}`} />
+                      </View>
+                    </Pressable>
+
+                    <Pressable
+                      onPress={handleClearCacheNow}
+                      className={`${flexDirection} items-center px-4 py-5 border-t ${cardBorderClass}`}
+                    >
+                      <MaterialIcons name="delete-sweep" size={20} color="#EF4444" />
+                      <View className={`flex-1 ${isRTL ? "mr-3" : "ml-3"}`}>
+                        <Text className={`${isRTL ? "text-right" : ""} text-red-500`}>{t("settings.clearCacheNow")}</Text>
+                        <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} text-xs mt-1`}>
+                          {t("settings.clearCacheDescription")}
+                        </Text>
+                      </View>
+                      <MaterialIcons name={isRTL ? "chevron-left" : "chevron-right"} size={22} color={isDark ? "#9CA3AF" : "#6B7280"} />
+                    </Pressable>
+                  </>
+                ) : null}
+              </View>
+            </View>
+
             <Pressable
               onPress={handleLogout}
               disabled={!isHydrated}
@@ -362,6 +448,50 @@ export default function SettingsPage() {
           </View>
         </View>
       </ScrollView>
+      {showClearCacheConfirm ? (
+        <View className="absolute inset-0 items-center justify-center px-6 bg-black/50">
+          <View className={`w-full max-w-md ${cardBgClass} border rounded-2xl p-6`}>
+            <Text className={`text-xl ${isRTL ? "text-right" : ""} ${textClass} mb-3`}>{t("settings.clearCacheConfirmTitle")}</Text>
+            <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} mb-6`}>
+              {t("settings.clearCacheConfirmMessage")}
+            </Text>
+
+            <View className={`${flexDirection} gap-3`}>
+              <Pressable
+                onPress={() => setShowClearCacheConfirm(false)}
+                className={`flex-1 ${cardBgClass} border ${cardBorderClass} rounded-lg py-4 items-center`}
+                disabled={isClearingCache}
+              >
+                <Text className={textClass}>{t("general.cancel")}</Text>
+              </Pressable>
+
+              <Pressable
+                onPress={handleConfirmClearCache}
+                className={`flex-1 bg-red-500 rounded-lg py-4 items-center ${isClearingCache ? "opacity-60" : ""}`}
+                disabled={isClearingCache}
+              >
+                <Text className="text-white font-semibold">{isClearingCache ? t("settings.clearingCache") : t("settings.clearCacheAction")}</Text>
+              </Pressable>
+            </View>
+          </View>
+        </View>
+      ) : null}
+      {showCacheClearedPopup ? (
+        <View className="absolute inset-0 items-center justify-center px-6 bg-black/50">
+          <View className={`w-full max-w-md ${cardBgClass} border rounded-2xl p-6`}>
+            <Text className={`text-xl ${isRTL ? "text-right" : ""} ${textClass} mb-3`}>{t("settings.cacheClearedTitle")}</Text>
+            <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} mb-6`}>
+              {t("settings.cacheClearedMessage", { count: cacheClearedCount })}
+            </Text>
+            <Pressable
+              onPress={() => setShowCacheClearedPopup(false)}
+              className="bg-green-500 rounded-lg py-4 items-center"
+            >
+              <Text className="text-black font-semibold">{t("general.ok")}</Text>
+            </Pressable>
+          </View>
+        </View>
+      ) : null}
     </ScreenBackground>
   );
 }

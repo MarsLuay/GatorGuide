@@ -38,8 +38,6 @@ export default function ProfileSetupPage() {
   const [resumeDoc, setResumeDoc] = useState<SelectedDocument | null>(null);
   const [transcriptDoc, setTranscriptDoc] = useState<SelectedDocument | null>(null);
   const [gpa, setGpa] = useState("");
-  const [sat, setSat] = useState("");
-  const [act, setAct] = useState("");
 
   const [isConfettiPlaying, setIsConfettiPlaying] = useState(false);
   const [confettiCooldown, setConfettiCooldown] = useState(false);
@@ -148,8 +146,6 @@ export default function ProfileSetupPage() {
       const flatData = {
         major,
         gpa: gpa || "",
-        sat: sat || "",
-        act: act || "",
         resume: finalResumeUrl,
         transcript: finalTranscriptUrl,
         isProfileComplete: true,
@@ -262,30 +258,6 @@ export default function ProfileSetupPage() {
                     onChangeText={handleGpaChange}
                     placeholder={t("setup.gpaPlaceholder")}
                     keyboardType="decimal-pad"
-                    textClass={styles.textClass}
-                    secondaryTextClass={styles.secondaryTextClass}
-                    inputBgClass={styles.inputBgClass}
-                    placeholderColor={styles.placeholderColor}
-                  />
-
-                  <FormInput
-                    label={t("setup.sat")}
-                    value={sat}
-                    onChangeText={(v) => setSat(v.replace(/\D/g, ""))}
-                    placeholder={t("setup.satPlaceholder")}
-                    keyboardType="number-pad"
-                    textClass={styles.textClass}
-                    secondaryTextClass={styles.secondaryTextClass}
-                    inputBgClass={styles.inputBgClass}
-                    placeholderColor={styles.placeholderColor}
-                  />
-
-                  <FormInput
-                    label={t("setup.act")}
-                    value={act}
-                    onChangeText={(v) => setAct(v.replace(/\D/g, ""))}
-                    placeholder={t("setup.actPlaceholder")}
-                    keyboardType="number-pad"
                     textClass={styles.textClass}
                     secondaryTextClass={styles.secondaryTextClass}
                     inputBgClass={styles.inputBgClass}

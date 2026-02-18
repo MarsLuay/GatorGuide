@@ -24,26 +24,40 @@ export const fetchScorecardUrl = async (url: string, timeoutMs = DEFAULT_TIMEOUT
     return cached.data;
   }
 
-  const controller = new AbortController();
-  const id = setTimeout(() => controller.abort(), timeoutMs);
+  const attempt = async (ms: number) => {
+    const controller = new AbortController();
+    const id = setTimeout(() => controller.abort(), ms);
+    try {
+      const res = await fetch(url, { signal: controller.signal });
+      if (!res.ok) {
+        const text = await res.text().catch(() => '');
+        const err = new Error(`Scorecard API error: ${res.status} ${res.statusText} ${text}`);
+        (err as any).status = res.status;
+        throw err;
+      }
+      return await res.json();
+    } finally {
+      clearTimeout(id);
+    }
+  };
 
   try {
-    const res = await fetch(url, { signal: controller.signal });
-    clearTimeout(id);
-    if (!res.ok) {
-      const text = await res.text().catch(() => '');
-      const err = new Error(`Scorecard API error: ${res.status} ${res.statusText} ${text}`);
-      // attach status for callers
-      (err as any).status = res.status;
-      throw err;
-    }
-
-    const json = await res.json();
+    const json = await attempt(timeoutMs);
     inMemoryCache.set(url, { ts: Date.now(), data: json });
     return json;
   } catch (e) {
     if ((e as any)?.name === 'AbortError') {
-      throw new Error('Scorecard API request timed out');
+      // one retry with a slightly longer timeout before failing
+      try {
+        const json = await attempt(Math.max(timeoutMs + 4000, 12000));
+        inMemoryCache.set(url, { ts: Date.now(), data: json });
+        return json;
+      } catch (e2) {
+        if ((e2 as any)?.name === 'AbortError') {
+          throw new Error('Scorecard API request timed out');
+        }
+        throw e2;
+      }
     }
     throw e;
   }

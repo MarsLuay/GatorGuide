@@ -11,7 +11,7 @@ import { buildScorecardUrl, fetchScorecardUrl } from './scorecard';
 
 const CACHE_TTL_MS = 1000 * 60 * 60 * 24; // 24 hours
 const ZIP_CACHE_TTL_MS = 1000 * 60 * 60 * 24 * 3; // 3 days for ZIP geocode cache
-const CACHE_VERSION = 'v2';
+const CACHE_VERSION = 'v3';
 
 const getCacheKey = (type: 'matches' | 'search' | 'details', payload: string) =>
   `college:${CACHE_VERSION}:${type}:${payload}`;
@@ -66,6 +66,35 @@ const toNumber = (v: any): number | null => {
   if (v == null) return null;
   const n = Number(v);
   return Number.isFinite(n) ? n : null;
+};
+
+const extractProgramSignals = (scorecardResult: any): string[] => {
+  const out = new Set<string>();
+
+  const add = (v: unknown) => {
+    const s = String(v ?? '').trim();
+    if (!s) return;
+    out.add(s);
+  };
+
+  const walk = (node: any) => {
+    if (node == null) return;
+    if (Array.isArray(node)) {
+      node.forEach(walk);
+      return;
+    }
+    if (typeof node !== 'object') return;
+    Object.entries(node).forEach(([k, v]) => {
+      const key = k.toLowerCase();
+      if (key.includes('title') || key.includes('name') || key === 'code' || key.includes('cip')) {
+        if (typeof v === 'string' || typeof v === 'number') add(v);
+      }
+      walk(v);
+    });
+  };
+
+  walk(scorecardResult?.latest?.programs);
+  return Array.from(out).slice(0, 80);
 };
 
 const haversineMiles = (lat1: number, lon1: number, lat2: number, lon2: number) => {
@@ -175,12 +204,17 @@ class CollegeService {
       'latest.cost.attendance.academic_year',
       'latest.aid.pell_grant_rate',
       'latest.aid.median_debt.completers.overall',
+      'latest.programs.cip_4_digit.code',
+      'latest.programs.cip_4_digit.title',
+      'latest.programs.cip_6_digit.code',
+      'latest.programs.cip_6_digit.title',
     ].join(',');
 
     const params: Record<string, string> = {
       fields,
       per_page: '100',
       sort: 'latest.student.size:desc',
+      all_programs_nested: 'true',
     };
 
     if (criteria.location) params['school.state'] = criteria.location;
@@ -215,7 +249,7 @@ class CollegeService {
           completionRate: r?.latest?.completion?.rate ?? r?.latest?.completion_rate ?? null,
           website: r?.school?.school_url ?? null,
           priceCalculator: r?.school?.price_calculator_url ?? r?.school?.school_url ?? null,
-          programs: [],
+          programs: extractProgramSignals(r),
           degreesAwarded: {
             highest: r?.school?.degrees_awarded?.highest ?? null,
             predominant: r?.school?.degrees_awarded?.predominant ?? null,
@@ -296,16 +330,28 @@ class CollegeService {
       'school.city',
       'school.state',
       'school.school_url',
+      'school.locale',
+      'school.degrees_awarded.highest',
+      'school.degrees_awarded.predominant',
       'latest.admissions.admission_rate.overall',
       'latest.student.size',
       'latest.cost.tuition.in_state',
       'latest.cost.tuition.out_of_state',
+      'latest.cost.avg_net_price.overall',
+      'latest.cost.attendance.academic_year',
+      'latest.aid.pell_grant_rate',
+      'latest.aid.median_debt.completers.overall',
+      'latest.programs.cip_4_digit.code',
+      'latest.programs.cip_4_digit.title',
+      'latest.programs.cip_6_digit.code',
+      'latest.programs.cip_6_digit.title',
     ].join(',');
 
     const params: Record<string, string> = {
       fields,
       id: collegeId,
       per_page: '1',
+      all_programs_nested: 'true',
     };
 
     const url = buildScorecardUrl(params);
@@ -338,7 +384,7 @@ class CollegeService {
         completionRate: r?.latest?.completion?.rate ?? r?.latest?.completion_rate ?? null,
         website: r?.school?.school_url ?? null,
         priceCalculator: r?.school?.price_calculator_url ?? r?.school?.school_url ?? null,
-        programs: [],
+        programs: extractProgramSignals(r),
         degreesAwarded: {
           highest: r?.school?.degrees_awarded?.highest ?? null,
           predominant: r?.school?.degrees_awarded?.predominant ?? null,
