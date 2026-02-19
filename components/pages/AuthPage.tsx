@@ -28,6 +28,7 @@ export default function AuthPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSignUp, setIsSignUp] = useState(true);
+  const [verificationPendingEmail, setVerificationPendingEmail] = useState<string | null>(null);
 
   const isNative = Platform.OS === "ios" || Platform.OS === "android";
   const makeRedirect = makeRedirectUri({ useProxy: true });
@@ -153,7 +154,7 @@ export default function AuthPage() {
     };
 
     try {
-      await signIn({ name: n || t('auth.defaultUser'), email: e, password, isSignUp }); // Use default if logging in without name
+      await signIn({ name: n || t('auth.defaultUser'), email: e, password, isSignUp });
 
       // If signing up, check for pending guest data and restore it
       if (isSignUp) {
@@ -162,7 +163,6 @@ export default function AuthPage() {
           if (pendingData) {
             const parsed = JSON.parse(pendingData);
             if (parsed.user) {
-              // Merge guest data with new account (keeping the new email/name)
               await updateUser({
                 major: parsed.user.major,
                 gpa: parsed.user.gpa,
@@ -175,19 +175,30 @@ export default function AuthPage() {
             if (parsed.questionnaireAnswers) {
               await setQuestionnaireAnswers(parsed.questionnaireAnswers);
             }
-            // Clear the pending data
             await AsyncStorage.removeItem('gatorguide:pending-account-data');
           }
         } catch {
-          // Silently fail - user can manually import if needed
+          // Silently fail
         }
-
       }
 
-      // Go to index which will route to profile-setup or tabs based on completion
       router.replace('/');
     } catch (err: any) {
       console.error('Auth error', err);
+
+      if (err?.code === 'auth/email-verification-required') {
+        setVerificationPendingEmail(err?.email ?? e);
+        setIsSignUp(false);
+        setPassword('');
+        return;
+      }
+
+      if (err?.code === 'auth/email-not-verified') {
+        setVerificationPendingEmail(err?.email ?? e);
+        Alert.alert(t('auth.checkYourEmail'), t('auth.emailNotVerified'));
+        return;
+      }
+
       const friendly = mapAuthError(err?.code);
       if (friendly) {
         Alert.alert(t('general.error'), friendly);
@@ -268,10 +279,21 @@ export default function AuthPage() {
       <Text className={`${styles.secondaryTextClass} text-center mb-8`}>{t("auth.findCollege")}</Text>
 
       <View className={`${styles.cardBgClass} border rounded-2xl p-6 ${isWeb ? "shadow-lg" : ""}`}>
+        {verificationPendingEmail && (
+          <View className="bg-green-500/20 border border-green-500 rounded-lg p-4 mb-4">
+            <Text className={`${styles.textClass} font-semibold mb-1`}>{t("auth.checkYourEmail")}</Text>
+            <Text className={styles.secondaryTextClass}>
+              {t("auth.verificationEmailSent")}
+            </Text>
+            <Text className={`${styles.secondaryTextClass} mt-2 font-medium`}>{verificationPendingEmail}</Text>
+          </View>
+        )}
+
         <View className="flex-row gap-4 mb-6">
           <Pressable
             onPress={() => {
               Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+              setVerificationPendingEmail(null);
               setIsSignUp(true);
             }}
             className={`flex-1 py-3 rounded-lg items-center ${isSignUp ? "bg-green-500" : styles.inactiveButtonClass}`}
