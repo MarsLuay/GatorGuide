@@ -1,10 +1,13 @@
-﻿import React from "react";
+import React from "react";
 import { View, Text, Pressable } from "react-native";
-import { router } from "expo-router";
+import { useRouter } from "expo-router";
+import useBack from "@/hooks/use-back";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppTheme } from "@/hooks/use-app-theme";
 
 export default function NotFound() {
+  const router = useRouter();
+  const back = useBack();
   const { isDark } = useAppTheme();
 
   const textClass = isDark ? "text-white" : "text-gray-900";
@@ -26,7 +29,7 @@ export default function NotFound() {
             <Text className="text-black font-semibold">Go Home</Text>
           </Pressable>
 
-          <Pressable onPress={() => router.back()} className="mt-4">
+          <Pressable onPress={back} className="mt-4">
             <Text className="text-green-500">Go Back</Text>
           </Pressable>
         </View>

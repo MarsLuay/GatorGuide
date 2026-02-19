@@ -1,59 +1,57 @@
-# GatorGuide AI Coding Guide
+# GatorGuide — AI Coding Guide
 
-## Architecture Overview
-- **React Native Expo app** using file-based routing under [app/](../app/), with page components in [components/pages/](../components/pages/).
-- **Global providers** are composed in [app/_layout.tsx](../app/_layout.tsx): `SafeAreaProvider`, `AppThemeProvider`, `AppLanguageProvider`, `AppDataProvider` (in this order). These manage safe area, theming, language, and persistent app/user data.
-- **Services** are stub-first: all API logic is in [services/](../services/), defaulting to local/mock data unless `EXPO_PUBLIC_USE_STUB_DATA=false` and API keys are set. See [services/README.md](../services/README.md) for switching to real APIs.
+Purpose: help an AI coding agent become productive quickly in this React Native + Expo repo and avoid behavior regressions while refactoring.
 
-## Navigation & Auth
-- **File-based routing:** Each file in [app/](../app/) maps to a route. Route files render page components (e.g., [app/profile-setup.tsx](../app/profile-setup.tsx) renders `ProfileSetupPage`).
-- **Auth guards:**
-  - [app/index.tsx](../app/index.tsx): global guard, redirects based on user state.
-  - [app/(tabs)/_layout.tsx](../app/(tabs)/_layout.tsx): tab-level guard.
-- **Always check `isHydrated`** from `useAppData()` before reading state (AsyncStorage may not be loaded yet).
-- Use `router.replace()` for redirects, `router.push()` for user navigation.
+## Big picture
+- React Native Expo app using file-based routing under [app/](../app/).
+- Page-level UI lives mostly in [components/pages/](../components/pages/).
+- Global providers are composed in [app/_layout.tsx](../app/_layout.tsx) in this order: `SafeAreaProvider`, `AppThemeProvider`, `AppLanguageProvider`, `AppDataProvider`.
+- Services live in [services/](../services/) and follow a **stub-first** design: local/mock behavior by default, switched to live APIs via env flags.
 
-## State & Persistence
-- **AppDataProvider** ([hooks/use-app-data.tsx](../hooks/use-app-data.tsx)) manages user, questionnaire answers, and notification state, persisted in AsyncStorage under `gatorguide:appdata:v1`.
-- **Theme and language** are persisted as `app-theme` and `app-language`.
-- **User sign-in** always initializes optional fields to empty strings to avoid controlled/uncontrolled input warnings.
-- **Questionnaire answers** are stored as `Record<string, string>`; use `useMemo` for derived state.
+## Core conventions
+- **Routing:** add routes under `app/` and navigate with `expo-router` (`router.push`, `router.replace`).
+- **App data:** `useAppData()` in [hooks/use-app-data.tsx](../hooks/use-app-data.tsx) is the source of truth for profile + questionnaire state.
+- **Hydration:** guard persisted state usage with `isHydrated`.
+- **Styling:** prefer NativeWind classes and theme helpers (`useThemeStyles`, `useAppTheme`); avoid introducing `StyleSheet.create` unless there is an established exception.
+- **Services imports:** prefer the barrel import `@/services` unless there is a strong local reason to import a file directly.
+- **i18n:** use `useAppLanguage()` and `t('key')`; translation strings are in [services/translations.ts](../services/translations.ts).
 
-## Styling & UI
-- **NativeWind/Tailwind only** for styles (no `StyleSheet.create()`).
-- Use `useThemeStyles()` for theme classes: `textClass`, `secondaryTextClass`, `cardBgClass`, `inputBgClass`, `borderClass`, `progressBgClass`, `placeholderColor`.
-- Use `isDark` from `useAppTheme()` for conditional logic.
-- Global CSS reset in [global.css](../global.css) and [tailwind.config.js](../tailwind.config.js).
+## Environment + integrations
+- Stub mode toggle: `EXPO_PUBLIC_USE_STUB_DATA` (see [services/README.md](../services/README.md)).
+- Firebase helpers: [services/firebase.ts](../services/firebase.ts) and [services/firebase.client.ts](../services/firebase.client.ts).
+- Persistence keys:
+  - app data: `gatorguide:appdata:v1`
+  - theme: `app-theme`
+  - language: `app-language`
 
-## Service Layer
-- **Import services via barrel:** `import { authService, collegeService, aiService } from "@/services"`.
-- **Stub-first:** All services are async, return Promises, and simulate latency in stub mode. Switch to real APIs by setting `EXPO_PUBLIC_USE_STUB_DATA=false` and providing API keys (see [services/README.md](../services/README.md)).
-- **College service** returns `College[]` and tracks data source with `getLastSource()`.
+## Service refactor guardrails (important)
+When refactoring service logic (especially [services/ai.service.ts](../services/ai.service.ts)):
+- Preserve existing external behavior unless explicitly changing product logic.
+- Keep fallback chains intact (live -> cache/search/matches as applicable).
+- Preserve user-visible metadata fields (`reason`, `score`, `breakdown`, `breakdownHuman`, `scoreText`) where currently expected by UI.
+- If consolidating duplicate code, extract helpers, but verify branch-specific nuances are retained (e.g., guest-mode in-state behavior, strict in-state empty states, AI fallback reason text).
+- Prefer small focused helpers over broad rewrites of large methods.
 
-## Internationalization
-- Use `useAppLanguage()` and `t('translation.key')` for all user-facing strings.
-- Translation keys are in [services/translations.ts](../services/translations.ts) (15+ languages).
-- Language can be changed in the settings page and is persisted immediately.
+## Verification checklist before commit
+Run these from repo root:
+1. `npm run lint`
+2. `npx tsc --noEmit`
+3. If touching recommendation/scoring flow, sanity-check key codepaths in `services/ai.service.ts` for:
+   - stub mode response shape
+   - live mode JSON parsing fallback
+   - in-state filtering behavior for guest and non-guest users
 
-## Common Patterns & Conventions
-- **Multi-step forms:** Track `step` state, validate on next, save on final submit (see [ProfileSetupPage.tsx](../components/pages/ProfileSetupPage.tsx)).
-- **Search with loading:** Use `isSearching` state, prevent submit while loading, handle empty results.
-- **Haptic feedback:** Use `expo-haptics` and call `Haptics.impactAsync()` on user interactions.
-- **Safe area:** Wrap pages with `ScreenBackground`, use `useSafeAreaInsets()` for padding.
-- **Profile and questionnaire:** See [ProfilePage.tsx](../components/pages/ProfilePage.tsx) and [QuestionnairePage.tsx](../components/pages/QuestionnairePage.tsx) for dynamic Q&A and profile editing patterns.
+## Developer commands
+- Install deps: `npm install`
+- Type-check: `npx tsc --noEmit`
+- Start dev: `npx expo start -c`
+- Tunnel dev: `npx expo start --tunnel`
+- Lint: `npm run lint`
+- Reset local app state: `npm run reset-project`
 
-## Developer Workflow
-- **Install:** `npm install`
-- **Start dev server:** `npx expo start` (or `npm run android|ios|web`)
-- **Lint:** `npm run lint` (ESLint v9, flat config)
-- **Reset local state:** `npm run reset-project` (clears all local state/cache)
-- **Mobile testing:** `npx expo start --tunnel` and scan QR in Expo Go app
-
-## Key Files & Examples
-- **Auth flow:** [app/index.tsx](../app/index.tsx), [app/login.tsx](../app/login.tsx), [AuthPage.tsx](../components/pages/AuthPage.tsx)
-- **Data persistence:** [hooks/use-app-data.tsx](../hooks/use-app-data.tsx)
-- **UI components:** [FormInput.tsx](../components/ui/FormInput.tsx), [ScreenBackground.tsx](../components/layouts/ScreenBackground.tsx)
-- **Profile & questionnaire:** [ProfilePage.tsx](../components/pages/ProfilePage.tsx), [QuestionnairePage.tsx](../components/pages/QuestionnairePage.tsx)
-
----
-**If any section is unclear or missing details, please provide feedback so this guide can be improved for future AI agents.**
+## High-value files to inspect first
+- Providers/layout: [app/_layout.tsx](../app/_layout.tsx)
+- Routing guards/tabs: [app/index.tsx](../app/index.tsx)
+- Persisted app data model: [hooks/use-app-data.tsx](../hooks/use-app-data.tsx)
+- Service entry points: [services/index.ts](../services/index.ts), [services/README.md](../services/README.md)
+- AI + recommendations: [services/ai.service.ts](../services/ai.service.ts)
