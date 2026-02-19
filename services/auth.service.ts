@@ -1,5 +1,6 @@
 import {
   createUserWithEmailAndPassword,
+  sendEmailVerification,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithCredential,
@@ -65,11 +66,15 @@ class AuthService {
         await updateProfile(userCredential.user, { displayName: credentials.name.trim() });
       }
 
-      return {
-        uid: userCredential.user.uid,
-        email: userCredential.user.email ?? credentials.email,
-        name: userCredential.user.displayName ?? credentials.name,
-      };
+      try {
+        await sendEmailVerification(userCredential.user);
+      } catch (e) {
+        console.warn("Failed to send verification email", e);
+      }
+
+      await firebaseSignOut(firebaseAuth);
+      const err: { code: string; email?: string } = { code: "auth/email-verification-required", email: credentials.email };
+      throw err;
     }
 
     const userCredential = await signInWithEmailAndPassword(
@@ -77,6 +82,15 @@ class AuthService {
       credentials.email,
       credentials.password
     );
+
+    if (!userCredential.user.emailVerified) {
+      await firebaseSignOut(firebaseAuth);
+      const err: { code: string; email?: string } = {
+        code: "auth/email-not-verified",
+        email: userCredential.user.email ?? credentials.email,
+      };
+      throw err;
+    }
 
     return {
       uid: userCredential.user.uid,

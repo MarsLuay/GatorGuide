@@ -53,7 +53,7 @@ export default function QuestionnairePage() {
       { id: "salary", question: t("questionnaire.salary"), placeholder: t("questionnaire.salaryPlaceholder"), type: "text" },
       { id: "workEnvironment", question: t("questionnaire.workEnvironment"), placeholder: t("questionnaire.workEnvironmentPlaceholder"), type: "textarea" },
       { id: "yearsToComplete", question: t("questionnaire.yearsToComplete"), placeholder: t("questionnaire.yearsToCompletePlaceholder"), type: "text" },
-      { id: "demand", question: t("questionnaire.demand"), options: [t("questionnaire.high"), t("questionnaire.medium"), t("questionnaire.low"), t("questionnaire.unsure")], type: "radio" },
+      { id: "demand", question: t("questionnaire.demand"), options: [t("questionnaire.demandHigh"), t("questionnaire.demandMedium"), t("questionnaire.demandLow"), t("questionnaire.unsure")], type: "radio" },
       { id: "howCompetitive", question: t("questionnaire.howCompetitive"), options: [t("questionnaire.veryCompetitive"), t("questionnaire.moderate"), t("questionnaire.lessCompetitive"), t("questionnaire.unsure")], type: "radio" },
       { id: "personalInterest", question: t("questionnaire.personalInterest"), placeholder: t("questionnaire.personalInterestPlaceholder"), type: "textarea" },
       { id: "typesOfOccupation", question: t("questionnaire.typesOfOccupation"), placeholder: t("questionnaire.typesOfOccupationPlaceholder"), type: "textarea" },
