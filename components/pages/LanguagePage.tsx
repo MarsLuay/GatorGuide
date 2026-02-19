@@ -1,8 +1,9 @@
 import { useMemo } from "react";
 import { View, Text, Pressable, ScrollView } from "react-native";
-import { router } from "expo-router";
+import { useRouter } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
+import useBack from "@/hooks/use-back";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { Language } from "@/services/translations";
@@ -11,6 +12,8 @@ import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 export default function LanguagePage() {
   const { isDark } = useAppTheme();
   const { language, setLanguage, t } = useAppLanguage();
+  const router = useRouter();
+  const back = useBack("/(tabs)/settings");
 
   const languages = useMemo(
     () => [
@@ -28,6 +31,7 @@ export default function LanguagePage() {
       { key: "Arabic" as Language, label: "العربية" },
       { key: "Hindi" as Language, label: "हिन्दी" },
       { key: "Vietnamese" as Language, label: "Tiếng Việt" },
+      { key: "Persian" as Language, label: "فارسی" },
       { key: "Tagalog" as Language, label: "Tagalog" },
     ],
     []
@@ -52,7 +56,7 @@ export default function LanguagePage() {
       <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 32 }}>
         <View className="max-w-md w-full self-center pt-20">
           <View className="px-6 pb-6">
-            <Pressable onPress={() => router.back()} className="mb-4 flex-row items-center">
+            <Pressable onPress={back} className="mb-4 flex-row items-center">
               <MaterialIcons name="arrow-back" size={20} color={iconColor} />
               <Text className={`${secondaryTextClass} ml-2`}>{t("general.back")}</Text>
             </Pressable>

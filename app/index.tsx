@@ -1,9 +1,10 @@
 import { useEffect, useRef } from "react";
-import { router } from "expo-router";
+import { useRouter } from "expo-router";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { useAppData } from "@/hooks/use-app-data";
 
 export default function Index() {
+  const router = useRouter();
   const { isHydrated, state } = useAppData();
   const hasNavigated = useRef(false);
 
@@ -41,7 +42,7 @@ export default function Index() {
     };
 
     performNavigation();
-  }, [isHydrated, state.user]);
+  }, [isHydrated, state.user, router]);
 
   return <LoadingScreen message="Preparing your data" />;
 }

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Tabs } from "expo-router";
+import { Tabs, useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
-import { router } from "expo-router";
 
 import { HapticTab } from "@/components/haptic-tab";
 import { LoadingScreen } from "@/components/LoadingScreen";
@@ -10,6 +9,7 @@ import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
 
 export default function TabLayout() {
+  const router = useRouter();
   const { isDark } = useAppTheme();
   const { isHydrated, state } = useAppData();
   const { t } = useAppLanguage();
@@ -37,7 +37,7 @@ export default function TabLayout() {
     if (!state.user) {
       router.replace("/login");
     }
-  }, [isHydrated, state.user]);
+  }, [isHydrated, state.user, router]);
 
   // Show loading state while hydrating
   if (!isHydrated) {
@@ -66,9 +66,7 @@ export default function TabLayout() {
           elevation: 0,
           shadowOpacity: 0,
         },
-        safeAreaInsets: {
-          top: 0,
-        },
+        // safeAreaInsets is not a valid BottomTabNavigationOptions property
       }}
     >
       <Tabs.Screen

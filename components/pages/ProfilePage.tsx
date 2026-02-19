@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useRef, useState, useCallback } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { View, Text, TextInput, Pressable, ScrollView, Keyboard, Dimensions, Alert, Platform } from "react-native";
-import { router } from "expo-router";
+import { useRouter } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { useAudioPlayer } from "expo-audio";
@@ -9,6 +9,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppLanguage } from "@/hooks/use-app-language";
+import { normalizeQuestionnaireAnswers, QUESTIONNAIRE_RADIO_OPTIONS } from "@/services/questionnaire.enums";
 import { useAppData } from "@/hooks/use-app-data";
 import { ProfileField } from "@/components/ui/ProfileField";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -16,13 +17,15 @@ import * as FileSystem from "expo-file-system";
 import * as Sharing from "expo-sharing";
 import * as DocumentPicker from "expo-document-picker";
 
+type RadioOption = { key: string; label: string };
 type Question =
   | { id: string; question: string; type: "text" | "textarea"; placeholder: string }
-  | { id: string; question: string; type: "radio"; options: string[] };
+  | { id: string; question: string; type: "radio"; options: RadioOption[] };
 
 export default function ProfilePage() {
+  const router = useRouter();
   const { theme, setTheme, isDark } = useAppTheme();
-  const { t } = useAppLanguage();
+  const { t, language } = useAppLanguage();
   const { isHydrated, state, updateUser, setQuestionnaireAnswers, restoreData } = useAppData();
   const insets = useSafeAreaInsets();
 
@@ -34,10 +37,9 @@ export default function ProfilePage() {
   const [isEditing, setIsEditing] = useState(false);
   const [editData, setEditData] = useState({
     name: "",
+    state: "",
     major: "",
     gpa: "",
-    sat: "",
-    act: "",
     resume: "",
     transcript: "",
   });
@@ -168,66 +170,15 @@ export default function ProfilePage() {
 
   const questions = useMemo<Question[]>(
     () => [
-      {
-        id: "volunteerActivities",
-        question: t("questionnaire.volunteerActivities"),
-        placeholder: t("questionnaire.volunteerPlaceholder"),
-        type: "textarea",
-      },
-      {
-        id: "extracurriculars",
-        question: t("questionnaire.extracurriculars"),
-        placeholder: t("questionnaire.extracurricularsPlaceholder"),
-        type: "textarea",
-      },
-      {
-        id: "collegeSetting",
-        question: t("questionnaire.collegeSetting"),
-        options: [t("questionnaire.urban"), t("questionnaire.suburban"), t("questionnaire.rural"), t("questionnaire.noPreference")],
-        type: "radio",
-      },
-      {
-        id: "collegeSize",
-        question: t("questionnaire.collegeSize"),
-        options: [t("questionnaire.small"), t("questionnaire.medium"), t("questionnaire.large"), t("questionnaire.noPreference")],
-        type: "radio",
-      },
-      {
-        id: "environment",
-        question: t("questionnaire.environment"),
-        options: [t("questionnaire.researchFocused"), t("questionnaire.liberalArts"), t("questionnaire.technical"), t("questionnaire.preProfessional"), t("questionnaire.mixed")],
-        type: "radio",
-      },
-      {
-        id: "programs",
-        question: t("questionnaire.programs"),
-        placeholder: t("questionnaire.programsPlaceholder"),
-        type: "textarea",
-      },
-      {
-        id: "budget",
-        question: t("questionnaire.budget"),
-        options: [t("questionnaire.under20k"), t("questionnaire.20to40k"), t("questionnaire.40to60k"), t("questionnaire.over60k"), t("questionnaire.needFinancialAid")],
-        type: "radio",
-      },
-      {
-        id: "location",
-        question: t("questionnaire.location"),
-        placeholder: t("questionnaire.locationPlaceholder"),
-        type: "text",
-      },
-      {
-        id: "housingPreference",
-        question: t("questionnaire.housingPreference"),
-        options: [t("questionnaire.onCampus"), t("questionnaire.offCampus"), t("questionnaire.commute"), t("questionnaire.noPreference")],
-        type: "radio",
-      },
-      {
-        id: "careerGoals",
-        question: t("questionnaire.careerGoals"),
-        placeholder: t("questionnaire.careerGoalsPlaceholder"),
-        type: "textarea",
-      },
+      { id: "costOfAttendance", question: t("questionnaire.costOfAttendance"), options: QUESTIONNAIRE_RADIO_OPTIONS.costOfAttendance.map((o) => ({ key: o.key, label: t(o.labelKey) })), type: "radio" },
+      { id: "classSize", question: t("questionnaire.classSize"), options: QUESTIONNAIRE_RADIO_OPTIONS.classSize.map((o) => ({ key: o.key, label: t(o.labelKey) })), type: "radio" },
+      { id: "transportation", question: t("questionnaire.transportation"), options: QUESTIONNAIRE_RADIO_OPTIONS.transportation.map((o) => ({ key: o.key, label: t(o.labelKey) })), type: "radio" },
+      { id: "companiesNearby", question: t("questionnaire.companiesNearby"), placeholder: t("questionnaire.companiesNearbyPlaceholder"), type: "textarea" },
+      { id: "inStateOutOfState", question: t("questionnaire.inStateOutOfState"), options: QUESTIONNAIRE_RADIO_OPTIONS.inStateOutOfState.map((o) => ({ key: o.key, label: t(o.labelKey) })), type: "radio" },
+      { id: "housing", question: t("questionnaire.housingPreference"), options: QUESTIONNAIRE_RADIO_OPTIONS.housing.map((o) => ({ key: o.key, label: t(o.labelKey) })), type: "radio" },
+      { id: "ranking", question: t("questionnaire.ranking"), options: QUESTIONNAIRE_RADIO_OPTIONS.ranking.map((o) => ({ key: o.key, label: t(o.labelKey) })), type: "radio" },
+      { id: "continueEducation", question: t("questionnaire.continueEducation"), options: QUESTIONNAIRE_RADIO_OPTIONS.continueEducation.map((o) => ({ key: o.key, label: t(o.labelKey) })), type: "radio" },
+      { id: "extracurriculars", question: t("questionnaire.extracurriculars"), placeholder: t("questionnaire.extracurricularsPlaceholder"), type: "textarea" },
     ],
     [t]
   );
@@ -242,15 +193,14 @@ export default function ProfilePage() {
     if (!isHydrated) return;
     setEditData({
       name: user?.name ?? "",
+      state: user?.state ?? "",
       major: user?.major ?? "",
       gpa: user?.gpa ?? "",
-      sat: user?.sat ?? "",
-      act: user?.act ?? "",
       resume: user?.resume ?? "",
       transcript: user?.transcript ?? "",
     });
-    setLocalAnswers({ ...blankAnswers, ...(state.questionnaireAnswers ?? {}) });
-  }, [isHydrated, user?.name, user?.major, user?.gpa, user?.sat, user?.act, user?.resume, user?.transcript, blankAnswers, state.questionnaireAnswers]);
+    setLocalAnswers({ ...blankAnswers, ...normalizeQuestionnaireAnswers(state.questionnaireAnswers ?? {}, language) });
+  }, [isHydrated, user?.name, user?.state, user?.major, user?.gpa, user?.resume, user?.transcript, blankAnswers, state.questionnaireAnswers, language]);
 
   const textClass = isDark ? "text-white" : "text-gray-900";
   const secondaryTextClass = isDark ? "text-gray-400" : "text-gray-600";
@@ -265,18 +215,7 @@ export default function ProfilePage() {
     [state.questionnaireAnswers]
   );
 
-  // --- Add this helper to check if there is any user data to export ---
-  const hasExportableData = useMemo(() => {
-    if (!state) return false;
-    // Check if user has filled any profile fields or questionnaire answers
-    const { user, questionnaireAnswers } = state;
-    if (!user) return false;
-    // Check for any non-empty user fields except uid, email, isGuest
-    const userFields = ["name", "major", "gpa", "sat", "act", "resume", "transcript"];
-    const hasUserData = userFields.some((key) => !!(user as any)[key]);
-    const hasQuestionnaire = questionnaireAnswers && Object.values(questionnaireAnswers).some((v) => !!v);
-    return hasUserData || hasQuestionnaire;
-  }, [state]);
+  // (removed unused hasExportableData helper to satisfy linter)
 
   const capitalizeWords = (text: string | undefined) => {
     if (!text) return "";
@@ -287,10 +226,9 @@ export default function ProfilePage() {
     if (!user) return;
     updateUser({
       name: editData.name,
+      state: editData.state,
       major: editData.major,
       gpa: editData.gpa,
-      sat: editData.sat,
-      act: editData.act,
       resume: editData.resume,
       transcript: editData.transcript,
     });
@@ -332,8 +270,66 @@ export default function ProfilePage() {
     setLocalAnswers((p) => ({ ...p, [id]: value }));
   };
 
+  // Migration: normalize existing collegeSetting stored value to canonical keys
+  const _collegeSettingMigrated = useRef(false);
+  useEffect(() => {
+    if (!isHydrated || _collegeSettingMigrated.current) return;
+    const optionKeys = ["urban", "suburban", "rural", "noPreference"];
+    const raw = questionnaireAnswers['collegeSetting'] ?? state.questionnaireAnswers?.collegeSetting ?? '';
+    const normalize = (val: unknown): string | undefined => {
+      if (typeof val !== 'string') return undefined;
+      if (val.startsWith('questionnaire.')) return val.replace(/^questionnaire\./, '');
+      if (optionKeys.includes(val)) return val;
+      for (const k of optionKeys) {
+        try {
+          if (t((`questionnaire.${k}`) as any) === val) return k;
+        } catch {
+          // ignore
+        }
+      }
+      return undefined;
+    };
+
+    const normalized = normalize(raw);
+    if (normalized && raw !== normalized) {
+      // update local answers to canonical key (do not immediately persist to server)
+      handleQuestionnaireAnswer('collegeSetting', normalized);
+    }
+    _collegeSettingMigrated.current = true;
+  }, [isHydrated]);
+
+  const _environmentMigrated = useRef(false);
+  useEffect(() => {
+    if (!isHydrated || _environmentMigrated.current) return;
+    const optionKeys = ["researchFocused","liberalArts","technical","preProfessional","mixed","noPreference"];
+    const raw = questionnaireAnswers['environment'] ?? state.questionnaireAnswers?.environment ?? '';
+    const normalize = (val: unknown): string | undefined => {
+      if (typeof val !== 'string') return undefined;
+      if (val.startsWith('questionnaire.')) return val.replace(/^questionnaire\./, '');
+      if (optionKeys.includes(val)) return val;
+      for (const k of optionKeys) {
+        try {
+          if (t((`questionnaire.${k}`) as any) === val) return k;
+        } catch {
+          // ignore
+        }
+      }
+      return undefined;
+    };
+
+    const normalized = normalize(raw);
+    if (normalized && raw !== normalized) {
+      handleQuestionnaireAnswer('environment', normalized);
+    }
+    _environmentMigrated.current = true;
+  }, [isHydrated]);
+
   const handleSaveQuestionnaire = async () => {
-    await setQuestionnaireAnswers(questionnaireAnswers);
+    const toSave = normalizeQuestionnaireAnswers({ ...questionnaireAnswers }, language) as Record<string, string>;
+    // Major is captured on the user profile; do not store major in questionnaire
+    delete toSave.major;
+    delete toSave.majorChoice;
+    await setQuestionnaireAnswers(toSave);
     setShowQuestionnaire(false);
   };
 
@@ -563,6 +559,23 @@ export default function ProfilePage() {
                 borderClass={borderClass}
               />
 
+              <ProfileField //state
+                type="text"
+                icon="place"
+                label={"State"}
+                value={String(user?.state ?? "").toUpperCase()}
+                isEditing={isEditing}
+                editValue={editData.state}
+                onChangeText={(v) => setEditData((p) => ({ ...p, state: v.toUpperCase().replace(/[^A-Z\s]/g, "").slice(0, 20) }))}
+                placeholder={"e.g. WA or Washington"}
+                placeholderColor={placeholderColor}
+                inputBgClass={inputBgClass}
+                inputClass={inputClass}
+                textClass={textClass}
+                secondaryTextClass={secondaryTextClass}
+                borderClass={borderClass}
+              />
+
               <ProfileField //GPA
                 type="text"
                 icon="description"
@@ -576,42 +589,6 @@ export default function ProfilePage() {
                 inputBgClass={inputBgClass}
                 inputClass={inputClass}
                 keyboardType="decimal-pad"
-                textClass={textClass}
-                secondaryTextClass={secondaryTextClass}
-                borderClass={borderClass}
-              />
-
-              <ProfileField //SAT
-                type="text"
-                icon="notes"
-                label={t("profile.sat")}
-                value={user?.sat ?? ""}
-                isEditing={isEditing}
-                editValue={editData.sat}
-                onChangeText={(v) => setEditData((p) => ({ ...p, sat: v.replace(/\D/g, "") }))}
-                placeholder={t("profile.satPlaceholder")}
-                placeholderColor={placeholderColor}
-                inputBgClass={inputBgClass}
-                inputClass={inputClass}
-                textClass={textClass}
-                secondaryTextClass={secondaryTextClass}
-                borderClass={borderClass}
-                keyboardType="number-pad"
-              />
-
-              <ProfileField //ACT
-                type="text"
-                icon="notes"
-                label={t("profile.act")}
-                value={user?.act ?? ""}
-                isEditing={isEditing}
-                editValue={editData.act}
-                onChangeText={(v) => setEditData((p) => ({ ...p, act: v.replace(/\D/g, "") }))}
-                placeholder={t("profile.actPlaceholder")}
-                keyboardType="number-pad"
-                placeholderColor={placeholderColor}
-                inputBgClass={inputBgClass}
-                inputClass={inputClass}
                 textClass={textClass}
                 secondaryTextClass={secondaryTextClass}
                 borderClass={borderClass}
@@ -648,7 +625,8 @@ export default function ProfilePage() {
                 secondaryTextClass={secondaryTextClass}
                 borderClass={borderClass}
               />
-              </View>            </View>
+              </View>
+            </View>
 
             {/* Questionnaire */}
             <View className={`${cardBgClass} border rounded-2xl p-6 mt-4`}>
@@ -670,11 +648,9 @@ export default function ProfilePage() {
                 </Pressable>
               </View>
 
-              <Text className={`text-sm ${secondaryTextClass}`}>
-                {hasQuestionnaireData
-                  ? t("profile.questionnaireCompleted")
-                  : t("profile.questionnairePrompt")}
-              </Text>
+              {!hasQuestionnaireData ? (
+                <Text className={`text-sm ${secondaryTextClass}`}>{t("profile.questionnairePrompt")}</Text>
+              ) : null}
 
               {/* Questionnaire Expanded View - All Questions at Once */}
               {showQuestionnaire && (
@@ -683,7 +659,11 @@ export default function ProfilePage() {
                     <View className="gap-6">
                       {questions.map((question) => (
                         <View key={question.id}>
-                          <Text className={`text-sm font-semibold ${textClass} mb-3`}>{question.question}</Text>
+                          <Text className={`text-sm font-semibold ${textClass} mb-3`}>{
+                            typeof question.question === 'string' && question.question.startsWith('questionnaire.')
+                              ? t((question.question) as any)
+                              : question.question
+                          }</Text>
 
                           {/* Text/Textarea Input */}
                           {(question.type === "text" || question.type === "textarea") && (
@@ -701,28 +681,129 @@ export default function ProfilePage() {
                           {/* Radio Options */}
                           {question.type === "radio" && (
                             <View className="gap-2">
-                              {question.options.map((option) => {
-                                const isSelected = questionnaireAnswers[question.id] === option;
-                                return (
-                                  <Pressable
-                                    key={option}
-                                    onPress={() => {
-                                      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                                      handleQuestionnaireAnswer(question.id, option);
-                                    }}
-                                    className={`px-4 py-3 rounded-lg border ${
-                                      isSelected
-                                        ? "bg-green-500/10 border-green-500"
-                                        : borderClass
-                                    }`}
-                                  >
-                                    <View className="flex-row items-center justify-between">
-                                      <Text className={isSelected ? "text-green-500 font-semibold" : textClass}>{option}</Text>
-                                      {isSelected && <MaterialIcons name="check-circle" size={18} color="#22C55E" />}
-                                    </View>
-                                  </Pressable>
-                                );
-                              })}
+                              {question.id === 'collegeSetting' ? (
+                                (() => {
+                                  const optionKeys = ["urban", "suburban", "rural", "noPreference"];
+                                  const stored = questionnaireAnswers[question.id];
+                                  // Normalize saved answer into canonical key without changing stored value
+                                  let savedKey: string | undefined = undefined;
+                                  if (typeof stored === 'string') {
+                                    if (stored.startsWith('questionnaire.')) {
+                                      savedKey = stored.replace(/^questionnaire\./, '');
+                                    } else if (optionKeys.includes(stored)) {
+                                      savedKey = stored;
+                                    } else {
+                                      // If stored equals a translated label, map back to key
+                                      for (const k of optionKeys) {
+                                        try {
+                                          if (t((`questionnaire.${k}`) as any) === stored) {
+                                            savedKey = k;
+                                            break;
+                                          }
+                                        } catch {
+                                          // ignore
+                                        }
+                                      }
+                                    }
+                                  }
+
+                                  return optionKeys.map((key) => {
+                                    const optionLabel = t((`questionnaire.${key}`) as any);
+                                    const isSelected = savedKey === key;
+                                    return (
+                                      <Pressable
+                                        key={key}
+                                        onPress={() => {
+                                              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                                              // Save canonical key for collegeSetting
+                                              handleQuestionnaireAnswer(question.id, key);
+                                            }}
+                                        className={`px-4 py-3 rounded-lg border ${
+                                          isSelected
+                                            ? "bg-green-500/10 border-green-500"
+                                            : borderClass
+                                        }`}
+                                      >
+                                        <View className="flex-row items-center justify-between">
+                                          <Text className={isSelected ? "text-green-500 font-semibold" : textClass}>{optionLabel}</Text>
+                                          {isSelected && <MaterialIcons name="check-circle" size={18} color="#22C55E" />}
+                                        </View>
+                                      </Pressable>
+                                    );
+                                  });
+                                })()
+                              ) : question.id === 'environment' ? (
+                                (() => {
+                                  const optionKeys = ["researchFocused","liberalArts","technical","preProfessional","mixed","noPreference"];
+                                  const stored = questionnaireAnswers[question.id];
+                                  let savedKey: string | undefined = undefined;
+                                  if (typeof stored === 'string') {
+                                    if (stored.startsWith('questionnaire.')) {
+                                      savedKey = stored.replace(/^questionnaire\./, '');
+                                    } else if (optionKeys.includes(stored)) {
+                                      savedKey = stored;
+                                    } else {
+                                      for (const k of optionKeys) {
+                                        try {
+                                          if (t((`questionnaire.${k}`) as any) === stored) {
+                                            savedKey = k;
+                                            break;
+                                          }
+                                        } catch {
+                                        }
+                                      }
+                                    }
+                                  }
+                                  return optionKeys.map((key) => {
+                                    const optionLabel = t((`questionnaire.${key}`) as any);
+                                    const isSelected = savedKey === key;
+                                    return (
+                                      <Pressable
+                                        key={key}
+                                        onPress={() => {
+                                          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                                          handleQuestionnaireAnswer(question.id, key);
+                                        }}
+                                        className={`px-4 py-3 rounded-lg border ${
+                                          isSelected
+                                            ? "bg-green-500/10 border-green-500"
+                                            : borderClass
+                                        }`}
+                                      >
+                                        <View className="flex-row items-center justify-between">
+                                          <Text className={isSelected ? "text-green-500 font-semibold" : textClass}>{optionLabel}</Text>
+                                          {isSelected && <MaterialIcons name="check-circle" size={18} color="#22C55E" />}
+                                        </View>
+                                      </Pressable>
+                                    );
+                                  });
+                                })()
+                              ) : (
+                                question.options.map((option) => {
+                                  const stored = questionnaireAnswers[question.id];
+                                  const isSelected = stored === option.key;
+
+                                  return (
+                                    <Pressable
+                                      key={option.key}
+                                      onPress={() => {
+                                        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                                        handleQuestionnaireAnswer(question.id, option.key);
+                                      }}
+                                      className={`px-4 py-3 rounded-lg border ${
+                                        isSelected
+                                          ? "bg-green-500/10 border-green-500"
+                                          : borderClass
+                                      }`}
+                                    >
+                                      <View className="flex-row items-center justify-between">
+                                        <Text className={isSelected ? "text-green-500 font-semibold" : textClass}>{option.label}</Text>
+                                        {isSelected && <MaterialIcons name="check-circle" size={18} color="#22C55E" />}
+                                      </View>
+                                    </Pressable>
+                                  );
+                                })
+                              )}
                             </View>
                           )}
                         </View>

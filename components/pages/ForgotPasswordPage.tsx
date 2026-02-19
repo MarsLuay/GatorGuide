@@ -5,11 +5,11 @@ import {
   Pressable, 
   Alert, 
   Keyboard, 
-  TouchableWithoutFeedback, 
-  ActivityIndicator 
+  TouchableWithoutFeedback
 } from "react-native";
-import { router } from "expo-router";
+import { useRouter } from "expo-router";
 import { FontAwesome5, MaterialIcons } from "@expo/vector-icons";
+import useBack from "@/hooks/use-back";
 import * as Haptics from "expo-haptics";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppLanguage } from "@/hooks/use-app-language";
@@ -20,6 +20,8 @@ import { authService } from "@/services";
 const isEmailValid = (value: string) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value.trim());
 
 export default function ForgotPasswordPage() {
+  const router = useRouter();
+  const back = useBack("/login");
   const { t } = useAppLanguage();
   const styles = useThemeStyles();
 
@@ -109,7 +111,7 @@ export default function ForgotPasswordPage() {
           <Pressable
             onPress={() => {
               Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-              router.back();
+              back();
             }}
             className="mb-8 flex-row items-center"
             style={({ pressed }) => ({

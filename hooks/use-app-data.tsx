@@ -4,22 +4,22 @@ import { doc, getDoc } from "firebase/firestore";
 import { authService } from "@/services";
 import type { AuthUser } from "@/services/auth.service";
 import { db } from "@/services/firebase";
+import { normalizeQuestionnaireAnswers } from "@/services/questionnaire.enums";
 
 export type User = {
   uid: string;
   name: string;
   email: string;
   isGuest?: boolean; // true if user is logged in as guest
+  state?: string;
   major?: string;
   gpa?: string;
-  sat?: string;
-  act?: string;
   resume?: string;
   transcript?: string;
   isProfileComplete?: boolean;
 };
 
-export type QuestionnaireAnswers = Record<string, string>;
+export type QuestionnaireAnswers = Record<string, any>;
 
 export type AppDataState = {
   user: User | null;
@@ -32,7 +32,7 @@ const STORAGE_KEY = "gatorguide:appdata:v1";
 const initialState: AppDataState = {
   user: null,
   questionnaireAnswers: {},
-  notificationsEnabled: true,
+  notificationsEnabled: false,
 };
 
 type AppDataContextValue = {
@@ -64,7 +64,7 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
         if (!mounted) return;
         if (raw) {
           const parsed = JSON.parse(raw) as AppDataState;
-          setState(parsed);
+          setState({ ...parsed, questionnaireAnswers: normalizeQuestionnaireAnswers(parsed.questionnaireAnswers ?? {}) });
         }
       } catch {
       } finally {
@@ -94,10 +94,9 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
         if (userDoc.exists() && userDoc.data()) {
           const data = userDoc.data();
           profileFromServer = {
+            state: data.state ?? "",
             major: data.major ?? "",
             gpa: data.gpa ?? "",
-            sat: data.sat ?? "",
-            act: data.act ?? "",
             resume: data.resume ?? "",
             transcript: data.transcript ?? "",
             isProfileComplete: !!data.isProfileComplete,
@@ -129,9 +128,8 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
           email: authUser.email,
           isGuest: false,
           major: "",
+          state: "",
           gpa: "",
-          sat: "",
-          act: "",
           resume: "",
           transcript: "",
           ...profileFromServer,
@@ -148,10 +146,9 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
         if (userDoc.exists() && userDoc.data()) {
           const data = userDoc.data();
           profileFromServer = {
+            state: data.state ?? "",
             major: data.major ?? "",
             gpa: data.gpa ?? "",
-            sat: data.sat ?? "",
-            act: data.act ?? "",
             resume: data.resume ?? "",
             transcript: data.transcript ?? "",
             isProfileComplete: !!data.isProfileComplete,
@@ -169,9 +166,8 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
         email: authUser.email,
         isGuest: false,
         major: "",
+        state: "",
         gpa: "",
-        sat: "",
-        act: "",
         resume: "",
         transcript: "",
         ...profileFromServer,
@@ -188,9 +184,8 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
         email: `guest-${Date.now()}@gatorguide.local`,
         isGuest: true,
         major: "",
+        state: "",
         gpa: "",
-        sat: "",
-        act: "",
         resume: "",
         transcript: "",
       },
@@ -227,7 +222,8 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const setQuestionnaireAnswers = useCallback(async (answers: QuestionnaireAnswers) => {
-    setState((prev) => ({ ...prev, questionnaireAnswers: { ...answers } }));
+    const normalized = normalizeQuestionnaireAnswers(answers);
+    setState((prev) => ({ ...prev, questionnaireAnswers: { ...normalized } }));
   }, []);
 
   const setNotificationsEnabled = useCallback(async (enabled: boolean) => {
@@ -237,8 +233,8 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
   const restoreData = useCallback(async (data: AppDataState) => {
     setState({
       user: data.user ?? null,
-      questionnaireAnswers: data.questionnaireAnswers ?? {},
-      notificationsEnabled: data.notificationsEnabled ?? true,
+      questionnaireAnswers: normalizeQuestionnaireAnswers(data.questionnaireAnswers ?? {}),
+      notificationsEnabled: data.notificationsEnabled ?? false,
     });
   }, []);
 
