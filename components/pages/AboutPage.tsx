@@ -1,15 +1,12 @@
 import { View, Text, Pressable, ScrollView } from "react-native";
+import { useRouter } from "expo-router";
 import { MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
-import useBack from "@/hooks/use-back";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppTheme } from "@/hooks/use-app-theme";
-import { useAppLanguage } from "@/hooks/use-app-language";
 
 export default function AboutPage() {
   const { isDark } = useAppTheme();
-  const { t } = useAppLanguage();
-  const back = useBack();
-
+  const router = useRouter();
   const textClass = isDark ? "text-white" : "text-gray-900";
   const secondaryTextClass = isDark ? "text-gray-400" : "text-gray-600";
   const cardBgClass = isDark
@@ -22,20 +19,23 @@ export default function AboutPage() {
       <ScrollView contentContainerStyle={{ paddingBottom: 32 }}>
         <View className="max-w-md w-full self-center">
           {/* Header */}
-          <View className="px-6 pt-20 pb-6">
-            <Pressable onPress={back} className="mb-4 flex-row items-center">
+          <View className="px-6 pt-8 pb-6">
+            <Pressable
+              onPress={() => router.back()}
+              className="mb-4 flex-row items-center"
+            >
               <MaterialIcons
                 name="arrow-back"
                 size={20}
                 color={isDark ? "#9CA3AF" : "#6B7280"}
               />
               <Text className={`${secondaryTextClass} ml-2`}>
-                {t("general.back")}
+                Back
               </Text>
             </Pressable>
 
             <Text className={`text-2xl ${textClass}`}>
-              {t("about.title")}
+              About Gator Guide
             </Text>
           </View>
 
@@ -60,7 +60,8 @@ export default function AboutPage() {
               <Text
                 className={`${secondaryTextClass} text-center text-sm`}
               >
-                {t("about.subtitle")}
+                Helping Green River College students find their perfect transfer
+                match
               </Text>
             </View>
           </View>
@@ -68,7 +69,7 @@ export default function AboutPage() {
           {/* How It Works */}
           <View className="px-6 mb-6">
             <Text className={`${textClass} mb-3 px-2`}>
-              {t("about.howItWorks")}
+              How It Works
             </Text>
 
             <View
@@ -77,23 +78,27 @@ export default function AboutPage() {
               {[
                 {
                   n: "1",
-                  title: t("about.step1Title"),
-                  body: t("about.step1Body"),
+                  title: "Profile Analysis",
+                  body:
+                    "The app analyzes your academic profile including GPA, test scores, major interests, and extracurricular activities.",
                 },
                 {
                   n: "2",
-                  title: t("about.step2Title"),
-                  body: t("about.step2Body"),
+                  title: "Preference Matching",
+                  body:
+                    "Your preferences for campus setting, location, size, and other factors are matched against our college database.",
                 },
                 {
                   n: "3",
-                  title: t("about.step3Title"),
-                  body: t("about.step3Body"),
+                  title: "Smart Recommendations",
+                  body:
+                    "Our algorithm weighs transfer credit policies, program strength, and admission probability to provide personalized recommendations.",
                 },
                 {
                   n: "4",
-                  title: t("about.step4Title"),
-                  body: t("about.step4Body"),
+                  title: "Continuous Updates",
+                  body:
+                    "As you update your profile and complete more coursework, recommendations are refined to reflect your evolving academic journey.",
                 },
               ].map((item) => (
                 <View key={item.n}>
@@ -120,7 +125,7 @@ export default function AboutPage() {
           {/* App Info */}
           <View className="px-6 mb-4">
             <Text className={`${textClass} mb-3 px-2`}>
-              {t("about.appInformation")}
+              App Information
             </Text>
 
             <View
@@ -129,12 +134,12 @@ export default function AboutPage() {
               <View
                 className={`px-4 py-4 flex-row items-center justify-between border-b ${borderClass}`}
               >
-                <Text className={secondaryTextClass}>{t("about.version")}</Text>
-                <Text className={textClass}>{t("about.versionNumber")}</Text>
+                <Text className={secondaryTextClass}>Version</Text>
+                <Text className={textClass}>1.0.0</Text>
               </View>
 
               <Pressable
-                onPress={() => {}}
+                onPress={() => router.push("/privacy")}
                 className={`px-4 py-4 flex-row items-center justify-between border-b ${borderClass}`}
               >
                 <Text className={secondaryTextClass}>
@@ -148,7 +153,7 @@ export default function AboutPage() {
               </Pressable>
 
               <Pressable
-                onPress={() => {}}
+                onPress={() => router.push("/terms")}
                 className="px-4 py-4 flex-row items-center justify-between"
               >
                 <Text className={secondaryTextClass}>
@@ -187,10 +192,6 @@ export default function AboutPage() {
                 admission to any institution.
               </Text>
             </View>
-
-            <Text className={`${secondaryTextClass} text-xs text-center mt-6 mb-8`}>
-              {t("general.needHelpEmail")}
-            </Text>
           </View>
         </View>
       </ScrollView>
