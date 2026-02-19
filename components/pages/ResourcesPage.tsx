@@ -338,7 +338,7 @@ export default function ResourcesPage() {
 
           <View className="mt-8">
             <Text className={`text-xs ${secondaryTextClass} text-center`}>
-              Links open in your device’s browser.
+              {t("resources.openInBrowser")}
             </Text>
           </View>
         </View>

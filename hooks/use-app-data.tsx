@@ -32,7 +32,7 @@ const STORAGE_KEY = "gatorguide:appdata:v1";
 const initialState: AppDataState = {
   user: null,
   questionnaireAnswers: {},
-  notificationsEnabled: true,
+  notificationsEnabled: false,
 };
 
 type AppDataContextValue = {
@@ -234,7 +234,7 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
     setState({
       user: data.user ?? null,
       questionnaireAnswers: normalizeQuestionnaireAnswers(data.questionnaireAnswers ?? {}),
-      notificationsEnabled: data.notificationsEnabled ?? true,
+      notificationsEnabled: data.notificationsEnabled ?? false,
     });
   }, []);
 
