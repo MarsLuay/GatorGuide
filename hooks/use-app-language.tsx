@@ -22,6 +22,7 @@ function normalizeLang(input?: string): Language {
   if (/^pt\b|portuguese/.test(raw)) return "Portuguese";
   if (/^ru\b|russian/.test(raw)) return "Russian";
   if (/^ar\b|arabic/.test(raw)) return "Arabic";
+  if (/^fa\b|persian|farsi/.test(raw)) return "Persian";
   if (/^hi\b|hindi/.test(raw)) return "Hindi";
   if (/^vi\b|vietnamese/.test(raw)) return "Vietnamese";
   if (/^tl\b|tagalog/.test(raw)) return "Tagalog";

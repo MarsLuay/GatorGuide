@@ -8,6 +8,7 @@ import { useMemo, useState, useCallback, useEffect } from "react";
 import { Pressable, ScrollView, Text, View, Alert, Platform, Linking } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { notificationsService, cacheManagerService } from "@/services";
+import { translations } from "@/services/translations";
 import * as FileSystem from "expo-file-system";
 import * as Sharing from "expo-sharing";
 import * as DocumentPicker from "expo-document-picker";
@@ -50,7 +51,7 @@ export default function SettingsPage() {
   const secondaryTextClass = isDark ? "text-gray-400" : "text-gray-600";
   const cardBgClass = isDark ? "bg-gray-900/80 border-gray-800" : "bg-white/90 border-gray-200";
   const cardBorderClass = isDark ? "border-gray-800" : "border-gray-200";
-  const isRTL = language === "Arabic";
+  const isRTL = language === "Arabic" || language === "Persian";
   const flexDirection = isRTL ? "flex-row-reverse" : "flex-row";
 
   const handleToggleNotifications = useCallback(async () => {
@@ -214,6 +215,28 @@ export default function SettingsPage() {
       setIsClearingCache(false);
     }
   }, []);
+
+  const handleCopyEnglishKeyLog = useCallback(async () => {
+    try {
+      const keys = Object.keys(translations.English)
+        .sort((a, b) => a.localeCompare(b));
+      const logText = [
+        `English key count: ${keys.length}`,
+        "",
+        ...keys,
+      ].join("\n");
+
+      if (Platform.OS === "web" && typeof navigator !== "undefined" && navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(logText);
+        Alert.alert(t("settings.debugCopiedTitle"), t("settings.debugCopiedMessage"));
+        return;
+      }
+
+      Alert.alert(t("settings.debugUnavailableTitle"), t("settings.debugUnavailableMessage"));
+    } catch {
+      Alert.alert(t("general.error"), t("settings.debugCopyFailed"));
+    }
+  }, [t]);
 
   const sections = useMemo(
     () => [
@@ -406,6 +429,20 @@ export default function SettingsPage() {
                         </Text>
                       </View>
                       <MaterialIcons name={isRTL ? "chevron-left" : "chevron-right"} size={22} color={isDark ? "#9CA3AF" : "#6B7280"} />
+                    </Pressable>
+
+                    <Pressable
+                      onPress={handleCopyEnglishKeyLog}
+                      className={`${flexDirection} items-center px-4 py-5 border-t ${cardBorderClass}`}
+                    >
+                      <MaterialIcons name="bug-report" size={20} color="#22C55E" />
+                      <View className={`flex-1 ${isRTL ? "mr-3" : "ml-3"}`}>
+                        <Text className={`${isRTL ? "text-right" : ""} ${textClass}`}>{t("settings.debugTools")}</Text>
+                        <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} text-xs mt-1`}>
+                          {t("settings.copyEnglishKeyLog")}
+                        </Text>
+                      </View>
+                      <MaterialIcons name="content-copy" size={20} color={isDark ? "#9CA3AF" : "#6B7280"} />
                     </Pressable>
                   </>
                 ) : null}

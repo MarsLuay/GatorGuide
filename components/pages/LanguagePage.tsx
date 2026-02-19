@@ -31,6 +31,7 @@ export default function LanguagePage() {
       { key: "Arabic" as Language, label: "العربية" },
       { key: "Hindi" as Language, label: "हिन्दी" },
       { key: "Vietnamese" as Language, label: "Tiếng Việt" },
+      { key: "Persian" as Language, label: "فارسی" },
       { key: "Tagalog" as Language, label: "Tagalog" },
     ],
     []
