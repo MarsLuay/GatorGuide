@@ -3,6 +3,7 @@ import React, { createContext, useCallback, useContext, useEffect, useMemo, useS
 import { doc, getDoc } from "firebase/firestore";
 import { authService } from "@/services";
 import type { AuthUser } from "@/services/auth.service";
+import type { College } from "@/services/college.service";
 import { db } from "@/services/firebase";
 import { normalizeQuestionnaireAnswers } from "@/services/questionnaire.enums";
 
@@ -46,6 +47,9 @@ type AppDataContextValue = {
   updateUser: (patch: Partial<User>) => Promise<void>;
   setQuestionnaireAnswers: (answers: QuestionnaireAnswers) => Promise<void>;
   setNotificationsEnabled: (enabled: boolean) => Promise<void>;
+  addSavedCollege: (college: College) => Promise<void>;
+  removeSavedCollege: (collegeId: string) => Promise<void>;
+  isCollegeSaved: (collegeId: string) => boolean;
   restoreData: (data: AppDataState) => Promise<void>;
   clearAll: () => Promise<void>;
 };
@@ -60,11 +64,17 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
     let mounted = true;
     (async () => {
       try {
-        const raw = await AsyncStorage.getItem(STORAGE_KEY);
+        let raw = await AsyncStorage.getItem(STORAGE_KEY);
+        if (!raw) raw = await AsyncStorage.getItem("gatorguide:appdata:v1");
         if (!mounted) return;
         if (raw) {
-          const parsed = JSON.parse(raw) as AppDataState;
-          setState({ ...parsed, questionnaireAnswers: normalizeQuestionnaireAnswers(parsed.questionnaireAnswers ?? {}) });
+          const parsed = JSON.parse(raw) as Partial<AppDataState>;
+          setState({
+            user: parsed.user ?? null,
+            questionnaireAnswers: normalizeQuestionnaireAnswers(parsed.questionnaireAnswers ?? {}),
+            notificationsEnabled: parsed.notificationsEnabled ?? false,
+            savedColleges: Array.isArray(parsed.savedColleges) ? parsed.savedColleges : [],
+          });
         }
       } catch {
       } finally {
@@ -230,16 +240,36 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
     setState((prev) => ({ ...prev, notificationsEnabled: enabled }));
   }, []);
 
+  const addSavedCollege = useCallback(async (college: College) => {
+    setState((prev) => {
+      if (prev.savedColleges.some((c) => c.id === college.id)) return prev;
+      return { ...prev, savedColleges: [...prev.savedColleges, college] };
+    });
+  }, []);
+
+  const removeSavedCollege = useCallback(async (collegeId: string) => {
+    setState((prev) => ({
+      ...prev,
+      savedColleges: prev.savedColleges.filter((c) => c.id !== collegeId),
+    }));
+  }, []);
+
+  const isCollegeSaved = useCallback((collegeId: string) => {
+    return state.savedColleges.some((c) => c.id === collegeId);
+  }, [state.savedColleges]);
+
   const restoreData = useCallback(async (data: AppDataState) => {
     setState({
       user: data.user ?? null,
       questionnaireAnswers: normalizeQuestionnaireAnswers(data.questionnaireAnswers ?? {}),
       notificationsEnabled: data.notificationsEnabled ?? false,
+      savedColleges: Array.isArray(data.savedColleges) ? data.savedColleges : [],
     });
   }, []);
 
   const clearAll = useCallback(async () => {
     await AsyncStorage.removeItem(STORAGE_KEY).catch(() => {});
+    await AsyncStorage.removeItem("gatorguide:appdata:v1").catch(() => {});
     setState(initialState);
   }, []);
 
@@ -255,10 +285,13 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
       updateUser,
       setQuestionnaireAnswers,
       setNotificationsEnabled,
+      addSavedCollege,
+      removeSavedCollege,
+      isCollegeSaved,
       restoreData,
       clearAll,
     }),
-    [isHydrated, state, signIn, signInWithAuthUser, signInAsGuest, signOut, deleteAccount, updateUser, setQuestionnaireAnswers, setNotificationsEnabled, restoreData, clearAll]
+    [isHydrated, state, signIn, signInWithAuthUser, signInAsGuest, signOut, deleteAccount, updateUser, setQuestionnaireAnswers, setNotificationsEnabled, addSavedCollege, removeSavedCollege, isCollegeSaved, restoreData, clearAll]
   );
 
   return <AppDataContext.Provider value={value}>{children}</AppDataContext.Provider>;

@@ -19,7 +19,7 @@ export default function TermsOfServicePage() {
 
   return (
     <ScreenBackground>
-      <ScrollView contentContainerStyle={{ paddingBottom: 32 }}>
+      <ScrollView contentContainerStyle={{ paddingBottom: 96 }}>
         <View className="max-w-md w-full self-center">
           {/* Header */}
           <View className="px-6 pt-8 pb-6">
@@ -148,3 +148,4 @@ function Bullet({ children, textClass }: { children: React.ReactNode; textClass:
     </View>
   );
 }
+

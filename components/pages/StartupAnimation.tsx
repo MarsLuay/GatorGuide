@@ -1,35 +1,36 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
-import Animated, { 
-  useSharedValue, 
-  useAnimatedStyle, 
-  withTiming, 
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
   withSequence,
   withDelay,
   Easing,
-  runOnJS
+  runOnJS,
 } from 'react-native-reanimated';
+
+const LOGO_SOURCE = require('../../assets/images/icon.png');
 
 export default function StartupAnimation({ onFinish }: { onFinish: () => void }) {
   const opacity = useSharedValue(0);
   const scale = useSharedValue(0.3);
+  const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
-
     const timer = setTimeout(() => {
-      scale.value = withTiming(1, { 
-        duration: 1000, 
-        easing: Easing.out(Easing.back(1.5)) 
+      scale.value = withTiming(1, {
+        duration: 1000,
+        easing: Easing.out(Easing.back(1.5)),
       });
 
       opacity.value = withSequence(
-        withTiming(1, { duration: 600 }), 
+        withTiming(1, { duration: 600 }),
         withDelay(
-          2000, 
+          2000,
           withTiming(0, { duration: 600 }, (finished) => {
             if (finished) {
-              
-              runOnJS(onFinish)(); 
+              runOnJS(onFinish)();
             }
           })
         )
@@ -41,17 +42,24 @@ export default function StartupAnimation({ onFinish }: { onFinish: () => void })
 
   const animatedStyle = useAnimatedStyle(() => ({
     opacity: opacity.value,
-    transform: [{ scale: scale.value }]
+    transform: [{ scale: scale.value }],
   }));
 
   return (
     <View style={styles.container}>
       <Animated.View style={[styles.content, animatedStyle]}>
-        <Image
-          source={require('../../assets/images/icon.png')}
-          style={styles.logo}
-          resizeMode="contain"
-        />
+        {!imageError ? (
+          <Image
+            source={LOGO_SOURCE}
+            style={styles.logo}
+            resizeMode="contain"
+            onError={() => setImageError(true)}
+          />
+        ) : (
+          <View style={styles.fallbackLogo}>
+            <Text style={styles.fallbackIcon}>🎓</Text>
+          </View>
+        )}
         <Text style={styles.title}>Gator Guide</Text>
       </Animated.View>
     </View>
@@ -72,6 +80,18 @@ const styles = StyleSheet.create({
     width: 160,
     height: 160,
     marginBottom: 20,
+  },
+  fallbackLogo: {
+    width: 160,
+    height: 160,
+    marginBottom: 20,
+    borderRadius: 80,
+    backgroundColor: '#22C55E',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  fallbackIcon: {
+    fontSize: 80,
   },
   title: {
     fontSize: 36,

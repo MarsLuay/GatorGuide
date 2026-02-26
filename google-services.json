@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "789105310429-0m3ltj9tsv2tdtbdlv0r4s8m0s0nq6jm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mobiledevelopment.gatorguide",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
           "client_id": "789105310429-bimgjg3oajd0uepqjhb1jmsc02si76jj.apps.googleusercontent.com",
           "client_type": 3
         }

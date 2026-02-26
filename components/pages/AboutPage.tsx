@@ -16,7 +16,7 @@ export default function AboutPage() {
 
   return (
     <ScreenBackground>
-      <ScrollView contentContainerStyle={{ paddingBottom: 32 }}>
+      <ScrollView contentContainerStyle={{ paddingBottom: 96 }}>
         <View className="max-w-md w-full self-center">
           {/* Header */}
           <View className="px-6 pt-8 pb-6">

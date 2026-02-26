@@ -16,6 +16,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as FileSystem from "expo-file-system";
 import * as Sharing from "expo-sharing";
 import * as DocumentPicker from "expo-document-picker";
+import { collegeService } from "@/services/college.service";
 
 type RadioOption = { key: string; label: string };
 type Question =
@@ -330,6 +331,11 @@ export default function ProfilePage() {
     delete toSave.major;
     delete toSave.majorChoice;
     await setQuestionnaireAnswers(toSave);
+    try {
+      await collegeService.saveQuestionnaireResult(toSave);
+    } catch (error) {
+      console.error("Firebase sync failed", error);
+    }
     setShowQuestionnaire(false);
   };
 

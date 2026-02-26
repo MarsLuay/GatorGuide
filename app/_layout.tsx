@@ -5,12 +5,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import StartupAnimation from '@/components/pages/StartupAnimation';
 import { Stack } from "expo-router";
 import type { ErrorBoundaryProps } from "expo-router";
-import { View, Text, Pressable, Alert, Platform, Share } from "react-native";
+import { View, Text, Pressable, Alert, Platform, Share, Image } from "react-native";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { AppThemeProvider } from "@/hooks/use-app-theme";
 import { AppLanguageProvider } from "@/hooks/use-app-language";
 import { AppDataProvider } from "@/hooks/use-app-data";
+import { AuthEmailLinkHandler } from "@/components/AuthEmailLinkHandler";
 import { cacheManagerService } from "@/services";
 import { db } from "@/services/firebase";
 
@@ -86,6 +87,9 @@ const copyErrorLog = async (error: Error) => {
   await Share.share({ message: log });
 };
 
+// Keep the native splash visible until we explicitly hide it.
+SplashScreen.preventAutoHideAsync().catch(() => {});
+
 export function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
   return (
     <View style={{ flex: 1, backgroundColor: '#0B0B0B', justifyContent: 'center', paddingHorizontal: 24 }}>
@@ -124,7 +128,6 @@ export default function RootLayout() {
   useEffect(() => {
     async function prepare() {
       try {
-        await SplashScreen.hideAsync();
         await cacheManagerService.runAutoClearMaintenance();
         const hasSeenStartup = await AsyncStorage.getItem(HAS_SEEN_STARTUP_KEY);
         setShowAnimation(hasSeenStartup === 'true' ? false : true);
@@ -138,12 +141,28 @@ export default function RootLayout() {
     prepare();
   }, []);
 
+  useEffect(() => {
+    if (!appIsReady || showAnimation === null) return;
+    SplashScreen.hideAsync().catch(() => {});
+  }, [appIsReady, showAnimation]);
+
   const handleAnimationFinish = () => {
     AsyncStorage.setItem(HAS_SEEN_STARTUP_KEY, 'true').catch(() => {});
     setShowAnimation(false);
   };
 
-  if (!appIsReady || showAnimation === null) return null;
+  if (!appIsReady || showAnimation === null) {
+    return (
+      <View style={{ flex: 1, backgroundColor: "#ffffff", alignItems: "center", justifyContent: "center" }}>
+        <Image
+          source={require("../assets/images/icon.png")}
+          style={{ width: 96, height: 96, marginBottom: 16 }}
+          resizeMode="contain"
+        />
+        <Text style={{ color: "#111827", fontSize: 16, fontWeight: "600" }}>Loading…</Text>
+      </View>
+    );
+  }
 
   if (showAnimation) {
     return (
@@ -156,6 +175,7 @@ export default function RootLayout() {
       <AppThemeProvider>
         <AppLanguageProvider>
           <AppDataProvider>
+            <AuthEmailLinkHandler />
             <Stack
               screenOptions={{
                 headerShown: false,

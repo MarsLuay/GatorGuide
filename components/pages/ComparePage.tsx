@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
-import { View, Text, Pressable, ScrollView, ActivityIndicator, TextInput } from "react-native";
+import { useMemo, useState } from "react";
+import { View, Text, Pressable, ScrollView, TextInput } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import useBack from "@/hooks/use-back";
 import { useRouter } from "expo-router";
@@ -7,7 +7,8 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useAppLanguage } from "@/hooks/use-app-language";
-import { collegeService, College } from "@/services";
+import { useAppData } from "@/hooks/use-app-data";
+import { College } from "@/services";
 
 const MAX_SELECT = 3;
 
@@ -16,28 +17,14 @@ export default function ComparePage() {
   const styles = useThemeStyles();
   const { t } = useAppLanguage();
   const insets = useSafeAreaInsets();
-  const [colleges, setColleges] = useState<College[]>([]);
+  const { state } = useAppData();
+  const savedColleges = state.savedColleges ?? [];
   const [selected, setSelected] = useState<College[]>([]);
-  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState<"match" | "tuition" | "admission">("match");
 
   const { textClass, secondaryTextClass, borderClass, cardBgClass, inputBgClass, placeholderColor } = styles;
   const router = useRouter();
-
-  useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      setLoading(true);
-      try {
-        const list = await collegeService.getMatches({});
-        if (!cancelled) setColleges(list);
-      } finally {
-        if (!cancelled) setLoading(false);
-      }
-    })();
-    return () => { cancelled = true; };
-  }, []);
 
   const getTuitionValue = (c: College) => {
     const n = typeof c.tuition === "number" ? c.tuition : c.tuitionInState ?? c.tuitionOutOfState ?? null;
@@ -70,14 +57,14 @@ export default function ComparePage() {
   const filteredColleges = useMemo(() => {
     const q = searchTerm.trim().toLowerCase();
     const base = q
-      ? colleges.filter((c) =>
+      ? savedColleges.filter((c) =>
           [c.name, c.location.city, c.location.state]
             .filter(Boolean)
             .join(" ")
             .toLowerCase()
             .includes(q)
         )
-      : colleges;
+      : savedColleges;
 
     return [...base].sort((a, b) => {
       if (sortBy === "tuition") {
@@ -97,7 +84,7 @@ export default function ComparePage() {
       const bm = typeof b.matchScore === "number" ? b.matchScore : 0;
       return bm - am;
     });
-  }, [colleges, searchTerm, sortBy]);
+  }, [savedColleges, searchTerm, sortBy]);
 
   const cheapestSelected = useMemo(() => {
     const withCost = selected
@@ -134,9 +121,15 @@ export default function ComparePage() {
             {t("compare.subtitle")}
           </Text>
 
-          {loading ? (
-            <View className="py-12 items-center">
-              <ActivityIndicator size="large" color="#22C55E" />
+          {savedColleges.length === 0 ? (
+            <View className={`${cardBgClass} border rounded-2xl p-6`}>
+              <MaterialIcons name="bookmark-border" size={48} color={placeholderColor} style={{ alignSelf: "center", marginBottom: 12 }} />
+              <Text className={textClass + " text-center font-medium mb-2"}>
+                {t("tools.saveCollegesFirst")}
+              </Text>
+              <Text className={secondaryTextClass + " text-center text-sm"}>
+                {t("tools.saveCollegesFirstHint")}
+              </Text>
             </View>
           ) : (
             <>

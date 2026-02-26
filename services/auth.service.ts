@@ -3,6 +3,9 @@ import {
   sendEmailVerification,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
+  signInWithEmailLink,
+  isSignInWithEmailLink,
+  sendSignInLinkToEmail,
   signInWithCredential,
   signOut as firebaseSignOut,
   updateProfile,
@@ -11,11 +14,15 @@ import {
   GoogleAuthProvider,
   OAuthProvider,
   User as FirebaseUser,
+  type ActionCodeSettings,
 } from "firebase/auth";
 import { Platform } from "react-native";
-import { isStubMode } from "./config";
+import { API_CONFIG, isStubMode } from "./config";
 import { firebaseAuth } from "./firebase";
 import { deleteAllUserData } from "./userData.service";
+
+/** Storage key for email when sending sign-in link (same-device completion) */
+export const EMAIL_LINK_STORAGE_KEY = "gatorguide:emailForSignIn";
 
 function firebaseUserToAuthUser(u: FirebaseUser): AuthUser {
   return {
@@ -66,15 +73,12 @@ class AuthService {
         await updateProfile(userCredential.user, { displayName: credentials.name.trim() });
       }
 
-      try {
-        await sendEmailVerification(userCredential.user);
-      } catch (e) {
-        console.warn("Failed to send verification email", e);
-      }
-
-      await firebaseSignOut(firebaseAuth);
-      const err: { code: string; email?: string } = { code: "auth/email-verification-required", email: credentials.email };
-      throw err;
+      // 直接登录，无需邮箱验证
+      return {
+        uid: userCredential.user.uid,
+        email: userCredential.user.email ?? credentials.email,
+        name: userCredential.user.displayName ?? credentials.name,
+      };
     }
 
     const userCredential = await signInWithEmailAndPassword(
@@ -82,15 +86,6 @@ class AuthService {
       credentials.email,
       credentials.password
     );
-
-    if (!userCredential.user.emailVerified) {
-      await firebaseSignOut(firebaseAuth);
-      const err: { code: string; email?: string } = {
-        code: "auth/email-not-verified",
-        email: userCredential.user.email ?? credentials.email,
-      };
-      throw err;
-    }
 
     return {
       uid: userCredential.user.uid,
@@ -111,6 +106,87 @@ class AuthService {
     }
 
     await sendPasswordResetEmail(firebaseAuth, email);
+  }
+
+  /**
+   * Resend verification email. User must sign in with password first.
+   */
+  async resendVerificationEmail(email: string, password: string): Promise<void> {
+    if (isStubMode()) {
+      await new Promise((r) => setTimeout(r, 500));
+      console.log(`[STUB] Verification email resent to ${email}`);
+      return;
+    }
+
+    if (!firebaseAuth) {
+      throw new Error("Firebase Auth not configured yet");
+    }
+
+    const userCredential = await signInWithEmailAndPassword(firebaseAuth, email, password);
+    try {
+      await sendEmailVerification(userCredential.user);
+    } finally {
+      await firebaseSignOut(firebaseAuth);
+    }
+  }
+
+  /**
+   * Send sign-in link to email (passwordless). User clicks link to sign in.
+   * Requires Firebase Console: Authentication → Sign-in method → Enable "Email link (passwordless sign-in)".
+   */
+  async sendSignInLinkToEmail(email: string): Promise<void> {
+    if (isStubMode()) {
+      await new Promise((r) => setTimeout(r, 500));
+      console.log(`[STUB] Sign-in link sent to ${email}`);
+      return;
+    }
+
+    if (!firebaseAuth) {
+      throw new Error("Firebase Auth not configured yet");
+    }
+
+    const authDomain = API_CONFIG.firebase.authDomain ?? "gatorguide.firebaseapp.com";
+    const actionCodeSettings: ActionCodeSettings = {
+      url: `https://${authDomain}/__/auth/links`,
+      handleCodeInApp: true,
+      iOS: {
+        bundleId: "com.mobiledevelopment.gatorguide",
+      },
+      android: {
+        packageName: "com.mobiledevelopment.gatorguide",
+        installApp: false,
+        minimumVersion: "1",
+      },
+    };
+
+    await sendSignInLinkToEmail(firebaseAuth, email, actionCodeSettings);
+  }
+
+  /**
+   * Check if the given URL is a sign-in with email link.
+   */
+  isSignInWithEmailLink(url: string): boolean {
+    if (isStubMode()) return false;
+    if (!firebaseAuth) return false;
+    return isSignInWithEmailLink(firebaseAuth, url);
+  }
+
+  /**
+   * Complete sign-in with email link. Call after isSignInWithEmailLink returns true.
+   * Email can be from storage (same device) or user input (different device).
+   */
+  async signInWithEmailLink(email: string, url: string): Promise<AuthUser> {
+    if (isStubMode()) {
+      await new Promise((r) => setTimeout(r, 500));
+      return { uid: `stub-link-${Date.now()}`, email, name: email.split("@")[0] ?? "User" };
+    }
+
+    if (!firebaseAuth) {
+      throw new Error("Firebase Auth not configured yet");
+    }
+
+    const result = await signInWithEmailLink(firebaseAuth, email, url);
+    return firebaseUserToAuthUser(result.user);
   }
 
   /**
