@@ -37,7 +37,7 @@ export default function HomePage() {
   const router = useRouter();
   const { isDark } = useAppTheme();
   const { t } = useAppLanguage();
-  const { state, setQuestionnaireAnswers } = useAppData();
+  const { state, setQuestionnaireAnswers, addSavedCollege, removeSavedCollege, isCollegeSaved } = useAppData();
   const insets = useSafeAreaInsets();
 
   const user = state.user;
@@ -610,6 +610,7 @@ export default function HomePage() {
                 <View className="gap-3">
                   {results.map((r) => {
                     const college = r.college;
+                    const saved = isCollegeSaved(college.id);
                     return (
                       <Pressable
                         key={college.id}
@@ -617,8 +618,23 @@ export default function HomePage() {
                         onPress={() => router.push({ pathname: "/college/[collegeId]", params: { collegeId: String(college.id) } })}
                       >
                         <View className="flex-row items-center justify-between">
-                          <Text className={textClass}>{college.name}</Text>
-                          <Text className="text-green-500 font-semibold">Match {getMatchText(r)}</Text>
+                          <View className="flex-1">
+                            <Text className={textClass}>{college.name}</Text>
+                            <Text className="text-green-500 font-semibold">Match {getMatchText(r)}</Text>
+                          </View>
+                          <Pressable
+                            onPress={(e) => {
+                              e?.stopPropagation?.();
+                              saved ? removeSavedCollege(college.id) : addSavedCollege(college);
+                            }}
+                            className="p-2"
+                          >
+                            <Ionicons
+                              name={saved ? "bookmark" : "bookmark-outline"}
+                              size={24}
+                              color={saved ? "#22C55E" : placeholderTextColor}
+                            />
+                          </Pressable>
                         </View>
                         <Text className={`text-sm ${secondaryTextClass} mt-1`}>
                           {college.location.city ? `${college.location.city}, ` : ""}{college.location.state}

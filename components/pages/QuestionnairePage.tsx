@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { View, Text, TextInput, Pressable, ScrollView, Keyboard } from "react-native";
+import { View, Text, TextInput, Pressable, ScrollView } from "react-native";
 import { router } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
@@ -8,6 +8,7 @@ import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { collegeService } from "@/services/college.service";
+import { normalizeQuestionnaireAnswers } from "@/services/questionnaire.enums";
 
 type Question =
   | { id: string; question: string; type: "section" }
@@ -17,7 +18,7 @@ type Question =
 export default function QuestionnairePage() {
   const { isDark } = useAppTheme();
   const { isHydrated, state, setQuestionnaireAnswers } = useAppData();
-  const { t } = useAppLanguage();
+  const { t, language } = useAppLanguage();
 
   const questions = useMemo<Question[]>(
     () => [
@@ -106,11 +107,12 @@ export default function QuestionnairePage() {
       return;
     }
     
-    await setQuestionnaireAnswers(answers); 
+    const normalized = normalizeQuestionnaireAnswers(answers, language);
+    await setQuestionnaireAnswers(normalized); 
     
     try {
 
-      await collegeService.saveQuestionnaireResult(answers); 
+      await collegeService.saveQuestionnaireResult(normalized); 
     } catch (error) {
       console.error("Firebase sync failed", error);
     }
@@ -124,10 +126,11 @@ export default function QuestionnairePage() {
   };
 
   const handleSaveAndExit = async () => { 
-    await setQuestionnaireAnswers(answers); 
+    const normalized = normalizeQuestionnaireAnswers(answers, language);
+    await setQuestionnaireAnswers(normalized); 
     
     try {
-      await collegeService.saveQuestionnaireResult(answers);
+      await collegeService.saveQuestionnaireResult(normalized);
     } catch (error) {
       console.error("Firebase sync failed", error);
     }

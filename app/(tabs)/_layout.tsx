@@ -44,9 +44,9 @@ export default function TabLayout() {
     return <LoadingScreen message="Preparing your data" />;
   }
 
-  // Redirect if not signed in
+  // Redirect if not signed in - show loading instead of black screen while redirecting
   if (!state.user) {
-    return null;
+    return <LoadingScreen message={t("general.loading")} />;
   }
 
   const active = "#22C55E";
@@ -65,8 +65,14 @@ export default function TabLayout() {
           borderTopWidth: 1,
           elevation: 0,
           shadowOpacity: 0,
+          width: "100%",
         },
-        // safeAreaInsets is not a valid BottomTabNavigationOptions property
+        tabBarItemStyle: {
+          flex: 1,
+          minWidth: "25%",
+          justifyContent: "center",
+          alignItems: "center",
+        },
       }}
     >
       <Tabs.Screen
@@ -108,6 +114,17 @@ export default function TabLayout() {
           ),
         }}
       />
+
+      {/* Keep these routes inside the tab navigator, but hide them from the tab bar */}
+      <Tabs.Screen name="roadmap" options={{ tabBarButton: () => null }} />
+      <Tabs.Screen name="questionnaire" options={{ tabBarButton: () => null }} />
+      <Tabs.Screen name="compare" options={{ tabBarButton: () => null }} />
+      <Tabs.Screen name="cost-calculator" options={{ tabBarButton: () => null }} />
+      <Tabs.Screen name="language" options={{ tabBarButton: () => null }} />
+      <Tabs.Screen name="about" options={{ tabBarButton: () => null }} />
+      <Tabs.Screen name="privacy" options={{ tabBarButton: () => null }} />
+      <Tabs.Screen name="terms" options={{ tabBarButton: () => null }} />
+      <Tabs.Screen name="college/[collegeId]" options={{ tabBarButton: () => null }} />
     </Tabs>
   );
 }

@@ -3,7 +3,7 @@
 // Currently returns stub data, will connect to College Scorecard API later
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { addDoc, collection, serverTimestamp, doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
+import { serverTimestamp, doc, setDoc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 import { API_CONFIG, isStubMode } from './config';
 import { db } from './firebase';
 import { firebaseAuth } from './firebase';
@@ -140,11 +140,13 @@ class CollegeService {
 
     try {
       const user = firebaseAuth.currentUser;
-      const docRef = await addDoc(collection(db, 'questionnaires'), {
+      const docRef = doc(db, 'questionnaires', user.uid);
+      await setDoc(docRef, {
         userId: user.uid,
         answers,
         createdAt: serverTimestamp(),
-      });
+        updatedAt: serverTimestamp(),
+      }, { merge: true });
       return docRef.id;
     } catch (error) {
       console.error("Error saving questionnaire:", error);

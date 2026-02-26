@@ -27,7 +27,11 @@ export async function deleteAllUserDataFromFirestore(uid: string): Promise<void>
   const roadmapRef = doc(db, "roadmaps", uid);
   await deleteDoc(roadmapRef).catch(() => {});
 
-  // 3. Delete all questionnaires where userId === uid (batch)
+  // 3. Delete questionnaires/{uid} (new format)
+  const questionnaireRef = doc(db, "questionnaires", uid);
+  await deleteDoc(questionnaireRef).catch(() => {});
+
+  // 4. Back-compat: delete any legacy questionnaires where userId === uid (random doc ids)
   const questionnairesRef = collection(db, "questionnaires");
   const q = query(questionnairesRef, where("userId", "==", uid));
   const snapshot = await getDocs(q);

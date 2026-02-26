@@ -5,7 +5,7 @@ import {
   Pressable, 
   Alert, 
   Keyboard, 
-  TouchableWithoutFeedback
+  ScrollView
 } from "react-native";
 import { useRouter } from "expo-router";
 import { FontAwesome5, MaterialIcons } from "@expo/vector-icons";
@@ -105,9 +105,13 @@ export default function ForgotPasswordPage() {
 
   return (
     <ScreenBackground>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View className="flex-1 px-6 py-8">
-          <View className="w-full max-w-md self-center">
+      <ScrollView
+        className="flex-1"
+        contentContainerStyle={{ padding: 24, paddingTop: 32 }}
+        keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={false}
+      >
+        <View className="w-full max-w-md self-center">
           <Pressable
             onPress={() => {
               Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -133,43 +137,40 @@ export default function ForgotPasswordPage() {
             {t("auth.forgotPasswordMessage")}
           </Text>
 
-          <View className={`${styles.cardBgClass} border rounded-2xl p-6`}>
-            <View className="gap-4">
-              <FormInput
-                label={t("auth.emailAddress")}
-                value={email}
-                onChangeText={setEmail}
-                placeholder={t("auth.enterEmail")}
-                error={emailError}
-                textClass={styles.textClass}
-                secondaryTextClass={styles.secondaryTextClass}
-                inputBgClass={styles.inputBgClass}
-                placeholderColor={styles.placeholderColor}
-                keyboardType="email-address"
-                autoCapitalize="none"
-                autoCorrect={false}
-                returnKeyType="done"
-              />
+          <View className={`${styles.cardBgClass} border rounded-2xl p-6 gap-4`}>
+            <FormInput
+              label={t("auth.emailAddress")}
+              value={email}
+              onChangeText={setEmail}
+              placeholder={t("auth.enterEmail")}
+              error={emailError}
+              textClass={styles.textClass}
+              secondaryTextClass={styles.secondaryTextClass}
+              inputBgClass={styles.inputBgClass}
+              placeholderColor={styles.placeholderColor}
+              keyboardType="email-address"
+              autoCapitalize="none"
+              autoCorrect={false}
+              returnKeyType="done"
+            />
 
-              <Pressable
-                onPress={handleSubmit}
-                disabled={!canSubmit}
-                className={`w-full bg-green-500 rounded-lg py-4 items-center mt-2 ${!canSubmit ? "opacity-60" : ""}`}
-                style={({ pressed }) => ({
-                  opacity: pressed && canSubmit ? 0.7 : undefined,
-                })}
-              >
-                <Text className="text-black font-semibold">{t("auth.sendResetLink")}</Text>
-              </Pressable>
-            </View>
+            <Pressable
+              onPress={handleSubmit}
+              disabled={!canSubmit}
+              className={`w-full bg-green-500 rounded-lg py-4 items-center mt-2 ${!canSubmit ? "opacity-60" : ""}`}
+              style={({ pressed }) => ({
+                opacity: pressed && canSubmit ? 0.7 : undefined,
+              })}
+            >
+              <Text className="text-black font-semibold">{t("auth.sendResetLink")}</Text>
+            </Pressable>
           </View>
 
           <Text className={`${styles.secondaryTextClass} text-xs text-center mt-6`}>
             {t("general.needHelpEmail")}
           </Text>
         </View>
-        </View>
-      </TouchableWithoutFeedback>
+      </ScrollView>
     </ScreenBackground>
   );
 }

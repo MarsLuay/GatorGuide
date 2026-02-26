@@ -6,12 +6,15 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useAppLanguage } from "@/hooks/use-app-language";
+import { useAppData } from "@/hooks/use-app-data";
 
 export default function CostCalculatorPage() {
   const back = useBack();
   const styles = useThemeStyles();
   const { t } = useAppLanguage();
   const insets = useSafeAreaInsets();
+  const { state } = useAppData();
+  const savedColleges = state.savedColleges ?? [];
 
   const [tuition, setTuition] = useState("");
   const [fees, setFees] = useState("");
@@ -74,6 +77,45 @@ export default function CostCalculatorPage() {
           <Text className={`${secondaryTextClass} mb-6`}>
             {t("cost.subtitle")}
           </Text>
+
+          {savedColleges.length === 0 ? (
+            <View className={`${cardBgClass} border rounded-2xl p-6 mb-6`}>
+              <MaterialIcons name="bookmark-border" size={48} color={placeholderColor} style={{ alignSelf: "center", marginBottom: 12 }} />
+              <Text className={`${textClass} text-center font-medium mb-2`}>
+                {t("tools.saveCollegesFirst")}
+              </Text>
+              <Text className={`${secondaryTextClass} text-center text-sm`}>
+                {t("tools.saveCollegesFirstHint")}
+              </Text>
+            </View>
+          ) : (
+            <View className={`${cardBgClass} border rounded-2xl p-4 mb-4`}>
+              <Text className={`${secondaryTextClass} text-sm mb-2`}>
+                {t("cost.selectFromSaved")}
+              </Text>
+              <ScrollView horizontal showsHorizontalScrollIndicator={false} className="mb-2">
+                <View className="flex-row gap-2">
+                  {savedColleges.map((c) => {
+                    const tuitionVal = typeof c.tuition === "number" ? c.tuition : c.tuitionInState ?? c.tuitionOutOfState ?? null;
+                    return (
+                      <Pressable
+                        key={c.id}
+                        onPress={() => setTuition(String(tuitionVal ?? ""))}
+                        className={`px-3 py-2 rounded-lg border ${borderClass}`}
+                      >
+                        <Text className={`${textClass} text-sm`} numberOfLines={1}>
+                          {c.name}
+                        </Text>
+                        <Text className={`${secondaryTextClass} text-xs`}>
+                          {tuitionVal != null ? `$${tuitionVal.toLocaleString()}` : t("home.notAvailable")}
+                        </Text>
+                      </Pressable>
+                    );
+                  })}
+                </View>
+              </ScrollView>
+            </View>
+          )}
 
           <View className={`${cardBgClass} border rounded-2xl p-4 mb-4`}>
             <Text className={`${secondaryTextClass} text-sm mb-2`}>

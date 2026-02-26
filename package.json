@@ -3,11 +3,12 @@
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
-    "start": "expo start",
+    "start": "cross-env EXPO_OFFLINE=1 expo start --offline --port 8081",
     "reset-project": "node ./scripts/reset-project.js",
     "android": "expo run:android",
+    "android:sdk": "cmd /c scripts/run-android.cmd",
     "ios": "expo run:ios",
-    "web": "expo start --web",
+    "web": "cross-env EXPO_OFFLINE=1 expo start --web --offline --port 8081",
     "lint": "expo lint",
     "prebuild": "expo prebuild",
     "prebuild:android": "expo prebuild --platform android",
@@ -18,6 +19,7 @@
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",
     "@react-native-async-storage/async-storage": "^2.2.0",
+    "@react-native-google-signin/google-signin": "^14.0.0",
     "@react-navigation/bottom-tabs": "^7.4.0",
     "@react-navigation/elements": "^2.6.3",
     "@react-navigation/native": "^7.1.8",
@@ -55,6 +57,7 @@
   },
   "devDependencies": {
     "@types/react": "~19.1.0",
+    "cross-env": "^10.1.0",
     "eas-cli": "^18.0.1",
     "eslint": "^9.25.0",
     "eslint-config-expo": "~10.0.0",

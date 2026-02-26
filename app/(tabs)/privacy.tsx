@@ -19,7 +19,7 @@ export default function PrivacyPolicyPage() {
 
   return (
     <ScreenBackground>
-      <ScrollView contentContainerStyle={{ paddingBottom: 32 }}>
+      <ScrollView contentContainerStyle={{ paddingBottom: 96 }}>
         <View className="max-w-md w-full self-center">
           {/* Header */}
           <View className="px-6 pt-8 pb-6">
@@ -74,9 +74,7 @@ export default function PrivacyPolicyPage() {
 
           <Section title="Sharing of information" textClass={textClass}>
             <Card cardBgClass={cardBgClass}>
-              <Text className={`${secondaryTextClass} text-sm leading-relaxed`}>
-                We may share limited information only when needed:
-              </Text>
+              <Text className={`${secondaryTextClass} text-sm leading-relaxed`}>We may share limited information only when needed:</Text>
               <View className={`my-2 border-t ${borderClass}`} />
               <Bullet textClass={secondaryTextClass}>
                 With service providers that help operate the app (hosting, authentication, analytics/crash reporting, file storage for resumes), only as needed.
@@ -139,3 +137,4 @@ function Bullet({ children, textClass }: { children: React.ReactNode; textClass:
     </View>
   );
 }
+
