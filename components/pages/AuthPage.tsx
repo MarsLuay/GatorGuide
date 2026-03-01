@@ -60,7 +60,7 @@ export default function AuthPage() {
       try {
         const authUser = await authService.signInWithMicrosoftCredential(idToken);
         await signInWithAuthUser(authUser);
-        router.replace("/");
+        setTimeout(() => router.replace("/"), 50);
       } catch (err: unknown) {
         const msg = err instanceof Error ? err.message : t("auth.loginFailed");
         Alert.alert(t("general.error"), msg);
@@ -103,7 +103,7 @@ export default function AuthPage() {
       return;
     }
 
-    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    if (Platform.OS !== "web") await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     setIsSubmitting(true);
 
     const mapAuthError = (code: string | undefined) => {
@@ -162,7 +162,8 @@ export default function AuthPage() {
         }
       }
 
-      router.replace('/');
+      // Defer navigation so React commits state updates before Index reads state.user
+      setTimeout(() => router.replace('/'), 50);
     } catch (err: any) {
       console.error('Auth error', err);
 
@@ -189,7 +190,7 @@ export default function AuthPage() {
   const handleCompleteEmailLink = async () => {
     const e = email.trim();
     if (!pendingLinkUrl || !isEmailValid(e)) return;
-    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    if (Platform.OS !== "web") await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     setCompletingLink(true);
     try {
       const authUser = await authService.signInWithEmailLink(e, pendingLinkUrl);
@@ -200,7 +201,7 @@ export default function AuthPage() {
       }
       await signInWithAuthUser(authUser);
       setPendingLinkUrl(null);
-      router.replace("/");
+      setTimeout(() => router.replace("/"), 50);
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : t("auth.loginFailed");
       Alert.alert(t("general.error"), msg);
@@ -215,7 +216,7 @@ export default function AuthPage() {
       Alert.alert(t("general.error"), t("auth.emailInvalid"));
       return;
     }
-    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    if (Platform.OS !== "web") await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     setSendingEmailLink(true);
     try {
       await authService.sendSignInLinkToEmail(e);
@@ -241,13 +242,15 @@ export default function AuthPage() {
   };
 
   const handleGuestSignIn = async () => {
-    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    if (Platform.OS !== "web") await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     await signInAsGuest();
-    router.replace("/");
+    setTimeout(() => router.replace("/"), 50);
   };
 
   const handleProviderSignIn = async (provider: "google" | "microsoft") => {
-    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    if (Platform.OS !== "web") {
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    }
     const isWeb = Platform.OS === "web";
     if (isWeb) {
       try {
@@ -256,12 +259,15 @@ export default function AuthPage() {
             ? await authService.signInWithGoogle()
             : await authService.signInWithMicrosoft();
         await signInWithAuthUser(authUser);
-        router.replace("/");
+        setTimeout(() => router.replace("/"), 50);
       } catch (err: unknown) {
-        const msg =
-          err instanceof Error && (err.message.includes("available on web") || err.message.includes("web"))
-            ? t("auth.providerAvailableOnWeb")
-            : err instanceof Error ? err.message : t("auth.validation.failed_message");
+        const errMsg = err instanceof Error ? err.message : "";
+        const isOAuthError = /popup|redirect|sessionStorage|initial state/i.test(errMsg);
+        const msg = errMsg.includes("available on web") || errMsg.includes("web")
+          ? t("auth.providerAvailableOnWeb")
+          : isOAuthError
+            ? t("auth.oauthFallbackHint")
+            : errMsg || t("auth.validation.failed_message");
         Alert.alert(t("general.error"), msg);
       }
       return;
@@ -292,7 +298,7 @@ export default function AuthPage() {
         if (!idToken) throw new Error("Could not get Google id token");
         const authUser = await authService.signInWithGoogleCredential(idToken);
         await signInWithAuthUser(authUser);
-        router.replace("/");
+        setTimeout(() => router.replace("/"), 50);
       } catch (err: unknown) {
         const msg = err instanceof Error ? err.message : t("auth.loginFailed");
         Alert.alert(t("general.error"), msg);
@@ -398,7 +404,7 @@ export default function AuthPage() {
         <View className="flex-row gap-4 mb-6">
           <Pressable
             onPress={() => {
-              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+              if (Platform.OS !== "web") Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
               setVerificationPendingEmail(null);
               setEmailLinkSentTo(null);
               setIsSignUp(true);
@@ -411,7 +417,7 @@ export default function AuthPage() {
 
           <Pressable
             onPress={() => {
-              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+              if (Platform.OS !== "web") Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
               setEmailLinkSentTo(null);
               setIsSignUp(false);
             }}
@@ -484,6 +490,12 @@ export default function AuthPage() {
             <View className="flex-1 h-px bg-gray-300 dark:bg-gray-600" />
           </View>
 
+          {isWeb && (
+            <Text className={`${styles.secondaryTextClass} text-xs text-center mb-2`}>
+              {t("auth.oauthFallbackHint")}
+            </Text>
+          )}
+
           <Pressable
             onPress={handleSendEmailLink}
             disabled={!isHydrated || !isEmailValid(email.trim()) || sendingEmailLink}
@@ -507,11 +519,6 @@ export default function AuthPage() {
             </Text>
           </Pressable>
 
-          {isSignUp && (
-            <Text className={`${styles.secondaryTextClass} text-xs text-center mt-2`}>
-              {t("auth.verificationRequiredHint")}
-            </Text>
-          )}
 
           <View className="flex-row gap-3 mt-4">
             <Pressable

@@ -55,7 +55,7 @@ export function AuthEmailLinkHandler() {
       }
 
       await signInWithAuthUser(authUser);
-      router.replace("/");
+      setTimeout(() => router.replace("/"), 50);
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "Sign-in failed";
       Alert.alert(t("general.error"), msg);
@@ -74,6 +74,18 @@ export function AuthEmailLinkHandler() {
       return () => sub.remove();
     }
   }, [state.user]);
+
+  // Handle OAuth redirect result (Google/Microsoft) when user returns from redirect
+  useEffect(() => {
+    if (state.user) return;
+    let mounted = true;
+    authService.getRedirectResult().then((authUser) => {
+      if (!mounted || !authUser) return;
+      signInWithAuthUser(authUser);
+      setTimeout(() => router.replace("/"), 50);
+    });
+    return () => { mounted = false; };
+  }, [state.user, signInWithAuthUser, router]);
 
   useEffect(() => {
     if (Platform.OS !== "web" || state.user) return;

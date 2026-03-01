@@ -1,6 +1,8 @@
 // services/config.ts
 // Firebase: 使用前请在控制台启用 Authentication 与 Firestore；若用自己项目请改下方配置或 .env（见 FIREBASE_SETUP.md）
 
+// localhost 用 Google/Microsoft 登录会触发 "missing initial state"。解决：用邮箱/密码，或设 EXPO_PUBLIC_AUTH_DOMAIN=localhost:8081 并运行 node scripts/auth-proxy.js
+
 export const API_CONFIG = {
   firebase: {
     apiKey: process.env.EXPO_PUBLIC_FIREBASE_API_KEY ?? 'AIzaSyCIOLEycu5VdfBEYoLjAMEwSaX0E5fNv2A',
