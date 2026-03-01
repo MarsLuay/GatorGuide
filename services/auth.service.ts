@@ -1,5 +1,6 @@
 import {
   createUserWithEmailAndPassword,
+  getRedirectResult,
   sendEmailVerification,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
@@ -250,6 +251,20 @@ class AuthService {
     const credential = provider.credential({ idToken, accessToken: accessToken ?? undefined });
     const result = await signInWithCredential(firebaseAuth, credential);
     return firebaseUserToAuthUser(result.user);
+  }
+
+  /**
+   * Check for OAuth redirect result (when user returns from Google/Microsoft sign-in).
+   * Call on app load to complete redirect flow.
+   */
+  async getRedirectResult(): Promise<AuthUser | null> {
+    if (isStubMode() || !firebaseAuth) return null;
+    try {
+      const result = await getRedirectResult(firebaseAuth);
+      return result?.user ? firebaseUserToAuthUser(result.user) : null;
+    } catch {
+      return null;
+    }
   }
 
   async signOut(): Promise<void> {

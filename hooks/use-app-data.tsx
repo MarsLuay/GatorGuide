@@ -26,6 +26,7 @@ export type AppDataState = {
   user: User | null;
   questionnaireAnswers: QuestionnaireAnswers;
   notificationsEnabled: boolean;
+  savedColleges: College[];
 };
 
 const STORAGE_KEY = "gatorguide:appdata:v1";
@@ -34,6 +35,7 @@ const initialState: AppDataState = {
   user: null,
   questionnaireAnswers: {},
   notificationsEnabled: false,
+  savedColleges: [],
 };
 
 type AppDataContextValue = {
@@ -68,7 +70,7 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
         if (!raw) raw = await AsyncStorage.getItem("gatorguide:appdata:v1");
         if (!mounted) return;
         if (raw) {
-          const parsed = JSON.parse(raw) as Partial<AppDataState>;
+          const parsed = JSON.parse(raw) as Partial<AppDataState> & { savedColleges?: College[] };
           setState({
             user: parsed.user ?? null,
             questionnaireAnswers: normalizeQuestionnaireAnswers(parsed.questionnaireAnswers ?? {}),
@@ -242,20 +244,21 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
 
   const addSavedCollege = useCallback(async (college: College) => {
     setState((prev) => {
-      if (prev.savedColleges.some((c) => c.id === college.id)) return prev;
-      return { ...prev, savedColleges: [...prev.savedColleges, college] };
+      const list = prev.savedColleges ?? [];
+      if (list.some((c) => c.id === college.id)) return prev;
+      return { ...prev, savedColleges: [...list, college] };
     });
   }, []);
 
   const removeSavedCollege = useCallback(async (collegeId: string) => {
     setState((prev) => ({
       ...prev,
-      savedColleges: prev.savedColleges.filter((c) => c.id !== collegeId),
+      savedColleges: (prev.savedColleges ?? []).filter((c) => c.id !== collegeId),
     }));
   }, []);
 
   const isCollegeSaved = useCallback((collegeId: string) => {
-    return state.savedColleges.some((c) => c.id === collegeId);
+    return (state.savedColleges ?? []).some((c) => c.id === collegeId);
   }, [state.savedColleges]);
 
   const restoreData = useCallback(async (data: AppDataState) => {
