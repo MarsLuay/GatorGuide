@@ -13,6 +13,7 @@ import * as FileSystem from "expo-file-system";
 import * as Sharing from "expo-sharing";
 import * as DocumentPicker from "expo-document-picker";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { storageService } from "@/services/storage.service";
 
 interface Task {
   id: string;
@@ -45,7 +46,7 @@ export default function RoadmapPage() {
   const router = useRouter();
   const styles = useThemeStyles();
   const { t } = useAppLanguage();
-  const { theme, setTheme } = useAppTheme();
+  const { theme, setTheme, isDark } = useAppTheme();
   const back = useBack();
   const { state, restoreData, isHydrated } = useAppData();
   const { textClass, secondaryTextClass, cardBgClass, borderClass } = styles;
@@ -66,10 +67,9 @@ export default function RoadmapPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [aiInput, setAiInput] = useState("");
   const [aiMessages, setAiMessages] = useState<ChatMessage[]>([]);
-  
-  // Track which specific document is currently being "edited" or "uploaded"
   const [activeUpload, setActiveUpload] = useState<string | null>(null);
   const [showGuestRoadmap, setShowGuestRoadmap] = useState(false);
+  const [isUploadingDoc, setIsUploadingDoc] = useState(false);
 
   useEffect(() => {
     if (!user?.isGuest) return;
@@ -77,6 +77,27 @@ export default function RoadmapPage() {
       if (value === "true") setShowGuestRoadmap(true);
     });
   }, [user?.isGuest]);
+
+  useEffect(() => {
+    if (!user?.uid) return;
+    (async () => {
+      const docTypes: (keyof DocumentChecklist)[] = ["resume", "transcripts", "personalStatement", "recommendation1", "recommendation2"];
+      const uploaded: Partial<Record<keyof DocumentChecklist, boolean>> = {};
+      for (const doc of docTypes) {
+        const f = await storageService.getDocument(user!.uid, doc);
+        uploaded[doc] = !!f;
+      }
+      if (Object.values(uploaded).some(Boolean)) {
+        setTasks((prev) =>
+          prev.map((task) =>
+            task.id === "documents-checklist" && task.documents
+              ? { ...task, documents: { ...task.documents, ...uploaded } }
+              : task
+          )
+        );
+      }
+    })();
+  }, [user?.uid]);
 
   const generateTasks = useCallback((profile: StudentProfile): Task[] => {
     const docTask: Task = {
@@ -146,13 +167,11 @@ export default function RoadmapPage() {
   };
 
   const toggleDocument = (taskId: string, doc: keyof DocumentChecklist) => {
-    // If it's not active, set it to active to show upload box
     if (activeUpload === doc) {
-        setActiveUpload(null);
+      setActiveUpload(null);
     } else {
-        setActiveUpload(doc);
+      setActiveUpload(doc);
     }
-
     setTasks((prev) =>
       prev.map((task) =>
         task.id === taskId && task.documents
@@ -160,6 +179,32 @@ export default function RoadmapPage() {
           : task
       )
     );
+  };
+
+  const handlePickDocument = async (docKey: keyof DocumentChecklist) => {
+    if (!user?.uid || isUploadingDoc) return;
+    try {
+      const result = await DocumentPicker.getDocumentAsync({
+        type: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/png"],
+        copyToCacheDirectory: true,
+      });
+      if (result.canceled || !result.assets?.[0]?.uri) return;
+      setIsUploadingDoc(true);
+      await storageService.uploadDocument(user.uid, docKey, result.assets[0].uri);
+      setTasks((prev) =>
+        prev.map((task) =>
+          task.id === "documents-checklist" && task.documents
+            ? { ...task, documents: { ...task.documents, [docKey]: true } }
+            : task
+        )
+      );
+      setActiveUpload(null);
+    } catch (err) {
+      console.error(err);
+      Alert.alert(t("general.error"), t("profile.prepareDataError"));
+    } finally {
+      setIsUploadingDoc(false);
+    }
   };
 
   const addNote = (id: string, note: string) => {
@@ -324,7 +369,7 @@ export default function RoadmapPage() {
 
             <View className="px-6">
               <View className="items-center mb-8">
-                <View className="bg-green-500 p-4 rounded-full mb-4">
+                <View className="bg-emerald-500 p-4 rounded-full mb-4">
                   <MaterialIcons name="map" size={48} color="black" />
                 </View>
                 
@@ -337,8 +382,8 @@ export default function RoadmapPage() {
               <View className={`${cardBgClass} border rounded-2xl p-6 mb-6`}>
                 <View className="gap-4">
                   <View className="flex-row gap-3">
-                    <View className="bg-green-500/20 rounded-full p-2 justify-center items-center w-10 h-10 flex-shrink-0">
-                      <Ionicons name="checkmark-circle" size={24} color="#22C55E" />
+                    <View className="bg-emerald-500/20 rounded-full p-2 justify-center items-center w-10 h-10 flex-shrink-0">
+                      <Ionicons name="checkmark-circle" size={24} color="#008f4e" />
                     </View>
                     <View className="flex-1">
                       <Text className={`${textClass} font-semibold mb-1`}>{t("roadmap.applicationChecklist")}</Text>
@@ -347,8 +392,8 @@ export default function RoadmapPage() {
                   </View>
 
                   <View className="flex-row gap-3">
-                    <View className="bg-green-500/20 rounded-full p-2 justify-center items-center w-10 h-10 flex-shrink-0">
-                      <Ionicons name="document-text" size={24} color="#22C55E" />
+                    <View className="bg-emerald-500/20 rounded-full p-2 justify-center items-center w-10 h-10 flex-shrink-0">
+                      <Ionicons name="document-text" size={24} color="#008f4e" />
                     </View>
                     <View className="flex-1">
                       <Text className={`${textClass} font-semibold mb-1`}>{t("roadmap.documentManagement")}</Text>
@@ -357,8 +402,8 @@ export default function RoadmapPage() {
                   </View>
 
                   <View className="flex-row gap-3">
-                    <View className="bg-green-500/20 rounded-full p-2 justify-center items-center w-10 h-10 flex-shrink-0">
-                      <Ionicons name="sparkles" size={24} color="#22C55E" />
+                    <View className="bg-emerald-500/20 rounded-full p-2 justify-center items-center w-10 h-10 flex-shrink-0">
+                      <Ionicons name="sparkles" size={24} color="#008f4e" />
                     </View>
                     <View className="flex-1">
                       <Text className={`${textClass} font-semibold mb-1`}>{t("roadmap.aiGuidance")}</Text>
@@ -367,8 +412,8 @@ export default function RoadmapPage() {
                   </View>
 
                   <View className="flex-row gap-3">
-                    <View className="bg-green-500/20 rounded-full p-2 justify-center items-center w-10 h-10 flex-shrink-0">
-                      <Ionicons name="calendar" size={24} color="#22C55E" />
+                    <View className="bg-emerald-500/20 rounded-full p-2 justify-center items-center w-10 h-10 flex-shrink-0">
+                      <Ionicons name="calendar" size={24} color="#008f4e" />
                     </View>
                     <View className="flex-1">
                       <Text className={`${textClass} font-semibold mb-1`}>{t("roadmap.timelineProgress")}</Text>
@@ -380,10 +425,10 @@ export default function RoadmapPage() {
 
               <Pressable
                 onPress={() => router.push("/login")}
-                className="bg-green-500 rounded-lg py-4 px-6 items-center flex-row justify-center mb-3"
+                className="bg-emerald-500 rounded-lg py-4 px-6 items-center flex-row justify-center mb-3"
               >
                 <MaterialIcons name="arrow-forward" size={20} color="black" />
-                <Text className="text-black font-semibold ml-2">{t("roadmap.createProfileToStart")}</Text>
+                <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold ml-2`}>{t("roadmap.createProfileToStart")}</Text>
               </Pressable>
 
               <Pressable
@@ -414,8 +459,8 @@ export default function RoadmapPage() {
             </Pressable>
             <Text className={`text-2xl ${textClass}`}>{t("roadmap.roadmapTitle")}</Text>
             <Text className={`${secondaryTextClass} mt-2`}>{t("roadmap.subtitleChecklist")}</Text>
-            <View className="mt-4 h-4 w-full bg-gray-300 rounded-full overflow-hidden">
-              <Animated.View style={{ width: `${progress}%`, height: 16, backgroundColor: "#22C55E", borderRadius: 8 }} />
+            <View className="mt-4 h-4 w-full bg-emerald-300 rounded-full overflow-hidden">
+              <Animated.View style={{ width: `${progress}%`, height: 16, backgroundColor: "#008f4e", borderRadius: 8 }} />
             </View>
           </View>
 
@@ -429,9 +474,9 @@ export default function RoadmapPage() {
                 <View className="mt-3 gap-2">
                   <Pressable
                     onPress={handleImportData}
-                    className="bg-green-500 rounded-lg px-4 py-3 items-center"
+                    className="bg-emerald-500 rounded-lg px-4 py-3 items-center"
                   >
-                    <Text className="text-black font-semibold text-sm text-center leading-5">
+                    <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold text-sm text-center leading-5`}>
                       {t("settings.import")}
                     </Text>
                   </Pressable>
@@ -460,8 +505,8 @@ export default function RoadmapPage() {
                 onSubmitEditing={handleSendAI}
                 className={`border p-2 rounded-lg mb-2 ${styles.inputBgClass} ${textClass}`}
               />
-              <Pressable onPress={handleSendAI} className="bg-green-500 rounded-lg px-4 py-2 mb-2 items-center">
-                <Text className="text-black font-semibold">{t("roadmap.sendMessage")}</Text>
+              <Pressable onPress={handleSendAI} className="bg-emerald-500 rounded-lg px-4 py-2 mb-2 items-center">
+                <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold`}>{t("roadmap.sendMessage")}</Text>
               </Pressable>
               {aiMessages.map((msg) => (
                 <View key={msg.id} className="mb-2">
@@ -490,11 +535,11 @@ export default function RoadmapPage() {
                         {task.id !== "documents-checklist" && (
                           <Pressable
                             onPress={() => toggleCompleted(task.id)}
-                            className={`w-6 h-6 rounded-full border-2 ${task.completed ? "bg-green-500 border-green-500" : borderClass} mr-4`}
+                            className={`w-6 h-6 rounded-full border-2 ${task.completed ? "bg-emerald-500 border-emerald-500" : borderClass} mr-4`}
                           />
                         )}
                         <View className="flex-1">
-                          <Text className={`${textClass} text-base mb-1 ${task.completed ? "line-through text-gray-400" : ""}`}>
+                          <Text className={`${textClass} text-base mb-1 ${task.completed ? "line-through text-white/70" : ""}`}>
                             {task.title}
                           </Text>
                           <Text className={`${secondaryTextClass} text-sm`}>{task.description}</Text>
@@ -510,25 +555,31 @@ export default function RoadmapPage() {
                               <View key={docKey}>
                                 <Pressable
                                   onPress={() => toggleDocument(task.id, docKey)}
-                                  className={`flex-row items-center p-3 rounded-xl ${task.documents![docKey] ? "bg-green-50 dark:bg-green-900/10" : "bg-zinc-50 dark:bg-zinc-800/50"}`}
+                                  className={`flex-row items-center p-3 rounded-xl ${task.documents![docKey] ? "bg-emerald-50 dark:bg-emerald-900/60" : "bg-emerald-50 dark:bg-emerald-900/60/80"}`}
                                 >
-                                  <Ionicons name={getDocIcon(docKey)} size={18} color={task.documents![docKey] ? "#22C55E" : styles.placeholderColor} />
-                                  <Text className={`flex-1 ml-3 text-sm ${task.documents![docKey] ? "text-green-700 dark:text-green-400 font-medium" : textClass}`}>
+                                  <Ionicons name={getDocIcon(docKey)} size={18} color={task.documents![docKey] ? "#008f4e" : styles.placeholderColor} />
+                                  <Text className={`flex-1 ml-3 text-sm ${task.documents![docKey] ? (isDark ? "text-white/90 font-medium" : "text-emerald-700 font-medium") : textClass}`}>
                                     {formatDocLabel(docKey)}
                                   </Text>
-                                  <Ionicons name={task.documents![docKey] ? "checkmark-circle" : "cloud-upload-outline"} size={20} color={task.documents![docKey] ? "#22C55E" : borderClass} />
+                                  <Ionicons name={task.documents![docKey] ? "checkmark-circle" : "cloud-upload-outline"} size={20} color={task.documents![docKey] ? "#008f4e" : borderClass} />
                                 </Pressable>
 
                                 {/* Upload Box Logic */}
                                 {activeUpload === docKey && (
-                                  <View className="mt-2 border-2 border-dashed border-gray-300 dark:border-zinc-700 rounded-xl p-6 items-center justify-center bg-gray-50/50 dark:bg-zinc-900/30">
-                                    <Ionicons name="cloud-upload" size={28} color="#22C55E" />
+                                  <View className="mt-2 border-2 border-dashed border-emerald-300 dark:border-neutral-600 rounded-xl p-6 items-center justify-center bg-emerald-50/50 dark:bg-emerald-900/60">
+                                    <Ionicons name="cloud-upload" size={28} color="#008f4e" />
                                     <Text className={`${textClass} mt-2 text-sm font-medium`}>
                                       {t("roadmap.uploadDocument").replace("{document}", formatDocLabel(docKey))}
                                     </Text>
                                     <Text className={`${secondaryTextClass} text-xs`}>{t("roadmap.supportedFormats")}</Text>
-                                    <Pressable className="mt-3 bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 px-4 py-1.5 rounded-lg">
-                                      <Text className={`${textClass} text-xs font-bold`}>{t("roadmap.selectFile")}</Text>
+                                    <Pressable
+                                      onPress={() => handlePickDocument(docKey)}
+                                      disabled={isUploadingDoc}
+                                      className={`mt-3 bg-white dark:bg-emerald-900/60 border border-emerald-200 dark:border-neutral-600 px-4 py-1.5 rounded-lg ${isUploadingDoc ? "opacity-60" : ""}`}
+                                    >
+                                      <Text className={`${textClass} text-xs font-bold`}>
+                                        {isUploadingDoc ? t("general.pleaseWait") : t("roadmap.selectFile")}
+                                      </Text>
                                     </Pressable>
                                   </View>
                                 )}
@@ -557,8 +608,8 @@ export default function RoadmapPage() {
               <Text className={`${textClass} text-base mb-2 font-bold`}>{t("roadmap.activeClubs")}</Text>
               <View className="flex-row flex-wrap">
                 {studentProfile.interests.map((club: string, i: number) => (
-                  <View key={i} className="bg-green-500 px-3 py-1 rounded-full mr-2 mb-2">
-                    <Text className="text-black text-sm font-medium">{club}</Text>
+                  <View key={i} className="bg-emerald-500 px-3 py-1 rounded-full mr-2 mb-2">
+                    <Text className={`${isDark ? 'text-white' : 'text-black'} text-sm font-medium`}>{club}</Text>
                   </View>
                 ))}
               </View>

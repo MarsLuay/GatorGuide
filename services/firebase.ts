@@ -20,7 +20,7 @@ import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage";
 import { Platform } from "react-native";
 import { API_CONFIG, isStubMode } from "./config";
 
-const shouldInitFirebase = !isStubMode();
+const shouldInitFirebase = !isStubMode() && !!API_CONFIG.firebase.apiKey;
 
 export const firebaseApp = shouldInitFirebase
   ? getApps().length

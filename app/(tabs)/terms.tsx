@@ -9,10 +9,10 @@ export default function TermsOfServicePage() {
   const { isDark } = useAppTheme();
   const router = useRouter();
 
-  const textClass = isDark ? "text-white" : "text-gray-900";
-  const secondaryTextClass = isDark ? "text-gray-400" : "text-gray-600";
-  const cardBgClass = isDark ? "bg-gray-900 border-gray-800" : "bg-white border-gray-200";
-  const borderClass = isDark ? "border-gray-800" : "border-gray-200";
+  const textClass = isDark ? "text-white" : "text-emerald-900";
+  const secondaryTextClass = isDark ? "text-white/90" : "text-emerald-700";
+  const cardBgClass = isDark ? "bg-emerald-900/90 border-emerald-800" : "bg-white border-emerald-200";
+  const borderClass = isDark ? "border-emerald-700" : "border-emerald-300";
 
   const lastUpdated = "February 11, 2026";
   const contactEmail = "[wtv email/contact we have]"; // replace
@@ -24,7 +24,7 @@ export default function TermsOfServicePage() {
           {/* Header */}
           <View className="px-6 pt-8 pb-6">
             <Pressable onPress={() => router.back()} className="mb-4 flex-row items-center">
-              <MaterialIcons name="arrow-back" size={20} color={isDark ? "#9CA3AF" : "#6B7280"} />
+              <MaterialIcons name="arrow-back" size={20} color={isDark ? "#b6e2b6" : "#1f8a5d"} />
               <Text className={`${secondaryTextClass} ml-2`}>Back</Text>
             </Pressable>
 

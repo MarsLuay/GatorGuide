@@ -203,13 +203,13 @@ export default function ProfilePage() {
     setLocalAnswers({ ...blankAnswers, ...normalizeQuestionnaireAnswers(state.questionnaireAnswers ?? {}, language) });
   }, [isHydrated, user?.name, user?.state, user?.major, user?.gpa, user?.resume, user?.transcript, blankAnswers, state.questionnaireAnswers, language]);
 
-  const textClass = isDark ? "text-white" : "text-gray-900";
-  const secondaryTextClass = isDark ? "text-gray-400" : "text-gray-600";
-  const cardBgClass = isDark ? "bg-gray-900/80 border-gray-800" : "bg-white/90 border-gray-200";
-  const inputBgClass = isDark ? "bg-gray-900/80 border-gray-800" : "bg-white/90 border-gray-200";
+  const textClass = isDark ? "text-white" : "text-emerald-900";
+  const secondaryTextClass = isDark ? "text-white/90" : "text-emerald-700";
+  const cardBgClass = isDark ? "bg-emerald-900/90 border-emerald-800" : "bg-white border-emerald-200";
+  const inputBgClass = isDark ? "bg-emerald-900/70 border-emerald-700" : "bg-white border-emerald-300";
   const inputClass = `w-full ${inputBgClass} ${textClass} border rounded-lg px-3 py-2`;
-  const borderClass = isDark ? "border-gray-800" : "border-gray-200";
-  const placeholderColor = isDark ? "#9CA3AF" : "#6B7280";
+  const borderClass = isDark ? "border-emerald-700" : "border-emerald-300";
+  const placeholderColor = isDark ? "#b6e2b6" : "#1f8a5d";
 
   const hasQuestionnaireData = useMemo(
     () => Object.keys(state.questionnaireAnswers ?? {}).length > 0,
@@ -222,6 +222,8 @@ export default function ProfilePage() {
     if (!text) return "";
     return text.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
   };
+
+  const fileDisplayName = (path: string | undefined) => (path ? (path.split("/").pop() || path) : "");
 
   const handleSave = () => {
     if (!user) return;
@@ -257,14 +259,42 @@ export default function ProfilePage() {
     }
   };
 
-  const handlePickResume = () => {
-    // stub for now; can add expo-document-picker later
-    setEditData((p) => ({ ...p, resume: "resume.pdf" }));
+  const handlePickResume = async () => {
+    if (!user?.uid || !isHydrated) return;
+    try {
+      const result = await DocumentPicker.getDocumentAsync({
+        type: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"],
+        copyToCacheDirectory: true,
+      });
+      if (result.canceled || !result.assets?.[0]?.uri) return;
+      const asset = result.assets[0];
+      const { storageService } = await import("@/services/storage.service");
+      const uploaded = await storageService.uploadResume(user.uid, asset.uri);
+      setEditData((p) => ({ ...p, resume: uploaded.name }));
+      updateUser({ resume: uploaded.url });
+    } catch (err) {
+      console.error(err);
+      Alert.alert(t("general.error"), t("profile.prepareDataError"));
+    }
   };
 
-  const handlePickTranscript = () => {
-    // stub for now; can add expo-document-picker later
-    setEditData((p) => ({ ...p, transcript: "transcript.pdf" }));
+  const handlePickTranscript = async () => {
+    if (!user?.uid || !isHydrated) return;
+    try {
+      const result = await DocumentPicker.getDocumentAsync({
+        type: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"],
+        copyToCacheDirectory: true,
+      });
+      if (result.canceled || !result.assets?.[0]?.uri) return;
+      const asset = result.assets[0];
+      const { storageService } = await import("@/services/storage.service");
+      const uploaded = await storageService.uploadTranscript(user.uid, asset.uri);
+      setEditData((p) => ({ ...p, transcript: uploaded.name }));
+      updateUser({ transcript: uploaded.url });
+    } catch (err) {
+      console.error(err);
+      Alert.alert(t("general.error"), t("profile.prepareDataError"));
+    }
   };
 
   const handleQuestionnaireAnswer = (id: string, value: string) => {
@@ -351,10 +381,10 @@ export default function ProfilePage() {
             </Text>
             <Pressable
               onPress={() => router.replace("/login")}
-              className="bg-green-500 rounded-lg py-4 items-center"
+              className="bg-emerald-500 rounded-lg py-4 items-center"
               disabled={!isHydrated}
             >
-              <Text className="text-black font-semibold">{t("profile.goToLogin")}</Text>
+              <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold`}>{t("profile.goToLogin")}</Text>
             </Pressable>
           </View>
         </View>
@@ -369,7 +399,7 @@ export default function ProfilePage() {
         <View className="flex-1 items-center justify-center px-6">
           <View className="w-full max-w-md">
             <View className="items-center mb-8">
-              <View className="bg-green-500 p-4 rounded-full mb-4">
+              <View className="bg-emerald-500 p-4 rounded-full mb-4">
                 <MaterialIcons name="person-add" size={48} color="black" />
               </View>
               
@@ -381,10 +411,10 @@ export default function ProfilePage() {
 
             <Pressable
               onPress={() => router.push("/login")}
-              className="bg-green-500 rounded-lg py-4 px-6 items-center flex-row justify-center"
+              className="bg-emerald-500 rounded-lg py-4 px-6 items-center flex-row justify-center"
             >
               <MaterialIcons name="arrow-forward" size={20} color="black" />
-              <Text className="text-black font-semibold ml-2">{t("profile.createYourProfile")}</Text>
+              <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold ml-2`}>{t("profile.createYourProfile")}</Text>
             </Pressable>
 
             <Pressable
@@ -415,10 +445,10 @@ export default function ProfilePage() {
         <View className="max-w-md w-full self-center">
           {user?.isGuest && showGuestProfile ? (
             <View className="px-6 pt-6">
-              <View className={`${cardBgClass} border-2 border-green-500/20 rounded-2xl p-5 mb-4`}>
+              <View className={`${cardBgClass} border-2 border-emerald-500/20 rounded-2xl p-5 mb-4`}>
                 <View className="flex-row items-center mb-3">
-                  <View className="bg-green-500/20 p-2 rounded-lg mr-3">
-                    <MaterialIcons name="cloud-upload" size={20} color="#22C55E" />
+                  <View className="bg-emerald-500/20 p-2 rounded-lg mr-3">
+                    <MaterialIcons name="cloud-upload" size={20} color="#008f4e" />
                   </View>
                   <View className="flex-1">
                     <Text className={`${textClass} font-semibold`}>{t("profile.guestMode")}</Text>
@@ -428,17 +458,17 @@ export default function ProfilePage() {
                 <View className="flex-row gap-2">
                   <Pressable
                     onPress={handleImportData}
-                    className="flex-1 bg-green-500 rounded-xl px-4 py-3 flex-row items-center justify-center"
+                    className="flex-1 bg-emerald-500 rounded-xl px-4 py-3 flex-row items-center justify-center"
                   >
-                    <MaterialIcons name="file-download" size={18} color="black" />
-                    <Text className="text-black font-semibold ml-2">{t("settings.import")}</Text>
+                    <MaterialIcons name="file-download" size={18} color={isDark ? "#FFFFFF" : "#000"} />
+                    <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold ml-2`}>{t("settings.import")}</Text>
                   </Pressable>
                   <Pressable
                     onPress={handleExportData}
-                    className={`flex-1 ${cardBgClass} border-2 border-green-500 rounded-xl px-4 py-3 flex-row items-center justify-center`}
+                    className={`flex-1 ${cardBgClass} border-2 border-emerald-500 rounded-xl px-4 py-3 flex-row items-center justify-center`}
                   >
-                    <MaterialIcons name="file-upload" size={18} color="#22C55E" />
-                    <Text className="text-green-500 font-semibold ml-2">{t("settings.export")}</Text>
+                    <MaterialIcons name="file-upload" size={18} color="#008f4e" />
+                    <Text className="text-emerald-500 font-semibold ml-2">{t("settings.export")}</Text>
                   </Pressable>
                 </View>
               </View>
@@ -460,7 +490,7 @@ export default function ProfilePage() {
                   setIsEditing(true);
                 }
               }}
-              className="bg-green-500 p-3 rounded-full"
+              className="bg-emerald-500 p-3 rounded-full"
             >
               <MaterialIcons name={isEditing ? "save" : "edit"} size={18} color="black" />
             </Pressable>
@@ -471,25 +501,25 @@ export default function ProfilePage() {
             <View className={`${cardBgClass} border rounded-2xl overflow-hidden`}>
               {/* Header with gradient effect for guests */}
               {user?.isGuest ? (
-                <View className="bg-gradient-to-br from-green-500/10 to-green-500/5 px-6 py-4 border-b border-green-500/20">
+                <View className="bg-gradient-to-br from-emerald-500/10 to-emerald-500/5 px-6 py-4 border-b border-emerald-500/20">
                   <View className="flex-row items-center">
-                    <View className="w-14 h-14 bg-green-500 rounded-full items-center justify-center mr-3 shadow-md">
+                    <View className="w-14 h-14 bg-emerald-500 rounded-full items-center justify-center mr-3 shadow-md">
                       <MaterialIcons name="person" size={26} color="black" />
                     </View>
                     <View className="flex-1">
                       <Text className={`${textClass} text-lg font-bold mb-1`}>{capitalizeWords(user?.name ?? "")}</Text>
-                      <View className="bg-green-500/20 rounded-full px-3 py-1 self-start">
-                        <Text className="text-green-500 text-xs font-semibold">{t("profile.guestMode")}</Text>
+                      <View className="bg-emerald-500/20 rounded-full px-3 py-1 self-start">
+                        <Text className="text-emerald-500 text-xs font-semibold">{t("profile.guestMode")}</Text>
                       </View>
                     </View>
                   </View>
                 </View>
               ) : (
                 // Regular header for signed-in users
-                <View className="bg-gradient-to-br from-green-500/10 to-green-500/5 px-6 py-4 border-b border-green-500/20">
+                <View className="bg-gradient-to-br from-emerald-500/10 to-emerald-500/5 px-6 py-4 border-b border-emerald-500/20">
                   <View className="flex-row items-center">
-                    <View className="w-14 h-14 bg-green-500 rounded-full items-center justify-center mr-3">
-                      <Text className="text-black text-lg font-bold">{(user?.name?.[0] ?? "").toUpperCase()}</Text>
+                    <View className="w-14 h-14 bg-emerald-500 rounded-full items-center justify-center mr-3">
+                      <Text className={`${isDark ? 'text-white' : 'text-black'} text-lg font-bold`}>{(user?.name?.[0] ?? "").toUpperCase()}</Text>
                     </View>
                     <View className="flex-1">
                       <Text className={`${textClass} text-lg font-semibold mb-0`}>{capitalizeWords(user?.name ?? "")}</Text>
@@ -524,14 +554,14 @@ export default function ProfilePage() {
               {user?.isGuest ? ( //email
                 <Pressable
                   onPress={handleCreateAccount}
-                  className="bg-gradient-to-r from-green-500 to-green-600 rounded-xl p-5 flex-row items-center justify-between mb-4"
+                  className="bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-xl p-5 flex-row items-center justify-between mb-4"
                 >
                   <View className="flex-1 pr-3">
                     <View className="flex-row items-center mb-2">
                       <MaterialIcons name="stars" size={20} color="black" />
-                      <Text className="text-black font-bold text-base ml-2">{t("profile.createAccount")}</Text>
+                      <Text className={`${isDark ? 'text-white' : 'text-black'} font-bold text-base ml-2`}>{t("profile.createAccount")}</Text>
                     </View>
-                    <Text className="text-black/80 text-sm">{t("profile.saveDataMessage")}</Text>
+                    <Text className={`${isDark ? 'text-white/90' : 'text-black/80'} text-sm`}>{t("profile.saveDataMessage")}</Text>
                   </View>
                   <MaterialIcons name="arrow-forward" size={24} color="black" />
                 </Pressable>
@@ -604,9 +634,9 @@ export default function ProfilePage() {
                 type="upload"
                 icon="upload-file"
                 label={t("profile.resume")}
-                value={user?.resume ?? ""}
+                value={fileDisplayName(user?.resume)}
                 isEditing={isEditing}
-                editValue={editData.resume}
+                editValue={fileDisplayName(editData.resume)}
                 onPress={handlePickResume}
                 uploadText={t("profile.uploadResume")}
                 emptyText={t("profile.notUploaded")}
@@ -620,9 +650,9 @@ export default function ProfilePage() {
                 type="upload"
                 icon="upload-file"
                 label={t("profile.transcript")}
-                value={user?.transcript ?? ""}
+                value={fileDisplayName(user?.transcript)}
                 isEditing={isEditing}
-                editValue={editData.transcript}
+                editValue={fileDisplayName(editData.transcript)}
                 onPress={handlePickTranscript}
                 uploadText={t("profile.uploadTranscript")}
                 emptyText={t("profile.notUploaded")}
@@ -638,7 +668,7 @@ export default function ProfilePage() {
             <View className={`${cardBgClass} border rounded-2xl p-6 mt-4`}>
               <View className="flex-row items-center justify-between mb-4">
                 <View className="flex-row items-center">
-                  <MaterialIcons name="assignment" size={20} color="#22C55E" />
+                  <MaterialIcons name="assignment" size={20} color="#008f4e" />
                   <Text className={`text-lg ${textClass} ml-3`}>{t("profile.questionnaire")}</Text>
                 </View>
 
@@ -648,7 +678,7 @@ export default function ProfilePage() {
                     setShowQuestionnaire(!showQuestionnaire);
                   }}
                 >
-                  <Text className="text-green-500 text-sm">
+                  <Text className="text-emerald-500 text-sm">
                     {hasQuestionnaireData ? t("profile.edit") : t("profile.complete")}
                   </Text>
                 </Pressable>
@@ -726,13 +756,13 @@ export default function ProfilePage() {
                                             }}
                                         className={`px-4 py-3 rounded-lg border ${
                                           isSelected
-                                            ? "bg-green-500/10 border-green-500"
+                                            ? "bg-emerald-500/10 border-emerald-500"
                                             : borderClass
                                         }`}
                                       >
                                         <View className="flex-row items-center justify-between">
-                                          <Text className={isSelected ? "text-green-500 font-semibold" : textClass}>{optionLabel}</Text>
-                                          {isSelected && <MaterialIcons name="check-circle" size={18} color="#22C55E" />}
+                                          <Text className={isSelected ? "text-emerald-500 font-semibold" : textClass}>{optionLabel}</Text>
+                                          {isSelected && <MaterialIcons name="check-circle" size={18} color="#008f4e" />}
                                         </View>
                                       </Pressable>
                                     );
@@ -772,13 +802,13 @@ export default function ProfilePage() {
                                         }}
                                         className={`px-4 py-3 rounded-lg border ${
                                           isSelected
-                                            ? "bg-green-500/10 border-green-500"
+                                            ? "bg-emerald-500/10 border-emerald-500"
                                             : borderClass
                                         }`}
                                       >
                                         <View className="flex-row items-center justify-between">
-                                          <Text className={isSelected ? "text-green-500 font-semibold" : textClass}>{optionLabel}</Text>
-                                          {isSelected && <MaterialIcons name="check-circle" size={18} color="#22C55E" />}
+                                          <Text className={isSelected ? "text-emerald-500 font-semibold" : textClass}>{optionLabel}</Text>
+                                          {isSelected && <MaterialIcons name="check-circle" size={18} color="#008f4e" />}
                                         </View>
                                       </Pressable>
                                     );
@@ -798,13 +828,13 @@ export default function ProfilePage() {
                                       }}
                                       className={`px-4 py-3 rounded-lg border ${
                                         isSelected
-                                          ? "bg-green-500/10 border-green-500"
+                                          ? "bg-emerald-500/10 border-emerald-500"
                                           : borderClass
                                       }`}
                                     >
                                       <View className="flex-row items-center justify-between">
-                                        <Text className={isSelected ? "text-green-500 font-semibold" : textClass}>{option.label}</Text>
-                                        {isSelected && <MaterialIcons name="check-circle" size={18} color="#22C55E" />}
+                                        <Text className={isSelected ? "text-emerald-500 font-semibold" : textClass}>{option.label}</Text>
+                                        {isSelected && <MaterialIcons name="check-circle" size={18} color="#008f4e" />}
                                       </View>
                                     </Pressable>
                                   );
@@ -818,7 +848,7 @@ export default function ProfilePage() {
                   </ScrollView>
 
                   {/* Save/Close Buttons */}
-                  <View className="flex-row gap-3 mt-6 pt-6 border-t border-gray-300">
+                  <View className="flex-row gap-3 mt-6 pt-6 border-t border-emerald-300">
                     <Pressable
                       onPress={() => {
                         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -834,9 +864,9 @@ export default function ProfilePage() {
                         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
                         handleSaveQuestionnaire();
                       }}
-                      className="flex-1 bg-green-500 rounded-lg py-3 items-center"
+                      className="flex-1 bg-emerald-500 rounded-lg py-3 items-center"
                     >
-                      <Text className="text-black font-semibold">{t("profile.saveAnswers")}</Text>
+                      <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold`}>{t("profile.saveAnswers")}</Text>
                     </Pressable>
                   </View>
                 </View>

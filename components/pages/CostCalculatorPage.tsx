@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { View, Text, TextInput, Pressable, ScrollView } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import useBack from "@/hooks/use-back";
+import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
@@ -9,8 +9,9 @@ import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppData } from "@/hooks/use-app-data";
 
 export default function CostCalculatorPage() {
-  const back = useBack();
+  const router = useRouter();
   const styles = useThemeStyles();
+  const goToResources = () => router.replace("/(tabs)/resources");
   const { t } = useAppLanguage();
   const insets = useSafeAreaInsets();
   const { state } = useAppData();
@@ -66,7 +67,7 @@ export default function CostCalculatorPage() {
         contentContainerStyle={{ paddingTop: insets.top, paddingBottom: 96 }}
       >
         <View className="max-w-md w-full self-center px-6 pt-6">
-          <Pressable onPress={back} className="mb-4 flex-row items-center">
+          <Pressable onPress={goToResources} className="mb-4 flex-row items-center">
             <MaterialIcons name="arrow-back" size={24} color={placeholderColor} />
             <Text className={`${secondaryTextClass} ml-2`}>{t("general.back")}</Text>
           </Pressable>
@@ -229,11 +230,11 @@ export default function CostCalculatorPage() {
             />
           </View>
 
-          <View className={`${cardBgClass} border rounded-2xl p-5 border-green-500/50`}>
+          <View className={`${cardBgClass} border rounded-2xl p-5 border-emerald-500/50`}>
             <Text className={`${secondaryTextClass} text-sm mb-1`}>
               {t("cost.estimatedTotal")}
             </Text>
-            <Text className="text-2xl font-semibold text-green-500">
+            <Text className="text-2xl font-semibold text-emerald-500">
               {format(totalAfterAid)}
             </Text>
             <Text className={`${secondaryTextClass} text-xs mt-2`}>

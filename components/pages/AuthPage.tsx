@@ -1,5 +1,5 @@
 import { useMemo, useState, useEffect } from "react";
-import { View, Text, Pressable, Alert, Keyboard, TouchableWithoutFeedback, Platform, ScrollView } from "react-native";
+import { View, Text, Pressable, Alert, Keyboard, TouchableWithoutFeedback, Platform, ScrollView, Linking } from "react-native";
 import { router } from "expo-router";
 import { FontAwesome5 } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
@@ -11,6 +11,7 @@ import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
+import { useAppTheme } from "@/hooks/use-app-theme";
 import { FormInput } from "@/components/ui/FormInput";
 import { authService, EMAIL_LINK_STORAGE_KEY } from "@/services/auth.service";
 import { PENDING_LINK_STORAGE_KEY } from "@/components/AuthEmailLinkHandler";
@@ -24,6 +25,7 @@ export default function AuthPage() {
   const { isHydrated, state, signIn, signInWithAuthUser, signInAsGuest, updateUser, setQuestionnaireAnswers } = useAppData();
   const { t } = useAppLanguage();
   const styles = useThemeStyles();
+  const { isDark } = useAppTheme();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -328,7 +330,7 @@ export default function AuthPage() {
   const authContent = (
     <View className={cardMaxWidthClass}>
       <View className="items-center mb-8">
-        <View className="bg-green-500 p-4 rounded-full">
+        <View className="bg-emerald-500 p-4 rounded-full">
           <FontAwesome5 name="graduation-cap" size={48} color="black" />
         </View>
       </View>
@@ -338,7 +340,7 @@ export default function AuthPage() {
 
       <View className={`${styles.cardBgClass} border rounded-2xl p-6 ${isWeb ? "shadow-lg" : ""}`}>
         {verificationPendingEmail && (
-          <View className="bg-green-500/20 border border-green-500 rounded-lg p-4 mb-4">
+          <View className="bg-emerald-500/20 border border-emerald-500 rounded-lg p-4 mb-4">
             <Text className={`${styles.textClass} font-semibold mb-1`}>{t("auth.checkYourEmail")}</Text>
             <Text className={styles.secondaryTextClass}>
               {t("auth.verificationEmailSent")}
@@ -364,7 +366,7 @@ export default function AuthPage() {
                 }
               }}
               disabled={resendingVerification || !password || password.length < 6}
-              className="mt-3 py-2 rounded-lg items-center border border-green-500"
+              className="mt-3 py-2 rounded-lg items-center border border-emerald-500"
             >
               <Text className={`${resendingVerification || !password || password.length < 6 ? "opacity-60" : ""} ${styles.textClass}`}>
                 {resendingVerification ? t("general.pleaseWait") : t("auth.resendVerificationEmail")}
@@ -374,7 +376,7 @@ export default function AuthPage() {
         )}
 
         {emailLinkSentTo && (
-          <View className="bg-green-500/20 border border-green-500 rounded-lg p-4 mb-4">
+          <View className="bg-emerald-500/20 border border-emerald-500 rounded-lg p-4 mb-4">
             <Text className={`${styles.textClass} font-semibold mb-1`}>{t("auth.checkYourEmail")}</Text>
             <Text className={styles.secondaryTextClass}>
               {t("auth.emailLinkSent")}
@@ -394,7 +396,7 @@ export default function AuthPage() {
               disabled={!isEmailValid(email.trim()) || completingLink}
               className="bg-amber-500 rounded-lg py-2 items-center mt-2"
             >
-              <Text className="text-black font-semibold">
+              <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold`}>
                 {completingLink ? t("general.pleaseWait") : t("auth.completeSignIn")}
               </Text>
             </Pressable>
@@ -409,10 +411,10 @@ export default function AuthPage() {
               setEmailLinkSentTo(null);
               setIsSignUp(true);
             }}
-            className={`flex-1 py-3 rounded-lg items-center ${isSignUp ? "bg-green-500" : styles.inactiveButtonClass}`}
+            className={`flex-1 py-3 rounded-lg items-center ${isSignUp ? "bg-emerald-500" : styles.inactiveButtonClass}`}
             disabled={!isHydrated}
           >
-            <Text className={isSignUp ? "text-black" : styles.secondaryTextClass}>{t("auth.signUp")}</Text>
+            <Text className={isSignUp ? (isDark ? "text-white" : "text-black") : styles.secondaryTextClass}>{t("auth.signUp")}</Text>
           </Pressable>
 
           <Pressable
@@ -421,10 +423,10 @@ export default function AuthPage() {
               setEmailLinkSentTo(null);
               setIsSignUp(false);
             }}
-            className={`flex-1 py-3 rounded-lg items-center ${!isSignUp ? "bg-green-500" : styles.inactiveButtonClass}`}
+            className={`flex-1 py-3 rounded-lg items-center ${!isSignUp ? "bg-emerald-500" : styles.inactiveButtonClass}`}
             disabled={!isHydrated}
           >
-            <Text className={!isSignUp ? "text-black" : styles.secondaryTextClass}>{t("auth.logIn")}</Text>
+            <Text className={!isSignUp ? (isDark ? "text-white" : "text-black") : styles.secondaryTextClass}>{t("auth.logIn")}</Text>
           </Pressable>
         </View>
 
@@ -479,15 +481,15 @@ export default function AuthPage() {
           {!isSignUp && (
             <View className="items-end">
               <Pressable onPress={() => router.push("/forgot-password")} disabled={!isHydrated}>
-                <Text className="text-sm text-green-500">{t("auth.forgotPassword")}</Text>
+                <Text className="text-sm text-emerald-500">{t("auth.forgotPassword")}</Text>
               </Pressable>
             </View>
           )}
 
           <View className={`flex-row items-center gap-2 my-3 ${styles.secondaryTextClass}`}>
-            <View className="flex-1 h-px bg-gray-300 dark:bg-gray-600" />
+            <View className="flex-1 h-px bg-emerald-300 dark:bg-emerald-600" />
             <Text className="text-xs">{t("auth.or")}</Text>
-            <View className="flex-1 h-px bg-gray-300 dark:bg-gray-600" />
+            <View className="flex-1 h-px bg-emerald-300 dark:bg-emerald-600" />
           </View>
 
           {isWeb && (
@@ -496,26 +498,28 @@ export default function AuthPage() {
             </Text>
           )}
 
-          <Pressable
-            onPress={handleSendEmailLink}
-            disabled={!isHydrated || !isEmailValid(email.trim()) || sendingEmailLink}
-            className={`${styles.cardBgClass} border ${styles.borderClass} rounded-lg py-3 flex-row items-center justify-center gap-2 ${!isHydrated || !isEmailValid(email.trim()) || sendingEmailLink ? "opacity-60" : ""}`}
-          >
-            <FontAwesome5 name="envelope" size={16} color="#22C55E" />
-            <Text className={styles.secondaryTextClass}>
-              {sendingEmailLink ? t("general.pleaseWait") : t("auth.signInWithEmailLink")}
-            </Text>
-          </Pressable>
+          {!isSignUp && (
+            <Pressable
+              onPress={handleSendEmailLink}
+              disabled={!isHydrated || !isEmailValid(email.trim()) || sendingEmailLink}
+              className={`${styles.cardBgClass} border ${styles.borderClass} rounded-lg py-3 flex-row items-center justify-center gap-2 ${!isHydrated || !isEmailValid(email.trim()) || sendingEmailLink ? "opacity-60" : ""}`}
+            >
+              <FontAwesome5 name="envelope" size={16} color="#008f4e" />
+              <Text className={styles.secondaryTextClass}>
+                {sendingEmailLink ? t("general.pleaseWait") : t("auth.signInWithEmailLink")}
+              </Text>
+            </Pressable>
+          )}
 
           <Pressable
             onPress={handleSubmit}
             disabled={!isHydrated || !canSubmit || isSubmitting}
-            className={`bg-green-500 rounded-lg py-4 items-center mt-2 ${
+            className={`bg-emerald-500 rounded-lg py-4 items-center mt-2 ${
               !isHydrated || !canSubmit || isSubmitting ? "opacity-60" : ""
             }`}
           >
-            <Text className="text-black font-semibold">
-              {isSubmitting ? t("general.pleaseWait") : isSignUp ? t("auth.createAccount") : t("auth.logIn")}
+            <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold`}>
+              {isSubmitting ? t("general.pleaseWait") : isSignUp ? t("auth.createAccountByEmailVerification") : t("auth.logIn")}
             </Text>
           </Pressable>
 
@@ -526,7 +530,7 @@ export default function AuthPage() {
               disabled={!isHydrated}
               className={`flex-1 ${styles.cardBgClass} border ${styles.borderClass} rounded-lg py-3 flex-row items-center justify-center gap-2 ${!isHydrated ? "opacity-60" : ""}`}
             >
-              <FontAwesome5 name="google" size={18} color="#4285F4" />
+              <FontAwesome5 name="google" size={18} color="#3a9e75" />
               <Text className={styles.secondaryTextClass}>{t("auth.continueWithGoogle")}</Text>
             </Pressable>
             <Pressable
@@ -534,7 +538,7 @@ export default function AuthPage() {
               disabled={!isHydrated}
               className={`flex-1 ${styles.cardBgClass} border ${styles.borderClass} rounded-lg py-3 flex-row items-center justify-center gap-2 ${!isHydrated ? "opacity-60" : ""}`}
             >
-              <FontAwesome5 name="microsoft" size={18} color="#00A4EF" />
+              <FontAwesome5 name="microsoft" size={18} color="#3a9e75" />
               <Text className={styles.secondaryTextClass}>{t("auth.continueWithMicrosoft")}</Text>
             </Pressable>
           </View>
@@ -543,17 +547,20 @@ export default function AuthPage() {
             <Pressable
               onPress={handleGuestSignIn}
               disabled={!isHydrated}
-              className={`bg-gray-200 dark:bg-gray-700 rounded-lg py-3 px-6 w-full items-center ${
+              className={`bg-white dark:bg-emerald-900/60 border-2 border-emerald-300 dark:border-emerald-600 rounded-lg py-3 px-6 w-full items-center ${
                 !isHydrated ? "opacity-60" : ""
               }`}
             >
-              <Text className="text-gray-800 dark:text-gray-200 font-semibold">{t("auth.continueAsGuest")}</Text>
+              <Text className="text-gray-900 dark:text-white font-semibold">{t("auth.continueAsGuest")}</Text>
             </Pressable>
           </View>
 
-          <Text className={`${styles.secondaryTextClass} text-xs text-center mt-6`}>
-            {t("general.needHelpEmail")}
-          </Text>
+          <View className="flex-row justify-center items-center mt-6">
+            <Text className={`${styles.secondaryTextClass} text-xs text-center mr-2`}>{t("general.needHelpQuestion") ?? "Need Help?"}</Text>
+            <Pressable onPress={() => Linking.openURL("mailto:gatorguide_mobiledevelopmentteam@outlook.com")} accessibilityRole="link">
+              <Text className={`text-xs ${isDark ? "text-white/90" : "text-emerald-600"} underline font-semibold`}>{t("general.emailUs") ?? "Email Us!"}</Text>
+            </Pressable>
+          </View>
         </View>
       </View>
     </View>

@@ -3,6 +3,7 @@ import { Tabs, useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 
 import { HapticTab } from "@/components/haptic-tab";
+import { ResourcesAwareTabBar } from "@/components/ResourcesAwareTabBar";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppData } from "@/hooks/use-app-data";
@@ -49,19 +50,20 @@ export default function TabLayout() {
     return <LoadingScreen message={t("general.loading")} />;
   }
 
-  const active = "#22C55E";
-  const inactive = isDark ? "#9CA3AF" : "#6B7280";
+  const active = "#008f4e";
+  const inactive = isDark ? "#b6e2b6" : "#00753e";
 
   return (
     <Tabs
+      tabBar={(props) => <ResourcesAwareTabBar {...props} />}
       screenOptions={{
         headerShown: false,
         tabBarButton: HapticTab,
         tabBarActiveTintColor: active,
         tabBarInactiveTintColor: inactive,
         tabBarStyle: {
-          backgroundColor: isDark ? "#000000" : "#FFFFFF",
-          borderTopColor: isDark ? "#1F2937" : "#E5E7EB",
+          backgroundColor: isDark ? "#001f0f" : "#FFFFFF",
+          borderTopColor: isDark ? "#003b1a" : "#e5f5eb",
           borderTopWidth: 1,
           elevation: 0,
           shadowOpacity: 0,

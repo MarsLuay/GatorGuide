@@ -91,13 +91,13 @@ export default function QuestionnairePage() {
   const currentQuestion = questions[currentStep];
   const progress = Math.round(((currentStep + 1) / questions.length) * 100);
 
-  const textClass = isDark ? "text-white" : "text-gray-900";
-  const secondaryTextClass = isDark ? "text-gray-400" : "text-gray-600";
-  const cardBgClass = isDark ? "bg-gray-900/80 border-gray-800" : "bg-white border-gray-200";
-  const inputBgClass = isDark ? "bg-gray-900/80 border-gray-800" : "bg-white/90 border-gray-200";
-  const borderClass = isDark ? "border-gray-800" : "border-gray-200";
-  const progressBgClass = isDark ? "bg-gray-900/70" : "bg-gray-200";
-  const placeholderColor = isDark ? "#9CA3AF" : "#6B7280";
+  const textClass = isDark ? "text-white" : "text-emerald-900";
+  const secondaryTextClass = isDark ? "text-white/90" : "text-emerald-700";
+  const cardBgClass = isDark ? "bg-emerald-900/90 border-emerald-800" : "bg-white border-emerald-200";
+  const inputBgClass = isDark ? "bg-emerald-900/70 border-emerald-700" : "bg-white border-emerald-300";
+  const borderClass = isDark ? "border-emerald-700" : "border-emerald-300";
+  const progressBgClass = isDark ? "bg-emerald-800" : "bg-emerald-200";
+  const placeholderColor = isDark ? "#8cd19e" : "#6B7280";
 
   const handleAnswer = (id: string, value: string) => setAnswers((p) => ({ ...p, [id]: value }));
 
@@ -151,7 +151,7 @@ export default function QuestionnairePage() {
               }}
               className="mr-4"
             >
-              <MaterialIcons name="arrow-back" size={24} color={isDark ? "#9CA3AF" : "#6B7280"} />
+              <MaterialIcons name="arrow-back" size={24} color={isDark ? "#b6e2b6" : "#1f8a5d"} />
             </Pressable>
 
             <View className="flex-1">
@@ -165,7 +165,7 @@ export default function QuestionnairePage() {
           {/* Progress */}
           <View className="px-6 mb-8">
             <View className={`h-2 ${progressBgClass} rounded-full overflow-hidden`}>
-              <View className="h-full bg-green-500" style={{ width: `${progress}%` }} />
+              <View className="h-full bg-emerald-500" style={{ width: `${progress}%` }} />
             </View>
           </View>
 
@@ -214,15 +214,15 @@ export default function QuestionnairePage() {
                         }}
                         className={`w-full px-4 py-4 rounded-lg border ${
                           isSelected
-                            ? "bg-green-500/10 border-green-500"
+                            ? "bg-emerald-500/10 border-emerald-500"
                             : isDark
-                            ? "bg-gray-900/70 border-gray-800"
-                            : "bg-white/90 border-gray-200"
+                            ? "bg-emerald-900/60 border-emerald-800"
+                            : "bg-white border-gray-200"
                         }`}
                       >
                         <View className="flex-row items-center justify-between">
-                          <Text className={isSelected ? "text-green-500" : textClass}>{option}</Text>
-                          {isSelected ? <MaterialIcons name="check-circle" size={20} color="#22C55E" /> : null}
+                          <Text className={isSelected ? "text-emerald-500" : textClass}>{option}</Text>
+                          {isSelected ? <MaterialIcons name="check-circle" size={20} color="#008f4e" /> : null}
                         </View>
                       </Pressable>
                     );
@@ -237,10 +237,10 @@ export default function QuestionnairePage() {
                     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                     handleNext();
                   }}
-                  className={`w-full bg-green-500 rounded-lg py-4 items-center ${!isHydrated ? "opacity-60" : ""}`}
+                  className={`w-full bg-emerald-500 rounded-lg py-4 items-center ${!isHydrated ? "opacity-60" : ""}`}
                   disabled={!isHydrated}
                 >
-                  <Text className="text-black font-semibold">
+                  <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold`}>
                     {currentStep === questions.length - 1 ? t("questionnaire.complete") : t("questionnaire.next")}
                   </Text>
                 </Pressable>
@@ -250,7 +250,7 @@ export default function QuestionnairePage() {
                     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
                     handleSaveAndExit();
                   }}
-                  className={`w-full ${isDark ? "bg-gray-800 border-gray-700" : "bg-gray-100 border-gray-300"} border rounded-lg py-4 items-center ${!isHydrated ? "opacity-60" : ""}`}
+                  className={`w-full ${isDark ? "bg-emerald-800/70 border-emerald-700" : "bg-emerald-50 border-emerald-200"} border rounded-lg py-4 items-center ${!isHydrated ? "opacity-60" : ""}`}
                   disabled={!isHydrated}
                 >
                   <Text className={`${textClass} font-semibold`}>{t("questionnaire.saveAndExit")}</Text>

@@ -37,11 +37,11 @@ export default function LanguagePage() {
     []
   );
 
-  const textClass = isDark ? "text-white" : "text-gray-900";
-  const secondaryTextClass = isDark ? "text-gray-400" : "text-gray-600";
-  const cardBgClass = isDark ? "bg-gray-900/80 border-gray-800" : "bg-white/90 border-gray-200";
-  const itemBorderClass = isDark ? "border-gray-800" : "border-gray-200";
-  const iconColor = isDark ? "#9CA3AF" : "#6B7280";
+  const textClass = isDark ? "text-white" : "text-emerald-900";
+  const secondaryTextClass = isDark ? "text-white/90" : "text-emerald-700";
+  const cardBgClass = isDark ? "bg-emerald-900/90 border-emerald-800" : "bg-white border-emerald-200";
+  const itemBorderClass = isDark ? "border-emerald-700" : "border-emerald-300";
+  const iconColor = isDark ? "#b6e2b6" : "#1f8a5d";
 
   const handleSelectLanguage = (lang: Language) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
@@ -78,7 +78,7 @@ export default function LanguagePage() {
                     }`}
                   >
                     <Text className={textClass}>{lang.label}</Text>
-                    {isSelected ? <MaterialIcons name="check" size={20} color="#22C55E" /> : null}
+                    {isSelected ? <MaterialIcons name="check" size={20} color="#008f4e" /> : null}
                   </Pressable>
                 );
               })}

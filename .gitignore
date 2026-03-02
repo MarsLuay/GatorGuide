@@ -26,10 +26,11 @@ pnpm-debug.log*
 Thumbs.db
 desktop.ini
 
-# env (keep .env.example in git if you have one)
+# env (keep .env.example in git as template)
 .env
 .env.*
 .env*.local
+!.env.example
 
 # native keys / certs
 *.jks

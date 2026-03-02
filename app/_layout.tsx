@@ -92,29 +92,29 @@ SplashScreen.preventAutoHideAsync().catch(() => {});
 
 export function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
   return (
-    <View style={{ flex: 1, backgroundColor: '#0B0B0B', justifyContent: 'center', paddingHorizontal: 24 }}>
-      <View style={{ width: '100%', maxWidth: 520, alignSelf: 'center', backgroundColor: '#111827', borderRadius: 16, padding: 20 }}>
-        <Text style={{ color: 'white', fontSize: 24, fontWeight: '600', marginBottom: 8 }}>Something went wrong</Text>
-        <Text style={{ color: '#D1D5DB', fontSize: 14, marginBottom: 16 }}>
+    <View style={{ flex: 1, backgroundColor: '#001f0f', justifyContent: 'center', paddingHorizontal: 24 }}>
+      <View style={{ width: '100%', maxWidth: 520, alignSelf: 'center', backgroundColor: '#003b1a', borderRadius: 16, padding: 20 }}>
+        <Text style={{ color: '#FFFFFF', fontSize: 24, fontWeight: '600', marginBottom: 8 }}>Something went wrong</Text>
+        <Text style={{ color: '#b6e2b6', fontSize: 14, marginBottom: 16 }}>
           Please copy the error log and send it so we can fix this quickly.
         </Text>
 
         <Pressable
           onPress={() => copyErrorLog(error)}
-          style={{ backgroundColor: '#22C55E', borderRadius: 12, paddingVertical: 12, alignItems: 'center', marginBottom: 10 }}
+          style={{ backgroundColor: '#008f4e', borderRadius: 12, paddingVertical: 12, alignItems: 'center', marginBottom: 10 }}
         >
-          <Text style={{ color: 'black', fontWeight: '700' }}>Copy error log</Text>
+          <Text style={{ color: '#FFFFFF', fontWeight: '700' }}>Copy error log</Text>
         </Pressable>
 
         <Pressable
           onPress={() => sendErrorToSupport(error)}
-          style={{ backgroundColor: '#1F2937', borderRadius: 12, paddingVertical: 12, alignItems: 'center', marginBottom: 10 }}
+          style={{ backgroundColor: 'transparent', borderWidth: 1, borderColor: '#9CA3AF', borderRadius: 12, paddingVertical: 12, alignItems: 'center', marginBottom: 10 }}
         >
-          <Text style={{ color: 'white', fontWeight: '700' }}>Send error log to support</Text>
+          <Text style={{ color: '#D1D5DB', fontWeight: '700' }}>Send error log to support</Text>
         </Pressable>
 
         <Pressable onPress={retry} style={{ alignItems: 'center', paddingVertical: 8 }}>
-          <Text style={{ color: '#93C5FD', fontWeight: '600' }}>Try again</Text>
+          <Text style={{ color: '#b6e2b6', fontWeight: '600' }}>Try again</Text>
         </Pressable>
       </View>
     </View>
@@ -153,13 +153,13 @@ export default function RootLayout() {
 
   if (!appIsReady || showAnimation === null) {
     return (
-      <View style={{ flex: 1, backgroundColor: "#ffffff", alignItems: "center", justifyContent: "center" }}>
+      <View style={{ flex: 1, backgroundColor: "#FFFFFF", alignItems: "center", justifyContent: "center" }}>
         <Image
           source={require("../assets/images/icon.png")}
           style={{ width: 96, height: 96, marginBottom: 16 }}
           resizeMode="contain"
         />
-        <Text style={{ color: "#111827", fontSize: 16, fontWeight: "600" }}>Loading…</Text>
+        <Text style={{ color: "#001f0f", fontSize: 16, fontWeight: "600" }}>Loading…</Text>
       </View>
     );
   }

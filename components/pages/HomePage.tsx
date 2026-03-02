@@ -84,11 +84,11 @@ export default function HomePage() {
 
   const hasCompletedQuestionnaire = !!(state.questionnaireAnswers && Object.keys(state.questionnaireAnswers).length > 0);
 
-  const textClass = isDark ? "text-white" : "text-gray-900";
-  const secondaryTextClass = isDark ? "text-gray-400" : "text-gray-600";
-  const cardClass = isDark ? "bg-gray-900/80 border-gray-800" : "bg-white/90 border-gray-200";
-  const inputClass = isDark ? "bg-gray-900/80 border-gray-800" : "bg-white/90 border-gray-200";
-  const placeholderTextColor = isDark ? "#9CA3AF" : "#6B7280";
+  const textClass = isDark ? "text-white" : "text-emerald-900";
+  const secondaryTextClass = isDark ? "text-white/90" : "text-emerald-700";
+  const cardClass = isDark ? "bg-emerald-900/90 border-emerald-800" : "bg-white border-emerald-200";
+  const inputClass = isDark ? "bg-emerald-900/70 border-emerald-700" : "bg-white border-emerald-300";
+  const placeholderTextColor = isDark ? "#8cd19e" : "#6B7280";
 
   const formatPercent = (value: unknown) => {
     const n = Number(value);
@@ -357,15 +357,15 @@ export default function HomePage() {
           <Text className={`${secondaryTextClass} mb-6`}>{t("home.findPerfectCollege")}</Text>
 
           {user?.isGuest && !dismissedGuestPrompt && (
-            <View className="mb-6 rounded-2xl p-4 bg-green-500">
+            <View className="mb-6 rounded-2xl p-4 bg-emerald-500">
               <View className="flex-row items-start gap-3">
                 <View className="p-2 rounded-full bg-black/10 mt-1">
                   <Ionicons name="person-add" size={20} color="black" />
                 </View>
 
                 <View className="flex-1">
-                  <Text className="font-semibold text-black text-base mb-1">{t("home.createAccount")}</Text>
-                  <Text className="text-black/80 text-sm mb-3">{t("home.signUpMessage")}</Text>
+                  <Text className={`font-semibold ${isDark ? 'text-white' : 'text-black'} text-base mb-1`}>{t("home.createAccount")}</Text>
+                  <Text className={`${isDark ? 'text-emerald-100' : 'text-black/80'} text-sm mb-3`}>{t("home.signUpMessage")}</Text>
 
                   <View className="flex-row gap-2">
                     <Pressable
@@ -379,7 +379,7 @@ export default function HomePage() {
                       onPress={() => setDismissedGuestPrompt(true)}
                       className="flex-1 bg-black/20 rounded-lg py-2 items-center"
                     >
-                      <Text className="text-black font-semibold text-sm">{t("home.later")}</Text>
+                      <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold text-sm`}>{t("home.later")}</Text>
                     </Pressable>
                   </View>
                 </View>
@@ -403,21 +403,21 @@ export default function HomePage() {
             <Pressable
               onPress={() => { void handleSearch(); }}
               disabled={showCooldownPopup || isSearching}
-              className={`absolute right-2 top-2 rounded-xl px-4 py-2 ${showCooldownPopup || isSearching ? 'bg-gray-400' : 'bg-green-500'}`}
+              className={`absolute right-2 top-2 rounded-xl px-4 py-2 ${showCooldownPopup || isSearching ? 'bg-emerald-400' : 'bg-emerald-500'}`}
             >
               {isSearching ? (
                 <View className="flex-row items-center gap-2">
-                  <ActivityIndicator size="small" color="#111827" />
-                  <Text className="text-gray-800 font-semibold">{t("home.searching")}</Text>
+                  <ActivityIndicator size="small" color="#FFFFFF" />
+                  <Text className="text-white font-semibold">{t("home.searching")}</Text>
                 </View>
               ) : (
-                <Text className={`${showCooldownPopup ? 'text-gray-800' : 'text-black'} font-semibold`}>{t("home.search")}</Text>
+                <Text className={`${showCooldownPopup || isDark ? 'text-white' : 'text-black'} font-semibold`}>{t("home.search")}</Text>
               )}
             </Pressable>
           </View>
           {isSearching ? (
             <View className="flex-row items-center gap-2 mb-3">
-              <ActivityIndicator size="small" color={isDark ? "#9CA3AF" : "#6B7280"} />
+              <ActivityIndicator size="small" color={isDark ? "#b6e2b6" : "#1f8a5d"} />
               <Text className={`${secondaryTextClass} text-sm`}>{t("home.searching")}</Text>
             </View>
           ) : null}
@@ -431,20 +431,20 @@ export default function HomePage() {
                 <Text className={`${textClass} font-semibold`}>Recommendation Dev Console</Text>
                 <Pressable
                   onPress={() => setShowDebugConsole((v) => !v)}
-                  className="px-3 py-1 rounded-lg bg-green-500"
+                  className="px-3 py-1 rounded-lg bg-emerald-500"
                 >
-                  <Text className="text-black font-semibold">{showDebugConsole ? 'Hide' : 'Show'}</Text>
+                  <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold`}>{showDebugConsole ? 'Hide' : 'Show'}</Text>
                 </Pressable>
               </View>
               <View className="flex-row gap-2 mt-3">
-                <Pressable onPress={refreshDebugSnapshot} className="px-3 py-2 rounded-lg bg-gray-300">
-                  <Text className="text-black text-xs font-semibold">Refresh Snapshot</Text>
+                <Pressable onPress={refreshDebugSnapshot} className="px-3 py-2 rounded-lg bg-emerald-300">
+                  <Text className={`${isDark ? 'text-white' : 'text-black'} text-xs font-semibold`}>Refresh Snapshot</Text>
                 </Pressable>
-                <Pressable onPress={logDebugSnapshot} className="px-3 py-2 rounded-lg bg-gray-300">
-                  <Text className="text-black text-xs font-semibold">Log Snapshot</Text>
+                <Pressable onPress={logDebugSnapshot} className="px-3 py-2 rounded-lg bg-emerald-300">
+                  <Text className={`${isDark ? 'text-white' : 'text-black'} text-xs font-semibold`}>Log Snapshot</Text>
                 </Pressable>
-                <Pressable onPress={copyDebugSnapshot} className="px-3 py-2 rounded-lg bg-gray-300">
-                  <Text className="text-black text-xs font-semibold">Copy Snapshot</Text>
+                <Pressable onPress={copyDebugSnapshot} className="px-3 py-2 rounded-lg bg-emerald-300">
+                  <Text className={`${isDark ? 'text-white' : 'text-black'} text-xs font-semibold`}>Copy Snapshot</Text>
                 </Pressable>
               </View>
               {copyStatus ? (
@@ -463,14 +463,14 @@ export default function HomePage() {
           {!hasCompletedQuestionnaire && (
             <Pressable
               onPress={() => router.push("/questionnaire")}
-              className="w-full rounded-2xl p-4 flex-row items-center bg-green-500 mb-4"
+              className="w-full rounded-2xl p-4 flex-row items-center bg-emerald-500 mb-4"
             >
               <View className="mr-3 p-2 rounded-xl bg-black/10">
                 <Ionicons name="document-text" size={18} color="#000" />
               </View>
               <View className="flex-1">
-                <Text className="font-semibold text-black">{t("home.completeQuestionnaire")}</Text>
-                <Text className="text-black/70 text-sm">{t("home.getPersonalizedRecommendations")}</Text>
+                <Text className={`font-semibold ${isDark ? 'text-white' : 'text-black'}`}>{t("home.completeQuestionnaire")}</Text>
+                <Text className={`${isDark ? 'text-white/90' : 'text-black/70'} text-sm`}>{t("home.getPersonalizedRecommendations")}</Text>
               </View>
               <Ionicons name="sparkles" size={18} color="#000" />
             </Pressable>
@@ -480,8 +480,8 @@ export default function HomePage() {
             onPress={() => router.push("/roadmap")}
             className={`w-full rounded-2xl p-4 flex-row items-center ${cardClass} border`}
           >
-            <View className="mr-3 p-2 rounded-xl bg-green-500/20">
-              <Ionicons name="map" size={18} color="#22C55E" />
+            <View className="mr-3 p-2 rounded-xl bg-emerald-500/20">
+              <Ionicons name="map" size={18} color="#008f4e" />
             </View>
             <View className="flex-1">
               <Text className={`font-semibold ${textClass}`}>{t("home.viewRoadmap")}</Text>
@@ -509,12 +509,12 @@ export default function HomePage() {
                   <View className="mt-3">
                     <View className="flex-row justify-between mb-2">
                       <Text className={secondaryTextClass}>{t("home.major")}</Text>
-                      <Text className="text-green-500">{user ? user.major || t("home.undecided") : t("home.undecided")}</Text>
+                      <Text className="text-emerald-500">{user ? user.major || t("home.undecided") : t("home.undecided")}</Text>
                     </View>
                     {user && user.gpa && (
                       <View className="flex-row justify-between mb-2">
                         <Text className={secondaryTextClass}>{t("home.gpa")}</Text>
-                        <Text className="text-green-500">{user ? user.gpa : ""}</Text>
+                        <Text className="text-emerald-500">{user ? user.gpa : ""}</Text>
                       </View>
                     )}
 
@@ -620,7 +620,7 @@ export default function HomePage() {
                         <View className="flex-row items-center justify-between">
                           <View className="flex-1">
                             <Text className={textClass}>{college.name}</Text>
-                            <Text className="text-green-500 font-semibold">Match {getMatchText(r)}</Text>
+                            <Text className="text-emerald-500 font-semibold">Match {getMatchText(r)}</Text>
                           </View>
                           <Pressable
                             onPress={(e) => {
@@ -632,7 +632,7 @@ export default function HomePage() {
                             <Ionicons
                               name={saved ? "bookmark" : "bookmark-outline"}
                               size={24}
-                              color={saved ? "#22C55E" : placeholderTextColor}
+                              color={saved ? "#008f4e" : placeholderTextColor}
                             />
                           </Pressable>
                         </View>

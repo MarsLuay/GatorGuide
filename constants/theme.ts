@@ -5,26 +5,25 @@
 
 import { Platform } from "react-native";
 
-// Updated to match app brand green
-const tintColorLight = "#22C55E";
-const tintColorDark = "#22C55E";
+// 主色 #008f4e | 70%主 30%辅 10%强调 | 对比度4.5-7:1
+const accent = "#008f4e";
 
 export const Colors = {
   light: {
-    text: "#11181C",
-    background: "#fff",
-    tint: tintColorLight,
-    icon: "#687076",
-    tabIconDefault: "#687076",
-    tabIconSelected: tintColorLight,
+    text: "#001f0f",           // 主文字 emerald900 on 浅底
+    background: "#FFFFFF",     // 偏白主背景
+    tint: accent,
+    icon: "#1f8a5d",           // 辅色 emerald400
+    tabIconDefault: "#00753e", // 辅色 emerald600
+    tabIconSelected: accent,
   },
   dark: {
-    text: "#ECEDEE",
-    background: "#151718",
-    tint: tintColorDark,
-    icon: "#9BA1A6",
-    tabIconDefault: "#9BA1A6",
-    tabIconSelected: tintColorDark,
+    text: "#FFFFFF",           // 主文字 白 on 深底 高对比
+    background: "#001f0f",     // 70% 主背景 emerald900
+    tint: accent,
+    icon: "#b6e2b6",           // 辅色 emerald50 更亮易读
+    tabIconDefault: "#b6e2b6",
+    tabIconSelected: accent,
   },
 };
 

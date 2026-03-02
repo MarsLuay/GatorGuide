@@ -76,13 +76,13 @@ export function ProfileField(props: ProfileFieldProps) {
   return (
     <View className={wrapperClass}>
       <View className="flex-row items-start">
-        <MaterialIcons name={icon} size={20} color="#22C55E" />
+        <MaterialIcons name={icon} size={20} color="#008f4e" />
         <View className="flex-1 ml-3">
           <Text className={`text-sm ${secondaryTextClass} mb-1`}>{label}</Text>
 
           {props.type === "link" ? (
             <Pressable onPress={props.onPress}>
-              <Text className="text-green-500 underline">
+              <Text className="text-emerald-500 underline">
                 {props.linkText || value || resolvedEmptyText}
               </Text>
             </Pressable>
@@ -107,7 +107,7 @@ export function ProfileField(props: ProfileFieldProps) {
               <Text className={`${textClass} text-sm`}>
                 {props.editValue || props.uploadText || t("general.uploadFile")}
               </Text>
-              <MaterialIcons name="upload" size={18} color="#22C55E" />
+              <MaterialIcons name="upload" size={18} color="#008f4e" />
             </Pressable>
           ) : null}
         </View>

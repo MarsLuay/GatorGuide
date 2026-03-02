@@ -6,6 +6,7 @@ import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { collegeService, College } from "@/services";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
+import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppData } from "@/hooks/use-app-data";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -22,6 +23,7 @@ export default function CollegeDetailsPage() {
   const [error, setError] = useState<string | null>(null);
 
   const styles = useThemeStyles();
+  const { isDark } = useAppTheme();
   const { addSavedCollege, removeSavedCollege, isCollegeSaved } = useAppData();
   const { textClass, secondaryTextClass, cardBgClass, borderClass, placeholderColor } = styles;
 
@@ -198,7 +200,7 @@ export default function CollegeDetailsPage() {
                 <Ionicons
                   name={isCollegeSaved(college.id) ? "bookmark" : "bookmark-outline"}
                   size={26}
-                  color={isCollegeSaved(college.id) ? "#22C55E" : placeholderColor}
+                  color={isCollegeSaved(college.id) ? "#008f4e" : placeholderColor}
                 />
               </Pressable>
             )}
@@ -207,14 +209,14 @@ export default function CollegeDetailsPage() {
           {/* Loading */}
           {loading ? (
             <View className="py-12 items-center">
-              <ActivityIndicator size="large" color="#22C55E" />
+              <ActivityIndicator size="large" color="#008f4e" />
             </View>
           ) : error ? (
             <View className={`${cardBgClass} border rounded-2xl p-4 w-full mb-4`}>
               <Text className={`text-base ${textClass} mb-2`}>{t("general.error")}</Text>
               <Text className={`${secondaryTextClass} mb-4`}>{error}</Text>
-              <Pressable onPress={fetchDetails} className="bg-green-500 rounded-lg py-2 items-center">
-                <Text className="text-black font-semibold">{t("general.retry")}</Text>
+              <Pressable onPress={fetchDetails} className="bg-emerald-500 rounded-lg py-2 items-center">
+                <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold`}>{t("general.retry")}</Text>
               </Pressable>
             </View>
           ) : !college ? (
@@ -403,8 +405,8 @@ export default function CollegeDetailsPage() {
                       </ScrollView>
 
                       {filteredRows.length > rowLimit && (
-                        <Pressable onPress={() => setRowLimit(filteredRows.length)} className="mt-3 rounded-lg py-2 items-center bg-green-500">
-                          <Text className="text-black font-semibold">{(t("details.showMore") as any) ?? "Show more"}</Text>
+                        <Pressable onPress={() => setRowLimit(filteredRows.length)} className="mt-3 rounded-lg py-2 items-center bg-emerald-500">
+                          <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold`}>{(t("details.showMore") as any) ?? "Show more"}</Text>
                         </Pressable>
                       )}
                     </React.Fragment>
