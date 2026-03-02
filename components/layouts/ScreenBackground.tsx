@@ -12,8 +12,8 @@ export function ScreenBackground({ children, style, ...rest }: Props) {
   const { isDark } = useAppTheme();
 
   const colors = isDark
-    ? (["#000000", "#111827", "#000000"] as const)
-    : (["#FFFFFF", "#ECFDF5", "#FFFFFF"] as const);
+    ? (["#001f0f", "#003b1a", "#001f0f"] as const)
+    : (["#FFFFFF", "#f0fdf4", "#FFFFFF"] as const);
 
   return (
     <LinearGradient colors={colors} style={[{ flex: 1 }, style]} {...rest}>

@@ -6,7 +6,6 @@ import * as Haptics from "expo-haptics";
 import { useAudioPlayer } from "expo-audio";
 import ConfettiCannon from "react-native-confetti-cannon";
 import * as DocumentPicker from "expo-document-picker";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "@/services/firebase";
 import { storageService } from "@/services/storage.service";
@@ -14,6 +13,7 @@ import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
+import { useAppTheme } from "@/hooks/use-app-theme";
 import { FormInput } from "@/components/ui/FormInput";
 import { roadmapService } from "@/services/roadmap.service";
 
@@ -29,6 +29,7 @@ export default function ProfileSetupPage() {
   const { updateUser, state } = useAppData();
   const { t } = useAppLanguage();
   const styles = useThemeStyles();
+  const { isDark } = useAppTheme();
 
   const confettiRef = useRef<ConfettiCannon | null>(null);
   const cheerPlayer = useAudioPlayer("https://assets.mixkit.co/active_storage/sfx/2018/2018-preview.mp3");
@@ -103,25 +104,10 @@ export default function ProfileSetupPage() {
   const uploadSelectedDocument = async (
     userId: string,
     selectedDoc: SelectedDocument | null,
-    folder: "resumes" | "transcripts",
+    _folder: "resumes" | "transcripts",
     type: "resume" | "transcript"
   ): Promise<string> => {
     if (!selectedDoc?.uri) return "";
-    if (!selectedDoc.uri.startsWith("file")) return selectedDoc.uri;
-
-    if (db) {
-      try {
-        const response = await fetch(selectedDoc.uri);
-        const blob = await response.blob();
-        const storage = getStorage();
-        const fileRef = ref(storage, `users/${userId}/${folder}/${Date.now()}-${selectedDoc.name}`);
-        await uploadBytes(fileRef, blob);
-        return await getDownloadURL(fileRef);
-      } catch (error) {
-        console.warn(`Failed to upload ${type} to Firebase, falling back to local storage.`, error);
-      }
-    }
-
     if (type === "resume") {
       const localFile = await storageService.uploadResume(userId, selectedDoc.uri);
       return localFile.url;
@@ -198,11 +184,11 @@ export default function ProfileSetupPage() {
           <Text numberOfLines={1} className={`flex-1 mr-3 ${selectedDoc ? styles.textClass : styles.secondaryTextClass}`}>
             {selectedDoc?.name || placeholder}
           </Text>
-          <MaterialIcons name={selectedDoc ? "check-circle" : "upload-file"} size={20} color="#22C55E" />
+          <MaterialIcons name={selectedDoc ? "check-circle" : "upload-file"} size={20} color="#008f4e" />
         </Pressable>
 
         {!!selectedDoc && (
-          <View className="mt-3 pt-3 border-t border-zinc-300/40 dark:border-zinc-700/60 flex-row items-center justify-between">
+          <View className="mt-3 pt-3 border-t border-emerald-300/40 dark:border-emerald-700/60 flex-row items-center justify-between">
             <Text className={`text-xs ${styles.secondaryTextClass}`}>{selectedDoc.mimeType || "document"}</Text>
             <Pressable onPress={onClear} hitSlop={8}>
               <MaterialIcons name="delete-outline" size={18} color="#EF4444" />
@@ -223,7 +209,7 @@ export default function ProfileSetupPage() {
         >
           <View className="w-full max-w-md self-center px-6 pt-20">
             <Pressable onPress={handleBack} className="mb-6 flex-row items-center">
-              <MaterialIcons name="arrow-back" size={20} color={styles.secondaryTextClass.includes("white") ? "#9CA3AF" : "#6B7280"} />
+              <MaterialIcons name="arrow-back" size={20} color={styles.placeholderColor} />
               <Text className={`ml-2 ${styles.secondaryTextClass}`}>{t("setup.previous")}</Text>
             </Pressable>
 
@@ -232,8 +218,8 @@ export default function ProfileSetupPage() {
               <Text className={`${styles.secondaryTextClass} mt-1 mb-5`}>{t("setup.subtitle")}</Text>
 
               <View className="mb-4">
-                <View className="h-2 rounded-full bg-zinc-200 dark:bg-zinc-700 overflow-hidden">
-                  <View className="h-full bg-green-500" style={{ width: `${(step / 3) * 100}%` }} />
+                <View className="h-2 rounded-full bg-emerald-200 dark:bg-emerald-700 overflow-hidden">
+                  <View className="h-full bg-emerald-500" style={{ width: `${(step / 3) * 100}%` }} />
                 </View>
               </View>
 
@@ -303,10 +289,10 @@ export default function ProfileSetupPage() {
                       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                       handleNext();
                     }}
-                    className="flex-1 bg-green-500 rounded-lg py-4 items-center flex-row justify-center"
+                    className="flex-1 bg-emerald-500 rounded-lg py-4 items-center flex-row justify-center"
                   >
-                    <Text className="text-black font-semibold mr-2">{t("setup.next")}</Text>
-                    <MaterialIcons name="arrow-forward" size={18} color="black" />
+                    <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold mr-2`}>{t("setup.next")}</Text>
+                    <MaterialIcons name="arrow-forward" size={18} color={isDark ? "#FFFFFF" : "#000"} />
                   </Pressable>
                 ) : (
                   <Pressable
@@ -315,10 +301,10 @@ export default function ProfileSetupPage() {
                       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
                       handleContinue();
                     }}
-                    className="flex-1 bg-green-500 rounded-lg py-4 items-center flex-row justify-center"
+                    className="flex-1 bg-emerald-500 rounded-lg py-4 items-center flex-row justify-center"
                   >
-                    <Text className="text-black font-semibold mr-2">{isUploading ? `${t("setup.continue")}...` : t("setup.continue")}</Text>
-                    <MaterialIcons name="arrow-forward" size={18} color="black" />
+                    <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold mr-2`}>{isUploading ? `${t("setup.continue")}...` : t("setup.continue")}</Text>
+                    <MaterialIcons name="arrow-forward" size={18} color={isDark ? "#FFFFFF" : "#000"} />
                   </Pressable>
                 )}
               </View>

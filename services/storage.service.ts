@@ -1,8 +1,10 @@
 // services/storage.service.ts
 // File storage service for resumes and transcripts
-// Local-only storage to avoid paid cloud storage
+// Local-only storage - files copied to document directory for persistence
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as FileSystem from 'expo-file-system';
+import { Platform } from 'react-native';
 
 export type UploadedFile = {
   name: string;
@@ -10,34 +12,60 @@ export type UploadedFile = {
   uploadedAt: Date;
 };
 
+const DOCS_DIR = 'gatorguide_docs';
+
+async function copyToLocalStorage(sourceUri: string, fileName: string, subDir: string): Promise<string> {
+  if (Platform.OS === 'web') {
+    return sourceUri;
+  }
+  const dir = `${FileSystem.documentDirectory}${DOCS_DIR}/${subDir}/`;
+  await FileSystem.makeDirectoryAsync(dir, { intermediates: true });
+  const destUri = `${dir}${Date.now()}_${fileName}`;
+  await FileSystem.copyAsync({ from: sourceUri, to: destUri });
+  return destUri;
+}
+
 class StorageService {
 
   async uploadResume(userId: string, fileUri: string): Promise<UploadedFile> {
-    await new Promise((resolve) => setTimeout(resolve, 200));
-
     const fileName = fileUri.split('/').pop() || `resume_${Date.now()}.pdf`;
-    const localData = {
+    const persistentUri = await copyToLocalStorage(fileUri, fileName, `resume_${userId}`);
+    const localData: UploadedFile = {
       name: fileName,
-      url: fileUri,
+      url: persistentUri,
       uploadedAt: new Date(),
     };
-
     await AsyncStorage.setItem(`resume:${userId}`, JSON.stringify(localData));
     return localData;
   }
 
   async uploadTranscript(userId: string, fileUri: string): Promise<UploadedFile> {
-    await new Promise((resolve) => setTimeout(resolve, 200));
-
     const fileName = fileUri.split('/').pop() || `transcript_${Date.now()}.pdf`;
-    const localData = {
+    const persistentUri = await copyToLocalStorage(fileUri, fileName, `transcript_${userId}`);
+    const localData: UploadedFile = {
       name: fileName,
-      url: fileUri,
+      url: persistentUri,
       uploadedAt: new Date(),
     };
-
     await AsyncStorage.setItem(`transcript:${userId}`, JSON.stringify(localData));
     return localData;
+  }
+
+  async uploadDocument(userId: string, docType: string, fileUri: string): Promise<UploadedFile> {
+    const fileName = fileUri.split('/').pop() || `${docType}_${Date.now()}.pdf`;
+    const persistentUri = await copyToLocalStorage(fileUri, fileName, `roadmap_${userId}`);
+    const localData: UploadedFile = {
+      name: fileName,
+      url: persistentUri,
+      uploadedAt: new Date(),
+    };
+    await AsyncStorage.setItem(`roadmap:${userId}:${docType}`, JSON.stringify(localData));
+    return localData;
+  }
+
+  async getDocument(userId: string, docType: string): Promise<UploadedFile | null> {
+    const data = await AsyncStorage.getItem(`roadmap:${userId}:${docType}`);
+    return data ? JSON.parse(data) : null;
   }
 
   /**

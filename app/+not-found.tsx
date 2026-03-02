@@ -10,8 +10,8 @@ export default function NotFound() {
   const back = useBack();
   const { isDark } = useAppTheme();
 
-  const textClass = isDark ? "text-white" : "text-gray-900";
-  const secondaryTextClass = isDark ? "text-gray-400" : "text-gray-600";
+  const textClass = isDark ? "text-white" : "text-emerald-900";
+  const secondaryTextClass = isDark ? "text-white/90" : "text-emerald-700";
 
   return (
     <ScreenBackground>
@@ -24,13 +24,13 @@ export default function NotFound() {
 
           <Pressable
             onPress={() => router.replace("/(tabs)")}
-            className="px-5 py-4 rounded-2xl bg-green-500 w-full items-center"
+            className="px-5 py-4 rounded-2xl bg-emerald-500 w-full items-center"
           >
-            <Text className="text-black font-semibold">Go Home</Text>
+            <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold`}>Go Home</Text>
           </Pressable>
 
           <Pressable onPress={back} className="mt-4">
-            <Text className="text-green-500">Go Back</Text>
+            <Text className="text-emerald-500">Go Back</Text>
           </Pressable>
         </View>
       </View>

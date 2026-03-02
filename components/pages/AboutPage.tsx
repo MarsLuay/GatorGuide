@@ -7,12 +7,12 @@ import { useAppTheme } from "@/hooks/use-app-theme";
 export default function AboutPage() {
   const { isDark } = useAppTheme();
   const router = useRouter();
-  const textClass = isDark ? "text-white" : "text-gray-900";
-  const secondaryTextClass = isDark ? "text-gray-400" : "text-gray-600";
+  const textClass = isDark ? "text-white" : "text-emerald-900";
+  const secondaryTextClass = isDark ? "text-white/90" : "text-emerald-700";
   const cardBgClass = isDark
-    ? "bg-gray-900 border-gray-800"
-    : "bg-white border-gray-200";
-  const borderClass = isDark ? "border-gray-800" : "border-gray-200";
+    ? "bg-emerald-900/90 border-emerald-800"
+    : "bg-white border-emerald-200";
+  const borderClass = isDark ? "border-emerald-700" : "border-emerald-300";
 
   return (
     <ScreenBackground>
@@ -27,7 +27,7 @@ export default function AboutPage() {
               <MaterialIcons
                 name="arrow-back"
                 size={20}
-                color={isDark ? "#9CA3AF" : "#6B7280"}
+                color={isDark ? "#b6e2b6" : "#1f8a5d"}
               />
               <Text className={`${secondaryTextClass} ml-2`}>
                 Back
@@ -43,7 +43,7 @@ export default function AboutPage() {
           <View className="px-6 mb-6">
             <View className={`${cardBgClass} border rounded-2xl p-6`}>
               <View className="items-center mb-4">
-                <View className="bg-green-500 p-4 rounded-2xl">
+                <View className="bg-emerald-500 p-4 rounded-2xl">
                   <FontAwesome5
                     name="graduation-cap"
                     size={48}
@@ -103,8 +103,8 @@ export default function AboutPage() {
               ].map((item) => (
                 <View key={item.n}>
                   <View className="flex-row items-center mb-2">
-                    <View className="w-6 h-6 rounded-full bg-green-500 items-center justify-center mr-2">
-                      <Text className="text-black text-sm font-semibold">
+                    <View className="w-6 h-6 rounded-full bg-emerald-500 items-center justify-center mr-2">
+                      <Text className={`${isDark ? 'text-white' : 'text-black'} text-sm font-semibold`}>
                         {item.n}
                       </Text>
                     </View>
@@ -148,7 +148,7 @@ export default function AboutPage() {
                 <MaterialIcons
                   name="chevron-right"
                   size={22}
-                  color={isDark ? "#9CA3AF" : "#6B7280"}
+                  color={isDark ? "#b6e2b6" : "#1f8a5d"}
                 />
               </Pressable>
 
@@ -162,7 +162,7 @@ export default function AboutPage() {
                 <MaterialIcons
                   name="chevron-right"
                   size={22}
-                  color={isDark ? "#9CA3AF" : "#6B7280"}
+                  color={isDark ? "#b6e2b6" : "#1f8a5d"}
                 />
               </Pressable>
             </View>
@@ -173,7 +173,7 @@ export default function AboutPage() {
             <View
               className={`${
                 isDark
-                  ? "bg-gray-900/50 border-gray-800"
+                  ? "bg-neutral-800 border-neutral-700"
                   : "bg-gray-50 border-gray-200"
               } border rounded-2xl p-4`}
             >

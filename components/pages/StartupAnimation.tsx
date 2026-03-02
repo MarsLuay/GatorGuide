@@ -69,7 +69,7 @@ export default function StartupAnimation({ onFinish }: { onFinish: () => void })
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#FFFFFF',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     height: 160,
     marginBottom: 20,
     borderRadius: 80,
-    backgroundColor: '#22C55E',
+    backgroundColor: '#008f4e',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 36,
     fontWeight: '800',
-    color: '#2a7a57',
+    color: '#008f4e',
     marginTop: 16,
   },
 });

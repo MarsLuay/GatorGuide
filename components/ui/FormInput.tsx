@@ -37,12 +37,12 @@ export function FormInput({
         placeholderTextColor={placeholderColor}
        
         className={`w-full ${inputBgClass} ${textClass} border ${
-          error ? 'border-red-400' : 'border-transparent'
+          error ? 'border-red-500' : ''
         } rounded-lg px-4 py-3 ${!editable ? 'opacity-50' : ''}`}
         editable={editable} 
         {...textInputProps}
       />
-      {error && <Text className="text-xs text-red-400 mt-1">{error}</Text>}
+      {error && <Text className="text-xs text-red-500 mt-1">{error}</Text>}
     </View>
   );
 }

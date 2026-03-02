@@ -60,7 +60,7 @@ export function AppThemeProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <AppThemeContext.Provider value={value}>
-      <View style={{ flex: 1, backgroundColor: resolvedTheme === 'dark' ? '#000' : '#fff' }}>
+      <View style={{ flex: 1, backgroundColor: resolvedTheme === 'dark' ? '#001f0f' : '#FFFFFF' }}>
         {children}
       </View>
     </AppThemeContext.Provider>

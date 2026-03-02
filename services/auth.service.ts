@@ -74,12 +74,13 @@ class AuthService {
         await updateProfile(userCredential.user, { displayName: credentials.name.trim() });
       }
 
-      // 直接登录，无需邮箱验证
-      return {
-        uid: userCredential.user.uid,
-        email: userCredential.user.email ?? credentials.email,
-        name: userCredential.user.displayName ?? credentials.name,
-      };
+      // 注册必须邮箱验证：发送验证邮件后登出，用户验证后才能登录
+      await sendEmailVerification(userCredential.user);
+      await firebaseSignOut(firebaseAuth);
+      const err = new Error("Email verification required") as Error & { code?: string; email?: string };
+      err.code = "auth/email-verification-required";
+      err.email = credentials.email;
+      throw err;
     }
 
     const userCredential = await signInWithEmailAndPassword(
@@ -146,7 +147,8 @@ class AuthService {
       throw new Error("Firebase Auth not configured yet");
     }
 
-    const authDomain = API_CONFIG.firebase.authDomain ?? "gatorguide.firebaseapp.com";
+    const authDomain = API_CONFIG.firebase.authDomain?.trim() || "";
+    if (!authDomain) throw new Error("EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN is required for email link sign-in. Set it in .env");
     const actionCodeSettings: ActionCodeSettings = {
       url: `https://${authDomain}/__/auth/links`,
       handleCodeInApp: true,

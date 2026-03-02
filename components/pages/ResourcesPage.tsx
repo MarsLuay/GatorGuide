@@ -185,6 +185,37 @@ export default function ResourcesPage() {
       },
 
       {
+        title: t("resources.careerFair"),
+        icon: "event",
+        items: [
+          {
+            title: t("resources.grcCareerFair"),
+            description: t("resources.grcCareerFairDesc"),
+            url: "https://www.greenriver.edu/students/academics/career-and-advising-center/career-services/career-fair.html",
+            tags: ["career fair", "grc", "jobs", "employers", "networking"],
+          },
+          {
+            title: t("resources.grcCareerCenter"),
+            description: t("resources.grcCareerCenterDesc"),
+            url: "https://www.greenriver.edu/students/academics/career-and-advising-center/",
+            tags: ["career center", "advising", "grc", "resume", "job search"],
+          },
+          {
+            title: t("resources.handshake"),
+            description: t("resources.handshakeDesc"),
+            url: "https://www.handshake.com",
+            tags: ["handshake", "jobs", "internships", "career fair", "employers"],
+          },
+          {
+            title: t("resources.uwCareerCenter"),
+            description: t("resources.uwCareerCenterDesc"),
+            url: "https://careers.uw.edu/",
+            tags: ["uw", "career center", "career fair", "jobs", "internships"],
+          },
+        ],
+      },
+
+      {
         title: t("resources.internships"),
         icon: "work",
         items: [

@@ -1,11 +1,11 @@
 import { useMemo, useState } from "react";
 import { View, Text, Pressable, ScrollView, TextInput } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import useBack from "@/hooks/use-back";
 import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
+import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppData } from "@/hooks/use-app-data";
 import { College } from "@/services";
@@ -13,8 +13,10 @@ import { College } from "@/services";
 const MAX_SELECT = 3;
 
 export default function ComparePage() {
-  const back = useBack();
+  const router = useRouter();
   const styles = useThemeStyles();
+  const { isDark } = useAppTheme();
+  const goToResources = () => router.replace("/(tabs)/resources");
   const { t } = useAppLanguage();
   const insets = useSafeAreaInsets();
   const { state } = useAppData();
@@ -24,7 +26,6 @@ export default function ComparePage() {
   const [sortBy, setSortBy] = useState<"match" | "tuition" | "admission">("match");
 
   const { textClass, secondaryTextClass, borderClass, cardBgClass, inputBgClass, placeholderColor } = styles;
-  const router = useRouter();
 
   const getTuitionValue = (c: College) => {
     const n = typeof c.tuition === "number" ? c.tuition : c.tuitionInState ?? c.tuitionOutOfState ?? null;
@@ -109,7 +110,7 @@ export default function ComparePage() {
         contentContainerStyle={{ paddingTop: insets.top, paddingBottom: 96 }}
       >
         <View className="max-w-md w-full self-center px-6 pt-6">
-          <Pressable onPress={back} className="mb-4 flex-row items-center">
+          <Pressable onPress={goToResources} className="mb-4 flex-row items-center">
             <MaterialIcons name="arrow-back" size={24} color={styles.placeholderColor} />
             <Text className={secondaryTextClass + " ml-2"}>{t("general.back")}</Text>
           </Pressable>
@@ -147,10 +148,10 @@ export default function ComparePage() {
                       key={key}
                       onPress={() => setSortBy(key)}
                       className={`px-3 py-2 rounded-lg border ${
-                        sortBy === key ? "bg-green-500 border-green-500" : `${cardBgClass} ${borderClass}`
+                        sortBy === key ? "bg-emerald-500 border-emerald-500" : `${cardBgClass} ${borderClass}`
                       }`}
                     >
-                      <Text className={sortBy === key ? "text-black font-medium" : textClass}>
+                      <Text className={sortBy === key ? (isDark ? "text-white font-medium" : "text-black font-medium") : textClass}>
                         {key === "match" ? t("compare.sortMatch") : key === "tuition" ? t("compare.sortTuition") : t("compare.sortAdmission")}
                       </Text>
                     </Pressable>
@@ -181,7 +182,7 @@ export default function ComparePage() {
                       <View
                         className={
                           "w-8 h-8 rounded-full border-2 items-center justify-center " +
-                          (isSelected ? "bg-green-500 border-green-500" : "border " + borderClass)
+                          (isSelected ? "bg-emerald-500 border-emerald-500" : "border " + borderClass)
                         }
                       >
                         {isSelected && (
@@ -234,7 +235,7 @@ export default function ComparePage() {
                       {selected.map((c) => (
                         <View
                           key={c.id}
-                          className="min-w-[180] border rounded-xl p-3 border-green-500/50"
+                          className="min-w-[180] border rounded-xl p-3 border-emerald-500/50"
                         >
                           <Text className={textClass + " font-medium mb-2"} numberOfLines={2}>
                             {c.name}
