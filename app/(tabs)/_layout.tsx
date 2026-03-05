@@ -11,7 +11,10 @@ import { useAppLanguage } from "@/hooks/use-app-language";
 
 export default function TabLayout() {
   const router = useRouter();
-  const { isDark } = useAppTheme();
+  const { resolvedTheme } = useAppTheme();
+  const isDark = resolvedTheme === "dark";
+  const isGreen = resolvedTheme === "green";
+  const isLight = resolvedTheme === "light";
   const { isHydrated, state } = useAppData();
   const { t } = useAppLanguage();
   const [titles, setTitles] = useState({
@@ -51,7 +54,7 @@ export default function TabLayout() {
   }
 
   const active = "#008f4e";
-  const inactive = isDark ? "#b6e2b6" : "#00753e";
+  const inactive = isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#00753e" : "#6B7280";
 
   return (
     <Tabs
@@ -62,18 +65,27 @@ export default function TabLayout() {
         tabBarActiveTintColor: active,
         tabBarInactiveTintColor: inactive,
         tabBarStyle: {
-          backgroundColor: isDark ? "#001f0f" : "#FFFFFF",
-          borderTopColor: isDark ? "#003b1a" : "#e5f5eb",
+          backgroundColor: isDark ? "#000000" : isGreen ? "#001f0f" : "#ECFDF3",
+          borderTopColor: isDark ? "#1F2937" : isGreen ? "#003b1a" : "#A7E3C4",
           borderTopWidth: 1,
           elevation: 0,
           shadowOpacity: 0,
           width: "100%",
+          minHeight: 74,
+          paddingTop: 6,
+          paddingBottom: 8,
         },
         tabBarItemStyle: {
           flex: 1,
           minWidth: "25%",
           justifyContent: "center",
           alignItems: "center",
+          paddingVertical: 2,
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,
+          lineHeight: 16,
+          marginBottom: 2,
         },
       }}
     >

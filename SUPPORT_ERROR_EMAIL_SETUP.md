@@ -1,7 +1,7 @@
 # Support Error Email Setup
 
 This sends client error logs automatically to:
-- `gatorguide_mobiledevelopmentteam@outlook.com`
+- `gatorguide@outlook.com`
 
 ## 1) Install Firebase CLI and login
 
@@ -53,7 +53,7 @@ EXPO_PUBLIC_SUPPORT_ERROR_LOG_WEBHOOK=https://YOUR_REGION-YOUR_PROJECT.cloudfunc
 
 1. Trigger an app error.
 2. Tap `Send error log to support`.
-3. Confirm email arrives in `gatorguide_mobiledevelopmentteam@outlook.com`.
+3. Confirm email arrives in `gatorguide@outlook.com`.
 
 ## Notes
 

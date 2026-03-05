@@ -9,11 +9,15 @@ type Props = ViewProps & {
 };
 
 export function ScreenBackground({ children, style, ...rest }: Props) {
-  const { isDark } = useAppTheme();
+  const { resolvedTheme } = useAppTheme();
+  const isDark = resolvedTheme === "dark";
+  const isGreen = resolvedTheme === "green";
 
   const colors = isDark
-    ? (["#001f0f", "#003b1a", "#001f0f"] as const)
-    : (["#FFFFFF", "#f0fdf4", "#FFFFFF"] as const);
+    ? (["#000000", "#111827", "#000000"] as const)
+    : isGreen
+      ? (["#001f0f", "#003b1a", "#001f0f"] as const)
+      : (["#ECFDF3", "#D9F7E8", "#ECFDF3"] as const);
 
   return (
     <LinearGradient colors={colors} style={[{ flex: 1 }, style]} {...rest}>

@@ -48,17 +48,23 @@ export default function SettingsPage() {
   const [deleteDebugLogs, setDeleteDebugLogs] = useState<string[]>([]);
   const [deleteCopyStatus, setDeleteCopyStatus] = useState<"" | "copied" | "failed">("");
 
-  const { theme, setTheme, isDark } = useAppTheme();
+  const { theme, setTheme, isDark, isGreen, isLight } = useAppTheme();
   const { t, language } = useAppLanguage();
   const { isHydrated, state, signOut, deleteAccount, setNotificationsEnabled, restoreData } = useAppData();
   const insets = useSafeAreaInsets();
 
   // removed currentLanguageName (unused) to satisfy linter
 
-  const textClass = isDark ? "text-white" : "text-emerald-900";
-  const secondaryTextClass = isDark ? "text-white/90" : "text-emerald-700";
-  const cardBgClass = isDark ? "bg-emerald-900/90 border-emerald-800" : "bg-white border-emerald-200";
-  const cardBorderClass = isDark ? "border-emerald-700" : "border-emerald-300";
+  const textClass = isDark ? "text-white" : isGreen ? "text-white" : isLight ? "text-emerald-900" : "text-gray-900";
+  const secondaryTextClass = isDark ? "text-gray-400" : isGreen ? "text-emerald-100" : isLight ? "text-emerald-700" : "text-gray-600";
+  const cardBgClass = isDark
+    ? "bg-gray-900/80 border-gray-800"
+    : isGreen
+      ? "bg-emerald-900/90 border-emerald-800"
+      : isLight
+        ? "bg-emerald-50 border-emerald-300"
+        : "bg-white/90 border-gray-200";
+  const cardBorderClass = isDark ? "border-gray-800" : isGreen ? "border-emerald-700" : isLight ? "border-emerald-300" : "border-gray-200";
   // Mirror row layout for RTL languages while keeping the same component tree.
   const isRTL = language === "Arabic" || language === "Persian";
   const flexDirection = isRTL ? "flex-row-reverse" : "flex-row";
@@ -200,7 +206,7 @@ export default function SettingsPage() {
               if (parsed.data) {
                 await restoreData(parsed.data);
               }
-              if (parsed.theme === "light" || parsed.theme === "dark" || parsed.theme === "system") {
+              if (parsed.theme === "light" || parsed.theme === "dark" || parsed.theme === "green" || parsed.theme === "system") {
                 setTheme(parsed.theme);
               }
             },
@@ -292,9 +298,18 @@ export default function SettingsPage() {
             icon: "dark-mode",
             label: t("settings.theme"),
             type: "nav",
-            value: theme === "system" ? t("settings.system") : theme === "dark" ? t("settings.dark") : t("settings.light"),
+            value:
+              theme === "system"
+                ? t("settings.system")
+                : theme === "dark"
+                  ? t("settings.dark")
+                  : theme === "light"
+                    ? t("settings.light")
+                    : t("settings.green"),
             onPress: () => {
-              const next = theme === "system" ? "dark" : theme === "dark" ? "light" : "system";
+              const order = ["system", "dark", "light", "green"] as const;
+              const currentIndex = order.indexOf(theme);
+              const next = order[(currentIndex + 1) % order.length];
               setTheme(next);
             },
           },
@@ -418,7 +433,7 @@ export default function SettingsPage() {
 
               <Pressable
                 onPress={handleDeleteConfirm}
-                className={`flex-1 bg-emerald-800 rounded-lg py-4 items-center ${(!isHydrated || isDeletingAccount) ? "opacity-60" : ""}`}
+                className={`flex-1 bg-red-500 rounded-lg py-4 items-center ${(!isHydrated || isDeletingAccount) ? "opacity-60" : ""}`}
                 disabled={!isHydrated || isDeletingAccount}
               >
                 <Text className="text-white font-semibold">{isDeletingAccount ? (t("general.pleaseWait") || "Please wait") : t("general.delete")}</Text>
@@ -491,13 +506,13 @@ export default function SettingsPage() {
                       <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${textClass}`}>{item.label}</Text>
 
                       {item.type === "toggle" ? (
-                        <View className={`w-12 h-6 rounded-full ${("enabled" in item && item.enabled) ? "bg-emerald-500" : isDark ? "bg-emerald-700" : "bg-emerald-300"}`}>
+                        <View className={`w-12 h-6 rounded-full ${("enabled" in item && item.enabled) ? "bg-emerald-500" : isDark ? "bg-gray-700" : isGreen ? "bg-emerald-700" : isLight ? "bg-emerald-300" : "bg-gray-300"}`}>
                           <View className={`w-5 h-5 bg-white rounded-full mt-0.5 ${("enabled" in item && item.enabled) ? "ml-6" : "ml-0.5"}`} />
                         </View>
                       ) : item.value ? (
                         <Text className={`${isRTL ? "text-left" : ""} ${secondaryTextClass}`}>{item.value}</Text>
                       ) : (
-                        <MaterialIcons name={isRTL ? "chevron-left" : "chevron-right"} size={22} color={isDark ? "#b6e2b6" : "#1f8a5d"} />
+                        <MaterialIcons name={isRTL ? "chevron-left" : "chevron-right"} size={22} color={isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280"} />
                       )}
                     </Pressable>
                   ))}
@@ -514,7 +529,7 @@ export default function SettingsPage() {
                 >
                   <MaterialIcons name="tune" size={20} color="#008f4e" />
                   <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${textClass}`}>{t("settings.cacheSettings")}</Text>
-                  <MaterialIcons name={showAdvancedSettings ? "expand-less" : "expand-more"} size={22} color={isDark ? "#b6e2b6" : "#1f8a5d"} />
+                  <MaterialIcons name={showAdvancedSettings ? "expand-less" : "expand-more"} size={22} color={isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280"} />
                 </Pressable>
 
                 {showAdvancedSettings ? (
@@ -530,7 +545,7 @@ export default function SettingsPage() {
                           {t("settings.cacheAutoClearDescription")}
                         </Text>
                       </View>
-                      <View className={`w-12 h-6 rounded-full ${autoClearCacheEnabled ? "bg-emerald-500" : isDark ? "bg-emerald-700" : "bg-emerald-300"}`}>
+                      <View className={`w-12 h-6 rounded-full ${autoClearCacheEnabled ? "bg-emerald-500" : isDark ? "bg-gray-700" : isGreen ? "bg-emerald-700" : isLight ? "bg-emerald-300" : "bg-gray-300"}`}>
                         <View className={`w-5 h-5 bg-white rounded-full mt-0.5 ${autoClearCacheEnabled ? "ml-6" : "ml-0.5"}`} />
                       </View>
                     </Pressable>
@@ -546,7 +561,7 @@ export default function SettingsPage() {
                           {t("settings.clearCacheDescription")}
                         </Text>
                       </View>
-                      <MaterialIcons name={isRTL ? "chevron-left" : "chevron-right"} size={22} color={isDark ? "#b6e2b6" : "#1f8a5d"} />
+                      <MaterialIcons name={isRTL ? "chevron-left" : "chevron-right"} size={22} color={isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280"} />
                     </Pressable>
 
                     <Pressable
@@ -560,7 +575,7 @@ export default function SettingsPage() {
                           {t("settings.copyEnglishKeyLog")}
                         </Text>
                       </View>
-                      <MaterialIcons name="content-copy" size={20} color={isDark ? "#b6e2b6" : "#1f8a5d"} />
+                      <MaterialIcons name="content-copy" size={20} color={isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280"} />
                     </Pressable>
                   </>
                 ) : null}
@@ -571,7 +586,7 @@ export default function SettingsPage() {
               onPress={handleLogout}
               disabled={!isHydrated}
               className={`w-full ${
-                isDark ? 'bg-emerald-900/90 border-emerald-800' : 'bg-white border-emerald-200'
+                isDark ? 'bg-gray-900/80 border-gray-800' : isGreen ? 'bg-emerald-900/90 border-emerald-800' : isLight ? 'bg-emerald-50 border-emerald-300' : 'bg-white/90 border-gray-200'
               } border rounded-2xl px-4 py-5 ${flexDirection} items-center ${!isHydrated ? 'opacity-60' : ''}`}
             >
               <MaterialIcons name="logout" size={20} color="#EF4444" />
@@ -585,21 +600,21 @@ export default function SettingsPage() {
               }}
               disabled={!isHydrated}
               className={`w-full ${
-                isDark ? 'bg-emerald-900/90 border-emerald-800' : 'bg-white border-emerald-200'
+                isDark ? 'bg-gray-900/80 border-gray-800' : isGreen ? 'bg-emerald-900/90 border-emerald-800' : isLight ? 'bg-emerald-50 border-emerald-300' : 'bg-white/90 border-gray-200'
               } border rounded-2xl px-4 py-5 ${flexDirection} items-center ${!isHydrated ? 'opacity-60' : ''}`}
             >
               <MaterialIcons name="delete" size={20} color="#EF4444" />
               <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${isDark ? 'text-red-400' : 'text-red-500'}`}>{t('settings.deleteAccount')}</Text>
             </Pressable>
 
-            <Text className={`text-center text-sm ${isDark ? 'text-white/90' : 'text-gray-500'} mt-2`}>
+            <Text className={`text-center text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'} mt-2`}>
               {t('settings.appVersion')}
             </Text>
             <View className="mt-4 mb-2">
               <View className="flex-row justify-center items-center">
                 <Text className={`text-center text-sm ${secondaryTextClass} mr-2`}>{t('general.needHelpQuestion') ?? 'Need Help?'}</Text>
-                <Pressable onPress={() => Linking.openURL('mailto:gatorguide_mobiledevelopmentteam@outlook.com')} accessibilityRole="link">
-                  <Text className={`text-sm ${isDark ? 'text-white/90' : 'text-emerald-600'} underline font-semibold`}>{t('general.emailUs') ?? 'Email Us!'}</Text>
+                <Pressable onPress={() => Linking.openURL('mailto:gatorguide@outlook.com')} accessibilityRole="link">
+                  <Text className={`text-sm ${isDark ? 'text-green-300' : isGreen ? 'text-green-300' : isLight ? 'text-emerald-600' : 'text-green-600'} underline font-semibold`}>{t('general.emailUs') ?? 'Email Us!'}</Text>
                 </Pressable>
               </View>
             </View>

@@ -46,7 +46,7 @@ export default function RoadmapPage() {
   const router = useRouter();
   const styles = useThemeStyles();
   const { t } = useAppLanguage();
-  const { theme, setTheme, isDark } = useAppTheme();
+  const { theme, setTheme, isDark, isGreen } = useAppTheme();
   const back = useBack();
   const { state, restoreData, isHydrated } = useAppData();
   const { textClass, secondaryTextClass, cardBgClass, borderClass } = styles;
@@ -314,7 +314,7 @@ export default function RoadmapPage() {
             style: "destructive",
             onPress: async () => {
               await restoreData(dataToRestore);
-              if (parsed.theme === "light" || parsed.theme === "dark" || parsed.theme === "system") {
+              if (parsed.theme === "light" || parsed.theme === "dark" || parsed.theme === "green" || parsed.theme === "system") {
                 setTheme(parsed.theme);
               }
             },
@@ -558,10 +558,10 @@ export default function RoadmapPage() {
                               <View key={docKey}>
                                 <Pressable
                                   onPress={() => toggleDocument(task.id, docKey)}
-                                  className={`flex-row items-center p-3 rounded-xl ${task.documents![docKey] ? "bg-emerald-50 dark:bg-emerald-900/60" : "bg-emerald-50 dark:bg-emerald-900/60/80"}`}
+                                  className={`flex-row items-center p-3 rounded-xl ${task.documents![docKey] ? "bg-emerald-50 dark:bg-gray-900/80" : "bg-emerald-50 dark:bg-gray-900/70"}`}
                                 >
                                   <Ionicons name={getDocIcon(docKey)} size={18} color={task.documents![docKey] ? "#008f4e" : styles.placeholderColor} />
-                                  <Text className={`flex-1 ml-3 text-sm ${task.documents![docKey] ? (isDark ? "text-white/90 font-medium" : "text-emerald-700 font-medium") : textClass}`}>
+                                  <Text className={`flex-1 ml-3 text-sm ${task.documents![docKey] ? (isDark || isGreen ? "text-emerald-100 font-medium" : "text-emerald-700 font-medium") : textClass}`}>
                                     {formatDocLabel(docKey)}
                                   </Text>
                                   <Ionicons name={task.documents![docKey] ? "checkmark-circle" : "cloud-upload-outline"} size={20} color={task.documents![docKey] ? "#008f4e" : borderClass} />
@@ -569,7 +569,7 @@ export default function RoadmapPage() {
 
                                 {/* Upload Box Logic */}
                                 {activeUpload === docKey && (
-                                  <View className="mt-2 border-2 border-dashed border-emerald-300 dark:border-neutral-600 rounded-xl p-6 items-center justify-center bg-emerald-50/50 dark:bg-emerald-900/60">
+                                  <View className="mt-2 border-2 border-dashed border-emerald-300 dark:border-gray-700 rounded-xl p-6 items-center justify-center bg-emerald-50/50 dark:bg-gray-900/80">
                                     <Ionicons name="cloud-upload" size={28} color="#008f4e" />
                                     <Text className={`${textClass} mt-2 text-sm font-medium`}>
                                       {t("roadmap.uploadDocument").replace("{document}", formatDocLabel(docKey))}
@@ -578,7 +578,7 @@ export default function RoadmapPage() {
                                     <Pressable
                                       onPress={() => handlePickDocument(docKey)}
                                       disabled={isUploadingDoc}
-                                      className={`mt-3 bg-white dark:bg-emerald-900/60 border border-emerald-200 dark:border-neutral-600 px-4 py-1.5 rounded-lg ${isUploadingDoc ? "opacity-60" : ""}`}
+                                      className={`mt-3 bg-white dark:bg-gray-900/80 border border-emerald-200 dark:border-gray-700 px-4 py-1.5 rounded-lg ${isUploadingDoc ? "opacity-60" : ""}`}
                                     >
                                       <Text className={`${textClass} text-xs font-bold`}>
                                         {isUploadingDoc ? t("general.pleaseWait") : t("roadmap.selectFile")}

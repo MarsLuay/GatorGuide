@@ -35,7 +35,7 @@ type DebugSnapshotWithLimit = RecommendDebug & {
 
 export default function HomePage() {
   const router = useRouter();
-  const { isDark } = useAppTheme();
+  const { isDark, isGreen, isLight } = useAppTheme();
   const { t } = useAppLanguage();
   const { state, setQuestionnaireAnswers, addSavedCollege, removeSavedCollege, isCollegeSaved } = useAppData();
   const insets = useSafeAreaInsets();
@@ -84,11 +84,23 @@ export default function HomePage() {
 
   const hasCompletedQuestionnaire = !!(state.questionnaireAnswers && Object.keys(state.questionnaireAnswers).length > 0);
 
-  const textClass = isDark ? "text-white" : "text-emerald-900";
-  const secondaryTextClass = isDark ? "text-white/90" : "text-emerald-700";
-  const cardClass = isDark ? "bg-emerald-900/90 border-emerald-800" : "bg-white border-emerald-200";
-  const inputClass = isDark ? "bg-emerald-900/70 border-emerald-700" : "bg-white border-emerald-300";
-  const placeholderTextColor = isDark ? "#8cd19e" : "#6B7280";
+  const textClass = isDark ? "text-white" : isGreen ? "text-white" : isLight ? "text-emerald-900" : "text-gray-900";
+  const secondaryTextClass = isDark ? "text-gray-400" : isGreen ? "text-emerald-100" : isLight ? "text-emerald-700" : "text-gray-600";
+  const cardClass = isDark
+    ? "bg-gray-900/80 border-gray-800"
+    : isGreen
+      ? "bg-emerald-900/90 border-emerald-800"
+      : isLight
+        ? "bg-emerald-50 border-emerald-300"
+        : "bg-white/90 border-gray-200";
+  const inputClass = isDark
+    ? "bg-gray-800 border-gray-700"
+    : isGreen
+      ? "bg-emerald-900/70 border-emerald-700"
+      : isLight
+        ? "bg-emerald-50 border-emerald-400"
+        : "bg-gray-50 border-gray-300";
+  const placeholderTextColor = isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280";
 
   const formatPercent = (value: unknown) => {
     const n = Number(value);
@@ -358,7 +370,7 @@ export default function HomePage() {
           <Text className={`${secondaryTextClass} mb-6`}>{t("home.findPerfectCollege")}</Text>
 
           {user?.isGuest && !dismissedGuestPrompt && (
-            <View className="mb-6 rounded-2xl p-4 bg-emerald-500">
+            <View className={`mb-6 rounded-2xl p-4 ${isLight ? "bg-emerald-200" : "bg-emerald-500"}`}>
               <View className="flex-row items-start gap-3">
                 <View className="p-2 rounded-full bg-black/10 mt-1">
                   <Ionicons name="person-add" size={20} color="black" />
@@ -371,16 +383,16 @@ export default function HomePage() {
                   <View className="flex-row gap-2">
                     <Pressable
                       onPress={() => router.push("/login")}
-                      className="flex-1 bg-black rounded-lg py-2 items-center"
+                      className={`flex-1 ${isLight ? "bg-emerald-50/95" : "bg-black"} rounded-lg py-2 items-center`}
                     >
-                      <Text className="text-white font-semibold text-sm">{t("home.signUp")}</Text>
+                      <Text className={`${isLight ? "text-emerald-900" : "text-white"} font-semibold text-sm`}>{t("home.signUp")}</Text>
                     </Pressable>
 
                     <Pressable
                       onPress={() => setDismissedGuestPrompt(true)}
-                      className="flex-1 bg-black/20 rounded-lg py-2 items-center"
+                      className={`flex-1 ${isLight ? "bg-emerald-50/80" : "bg-black/20"} rounded-lg py-2 items-center`}
                     >
-                      <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold text-sm`}>{t("home.later")}</Text>
+                      <Text className={`${isLight ? 'text-emerald-900' : isDark ? 'text-white' : 'text-black'} font-semibold text-sm`}>{t("home.later")}</Text>
                     </Pressable>
                   </View>
                 </View>
@@ -418,7 +430,7 @@ export default function HomePage() {
           </View>
           {isSearching ? (
             <View className="flex-row items-center gap-2 mb-3">
-              <ActivityIndicator size="small" color={isDark ? "#b6e2b6" : "#1f8a5d"} />
+              <ActivityIndicator size="small" color={isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280"} />
               <Text className={`${secondaryTextClass} text-sm`}>{t("home.searching")}</Text>
             </View>
           ) : null}
@@ -471,7 +483,7 @@ export default function HomePage() {
               </View>
               <View className="flex-1">
                 <Text className={`font-semibold ${isDark ? 'text-white' : 'text-black'}`}>{t("home.completeQuestionnaire")}</Text>
-                <Text className={`${isDark ? 'text-white/90' : 'text-black/70'} text-sm`}>{t("home.getPersonalizedRecommendations")}</Text>
+                <Text className="text-black/70 text-sm">{t("home.getPersonalizedRecommendations")}</Text>
               </View>
               <Ionicons name="sparkles" size={18} color="#000" />
             </Pressable>

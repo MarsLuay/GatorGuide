@@ -25,7 +25,7 @@ type Question =
 
 export default function ProfilePage() {
   const router = useRouter();
-  const { theme, setTheme, isDark } = useAppTheme();
+  const { theme, setTheme, isDark, isGreen, isLight } = useAppTheme();
   const { t, language } = useAppLanguage();
   const { isHydrated, state, updateUser, setQuestionnaireAnswers, restoreData } = useAppData();
   const insets = useSafeAreaInsets();
@@ -137,7 +137,7 @@ export default function ProfilePage() {
             style: "destructive",
             onPress: async () => {
               await restoreData(dataToRestore);
-              if (parsed.theme === "light" || parsed.theme === "dark" || parsed.theme === "system") {
+              if (parsed.theme === "light" || parsed.theme === "dark" || parsed.theme === "green" || parsed.theme === "system") {
                 setTheme(parsed.theme);
               }
             },
@@ -205,13 +205,25 @@ export default function ProfilePage() {
     setLocalAnswers({ ...blankAnswers, ...normalizeQuestionnaireAnswers(state.questionnaireAnswers ?? {}, language) });
   }, [isHydrated, user?.name, user?.state, user?.major, user?.gpa, user?.resume, user?.transcript, blankAnswers, state.questionnaireAnswers, language]);
 
-  const textClass = isDark ? "text-white" : "text-emerald-900";
-  const secondaryTextClass = isDark ? "text-white/90" : "text-emerald-700";
-  const cardBgClass = isDark ? "bg-emerald-900/90 border-emerald-800" : "bg-white border-emerald-200";
-  const inputBgClass = isDark ? "bg-emerald-900/70 border-emerald-700" : "bg-white border-emerald-300";
+  const textClass = isDark ? "text-white" : isGreen ? "text-white" : isLight ? "text-emerald-900" : "text-gray-900";
+  const secondaryTextClass = isDark ? "text-gray-400" : isGreen ? "text-emerald-100" : isLight ? "text-emerald-700" : "text-gray-600";
+  const cardBgClass = isDark
+    ? "bg-gray-900/80 border-gray-800"
+    : isGreen
+      ? "bg-emerald-900/90 border-emerald-800"
+      : isLight
+        ? "bg-emerald-50 border-emerald-300"
+        : "bg-white/90 border-gray-200";
+  const inputBgClass = isDark
+    ? "bg-gray-800 border-gray-700"
+    : isGreen
+      ? "bg-emerald-900/70 border-emerald-700"
+      : isLight
+        ? "bg-emerald-50 border-emerald-400"
+        : "bg-gray-50 border-gray-300";
   const inputClass = `w-full ${inputBgClass} ${textClass} border rounded-lg px-3 py-2`;
-  const borderClass = isDark ? "border-emerald-700" : "border-emerald-300";
-  const placeholderColor = isDark ? "#b6e2b6" : "#1f8a5d";
+  const borderClass = isDark ? "border-gray-800" : isGreen ? "border-emerald-700" : isLight ? "border-emerald-300" : "border-gray-200";
+  const placeholderColor = isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280";
 
   const hasQuestionnaireData = useMemo(
     () => Object.keys(state.questionnaireAnswers ?? {}).length > 0,
@@ -414,10 +426,10 @@ export default function ProfilePage() {
 
             <Pressable
               onPress={() => router.push("/login")}
-              className="bg-emerald-500 rounded-lg py-4 px-6 items-center flex-row justify-center"
+              className={`${isLight ? "bg-emerald-200" : "bg-emerald-500"} rounded-lg py-4 px-6 items-center flex-row justify-center`}
             >
               <MaterialIcons name="arrow-forward" size={20} color="black" />
-              <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold ml-2`}>{t("profile.createYourProfile")}</Text>
+              <Text className={`${isDark || isGreen ? 'text-white' : 'text-black'} font-semibold ml-2`}>{t("profile.createYourProfile")}</Text>
             </Pressable>
 
             <Pressable
@@ -461,10 +473,10 @@ export default function ProfilePage() {
                 <View className="flex-row gap-2">
                   <Pressable
                     onPress={handleImportData}
-                    className="flex-1 bg-emerald-500 rounded-xl px-4 py-3 flex-row items-center justify-center"
+                    className={`flex-1 ${isLight ? "bg-emerald-200" : "bg-emerald-500"} rounded-xl px-4 py-3 flex-row items-center justify-center`}
                   >
-                    <MaterialIcons name="file-download" size={18} color={isDark ? "#FFFFFF" : "#000"} />
-                    <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold ml-2`}>{t("settings.import")}</Text>
+                    <MaterialIcons name="file-download" size={18} color={isDark || isGreen ? "#FFFFFF" : "#000"} />
+                    <Text className={`${isDark || isGreen ? 'text-white' : 'text-black'} font-semibold ml-2`}>{t("settings.import")}</Text>
                   </Pressable>
                   <Pressable
                     onPress={handleExportData}
@@ -557,14 +569,14 @@ export default function ProfilePage() {
               {user?.isGuest ? ( //email
                 <Pressable
                   onPress={handleCreateAccount}
-                  className="bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-xl p-5 flex-row items-center justify-between mb-4"
+                  className={`${isLight ? "bg-emerald-200" : "bg-gradient-to-r from-emerald-500 to-emerald-600"} rounded-xl p-5 flex-row items-center justify-between mb-4`}
                 >
                   <View className="flex-1 pr-3">
                     <View className="flex-row items-center mb-2">
                       <MaterialIcons name="stars" size={20} color="black" />
-                      <Text className={`${isDark ? 'text-white' : 'text-black'} font-bold text-base ml-2`}>{t("profile.createAccount")}</Text>
+                      <Text className={`${isDark || isGreen ? 'text-white' : 'text-black'} font-bold text-base ml-2`}>{t("profile.createAccount")}</Text>
                     </View>
-                    <Text className={`${isDark ? 'text-white/90' : 'text-black/80'} text-sm`}>{t("profile.saveDataMessage")}</Text>
+                    <Text className={`${isDark || isGreen ? "text-emerald-100" : "text-black/80"} text-sm`}>{t("profile.saveDataMessage")}</Text>
                   </View>
                   <MaterialIcons name="arrow-forward" size={24} color="black" />
                 </Pressable>

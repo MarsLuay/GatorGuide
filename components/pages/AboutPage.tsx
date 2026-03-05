@@ -5,15 +5,19 @@ import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppTheme } from "@/hooks/use-app-theme";
 
 export default function AboutPage() {
-  const { isDark } = useAppTheme();
+  const { isDark, isGreen, isLight } = useAppTheme();
   const router = useRouter();
   // Reuse theme tokens for consistent card/text contrast across sections.
-  const textClass = isDark ? "text-white" : "text-emerald-900";
-  const secondaryTextClass = isDark ? "text-white/90" : "text-emerald-700";
+  const textClass = isDark ? "text-white" : isGreen ? "text-white" : isLight ? "text-emerald-900" : "text-gray-900";
+  const secondaryTextClass = isDark ? "text-gray-400" : isGreen ? "text-emerald-100" : isLight ? "text-emerald-700" : "text-gray-600";
   const cardBgClass = isDark
-    ? "bg-emerald-900/90 border-emerald-800"
-    : "bg-white border-emerald-200";
-  const borderClass = isDark ? "border-emerald-700" : "border-emerald-300";
+    ? "bg-gray-900/80 border-gray-800"
+    : isGreen
+      ? "bg-emerald-900/90 border-emerald-800"
+      : isLight
+        ? "bg-emerald-50 border-emerald-300"
+        : "bg-white/90 border-gray-200";
+  const borderClass = isDark ? "border-gray-800" : isGreen ? "border-emerald-700" : isLight ? "border-emerald-300" : "border-gray-200";
 
   return (
     <ScreenBackground>
@@ -28,7 +32,7 @@ export default function AboutPage() {
               <MaterialIcons
                 name="arrow-back"
                 size={20}
-                color={isDark ? "#b6e2b6" : "#1f8a5d"}
+                color={isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280"}
               />
               <Text className={`${secondaryTextClass} ml-2`}>
                 Back
@@ -150,7 +154,7 @@ export default function AboutPage() {
                 <MaterialIcons
                   name="chevron-right"
                   size={22}
-                  color={isDark ? "#b6e2b6" : "#1f8a5d"}
+                  color={isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280"}
                 />
               </Pressable>
 
@@ -164,7 +168,7 @@ export default function AboutPage() {
                 <MaterialIcons
                   name="chevron-right"
                   size={22}
-                  color={isDark ? "#b6e2b6" : "#1f8a5d"}
+                  color={isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280"}
                 />
               </Pressable>
             </View>
@@ -174,7 +178,7 @@ export default function AboutPage() {
           <View className="px-6">
             <View
               className={`${
-                isDark
+                isDark || isGreen
                   ? "bg-neutral-800 border-neutral-700"
                   : "bg-gray-50 border-gray-200"
               } border rounded-2xl p-4`}
