@@ -20,6 +20,7 @@ export default function QuestionnairePage() {
   const { isHydrated, state, setQuestionnaireAnswers } = useAppData();
   const { t, language } = useAppLanguage();
 
+  // Questionnaire is translation-driven so prompts/options update when language changes.
   const questions = useMemo<Question[]>(
     () => [
       { id: "sectionData", question: t("questionnaire.sectionDataWeNeed"), type: "section" },
@@ -75,6 +76,7 @@ export default function QuestionnairePage() {
   );
 
   const blankAnswers = useMemo(() => {
+    // Pre-seed non-section question ids so input bindings always have stable keys.
     const init: Record<string, string> = {};
     for (const q of questions) if (q.type !== "section") init[q.id] = "";
     return init;
@@ -107,6 +109,7 @@ export default function QuestionnairePage() {
       return;
     }
     
+    // Normalize localized values before persisting/sharing with backend services.
     const normalized = normalizeQuestionnaireAnswers(answers, language);
     await setQuestionnaireAnswers(normalized); 
     

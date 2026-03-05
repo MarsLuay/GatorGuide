@@ -51,6 +51,7 @@ export default function SettingsPage() {
   const secondaryTextClass = isDark ? "text-white/90" : "text-emerald-700";
   const cardBgClass = isDark ? "bg-emerald-900/90 border-emerald-800" : "bg-white border-emerald-200";
   const cardBorderClass = isDark ? "border-emerald-700" : "border-emerald-300";
+  // Mirror row layout for RTL languages while keeping the same component tree.
   const isRTL = language === "Arabic" || language === "Persian";
   const flexDirection = isRTL ? "flex-row-reverse" : "flex-row";
 
@@ -82,6 +83,7 @@ export default function SettingsPage() {
     if (!isHydrated) return;
 
     try {
+      // Export includes app-level metadata to support future restore/migration flows.
       const payload = {
         exportedAt: new Date().toISOString(),
         app: "GatorGuide",
@@ -240,6 +242,7 @@ export default function SettingsPage() {
 
   const sections = useMemo(
     () => [
+      // Build sections from translations/state so labels and values stay reactive.
       {
         title: t("settings.settings"),
         items: [

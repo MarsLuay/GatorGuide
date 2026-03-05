@@ -81,10 +81,12 @@ export default function ProfileSetupPage() {
   };
 
   const handleGpaChange = (value: string) => {
+    // Accept only valid decimal input and clamp user-entered GPA to a 4.0 scale.
     if (value === "" || /^\d*\.?\d*$/.test(value)) {
       const num = parseFloat(value);
       if (value === "" || (Number.isFinite(num) && num <= 4.0) || value === "0" || value === "0.") {
         setGpa(value);
+        // Trigger celebration once per cooldown window when GPA hits exactly 4.0.
         if (num === 4.0 && (value === "4" || value === "4.0") && !confettiCooldown) {
           setIsConfettiPlaying(true);
           setConfettiCooldown(true);
@@ -107,6 +109,7 @@ export default function ProfileSetupPage() {
     _folder: "resumes" | "transcripts",
     type: "resume" | "transcript"
   ): Promise<string> => {
+    // Single upload helper keeps the submit path consistent for both file types.
     if (!selectedDoc?.uri) return "";
     if (type === "resume") {
       const localFile = await storageService.uploadResume(userId, selectedDoc.uri);
