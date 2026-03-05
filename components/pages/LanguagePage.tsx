@@ -10,11 +10,10 @@ import { Language } from "@/services/translations";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 
 export default function LanguagePage() {
-  const { isDark } = useAppTheme();
+  const { isDark, isGreen, isLight } = useAppTheme();
   const { language, setLanguage, t } = useAppLanguage();
   const router = useRouter();
   const back = useBack("/(tabs)/settings");
-npm
   // Keep a stable, localized language list so rows don't re-create on every render.
   const languages = useMemo(
     () => [
@@ -38,12 +37,18 @@ npm
     []
   );
 
-  const textClass = isDark ? "text-white" : "text-emerald-900";
-  const secondaryTextClass = isDark ? "text-white/90" : "text-emerald-700";
   // Theme-aware utility classes/colors shared across this screen.
-  const cardBgClass = isDark ? "bg-emerald-900/90 border-emerald-800" : "bg-white border-emerald-200";
-  const itemBorderClass = isDark ? "border-emerald-700" : "border-emerald-300";
-  const iconColor = isDark ? "#b6e2b6" : "#1f8a5d";
+  const textClass = isDark ? "text-white" : isGreen ? "text-white" : isLight ? "text-emerald-900" : "text-gray-900";
+  const secondaryTextClass = isDark ? "text-gray-400" : isGreen ? "text-emerald-100" : isLight ? "text-emerald-700" : "text-gray-600";
+  const cardBgClass = isDark
+    ? "bg-gray-900/80 border-gray-800"
+    : isGreen
+      ? "bg-emerald-900/90 border-emerald-800"
+      : isLight
+        ? "bg-emerald-50 border-emerald-300"
+        : "bg-white/90 border-gray-200";
+  const itemBorderClass = isDark ? "border-gray-800" : isGreen ? "border-emerald-700" : isLight ? "border-emerald-300" : "border-gray-200";
+  const iconColor = isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280";
 
   const handleSelectLanguage = (lang: Language) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);

@@ -3,14 +3,16 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useColorScheme } from "react-native";
 import { View } from "react-native";
 
-export type AppTheme = "light" | "dark" | "system";
+export type AppTheme = "light" | "dark" | "green" | "system";
 
 const STORAGE_KEY = "app-theme";
 
 type AppThemeContextValue = {
   theme: AppTheme;
-  resolvedTheme: "light" | "dark";
+  resolvedTheme: "light" | "dark" | "green";
   isDark: boolean;
+  isGreen: boolean;
+  isLight: boolean;
   setTheme: (value: AppTheme) => void;
   hydrated: boolean;
 };
@@ -19,7 +21,7 @@ const AppThemeContext = createContext<AppThemeContextValue | null>(null);
 
 export function AppThemeProvider({ children }: { children: React.ReactNode }) {
   const systemScheme = (useColorScheme() ?? "light") as "light" | "dark";
-  const [theme, setThemeState] = useState<AppTheme>("system");
+  const [theme, setThemeState] = useState<AppTheme>("light");
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
@@ -28,7 +30,7 @@ export function AppThemeProvider({ children }: { children: React.ReactNode }) {
       try {
         const stored = await AsyncStorage.getItem(STORAGE_KEY);
         if (!mounted) return;
-        if (stored === "light" || stored === "dark" || stored === "system") {
+        if (stored === "light" || stored === "dark" || stored === "green" || stored === "system") {
           setThemeState(stored);
         }
       } finally {
@@ -52,6 +54,8 @@ export function AppThemeProvider({ children }: { children: React.ReactNode }) {
       theme,
       resolvedTheme,
       isDark: resolvedTheme === "dark",
+      isGreen: resolvedTheme === "green",
+      isLight: resolvedTheme === "light",
       setTheme,
       hydrated,
     }),
@@ -60,7 +64,17 @@ export function AppThemeProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <AppThemeContext.Provider value={value}>
-      <View style={{ flex: 1, backgroundColor: resolvedTheme === 'dark' ? '#001f0f' : '#FFFFFF' }}>
+      <View
+        style={{
+          flex: 1,
+          backgroundColor:
+            resolvedTheme === "dark"
+              ? "#151718"
+              : resolvedTheme === "green"
+                ? "#001f0f"
+                : "#ECFDF3",
+        }}
+      >
         {children}
       </View>
     </AppThemeContext.Provider>

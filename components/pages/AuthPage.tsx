@@ -617,9 +617,9 @@ export default function AuthPage() {
           )}
 
           <View className={`flex-row items-center gap-2 my-3 ${styles.secondaryTextClass}`}>
-            <View className="flex-1 h-px bg-emerald-300 dark:bg-emerald-600" />
+            <View className="flex-1 h-px bg-emerald-300 dark:bg-gray-700" />
             <Text className="text-xs">{t("auth.or")}</Text>
-            <View className="flex-1 h-px bg-emerald-300 dark:bg-emerald-600" />
+            <View className="flex-1 h-px bg-emerald-300 dark:bg-gray-700" />
           </View>
 
           {isWeb && (
@@ -677,18 +677,18 @@ export default function AuthPage() {
             <Pressable
               onPress={handleGuestSignIn}
               disabled={!isHydrated}
-              className={`bg-white dark:bg-emerald-900/60 border-2 border-emerald-300 dark:border-emerald-600 rounded-lg py-3 px-6 w-full items-center ${
+              className={`bg-white dark:bg-gray-900/80 border-2 border-emerald-300 dark:border-gray-700 rounded-lg py-3 px-6 w-full items-center ${
                 !isHydrated ? "opacity-60" : ""
               }`}
             >
-              <Text className="text-gray-900 dark:text-white font-semibold">{t("auth.continueAsGuest")}</Text>
+              <Text className="text-gray-900 dark:text-gray-100 font-semibold">{t("auth.continueAsGuest")}</Text>
             </Pressable>
           </View>
 
           <View className="flex-row justify-center items-center mt-6">
             <Text className={`${styles.secondaryTextClass} text-xs text-center mr-2`}>{t("general.needHelpQuestion") ?? "Need Help?"}</Text>
-            <Pressable onPress={() => Linking.openURL("mailto:gatorguide_mobiledevelopmentteam@outlook.com")} accessibilityRole="link">
-              <Text className={`text-xs ${isDark ? "text-white/90" : "text-emerald-600"} underline font-semibold`}>{t("general.emailUs") ?? "Email Us!"}</Text>
+            <Pressable onPress={() => Linking.openURL("mailto:gatorguide@outlook.com")} accessibilityRole="link">
+              <Text className={`text-xs ${isDark ? "text-green-300" : "text-emerald-600"} underline font-semibold`}>{t("general.emailUs") ?? "Email Us!"}</Text>
             </Pressable>
           </View>
         </View>

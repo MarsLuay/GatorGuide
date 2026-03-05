@@ -3,7 +3,7 @@ const { setGlobalOptions } = require("firebase-functions/v2");
 
 setGlobalOptions({ maxInstances: 10, region: "us-central1" });
 
-const SUPPORT_TO_EMAIL = "gatorguide_mobiledevelopmentteam@outlook.com";
+const SUPPORT_TO_EMAIL = "gatorguide@outlook.com";
 const SUPPORT_FROM_EMAIL = process.env.SUPPORT_FROM_EMAIL || "onboarding@resend.dev";
 const RESEND_ENDPOINT = "https://api.resend.com/emails";
 

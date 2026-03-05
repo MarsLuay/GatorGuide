@@ -191,7 +191,7 @@ export default function ProfileSetupPage() {
         </Pressable>
 
         {!!selectedDoc && (
-          <View className="mt-3 pt-3 border-t border-emerald-300/40 dark:border-emerald-700/60 flex-row items-center justify-between">
+          <View className="mt-3 pt-3 border-t border-emerald-300/40 dark:border-gray-700/60 flex-row items-center justify-between">
             <Text className={`text-xs ${styles.secondaryTextClass}`}>{selectedDoc.mimeType || "document"}</Text>
             <Pressable onPress={onClear} hitSlop={8}>
               <MaterialIcons name="delete-outline" size={18} color="#EF4444" />
@@ -221,7 +221,7 @@ export default function ProfileSetupPage() {
               <Text className={`${styles.secondaryTextClass} mt-1 mb-5`}>{t("setup.subtitle")}</Text>
 
               <View className="mb-4">
-                <View className="h-2 rounded-full bg-emerald-200 dark:bg-emerald-700 overflow-hidden">
+                <View className="h-2 rounded-full bg-emerald-200 dark:bg-gray-700 overflow-hidden">
                   <View className="h-full bg-emerald-500" style={{ width: `${(step / 3) * 100}%` }} />
                 </View>
               </View>

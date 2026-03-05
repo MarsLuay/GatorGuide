@@ -16,7 +16,7 @@ type Question =
   | { id: string; question: string; type: "radio"; options: string[] };
 
 export default function QuestionnairePage() {
-  const { isDark } = useAppTheme();
+  const { isDark, isGreen, isLight } = useAppTheme();
   const { isHydrated, state, setQuestionnaireAnswers } = useAppData();
   const { t, language } = useAppLanguage();
 
@@ -93,13 +93,25 @@ export default function QuestionnairePage() {
   const currentQuestion = questions[currentStep];
   const progress = Math.round(((currentStep + 1) / questions.length) * 100);
 
-  const textClass = isDark ? "text-white" : "text-emerald-900";
-  const secondaryTextClass = isDark ? "text-white/90" : "text-emerald-700";
-  const cardBgClass = isDark ? "bg-emerald-900/90 border-emerald-800" : "bg-white border-emerald-200";
-  const inputBgClass = isDark ? "bg-emerald-900/70 border-emerald-700" : "bg-white border-emerald-300";
-  const borderClass = isDark ? "border-emerald-700" : "border-emerald-300";
-  const progressBgClass = isDark ? "bg-emerald-800" : "bg-emerald-200";
-  const placeholderColor = isDark ? "#8cd19e" : "#6B7280";
+  const textClass = isDark ? "text-white" : isGreen ? "text-white" : isLight ? "text-emerald-900" : "text-gray-900";
+  const secondaryTextClass = isDark ? "text-gray-400" : isGreen ? "text-emerald-100" : isLight ? "text-emerald-700" : "text-gray-600";
+  const cardBgClass = isDark
+    ? "bg-gray-900/80 border-gray-800"
+    : isGreen
+      ? "bg-emerald-900/90 border-emerald-800"
+      : isLight
+        ? "bg-emerald-50 border-emerald-300"
+        : "bg-white/90 border-gray-200";
+  const inputBgClass = isDark
+    ? "bg-gray-800 border-gray-700"
+    : isGreen
+      ? "bg-emerald-900/70 border-emerald-700"
+      : isLight
+        ? "bg-emerald-50 border-emerald-400"
+        : "bg-gray-50 border-gray-300";
+  const borderClass = isDark ? "border-gray-800" : isGreen ? "border-emerald-700" : isLight ? "border-emerald-300" : "border-gray-200";
+  const progressBgClass = isDark ? "bg-gray-800" : isGreen ? "bg-emerald-800" : "bg-emerald-200";
+  const placeholderColor = isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280";
 
   const handleAnswer = (id: string, value: string) => setAnswers((p) => ({ ...p, [id]: value }));
 
@@ -154,7 +166,7 @@ export default function QuestionnairePage() {
               }}
               className="mr-4"
             >
-              <MaterialIcons name="arrow-back" size={24} color={isDark ? "#b6e2b6" : "#1f8a5d"} />
+              <MaterialIcons name="arrow-back" size={24} color={isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280"} />
             </Pressable>
 
             <View className="flex-1">
@@ -218,7 +230,7 @@ export default function QuestionnairePage() {
                         className={`w-full px-4 py-4 rounded-lg border ${
                           isSelected
                             ? "bg-emerald-500/10 border-emerald-500"
-                            : isDark
+                            : isDark || isGreen
                             ? "bg-emerald-900/60 border-emerald-800"
                             : "bg-white border-gray-200"
                         }`}
@@ -253,7 +265,7 @@ export default function QuestionnairePage() {
                     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
                     handleSaveAndExit();
                   }}
-                  className={`w-full ${isDark ? "bg-emerald-800/70 border-emerald-700" : "bg-emerald-50 border-emerald-200"} border rounded-lg py-4 items-center ${!isHydrated ? "opacity-60" : ""}`}
+                  className={`w-full ${isDark ? "bg-gray-800 border-gray-700" : isGreen ? "bg-emerald-900/60 border-emerald-700" : "bg-emerald-50 border-emerald-200"} border rounded-lg py-4 items-center ${!isHydrated ? "opacity-60" : ""}`}
                   disabled={!isHydrated}
                 >
                   <Text className={`${textClass} font-semibold`}>{t("questionnaire.saveAndExit")}</Text>

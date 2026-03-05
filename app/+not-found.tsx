@@ -8,10 +8,10 @@ import { useAppTheme } from "@/hooks/use-app-theme";
 export default function NotFound() {
   const router = useRouter();
   const back = useBack();
-  const { isDark } = useAppTheme();
+  const { isDark, isGreen, isLight } = useAppTheme();
 
-  const textClass = isDark ? "text-white" : "text-emerald-900";
-  const secondaryTextClass = isDark ? "text-white/90" : "text-emerald-700";
+  const textClass = isDark ? "text-white" : isGreen ? "text-white" : isLight ? "text-emerald-900" : "text-gray-900";
+  const secondaryTextClass = isDark ? "text-gray-400" : isGreen ? "text-emerald-100" : isLight ? "text-emerald-700" : "text-gray-600";
 
   return (
     <ScreenBackground>

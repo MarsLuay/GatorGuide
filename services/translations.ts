@@ -159,6 +159,7 @@ const rawTranslations = {
     "settings.light": "Light",
     "settings.dark": "Dark",
     "settings.system": "System",
+    "settings.green": "Green",
     "settings.advanced": "Advanced settings",
     "settings.cacheSettings": "Cache settings",
     "settings.cacheAutoClear5d": "Auto-clear cache every 5 days",
