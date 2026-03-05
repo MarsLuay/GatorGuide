@@ -7,12 +7,15 @@ import { useRouter } from "expo-router";
 import { useMemo, useState, useCallback, useEffect } from "react";
 import { Pressable, ScrollView, Text, View, Alert, Platform, Linking } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { notificationsService, cacheManagerService } from "@/services";
 import { translations } from "@/services/translations";
 import * as FileSystem from "expo-file-system";
 import * as Sharing from "expo-sharing";
 import * as DocumentPicker from "expo-document-picker";
 import * as Haptics from "expo-haptics";
+
+const PENDING_DELETE_ACCOUNT_KEY = "gatorguide:pending-delete-account";
 
 type SettingsItem =
   | {
@@ -37,8 +40,13 @@ export default function SettingsPage() {
   const [showCacheClearedPopup, setShowCacheClearedPopup] = useState(false);
   const [cacheClearedCount, setCacheClearedCount] = useState(0);
   const [isClearingCache, setIsClearingCache] = useState(false);
+  const [isDeletingAccount, setIsDeletingAccount] = useState(false);
   const [showAdvancedSettings, setShowAdvancedSettings] = useState(false);
   const [autoClearCacheEnabled, setAutoClearCacheEnabled] = useState(false);
+  const [showDeleteDebugConsole, setShowDeleteDebugConsole] = useState(false);
+  const [deleteDebugHotkeyEnabled, setDeleteDebugHotkeyEnabled] = useState(false);
+  const [deleteDebugLogs, setDeleteDebugLogs] = useState<string[]>([]);
+  const [deleteCopyStatus, setDeleteCopyStatus] = useState<"" | "copied" | "failed">("");
 
   const { theme, setTheme, isDark } = useAppTheme();
   const { t, language } = useAppLanguage();
@@ -54,6 +62,33 @@ export default function SettingsPage() {
   // Mirror row layout for RTL languages while keeping the same component tree.
   const isRTL = language === "Arabic" || language === "Persian";
   const flexDirection = isRTL ? "flex-row-reverse" : "flex-row";
+
+  const pushDeleteDebugLog = useCallback((message: string) => {
+    const line = `${new Date().toISOString()} | ${message}`;
+    setDeleteDebugLogs((prev) => {
+      const next = [...prev, line];
+      return next.slice(-200);
+    });
+  }, []);
+
+  const clearDeleteDebugLogs = useCallback(() => {
+    setDeleteDebugLogs([]);
+    setDeleteCopyStatus("");
+  }, []);
+
+  const copyDeleteDebugLogs = useCallback(async () => {
+    try {
+      const text = deleteDebugLogs.join("\n");
+      if (!text || typeof navigator === "undefined" || !navigator.clipboard?.writeText) {
+        setDeleteCopyStatus("failed");
+        return;
+      }
+      await navigator.clipboard.writeText(text);
+      setDeleteCopyStatus("copied");
+    } catch {
+      setDeleteCopyStatus("failed");
+    }
+  }, [deleteDebugLogs]);
 
   const handleToggleNotifications = useCallback(async () => {
     const currentStatus = state.notificationsEnabled;
@@ -300,33 +335,68 @@ export default function SettingsPage() {
   );
 
   const handleDeleteConfirm = async () => {
-    if (!isHydrated) return;
+    if (!isHydrated || isDeletingAccount) return;
+    setIsDeletingAccount(true);
+    pushDeleteDebugLog(`Delete requested. user=${state.user?.uid ?? "none"} guest=${String(!!state.user?.isGuest)} hydrated=${String(isHydrated)}`);
     try {
       if (state.user?.isGuest) {
+        pushDeleteDebugLog("Guest path: signOut()");
         await signOut();
       } else {
-        await deleteAccount();
+        pushDeleteDebugLog("Auth path: deleteAccount()");
+        await Promise.race([
+          deleteAccount(),
+          new Promise((_, reject) =>
+            setTimeout(() => {
+              const err = new Error("Delete account timed out") as Error & { code?: string };
+              err.code = "app/delete-timeout";
+              reject(err);
+            }, 15000)
+          ),
+        ]);
       }
+      pushDeleteDebugLog("Delete succeeded. Navigating to /login");
       router.replace("/login");
     } catch (error: any) {
       const code = error?.code as string | undefined;
+      pushDeleteDebugLog(`Delete failed. code=${code ?? "none"} message=${String(error?.message ?? "unknown")}`);
       if (code === "auth/requires-recent-login") {
+        await AsyncStorage.setItem(PENDING_DELETE_ACCOUNT_KEY, "true").catch(() => {});
+        pushDeleteDebugLog("Set pending-delete flag. Redirecting to /login for re-auth.");
         Alert.alert(
           t("general.error"),
-          "For security, please log out, log back in, and try deleting your account again."
+          "For security, please sign in again. We will complete account deletion right after you log in."
         );
+        router.replace("/login");
         return;
       }
       Alert.alert(
         t("general.error"),
-        t("settings.deleteWarning") || "Account deletion failed. Please try again."
+        code === "app/delete-timeout"
+          ? "Delete account request timed out. Please check network and try again."
+          : (t("settings.deleteWarning") || "Account deletion failed. Please try again.")
       );
+    } finally {
+      setIsDeletingAccount(false);
     }
   };
 
   useEffect(() => {
     void loadAutoClearSetting();
   }, [loadAutoClearSetting]);
+
+  useEffect(() => {
+    if (!__DEV__ || Platform.OS !== "web") return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "~" || event.key === "`" || event.code === "Backquote") {
+        setDeleteDebugHotkeyEnabled((v) => !v);
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   if (showDeleteConfirm) {
     return (
@@ -348,10 +418,10 @@ export default function SettingsPage() {
 
               <Pressable
                 onPress={handleDeleteConfirm}
-                className={`flex-1 bg-emerald-800 rounded-lg py-4 items-center ${!isHydrated ? "opacity-60" : ""}`}
-                disabled={!isHydrated}
+                className={`flex-1 bg-emerald-800 rounded-lg py-4 items-center ${(!isHydrated || isDeletingAccount) ? "opacity-60" : ""}`}
+                disabled={!isHydrated || isDeletingAccount}
               >
-                <Text className="text-white font-semibold">{t("general.delete")}</Text>
+                <Text className="text-white font-semibold">{isDeletingAccount ? (t("general.pleaseWait") || "Please wait") : t("general.delete")}</Text>
               </Pressable>
             </View>
           </View>
@@ -368,6 +438,43 @@ export default function SettingsPage() {
             <Text className={`text-2xl ${textClass}`}>{t("settings.settings")}</Text>
           </View>
           <View className="px-6 gap-6">
+            {__DEV__ && deleteDebugHotkeyEnabled ? (
+              <View className={`${cardBgClass} border rounded-2xl p-4`}>
+                <View className={`${flexDirection} items-center justify-between`}>
+                  <Text className={textClass}>Delete Account Debug</Text>
+                  <Pressable
+                    onPress={() => setShowDeleteDebugConsole((v) => !v)}
+                    className="px-3 py-1 rounded-lg bg-emerald-500"
+                  >
+                    <Text className={`${isDark ? "text-white" : "text-black"} font-semibold`}>
+                      {showDeleteDebugConsole ? "Hide" : "Show"}
+                    </Text>
+                  </Pressable>
+                </View>
+
+                <View className="flex-row gap-2 mt-3">
+                  <Pressable onPress={copyDeleteDebugLogs} className="px-3 py-2 rounded-lg bg-emerald-300">
+                    <Text className={`${isDark ? "text-white" : "text-black"} text-xs font-semibold`}>Copy Logs</Text>
+                  </Pressable>
+                  <Pressable onPress={clearDeleteDebugLogs} className="px-3 py-2 rounded-lg bg-emerald-300">
+                    <Text className={`${isDark ? "text-white" : "text-black"} text-xs font-semibold`}>Clear</Text>
+                  </Pressable>
+                </View>
+
+                {deleteCopyStatus ? (
+                  <Text className={`${secondaryTextClass} text-xs mt-2`}>
+                    {deleteCopyStatus === "copied" ? "Delete logs copied to clipboard." : "Clipboard copy failed."}
+                  </Text>
+                ) : null}
+
+                {showDeleteDebugConsole ? (
+                  <Text selectable className={`${secondaryTextClass} text-xs mt-3`}>
+                    {deleteDebugLogs.length ? deleteDebugLogs.join("\n") : "No delete logs yet. Trigger delete flow to capture events."}
+                  </Text>
+                ) : null}
+              </View>
+            ) : null}
+
             {sections.map((section) => (
               <View key={section.title}>
                 <Text className={`text-sm font-medium ${secondaryTextClass} mb-3 px-2`}>{section.title}</Text>
@@ -472,7 +579,10 @@ export default function SettingsPage() {
             </Pressable>
 
             <Pressable
-              onPress={() => setShowDeleteConfirm(true)}
+              onPress={() => {
+                pushDeleteDebugLog("Opened delete confirmation popup.");
+                setShowDeleteConfirm(true);
+              }}
               disabled={!isHydrated}
               className={`w-full ${
                 isDark ? 'bg-emerald-900/90 border-emerald-800' : 'bg-white border-emerald-200'
