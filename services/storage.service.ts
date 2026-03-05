@@ -3,7 +3,7 @@
 // Local-only storage - files copied to document directory for persistence
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as FileSystem from 'expo-file-system';
+import * as FileSystem from 'expo-file-system/legacy';
 import { Platform } from 'react-native';
 
 export type UploadedFile = {
