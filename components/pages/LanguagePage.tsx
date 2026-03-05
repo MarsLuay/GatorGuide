@@ -15,6 +15,7 @@ export default function LanguagePage() {
   const router = useRouter();
   const back = useBack("/(tabs)/settings");
 npm
+  // Keep a stable, localized language list so rows don't re-create on every render.
   const languages = useMemo(
     () => [
       { key: "English" as Language, label: "English" },
@@ -39,6 +40,7 @@ npm
 
   const textClass = isDark ? "text-white" : "text-emerald-900";
   const secondaryTextClass = isDark ? "text-white/90" : "text-emerald-700";
+  // Theme-aware utility classes/colors shared across this screen.
   const cardBgClass = isDark ? "bg-emerald-900/90 border-emerald-800" : "bg-white border-emerald-200";
   const itemBorderClass = isDark ? "border-emerald-700" : "border-emerald-300";
   const iconColor = isDark ? "#b6e2b6" : "#1f8a5d";
@@ -46,6 +48,7 @@ npm
   const handleSelectLanguage = (lang: Language) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     setLanguage(lang);
+    // Delay route change slightly so selection feedback is noticeable.
     setTimeout(() => {
       router.replace("/(tabs)/settings");
     }, 300);
