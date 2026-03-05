@@ -32,6 +32,7 @@ export default function ResourcesPage() {
   const inputClass = styles.inputBgClass;
   const placeholderTextColor = placeholderColor;
 
+  // Curated resources are grouped by category and translated at render time.
   const sections: ResourceSection[] = useMemo(
     () => [
       {
@@ -214,6 +215,30 @@ export default function ResourcesPage() {
           },
         ],
       },
+      {
+        title: "Career Fair Prep",
+        icon: "event-available",
+        items: [
+          {
+            title: "Resume Checklist",
+            description: "Quick checklist to polish your resume before meeting recruiters.",
+            url: "https://www.indeed.com/career-advice/resumes-cover-letters/resume-checklist",
+            tags: ["career fair", "resume", "checklist", "prep"],
+          },
+          {
+            title: "Elevator Pitch Guide",
+            description: "Build a short intro you can use at booths and networking events.",
+            url: "https://www.themuse.com/advice/elevator-pitch-examples",
+            tags: ["career fair", "networking", "pitch", "prep"],
+          },
+          {
+            title: "Post-Fair Follow-up Email",
+            description: "Template ideas for following up with recruiters after the event.",
+            url: "https://www.indeed.com/career-advice/career-development/follow-up-email-after-networking-event",
+            tags: ["career fair", "follow-up", "email", "networking"],
+          },
+        ],
+      },
 
       {
         title: t("resources.internships"),
@@ -283,6 +308,7 @@ export default function ResourcesPage() {
   }, [query, sections]);
 
   const openLink = async (url: string) => {
+    // `app://` links route internally; http(s) links open the system browser.
     if (url.startsWith("app://")) {
       const path = url.replace("app://", "/");
       router.push(path as any);

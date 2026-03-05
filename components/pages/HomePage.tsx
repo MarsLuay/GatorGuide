@@ -135,6 +135,7 @@ export default function HomePage() {
     return user?.isGuest ? `guest:${uid}` : `user:${uid}`;
   };
 
+  // Simple per-day local quota to cap weighted-search AI requests.
   const consumeAiUsageIfAllowed = async (): Promise<{ allowed: boolean; limit: number }> => {
     const limit = user?.isGuest ? GUEST_DAILY_AI_LIMIT : USER_DAILY_AI_LIMIT;
     const today = getLocalDateKey();
@@ -192,7 +193,7 @@ export default function HomePage() {
       return;
     }
 
-    // set cooldown (5 seconds)
+    // Enforce a short cooldown to prevent accidental rapid repeat searches.
     const nextUntil = Date.now() + 5000;
     setCooldownUntil(nextUntil);
     cooldownRef.current = nextUntil;

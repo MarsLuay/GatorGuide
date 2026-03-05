@@ -41,6 +41,7 @@ export default function AuthPage() {
 
   const isNative = Platform.OS === "ios" || Platform.OS === "android";
   const isExpoGo = Constants.appOwnership === "expo";
+  // Shared deep-link target used by native OAuth redirects.
   const redirectUri = makeRedirectUri({ scheme: "gatorguide", path: "auth" });
   const microsoftDiscovery = useAutoDiscovery("https://login.microsoftonline.com/common/v2.0");
 
@@ -140,7 +141,7 @@ export default function AuthPage() {
     try {
       await signIn({ name: n || t('auth.defaultUser'), email: e, password, isSignUp });
 
-      // If signing up, check for pending guest data and restore it
+      // On signup, migrate any guest-mode progress into the new account.
       if (isSignUp) {
         try {
           const pendingData = await AsyncStorage.getItem('gatorguide:pending-account-data');
@@ -254,6 +255,7 @@ export default function AuthPage() {
       await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     }
     const isWeb = Platform.OS === "web";
+    // Web and native provider auth use different SDK flows.
     if (isWeb) {
       try {
         const authUser =

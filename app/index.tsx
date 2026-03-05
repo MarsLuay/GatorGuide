@@ -18,13 +18,16 @@ export default function Index() {
       hasNavigated.current = true;
 
       if (state.user) {
-        // Skip profile setup for guests
         if (state.user.isGuest) {
           router.replace("/(tabs)");
           return;
         }
 
-        // User already completed profile setup → go to main (no need to fill again)
+        if (state.user.hasSeenOnboarding === false) {
+          router.replace("/onboarding");
+          return;
+        }
+
         const hasCompletedSetup = !!(
           state.user.isProfileComplete ||
           state.user.major ||

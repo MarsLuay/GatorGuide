@@ -75,6 +75,7 @@ class AuthService {
       }
 
       // 注册必须邮箱验证：发送验证邮件后登出，用户验证后才能登录
+      // Enforce verification at signup time before allowing a normal login session.
       await sendEmailVerification(userCredential.user);
       await firebaseSignOut(firebaseAuth);
       const err = new Error("Email verification required") as Error & { code?: string; email?: string };
@@ -148,6 +149,7 @@ class AuthService {
     }
 
     const authDomain = API_CONFIG.firebase.authDomain?.trim() || "";
+    // Required so Firebase can generate a valid deep-link callback URL.
     if (!authDomain) throw new Error("EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN is required for email link sign-in. Set it in .env");
     const actionCodeSettings: ActionCodeSettings = {
       url: `https://${authDomain}/__/auth/links`,
@@ -202,6 +204,7 @@ class AuthService {
     }
     if (!firebaseAuth) throw new Error("Firebase Auth not configured");
     if (Platform.OS !== "web") {
+      // Native flow signs in later via id token -> credential exchange.
       throw new Error("Use signInWithGoogleCredential on native (OAuth flow in AuthPage).");
     }
     const provider = new GoogleAuthProvider();
@@ -290,7 +293,12 @@ class AuthService {
     }
 
     const uid = firebaseAuth.currentUser.uid;
-    await deleteAllUserData(uid);
+    // Attempt data cleanup first, but do not block account deletion if cleanup fails.
+    try {
+      await deleteAllUserData(uid);
+    } catch (error) {
+      console.warn("Pre-delete data cleanup failed; continuing with auth deletion.", error);
+    }
     await firebaseDeleteUser(firebaseAuth.currentUser);
   }
 }
