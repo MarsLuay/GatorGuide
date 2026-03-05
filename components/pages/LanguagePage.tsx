@@ -14,7 +14,7 @@ export default function LanguagePage() {
   const { language, setLanguage, t } = useAppLanguage();
   const router = useRouter();
   const back = useBack("/(tabs)/settings");
-
+npm
   const languages = useMemo(
     () => [
       { key: "English" as Language, label: "English" },
