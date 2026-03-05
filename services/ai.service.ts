@@ -200,7 +200,7 @@ class AIService {
           source: 'live',
         };
 
-        // cache per-request signature so we don't return unrelated cached replies
+        // Cache by request signature so stale replies from other prompts are not reused.
         const sig = this.makeCacheSignature(message, context);
         try {
           const raw = await AsyncStorage.getItem(AI_LAST_RESPONSE_MAP_KEY);
@@ -220,7 +220,7 @@ class AIService {
           // best-effort cache; ignore errors
         }
 
-        // keep a global last response as a fallback (marked stale if reused)
+        // Keep a global fallback response for offline/error recovery.
         try { await AsyncStorage.setItem(AI_LAST_RESPONSE_KEY, JSON.stringify(payload)); } catch {}
         return payload;
       } finally {
@@ -261,6 +261,7 @@ class AIService {
   }
 
   private makeAiContextSignature(userProfile: UserProfile | null, questionnaire: Questionnaire, query?: string): string {
+    // Stable context signature lets us safely reuse cached AI factors.
     const payload = {
       major: userProfile?.major ?? null,
       gpa: userProfile?.gpa ?? null,
@@ -301,6 +302,7 @@ class AIService {
     try {
       const entries = Object.entries(cache);
       if (entries.length > AI_FACTOR_CACHE_MAX_ENTRIES) {
+        // Trim oldest factor entries first to bound storage growth.
         entries.sort((a, b) => {
           const at = new Date(a[1]?.updatedAt ?? 0).getTime();
           const bt = new Date(b[1]?.updatedAt ?? 0).getTime();

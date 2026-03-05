@@ -17,6 +17,7 @@ const getCacheKey = (type: 'matches' | 'search' | 'details', payload: string) =>
   `college:${CACHE_VERSION}:${type}:${payload}`;
 
 const readCache = async (key: string): Promise<College[] | College | null> => {
+  // Shared TTL check for list/detail/search cache entries.
   const raw = await AsyncStorage.getItem(key);
   if (!raw) return null;
   try {
@@ -188,7 +189,7 @@ class CollegeService {
       this.lastSource = 'cached';
       return cached;
     }
-    // Build fields and params for Scorecard
+    // Request an enriched field set once so ranking and detail UI have needed data.
     const fields = [
       'id',
       'school.name',
@@ -525,7 +526,7 @@ class CollegeService {
       const lon = toNumber(place.longitude) ?? null;
       if (lat == null || lon == null) return null;
 
-      // write cache (best-effort)
+      // Best-effort ZIP cache avoids repeated external geocode calls.
       try {
         await AsyncStorage.setItem(cacheKey, JSON.stringify({ timestamp: Date.now(), lat, lon }));
       } catch {

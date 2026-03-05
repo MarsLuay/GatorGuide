@@ -171,6 +171,7 @@ export default function ProfilePage() {
 
   const questions = useMemo<Question[]>(
     () => [
+      // Keep profile questionnaire concise here; full questionnaire lives on its own page.
       { id: "costOfAttendance", question: t("questionnaire.costOfAttendance"), options: QUESTIONNAIRE_RADIO_OPTIONS.costOfAttendance.map((o) => ({ key: o.key, label: t(o.labelKey) })), type: "radio" },
       { id: "classSize", question: t("questionnaire.classSize"), options: QUESTIONNAIRE_RADIO_OPTIONS.classSize.map((o) => ({ key: o.key, label: t(o.labelKey) })), type: "radio" },
       { id: "transportation", question: t("questionnaire.transportation"), options: QUESTIONNAIRE_RADIO_OPTIONS.transportation.map((o) => ({ key: o.key, label: t(o.labelKey) })), type: "radio" },
@@ -185,6 +186,7 @@ export default function ProfilePage() {
   );
 
   const blankAnswers = useMemo(() => {
+    // Seed all question ids so controlled inputs always have stable values.
     const init: Record<string, string> = {};
     for (const q of questions) init[q.id] = "";
     return init;
@@ -356,6 +358,7 @@ export default function ProfilePage() {
   }, [isHydrated]);
 
   const handleSaveQuestionnaire = async () => {
+    // Normalize localized answers into canonical keys before persisting.
     const toSave = normalizeQuestionnaireAnswers({ ...questionnaireAnswers }, language) as Record<string, string>;
     // Major is captured on the user profile; do not store major in questionnaire
     delete toSave.major;

@@ -81,6 +81,7 @@ export default function RoadmapPage() {
   useEffect(() => {
     if (!user?.uid) return;
     (async () => {
+      // Sync checklist completion with previously uploaded files in storage.
       const docTypes: (keyof DocumentChecklist)[] = ["resume", "transcripts", "personalStatement", "recommendation1", "recommendation2"];
       const uploaded: Partial<Record<keyof DocumentChecklist, boolean>> = {};
       for (const doc of docTypes) {
@@ -100,6 +101,7 @@ export default function RoadmapPage() {
   }, [user?.uid]);
 
   const generateTasks = useCallback((profile: StudentProfile): Task[] => {
+    // Build deterministic task ids so completion state updates are stable.
     const docTask: Task = {
       id: "documents-checklist",
       title: t("roadmap.documents"),
@@ -328,6 +330,7 @@ export default function RoadmapPage() {
   const progress = Math.round((completedCount / tasks.length) * 100);
 
   const groupedTasks = useMemo(() => {
+    // Grouping controls section rendering order in the checklist UI.
     return [
       { name: t("roadmap.documents"), data: tasks.filter((t) => t.id === "documents-checklist") },
       { name: t("roadmap.currentCourses"), data: tasks.filter((t) => t.id.startsWith("course")) },

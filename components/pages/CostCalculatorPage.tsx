@@ -28,6 +28,7 @@ export default function CostCalculatorPage() {
 
   const { textClass, secondaryTextClass, borderClass, cardBgClass, inputBgClass, placeholderColor } = styles;
 
+  // Input helpers sanitize user text into bounded numeric values for calculations.
   const currencyNum = (s: string) => (s.trim() === "" ? 0 : Number(s.replace(/\D/g, "")) || 0);
   const percentNum = (s: string) => {
     if (s.trim() === "") return 0;
@@ -45,6 +46,7 @@ export default function CostCalculatorPage() {
   const annualIncreasePct = percentNum(annualIncrease);
 
   const baseYearCost = tuitionNum + feesNum + housingFoodNum + booksSuppliesNum + personalTransportNum;
+  // Compound annual increase, then apply yearly aid to estimate net out-of-pocket cost.
   const yearlyRows = Array.from({ length: yearsNum }, (_, idx) => {
     const beforeAid = Math.round(baseYearCost * Math.pow(1 + annualIncreasePct / 100, idx));
     const aid = Math.min(beforeAid, aidPerYearNum);

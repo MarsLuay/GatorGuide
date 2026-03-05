@@ -308,10 +308,18 @@ export default function SettingsPage() {
         await deleteAccount();
       }
       router.replace("/login");
-    } catch {
+    } catch (error: any) {
+      const code = error?.code as string | undefined;
+      if (code === "auth/requires-recent-login") {
+        Alert.alert(
+          t("general.error"),
+          "For security, please log out, log back in, and try deleting your account again."
+        );
+        return;
+      }
       Alert.alert(
         t("general.error"),
-        t("settings.deleteWarning") || "Account deletion failed. You may need to sign in again and try again."
+        t("settings.deleteWarning") || "Account deletion failed. Please try again."
       );
     }
   };

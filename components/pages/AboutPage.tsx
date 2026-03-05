@@ -7,6 +7,7 @@ import { useAppTheme } from "@/hooks/use-app-theme";
 export default function AboutPage() {
   const { isDark } = useAppTheme();
   const router = useRouter();
+  // Reuse theme tokens for consistent card/text contrast across sections.
   const textClass = isDark ? "text-white" : "text-emerald-900";
   const secondaryTextClass = isDark ? "text-white/90" : "text-emerald-700";
   const cardBgClass = isDark
@@ -75,6 +76,7 @@ export default function AboutPage() {
             <View
               className={`${cardBgClass} border rounded-2xl p-6 gap-4`}
             >
+              {/* Static explainer steps keep content easy to localize/replace later. */}
               {[
                 {
                   n: "1",

@@ -32,6 +32,7 @@ export default function ComparePage() {
     return typeof n === "number" ? n : null;
   };
 
+  // Selection is capped so comparison cards remain readable on smaller screens.
   const toggle = (c: College) => {
     setSelected((prev) => {
       const idx = prev.findIndex((x) => x.id === c.id);
@@ -87,6 +88,7 @@ export default function ComparePage() {
     });
   }, [savedColleges, searchTerm, sortBy]);
 
+  // Precompute quick-highlight winners from the current selected set.
   const cheapestSelected = useMemo(() => {
     const withCost = selected
       .map((c) => ({ c, cost: getTuitionValue(c) }))

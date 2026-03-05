@@ -50,6 +50,7 @@ export default function ForgotPasswordPage() {
     Keyboard.dismiss();
 
     try {
+      // Trigger Firebase password-reset email for the provided account.
       await authService.sendPasswordReset(e);
       await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       setIsSuccess(true);

@@ -18,6 +18,7 @@ export default function StartupAnimation({ onFinish }: { onFinish: () => void })
   const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
+    // Intro sequence: animate in, hold, then fade out before handing control back.
     const timer = setTimeout(() => {
       scale.value = withTiming(1, {
         duration: 1000,
@@ -48,6 +49,7 @@ export default function StartupAnimation({ onFinish }: { onFinish: () => void })
   return (
     <View style={styles.container}>
       <Animated.View style={[styles.content, animatedStyle]}>
+        {/* If the logo asset fails, render a simple fallback mark instead. */}
         {!imageError ? (
           <Image
             source={LOGO_SOURCE}

@@ -15,6 +15,7 @@ export type UploadedFile = {
 const DOCS_DIR = 'gatorguide_docs';
 
 async function copyToLocalStorage(sourceUri: string, fileName: string, subDir: string): Promise<string> {
+  // Web already uses browser-managed file URLs; no filesystem copy needed.
   if (Platform.OS === 'web') {
     return sourceUri;
   }
@@ -52,6 +53,7 @@ class StorageService {
   }
 
   async uploadDocument(userId: string, docType: string, fileUri: string): Promise<UploadedFile> {
+    // Roadmap document uploads share one namespace keyed by document type.
     const fileName = fileUri.split('/').pop() || `${docType}_${Date.now()}.pdf`;
     const persistentUri = await copyToLocalStorage(fileUri, fileName, `roadmap_${userId}`);
     const localData: UploadedFile = {
@@ -64,6 +66,7 @@ class StorageService {
   }
 
   async getDocument(userId: string, docType: string): Promise<UploadedFile | null> {
+    // Returns metadata for previously uploaded roadmap documents.
     const data = await AsyncStorage.getItem(`roadmap:${userId}:${docType}`);
     return data ? JSON.parse(data) : null;
   }

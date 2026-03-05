@@ -34,6 +34,7 @@ class CacheManagerService {
 
   async clearRelevantCaches(): Promise<{ clearedCount: number }> {
     const keys = await AsyncStorage.getAllKeys();
+    // Only remove derived/cache keys; keep user profile and core app state keys.
     const targetKeys = keys.filter((key) =>
       CACHE_KEY_EXACT.has(key) || CACHE_KEY_PREFIXES.some((prefix) => key.startsWith(prefix))
     );
@@ -51,6 +52,7 @@ class CacheManagerService {
     if (!enabled) return { ran: false, clearedCount: 0 };
 
     const now = Date.now();
+    // Throttle maintenance runs to avoid frequent full key scans.
     const rawLast = await AsyncStorage.getItem(CACHE_LAST_CLEARED_AT_KEY);
     const lastClearedAt = Number(rawLast ?? 0);
     if (Number.isFinite(lastClearedAt) && lastClearedAt > 0 && now - lastClearedAt < CACHE_AUTO_CLEAR_WINDOW_MS) {

@@ -6,6 +6,7 @@ const STORAGE_KEY = "app-language";
 const DEFAULT_LANGUAGE: Language = "English";
 
 function normalizeLang(input?: string): Language {
+  // Map legacy labels/codes to canonical language keys used by translations.
   if (!input) return DEFAULT_LANGUAGE;
   const keys = Object.keys(translations) as Language[];
   const raw = input.trim().toLowerCase();
@@ -60,6 +61,7 @@ export function AppLanguageProvider({ children }: { children: React.ReactNode })
         if (stored && (Object.keys(translations) as Language[]).includes(stored as Language)) {
           setLanguageState(stored as Language);
         } else if (stored) {
+          // Rewrite old/partial values into canonical key format.
           const mapped = normalizeLang(stored);
           setLanguageState(mapped);
           AsyncStorage.setItem(STORAGE_KEY, mapped).catch(() => {});
@@ -89,7 +91,7 @@ export function AppLanguageProvider({ children }: { children: React.ReactNode })
     const langBundle = bundle[language] ?? {};
     const enBundle = bundle[DEFAULT_LANGUAGE] ?? {};
 
-    // Try current language first
+    // Resolve from current language, then English, then the key as a last fallback.
     let str = langBundle[key];
 
     // If missing (undefined) or the entry is just the key itself, fall back to English
