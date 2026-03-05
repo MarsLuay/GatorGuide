@@ -15,7 +15,7 @@ export default function TermsOfServicePage() {
   const borderClass = isDark ? "border-gray-800" : isGreen ? "border-emerald-700" : isLight ? "border-emerald-300" : "border-gray-200";
 
   const lastUpdated = "February 11, 2026";
-  const contactEmail = "[wtv email/contact we have]"; // replace
+  const contactEmail = "[gatorguide@outlook.com]"; 
 
   return (
     <ScreenBackground>
