@@ -17,9 +17,10 @@ import {
   User as FirebaseUser,
   type ActionCodeSettings,
 } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 import { Platform } from "react-native";
 import { API_CONFIG, isStubMode } from "./config";
-import { firebaseAuth } from "./firebase";
+import { db, firebaseAuth } from "./firebase";
 import { deleteAllUserData } from "./userData.service";
 
 /** Storage key for email when sending sign-in link (same-device completion) */
@@ -76,6 +77,18 @@ class AuthService {
 
       // 注册必须邮箱验证：发送验证邮件后登出，用户验证后才能登录
       // Enforce verification at signup time before allowing a normal login session.
+      if (db) {
+        await setDoc(
+          doc(db, "users", userCredential.user.uid),
+          {
+            hasSeenOnboarding: false,
+            email: userCredential.user.email ?? credentials.email,
+            name: credentials.name?.trim() || userCredential.user.displayName || "",
+          },
+          { merge: true }
+        ).catch(() => {});
+      }
+
       await sendEmailVerification(userCredential.user);
       await firebaseSignOut(firebaseAuth);
       const err = new Error("Email verification required") as Error & { code?: string; email?: string };
@@ -293,13 +306,18 @@ class AuthService {
     }
 
     const uid = firebaseAuth.currentUser.uid;
-    // Attempt data cleanup first, but do not block account deletion if cleanup fails.
-    try {
-      await deleteAllUserData(uid);
-    } catch (error) {
-      console.warn("Pre-delete data cleanup failed; continuing with auth deletion.", error);
-    }
+    // Start cleanup, but don't let cleanup latency block account deletion.
+    const cleanupPromise = deleteAllUserData(uid).catch((error) => {
+      console.warn("Pre-delete data cleanup failed.", error);
+    });
+
     await firebaseDeleteUser(firebaseAuth.currentUser);
+
+    // Give cleanup a short window post-delete, then continue regardless.
+    await Promise.race([
+      cleanupPromise,
+      new Promise((resolve) => setTimeout(resolve, 2500)),
+    ]);
   }
 }
 

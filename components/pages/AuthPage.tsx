@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useCallback } from "react";
 import { View, Text, Pressable, Alert, Keyboard, TouchableWithoutFeedback, Platform, ScrollView, Linking } from "react-native";
 import { router } from "expo-router";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -20,9 +20,11 @@ import { API_CONFIG } from "@/services/config";
 WebBrowser.maybeCompleteAuthSession();
 
 const isEmailValid = (value: string) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value.trim());
+const PENDING_DELETE_ACCOUNT_KEY = "gatorguide:pending-delete-account";
+const ONBOARDING_DEBUG_LOG_KEY = "gatorguide:onboarding-debug-log:v1";
 
 export default function AuthPage() {
-  const { isHydrated, state, signIn, signInWithAuthUser, signInAsGuest, updateUser, setQuestionnaireAnswers } = useAppData();
+  const { isHydrated, state, signIn, signInWithAuthUser, signInAsGuest, updateUser, setQuestionnaireAnswers, deleteAccount } = useAppData();
   const { t } = useAppLanguage();
   const styles = useThemeStyles();
   const { isDark } = useAppTheme();
@@ -38,6 +40,75 @@ export default function AuthPage() {
   const [completingLink, setCompletingLink] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [resendingVerification, setResendingVerification] = useState(false);
+  const [onboardingDebugEnabled, setOnboardingDebugEnabled] = useState(false);
+  const [showOnboardingDebugConsole, setShowOnboardingDebugConsole] = useState(false);
+  const [onboardingDebugLogs, setOnboardingDebugLogs] = useState<string[]>([]);
+  const [onboardingCopyStatus, setOnboardingCopyStatus] = useState<"" | "copied" | "failed">("");
+
+  const appendOnboardingDebugLog = useCallback(async (message: string) => {
+    const line = `${new Date().toISOString()} | ${message}`;
+    setOnboardingDebugLogs((prev) => {
+      const next = [...prev, line];
+      return next.slice(-300);
+    });
+    try {
+      const raw = await AsyncStorage.getItem(ONBOARDING_DEBUG_LOG_KEY);
+      const arr = raw ? (JSON.parse(raw) as string[]) : [];
+      const next = [...arr, line].slice(-500);
+      await AsyncStorage.setItem(ONBOARDING_DEBUG_LOG_KEY, JSON.stringify(next));
+    } catch {
+      // ignore debug persistence errors
+    }
+  }, []);
+
+  const clearOnboardingDebugLogs = useCallback(async () => {
+    setOnboardingDebugLogs([]);
+    setOnboardingCopyStatus("");
+    await AsyncStorage.removeItem(ONBOARDING_DEBUG_LOG_KEY).catch(() => {});
+  }, []);
+
+  const copyOnboardingDebugLogs = useCallback(async () => {
+    try {
+      const text = onboardingDebugLogs.join("\n");
+      if (!text || typeof navigator === "undefined" || !navigator.clipboard?.writeText) {
+        setOnboardingCopyStatus("failed");
+        return;
+      }
+      await navigator.clipboard.writeText(text);
+      setOnboardingCopyStatus("copied");
+    } catch {
+      setOnboardingCopyStatus("failed");
+    }
+  }, [onboardingDebugLogs]);
+
+  const handlePostAuthRoute = useCallback(async () => {
+    await appendOnboardingDebugLog("Post-auth route check started.");
+    const pendingDelete = await AsyncStorage.getItem(PENDING_DELETE_ACCOUNT_KEY).catch(() => null);
+    if (pendingDelete === "true") {
+      await appendOnboardingDebugLog("Pending delete flag found. Executing deleteAccount after auth.");
+      await AsyncStorage.removeItem(PENDING_DELETE_ACCOUNT_KEY).catch(() => {});
+      try {
+        await deleteAccount();
+        await appendOnboardingDebugLog("Post-auth deleteAccount succeeded. Redirecting to /login.");
+        Alert.alert("Account deleted", "Your account has been deleted successfully.");
+        router.replace("/login");
+        return;
+      } catch (err: any) {
+        const code = err?.code as string | undefined;
+        await appendOnboardingDebugLog(`Post-auth deleteAccount failed. code=${code ?? "none"} message=${String(err?.message ?? "unknown")}`);
+        if (code === "auth/requires-recent-login") {
+          Alert.alert(
+            t("general.error"),
+            "Please try logging in again and then deleting your account from Settings."
+          );
+        } else {
+          Alert.alert(t("general.error"), err?.message || t("auth.loginFailed"));
+        }
+      }
+    }
+    await appendOnboardingDebugLog("Post-auth route complete. Redirecting to /");
+    setTimeout(() => router.replace("/"), 50);
+  }, [appendOnboardingDebugLog, deleteAccount, t]);
 
   const isNative = Platform.OS === "ios" || Platform.OS === "android";
   const isExpoGo = Constants.appOwnership === "expo";
@@ -56,6 +127,28 @@ export default function AuthPage() {
   );
 
   useEffect(() => {
+    if (!__DEV__) return;
+    AsyncStorage.getItem(ONBOARDING_DEBUG_LOG_KEY)
+      .then((raw) => {
+        if (!raw) return;
+        const parsed = JSON.parse(raw) as string[];
+        setOnboardingDebugLogs(Array.isArray(parsed) ? parsed.slice(-300) : []);
+      })
+      .catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    if (!__DEV__ || Platform.OS !== "web") return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "~" || event.key === "`" || event.code === "Backquote") {
+        setOnboardingDebugEnabled((v) => !v);
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
+
+  useEffect(() => {
     if (microsoftResponse?.type !== "success" || !isNative) return;
     const idToken = (microsoftResponse.params as Record<string, string>).id_token;
     if (!idToken) return;
@@ -63,13 +156,13 @@ export default function AuthPage() {
       try {
         const authUser = await authService.signInWithMicrosoftCredential(idToken);
         await signInWithAuthUser(authUser);
-        setTimeout(() => router.replace("/"), 50);
+        await handlePostAuthRoute();
       } catch (err: unknown) {
         const msg = err instanceof Error ? err.message : t("auth.loginFailed");
         Alert.alert(t("general.error"), msg);
       }
     })();
-  }, [microsoftResponse, isNative, signInWithAuthUser, t]);
+  }, [microsoftResponse, isNative, signInWithAuthUser, t, handlePostAuthRoute]);
 
   const emailError = useMemo(() => {
     const trimmed = email.trim();
@@ -90,6 +183,7 @@ export default function AuthPage() {
   const handleSubmit = async () => {
     const n = name.trim();
     const e = email.trim();
+    await appendOnboardingDebugLog(`Submit pressed. mode=${isSignUp ? "signup" : "login"} email=${e.toLowerCase()}`);
 
     if (isSignUp && !n) {
       Alert.alert(t("general.error"), t("auth.pleaseEnterName"));
@@ -140,6 +234,7 @@ export default function AuthPage() {
 
     try {
       await signIn({ name: n || t('auth.defaultUser'), email: e, password, isSignUp });
+      await appendOnboardingDebugLog(`signIn() resolved. mode=${isSignUp ? "signup" : "login"}`);
 
       // On signup, migrate any guest-mode progress into the new account.
       if (isSignUp) {
@@ -165,12 +260,13 @@ export default function AuthPage() {
         }
       }
 
-      // Defer navigation so React commits state updates before Index reads state.user
-      setTimeout(() => router.replace('/'), 50);
+      await handlePostAuthRoute();
     } catch (err: any) {
       console.error('Auth error', err);
+      await appendOnboardingDebugLog(`signIn() rejected. code=${String(err?.code ?? "none")} message=${String(err?.message ?? "unknown")}`);
 
       if (err?.code === 'auth/email-verification-required') {
+        await appendOnboardingDebugLog("Signup requires email verification. Awaiting user verification login.");
         setVerificationPendingEmail(err?.email ?? e);
         setIsSignUp(false);
         return;
@@ -204,7 +300,7 @@ export default function AuthPage() {
       }
       await signInWithAuthUser(authUser);
       setPendingLinkUrl(null);
-      setTimeout(() => router.replace("/"), 50);
+      await handlePostAuthRoute();
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : t("auth.loginFailed");
       Alert.alert(t("general.error"), msg);
@@ -246,6 +342,7 @@ export default function AuthPage() {
 
   const handleGuestSignIn = async () => {
     if (Platform.OS !== "web") await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    await AsyncStorage.removeItem(PENDING_DELETE_ACCOUNT_KEY).catch(() => {});
     await signInAsGuest();
     setTimeout(() => router.replace("/"), 50);
   };
@@ -263,7 +360,7 @@ export default function AuthPage() {
             ? await authService.signInWithGoogle()
             : await authService.signInWithMicrosoft();
         await signInWithAuthUser(authUser);
-        setTimeout(() => router.replace("/"), 50);
+        await handlePostAuthRoute();
       } catch (err: unknown) {
         const errMsg = err instanceof Error ? err.message : "";
         const isOAuthError = /popup|redirect|sessionStorage|initial state/i.test(errMsg);
@@ -302,7 +399,7 @@ export default function AuthPage() {
         if (!idToken) throw new Error("Could not get Google id token");
         const authUser = await authService.signInWithGoogleCredential(idToken);
         await signInWithAuthUser(authUser);
-        setTimeout(() => router.replace("/"), 50);
+        await handlePostAuthRoute();
       } catch (err: unknown) {
         const msg = err instanceof Error ? err.message : t("auth.loginFailed");
         Alert.alert(t("general.error"), msg);
@@ -341,6 +438,37 @@ export default function AuthPage() {
       <Text className={`${styles.secondaryTextClass} text-center mb-8`}>{t("auth.findCollege")}</Text>
 
       <View className={`${styles.cardBgClass} border rounded-2xl p-6 ${isWeb ? "shadow-lg" : ""}`}>
+        {__DEV__ && onboardingDebugEnabled ? (
+          <View className="mb-4 border border-emerald-500/40 rounded-lg p-3">
+            <View className="flex-row items-center justify-between">
+              <Text className={`${styles.textClass} font-semibold text-sm`}>Onboarding/Auth Debug</Text>
+              <Pressable onPress={() => setShowOnboardingDebugConsole((v) => !v)} className="px-3 py-1 rounded-lg bg-emerald-500">
+                <Text className={`${isDark ? "text-white" : "text-black"} text-xs font-semibold`}>
+                  {showOnboardingDebugConsole ? "Hide" : "Show"}
+                </Text>
+              </Pressable>
+            </View>
+            <View className="flex-row gap-2 mt-2">
+              <Pressable onPress={copyOnboardingDebugLogs} className="px-3 py-1.5 rounded-lg bg-emerald-300">
+                <Text className={`${isDark ? "text-white" : "text-black"} text-xs font-semibold`}>Copy Logs</Text>
+              </Pressable>
+              <Pressable onPress={() => { void clearOnboardingDebugLogs(); }} className="px-3 py-1.5 rounded-lg bg-emerald-300">
+                <Text className={`${isDark ? "text-white" : "text-black"} text-xs font-semibold`}>Clear</Text>
+              </Pressable>
+            </View>
+            {onboardingCopyStatus ? (
+              <Text className={`${styles.secondaryTextClass} text-xs mt-2`}>
+                {onboardingCopyStatus === "copied" ? "Logs copied to clipboard." : "Clipboard copy failed."}
+              </Text>
+            ) : null}
+            {showOnboardingDebugConsole ? (
+              <Text selectable className={`${styles.secondaryTextClass} text-xs mt-2`}>
+                {onboardingDebugLogs.length ? onboardingDebugLogs.join("\n") : "No onboarding/auth logs yet."}
+              </Text>
+            ) : null}
+          </View>
+        ) : null}
+
         {verificationPendingEmail && (
           <View className="bg-emerald-500/20 border border-emerald-500 rounded-lg p-4 mb-4">
             <Text className={`${styles.textClass} font-semibold mb-1`}>{t("auth.checkYourEmail")}</Text>
