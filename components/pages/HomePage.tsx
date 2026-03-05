@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from "react";
-import { View, Text, TextInput, Pressable, ScrollView, Switch, Platform, ActivityIndicator } from "react-native";
+import { useState, useEffect, useMemo, useRef } from "react";
+import { View, Text, TextInput, Pressable, ScrollView, Switch, Platform, ActivityIndicator, useWindowDimensions } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -33,12 +33,21 @@ type DebugSnapshotWithLimit = RecommendDebug & {
   aiLimit?: DebugAiLimitMeta;
 };
 
+type HomeTourStep = {
+  id: string;
+  title: string;
+  description: string;
+  x: number;
+  y: number;
+};
+
 export default function HomePage() {
   const router = useRouter();
   const { isDark, isGreen, isLight } = useAppTheme();
   const { t } = useAppLanguage();
-  const { state, setQuestionnaireAnswers, addSavedCollege, removeSavedCollege, isCollegeSaved } = useAppData();
+  const { state, setQuestionnaireAnswers, addSavedCollege, removeSavedCollege, isCollegeSaved, setOnboardingSeen } = useAppData();
   const insets = useSafeAreaInsets();
+  const { width: screenWidth, height: screenHeight } = useWindowDimensions();
 
   const user = state.user;
 
@@ -72,6 +81,7 @@ export default function HomePage() {
   });
   const [showAdvancedSearch, setShowAdvancedSearch] = useState(false);
   const [disabledInfluences, setDisabledInfluences] = useState<DisabledInfluences>({});
+  const [tourStepIndex, setTourStepIndex] = useState(0);
   type SearchRunOptions = {
     overrideUseWeighted?: boolean;
     overrideDisabledInfluences?: DisabledInfluences;
@@ -361,6 +371,92 @@ export default function HomePage() {
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
+
+  const shouldShowTour = Boolean(user && !user.isGuest && user.hasSeenOnboarding !== true);
+  const tourCardWidth = Math.min(448, Math.max(280, screenWidth - 32));
+  const tourCardLeft = (screenWidth - tourCardWidth) / 2;
+  const topAnchor = insets.top + 40;
+
+  const tourSteps = useMemo<HomeTourStep[]>(() => [
+    {
+      id: "search-bar",
+      title: "Search Bar",
+      description: "Type what you are looking for and run Search to get college recommendations.",
+      x: tourCardLeft + tourCardWidth * 0.5,
+      y: topAnchor + 118,
+    },
+    {
+      id: "roadmap",
+      title: "Roadmap",
+      description: "Roadmap tracks tasks and transfer milestones so you always know your next step.",
+      x: tourCardLeft + tourCardWidth * 0.5,
+      y: topAnchor + 360,
+    },
+    {
+      id: "keyboard-search",
+      title: "Keyboard Search",
+      description: "After typing, press your keyboard Enter/Search key for quick search.",
+      x: tourCardLeft + tourCardWidth * 0.86,
+      y: topAnchor + 118,
+    },
+    {
+      id: "tab-home",
+      title: "Home",
+      description: "Home is your main page for search and recommendations.",
+      x: screenWidth * 0.125,
+      y: screenHeight - 56,
+    },
+    {
+      id: "tab-resources",
+      title: "Resources",
+      description: "Resources gives you useful links, tools, and planning references.",
+      x: screenWidth * 0.375,
+      y: screenHeight - 56,
+    },
+    {
+      id: "tab-profile",
+      title: "Profile",
+      description: "Profile contains your academic details used for personalization.",
+      x: screenWidth * 0.625,
+      y: screenHeight - 56,
+    },
+    {
+      id: "tab-settings",
+      title: "Settings",
+      description: "Settings lets you manage preferences, language, account actions, and legal pages.",
+      x: screenWidth * 0.875,
+      y: screenHeight - 56,
+    },
+  ], [screenWidth, screenHeight, tourCardLeft, tourCardWidth, topAnchor]);
+
+  const activeTourStep = tourSteps[Math.min(tourStepIndex, tourSteps.length - 1)];
+  const bubbleWidth = Math.min(320, Math.max(260, screenWidth - 24));
+  const bubbleHeight = 150;
+  const preferBubbleTop = activeTourStep ? activeTourStep.y > screenHeight * 0.45 : false;
+  const bubbleTop = activeTourStep
+    ? preferBubbleTop
+      ? Math.max(12, activeTourStep.y - bubbleHeight - 36)
+      : Math.min(screenHeight - bubbleHeight - 20, activeTourStep.y + 26)
+    : 12;
+  const bubbleLeft = activeTourStep
+    ? Math.max(12, Math.min(activeTourStep.x - bubbleWidth / 2, screenWidth - bubbleWidth - 12))
+    : 12;
+  const pointerOffset = activeTourStep
+    ? Math.max(20, Math.min(activeTourStep.x - bubbleLeft - 8, bubbleWidth - 28))
+    : 24;
+
+  const completeTour = async () => {
+    await setOnboardingSeen(true);
+    setTourStepIndex(0);
+  };
+
+  const advanceTour = async () => {
+    if (tourStepIndex >= tourSteps.length - 1) {
+      await completeTour();
+      return;
+    }
+    setTourStepIndex((prev) => prev + 1);
+  };
 
   return (
     <ScreenBackground>
@@ -675,6 +771,71 @@ export default function HomePage() {
           ) : null}
         </View>
       </ScrollView>
+      {shouldShowTour && activeTourStep ? (
+        <View className="absolute inset-0">
+          <View className="absolute inset-0 bg-black/45" />
+          <View
+            pointerEvents="none"
+            style={{
+              position: "absolute",
+              left: activeTourStep.x - 24,
+              top: activeTourStep.y - 24,
+              width: 48,
+              height: 48,
+              borderRadius: 24,
+              borderWidth: 2,
+              borderColor: "#34d399",
+              backgroundColor: "rgba(16,185,129,0.2)",
+            }}
+          />
+          <View
+            style={{
+              position: "absolute",
+              left: bubbleLeft,
+              top: bubbleTop,
+              width: bubbleWidth,
+              minHeight: bubbleHeight,
+              borderRadius: 16,
+              borderWidth: 1,
+              borderColor: "#34d399",
+              backgroundColor: isDark ? "#042f2e" : "#ecfdf5",
+              paddingHorizontal: 14,
+              paddingVertical: 12,
+            }}
+          >
+            <Text className={`${textClass} font-semibold mb-1`}>{activeTourStep.title}</Text>
+            <Text className={`${secondaryTextClass} text-sm`}>{activeTourStep.description}</Text>
+            <Text className={`${secondaryTextClass} text-xs mt-2`}>
+              {tourStepIndex + 1} of {tourSteps.length}
+            </Text>
+            <View className="flex-row justify-between mt-4">
+              <Pressable onPress={completeTour} className="px-3 py-2 rounded-lg bg-black/25">
+                <Text className="text-white font-semibold">Quit</Text>
+              </Pressable>
+              <Pressable onPress={advanceTour} className="px-3 py-2 rounded-lg bg-emerald-500">
+                <Text className={`${isDark ? "text-white" : "text-black"} font-semibold`}>
+                  {tourStepIndex === tourSteps.length - 1 ? "Finish" : "Next"}
+                </Text>
+              </Pressable>
+            </View>
+            <View
+              pointerEvents="none"
+              style={{
+                position: "absolute",
+                width: 16,
+                height: 16,
+                backgroundColor: isDark ? "#042f2e" : "#ecfdf5",
+                borderLeftWidth: 1,
+                borderTopWidth: 1,
+                borderColor: "#34d399",
+                transform: [{ rotate: "45deg" }],
+                left: pointerOffset,
+                top: preferBubbleTop ? bubbleHeight - 8 : -8,
+              }}
+            />
+          </View>
+        </View>
+      ) : null}
     </ScreenBackground>
   );
 }

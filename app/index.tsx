@@ -43,12 +43,6 @@ export default function Index() {
           return;
         }
 
-        if (state.user.hasSeenOnboarding === false) {
-          await appendDebug("route -> /onboarding (hasSeenOnboarding=false)");
-          router.replace("/onboarding");
-          return;
-        }
-
         const hasCompletedSetup = !!(
           state.user.isProfileComplete ||
           state.user.major ||

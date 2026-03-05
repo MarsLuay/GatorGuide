@@ -141,7 +141,7 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
       const onboardingSeen =
         typeof profileFromServer.hasSeenOnboarding === "boolean"
           ? profileFromServer.hasSeenOnboarding
-          : (u.isSignUp ? false : true);
+          : false;
 
       if (prev.user && prev.user.email === authUser.email) {
         return {
@@ -203,7 +203,7 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
         name: authUser.name || "",
         email: authUser.email,
         isGuest: false,
-        hasSeenOnboarding: typeof profileFromServer.hasSeenOnboarding === "boolean" ? profileFromServer.hasSeenOnboarding : true,
+        hasSeenOnboarding: typeof profileFromServer.hasSeenOnboarding === "boolean" ? profileFromServer.hasSeenOnboarding : false,
         major: "",
         state: "",
         gpa: "",
