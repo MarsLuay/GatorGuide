@@ -88,6 +88,8 @@ export default function HomePage() {
   const [isSupportOpen, setIsSupportOpen] = useState(false);
   const [supportMessage, setSupportMessage] = useState("");
   const [isSendingSupport, setIsSendingSupport] = useState(false);
+  const [supportStatus, setSupportStatus] = useState<"" | "sent" | "error">("");
+  const [supportStatusText, setSupportStatusText] = useState("");
   type SearchRunOptions = {
     overrideUseWeighted?: boolean;
     overrideDisabledInfluences?: DisabledInfluences;
@@ -481,11 +483,17 @@ export default function HomePage() {
       return;
     }
 
+    setSupportStatus("");
+    setSupportStatusText("");
     setIsSendingSupport(true);
+    let timer: ReturnType<typeof setTimeout> | null = null;
     try {
+      const controller = new AbortController();
+      timer = setTimeout(() => controller.abort(), 12000);
       const res = await fetch(SUPPORT_MESSAGE_WEBHOOK, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        signal: controller.signal,
         body: JSON.stringify({
           app: "GatorGuide",
           timestamp: new Date().toISOString(),
@@ -496,20 +504,29 @@ export default function HomePage() {
           message,
         }),
       });
+      if (timer) clearTimeout(timer);
 
       if (!res.ok) {
         const text = await res.text().catch(() => "");
         const details = text ? ` (${text.slice(0, 140)})` : "";
-        Alert.alert("Support", `Could not send message${details}`);
+        const msg = `Could not send message${details}`;
+        setSupportStatus("error");
+        setSupportStatusText(msg);
+        Alert.alert("Support", msg);
         return;
       }
 
       setSupportMessage("");
       setIsSupportOpen(false);
+      setSupportStatus("sent");
+      setSupportStatusText("Message sent.");
       Alert.alert("Support", "Message sent.");
     } catch {
+      setSupportStatus("error");
+      setSupportStatusText("Could not send message. Check webhook deployment/config.");
       Alert.alert("Support", "Could not send message. Please try again.");
     } finally {
+      if (timer) clearTimeout(timer);
       setIsSendingSupport(false);
     }
   };
@@ -912,6 +929,11 @@ export default function HomePage() {
                   </Text>
                 </Pressable>
               </View>
+              {supportStatusText ? (
+                <Text className={`text-xs mt-2 ${supportStatus === "error" ? "text-red-300" : secondaryTextClass}`}>
+                  {supportStatusText}
+                </Text>
+              ) : null}
             </View>
           ) : (
             <Pressable
