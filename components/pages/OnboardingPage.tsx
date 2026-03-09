@@ -255,7 +255,7 @@ export default function OnboardingPage() {
 
               <View className="flex-row justify-between mt-4">
                 <Pressable onPress={completeTour} className="px-3 py-2 rounded-lg bg-black/25">
-                  <Text className="text-white font-semibold">Quit</Text>
+                  <Text className="text-white font-semibold">Exit tutorial</Text>
                 </Pressable>
                 <Pressable onPress={onNext} className="px-3 py-2 rounded-lg bg-emerald-500">
                   <Text className={`${isDark ? "text-white" : "text-black"} font-semibold`}>{nextLabel}</Text>
