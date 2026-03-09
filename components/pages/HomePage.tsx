@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useRef } from "react";
-import { View, Text, TextInput, Pressable, ScrollView, Switch, Platform, ActivityIndicator, useWindowDimensions, Alert, Linking } from "react-native";
+import { View, Text, TextInput, Pressable, ScrollView, Switch, Platform, ActivityIndicator, useWindowDimensions, Alert } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -16,6 +16,9 @@ import type { DisabledInfluences, EmptyState, RecommendDebug } from "@/services"
 const AI_USAGE_STORAGE_KEY = "gatorguide:ai-usage:v1";
 const GUEST_DAILY_AI_LIMIT = 15;
 const USER_DAILY_AI_LIMIT = 50;
+const SUPPORT_MESSAGE_WEBHOOK =
+  process.env.EXPO_PUBLIC_SUPPORT_MESSAGE_WEBHOOK ||
+  "https://us-central1-gatorguide.cloudfunctions.net/sendSupportMessage";
 
 type DailyUsageRecord = {
   date: string;
@@ -84,6 +87,7 @@ export default function HomePage() {
   const [tourStepIndex, setTourStepIndex] = useState(0);
   const [isSupportOpen, setIsSupportOpen] = useState(false);
   const [supportMessage, setSupportMessage] = useState("");
+  const [isSendingSupport, setIsSendingSupport] = useState(false);
   type SearchRunOptions = {
     overrideUseWeighted?: boolean;
     overrideDisabledInfluences?: DisabledInfluences;
@@ -472,22 +476,41 @@ export default function HomePage() {
       return;
     }
 
-    const subject = encodeURIComponent("GatorGuide Support Request");
-    const userLine = user?.email ? `User: ${user.email}\n` : "";
-    const body = encodeURIComponent(`${userLine}\n${message}`);
-    const mailtoUrl = `mailto:gatorguide@outlook.com?subject=${subject}&body=${body}`;
+    if (!SUPPORT_MESSAGE_WEBHOOK) {
+      Alert.alert("Support", "Support endpoint is not configured.");
+      return;
+    }
 
+    setIsSendingSupport(true);
     try {
-      const canOpen = await Linking.canOpenURL(mailtoUrl);
-      if (!canOpen) {
-        Alert.alert("Support", "No email app was found on this device.");
+      const res = await fetch(SUPPORT_MESSAGE_WEBHOOK, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          app: "GatorGuide",
+          timestamp: new Date().toISOString(),
+          platform: Platform.OS,
+          userName: user?.name || "",
+          userEmail: user?.email || "",
+          userUid: user?.uid || "",
+          message,
+        }),
+      });
+
+      if (!res.ok) {
+        const text = await res.text().catch(() => "");
+        const details = text ? ` (${text.slice(0, 140)})` : "";
+        Alert.alert("Support", `Could not send message${details}`);
         return;
       }
-      await Linking.openURL(mailtoUrl);
+
       setSupportMessage("");
       setIsSupportOpen(false);
+      Alert.alert("Support", "Message sent.");
     } catch {
-      Alert.alert("Support", "Could not open your email app. Please try again.");
+      Alert.alert("Support", "Could not send message. Please try again.");
+    } finally {
+      setIsSendingSupport(false);
     }
   };
 
@@ -874,15 +897,19 @@ export default function HomePage() {
               <View className="flex-row justify-between mt-3">
                 <Pressable
                   onPress={() => setIsSupportOpen(false)}
+                  disabled={isSendingSupport}
                   className="px-3 py-2 rounded-lg bg-black/25"
                 >
                   <Text className="text-white font-semibold">Close</Text>
                 </Pressable>
                 <Pressable
                   onPress={() => { void sendSupportMessage(); }}
+                  disabled={isSendingSupport}
                   className="px-3 py-2 rounded-lg bg-emerald-500"
                 >
-                  <Text className={`${isDark ? "text-white" : "text-black"} font-semibold`}>Send</Text>
+                  <Text className={`${isDark ? "text-white" : "text-black"} font-semibold`}>
+                    {isSendingSupport ? "Sending..." : "Send"}
+                  </Text>
                 </Pressable>
               </View>
             </View>
