@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useRef } from "react";
-import { View, Text, TextInput, Pressable, ScrollView, Switch, Platform, ActivityIndicator, useWindowDimensions } from "react-native";
+import { View, Text, TextInput, Pressable, ScrollView, Switch, Platform, ActivityIndicator, useWindowDimensions, Alert, Linking } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -58,7 +58,6 @@ export default function HomePage() {
   const [emptyState, setEmptyState] = useState<EmptyState | undefined>(undefined);
   const [useWeighted, setUseWeighted] = useState<boolean>(state.questionnaireAnswers?.useWeightedSearch !== "false" && state.questionnaireAnswers?.useWeightedSearch !== false);
   const [hasSubmittedSearch, setHasSubmittedSearch] = useState(false);
-  const [isProfileExpanded, setIsProfileExpanded] = useState(false);
   const [dismissedGuestPrompt, setDismissedGuestPrompt] = useState(false);
   const showExtraInfoPrompt = !hasSubmittedSearch;
   const [resultsSource, setResultsSource] = useState<'live' | 'cached' | 'stub' | null>(null);
@@ -83,6 +82,8 @@ export default function HomePage() {
   const [showAdvancedSearch, setShowAdvancedSearch] = useState(false);
   const [disabledInfluences, setDisabledInfluences] = useState<DisabledInfluences>({});
   const [tourStepIndex, setTourStepIndex] = useState(0);
+  const [isSupportOpen, setIsSupportOpen] = useState(false);
+  const [supportMessage, setSupportMessage] = useState("");
   type SearchRunOptions = {
     overrideUseWeighted?: boolean;
     overrideDisabledInfluences?: DisabledInfluences;
@@ -464,12 +465,56 @@ export default function HomePage() {
     setTourStepIndex((prev) => prev + 1);
   };
 
+  const sendSupportMessage = async () => {
+    const message = supportMessage.trim();
+    if (!message) {
+      Alert.alert("Support", "Please type a message before sending.");
+      return;
+    }
+
+    const subject = encodeURIComponent("GatorGuide Support Request");
+    const userLine = user?.email ? `User: ${user.email}\n` : "";
+    const body = encodeURIComponent(`${userLine}\n${message}`);
+    const mailtoUrl = `mailto:gatorguide@outlook.com?subject=${subject}&body=${body}`;
+
+    try {
+      const canOpen = await Linking.canOpenURL(mailtoUrl);
+      if (!canOpen) {
+        Alert.alert("Support", "No email app was found on this device.");
+        return;
+      }
+      await Linking.openURL(mailtoUrl);
+      setSupportMessage("");
+      setIsSupportOpen(false);
+    } catch {
+      Alert.alert("Support", "Could not open your email app. Please try again.");
+    }
+  };
+
   return (
     <ScreenBackground>
       <ScrollView className="flex-1" contentContainerStyle={{ paddingTop: insets.top, paddingBottom: 96 }}>
         <View className="max-w-md w-full self-center px-6 pt-10">
           <Text className={`text-2xl ${textClass} mb-1`}>{t("home.welcomeBack").replace("{name}", capitalizedName)}</Text>
           <Text className={`${secondaryTextClass} mb-6`}>{t("home.findPerfectCollege")}</Text>
+
+          {user ? (
+            <View className={`${cardClass} border rounded-2xl p-4 mb-4`}>
+              <View className="flex-row items-center">
+                <View className="w-12 h-12 rounded-full bg-emerald-500/20 items-center justify-center mr-3">
+                  <Ionicons name="person" size={22} color="#008f4e" />
+                </View>
+                <View className="flex-1">
+                  <Text className={`${textClass} font-semibold`} numberOfLines={1}>
+                    {user.name || t("home.student")}
+                  </Text>
+                  <Text className={`${secondaryTextClass} text-sm`} numberOfLines={1}>
+                    {user.major?.trim() ? user.major : t("home.undecided")}
+                  </Text>
+                </View>
+              </View>
+            </View>
+          ) : null}
 
           {user?.isGuest && !dismissedGuestPrompt && (
             <View className={`mb-6 rounded-2xl p-4 ${isLight ? "bg-emerald-200" : "bg-emerald-500"}`}>
@@ -604,40 +649,6 @@ export default function HomePage() {
             </View>
             <Ionicons name="chevron-forward" size={18} color={placeholderTextColor} />
           </Pressable>
-
-          {user && user.major ? (
-            <View className="mt-4">
-              <Pressable 
-                onPress={() => setIsProfileExpanded(!isProfileExpanded)}
-                className={`${cardClass} border rounded-2xl p-4`}
-              >
-                <View className="flex-row items-center justify-between">
-                  <Text className={`${textClass}`}>{t("home.yourProfile")}</Text>
-                  <Ionicons 
-                    name={isProfileExpanded ? "chevron-up" : "chevron-down"} 
-                    size={20} 
-                    color={placeholderTextColor} 
-                  />
-                </View>
-
-                {isProfileExpanded && (
-                  <View className="mt-3">
-                    <View className="flex-row justify-between mb-2">
-                      <Text className={secondaryTextClass}>{t("home.major")}</Text>
-                      <Text className="text-emerald-500">{user ? user.major || t("home.undecided") : t("home.undecided")}</Text>
-                    </View>
-                    {user && user.gpa && (
-                      <View className="flex-row justify-between mb-2">
-                        <Text className={secondaryTextClass}>{t("home.gpa")}</Text>
-                        <Text className="text-emerald-500">{user ? user.gpa : ""}</Text>
-                      </View>
-                    )}
-
-                  </View>
-                )}
-              </Pressable>
-            </View>
-          ) : null}
 
           {showExtraInfoPrompt ? (
             <View className={`${cardClass} border rounded-2xl p-4 mt-4`}>
@@ -819,7 +830,7 @@ export default function HomePage() {
             </Text>
             <View className="flex-row justify-between mt-4">
               <Pressable onPress={completeTour} className="px-3 py-2 rounded-lg bg-black/25">
-                <Text className="text-white font-semibold">Quit</Text>
+                <Text className="text-white font-semibold">Exit tutorial</Text>
               </Pressable>
               <Pressable onPress={advanceTour} className="px-3 py-2 rounded-lg bg-emerald-500">
                 <Text className={`${isDark ? "text-white" : "text-black"} font-semibold`}>
@@ -843,6 +854,46 @@ export default function HomePage() {
               }}
             />
           </View>
+        </View>
+      ) : null}
+      {!shouldShowTour ? (
+        <View className="absolute right-4" style={{ bottom: Math.max(insets.bottom + 92, 108) }}>
+          {isSupportOpen ? (
+            <View className={`${cardClass} border rounded-2xl p-3 w-72 shadow-lg`}>
+              <Text className={`${textClass} font-semibold mb-2`}>Support</Text>
+              <TextInput
+                multiline
+                numberOfLines={4}
+                value={supportMessage}
+                onChangeText={setSupportMessage}
+                placeholder="Type your issue or question..."
+                placeholderTextColor={placeholderTextColor}
+                className={`min-h-[96px] ${inputClass} ${textClass} border rounded-xl p-3 text-sm`}
+                textAlignVertical="top"
+              />
+              <View className="flex-row justify-between mt-3">
+                <Pressable
+                  onPress={() => setIsSupportOpen(false)}
+                  className="px-3 py-2 rounded-lg bg-black/25"
+                >
+                  <Text className="text-white font-semibold">Close</Text>
+                </Pressable>
+                <Pressable
+                  onPress={() => { void sendSupportMessage(); }}
+                  className="px-3 py-2 rounded-lg bg-emerald-500"
+                >
+                  <Text className={`${isDark ? "text-white" : "text-black"} font-semibold`}>Send</Text>
+                </Pressable>
+              </View>
+            </View>
+          ) : (
+            <Pressable
+              onPress={() => setIsSupportOpen(true)}
+              className="bg-emerald-500 rounded-full px-4 py-3 shadow-lg"
+            >
+              <Text className={`${isDark ? "text-white" : "text-black"} font-semibold`}>Support</Text>
+            </Pressable>
+          )}
         </View>
       ) : null}
     </ScreenBackground>
