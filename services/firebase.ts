@@ -16,6 +16,7 @@ try {
   getReactNativePersistence = undefined;
 }
 import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage";
 import { Platform } from "react-native";
 import { API_CONFIG, isStubMode } from "./config";
@@ -44,3 +45,4 @@ function getAuthInstance() {
 
 export const firebaseAuth = getAuthInstance();
 export const db = shouldInitFirebase && firebaseApp ? getFirestore(firebaseApp) : null;
+export const storage = shouldInitFirebase && firebaseApp ? getStorage(firebaseApp) : null;

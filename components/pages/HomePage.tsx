@@ -7,6 +7,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppData } from "@/hooks/use-app-data";
+import { getMatchColorClass } from "@/utils/match-color";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { College } from "@/services/college.service";
 import { aiService, collegeService } from "@/services";
@@ -124,6 +125,11 @@ export default function HomePage() {
     const score = Number((item as any)?.score);
     if (Number.isFinite(score)) return `${Math.round(score)}/100`;
     return t("home.scoreNotAvailable");
+  };
+
+  const getMatchScore = (item: Recommended): number | null => {
+    const score = Number((item as any)?.score);
+    return Number.isFinite(score) ? score : null;
   };
 
   const buildSimpleWhy = (item: Recommended): string[] => {
@@ -729,12 +735,15 @@ export default function HomePage() {
                         <View className="flex-row items-center justify-between">
                           <View className="flex-1">
                             <Text className={textClass}>{college.name}</Text>
-                            <Text className="text-emerald-500 font-semibold">Match {getMatchText(r)}</Text>
+                            <Text className={`${getMatchColorClass(getMatchScore(r))} font-semibold`}>Match {getMatchText(r)}</Text>
                           </View>
                           <Pressable
                             onPress={(e) => {
                               e?.stopPropagation?.();
-                              saved ? removeSavedCollege(college.id) : addSavedCollege(college);
+                              const score = getMatchScore(r);
+                              saved ? removeSavedCollege(college.id) : addSavedCollege(
+                                score != null ? { ...college, matchScore: score } : college
+                              );
                             }}
                             className="p-2"
                           >

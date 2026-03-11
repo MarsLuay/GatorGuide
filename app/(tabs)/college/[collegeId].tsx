@@ -8,6 +8,7 @@ import { collegeService, College } from "@/services";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppData } from "@/hooks/use-app-data";
+import { getMatchColorClass } from "@/utils/match-color";
 import { Ionicons } from "@expo/vector-icons";
 
 export default function CollegeDetailsPage() {
@@ -24,7 +25,8 @@ export default function CollegeDetailsPage() {
 
   const styles = useThemeStyles();
   const { isDark } = useAppTheme();
-  const { addSavedCollege, removeSavedCollege, isCollegeSaved } = useAppData();
+  const { state, addSavedCollege, removeSavedCollege, isCollegeSaved } = useAppData();
+  const savedCollege = state.savedColleges?.find((c) => c.id === collegeId);
   const { textClass, secondaryTextClass, cardBgClass, borderClass, placeholderColor } = styles;
 
   // All-data UI state
@@ -225,6 +227,14 @@ export default function CollegeDetailsPage() {
             </View>
           ) : (
             <View>
+              {/* Match score (when saved from recommendations) */}
+              {typeof savedCollege?.matchScore === "number" && (
+                <View className="mb-4">
+                  <Text className={`text-sm font-semibold ${getMatchColorClass(savedCollege.matchScore)}`}>
+                    {Math.round(savedCollege.matchScore)}% match
+                  </Text>
+                </View>
+              )}
               {/* Key stats card (only show present fields) */}
               {(college.admissionRate != null || college.completionRate != null || college.studentSize != null) && (
                 <View className={`${cardBgClass} border rounded-2xl p-4 mb-4`}>

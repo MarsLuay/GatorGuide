@@ -55,7 +55,7 @@ export default function LanguagePage() {
     setLanguage(lang);
     // Delay route change slightly so selection feedback is noticeable.
     setTimeout(() => {
-      router.replace("/(tabs)/settings");
+      back();
     }, 300);
   };
 
