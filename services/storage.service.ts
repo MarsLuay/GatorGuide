@@ -1,10 +1,12 @@
 // services/storage.service.ts
 // File storage service for resumes and transcripts
-// Local-only storage - files copied to document directory for persistence
+// Uses Firebase Storage buckets (resume, transcript) when available; falls back to local
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as FileSystem from 'expo-file-system/legacy';
+import * as FileSystem from 'expo-file-system';
 import { Platform } from 'react-native';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { storage } from './firebase';
 
 export type UploadedFile = {
   name: string;
@@ -14,8 +16,18 @@ export type UploadedFile = {
 
 const DOCS_DIR = 'gatorguide_docs';
 
+async function uriToBlob(uri: string): Promise<Blob> {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.onload = () => resolve(xhr.response as Blob);
+    xhr.onerror = () => reject(new TypeError('Failed to read file'));
+    xhr.responseType = 'blob';
+    xhr.open('GET', uri, true);
+    xhr.send(null);
+  });
+}
+
 async function copyToLocalStorage(sourceUri: string, fileName: string, subDir: string): Promise<string> {
-  // Web already uses browser-managed file URLs; no filesystem copy needed.
   if (Platform.OS === 'web') {
     return sourceUri;
   }
@@ -26,14 +38,38 @@ async function copyToLocalStorage(sourceUri: string, fileName: string, subDir: s
   return destUri;
 }
 
+async function uploadToFirebaseBucket(
+  userId: string,
+  bucket: 'resume' | 'transcript',
+  fileUri: string,
+  fileName: string
+): Promise<string | null> {
+  if (!storage) return null;
+  try {
+    const blob = await uriToBlob(fileUri);
+    const ext = fileName.split('.').pop() || 'pdf';
+    const safeName = `${bucket}_${Date.now()}.${ext}`;
+    const path = `users/${userId}/${bucket}/${safeName}`;
+    const storageRef = ref(storage, path);
+    await uploadBytesResumable(storageRef, blob, {
+      contentType: ext === 'pdf' ? 'application/pdf' : 'application/octet-stream',
+    });
+    const downloadUrl = await getDownloadURL(storageRef);
+    return downloadUrl;
+  } catch {
+    return null;
+  }
+}
+
 class StorageService {
 
   async uploadResume(userId: string, fileUri: string): Promise<UploadedFile> {
     const fileName = fileUri.split('/').pop() || `resume_${Date.now()}.pdf`;
-    const persistentUri = await copyToLocalStorage(fileUri, fileName, `resume_${userId}`);
+    const firebaseUrl = await uploadToFirebaseBucket(userId, 'resume', fileUri, fileName);
+    const url = firebaseUrl ?? await copyToLocalStorage(fileUri, fileName, `resume_${userId}`);
     const localData: UploadedFile = {
       name: fileName,
-      url: persistentUri,
+      url,
       uploadedAt: new Date(),
     };
     await AsyncStorage.setItem(`resume:${userId}`, JSON.stringify(localData));
@@ -42,19 +78,32 @@ class StorageService {
 
   async uploadTranscript(userId: string, fileUri: string): Promise<UploadedFile> {
     const fileName = fileUri.split('/').pop() || `transcript_${Date.now()}.pdf`;
-    const persistentUri = await copyToLocalStorage(fileUri, fileName, `transcript_${userId}`);
+    const firebaseUrl = await uploadToFirebaseBucket(userId, 'transcript', fileUri, fileName);
+    const url = firebaseUrl ?? await copyToLocalStorage(fileUri, fileName, `transcript_${userId}`);
     const localData: UploadedFile = {
       name: fileName,
-      url: persistentUri,
+      url,
       uploadedAt: new Date(),
     };
     await AsyncStorage.setItem(`transcript:${userId}`, JSON.stringify(localData));
     return localData;
   }
 
-  async uploadDocument(userId: string, docType: string, fileUri: string): Promise<UploadedFile> {
-    // Roadmap document uploads share one namespace keyed by document type.
-    const fileName = fileUri.split('/').pop() || `${docType}_${Date.now()}.pdf`;
+  async uploadAvatar(userId: string, imageUri: string): Promise<UploadedFile> {
+    const ext = imageUri.split('.').pop()?.split('?')[0] || 'jpg';
+    const fileName = `avatar_${Date.now()}.${ext}`;
+    const persistentUri = await copyToLocalStorage(imageUri, fileName, `avatar_${userId}`);
+    const localData: UploadedFile = {
+      name: fileName,
+      url: persistentUri,
+      uploadedAt: new Date(),
+    };
+    await AsyncStorage.setItem(`avatar:${userId}`, JSON.stringify(localData));
+    return localData;
+  }
+
+  async uploadDocument(userId: string, docType: string, fileUri: string, originalFileName?: string): Promise<UploadedFile> {
+    const fileName = originalFileName || fileUri.split('/').pop() || `${docType}_${Date.now()}.pdf`;
     const persistentUri = await copyToLocalStorage(fileUri, fileName, `roadmap_${userId}`);
     const localData: UploadedFile = {
       name: fileName,
@@ -66,15 +115,12 @@ class StorageService {
   }
 
   async getDocument(userId: string, docType: string): Promise<UploadedFile | null> {
-    // Returns metadata for previously uploaded roadmap documents.
     const data = await AsyncStorage.getItem(`roadmap:${userId}:${docType}`);
     return data ? JSON.parse(data) : null;
   }
 
   /**
-   * Get user's uploaded resume
-   * STUB: Retrieves from AsyncStorage
-   * TODO: Replace with Firebase Storage download URL
+   * Get user's uploaded resume (from AsyncStorage; URL may be Firebase or local)
    */
   async getResume(userId: string): Promise<UploadedFile | null> {
     const data = await AsyncStorage.getItem(`resume:${userId}`);
@@ -82,19 +128,21 @@ class StorageService {
   }
 
   /**
-   * Get user's uploaded transcript
-   * STUB: Retrieves from AsyncStorage
-   * TODO: Replace with Firebase Storage download URL
+   * Get user's uploaded transcript (from AsyncStorage; URL may be Firebase or local)
    */
   async getTranscript(userId: string): Promise<UploadedFile | null> {
     const data = await AsyncStorage.getItem(`transcript:${userId}`);
     return data ? JSON.parse(data) : null;
   }
 
+  async getAvatar(userId: string): Promise<UploadedFile | null> {
+    const data = await AsyncStorage.getItem(`avatar:${userId}`);
+    return data ? JSON.parse(data) : null;
+  }
+
   /**
-   * Delete uploaded file
-   * STUB: Removes from AsyncStorage
-   * TODO: Replace with Firebase Storage delete
+   * Delete uploaded file metadata from AsyncStorage.
+   * Firebase Storage files under users/{uid}/ are cleaned by deleteAllUserStorageFiles.
    */
   async deleteFile(userId: string, fileType: 'resume' | 'transcript'): Promise<void> {
     await AsyncStorage.removeItem(`${fileType}:${userId}`);

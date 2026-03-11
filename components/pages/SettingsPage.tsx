@@ -2,35 +2,41 @@ import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppLanguage } from "@/hooks/use-app-language";
-import { MaterialIcons } from "@expo/vector-icons";
+import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useMemo, useState, useCallback, useEffect } from "react";
 import { Pressable, ScrollView, Text, View, Alert, Platform, Linking } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { notificationsService, cacheManagerService } from "@/services";
+import { APP_VERSION } from "@/constants/app-version";
 import { translations } from "@/services/translations";
 import * as FileSystem from "expo-file-system";
 import * as Sharing from "expo-sharing";
 import * as DocumentPicker from "expo-document-picker";
 import * as Haptics from "expo-haptics";
 
-const PENDING_DELETE_ACCOUNT_KEY = "gatorguide:pending-delete-account";
+type IconName = keyof typeof Ionicons.glyphMap;
 
 type SettingsItem =
   | {
       label: string;
-      icon: keyof typeof MaterialIcons.glyphMap;
+      icon: IconName;
       type: "toggle";
       enabled: boolean;
       onPress: () => void;
     }
   | {
       label: string;
-      icon: keyof typeof MaterialIcons.glyphMap;
+      icon: IconName;
       type: "nav";
       value?: string;
       onPress: () => void;
+    }
+  | {
+      label: string;
+      icon: IconName;
+      type: "display";
+      value: string;
     };
 
 export default function SettingsPage() {
@@ -40,64 +46,25 @@ export default function SettingsPage() {
   const [showCacheClearedPopup, setShowCacheClearedPopup] = useState(false);
   const [cacheClearedCount, setCacheClearedCount] = useState(0);
   const [isClearingCache, setIsClearingCache] = useState(false);
-  const [isDeletingAccount, setIsDeletingAccount] = useState(false);
   const [showAdvancedSettings, setShowAdvancedSettings] = useState(false);
   const [autoClearCacheEnabled, setAutoClearCacheEnabled] = useState(false);
-  const [showDeleteDebugConsole, setShowDeleteDebugConsole] = useState(false);
-  const [deleteDebugHotkeyEnabled, setDeleteDebugHotkeyEnabled] = useState(false);
-  const [deleteDebugLogs, setDeleteDebugLogs] = useState<string[]>([]);
-  const [deleteCopyStatus, setDeleteCopyStatus] = useState<"" | "copied" | "failed">("");
 
-  const { theme, setTheme, isDark, isGreen, isLight } = useAppTheme();
+  const { theme, setTheme, isDark } = useAppTheme();
   const { t, language } = useAppLanguage();
   const { isHydrated, state, signOut, deleteAccount, setNotificationsEnabled, restoreData } = useAppData();
   const insets = useSafeAreaInsets();
 
   // removed currentLanguageName (unused) to satisfy linter
 
-  const textClass = isDark ? "text-white" : isGreen ? "text-white" : isLight ? "text-emerald-900" : "text-gray-900";
-  const secondaryTextClass = isDark ? "text-gray-400" : isGreen ? "text-emerald-100" : isLight ? "text-emerald-700" : "text-gray-600";
-  const cardBgClass = isDark
-    ? "bg-gray-900/80 border-gray-800"
-    : isGreen
-      ? "bg-emerald-900/90 border-emerald-800"
-      : isLight
-        ? "bg-emerald-50 border-emerald-300"
-        : "bg-white/90 border-gray-200";
-  const cardBorderClass = isDark ? "border-gray-800" : isGreen ? "border-emerald-700" : isLight ? "border-emerald-300" : "border-gray-200";
-  // Mirror row layout for RTL languages while keeping the same component tree.
+  const textClass = isDark ? "text-white" : "text-emerald-900";
+  const secondaryTextClass = isDark ? "text-white/90" : "text-emerald-700";
+  const cardBgClass = isDark ? "bg-emerald-900/90 border-emerald-800" : "bg-white border-emerald-200";
+  const cardBorderClass = isDark ? "border-emerald-700" : "border-emerald-300";
   const isRTL = language === "Arabic" || language === "Persian";
   const flexDirection = isRTL ? "flex-row-reverse" : "flex-row";
 
-  const pushDeleteDebugLog = useCallback((message: string) => {
-    const line = `${new Date().toISOString()} | ${message}`;
-    setDeleteDebugLogs((prev) => {
-      const next = [...prev, line];
-      return next.slice(-200);
-    });
-  }, []);
-
-  const clearDeleteDebugLogs = useCallback(() => {
-    setDeleteDebugLogs([]);
-    setDeleteCopyStatus("");
-  }, []);
-
-  const copyDeleteDebugLogs = useCallback(async () => {
-    try {
-      const text = deleteDebugLogs.join("\n");
-      if (!text || typeof navigator === "undefined" || !navigator.clipboard?.writeText) {
-        setDeleteCopyStatus("failed");
-        return;
-      }
-      await navigator.clipboard.writeText(text);
-      setDeleteCopyStatus("copied");
-    } catch {
-      setDeleteCopyStatus("failed");
-    }
-  }, [deleteDebugLogs]);
-
   const handleToggleNotifications = useCallback(async () => {
-    const currentStatus = state.notificationsEnabled;
+    const currentStatus = state.notificationsEnabled ?? false;
 
     if (!currentStatus) {
       // User is trying to enable notifications - request permission
@@ -124,11 +91,10 @@ export default function SettingsPage() {
     if (!isHydrated) return;
 
     try {
-      // Export includes app-level metadata to support future restore/migration flows.
       const payload = {
         exportedAt: new Date().toISOString(),
         app: "GatorGuide",
-        version: "1.0.0",
+        version: APP_VERSION,
         data: state,
         theme,
       };
@@ -206,7 +172,7 @@ export default function SettingsPage() {
               if (parsed.data) {
                 await restoreData(parsed.data);
               }
-              if (parsed.theme === "light" || parsed.theme === "dark" || parsed.theme === "green" || parsed.theme === "system") {
+              if (parsed.theme === "light" || parsed.theme === "dark" || parsed.theme === "system") {
                 setTheme(parsed.theme);
               }
             },
@@ -283,38 +249,28 @@ export default function SettingsPage() {
 
   const sections = useMemo(
     () => [
-      // Build sections from translations/state so labels and values stay reactive.
       {
         title: t("settings.settings"),
         items: [
           {
-            icon: "notifications",
+            icon: "notifications-outline",
             label: t("settings.notifications"),
             type: "toggle",
-            enabled: state.notificationsEnabled,
+            enabled: state.notificationsEnabled ?? false,
             onPress: handleToggleNotifications,
           },
           {
-            icon: "dark-mode",
+            icon: "moon-outline",
             label: t("settings.theme"),
             type: "nav",
-            value:
-              theme === "system"
-                ? t("settings.system")
-                : theme === "dark"
-                  ? t("settings.dark")
-                  : theme === "light"
-                    ? t("settings.light")
-                    : t("settings.green"),
+            value: theme === "system" ? t("settings.system") : theme === "dark" ? t("settings.dark") : t("settings.light"),
             onPress: () => {
-              const order = ["system", "dark", "light", "green"] as const;
-              const currentIndex = order.indexOf(theme);
-              const next = order[(currentIndex + 1) % order.length];
+              const next = theme === "system" ? "dark" : theme === "dark" ? "light" : "system";
               setTheme(next);
             },
           },
           {
-            icon: "language",
+            icon: "language-outline",
             label: t("settings.language"),
             type: "nav",
             value: language,
@@ -326,13 +282,13 @@ export default function SettingsPage() {
         title: t("settings.data"),
         items: [
           {
-            icon: "upload",
+            icon: "cloud-upload-outline",
             label: t("settings.import"),
             type: "nav",
             onPress: handleImportData,
           },
           {
-            icon: "download",
+            icon: "cloud-download-outline",
             label: t("settings.export"),
             type: "nav",
             onPress: handleExportData,
@@ -342,76 +298,36 @@ export default function SettingsPage() {
       {
         title: t("settings.about"),
         items: [
-          { icon: "info", label: t("settings.about"), type: "nav", onPress: () => router.push("/about") },
+          { icon: "information-circle-outline", label: t("settings.about"), type: "nav", onPress: () => router.push("/about") },
+          { icon: "shield-checkmark-outline", label: t("settings.privacyPolicy") ?? "Privacy Policy", type: "nav", onPress: () => router.push("/privacy") },
+          { icon: "document-text-outline", label: t("settings.termsOfService") ?? "Terms of Service", type: "nav", onPress: () => router.push("/terms") },
+          { icon: "pricetag-outline", label: t("about.version"), type: "display", value: APP_VERSION },
         ] as SettingsItem[],
       },
     ],
-    [theme, state.notificationsEnabled, language, setTheme, handleToggleNotifications, handleExportData, handleImportData, router, t]
+    [theme, state.notificationsEnabled ?? false, language, setTheme, handleToggleNotifications, handleExportData, handleImportData, router, t, APP_VERSION]
   );
 
   const handleDeleteConfirm = async () => {
-    if (!isHydrated || isDeletingAccount) return;
-    setIsDeletingAccount(true);
-    pushDeleteDebugLog(`Delete requested. user=${state.user?.uid ?? "none"} guest=${String(!!state.user?.isGuest)} hydrated=${String(isHydrated)}`);
+    if (!isHydrated) return;
     try {
       if (state.user?.isGuest) {
-        pushDeleteDebugLog("Guest path: signOut()");
         await signOut();
       } else {
-        pushDeleteDebugLog("Auth path: deleteAccount()");
-        await Promise.race([
-          deleteAccount(),
-          new Promise((_, reject) =>
-            setTimeout(() => {
-              const err = new Error("Delete account timed out") as Error & { code?: string };
-              err.code = "app/delete-timeout";
-              reject(err);
-            }, 15000)
-          ),
-        ]);
+        await deleteAccount();
       }
-      pushDeleteDebugLog("Delete succeeded. Navigating to /login");
       router.replace("/login");
-    } catch (error: any) {
-      const code = error?.code as string | undefined;
-      pushDeleteDebugLog(`Delete failed. code=${code ?? "none"} message=${String(error?.message ?? "unknown")}`);
-      if (code === "auth/requires-recent-login") {
-        await AsyncStorage.setItem(PENDING_DELETE_ACCOUNT_KEY, "true").catch(() => {});
-        pushDeleteDebugLog("Set pending-delete flag. Redirecting to /login for re-auth.");
-        Alert.alert(
-          t("general.error"),
-          "For security, please sign in again. We will complete account deletion right after you log in."
-        );
-        router.replace("/login");
-        return;
-      }
+    } catch {
       Alert.alert(
         t("general.error"),
-        code === "app/delete-timeout"
-          ? "Delete account request timed out. Please check network and try again."
-          : (t("settings.deleteWarning") || "Account deletion failed. Please try again.")
+        t("settings.deleteWarning") || "Account deletion failed. You may need to sign in again and try again."
       );
-    } finally {
-      setIsDeletingAccount(false);
     }
   };
 
   useEffect(() => {
     void loadAutoClearSetting();
   }, [loadAutoClearSetting]);
-
-  useEffect(() => {
-    if (!__DEV__ || Platform.OS !== "web") return;
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "~" || event.key === "`" || event.code === "Backquote") {
-        setDeleteDebugHotkeyEnabled((v) => !v);
-      }
-    };
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, []);
 
   if (showDeleteConfirm) {
     return (
@@ -433,10 +349,10 @@ export default function SettingsPage() {
 
               <Pressable
                 onPress={handleDeleteConfirm}
-                className={`flex-1 bg-red-500 rounded-lg py-4 items-center ${(!isHydrated || isDeletingAccount) ? "opacity-60" : ""}`}
-                disabled={!isHydrated || isDeletingAccount}
+                className={`flex-1 bg-emerald-800 rounded-lg py-4 items-center ${!isHydrated ? "opacity-60" : ""}`}
+                disabled={!isHydrated}
               >
-                <Text className="text-white font-semibold">{isDeletingAccount ? (t("general.pleaseWait") || "Please wait") : t("general.delete")}</Text>
+                <Text className="text-white font-semibold">{t("general.delete")}</Text>
               </Pressable>
             </View>
           </View>
@@ -453,69 +369,39 @@ export default function SettingsPage() {
             <Text className={`text-2xl ${textClass}`}>{t("settings.settings")}</Text>
           </View>
           <View className="px-6 gap-6">
-            {__DEV__ && deleteDebugHotkeyEnabled ? (
-              <View className={`${cardBgClass} border rounded-2xl p-4`}>
-                <View className={`${flexDirection} items-center justify-between`}>
-                  <Text className={textClass}>Delete Account Debug</Text>
-                  <Pressable
-                    onPress={() => setShowDeleteDebugConsole((v) => !v)}
-                    className="px-3 py-1 rounded-lg bg-emerald-500"
-                  >
-                    <Text className={`${isDark ? "text-white" : "text-black"} font-semibold`}>
-                      {showDeleteDebugConsole ? "Hide" : "Show"}
-                    </Text>
-                  </Pressable>
-                </View>
-
-                <View className="flex-row gap-2 mt-3">
-                  <Pressable onPress={copyDeleteDebugLogs} className="px-3 py-2 rounded-lg bg-emerald-300">
-                    <Text className={`${isDark ? "text-white" : "text-black"} text-xs font-semibold`}>Copy Logs</Text>
-                  </Pressable>
-                  <Pressable onPress={clearDeleteDebugLogs} className="px-3 py-2 rounded-lg bg-emerald-300">
-                    <Text className={`${isDark ? "text-white" : "text-black"} text-xs font-semibold`}>Clear</Text>
-                  </Pressable>
-                </View>
-
-                {deleteCopyStatus ? (
-                  <Text className={`${secondaryTextClass} text-xs mt-2`}>
-                    {deleteCopyStatus === "copied" ? "Delete logs copied to clipboard." : "Clipboard copy failed."}
-                  </Text>
-                ) : null}
-
-                {showDeleteDebugConsole ? (
-                  <Text selectable className={`${secondaryTextClass} text-xs mt-3`}>
-                    {deleteDebugLogs.length ? deleteDebugLogs.join("\n") : "No delete logs yet. Trigger delete flow to capture events."}
-                  </Text>
-                ) : null}
-              </View>
-            ) : null}
-
             {sections.map((section) => (
               <View key={section.title}>
                 <Text className={`text-sm font-medium ${secondaryTextClass} mb-3 px-2`}>{section.title}</Text>
                 <View className={`${cardBgClass} border rounded-2xl overflow-hidden`}>
-                  {section.items.map((item, index) => (
-                    <Pressable
-                      key={item.label}
-                      onPress={item.onPress}
-                      className={`${flexDirection} items-center px-4 py-5 ${
-                        index !== section.items.length - 1 ? `border-b ${cardBorderClass}` : ""
-                      }`}
-                    >
-                      <MaterialIcons name={item.icon} size={20} color="#008f4e" />
-                      <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${textClass}`}>{item.label}</Text>
+                  {section.items.map((item, index) => {
+                    const isDisplay = item.type === "display";
+                    const Wrapper = isDisplay ? View : Pressable;
+                    const wrapperProps = isDisplay ? {} : { onPress: (item as { onPress: () => void }).onPress };
+                    return (
+                      <Wrapper
+                        key={item.label}
+                        {...wrapperProps}
+                        className={`${flexDirection} items-center px-4 py-5 ${
+                          index !== section.items.length - 1 ? `border-b ${cardBorderClass}` : ""
+                        }`}
+                      >
+                        <Ionicons name={item.icon} size={20} color="#008f4e" />
+                        <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${textClass}`}>{item.label}</Text>
 
-                      {item.type === "toggle" ? (
-                        <View className={`w-12 h-6 rounded-full ${("enabled" in item && item.enabled) ? "bg-emerald-500" : isDark ? "bg-gray-700" : isGreen ? "bg-emerald-700" : isLight ? "bg-emerald-300" : "bg-gray-300"}`}>
-                          <View className={`w-5 h-5 bg-white rounded-full mt-0.5 ${("enabled" in item && item.enabled) ? "ml-6" : "ml-0.5"}`} />
-                        </View>
-                      ) : item.value ? (
-                        <Text className={`${isRTL ? "text-left" : ""} ${secondaryTextClass}`}>{item.value}</Text>
-                      ) : (
-                        <MaterialIcons name={isRTL ? "chevron-left" : "chevron-right"} size={22} color={isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280"} />
-                      )}
-                    </Pressable>
-                  ))}
+                        {item.type === "toggle" ? (
+                          <View className={`w-12 h-6 rounded-full ${("enabled" in item && item.enabled) ? "bg-emerald-500" : isDark ? "bg-emerald-700" : "bg-emerald-300"}`}>
+                            <View className={`w-5 h-5 bg-white rounded-full mt-0.5 ${("enabled" in item && item.enabled) ? "ml-6" : "ml-0.5"}`} />
+                          </View>
+                        ) : item.type === "display" || ("value" in item && item.value) ? (
+                          <Text className={`${isRTL ? "text-left" : ""} ${secondaryTextClass}`}>
+                            {item.type === "display" ? item.value : (item as { value?: string }).value}
+                          </Text>
+                        ) : (
+                          <Ionicons name={isRTL ? "chevron-back" : "chevron-forward"} size={22} color={isDark ? "#b6e2b6" : "#1f8a5d"} />
+                        )}
+                      </Wrapper>
+                    );
+                  })}
                 </View>
               </View>
             ))}
@@ -527,9 +413,9 @@ export default function SettingsPage() {
                   onPress={() => setShowAdvancedSettings((v) => !v)}
                   className={`${flexDirection} items-center px-4 py-5`}
                 >
-                  <MaterialIcons name="tune" size={20} color="#008f4e" />
+                  <Ionicons name="construct-outline" size={20} color="#008f4e" />
                   <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${textClass}`}>{t("settings.cacheSettings")}</Text>
-                  <MaterialIcons name={showAdvancedSettings ? "expand-less" : "expand-more"} size={22} color={isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280"} />
+                  <Ionicons name={showAdvancedSettings ? "chevron-up" : "chevron-down"} size={22} color={isDark ? "#b6e2b6" : "#1f8a5d"} />
                 </Pressable>
 
                 {showAdvancedSettings ? (
@@ -538,14 +424,14 @@ export default function SettingsPage() {
                       onPress={handleToggleAutoClearCache}
                       className={`${flexDirection} items-center px-4 py-5 border-t ${cardBorderClass}`}
                     >
-                      <MaterialIcons name="autorenew" size={20} color="#008f4e" />
+                      <Ionicons name="refresh-outline" size={20} color="#008f4e" />
                       <View className={`flex-1 ${isRTL ? "mr-3" : "ml-3"}`}>
                         <Text className={`${isRTL ? "text-right" : ""} ${textClass}`}>{t("settings.cacheAutoClear5d")}</Text>
                         <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} text-xs mt-1`}>
                           {t("settings.cacheAutoClearDescription")}
                         </Text>
                       </View>
-                      <View className={`w-12 h-6 rounded-full ${autoClearCacheEnabled ? "bg-emerald-500" : isDark ? "bg-gray-700" : isGreen ? "bg-emerald-700" : isLight ? "bg-emerald-300" : "bg-gray-300"}`}>
+                      <View className={`w-12 h-6 rounded-full ${autoClearCacheEnabled ? "bg-emerald-500" : isDark ? "bg-emerald-700" : "bg-emerald-300"}`}>
                         <View className={`w-5 h-5 bg-white rounded-full mt-0.5 ${autoClearCacheEnabled ? "ml-6" : "ml-0.5"}`} />
                       </View>
                     </Pressable>
@@ -554,28 +440,28 @@ export default function SettingsPage() {
                       onPress={handleClearCacheNow}
                       className={`${flexDirection} items-center px-4 py-5 border-t ${cardBorderClass}`}
                     >
-                      <MaterialIcons name="delete-sweep" size={20} color="#EF4444" />
+                      <Ionicons name="trash-outline" size={20} color="#EF4444" />
                       <View className={`flex-1 ${isRTL ? "mr-3" : "ml-3"}`}>
                         <Text className={`${isRTL ? "text-right" : ""} text-red-500`}>{t("settings.clearCacheNow")}</Text>
                         <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} text-xs mt-1`}>
                           {t("settings.clearCacheDescription")}
                         </Text>
                       </View>
-                      <MaterialIcons name={isRTL ? "chevron-left" : "chevron-right"} size={22} color={isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280"} />
+                      <Ionicons name={isRTL ? "chevron-back" : "chevron-forward"} size={22} color={isDark ? "#b6e2b6" : "#1f8a5d"} />
                     </Pressable>
 
                     <Pressable
                       onPress={handleCopyEnglishKeyLog}
                       className={`${flexDirection} items-center px-4 py-5 border-t ${cardBorderClass}`}
                     >
-                      <MaterialIcons name="bug-report" size={20} color="#008f4e" />
+                      <Ionicons name="bug-outline" size={20} color="#008f4e" />
                       <View className={`flex-1 ${isRTL ? "mr-3" : "ml-3"}`}>
                         <Text className={`${isRTL ? "text-right" : ""} ${textClass}`}>{t("settings.debugTools")}</Text>
                         <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} text-xs mt-1`}>
                           {t("settings.copyEnglishKeyLog")}
                         </Text>
                       </View>
-                      <MaterialIcons name="content-copy" size={20} color={isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280"} />
+                      <Ionicons name="copy-outline" size={20} color={isDark ? "#b6e2b6" : "#1f8a5d"} />
                     </Pressable>
                   </>
                 ) : null}
@@ -586,35 +472,32 @@ export default function SettingsPage() {
               onPress={handleLogout}
               disabled={!isHydrated}
               className={`w-full ${
-                isDark ? 'bg-gray-900/80 border-gray-800' : isGreen ? 'bg-emerald-900/90 border-emerald-800' : isLight ? 'bg-emerald-50 border-emerald-300' : 'bg-white/90 border-gray-200'
+                isDark ? 'bg-emerald-900/90 border-emerald-800' : 'bg-white border-emerald-200'
               } border rounded-2xl px-4 py-5 ${flexDirection} items-center ${!isHydrated ? 'opacity-60' : ''}`}
             >
-              <MaterialIcons name="logout" size={20} color="#EF4444" />
+              <Ionicons name="log-out-outline" size={20} color="#EF4444" />
               <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${isDark ? 'text-red-400' : 'text-red-500'}`}>{t('settings.logout')}</Text>
             </Pressable>
 
             <Pressable
-              onPress={() => {
-                pushDeleteDebugLog("Opened delete confirmation popup.");
-                setShowDeleteConfirm(true);
-              }}
+              onPress={() => setShowDeleteConfirm(true)}
               disabled={!isHydrated}
               className={`w-full ${
-                isDark ? 'bg-gray-900/80 border-gray-800' : isGreen ? 'bg-emerald-900/90 border-emerald-800' : isLight ? 'bg-emerald-50 border-emerald-300' : 'bg-white/90 border-gray-200'
+                isDark ? 'bg-emerald-900/90 border-emerald-800' : 'bg-white border-emerald-200'
               } border rounded-2xl px-4 py-5 ${flexDirection} items-center ${!isHydrated ? 'opacity-60' : ''}`}
             >
-              <MaterialIcons name="delete" size={20} color="#EF4444" />
+              <Ionicons name="trash-outline" size={20} color="#EF4444" />
               <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${isDark ? 'text-red-400' : 'text-red-500'}`}>{t('settings.deleteAccount')}</Text>
             </Pressable>
 
-            <Text className={`text-center text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'} mt-2`}>
+            <Text className={`text-center text-sm ${isDark ? 'text-white/90' : 'text-gray-500'} mt-2`}>
               {t('settings.appVersion')}
             </Text>
             <View className="mt-4 mb-2">
               <View className="flex-row justify-center items-center">
                 <Text className={`text-center text-sm ${secondaryTextClass} mr-2`}>{t('general.needHelpQuestion') ?? 'Need Help?'}</Text>
-                <Pressable onPress={() => Linking.openURL('mailto:gatorguide@outlook.com')} accessibilityRole="link">
-                  <Text className={`text-sm ${isDark ? 'text-green-300' : isGreen ? 'text-green-300' : isLight ? 'text-emerald-600' : 'text-green-600'} underline font-semibold`}>{t('general.emailUs') ?? 'Email Us!'}</Text>
+                <Pressable onPress={() => Linking.openURL('mailto:gatorguide_mobiledevelopmentteam@outlook.com')} accessibilityRole="link">
+                  <Text className={`text-sm ${isDark ? 'text-white/90' : 'text-emerald-600'} underline font-semibold`}>{t('general.emailUs') ?? 'Email Us!'}</Text>
                 </Pressable>
               </View>
             </View>

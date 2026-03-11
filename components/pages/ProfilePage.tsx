@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { View, Text, TextInput, Pressable, ScrollView, Keyboard, Dimensions, Alert, Platform } from "react-native";
+import { View, Text, TextInput, Pressable, ScrollView, Keyboard, Dimensions, Alert, Platform, Image } from "react-native";
 import { useRouter } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
@@ -16,7 +16,11 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as FileSystem from "expo-file-system";
 import * as Sharing from "expo-sharing";
 import * as DocumentPicker from "expo-document-picker";
+import * as ImagePicker from "expo-image-picker";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { db } from "@/services/firebase";
 import { collegeService } from "@/services/college.service";
+import { APP_VERSION } from "@/constants/app-version";
 
 type RadioOption = { key: string; label: string };
 type Question =
@@ -43,6 +47,10 @@ export default function ProfilePage() {
     gpa: "",
     resume: "",
     transcript: "",
+    residencyType: "",
+    englishProficiency: "",
+    englishTestType: "",
+    englishTestValue: "",
   });
 
   const [showQuestionnaire, setShowQuestionnaire] = useState(false);
@@ -64,7 +72,7 @@ export default function ProfilePage() {
       const payload = {
         exportedAt: new Date().toISOString(),
         app: "GatorGuide",
-        version: "1.0.0",
+        version: APP_VERSION,
         data: state,
         theme,
       };
@@ -201,9 +209,13 @@ export default function ProfilePage() {
       gpa: user?.gpa ?? "",
       resume: user?.resume ?? "",
       transcript: user?.transcript ?? "",
+      residencyType: user?.residencyType ?? "",
+      englishProficiency: user?.englishProficiency ?? "",
+      englishTestType: user?.englishTestType ?? "",
+      englishTestValue: user?.englishTestValue ?? "",
     });
     setLocalAnswers({ ...blankAnswers, ...normalizeQuestionnaireAnswers(state.questionnaireAnswers ?? {}, language) });
-  }, [isHydrated, user?.name, user?.state, user?.major, user?.gpa, user?.resume, user?.transcript, blankAnswers, state.questionnaireAnswers, language]);
+  }, [isHydrated, user?.name, user?.state, user?.major, user?.gpa, user?.resume, user?.transcript, user?.residencyType, user?.englishProficiency, user?.englishTestType, user?.englishTestValue, blankAnswers, state.questionnaireAnswers, language]);
 
   const textClass = isDark ? "text-white" : isGreen ? "text-white" : isLight ? "text-emerald-900" : "text-gray-900";
   const secondaryTextClass = isDark ? "text-gray-400" : isGreen ? "text-emerald-100" : isLight ? "text-emerald-700" : "text-gray-600";
@@ -248,6 +260,10 @@ export default function ProfilePage() {
       gpa: editData.gpa,
       resume: editData.resume,
       transcript: editData.transcript,
+      residencyType: editData.residencyType,
+      englishProficiency: editData.englishProficiency,
+      englishTestType: editData.englishProficiency === "native" ? "" : editData.englishTestType,
+      englishTestValue: editData.englishProficiency === "native" ? "" : editData.englishTestValue,
     });
     setIsEditing(false);
   };
@@ -305,6 +321,39 @@ export default function ProfilePage() {
       const uploaded = await storageService.uploadTranscript(user.uid, asset.uri);
       setEditData((p) => ({ ...p, transcript: uploaded.name }));
       updateUser({ transcript: uploaded.url });
+    } catch (err) {
+      console.error(err);
+      Alert.alert(t("general.error"), t("profile.prepareDataError"));
+    }
+  };
+
+  const handlePickAvatar = async () => {
+    if (!user?.uid || !isHydrated) return;
+    try {
+      const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (status !== "granted") {
+        Alert.alert(t("general.error"), t("profile.prepareDataError"));
+        return;
+      }
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ["images"],
+        allowsEditing: true,
+        aspect: [1, 1],
+        quality: 0.8,
+      });
+      if (result.canceled || !result.assets?.[0]?.uri) return;
+      const uri = result.assets[0].uri;
+      const { storageService } = await import("@/services/storage.service");
+      const uploaded = await storageService.uploadAvatar(user.uid, uri);
+      updateUser({ avatar: uploaded.url });
+      if (db && !user.isGuest) {
+        await setDoc(
+          doc(db, "users", user.uid),
+          { avatar: uploaded.url, updatedAt: serverTimestamp() },
+          { merge: true }
+        );
+      }
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     } catch (err) {
       console.error(err);
       Alert.alert(t("general.error"), t("profile.prepareDataError"));
@@ -518,8 +567,29 @@ export default function ProfilePage() {
               {user?.isGuest ? (
                 <View className="bg-gradient-to-br from-emerald-500/10 to-emerald-500/5 px-6 py-4 border-b border-emerald-500/20">
                   <View className="flex-row items-center">
-                    <View className="w-14 h-14 bg-emerald-500 rounded-full items-center justify-center mr-3 shadow-md">
-                      <MaterialIcons name="person" size={26} color="black" />
+                    <View className="relative mr-3">
+                      <Pressable
+                        onPress={isEditing ? handlePickAvatar : undefined}
+                        disabled={!isEditing}
+                        className="w-14 h-14 rounded-full overflow-hidden shadow-md"
+                      >
+                        {user?.avatar ? (
+                          <Image source={{ uri: user.avatar }} className="w-full h-full" resizeMode="cover" />
+                        ) : (
+                          <View className="w-full h-full bg-emerald-500 items-center justify-center">
+                            <MaterialIcons name="person" size={26} color="black" />
+                          </View>
+                        )}
+                      </Pressable>
+                      {isEditing && (
+                        <Pressable
+                          onPress={handlePickAvatar}
+                          className="absolute -bottom-0.5 -right-0.5 w-6 h-6 rounded-full bg-emerald-500 items-center justify-center border-2 border-white dark:border-neutral-900"
+                          hitSlop={8}
+                        >
+                          <MaterialIcons name="edit" size={14} color="black" />
+                        </Pressable>
+                      )}
                     </View>
                     <View className="flex-1">
                       <Text className={`${textClass} text-lg font-bold mb-1`}>{capitalizeWords(user?.name ?? "")}</Text>
@@ -533,8 +603,29 @@ export default function ProfilePage() {
                 // Regular header for signed-in users
                 <View className="bg-gradient-to-br from-emerald-500/10 to-emerald-500/5 px-6 py-4 border-b border-emerald-500/20">
                   <View className="flex-row items-center">
-                    <View className="w-14 h-14 bg-emerald-500 rounded-full items-center justify-center mr-3">
-                      <Text className={`${isDark ? 'text-white' : 'text-black'} text-lg font-bold`}>{(user?.name?.[0] ?? "").toUpperCase()}</Text>
+                    <View className="relative mr-3">
+                      <Pressable
+                        onPress={isEditing ? handlePickAvatar : undefined}
+                        disabled={!isEditing}
+                        className="w-14 h-14 rounded-full overflow-hidden"
+                      >
+                        {user?.avatar ? (
+                          <Image source={{ uri: user.avatar }} className="w-full h-full" resizeMode="cover" />
+                        ) : (
+                          <View className="w-full h-full bg-emerald-500 items-center justify-center">
+                            <Text className={`${isDark ? 'text-white' : 'text-black'} text-lg font-bold`}>{(user?.name?.[0] ?? "").toUpperCase()}</Text>
+                          </View>
+                        )}
+                      </Pressable>
+                      {isEditing && (
+                        <Pressable
+                          onPress={handlePickAvatar}
+                          className="absolute -bottom-0.5 -right-0.5 w-6 h-6 rounded-full bg-emerald-500 items-center justify-center border-2 border-white dark:border-neutral-900"
+                          hitSlop={8}
+                        >
+                          <MaterialIcons name="edit" size={14} color="black" />
+                        </Pressable>
+                      )}
                     </View>
                     <View className="flex-1">
                       <Text className={`${textClass} text-lg font-semibold mb-0`}>{capitalizeWords(user?.name ?? "")}</Text>
@@ -626,6 +717,143 @@ export default function ProfilePage() {
                 secondaryTextClass={secondaryTextClass}
                 borderClass={borderClass}
               />
+
+              <ProfileField //residency
+                type="radio"
+                icon="home"
+                label={t("profile.residencyType")}
+                value={user?.residencyType}
+                isEditing={isEditing}
+                editValue={editData.residencyType}
+                options={[
+                  { key: "inState", labelKey: "profile.residencyInState" },
+                  { key: "outOfState", labelKey: "profile.residencyOutOfState" },
+                  { key: "international", labelKey: "profile.residencyInternational" },
+                ]}
+                onSelect={(key) => {
+                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                  setEditData((p) => ({ ...p, residencyType: key }));
+                }}
+                textClass={textClass}
+                secondaryTextClass={secondaryTextClass}
+                borderClass={borderClass}
+              />
+
+              <View className={`border-t ${borderClass} pt-4 mt-4`}>
+                <View className="flex-row items-start">
+                  <MaterialIcons name="translate" size={20} color="#008f4e" />
+                  <View className="flex-1 ml-3">
+                    <Text className={`text-sm ${secondaryTextClass} mb-1`}>{t("profile.englishProficiency")}</Text>
+                    {!isEditing ? (
+                      <Text className={textClass}>
+                        {user?.englishProficiency
+                          ? (user.englishProficiency === "native"
+                            ? t("profile.englishNative")
+                            : (() => {
+                                const levelLabels: Record<string, string> = {
+                                  advanced: t("profile.englishAdvanced"),
+                                  intermediate: t("profile.englishIntermediate"),
+                                  beginner: t("profile.englishBeginner"),
+                                };
+                                const level = levelLabels[user.englishProficiency] ?? user.englishProficiency;
+                                if (user?.englishTestType && user?.englishTestValue) {
+                                  const testLabels: Record<string, string> = {
+                                    ielts: t("profile.englishTestIELTS"),
+                                    toefl: t("profile.englishTestTOEFL"),
+                                    duolingo: t("profile.englishTestDuolingo"),
+                                  };
+                                  const suffix = user.englishTestType === "self"
+                                    ? user.englishTestValue
+                                    : `${testLabels[user.englishTestType] ?? user.englishTestType} ${user.englishTestValue}`;
+                                  return `${level} - ${suffix}`;
+                                }
+                                return level;
+                              })())
+                          : t("general.notSpecified")}
+                      </Text>
+                    ) : (
+                      <>
+                        <View className="flex-row flex-wrap gap-2 mb-3">
+                          {[
+                            { key: "native", labelKey: "profile.englishNative" },
+                            { key: "advanced", labelKey: "profile.englishAdvanced" },
+                            { key: "intermediate", labelKey: "profile.englishIntermediate" },
+                            { key: "beginner", labelKey: "profile.englishBeginner" },
+                          ].map((opt) => {
+                            const isSelected = editData.englishProficiency === opt.key;
+                            return (
+                              <Pressable
+                                key={opt.key}
+                                onPress={() => {
+                                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                                  setEditData((p) => ({
+                                    ...p,
+                                    englishProficiency: opt.key,
+                                    ...(opt.key === "native" ? { englishTestType: "", englishTestValue: "" } : {}),
+                                  }));
+                                }}
+                                className={`px-4 py-2 rounded-lg border ${
+                                  isSelected ? "bg-emerald-500/10 border-emerald-500" : `border ${borderClass}`
+                                }`}
+                              >
+                                <Text className={isSelected ? "text-emerald-500 font-semibold" : secondaryTextClass}>
+                                  {t(opt.labelKey)}
+                                </Text>
+                              </Pressable>
+                            );
+                          })}
+                        </View>
+                        {editData.englishProficiency && editData.englishProficiency !== "native" && (
+                          <>
+                            <View className="flex-row flex-wrap gap-2 mb-2">
+                              {(["ielts", "toefl", "duolingo", "self"] as const).map((type) => {
+                                const labelKey = `profile.englishTest${type.charAt(0).toUpperCase()}${type.slice(1)}` as "profile.englishTestIELTS" | "profile.englishTestTOEFL" | "profile.englishTestDuolingo" | "profile.englishTestSelf";
+                                const isSelected = editData.englishTestType === type;
+                                return (
+                                  <Pressable
+                                    key={type}
+                                    onPress={() => {
+                                      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                                      setEditData((p) => ({ ...p, englishTestType: type, englishTestValue: "" }));
+                                    }}
+                                    className={`px-3 py-1.5 rounded-lg border ${
+                                      isSelected ? "bg-emerald-500/10 border-emerald-500" : `border ${borderClass}`
+                                    }`}
+                                  >
+                                    <Text className={`text-sm ${isSelected ? "text-emerald-500 font-medium" : secondaryTextClass}`}>
+                                      {t(labelKey)}
+                                    </Text>
+                                  </Pressable>
+                                );
+                              })}
+                            </View>
+                            {editData.englishTestType ? (
+                              <TextInput
+                                value={editData.englishTestValue}
+                                onChangeText={(v) => setEditData((p) => ({ ...p, englishTestValue: v }))}
+                                placeholder={
+                                  editData.englishTestType === "ielts"
+                                    ? t("profile.englishTestIELTSPlaceholder")
+                                    : editData.englishTestType === "toefl"
+                                      ? t("profile.englishTestTOEFLPlaceholder")
+                                      : editData.englishTestType === "duolingo"
+                                        ? t("profile.englishTestDuolingoPlaceholder")
+                                        : t("profile.englishTestSelfPlaceholder")
+                                }
+                                placeholderTextColor={placeholderColor}
+                                keyboardType={editData.englishTestType === "self" ? "default" : "decimal-pad"}
+                                multiline={editData.englishTestType === "self"}
+                                textAlignVertical={editData.englishTestType === "self" ? "top" : "center"}
+                                className={`${inputClass} ${editData.englishTestType === "self" ? "min-h-[80px]" : ""}`}
+                              />
+                            ) : null}
+                          </>
+                        )}
+                      </>
+                    )}
+                  </View>
+                </View>
+              </View>
 
               <ProfileField //GPA
                 type="text"

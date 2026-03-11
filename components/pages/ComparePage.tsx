@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { View, Text, Pressable, ScrollView, TextInput } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
+import useBack from "@/hooks/use-back";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
@@ -9,6 +10,7 @@ import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppData } from "@/hooks/use-app-data";
 import { College } from "@/services";
+import { getMatchColorClass } from "@/utils/match-color";
 
 const MAX_SELECT = 3;
 
@@ -16,7 +18,7 @@ export default function ComparePage() {
   const router = useRouter();
   const styles = useThemeStyles();
   const { isDark } = useAppTheme();
-  const goToResources = () => router.replace("/(tabs)/resources");
+  const back = useBack("/(tabs)/resources");
   const { t } = useAppLanguage();
   const insets = useSafeAreaInsets();
   const { state } = useAppData();
@@ -112,7 +114,7 @@ export default function ComparePage() {
         contentContainerStyle={{ paddingTop: insets.top, paddingBottom: 96 }}
       >
         <View className="max-w-md w-full self-center px-6 pt-6">
-          <Pressable onPress={goToResources} className="mb-4 flex-row items-center">
+          <Pressable onPress={back} className="mb-4 flex-row items-center">
             <MaterialIcons name="arrow-back" size={24} color={styles.placeholderColor} />
             <Text className={secondaryTextClass + " ml-2"}>{t("general.back")}</Text>
           </Pressable>
@@ -178,6 +180,11 @@ export default function ComparePage() {
                           <Text className={textClass + " font-medium"}>{c.name}</Text>
                           <Text className={secondaryTextClass + " text-sm"} numberOfLines={1}>
                             {c.location.city}, {c.location.state} • {t("compare.tuition")}: {formatTuition(getTuitionValue(c))}
+                            {typeof c.matchScore === "number" && (
+                              <Text className={`ml-1 font-semibold ${getMatchColorClass(c.matchScore)}`}>
+                                • {Math.round(c.matchScore)}% match
+                              </Text>
+                            )}
                           </Text>
                         </Pressable>
                       </View>
@@ -217,12 +224,12 @@ export default function ComparePage() {
                   <Text className={secondaryTextClass}>{t("compare.chooseAtLeastTwo")}</Text>
                 </View>
               ) : (
-                <View className={cardBgClass + " border rounded-2xl p-4"}>
+                <View className={cardBgClass + " border rounded-2xl p-5 pb-6"}>
                   <Text className={textClass + " font-semibold mb-4"}>
                     {t("compare.comparison")}
                   </Text>
 
-                  <View className={`${cardBgClass} border rounded-xl p-3 mb-4`}>
+                  <View className={`${cardBgClass} border rounded-xl p-4 mb-5`}>
                     <Text className={`${textClass} font-medium mb-2`}>{t("compare.quickHighlights")}</Text>
                     <Text className={secondaryTextClass}>
                       {t("compare.cheapest")}: {cheapestSelected ? `${cheapestSelected.c.name} (${formatTuition(cheapestSelected.cost)})` : t("home.notAvailable")}
@@ -232,17 +239,22 @@ export default function ComparePage() {
                     </Text>
                   </View>
 
-                  <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                    <View className="flex-row gap-4">
-                      {selected.map((c) => (
+                  <View className="flex-row gap-3 flex-wrap">
+                    {selected.map((c) => (
                         <View
                           key={c.id}
-                          className="min-w-[180] border rounded-xl p-3 border-emerald-500/50"
+                          style={{ flex: 1, minWidth: selected.length === 2 ? 140 : 120 }}
+                          className={`${cardBgClass} border rounded-xl p-4 border-emerald-500/50`}
                         >
                           <Text className={textClass + " font-medium mb-2"} numberOfLines={2}>
                             {c.name}
                           </Text>
                           <View className="gap-1">
+                            {typeof c.matchScore === "number" && (
+                              <Text className={`text-xs font-semibold ${getMatchColorClass(c.matchScore)}`}>
+                                {Math.round(c.matchScore)}% match
+                              </Text>
+                            )}
                             <Text className={secondaryTextClass + " text-xs"}>
                               {t("compare.location")}: {c.location.city}, {c.location.state}
                             </Text>
@@ -261,8 +273,7 @@ export default function ComparePage() {
                           </View>
                         </View>
                       ))}
-                    </View>
-                  </ScrollView>
+                  </View>
                 </View>
               )}
             </>

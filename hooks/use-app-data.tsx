@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { authService } from "@/services";
 import type { AuthUser } from "@/services/auth.service";
 import type { College } from "@/services/college.service";
@@ -12,9 +12,17 @@ export type User = {
   name: string;
   email: string;
   isGuest?: boolean; // true if user is logged in as guest
-  hasSeenOnboarding?: boolean;
+  avatar?: string; // URI to profile avatar image
   state?: string;
   major?: string;
+  /** American in-state | American out-of-state | International */
+  residencyType?: string;
+  /** Native | Advanced | Intermediate | Beginner */
+  englishProficiency?: string;
+  /** ielts | toefl | duolingo | self - only when not native */
+  englishTestType?: string;
+  /** Score (e.g. 7.5) or self-evaluation text */
+  englishTestValue?: string;
   gpa?: string;
   resume?: string;
   transcript?: string;
@@ -54,7 +62,6 @@ type AppDataContextValue = {
   removeSavedCollege: (collegeId: string) => Promise<void>;
   isCollegeSaved: (collegeId: string) => boolean;
   restoreData: (data: AppDataState) => Promise<void>;
-  setOnboardingSeen: (seen: boolean) => Promise<void>;
   clearAll: () => Promise<void>;
 };
 
@@ -68,7 +75,6 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
     let mounted = true;
     (async () => {
       try {
-        // Hydrate once on boot; keep backward compatibility with legacy storage key.
         let raw = await AsyncStorage.getItem(STORAGE_KEY);
         if (!raw) raw = await AsyncStorage.getItem("gatorguide:appdata:v1");
         if (!mounted) return;
@@ -91,7 +97,6 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (!isHydrated) return;
-    // Persist the full app data snapshot after hydration to avoid clobbering boot state.
     AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(state)).catch(() => {});
   }, [isHydrated, state]);
 
@@ -106,17 +111,20 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
     let profileFromServer: Partial<User> = {};
     if (db) {
       try {
-        // Merge profile fields from Firestore so auth identity and profile stay in sync.
         const userDoc = await getDoc(doc(db, "users", authUser.uid));
         if (userDoc.exists() && userDoc.data()) {
           const data = userDoc.data();
           profileFromServer = {
-            hasSeenOnboarding: typeof data.hasSeenOnboarding === "boolean" ? data.hasSeenOnboarding : undefined,
             state: data.state ?? "",
             major: data.major ?? "",
             gpa: data.gpa ?? "",
             resume: data.resume ?? "",
             transcript: data.transcript ?? "",
+            avatar: data.avatar ?? "",
+            residencyType: data.residencyType ?? "",
+            englishProficiency: data.englishProficiency ?? "",
+            englishTestType: data.englishTestType ?? "",
+            englishTestValue: data.englishTestValue ?? "",
             isProfileComplete: !!data.isProfileComplete,
           };
         }
@@ -125,24 +133,7 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
       }
     }
 
-    if (u.isSignUp && db) {
-      try {
-        await setDoc(
-          doc(db, "users", authUser.uid),
-          { hasSeenOnboarding: false },
-          { merge: true }
-        );
-      } catch {
-        // ignore write failures; local state still controls onboarding
-      }
-    }
-
     setState((prev) => {
-      const onboardingSeen =
-        typeof profileFromServer.hasSeenOnboarding === "boolean"
-          ? profileFromServer.hasSeenOnboarding
-          : false;
-
       if (prev.user && prev.user.email === authUser.email) {
         return {
           ...prev,
@@ -150,7 +141,6 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
             ...prev.user,
             uid: authUser.uid,
             name: authUser.name || u.name,
-            hasSeenOnboarding: onboardingSeen,
             ...profileFromServer,
           },
         };
@@ -163,7 +153,6 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
           name: authUser.name || u.name,
           email: authUser.email,
           isGuest: false,
-          hasSeenOnboarding: onboardingSeen,
           major: "",
           state: "",
           gpa: "",
@@ -183,12 +172,16 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
         if (userDoc.exists() && userDoc.data()) {
           const data = userDoc.data();
           profileFromServer = {
-            hasSeenOnboarding: typeof data.hasSeenOnboarding === "boolean" ? data.hasSeenOnboarding : undefined,
             state: data.state ?? "",
             major: data.major ?? "",
             gpa: data.gpa ?? "",
             resume: data.resume ?? "",
             transcript: data.transcript ?? "",
+            avatar: data.avatar ?? "",
+            residencyType: data.residencyType ?? "",
+            englishProficiency: data.englishProficiency ?? "",
+            englishTestType: data.englishTestType ?? "",
+            englishTestValue: data.englishTestValue ?? "",
             isProfileComplete: !!data.isProfileComplete,
           };
         }
@@ -203,7 +196,6 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
         name: authUser.name || "",
         email: authUser.email,
         isGuest: false,
-        hasSeenOnboarding: typeof profileFromServer.hasSeenOnboarding === "boolean" ? profileFromServer.hasSeenOnboarding : false,
         major: "",
         state: "",
         gpa: "",
@@ -222,7 +214,6 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
         name: "Guest User",
         email: `guest-${Date.now()}@gatorguide.local`,
         isGuest: true,
-        hasSeenOnboarding: true,
         major: "",
         state: "",
         gpa: "",
@@ -243,9 +234,12 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const deleteAccount = useCallback(async () => {
-    await authService.deleteAccount();
-    setState((prev) => ({ ...prev, user: null }));
-    await AsyncStorage.removeItem(STORAGE_KEY);
+    try {
+      await authService.deleteAccount();
+    } finally {
+      setState((prev) => ({ ...prev, user: null }));
+      await AsyncStorage.removeItem(STORAGE_KEY);
+    }
   }, []);
 
   const updateUser = useCallback(async (patch: Partial<User>) => {
@@ -295,23 +289,6 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
-  const setOnboardingSeen = useCallback(async (seen: boolean) => {
-    setState((prev) => {
-      if (!prev.user) return prev;
-      return { ...prev, user: { ...prev.user, hasSeenOnboarding: seen } };
-    });
-
-    const uid = state.user?.uid;
-    const isGuest = state.user?.isGuest;
-    if (!uid || isGuest || !db) return;
-
-    try {
-      await setDoc(doc(db, "users", uid), { hasSeenOnboarding: seen }, { merge: true });
-    } catch {
-      // ignore remote write failures; local flag still prevents repeat onboarding
-    }
-  }, [state.user?.uid, state.user?.isGuest]);
-
   const clearAll = useCallback(async () => {
     await AsyncStorage.removeItem(STORAGE_KEY).catch(() => {});
     await AsyncStorage.removeItem("gatorguide:appdata:v1").catch(() => {});
@@ -334,10 +311,9 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
       removeSavedCollege,
       isCollegeSaved,
       restoreData,
-      setOnboardingSeen,
       clearAll,
     }),
-    [isHydrated, state, signIn, signInWithAuthUser, signInAsGuest, signOut, deleteAccount, updateUser, setQuestionnaireAnswers, setNotificationsEnabled, addSavedCollege, removeSavedCollege, isCollegeSaved, restoreData, setOnboardingSeen, clearAll]
+    [isHydrated, state, signIn, signInWithAuthUser, signInAsGuest, signOut, deleteAccount, updateUser, setQuestionnaireAnswers, setNotificationsEnabled, addSavedCollege, removeSavedCollege, isCollegeSaved, restoreData, clearAll]
   );
 
   return <AppDataContext.Provider value={value}>{children}</AppDataContext.Provider>;
