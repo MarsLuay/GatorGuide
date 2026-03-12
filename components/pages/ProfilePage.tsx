@@ -236,10 +236,11 @@ export default function ProfilePage() {
   const inputClass = `w-full ${inputBgClass} ${textClass} border rounded-lg px-3 py-2`;
   const borderClass = isDark ? "border-gray-800" : isGreen ? "border-emerald-700" : isLight ? "border-emerald-300" : "border-gray-200";
   const placeholderColor = isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280";
-  const guestCtaCardClass = isLight ? "bg-emerald-200 border border-emerald-300" : "bg-emerald-500";
+  const guestCtaCardClass = isLight ? "bg-emerald-100 border border-emerald-200" : "bg-emerald-500";
+  const guestCtaCardStyle = isLight ? { backgroundColor: "#8cd19e", borderColor: "#63b48b" } : undefined;
   const guestCtaTextClass = isLight ? "text-emerald-900" : "text-white";
-  const guestCtaBodyClass = isLight ? "text-emerald-900/80" : "text-emerald-100";
-  const guestCtaIconColor = isLight ? "#001f0f" : "#FFFFFF";
+  const guestCtaBodyClass = isLight ? "text-emerald-800" : "text-emerald-100";
+  const guestCtaIconColor = isLight ? "#1f8a5d" : "#FFFFFF";
 
   const hasQuestionnaireData = useMemo(
     () => Object.keys(state.questionnaireAnswers ?? {}).length > 0,
@@ -665,6 +666,7 @@ export default function ProfilePage() {
                 <Pressable
                   onPress={handleCreateAccount}
                   className={`${guestCtaCardClass} rounded-xl p-5 flex-row items-center justify-between mb-4`}
+                  style={guestCtaCardStyle}
                 >
                   <View className="flex-1 pr-3">
                     <View className="flex-row items-center mb-2">
