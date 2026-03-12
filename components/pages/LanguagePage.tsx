@@ -1,6 +1,5 @@
 import { useMemo } from "react";
 import { View, Text, Pressable, ScrollView } from "react-native";
-import { useRouter } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import useBack from "@/hooks/use-back";
@@ -12,7 +11,6 @@ import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 export default function LanguagePage() {
   const { isDark, isGreen, isLight } = useAppTheme();
   const { language, setLanguage, t } = useAppLanguage();
-  const router = useRouter();
   const back = useBack("/(tabs)/settings");
   // Keep a stable, localized language list so rows don't re-create on every render.
   const languages = useMemo(
@@ -45,7 +43,7 @@ export default function LanguagePage() {
     : isGreen
       ? "bg-emerald-900/90 border-emerald-800"
       : isLight
-        ? "bg-emerald-50 border-emerald-300"
+        ? "bg-white border-emerald-200"
         : "bg-white/90 border-gray-200";
   const itemBorderClass = isDark ? "border-gray-800" : isGreen ? "border-emerald-700" : isLight ? "border-emerald-300" : "border-gray-200";
   const iconColor = isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280";
@@ -97,3 +95,4 @@ export default function LanguagePage() {
     </ScreenBackground>
   );
 }
+

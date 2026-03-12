@@ -155,7 +155,7 @@ export default function ComparePage() {
                         sortBy === key ? "bg-emerald-500 border-emerald-500" : `${cardBgClass} ${borderClass}`
                       }`}
                     >
-                      <Text className={sortBy === key ? (isDark ? "text-white font-medium" : "text-black font-medium") : textClass}>
+                      <Text className={sortBy === key ? (isDark ? "text-white font-medium" : "text-emerald-900 font-medium") : textClass}>
                         {key === "match" ? t("compare.sortMatch") : key === "tuition" ? t("compare.sortTuition") : t("compare.sortAdmission")}
                       </Text>
                     </Pressable>

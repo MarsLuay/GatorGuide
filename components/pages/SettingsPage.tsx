@@ -2,13 +2,14 @@ import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppLanguage } from "@/hooks/use-app-language";
-import { MaterialIcons, Ionicons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useMemo, useState, useCallback, useEffect } from "react";
 import { Pressable, ScrollView, Text, View, Alert, Platform, Linking } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { notificationsService, cacheManagerService } from "@/services";
 import { APP_VERSION } from "@/constants/app-version";
+import { SUPPORT_MAILTO } from "@/constants/support";
 import { translations } from "@/services/translations";
 import * as FileSystem from "expo-file-system";
 import * as Sharing from "expo-sharing";
@@ -49,17 +50,22 @@ export default function SettingsPage() {
   const [showAdvancedSettings, setShowAdvancedSettings] = useState(false);
   const [autoClearCacheEnabled, setAutoClearCacheEnabled] = useState(false);
 
-  const { theme, setTheme, isDark } = useAppTheme();
+  const { theme, setTheme, isDark, isGreen } = useAppTheme();
   const { t, language } = useAppLanguage();
   const { isHydrated, state, signOut, deleteAccount, setNotificationsEnabled, restoreData } = useAppData();
   const insets = useSafeAreaInsets();
 
   // removed currentLanguageName (unused) to satisfy linter
 
-  const textClass = isDark ? "text-white" : "text-emerald-900";
-  const secondaryTextClass = isDark ? "text-white/90" : "text-emerald-700";
-  const cardBgClass = isDark ? "bg-emerald-900/90 border-emerald-800" : "bg-white border-emerald-200";
-  const cardBorderClass = isDark ? "border-emerald-700" : "border-emerald-300";
+  const textClass = isDark ? "text-white" : isGreen ? "text-white" : "text-emerald-900";
+  const secondaryTextClass = isDark ? "text-gray-400" : isGreen ? "text-emerald-100" : "text-emerald-700";
+  const cardBgClass = isDark
+    ? "bg-gray-900/80 border-gray-800"
+    : isGreen
+      ? "bg-emerald-900/90 border-emerald-800"
+      : "bg-white border-emerald-200";
+  const cardBorderClass = isDark ? "border-gray-800" : isGreen ? "border-emerald-700" : "border-emerald-300";
+  const notificationsEnabled = state.notificationsEnabled ?? false;
   const isRTL = language === "Arabic" || language === "Persian";
   const flexDirection = isRTL ? "flex-row-reverse" : "flex-row";
 
@@ -172,7 +178,7 @@ export default function SettingsPage() {
               if (parsed.data) {
                 await restoreData(parsed.data);
               }
-              if (parsed.theme === "light" || parsed.theme === "dark" || parsed.theme === "system") {
+              if (parsed.theme === "light" || parsed.theme === "dark" || parsed.theme === "green" || parsed.theme === "system") {
                 setTheme(parsed.theme);
               }
             },
@@ -256,16 +262,25 @@ export default function SettingsPage() {
             icon: "notifications-outline",
             label: t("settings.notifications"),
             type: "toggle",
-            enabled: state.notificationsEnabled ?? false,
+            enabled: notificationsEnabled,
             onPress: handleToggleNotifications,
           },
           {
             icon: "moon-outline",
             label: t("settings.theme"),
             type: "nav",
-            value: theme === "system" ? t("settings.system") : theme === "dark" ? t("settings.dark") : t("settings.light"),
+            value:
+              theme === "system"
+                ? t("settings.system")
+                : theme === "dark"
+                  ? t("settings.dark")
+                  : theme === "light"
+                    ? t("settings.light")
+                    : t("settings.green"),
             onPress: () => {
-              const next = theme === "system" ? "dark" : theme === "dark" ? "light" : "system";
+              const order = ["system", "dark", "light", "green"] as const;
+              const currentIndex = order.indexOf(theme);
+              const next = order[(currentIndex + 1) % order.length];
               setTheme(next);
             },
           },
@@ -305,7 +320,7 @@ export default function SettingsPage() {
         ] as SettingsItem[],
       },
     ],
-    [theme, state.notificationsEnabled ?? false, language, setTheme, handleToggleNotifications, handleExportData, handleImportData, router, t, APP_VERSION]
+    [theme, notificationsEnabled, language, setTheme, handleToggleNotifications, handleExportData, handleImportData, router, t]
   );
 
   const handleDeleteConfirm = async () => {
@@ -389,7 +404,7 @@ export default function SettingsPage() {
                         <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${textClass}`}>{item.label}</Text>
 
                         {item.type === "toggle" ? (
-                          <View className={`w-12 h-6 rounded-full ${("enabled" in item && item.enabled) ? "bg-emerald-500" : isDark ? "bg-emerald-700" : "bg-emerald-300"}`}>
+                          <View className={`w-12 h-6 rounded-full ${("enabled" in item && item.enabled) ? "bg-emerald-500" : isDark ? "bg-gray-700" : isGreen ? "bg-emerald-700" : "bg-emerald-300"}`}>
                             <View className={`w-5 h-5 bg-white rounded-full mt-0.5 ${("enabled" in item && item.enabled) ? "ml-6" : "ml-0.5"}`} />
                           </View>
                         ) : item.type === "display" || ("value" in item && item.value) ? (
@@ -397,7 +412,7 @@ export default function SettingsPage() {
                             {item.type === "display" ? item.value : (item as { value?: string }).value}
                           </Text>
                         ) : (
-                          <Ionicons name={isRTL ? "chevron-back" : "chevron-forward"} size={22} color={isDark ? "#b6e2b6" : "#1f8a5d"} />
+                          <Ionicons name={isRTL ? "chevron-back" : "chevron-forward"} size={22} color={isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : "#1f8a5d"} />
                         )}
                       </Wrapper>
                     );
@@ -415,7 +430,7 @@ export default function SettingsPage() {
                 >
                   <Ionicons name="construct-outline" size={20} color="#008f4e" />
                   <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${textClass}`}>{t("settings.cacheSettings")}</Text>
-                  <Ionicons name={showAdvancedSettings ? "chevron-up" : "chevron-down"} size={22} color={isDark ? "#b6e2b6" : "#1f8a5d"} />
+                  <Ionicons name={showAdvancedSettings ? "chevron-up" : "chevron-down"} size={22} color={isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : "#1f8a5d"} />
                 </Pressable>
 
                 {showAdvancedSettings ? (
@@ -431,7 +446,7 @@ export default function SettingsPage() {
                           {t("settings.cacheAutoClearDescription")}
                         </Text>
                       </View>
-                      <View className={`w-12 h-6 rounded-full ${autoClearCacheEnabled ? "bg-emerald-500" : isDark ? "bg-emerald-700" : "bg-emerald-300"}`}>
+                      <View className={`w-12 h-6 rounded-full ${autoClearCacheEnabled ? "bg-emerald-500" : isDark ? "bg-gray-700" : isGreen ? "bg-emerald-700" : "bg-emerald-300"}`}>
                         <View className={`w-5 h-5 bg-white rounded-full mt-0.5 ${autoClearCacheEnabled ? "ml-6" : "ml-0.5"}`} />
                       </View>
                     </Pressable>
@@ -447,7 +462,7 @@ export default function SettingsPage() {
                           {t("settings.clearCacheDescription")}
                         </Text>
                       </View>
-                      <Ionicons name={isRTL ? "chevron-back" : "chevron-forward"} size={22} color={isDark ? "#b6e2b6" : "#1f8a5d"} />
+                      <Ionicons name={isRTL ? "chevron-back" : "chevron-forward"} size={22} color={isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : "#1f8a5d"} />
                     </Pressable>
 
                     <Pressable
@@ -461,7 +476,7 @@ export default function SettingsPage() {
                           {t("settings.copyEnglishKeyLog")}
                         </Text>
                       </View>
-                      <Ionicons name="copy-outline" size={20} color={isDark ? "#b6e2b6" : "#1f8a5d"} />
+                      <Ionicons name="copy-outline" size={20} color={isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : "#1f8a5d"} />
                     </Pressable>
                   </>
                 ) : null}
@@ -472,32 +487,32 @@ export default function SettingsPage() {
               onPress={handleLogout}
               disabled={!isHydrated}
               className={`w-full ${
-                isDark ? 'bg-emerald-900/90 border-emerald-800' : 'bg-white border-emerald-200'
+                isDark ? 'bg-gray-900/80 border-gray-800' : isGreen ? 'bg-emerald-900/90 border-emerald-800' : 'bg-white border-emerald-200'
               } border rounded-2xl px-4 py-5 ${flexDirection} items-center ${!isHydrated ? 'opacity-60' : ''}`}
             >
               <Ionicons name="log-out-outline" size={20} color="#EF4444" />
-              <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${isDark ? 'text-red-400' : 'text-red-500'}`}>{t('settings.logout')}</Text>
+              <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${isDark || isGreen ? 'text-red-400' : 'text-red-500'}`}>{t('settings.logout')}</Text>
             </Pressable>
 
             <Pressable
               onPress={() => setShowDeleteConfirm(true)}
               disabled={!isHydrated}
               className={`w-full ${
-                isDark ? 'bg-emerald-900/90 border-emerald-800' : 'bg-white border-emerald-200'
+                isDark ? 'bg-gray-900/80 border-gray-800' : isGreen ? 'bg-emerald-900/90 border-emerald-800' : 'bg-white border-emerald-200'
               } border rounded-2xl px-4 py-5 ${flexDirection} items-center ${!isHydrated ? 'opacity-60' : ''}`}
             >
               <Ionicons name="trash-outline" size={20} color="#EF4444" />
-              <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${isDark ? 'text-red-400' : 'text-red-500'}`}>{t('settings.deleteAccount')}</Text>
+              <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${isDark || isGreen ? 'text-red-400' : 'text-red-500'}`}>{t('settings.deleteAccount')}</Text>
             </Pressable>
 
-            <Text className={`text-center text-sm ${isDark ? 'text-white/90' : 'text-gray-500'} mt-2`}>
-              {t('settings.appVersion')}
+            <Text className={`text-center text-sm ${isDark ? 'text-gray-400' : isGreen ? 'text-emerald-100' : 'text-gray-500'} mt-2`}>
+              {t('settings.appVersion')}: {APP_VERSION}
             </Text>
             <View className="mt-4 mb-2">
               <View className="flex-row justify-center items-center">
                 <Text className={`text-center text-sm ${secondaryTextClass} mr-2`}>{t('general.needHelpQuestion') ?? 'Need Help?'}</Text>
-                <Pressable onPress={() => Linking.openURL('mailto:gatorguide_mobiledevelopmentteam@outlook.com')} accessibilityRole="link">
-                  <Text className={`text-sm ${isDark ? 'text-white/90' : 'text-emerald-600'} underline font-semibold`}>{t('general.emailUs') ?? 'Email Us!'}</Text>
+                <Pressable onPress={() => Linking.openURL(SUPPORT_MAILTO)} accessibilityRole="link">
+                  <Text className={`text-sm ${isDark ? 'text-emerald-200' : isGreen ? 'text-emerald-100' : 'text-emerald-600'} underline font-semibold`}>{t('general.emailUs') ?? 'Email Us!'}</Text>
                 </Pressable>
               </View>
             </View>
@@ -543,7 +558,7 @@ export default function SettingsPage() {
               onPress={() => setShowCacheClearedPopup(false)}
               className="bg-emerald-500 rounded-lg py-4 items-center"
             >
-              <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold`}>{t("general.ok")}</Text>
+              <Text className={`${isDark || isGreen ? 'text-white' : 'text-emerald-900'} font-semibold`}>{t("general.ok")}</Text>
             </Pressable>
           </View>
         </View>
@@ -551,3 +566,4 @@ export default function SettingsPage() {
     </ScreenBackground>
   );
 }
+

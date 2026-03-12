@@ -294,7 +294,7 @@ export default function ProfileSetupPage() {
                     }}
                     className="flex-1 bg-emerald-500 rounded-lg py-4 items-center flex-row justify-center"
                   >
-                    <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold mr-2`}>{t("setup.next")}</Text>
+                    <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} font-semibold mr-2`}>{t("setup.next")}</Text>
                     <MaterialIcons name="arrow-forward" size={18} color={isDark ? "#FFFFFF" : "#000"} />
                   </Pressable>
                 ) : (
@@ -306,7 +306,7 @@ export default function ProfileSetupPage() {
                     }}
                     className="flex-1 bg-emerald-500 rounded-lg py-4 items-center flex-row justify-center"
                   >
-                    <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold mr-2`}>{isUploading ? `${t("setup.continue")}...` : t("setup.continue")}</Text>
+                    <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} font-semibold mr-2`}>{isUploading ? `${t("setup.continue")}...` : t("setup.continue")}</Text>
                     <MaterialIcons name="arrow-forward" size={18} color={isDark ? "#FFFFFF" : "#000"} />
                   </Pressable>
                 )}
@@ -330,3 +330,4 @@ export default function ProfileSetupPage() {
     </>
   );
 }
+

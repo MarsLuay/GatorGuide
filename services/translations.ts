@@ -187,6 +187,7 @@ const rawTranslations = {
     "settings.light": "Light",
     "settings.dark": "Dark",
     "settings.system": "System",
+    "settings.green": "Green",
     "settings.privacyPolicy": "Privacy Policy",
     "settings.termsOfService": "Terms of Service",
     "settings.advanced": "Advanced settings",

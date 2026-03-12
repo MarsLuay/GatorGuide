@@ -224,18 +224,22 @@ export default function ProfilePage() {
     : isGreen
       ? "bg-emerald-900/90 border-emerald-800"
       : isLight
-        ? "bg-emerald-50 border-emerald-300"
+        ? "bg-white border-emerald-200"
         : "bg-white/90 border-gray-200";
   const inputBgClass = isDark
     ? "bg-gray-800 border-gray-700"
     : isGreen
       ? "bg-emerald-900/70 border-emerald-700"
       : isLight
-        ? "bg-emerald-50 border-emerald-400"
+        ? "bg-white border-emerald-300"
         : "bg-gray-50 border-gray-300";
   const inputClass = `w-full ${inputBgClass} ${textClass} border rounded-lg px-3 py-2`;
   const borderClass = isDark ? "border-gray-800" : isGreen ? "border-emerald-700" : isLight ? "border-emerald-300" : "border-gray-200";
   const placeholderColor = isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280";
+  const guestCtaCardClass = isLight ? "bg-emerald-200 border border-emerald-300" : "bg-emerald-500";
+  const guestCtaTextClass = isLight ? "text-emerald-900" : "text-white";
+  const guestCtaBodyClass = isLight ? "text-emerald-900/80" : "text-emerald-100";
+  const guestCtaIconColor = isLight ? "#001f0f" : "#FFFFFF";
 
   const hasQuestionnaireData = useMemo(
     () => Object.keys(state.questionnaireAnswers ?? {}).length > 0,
@@ -448,7 +452,7 @@ export default function ProfilePage() {
               className="bg-emerald-500 rounded-lg py-4 items-center"
               disabled={!isHydrated}
             >
-              <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold`}>{t("profile.goToLogin")}</Text>
+              <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} font-semibold`}>{t("profile.goToLogin")}</Text>
             </Pressable>
           </View>
         </View>
@@ -464,7 +468,7 @@ export default function ProfilePage() {
           <View className="w-full max-w-md">
             <View className="items-center mb-8">
               <View className="bg-emerald-500 p-4 rounded-full mb-4">
-                <MaterialIcons name="person-add" size={48} color="black" />
+                <MaterialIcons name="person-add" size={48} color="#001f0f" />
               </View>
               
               <Text className={`text-3xl ${textClass} text-center font-semibold mb-2`}>{t("profile.createYourProfile")}</Text>
@@ -477,8 +481,8 @@ export default function ProfilePage() {
               onPress={() => router.push("/login")}
               className={`${isLight ? "bg-emerald-200" : "bg-emerald-500"} rounded-lg py-4 px-6 items-center flex-row justify-center`}
             >
-              <MaterialIcons name="arrow-forward" size={20} color="black" />
-              <Text className={`${isDark || isGreen ? 'text-white' : 'text-black'} font-semibold ml-2`}>{t("profile.createYourProfile")}</Text>
+              <MaterialIcons name="arrow-forward" size={20} color="#001f0f" />
+              <Text className={`${isDark || isGreen ? 'text-white' : 'text-emerald-900'} font-semibold ml-2`}>{t("profile.createYourProfile")}</Text>
             </Pressable>
 
             <Pressable
@@ -525,7 +529,7 @@ export default function ProfilePage() {
                     className={`flex-1 ${isLight ? "bg-emerald-200" : "bg-emerald-500"} rounded-xl px-4 py-3 flex-row items-center justify-center`}
                   >
                     <MaterialIcons name="file-download" size={18} color={isDark || isGreen ? "#FFFFFF" : "#000"} />
-                    <Text className={`${isDark || isGreen ? 'text-white' : 'text-black'} font-semibold ml-2`}>{t("settings.import")}</Text>
+                    <Text className={`${isDark || isGreen ? 'text-white' : 'text-emerald-900'} font-semibold ml-2`}>{t("settings.import")}</Text>
                   </Pressable>
                   <Pressable
                     onPress={handleExportData}
@@ -556,7 +560,7 @@ export default function ProfilePage() {
               }}
               className="bg-emerald-500 p-3 rounded-full"
             >
-              <MaterialIcons name={isEditing ? "save" : "edit"} size={18} color="black" />
+              <MaterialIcons name={isEditing ? "save" : "edit"} size={18} color="#001f0f" />
             </Pressable>
           </View>
 
@@ -577,7 +581,7 @@ export default function ProfilePage() {
                           <Image source={{ uri: user.avatar }} className="w-full h-full" resizeMode="cover" />
                         ) : (
                           <View className="w-full h-full bg-emerald-500 items-center justify-center">
-                            <MaterialIcons name="person" size={26} color="black" />
+                            <MaterialIcons name="person" size={26} color="#001f0f" />
                           </View>
                         )}
                       </Pressable>
@@ -587,7 +591,7 @@ export default function ProfilePage() {
                           className="absolute -bottom-0.5 -right-0.5 w-6 h-6 rounded-full bg-emerald-500 items-center justify-center border-2 border-white dark:border-neutral-900"
                           hitSlop={8}
                         >
-                          <MaterialIcons name="edit" size={14} color="black" />
+                          <MaterialIcons name="edit" size={14} color="#001f0f" />
                         </Pressable>
                       )}
                     </View>
@@ -613,7 +617,7 @@ export default function ProfilePage() {
                           <Image source={{ uri: user.avatar }} className="w-full h-full" resizeMode="cover" />
                         ) : (
                           <View className="w-full h-full bg-emerald-500 items-center justify-center">
-                            <Text className={`${isDark ? 'text-white' : 'text-black'} text-lg font-bold`}>{(user?.name?.[0] ?? "").toUpperCase()}</Text>
+                            <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} text-lg font-bold`}>{(user?.name?.[0] ?? "").toUpperCase()}</Text>
                           </View>
                         )}
                       </Pressable>
@@ -623,7 +627,7 @@ export default function ProfilePage() {
                           className="absolute -bottom-0.5 -right-0.5 w-6 h-6 rounded-full bg-emerald-500 items-center justify-center border-2 border-white dark:border-neutral-900"
                           hitSlop={8}
                         >
-                          <MaterialIcons name="edit" size={14} color="black" />
+                          <MaterialIcons name="edit" size={14} color="#001f0f" />
                         </Pressable>
                       )}
                     </View>
@@ -660,16 +664,16 @@ export default function ProfilePage() {
               {user?.isGuest ? ( //email
                 <Pressable
                   onPress={handleCreateAccount}
-                  className={`${isLight ? "bg-emerald-200" : "bg-gradient-to-r from-emerald-500 to-emerald-600"} rounded-xl p-5 flex-row items-center justify-between mb-4`}
+                  className={`${guestCtaCardClass} rounded-xl p-5 flex-row items-center justify-between mb-4`}
                 >
                   <View className="flex-1 pr-3">
                     <View className="flex-row items-center mb-2">
-                      <MaterialIcons name="stars" size={20} color="black" />
-                      <Text className={`${isDark || isGreen ? 'text-white' : 'text-black'} font-bold text-base ml-2`}>{t("profile.createAccount")}</Text>
+                      <MaterialIcons name="stars" size={20} color={guestCtaIconColor} />
+                      <Text className={`${guestCtaTextClass} font-bold text-base ml-2`}>{t("profile.createAccount")}</Text>
                     </View>
-                    <Text className={`${isDark || isGreen ? "text-emerald-100" : "text-black/80"} text-sm`}>{t("profile.saveDataMessage")}</Text>
+                    <Text className={`${guestCtaBodyClass} text-sm`}>{t("profile.saveDataMessage")}</Text>
                   </View>
-                  <MaterialIcons name="arrow-forward" size={24} color="black" />
+                  <MaterialIcons name="arrow-forward" size={24} color={guestCtaIconColor} />
                 </Pressable>
               ) : (
                 
@@ -1109,7 +1113,7 @@ export default function ProfilePage() {
                       }}
                       className="flex-1 bg-emerald-500 rounded-lg py-3 items-center"
                     >
-                      <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold`}>{t("profile.saveAnswers")}</Text>
+                      <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} font-semibold`}>{t("profile.saveAnswers")}</Text>
                     </Pressable>
                   </View>
                 </View>
@@ -1133,3 +1137,4 @@ export default function ProfilePage() {
     </>
   );
 }
+

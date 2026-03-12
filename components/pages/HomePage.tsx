@@ -7,7 +7,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppData } from "@/hooks/use-app-data";
-import { getMatchColorClass } from "@/utils/match-color";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { College } from "@/services/college.service";
 import { aiService, collegeService } from "@/services";
@@ -109,16 +108,25 @@ export default function HomePage() {
     : isGreen
       ? "bg-emerald-900/90 border-emerald-800"
       : isLight
-        ? "bg-emerald-50 border-emerald-300"
+        ? "bg-white border-emerald-200"
         : "bg-white/90 border-gray-200";
   const inputClass = isDark
     ? "bg-gray-800 border-gray-700"
     : isGreen
       ? "bg-emerald-900/70 border-emerald-700"
       : isLight
-        ? "bg-emerald-50 border-emerald-400"
+        ? "bg-white border-emerald-300"
         : "bg-gray-50 border-gray-300";
   const placeholderTextColor = isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280";
+  const guestCtaCardClass = isLight ? "bg-emerald-200 border border-emerald-300" : "bg-emerald-500";
+  const guestCtaIconBgClass = isLight ? "bg-white/45" : "bg-emerald-900/10";
+  const guestCtaTitleClass = isLight ? "text-emerald-900" : "text-white";
+  const guestCtaBodyClass = isLight ? "text-emerald-900/80" : "text-emerald-100";
+  const guestCtaPrimaryButtonClass = isLight ? "bg-white/95" : "bg-emerald-900";
+  const guestCtaPrimaryTextClass = isLight ? "text-emerald-900" : "text-white";
+  const guestCtaSecondaryButtonClass = isLight ? "bg-white/70 border border-emerald-300/80" : "bg-emerald-900/20";
+  const guestCtaSecondaryTextClass = isLight ? "text-emerald-900" : "text-white";
+  const recommendationMatchClass = isDark || isGreen ? "text-emerald-300" : "text-emerald-600";
 
   const formatPercent = (value: unknown) => {
     const n = Number(value);
@@ -576,29 +584,29 @@ export default function HomePage() {
           ) : null}
 
           {user?.isGuest && !dismissedGuestPrompt && (
-            <View className={`mb-6 rounded-2xl p-4 ${isLight ? "bg-emerald-200" : "bg-emerald-500"}`}>
+            <View className={`mb-6 rounded-2xl p-4 ${guestCtaCardClass}`}>
               <View className="flex-row items-start gap-3">
-                <View className="p-2 rounded-full bg-black/10 mt-1">
-                  <Ionicons name="person-add" size={20} color="black" />
+                <View className={`p-2 rounded-full ${guestCtaIconBgClass} mt-1`}>
+                  <Ionicons name="person-add" size={20} color="#001f0f" />
                 </View>
 
                 <View className="flex-1">
-                  <Text className={`font-semibold ${isDark ? 'text-white' : 'text-black'} text-base mb-1`}>{t("home.createAccount")}</Text>
-                  <Text className={`${isDark ? 'text-emerald-100' : 'text-black/80'} text-sm mb-3`}>{t("home.signUpMessage")}</Text>
+                  <Text className={`font-semibold ${guestCtaTitleClass} text-base mb-1`}>{t("home.createAccount")}</Text>
+                  <Text className={`${guestCtaBodyClass} text-sm mb-3`}>{t("home.signUpMessage")}</Text>
 
                   <View className="flex-row gap-2">
                     <Pressable
                       onPress={() => router.push("/login")}
-                      className={`flex-1 ${isLight ? "bg-emerald-50/95" : "bg-black"} rounded-lg py-2 items-center`}
+                      className={`flex-1 ${guestCtaPrimaryButtonClass} rounded-lg py-2 items-center`}
                     >
-                      <Text className={`${isLight ? "text-emerald-900" : "text-white"} font-semibold text-sm`}>{t("home.signUp")}</Text>
+                      <Text className={`${guestCtaPrimaryTextClass} font-semibold text-sm`}>{t("home.signUp")}</Text>
                     </Pressable>
 
                     <Pressable
                       onPress={() => setDismissedGuestPrompt(true)}
-                      className={`flex-1 ${isLight ? "bg-emerald-50/80" : "bg-black/20"} rounded-lg py-2 items-center`}
+                      className={`flex-1 ${guestCtaSecondaryButtonClass} rounded-lg py-2 items-center`}
                     >
-                      <Text className={`${isLight ? 'text-emerald-900' : isDark ? 'text-white' : 'text-black'} font-semibold text-sm`}>{t("home.later")}</Text>
+                      <Text className={`${guestCtaSecondaryTextClass} font-semibold text-sm`}>{t("home.later")}</Text>
                     </Pressable>
                   </View>
                 </View>
@@ -630,7 +638,7 @@ export default function HomePage() {
                   <Text className="text-white font-semibold">{t("home.searching")}</Text>
                 </View>
               ) : (
-                <Text className={`${showCooldownPopup || isDark ? 'text-white' : 'text-black'} font-semibold`}>{t("home.search")}</Text>
+                <Text className={`${showCooldownPopup || isDark ? 'text-white' : 'text-emerald-900'} font-semibold`}>{t("home.search")}</Text>
               )}
             </Pressable>
           </View>
@@ -652,18 +660,18 @@ export default function HomePage() {
                   onPress={() => setShowDebugConsole((v) => !v)}
                   className="px-3 py-1 rounded-lg bg-emerald-500"
                 >
-                  <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold`}>{showDebugConsole ? 'Hide' : 'Show'}</Text>
+                  <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} font-semibold`}>{showDebugConsole ? 'Hide' : 'Show'}</Text>
                 </Pressable>
               </View>
               <View className="flex-row gap-2 mt-3">
                 <Pressable onPress={refreshDebugSnapshot} className="px-3 py-2 rounded-lg bg-emerald-300">
-                  <Text className={`${isDark ? 'text-white' : 'text-black'} text-xs font-semibold`}>Refresh Snapshot</Text>
+                  <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} text-xs font-semibold`}>Refresh Snapshot</Text>
                 </Pressable>
                 <Pressable onPress={logDebugSnapshot} className="px-3 py-2 rounded-lg bg-emerald-300">
-                  <Text className={`${isDark ? 'text-white' : 'text-black'} text-xs font-semibold`}>Log Snapshot</Text>
+                  <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} text-xs font-semibold`}>Log Snapshot</Text>
                 </Pressable>
                 <Pressable onPress={copyDebugSnapshot} className="px-3 py-2 rounded-lg bg-emerald-300">
-                  <Text className={`${isDark ? 'text-white' : 'text-black'} text-xs font-semibold`}>Copy Snapshot</Text>
+                  <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} text-xs font-semibold`}>Copy Snapshot</Text>
                 </Pressable>
               </View>
               {copyStatus ? (
@@ -684,12 +692,12 @@ export default function HomePage() {
               onPress={() => router.push("/questionnaire")}
               className="w-full rounded-2xl p-4 flex-row items-center bg-emerald-500 mb-4"
             >
-              <View className="mr-3 p-2 rounded-xl bg-black/10">
+              <View className="mr-3 p-2 rounded-xl bg-emerald-900/10">
                 <Ionicons name="document-text" size={18} color="#000" />
               </View>
               <View className="flex-1">
-                <Text className={`font-semibold ${isDark ? 'text-white' : 'text-black'}`}>{t("home.completeQuestionnaire")}</Text>
-                <Text className="text-black/70 text-sm">{t("home.getPersonalizedRecommendations")}</Text>
+                <Text className={`font-semibold ${isDark ? 'text-white' : 'text-emerald-900'}`}>{t("home.completeQuestionnaire")}</Text>
+                <Text className="text-emerald-900/70 text-sm">{t("home.getPersonalizedRecommendations")}</Text>
               </View>
               <Ionicons name="sparkles" size={18} color="#000" />
             </Pressable>
@@ -805,7 +813,7 @@ export default function HomePage() {
                         <View className="flex-row items-center justify-between">
                           <View className="flex-1">
                             <Text className={textClass}>{college.name}</Text>
-                            <Text className={`${getMatchColorClass(getMatchScore(r))} font-semibold`}>Match {getMatchText(r)}</Text>
+                            <Text className={`${recommendationMatchClass} font-semibold`}>Match {getMatchText(r)}</Text>
                           </View>
                           <Pressable
                             onPress={(e) => {
@@ -892,7 +900,7 @@ export default function HomePage() {
                 <Text className="text-white font-semibold">Exit tutorial</Text>
               </Pressable>
               <Pressable onPress={advanceTour} className="px-3 py-2 rounded-lg bg-emerald-500">
-                <Text className={`${isDark ? "text-white" : "text-black"} font-semibold`}>
+                <Text className={`${isDark ? "text-white" : "text-emerald-900"} font-semibold`}>
                   {tourStepIndex === tourSteps.length - 1 ? "Finish" : "Next"}
                 </Text>
               </Pressable>
@@ -967,3 +975,4 @@ export default function HomePage() {
     </ScreenBackground>
   );
 }
+

@@ -100,14 +100,14 @@ export default function QuestionnairePage() {
     : isGreen
       ? "bg-emerald-900/90 border-emerald-800"
       : isLight
-        ? "bg-emerald-50 border-emerald-300"
+        ? "bg-white border-emerald-200"
         : "bg-white/90 border-gray-200";
   const inputBgClass = isDark
     ? "bg-gray-800 border-gray-700"
     : isGreen
       ? "bg-emerald-900/70 border-emerald-700"
       : isLight
-        ? "bg-emerald-50 border-emerald-400"
+        ? "bg-white border-emerald-300"
         : "bg-gray-50 border-gray-300";
   const borderClass = isDark ? "border-gray-800" : isGreen ? "border-emerald-700" : isLight ? "border-emerald-300" : "border-gray-200";
   const progressBgClass = isDark ? "bg-gray-800" : isGreen ? "bg-emerald-800" : "bg-emerald-200";
@@ -255,7 +255,7 @@ export default function QuestionnairePage() {
                   className={`w-full bg-emerald-500 rounded-lg py-4 items-center ${!isHydrated ? "opacity-60" : ""}`}
                   disabled={!isHydrated}
                 >
-                  <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold`}>
+                  <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} font-semibold`}>
                     {currentStep === questions.length - 1 ? t("questionnaire.complete") : t("questionnaire.next")}
                   </Text>
                 </Pressable>
@@ -278,3 +278,4 @@ export default function QuestionnairePage() {
     </ScreenBackground>
   );
 }
+

@@ -166,7 +166,7 @@ export default function OnboardingPage() {
                   <Text className={`${secondaryTextClass} text-sm`}>Search colleges by major, city, or fit...</Text>
                 </View>
                 <View className="absolute right-2 top-2 rounded-lg bg-emerald-500 px-3 py-2">
-                  <Text className={`${isDark ? "text-white" : "text-black"} text-xs font-semibold`}>Search</Text>
+                  <Text className={`${isDark ? "text-white" : "text-emerald-900"} text-xs font-semibold`}>Search</Text>
                 </View>
               </View>
               <View className="flex-row mt-3 gap-2">
@@ -258,7 +258,7 @@ export default function OnboardingPage() {
                   <Text className="text-white font-semibold">Exit tutorial</Text>
                 </Pressable>
                 <Pressable onPress={onNext} className="px-3 py-2 rounded-lg bg-emerald-500">
-                  <Text className={`${isDark ? "text-white" : "text-black"} font-semibold`}>{nextLabel}</Text>
+                  <Text className={`${isDark ? "text-white" : "text-emerald-900"} font-semibold`}>{nextLabel}</Text>
                 </Pressable>
               </View>
 

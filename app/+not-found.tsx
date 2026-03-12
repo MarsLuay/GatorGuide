@@ -26,7 +26,7 @@ export default function NotFound() {
             onPress={() => router.replace("/(tabs)")}
             className="px-5 py-4 rounded-2xl bg-emerald-500 w-full items-center"
           >
-            <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold`}>Go Home</Text>
+            <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} font-semibold`}>Go Home</Text>
           </Pressable>
 
           <Pressable onPress={back} className="mt-4">
