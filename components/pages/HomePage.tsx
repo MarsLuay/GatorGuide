@@ -110,12 +110,12 @@ export default function HomePage() {
         ? "bg-white border-emerald-300"
         : "bg-gray-50 border-gray-300";
   const placeholderTextColor = isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280";
-  const guestCtaCardClass = isLight ? "bg-emerald-100 border border-emerald-200" : "bg-emerald-500";
-  const guestCtaCardStyle = isLight ? { backgroundColor: "#00572b", borderColor: "#00753e" } : undefined;
-  const guestCtaIconBgClass = isLight ? "bg-white/10 border border-white/10" : "bg-emerald-900/10";
-  const guestCtaIconColor = isLight ? "#8cd19e" : "#001f0f";
-  const guestCtaTitleClass = isLight ? "text-white" : "text-white";
-  const guestCtaBodyClass = isLight ? "text-emerald-100" : "text-emerald-100";
+  const guestCtaCardClass = isLight ? "bg-emerald-100 border border-emerald-200" : isDark ? "bg-emerald-500 border" : "bg-emerald-500";
+  const guestCtaCardStyle = isDark ? { backgroundColor: "#00572b", borderColor: "#00753e" } : undefined;
+  const guestCtaIconBgClass = isLight ? "bg-emerald-500/10 border border-emerald-200" : isDark ? "bg-white/10 border border-white/10" : "bg-emerald-900/10";
+  const guestCtaIconColor = isLight ? "#1f8a5d" : isDark ? "#8cd19e" : "#001f0f";
+  const guestCtaTitleClass = isLight ? "text-emerald-900" : "text-white";
+  const guestCtaBodyClass = isLight ? "text-emerald-800" : "text-emerald-100";
   const guestCtaPrimaryButtonClass = isLight ? "bg-emerald-500" : "bg-emerald-900";
   const guestCtaPrimaryTextClass = "text-white";
   const guestCtaSecondaryButtonClass = isLight ? "bg-white/90 border border-emerald-200" : "bg-emerald-900/20";
