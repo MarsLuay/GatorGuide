@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useRef } from "react";
-import { View, Text, TextInput, Pressable, ScrollView, Switch, Platform, ActivityIndicator, useWindowDimensions, Alert } from "react-native";
+import { View, Text, TextInput, Pressable, ScrollView, Switch, Platform, ActivityIndicator, useWindowDimensions, Alert, Linking } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -478,16 +478,36 @@ export default function HomePage() {
       return;
     }
 
-    if (!SUPPORT_MESSAGE_WEBHOOK) {
-      Alert.alert("Support", "Support endpoint is not configured.");
-      return;
-    }
+    const fallbackToMailto = async () => {
+      const subject = encodeURIComponent("GatorGuide Support Request");
+      const userLine = user?.email ? `User: ${user.email}\n` : "";
+      const body = encodeURIComponent(`${userLine}\n${message}`);
+      const mailtoUrl = `mailto:gatorguide@outlook.com?subject=${subject}&body=${body}`;
+
+      try {
+        const canOpen = await Linking.canOpenURL(mailtoUrl);
+        if (!canOpen) {
+          Alert.alert("Support", "Could not open your email app.");
+          return;
+        }
+        await Linking.openURL(mailtoUrl);
+        setSupportStatus("sent");
+        setSupportStatusText("Opened your email app to send the message.");
+      } catch {
+        Alert.alert("Support", "Could not open your email app.");
+      }
+    };
 
     setSupportStatus("");
     setSupportStatusText("");
     setIsSendingSupport(true);
     let timer: ReturnType<typeof setTimeout> | null = null;
     try {
+      if (!SUPPORT_MESSAGE_WEBHOOK) {
+        await fallbackToMailto();
+        return;
+      }
+
       const controller = new AbortController();
       timer = setTimeout(() => controller.abort(), 12000);
       const res = await fetch(SUPPORT_MESSAGE_WEBHOOK, {
@@ -509,10 +529,9 @@ export default function HomePage() {
       if (!res.ok) {
         const text = await res.text().catch(() => "");
         const details = text ? ` (${text.slice(0, 140)})` : "";
-        const msg = `Could not send message${details}`;
         setSupportStatus("error");
-        setSupportStatusText(msg);
-        Alert.alert("Support", msg);
+        setSupportStatusText(`Webhook failed${details}. Falling back to email app.`);
+        await fallbackToMailto();
         return;
       }
 
@@ -523,8 +542,8 @@ export default function HomePage() {
       Alert.alert("Support", "Message sent.");
     } catch {
       setSupportStatus("error");
-      setSupportStatusText("Could not send message. Check webhook deployment/config.");
-      Alert.alert("Support", "Could not send message. Please try again.");
+      setSupportStatusText("Webhook send failed. Falling back to email app.");
+      await fallbackToMailto();
     } finally {
       if (timer) clearTimeout(timer);
       setIsSendingSupport(false);
