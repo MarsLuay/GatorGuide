@@ -75,6 +75,12 @@ export default function ResourcesPage() {
             url: "https://www.greenriver.edu/students/pay-for-college/financial-aid/student-employment/",
             tags: ["work-study", "jobs", "grc"],
           },
+          {
+            title: "FMHY (FreeMediaHeckYeah)",
+            description: "Community-maintained directory of free online resources, including software, learning tools, privacy utilities, and other useful websites. Good for students looking for free tools and services without paid subscriptions.",
+            url: "https://fmhy.net/",
+            tags: ["fmhy", "free software", "student tools", "learning tools", "privacy", "resources", "directory"],
+          },
         ],
       },
 
@@ -220,6 +226,12 @@ export default function ResourcesPage() {
         icon: "event-available",
         items: [
           {
+            title: "Jobscan",
+            description: "AI-powered ATS resume scanning, Power Edit, LinkedIn optimization, cover letter generation, and job application tracking.",
+            url: "https://www.jobscan.co/jobscan-tutorial",
+            tags: ["jobscan", "ats", "resume", "cover letter", "linkedin", "job tracker", "career fair", "job search"],
+          },
+          {
             title: "Resume Checklist",
             description: "Quick checklist to polish your resume before meeting recruiters.",
             url: "https://www.indeed.com/career-advice/resumes-cover-letters/resume-checklist",
@@ -236,6 +248,30 @@ export default function ResourcesPage() {
             description: "Template ideas for following up with recruiters after the event.",
             url: "https://www.indeed.com/career-advice/career-development/follow-up-email-after-networking-event",
             tags: ["career fair", "follow-up", "email", "networking"],
+          },
+        ],
+      },
+      {
+        title: "Engineering Career Prep",
+        icon: "engineering",
+        items: [
+          {
+            title: "Fundamentals of Engineering (FE) Exam / EIT",
+            description: "Official NCEES FE exam resource for engineering students pursuing Engineer-in-Training (EIT) status. A strong junior/senior-year credential that can help job applications while core material is still fresh.",
+            url: "https://ncees.org/exams/fe-exam/",
+            tags: ["engineering", "fe exam", "eit", "engineer in training", "pe", "licensure", "career prep"],
+          },
+          {
+            title: "CESCL (Certified Erosion and Sediment Control Lead)",
+            description: "Official Washington State Department of Ecology resource for CESCL certification. Useful for civil engineering students interested in construction, environmental, stormwater, or infrastructure roles involving site compliance and inspection.",
+            url: "https://ecology.wa.gov/regulations-permits/permits-certifications/certified-erosion-sediment-control",
+            tags: ["civil engineering", "cescl", "erosion control", "stormwater", "compliance", "inspection", "construction", "washington"],
+          },
+          {
+            title: "WAQTC Materials Testing Certification",
+            description: "Official WAQTC Transportation Technician Qualification Program resource for materials testing certifications used on transportation and public works projects. Covers qualification areas like aggregate, asphalt, concrete, embankment and base, and in-place density, and is valuable for civil and related engineering students pursuing field or laboratory testing technician roles in Washington and other states.",
+            url: "https://www.waqtc.org/320-2/",
+            tags: ["civil engineering", "waqtc", "materials testing", "construction", "public works", "concrete", "asphalt", "soil", "lab technician", "field technician", "washington"],
           },
         ],
       },

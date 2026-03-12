@@ -409,7 +409,7 @@ export default function RoadmapPage() {
             <View className="px-6">
               <View className="items-center mb-8">
                 <View className="bg-emerald-500 p-4 rounded-full mb-4">
-                  <MaterialIcons name="map" size={48} color="black" />
+                  <MaterialIcons name="map" size={48} color="#001f0f" />
                 </View>
                 
                 <Text className={`text-3xl ${textClass} text-center font-semibold mb-3`}>{t("roadmap.yourCollegeRoadmap")}</Text>
@@ -466,8 +466,8 @@ export default function RoadmapPage() {
                 onPress={() => router.push("/login")}
                 className="bg-emerald-500 rounded-lg py-4 px-6 items-center flex-row justify-center mb-3"
               >
-                <MaterialIcons name="arrow-forward" size={20} color="black" />
-                <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold ml-2`}>{t("roadmap.createProfileToStart")}</Text>
+                <MaterialIcons name="arrow-forward" size={20} color="#001f0f" />
+                <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} font-semibold ml-2`}>{t("roadmap.createProfileToStart")}</Text>
               </Pressable>
 
               <Pressable
@@ -515,7 +515,7 @@ export default function RoadmapPage() {
                     onPress={handleImportData}
                     className="bg-emerald-500 rounded-lg px-4 py-3 items-center"
                   >
-                    <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold text-sm text-center leading-5`}>
+                    <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} font-semibold text-sm text-center leading-5`}>
                       {t("settings.import")}
                     </Text>
                   </Pressable>
@@ -545,7 +545,7 @@ export default function RoadmapPage() {
                 className={`border p-2 rounded-lg mb-2 ${styles.inputBgClass} ${textClass}`}
               />
               <Pressable onPress={handleSendAI} className="bg-emerald-500 rounded-lg px-4 py-2 mb-2 items-center">
-                <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold`}>{t("roadmap.sendMessage")}</Text>
+                <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} font-semibold`}>{t("roadmap.sendMessage")}</Text>
               </Pressable>
               {aiMessages.map((msg) => (
                 <View key={msg.id} className="mb-2">
@@ -802,7 +802,7 @@ export default function RoadmapPage() {
               <View className="flex-row flex-wrap mb-3">
                 {activeClubs.map((club, i) => (
                   <View key={i} className="flex-row items-center bg-emerald-500 rounded-full mr-2 mb-2 overflow-hidden">
-                    <Text className={`${isDark ? "text-white" : "text-black"} text-sm font-medium px-3 py-1`}>{club}</Text>
+                    <Text className={`${isDark ? "text-white" : "text-emerald-900"} text-sm font-medium px-3 py-1`}>{club}</Text>
                     <Pressable
                       onPress={() => setActiveClubs((prev) => prev.filter((_, idx) => idx !== i))}
                       className="pr-2 py-1"
@@ -849,3 +849,4 @@ export default function RoadmapPage() {
     </ScreenBackground>
   );
 }
+

@@ -79,7 +79,7 @@ export default function ForgotPasswordPage() {
           <View className="w-full max-w-md">
             <View className="items-center mb-8">
               <View className="bg-emerald-500 p-4 rounded-full">
-                <MaterialIcons name="check-circle" size={48} color="black" />
+                <MaterialIcons name="check-circle" size={48} color="#001f0f" />
               </View>
             </View>
 
@@ -96,7 +96,7 @@ export default function ForgotPasswordPage() {
               onPress={() => router.replace("/login")}
               className="mt-8 items-center bg-emerald-500 py-4 rounded-xl"
             >
-              <Text className={`${isDark ? 'text-white' : 'text-black'} font-bold`}>
+              <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} font-bold`}>
                 {t("auth.back_to_login") || "Back to Login"}
               </Text>
             </Pressable>
@@ -131,7 +131,7 @@ export default function ForgotPasswordPage() {
 
           <View className="items-center mb-8">
             <View className="bg-emerald-500 p-4 rounded-full">
-              <FontAwesome5 name="graduation-cap" size={48} color="black" />
+              <FontAwesome5 name="graduation-cap" size={48} color="#001f0f" />
             </View>
           </View>
 
@@ -165,7 +165,7 @@ export default function ForgotPasswordPage() {
                 opacity: pressed && canSubmit ? 0.7 : undefined,
               })}
             >
-              <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold`}>{t("auth.sendResetLink")}</Text>
+              <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} font-semibold`}>{t("auth.sendResetLink")}</Text>
             </Pressable>
           </View>
 

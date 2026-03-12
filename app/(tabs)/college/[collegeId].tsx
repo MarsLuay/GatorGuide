@@ -218,7 +218,7 @@ export default function CollegeDetailsPage() {
               <Text className={`text-base ${textClass} mb-2`}>{t("general.error")}</Text>
               <Text className={`${secondaryTextClass} mb-4`}>{error}</Text>
               <Pressable onPress={fetchDetails} className="bg-emerald-500 rounded-lg py-2 items-center">
-                <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold`}>{t("general.retry")}</Text>
+                <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} font-semibold`}>{t("general.retry")}</Text>
               </Pressable>
             </View>
           ) : !college ? (
@@ -416,7 +416,7 @@ export default function CollegeDetailsPage() {
 
                       {filteredRows.length > rowLimit && (
                         <Pressable onPress={() => setRowLimit(filteredRows.length)} className="mt-3 rounded-lg py-2 items-center bg-emerald-500">
-                          <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold`}>{(t("details.showMore") as any) ?? "Show more"}</Text>
+                          <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} font-semibold`}>{(t("details.showMore") as any) ?? "Show more"}</Text>
                         </Pressable>
                       )}
                     </React.Fragment>

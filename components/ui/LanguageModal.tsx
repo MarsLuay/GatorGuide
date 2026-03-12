@@ -48,10 +48,11 @@ export function LanguageModal({ visible, onClose }: { visible: boolean, onClose:
             </View>
           </ScrollView>
           <Pressable onPress={onClose} className="mt-6 bg-emerald-500 py-4 rounded-2xl active:opacity-80">
-            <Text className={`${isDark ? 'text-white' : 'text-black'} text-center font-bold text-base`}>Close</Text>
+            <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} text-center font-bold text-base`}>Close</Text>
           </Pressable>
         </View>
       </View>
     </Modal>
   );
 }
+

@@ -48,7 +48,7 @@ export default function AboutPage() {
                   <FontAwesome5
                     name="graduation-cap"
                     size={48}
-                    color="black"
+                    color="#001f0f"
                   />
                 </View>
               </View>
@@ -105,7 +105,7 @@ export default function AboutPage() {
                 <View key={item.n}>
                   <View className="flex-row items-center mb-2">
                     <View className="w-6 h-6 rounded-full bg-emerald-500 items-center justify-center mr-2">
-                      <Text className={`${isDark ? 'text-white' : 'text-black'} text-sm font-semibold`}>
+                      <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} text-sm font-semibold`}>
                         {item.n}
                       </Text>
                     </View>

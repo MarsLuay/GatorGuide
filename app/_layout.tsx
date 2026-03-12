@@ -14,9 +14,9 @@ import { AppDataProvider } from "@/hooks/use-app-data";
 import { AuthEmailLinkHandler } from "@/components/AuthEmailLinkHandler";
 import { cacheManagerService } from "@/services";
 import { db } from "@/services/firebase";
+import { SUPPORT_EMAIL } from "@/constants/support";
 
 const HAS_SEEN_STARTUP_KEY = 'gatorguide:hasSeenStartup';
-const SUPPORT_EMAIL = 'gatorguide@outlook.com';
 const SUPPORT_ERROR_WEBHOOK =
   process.env.EXPO_PUBLIC_SUPPORT_ERROR_LOG_WEBHOOK ||
   'https://us-central1-gatorguide.cloudfunctions.net/sendSupportErrorLog';

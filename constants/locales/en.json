@@ -33,7 +33,8 @@
   "theme": {
     "system": "Follow System",
     "dark": "Dark Mode",
-    "light": "Light Mode"
+    "light": "Light Mode",
+    "green": "Green Mode"
   },
   "roadmap": {
     "title": "Transfer Roadmap",

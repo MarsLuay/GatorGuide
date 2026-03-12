@@ -16,6 +16,7 @@ import { FormInput } from "@/components/ui/FormInput";
 import { authService, EMAIL_LINK_STORAGE_KEY } from "@/services/auth.service";
 import { PENDING_LINK_STORAGE_KEY } from "@/components/AuthEmailLinkHandler";
 import { API_CONFIG } from "@/services/config";
+import { SUPPORT_MAILTO } from "@/constants/support";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -430,7 +431,7 @@ export default function AuthPage() {
     <View className={cardMaxWidthClass}>
       <View className="items-center mb-8">
         <View className="bg-emerald-500 p-4 rounded-full">
-          <FontAwesome5 name="graduation-cap" size={48} color="black" />
+          <FontAwesome5 name="graduation-cap" size={48} color="#001f0f" />
         </View>
       </View>
 
@@ -443,17 +444,17 @@ export default function AuthPage() {
             <View className="flex-row items-center justify-between">
               <Text className={`${styles.textClass} font-semibold text-sm`}>Onboarding/Auth Debug</Text>
               <Pressable onPress={() => setShowOnboardingDebugConsole((v) => !v)} className="px-3 py-1 rounded-lg bg-emerald-500">
-                <Text className={`${isDark ? "text-white" : "text-black"} text-xs font-semibold`}>
+                <Text className={`${isDark ? "text-white" : "text-emerald-900"} text-xs font-semibold`}>
                   {showOnboardingDebugConsole ? "Hide" : "Show"}
                 </Text>
               </Pressable>
             </View>
             <View className="flex-row gap-2 mt-2">
               <Pressable onPress={copyOnboardingDebugLogs} className="px-3 py-1.5 rounded-lg bg-emerald-300">
-                <Text className={`${isDark ? "text-white" : "text-black"} text-xs font-semibold`}>Copy Logs</Text>
+                <Text className={`${isDark ? "text-white" : "text-emerald-900"} text-xs font-semibold`}>Copy Logs</Text>
               </Pressable>
               <Pressable onPress={() => { void clearOnboardingDebugLogs(); }} className="px-3 py-1.5 rounded-lg bg-emerald-300">
-                <Text className={`${isDark ? "text-white" : "text-black"} text-xs font-semibold`}>Clear</Text>
+                <Text className={`${isDark ? "text-white" : "text-emerald-900"} text-xs font-semibold`}>Clear</Text>
               </Pressable>
             </View>
             {onboardingCopyStatus ? (
@@ -526,7 +527,7 @@ export default function AuthPage() {
               disabled={!isEmailValid(email.trim()) || completingLink}
               className="bg-amber-500 rounded-lg py-2 items-center mt-2"
             >
-              <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold`}>
+              <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} font-semibold`}>
                 {completingLink ? t("general.pleaseWait") : t("auth.completeSignIn")}
               </Text>
             </Pressable>
@@ -544,7 +545,7 @@ export default function AuthPage() {
             className={`flex-1 py-3 rounded-lg items-center ${isSignUp ? "bg-emerald-500" : styles.inactiveButtonClass}`}
             disabled={!isHydrated}
           >
-            <Text className={isSignUp ? (isDark ? "text-white" : "text-black") : styles.secondaryTextClass}>{t("auth.signUp")}</Text>
+            <Text className={isSignUp ? (isDark ? "text-white" : "text-emerald-900") : styles.secondaryTextClass}>{t("auth.signUp")}</Text>
           </Pressable>
 
           <Pressable
@@ -556,7 +557,7 @@ export default function AuthPage() {
             className={`flex-1 py-3 rounded-lg items-center ${!isSignUp ? "bg-emerald-500" : styles.inactiveButtonClass}`}
             disabled={!isHydrated}
           >
-            <Text className={!isSignUp ? (isDark ? "text-white" : "text-black") : styles.secondaryTextClass}>{t("auth.logIn")}</Text>
+            <Text className={!isSignUp ? (isDark ? "text-white" : "text-emerald-900") : styles.secondaryTextClass}>{t("auth.logIn")}</Text>
           </Pressable>
         </View>
 
@@ -648,7 +649,7 @@ export default function AuthPage() {
               !isHydrated || !canSubmit || isSubmitting ? "opacity-60" : ""
             }`}
           >
-            <Text className={`${isDark ? 'text-white' : 'text-black'} font-semibold`}>
+            <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} font-semibold`}>
               {isSubmitting ? t("general.pleaseWait") : isSignUp ? t("auth.createAccountByEmailVerification") : t("auth.logIn")}
             </Text>
           </Pressable>
@@ -687,8 +688,8 @@ export default function AuthPage() {
 
           <View className="flex-row justify-center items-center mt-6">
             <Text className={`${styles.secondaryTextClass} text-xs text-center mr-2`}>{t("general.needHelpQuestion") ?? "Need Help?"}</Text>
-            <Pressable onPress={() => Linking.openURL("mailto:gatorguide@outlook.com")} accessibilityRole="link">
-              <Text className={`text-xs ${isDark ? "text-green-300" : "text-emerald-600"} underline font-semibold`}>{t("general.emailUs") ?? "Email Us!"}</Text>
+            <Pressable onPress={() => Linking.openURL(SUPPORT_MAILTO)} accessibilityRole="link">
+              <Text className={`text-xs ${isDark ? "text-emerald-200" : "text-emerald-600"} underline font-semibold`}>{t("general.emailUs") ?? "Email Us!"}</Text>
             </Pressable>
           </View>
         </View>
@@ -714,3 +715,4 @@ export default function AuthPage() {
     </ScreenBackground>
   );
 }
+

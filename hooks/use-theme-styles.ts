@@ -14,12 +14,12 @@ export function useThemeStyles() {
         ? "bg-gray-900/80 border-gray-800"
         : isGreen
           ? "bg-emerald-900/90 border-emerald-800"
-          : "bg-emerald-50 border-emerald-300",
+          : "bg-white border-emerald-200",
       inputBgClass: isDark
         ? "bg-gray-800 border-gray-700"
         : isGreen
           ? "bg-emerald-900/70 border-emerald-700"
-          : "bg-emerald-50 border-emerald-400",
+          : "bg-white border-emerald-300",
       inactiveButtonClass: isDark ? "bg-gray-800" : isGreen ? "bg-emerald-800/70" : "bg-emerald-100",
       borderClass: isDark ? "border-gray-800" : isGreen ? "border-emerald-700" : "border-emerald-300",
       progressBgClass: isDark ? "bg-gray-800" : isGreen ? "bg-emerald-800" : "bg-emerald-300",
@@ -28,3 +28,4 @@ export function useThemeStyles() {
     [isDark, isGreen]
   );
 }
+
