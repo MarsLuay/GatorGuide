@@ -237,7 +237,7 @@ export default function ProfilePage() {
   const borderClass = isDark ? "border-gray-800" : isGreen ? "border-emerald-700" : isLight ? "border-emerald-300" : "border-gray-200";
   const placeholderColor = isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280";
   const guestCtaCardClass = isLight ? "bg-emerald-100 border border-emerald-200" : "bg-emerald-500";
-  const guestCtaCardStyle = isLight ? { backgroundColor: "#8cd19e", borderColor: "#63b48b" } : undefined;
+  const guestCtaCardStyle = isLight ? { backgroundColor: "#63b48b", borderColor: "#3a9e75" } : undefined;
   const guestCtaTextClass = isLight ? "text-emerald-900" : "text-white";
   const guestCtaBodyClass = isLight ? "text-emerald-800" : "text-emerald-100";
   const guestCtaIconColor = isLight ? "#1f8a5d" : "#FFFFFF";
