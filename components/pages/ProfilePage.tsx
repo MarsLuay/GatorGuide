@@ -236,11 +236,11 @@ export default function ProfilePage() {
   const inputClass = `w-full ${inputBgClass} ${textClass} border rounded-lg px-3 py-2`;
   const borderClass = isDark ? "border-gray-800" : isGreen ? "border-emerald-700" : isLight ? "border-emerald-300" : "border-gray-200";
   const placeholderColor = isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280";
-  const guestCtaCardClass = isLight ? "bg-emerald-100 border border-emerald-200" : "bg-emerald-500";
-  const guestCtaCardStyle = isLight ? { backgroundColor: "#00572b", borderColor: "#00753e" } : undefined;
-  const guestCtaTextClass = isLight ? "text-white" : "text-white";
-  const guestCtaBodyClass = isLight ? "text-emerald-100" : "text-emerald-100";
-  const guestCtaIconColor = isLight ? "#8cd19e" : "#FFFFFF";
+  const guestCtaCardClass = isLight ? "bg-emerald-100 border border-emerald-200" : isDark ? "bg-emerald-500 border" : "bg-emerald-500";
+  const guestCtaCardStyle = isDark ? { backgroundColor: "#00572b", borderColor: "#00753e" } : undefined;
+  const guestCtaTextClass = isLight ? "text-emerald-900" : "text-white";
+  const guestCtaBodyClass = isLight ? "text-emerald-800" : "text-emerald-100";
+  const guestCtaIconColor = isLight ? "#1f8a5d" : isDark ? "#8cd19e" : "#FFFFFF";
 
   const hasQuestionnaireData = useMemo(
     () => Object.keys(state.questionnaireAnswers ?? {}).length > 0,
