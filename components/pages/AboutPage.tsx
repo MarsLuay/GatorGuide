@@ -11,9 +11,9 @@ export default function AboutPage() {
   const textClass = isDark ? "text-white" : "text-emerald-900";
   const secondaryTextClass = isDark ? "text-white/90" : "text-emerald-700";
   const cardBgClass = isDark
-    ? "bg-emerald-900/90 border-emerald-800"
+    ? "bg-gray-900/80 border-gray-800"
     : "bg-white border-emerald-200";
-  const borderClass = isDark ? "border-emerald-700" : "border-emerald-300";
+  const borderClass = isDark ? "border-gray-800" : "border-emerald-300";
 
   return (
     <ScreenBackground>
