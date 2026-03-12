@@ -111,7 +111,7 @@ export default function HomePage() {
         : "bg-gray-50 border-gray-300";
   const placeholderTextColor = isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280";
   const guestCtaCardClass = isLight ? "bg-emerald-100 border border-emerald-200" : "bg-emerald-500";
-  const guestCtaCardStyle = isLight ? { backgroundColor: "#8cd19e", borderColor: "#63b48b" } : undefined;
+  const guestCtaCardStyle = isLight ? { backgroundColor: "#63b48b", borderColor: "#3a9e75" } : undefined;
   const guestCtaIconBgClass = isLight ? "bg-emerald-500/10 border border-emerald-200" : "bg-emerald-900/10";
   const guestCtaIconColor = isLight ? "#1f8a5d" : "#001f0f";
   const guestCtaTitleClass = isLight ? "text-emerald-900" : "text-white";
