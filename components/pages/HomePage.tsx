@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useRef } from "react";
-import { View, Text, TextInput, Pressable, ScrollView, Switch, Platform, ActivityIndicator, useWindowDimensions, Alert, Linking } from "react-native";
+import { View, Text, TextInput, Pressable, ScrollView, Switch, Platform, ActivityIndicator, useWindowDimensions } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -15,9 +15,6 @@ import type { DisabledInfluences, EmptyState, RecommendDebug } from "@/services"
 const AI_USAGE_STORAGE_KEY = "gatorguide:ai-usage:v1";
 const GUEST_DAILY_AI_LIMIT = 15;
 const USER_DAILY_AI_LIMIT = 50;
-const SUPPORT_MESSAGE_WEBHOOK =
-  process.env.EXPO_PUBLIC_SUPPORT_MESSAGE_WEBHOOK ||
-  "https://us-central1-gatorguide.cloudfunctions.net/sendSupportMessage";
 
 type DailyUsageRecord = {
   date: string;
@@ -84,11 +81,6 @@ export default function HomePage() {
   const [showAdvancedSearch, setShowAdvancedSearch] = useState(false);
   const [disabledInfluences, setDisabledInfluences] = useState<DisabledInfluences>({});
   const [tourStepIndex, setTourStepIndex] = useState(0);
-  const [isSupportOpen, setIsSupportOpen] = useState(false);
-  const [supportMessage, setSupportMessage] = useState("");
-  const [isSendingSupport, setIsSendingSupport] = useState(false);
-  const [supportStatus, setSupportStatus] = useState<"" | "sent" | "error">("");
-  const [supportStatusText, setSupportStatusText] = useState("");
   type SearchRunOptions = {
     overrideUseWeighted?: boolean;
     overrideDisabledInfluences?: DisabledInfluences;
@@ -118,14 +110,16 @@ export default function HomePage() {
         ? "bg-white border-emerald-300"
         : "bg-gray-50 border-gray-300";
   const placeholderTextColor = isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280";
-  const guestCtaCardClass = isLight ? "bg-emerald-200 border border-emerald-300" : "bg-emerald-500";
-  const guestCtaIconBgClass = isLight ? "bg-white/45" : "bg-emerald-900/10";
+  const guestCtaCardClass = isLight ? "bg-emerald-100 border border-emerald-200" : "bg-emerald-500";
+  const guestCtaCardStyle = isLight ? { backgroundColor: "#8cd19e", borderColor: "#63b48b" } : undefined;
+  const guestCtaIconBgClass = isLight ? "bg-emerald-500/10 border border-emerald-200" : "bg-emerald-900/10";
+  const guestCtaIconColor = isLight ? "#1f8a5d" : "#001f0f";
   const guestCtaTitleClass = isLight ? "text-emerald-900" : "text-white";
-  const guestCtaBodyClass = isLight ? "text-emerald-900/80" : "text-emerald-100";
-  const guestCtaPrimaryButtonClass = isLight ? "bg-white/95" : "bg-emerald-900";
-  const guestCtaPrimaryTextClass = isLight ? "text-emerald-900" : "text-white";
-  const guestCtaSecondaryButtonClass = isLight ? "bg-white/70 border border-emerald-300/80" : "bg-emerald-900/20";
-  const guestCtaSecondaryTextClass = isLight ? "text-emerald-900" : "text-white";
+  const guestCtaBodyClass = isLight ? "text-emerald-800" : "text-emerald-100";
+  const guestCtaPrimaryButtonClass = isLight ? "bg-emerald-500" : "bg-emerald-900";
+  const guestCtaPrimaryTextClass = "text-white";
+  const guestCtaSecondaryButtonClass = isLight ? "bg-white/90 border border-emerald-200" : "bg-emerald-900/20";
+  const guestCtaSecondaryTextClass = isLight ? "text-emerald-700" : "text-white";
   const recommendationMatchClass = isDark || isGreen ? "text-emerald-300" : "text-emerald-600";
 
   const formatPercent = (value: unknown) => {
@@ -479,85 +473,6 @@ export default function HomePage() {
     setTourStepIndex((prev) => prev + 1);
   };
 
-  const sendSupportMessage = async () => {
-    const message = supportMessage.trim();
-    if (!message) {
-      Alert.alert("Support", "Please type a message before sending.");
-      return;
-    }
-
-    const fallbackToMailto = async () => {
-      const subject = encodeURIComponent("GatorGuide Support Request");
-      const userLine = user?.email ? `User: ${user.email}\n` : "";
-      const body = encodeURIComponent(`${userLine}\n${message}`);
-      const mailtoUrl = `mailto:gatorguide@outlook.com?subject=${subject}&body=${body}`;
-
-      try {
-        const canOpen = await Linking.canOpenURL(mailtoUrl);
-        if (!canOpen) {
-          Alert.alert("Support", "Could not open your email app.");
-          return;
-        }
-        await Linking.openURL(mailtoUrl);
-        setSupportStatus("sent");
-        setSupportStatusText("Opened your email app to send the message.");
-      } catch {
-        Alert.alert("Support", "Could not open your email app.");
-      }
-    };
-
-    setSupportStatus("");
-    setSupportStatusText("");
-    setIsSendingSupport(true);
-    let timer: ReturnType<typeof setTimeout> | null = null;
-    try {
-      if (!SUPPORT_MESSAGE_WEBHOOK) {
-        await fallbackToMailto();
-        return;
-      }
-
-      const controller = new AbortController();
-      timer = setTimeout(() => controller.abort(), 12000);
-      const res = await fetch(SUPPORT_MESSAGE_WEBHOOK, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        signal: controller.signal,
-        body: JSON.stringify({
-          app: "GatorGuide",
-          timestamp: new Date().toISOString(),
-          platform: Platform.OS,
-          userName: user?.name || "",
-          userEmail: user?.email || "",
-          userUid: user?.uid || "",
-          message,
-        }),
-      });
-      if (timer) clearTimeout(timer);
-
-      if (!res.ok) {
-        const text = await res.text().catch(() => "");
-        const details = text ? ` (${text.slice(0, 140)})` : "";
-        setSupportStatus("error");
-        setSupportStatusText(`Webhook failed${details}. Falling back to email app.`);
-        await fallbackToMailto();
-        return;
-      }
-
-      setSupportMessage("");
-      setIsSupportOpen(false);
-      setSupportStatus("sent");
-      setSupportStatusText("Message sent.");
-      Alert.alert("Support", "Message sent.");
-    } catch {
-      setSupportStatus("error");
-      setSupportStatusText("Webhook send failed. Falling back to email app.");
-      await fallbackToMailto();
-    } finally {
-      if (timer) clearTimeout(timer);
-      setIsSendingSupport(false);
-    }
-  };
-
   return (
     <ScreenBackground>
       <ScrollView className="flex-1" contentContainerStyle={{ paddingTop: insets.top, paddingBottom: 96 }}>
@@ -584,10 +499,10 @@ export default function HomePage() {
           ) : null}
 
           {user?.isGuest && !dismissedGuestPrompt && (
-            <View className={`mb-6 rounded-2xl p-4 ${guestCtaCardClass}`}>
+            <View className={`mb-6 rounded-2xl p-4 ${guestCtaCardClass}`} style={guestCtaCardStyle}>
               <View className="flex-row items-start gap-3">
                 <View className={`p-2 rounded-full ${guestCtaIconBgClass} mt-1`}>
-                  <Ionicons name="person-add" size={20} color="#001f0f" />
+                  <Ionicons name="person-add" size={20} color={guestCtaIconColor} />
                 </View>
 
                 <View className="flex-1">
@@ -921,55 +836,6 @@ export default function HomePage() {
               }}
             />
           </View>
-        </View>
-      ) : null}
-      {!shouldShowTour ? (
-        <View className="absolute right-4" style={{ bottom: Math.max(insets.bottom + 92, 108) }}>
-          {isSupportOpen ? (
-            <View className={`${cardClass} border rounded-2xl p-3 w-72 shadow-lg`}>
-              <Text className={`${textClass} font-semibold mb-2`}>Support</Text>
-              <TextInput
-                multiline
-                numberOfLines={4}
-                value={supportMessage}
-                onChangeText={setSupportMessage}
-                placeholder="Type your issue or question..."
-                placeholderTextColor={placeholderTextColor}
-                className={`min-h-[96px] ${inputClass} ${textClass} border rounded-xl p-3 text-sm`}
-                textAlignVertical="top"
-              />
-              <View className="flex-row justify-between mt-3">
-                <Pressable
-                  onPress={() => setIsSupportOpen(false)}
-                  disabled={isSendingSupport}
-                  className="px-3 py-2 rounded-lg bg-black/25"
-                >
-                  <Text className="text-white font-semibold">Close</Text>
-                </Pressable>
-                <Pressable
-                  onPress={() => { void sendSupportMessage(); }}
-                  disabled={isSendingSupport}
-                  className="px-3 py-2 rounded-lg bg-emerald-500"
-                >
-                  <Text className={`${isDark ? "text-white" : "text-black"} font-semibold`}>
-                    {isSendingSupport ? "Sending..." : "Send"}
-                  </Text>
-                </Pressable>
-              </View>
-              {supportStatusText ? (
-                <Text className={`text-xs mt-2 ${supportStatus === "error" ? "text-red-300" : secondaryTextClass}`}>
-                  {supportStatusText}
-                </Text>
-              ) : null}
-            </View>
-          ) : (
-            <Pressable
-              onPress={() => setIsSupportOpen(true)}
-              className="bg-emerald-500 rounded-full px-4 py-3 shadow-lg"
-            >
-              <Text className={`${isDark ? "text-white" : "text-black"} font-semibold`}>Support</Text>
-            </Pressable>
-          )}
         </View>
       ) : null}
     </ScreenBackground>

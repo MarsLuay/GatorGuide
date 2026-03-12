@@ -5,11 +5,11 @@ import { useAppLanguage } from "@/hooks/use-app-language";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useMemo, useState, useCallback, useEffect } from "react";
-import { Pressable, ScrollView, Text, View, Alert, Platform, Linking } from "react-native";
+import { Pressable, ScrollView, Text, View, Alert, Platform, Linking, TextInput } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { notificationsService, cacheManagerService } from "@/services";
 import { APP_VERSION } from "@/constants/app-version";
-import { SUPPORT_MAILTO } from "@/constants/support";
+import { SUPPORT_EMAIL, SUPPORT_MAILTO } from "@/constants/support";
 import { translations } from "@/services/translations";
 import * as FileSystem from "expo-file-system";
 import * as Sharing from "expo-sharing";
@@ -40,6 +40,10 @@ type SettingsItem =
       value: string;
     };
 
+const SUPPORT_MESSAGE_WEBHOOK =
+  process.env.EXPO_PUBLIC_SUPPORT_MESSAGE_WEBHOOK ||
+  "https://us-central1-gatorguide.cloudfunctions.net/sendSupportMessage";
+
 export default function SettingsPage() {
   const router = useRouter();
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
@@ -49,6 +53,11 @@ export default function SettingsPage() {
   const [isClearingCache, setIsClearingCache] = useState(false);
   const [showAdvancedSettings, setShowAdvancedSettings] = useState(false);
   const [autoClearCacheEnabled, setAutoClearCacheEnabled] = useState(false);
+  const [showSupportComposer, setShowSupportComposer] = useState(false);
+  const [supportMessage, setSupportMessage] = useState("");
+  const [isSendingSupport, setIsSendingSupport] = useState(false);
+  const [supportStatus, setSupportStatus] = useState<"" | "sent" | "error">("");
+  const [supportStatusText, setSupportStatusText] = useState("");
 
   const { theme, setTheme, isDark, isGreen } = useAppTheme();
   const { t, language } = useAppLanguage();
@@ -65,9 +74,12 @@ export default function SettingsPage() {
       ? "bg-emerald-900/90 border-emerald-800"
       : "bg-white border-emerald-200";
   const cardBorderClass = isDark ? "border-gray-800" : isGreen ? "border-emerald-700" : "border-emerald-300";
+  const inputClass = isDark ? "bg-gray-800 border-gray-700" : isGreen ? "bg-emerald-900/70 border-emerald-700" : "bg-white border-emerald-300";
+  const placeholderTextColor = isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : "#1f8a5d";
   const notificationsEnabled = state.notificationsEnabled ?? false;
   const isRTL = language === "Arabic" || language === "Persian";
   const flexDirection = isRTL ? "flex-row-reverse" : "flex-row";
+  const user = state.user;
 
   const handleToggleNotifications = useCallback(async () => {
     const currentStatus = state.notificationsEnabled ?? false;
@@ -253,6 +265,85 @@ export default function SettingsPage() {
     }
   }, [t]);
 
+  const sendSupportMessage = async () => {
+    const message = supportMessage.trim();
+    if (!message) {
+      Alert.alert("Support", "Please type a message before sending.");
+      return;
+    }
+
+    const fallbackToMailto = async () => {
+      const subject = encodeURIComponent("GatorGuide Support Request");
+      const userLine = user?.email ? `User: ${user.email}\n` : "";
+      const body = encodeURIComponent(`${userLine}\n${message}`);
+      const mailtoUrl = `mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`;
+
+      try {
+        const canOpen = await Linking.canOpenURL(mailtoUrl);
+        if (!canOpen) {
+          Alert.alert("Support", "Could not open your email app.");
+          return;
+        }
+        await Linking.openURL(mailtoUrl);
+        setSupportStatus("sent");
+        setSupportStatusText("Opened your email app to send the message.");
+      } catch {
+        Alert.alert("Support", "Could not open your email app.");
+      }
+    };
+
+    setSupportStatus("");
+    setSupportStatusText("");
+    setIsSendingSupport(true);
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    try {
+      if (!SUPPORT_MESSAGE_WEBHOOK) {
+        await fallbackToMailto();
+        return;
+      }
+
+      const controller = new AbortController();
+      timer = setTimeout(() => controller.abort(), 12000);
+      const res = await fetch(SUPPORT_MESSAGE_WEBHOOK, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        signal: controller.signal,
+        body: JSON.stringify({
+          app: "GatorGuide",
+          timestamp: new Date().toISOString(),
+          platform: Platform.OS,
+          userName: user?.name || "",
+          userEmail: user?.email || "",
+          userUid: user?.uid || "",
+          message,
+        }),
+      });
+      if (timer) clearTimeout(timer);
+
+      if (!res.ok) {
+        const text = await res.text().catch(() => "");
+        const details = text ? ` (${text.slice(0, 140)})` : "";
+        setSupportStatus("error");
+        setSupportStatusText(`Webhook failed${details}. Falling back to email app.`);
+        await fallbackToMailto();
+        return;
+      }
+
+      setSupportMessage("");
+      setShowSupportComposer(false);
+      setSupportStatus("sent");
+      setSupportStatusText("Message sent.");
+      Alert.alert("Support", "Message sent.");
+    } catch {
+      setSupportStatus("error");
+      setSupportStatusText("Webhook send failed. Falling back to email app.");
+      await fallbackToMailto();
+    } finally {
+      if (timer) clearTimeout(timer);
+      setIsSendingSupport(false);
+    }
+  };
+
   const sections = useMemo(
     () => [
       {
@@ -313,6 +404,16 @@ export default function SettingsPage() {
       {
         title: t("settings.about"),
         items: [
+          {
+            icon: "help-circle-outline",
+            label: "Support",
+            type: "nav",
+            onPress: () => {
+              setSupportStatus("");
+              setSupportStatusText("");
+              setShowSupportComposer(true);
+            },
+          },
           { icon: "information-circle-outline", label: t("settings.about"), type: "nav", onPress: () => router.push("/about") },
           { icon: "shield-checkmark-outline", label: t("settings.privacyPolicy") ?? "Privacy Policy", type: "nav", onPress: () => router.push("/privacy") },
           { icon: "document-text-outline", label: t("settings.termsOfService") ?? "Terms of Service", type: "nav", onPress: () => router.push("/terms") },
@@ -519,6 +620,51 @@ export default function SettingsPage() {
           </View>
         </View>
       </ScrollView>
+      {showSupportComposer ? (
+        <View className="absolute inset-0 items-center justify-center px-6 bg-black/50">
+          <View className={`w-full max-w-md ${cardBgClass} border rounded-2xl p-6`}>
+            <Text className={`text-xl ${isRTL ? "text-right" : ""} ${textClass} mb-3`}>Support</Text>
+            <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} mb-4`}>
+              Send a question or report an issue.
+            </Text>
+            <TextInput
+              multiline
+              numberOfLines={5}
+              value={supportMessage}
+              onChangeText={setSupportMessage}
+              placeholder="Type your issue or question..."
+              placeholderTextColor={placeholderTextColor}
+              className={`min-h-[120px] ${inputClass} ${textClass} border rounded-xl p-3 text-sm mb-3`}
+              textAlignVertical="top"
+            />
+            {supportStatusText ? (
+              <Text className={`text-sm mt-3 ${supportStatus === "error" ? "text-red-400" : secondaryTextClass}`}>
+                {supportStatusText}
+              </Text>
+            ) : null}
+
+            <View className={`${flexDirection} gap-3 mt-5`}>
+              <Pressable
+                onPress={() => setShowSupportComposer(false)}
+                className={`flex-1 ${cardBgClass} border ${cardBorderClass} rounded-lg py-4 items-center ${isSendingSupport ? "opacity-60" : ""}`}
+                disabled={isSendingSupport}
+              >
+                <Text className={textClass}>{t("general.close")}</Text>
+              </Pressable>
+
+              <Pressable
+                onPress={() => { void sendSupportMessage(); }}
+                className={`flex-1 bg-emerald-500 rounded-lg py-4 items-center ${isSendingSupport ? "opacity-60" : ""}`}
+                disabled={isSendingSupport}
+              >
+                <Text className={`${isDark || isGreen ? "text-white" : "text-emerald-900"} font-semibold`}>
+                  {isSendingSupport ? "Sending..." : "Send"}
+                </Text>
+              </Pressable>
+            </View>
+          </View>
+        </View>
+      ) : null}
       {showClearCacheConfirm ? (
         <View className="absolute inset-0 items-center justify-center px-6 bg-black/50">
           <View className={`w-full max-w-md ${cardBgClass} border rounded-2xl p-6`}>
