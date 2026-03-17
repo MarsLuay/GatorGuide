@@ -1,0 +1,1 @@
+{"version":3,"names":["GoogleSignin","statusCodes","GoogleSigninButton"],"sourceRoot":"../../src","sources":["index.ts"],"mappings":";;AAAA,SACEA,YAAY,QAIP,uBAAuB;AAC9B,SAASC,WAAW,QAAQ,qBAAqB;AAEjD,SACEC,kBAAkB,QAEb,8BAA8B;AAErC,cAAc,YAAS;AACvB,cAAc,gBAAa","ignoreList":[]}

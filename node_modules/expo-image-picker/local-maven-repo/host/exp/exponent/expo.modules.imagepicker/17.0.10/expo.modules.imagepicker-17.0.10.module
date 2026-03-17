@@ -1,0 +1,129 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "host.exp.exponent",
+    "module": "expo.modules.imagepicker",
+    "version": "17.0.10",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.14.3"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseVariantReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "expo.modules.imagepicker-17.0.10.aar",
+          "url": "expo.modules.imagepicker-17.0.10.aar",
+          "size": 150809,
+          "sha512": "48b86f26f07dd1bfa5bb3c7783e5d7523a631208ce649c383957b254f2951f3f8aea42b04e015b87808e4145df561ceac1fc4a6a05ff77460c5df36de8ff38e6",
+          "sha256": "a582750c4697e74a76713e381bb579a0ba23ad9b4c92d2591768b51f43e660e1",
+          "sha1": "6aef5999954b547fd3786ceb3912edd5d006b7e1",
+          "md5": "a0189d8d48c04a75df3d8c22b9d19194"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk7",
+          "version": {
+            "requires": "2.1.20"
+          }
+        },
+        {
+          "group": "androidx.activity",
+          "module": "activity-ktx",
+          "version": {
+            "requires": "1.10.0"
+          }
+        },
+        {
+          "group": "androidx.appcompat",
+          "module": "appcompat",
+          "version": {
+            "requires": "1.7.0"
+          }
+        },
+        {
+          "group": "androidx.exifinterface",
+          "module": "exifinterface",
+          "version": {
+            "requires": "1.3.7"
+          }
+        },
+        {
+          "group": "com.vanniktech",
+          "module": "android-image-cropper",
+          "version": {
+            "requires": "4.6.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-android",
+          "version": {
+            "requires": "1.6.3"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.6.3"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "expo.modules.imagepicker-17.0.10.aar",
+          "url": "expo.modules.imagepicker-17.0.10.aar",
+          "size": 150809,
+          "sha512": "48b86f26f07dd1bfa5bb3c7783e5d7523a631208ce649c383957b254f2951f3f8aea42b04e015b87808e4145df561ceac1fc4a6a05ff77460c5df36de8ff38e6",
+          "sha256": "a582750c4697e74a76713e381bb579a0ba23ad9b4c92d2591768b51f43e660e1",
+          "sha1": "6aef5999954b547fd3786ceb3912edd5d006b7e1",
+          "md5": "a0189d8d48c04a75df3d8c22b9d19194"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseSourcePublication",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "expo.modules.imagepicker-17.0.10-sources.jar",
+          "url": "expo.modules.imagepicker-17.0.10-sources.jar",
+          "size": 24712,
+          "sha512": "f134926ca57ba812ad740b762e7cfa547edca55f3d7461f772448e46cd6a1def3d65187b30d1a059461982339f92ef6ce54e5cbeb07c9591558e6b7cb538889c",
+          "sha256": "49ca9b3dce4cee0b6a3e56d11d88d59a33dd7a1e12f3feb00de7769861e271a9",
+          "sha1": "38305e73c7a08febf694eb2c3bb06d0965bf7661",
+          "md5": "7171e4b278d51977668a0295dd69facf"
+        }
+      ]
+    }
+  ]
+}

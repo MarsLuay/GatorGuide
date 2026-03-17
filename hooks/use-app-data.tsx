@@ -27,6 +27,8 @@ export type User = {
   resume?: string;
   transcript?: string;
   isProfileComplete?: boolean;
+  /** Whether the user has seen the onboarding/tutorial */
+  hasSeenOnboarding?: boolean;
 };
 
 export type QuestionnaireAnswers = Record<string, any>;
@@ -63,6 +65,7 @@ type AppDataContextValue = {
   isCollegeSaved: (collegeId: string) => boolean;
   restoreData: (data: AppDataState) => Promise<void>;
   clearAll: () => Promise<void>;
+  setOnboardingSeen: (seen: boolean) => Promise<void>;
 };
 
 const AppDataContext = createContext<AppDataContextValue | null>(null);
@@ -295,6 +298,16 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
     setState(initialState);
   }, []);
 
+  const setOnboardingSeen = useCallback(async (seen: boolean) => {
+    setState((prev) => {
+      if (!prev.user) return prev;
+      return {
+        ...prev,
+        user: { ...prev.user, hasSeenOnboarding: seen },
+      };
+    });
+  }, []);
+
   const value = useMemo<AppDataContextValue>(
     () => ({
       isHydrated,
@@ -312,8 +325,9 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
       isCollegeSaved,
       restoreData,
       clearAll,
+      setOnboardingSeen,
     }),
-    [isHydrated, state, signIn, signInWithAuthUser, signInAsGuest, signOut, deleteAccount, updateUser, setQuestionnaireAnswers, setNotificationsEnabled, addSavedCollege, removeSavedCollege, isCollegeSaved, restoreData, clearAll]
+    [isHydrated, state, signIn, signInWithAuthUser, signInAsGuest, signOut, deleteAccount, updateUser, setQuestionnaireAnswers, setNotificationsEnabled, addSavedCollege, removeSavedCollege, isCollegeSaved, restoreData, clearAll, setOnboardingSeen]
   );
 
   return <AppDataContext.Provider value={value}>{children}</AppDataContext.Provider>;

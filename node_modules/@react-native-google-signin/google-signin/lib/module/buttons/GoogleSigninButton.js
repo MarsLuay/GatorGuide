@@ -1,0 +1,78 @@
+"use strict";
+
+import React, { useCallback } from 'react';
+import { StyleSheet, useColorScheme } from 'react-native';
+import RNGoogleSigninButton from '../spec/SignInButtonNativeComponent';
+import { NativeModule } from "../spec/NativeGoogleSignin.js";
+import { Color } from "./statics.js";
+import { jsx as _jsx } from "react/jsx-runtime";
+const {
+  BUTTON_SIZE_WIDE,
+  BUTTON_SIZE_ICON,
+  BUTTON_SIZE_STANDARD
+} = NativeModule.getConstants();
+
+/**
+ * @group React Components
+ * */
+
+/**
+ * @group React Components
+ * */
+export const GoogleSigninButton = ({
+  onPress,
+  style,
+  color,
+  size = BUTTON_SIZE_STANDARD,
+  ...rest
+}) => {
+  const activeColorScheme = useColorScheme();
+  const usedColor = color ?? activeColorScheme ?? 'light';
+  const recommendedSize = getSizeStyle(size);
+  const stripOnPressParams = useCallback(() => {
+    // this is to make sure that the onPress callback prop is called with no params
+    // as the RNGoogleSigninButton onPress does pass some in here
+    onPress?.();
+  }, [onPress]);
+  return /*#__PURE__*/_jsx(RNGoogleSigninButton, {
+    ...rest,
+    size: size,
+    onPress: stripOnPressParams,
+    color: usedColor,
+    style: StyleSheet.compose(recommendedSize, style)
+  });
+};
+const nativeSizes = {
+  Icon: BUTTON_SIZE_ICON,
+  Standard: BUTTON_SIZE_STANDARD,
+  Wide: BUTTON_SIZE_WIDE
+};
+GoogleSigninButton.Size = nativeSizes;
+GoogleSigninButton.Color = Color;
+function getSizeStyle(size) {
+  switch (size) {
+    case BUTTON_SIZE_ICON:
+      return styles.iconSize;
+    case BUTTON_SIZE_WIDE:
+      return styles.wideSize;
+    default:
+      return styles.standardSize;
+  }
+}
+
+// sizes according to https://developers.google.com/identity/sign-in/ios/reference/Classes/GIDSignInButton
+const styles = StyleSheet.create({
+  iconSize: {
+    width: 48,
+    height: 48
+  },
+  standardSize: {
+    width: 230,
+    height: 48
+  },
+  wideSize: {
+    width: 312,
+    height: 48
+  }
+});
+//# sourceMappingURL=GoogleSigninButton.js.map
