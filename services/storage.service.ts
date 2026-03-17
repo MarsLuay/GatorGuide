@@ -31,8 +31,9 @@ async function copyToLocalStorage(sourceUri: string, fileName: string, subDir: s
   if (Platform.OS === 'web') {
     return sourceUri;
   }
-  const dir = `${FileSystem.documentDirectory}${DOCS_DIR}/${subDir}/`;
-  await FileSystem.makeDirectoryAsync(dir, { intermediates: true });
+  const baseDir = (FileSystem as any).documentDirectory ?? (FileSystem as any).cacheDirectory ?? "";
+  const dir = `${baseDir}${DOCS_DIR}/${subDir}/`;
+  await FileSystem.makeDirectoryAsync(dir, { intermediates: true }).catch(() => {});
   const destUri = `${dir}${Date.now()}_${fileName}`;
   await FileSystem.copyAsync({ from: sourceUri, to: destUri });
   return destUri;
