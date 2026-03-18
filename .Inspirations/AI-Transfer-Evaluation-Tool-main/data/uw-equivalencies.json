@@ -1,0 +1,131 @@
+{
+  "courses": [
+    {
+      "externalCourse": "ENGL& 101",
+      "externalTitle": "English Composition I",
+      "uwEquivalent": "ENGL 131",
+      "uwTitle": "Composition: Exposition",
+      "credits": 5,
+      "category": "General Education - Writing",
+      "directTransfer": true
+    },
+    {
+      "externalCourse": "MATH& 151",
+      "externalTitle": "Calculus I",
+      "uwEquivalent": "MATH 124",
+      "uwTitle": "Calculus with Analytic Geometry I",
+      "credits": 5,
+      "category": "Natural Sciences",
+      "directTransfer": true
+    },
+    {
+      "externalCourse": "MATH& 152",
+      "externalTitle": "Calculus II",
+      "uwEquivalent": "MATH 125",
+      "uwTitle": "Calculus with Analytic Geometry II",
+      "credits": 5,
+      "category": "Natural Sciences",
+      "directTransfer": true
+    },
+    {
+      "externalCourse": "MATH& 153",
+      "externalTitle": "Calculus III",
+      "uwEquivalent": "MATH 126",
+      "uwTitle": "Calculus with Analytic Geometry III",
+      "credits": 5,
+      "category": "Natural Sciences",
+      "directTransfer": true
+    },
+    {
+      "externalCourse": "CHEM& 161",
+      "externalTitle": "General Chemistry I",
+      "uwEquivalent": "CHEM 142",
+      "uwTitle": "General Chemistry I",
+      "credits": 5,
+      "category": "Natural Sciences",
+      "directTransfer": true
+    },
+    {
+      "externalCourse": "CHEM& 162",
+      "externalTitle": "General Chemistry II",
+      "uwEquivalent": "CHEM 152",
+      "uwTitle": "General Chemistry II",
+      "credits": 5,
+      "category": "Natural Sciences",
+      "directTransfer": true
+    },
+    {
+      "externalCourse": "PHYS& 221",
+      "externalTitle": "Engineering Physics I",
+      "uwEquivalent": "PHYS 121",
+      "uwTitle": "Mechanics",
+      "credits": 5,
+      "category": "Natural Sciences",
+      "directTransfer": true
+    },
+    {
+      "externalCourse": "PHYS& 222",
+      "externalTitle": "Engineering Physics II",
+      "uwEquivalent": "PHYS 122",
+      "uwTitle": "Electromagnetism",
+      "credits": 5,
+      "category": "Natural Sciences",
+      "directTransfer": true
+    },
+    {
+      "externalCourse": "CS& 141",
+      "externalTitle": "Computer Science I - Java",
+      "uwEquivalent": "CSE 142",
+      "uwTitle": "Computer Programming I",
+      "credits": 4,
+      "category": "Major Requirement - CSE",
+      "directTransfer": true
+    },
+    {
+      "externalCourse": "CS& 142",
+      "externalTitle": "Computer Science II - Java",
+      "uwEquivalent": "CSE 143",
+      "uwTitle": "Computer Programming II",
+      "credits": 5,
+      "category": "Major Requirement - CSE",
+      "directTransfer": true
+    },
+    {
+      "externalCourse": "PSYCH& 100",
+      "externalTitle": "General Psychology",
+      "uwEquivalent": "PSYCH 101",
+      "uwTitle": "Introduction to Psychology",
+      "credits": 5,
+      "category": "Social Sciences - I&S",
+      "directTransfer": true
+    },
+    {
+      "externalCourse": "ECON& 201",
+      "externalTitle": "Microeconomics",
+      "uwEquivalent": "ECON 200",
+      "uwTitle": "Introduction to Microeconomics",
+      "credits": 5,
+      "category": "Social Sciences - I&S",
+      "directTransfer": true
+    },
+    {
+      "externalCourse": "HIST& 146",
+      "externalTitle": "United States History I",
+      "uwEquivalent": "HSTAA 101",
+      "uwTitle": "Introduction to US History",
+      "credits": 5,
+      "category": "Social Sciences - I&S",
+      "directTransfer": true
+    },
+    {
+      "externalCourse": "BUS& 201",
+      "externalTitle": "Business Law",
+      "uwEquivalent": "Elective Credit",
+      "uwTitle": "General Elective",
+      "credits": 5,
+      "category": "Elective",
+      "directTransfer": false,
+      "requiresReview": true
+    }
+  ]
+}

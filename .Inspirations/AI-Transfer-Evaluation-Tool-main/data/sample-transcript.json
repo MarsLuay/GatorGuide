@@ -1,0 +1,28 @@
+{
+  "courses": [
+    {"courseCode": "BUS& 101", "courseTitle": "Introduction to Business", "credits": 5, "grade": "A", "institution": "Bellevue College"},
+    {"courseCode": "CES 201", "courseTitle": "Sports, Narrative, Identity", "credits": 5, "grade": "A", "institution": "Bellevue College"},
+    {"courseCode": "HD 103", "courseTitle": "Intl Student 1st Year Experien", "credits": 3, "grade": "A", "institution": "Bellevue College"},
+    {"courseCode": "SOC& 101", "courseTitle": "Introduction to Sociology", "credits": 5, "grade": "B+", "institution": "Bellevue College"},
+    {"courseCode": "CHIN& 122", "courseTitle": "Chinese II", "credits": 5, "grade": "A", "institution": "Bellevue College"},
+    {"courseCode": "CS 210", "courseTitle": "Fundamentals of CS I", "credits": 5, "grade": "A", "institution": "Bellevue College"},
+    {"courseCode": "ENGL& 101", "courseTitle": "English Composition I", "credits": 5, "grade": "A", "institution": "Bellevue College"},
+    {"courseCode": "MATH& 151", "courseTitle": "Calculus I", "credits": 5, "grade": "A", "institution": "Bellevue College"},
+    {"courseCode": "CS 211", "courseTitle": "Fundamentals of CS II", "credits": 5, "grade": "A", "institution": "Bellevue College"},
+    {"courseCode": "ENGL 201", "courseTitle": "The Research Paper", "credits": 5, "grade": "A", "institution": "Bellevue College"},
+    {"courseCode": "MATH& 152", "courseTitle": "Calculus II", "credits": 5, "grade": "A", "institution": "Bellevue College"},
+    {"courseCode": "MATH 208", "courseTitle": "Introduction to Linear Algebra", "credits": 5, "grade": "A", "institution": "Bellevue College"},
+    {"courseCode": "MATH& 153", "courseTitle": "Calculus III", "credits": 5, "grade": "A", "institution": "Bellevue College"},
+    {"courseCode": "PHYS 121", "courseTitle": "General Engineering Physics I", "credits": 6, "grade": "A", "institution": "Bellevue College"},
+    {"courseCode": "BA 240", "courseTitle": "Statistical Analysis", "credits": 5, "grade": "A", "institution": "Bellevue College"},
+    {"courseCode": "MATH& 254", "courseTitle": "Calculus IV", "credits": 5, "grade": "B", "institution": "Bellevue College"},
+    {"courseCode": "PHYS 122", "courseTitle": "General Engineering Physics II", "credits": 6, "grade": "A", "institution": "Bellevue College"},
+    {"courseCode": "CHEM& 161", "courseTitle": "General Chemistry I", "credits": 6, "grade": "A", "institution": "Bellevue College"},
+    {"courseCode": "MATH 238", "courseTitle": "Differential Equations", "credits": 5, "grade": "A-", "institution": "Bellevue College"},
+    {"courseCode": "MATH 255", "courseTitle": "Vector Calculus", "credits": 5, "grade": "B+", "institution": "Bellevue College"},
+    {"courseCode": "PHIL& 101", "courseTitle": "Introduction to Philosophy", "credits": 5, "grade": "A", "institution": "Bellevue College"},
+    {"courseCode": "ART 154", "courseTitle": "Introduction to Digital Photo", "credits": 5, "grade": "A", "institution": "Bellevue College"},
+    {"courseCode": "CS 212", "courseTitle": "C++ Data Structures", "credits": 5, "grade": "A", "institution": "Bellevue College"},
+    {"courseCode": "PHYS 123", "courseTitle": "General Engineerin Physics III", "credits": 6, "grade": "B", "institution": "Bellevue College"}
+  ]
+}

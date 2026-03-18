@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --uw-purple: #4b2e83;
+  --uw-purple-dark: #1f144a;
+  --uw-gold: #b7a57a;
+  --uw-ink: #0e101a;
+  --uw-stone: #13172b;
+  --background: #0e101a;
+  --foreground: #f3f1ff;
+}
+
+body {
+  color: var(--foreground);
+  background: radial-gradient(circle at 20% 20%, rgba(75, 46, 131, 0.15), transparent 30%),
+    radial-gradient(circle at 80% 10%, rgba(183, 165, 122, 0.15), transparent 28%),
+    linear-gradient(145deg, #0b0d18 0%, #111428 40%, #0d1021 100%);
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
