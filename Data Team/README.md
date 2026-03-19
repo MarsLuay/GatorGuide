@@ -15,6 +15,10 @@ The Data Team helps by:
 
 - `Data.md`: notes, planning, and team documentation.
 - `WA_Transfer_Deadline.csv`: a current example dataset for transfer deadline work.
+- `PIPELINE_OVERVIEW.md`: high-level notes for the imported data/backend workflow.
+- `DataScrape/`: Python ETL pipeline for pulling and transforming College Scorecard data.
+- `Server/`: Django backend and API files imported from the fork branch.
+- `pyproject.toml` and `uv.lock`: shared Python dependency setup for the Data Team workspace.
 
 ## Setup: Open the Data Workspace (Windows)
 
@@ -23,9 +27,11 @@ The Data Team helps by:
 - Download VS Code: https://code.visualstudio.com/download
 - Install Git: https://git-scm.com/downloads
 
-Optional:
+Optional but strongly recommended if you want to run the new data/backend tooling:
 
-- Install Python if you plan to add data-cleaning or scraping scripts later: https://www.python.org/downloads/
+- Install Python: https://www.python.org/downloads/
+- Install UV: https://docs.astral.sh/uv/getting-started/installation/
+- Install MySQL if you plan to run the ETL pipeline or Django backend locally.
 
 Verify installs:
 
@@ -44,7 +50,12 @@ git clone https://github.com/MarsLuay/GatorGuide.git
 cd GatorGuide
 ```
 
-This folder does not currently have a standalone app to run. Most work here is dataset editing, documentation, and future pipeline preparation.
+This folder now includes two runnable Python workspaces:
+
+- `Data Team/DataScrape` for ETL and College Scorecard ingestion
+- `Data Team/Server` for the Django backend/API
+
+The student-facing app still lives in `Mobile Team`.
 
 ### 3) Open in VS Code (edit files)
 
@@ -69,6 +80,17 @@ cd "Data Team"
 - Document where the data came from and what each file represents.
 - Keep credentials, personal data, and one-off exports out of the repo.
 - If you add scripts later, keep them close to the data they support and document how to run them.
+
+## Quick Start for the Imported Work
+
+```powershell
+cd $env:USERPROFILE\GatorGuide\Data Team
+uv sync
+cd DataScrape
+```
+
+- Copy `.env.example` to `.env` before running the ETL scripts.
+- For the Django backend, use `Data Team\Server\.env.example` as your local template.
 
 ## Commit and Push Changes
 
