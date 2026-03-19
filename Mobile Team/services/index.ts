@@ -9,3 +9,4 @@ export * from './storage.service';
 export * from './notifications.service';
 export * from "./roadmap.service";
 export * from "./cache-manager.service";
+export * from "./saved-colleges.service";

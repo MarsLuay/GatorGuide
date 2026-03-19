@@ -157,7 +157,30 @@ export default function ProfileSetupPage() {
       await updateUser(flatData);
 
       try {
-        await roadmapService.generateInitialRoadmap(userId, major, gpa);
+        await roadmapService.ensureUserRoadmap(userId, {
+          major,
+          gpa,
+          questionnaireAnswers: state.questionnaireAnswers,
+          targetSchools: (state.savedColleges ?? []).map((college) => college.name),
+          documents: {
+            ...(finalResumeUrl
+              ? {
+                  resume: {
+                    fileName: resumeDoc?.name || "",
+                    fileUrl: finalResumeUrl,
+                  },
+                }
+              : {}),
+            ...(finalTranscriptUrl
+              ? {
+                  transcripts: {
+                    fileName: transcriptDoc?.name || "",
+                    fileUrl: finalTranscriptUrl,
+                  },
+                }
+              : {}),
+          },
+        });
       } catch {
         console.warn("Roadmap generation failed, but profile saved.");
       }

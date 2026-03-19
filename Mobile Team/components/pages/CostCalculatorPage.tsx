@@ -1,22 +1,27 @@
-import { useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { View, Text, TextInput, Pressable, ScrollView } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
 import useBack from "@/hooks/use-back";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppData } from "@/hooks/use-app-data";
+import type { College } from "@/services/college.service";
+
+function getTuitionValue(college: College): number | null {
+  const tuition = typeof college.tuition === "number" ? college.tuition : college.tuitionInState ?? college.tuitionOutOfState ?? null;
+  return typeof tuition === "number" ? tuition : null;
+}
 
 export default function CostCalculatorPage() {
-  const router = useRouter();
   const styles = useThemeStyles();
   const back = useBack("/(tabs)/resources");
   const { t } = useAppLanguage();
   const insets = useSafeAreaInsets();
   const { state } = useAppData();
-  const savedColleges = state.savedColleges ?? [];
+  const savedColleges = useMemo(() => state.savedColleges ?? [], [state.savedColleges]);
+  const hasAutoPrefilledTuitionRef = useRef(false);
 
   const [tuition, setTuition] = useState("");
   const [fees, setFees] = useState("");
@@ -26,6 +31,7 @@ export default function CostCalculatorPage() {
   const [years, setYears] = useState("4");
   const [annualIncrease, setAnnualIncrease] = useState("3");
   const [financialAid, setFinancialAid] = useState("");
+  const [selectedCollegeId, setSelectedCollegeId] = useState<string | null>(null);
 
   const { textClass, secondaryTextClass, borderClass, cardBgClass, inputBgClass, placeholderColor } = styles;
 
@@ -59,9 +65,33 @@ export default function CostCalculatorPage() {
   const totalAid = yearlyRows.reduce((sum, row) => sum + row.aid, 0);
   const totalAfterAid = Math.max(0, totalBeforeAid - totalAid);
   const monthlyEstimate = Math.round(totalAfterAid / Math.max(1, yearsNum * 12));
+  const selectedCollege = savedColleges.find((college) => String(college.id) === selectedCollegeId) ?? null;
 
   const format = (n: number) =>
     n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+
+  useEffect(() => {
+    if (!savedColleges.length) {
+      setSelectedCollegeId(null);
+      return;
+    }
+
+    if (selectedCollegeId && savedColleges.some((college) => String(college.id) === selectedCollegeId)) return;
+
+    const defaultCollege = savedColleges.find((college) => getTuitionValue(college) !== null) ?? savedColleges[0];
+    setSelectedCollegeId(String(defaultCollege.id));
+  }, [savedColleges, selectedCollegeId]);
+
+  useEffect(() => {
+    if (!selectedCollege || hasAutoPrefilledTuitionRef.current) return;
+
+    const tuitionValue = getTuitionValue(selectedCollege);
+    if (tuitionValue != null) {
+      setTuition(String(tuitionValue));
+    }
+
+    hasAutoPrefilledTuitionRef.current = true;
+  }, [selectedCollege]);
 
   return (
     <ScreenBackground>
@@ -100,17 +130,23 @@ export default function CostCalculatorPage() {
               <ScrollView horizontal showsHorizontalScrollIndicator={false} className="mb-2">
                 <View className="flex-row gap-2">
                   {savedColleges.map((c) => {
-                    const tuitionVal = typeof c.tuition === "number" ? c.tuition : c.tuitionInState ?? c.tuitionOutOfState ?? null;
+                    const tuitionVal = getTuitionValue(c);
+                    const isSelected = String(c.id) === selectedCollegeId;
                     return (
                       <Pressable
                         key={c.id}
-                        onPress={() => setTuition(String(tuitionVal ?? ""))}
-                        className={`px-3 py-2 rounded-lg border ${borderClass}`}
+                        onPress={() => {
+                          setSelectedCollegeId(String(c.id));
+                          setTuition(String(tuitionVal ?? ""));
+                        }}
+                        className={`px-3 py-2 rounded-lg border ${
+                          isSelected ? "bg-emerald-500 border-emerald-500" : borderClass
+                        }`}
                       >
-                        <Text className={`${textClass} text-sm`} numberOfLines={1}>
+                        <Text className={`${isSelected ? "text-white font-medium" : `${textClass} text-sm`}`} numberOfLines={1}>
                           {c.name}
                         </Text>
-                        <Text className={`${secondaryTextClass} text-xs`}>
+                        <Text className={`${isSelected ? "text-white/80 text-xs" : `${secondaryTextClass} text-xs`}`}>
                           {tuitionVal != null ? `$${tuitionVal.toLocaleString()}` : t("home.notAvailable")}
                         </Text>
                       </Pressable>
@@ -118,6 +154,11 @@ export default function CostCalculatorPage() {
                   })}
                 </View>
               </ScrollView>
+              {selectedCollege ? (
+                <Text className={`${secondaryTextClass} text-sm`}>
+                  {t("cost.prefillHint", { college: selectedCollege.name })}
+                </Text>
+              ) : null}
             </View>
           )}
 

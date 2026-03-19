@@ -19,19 +19,28 @@ import { isStubMode } from "./config";
 export async function deleteAllUserDataFromFirestore(uid: string): Promise<void> {
   if (isStubMode() || !db) return;
 
-  // 1. Delete users/{uid}
+  // 1. Delete users/{uid}/savedColleges/*
+  const savedCollegesRef = collection(db, "users", uid, "savedColleges");
+  const savedCollegesSnapshot = await getDocs(savedCollegesRef).catch(() => null);
+  if (savedCollegesSnapshot?.size) {
+    const batch = writeBatch(db);
+    savedCollegesSnapshot.docs.forEach((savedDoc) => batch.delete(savedDoc.ref));
+    await batch.commit().catch(() => {});
+  }
+
+  // 2. Delete users/{uid}
   const userRef = doc(db, "users", uid);
   await deleteDoc(userRef).catch(() => {});
 
-  // 2. Delete roadmaps/{uid}
+  // 3. Delete roadmaps/{uid}
   const roadmapRef = doc(db, "roadmaps", uid);
   await deleteDoc(roadmapRef).catch(() => {});
 
-  // 3. Delete questionnaires/{uid} (new format)
+  // 4. Delete questionnaires/{uid} (new format)
   const questionnaireRef = doc(db, "questionnaires", uid);
   await deleteDoc(questionnaireRef).catch(() => {});
 
-  // 4. Back-compat: delete any legacy questionnaires where userId === uid (random doc ids)
+  // 5. Back-compat: delete any legacy questionnaires where userId === uid (random doc ids)
   const questionnairesRef = collection(db, "questionnaires");
   const q = query(questionnairesRef, where("userId", "==", uid));
   const snapshot = await getDocs(q);

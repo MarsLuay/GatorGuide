@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { View, Text, Pressable, ScrollView, TextInput, Animated, Alert, Platform, Linking } from "react-native";
 import { useRouter } from "expo-router";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
@@ -6,45 +6,38 @@ import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppData } from "@/hooks/use-app-data";
-import { aiService, ChatMessage } from "@/services";
+import {
+  aiService,
+  ChatMessage,
+  roadmapService,
+  ROADMAP_DOCUMENT_KEYS,
+  ROADMAP_SECTION_ORDER,
+  type RoadmapDocumentKey,
+  type RoadmapSectionId,
+  type RoadmapTask,
+  type UserRoadmapDocument,
+} from "@/services";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import useBack from "@/hooks/use-back";
 import * as FileSystem from "expo-file-system";
 import * as Sharing from "expo-sharing";
 import * as DocumentPicker from "expo-document-picker";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { doc, setDoc, serverTimestamp } from "firebase/firestore";
-import { db } from "@/services/firebase";
 import { storageService } from "@/services/storage.service";
 import { APP_VERSION } from "@/constants/app-version";
 
-interface Task {
-  id: string;
-  title: string;
-  description: string;
-  completed: boolean;
-  notes: string[];
-  expanded: boolean;
-  documents?: DocumentChecklist;
-}
+type GroupedTasks = { id: RoadmapSectionId; name: string; data: RoadmapTask[] };
 
-type DocumentFile = { fileName: string; url: string };
-interface DocumentChecklist {
-  resume: DocumentFile | false;
-  transcripts: DocumentFile | false;
-  personalStatement: DocumentFile | false;
-  recommendation1: DocumentFile | false;
-  recommendation2: DocumentFile | false;
-}
+const slugify = (value: string) =>
+  value.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 
-interface StudentProfile {
-  name: string;
-  gradeLevel: number;
-  intendedMajor: string;
-  targetSchools: string[];
-  currentCourses: string[];
-  interests: string[];
-}
+const getDisplayFileName = (value?: string | null) => {
+  const raw = String(value ?? "").trim();
+  if (!raw) return "";
+  const withoutQuery = raw.split("?")[0];
+  const segments = withoutQuery.split("/");
+  return decodeURIComponent(segments[segments.length - 1] || raw);
+};
 
 export default function RoadmapPage() {
   const router = useRouter();
@@ -54,32 +47,60 @@ export default function RoadmapPage() {
   const back = useBack();
   const { state, restoreData, isHydrated } = useAppData();
   const { textClass, secondaryTextClass, cardBgClass, borderClass } = styles;
-
   const user = state.user;
+  const userId = user?.uid ?? "";
 
-  const [activeClubs, setActiveClubs] = useState<string[]>(["Robotics Club", "Volunteer Work"]);
-  const [currentCourses, setCurrentCourses] = useState<string[]>(["Math 101", "English 101", "CS 50"]);
-  const [targetSchools, setTargetSchools] = useState<string[]>(["UW", "CWU"]);
-
-  const studentProfile = useMemo<StudentProfile>(() => ({
-    name: "Retee",
-    gradeLevel: 11,
-    intendedMajor: "Computer Science",
-    targetSchools,
-    currentCourses,
-    interests: activeClubs,
-  }), [activeClubs, currentCourses, targetSchools]);
-
-  const [newClubInput, setNewClubInput] = useState("");
+  const [roadmap, setRoadmap] = useState<UserRoadmapDocument | null>(null);
+  const [isRoadmapLoading, setIsRoadmapLoading] = useState(false);
+  const [expandedTaskIds, setExpandedTaskIds] = useState<Record<string, boolean>>({ "documents-checklist": true });
   const [newInterestInput, setNewInterestInput] = useState("");
   const [newCourseInput, setNewCourseInput] = useState("");
   const [newSchoolInput, setNewSchoolInput] = useState("");
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [activeClubs, setActiveClubs] = useState<string[]>([]);
+  const [currentCourses, setCurrentCourses] = useState<string[]>([]);
+  const [targetSchools, setTargetSchools] = useState<string[]>([]);
   const [aiInput, setAiInput] = useState("");
   const [aiMessages, setAiMessages] = useState<ChatMessage[]>([]);
-  const [activeUpload, setActiveUpload] = useState<string | null>(null);
+  const [activeUpload, setActiveUpload] = useState<RoadmapDocumentKey | null>(null);
   const [showGuestRoadmap, setShowGuestRoadmap] = useState(false);
   const [isUploadingDoc, setIsUploadingDoc] = useState(false);
+
+  const roadmapSeed = useMemo(
+    () =>
+      roadmapService.buildRoadmapSeedInput({
+        major: user?.major,
+        gpa: user?.gpa,
+        questionnaireAnswers: state.questionnaireAnswers,
+        targetSchools: (state.savedColleges ?? []).map((college) => college.name),
+        documents: {
+          ...(user?.resume ? { resume: { fileName: getDisplayFileName(user.resume), fileUrl: user.resume } } : {}),
+          ...(user?.transcript
+            ? { transcripts: { fileName: getDisplayFileName(user.transcript), fileUrl: user.transcript } }
+            : {}),
+        },
+      }),
+    [state.questionnaireAnswers, state.savedColleges, user?.gpa, user?.major, user?.resume, user?.transcript]
+  );
+
+  const applyRoadmap = useCallback((nextRoadmap: UserRoadmapDocument) => {
+    setRoadmap(nextRoadmap);
+    setCurrentCourses(nextRoadmap.profileSnapshot.currentCourses);
+    setTargetSchools(nextRoadmap.profileSnapshot.targetSchools);
+    setActiveClubs(nextRoadmap.profileSnapshot.interests);
+  }, []);
+
+  const persistRoadmap = useCallback(
+    async (nextRoadmap: UserRoadmapDocument) => {
+      if (!userId) return;
+      if (user?.isGuest) {
+        applyRoadmap(nextRoadmap);
+        return;
+      }
+      const savedRoadmap = await roadmapService.saveUserRoadmap(userId, nextRoadmap);
+      applyRoadmap(savedRoadmap);
+    },
+    [applyRoadmap, user?.isGuest, userId]
+  );
 
   useEffect(() => {
     if (!user?.isGuest) return;
@@ -89,154 +110,199 @@ export default function RoadmapPage() {
   }, [user?.isGuest]);
 
   useEffect(() => {
-    if (!user?.uid) return;
+    if (!isHydrated || !userId) return;
+    let cancelled = false;
     (async () => {
-      // Sync checklist completion with previously uploaded files in storage.
-      const docTypes: (keyof DocumentChecklist)[] = ["resume", "transcripts", "personalStatement", "recommendation1", "recommendation2"];
-      const uploaded: Partial<Record<keyof DocumentChecklist, DocumentFile | false>> = {};
-      for (const doc of docTypes) {
-        const f = await storageService.getDocument(user!.uid, doc);
-        uploaded[doc] = f ? { fileName: f.name, url: f.url } : false;
-      }
-      if (Object.values(uploaded).some(Boolean)) {
-        setTasks((prev) =>
-          prev.map((task) =>
-            task.id === "documents-checklist" && task.documents
-              ? { ...task, documents: { ...task.documents, ...uploaded } }
-              : task
-          )
-        );
+      try {
+        setIsRoadmapLoading(true);
+        const nextRoadmap = user?.isGuest
+          ? roadmapService.createInitialRoadmap(userId, roadmapSeed)
+          : await roadmapService.ensureUserRoadmap(userId, roadmapSeed);
+        if (!cancelled) applyRoadmap(nextRoadmap);
+      } catch (error) {
+        console.error(error);
+        if (!cancelled) Alert.alert(t("general.error"), t("profile.prepareDataError"));
+      } finally {
+        if (!cancelled) setIsRoadmapLoading(false);
       }
     })();
-  }, [user?.uid]);
-
-  const generateTasks = useCallback((profile: StudentProfile): Task[] => {
-    // Build deterministic task ids so completion state updates are stable.
-    const docTask: Task = {
-      id: "documents-checklist",
-      title: t("roadmap.documents"),
-      description: t("roadmap.organizeDocuments"),
-      completed: false,
-      notes: [],
-      expanded: true,
-      documents: {
-        resume: false as const,
-        transcripts: false as const,
-        personalStatement: false as const,
-        recommendation1: false as const,
-        recommendation2: false as const,
-      },
+    return () => {
+      cancelled = true;
     };
-
-    const courseTasks: Task[] = profile.currentCourses.map((course) => ({
-      id: `course-${course}`,
-      title: `${t("roadmap.currentCourses")}: ${course}`,
-      description: t("roadmap.trackRequirements"),
-      completed: false,
-      notes: [],
-      expanded: false,
-    }));
-
-    const appTasks: Task[] = profile.targetSchools.map((school) => ({
-      id: `submit-${school.toLowerCase()}`,
-      title: `${t("roadmap.applications")}: ${school}`,
-      description: t("roadmap.applicationChecklist"),
-      completed: false,
-      notes: [],
-      expanded: false,
-    }));
-
-    const interestTasks: Task[] = profile.interests.map((interest, idx) => ({
-      id: `interest-${idx}`,
-      title: `${t("roadmap.interests")}: ${interest}`,
-      description: t("roadmap.aiGuidanceDescription"),
-      completed: false,
-      notes: [],
-      expanded: false,
-    }));
-
-    return [docTask, ...courseTasks, ...appTasks, ...interestTasks];
-  }, [t]);
+  }, [applyRoadmap, isHydrated, roadmapSeed, t, user?.isGuest, userId]);
 
   useEffect(() => {
-    const newTasks = generateTasks(studentProfile);
-    setTasks((prev) =>
-      newTasks.map((nt) => {
-        const existing = prev.find((p) => p.id === nt.id);
-        if (existing)
-          return {
-            ...nt,
-            completed: existing.completed,
-            notes: existing.notes,
-            expanded: existing.expanded,
-            documents: nt.documents ?? existing.documents,
-          };
-        return nt;
-      })
-    );
-  }, [generateTasks, studentProfile]);
-
-  const toggleCompleted = (id: string) => {
-    setTasks((prev) =>
-      prev.map((task) =>
-        task.id === id ? { ...task, completed: !task.completed } : task
-      )
-    );
-  };
+    if (!roadmap || !userId) return;
+    let cancelled = false;
+    (async () => {
+      const documentsTask = roadmap.sections.documents.tasks.find((task) => task.id === "documents-checklist");
+      if (!documentsTask?.documents) return;
+      const storedDocuments = {
+        resume: await storageService.getResume(userId),
+        transcripts: await storageService.getTranscript(userId),
+        personalStatement: await storageService.getDocument(userId, "personalStatement"),
+        recommendation1: await storageService.getDocument(userId, "recommendation1"),
+        recommendation2: await storageService.getDocument(userId, "recommendation2"),
+      } satisfies Record<RoadmapDocumentKey, Awaited<ReturnType<typeof storageService.getDocument>>>;
+      let nextRoadmap = roadmap;
+      let changed = false;
+      for (const docKey of ROADMAP_DOCUMENT_KEYS) {
+        const uploaded = storedDocuments[docKey];
+        if (!uploaded) continue;
+        const existing = documentsTask.documents[docKey];
+        if (existing.fileName === uploaded.name && existing.fileUrl === uploaded.url && existing.status === "completed") continue;
+        nextRoadmap = roadmapService.updateRoadmapDocument(nextRoadmap, docKey, {
+          fileName: uploaded.name,
+          fileUrl: uploaded.url,
+        });
+        changed = true;
+      }
+      if (!changed || cancelled) return;
+      if (user?.isGuest) applyRoadmap(nextRoadmap);
+      else await persistRoadmap(nextRoadmap);
+    })().catch((error) => console.error(error));
+    return () => {
+      cancelled = true;
+    };
+  }, [applyRoadmap, persistRoadmap, roadmap, user?.isGuest, userId]);
 
   const toggleExpanded = (id: string) => {
-    setTasks((prev) =>
-      prev.map((task) =>
-        task.id === id ? { ...task, expanded: !task.expanded } : task
-      )
-    );
+    setExpandedTaskIds((prev) => ({ ...prev, [id]: !(prev[id] ?? id === "documents-checklist") }));
   };
 
-  const toggleDocument = (taskId: string, doc: keyof DocumentChecklist) => {
-    // Only toggle which doc's upload box is shown; do NOT toggle documents[doc] - that would clear uploaded state
-    if (activeUpload === doc) {
-      setActiveUpload(null);
-    } else {
-      setActiveUpload(doc);
-    }
+  const toggleDocument = (docKey: RoadmapDocumentKey) => {
+    setActiveUpload((prev) => (prev === docKey ? null : docKey));
   };
 
-  const handlePickDocument = async (docKey: keyof DocumentChecklist) => {
-    if (!user?.uid || isUploadingDoc) return;
+  const updateRoadmapSnapshot = useCallback(
+    async (nextRoadmap: UserRoadmapDocument, snapshotPatch: Partial<UserRoadmapDocument["profileSnapshot"]>) => {
+      await persistRoadmap({
+        ...nextRoadmap,
+        profileSnapshot: { ...nextRoadmap.profileSnapshot, ...snapshotPatch },
+      });
+    },
+    [persistRoadmap]
+  );
+
+  const toggleCompleted = async (sectionId: RoadmapSectionId, task: RoadmapTask) => {
+    if (!roadmap || !userId) return;
+    const nextRoadmap = roadmapService.setTaskCompletion(roadmap, sectionId, task.id, task.status !== "completed");
+    await persistRoadmap(nextRoadmap);
+  };
+
+  const addNote = async (sectionId: RoadmapSectionId, taskId: string, note: string) => {
+    if (!roadmap || !userId) return;
+    const cleaned = note.trim();
+    if (!cleaned) return;
+    const nextRoadmap = roadmapService.addTaskNote(roadmap, sectionId, taskId, cleaned);
+    await persistRoadmap(nextRoadmap);
+  };
+
+  const addCourse = async (rawName: string) => {
+    if (!roadmap) return;
+    const name = rawName.trim();
+    if (!name || currentCourses.some((course) => course.toLowerCase() === name.toLowerCase())) return;
+    const nextRoadmap = roadmapService.addSectionTask(roadmap, "courses", {
+      id: `course-${slugify(name)}`,
+      type: "course",
+      title: `Stay on track in ${name}`,
+      description: "Check this course against your transfer requirements and keep your materials organized.",
+      metadata: { courseName: name },
+    });
+    await updateRoadmapSnapshot(nextRoadmap, {
+      currentCourses: [...nextRoadmap.profileSnapshot.currentCourses, name],
+    });
+    setNewCourseInput("");
+  };
+
+  const removeCourse = async (task: RoadmapTask) => {
+    if (!roadmap) return;
+    const courseName = task.metadata?.courseName ?? "";
+    const nextRoadmap = roadmapService.removeSectionTask(roadmap, "courses", task.id);
+    await updateRoadmapSnapshot(nextRoadmap, {
+      currentCourses: nextRoadmap.profileSnapshot.currentCourses.filter(
+        (course) => course.toLowerCase() !== courseName.toLowerCase()
+      ),
+    });
+  };
+
+  const addApplication = async (rawName: string) => {
+    if (!roadmap) return;
+    const schoolName = rawName.trim();
+    if (!schoolName || targetSchools.some((school) => school.toLowerCase() === schoolName.toLowerCase())) return;
+    const nextRoadmap = roadmapService.addSectionTask(roadmap, "applications", {
+      id: `submit-${slugify(schoolName)}`,
+      type: "application",
+      title: `Prepare your ${schoolName} application`,
+      description: "Track requirements, essay work, and document readiness for this school.",
+      metadata: { schoolName },
+    });
+    await updateRoadmapSnapshot(nextRoadmap, {
+      targetSchools: [...nextRoadmap.profileSnapshot.targetSchools, schoolName],
+    });
+    setNewSchoolInput("");
+  };
+
+  const removeApplication = async (task: RoadmapTask) => {
+    if (!roadmap) return;
+    const schoolName = task.metadata?.schoolName ?? "";
+    const nextRoadmap = roadmapService.removeSectionTask(roadmap, "applications", task.id);
+    await updateRoadmapSnapshot(nextRoadmap, {
+      targetSchools: nextRoadmap.profileSnapshot.targetSchools.filter(
+        (school) => school.toLowerCase() !== schoolName.toLowerCase()
+      ),
+    });
+  };
+
+  const addInterest = async (rawName: string) => {
+    if (!roadmap) return;
+    const interestName = rawName.trim();
+    if (!interestName || activeClubs.some((interest) => interest.toLowerCase() === interestName.toLowerCase())) return;
+    const nextRoadmap = roadmapService.addSectionTask(roadmap, "interests", {
+      id: `interest-${slugify(interestName)}`,
+      type: "interest",
+      title: `Build momentum around ${interestName}`,
+      description: "Use this as a place to capture ideas, next steps, and related opportunities.",
+      metadata: { interestName },
+    });
+    await updateRoadmapSnapshot(nextRoadmap, {
+      interests: [...nextRoadmap.profileSnapshot.interests, interestName],
+    });
+    setNewInterestInput("");
+  };
+
+  const removeInterest = async (task: RoadmapTask) => {
+    if (!roadmap) return;
+    const interestName = task.metadata?.interestName ?? "";
+    const nextRoadmap = roadmapService.removeSectionTask(roadmap, "interests", task.id);
+    await updateRoadmapSnapshot(nextRoadmap, {
+      interests: nextRoadmap.profileSnapshot.interests.filter(
+        (interest) => interest.toLowerCase() !== interestName.toLowerCase()
+      ),
+    });
+  };
+
+  const handlePickDocument = async (docKey: RoadmapDocumentKey) => {
+    if (!userId || isUploadingDoc || !roadmap) return;
     try {
       const result = await DocumentPicker.getDocumentAsync({
-        type: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/png"],
+        type: [
+          "application/pdf",
+          "application/msword",
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "image/png",
+        ],
         copyToCacheDirectory: true,
       });
       if (result.canceled || !result.assets?.[0]?.uri) return;
       setIsUploadingDoc(true);
-      const originalName = result.assets[0].name;
-      const uploaded = await storageService.uploadDocument(user.uid, docKey, result.assets[0].uri, originalName);
-      setTasks((prev) =>
-        prev.map((task) =>
-          task.id === "documents-checklist" && task.documents
-            ? { ...task, documents: { ...task.documents, [docKey]: { fileName: uploaded.name, url: uploaded.url } } }
-            : task
-        )
-      );
+      const uploaded = await storageService.uploadDocument(userId, docKey, result.assets[0].uri, result.assets[0].name);
+      const nextRoadmap = roadmapService.updateRoadmapDocument(roadmap, docKey, {
+        fileName: uploaded.name,
+        fileUrl: uploaded.url,
+      });
+      await persistRoadmap(nextRoadmap);
       setActiveUpload(null);
-      if (db && !user.isGuest) {
-        try {
-          const docTypes: (keyof DocumentChecklist)[] = ["resume", "transcripts", "personalStatement", "recommendation1", "recommendation2"];
-          const roadmapDocuments: Partial<Record<keyof DocumentChecklist, boolean>> = {};
-          for (const d of docTypes) {
-            const f = await storageService.getDocument(user.uid, d);
-            roadmapDocuments[d] = !!f;
-          }
-          await setDoc(
-            doc(db, "users", user.uid),
-            { roadmapDocuments, updatedAt: serverTimestamp() },
-            { merge: true }
-          );
-        } catch {
-          // Firestore sync failed; local AsyncStorage still has the file
-        }
-      }
     } catch (err) {
       console.error(err);
       Alert.alert(t("general.error"), t("profile.prepareDataError"));
@@ -245,43 +311,24 @@ export default function RoadmapPage() {
     }
   };
 
-  const addNote = (id: string, note: string) => {
-    setTasks((prev) =>
-      prev.map((task) =>
-        task.id === id ? { ...task, notes: [...task.notes, note] } : task
-      )
-    );
-  };
-
   const handleSendAI = async () => {
     if (!aiInput.trim()) return;
-
     const userMessage: ChatMessage = {
       id: `msg-${Date.now()}-user`,
-      role: 'user',
+      role: "user",
       content: aiInput.trim(),
       timestamp: new Date().toISOString(),
     };
-
     setAiMessages((prev) => [...prev, userMessage]);
     setAiInput("");
-
     const aiReply = await aiService.chat(userMessage.content);
     setAiMessages((prev) => [...prev, aiReply]);
   };
 
   const handleExportData = async () => {
     if (!isHydrated) return;
-
     try {
-      const payload = {
-        exportedAt: new Date().toISOString(),
-        app: "GatorGuide",
-        version: APP_VERSION,
-        data: state,
-        theme,
-      };
-
+      const payload = { exportedAt: new Date().toISOString(), app: "GatorGuide", version: APP_VERSION, data: state, theme };
       if (Platform.OS === "web") {
         const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
         const url = URL.createObjectURL(blob);
@@ -294,188 +341,140 @@ export default function RoadmapPage() {
         URL.revokeObjectURL(url);
         return;
       }
-
       const fileUri = new FileSystem.File(FileSystem.Paths.document, "GatorGuide_export.json").uri;
-      await FileSystem.writeAsStringAsync(fileUri, JSON.stringify(payload, null, 2), {
-        encoding: "utf8",
-      });
-
+      await FileSystem.writeAsStringAsync(fileUri, JSON.stringify(payload, null, 2), { encoding: "utf8" });
       const canShare = await Sharing.isAvailableAsync();
       if (!canShare) {
-        Alert.alert(t('settings.exportReady'), t('settings.exportNotAvailable'));
+        Alert.alert(t("settings.exportReady"), t("settings.exportNotAvailable"));
         return;
       }
-
       await Sharing.shareAsync(fileUri);
     } catch {
-      Alert.alert(t('settings.exportFailed'), t('settings.exportError'));
+      Alert.alert(t("settings.exportFailed"), t("settings.exportError"));
     }
   };
 
   const handleImportData = async () => {
     if (!isHydrated) return;
-
     try {
-      const result = await DocumentPicker.getDocumentAsync({
-        type: "application/json",
-        copyToCacheDirectory: true,
-      });
-
+      const result = await DocumentPicker.getDocumentAsync({ type: "application/json", copyToCacheDirectory: true });
       if (result.canceled || !result.assets?.[0]?.uri) return;
-
-      const fileUri = result.assets[0].uri;
-      const raw = await FileSystem.readAsStringAsync(fileUri, {
-        encoding: "utf8",
-      });
-
-      const parsed = JSON.parse(raw) as {
-        data?: typeof state;
-        theme?: string;
-      };
-
+      const raw = await FileSystem.readAsStringAsync(result.assets[0].uri, { encoding: "utf8" });
+      const parsed = JSON.parse(raw) as { data?: typeof state; theme?: string };
       if (!parsed?.data) {
-        Alert.alert(t('settings.invalidFile'), t('settings.invalidFileMessage'));
+        Alert.alert(t("settings.invalidFile"), t("settings.invalidFileMessage"));
         return;
       }
-
-      const dataToRestore = parsed.data as typeof state;
-
-      Alert.alert(
-        t('settings.importConfirm'),
-        t('settings.importOverwriteMessage'),
-        [
-          { text: t('general.cancel'), style: "cancel" },
-          {
-            text: t('settings.import'),
-            style: "destructive",
-            onPress: async () => {
-              await restoreData(dataToRestore);
-              if (parsed.theme === "light" || parsed.theme === "dark" || parsed.theme === "green" || parsed.theme === "system") {
-                setTheme(parsed.theme);
-              }
-            },
+      Alert.alert(t("settings.importConfirm"), t("settings.importOverwriteMessage"), [
+        { text: t("general.cancel"), style: "cancel" },
+        {
+          text: t("settings.import"),
+          style: "destructive",
+          onPress: async () => {
+            await restoreData(parsed.data as typeof state);
+            if (parsed.theme === "light" || parsed.theme === "dark" || parsed.theme === "green" || parsed.theme === "system") {
+              setTheme(parsed.theme);
+            }
           },
-        ]
-      );
+        },
+      ]);
     } catch {
-      Alert.alert(t('settings.importFailed'), t('settings.importError'));
+      Alert.alert(t("settings.importFailed"), t("settings.importError"));
     }
   };
 
-  const completedCount = tasks.filter((t) => t.completed).length;
-  const progress = Math.round((completedCount / tasks.length) * 100);
+  const groupedTasks = useMemo<GroupedTasks[]>(
+    () =>
+      roadmap
+        ? ROADMAP_SECTION_ORDER.map((sectionId) => ({
+            id: sectionId,
+            name:
+              sectionId === "documents"
+                ? t("roadmap.documents")
+                : sectionId === "courses"
+                  ? t("roadmap.currentCourses")
+                  : sectionId === "applications"
+                    ? t("roadmap.applications")
+                    : t("roadmap.interests"),
+            data: roadmap.sections[sectionId].tasks,
+          }))
+        : [],
+    [roadmap, t]
+  );
 
-  const groupedTasks = useMemo(() => {
-    // Grouping controls section rendering order in the checklist UI.
-    return [
-      { name: t("roadmap.documents"), key: "documents", data: tasks.filter((t) => t.id === "documents-checklist") },
-      { name: t("roadmap.currentCourses"), key: "courses", data: tasks.filter((t) => t.id.startsWith("course")) },
-      { name: t("roadmap.applications"), key: "applications", data: tasks.filter((t) => t.id.startsWith("submit")) },
-      { name: t("roadmap.interests"), key: "interests", data: tasks.filter((t) => t.id.startsWith("interest")) },
-    ];
-  }, [tasks, t]);
+  const progress = roadmap?.progress.percent ?? 0;
 
-  const getDocIcon = (key: string) => {
-    switch(key) {
-      case 'resume': return 'document-text-outline';
-      case 'transcripts': return 'school-outline';
-      case 'personalStatement': return 'create-outline';
-      case 'recommendation1': 
-      case 'recommendation2': return 'people-outline';
-      default: return 'file-tray-outline';
+  const getDocIcon = (key: RoadmapDocumentKey) => {
+    switch (key) {
+      case "resume":
+        return "document-text-outline";
+      case "transcripts":
+        return "school-outline";
+      case "personalStatement":
+        return "create-outline";
+      case "recommendation1":
+      case "recommendation2":
+        return "people-outline";
+      default:
+        return "file-tray-outline";
     }
   };
 
-  const formatDocLabel = (key: string) => {
-    if (key === 'personalStatement') return t('roadmap.personalStatement');
-    if (key === 'recommendation1') return t('roadmap.recommendation1');
-    if (key === 'recommendation2') return t('roadmap.recommendation2');
+  const formatDocLabel = (key: RoadmapDocumentKey) => {
+    if (key === "personalStatement") return t("roadmap.personalStatement");
+    if (key === "recommendation1") return t("roadmap.recommendation1");
+    if (key === "recommendation2") return t("roadmap.recommendation2");
     return key.charAt(0).toUpperCase() + key.slice(1);
   };
 
-  // If guest user, show roadmap benefits and create profile CTA
+  if (!user && isHydrated) {
+    return (
+      <ScreenBackground>
+        <View className="flex-1 items-center justify-center px-6">
+          <View className={`${cardBgClass} border rounded-2xl p-6 w-full max-w-md`}>
+            <Text className={`text-xl ${textClass} mb-2`}>{t("profile.notSignedIn")}</Text>
+            <Text className={`${secondaryTextClass} mb-4`}>{t("profile.notSignedInMessage")}</Text>
+            <Pressable onPress={() => router.replace("/login")} className="bg-emerald-500 rounded-lg py-4 items-center">
+              <Text className={`${isDark ? "text-white" : "text-emerald-900"} font-semibold`}>{t("profile.goToLogin")}</Text>
+            </Pressable>
+          </View>
+        </View>
+      </ScreenBackground>
+    );
+  }
+
   if (user?.isGuest && !showGuestRoadmap) {
     return (
       <ScreenBackground>
         <ScrollView contentContainerStyle={{ paddingBottom: 32 }}>
-          <View className="max-w-md w-full self-center">
-            <View className="px-6 pt-8 pb-6">
-              <Pressable onPress={back} className="mb-4 flex-row items-center">
-                <MaterialIcons name="arrow-back" size={20} color={styles.placeholderColor} />
-                <Text className={`${secondaryTextClass} ml-2`}>{t("roadmap.back")}</Text>
-              </Pressable>
-            </View>
-
-            <View className="px-6">
-              <View className="items-center mb-8">
+          <View className="max-w-md w-full self-center px-6 pt-8">
+            <Pressable onPress={back} className="mb-4 flex-row items-center">
+              <MaterialIcons name="arrow-back" size={20} color={styles.placeholderColor} />
+              <Text className={`${secondaryTextClass} ml-2`}>{t("roadmap.back")}</Text>
+            </Pressable>
+            <View className={`${cardBgClass} border rounded-2xl p-6`}>
+              <View className="items-center mb-6">
                 <View className="bg-emerald-500 p-4 rounded-full mb-4">
-                  <MaterialIcons name="map" size={48} color="#001f0f" />
+                  <MaterialIcons name="map" size={44} color="#001f0f" />
                 </View>
-                
                 <Text className={`text-3xl ${textClass} text-center font-semibold mb-3`}>{t("roadmap.yourCollegeRoadmap")}</Text>
-                <Text className={`${secondaryTextClass} text-center text-base`}>
-                  {t("roadmap.unlockJourney")}
-                </Text>
+                <Text className={`${secondaryTextClass} text-center`}>{t("roadmap.unlockJourney")}</Text>
               </View>
-
-              <View className={`${cardBgClass} border rounded-2xl p-6 mb-6`}>
-                <View className="gap-4">
-                  <View className="flex-row gap-3">
-                    <View className="bg-emerald-500/20 rounded-full p-2 justify-center items-center w-10 h-10 flex-shrink-0">
-                      <Ionicons name="checkmark-circle" size={24} color="#008f4e" />
-                    </View>
-                    <View className="flex-1">
-                      <Text className={`${textClass} font-semibold mb-1`}>{t("roadmap.applicationChecklist")}</Text>
-                      <Text className={secondaryTextClass}>{t("roadmap.trackRequirements")}</Text>
-                    </View>
-                  </View>
-
-                  <View className="flex-row gap-3">
-                    <View className="bg-emerald-500/20 rounded-full p-2 justify-center items-center w-10 h-10 flex-shrink-0">
-                      <Ionicons name="document-text" size={24} color="#008f4e" />
-                    </View>
-                    <View className="flex-1">
-                      <Text className={`${textClass} font-semibold mb-1`}>{t("roadmap.documentManagement")}</Text>
-                      <Text className={secondaryTextClass}>{t("roadmap.organizeDocuments")}</Text>
-                    </View>
-                  </View>
-
-                  <View className="flex-row gap-3">
-                    <View className="bg-emerald-500/20 rounded-full p-2 justify-center items-center w-10 h-10 flex-shrink-0">
-                      <Ionicons name="sparkles" size={24} color="#008f4e" />
-                    </View>
-                    <View className="flex-1">
-                      <Text className={`${textClass} font-semibold mb-1`}>{t("roadmap.aiGuidance")}</Text>
-                      <Text className={secondaryTextClass}>{t("roadmap.aiGuidanceDescription")}</Text>
-                    </View>
-                  </View>
-
-                  <View className="flex-row gap-3">
-                    <View className="bg-emerald-500/20 rounded-full p-2 justify-center items-center w-10 h-10 flex-shrink-0">
-                      <Ionicons name="calendar" size={24} color="#008f4e" />
-                    </View>
-                    <View className="flex-1">
-                      <Text className={`${textClass} font-semibold mb-1`}>{t("roadmap.timelineProgress")}</Text>
-                      <Text className={secondaryTextClass}>{t("roadmap.timelineDescription")}</Text>
-                    </View>
-                  </View>
-                </View>
+              <View className="gap-3 mb-6">
+                <Text className={textClass}>{t("roadmap.applicationChecklist")}</Text>
+                <Text className={textClass}>{t("roadmap.documentManagement")}</Text>
+                <Text className={textClass}>{t("roadmap.aiGuidance")}</Text>
+                <Text className={textClass}>{t("roadmap.timelineProgress")}</Text>
               </View>
-
-              <Pressable
-                onPress={() => router.push("/login")}
-                className="bg-emerald-500 rounded-lg py-4 px-6 items-center flex-row justify-center mb-3"
-              >
-                <MaterialIcons name="arrow-forward" size={20} color="#001f0f" />
-                <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} font-semibold ml-2`}>{t("roadmap.createProfileToStart")}</Text>
+              <Pressable onPress={() => router.push("/login")} className="bg-emerald-500 rounded-lg py-4 items-center mb-3">
+                <Text className={`${isDark ? "text-white" : "text-emerald-900"} font-semibold`}>{t("roadmap.createProfileToStart")}</Text>
               </Pressable>
-
               <Pressable
                 onPress={() => {
                   setShowGuestRoadmap(true);
                   AsyncStorage.setItem("gatorguide:guestRoadmap:show", "true").catch(() => {});
                 }}
-                className={`${cardBgClass} border rounded-lg py-3 px-6 items-center`}
+                className={`${cardBgClass} border rounded-lg py-3 items-center`}
               >
                 <Text className={secondaryTextClass}>{t("profile.continueAsGuest")}</Text>
               </Pressable>
@@ -489,13 +488,12 @@ export default function RoadmapPage() {
   return (
     <ScreenBackground>
       <ScrollView contentContainerStyle={{ paddingBottom: 32 }}>
-        <View className="max-w-md w-full self-center">
-          {/* Header */}
-          <View className="px-6 pt-8 pb-6">
-            <Pressable onPress={back} className="mb-4 flex-row items-center">
-              <MaterialIcons name="arrow-back" size={20} color={styles.placeholderColor} />
-              <Text className={`${secondaryTextClass} ml-2`}>{t("roadmap.back")}</Text>
-            </Pressable>
+        <View className="max-w-md w-full self-center px-6 pt-8">
+          <Pressable onPress={back} className="mb-4 flex-row items-center">
+            <MaterialIcons name="arrow-back" size={20} color={styles.placeholderColor} />
+            <Text className={`${secondaryTextClass} ml-2`}>{t("roadmap.back")}</Text>
+          </Pressable>
+          <View className={`${cardBgClass} border rounded-2xl p-5 mb-4`}>
             <Text className={`text-2xl ${textClass}`}>{t("roadmap.roadmapTitle")}</Text>
             <Text className={`${secondaryTextClass} mt-2`}>{t("roadmap.subtitleChecklist")}</Text>
             <View className="mt-4 h-4 w-full bg-emerald-300 rounded-full overflow-hidden">
@@ -503,350 +501,222 @@ export default function RoadmapPage() {
             </View>
           </View>
 
-          {user?.isGuest && showGuestRoadmap ? (
-            <View className="px-6 pb-4">
-              <View className={`${cardBgClass} border rounded-2xl p-4`}>
-                <View>
-                  <Text className={textClass}>{t("roadmap.guestTools")}</Text>
-                  <Text className={`${secondaryTextClass} text-sm`}>{t("roadmap.importExport")}</Text>
-                </View>
-                <View className="mt-3 gap-2">
-                  <Pressable
-                    onPress={handleImportData}
-                    className="bg-emerald-500 rounded-lg px-4 py-3 items-center"
-                  >
-                    <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} font-semibold text-sm text-center leading-5`}>
-                      {t("settings.import")}
-                    </Text>
-                  </Pressable>
-                  <Pressable
-                    onPress={handleExportData}
-                    className={`${cardBgClass} border rounded-lg px-4 py-3 items-center`}
-                  >
-                    <Text className={secondaryTextClass + " text-sm text-center leading-5"}>
-                      {t("settings.export")}
-                    </Text>
-                  </Pressable>
-                </View>
+          {user?.isGuest ? (
+            <View className={`${cardBgClass} border rounded-2xl p-4 mb-4`}>
+              <Text className={textClass}>{t("roadmap.guestTools")}</Text>
+              <Text className={`${secondaryTextClass} text-sm mb-3`}>{t("roadmap.importExport")}</Text>
+              <View className="gap-2">
+                <Pressable onPress={handleImportData} className="bg-emerald-500 rounded-lg px-4 py-3 items-center">
+                  <Text className={`${isDark ? "text-white" : "text-emerald-900"} font-semibold`}>{t("settings.import")}</Text>
+                </Pressable>
+                <Pressable onPress={handleExportData} className={`${cardBgClass} border rounded-lg px-4 py-3 items-center`}>
+                  <Text className={secondaryTextClass}>{t("settings.export")}</Text>
+                </Pressable>
               </View>
             </View>
           ) : null}
 
-          {/* AI Assistant */}
-          <View className="px-6 mb-4">
-            <View className={`${cardBgClass} border rounded-2xl p-5`}>
-              <Text className={`${textClass} text-base mb-2`}>{t("roadmap.personalAssistant")}</Text>
-              <TextInput
-                value={aiInput}
-                onChangeText={setAiInput}
-                placeholder={t("roadmap.askAssistant")}
-                placeholderTextColor={styles.placeholderColor}
-                onSubmitEditing={handleSendAI}
-                className={`border p-2 rounded-lg mb-2 ${styles.inputBgClass} ${textClass}`}
-              />
-              <Pressable onPress={handleSendAI} className="bg-emerald-500 rounded-lg px-4 py-2 mb-2 items-center">
-                <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} font-semibold`}>{t("roadmap.sendMessage")}</Text>
-              </Pressable>
-              {aiMessages.map((msg) => (
-                <View key={msg.id} className="mb-2">
-                  <Text className={`${textClass} text-sm`}>
-                    {msg.role === 'user' ? t("roadmap.youPrefix").replace("{message}", msg.content) : msg.content}
+          <View className={`${cardBgClass} border rounded-2xl p-5 mb-4`}>
+            <Text className={`${textClass} text-base mb-2`}>{t("roadmap.personalAssistant")}</Text>
+            <TextInput
+              value={aiInput}
+              onChangeText={setAiInput}
+              placeholder={t("roadmap.askAssistant")}
+              placeholderTextColor={styles.placeholderColor}
+              onSubmitEditing={handleSendAI}
+              className={`border p-2 rounded-lg mb-2 ${styles.inputBgClass} ${textClass}`}
+            />
+            <Pressable onPress={handleSendAI} className="bg-emerald-500 rounded-lg px-4 py-2 mb-2 items-center">
+              <Text className={`${isDark ? "text-white" : "text-emerald-900"} font-semibold`}>{t("roadmap.sendMessage")}</Text>
+            </Pressable>
+            {aiMessages.map((msg) => (
+              <View key={msg.id} className="mb-2">
+                <Text className={`${textClass} text-sm`}>{msg.role === "user" ? t("roadmap.youPrefix").replace("{message}", msg.content) : msg.content}</Text>
+                {msg.role === "assistant" && msg.source && msg.source !== "live" ? (
+                  <Text className={`${secondaryTextClass} text-xs mt-0.5`}>
+                    {msg.source === "cached" ? t("roadmap.cachedResponse") : msg.source === "stub" ? t("roadmap.sampleResponse") : null}
                   </Text>
-                  {msg.role === 'assistant' && msg.source && msg.source !== 'live' ? (
-                    <Text className={`${secondaryTextClass} text-xs mt-0.5`}>
-                      {msg.source === 'cached' ? t("roadmap.cachedResponse") : msg.source === 'stub' ? t("roadmap.sampleResponse") : null}
-                    </Text>
-                  ) : null}
-                </View>
-              ))}
-            </View>
+                ) : null}
+              </View>
+            ))}
           </View>
 
-          {/* Task List */}
-          <View className="px-6 gap-4">
+          {isRoadmapLoading && !roadmap ? (
+            <View className={`${cardBgClass} border rounded-2xl p-5 mb-4`}>
+              <Text className={textClass}>{t("general.loading")}</Text>
+            </View>
+          ) : null}
+
+          <View className="gap-4">
             {groupedTasks.map((group) => (
-              <View key={group.key} className="mb-4">
+              <View key={group.id} className="mb-2">
                 <Text className={`${textClass} text-lg mb-2 font-bold`}>{group.name}</Text>
-                {group.data.map((task) => (
-                  <View key={task.id} className={`${cardBgClass} border rounded-2xl overflow-hidden mb-2`}>
-                    <Pressable className="px-5 py-5" onPress={() => toggleExpanded(task.id)}>
-                      <View className="flex-row items-start">
-                        {task.id !== "documents-checklist" && (
-                          <Pressable
-                            onPress={(e) => {
-                              e.stopPropagation();
-                              toggleCompleted(task.id);
-                            }}
-                            className={`w-6 h-6 rounded-full border-2 flex-shrink-0 ${task.completed ? "bg-emerald-500 border-emerald-500" : borderClass} mr-4`}
-                          />
-                        )}
-                        <View className="flex-1 min-w-0">
-                          <Text className={`${textClass} text-base mb-1 ${task.completed ? "line-through opacity-70" : ""}`}>
-                            {task.title}
-                          </Text>
-                          <Text className={`${secondaryTextClass} text-sm`}>{task.description}</Text>
-                        </View>
-                        {group.key === "courses" && task.id.startsWith("course-") && (
-                          <Pressable
-                            onPress={(e) => {
-                              e.stopPropagation();
-                              const name = task.id.replace(/^course-/, "");
-                              setCurrentCourses((prev) => prev.filter((c) => c !== name));
-                            }}
-                            className="p-2 -mr-2"
-                            hitSlop={8}
-                            accessibilityLabel={t("general.delete")}
-                          >
-                            <MaterialIcons name="close" size={20} color={styles.placeholderColor} />
-                          </Pressable>
-                        )}
-                        {group.key === "applications" && task.id.startsWith("submit-") && (
-                          <Pressable
-                            onPress={(e) => {
-                              e.stopPropagation();
-                              const lower = task.id.replace(/^submit-/, "");
-                              setTargetSchools((prev) => prev.filter((s) => s.toLowerCase() !== lower));
-                            }}
-                            className="p-2 -mr-2"
-                            hitSlop={8}
-                            accessibilityLabel={t("general.delete")}
-                          >
-                            <MaterialIcons name="close" size={20} color={styles.placeholderColor} />
-                          </Pressable>
-                        )}
-                        {group.key === "interests" && task.id.startsWith("interest-") && (
-                          <Pressable
-                            onPress={(e) => {
-                              e.stopPropagation();
-                              const idx = parseInt(task.id.replace(/^interest-/, ""), 10);
-                              if (!isNaN(idx)) setActiveClubs((prev) => prev.filter((_, i) => i !== idx));
-                            }}
-                            className="p-2 -mr-2"
-                            hitSlop={8}
-                            accessibilityLabel={t("general.delete")}
-                          >
-                            <MaterialIcons name="close" size={20} color={styles.placeholderColor} />
-                          </Pressable>
-                        )}
-                      </View>
-                    </Pressable>
+                {group.data.map((task) => {
+                  const isExpanded = expandedTaskIds[task.id] ?? task.id === "documents-checklist";
+                  const isCompleted = task.status === "completed";
+                  const canRemoveCourse = group.id === "courses" && task.type === "course" && !!task.metadata?.courseName;
+                  const canRemoveApplication = group.id === "applications" && task.type === "application" && !!task.metadata?.schoolName;
+                  const canRemoveInterest = group.id === "interests" && task.type === "interest" && !!task.metadata?.interestName;
 
-                    {task.expanded && (
-                      <View className="px-5 pb-5">
-                        {task.documents && (
-                          <View className="mt-2 gap-3">
-                            {(Object.keys(task.documents) as (keyof DocumentChecklist)[]).map((docKey) => (
-                              <View key={docKey}>
-                                <Pressable
-                                  onPress={() => toggleDocument(task.id, docKey)}
-                                  className={`flex-row items-center p-3 rounded-xl ${task.documents![docKey] ? "bg-emerald-50 dark:bg-gray-900/80" : "bg-emerald-50 dark:bg-gray-900/70"}`}
-                                >
-                                  <Ionicons name={getDocIcon(docKey)} size={18} color={task.documents![docKey] ? "#008f4e" : styles.placeholderColor} />
-                                  <Text className={`flex-1 ml-3 text-sm ${task.documents![docKey] ? (isDark || isGreen ? "text-emerald-100 font-medium" : "text-emerald-700 font-medium") : textClass}`}>
-                                    {formatDocLabel(docKey)}
-                                  </Text>
-                                  <Ionicons name={task.documents![docKey] ? "checkmark-circle" : "cloud-upload-outline"} size={20} color={task.documents![docKey] ? "#008f4e" : borderClass} />
-                                </Pressable>
-                                {task.documents![docKey] && (
-                                  <Pressable
-                                    onPress={() => {
-                                      const url = (task.documents![docKey] as DocumentFile).url;
-                                      if (Platform.OS === "web") {
-                                        (window as unknown as { open: (u: string, t: string) => void }).open(url, "_blank");
-                                      } else {
-                                        Linking.openURL(url);
-                                      }
-                                    }}
-                                    className="mt-1.5 ml-9"
-                                    accessibilityRole="link"
-                                    accessibilityLabel={t("roadmap.openFileInNewTab")}
-                                  >
-                                    <Text className="text-xs text-blue-600 dark:text-blue-400 underline">
-                                      {(task.documents![docKey] as DocumentFile).fileName}
-                                    </Text>
-                                  </Pressable>
-                                )}
-
-                                {/* Upload Box Logic */}
-                                {activeUpload === docKey && (
-                                  <View className="mt-2 border-2 border-dashed border-emerald-300 dark:border-gray-700 rounded-xl p-6 items-center justify-center bg-emerald-50/50 dark:bg-gray-900/80">
-                                    <Ionicons name="cloud-upload" size={28} color="#008f4e" />
-                                    <Text className={`${textClass} mt-2 text-sm font-medium`}>
-                                      {t("roadmap.uploadDocument").replace("{document}", formatDocLabel(docKey))}
-                                    </Text>
-                                    <Text className={`${secondaryTextClass} text-xs`}>{t("roadmap.supportedFormats")}</Text>
-                                    <Pressable
-                                      onPress={() => handlePickDocument(docKey)}
-                                      disabled={isUploadingDoc}
-                                      className={`mt-3 bg-white dark:bg-gray-900/80 border border-emerald-200 dark:border-gray-700 px-4 py-1.5 rounded-lg ${isUploadingDoc ? "opacity-60" : ""}`}
-                                    >
-                                      <Text className={`${textClass} text-xs font-bold`}>
-                                        {isUploadingDoc ? t("general.pleaseWait") : t("roadmap.selectFile")}
-                                      </Text>
-                                    </Pressable>
-                                  </View>
-                                )}
-                              </View>
-                            ))}
+                  return (
+                    <View key={task.id} className={`${cardBgClass} border rounded-2xl overflow-hidden mb-2`}>
+                      <Pressable className="px-5 py-5" onPress={() => toggleExpanded(task.id)}>
+                        <View className="flex-row items-start">
+                          {task.id !== "documents-checklist" ? (
+                            <Pressable
+                              onPress={(e) => {
+                                e.stopPropagation();
+                                toggleCompleted(group.id, task).catch(() => {});
+                              }}
+                              className={`w-6 h-6 rounded-full border-2 flex-shrink-0 ${isCompleted ? "bg-emerald-500 border-emerald-500" : borderClass} mr-4`}
+                            />
+                          ) : null}
+                          <View className="flex-1 min-w-0">
+                            <Text className={`${textClass} text-base mb-1 ${isCompleted ? "line-through opacity-70" : ""}`}>{task.title}</Text>
+                            <Text className={`${secondaryTextClass} text-sm`}>{task.description}</Text>
                           </View>
-                        )}
+                          {canRemoveCourse ? (
+                            <Pressable onPress={() => removeCourse(task).catch(() => {})} className="p-2 -mr-2" hitSlop={8}>
+                              <MaterialIcons name="close" size={20} color={styles.placeholderColor} />
+                            </Pressable>
+                          ) : null}
+                          {canRemoveApplication ? (
+                            <Pressable onPress={() => removeApplication(task).catch(() => {})} className="p-2 -mr-2" hitSlop={8}>
+                              <MaterialIcons name="close" size={20} color={styles.placeholderColor} />
+                            </Pressable>
+                          ) : null}
+                          {canRemoveInterest ? (
+                            <Pressable onPress={() => removeInterest(task).catch(() => {})} className="p-2 -mr-2" hitSlop={8}>
+                              <MaterialIcons name="close" size={20} color={styles.placeholderColor} />
+                            </Pressable>
+                          ) : null}
+                        </View>
+                      </Pressable>
 
-                        <TextInput
-                          placeholder={t("roadmap.addNotePlaceholder")}
-                          placeholderTextColor={styles.placeholderColor}
-                          onSubmitEditing={(e) => addNote(task.id, e.nativeEvent.text)}
-                          className={`mt-4 border p-2 rounded-lg ${styles.inputBgClass} ${textClass}`}
-                        />
-                      </View>
-                    )}
-                  </View>
-                ))}
-                {group.key === "courses" && (
+                      {isExpanded ? (
+                        <View className="px-5 pb-5">
+                          {task.documents ? (
+                            <View className="mt-2 gap-3">
+                              {ROADMAP_DOCUMENT_KEYS.map((docKey) => {
+                                const documentItem = task.documents?.[docKey];
+                                const isUploaded = documentItem?.status === "completed";
+                                return (
+                                  <View key={docKey}>
+                                    <Pressable
+                                      onPress={() => toggleDocument(docKey)}
+                                      className={`flex-row items-center p-3 rounded-xl ${isUploaded ? "bg-emerald-50 dark:bg-gray-900/80" : "bg-emerald-50 dark:bg-gray-900/70"}`}
+                                    >
+                                      <Ionicons name={getDocIcon(docKey)} size={18} color={isUploaded ? "#008f4e" : styles.placeholderColor} />
+                                      <Text className={`flex-1 ml-3 text-sm ${isUploaded ? (isDark || isGreen ? "text-emerald-100 font-medium" : "text-emerald-700 font-medium") : textClass}`}>
+                                        {formatDocLabel(docKey)}
+                                      </Text>
+                                      <Ionicons name={isUploaded ? "checkmark-circle" : "cloud-upload-outline"} size={20} color={isUploaded ? "#008f4e" : styles.placeholderColor} />
+                                    </Pressable>
+                                    {documentItem?.fileName ? (
+                                      documentItem.fileUrl ? (
+                                        <Pressable
+                                          onPress={() => {
+                                            const url = documentItem.fileUrl as string;
+                                            if (Platform.OS === "web") {
+                                              (window as unknown as { open: (u: string, target: string) => void }).open(url, "_blank");
+                                            } else {
+                                              Linking.openURL(url);
+                                            }
+                                          }}
+                                          className="mt-1.5 ml-9"
+                                          accessibilityRole="link"
+                                        >
+                                          <Text className="text-xs text-blue-600 dark:text-blue-400 underline">{documentItem.fileName}</Text>
+                                        </Pressable>
+                                      ) : (
+                                        <Text className="mt-1.5 ml-9 text-xs text-blue-600 dark:text-blue-400">{documentItem.fileName}</Text>
+                                      )
+                                    ) : null}
+                                    {activeUpload === docKey ? (
+                                      <View className="mt-2 border-2 border-dashed border-emerald-300 dark:border-gray-700 rounded-xl p-6 items-center justify-center bg-emerald-50/50 dark:bg-gray-900/80">
+                                        <Ionicons name="cloud-upload" size={28} color="#008f4e" />
+                                        <Text className={`${textClass} mt-2 text-sm font-medium`}>
+                                          {t("roadmap.uploadDocument").replace("{document}", formatDocLabel(docKey))}
+                                        </Text>
+                                        <Text className={`${secondaryTextClass} text-xs`}>{t("roadmap.supportedFormats")}</Text>
+                                        <Pressable
+                                          onPress={() => handlePickDocument(docKey)}
+                                          disabled={isUploadingDoc}
+                                          className={`mt-3 bg-white dark:bg-gray-900/80 border border-emerald-200 dark:border-gray-700 px-4 py-1.5 rounded-lg ${isUploadingDoc ? "opacity-60" : ""}`}
+                                        >
+                                          <Text className={`${textClass} text-xs font-bold`}>
+                                            {isUploadingDoc ? t("general.pleaseWait") : t("roadmap.selectFile")}
+                                          </Text>
+                                        </Pressable>
+                                      </View>
+                                    ) : null}
+                                  </View>
+                                );
+                              })}
+                            </View>
+                          ) : null}
+                          <TextInput
+                            placeholder={t("roadmap.addNotePlaceholder")}
+                            placeholderTextColor={styles.placeholderColor}
+                            onSubmitEditing={(e) => addNote(group.id, task.id, e.nativeEvent.text).catch(() => {})}
+                            className={`mt-4 border p-2 rounded-lg ${styles.inputBgClass} ${textClass}`}
+                          />
+                        </View>
+                      ) : null}
+                    </View>
+                  );
+                })}
+
+                {group.id === "courses" ? (
                   <View className="flex-row items-center gap-2 mt-2">
                     <TextInput
                       value={newCourseInput}
                       onChangeText={setNewCourseInput}
                       placeholder={t("roadmap.addCoursePlaceholder")}
                       placeholderTextColor={styles.placeholderColor}
-                      onSubmitEditing={(e) => {
-                        const name = e.nativeEvent.text.trim();
-                        if (name && !currentCourses.includes(name)) {
-                          setCurrentCourses((prev) => [...prev, name]);
-                          setNewCourseInput("");
-                        }
-                      }}
+                      onSubmitEditing={(e) => addCourse(e.nativeEvent.text).catch(() => {})}
                       className={`flex-1 border p-2 rounded-lg ${styles.inputBgClass} ${textClass}`}
                     />
-                    <Pressable
-                      onPress={() => {
-                        const name = newCourseInput.trim();
-                        if (name && !currentCourses.includes(name)) {
-                          setCurrentCourses((prev) => [...prev, name]);
-                          setNewCourseInput("");
-                        }
-                      }}
-                      className={`px-4 py-2 rounded-lg border items-center justify-center ${borderClass}`}
-                    >
+                    <Pressable onPress={() => addCourse(newCourseInput).catch(() => {})} className={`px-4 py-2 rounded-lg border items-center justify-center ${borderClass}`}>
                       <Text className={`${textClass} text-sm font-medium`}>{t("roadmap.addCourse")}</Text>
                     </Pressable>
                   </View>
-                )}
-                {group.key === "interests" && (
-                  <View className="flex-row items-center gap-2 mt-2">
-                    <TextInput
-                      value={newInterestInput}
-                      onChangeText={setNewInterestInput}
-                      placeholder={t("roadmap.addInterestPlaceholder")}
-                      placeholderTextColor={styles.placeholderColor}
-                      onSubmitEditing={(e) => {
-                        const name = e.nativeEvent.text.trim();
-                        if (name && !activeClubs.includes(name)) {
-                          setActiveClubs((prev) => [...prev, name]);
-                          setNewInterestInput("");
-                        }
-                      }}
-                      className={`flex-1 border p-2 rounded-lg ${styles.inputBgClass} ${textClass}`}
-                    />
-                    <Pressable
-                      onPress={() => {
-                        const name = newInterestInput.trim();
-                        if (name && !activeClubs.includes(name)) {
-                          setActiveClubs((prev) => [...prev, name]);
-                          setNewInterestInput("");
-                        }
-                      }}
-                      className={`px-4 py-2 rounded-lg border items-center justify-center ${borderClass}`}
-                    >
-                      <Text className={`${textClass} text-sm font-medium`}>{t("roadmap.addInterest")}</Text>
-                    </Pressable>
-                  </View>
-                )}
-                {group.key === "applications" && (
+                ) : null}
+                {group.id === "applications" ? (
                   <View className="flex-row items-center gap-2 mt-2">
                     <TextInput
                       value={newSchoolInput}
                       onChangeText={setNewSchoolInput}
                       placeholder={t("roadmap.addApplicationPlaceholder")}
                       placeholderTextColor={styles.placeholderColor}
-                      onSubmitEditing={(e) => {
-                        const name = e.nativeEvent.text.trim();
-                        if (name && !targetSchools.some((s) => s.toLowerCase() === name.toLowerCase())) {
-                          setTargetSchools((prev) => [...prev, name]);
-                          setNewSchoolInput("");
-                        }
-                      }}
+                      onSubmitEditing={(e) => addApplication(e.nativeEvent.text).catch(() => {})}
                       className={`flex-1 border p-2 rounded-lg ${styles.inputBgClass} ${textClass}`}
                     />
-                    <Pressable
-                      onPress={() => {
-                        const name = newSchoolInput.trim();
-                        if (name && !targetSchools.some((s) => s.toLowerCase() === name.toLowerCase())) {
-                          setTargetSchools((prev) => [...prev, name]);
-                          setNewSchoolInput("");
-                        }
-                      }}
-                      className={`px-4 py-2 rounded-lg border items-center justify-center ${borderClass}`}
-                    >
+                    <Pressable onPress={() => addApplication(newSchoolInput).catch(() => {})} className={`px-4 py-2 rounded-lg border items-center justify-center ${borderClass}`}>
                       <Text className={`${textClass} text-sm font-medium`}>{t("roadmap.addApplication")}</Text>
                     </Pressable>
                   </View>
-                )}
-              </View>
-            ))}
-          </View>
-
-          {/* Active Clubs */}
-          <View className="px-6 mt-6 mb-8">
-            <View className={`${cardBgClass} border rounded-2xl p-5`}>
-              <Text className={`${textClass} text-base mb-2 font-bold`}>{t("roadmap.activeClubs")}</Text>
-              <View className="flex-row flex-wrap mb-3">
-                {activeClubs.map((club, i) => (
-                  <View key={i} className="flex-row items-center bg-emerald-500 rounded-full mr-2 mb-2 overflow-hidden">
-                    <Text className={`${isDark ? "text-white" : "text-emerald-900"} text-sm font-medium px-3 py-1`}>{club}</Text>
-                    <Pressable
-                      onPress={() => setActiveClubs((prev) => prev.filter((_, idx) => idx !== i))}
-                      className="pr-2 py-1"
-                      hitSlop={8}
-                      accessibilityLabel={t("general.delete")}
-                    >
-                      <MaterialIcons name="close" size={18} color={isDark ? "#fff" : "#000"} />
+                ) : null}
+                {group.id === "interests" ? (
+                  <View className="flex-row items-center gap-2 mt-2">
+                    <TextInput
+                      value={newInterestInput}
+                      onChangeText={setNewInterestInput}
+                      placeholder={t("roadmap.addInterestPlaceholder")}
+                      placeholderTextColor={styles.placeholderColor}
+                      onSubmitEditing={(e) => addInterest(e.nativeEvent.text).catch(() => {})}
+                      className={`flex-1 border p-2 rounded-lg ${styles.inputBgClass} ${textClass}`}
+                    />
+                    <Pressable onPress={() => addInterest(newInterestInput).catch(() => {})} className={`px-4 py-2 rounded-lg border items-center justify-center ${borderClass}`}>
+                      <Text className={`${textClass} text-sm font-medium`}>{t("roadmap.addInterest")}</Text>
                     </Pressable>
                   </View>
-                ))}
+                ) : null}
               </View>
-              <View className="flex-row items-center gap-2">
-                <TextInput
-                  value={newClubInput}
-                  onChangeText={setNewClubInput}
-                  placeholder={t("roadmap.addClubPlaceholder")}
-                  placeholderTextColor={styles.placeholderColor}
-                  onSubmitEditing={(e) => {
-                    const name = e.nativeEvent.text.trim();
-                    if (name && !activeClubs.includes(name)) {
-                      setActiveClubs((prev) => [...prev, name]);
-                      setNewClubInput("");
-                    }
-                  }}
-                  className={`flex-1 border p-2 rounded-lg ${styles.inputBgClass} ${textClass}`}
-                />
-                <Pressable
-                  onPress={() => {
-                    const name = newClubInput.trim();
-                    if (name && !activeClubs.includes(name)) {
-                      setActiveClubs((prev) => [...prev, name]);
-                      setNewClubInput("");
-                    }
-                  }}
-                  className={`px-4 py-2 rounded-lg border items-center justify-center ${borderClass}`}
-                >
-                  <Text className={`${textClass} text-sm font-medium`}>{t("roadmap.addClub")}</Text>
-                </Pressable>
-              </View>
-            </View>
+            ))}
           </View>
         </View>
       </ScrollView>
     </ScreenBackground>
   );
 }
-

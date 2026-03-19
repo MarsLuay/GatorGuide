@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { View, Text, Pressable, ScrollView, TextInput } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
@@ -22,7 +22,8 @@ export default function ComparePage() {
   const { t } = useAppLanguage();
   const insets = useSafeAreaInsets();
   const { state } = useAppData();
-  const savedColleges = state.savedColleges ?? [];
+  const savedColleges = useMemo(() => state.savedColleges ?? [], [state.savedColleges]);
+  const hasAutoPrefilledSelectionRef = useRef(false);
   const [selected, setSelected] = useState<College[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState<"match" | "tuition" | "admission">("match");
@@ -57,6 +58,28 @@ export default function ComparePage() {
     if (c.size === "small" || c.size === "medium" || c.size === "large") return c.size;
     return t("home.notAvailable");
   };
+
+  useEffect(() => {
+    if (!savedColleges.length) {
+      setSelected([]);
+      return;
+    }
+
+    const savedCollegesById = new Map(savedColleges.map((college) => [String(college.id), college]));
+
+    setSelected((prev) => {
+      if (prev.length > 0) {
+        return prev
+          .map((college) => savedCollegesById.get(String(college.id)))
+          .filter((college): college is College => !!college);
+      }
+
+      if (hasAutoPrefilledSelectionRef.current) return prev;
+
+      hasAutoPrefilledSelectionRef.current = true;
+      return savedColleges.slice(0, Math.min(2, savedColleges.length));
+    });
+  }, [savedColleges]);
 
   const filteredColleges = useMemo(() => {
     const q = searchTerm.trim().toLowerCase();
@@ -138,6 +161,10 @@ export default function ComparePage() {
             </View>
           ) : (
             <>
+              <Text className={`${secondaryTextClass} text-sm mb-4`}>
+                {t("compare.prefillHint", { count: Math.min(2, savedColleges.length) })}
+              </Text>
+
               <View className={`${cardBgClass} border rounded-2xl p-4 mb-4`}>
                 <TextInput
                   value={searchTerm}

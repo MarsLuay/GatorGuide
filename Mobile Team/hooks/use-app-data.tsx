@@ -1,11 +1,12 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { authService } from "@/services";
 import type { AuthUser } from "@/services/auth.service";
 import type { College } from "@/services/college.service";
 import { db } from "@/services/firebase";
 import { normalizeQuestionnaireAnswers } from "@/services/questionnaire.enums";
+import { savedCollegesService } from "@/services/saved-colleges.service";
 
 export type User = {
   uid: string;
@@ -68,11 +69,21 @@ type AppDataContextValue = {
   setOnboardingSeen: (seen: boolean) => Promise<void>;
 };
 
+type LoadedServerProfile = {
+  profile: Partial<User>;
+  legacySavedCollegeIds: string[];
+};
+
 const AppDataContext = createContext<AppDataContextValue | null>(null);
 
 export function AppDataProvider({ children }: { children: React.ReactNode }) {
   const [isHydrated, setIsHydrated] = useState(false);
   const [state, setState] = useState<AppDataState>(initialState);
+  const stateRef = useRef(state);
+
+  useEffect(() => {
+    stateRef.current = state;
+  }, [state]);
 
   useEffect(() => {
     let mounted = true;
@@ -87,7 +98,9 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
             user: parsed.user ?? null,
             questionnaireAnswers: normalizeQuestionnaireAnswers(parsed.questionnaireAnswers ?? {}),
             notificationsEnabled: parsed.notificationsEnabled ?? false,
-            savedColleges: Array.isArray(parsed.savedColleges) ? parsed.savedColleges : [],
+            savedColleges: Array.isArray(parsed.savedColleges)
+              ? savedCollegesService.mergeSavedCollegeLists([], parsed.savedColleges)
+              : [],
           });
         }
       } catch {
@@ -103,6 +116,50 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
     AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(state)).catch(() => {});
   }, [isHydrated, state]);
 
+  const loadProfileFromServer = useCallback(async (uid: string): Promise<LoadedServerProfile> => {
+    if (!db) return { profile: {}, legacySavedCollegeIds: [] };
+
+    try {
+      const userDoc = await getDoc(doc(db, "users", uid));
+      if (!userDoc.exists() || !userDoc.data()) return { profile: {}, legacySavedCollegeIds: [] };
+
+      const data = userDoc.data();
+      return {
+        profile: {
+          state: data.state ?? "",
+          major: data.major ?? "",
+          gpa: data.gpa ?? "",
+          resume: data.resume ?? "",
+          transcript: data.transcript ?? "",
+          avatar: data.avatar ?? "",
+          residencyType: data.residencyType ?? "",
+          englishProficiency: data.englishProficiency ?? "",
+          englishTestType: data.englishTestType ?? "",
+          englishTestValue: data.englishTestValue ?? "",
+          isProfileComplete: !!data.isProfileComplete,
+        },
+        legacySavedCollegeIds: Array.isArray(data.savedColleges)
+          ? data.savedColleges
+              .map((collegeId) => String(collegeId ?? "").trim())
+              .filter(Boolean)
+          : [],
+      };
+    } catch {
+      return { profile: {}, legacySavedCollegeIds: [] };
+    }
+  }, []);
+
+  const loadMergedSavedColleges = useCallback(async (uid: string, legacySavedCollegeIds: string[] = []): Promise<College[]> => {
+    const localSavedColleges = stateRef.current.savedColleges ?? [];
+    if (!uid || !db) return localSavedColleges;
+
+    try {
+      return await savedCollegesService.syncSavedColleges(uid, localSavedColleges, legacySavedCollegeIds);
+    } catch {
+      return localSavedColleges;
+    }
+  }, []);
+
   const signIn = useCallback(async (u: Pick<User, "name" | "email"> & { password: string; isSignUp: boolean }) => {
     const authUser = await authService.signIn({
       name: u.name,
@@ -111,30 +168,8 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
       isSignUp: u.isSignUp,
     });
 
-    let profileFromServer: Partial<User> = {};
-    if (db) {
-      try {
-        const userDoc = await getDoc(doc(db, "users", authUser.uid));
-        if (userDoc.exists() && userDoc.data()) {
-          const data = userDoc.data();
-          profileFromServer = {
-            state: data.state ?? "",
-            major: data.major ?? "",
-            gpa: data.gpa ?? "",
-            resume: data.resume ?? "",
-            transcript: data.transcript ?? "",
-            avatar: data.avatar ?? "",
-            residencyType: data.residencyType ?? "",
-            englishProficiency: data.englishProficiency ?? "",
-            englishTestType: data.englishTestType ?? "",
-            englishTestValue: data.englishTestValue ?? "",
-            isProfileComplete: !!data.isProfileComplete,
-          };
-        }
-      } catch {
-        // Offline or missing doc: keep empty profile
-      }
-    }
+    const { profile: profileFromServer, legacySavedCollegeIds } = await loadProfileFromServer(authUser.uid);
+    const mergedSavedColleges = await loadMergedSavedColleges(authUser.uid, legacySavedCollegeIds);
 
     setState((prev) => {
       if (prev.user && prev.user.email === authUser.email) {
@@ -146,6 +181,7 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
             name: authUser.name || u.name,
             ...profileFromServer,
           },
+          savedColleges: mergedSavedColleges,
         };
       }
 
@@ -163,35 +199,15 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
           transcript: "",
           ...profileFromServer,
         },
+        savedColleges: mergedSavedColleges,
       };
     });
-  }, []);
+  }, [loadMergedSavedColleges, loadProfileFromServer]);
 
   const signInWithAuthUser = useCallback(async (authUser: AuthUser) => {
-    let profileFromServer: Partial<User> = {};
-    if (db) {
-      try {
-        const userDoc = await getDoc(doc(db, "users", authUser.uid));
-        if (userDoc.exists() && userDoc.data()) {
-          const data = userDoc.data();
-          profileFromServer = {
-            state: data.state ?? "",
-            major: data.major ?? "",
-            gpa: data.gpa ?? "",
-            resume: data.resume ?? "",
-            transcript: data.transcript ?? "",
-            avatar: data.avatar ?? "",
-            residencyType: data.residencyType ?? "",
-            englishProficiency: data.englishProficiency ?? "",
-            englishTestType: data.englishTestType ?? "",
-            englishTestValue: data.englishTestValue ?? "",
-            isProfileComplete: !!data.isProfileComplete,
-          };
-        }
-      } catch {
-        // ignore
-      }
-    }
+    const { profile: profileFromServer, legacySavedCollegeIds } = await loadProfileFromServer(authUser.uid);
+    const mergedSavedColleges = await loadMergedSavedColleges(authUser.uid, legacySavedCollegeIds);
+
     setState((prev) => ({
       ...prev,
       user: {
@@ -206,8 +222,9 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
         transcript: "",
         ...profileFromServer,
       },
+      savedColleges: mergedSavedColleges,
     }));
-  }, []);
+  }, [loadMergedSavedColleges, loadProfileFromServer]);
 
   const signInAsGuest = useCallback(async () => {
     setState((prev) => ({
@@ -232,7 +249,7 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
     } catch {
       // ignore
     }
-    setState((prev) => ({ ...prev, user: null }));
+    setState(initialState);
     await AsyncStorage.removeItem(STORAGE_KEY);
   }, []);
 
@@ -240,7 +257,7 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
     try {
       await authService.deleteAccount();
     } finally {
-      setState((prev) => ({ ...prev, user: null }));
+      setState(initialState);
       await AsyncStorage.removeItem(STORAGE_KEY);
     }
   }, []);
@@ -265,18 +282,39 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const addSavedCollege = useCallback(async (college: College) => {
+    const currentUser = stateRef.current.user;
+
     setState((prev) => {
       const list = prev.savedColleges ?? [];
-      if (list.some((c) => c.id === college.id)) return prev;
-      return { ...prev, savedColleges: [...list, college] };
+      const merged = savedCollegesService.mergeSavedCollegeLists(list, [college]);
+      if (merged.length === list.length && list.some((c) => c.id === college.id)) return { ...prev, savedColleges: merged };
+      return { ...prev, savedColleges: merged };
     });
+
+    if (!currentUser?.uid || currentUser.isGuest) return;
+
+    try {
+      await savedCollegesService.saveCollege(currentUser.uid, college);
+    } catch (error) {
+      console.warn("Saved college sync failed.", error);
+    }
   }, []);
 
   const removeSavedCollege = useCallback(async (collegeId: string) => {
+    const currentUser = stateRef.current.user;
+
     setState((prev) => ({
       ...prev,
       savedColleges: (prev.savedColleges ?? []).filter((c) => c.id !== collegeId),
     }));
+
+    if (!currentUser?.uid || currentUser.isGuest) return;
+
+    try {
+      await savedCollegesService.removeCollege(currentUser.uid, collegeId);
+    } catch (error) {
+      console.warn("Saved college removal sync failed.", error);
+    }
   }, []);
 
   const isCollegeSaved = useCallback((collegeId: string) => {
@@ -288,7 +326,9 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
       user: data.user ?? null,
       questionnaireAnswers: normalizeQuestionnaireAnswers(data.questionnaireAnswers ?? {}),
       notificationsEnabled: data.notificationsEnabled ?? false,
-      savedColleges: Array.isArray(data.savedColleges) ? data.savedColleges : [],
+      savedColleges: Array.isArray(data.savedColleges)
+        ? savedCollegesService.mergeSavedCollegeLists([], data.savedColleges)
+        : [],
     });
   }, []);
 

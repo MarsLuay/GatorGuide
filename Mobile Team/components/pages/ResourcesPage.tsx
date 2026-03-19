@@ -40,6 +40,12 @@ export default function ResourcesPage() {
         icon: "build",
         items: [
           {
+            title: t("resources.savedColleges"),
+            description: t("resources.savedCollegesDesc"),
+            url: "app://saved-colleges",
+            tags: ["saved", "bookmarks", "favorites", "colleges"],
+          },
+          {
             title: t("resources.compareColleges"),
             description: t("resources.compareCollegesDesc"),
             url: "app://compare",
