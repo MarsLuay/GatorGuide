@@ -354,7 +354,7 @@ export default function HomePage() {
   useEffect(() => {
     if (!showCooldownPopup && !cooldownUntil) return;
 
-    let interval: number | null = null;
+    let interval: ReturnType<typeof setInterval> | null = null;
     interval = setInterval(() => {
       const now = Date.now();
       const until = cooldownRef.current ?? cooldownUntil ?? 0;
