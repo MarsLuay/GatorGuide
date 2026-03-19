@@ -4,7 +4,7 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { serverTimestamp, doc, setDoc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
-import { API_CONFIG } from './config';
+import { API_CONFIG, isStubMode } from './config';
 import { db } from './firebase';
 import { firebaseAuth } from './firebase';
 import { buildScorecardUrl, fetchScorecardUrl } from './scorecard';
@@ -120,7 +120,7 @@ export type CollegeMatchCriteria = {
 };
 
 class CollegeService {
-  private lastSource: 'live' | 'cached' | null = null;
+  private lastSource: 'live' | 'cached' | 'stub' | null = null;
 
   getLastSource() {
     return this.lastSource;

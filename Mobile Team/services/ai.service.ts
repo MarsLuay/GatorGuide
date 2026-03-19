@@ -3,7 +3,7 @@
 // Currently returns stub responses, will connect to Firebase Function + Gemini later
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { API_CONFIG } from './config';
+import { API_CONFIG, isStubMode } from './config';
 import { collegeService, College } from './college.service';
 
 // Minimal typed shapes to improve safety in this service
