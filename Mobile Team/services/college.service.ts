@@ -3,7 +3,7 @@
 // Currently returns stub data, will connect to College Scorecard API later
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { serverTimestamp, doc, setDoc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
+import { deleteDoc, doc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { API_CONFIG, isStubMode } from './config';
 import { db } from './firebase';
 import { firebaseAuth } from './firebase';
@@ -152,17 +152,28 @@ class CollegeService {
   }
 
   /**
-   * TASK: Firebase Saved Colleges collection
-   * Adds or removes a college from user's favorites
+   * Legacy helper: save/remove a minimal favorite marker.
+   * The app now uses saved-colleges.service.ts to persist full college snapshots.
    */
   async toggleSavedCollege(collegeId: string, isSaved: boolean): Promise<void> {
     if (!db || !firebaseAuth?.currentUser) return;
 
     const user = firebaseAuth.currentUser;
-    const userRef = doc(db, 'users', user.uid);
-    await updateDoc(userRef, {
-      savedColleges: isSaved ? arrayUnion(collegeId) : arrayRemove(collegeId),
-    });
+    const savedCollegeRef = doc(db, 'users', user.uid, 'savedColleges', String(collegeId));
+
+    if (!isSaved) {
+      await deleteDoc(savedCollegeRef);
+      return;
+    }
+
+    await setDoc(
+      savedCollegeRef,
+      {
+        collegeId: String(collegeId),
+        updatedAt: serverTimestamp(),
+      },
+      { merge: true }
+    );
   }
 
   // --- Original Stub Methods (保持原样) ---

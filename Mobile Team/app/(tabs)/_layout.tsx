@@ -134,6 +134,7 @@ export default function TabLayout() {
       <Tabs.Screen name="questionnaire" options={{ tabBarButton: () => null }} />
       <Tabs.Screen name="compare" options={{ tabBarButton: () => null }} />
       <Tabs.Screen name="cost-calculator" options={{ tabBarButton: () => null }} />
+      <Tabs.Screen name="saved-colleges" options={{ tabBarButton: () => null }} />
       <Tabs.Screen name="language" options={{ tabBarButton: () => null }} />
       <Tabs.Screen name="about" options={{ tabBarButton: () => null }} />
       <Tabs.Screen name="privacy" options={{ tabBarButton: () => null }} />

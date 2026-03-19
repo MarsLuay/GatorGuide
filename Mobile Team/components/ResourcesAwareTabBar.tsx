@@ -1,10 +1,10 @@
 import React from "react";
 import { BottomTabBar, BottomTabBarProps } from "@react-navigation/bottom-tabs";
 
-const RESOURCES_CHILD_ROUTES = ["compare", "cost-calculator"];
+const RESOURCES_CHILD_ROUTES = ["compare", "cost-calculator", "saved-colleges"];
 
 /**
- * Custom tab bar that highlights the Resources tab when user is on Compare or Cost Calculator screens.
+ * Custom tab bar that highlights the Resources tab while users browse tool screens under Resources.
  */
 export function ResourcesAwareTabBar(props: BottomTabBarProps) {
   const { state } = props;

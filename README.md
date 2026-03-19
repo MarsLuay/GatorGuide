@@ -25,6 +25,12 @@ We make that possible by combining three connected parts of the project:
 
 ## Setup: Download and Run (Windows)
 
+### Quick start
+
+- Double-click `Start-to-run.bat` in the repo root.
+- It tries to install Node.js LTS with `winget` if Node is missing, creates `Mobile Team\.env` from `env.example` if needed, installs app packages only when `node_modules` is missing, and starts Expo with `--tunnel`.
+- After the server comes online, it tries to open `http://127.0.0.1:8081` in your default browser automatically.
+
 ### 1) Install required tools
 
 - Download VS Code: https://code.visualstudio.com/download
