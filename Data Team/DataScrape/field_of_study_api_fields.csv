@@ -1,0 +1,175 @@
+VARIABLE NAME,developer-friendly name,NAME OF DATA ELEMENT,SOURCE,dev-category
+UNITID,cip_4_digit.unit_id,Unit ID for institution,IPEDS,programs
+OPEID6,cip_4_digit.ope6_id,6-digit OPE ID for institution,IPEDS/PEPS,programs
+INSTNM,cip_4_digit.school.name,Institution name,IPEDS/PEPS,programs
+CONTROL,cip_4_digit.school.type,Control of institution,IPEDS/PEPS,programs
+MAIN,cip_4_digit.school.main_campus,Flag for main campus,IPEDS/PEPS,programs
+CIPCODE,cip_4_digit.code,Classification of Instructional Programs (CIP) code for the field of study,NSLDS,programs
+CIPDESC,cip_4_digit.title,Text description of the field of study CIP Code,ED,programs
+CREDLEV,cip_4_digit.credential.level,Level of credential,NSLDS,programs
+CREDDESC,cip_4_digit.credential.title,Text description of the level of credential,NSLDS,programs
+IPEDSCOUNT1,cip_4_digit.counts.ipeds_awards1,Number of awards to all students in year 1 of the pooled debt cohort,IPEDS,programs
+IPEDSCOUNT2,cip_4_digit.counts.ipeds_awards2,Number of awards to all students in year 2 of the pooled debt cohort,IPEDS,programs
+DEBT_ALL_PP_ANY_N,cip_4_digit.debt.parent_plus.all.all_inst.count,Student recipient count for average/median Parent PLUS loan debt disbursed at all institutions,NSLDS,programs
+DEBT_ALL_PP_ANY_MEAN,cip_4_digit.debt.parent_plus.all.all_inst.average,Average Parent PLUS loan debt disbursed at all institutions,NSLDS,programs
+DEBT_ALL_PP_ANY_MDN,cip_4_digit.debt.parent_plus.all.all_inst.median,Median Parent PLUS loan debt disbursed at all institutions,NSLDS,programs
+DEBT_MALE_PP_ANY_N,cip_4_digit.debt.parent_plus.male.all_inst.count,Student recipient count for average/median Parent PLUS loan debt disbursed to males at all institutions,NSLDS,programs
+DEBT_MALE_PP_ANY_MEAN,cip_4_digit.debt.parent_plus.male.all_inst.average,Average Parent PLUS loan debt disbursed to males at all institutions,NSLDS,programs
+DEBT_MALE_PP_ANY_MDN,cip_4_digit.debt.parent_plus.male.all_inst.median,Median Parent PLUS loan debt disbursed to males at all institutions,NSLDS,programs
+DEBT_NOTMALE_PP_ANY_N,cip_4_digit.debt.parent_plus.not_male.all_inst.count,Student recipient count for average/median Parent PLUS loan debt disbursed to non-males at all institutions,NSLDS,programs
+DEBT_NOTMALE_PP_ANY_MEAN,cip_4_digit.debt.parent_plus.not_male.all_inst.average,Average Parent PLUS loan debt disbursed to non-males at all institutions,NSLDS,programs
+DEBT_NOTMALE_PP_ANY_MDN,cip_4_digit.debt.parent_plus.not_male.all_inst.median,Median Parent PLUS loan debt disbursed to non-males at all institutions,NSLDS,programs
+DEBT_PELL_PP_ANY_N,cip_4_digit.debt.parent_plus.pell.all_inst.count,Student recipient count for average/median Parent PLUS loan debt disbursed to Pell recipients at all institutions,NSLDS,programs
+DEBT_PELL_PP_ANY_MEAN,cip_4_digit.debt.parent_plus.pell.all_inst.average,Average Parent PLUS loan debt disbursed to Pell recipients at all institutions,NSLDS,programs
+DEBT_PELL_PP_ANY_MDN,cip_4_digit.debt.parent_plus.pell.all_inst.median,Median Parent PLUS loan debt disbursed to Pell recipients at all institutions,NSLDS,programs
+DEBT_NOPELL_PP_ANY_N,cip_4_digit.debt.parent_plus.not_pell.all_inst.count,Student recipient count for average/median Parent PLUS loan debt disbursed to non-Pell-recipients at all institutions,NSLDS,programs
+DEBT_NOPELL_PP_ANY_MEAN,cip_4_digit.debt.parent_plus.not_pell.all_inst.average,Average Parent PLUS loan debt disbursed to non-Pell-recipients at all institutions,NSLDS,programs
+DEBT_NOPELL_PP_ANY_MDN,cip_4_digit.debt.parent_plus.not_pell.all_inst.median,Median Parent PLUS loan debt disbursed to non-Pell-recipients at all institutions,NSLDS,programs
+DEBT_ALL_PP_EVAL_N,cip_4_digit.debt.parent_plus.all.eval_inst.count,Student recipient count for average/median Parent PLUS loan debt disbursed at this institution,NSLDS,programs
+DEBT_ALL_PP_EVAL_MEAN,cip_4_digit.debt.parent_plus.all.eval_inst.average,Average Parent PLUS loan debt disbursed at this institution,NSLDS,programs
+DEBT_ALL_PP_EVAL_MDN,cip_4_digit.debt.parent_plus.all.eval_inst.median,Median Parent PLUS loan debt disbursed at this institution,NSLDS,programs
+DEBT_MALE_PP_EVAL_N,cip_4_digit.debt.parent_plus.male.eval_inst.count,Student recipient count for average/median Parent PLUS loan debt disbursed to males at this institution,NSLDS,programs
+DEBT_MALE_PP_EVAL_MEAN,cip_4_digit.debt.parent_plus.male.eval_inst.average,Average Parent PLUS loan debt disbursed to males at this institution,NSLDS,programs
+DEBT_MALE_PP_EVAL_MDN,cip_4_digit.debt.parent_plus.male.eval_inst.median,Median Parent PLUS loan debt disbursed to males at this institution,NSLDS,programs
+DEBT_NOTMALE_PP_EVAL_N,cip_4_digit.debt.parent_plus.not_male.eval_inst.count,Student recipient count for average/median Parent PLUS loan debt disbursed to non-males at this institution,NSLDS,programs
+DEBT_NOTMALE_PP_EVAL_MEAN,cip_4_digit.debt.parent_plus.not_male.eval_inst.average,Average Parent PLUS loan debt disbursed to non-males at this institution,NSLDS,programs
+DEBT_NOTMALE_PP_EVAL_MDN,cip_4_digit.debt.parent_plus.not_male.eval_inst.median,Median Parent PLUS loan debt disbursed to non-males at this institution,NSLDS,programs
+DEBT_PELL_PP_EVAL_N,cip_4_digit.debt.parent_plus.pell.eval_inst.count,Student recipient count for average/median Parent PLUS loan debt disbursed to Pell recipients at this institution,NSLDS,programs
+DEBT_PELL_PP_EVAL_MEAN,cip_4_digit.debt.parent_plus.pell.eval_inst.average,Average Parent PLUS loan debt disbursed to Pell recipients at this institution,NSLDS,programs
+DEBT_PELL_PP_EVAL_MDN,cip_4_digit.debt.parent_plus.pell.eval_inst.median,Median Parent PLUS loan debt disbursed to Pell recipients at this institution,NSLDS,programs
+DEBT_NOPELL_PP_EVAL_N,cip_4_digit.debt.parent_plus.not_pell.eval_inst.count,Student recipient count for average/median Parent PLUS loan debt disbursed to non-Pell-recipients at this institution,NSLDS,programs
+DEBT_NOPELL_PP_EVAL_MEAN,cip_4_digit.debt.parent_plus.not_pell.eval_inst.average,Average Parent PLUS loan debt disbursed to non-Pell-recipients at this institution,NSLDS,programs
+DEBT_NOPELL_PP_EVAL_MDN,cip_4_digit.debt.parent_plus.not_pell.eval_inst.median,Median Parent PLUS loan debt disbursed to non-Pell-recipients at this institution,NSLDS,programs
+DEBT_ALL_STGP_ANY_N,cip_4_digit.debt.staff_grad_plus.all.all_inst.count,Borrower count for average/median Stafford and Grad PLUS loan debt disbursed at all institutions,NSLDS,programs
+DEBT_ALL_STGP_ANY_MEAN,cip_4_digit.debt.staff_grad_plus.all.all_inst.average,Average Stafford and Grad PLUS loan debt disbursed at all institutions,NSLDS,programs
+DEBT_ALL_STGP_ANY_MDN,cip_4_digit.debt.staff_grad_plus.all.all_inst.median,Median Stafford and Grad PLUS loan debt disbursed at all institutions,NSLDS,programs
+DEBT_MALE_STGP_ANY_N,cip_4_digit.debt.staff_grad_plus.male.all_inst.count,Borrower count for average/median Stafford and Grad PLUS loan debt disbursed to males at all institutions,NSLDS,programs
+DEBT_MALE_STGP_ANY_MEAN,cip_4_digit.debt.staff_grad_plus.male.all_inst.average,Average Stafford and Grad PLUS loan debt disbursed to males at all institutions,NSLDS,programs
+DEBT_MALE_STGP_ANY_MDN,cip_4_digit.debt.staff_grad_plus.male.all_inst.median,Median Stafford and Grad PLUS loan debt disbursed to males at all institutions,NSLDS,programs
+DEBT_NOTMALE_STGP_ANY_N,cip_4_digit.debt.staff_grad_plus.not_male.all_inst.count,Borrower count for average/median Stafford and Grad PLUS loan debt disbursed to non-males at all institutions,NSLDS,programs
+DEBT_NOTMALE_STGP_ANY_MEAN,cip_4_digit.debt.staff_grad_plus.not_male.all_inst.average,Average Stafford and Grad PLUS loan debt disbursed to non-males at all institutions,NSLDS,programs
+DEBT_NOTMALE_STGP_ANY_MDN,cip_4_digit.debt.staff_grad_plus.not_male.all_inst.median,Median Stafford and Grad PLUS loan debt disbursed to non-males at all institutions,NSLDS,programs
+DEBT_PELL_STGP_ANY_N,cip_4_digit.debt.staff_grad_plus.pell.all_inst.count,Borrower count for average/median Stafford and Grad PLUS loan debt disbursed to Pell recipients at all institutions,NSLDS,programs
+DEBT_PELL_STGP_ANY_MEAN,cip_4_digit.debt.staff_grad_plus.pell.all_inst.average,Average Stafford and Grad PLUS loan debt disbursed to Pell recipients at all institutions,NSLDS,programs
+DEBT_PELL_STGP_ANY_MDN,cip_4_digit.debt.staff_grad_plus.pell.all_inst.median,Median Stafford and Grad PLUS loan debt disbursed to Pell recipients at all institutions,NSLDS,programs
+DEBT_NOPELL_STGP_ANY_N,cip_4_digit.debt.staff_grad_plus.not_pell.all_inst.count,Borrower count for average/median Stafford and Grad PLUS loan debt disbursed to non-Pell-recipients at all institutions,NSLDS,programs
+DEBT_NOPELL_STGP_ANY_MEAN,cip_4_digit.debt.staff_grad_plus.not_pell.all_inst.average,Average Stafford and Grad PLUS loan debt disbursed to non-Pell-recipients at all institutions,NSLDS,programs
+DEBT_NOPELL_STGP_ANY_MDN,cip_4_digit.debt.staff_grad_plus.not_pell.all_inst.median,Median Stafford and Grad PLUS loan debt disbursed to non-Pell-recipients at all institutions,NSLDS,programs
+DEBT_ALL_STGP_EVAL_N,cip_4_digit.debt.staff_grad_plus.all.eval_inst.count,Borrower count for average/median Stafford and Grad PLUS loan debt disbursed at this institution,NSLDS,programs
+DEBT_ALL_STGP_EVAL_MEAN,cip_4_digit.debt.staff_grad_plus.all.eval_inst.average,Average Stafford and Grad PLUS loan debt disbursed at this institution,NSLDS,programs
+DEBT_ALL_STGP_EVAL_MDN,cip_4_digit.debt.staff_grad_plus.all.eval_inst.median,Median Stafford and Grad PLUS loan debt disbursed at this institution,NSLDS,programs
+DEBT_MALE_STGP_EVAL_N,cip_4_digit.debt.staff_grad_plus.male.eval_inst.count,Borrower count for average/median Stafford and Grad PLUS loan debt disbursed to males at this institution,NSLDS,programs
+DEBT_MALE_STGP_EVAL_MEAN,cip_4_digit.debt.staff_grad_plus.male.eval_inst.average,Average Stafford and Grad PLUS loan debt disbursed to males at this institution,NSLDS,programs
+DEBT_MALE_STGP_EVAL_MDN,cip_4_digit.debt.staff_grad_plus.male.eval_inst.median,Median Stafford and Grad PLUS loan debt disbursed to males at this institution,NSLDS,programs
+DEBT_NOTMALE_STGP_EVAL_N,cip_4_digit.debt.staff_grad_plus.not_male.eval_inst.count,Borrower count for average/median Stafford and Grad PLUS loan debt disbursed to non-males at this institution,NSLDS,programs
+DEBT_NOTMALE_STGP_EVAL_MEAN,cip_4_digit.debt.staff_grad_plus.not_male.eval_inst.average,Average Stafford and Grad PLUS loan debt disbursed to non-males at this institution,NSLDS,programs
+DEBT_NOTMALE_STGP_EVAL_MDN,cip_4_digit.debt.staff_grad_plus.not_male.eval_inst.median,Median Stafford and Grad PLUS loan debt disbursed to non-males at this institution,NSLDS,programs
+DEBT_PELL_STGP_EVAL_N,cip_4_digit.debt.staff_grad_plus.pell.eval_inst.count,Borrower count for average/median Stafford and Grad PLUS loan debt disbursed to Pell recipients at this institution,NSLDS,programs
+DEBT_PELL_STGP_EVAL_MEAN,cip_4_digit.debt.staff_grad_plus.pell.eval_inst.average,Average Stafford and Grad PLUS loan debt disbursed to Pell recipients at this institution,NSLDS,programs
+DEBT_PELL_STGP_EVAL_MDN,cip_4_digit.debt.staff_grad_plus.pell.eval_inst.median,Median Stafford and Grad PLUS loan debt disbursed to Pell recipients at this institution,NSLDS,programs
+DEBT_NOPELL_STGP_EVAL_N,cip_4_digit.debt.staff_grad_plus.not_pell.eval_inst.count,Borrower count for average/median Stafford and Grad PLUS loan debt disbursed to non-Pell-recipients at this institution,NSLDS,programs
+DEBT_NOPELL_STGP_EVAL_MEAN,cip_4_digit.debt.staff_grad_plus.not_pell.eval_inst.average,Average Stafford and Grad PLUS loan debt disbursed to non-Pell-recipients at this institution,NSLDS,programs
+DEBT_NOPELL_STGP_EVAL_MDN,cip_4_digit.debt.staff_grad_plus.not_pell.eval_inst.median,Median Stafford and Grad PLUS loan debt disbursed to non-Pell-recipients at this institution,NSLDS,programs
+DEBT_ALL_PP_ANY_MDN10YRPAY,cip_4_digit.debt.parent_plus.all.all_inst.median_payment,Median estimated monthly payment for Parent PLUS loan debt disbursed at all institutions,NSLDS,programs
+DEBT_ALL_PP_EVAL_MDN10YRPAY,cip_4_digit.debt.parent_plus.all.eval_inst.median_payment,Median estimated monthly payment for Parent PLUS loan debt disbursed at this institution,NSLDS,programs
+DEBT_ALL_STGP_ANY_MDN10YRPAY,cip_4_digit.debt.staff_grad_plus.all.all_inst.median_payment,Median estimated monthly payment for Stafford and Grad PLUS loan debt disbursed at all institutions,NSLDS,programs
+DEBT_ALL_STGP_EVAL_MDN10YRPAY,cip_4_digit.debt.staff_grad_plus.all.eval_inst.median_payment,Median estimated monthly payment for Stafford and Grad PLUS loan debt disbursed at this institution,NSLDS,programs
+EARN_COUNT_NWNE_HI_1YR,cip_4_digit.earnings.highest.1_yr.not_working_not_enrolled.overall_count,Number of graduates not working and not enrolled 1 year after completing highest credential,Treasury,programs
+EARN_COUNT_WNE_HI_1YR,cip_4_digit.earnings.highest.1_yr.working_not_enrolled.overall_count,Number of graduates working and not enrolled 1 year after completing highest credential,Treasury,programs
+EARN_MDN_HI_1YR,cip_4_digit.earnings.highest.1_yr.overall_median_earnings,Median earnings of graduates working and not enrolled 1 year after completing highest credential,Treasury,programs
+EARN_CNTOVER150_HI_1YR,cip_4_digit.earnings.highest.1_yr.overall_count_over_poverty_line,Number of graduates working and not enrolled who earned more than 150% of the single-person household poverty threshold 1 year after completing highest credential.,Treasury,programs
+EARN_COUNT_NWNE_HI_2YR,cip_4_digit.earnings.highest.2_yr.not_working_not_enrolled.overall_count,Number of graduates not working and not enrolled 2 years after completing highest credential,Treasury,programs
+EARN_COUNT_WNE_HI_2YR,cip_4_digit.earnings.highest.2_yr.working_not_enrolled.overall_count,Number of graduates working and not enrolled 2 years after completing highest credential,Treasury,programs
+EARN_MDN_HI_2YR,cip_4_digit.earnings.highest.2_yr.overall_median_earnings,Median earnings of graduates working and not enrolled 2 years after completing highest credential,Treasury,programs
+EARN_CNTOVER150_HI_2YR,cip_4_digit.earnings.highest.2_yr.overall_count_over_poverty_line,Number of graduates working and not enrolled who earned more than 150% of the single-person household poverty threshold 2 years after completing highest credential.,Treasury,programs
+BBRR2_FED_COMP_N,cip_4_digit.repayment.2_yr_bb_fed_comp.count,Federal student loan borrower-based 2-year borrower count of completers,NSLDS,programs
+BBRR2_FED_COMP_DFLT,cip_4_digit.repayment.2_yr_bb_fed_comp.default,Percentage of undergraduate completer undergraduate federal student loan borrowers in default after 2 years,NSLDS,programs
+BBRR2_FED_COMP_DLNQ,cip_4_digit.repayment.2_yr_bb_fed_comp.delinquent,Percentage of undergraduate completer undergraduate federal student loan borrowers in delinquency after 2 years,NSLDS,programs
+BBRR2_FED_COMP_FBR,cip_4_digit.repayment.2_yr_bb_fed_comp.forbearance,Percentage of undergraduate completer undergraduate federal student loan borrowers in forbearance after 2 years,NSLDS,programs
+BBRR2_FED_COMP_DFR,cip_4_digit.repayment.2_yr_bb_fed_comp.deferment,Percentage of undergraduate completer undergraduate federal student loan borrowers in deferment after 2 years,NSLDS,programs
+BBRR2_FED_COMP_NOPROG,cip_4_digit.repayment.2_yr_bb_fed_comp.noprogress,Percentage of undergraduate completer undergraduate federal student loan borrowers not making progress after 2 years,NSLDS,programs
+BBRR2_FED_COMP_MAKEPROG,cip_4_digit.repayment.2_yr_bb_fed_comp.makingprogress,Percentage of undergraduate completer undergraduate federal student loan borrowers making progress after 2 years,NSLDS,programs
+BBRR2_FED_COMP_PAIDINFULL,cip_4_digit.repayment.2_yr_bb_fed_comp.fullypaid,Percentage of undergraduate completer undergraduate federal student loan borrowers paid in full after 2 years,NSLDS,programs
+BBRR2_FED_COMP_DISCHARGE,cip_4_digit.repayment.2_yr_bb_fed_comp.discharge,Percentage of undergraduate completer undergraduate federal student loan borrowers with all loans discharged after 2 years,NSLDS,programs
+BBRR3_FED_COMP_N,cip_4_digit.repayment.3_yr_bb_fed_comp.count,Federal student loan borrower-based 3-year borrower count of completers,NSLDS,programs
+BBRR3_FED_COMP_DFLT,cip_4_digit.repayment.3_yr_bb_fed_comp.default,Percentage of undergraduate completer undergraduate federal student loan borrowers in default after 3 years,NSLDS,programs
+BBRR3_FED_COMP_DLNQ,cip_4_digit.repayment.3_yr_bb_fed_comp.delinquent,Percentage of undergraduate completer undergraduate federal student loan borrowers in delinquency after 3 years,NSLDS,programs
+BBRR3_FED_COMP_FBR,cip_4_digit.repayment.3_yr_bb_fed_comp.forbearance,Percentage of undergraduate completer undergraduate federal student loan borrowers in forbearance after 3 years,NSLDS,programs
+BBRR3_FED_COMP_DFR,cip_4_digit.repayment.3_yr_bb_fed_comp.deferment,Percentage of undergraduate completer undergraduate federal student loan borrowers in deferment after 3 years,NSLDS,programs
+BBRR3_FED_COMP_NOPROG,cip_4_digit.repayment.3_yr_bb_fed_comp.noprogress,Percentage of undergraduate completer undergraduate federal student loan borrowers not making progress after 3 years,NSLDS,programs
+BBRR3_FED_COMP_MAKEPROG,cip_4_digit.repayment.3_yr_bb_fed_comp.makingprogress,Percentage of undergraduate completer undergraduate federal student loan borrowers making progress after 3 years,NSLDS,programs
+BBRR3_FED_COMP_PAIDINFULL,cip_4_digit.repayment.3_yr_bb_fed_comp.fullypaid,Percentage of undergraduate completer undergraduate federal student loan borrowers paid in full after 3 years,NSLDS,programs
+BBRR3_FED_COMP_DISCHARGE,cip_4_digit.repayment.3_yr_bb_fed_comp.discharge,Percentage of undergraduate completer undergraduate federal student loan borrowers with all loans discharged after 3 years,NSLDS,programs
+EARN_COUNT_PELL_WNE_1YR,cip_4_digit.earnings.1_yr.working_not_enrolled.pell_count,Number of graduates who received a Pell Grant and were working and not enrolled 1 year after completing,Treasury,programs
+EARN_PELL_WNE_MDN_1YR,cip_4_digit.earnings.1_yr.pell_median_earnings,Median earnings of graduates who received a Pell Grant and were working and not enrolled 1 year after completing,Treasury,programs
+EARN_COUNT_NOPELL_WNE_1YR,cip_4_digit.earnings.1_yr.working_not_enrolled.nonpell_count,Number of graduates who did not receive a Pell Grant and were working and not enrolled 1 year after completing,Treasury,programs
+EARN_NOPELL_WNE_MDN_1YR,cip_4_digit.earnings.1_yr.nonpell_median_earnings,Median earnings of graduates who did not receive a Pell Grant and were working and not enrolled 1 year after completing,Treasury,programs
+EARN_COUNT_MALE_WNE_1YR,cip_4_digit.earnings.1_yr.working_not_enrolled.male_count,Number of male graduates working and not enrolled 1 year after completing,Treasury,programs
+EARN_MALE_WNE_MDN_1YR,cip_4_digit.earnings.1_yr.male_median_earnings,Median earnings of male graduates working and not enrolled 1 year after completing,Treasury,programs
+EARN_COUNT_NOMALE_WNE_1YR,cip_4_digit.earnings.1_yr.working_not_enrolled.nonmale_count,Number of non-male graduates working and not enrolled 1 year after completing,Treasury,programs
+EARN_NOMALE_WNE_MDN_1YR,cip_4_digit.earnings.1_yr.nonmale_median_earnings,Median earnings of non-male graduates working and not enrolled 1 year after completing,Treasury,programs
+EARN_COUNT_NE_3YR,cip_4_digit.earnings.highest.3_yr.not_enrolled.overall_count,Number of graduates not enrolled 3 years after completing highest credential,Treasury,programs
+EARN_NE_MDN_3YR,cip_4_digit.earnings.highest.3_yr.overall_median_earnings,Median earnings of graduates not enrolled 3 years after completing highest credential,Treasury,programs
+EARN_COUNT_WNE_3YR,cip_4_digit.earnings.highest.3_yr.working_not_enrolled.overall_count,Number of graduates working and not enrolled 3 years after completing highest credential,Treasury,programs
+EARN_CNTOVER150_3YR,cip_4_digit.earnings.highest.3_yr.overall_count_over_poverty_line,Number of graduates working and not enrolled who earned more than 150% of the single-person household poverty threshold 3 years after completing highest credential.,Treasury,programs
+EARN_COUNT_PELL_NE_3YR,cip_4_digit.earnings.highest.3_yr.not_enrolled.pell_count,Number of graduates who received a Pell Grant and were not enrolled 3 years after completing highest credential,Treasury,programs
+EARN_PELL_NE_MDN_3YR,cip_4_digit.earnings.highest.3_yr.pell_median_earnings,Median earnings of graduates who received a Pell Grant and were not enrolled 3 years after completing highest credential,Treasury,programs
+EARN_COUNT_NOPELL_NE_3YR,cip_4_digit.earnings.highest.3_yr.not_enrolled.nonpell_count,Number of graduates who did not receive a Pell Grant and were not enrolled 3 years after completing highest credential,Treasury,programs
+EARN_NOPELL_NE_MDN_3YR,cip_4_digit.earnings.highest.3_yr.nonpell_median_earnings,Median earnings of graduates who did not receive a Pell Grant and were not enrolled 3 years after completing highest credential,Treasury,programs
+EARN_COUNT_MALE_NE_3YR,cip_4_digit.earnings.highest.3_yr.not_enrolled.male_count,Number of male graduates not enrolled 3 years after completing highest credential,Treasury,programs
+EARN_MALE_NE_MDN_3YR,cip_4_digit.earnings.highest.3_yr.male_median_earnings,Median earnings of male graduates not enrolled 3 years after completing highest credential,Treasury,programs
+EARN_COUNT_NOMALE_NE_3YR,cip_4_digit.earnings.highest.3_yr.not_enrolled.nonmale_count,Number of non-male graduates not enrolled 3 years after completing highest credential,Treasury,programs
+EARN_NOMALE_NE_MDN_3YR,cip_4_digit.earnings.highest.3_yr.nonmale_median_earnings,Median earnings of non-male graduates not enrolled 3 years after completing highest credential,Treasury,programs
+EARN_COUNT_NWNE_1YR,cip_4_digit.earnings.1_yr.not_working_not_enrolled.overall_count,Number of graduates not working and not enrolled 1 year after completing,Treasury,programs
+EARN_COUNT_WNE_1YR,cip_4_digit.earnings.1_yr.working_not_enrolled.overall_count,Number of graduates working and not enrolled 1 year after completing,Treasury,programs
+EARN_MDN_1YR,cip_4_digit.earnings.1_yr.overall_median_earnings,Median earnings of graduates working and not enrolled 1 year after completing,Treasury,programs
+EARN_GT_THRESHOLD_1YR,cip_4_digit.earnings.1_yr.overall_count_more_than_HS_Grad,Number of graduates working and not enrolled 1 year after completing who earned more than a high school graduate,Treasury,programs
+EARN_COUNT_HIGH_CRED_1YR,cip_4_digit.earnings.1_yr.overall_count_awarded_higher_credential,Number of graduates working and not enrolled 1 year after completing who went on to earn a higher credential,Treasury,programs
+EARN_IN_STATE_1YR,cip_4_digit.earnings.1_yr.overall_count_working_in_institution_state,Number of graduates working and not enrolled 1 year after completing who were employed within the same state as the institution,Treasury,programs
+EARN_COUNT_NWNE_4YR,cip_4_digit.earnings.4_yr.not_working_not_enrolled.overall_count,Number of graduates not working and not enrolled 4 year after completing,Treasury,programs
+EARN_COUNT_WNE_4YR,cip_4_digit.earnings.4_yr.working_not_enrolled.overall_count,Number of graduates working and not enrolled 4 year after completing,Treasury,programs
+EARN_MDN_4YR,cip_4_digit.earnings.4_yr.overall_median_earnings,Median earnings of graduates working and not enrolled 4 year after completing,Treasury,programs
+EARN_GT_THRESHOLD_4YR,cip_4_digit.earnings.4_yr.overall_count_more_than_HS_Grad,Number of graduates working and not enrolled 4 years after completing who earned more than a high school graduate,Treasury,programs
+EARN_COUNT_PELL_WNE_4YR,cip_4_digit.earnings.4_yr.working_not_enrolled.pell_count,Number of graduates who received a Pell Grant and were working and not enrolled 4 year after completing,Treasury,programs
+EARN_PELL_WNE_MDN_4YR,cip_4_digit.earnings.4_yr.pell_median_earnings,Median earnings of graduates who received a Pell Grant and were working and not enrolled 4 year after completing,Treasury,programs
+EARN_COUNT_NOPELL_WNE_4YR,cip_4_digit.earnings.4_yr.working_not_enrolled.nonpell_count,Number of graduates who did not receive a Pell Grant and were working and not enrolled 4 year after completing,Treasury,programs
+EARN_NOPELL_WNE_MDN_4YR,cip_4_digit.earnings.4_yr.nonpell_median_earnings,Median earnings of graduates who did not receive a Pell Grant and were working and not enrolled 4 year after completing,Treasury,programs
+EARN_COUNT_MALE_WNE_4YR,cip_4_digit.earnings.4_yr.working_not_enrolled.male_count,Number of male graduates working and not enrolled 4 year after completing,Treasury,programs
+EARN_MALE_WNE_MDN_4YR,cip_4_digit.earnings.4_yr.male_median_earnings,Median earnings of male graduates working and not enrolled 4 year after completing,Treasury,programs
+EARN_COUNT_NOMALE_WNE_4YR,cip_4_digit.earnings.4_yr.working_not_enrolled.nonmale_count,Number of non-male graduates working and not enrolled 4 year after completing,Treasury,programs
+EARN_NOMALE_WNE_MDN_4YR,cip_4_digit.earnings.4_yr.nonmale_median_earnings,Median earnings of non-male graduates working and not enrolled 4 year after completing,Treasury,programs
+EARN_COUNT_HIGH_CRED_4YR,cip_4_digit.earnings.4_yr.overall_count_awarded_higher_credential,Number of graduates working and not enrolled 4 years after completing who went on to earn a higher credential,Treasury,programs
+EARN_IN_STATE_4YR,cip_4_digit.earnings.4_yr.overall_count_working_in_institution_state,Number of graduates working and not enrolled 4 years after completing who were employed within the same state as the institution,Treasury,programs
+BBRR1_FED_COMP_N,cip_4_digit.repayment.1_yr_bb_fed_comp.count,Federal student loan borrower-based 1-year borrower count of completers,NSLDS,programs
+BBRR1_FED_COMP_DFLT,cip_4_digit.repayment.1_yr_bb_fed_comp.default,Percentage of undergraduate completer undergraduate federal student loan borrowers in default after 1 years,NSLDS,programs
+BBRR1_FED_COMP_DLNQ,cip_4_digit.repayment.1_yr_bb_fed_comp.delinquent,Percentage of undergraduate completer undergraduate federal student loan borrowers in delinquency after 1 years,NSLDS,programs
+BBRR1_FED_COMP_FBR,cip_4_digit.repayment.1_yr_bb_fed_comp.forbearance,Percentage of undergraduate completer undergraduate federal student loan borrowers in forbearance after 1 years,NSLDS,programs
+BBRR1_FED_COMP_DFR,cip_4_digit.repayment.1_yr_bb_fed_comp.deferment,Percentage of undergraduate completer undergraduate federal student loan borrowers in deferment after 1 years,NSLDS,programs
+BBRR1_FED_COMP_NOPROG,cip_4_digit.repayment.1_yr_bb_fed_comp.noprogress,Percentage of undergraduate completer undergraduate federal student loan borrowers not making progress after 1 years,NSLDS,programs
+BBRR1_FED_COMP_MAKEPROG,cip_4_digit.repayment.1_yr_bb_fed_comp.makingprogress,Percentage of undergraduate completer undergraduate federal student loan borrowers making progress after 1 years,NSLDS,programs
+BBRR1_FED_COMP_PAIDINFULL,cip_4_digit.repayment.1_yr_bb_fed_comp.fullypaid,Percentage of undergraduate completer undergraduate federal student loan borrowers paid in full after 1 years,NSLDS,programs
+BBRR1_FED_COMP_DISCHARGE,cip_4_digit.repayment.1_yr_bb_fed_comp.discharge,Percentage of undergraduate completer undergraduate federal student loan borrowers with all loans discharged after 1 years,NSLDS,programs
+BBRR4_FED_COMP_N,cip_4_digit.repayment.4_yr_bb_fed_comp.count,Federal student loan borrower-based 4-year borrower count of completers,NSLDS,programs
+BBRR4_FED_COMP_DFLT,cip_4_digit.repayment.4_yr_bb_fed_comp.default,Percentage of undergraduate completer undergraduate federal student loan borrowers in default after 4 years,NSLDS,programs
+BBRR4_FED_COMP_DLNQ,cip_4_digit.repayment.4_yr_bb_fed_comp.delinquent,Percentage of undergraduate completer undergraduate federal student loan borrowers in delinquency after 4 years,NSLDS,programs
+BBRR4_FED_COMP_FBR,cip_4_digit.repayment.4_yr_bb_fed_comp.forbearance,Percentage of undergraduate completer undergraduate federal student loan borrowers in forbearance after 4 years,NSLDS,programs
+BBRR4_FED_COMP_DFR,cip_4_digit.repayment.4_yr_bb_fed_comp.deferment,Percentage of undergraduate completer undergraduate federal student loan borrowers in deferment after 4 years,NSLDS,programs
+BBRR4_FED_COMP_NOPROG,cip_4_digit.repayment.4_yr_bb_fed_comp.noprogress,Percentage of undergraduate completer undergraduate federal student loan borrowers not making progress after 4 years,NSLDS,programs
+BBRR4_FED_COMP_MAKEPROG,cip_4_digit.repayment.4_yr_bb_fed_comp.makingprogress,Percentage of undergraduate completer undergraduate federal student loan borrowers making progress after 4 years,NSLDS,programs
+BBRR4_FED_COMP_PAIDINFULL,cip_4_digit.repayment.4_yr_bb_fed_comp.fullypaid,Percentage of undergraduate completer undergraduate federal student loan borrowers paid in full after 4 years,NSLDS,programs
+BBRR4_FED_COMP_DISCHARGE,cip_4_digit.repayment.4_yr_bb_fed_comp.discharge,Percentage of undergraduate completer undergraduate federal student loan borrowers with all loans discharged after 4 years,NSLDS,programs
+DISTANCE,cip_4_digit.distance,Distance education indiciator for the field of study,IPEDS,programs
+EARN_COUNT_NWNE_5YR,cip_4_digit.earnings.5_yr.not_working_not_enrolled.overall_count,Number of graduates not working and not enrolled 5 year after completing,Treasury,programs
+EARN_COUNT_WNE_5YR,cip_4_digit.earnings.5_yr.working_not_enrolled.overall_count,Number of graduates working and not enrolled 5 year after completing,Treasury,programs
+EARN_MDN_5YR,cip_4_digit.earnings.5_yr.overall_median_earnings,Median earnings of graduates working and not enrolled 5 year after completing,Treasury,programs
+EARN_GT_THRESHOLD_5YR,cip_4_digit.earnings.5_yr.overall_count_more_than_HS_Grad,Number of graduates working and not enrolled 5 years after completing who earned more than a high school graduate,Treasury,programs
+EARN_COUNT_PELL_WNE_5YR,cip_4_digit.earnings.5_yr.working_not_enrolled.pell_count,Number of graduates who received a Pell Grant and were working and not enrolled 5 year after completing,Treasury,programs
+EARN_PELL_WNE_MDN_5YR,cip_4_digit.earnings.5_yr.pell_median_earnings,Median earnings of graduates who received a Pell Grant and were working and not enrolled 5 year after completing,Treasury,programs
+EARN_COUNT_NOPELL_WNE_5YR,cip_4_digit.earnings.5_yr.working_not_enrolled.nonpell_count,Number of graduates who did not receive a Pell Grant and were working and not enrolled 5 year after completing,Treasury,programs
+EARN_NOPELL_WNE_MDN_5YR,cip_4_digit.earnings.5_yr.nonpell_median_earnings,Median earnings of graduates who did not receive a Pell Grant and were working and not enrolled 5 year after completing,Treasury,programs
+EARN_COUNT_MALE_WNE_5YR,cip_4_digit.earnings.5_yr.working_not_enrolled.male_count,Number of male graduates working and not enrolled 5 year after completing,Treasury,programs
+EARN_MALE_WNE_MDN_5YR,cip_4_digit.earnings.5_yr.male_median_earnings,Median earnings of male graduates working and not enrolled 5 year after completing,Treasury,programs
+EARN_COUNT_NOMALE_WNE_5YR,cip_4_digit.earnings.5_yr.working_not_enrolled.nonmale_count,Number of non-male graduates working and not enrolled 5 year after completing,Treasury,programs
+EARN_NOMALE_WNE_MDN_5YR,cip_4_digit.earnings.5_yr.nonmale_median_earnings,Median earnings of non-male graduates working and not enrolled 5 year after completing,Treasury,programs
+EARN_COUNT_HIGH_CRED_5YR,cip_4_digit.earnings.5_yr.overall_count_awarded_higher_credential,Number of graduates working and not enrolled 5 years after completing who went on to earn a higher credential,Treasury,programs
+EARN_IN_STATE_5YR,cip_4_digit.earnings.5_yr.overall_count_working_in_institution_state,Number of graduates working and not enrolled 5 years after completing who were employed within the same state as the institution,Treasury,programs
