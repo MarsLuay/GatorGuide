@@ -6,20 +6,14 @@ import StartupAnimation from '@/components/pages/StartupAnimation';
 import { Stack } from "expo-router";
 import type { ErrorBoundaryProps } from "expo-router";
 import { View, Text, Pressable, Alert, Platform, Share, Image } from "react-native";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { AppThemeProvider } from "@/hooks/use-app-theme";
 import { AppLanguageProvider } from "@/hooks/use-app-language";
 import { AppDataProvider } from "@/hooks/use-app-data";
 import { AuthEmailLinkHandler } from "@/components/AuthEmailLinkHandler";
-import { cacheManagerService } from "@/services";
-import { db } from "@/services/firebase";
-import { SUPPORT_EMAIL } from "@/constants/support";
+import { cacheManagerService, errorLoggingService } from "@/services";
 
 const HAS_SEEN_STARTUP_KEY = 'gatorguide:hasSeenStartup';
-const SUPPORT_ERROR_WEBHOOK =
-  process.env.EXPO_PUBLIC_SUPPORT_ERROR_LOG_WEBHOOK ||
-  'https://us-central1-gatorguide.cloudfunctions.net/sendSupportErrorLog';
 
 const buildErrorLog = (error: Error) => {
   const lines = [
@@ -33,40 +27,37 @@ const buildErrorLog = (error: Error) => {
 };
 
 const sendErrorToSupport = async (error: Error) => {
-  const payload = {
-    timestamp: new Date().toISOString(),
-    platform: Platform.OS,
-    message: error?.message ?? 'Unknown error',
-    stack: error?.stack ?? 'No stack available',
-    app: 'GatorGuide',
-    supportEmail: SUPPORT_EMAIL,
-  };
-
   try {
-    if (SUPPORT_ERROR_WEBHOOK) {
-      const res = await fetch(SUPPORT_ERROR_WEBHOOK, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-      if (!res.ok) throw new Error(`Support endpoint error: ${res.status}`);
+    const result = await errorLoggingService.captureException(error, {
+      category: 'app',
+      operation: 'manual-error-boundary-send',
+      severity: 'error',
+      handled: true,
+      source: 'client-error-boundary',
+      screen: 'root-layout',
+      route: '/_layout',
+      metadata: {
+        manualSend: true,
+      },
+    }, {
+      transportPreference: 'webhook-first',
+      allowQueue: false,
+      bypassDedup: true,
+    });
+
+    if (result.status === 'sent') {
       Alert.alert('Sent', 'Error log sent to support.');
       return;
     }
 
-    if (db) {
-      await addDoc(collection(db, "supportErrorLogs"), {
-        ...payload,
-        createdAt: serverTimestamp(),
-        source: "client-error-boundary",
-      });
+    if (result.status === 'queued') {
       Alert.alert('Sent', 'Error log saved to support logs.');
       return;
     }
 
     Alert.alert(
       'Support endpoint not configured',
-      'Set EXPO_PUBLIC_SUPPORT_ERROR_LOG_WEBHOOK, or enable Firestore to store support logs automatically.'
+      'Set EXPO_PUBLIC_SUPPORT_ERROR_LOG_WEBHOOK or sign in so logs can be stored in Firestore.'
     );
   } catch {
     Alert.alert(
@@ -91,6 +82,18 @@ const copyErrorLog = async (error: Error) => {
 SplashScreen.preventAutoHideAsync().catch(() => {});
 
 export function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
+  useEffect(() => {
+    void errorLoggingService.captureException(error, {
+      category: 'app',
+      operation: 'error-boundary',
+      severity: 'error',
+      handled: true,
+      source: 'client-error-boundary',
+      screen: 'root-layout',
+      route: '/_layout',
+    });
+  }, [error]);
+
   return (
     <View style={{ flex: 1, backgroundColor: '#0B0B0B', justifyContent: 'center', paddingHorizontal: 24 }}>
       <View style={{ width: '100%', maxWidth: 520, alignSelf: 'center', backgroundColor: '#111827', borderRadius: 16, padding: 20 }}>
@@ -129,10 +132,18 @@ export default function RootLayout() {
     async function prepare() {
       try {
         await cacheManagerService.runAutoClearMaintenance();
+        await errorLoggingService.flushPendingLogs();
         const hasSeenStartup = await AsyncStorage.getItem(HAS_SEEN_STARTUP_KEY);
         setShowAnimation(hasSeenStartup === 'true' ? false : true);
       } catch (e) {
-        console.warn(e);
+        void errorLoggingService.captureException(e, {
+          category: 'app',
+          operation: 'root-layout-prepare',
+          severity: 'warn',
+          handled: true,
+          source: 'root-layout',
+          screen: 'root-layout',
+        });
         setShowAnimation(true);
       } finally {
         setAppIsReady(true);

@@ -12,15 +12,17 @@ import { useAppLanguage } from "@/hooks/use-app-language";
 import { normalizeQuestionnaireAnswers, QUESTIONNAIRE_RADIO_OPTIONS } from "@/services/questionnaire.enums";
 import { useAppData } from "@/hooks/use-app-data";
 import { ProfileField } from "@/components/ui/ProfileField";
+import { DocumentExtractionReviewCard } from "@/components/ui/DocumentExtractionReviewCard";
+import { StateCard } from "@/components/ui/StateCard";
+import { StatusBanner } from "@/components/ui/StatusBanner";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as FileSystem from "expo-file-system";
 import * as Sharing from "expo-sharing";
 import * as DocumentPicker from "expo-document-picker";
 import * as ImagePicker from "expo-image-picker";
-import { doc, setDoc, serverTimestamp } from "firebase/firestore";
-import { db } from "@/services/firebase";
 import { collegeService } from "@/services/college.service";
 import { APP_VERSION } from "@/constants/app-version";
+import { documentReaderService, errorLoggingService, type DocumentExtractionReview } from "@/services";
 
 type RadioOption = { key: string; label: string };
 type Question =
@@ -58,6 +60,8 @@ export default function ProfilePage() {
   const [isConfettiPlaying, setIsConfettiPlaying] = useState(false);
   const [confettiCooldown, setConfettiCooldown] = useState(false);
   const [showGuestProfile, setShowGuestProfile] = useState(false);
+  const [activeDocumentAnalysis, setActiveDocumentAnalysis] = useState<"resume" | "transcript" | null>(null);
+  const [documentReviews, setDocumentReviews] = useState<Partial<Record<"resume" | "transcript", DocumentExtractionReview>>>({});
 
   useEffect(() => {
     if (!user?.isGuest) return;
@@ -256,21 +260,34 @@ export default function ProfilePage() {
 
   const fileDisplayName = (path: string | undefined) => (path ? (path.split("/").pop() || path) : "");
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (!user) return;
-    updateUser({
-      name: editData.name,
-      state: editData.state,
-      major: editData.major,
-      gpa: editData.gpa,
-      resume: editData.resume,
-      transcript: editData.transcript,
-      residencyType: editData.residencyType,
-      englishProficiency: editData.englishProficiency,
-      englishTestType: editData.englishProficiency === "native" ? "" : editData.englishTestType,
-      englishTestValue: editData.englishProficiency === "native" ? "" : editData.englishTestValue,
-    });
-    setIsEditing(false);
+    try {
+      await updateUser({
+        name: editData.name,
+        state: editData.state,
+        major: editData.major,
+        gpa: editData.gpa,
+        resume: editData.resume,
+        transcript: editData.transcript,
+        residencyType: editData.residencyType,
+        englishProficiency: editData.englishProficiency,
+        englishTestType: editData.englishProficiency === "native" ? "" : editData.englishTestType,
+        englishTestValue: editData.englishProficiency === "native" ? "" : editData.englishTestValue,
+      });
+      setIsEditing(false);
+    } catch (error) {
+      void errorLoggingService.captureException(error, {
+        category: "firestore",
+        operation: "save-profile-edit",
+        severity: "error",
+        handled: true,
+        source: "profile-page",
+        screen: "profile",
+        route: "/profile",
+      });
+      Alert.alert(t("general.error"), t("profile.prepareDataError"));
+    }
   };
 
   const handleGpaChange = (value: string) => {
@@ -294,21 +311,133 @@ export default function ProfilePage() {
     }
   };
 
+  const analyzeUploadedDocument = async (
+    documentType: "resume" | "transcript",
+    asset: { uri: string; name?: string | null; mimeType?: string | null; size?: number | null }
+  ) => {
+    setActiveDocumentAnalysis(documentType);
+    try {
+      const review = await documentReaderService.extractDocumentReview({
+        documentType,
+        fileUri: asset.uri,
+        fileName: asset.name || asset.uri.split("/").pop() || `${documentType}.pdf`,
+        mimeType: asset.mimeType,
+        size: asset.size,
+        currentProfile: {
+          major: editData.major || user?.major || "",
+          gpa: editData.gpa || user?.gpa || "",
+        },
+        questionnaireAnswers: {
+          ...state.questionnaireAnswers,
+          ...questionnaireAnswers,
+        },
+      });
+      setDocumentReviews((prev) => ({ ...prev, [documentType]: review }));
+    } catch (error) {
+      Alert.alert(
+        t("profile.documentReaderUnavailableTitle"),
+        error instanceof Error ? error.message : t("profile.prepareDataError")
+      );
+    } finally {
+      setActiveDocumentAnalysis(null);
+    }
+  };
+
+  const dismissDocumentReview = (documentType: "resume" | "transcript") => {
+    setDocumentReviews((prev) => {
+      const next = { ...prev };
+      delete next[documentType];
+      return next;
+    });
+  };
+
+  const applyDocumentReview = async (documentType: "resume" | "transcript") => {
+    const review = documentReviews[documentType];
+    if (!review || !user?.uid) return;
+
+    try {
+      if (Object.keys(review.userPatch).length) {
+        setEditData((prev) => ({ ...prev, ...review.userPatch }));
+        await updateUser(review.userPatch);
+      }
+
+      if (Object.keys(review.questionnairePatch).length) {
+        const nextQuestionnaire = normalizeQuestionnaireAnswers(
+          {
+            ...state.questionnaireAnswers,
+            ...questionnaireAnswers,
+            ...review.questionnairePatch,
+          },
+          language
+        ) as Record<string, string>;
+        await setQuestionnaireAnswers(nextQuestionnaire);
+        setLocalAnswers((prev) => ({
+          ...prev,
+          ...(review.questionnairePatch as Record<string, string>),
+        }));
+        try {
+          await collegeService.saveQuestionnaireResult(nextQuestionnaire);
+        } catch (error) {
+          void errorLoggingService.captureException(error, {
+            category: "firestore",
+            operation: "apply-document-review-questionnaire-sync",
+            severity: "warn",
+            handled: true,
+            source: "profile-page",
+            screen: "profile",
+            route: "/profile",
+          });
+        }
+      }
+
+      dismissDocumentReview(documentType);
+      Alert.alert(t("profile.documentReaderAppliedTitle"), t("profile.documentReaderAppliedMessage"));
+    } catch (error) {
+      void errorLoggingService.captureException(error, {
+        category: "upload",
+        operation: "apply-document-review",
+        severity: "error",
+        handled: true,
+        source: "profile-page",
+        screen: "profile",
+        route: "/profile",
+      });
+      Alert.alert(t("general.error"), t("profile.prepareDataError"));
+    }
+  };
+
   const handlePickResume = async () => {
     if (!user?.uid || !isHydrated) return;
     try {
       const result = await DocumentPicker.getDocumentAsync({
-        type: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"],
+        type: [
+          "application/pdf",
+          "application/msword",
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "text/plain",
+          "image/png",
+          "image/jpeg",
+          "image/webp",
+        ],
         copyToCacheDirectory: true,
       });
       if (result.canceled || !result.assets?.[0]?.uri) return;
       const asset = result.assets[0];
       const { storageService } = await import("@/services/storage.service");
       const uploaded = await storageService.uploadResume(user.uid, asset.uri);
-      setEditData((p) => ({ ...p, resume: uploaded.name }));
-      updateUser({ resume: uploaded.url });
+      await updateUser({ resume: uploaded.url });
+      setEditData((p) => ({ ...p, resume: uploaded.url }));
+      await analyzeUploadedDocument("resume", asset);
     } catch (err) {
-      console.error(err);
+      void errorLoggingService.captureException(err, {
+        category: "upload",
+        operation: "pick-resume",
+        severity: "error",
+        handled: true,
+        source: "profile-page",
+        screen: "profile",
+        route: "/profile",
+      });
       Alert.alert(t("general.error"), t("profile.prepareDataError"));
     }
   };
@@ -317,17 +446,34 @@ export default function ProfilePage() {
     if (!user?.uid || !isHydrated) return;
     try {
       const result = await DocumentPicker.getDocumentAsync({
-        type: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"],
+        type: [
+          "application/pdf",
+          "application/msword",
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "text/plain",
+          "image/png",
+          "image/jpeg",
+          "image/webp",
+        ],
         copyToCacheDirectory: true,
       });
       if (result.canceled || !result.assets?.[0]?.uri) return;
       const asset = result.assets[0];
       const { storageService } = await import("@/services/storage.service");
       const uploaded = await storageService.uploadTranscript(user.uid, asset.uri);
-      setEditData((p) => ({ ...p, transcript: uploaded.name }));
-      updateUser({ transcript: uploaded.url });
+      await updateUser({ transcript: uploaded.url });
+      setEditData((p) => ({ ...p, transcript: uploaded.url }));
+      await analyzeUploadedDocument("transcript", asset);
     } catch (err) {
-      console.error(err);
+      void errorLoggingService.captureException(err, {
+        category: "upload",
+        operation: "pick-transcript",
+        severity: "error",
+        handled: true,
+        source: "profile-page",
+        screen: "profile",
+        route: "/profile",
+      });
       Alert.alert(t("general.error"), t("profile.prepareDataError"));
     }
   };
@@ -350,17 +496,18 @@ export default function ProfilePage() {
       const uri = result.assets[0].uri;
       const { storageService } = await import("@/services/storage.service");
       const uploaded = await storageService.uploadAvatar(user.uid, uri);
-      updateUser({ avatar: uploaded.url });
-      if (db && !user.isGuest) {
-        await setDoc(
-          doc(db, "users", user.uid),
-          { avatar: uploaded.url, updatedAt: serverTimestamp() },
-          { merge: true }
-        );
-      }
+      await updateUser({ avatar: uploaded.url });
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     } catch (err) {
-      console.error(err);
+      void errorLoggingService.captureException(err, {
+        category: "upload",
+        operation: "pick-avatar",
+        severity: "error",
+        handled: true,
+        source: "profile-page",
+        screen: "profile",
+        route: "/profile",
+      });
       Alert.alert(t("general.error"), t("profile.prepareDataError"));
     }
   };
@@ -395,7 +542,7 @@ export default function ProfilePage() {
       handleQuestionnaireAnswer('collegeSetting', normalized);
     }
     _collegeSettingMigrated.current = true;
-  }, [isHydrated]);
+  }, [isHydrated, questionnaireAnswers, state.questionnaireAnswers?.collegeSetting, t]);
 
   const _environmentMigrated = useRef(false);
   useEffect(() => {
@@ -421,7 +568,7 @@ export default function ProfilePage() {
       handleQuestionnaireAnswer('environment', normalized);
     }
     _environmentMigrated.current = true;
-  }, [isHydrated]);
+  }, [isHydrated, questionnaireAnswers, state.questionnaireAnswers?.environment, t]);
 
   const handleSaveQuestionnaire = async () => {
     // Normalize localized answers into canonical keys before persisting.
@@ -433,29 +580,43 @@ export default function ProfilePage() {
     try {
       await collegeService.saveQuestionnaireResult(toSave);
     } catch (error) {
-      console.error("Firebase sync failed", error);
+      void errorLoggingService.captureException(error, {
+        category: "firestore",
+        operation: "save-profile-questionnaire",
+        severity: "warn",
+        handled: true,
+        source: "profile-page",
+        screen: "profile",
+        route: "/profile",
+      });
     }
     setShowQuestionnaire(false);
   };
+
+  if (!isHydrated) {
+    return (
+      <ScreenBackground>
+        <View className="flex-1 items-center justify-center px-6">
+          <StateCard variant="loading" className="w-full max-w-md" />
+        </View>
+      </ScreenBackground>
+    );
+  }
 
   // If not signed in yet, show a simple prompt (prevents null crashes)
   if (!user) {
     return (
       <ScreenBackground>
         <View className="flex-1 items-center justify-center px-6">
-          <View className={`${cardBgClass} border rounded-2xl p-6 w-full max-w-md`}>
-            <Text className={`text-xl ${textClass} mb-2`}>{t("profile.notSignedIn")}</Text>
-            <Text className={`${secondaryTextClass} mb-4`}>
-              {t("profile.notSignedInMessage")}
-            </Text>
-            <Pressable
-              onPress={() => router.replace("/login")}
-              className="bg-emerald-500 rounded-lg py-4 items-center"
-              disabled={!isHydrated}
-            >
-              <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} font-semibold`}>{t("profile.goToLogin")}</Text>
-            </Pressable>
-          </View>
+          <StateCard
+            variant="empty"
+            icon="person-circle-outline"
+            title={t("profile.notSignedIn")}
+            message={t("profile.notSignedInMessage")}
+            actionLabel={t("profile.goToLogin")}
+            onAction={() => router.replace("/login")}
+            className="w-full max-w-md"
+          />
         </View>
       </ScreenBackground>
     );
@@ -554,7 +715,7 @@ export default function ProfilePage() {
               onPress={() => {
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
                 if (isEditing) {
-                  handleSave();
+                  void handleSave();
                 } else {
                   setIsEditing(true);
                 }
@@ -910,6 +1071,52 @@ export default function ProfilePage() {
                 secondaryTextClass={secondaryTextClass}
                 borderClass={borderClass}
               />
+
+              {activeDocumentAnalysis ? (
+                <StatusBanner
+                  variant="info"
+                  title={t("general.loading")}
+                  message={t("profile.documentReaderAnalyzing")}
+                  className="mt-4"
+                />
+              ) : null}
+
+              {(["resume", "transcript"] as const).map((documentType) => {
+                const review = documentReviews[documentType];
+                if (!review) return null;
+                return (
+                  <View key={`review-${documentType}`} className="mt-4">
+                    <DocumentExtractionReviewCard
+                      title={t("profile.documentReaderReviewTitle")}
+                      subtitle={t("profile.documentReaderReviewSubtitle")}
+                      fileName={review.fileName}
+                      confidenceText={
+                        typeof review.confidence === "number"
+                          ? t("profile.documentReaderConfidence", { confidence: review.confidence })
+                          : null
+                      }
+                      emptyStateText={t("profile.documentReaderNoFields")}
+                      applyLabel={t("profile.documentReaderApply")}
+                      dismissLabel={t("profile.documentReaderDismiss")}
+                      currentValueLabel={t("profile.documentReaderCurrent")}
+                      suggestedValueLabel={t("profile.documentReaderSuggested")}
+                      confidenceLabel={t("profile.documentReaderConfidenceShort")}
+                      cardBgClass={cardBgClass}
+                      textClass={textClass}
+                      secondaryTextClass={secondaryTextClass}
+                      items={review.items.map((item) => ({
+                        ...item,
+                        label: t(item.labelKey),
+                      }))}
+                      uncertainties={review.uncertainties}
+                      onApply={() => {
+                        applyDocumentReview(documentType).catch(() => {});
+                      }}
+                      onDismiss={() => dismissDocumentReview(documentType)}
+                    />
+                  </View>
+                );
+              })}
               </View>
             </View>
 

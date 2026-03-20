@@ -11,6 +11,8 @@ import { notificationsService, cacheManagerService } from "@/services";
 import { APP_VERSION } from "@/constants/app-version";
 import { SUPPORT_EMAIL, SUPPORT_MAILTO } from "@/constants/support";
 import { translations } from "@/services/translations";
+import { StateCard } from "@/components/ui/StateCard";
+import { StatusBanner } from "@/components/ui/StatusBanner";
 import * as FileSystem from "expo-file-system";
 import * as Sharing from "expo-sharing";
 import * as DocumentPicker from "expo-document-picker";
@@ -445,6 +447,16 @@ export default function SettingsPage() {
     void loadAutoClearSetting();
   }, [loadAutoClearSetting]);
 
+  if (!isHydrated) {
+    return (
+      <ScreenBackground>
+        <View className="flex-1 items-center justify-center px-6">
+          <StateCard variant="loading" className="w-full max-w-md" />
+        </View>
+      </ScreenBackground>
+    );
+  }
+
   if (showDeleteConfirm) {
     return (
       <ScreenBackground>
@@ -638,9 +650,11 @@ export default function SettingsPage() {
               textAlignVertical="top"
             />
             {supportStatusText ? (
-              <Text className={`text-sm mt-3 ${supportStatus === "error" ? "text-red-400" : secondaryTextClass}`}>
-                {supportStatusText}
-              </Text>
+              <StatusBanner
+                variant={supportStatus === "error" ? "error" : "success"}
+                message={supportStatusText}
+                className="mt-3"
+              />
             ) : null}
 
             <View className={`${flexDirection} gap-3 mt-5`}>

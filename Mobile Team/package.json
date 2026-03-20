@@ -9,6 +9,7 @@
     "ios": "expo run:ios",
     "web": "cross-env EXPO_OFFLINE=1 expo start --web --offline --port 8081",
     "lint": "expo lint",
+    "test:firebase-rules": "node scripts/run-firebase-rules-tests.cjs",
     "prebuild": "expo prebuild",
     "prebuild:android": "expo prebuild --platform android",
     "prebuild:ios": "expo prebuild --platform ios",
@@ -59,10 +60,12 @@
     "react-native-worklets": "0.5.1"
   },
   "devDependencies": {
+    "@firebase/rules-unit-testing": "^5.0.0",
     "@types/react": "~19.1.0",
     "cross-env": "^10.1.0",
     "eslint": "^9.25.0",
     "eslint-config-expo": "~10.0.0",
+    "firebase-tools": "^15.11.0",
     "tailwindcss": "^3.4.19",
     "typescript": "~5.9.2"
   },

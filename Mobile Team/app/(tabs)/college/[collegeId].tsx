@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { View, Text, ScrollView, ActivityIndicator, Pressable, Linking, Alert, TextInput } from "react-native";
+import { View, Text, ScrollView, Pressable, Linking, Alert, TextInput } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
@@ -8,7 +8,8 @@ import { collegeService, College } from "@/services";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppData } from "@/hooks/use-app-data";
-import { getMatchColorClass } from "@/utils/match-color";
+import { MatchScoreBadge } from "@/components/ui/MatchScoreBadge";
+import { StateCard } from "@/components/ui/StateCard";
 import { Ionicons } from "@expo/vector-icons";
 
 export default function CollegeDetailsPage() {
@@ -210,30 +211,34 @@ export default function CollegeDetailsPage() {
 
           {/* Loading */}
           {loading ? (
-            <View className="py-12 items-center">
-              <ActivityIndicator size="large" color="#008f4e" />
-            </View>
+            <StateCard variant="loading" className="mb-4" />
           ) : error ? (
-            <View className={`${cardBgClass} border rounded-2xl p-4 w-full mb-4`}>
-              <Text className={`text-base ${textClass} mb-2`}>{t("general.error")}</Text>
-              <Text className={`${secondaryTextClass} mb-4`}>{error}</Text>
-              <Pressable onPress={fetchDetails} className="bg-emerald-500 rounded-lg py-2 items-center">
-                <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} font-semibold`}>{t("general.retry")}</Text>
-              </Pressable>
-            </View>
+            <StateCard
+              variant="error"
+              title={t("general.error")}
+              message={error}
+              actionLabel={t("general.retry")}
+              onAction={fetchDetails}
+              className="mb-4"
+            />
           ) : !college ? (
-            <View className="py-12 items-center">
-              <Text>{t("home.notAvailable")}</Text>
-            </View>
+            <StateCard
+              variant="empty"
+              title={t("home.notAvailable")}
+              message={t("profile.prepareDataError")}
+              actionLabel={t("general.retry")}
+              onAction={fetchDetails}
+              className="mb-4"
+            />
           ) : (
             <View>
               {/* Match score (when saved from recommendations) */}
               {typeof savedCollege?.matchScore === "number" && (
-                <View className="mb-4">
-                  <Text className={`text-sm font-semibold ${getMatchColorClass(savedCollege.matchScore)}`}>
-                    {Math.round(savedCollege.matchScore)}% match
-                  </Text>
-                </View>
+                <MatchScoreBadge
+                  score={savedCollege.matchScore}
+                  text={t("savedColleges.matchLabel", { score: Math.round(savedCollege.matchScore) })}
+                  className="mb-4"
+                />
               )}
               {/* Key stats card (only show present fields) */}
               {(college.admissionRate != null || college.completionRate != null || college.studentSize != null) && (

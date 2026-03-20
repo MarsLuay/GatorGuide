@@ -5,6 +5,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { deleteDoc, doc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { API_CONFIG, isStubMode } from './config';
+import { errorLoggingService } from './error-logging.service';
 import { db } from './firebase';
 import { firebaseAuth } from './firebase';
 import { buildScorecardUrl, fetchScorecardUrl } from './scorecard';
@@ -146,7 +147,17 @@ class CollegeService {
       }, { merge: true });
       return docRef.id;
     } catch (error) {
-      console.error("Error saving questionnaire:", error);
+      void errorLoggingService.captureException(error, {
+        category: "firestore",
+        operation: "save-questionnaire-result",
+        severity: "error",
+        handled: false,
+        source: "college.service",
+        metadata: {
+          answerCount: Object.keys(answers ?? {}).length,
+          uid: firebaseAuth?.currentUser?.uid ?? null,
+        },
+      });
       throw error;
     }
   }

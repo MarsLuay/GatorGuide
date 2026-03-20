@@ -18,6 +18,7 @@ The Mobile Team helps by:
 - `services/`: app services for AI, auth, storage, college data, and config.
 - `constants/`, `hooks/`, and `utils/`: shared logic and support files.
 - `functions/`: Firebase Functions code related to the mobile app.
+- [`../Data Team/docs/COLLEGE_RANKING.md`](../Data Team/docs/COLLEGE_RANKING.md): shared college ranking philosophy and score model used by recommendations.
 
 ## Setup: Download and Run (Windows)
 

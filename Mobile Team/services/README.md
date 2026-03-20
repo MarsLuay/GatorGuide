@@ -53,7 +53,9 @@ const results = await collegeService.searchColleges('Florida');
 ### 3. AI Service (`ai.service.ts`)
 **What it does:** Chat assistant, generate personalized advice  
 **Stub behavior:** Returns pre-written responses based on keywords  
-**Real API:** Google Gemini (via Firebase Function)  
+**Real API:** Google Gemini through the `geminiGateway` Firebase Function with server-side quota enforcement and usage logging  
+
+**Ranking reference:** [`../../Data Team/docs/COLLEGE_RANKING.md`](../../Data Team/docs/COLLEGE_RANKING.md) documents the deterministic `Base Score`, the final `Personalized Score`, and the current ranking/tie-break rules used by recommendations.
 
 **Usage:**
 ```typescript
@@ -62,9 +64,19 @@ import { aiService } from '@/services';
 // Chat with AI (returns canned responses now)
 const response = await aiService.chat('How do I write a college essay?');
 
+// Assistant with structured context + ranked colleges
+const assistant = await aiService.chatAssistant({
+  query: 'Which saved college looks strongest for transfer?',
+  context: aiContext,
+  topRankedColleges: rankedResults,
+  outputFormat: 'text',
+});
+
 // Generate roadmap tasks
 const tasks = await aiService.generateRoadmap(userProfile);
 ```
+
+Structured chat context now lives in [`ai-context.service.ts`](./ai-context.service.ts). Use `buildAiConversationContext(...)` to pass a versioned, sanitized JSON context into AI chat calls instead of hand-built prompt strings. The context intentionally excludes user email, uid, avatar, resume/transcript URLs, and document filenames while still including profile, questionnaire answers, saved colleges, and roadmap state.
 
 ### 4. Storage Service (`storage.service.ts`)
 **What it does:** Upload/download resumes and transcripts  
@@ -91,7 +103,12 @@ All API keys and settings are in `services/config.ts`. It reads from environment
 EXPO_PUBLIC_USE_STUB_DATA=true  # Set to false when APIs ready
 EXPO_PUBLIC_FIREBASE_API_KEY=your_key_here
 EXPO_PUBLIC_COLLEGE_SCORECARD_KEY=your_key_here
+EXPO_PUBLIC_FIREBASE_FUNCTIONS_REGION=us-central1
+EXPO_PUBLIC_AI_GATEWAY_FUNCTION_NAME=geminiGateway
 ```
+
+Gemini itself is now configured server-side in [`../functions/.env.example`](../functions/.env.example), not in the client app env file.
+Versioned AI prompt templates now live in [`../functions/promptTemplates.js`](../functions/promptTemplates.js) so prompts stay reusable instead of being hardcoded across features.
 
 ## Switching to Real APIs
 
@@ -109,22 +126,19 @@ cp .env.example .env
 EXPO_PUBLIC_USE_STUB_DATA=false
 EXPO_PUBLIC_FIREBASE_API_KEY=your_actual_key
 EXPO_PUBLIC_COLLEGE_SCORECARD_KEY=your_actual_key
+EXPO_PUBLIC_FIREBASE_FUNCTIONS_REGION=us-central1
+EXPO_PUBLIC_AI_GATEWAY_FUNCTION_NAME=geminiGateway
 ```
 
-### Step 3: Implement Real API Calls
-Each service file has `TODO` comments showing exactly where to add real API code:
+### Step 3: Configure Functions Secrets and Limits
 
-```typescript
-// Find this in auth.service.ts
-if (isStubMode()) {
-  // Stub implementation (currently running)
-  return mockData;
-}
+Copy `functions/.env.example` to `functions/.env.local` for emulator work, or set the same values in the deployed Functions environment:
 
-// TODO: Replace this with real Firebase code
-// Uncomment and implement:
-// const auth = getAuth();
-// const userCredential = await createUserWithEmailAndPassword(...);
+```bash
+GEMINI_API_KEY=your_actual_key
+GEMINI_GLOBAL_DAILY_UNITS_LIMIT=250
+GEMINI_AUTH_DAILY_UNITS_LIMIT=60
+GEMINI_GUEST_DAILY_UNITS_LIMIT=12
 ```
 
 ### Step 4: Test Gradually

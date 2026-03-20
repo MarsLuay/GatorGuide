@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { Platform, Linking, Alert } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
@@ -7,6 +7,7 @@ import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
 
 const PENDING_LINK_STORAGE_KEY = "gatorguide:pendingEmailLinkUrl";
+const VERIFIED_EMAIL_QUERY_FLAG = "emailVerified=1";
 
 /**
  * Handles Firebase email link sign-in when user clicks the magic link.
@@ -19,7 +20,29 @@ export function AuthEmailLinkHandler() {
   const router = useRouter();
   const processingRef = useRef(false);
 
-  const tryCompleteEmailLinkSignIn = async (url: string | null) => {
+  const redirectToVerifiedLogin = useCallback(() => {
+    router.replace(`/login?${VERIFIED_EMAIL_QUERY_FLAG}`);
+  }, [router]);
+
+  const tryCompleteEmailVerification = useCallback(async (url: string | null) => {
+    if (!url || processingRef.current) return false;
+    if (!authService.isEmailVerificationLink(url)) return false;
+
+    processingRef.current = true;
+    try {
+      await authService.completeEmailVerification(url);
+      redirectToVerifiedLogin();
+      return true;
+    } catch {
+      Alert.alert(t("general.error"), t("auth.emailActionLinkFailed"));
+      router.replace("/login");
+      return true;
+    } finally {
+      processingRef.current = false;
+    }
+  }, [redirectToVerifiedLogin, router, t]);
+
+  const tryCompleteEmailLinkSignIn = useCallback(async (url: string | null) => {
     if (!url || processingRef.current) return;
     if (!authService.isSignInWithEmailLink(url)) return;
     if (state.user) return; // Already signed in
@@ -62,18 +85,28 @@ export function AuthEmailLinkHandler() {
     } finally {
       processingRef.current = false;
     }
-  };
+  }, [router, signInWithAuthUser, state.user, t]);
 
   useEffect(() => {
     if (!state.user) {
-      Linking.getInitialURL().then(tryCompleteEmailLinkSignIn);
+      Linking.getInitialURL().then(async (url) => {
+        const handledVerification = await tryCompleteEmailVerification(url);
+        if (!handledVerification) {
+          await tryCompleteEmailLinkSignIn(url);
+        }
+      });
 
       const sub = Linking.addEventListener("url", (e) => {
-        tryCompleteEmailLinkSignIn(e.url);
+        void (async () => {
+          const handledVerification = await tryCompleteEmailVerification(e.url);
+          if (!handledVerification) {
+            await tryCompleteEmailLinkSignIn(e.url);
+          }
+        })();
       });
       return () => sub.remove();
     }
-  }, [state.user]);
+  }, [state.user, tryCompleteEmailLinkSignIn, tryCompleteEmailVerification]);
 
   // Handle OAuth redirect result (Google/Microsoft) when user returns from redirect
   useEffect(() => {
@@ -92,10 +125,13 @@ export function AuthEmailLinkHandler() {
     if (typeof window === "undefined") return;
 
     const href = window.location.href;
-    if (href && authService.isSignInWithEmailLink(href)) {
-      tryCompleteEmailLinkSignIn(href);
-    }
-  }, [state.user]);
+    void (async () => {
+      const handledVerification = await tryCompleteEmailVerification(href);
+      if (!handledVerification && href && authService.isSignInWithEmailLink(href)) {
+        await tryCompleteEmailLinkSignIn(href);
+      }
+    })();
+  }, [state.user, tryCompleteEmailLinkSignIn, tryCompleteEmailVerification]);
 
   return null;
 }

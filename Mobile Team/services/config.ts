@@ -7,9 +7,17 @@
 // - Do NOT enable stub mode in production or commit a production .env with stubs enabled.
 // - To enable locally, set EXPO_PUBLIC_USE_STUB_DATA=true in your local .env (local only).
 //
-// On localhost, Google/Microsoft login may show "missing initial state". Workarounds:
-// - Use email/password auth, or set EXPO_PUBLIC_AUTH_DOMAIN=localhost:8081 and run
-//   `node scripts/auth-proxy.js` while developing locally.
+// On localhost, email-link / verification redirects require `localhost` in
+// Firebase Authentication -> Settings -> Authorized domains.
+// OAuth providers may still be stricter in local web development.
+
+const parseIntegerEnv = (value: string | undefined, fallback: number, min: number, max: number) => {
+  const parsed = Number.parseInt(String(value ?? ""), 10);
+  if (!Number.isFinite(parsed)) return fallback;
+  if (parsed < min) return min;
+  if (parsed > max) return max;
+  return parsed;
+};
 
 export const API_CONFIG = {
   firebase: {
@@ -22,14 +30,27 @@ export const API_CONFIG = {
     measurementId: process.env.EXPO_PUBLIC_FIREBASE_MEASUREMENT_ID ?? "",
   },
 
+  functions: {
+    region: process.env.EXPO_PUBLIC_FIREBASE_FUNCTIONS_REGION ?? "us-central1",
+  },
+
+  logging: {
+    errorWebhookUrl:
+      process.env.EXPO_PUBLIC_SUPPORT_ERROR_LOG_WEBHOOK ??
+      (process.env.EXPO_PUBLIC_FIREBASE_PROJECT_ID
+        ? `https://${process.env.EXPO_PUBLIC_FIREBASE_FUNCTIONS_REGION ?? "us-central1"}-${process.env.EXPO_PUBLIC_FIREBASE_PROJECT_ID}.cloudfunctions.net/sendSupportErrorLog`
+        : ""),
+    maxQueuedErrorLogs: parseIntegerEnv(process.env.EXPO_PUBLIC_ERROR_LOG_QUEUE_MAX, 30, 5, 200),
+  },
+
   collegeScorecard: {
     baseUrl: "https://api.data.gov/ed/collegescorecard/v1",
     apiKey: process.env.EXPO_PUBLIC_COLLEGE_SCORECARD_KEY || "STUB",
   },
 
-  gemini: {
-    apiKey: process.env.EXPO_PUBLIC_GEMINI_API_KEY || "STUB",
-    baseUrl: "https://generativelanguage.googleapis.com/v1beta",
+  ai: {
+    gatewayFunctionName: process.env.EXPO_PUBLIC_AI_GATEWAY_FUNCTION_NAME ?? "geminiGateway",
+    timeoutMs: parseIntegerEnv(process.env.EXPO_PUBLIC_AI_TIMEOUT_MS, 15000, 4000, 30000),
   },
 
   useStubData: false,

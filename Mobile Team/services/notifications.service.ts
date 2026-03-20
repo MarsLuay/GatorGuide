@@ -1,6 +1,7 @@
 // services/notifications.service.ts
 import * as Notifications from 'expo-notifications';
 import { Platform } from 'react-native';
+import { errorLoggingService } from './error-logging.service';
 
 export type NotificationPermissionStatus = 'granted' | 'denied' | 'undetermined';
 
@@ -29,7 +30,16 @@ class NotificationsService {
       
       return 'undetermined';
     } catch (error) {
-      console.error('Error requesting notification permissions:', error);
+      void errorLoggingService.captureException(error, {
+        category: 'notifications',
+        operation: 'request-notification-permissions',
+        severity: 'warn',
+        handled: true,
+        source: 'notifications.service',
+        metadata: {
+          platform: Platform.OS,
+        },
+      });
       return 'denied';
     }
   }
@@ -49,7 +59,16 @@ class NotificationsService {
       
       return 'undetermined';
     } catch (error) {
-      console.error('Error getting notification permissions:', error);
+      void errorLoggingService.captureException(error, {
+        category: 'notifications',
+        operation: 'get-notification-permissions',
+        severity: 'warn',
+        handled: true,
+        source: 'notifications.service',
+        metadata: {
+          platform: Platform.OS,
+        },
+      });
       return 'undetermined';
     }
   }
@@ -89,7 +108,17 @@ class NotificationsService {
       
       return id;
     } catch (error) {
-      console.error('Error scheduling notification:', error);
+      void errorLoggingService.captureException(error, {
+        category: 'notifications',
+        operation: 'schedule-notification',
+        severity: 'error',
+        handled: true,
+        source: 'notifications.service',
+        metadata: {
+          title,
+          delaySeconds,
+        },
+      });
       return null;
     }
   }
@@ -101,7 +130,13 @@ class NotificationsService {
     try {
       await Notifications.cancelAllScheduledNotificationsAsync();
     } catch (error) {
-      console.error('Error canceling notifications:', error);
+      void errorLoggingService.captureException(error, {
+        category: 'notifications',
+        operation: 'cancel-all-notifications',
+        severity: 'warn',
+        handled: true,
+        source: 'notifications.service',
+      });
     }
   }
 }

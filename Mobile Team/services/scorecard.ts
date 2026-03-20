@@ -3,6 +3,7 @@
 // and a small in-memory cache. This keeps fetch logic centralized.
 
 import { API_CONFIG } from './config';
+import { errorLoggingService } from './error-logging.service';
 
 const DEFAULT_TIMEOUT_MS = 8000;
 const CACHE_TTL_MS = 1000 * 60 * 60 * 24; // 24 hours - match college.service.ts
@@ -34,6 +35,7 @@ export const buildScorecardUrl = (params: Params) => {
 };
 
 export const fetchScorecardUrl = async (url: string, timeoutMs = DEFAULT_TIMEOUT_MS) => {
+  const scrubbedUrl = url.replace(/([?&]api_key=)[^&]+/i, '$1[redacted]');
   // use in-memory cache keyed by full URL
   const cached = inMemoryCache.get(url);
   if (cached && Date.now() - cached.ts < CACHE_TTL_MS) {
@@ -80,12 +82,38 @@ export const fetchScorecardUrl = async (url: string, timeoutMs = DEFAULT_TIMEOUT
         inMemoryCache.set(url, { ts: Date.now(), data: json });
         return json;
       } catch (e2) {
+        void errorLoggingService.captureException(e2, {
+          category: 'api',
+          operation: 'college-scorecard-fetch',
+          severity: 'error',
+          handled: false,
+          source: 'scorecard.service',
+          metadata: {
+            url: scrubbedUrl,
+            timeoutMs,
+            retried: true,
+            status: (e2 as any)?.status ?? null,
+          },
+        });
         if ((e2 as any)?.name === 'AbortError') {
           throw new Error('Scorecard API request timed out');
         }
         throw e2;
       }
     }
+    void errorLoggingService.captureException(e, {
+      category: 'api',
+      operation: 'college-scorecard-fetch',
+      severity: 'error',
+      handled: false,
+      source: 'scorecard.service',
+      metadata: {
+        url: scrubbedUrl,
+        timeoutMs,
+        retried: false,
+        status: (e as any)?.status ?? null,
+      },
+    });
     throw e;
   }
 };

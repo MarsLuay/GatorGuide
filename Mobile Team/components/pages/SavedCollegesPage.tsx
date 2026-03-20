@@ -7,8 +7,8 @@ import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
+import { MatchScoreBadge } from "@/components/ui/MatchScoreBadge";
 import useBack from "@/hooks/use-back";
-import { getMatchColorClass } from "@/utils/match-color";
 import type { College } from "@/services/college.service";
 
 function getCollegeTuition(college: College): number | null {
@@ -192,9 +192,11 @@ export default function SavedCollegesPage() {
                     </View>
 
                     {typeof college.matchScore === "number" ? (
-                      <Text className={`text-sm font-semibold mb-3 ${getMatchColorClass(college.matchScore)}`}>
-                        {t("savedColleges.matchLabel", { score: Math.round(college.matchScore) })}
-                      </Text>
+                      <MatchScoreBadge
+                        score={college.matchScore}
+                        text={t("savedColleges.matchLabel", { score: Math.round(college.matchScore) })}
+                        className="mb-3"
+                      />
                     ) : null}
 
                     <View className={`border ${borderClass} rounded-xl p-3 mb-3`}>

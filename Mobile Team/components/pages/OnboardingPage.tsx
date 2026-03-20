@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { LayoutChangeEvent, Pressable, ScrollView, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
@@ -86,22 +86,6 @@ export default function OnboardingPage() {
   );
 
   const step = steps[currentStep];
-
-  useEffect(() => {
-    if (!state.user) {
-      router.replace("/login");
-      return;
-    }
-    const hasCompletedSetup = !!(
-      state.user.isProfileComplete ||
-      state.user.major ||
-      state.user.gpa
-    );
-
-    if (state.user.isGuest || state.user.hasSeenOnboarding === true) {
-      router.replace(hasCompletedSetup ? "/(tabs)" : "/profile-setup");
-    }
-  }, [state.user, router]);
 
   const completeTour = async () => {
     await setOnboardingSeen(true);

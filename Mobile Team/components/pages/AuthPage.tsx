@@ -1,6 +1,6 @@
 import { useMemo, useState, useEffect, useCallback } from "react";
 import { View, Text, Pressable, Alert, Keyboard, TouchableWithoutFeedback, Platform, ScrollView, Linking } from "react-native";
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { FontAwesome5 } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import * as WebBrowser from "expo-web-browser";
@@ -14,6 +14,7 @@ import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { FormInput } from "@/components/ui/FormInput";
 import { authService, EMAIL_LINK_STORAGE_KEY } from "@/services/auth.service";
+import { errorLoggingService } from "@/services";
 import { PENDING_LINK_STORAGE_KEY } from "@/components/AuthEmailLinkHandler";
 import { API_CONFIG } from "@/services/config";
 import { SUPPORT_MAILTO } from "@/constants/support";
@@ -25,6 +26,7 @@ const PENDING_DELETE_ACCOUNT_KEY = "gatorguide:pending-delete-account";
 const ONBOARDING_DEBUG_LOG_KEY = "gatorguide:onboarding-debug-log:v1";
 
 export default function AuthPage() {
+  const params = useLocalSearchParams<{ emailVerified?: string | string[] }>();
   const { isHydrated, state, signIn, signInWithAuthUser, signInAsGuest, updateUser, setQuestionnaireAnswers, deleteAccount } = useAppData();
   const { t } = useAppLanguage();
   const styles = useThemeStyles();
@@ -45,6 +47,7 @@ export default function AuthPage() {
   const [showOnboardingDebugConsole, setShowOnboardingDebugConsole] = useState(false);
   const [onboardingDebugLogs, setOnboardingDebugLogs] = useState<string[]>([]);
   const [onboardingCopyStatus, setOnboardingCopyStatus] = useState<"" | "copied" | "failed">("");
+  const emailVerifiedFlag = Array.isArray(params.emailVerified) ? params.emailVerified[0] : params.emailVerified;
 
   const appendOnboardingDebugLog = useCallback(async (message: string) => {
     const line = `${new Date().toISOString()} | ${message}`;
@@ -139,6 +142,41 @@ export default function AuthPage() {
   }, []);
 
   useEffect(() => {
+    let mounted = true;
+
+    (async () => {
+      const storedPendingLink =
+        Platform.OS === "web" && typeof window !== "undefined"
+          ? window.sessionStorage.getItem(PENDING_LINK_STORAGE_KEY)
+          : await AsyncStorage.getItem(PENDING_LINK_STORAGE_KEY);
+
+      if (mounted) {
+        setPendingLinkUrl(storedPendingLink);
+      }
+    })().catch(() => {});
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (emailVerifiedFlag !== "1") return;
+
+    setVerificationPendingEmail(null);
+    Alert.alert(t("auth.emailVerifiedTitle"), t("auth.emailVerifiedSuccess"));
+
+    if (Platform.OS === "web" && typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      url.searchParams.delete("emailVerified");
+      window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
+      return;
+    }
+
+    router.replace("/login");
+  }, [emailVerifiedFlag, t]);
+
+  useEffect(() => {
     if (!__DEV__ || Platform.OS !== "web") return;
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "~" || event.key === "`" || event.code === "Backquote") {
@@ -228,6 +266,11 @@ export default function AuthPage() {
           return t('auth.signInMethodDisabled');
         case 'auth/verification-email-failed':
           return t('auth.verificationEmailFailed');
+        case 'auth/email-not-verified':
+          return t('auth.emailNotVerified');
+        case 'auth/unauthorized-continue-uri':
+        case 'auth/invalid-continue-uri':
+          return t('auth.localhostAuthorizedDomainHint');
         default:
           return t('auth.loginFailed');
       }
@@ -257,16 +300,39 @@ export default function AuthPage() {
             await AsyncStorage.removeItem('gatorguide:pending-account-data');
           }
         } catch {
-          // Silently fail
+          void errorLoggingService.captureMessage("Pending account data migration failed after signup.", {
+            category: "auth",
+            operation: "migrate-pending-account-data",
+            severity: "warn",
+            handled: true,
+            source: "auth-page",
+            screen: "auth",
+            route: "/login",
+            metadata: {
+              isSignUp: true,
+            },
+          });
         }
       }
 
       await handlePostAuthRoute();
     } catch (err: any) {
-      console.error('Auth error', err);
+      void errorLoggingService.captureException(err, {
+        category: "auth",
+        operation: isSignUp ? "email-password-sign-up" : "email-password-log-in",
+        severity: "error",
+        handled: true,
+        source: "auth-page",
+        screen: "auth",
+        route: "/login",
+        metadata: {
+          isSignUp,
+          code: err?.code ?? null,
+        },
+      });
       await appendOnboardingDebugLog(`signIn() rejected. code=${String(err?.code ?? "none")} message=${String(err?.message ?? "unknown")}`);
 
-      if (err?.code === 'auth/email-verification-required') {
+      if (err?.code === 'auth/email-verification-required' || err?.code === 'auth/email-not-verified') {
         await appendOnboardingDebugLog("Signup requires email verification. Awaiting user verification login.");
         setVerificationPendingEmail(err?.email ?? e);
         setIsSignUp(false);
@@ -303,6 +369,15 @@ export default function AuthPage() {
       setPendingLinkUrl(null);
       await handlePostAuthRoute();
     } catch (err: unknown) {
+      void errorLoggingService.captureException(err, {
+        category: "auth",
+        operation: "complete-email-link-sign-in",
+        severity: "error",
+        handled: true,
+        source: "auth-page",
+        screen: "auth",
+        route: "/login",
+      });
       const msg = err instanceof Error ? err.message : t("auth.loginFailed");
       Alert.alert(t("general.error"), msg);
     } finally {
@@ -329,11 +404,25 @@ export default function AuthPage() {
       setVerificationPendingEmail(null);
     } catch (err: unknown) {
       const code = (err as { code?: string })?.code;
+      void errorLoggingService.captureException(err, {
+        category: "auth",
+        operation: "send-email-link-sign-in",
+        severity: "error",
+        handled: true,
+        source: "auth-page",
+        screen: "auth",
+        route: "/login",
+        metadata: {
+          code: code ?? null,
+        },
+      });
       let msg = err instanceof Error ? err.message : t("auth.loginFailed");
       if (code === "auth/operation-not-allowed") {
         msg = t("auth.emailLinkNotEnabled") || "Please enable Email link (passwordless sign-in) in Firebase Console → Authentication → Sign-in method.";
       } else if (code === "auth/invalid-email") {
         msg = t("auth.emailInvalid");
+      } else if (code === "auth/unauthorized-continue-uri" || code === "auth/invalid-continue-uri") {
+        msg = t("auth.localhostAuthorizedDomainHint");
       }
       Alert.alert(t("general.error"), msg);
     } finally {
@@ -363,6 +452,19 @@ export default function AuthPage() {
         await signInWithAuthUser(authUser);
         await handlePostAuthRoute();
       } catch (err: unknown) {
+        void errorLoggingService.captureException(err, {
+          category: "auth",
+          operation: `${provider}-provider-sign-in-web`,
+          severity: "error",
+          handled: true,
+          source: "auth-page",
+          screen: "auth",
+          route: "/login",
+          metadata: {
+            provider,
+            platform: "web",
+          },
+        });
         const errMsg = err instanceof Error ? err.message : "";
         const isOAuthError = /popup|redirect|sessionStorage|initial state/i.test(errMsg);
         const msg = errMsg.includes("available on web") || errMsg.includes("web")
@@ -402,6 +504,19 @@ export default function AuthPage() {
         await signInWithAuthUser(authUser);
         await handlePostAuthRoute();
       } catch (err: unknown) {
+        void errorLoggingService.captureException(err, {
+          category: "auth",
+          operation: "google-provider-sign-in-native",
+          severity: "error",
+          handled: true,
+          source: "auth-page",
+          screen: "auth",
+          route: "/login",
+          metadata: {
+            provider: "google",
+            platform: Platform.OS,
+          },
+        });
         const msg = err instanceof Error ? err.message : t("auth.loginFailed");
         Alert.alert(t("general.error"), msg);
       }
@@ -415,6 +530,19 @@ export default function AuthPage() {
       try {
         await microsoftPromptAsync();
       } catch (err: unknown) {
+        void errorLoggingService.captureException(err, {
+          category: "auth",
+          operation: "microsoft-provider-sign-in-native",
+          severity: "error",
+          handled: true,
+          source: "auth-page",
+          screen: "auth",
+          route: "/login",
+          metadata: {
+            provider: "microsoft",
+            platform: Platform.OS,
+          },
+        });
         const msg = err instanceof Error ? err.message : t("auth.loginFailed");
         Alert.alert(t("general.error"), msg);
       }
