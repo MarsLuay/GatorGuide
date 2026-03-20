@@ -8,7 +8,9 @@ import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppData } from "@/hooks/use-app-data";
 import {
   aiService,
+  buildAiConversationContext,
   ChatMessage,
+  errorLoggingService,
   roadmapService,
   ROADMAP_DOCUMENT_KEYS,
   ROADMAP_SECTION_ORDER,
@@ -25,6 +27,7 @@ import * as DocumentPicker from "expo-document-picker";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { storageService } from "@/services/storage.service";
 import { APP_VERSION } from "@/constants/app-version";
+import { StateCard } from "@/components/ui/StateCard";
 
 type GroupedTasks = { id: RoadmapSectionId; name: string; data: RoadmapTask[] };
 
@@ -64,6 +67,8 @@ export default function RoadmapPage() {
   const [activeUpload, setActiveUpload] = useState<RoadmapDocumentKey | null>(null);
   const [showGuestRoadmap, setShowGuestRoadmap] = useState(false);
   const [isUploadingDoc, setIsUploadingDoc] = useState(false);
+  const [roadmapLoadError, setRoadmapLoadError] = useState<string | null>(null);
+  const [roadmapLoadAttempt, setRoadmapLoadAttempt] = useState(0);
 
   const roadmapSeed = useMemo(
     () =>
@@ -114,14 +119,30 @@ export default function RoadmapPage() {
     let cancelled = false;
     (async () => {
       try {
+        if (!cancelled) setRoadmapLoadError(null);
         setIsRoadmapLoading(true);
         const nextRoadmap = user?.isGuest
           ? roadmapService.createInitialRoadmap(userId, roadmapSeed)
           : await roadmapService.ensureUserRoadmap(userId, roadmapSeed);
         if (!cancelled) applyRoadmap(nextRoadmap);
       } catch (error) {
-        console.error(error);
-        if (!cancelled) Alert.alert(t("general.error"), t("profile.prepareDataError"));
+        void errorLoggingService.captureException(error, {
+          category: "firestore",
+          operation: "load-roadmap",
+          severity: "error",
+          handled: true,
+          source: "roadmap-page",
+          screen: "roadmap",
+          route: "/roadmap",
+          metadata: {
+            userId,
+            isGuest: !!user?.isGuest,
+          },
+        });
+        if (!cancelled) {
+          setRoadmap(null);
+          setRoadmapLoadError(error instanceof Error ? error.message : t("profile.prepareDataError"));
+        }
       } finally {
         if (!cancelled) setIsRoadmapLoading(false);
       }
@@ -129,7 +150,7 @@ export default function RoadmapPage() {
     return () => {
       cancelled = true;
     };
-  }, [applyRoadmap, isHydrated, roadmapSeed, t, user?.isGuest, userId]);
+  }, [applyRoadmap, isHydrated, roadmapLoadAttempt, roadmapSeed, t, user?.isGuest, userId]);
 
   useEffect(() => {
     if (!roadmap || !userId) return;
@@ -160,7 +181,20 @@ export default function RoadmapPage() {
       if (!changed || cancelled) return;
       if (user?.isGuest) applyRoadmap(nextRoadmap);
       else await persistRoadmap(nextRoadmap);
-    })().catch((error) => console.error(error));
+    })().catch((error) => {
+      void errorLoggingService.captureException(error, {
+        category: "sync",
+        operation: "hydrate-roadmap-documents",
+        severity: "warn",
+        handled: true,
+        source: "roadmap-page",
+        screen: "roadmap",
+        route: "/roadmap",
+        metadata: {
+          userId,
+        },
+      });
+    });
     return () => {
       cancelled = true;
     };
@@ -304,7 +338,18 @@ export default function RoadmapPage() {
       await persistRoadmap(nextRoadmap);
       setActiveUpload(null);
     } catch (err) {
-      console.error(err);
+      void errorLoggingService.captureException(err, {
+        category: "upload",
+        operation: `upload-roadmap-document-${docKey}`,
+        severity: "error",
+        handled: true,
+        source: "roadmap-page",
+        screen: "roadmap",
+        route: "/roadmap",
+        metadata: {
+          userId,
+        },
+      });
       Alert.alert(t("general.error"), t("profile.prepareDataError"));
     } finally {
       setIsUploadingDoc(false);
@@ -321,8 +366,35 @@ export default function RoadmapPage() {
     };
     setAiMessages((prev) => [...prev, userMessage]);
     setAiInput("");
-    const aiReply = await aiService.chat(userMessage.content);
-    setAiMessages((prev) => [...prev, aiReply]);
+    const aiContext = buildAiConversationContext({
+      source: {
+        screen: "roadmap-chat",
+        route: "/roadmap",
+      },
+      user,
+      questionnaireAnswers: state.questionnaireAnswers,
+      savedColleges: state.savedColleges,
+      roadmap,
+    });
+    try {
+      const aiReply = await aiService.chatAssistant({
+        query: userMessage.content,
+        context: aiContext,
+        outputFormat: "text",
+      });
+      setAiMessages((prev) => [...prev, aiReply.message]);
+    } catch (error) {
+      void errorLoggingService.captureException(error, {
+        category: "ai",
+        operation: "roadmap-chat-assistant",
+        severity: "error",
+        handled: true,
+        source: "roadmap-page",
+        screen: "roadmap",
+        route: "/roadmap",
+      });
+      Alert.alert(t("general.error"), t("profile.prepareDataError"));
+    }
   };
 
   const handleExportData = async () => {
@@ -427,17 +499,29 @@ export default function RoadmapPage() {
     return key.charAt(0).toUpperCase() + key.slice(1);
   };
 
-  if (!user && isHydrated) {
+  if (!isHydrated) {
     return (
       <ScreenBackground>
         <View className="flex-1 items-center justify-center px-6">
-          <View className={`${cardBgClass} border rounded-2xl p-6 w-full max-w-md`}>
-            <Text className={`text-xl ${textClass} mb-2`}>{t("profile.notSignedIn")}</Text>
-            <Text className={`${secondaryTextClass} mb-4`}>{t("profile.notSignedInMessage")}</Text>
-            <Pressable onPress={() => router.replace("/login")} className="bg-emerald-500 rounded-lg py-4 items-center">
-              <Text className={`${isDark ? "text-white" : "text-emerald-900"} font-semibold`}>{t("profile.goToLogin")}</Text>
-            </Pressable>
-          </View>
+          <StateCard variant="loading" className="w-full max-w-md" />
+        </View>
+      </ScreenBackground>
+    );
+  }
+
+  if (!user) {
+    return (
+      <ScreenBackground>
+        <View className="flex-1 items-center justify-center px-6">
+          <StateCard
+            variant="empty"
+            icon="person-circle-outline"
+            title={t("profile.notSignedIn")}
+            message={t("profile.notSignedInMessage")}
+            actionLabel={t("profile.goToLogin")}
+            onAction={() => router.replace("/login")}
+            className="w-full max-w-md"
+          />
         </View>
       </ScreenBackground>
     );
@@ -542,9 +626,25 @@ export default function RoadmapPage() {
           </View>
 
           {isRoadmapLoading && !roadmap ? (
-            <View className={`${cardBgClass} border rounded-2xl p-5 mb-4`}>
-              <Text className={textClass}>{t("general.loading")}</Text>
-            </View>
+            <StateCard variant="loading" className="mb-4" />
+          ) : roadmapLoadError && !roadmap ? (
+            <StateCard
+              variant="error"
+              title={t("general.error")}
+              message={roadmapLoadError}
+              actionLabel={t("general.retry")}
+              onAction={() => setRoadmapLoadAttempt((value) => value + 1)}
+              className="mb-4"
+            />
+          ) : !roadmap ? (
+            <StateCard
+              variant="empty"
+              title={t("roadmap.roadmapTitle")}
+              message={t("roadmap.subtitleChecklist")}
+              actionLabel={t("general.retry")}
+              onAction={() => setRoadmapLoadAttempt((value) => value + 1)}
+              className="mb-4"
+            />
           ) : null}
 
           <View className="gap-4">

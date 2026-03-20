@@ -1,6 +1,7 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { View, Text, TextInput, Pressable, ScrollView } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 import useBack from "@/hooks/use-back";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
@@ -9,25 +10,44 @@ import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppData } from "@/hooks/use-app-data";
 import type { College } from "@/services/college.service";
 
+type ResidencyMode = "inState" | "outOfState";
+
 function getTuitionValue(college: College): number | null {
-  const tuition = typeof college.tuition === "number" ? college.tuition : college.tuitionInState ?? college.tuitionOutOfState ?? null;
+  const tuition =
+    typeof college.tuition === "number" ? college.tuition : college.tuitionInState ?? college.tuitionOutOfState ?? null;
+  return typeof tuition === "number" ? tuition : null;
+}
+
+function getDefaultResidencyMode(residencyType?: string): ResidencyMode {
+  return residencyType === "outOfState" || residencyType === "international" ? "outOfState" : "inState";
+}
+
+function getOfficialTuitionValue(college: College | null, residencyMode: ResidencyMode): number | null {
+  if (!college) return null;
+
+  const preferred = residencyMode === "inState" ? college.tuitionInState : college.tuitionOutOfState;
+  const fallback = residencyMode === "inState" ? college.tuitionOutOfState : college.tuitionInState;
+  const tuition = preferred ?? college.tuition ?? fallback ?? null;
   return typeof tuition === "number" ? tuition : null;
 }
 
 export default function CostCalculatorPage() {
+  const router = useRouter();
   const styles = useThemeStyles();
   const back = useBack("/(tabs)/resources");
   const { t } = useAppLanguage();
   const insets = useSafeAreaInsets();
   const { state } = useAppData();
   const savedColleges = useMemo(() => state.savedColleges ?? [], [state.savedColleges]);
-  const hasAutoPrefilledTuitionRef = useRef(false);
+  const userResidencyDefault = useMemo(() => getDefaultResidencyMode(state.user?.residencyType), [state.user?.residencyType]);
 
+  const [residencyMode, setResidencyMode] = useState<ResidencyMode>(userResidencyDefault);
   const [tuition, setTuition] = useState("");
   const [fees, setFees] = useState("");
   const [housingFood, setHousingFood] = useState("");
   const [booksSupplies, setBooksSupplies] = useState("");
-  const [personalTransport, setPersonalTransport] = useState("");
+  const [transportation, setTransportation] = useState("");
+  const [miscellaneous, setMiscellaneous] = useState("");
   const [years, setYears] = useState("4");
   const [annualIncrease, setAnnualIncrease] = useState("3");
   const [financialAid, setFinancialAid] = useState("");
@@ -47,12 +67,13 @@ export default function CostCalculatorPage() {
   const feesNum = currencyNum(fees);
   const housingFoodNum = currencyNum(housingFood);
   const booksSuppliesNum = currencyNum(booksSupplies);
-  const personalTransportNum = currencyNum(personalTransport);
+  const transportationNum = currencyNum(transportation);
+  const miscellaneousNum = currencyNum(miscellaneous);
   const yearsNum = Math.max(1, Math.min(10, currencyNum(years) || 4));
   const aidPerYearNum = currencyNum(financialAid);
   const annualIncreasePct = percentNum(annualIncrease);
 
-  const baseYearCost = tuitionNum + feesNum + housingFoodNum + booksSuppliesNum + personalTransportNum;
+  const baseYearCost = tuitionNum + feesNum + housingFoodNum + booksSuppliesNum + transportationNum + miscellaneousNum;
   // Compound annual increase, then apply yearly aid to estimate net out-of-pocket cost.
   const yearlyRows = Array.from({ length: yearsNum }, (_, idx) => {
     const beforeAid = Math.round(baseYearCost * Math.pow(1 + annualIncreasePct / 100, idx));
@@ -66,9 +87,18 @@ export default function CostCalculatorPage() {
   const totalAfterAid = Math.max(0, totalBeforeAid - totalAid);
   const monthlyEstimate = Math.round(totalAfterAid / Math.max(1, yearsNum * 12));
   const selectedCollege = savedColleges.find((college) => String(college.id) === selectedCollegeId) ?? null;
+  const officialTuition = useMemo(
+    () => getOfficialTuitionValue(selectedCollege, residencyMode),
+    [selectedCollege, residencyMode]
+  );
+  const officialNetPrice = typeof selectedCollege?.avgNetPriceOverall === "number" ? selectedCollege.avgNetPriceOverall : null;
+  const attendanceYear = String(selectedCollege?.attendanceAcademicYear ?? "").trim();
+  const notAvailable = t("home.notAvailable");
 
   const format = (n: number) =>
     n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+  const formatMoney = (n: number | null | undefined) => (typeof n === "number" ? format(n) : notAvailable);
+  const selectedResidencyLabel = residencyMode === "inState" ? t("cost.inState") : t("cost.outOfState");
 
   useEffect(() => {
     if (!savedColleges.length) {
@@ -83,15 +113,50 @@ export default function CostCalculatorPage() {
   }, [savedColleges, selectedCollegeId]);
 
   useEffect(() => {
-    if (!selectedCollege || hasAutoPrefilledTuitionRef.current) return;
+    setResidencyMode(userResidencyDefault);
+  }, [userResidencyDefault]);
 
-    const tuitionValue = getTuitionValue(selectedCollege);
-    if (tuitionValue != null) {
-      setTuition(String(tuitionValue));
+  useEffect(() => {
+    if (!selectedCollege) {
+      setTuition("");
+      return;
     }
 
-    hasAutoPrefilledTuitionRef.current = true;
-  }, [selectedCollege]);
+    setTuition(officialTuition != null ? String(officialTuition) : "");
+  }, [selectedCollegeId, selectedCollege, officialTuition]);
+
+  const renderInputCard = ({
+    label,
+    value,
+    onChangeText,
+    helperText,
+    keyboardType = "number-pad",
+    placeholder = "0",
+  }: {
+    label: string;
+    value: string;
+    onChangeText: (value: string) => void;
+    helperText?: string;
+    keyboardType?: "number-pad" | "decimal-pad";
+    placeholder?: string;
+  }) => (
+    <View className={`${cardBgClass} border rounded-2xl p-4 mb-4`}>
+      <Text className={`${secondaryTextClass} text-sm mb-2`}>{label}</Text>
+      <TextInput
+        value={value}
+        onChangeText={onChangeText}
+        placeholder={placeholder}
+        placeholderTextColor={placeholderColor}
+        keyboardType={keyboardType}
+        className={`${inputBgClass} ${textClass} border ${borderClass} rounded-xl px-4 py-3`}
+      />
+      {helperText ? (
+        <Text className={`${secondaryTextClass} text-xs mt-2`}>
+          {helperText}
+        </Text>
+      ) : null}
+    </View>
+  );
 
   return (
     <ScreenBackground>
@@ -121,6 +186,13 @@ export default function CostCalculatorPage() {
               <Text className={`${secondaryTextClass} text-center text-sm`}>
                 {t("tools.saveCollegesFirstHint")}
               </Text>
+              <Pressable
+                onPress={() => router.push("/(tabs)")}
+                className="mt-4 self-center flex-row items-center rounded-xl bg-emerald-500 px-4 py-3"
+              >
+                <MaterialIcons name="search" size={18} color="#FFFFFF" />
+                <Text className="ml-2 text-white font-semibold">{t("home.search")}</Text>
+              </Pressable>
             </View>
           ) : (
             <View className={`${cardBgClass} border rounded-2xl p-4 mb-4`}>
@@ -130,14 +202,13 @@ export default function CostCalculatorPage() {
               <ScrollView horizontal showsHorizontalScrollIndicator={false} className="mb-2">
                 <View className="flex-row gap-2">
                   {savedColleges.map((c) => {
-                    const tuitionVal = getTuitionValue(c);
+                    const tuitionVal = getOfficialTuitionValue(c, residencyMode);
                     const isSelected = String(c.id) === selectedCollegeId;
                     return (
                       <Pressable
                         key={c.id}
                         onPress={() => {
                           setSelectedCollegeId(String(c.id));
-                          setTuition(String(tuitionVal ?? ""));
                         }}
                         className={`px-3 py-2 rounded-lg border ${
                           isSelected ? "bg-emerald-500 border-emerald-500" : borderClass
@@ -156,123 +227,165 @@ export default function CostCalculatorPage() {
               </ScrollView>
               {selectedCollege ? (
                 <Text className={`${secondaryTextClass} text-sm`}>
-                  {t("cost.prefillHint", { college: selectedCollege.name })}
+                {t("cost.prefillHint", { college: selectedCollege.name })}
                 </Text>
               ) : null}
             </View>
           )}
 
-          <View className={`${cardBgClass} border rounded-2xl p-4 mb-4`}>
-            <Text className={`${secondaryTextClass} text-sm mb-2`}>
-              {t("cost.tuitionPerYear")}
+          {selectedCollege ? (
+            <View className={`${cardBgClass} border rounded-2xl p-4 mb-5`}>
+              <View className="flex-row items-center justify-between mb-3">
+                <Text className={`${textClass} text-base font-semibold`}>
+                  {t("cost.officialData")}
+                </Text>
+                <View className="rounded-full bg-emerald-500/10 px-3 py-1">
+                  <Text className="text-xs font-medium text-emerald-600">
+                    {t("cost.officialSource")}
+                  </Text>
+                </View>
+              </View>
+
+              <Text className={`${secondaryTextClass} text-sm mb-4`}>
+                {t("cost.officialDataHint", { college: selectedCollege.name })}
+              </Text>
+
+              <Text className={`${secondaryTextClass} text-sm mb-2`}>
+                {t("cost.residencyLabel")}
+              </Text>
+
+              <View className="flex-row gap-2 mb-4">
+                {(["inState", "outOfState"] as const).map((option) => {
+                  const isSelected = option === residencyMode;
+                  const label = option === "inState" ? t("cost.inState") : t("cost.outOfState");
+
+                  return (
+                    <Pressable
+                      key={option}
+                      onPress={() => setResidencyMode(option)}
+                      className={`flex-1 rounded-xl border px-4 py-3 ${
+                        isSelected ? "border-emerald-500 bg-emerald-500/10" : borderClass
+                      }`}
+                    >
+                      <Text className={`${isSelected ? "text-emerald-600 font-medium" : textClass} text-center`}>
+                        {label}
+                      </Text>
+                    </Pressable>
+                  );
+                })}
+              </View>
+
+              <View className={`overflow-hidden rounded-xl border ${borderClass}`}>
+                {[
+                  {
+                    label: `${t("cost.selectedTuition")} (${selectedResidencyLabel})`,
+                    value: formatMoney(officialTuition),
+                    highlight: true,
+                  },
+                  { label: t("compare.inStateTuition"), value: formatMoney(selectedCollege.tuitionInState) },
+                  { label: t("compare.outOfStateTuition"), value: formatMoney(selectedCollege.tuitionOutOfState) },
+                  { label: t("compare.netPrice"), value: formatMoney(officialNetPrice) },
+                  {
+                    label: t("compare.attendanceYear"),
+                    value: attendanceYear || notAvailable,
+                  },
+                ].map((row, index, rows) => (
+                  <View
+                    key={row.label}
+                    className={`px-4 py-3 ${index !== rows.length - 1 ? `border-b ${borderClass}` : ""}`}
+                  >
+                    <Text className={`${secondaryTextClass} text-xs mb-1`}>
+                      {row.label}
+                    </Text>
+                    <Text className={`${row.highlight ? "text-emerald-500" : textClass} font-medium`}>
+                      {row.value}
+                    </Text>
+                  </View>
+                ))}
+              </View>
+
+              <Text className={`${secondaryTextClass} text-xs mt-3`}>
+                {t("cost.netPriceHint")}
+              </Text>
+            </View>
+          ) : null}
+
+          <View className="mb-4">
+            <View className="flex-row items-center justify-between mb-2">
+              <Text className={`${textClass} text-base font-semibold`}>
+                {t("cost.estimateInputs")}
+              </Text>
+              <View className="rounded-full bg-amber-500/10 px-3 py-1">
+                <Text className="text-xs font-medium text-amber-700">
+                  {t("cost.userEstimate")}
+                </Text>
+              </View>
+            </View>
+            <Text className={`${secondaryTextClass} text-sm`}>
+              {t("cost.estimateInputsHint")}
             </Text>
-            <TextInput
-              value={tuition}
-              onChangeText={(v) => setTuition(v.replace(/\D/g, ""))}
-              placeholder="0"
-              placeholderTextColor={placeholderColor}
-              keyboardType="number-pad"
-              className={`${inputBgClass} ${textClass} border ${borderClass} rounded-xl px-4 py-3`}
-            />
           </View>
 
-          <View className={`${cardBgClass} border rounded-2xl p-4 mb-4`}>
-            <Text className={`${secondaryTextClass} text-sm mb-2`}>
-              {t("cost.feesPerYear")}
-            </Text>
-            <TextInput
-              value={fees}
-              onChangeText={(v) => setFees(v.replace(/\D/g, ""))}
-              placeholder="0"
-              placeholderTextColor={placeholderColor}
-              keyboardType="number-pad"
-              className={`${inputBgClass} ${textClass} border ${borderClass} rounded-xl px-4 py-3`}
-            />
-          </View>
+          {renderInputCard({
+            label: t("cost.tuitionPerYear"),
+            value: tuition,
+            onChangeText: (value) => setTuition(value.replace(/\D/g, "")),
+            helperText: selectedCollege
+              ? officialTuition != null
+                ? t("cost.tuitionPrefillHint", { college: selectedCollege.name, type: selectedResidencyLabel })
+                : t("cost.noOfficialTuitionHint")
+              : undefined,
+          })}
 
-          <View className={`${cardBgClass} border rounded-2xl p-4 mb-4`}>
-            <Text className={`${secondaryTextClass} text-sm mb-2`}>
-              {t("cost.housingFoodPerYear")}
-            </Text>
-            <TextInput
-              value={housingFood}
-              onChangeText={(v) => setHousingFood(v.replace(/\D/g, ""))}
-              placeholder="0"
-              placeholderTextColor={placeholderColor}
-              keyboardType="number-pad"
-              className={`${inputBgClass} ${textClass} border ${borderClass} rounded-xl px-4 py-3`}
-            />
-          </View>
+          {renderInputCard({
+            label: t("cost.feesPerYear"),
+            value: fees,
+            onChangeText: (value) => setFees(value.replace(/\D/g, "")),
+          })}
 
-          <View className={`${cardBgClass} border rounded-2xl p-4 mb-4`}>
-            <Text className={`${secondaryTextClass} text-sm mb-2`}>
-              {t("cost.booksSuppliesPerYear")}
-            </Text>
-            <TextInput
-              value={booksSupplies}
-              onChangeText={(v) => setBooksSupplies(v.replace(/\D/g, ""))}
-              placeholder="0"
-              placeholderTextColor={placeholderColor}
-              keyboardType="number-pad"
-              className={`${inputBgClass} ${textClass} border ${borderClass} rounded-xl px-4 py-3`}
-            />
-          </View>
+          {renderInputCard({
+            label: t("cost.housingFoodPerYear"),
+            value: housingFood,
+            onChangeText: (value) => setHousingFood(value.replace(/\D/g, "")),
+          })}
 
-          <View className={`${cardBgClass} border rounded-2xl p-4 mb-4`}>
-            <Text className={`${secondaryTextClass} text-sm mb-2`}>
-              {t("cost.personalTransportPerYear")}
-            </Text>
-            <TextInput
-              value={personalTransport}
-              onChangeText={(v) => setPersonalTransport(v.replace(/\D/g, ""))}
-              placeholder="0"
-              placeholderTextColor={placeholderColor}
-              keyboardType="number-pad"
-              className={`${inputBgClass} ${textClass} border ${borderClass} rounded-xl px-4 py-3`}
-            />
-          </View>
+          {renderInputCard({
+            label: t("cost.booksSuppliesPerYear"),
+            value: booksSupplies,
+            onChangeText: (value) => setBooksSupplies(value.replace(/\D/g, "")),
+          })}
 
-          <View className={`${cardBgClass} border rounded-2xl p-4 mb-4`}>
-            <Text className={`${secondaryTextClass} text-sm mb-2`}>
-              {t("cost.years")}
-            </Text>
-            <TextInput
-              value={years}
-              onChangeText={(v) => setYears(v.replace(/\D/g, ""))}
-              placeholder="4"
-              placeholderTextColor={placeholderColor}
-              keyboardType="number-pad"
-              className={`${inputBgClass} ${textClass} border ${borderClass} rounded-xl px-4 py-3`}
-            />
-          </View>
+          {renderInputCard({
+            label: t("cost.transportationPerYear"),
+            value: transportation,
+            onChangeText: (value) => setTransportation(value.replace(/\D/g, "")),
+          })}
 
-          <View className={`${cardBgClass} border rounded-2xl p-4 mb-4`}>
-            <Text className={`${secondaryTextClass} text-sm mb-2`}>
-              {t("cost.annualIncrease")}
-            </Text>
-            <TextInput
-              value={annualIncrease}
-              onChangeText={(v) => setAnnualIncrease(v.replace(/[^0-9.]/g, ""))}
-              placeholder="0"
-              placeholderTextColor={placeholderColor}
-              keyboardType="decimal-pad"
-              className={`${inputBgClass} ${textClass} border ${borderClass} rounded-xl px-4 py-3`}
-            />
-          </View>
+          {renderInputCard({
+            label: t("cost.miscellaneousPerYear"),
+            value: miscellaneous,
+            onChangeText: (value) => setMiscellaneous(value.replace(/\D/g, "")),
+          })}
 
-          <View className={`${cardBgClass} border rounded-2xl p-4 mb-6`}>
-            <Text className={`${secondaryTextClass} text-sm mb-2`}>
-              {t("cost.aidPerYear")}
-            </Text>
-            <TextInput
-              value={financialAid}
-              onChangeText={(v) => setFinancialAid(v.replace(/\D/g, ""))}
-              placeholder="0"
-              placeholderTextColor={placeholderColor}
-              keyboardType="number-pad"
-              className={`${inputBgClass} ${textClass} border ${borderClass} rounded-xl px-4 py-3`}
-            />
-          </View>
+          {renderInputCard({
+            label: t("cost.years"),
+            value: years,
+            onChangeText: (value) => setYears(value.replace(/\D/g, "")),
+            placeholder: "4",
+          })}
+
+          {renderInputCard({
+            label: t("cost.annualIncrease"),
+            value: annualIncrease,
+            onChangeText: (value) => setAnnualIncrease(value.replace(/[^0-9.]/g, "")),
+            keyboardType: "decimal-pad",
+          })}
+
+          {renderInputCard({
+            label: t("cost.aidPerYear"),
+            value: financialAid,
+            onChangeText: (value) => setFinancialAid(value.replace(/\D/g, "")),
+          })}
 
           <View className={`${cardBgClass} border rounded-2xl p-5 border-emerald-500/50`}>
             <Text className={`${secondaryTextClass} text-sm mb-1`}>
@@ -289,6 +402,14 @@ export default function CostCalculatorPage() {
             </Text>
             <Text className={`${secondaryTextClass} text-xs mt-1`}>
               {t("cost.monthlyEstimate")}: {format(monthlyEstimate)}
+            </Text>
+            {officialNetPrice != null ? (
+              <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                {t("compare.netPrice")} ({t("cost.officialSource")}): {format(officialNetPrice)}
+              </Text>
+            ) : null}
+            <Text className={`${secondaryTextClass} text-xs mt-3`}>
+              {t("cost.resultNote")}
             </Text>
           </View>
 

@@ -1,10 +1,11 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";
 import { authService } from "@/services";
 import type { AuthUser } from "@/services/auth.service";
 import type { College } from "@/services/college.service";
-import { db } from "@/services/firebase";
+import { db, firebaseAuth } from "@/services/firebase";
+import { errorLoggingService } from "@/services/error-logging.service";
 import { normalizeQuestionnaireAnswers } from "@/services/questionnaire.enums";
 import { savedCollegesService } from "@/services/saved-colleges.service";
 
@@ -49,6 +50,37 @@ const initialState: AppDataState = {
   notificationsEnabled: false,
   savedColleges: [],
 };
+
+const FIRESTORE_SYNCABLE_USER_FIELDS = [
+  "name",
+  "state",
+  "major",
+  "gpa",
+  "resume",
+  "transcript",
+  "avatar",
+  "residencyType",
+  "englishProficiency",
+  "englishTestType",
+  "englishTestValue",
+  "isProfileComplete",
+] as const;
+
+type FirestoreSyncableUserField = (typeof FIRESTORE_SYNCABLE_USER_FIELDS)[number];
+
+function buildFirestoreUserPatch(patch: Partial<User>) {
+  const syncPatch: Partial<Record<FirestoreSyncableUserField, unknown>> = {};
+
+  for (const key of FIRESTORE_SYNCABLE_USER_FIELDS) {
+    if (!Object.prototype.hasOwnProperty.call(patch, key)) continue;
+    const value = patch[key];
+    if (value !== undefined) {
+      syncPatch[key] = value;
+    }
+  }
+
+  return syncPatch;
+}
 
 type AppDataContextValue = {
   isHydrated: boolean;
@@ -103,7 +135,17 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
               : [],
           });
         }
-      } catch {
+      } catch (error) {
+        void errorLoggingService.captureException(error, {
+          category: "storage",
+          operation: "hydrate-app-data",
+          severity: "warn",
+          handled: true,
+          source: "use-app-data",
+          metadata: {
+            storageKey: STORAGE_KEY,
+          },
+        });
       } finally {
         if (mounted) setIsHydrated(true);
       }
@@ -113,8 +155,25 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (!isHydrated) return;
-    AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(state)).catch(() => {});
+    AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(state)).catch((error) => {
+      void errorLoggingService.captureException(error, {
+        category: "storage",
+        operation: "persist-app-data",
+        severity: "warn",
+        handled: true,
+        source: "use-app-data",
+        metadata: {
+          storageKey: STORAGE_KEY,
+          hasUser: !!state.user,
+        },
+      });
+    });
   }, [isHydrated, state]);
+
+  useEffect(() => {
+    if (!isHydrated) return;
+    void errorLoggingService.flushPendingLogs();
+  }, [isHydrated, state.user?.uid]);
 
   const loadProfileFromServer = useCallback(async (uid: string): Promise<LoadedServerProfile> => {
     if (!db) return { profile: {}, legacySavedCollegeIds: [] };
@@ -126,6 +185,7 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
       const data = userDoc.data();
       return {
         profile: {
+          ...(typeof data.name === "string" ? { name: data.name } : {}),
           state: data.state ?? "",
           major: data.major ?? "",
           gpa: data.gpa ?? "",
@@ -144,7 +204,17 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
               .filter(Boolean)
           : [],
       };
-    } catch {
+    } catch (error) {
+      void errorLoggingService.captureException(error, {
+        category: "firestore",
+        operation: "load-profile-from-server",
+        severity: "warn",
+        handled: true,
+        source: "use-app-data",
+        metadata: {
+          uid,
+        },
+      });
       return { profile: {}, legacySavedCollegeIds: [] };
     }
   }, []);
@@ -155,7 +225,19 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
 
     try {
       return await savedCollegesService.syncSavedColleges(uid, localSavedColleges, legacySavedCollegeIds);
-    } catch {
+    } catch (error) {
+      void errorLoggingService.captureException(error, {
+        category: "sync",
+        operation: "load-merged-saved-colleges",
+        severity: "warn",
+        handled: true,
+        source: "use-app-data",
+        metadata: {
+          uid,
+          localCount: localSavedColleges.length,
+          legacyCount: legacySavedCollegeIds.length,
+        },
+      });
       return localSavedColleges;
     }
   }, []);
@@ -246,8 +328,14 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
   const signOut = useCallback(async () => {
     try {
       await authService.signOut();
-    } catch {
-      // ignore
+    } catch (error) {
+      void errorLoggingService.captureException(error, {
+        category: "auth",
+        operation: "sign-out",
+        severity: "warn",
+        handled: true,
+        source: "use-app-data",
+      });
     }
     setState(initialState);
     await AsyncStorage.removeItem(STORAGE_KEY);
@@ -263,6 +351,35 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const updateUser = useCallback(async (patch: Partial<User>) => {
+    const firestorePatch = buildFirestoreUserPatch(patch);
+    const firestoreUid = firebaseAuth?.currentUser?.uid ?? null;
+
+    if (firestoreUid && db && Object.keys(firestorePatch).length > 0) {
+      try {
+        await setDoc(
+          doc(db, "users", firestoreUid),
+          {
+            ...firestorePatch,
+            updatedAt: serverTimestamp(),
+          },
+          { merge: true }
+        );
+      } catch (error) {
+        void errorLoggingService.captureException(error, {
+          category: "firestore",
+          operation: "persist-user-profile-patch",
+          severity: "error",
+          handled: false,
+          source: "use-app-data",
+          metadata: {
+            uid: firestoreUid,
+            fields: Object.keys(firestorePatch),
+          },
+        });
+        throw error;
+      }
+    }
+
     setState((prev) => {
       if (!prev.user) return prev;
       return {
@@ -296,7 +413,17 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
     try {
       await savedCollegesService.saveCollege(currentUser.uid, college);
     } catch (error) {
-      console.warn("Saved college sync failed.", error);
+      void errorLoggingService.captureException(error, {
+        category: "sync",
+        operation: "save-saved-college",
+        severity: "warn",
+        handled: true,
+        source: "use-app-data",
+        metadata: {
+          uid: currentUser.uid,
+          collegeId: college.id,
+        },
+      });
     }
   }, []);
 
@@ -313,7 +440,17 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
     try {
       await savedCollegesService.removeCollege(currentUser.uid, collegeId);
     } catch (error) {
-      console.warn("Saved college removal sync failed.", error);
+      void errorLoggingService.captureException(error, {
+        category: "sync",
+        operation: "remove-saved-college",
+        severity: "warn",
+        handled: true,
+        source: "use-app-data",
+        metadata: {
+          uid: currentUser.uid,
+          collegeId,
+        },
+      });
     }
   }, []);
 
@@ -333,8 +470,30 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const clearAll = useCallback(async () => {
-    await AsyncStorage.removeItem(STORAGE_KEY).catch(() => {});
-    await AsyncStorage.removeItem("gatorguide:appdata:v1").catch(() => {});
+    await AsyncStorage.removeItem(STORAGE_KEY).catch((error) => {
+      void errorLoggingService.captureException(error, {
+        category: "storage",
+        operation: "clear-app-data-primary",
+        severity: "warn",
+        handled: true,
+        source: "use-app-data",
+        metadata: {
+          storageKey: STORAGE_KEY,
+        },
+      });
+    });
+    await AsyncStorage.removeItem("gatorguide:appdata:v1").catch((error) => {
+      void errorLoggingService.captureException(error, {
+        category: "storage",
+        operation: "clear-app-data-legacy",
+        severity: "warn",
+        handled: true,
+        source: "use-app-data",
+        metadata: {
+          storageKey: "gatorguide:appdata:v1",
+        },
+      });
+    });
     setState(initialState);
   }, []);
 

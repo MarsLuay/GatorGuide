@@ -3,25 +3,17 @@ import { View, Text, TextInput, Pressable, ScrollView, Switch, Platform, Activit
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppData } from "@/hooks/use-app-data";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
+import { MatchScoreBadge } from "@/components/ui/MatchScoreBadge";
+import { StateCard } from "@/components/ui/StateCard";
+import { StatusBanner } from "@/components/ui/StatusBanner";
 import { College } from "@/services/college.service";
-import { aiService, collegeService } from "@/services";
+import { aiService, collegeService, errorLoggingService } from "@/services";
 import type { DisabledInfluences, EmptyState, RecommendDebug } from "@/services";
 
-const AI_USAGE_STORAGE_KEY = "gatorguide:ai-usage:v1";
-const GUEST_DAILY_AI_LIMIT = 15;
-const USER_DAILY_AI_LIMIT = 50;
-
-type DailyUsageRecord = {
-  date: string;
-  count: number;
-};
-
-type DailyUsageStore = Record<string, DailyUsageRecord>;
 type DebugAiLimitMeta = {
   reached: boolean;
   limit: number;
@@ -73,7 +65,7 @@ export default function HomePage() {
   const [aiLimitNotice, setAiLimitNotice] = useState<string | null>(null);
   const [lastAiLimitMeta, setLastAiLimitMeta] = useState<DebugAiLimitMeta>({
     reached: false,
-    limit: GUEST_DAILY_AI_LIMIT,
+    limit: 0,
     requestedWeighted: true,
     effectiveWeighted: true,
     aiComponentEnabled: true,
@@ -120,8 +112,7 @@ export default function HomePage() {
   const guestCtaPrimaryTextClass = "text-white";
   const guestCtaSecondaryButtonClass = isLight ? "bg-white/90 border border-emerald-200" : "bg-emerald-900/20";
   const guestCtaSecondaryTextClass = isLight ? "text-emerald-700" : "text-white";
-  const recommendationMatchClass = isDark || isGreen ? "text-emerald-300" : "text-emerald-600";
-
+  const showRecommendationSection = hasSubmittedSearch || isSearching || searchTooShort || !!emptyState || results.length > 0;
   const formatPercent = (value: unknown) => {
     const n = Number(value);
     if (!Number.isFinite(n)) return null;
@@ -157,46 +148,6 @@ export default function HomePage() {
       lines.push(admission ? `Admission rate: ${admission}` : "General profile match");
     }
     return lines.slice(0, 2);
-  };
-
-  const getLocalDateKey = () => {
-    const d = new Date();
-    const y = d.getFullYear();
-    const m = String(d.getMonth() + 1).padStart(2, "0");
-    const day = String(d.getDate()).padStart(2, "0");
-    return `${y}-${m}-${day}`;
-  };
-
-  const getAiUsageUserKey = () => {
-    const uid = user?.uid || "anonymous";
-    return user?.isGuest ? `guest:${uid}` : `user:${uid}`;
-  };
-
-  // Simple per-day local quota to cap weighted-search AI requests.
-  const consumeAiUsageIfAllowed = async (): Promise<{ allowed: boolean; limit: number }> => {
-    const limit = user?.isGuest ? GUEST_DAILY_AI_LIMIT : USER_DAILY_AI_LIMIT;
-    const today = getLocalDateKey();
-    const userKey = getAiUsageUserKey();
-
-    let store: DailyUsageStore = {};
-    try {
-      const raw = await AsyncStorage.getItem(AI_USAGE_STORAGE_KEY);
-      if (raw) store = JSON.parse(raw) as DailyUsageStore;
-    } catch {
-      store = {};
-    }
-
-    const current = store[userKey];
-    const currentCount = current?.date === today ? current.count : 0;
-    if (currentCount >= limit) return { allowed: false, limit };
-
-    store[userKey] = { date: today, count: currentCount + 1 };
-    try {
-      await AsyncStorage.setItem(AI_USAGE_STORAGE_KEY, JSON.stringify(store));
-    } catch {
-      // Ignore persistence failure; request still proceeds.
-    }
-    return { allowed: true, limit };
   };
 
   const withAiLimitMeta = (snap: RecommendDebug | null, override?: DebugAiLimitMeta): DebugSnapshotWithLimit | null => {
@@ -235,38 +186,15 @@ export default function HomePage() {
     setCooldownUntil(nextUntil);
     cooldownRef.current = nextUntil;
 
-    let effectiveUseWeighted = activeUseWeighted;
-    let disableAiComponent = false;
-    const defaultLimit = user?.isGuest ? GUEST_DAILY_AI_LIMIT : USER_DAILY_AI_LIMIT;
-    let aiLimitMeta: DebugAiLimitMeta = {
+    const effectiveUseWeighted = activeUseWeighted;
+    const disableAiComponent = false;
+    const aiLimitMeta: DebugAiLimitMeta = {
       reached: false,
-      limit: defaultLimit,
+      limit: 0,
       requestedWeighted: activeUseWeighted,
       effectiveWeighted: effectiveUseWeighted,
       aiComponentEnabled: true,
     };
-    if (activeUseWeighted) {
-      const quota = await consumeAiUsageIfAllowed();
-      if (!quota.allowed) {
-        disableAiComponent = true;
-        aiLimitMeta = {
-          reached: true,
-          limit: quota.limit,
-          requestedWeighted: activeUseWeighted,
-          effectiveWeighted: true,
-          aiComponentEnabled: false,
-        };
-        setAiLimitNotice(`Daily AI limit reached (${quota.limit}). Weighted search stays on; AI factor is disabled.`);
-      } else {
-        aiLimitMeta = {
-          reached: false,
-          limit: quota.limit,
-          requestedWeighted: activeUseWeighted,
-          effectiveWeighted: true,
-          aiComponentEnabled: true,
-        };
-      }
-    }
     setLastAiLimitMeta(aiLimitMeta);
 
     setIsSearching(true);
@@ -285,6 +213,20 @@ export default function HomePage() {
       setResultsSource('live');
       setDebugSnapshot(withAiLimitMeta(aiService.getLastRecommendDebug(), aiLimitMeta));
     } catch (e) {
+      void errorLoggingService.captureException(e, {
+        category: "ai",
+        operation: "recommend-colleges-search",
+        severity: "error",
+        handled: true,
+        source: "HomePage",
+        screen: "HomePage",
+        route: "/",
+        metadata: {
+          queryLength: q.length,
+          useWeightedSearch: effectiveUseWeighted,
+          disabledInfluences: activeDisabledInfluences,
+        },
+      });
       setResults([]);
       setEmptyState({
         code: "UPSTREAM_ERROR",
@@ -557,14 +499,13 @@ export default function HomePage() {
               )}
             </Pressable>
           </View>
-          {isSearching ? (
-            <View className="flex-row items-center gap-2 mb-3">
-              <ActivityIndicator size="small" color={isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280"} />
-              <Text className={`${secondaryTextClass} text-sm`}>{t("home.searching")}</Text>
-            </View>
-          ) : null}
           {aiLimitNotice ? (
-            <Text className={`${secondaryTextClass} text-sm mb-3`}>{aiLimitNotice}</Text>
+            <StatusBanner
+              variant={emptyState?.code === "UPSTREAM_ERROR" ? "error" : "warning"}
+              title={emptyState?.code === "UPSTREAM_ERROR" ? t("general.error") : undefined}
+              message={aiLimitNotice}
+              className="mb-3"
+            />
           ) : null}
 
           {__DEV__ && debugHotkeyEnabled ? (
@@ -649,7 +590,7 @@ export default function HomePage() {
             </View>
           ) : null}
 
-          {results.length > 0 ? (
+          {showRecommendationSection ? (
             <View className="mt-8">
               <View className="flex-row items-center justify-between mb-3">
                 <Text className={`${textClass} mr-2`}>{t("home.weightedSearch")}</Text>
@@ -706,19 +647,34 @@ export default function HomePage() {
               </View>
 
               {isSearching ? (
-                <Text className={`${secondaryTextClass} text-sm`}>{t("home.searching")}</Text>
+                <StateCard
+                  variant="loading"
+                  title={t("home.searching")}
+                  message={t("general.pleaseWait")}
+                  compact
+                />
               ) : searchTooShort ? (
-                <Text className={`${secondaryTextClass} text-sm`}>{t("home.searchTooShort")}</Text>
+                <StateCard
+                  variant="empty"
+                  title={t("home.searchTooShort")}
+                  message={t("home.pressEnterToStart")}
+                  compact
+                />
               ) : results.length === 0 ? (
-                <View className="mt-4">
-                  <Text className={`${secondaryTextClass} text-sm`}>{emptyState?.title ?? 'No results'}</Text>
-                  <Text className={`${secondaryTextClass} text-sm`}>{emptyState?.message ?? 'Try adjusting your filters.'}</Text>
-                </View>
+                <StateCard
+                  variant={emptyState?.code === "UPSTREAM_ERROR" ? "error" : "empty"}
+                  title={emptyState?.title ?? "No results"}
+                  message={emptyState?.message ?? "Try adjusting your filters."}
+                  actionLabel={emptyState?.code === "UPSTREAM_ERROR" ? t("general.retry") : undefined}
+                  onAction={emptyState?.code === "UPSTREAM_ERROR" ? () => { void handleSearch({ bypassCooldown: true }); } : undefined}
+                  compact
+                />
               ) : (
                 <View className="gap-3">
                   {results.map((r) => {
                     const college = r.college;
                     const saved = isCollegeSaved(college.id);
+                    const matchScore = getMatchScore(r);
                     return (
                       <Pressable
                         key={college.id}
@@ -728,15 +684,26 @@ export default function HomePage() {
                         <View className="flex-row items-center justify-between">
                           <View className="flex-1">
                             <Text className={textClass}>{college.name}</Text>
-                            <Text className={`${recommendationMatchClass} font-semibold`}>Match {getMatchText(r)}</Text>
+                            {matchScore != null ? (
+                              <MatchScoreBadge
+                                score={matchScore}
+                                text={`Match ${getMatchText(r)}`}
+                                className="mt-1"
+                                textClassName="text-sm"
+                              />
+                            ) : (
+                              <Text className={`${secondaryTextClass} font-semibold mt-1`}>Match {getMatchText(r)}</Text>
+                            )}
                           </View>
                           <Pressable
                             onPress={(e) => {
                               e?.stopPropagation?.();
-                              const score = getMatchScore(r);
-                              saved ? removeSavedCollege(college.id) : addSavedCollege(
-                                score != null ? { ...college, matchScore: score } : college
-                              );
+                              if (saved) {
+                                void removeSavedCollege(college.id);
+                                return;
+                              }
+
+                              void addSavedCollege(matchScore != null ? { ...college, matchScore } : college);
                             }}
                             className="p-2"
                           >

@@ -15,6 +15,8 @@ import { useAppLanguage } from "@/hooks/use-app-language";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { FormInput } from "@/components/ui/FormInput";
+import { DocumentExtractionReviewCard } from "@/components/ui/DocumentExtractionReviewCard";
+import { documentReaderService, errorLoggingService, type DocumentExtractionReview } from "@/services";
 import { roadmapService } from "@/services/roadmap.service";
 
 type SelectedDocument = {
@@ -26,7 +28,7 @@ type SelectedDocument = {
 
 export default function ProfileSetupPage() {
   const router = useRouter();
-  const { updateUser, state } = useAppData();
+  const { updateUser, setQuestionnaireAnswers, state } = useAppData();
   const { t } = useAppLanguage();
   const styles = useThemeStyles();
   const { isDark } = useAppTheme();
@@ -43,6 +45,16 @@ export default function ProfileSetupPage() {
   const [isConfettiPlaying, setIsConfettiPlaying] = useState(false);
   const [confettiCooldown, setConfettiCooldown] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
+  const [activeDocumentAnalysis, setActiveDocumentAnalysis] = useState<"resume" | "transcript" | null>(null);
+  const [documentReviews, setDocumentReviews] = useState<Partial<Record<"resume" | "transcript", DocumentExtractionReview>>>({});
+
+  const dismissDocumentReview = (documentType: "resume" | "transcript") => {
+    setDocumentReviews((prev) => {
+      const next = { ...prev };
+      delete next[documentType];
+      return next;
+    });
+  };
 
   const handlePickDocument = async (type: "resume" | "transcript") => {
     try {
@@ -51,6 +63,10 @@ export default function ProfileSetupPage() {
           "application/pdf",
           "application/msword",
           "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "text/plain",
+          "image/png",
+          "image/jpeg",
+          "image/webp",
         ],
         copyToCacheDirectory: true,
       });
@@ -68,9 +84,41 @@ export default function ProfileSetupPage() {
       if (type === "resume") setResumeDoc(selected);
       else setTranscriptDoc(selected);
 
+      setActiveDocumentAnalysis(type);
+      try {
+        const review = await documentReaderService.extractDocumentReview({
+          documentType: type,
+          fileUri: selected.uri,
+          fileName: selected.name,
+          mimeType: selected.mimeType,
+          size: selected.size,
+          currentProfile: {
+            major,
+            gpa,
+          },
+          questionnaireAnswers: state.questionnaireAnswers,
+        });
+        setDocumentReviews((prev) => ({ ...prev, [type]: review }));
+      } catch (error) {
+        Alert.alert(
+          t("profile.documentReaderUnavailableTitle"),
+          error instanceof Error ? error.message : t("profile.prepareDataError")
+        );
+      } finally {
+        setActiveDocumentAnalysis(null);
+      }
+
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     } catch (err) {
-      console.error(err);
+      void errorLoggingService.captureException(err, {
+        category: "upload",
+        operation: `analyze-${type}-document`,
+        severity: "error",
+        handled: true,
+        source: "profile-setup-page",
+        screen: "profile-setup",
+        route: "/profile-setup",
+      });
       Alert.alert(t("general.error"), t("profile.prepareDataError"));
     }
   };
@@ -97,6 +145,24 @@ export default function ProfileSetupPage() {
         }
       }
     }
+  };
+
+  const applyDocumentReview = async (documentType: "resume" | "transcript") => {
+    const review = documentReviews[documentType];
+    if (!review) return;
+
+    if (review.userPatch.major) setMajor(review.userPatch.major);
+    if (review.userPatch.gpa) setGpa(review.userPatch.gpa);
+
+    if (Object.keys(review.questionnairePatch).length) {
+      await setQuestionnaireAnswers({
+        ...state.questionnaireAnswers,
+        ...review.questionnairePatch,
+      });
+    }
+
+    dismissDocumentReview(documentType);
+    Alert.alert(t("profile.documentReaderAppliedTitle"), t("profile.documentReaderAppliedMessage"));
   };
 
   const handleNext = () => {
@@ -182,13 +248,32 @@ export default function ProfileSetupPage() {
           },
         });
       } catch {
-        console.warn("Roadmap generation failed, but profile saved.");
+        void errorLoggingService.captureMessage("Roadmap generation failed, but profile saved.", {
+          category: "ai",
+          operation: "post-profile-setup-roadmap-generation",
+          severity: "warn",
+          handled: true,
+          source: "profile-setup-page",
+          screen: "profile-setup",
+          route: "/profile-setup",
+          metadata: {
+            userId,
+          },
+        });
       }
 
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       router.replace("/(tabs)");
     } catch (error) {
-      console.error(error);
+      void errorLoggingService.captureException(error, {
+        category: "firestore",
+        operation: "complete-profile-setup",
+        severity: "error",
+        handled: true,
+        source: "profile-setup-page",
+        screen: "profile-setup",
+        route: "/profile-setup",
+      });
       Alert.alert(t("general.error"), t("profile.prepareDataError"));
     } finally {
       setIsUploading(false);
@@ -285,7 +370,10 @@ export default function ProfileSetupPage() {
                     t("setup.uploadResume"),
                     resumeDoc,
                     () => handlePickDocument("resume"),
-                    () => setResumeDoc(null)
+                    () => {
+                      setResumeDoc(null);
+                      dismissDocumentReview("resume");
+                    }
                   )}
 
                   {renderUploadCard(
@@ -293,8 +381,51 @@ export default function ProfileSetupPage() {
                     t("setup.uploadTranscript"),
                     transcriptDoc,
                     () => handlePickDocument("transcript"),
-                    () => setTranscriptDoc(null)
+                    () => {
+                      setTranscriptDoc(null);
+                      dismissDocumentReview("transcript");
+                    }
                   )}
+
+                  {activeDocumentAnalysis ? (
+                    <Text className={`text-sm ${styles.secondaryTextClass}`}>{t("profile.documentReaderAnalyzing")}</Text>
+                  ) : null}
+
+                  {(["resume", "transcript"] as const).map((documentType) => {
+                    const review = documentReviews[documentType];
+                    if (!review) return null;
+                    return (
+                      <DocumentExtractionReviewCard
+                        key={`setup-review-${documentType}`}
+                        title={t("profile.documentReaderReviewTitle")}
+                        subtitle={t("profile.documentReaderReviewSubtitle")}
+                        fileName={review.fileName}
+                        confidenceText={
+                          typeof review.confidence === "number"
+                            ? t("profile.documentReaderConfidence", { confidence: review.confidence })
+                            : null
+                        }
+                        emptyStateText={t("profile.documentReaderNoFields")}
+                        applyLabel={t("profile.documentReaderApply")}
+                        dismissLabel={t("profile.documentReaderDismiss")}
+                        currentValueLabel={t("profile.documentReaderCurrent")}
+                        suggestedValueLabel={t("profile.documentReaderSuggested")}
+                        confidenceLabel={t("profile.documentReaderConfidenceShort")}
+                        cardBgClass={styles.cardBgClass}
+                        textClass={styles.textClass}
+                        secondaryTextClass={styles.secondaryTextClass}
+                        items={review.items.map((item) => ({
+                          ...item,
+                          label: t(item.labelKey),
+                        }))}
+                        uncertainties={review.uncertainties}
+                        onApply={() => {
+                          applyDocumentReview(documentType).catch(() => {});
+                        }}
+                        onDismiss={() => dismissDocumentReview(documentType)}
+                      />
+                    );
+                  })}
                 </View>
               )}
 

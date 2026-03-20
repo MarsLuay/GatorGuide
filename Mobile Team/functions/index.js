@@ -1,5 +1,6 @@
 const { onRequest } = require("firebase-functions/v2/https");
 const { setGlobalOptions } = require("firebase-functions/v2");
+const { geminiGateway } = require("./geminiGateway");
 
 setGlobalOptions({ maxInstances: 10, region: "us-central1" });
 
@@ -61,15 +62,62 @@ exports.sendSupportErrorLog = onRequest({ cors: true }, async (req, res) => {
     const message = String(body.message || "Unknown error");
     const stack = String(body.stack || "No stack provided");
     const app = String(body.app || "GatorGuide");
+    const severity = String(body.severity || "error");
+    const category = String(body.category || "app");
+    const operation = String(body.operation || "unknown-operation");
+    const handled = typeof body.handled === "boolean" ? body.handled : true;
+    const source = String(body.source || "app");
+    const screen = String(body.screen || "");
+    const route = String(body.route || "");
+    const errorName = String(body.errorName || "");
+    const errorCode = String(body.errorCode || "");
+    const authState = String(body.authState || "unknown");
+    const appVersion = String(body.appVersion || "");
+    const buildVersion = String(body.buildVersion || "");
+    const appOwnership = String(body.appOwnership || "");
+    const userId = String(body.userId || "");
+    const tags = Array.isArray(body.tags) ? body.tags.map((tag) => String(tag || "")).filter(Boolean) : [];
+    const details = body.details ?? null;
+    const metadata = body.metadata ?? null;
+
+    const detailBlock = details == null ? "" : escapeHtml(JSON.stringify(details, null, 2));
+    const metadataBlock = metadata == null ? "" : escapeHtml(JSON.stringify(metadata, null, 2));
+    const infoRows = [
+      ["Severity", severity],
+      ["Category", category],
+      ["Operation", operation],
+      ["Handled", handled ? "true" : "false"],
+      ["Source", source],
+      ["Screen", screen],
+      ["Route", route],
+      ["Error name", errorName],
+      ["Error code", errorCode],
+      ["Auth state", authState],
+      ["User ID", userId],
+      ["App version", appVersion],
+      ["Build version", buildVersion],
+      ["App ownership", appOwnership],
+      ["Tags", tags.join(", ")],
+    ].filter(([, value]) => String(value || "").trim());
+
+    const detailsHtml = detailBlock
+      ? `<p><strong>Details:</strong></p><pre style="white-space: pre-wrap; font-family: monospace;">${detailBlock}</pre>`
+      : "";
+    const metadataHtml = metadataBlock
+      ? `<p><strong>Metadata:</strong></p><pre style="white-space: pre-wrap; font-family: monospace;">${metadataBlock}</pre>`
+      : "";
 
     const subject = `[${app}] Client Error (${platform})`;
     const html = `
-      <h2>${app} Error Report</h2>
-      <p><strong>Timestamp:</strong> ${timestamp}</p>
-      <p><strong>Platform:</strong> ${platform}</p>
-      <p><strong>Message:</strong> ${message}</p>
+      <h2>${escapeHtml(app)} Error Report</h2>
+      <p><strong>Timestamp:</strong> ${escapeHtml(timestamp)}</p>
+      <p><strong>Platform:</strong> ${escapeHtml(platform)}</p>
+      <p><strong>Message:</strong> ${escapeHtml(message)}</p>
+      ${infoRows.map(([label, value]) => `<p><strong>${escapeHtml(label)}:</strong> ${escapeHtml(value)}</p>`).join("")}
       <p><strong>Stack:</strong></p>
-      <pre style="white-space: pre-wrap; font-family: monospace;">${stack}</pre>
+      <pre style="white-space: pre-wrap; font-family: monospace;">${escapeHtml(stack)}</pre>
+      ${detailsHtml}
+      ${metadataHtml}
     `;
 
     const emailPayload = {
@@ -145,4 +193,6 @@ exports.sendSupportMessage = onRequest({ cors: true }, async (req, res) => {
     });
   }
 });
+
+exports.geminiGateway = geminiGateway;
 

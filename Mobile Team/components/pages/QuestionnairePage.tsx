@@ -4,16 +4,54 @@ import { router } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
+import { StateCard } from "@/components/ui/StateCard";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { collegeService } from "@/services/college.service";
-import { normalizeQuestionnaireAnswers } from "@/services/questionnaire.enums";
+import { errorLoggingService } from "@/services/error-logging.service";
+import {
+  buildOtherLocationPreference,
+  buildRegionLocationPreference,
+  buildStateLocationPreference,
+  LOCATION_PRIMARY_OPTIONS,
+  LOCATION_REGION_OPTIONS,
+  normalizeQuestionnaireAnswers,
+  parseLocationPreference,
+  type LocationPrimaryOptionKey,
+  US_STATE_OPTIONS,
+} from "@/services/questionnaire.enums";
 
 type Question =
   | { id: string; question: string; type: "section" }
   | { id: string; question: string; type: "text" | "textarea"; placeholder: string }
-  | { id: string; question: string; type: "radio"; options: string[] };
+  | { id: string; question: string; type: "radio"; options: string[] }
+  | {
+      id: string;
+      question: string;
+      type: "location";
+      options: { key: LocationPrimaryOptionKey; label: string }[];
+      regionOptions: { key: string; label: string }[];
+    };
+
+function getLocationPrimarySelection(value: string, language: ReturnType<typeof useAppLanguage>["language"]): LocationPrimaryOptionKey | null {
+  const parsed = parseLocationPreference(value, language);
+
+  switch (parsed.kind) {
+    case "washington_only":
+    case "near_current_location":
+    case "no_preference":
+      return parsed.kind;
+    case "state":
+      return "specific_state";
+    case "region":
+      return "specific_region";
+    case "other":
+      return "other";
+    default:
+      return null;
+  }
+}
 
 export default function QuestionnairePage() {
   const { isDark, isGreen, isLight } = useAppTheme();
@@ -30,7 +68,13 @@ export default function QuestionnairePage() {
       { id: "costOfAttendance", question: t("questionnaire.costOfAttendance"), options: [t("questionnaire.under20k"), t("questionnaire.20to40k"), t("questionnaire.40to60k"), t("questionnaire.over60k"), t("questionnaire.needFinancialAid")], type: "radio" },
       { id: "graduationRate", question: t("questionnaire.graduationRate"), options: [t("questionnaire.veryImportant"), t("questionnaire.somewhatImportant"), t("questionnaire.notImportant")], type: "radio" },
       { id: "acceptanceRate", question: t("questionnaire.acceptanceRate"), options: [t("questionnaire.veryImportant"), t("questionnaire.somewhatImportant"), t("questionnaire.notImportant")], type: "radio" },
-      { id: "location", question: t("questionnaire.location"), placeholder: t("questionnaire.locationPlaceholder"), type: "text" },
+      {
+        id: "location",
+        question: t("questionnaire.location"),
+        options: LOCATION_PRIMARY_OPTIONS.map((option) => ({ key: option.key, label: t(option.labelKey) })),
+        regionOptions: LOCATION_REGION_OPTIONS.map((option) => ({ key: option.key, label: t(option.labelKey) })),
+        type: "location",
+      },
       { id: "collegeVibe", question: t("questionnaire.collegeVibe"), placeholder: t("questionnaire.collegeVibePlaceholder"), type: "textarea" },
       { id: "transportation", question: t("questionnaire.transportation"), options: [t("questionnaire.transportCar"), t("questionnaire.transportTransit"), t("questionnaire.transportBike"), t("questionnaire.transportWalk"), t("questionnaire.noPreference")], type: "radio" },
       { id: "companiesNearby", question: t("questionnaire.companiesNearby"), placeholder: t("questionnaire.companiesNearbyPlaceholder"), type: "textarea" },
@@ -84,14 +128,22 @@ export default function QuestionnairePage() {
 
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>(() => blankAnswers);
+  const [locationModeDraft, setLocationModeDraft] = useState<LocationPrimaryOptionKey | null>(null);
 
   useEffect(() => {
     if (!isHydrated) return;
     setAnswers({ ...blankAnswers, ...(state.questionnaireAnswers ?? {}) });
   }, [isHydrated, blankAnswers, state.questionnaireAnswers]);
 
+  useEffect(() => {
+    const derived = getLocationPrimarySelection(answers.location ?? "", language);
+    if (derived) setLocationModeDraft(derived);
+  }, [answers.location, language]);
+
   const currentQuestion = questions[currentStep];
   const progress = Math.round(((currentStep + 1) / questions.length) * 100);
+  const parsedLocation = useMemo(() => parseLocationPreference(answers.location ?? "", language), [answers.location, language]);
+  const selectedLocationMode = locationModeDraft ?? getLocationPrimarySelection(answers.location ?? "", language);
 
   const textClass = isDark ? "text-white" : isGreen ? "text-white" : isLight ? "text-emerald-900" : "text-gray-900";
   const secondaryTextClass = isDark ? "text-gray-400" : isGreen ? "text-emerald-100" : isLight ? "text-emerald-700" : "text-gray-600";
@@ -113,6 +165,33 @@ export default function QuestionnairePage() {
   const progressBgClass = isDark ? "bg-gray-800" : isGreen ? "bg-emerald-800" : "bg-emerald-200";
   const placeholderColor = isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280";
 
+  if (!isHydrated) {
+    return (
+      <ScreenBackground>
+        <View className="flex-1 items-center justify-center px-6">
+          <StateCard variant="loading" className="w-full max-w-md" />
+        </View>
+      </ScreenBackground>
+    );
+  }
+
+  if (!currentQuestion) {
+    return (
+      <ScreenBackground>
+        <View className="flex-1 items-center justify-center px-6">
+          <StateCard
+            variant="error"
+            title={t("general.error")}
+            message={t("profile.prepareDataError")}
+            actionLabel={t("general.close")}
+            onAction={() => router.back()}
+            className="w-full max-w-md"
+          />
+        </View>
+      </ScreenBackground>
+    );
+  }
+
   const handleAnswer = (id: string, value: string) => setAnswers((p) => ({ ...p, [id]: value }));
 
   const handleNext = async () => { 
@@ -129,7 +208,15 @@ export default function QuestionnairePage() {
 
       await collegeService.saveQuestionnaireResult(normalized); 
     } catch (error) {
-      console.error("Firebase sync failed", error);
+      void errorLoggingService.captureException(error, {
+        category: "firestore",
+        operation: "submit-questionnaire",
+        severity: "warn",
+        handled: true,
+        source: "questionnaire-page",
+        screen: "questionnaire",
+        route: "/questionnaire",
+      });
     }
     
     router.back(); 
@@ -147,7 +234,15 @@ export default function QuestionnairePage() {
     try {
       await collegeService.saveQuestionnaireResult(normalized);
     } catch (error) {
-      console.error("Firebase sync failed", error);
+      void errorLoggingService.captureException(error, {
+        category: "firestore",
+        operation: "save-and-exit-questionnaire",
+        severity: "warn",
+        handled: true,
+        source: "questionnaire-page",
+        screen: "questionnaire",
+        route: "/questionnaire",
+      });
     }
     
     router.back();
@@ -213,6 +308,147 @@ export default function QuestionnairePage() {
                   placeholderTextColor={placeholderColor}
                   className={`${inputBgClass} ${textClass} border rounded-lg px-4 py-3`}
                 />
+              ) : null}
+
+              {currentQuestion.type === "location" ? (
+                <View>
+                  <Text className={`text-sm ${secondaryTextClass} mb-4`}>
+                    {t("questionnaire.locationHint")}
+                  </Text>
+
+                  <View className="gap-3">
+                    {currentQuestion.options.map((option) => {
+                      const isSelected = selectedLocationMode === option.key;
+
+                      return (
+                        <Pressable
+                          key={option.key}
+                          onPress={() => {
+                            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                            setLocationModeDraft(option.key);
+
+                            if (
+                              option.key === "washington_only" ||
+                              option.key === "near_current_location" ||
+                              option.key === "no_preference"
+                            ) {
+                              handleAnswer(currentQuestion.id, option.key);
+                              return;
+                            }
+
+                            if (option.key === "specific_state") {
+                              handleAnswer(
+                                currentQuestion.id,
+                                parsedLocation.kind === "state" ? buildStateLocationPreference(parsedLocation.state) : ""
+                              );
+                              return;
+                            }
+
+                            if (option.key === "specific_region") {
+                              handleAnswer(
+                                currentQuestion.id,
+                                parsedLocation.kind === "region" ? buildRegionLocationPreference(parsedLocation.regionKey) : ""
+                              );
+                              return;
+                            }
+
+                            handleAnswer(
+                              currentQuestion.id,
+                              parsedLocation.kind === "other" ? buildOtherLocationPreference(parsedLocation.otherText) : ""
+                            );
+                          }}
+                          className={`w-full px-4 py-4 rounded-lg border ${
+                            isSelected
+                              ? "bg-emerald-500/10 border-emerald-500"
+                              : isDark || isGreen
+                              ? "bg-emerald-900/60 border-emerald-800"
+                              : "bg-white border-gray-200"
+                          }`}
+                        >
+                          <View className="flex-row items-center justify-between">
+                            <Text className={isSelected ? "text-emerald-500" : textClass}>{option.label}</Text>
+                            {isSelected ? <MaterialIcons name="check-circle" size={20} color="#008f4e" /> : null}
+                          </View>
+                        </Pressable>
+                      );
+                    })}
+                  </View>
+
+                  {selectedLocationMode === "specific_state" ? (
+                    <View className="mt-5">
+                      <Text className={`text-sm font-medium ${textClass} mb-3`}>
+                        {t("questionnaire.locationSelectState")}
+                      </Text>
+                      <View className="flex-row flex-wrap gap-2">
+                        {US_STATE_OPTIONS.map((stateOption) => {
+                          const isSelected = parsedLocation.kind === "state" && parsedLocation.state === stateOption;
+
+                          return (
+                            <Pressable
+                              key={stateOption}
+                              onPress={() => {
+                                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                                setLocationModeDraft("specific_state");
+                                handleAnswer(currentQuestion.id, buildStateLocationPreference(stateOption));
+                              }}
+                              className={`px-3 py-2 rounded-lg border ${
+                                isSelected ? "bg-emerald-500/10 border-emerald-500" : borderClass
+                              }`}
+                            >
+                              <Text className={isSelected ? "text-emerald-500 font-semibold" : textClass}>
+                                {stateOption}
+                              </Text>
+                            </Pressable>
+                          );
+                        })}
+                      </View>
+                    </View>
+                  ) : null}
+
+                  {selectedLocationMode === "specific_region" ? (
+                    <View className="mt-5">
+                      <Text className={`text-sm font-medium ${textClass} mb-3`}>
+                        {t("questionnaire.locationSelectRegion")}
+                      </Text>
+                      <View className="gap-2">
+                        {currentQuestion.regionOptions.map((option) => {
+                          const isSelected = parsedLocation.kind === "region" && parsedLocation.regionKey === option.key;
+
+                          return (
+                            <Pressable
+                              key={option.key}
+                              onPress={() => {
+                                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                                setLocationModeDraft("specific_region");
+                                handleAnswer(currentQuestion.id, buildRegionLocationPreference(option.key));
+                              }}
+                              className={`px-4 py-3 rounded-lg border ${
+                                isSelected ? "bg-emerald-500/10 border-emerald-500" : borderClass
+                              }`}
+                            >
+                              <View className="flex-row items-center justify-between">
+                                <Text className={isSelected ? "text-emerald-500 font-semibold" : textClass}>{option.label}</Text>
+                                {isSelected ? <MaterialIcons name="check-circle" size={18} color="#008f4e" /> : null}
+                              </View>
+                            </Pressable>
+                          );
+                        })}
+                      </View>
+                    </View>
+                  ) : null}
+
+                  {selectedLocationMode === "other" ? (
+                    <View className="mt-5">
+                      <TextInput
+                        value={parsedLocation.kind === "other" ? parsedLocation.otherText : ""}
+                        onChangeText={(value) => handleAnswer(currentQuestion.id, buildOtherLocationPreference(value))}
+                        placeholder={t("questionnaire.locationOtherPlaceholder")}
+                        placeholderTextColor={placeholderColor}
+                        className={`${inputBgClass} ${textClass} border rounded-lg px-4 py-3`}
+                      />
+                    </View>
+                  ) : null}
+                </View>
               ) : null}
 
               {currentQuestion.type === "radio" ? (

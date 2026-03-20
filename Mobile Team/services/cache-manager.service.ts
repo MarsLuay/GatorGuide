@@ -14,7 +14,6 @@ const CACHE_KEY_EXACT = new Set([
   "ai:lastResponseMap",
   "ai:lastRoadmap",
   "ai:recommend:factorCache:v1",
-  "gatorguide:ai-usage:v1",
 ]);
 
 class CacheManagerService {

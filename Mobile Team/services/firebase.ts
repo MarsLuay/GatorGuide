@@ -1,5 +1,11 @@
 import { initializeApp, getApps } from "firebase/app";
 import { getAuth, initializeAuth } from "firebase/auth";
+import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage";
+import { getFirestore } from "firebase/firestore";
+import { getFunctions } from "firebase/functions";
+import { getStorage } from "firebase/storage";
+import { Platform } from "react-native";
+import { API_CONFIG, isStubMode } from "./config";
 // Some firebase packages expose react-native persistence from a subpath.
 // Types may not be present in all installations — fall back with a ts-ignore.
 // @ts-ignore
@@ -13,18 +19,12 @@ import { getAuth, initializeAuth } from "firebase/auth";
 let getReactNativePersistence: any | undefined;
 try {
   // Use eval to prevent bundlers from statically analyzing the require call
-  // eslint-disable-next-line @typescript-eslint/no-implied-eval, @typescript-eslint/no-var-requires
   const req: any = eval("require");
   const mod = req("firebase/auth/react-native");
   getReactNativePersistence = mod?.getReactNativePersistence;
 } catch {
   getReactNativePersistence = undefined;
 }
-import { getFirestore } from "firebase/firestore";
-import { getStorage } from "firebase/storage";
-import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage";
-import { Platform } from "react-native";
-import { API_CONFIG, isStubMode } from "./config";
 
 const shouldInitFirebase = !isStubMode() && !!API_CONFIG.firebase.apiKey;
 
@@ -50,4 +50,6 @@ function getAuthInstance() {
 
 export const firebaseAuth = getAuthInstance();
 export const db = shouldInitFirebase && firebaseApp ? getFirestore(firebaseApp) : null;
+export const functionsClient =
+  shouldInitFirebase && firebaseApp ? getFunctions(firebaseApp, API_CONFIG.functions.region) : null;
 export const storage = shouldInitFirebase && firebaseApp ? getStorage(firebaseApp) : null;

@@ -1,6 +1,9 @@
 import {
+  ActionCodeURL,
+  applyActionCode,
   createUserWithEmailAndPassword,
   getRedirectResult,
+  reload,
   sendEmailVerification,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
@@ -19,7 +22,8 @@ import {
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { Platform } from "react-native";
-import { API_CONFIG, isStubMode } from "./config";
+import { isStubMode } from "./config";
+import { errorLoggingService } from "./error-logging.service";
 import { db, firebaseAuth } from "./firebase";
 import { deleteAllUserData } from "./userData.service";
 
@@ -49,7 +53,50 @@ export type SignInCredentials = {
   isSignUp: boolean;
 };
 
+type EmailActionType = "verify-email" | "email-link-sign-in";
+
 class AuthService {
+  private buildEmailActionUrl(action: EmailActionType): string {
+    const query = new URLSearchParams({ authFlow: action }).toString();
+
+    if (Platform.OS === "web" && typeof window !== "undefined") {
+      return `${window.location.origin}/login?${query}`;
+    }
+
+    return `gatorguide://login?${query}`;
+  }
+
+  private getEmailActionSettings(action: EmailActionType, handleCodeInApp = true): ActionCodeSettings {
+    return {
+      url: this.buildEmailActionUrl(action),
+      handleCodeInApp,
+      iOS: {
+        bundleId: "com.mobiledevelopment.gatorguide",
+      },
+      android: {
+        packageName: "com.mobiledevelopment.gatorguide",
+        installApp: false,
+        minimumVersion: "1",
+      },
+    };
+  }
+
+  private buildVerificationRequiredError(email: string): Error & { code?: string; email?: string } {
+    const err = new Error("Email verification required") as Error & { code?: string; email?: string };
+    err.code = "auth/email-not-verified";
+    err.email = email;
+    return err;
+  }
+
+  private parseEmailActionLink(url: string): ActionCodeURL | null {
+    if (!url) return null;
+    try {
+      return ActionCodeURL.parseLink(url);
+    } catch {
+      return null;
+    }
+  }
+
   async signIn(credentials: SignInCredentials): Promise<AuthUser> {
     if (isStubMode()) {
       await new Promise((resolve) => setTimeout(resolve, 500));
@@ -86,15 +133,26 @@ class AuthService {
             name: credentials.name?.trim() || userCredential.user.displayName || "",
           },
           { merge: true }
-        ).catch(() => {});
+        ).catch((error) => {
+          void errorLoggingService.captureException(error, {
+            category: "firestore",
+            operation: "seed-user-doc-after-signup",
+            severity: "warn",
+            handled: true,
+            source: "auth.service",
+            metadata: {
+              uid: userCredential.user.uid,
+            },
+          });
+        });
       }
 
-      await sendEmailVerification(userCredential.user);
+      await sendEmailVerification(
+        userCredential.user,
+        this.getEmailActionSettings("verify-email")
+      );
       await firebaseSignOut(firebaseAuth);
-      const err = new Error("Email verification required") as Error & { code?: string; email?: string };
-      err.code = "auth/email-verification-required";
-      err.email = credentials.email;
-      throw err;
+      throw this.buildVerificationRequiredError(credentials.email);
     }
 
     const userCredential = await signInWithEmailAndPassword(
@@ -102,6 +160,12 @@ class AuthService {
       credentials.email,
       credentials.password
     );
+
+    await reload(userCredential.user);
+    if (!userCredential.user.emailVerified) {
+      await firebaseSignOut(firebaseAuth);
+      throw this.buildVerificationRequiredError(credentials.email);
+    }
 
     return {
       uid: userCredential.user.uid,
@@ -140,7 +204,10 @@ class AuthService {
 
     const userCredential = await signInWithEmailAndPassword(firebaseAuth, email, password);
     try {
-      await sendEmailVerification(userCredential.user);
+      await sendEmailVerification(
+        userCredential.user,
+        this.getEmailActionSettings("verify-email")
+      );
     } finally {
       await firebaseSignOut(firebaseAuth);
     }
@@ -161,21 +228,7 @@ class AuthService {
       throw new Error("Firebase Auth not configured yet");
     }
 
-    const authDomain = API_CONFIG.firebase.authDomain?.trim() || "";
-    // Required so Firebase can generate a valid deep-link callback URL.
-    if (!authDomain) throw new Error("EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN is required for email link sign-in. Set it in .env");
-    const actionCodeSettings: ActionCodeSettings = {
-      url: `https://${authDomain}/__/auth/links`,
-      handleCodeInApp: true,
-      iOS: {
-        bundleId: "com.mobiledevelopment.gatorguide",
-      },
-      android: {
-        packageName: "com.mobiledevelopment.gatorguide",
-        installApp: false,
-        minimumVersion: "1",
-      },
-    };
+    const actionCodeSettings = this.getEmailActionSettings("email-link-sign-in");
 
     await sendSignInLinkToEmail(firebaseAuth, email, actionCodeSettings);
   }
@@ -187,6 +240,37 @@ class AuthService {
     if (isStubMode()) return false;
     if (!firebaseAuth) return false;
     return isSignInWithEmailLink(firebaseAuth, url);
+  }
+
+  isEmailVerificationLink(url: string): boolean {
+    if (isStubMode() || !firebaseAuth) return false;
+    const actionLink = this.parseEmailActionLink(url);
+    return actionLink?.operation === "VERIFY_EMAIL" && !!actionLink.code;
+  }
+
+  async completeEmailVerification(url: string): Promise<void> {
+    if (isStubMode()) return;
+    if (!firebaseAuth) {
+      throw new Error("Firebase Auth not configured yet");
+    }
+
+    const actionLink = this.parseEmailActionLink(url);
+    if (!actionLink || actionLink.operation !== "VERIFY_EMAIL" || !actionLink.code) {
+      throw new Error("Invalid email verification link");
+    }
+
+    await applyActionCode(firebaseAuth, actionLink.code);
+    if (firebaseAuth.currentUser) {
+      await reload(firebaseAuth.currentUser).catch((error) => {
+        void errorLoggingService.captureException(error, {
+          category: "auth",
+          operation: "reload-after-email-verification",
+          severity: "warn",
+          handled: true,
+          source: "auth.service",
+        });
+      });
+    }
   }
 
   /**
@@ -308,7 +392,16 @@ class AuthService {
     const uid = firebaseAuth.currentUser.uid;
     // Start cleanup, but don't let cleanup latency block account deletion.
     const cleanupPromise = deleteAllUserData(uid).catch((error) => {
-      console.warn("Pre-delete data cleanup failed.", error);
+      void errorLoggingService.captureException(error, {
+        category: "sync",
+        operation: "pre-delete-account-cleanup",
+        severity: "warn",
+        handled: true,
+        source: "auth.service",
+        metadata: {
+          uid,
+        },
+      });
     });
 
     await firebaseDeleteUser(firebaseAuth.currentUser);

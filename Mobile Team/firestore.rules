@@ -1,0 +1,101 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function ownsId(userId) {
+      return signedIn() && request.auth.uid == userId;
+    }
+
+    function requestHasUserId(userId) {
+      return request.resource.data.keys().hasAny(["userId"]) &&
+        request.resource.data.userId == userId;
+    }
+
+    function requestUserIdMissingOrMatches(userId) {
+      return !request.resource.data.keys().hasAny(["userId"]) ||
+        request.resource.data.userId == userId;
+    }
+
+    function resourceHasUserId(userId) {
+      return resource.data.keys().hasAny(["userId"]) &&
+        resource.data.userId == userId;
+    }
+
+    function isRootChatOwner(chatId) {
+      return signedIn() &&
+        exists(/databases/$(database)/documents/chatHistory/$(chatId)) &&
+        get(/databases/$(database)/documents/chatHistory/$(chatId)).data.userId == request.auth.uid;
+    }
+
+    match /users/{userId} {
+      allow read, create, update, delete: if ownsId(userId);
+
+      match /savedColleges/{collegeId} {
+        allow read, create, update, delete: if ownsId(userId);
+      }
+
+      // Future-proofed nested chat history paths if chat sessions move under users/{uid}/...
+      match /chatHistory/{chatId} {
+        allow read, create, update, delete: if ownsId(userId);
+
+        match /messages/{messageId} {
+          allow read, create, update, delete: if ownsId(userId);
+        }
+      }
+
+      match /chatSessions/{sessionId} {
+        allow read, create, update, delete: if ownsId(userId);
+
+        match /messages/{messageId} {
+          allow read, create, update, delete: if ownsId(userId);
+        }
+      }
+    }
+
+    match /questionnaires/{questionnaireId} {
+      allow create: if signedIn() &&
+        (questionnaireId == request.auth.uid || requestHasUserId(request.auth.uid)) &&
+        requestUserIdMissingOrMatches(request.auth.uid);
+      allow read, delete: if signedIn() &&
+        (questionnaireId == request.auth.uid || resourceHasUserId(request.auth.uid));
+      allow update: if signedIn() &&
+        (questionnaireId == request.auth.uid || resourceHasUserId(request.auth.uid)) &&
+        requestUserIdMissingOrMatches(request.auth.uid);
+    }
+
+    match /roadmaps/{userId} {
+      allow read, delete: if ownsId(userId);
+      allow create, update: if ownsId(userId) &&
+        requestHasUserId(userId);
+    }
+
+    // Root chat history path for the upcoming shared AI chat persistence work.
+    match /chatHistory/{chatId} {
+      allow create: if signedIn() &&
+        requestHasUserId(request.auth.uid);
+      allow read, delete: if signedIn() &&
+        resourceHasUserId(request.auth.uid);
+      allow update: if signedIn() &&
+        resourceHasUserId(request.auth.uid) &&
+        requestHasUserId(request.auth.uid);
+
+      match /messages/{messageId} {
+        allow read, create, update, delete: if isRootChatOwner(chatId);
+      }
+    }
+
+    // Support logs are write-only from authenticated clients; reads stay admin-only.
+    match /supportErrorLogs/{logId} {
+      allow create: if signedIn() &&
+        requestHasUserId(request.auth.uid);
+      allow read, update, delete: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

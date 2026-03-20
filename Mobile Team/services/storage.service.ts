@@ -6,6 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as FileSystem from 'expo-file-system';
 import { Platform } from 'react-native';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { errorLoggingService } from './error-logging.service';
 import { storage } from './firebase';
 
 export type UploadedFile = {
@@ -33,7 +34,18 @@ async function copyToLocalStorage(sourceUri: string, fileName: string, subDir: s
   }
   const baseDir = (FileSystem as any).documentDirectory ?? (FileSystem as any).cacheDirectory ?? "";
   const dir = `${baseDir}${DOCS_DIR}/${subDir}/`;
-  await FileSystem.makeDirectoryAsync(dir, { intermediates: true }).catch(() => {});
+  await FileSystem.makeDirectoryAsync(dir, { intermediates: true }).catch((error) => {
+    void errorLoggingService.captureException(error, {
+      category: 'storage',
+      operation: 'create-local-document-directory',
+      severity: 'warn',
+      handled: true,
+      source: 'storage.service',
+      metadata: {
+        subDir,
+      },
+    });
+  });
   const destUri = `${dir}${Date.now()}_${fileName}`;
   await FileSystem.copyAsync({ from: sourceUri, to: destUri });
   return destUri;
@@ -57,7 +69,20 @@ async function uploadToFirebaseBucket(
     });
     const downloadUrl = await getDownloadURL(storageRef);
     return downloadUrl;
-  } catch {
+  } catch (error) {
+    void errorLoggingService.captureException(error, {
+      category: 'upload',
+      operation: 'upload-to-firebase-storage',
+      severity: 'warn',
+      handled: true,
+      source: 'storage.service',
+      metadata: {
+        bucket,
+        userId,
+        fileName,
+        firebaseStorageConfigured: !!storage,
+      },
+    });
     return null;
   }
 }
