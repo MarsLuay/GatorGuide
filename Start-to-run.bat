@@ -3,16 +3,16 @@ setlocal EnableExtensions EnableDelayedExpansion
 
 set "ROOT_DIR=%~dp0"
 set "APP_DIR=%ROOT_DIR%Mobile Team"
+set "REPO_DIR_NAME=GatorGuide"
+set "REPO_URL=https://github.com/MarsLuay/GatorGuide.git"
 set "SERVER_PORT=8081"
 set "SERVER_URL=http://127.0.0.1:%SERVER_PORT%"
 set "SERVER_WINDOW_TITLE=Gator Guide Server"
 
-if not exist "%APP_DIR%\package.json" (
-  echo Could not find the Expo app in "%APP_DIR%".
-  exit /b 1
-)
-
 echo Preparing Gator Guide for launch...
+call :locate_or_clone_repo
+if errorlevel 1 exit /b 1
+
 call :ensure_node_toolchain
 if errorlevel 1 exit /b 1
 
@@ -46,6 +46,74 @@ if errorlevel 1 (
 )
 
 echo Your default browser should open in a moment.
+exit /b 0
+
+:locate_or_clone_repo
+if exist "%APP_DIR%\package.json" (
+  echo Found Gator Guide in "%ROOT_DIR%".
+  exit /b 0
+)
+
+set "CLONE_ROOT=%ROOT_DIR%%REPO_DIR_NAME%"
+if exist "%CLONE_ROOT%\Mobile Team\package.json" (
+  set "ROOT_DIR=%CLONE_ROOT%\"
+  set "APP_DIR=%ROOT_DIR%Mobile Team"
+  echo Found Gator Guide in "%ROOT_DIR%".
+  exit /b 0
+)
+
+echo Gator Guide was not found next to this launcher.
+call :ensure_git
+if errorlevel 1 exit /b 1
+
+echo Cloning Gator Guide into "%CLONE_ROOT%"...
+git clone "%REPO_URL%" "%CLONE_ROOT%"
+if errorlevel 1 (
+  echo Could not clone the repo from %REPO_URL%.
+  exit /b 1
+)
+
+set "ROOT_DIR=%CLONE_ROOT%\"
+set "APP_DIR=%ROOT_DIR%Mobile Team"
+if not exist "%APP_DIR%\package.json" (
+  echo The repo finished cloning, but "%APP_DIR%\package.json" is still missing.
+  exit /b 1
+)
+
+echo Repo cloned successfully.
+exit /b 0
+
+:ensure_git
+set "PATH=%ProgramFiles%\Git\cmd;%ProgramFiles(x86)%\Git\cmd;%LocalAppData%\Programs\Git\cmd;%PATH%"
+where git >nul 2>&1
+if not errorlevel 1 (
+  echo Git is already installed.
+  exit /b 0
+)
+
+where winget >nul 2>&1
+if errorlevel 1 (
+  echo Git is missing and winget is not available on this PC.
+  echo Install Git from https://git-scm.com/downloads and run this file again.
+  exit /b 1
+)
+
+echo Git was not found. Installing Git with winget...
+winget install --id Git.Git -e --accept-package-agreements --accept-source-agreements
+if errorlevel 1 (
+  echo Git installation failed.
+  exit /b 1
+)
+
+set "PATH=%ProgramFiles%\Git\cmd;%ProgramFiles(x86)%\Git\cmd;%LocalAppData%\Programs\Git\cmd;%PATH%"
+where git >nul 2>&1
+if errorlevel 1 (
+  echo Git was installed, but this terminal cannot find it yet.
+  echo Close this window and run Start-to-run.bat again.
+  exit /b 1
+)
+
+echo Git finished installing successfully.
 exit /b 0
 
 :ensure_node_toolchain

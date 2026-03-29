@@ -13,12 +13,13 @@ The Data Team helps by:
 
 ## What's in This Folder
 
-- `Data.md`: notes, planning, and team documentation.
+- [`docs/Data.md`](docs/Data.md): notes, planning, and team documentation.
 - `WA_Transfer_Deadline.csv`: a current example dataset for transfer deadline work.
-- `PIPELINE_OVERVIEW.md`: high-level notes for the imported data/backend workflow.
+- [`docs/PIPELINE_OVERVIEW.md`](docs/PIPELINE_OVERVIEW.md): high-level notes for the imported data/backend workflow.
 - `DataScrape/`: Python ETL pipeline for pulling and transforming College Scorecard data.
 - `Server/`: Django backend and API files imported from the fork branch.
 - `pyproject.toml` and `uv.lock`: shared Python dependency setup for the Data Team workspace.
+- [`docs/COLLEGE_RANKING.md`](docs/COLLEGE_RANKING.md): shared ranking philosophy so data decisions stay aligned with the app's recommendation model.
 
 ## Setup: Open the Data Workspace (Windows)
 
@@ -56,14 +57,6 @@ This folder now includes two runnable Python workspaces:
 - `Data Team/Server` for the Django backend/API
 
 The student-facing app still lives in `Mobile Team`.
-
-### 3) Open in VS Code (edit files)
-
-Open VS Code -> File -> Open Folder ->
-
-```text
-C:\Users\<you>\GatorGuide\Data Team
-```
 
 ## Before You Start Working
 
