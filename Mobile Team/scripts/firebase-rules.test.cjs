@@ -126,27 +126,226 @@ async function run() {
     await assertFails(getDoc(doc(anonDb, "roadmaps", "alice")));
     logStep("roadmaps owner-only access");
 
+    await testEnv.withSecurityRulesDisabled(async (context) => {
+      await setDoc(doc(context.firestore(), "opportunities", "green-river-foundation-scholarship"), {
+        schemaVersion: 1,
+        opportunityId: "green-river-foundation-scholarship",
+        type: "scholarship",
+        status: "active",
+        title: "Green River College Foundation Scholarship",
+        organizationName: "Green River College Foundation",
+        summary: "Scholarship support for Green River students.",
+        externalUrl: "https://grcfoundation.awardspring.com/",
+        dueAt: "2026-04-30T16:00:00.000Z",
+        recurrence: {
+          isYearly: true,
+          month: 4,
+          day: 30,
+          timezone: "America/Los_Angeles",
+        },
+        matching: {
+          financialAidTags: ["need_based", "merit"],
+          suggestedMajors: [],
+          hasToBeMajor: false,
+        },
+        requirements: {
+          needsRecommendations: false,
+          essayCount: 3,
+        },
+        college: {
+          collegeId: null,
+          collegeName: null,
+          city: null,
+          state: null,
+          website: null,
+        },
+        source: {
+          kind: "seed",
+          sourceUrl: "https://www.greenriver.edu/students/pay-for-college/financial-aid/types-of-aid/scholarships/",
+          sourceLabel: "Green River scholarships page",
+          model: null,
+          fetchedAt: "2026-03-29T00:00:00.000Z",
+          verifiedAt: "2026-03-29T00:00:00.000Z",
+        },
+        createdAt: "2026-03-29T00:00:00.000Z",
+        updatedAt: "2026-03-29T00:00:00.000Z",
+      });
+    });
+    await assertSucceeds(getDoc(doc(aliceDb, "opportunities", "green-river-foundation-scholarship")));
+    await assertSucceeds(getDoc(doc(anonDb, "opportunities", "green-river-foundation-scholarship")));
+    await assertFails(
+      setDoc(doc(aliceDb, "opportunities", "client-created"), {
+        schemaVersion: 1,
+      })
+    );
+    logStep("opportunities catalog public-read but client write denied");
+
+    await assertSucceeds(
+      setDoc(doc(aliceDb, "users", "alice", "opportunityStatuses", "green-river-foundation-scholarship"), {
+        schemaVersion: 1,
+        userId: "alice",
+        opportunityId: "green-river-foundation-scholarship",
+        isDone: true,
+        doneAt: "2026-03-29T00:00:00.000Z",
+        doneCycleKey: "2026",
+        clientUpdatedAt: "2026-03-29T00:00:00.000Z",
+        updatedAt: "2026-03-29T00:00:00.000Z",
+      })
+    );
+    await assertFails(
+      setDoc(doc(aliceDb, "users", "alice", "opportunityStatuses", "green-river-foundation-scholarship"), {
+        schemaVersion: 1,
+        userId: "alice",
+        opportunityId: "other-id",
+        isDone: true,
+        doneAt: "2026-03-29T00:00:00.000Z",
+        doneCycleKey: "2026",
+        clientUpdatedAt: "2026-03-29T00:00:00.000Z",
+        updatedAt: "2026-03-29T00:00:00.000Z",
+      })
+    );
+    await assertFails(getDoc(doc(bobDb, "users", "alice", "opportunityStatuses", "green-river-foundation-scholarship")));
+    await assertFails(
+      setDoc(doc(bobDb, "users", "alice", "opportunityStatuses", "green-river-foundation-scholarship"), {
+        schemaVersion: 1,
+        userId: "alice",
+        opportunityId: "green-river-foundation-scholarship",
+        isDone: true,
+        doneAt: "2026-03-29T00:00:00.000Z",
+        doneCycleKey: "2026",
+        clientUpdatedAt: "2026-03-29T00:00:00.000Z",
+        updatedAt: "2026-03-29T00:00:00.000Z",
+      })
+    );
+    logStep("users/{uid}/opportunityStatuses owner-only schema access");
+
     await assertSucceeds(
       setDoc(doc(aliceDb, "chatHistory", "chat-1"), {
+        schemaVersion: "2026-03-29.v1",
+        sessionId: "chat-1",
         userId: "alice",
+        assistantKey: "roadmap-assistant",
+        assistantSurface: "roadmap-chat",
         title: "Transfer questions",
+        status: "active",
+        source: {
+          screen: "roadmap-chat",
+          route: "/roadmap",
+        },
+        contextSchemaVersion: "2026-03-19.v1",
+        lastOutputFormat: "text",
+        messageCount: 1,
+        userMessageCount: 1,
+        assistantMessageCount: 0,
+        latestMessageAt: "2026-03-19T00:00:00.000Z",
+        latestMessageRole: "user",
+        latestMessagePreview: "What schools fit me best?",
         createdAt: "2026-03-19T00:00:00.000Z",
+        updatedAt: "2026-03-19T00:00:00.000Z",
+        retention: {
+          policy: "ttl_365d",
+          expiresAt: "2027-03-19T00:00:00.000Z",
+          deleteOnAccountDeletion: true,
+        },
       })
     );
     await assertSucceeds(
       setDoc(doc(aliceDb, "chatHistory", "chat-1", "messages", "m1"), {
+        schemaVersion: "2026-03-29.v1",
+        sessionId: "chat-1",
+        messageId: "m1",
+        userId: "alice",
         role: "user",
-        text: "What schools fit me best?",
+        content: "What schools fit me best?",
+        status: "committed",
+        source: "client",
+        sourceRef: {
+          screen: "roadmap-chat",
+          route: "/roadmap",
+        },
+        createdAt: "2026-03-19T00:00:00.000Z",
+        clientCreatedAt: "2026-03-19T00:00:00.000Z",
+        updatedAt: "2026-03-19T00:00:00.000Z",
+        retention: {
+          policy: "ttl_365d",
+          expiresAt: "2027-03-19T00:00:00.000Z",
+          deleteOnAccountDeletion: true,
+        },
+        modelMetadata: null,
+      })
+    );
+    await assertFails(
+      setDoc(doc(aliceDb, "chatHistory", "chat-2"), {
+        userId: "alice",
+        title: "Missing retention",
       })
     );
     await assertFails(getDoc(doc(bobDb, "chatHistory", "chat-1")));
     await assertFails(
       setDoc(doc(bobDb, "chatHistory", "chat-1", "messages", "m2"), {
+        schemaVersion: "2026-03-29.v1",
+        sessionId: "chat-1",
+        messageId: "m2",
+        userId: "bob",
         role: "assistant",
-        text: "Denied",
+        content: "Denied",
+        status: "committed",
+        source: "live",
+        sourceRef: {
+          screen: "roadmap-chat",
+          route: "/roadmap",
+        },
+        createdAt: "2026-03-19T00:00:00.000Z",
+        clientCreatedAt: null,
+        updatedAt: "2026-03-19T00:00:00.000Z",
+        retention: {
+          policy: "ttl_365d",
+          expiresAt: "2027-03-19T00:00:00.000Z",
+          deleteOnAccountDeletion: true,
+        },
+        modelMetadata: {
+          provider: "google",
+          model: "gemini",
+          gateway: "geminiGateway",
+          outputFormat: "text",
+          requestId: "req-2",
+          contextSchemaVersion: "2026-03-19.v1",
+        },
       })
     );
-    logStep("chatHistory owner-only access");
+    await assertFails(
+      setDoc(doc(aliceDb, "chatHistory", "chat-1", "messages", "m3"), {
+        schemaVersion: "2026-03-29.v1",
+        sessionId: "wrong-session",
+        messageId: "m3",
+        userId: "alice",
+        role: "assistant",
+        content: "Wrong session",
+        status: "committed",
+        source: "live",
+        sourceRef: {
+          screen: "roadmap-chat",
+          route: "/roadmap",
+        },
+        createdAt: "2026-03-19T00:00:00.000Z",
+        clientCreatedAt: null,
+        updatedAt: "2026-03-19T00:00:00.000Z",
+        retention: {
+          policy: "ttl_365d",
+          expiresAt: "2027-03-19T00:00:00.000Z",
+          deleteOnAccountDeletion: true,
+        },
+        modelMetadata: {
+          provider: "google",
+          model: "gemini",
+          gateway: "geminiGateway",
+          outputFormat: "text",
+          requestId: "req-3",
+          contextSchemaVersion: "2026-03-19.v1",
+        },
+      })
+    );
+    logStep("chatHistory schema + owner-only access");
 
     await assertSucceeds(
       setDoc(doc(aliceDb, "supportErrorLogs", "log-1"), {

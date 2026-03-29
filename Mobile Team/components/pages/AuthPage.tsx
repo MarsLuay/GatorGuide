@@ -8,6 +8,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import Constants from "expo-constants";
 import { makeRedirectUri, useAuthRequest, useAutoDiscovery, ResponseType } from "expo-auth-session";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
+import { ROUTES } from "@/constants/routes";
+import { STORAGE_KEYS } from "@/constants/schema";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
@@ -22,12 +24,12 @@ import { SUPPORT_MAILTO } from "@/constants/support";
 WebBrowser.maybeCompleteAuthSession();
 
 const isEmailValid = (value: string) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value.trim());
-const PENDING_DELETE_ACCOUNT_KEY = "gatorguide:pending-delete-account";
-const ONBOARDING_DEBUG_LOG_KEY = "gatorguide:onboarding-debug-log:v1";
+const PENDING_DELETE_ACCOUNT_KEY = STORAGE_KEYS.pendingDeleteAccount;
+const ONBOARDING_DEBUG_LOG_KEY = STORAGE_KEYS.onboardingDebugLog;
 
 export default function AuthPage() {
   const params = useLocalSearchParams<{ emailVerified?: string | string[] }>();
-  const { isHydrated, state, signIn, signInWithAuthUser, signInAsGuest, updateUser, setQuestionnaireAnswers, deleteAccount } = useAppData();
+  const { isHydrated, signIn, signInWithAuthUser, signInAsGuest, updateUser, setQuestionnaireAnswers, deleteAccount } = useAppData();
   const { t } = useAppLanguage();
   const styles = useThemeStyles();
   const { isDark } = useAppTheme();
@@ -85,6 +87,90 @@ export default function AuthPage() {
     }
   }, [onboardingDebugLogs]);
 
+  const getFriendlyAuthMessage = useCallback(
+    (
+      error: unknown,
+      context: {
+        flow?: "sign-in" | "email-link" | "provider" | "account-delete";
+        provider?: "google" | "microsoft";
+      } = {}
+    ): string | null => {
+      const code =
+        typeof error === "object" &&
+        error !== null &&
+        "code" in error &&
+        typeof (error as { code?: unknown }).code === "string"
+          ? (error as { code: string }).code
+          : undefined;
+      const message =
+        error instanceof Error
+          ? error.message
+          : typeof error === "object" &&
+              error !== null &&
+              "message" in error &&
+              typeof (error as { message?: unknown }).message === "string"
+            ? (error as { message: string }).message
+            : "";
+
+      if (code === "auth/popup-closed-by-user" || /cancelled|canceled|dismissed by user/i.test(message)) {
+        return null;
+      }
+
+      switch (code) {
+        case "auth/invalid-email":
+          return t("auth.invalidEmail");
+        case "auth/user-not-found":
+          return t("auth.no_matches");
+        case "auth/wrong-password":
+          return t("auth.wrongPassword");
+        case "auth/invalid-credential":
+          return t("auth.invalidCredential");
+        case "auth/email-already-in-use":
+          return t("auth.emailAlreadyInUse");
+        case "auth/weak-password":
+          return t("auth.passwordMinimum");
+        case "auth/too-many-requests":
+          return t("auth.tooManyAttempts");
+        case "auth/network-request-failed":
+          return t("auth.networkError");
+        case "auth/user-disabled":
+          return t("auth.accountDisabled");
+        case "auth/operation-not-allowed":
+          return context.flow === "email-link"
+            ? t("auth.presentation.emailLinkUnavailable")
+            : t("auth.presentation.signInMethodUnavailable");
+        case "auth/verification-email-failed":
+          return t("auth.verificationEmailFailed");
+        case "auth/email-not-verified":
+          return t("auth.emailNotVerified");
+        case "auth/unauthorized-continue-uri":
+        case "auth/invalid-continue-uri":
+          return context.flow === "email-link"
+            ? t("auth.presentation.emailLinkFallback")
+            : t("auth.presentation.oauthFallback");
+        case "auth/invalid-action-code":
+        case "auth/expired-action-code":
+          return t("auth.emailActionLinkFailed");
+        case "auth/requires-recent-login":
+          return t("auth.presentation.deleteRetryLogin");
+        default:
+          break;
+      }
+
+      if (context.flow === "provider") {
+        if (/popup|redirect|sessionStorage|initial state/i.test(message)) {
+          return t("auth.presentation.oauthFallback");
+        }
+        if (/available on web|web/i.test(message)) {
+          return t("auth.presentation.providerUnavailableWeb");
+        }
+      }
+
+      return t("auth.loginFailed");
+    },
+    [t]
+  );
+
   const handlePostAuthRoute = useCallback(async () => {
     await appendOnboardingDebugLog("Post-auth route check started.");
     const pendingDelete = await AsyncStorage.getItem(PENDING_DELETE_ACCOUNT_KEY).catch(() => null);
@@ -93,26 +179,22 @@ export default function AuthPage() {
       await AsyncStorage.removeItem(PENDING_DELETE_ACCOUNT_KEY).catch(() => {});
       try {
         await deleteAccount();
-        await appendOnboardingDebugLog("Post-auth deleteAccount succeeded. Redirecting to /login.");
-        Alert.alert("Account deleted", "Your account has been deleted successfully.");
-        router.replace("/login");
+        await appendOnboardingDebugLog(`Post-auth deleteAccount succeeded. Redirecting to ${ROUTES.login}.`);
+        Alert.alert(t("auth.presentation.accountDeletedTitle"), t("auth.presentation.accountDeletedMessage"));
+        router.replace(ROUTES.login);
         return;
       } catch (err: any) {
         const code = err?.code as string | undefined;
         await appendOnboardingDebugLog(`Post-auth deleteAccount failed. code=${code ?? "none"} message=${String(err?.message ?? "unknown")}`);
-        if (code === "auth/requires-recent-login") {
-          Alert.alert(
-            t("general.error"),
-            "Please try logging in again and then deleting your account from Settings."
-          );
-        } else {
-          Alert.alert(t("general.error"), err?.message || t("auth.loginFailed"));
+        const friendly = getFriendlyAuthMessage(err, { flow: "account-delete" });
+        if (friendly) {
+          Alert.alert(t("general.error"), friendly);
         }
       }
     }
-    await appendOnboardingDebugLog("Post-auth route complete. Redirecting to /");
-    setTimeout(() => router.replace("/"), 50);
-  }, [appendOnboardingDebugLog, deleteAccount, t]);
+    await appendOnboardingDebugLog(`Post-auth route complete. Redirecting to ${ROUTES.root}`);
+    setTimeout(() => router.replace(ROUTES.root), 50);
+  }, [appendOnboardingDebugLog, deleteAccount, getFriendlyAuthMessage, t]);
 
   const isNative = Platform.OS === "ios" || Platform.OS === "android";
   const isExpoGo = Constants.appOwnership === "expo";
@@ -120,7 +202,7 @@ export default function AuthPage() {
   const redirectUri = makeRedirectUri({ scheme: "gatorguide", path: "auth" });
   const microsoftDiscovery = useAutoDiscovery("https://login.microsoftonline.com/common/v2.0");
 
-  const [microsoftRequest, microsoftResponse, microsoftPromptAsync] = useAuthRequest(
+  const [, microsoftResponse, microsoftPromptAsync] = useAuthRequest(
     {
       clientId: API_CONFIG.microsoftClientId || "dummy",
       scopes: ["openid", "profile", "email"],
@@ -173,7 +255,7 @@ export default function AuthPage() {
       return;
     }
 
-    router.replace("/login");
+    router.replace(ROUTES.login);
   }, [emailVerifiedFlag, t]);
 
   useEffect(() => {
@@ -197,11 +279,13 @@ export default function AuthPage() {
         await signInWithAuthUser(authUser);
         await handlePostAuthRoute();
       } catch (err: unknown) {
-        const msg = err instanceof Error ? err.message : t("auth.loginFailed");
-        Alert.alert(t("general.error"), msg);
+        const friendly = getFriendlyAuthMessage(err, { flow: "provider", provider: "microsoft" });
+        if (friendly) {
+          Alert.alert(t("general.error"), friendly);
+        }
       }
     })();
-  }, [microsoftResponse, isNative, signInWithAuthUser, t, handlePostAuthRoute]);
+  }, [microsoftResponse, getFriendlyAuthMessage, isNative, signInWithAuthUser, t, handlePostAuthRoute]);
 
   const emailError = useMemo(() => {
     const trimmed = email.trim();
@@ -242,40 +326,6 @@ export default function AuthPage() {
     if (Platform.OS !== "web") await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     setIsSubmitting(true);
 
-    const mapAuthError = (code: string | undefined) => {
-      switch (code) {
-        case 'auth/invalid-email':
-          return t('auth.invalidEmail');
-        case 'auth/user-not-found':
-          return t('auth.no_matches');
-        case 'auth/wrong-password':
-          return t('auth.wrongPassword');
-        case 'auth/invalid-credential':
-          return t('auth.invalidCredential');
-        case 'auth/email-already-in-use':
-          return t('auth.emailAlreadyInUse');
-        case 'auth/weak-password':
-          return t('auth.passwordMinimum');
-        case 'auth/too-many-requests':
-          return t('auth.tooManyAttempts');
-        case 'auth/network-request-failed':
-          return t('auth.networkError');
-        case 'auth/user-disabled':
-          return t('auth.accountDisabled');
-        case 'auth/operation-not-allowed':
-          return t('auth.signInMethodDisabled');
-        case 'auth/verification-email-failed':
-          return t('auth.verificationEmailFailed');
-        case 'auth/email-not-verified':
-          return t('auth.emailNotVerified');
-        case 'auth/unauthorized-continue-uri':
-        case 'auth/invalid-continue-uri':
-          return t('auth.localhostAuthorizedDomainHint');
-        default:
-          return t('auth.loginFailed');
-      }
-    };
-
     try {
       await signIn({ name: n || t('auth.defaultUser'), email: e, password, isSignUp });
       await appendOnboardingDebugLog(`signIn() resolved. mode=${isSignUp ? "signup" : "login"}`);
@@ -283,7 +333,7 @@ export default function AuthPage() {
       // On signup, migrate any guest-mode progress into the new account.
       if (isSignUp) {
         try {
-          const pendingData = await AsyncStorage.getItem('gatorguide:pending-account-data');
+          const pendingData = await AsyncStorage.getItem(STORAGE_KEYS.pendingAccountData);
           if (pendingData) {
             const parsed = JSON.parse(pendingData);
             if (parsed.user) {
@@ -297,7 +347,7 @@ export default function AuthPage() {
             if (parsed.questionnaireAnswers) {
               await setQuestionnaireAnswers(parsed.questionnaireAnswers);
             }
-            await AsyncStorage.removeItem('gatorguide:pending-account-data');
+            await AsyncStorage.removeItem(STORAGE_KEYS.pendingAccountData);
           }
         } catch {
           void errorLoggingService.captureMessage("Pending account data migration failed after signup.", {
@@ -307,7 +357,7 @@ export default function AuthPage() {
             handled: true,
             source: "auth-page",
             screen: "auth",
-            route: "/login",
+            route: ROUTES.login,
             metadata: {
               isSignUp: true,
             },
@@ -324,7 +374,7 @@ export default function AuthPage() {
         handled: true,
         source: "auth-page",
         screen: "auth",
-        route: "/login",
+        route: ROUTES.login,
         metadata: {
           isSignUp,
           code: err?.code ?? null,
@@ -339,14 +389,12 @@ export default function AuthPage() {
         return;
       }
 
-      const friendly = mapAuthError(err?.code);
+      const friendly = getFriendlyAuthMessage(err, { flow: "sign-in" });
       if (friendly) {
         Alert.alert(t('general.error'), friendly);
         if (err?.code === 'auth/email-already-in-use' && isSignUp) {
           setIsSignUp(false);
         }
-      } else {
-        Alert.alert(t('general.error'), err?.message || 'Authentication failed.');
       }
     } finally {
       setIsSubmitting(false);
@@ -376,10 +424,12 @@ export default function AuthPage() {
         handled: true,
         source: "auth-page",
         screen: "auth",
-        route: "/login",
+        route: ROUTES.login,
       });
-      const msg = err instanceof Error ? err.message : t("auth.loginFailed");
-      Alert.alert(t("general.error"), msg);
+      const friendly = getFriendlyAuthMessage(err, { flow: "email-link" });
+      if (friendly) {
+        Alert.alert(t("general.error"), friendly);
+      }
     } finally {
       setCompletingLink(false);
     }
@@ -411,17 +461,18 @@ export default function AuthPage() {
         handled: true,
         source: "auth-page",
         screen: "auth",
-        route: "/login",
+        route: ROUTES.login,
         metadata: {
           code: code ?? null,
         },
       });
-      let msg = err instanceof Error ? err.message : t("auth.loginFailed");
-      if (code === "auth/operation-not-allowed") {
+      const friendly = getFriendlyAuthMessage(err, { flow: "email-link" });
+      let msg = friendly ?? t("auth.loginFailed");
+      if (false && friendly) {
         msg = t("auth.emailLinkNotEnabled") || "Please enable Email link (passwordless sign-in) in Firebase Console → Authentication → Sign-in method.";
       } else if (code === "auth/invalid-email") {
         msg = t("auth.emailInvalid");
-      } else if (code === "auth/unauthorized-continue-uri" || code === "auth/invalid-continue-uri") {
+      } else if (false && (code === "auth/unauthorized-continue-uri" || code === "auth/invalid-continue-uri")) {
         msg = t("auth.localhostAuthorizedDomainHint");
       }
       Alert.alert(t("general.error"), msg);
@@ -459,29 +510,27 @@ export default function AuthPage() {
           handled: true,
           source: "auth-page",
           screen: "auth",
-          route: "/login",
+          route: ROUTES.login,
           metadata: {
             provider,
             platform: "web",
           },
         });
-        const errMsg = err instanceof Error ? err.message : "";
-        const isOAuthError = /popup|redirect|sessionStorage|initial state/i.test(errMsg);
-        const msg = errMsg.includes("available on web") || errMsg.includes("web")
-          ? t("auth.providerAvailableOnWeb")
-          : isOAuthError
-            ? t("auth.oauthFallbackHint")
-            : errMsg || t("auth.validation.failed_message");
-        Alert.alert(t("general.error"), msg);
+        const friendly = getFriendlyAuthMessage(err, { flow: "provider", provider });
+        if (friendly) {
+          Alert.alert(t("general.error"), friendly);
+        }
       }
       return;
     }
     if (provider === "google") {
       if (!API_CONFIG.googleWebClientId) {
-        Alert.alert(t("general.error"), t("auth.providerNotConfigured") || "Google sign-in is not configured. Set EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID.");
+        Alert.alert(t("general.error"), t("auth.presentation.googleUnavailable"));
         return;
       }
       if (isExpoGo) {
+        Alert.alert(t("general.error"), t("auth.presentation.googleDevBuildRequired"));
+        if (Platform.OS !== "web") return;
         Alert.alert(
           t("general.error"),
           "Google 登录需使用开发构建，Expo Go 不支持。\n\n请运行: npx expo run:ios\n或: npx expo run:android"
@@ -489,7 +538,7 @@ export default function AuthPage() {
         return;
       }
       try {
-        const { GoogleSignin } = require("@react-native-google-signin/google-signin");
+        const { GoogleSignin } = await import("@react-native-google-signin/google-signin");
         GoogleSignin.configure({ webClientId: API_CONFIG.googleWebClientId });
         const res = await GoogleSignin.signIn();
         if (res?.type === "cancelled") return;
@@ -511,20 +560,22 @@ export default function AuthPage() {
           handled: true,
           source: "auth-page",
           screen: "auth",
-          route: "/login",
+          route: ROUTES.login,
           metadata: {
             provider: "google",
             platform: Platform.OS,
           },
         });
-        const msg = err instanceof Error ? err.message : t("auth.loginFailed");
-        Alert.alert(t("general.error"), msg);
+        const friendly = getFriendlyAuthMessage(err, { flow: "provider", provider: "google" });
+        if (friendly) {
+          Alert.alert(t("general.error"), friendly);
+        }
       }
       return;
     }
     if (provider === "microsoft") {
       if (!API_CONFIG.microsoftClientId) {
-        Alert.alert(t("general.error"), t("auth.providerNotConfiguredMs") || "Microsoft sign-in is not configured. Set EXPO_PUBLIC_MICROSOFT_CLIENT_ID.");
+        Alert.alert(t("general.error"), t("auth.presentation.microsoftUnavailable"));
         return;
       }
       try {
@@ -537,14 +588,16 @@ export default function AuthPage() {
           handled: true,
           source: "auth-page",
           screen: "auth",
-          route: "/login",
+          route: ROUTES.login,
           metadata: {
             provider: "microsoft",
             platform: Platform.OS,
           },
         });
-        const msg = err instanceof Error ? err.message : t("auth.loginFailed");
-        Alert.alert(t("general.error"), msg);
+        const friendly = getFriendlyAuthMessage(err, { flow: "provider", provider: "microsoft" });
+        if (friendly) {
+          Alert.alert(t("general.error"), friendly);
+        }
       }
     }
   };
@@ -618,8 +671,10 @@ export default function AuthPage() {
                   await authService.resendVerificationEmail(e, password);
                   Alert.alert(t("auth.checkYourEmail"), t("auth.verificationEmailResent"));
                 } catch (err: unknown) {
-                  const msg = err instanceof Error ? err.message : t("auth.loginFailed");
-                  Alert.alert(t("general.error"), msg);
+                  const friendly = getFriendlyAuthMessage(err, { flow: "sign-in" });
+                  if (friendly) {
+                    Alert.alert(t("general.error"), friendly);
+                  }
                 } finally {
                   setResendingVerification(false);
                 }
@@ -739,7 +794,7 @@ export default function AuthPage() {
 
           {!isSignUp && (
             <View className="items-end">
-              <Pressable onPress={() => router.push("/forgot-password")} disabled={!isHydrated}>
+              <Pressable onPress={() => router.push(ROUTES.forgotPassword)} disabled={!isHydrated}>
                 <Text className="text-sm text-emerald-500">{t("auth.forgotPassword")}</Text>
               </Pressable>
             </View>
@@ -753,7 +808,7 @@ export default function AuthPage() {
 
           {isWeb && (
             <Text className={`${styles.secondaryTextClass} text-xs text-center mb-2`}>
-              {t("auth.oauthFallbackHint")}
+              {t("auth.presentation.oauthFallback")}
             </Text>
           )}
 

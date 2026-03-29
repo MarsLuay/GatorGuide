@@ -2,10 +2,11 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import Constants from "expo-constants";
 import { Platform } from "react-native";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { FIRESTORE_COLLECTIONS, STORAGE_KEYS } from "@/constants/schema";
 import { API_CONFIG } from "./config";
 import { db, firebaseAuth } from "./firebase";
 
-const LOG_QUEUE_KEY = "gatorguide:error-logs:queue:v1";
+const LOG_QUEUE_KEY = STORAGE_KEYS.errorLogQueue;
 const LOG_SCHEMA_VERSION = 1;
 const DEDUPE_WINDOW_MS = 30_000;
 const REDACTED_VALUE = "[redacted]";
@@ -310,7 +311,7 @@ class ErrorLoggingService {
     const currentUser = firebaseAuth?.currentUser;
     if (!db || !currentUser?.uid) return false;
 
-    await addDoc(collection(db, "supportErrorLogs"), {
+    await addDoc(collection(db, FIRESTORE_COLLECTIONS.supportErrorLogs), {
       ...entry,
       userId: currentUser.uid,
       createdAt: serverTimestamp(),

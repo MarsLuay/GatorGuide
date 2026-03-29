@@ -1,5 +1,6 @@
 import { RouteAccessBoundary, hasCompletedProfileSetup } from "@/components/navigation/RouteAccessBoundary";
 import OnboardingPage from "@/components/pages/OnboardingPage";
+import { ROUTES } from "@/constants/routes";
 
 export default function Onboarding() {
   return (
@@ -8,7 +9,7 @@ export default function Onboarding() {
       loadingMessage="Preparing your data"
       resolveRedirect={(user) => {
         if (user?.hasSeenOnboarding === true) {
-          return hasCompletedProfileSetup(user) ? "/(tabs)" : "/profile-setup";
+          return hasCompletedProfileSetup(user) ? ROUTES.tabs : ROUTES.profileSetup;
         }
         return null;
       }}

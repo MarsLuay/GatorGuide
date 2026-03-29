@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, Pressable } from "react-native";
 import { useRouter } from "expo-router";
+import { ROUTES } from "@/constants/routes";
 import useBack from "@/hooks/use-back";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppTheme } from "@/hooks/use-app-theme";
@@ -23,7 +24,7 @@ export default function NotFound() {
           </Text>
 
           <Pressable
-            onPress={() => router.replace("/(tabs)")}
+            onPress={() => router.replace(ROUTES.tabs)}
             className="px-5 py-4 rounded-2xl bg-emerald-500 w-full items-center"
           >
             <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} font-semibold`}>Go Home</Text>

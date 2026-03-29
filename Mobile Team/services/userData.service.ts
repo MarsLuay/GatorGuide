@@ -13,41 +13,90 @@ import {
   writeBatch,
 } from "firebase/firestore";
 import { getStorage, ref, listAll, deleteObject } from "firebase/storage";
+import {
+  FIRESTORE_COLLECTIONS,
+  FIRESTORE_CHAT_HISTORY_SUBCOLLECTIONS,
+  FIRESTORE_USER_SUBCOLLECTIONS,
+  buildFirebaseUserStoragePath,
+} from "@/constants/schema";
 import { db, firebaseApp } from "./firebase";
 import { isStubMode } from "./config";
+
+async function commitDeleteBatchInChunks(dbInstance: NonNullable<typeof db>, refs: { ref: Parameters<ReturnType<typeof writeBatch>["delete"]>[0] }[]) {
+  const CHUNK_SIZE = 400;
+
+  for (let index = 0; index < refs.length; index += CHUNK_SIZE) {
+    const batch = writeBatch(dbInstance);
+    refs.slice(index, index + CHUNK_SIZE).forEach(({ ref }) => batch.delete(ref));
+    await batch.commit().catch(() => {});
+  }
+}
 
 export async function deleteAllUserDataFromFirestore(uid: string): Promise<void> {
   if (isStubMode() || !db) return;
 
   // 1. Delete users/{uid}/savedColleges/*
-  const savedCollegesRef = collection(db, "users", uid, "savedColleges");
+  const savedCollegesRef = collection(
+    db,
+    FIRESTORE_COLLECTIONS.users,
+    uid,
+    FIRESTORE_USER_SUBCOLLECTIONS.savedColleges
+  );
   const savedCollegesSnapshot = await getDocs(savedCollegesRef).catch(() => null);
   if (savedCollegesSnapshot?.size) {
-    const batch = writeBatch(db);
-    savedCollegesSnapshot.docs.forEach((savedDoc) => batch.delete(savedDoc.ref));
-    await batch.commit().catch(() => {});
+    await commitDeleteBatchInChunks(db, savedCollegesSnapshot.docs);
   }
 
-  // 2. Delete users/{uid}
-  const userRef = doc(db, "users", uid);
+  // 2. Delete users/{uid}/opportunityStatuses/*
+  const opportunityStatusesRef = collection(
+    db,
+    FIRESTORE_COLLECTIONS.users,
+    uid,
+    FIRESTORE_USER_SUBCOLLECTIONS.opportunityStatuses
+  );
+  const opportunityStatusesSnapshot = await getDocs(opportunityStatusesRef).catch(() => null);
+  if (opportunityStatusesSnapshot?.size) {
+    await commitDeleteBatchInChunks(db, opportunityStatusesSnapshot.docs);
+  }
+
+  // 3. Delete chatHistory/{sessionId} and chatHistory/{sessionId}/messages/*
+  const chatHistoryRef = collection(db, FIRESTORE_COLLECTIONS.chatHistory);
+  const chatHistoryQuery = query(chatHistoryRef, where("userId", "==", uid));
+  const chatHistorySnapshot = await getDocs(chatHistoryQuery).catch(() => null);
+  if (chatHistorySnapshot?.size) {
+    for (const chatDoc of chatHistorySnapshot.docs) {
+      const messagesRef = collection(
+        db,
+        FIRESTORE_COLLECTIONS.chatHistory,
+        chatDoc.id,
+        FIRESTORE_CHAT_HISTORY_SUBCOLLECTIONS.messages
+      );
+      const messagesSnapshot = await getDocs(messagesRef).catch(() => null);
+      if (messagesSnapshot?.size) {
+        await commitDeleteBatchInChunks(db, messagesSnapshot.docs);
+      }
+      await deleteDoc(chatDoc.ref).catch(() => {});
+    }
+  }
+
+  // 4. Delete users/{uid}
+  const userRef = doc(db, FIRESTORE_COLLECTIONS.users, uid);
   await deleteDoc(userRef).catch(() => {});
 
-  // 3. Delete roadmaps/{uid}
-  const roadmapRef = doc(db, "roadmaps", uid);
+  // 5. Delete roadmaps/{uid}
+  const roadmapRef = doc(db, FIRESTORE_COLLECTIONS.roadmaps, uid);
   await deleteDoc(roadmapRef).catch(() => {});
 
-  // 4. Delete questionnaires/{uid} (new format)
-  const questionnaireRef = doc(db, "questionnaires", uid);
+  // 6. Delete questionnaires/{uid} (new format)
+  const questionnaireRef = doc(db, FIRESTORE_COLLECTIONS.questionnaires, uid);
   await deleteDoc(questionnaireRef).catch(() => {});
 
-  // 5. Back-compat: delete any legacy questionnaires where userId === uid (random doc ids)
-  const questionnairesRef = collection(db, "questionnaires");
+  // 7. Back-compat: delete any legacy questionnaires where userId === uid (random doc ids)
+  const questionnairesRef = collection(db, FIRESTORE_COLLECTIONS.questionnaires);
   const q = query(questionnairesRef, where("userId", "==", uid));
   const snapshot = await getDocs(q);
   if (snapshot.size > 0) {
-    const batch = writeBatch(db);
-    snapshot.docs.forEach((d) => batch.delete(d.ref));
-    await batch.commit();
+    await commitDeleteBatchInChunks(db, snapshot.docs);
   }
 }
 
@@ -58,7 +107,7 @@ export async function deleteAllUserStorageFiles(uid: string): Promise<void> {
   if (isStubMode() || !firebaseApp) return;
   try {
     const storage = getStorage(firebaseApp);
-    const userFolderRef = ref(storage, `users/${uid}`);
+    const userFolderRef = ref(storage, buildFirebaseUserStoragePath(uid));
     const listResult = await listAll(userFolderRef);
     await Promise.all(
       listResult.items.map((itemRef) => deleteObject(itemRef).catch(() => {}))

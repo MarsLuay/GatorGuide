@@ -8,6 +8,8 @@
     "android:sdk": "cmd /c scripts/run-android.cmd",
     "ios": "expo run:ios",
     "web": "cross-env EXPO_OFFLINE=1 expo start --web --offline --port 8081",
+    "assets:brand": "node scripts/brand-assets.cjs",
+    "assets:brand:verify": "node scripts/brand-assets.cjs --check",
     "lint": "expo lint",
     "test:firebase-rules": "node scripts/run-firebase-rules-tests.cjs",
     "prebuild": "expo prebuild",
@@ -66,6 +68,7 @@
     "eslint": "^9.25.0",
     "eslint-config-expo": "~10.0.0",
     "firebase-tools": "^15.11.0",
+    "playwright": "^1.58.2",
     "tailwindcss": "^3.4.19",
     "typescript": "~5.9.2"
   },

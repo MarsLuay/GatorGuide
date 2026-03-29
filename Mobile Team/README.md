@@ -15,9 +15,13 @@ The Mobile Team helps by:
 
 - `app/`: Expo Router screens and navigation.
 - `components/`: reusable UI and page-level components.
+- `docs/`: implementation notes and behavior specs for the mobile app.
 - `services/`: app services for AI, auth, storage, college data, and config.
 - `constants/`, `hooks/`, and `utils/`: shared logic and support files.
 - `functions/`: Firebase Functions code related to the mobile app.
+- [`docs/OFFLINE_ONLINE_SYNC_SPEC.md`](docs/OFFLINE_ONLINE_SYNC_SPEC.md): current offline/online caching, sync, and conflict-resolution behavior.
+- [`docs/BRANDING_ASSET_PIPELINE.md`](docs/BRANDING_ASSET_PIPELINE.md): icon, splash, adaptive icon, and favicon source-of-truth pipeline.
+- [`docs/FIREBASE_CHAT_HISTORY_SCHEMA.md`](docs/FIREBASE_CHAT_HISTORY_SCHEMA.md): planned Firestore schema, ownership rules, and retention policy for assistant chat sessions/messages.
 - [`../Data Team/docs/COLLEGE_RANKING.md`](../Data Team/docs/COLLEGE_RANKING.md): shared college ranking philosophy and score model used by recommendations.
 
 ## Setup: Download and Run (Windows)

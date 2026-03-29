@@ -1,6 +1,7 @@
 const { onRequest } = require("firebase-functions/v2/https");
 const { setGlobalOptions } = require("firebase-functions/v2");
 const { geminiGateway } = require("./geminiGateway");
+const { opportunityGateway } = require("./opportunityGateway");
 
 setGlobalOptions({ maxInstances: 10, region: "us-central1" });
 
@@ -195,4 +196,5 @@ exports.sendSupportMessage = onRequest({ cors: true }, async (req, res) => {
 });
 
 exports.geminiGateway = geminiGateway;
+exports.opportunityGateway = opportunityGateway;
 

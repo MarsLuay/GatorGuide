@@ -1,10 +1,12 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { collection, deleteDoc, deleteField, doc, getDocs, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
+import {
+  FIRESTORE_COLLECTIONS,
+  FIRESTORE_USER_SUBCOLLECTIONS,
+  getSavedCollegesPendingStorageKey,
+} from "@/constants/schema";
 import { collegeService, type College } from "./college.service";
 import { db } from "./firebase";
-
-const SAVED_COLLEGES_SUBCOLLECTION = "savedColleges";
-const PENDING_SAVED_COLLEGE_MUTATIONS_PREFIX = "gatorguide:saved-colleges:pending:";
 
 type SavedCollegeSnapshot = Omit<College, "raw"> & {
   collegeId: string;
@@ -23,7 +25,7 @@ type PendingSavedCollegeMutation =
       timestamp: string;
     };
 
-type SyncSavedCollegesOptions = {
+export type SyncSavedCollegesOptions = {
   includeLocalSnapshot?: boolean;
 };
 
@@ -165,7 +167,7 @@ function snapshotsEqual(left: College, right: College) {
 
 class SavedCollegesService {
   private getPendingMutationsStorageKey(uid: string) {
-    return `${PENDING_SAVED_COLLEGE_MUTATIONS_PREFIX}${uid}`;
+    return getSavedCollegesPendingStorageKey(uid);
   }
 
   private reducePendingMutations(mutations: PendingSavedCollegeMutation[]) {
@@ -242,10 +244,40 @@ class SavedCollegesService {
     return Array.from(merged.values());
   }
 
+  private mergeRemoteWithPromotedLocalSnapshot(remoteBase: College[], localSavedColleges: College[]) {
+    const merged = new Map<string, College>();
+
+    for (const college of remoteBase ?? []) {
+      merged.set(String(college.id), college);
+    }
+
+    for (const college of localSavedColleges ?? []) {
+      const collegeId = String(college.id);
+      const existing = merged.get(collegeId);
+      if (!existing) {
+        merged.set(collegeId, college);
+        continue;
+      }
+
+      // During guest-to-account promotion, preserve the signed-in remote snapshot
+      // as authoritative while still filling any missing local fields.
+      merged.set(collegeId, mergeCollegeSnapshot(college, existing));
+    }
+
+    return Array.from(merged.values());
+  }
+
   async getUserSavedColleges(uid: string): Promise<College[]> {
     if (!db || !uid) return [];
 
-    const snapshot = await getDocs(collection(db, "users", uid, SAVED_COLLEGES_SUBCOLLECTION));
+    const snapshot = await getDocs(
+      collection(
+        db,
+        FIRESTORE_COLLECTIONS.users,
+        uid,
+        FIRESTORE_USER_SUBCOLLECTIONS.savedColleges
+      )
+    );
     return snapshot.docs.map((savedDoc) =>
       fromSavedCollegeSnapshot(savedDoc.id, savedDoc.data() as Partial<SavedCollegeSnapshot>)
     );
@@ -254,7 +286,13 @@ class SavedCollegesService {
   async saveCollege(uid: string, college: College): Promise<void> {
     if (!db || !uid) return;
 
-    const ref = doc(db, "users", uid, SAVED_COLLEGES_SUBCOLLECTION, String(college.id));
+    const ref = doc(
+      db,
+      FIRESTORE_COLLECTIONS.users,
+      uid,
+      FIRESTORE_USER_SUBCOLLECTIONS.savedColleges,
+      String(college.id)
+    );
     await setDoc(
       ref,
       {
@@ -267,7 +305,15 @@ class SavedCollegesService {
 
   async removeCollege(uid: string, collegeId: string): Promise<void> {
     if (!db || !uid || !collegeId) return;
-    await deleteDoc(doc(db, "users", uid, SAVED_COLLEGES_SUBCOLLECTION, String(collegeId)));
+    await deleteDoc(
+      doc(
+        db,
+        FIRESTORE_COLLECTIONS.users,
+        uid,
+        FIRESTORE_USER_SUBCOLLECTIONS.savedColleges,
+        String(collegeId)
+      )
+    );
   }
 
   async queueSaveCollege(uid: string, college: College): Promise<void> {
@@ -309,7 +355,7 @@ class SavedCollegesService {
 
   async clearLegacySavedCollegesField(uid: string): Promise<void> {
     if (!db || !uid) return;
-    await updateDoc(doc(db, "users", uid), {
+    await updateDoc(doc(db, FIRESTORE_COLLECTIONS.users, uid), {
       savedColleges: deleteField(),
     }).catch(() => {});
   }
@@ -362,7 +408,7 @@ class SavedCollegesService {
     );
     const remoteBase = this.mergeSavedCollegeLists(remoteSavedColleges, legacySavedColleges);
     const desiredBase = options.includeLocalSnapshot
-      ? this.mergeSavedCollegeLists(remoteBase, localSavedColleges ?? [])
+      ? this.mergeRemoteWithPromotedLocalSnapshot(remoteBase, localSavedColleges ?? [])
       : remoteBase;
     const merged = this.applyPendingMutations(
       desiredBase,
@@ -379,10 +425,8 @@ class SavedCollegesService {
     const toUpload = merged.filter((college) => {
       const remote = remoteById.get(String(college.id));
       const pending = pendingById.get(String(college.id));
-      const localSnapshotPromoted = !!options.includeLocalSnapshot;
       return (
         pending?.type === "save" ||
-        localSnapshotPromoted ||
         !remote ||
         !snapshotsEqual(remote, college)
       );

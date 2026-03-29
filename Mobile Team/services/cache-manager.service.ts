@@ -7,6 +7,7 @@ const CACHE_AUTO_CLEAR_WINDOW_MS = 1000 * 60 * 60 * 24 * 5;
 const CACHE_KEY_PREFIXES = [
   "college:",
   "zip:geocode:",
+  "gatorguide:opportunities:",
 ];
 
 const CACHE_KEY_EXACT = new Set([

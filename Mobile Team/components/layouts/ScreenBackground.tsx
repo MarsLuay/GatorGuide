@@ -1,15 +1,28 @@
 import React from "react";
 import { View, type ViewProps, StatusBar } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView, useSafeAreaInsets, type Edge } from "react-native-safe-area-context";
 import { useAppTheme } from "@/hooks/use-app-theme";
 
 type Props = ViewProps & {
   children: React.ReactNode;
+  safeAreaEdges?: Edge[];
+  includeTopInset?: boolean;
+  includeBottomInset?: boolean;
 };
 
-export function ScreenBackground({ children, style, ...rest }: Props) {
+const DEFAULT_SAFE_AREA_EDGES: Edge[] = ["left", "right"];
+
+export function ScreenBackground({
+  children,
+  style,
+  safeAreaEdges = DEFAULT_SAFE_AREA_EDGES,
+  includeTopInset = false,
+  includeBottomInset = true,
+  ...rest
+}: Props) {
   const { resolvedTheme } = useAppTheme();
+  const insets = useSafeAreaInsets();
   const isDark = resolvedTheme === "dark";
   const isGreen = resolvedTheme === "green";
 
@@ -26,8 +39,16 @@ export function ScreenBackground({ children, style, ...rest }: Props) {
         backgroundColor="transparent"
         translucent
       />
-      <SafeAreaView style={{ flex: 1 }} edges={['left', 'right']}>
-        <View style={{ flex: 1 }}>{children}</View>
+      <SafeAreaView style={{ flex: 1 }} edges={safeAreaEdges}>
+        <View
+          style={{
+            flex: 1,
+            paddingTop: includeTopInset ? insets.top : 0,
+            paddingBottom: includeBottomInset ? insets.bottom : 0,
+          }}
+        >
+          {children}
+        </View>
       </SafeAreaView>
     </LinearGradient>
   );

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useMemo } from "react";
+import { Text } from "react-native";
 import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -8,6 +9,7 @@ import { RouteAccessBoundary } from "@/components/navigation/RouteAccessBoundary
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
+import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 
 export default function TabLayout() {
   const { resolvedTheme } = useAppTheme();
@@ -16,26 +18,63 @@ export default function TabLayout() {
   const isLight = resolvedTheme === "light";
   const { isHydrated } = useAppData();
   const { t } = useAppLanguage();
-  const [titles, setTitles] = useState({
-    home: "Home",
-    resources: "Resources",
-    profile: "Profile",
-    settings: "Settings",
-  });
+  const {
+    tabBarPaddingTop,
+    tabBarPaddingBottom,
+    tabBarIconSize,
+    tabBarLabelFontSize,
+    tabBarLabelLineHeight,
+    tabBarLabelMaxWidth,
+    tabBarHorizontalPadding,
+    tabBarItemPaddingVertical,
+    tabBarItemPaddingHorizontal,
+    tabBarMinHeight,
+  } = useResponsiveLayout();
 
-  // Update titles when language changes
-  useEffect(() => {
-    if (!isHydrated) return;
-    setTitles({
-      home: t("navigation.home"),
-      resources: t("navigation.resources"),
-      profile: t("navigation.profile"),
-      settings: t("navigation.settings"),
-    });
-  }, [isHydrated, t]);
+  const titles = useMemo(
+    () => ({
+      home: isHydrated ? t("navigation.home") : "Home",
+      resources: isHydrated ? t("navigation.resources") : "Resources",
+      profile: isHydrated ? t("navigation.profile") : "Profile",
+      settings: isHydrated ? t("navigation.settings") : "Settings",
+    }),
+    [isHydrated, t]
+  );
 
   const active = "#008f4e";
   const inactive = isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#00753e" : "#6B7280";
+
+  const renderTabLabel = (label: string, color: string, focused: boolean) => (
+    <Text
+      allowFontScaling
+      numberOfLines={2}
+      adjustsFontSizeToFit
+      minimumFontScale={0.85}
+      style={{
+        color,
+        fontSize: tabBarLabelFontSize,
+        lineHeight: tabBarLabelLineHeight,
+        textAlign: "center",
+        fontWeight: focused ? "600" : "500",
+        paddingHorizontal: tabBarItemPaddingHorizontal,
+        maxWidth: tabBarLabelMaxWidth,
+      }}
+    >
+      {label}
+    </Text>
+  );
+
+  const buildTabOptions = (
+    title: string,
+    iconName: keyof typeof Ionicons.glyphMap
+  ) => ({
+    title,
+    tabBarLabel: ({ color, focused }: { color: string; focused: boolean }) =>
+      renderTabLabel(title, color, focused),
+    tabBarIcon: ({ color }: { color: string }) => (
+      <Ionicons name={iconName} size={tabBarIconSize} color={color} />
+    ),
+  });
 
   return (
     <RouteAccessBoundary allowGuest loadingMessage="Preparing your data">
@@ -48,71 +87,50 @@ export default function TabLayout() {
           tabBarInactiveTintColor: inactive,
           tabBarStyle: {
             backgroundColor: isDark ? "#000000" : isGreen ? "#001f0f" : "#ECFDF3",
-            borderTopColor: isDark ? "#1F2937" : isGreen ? "#003b1a" : "#A7E3C4",
-            borderTopWidth: 1,
+            borderTopColor: "transparent",
+            borderTopWidth: 0,
             elevation: 0,
-            shadowOpacity: 0,
             width: "100%",
-            minHeight: 74,
-            paddingTop: 6,
-            paddingBottom: 8,
+            minHeight: tabBarMinHeight,
+            height: tabBarMinHeight,
+            paddingTop: tabBarPaddingTop,
+            paddingBottom: tabBarPaddingBottom,
+            paddingHorizontal: tabBarHorizontalPadding,
           },
           tabBarItemStyle: {
             flex: 1,
-            minWidth: "25%",
+            minWidth: 0,
             justifyContent: "center",
             alignItems: "center",
-            paddingVertical: 2,
-          },
-          tabBarLabelStyle: {
-            fontSize: 12,
-            lineHeight: 16,
-            marginBottom: 2,
+            paddingVertical: tabBarItemPaddingVertical,
+            paddingHorizontal: tabBarItemPaddingHorizontal,
           },
         }}
       >
         <Tabs.Screen
           name="index"
-          options={{
-            title: titles.home,
-            tabBarIcon: ({ color, size }) => (
-              <Ionicons name="home" size={size ?? 26} color={color} />
-            ),
-          }}
+          options={buildTabOptions(titles.home, "home")}
         />
 
         <Tabs.Screen
           name="resources"
-          options={{
-            title: titles.resources,
-            tabBarIcon: ({ color, size }) => (
-              <Ionicons name="library" size={size ?? 26} color={color} />
-            ),
-          }}
+          options={buildTabOptions(titles.resources, "library")}
         />
 
         <Tabs.Screen
           name="profile"
-          options={{
-            title: titles.profile,
-            tabBarIcon: ({ color, size }) => (
-              <Ionicons name="person" size={size ?? 26} color={color} />
-            ),
-          }}
+          options={buildTabOptions(titles.profile, "person")}
         />
 
         <Tabs.Screen
           name="settings"
-          options={{
-            title: titles.settings,
-            tabBarIcon: ({ color, size }) => (
-              <Ionicons name="settings" size={size ?? 26} color={color} />
-            ),
-          }}
+          options={buildTabOptions(titles.settings, "settings")}
         />
 
         {/* Keep these routes inside the tab navigator, but hide them from the tab bar */}
         <Tabs.Screen name="roadmap" options={{ tabBarButton: () => null }} />
+        <Tabs.Screen name="calendar" options={{ tabBarButton: () => null }} />
+        <Tabs.Screen name="college-search" options={{ tabBarButton: () => null }} />
         <Tabs.Screen name="questionnaire" options={{ tabBarButton: () => null }} />
         <Tabs.Screen name="compare" options={{ tabBarButton: () => null }} />
         <Tabs.Screen name="cost-calculator" options={{ tabBarButton: () => null }} />

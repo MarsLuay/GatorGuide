@@ -2,15 +2,17 @@ import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import { ActivityIndicator, Pressable, ScrollView, Text, TextInput, View, useWindowDimensions } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { ROUTES } from "@/constants/routes";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppData } from "@/hooks/use-app-data";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
+import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import { MatchScoreBadge } from "@/components/ui/MatchScoreBadge";
 import useBack from "@/hooks/use-back";
 import { collegeService, type College } from "@/services";
+import { formatLocalizedCurrency, formatLocalizedNumber, formatLocalizedPercent } from "@/utils/locale-format";
 import { formatMatchScore } from "@/utils/match-color";
 
 const MAX_SELECT = 4;
@@ -44,12 +46,12 @@ function getCollegeLocation(college: College) {
 
 export default function ComparePage() {
   const router = useRouter();
-  const back = useBack("/(tabs)/resources");
+  const back = useBack(ROUTES.tabsResources);
   const { width } = useWindowDimensions();
-  const insets = useSafeAreaInsets();
+  const { getScrollContentPadding } = useResponsiveLayout();
   const styles = useThemeStyles();
   const { isDark } = useAppTheme();
-  const { t } = useAppLanguage();
+  const { t, language } = useAppLanguage();
   const { state, addSavedCollege } = useAppData();
 
   const savedColleges = useMemo(() => state.savedColleges ?? [], [state.savedColleges]);
@@ -72,6 +74,10 @@ export default function ComparePage() {
   const columnWidth = width >= 1180 ? 220 : width >= 820 ? 190 : 160;
   const metricColumnWidth = width >= 820 ? 180 : 138;
   const compareTableMinWidth = metricColumnWidth + selectedIds.length * columnWidth;
+  const scrollContentPadding = getScrollContentPadding({
+    includeTopInset: true,
+    includeBottomTabClearance: true,
+  });
 
   useEffect(() => {
     return () => {
@@ -81,23 +87,19 @@ export default function ComparePage() {
 
   const formatMoney = (value: number | null | undefined) => {
     if (typeof value !== "number") return notAvailable;
-    return value.toLocaleString("en-US", {
-      style: "currency",
-      currency: "USD",
-      maximumFractionDigits: 0,
-    });
+    return formatLocalizedCurrency(value, language);
   };
 
   const formatRate = (value: number | null | undefined) => {
     if (typeof value !== "number") return notAvailable;
     const normalized = value > 1 ? value : value * 100;
-    return `${Math.round(normalized)}%`;
+    return formatLocalizedPercent(normalized / 100, language);
   };
 
   const formatSize = (college: College) => {
     if (typeof college.studentSize === "number") {
       const sizeLabel = college.size && college.size !== "unknown" ? ` (${titleCase(college.size)})` : "";
-      return `${college.studentSize.toLocaleString()}${sizeLabel}`;
+      return `${formatLocalizedNumber(college.studentSize, language)}${sizeLabel}`;
     }
     if (college.size && college.size !== "unknown") return titleCase(college.size);
     return notAvailable;
@@ -304,7 +306,7 @@ export default function ComparePage() {
 
   return (
     <ScreenBackground>
-      <ScrollView className="flex-1" contentContainerStyle={{ paddingTop: insets.top, paddingBottom: 96 }}>
+      <ScrollView className="flex-1" contentContainerStyle={scrollContentPadding}>
         <View style={{ width: "100%", maxWidth: 1220, alignSelf: "center", paddingHorizontal: 24, paddingTop: 24 }}>
           <Pressable onPress={back} className="mb-4 flex-row items-center self-start">
             <MaterialIcons name="arrow-back" size={24} color={placeholderColor} />
@@ -325,7 +327,7 @@ export default function ComparePage() {
               <Text className={`${textClass} text-center font-medium mb-2`}>{t("tools.saveCollegesFirst")}</Text>
               <Text className={`${secondaryTextClass} text-center text-sm`}>{t("tools.saveCollegesFirstHint")}</Text>
               <Pressable
-                onPress={() => router.push("/(tabs)")}
+                onPress={() => router.push(ROUTES.tabs)}
                 className="mt-4 self-center flex-row items-center rounded-xl bg-emerald-500 px-4 py-3"
               >
                 <MaterialIcons name="search" size={18} color="#FFFFFF" />
@@ -338,19 +340,24 @@ export default function ComparePage() {
                 <View className={`${cardBgClass} border rounded-2xl px-4 py-3`}>
                   <Text className={`${secondaryTextClass} text-xs uppercase`}>{t("compare.selectedColleges")}</Text>
                   <Text className={`${textClass} text-lg font-semibold`}>
-                    {t("compare.selectedCount", { count: selectedIds.length, max: MAX_SELECT })}
+                    {t("compare.selectedCount", {
+                      count: formatLocalizedNumber(selectedIds.length, language),
+                      max: formatLocalizedNumber(MAX_SELECT, language),
+                    })}
                   </Text>
                 </View>
                 <View className={`${cardBgClass} border rounded-2xl px-4 py-3`}>
                   <Text className={`${secondaryTextClass} text-xs uppercase`}>{t("savedColleges.summarySaved")}</Text>
-                  <Text className={`${textClass} text-lg font-semibold`}>{savedColleges.length}</Text>
+                  <Text className={`${textClass} text-lg font-semibold`}>{formatLocalizedNumber(savedColleges.length, language)}</Text>
                   <Text className={`${secondaryTextClass} text-xs mt-1`}>{t("compare.selectionLimitHint")}</Text>
                 </View>
               </View>
 
               <View className={`${cardBgClass} border rounded-3xl p-4 mb-5`}>
                 <Text className={`${secondaryTextClass} text-sm mb-3`}>
-                  {t("compare.prefillHint", { count: Math.min(AUTO_PREFILL_COUNT, savedColleges.length) })}
+                  {t("compare.prefillHint", {
+                    count: formatLocalizedNumber(Math.min(AUTO_PREFILL_COUNT, savedColleges.length), language),
+                  })}
                 </Text>
                 <TextInput
                   value={searchTerm}
@@ -412,7 +419,7 @@ export default function ComparePage() {
                         className={`px-4 py-4 flex-row items-center gap-3 border-b last:border-b-0 ${borderClass}`}
                       >
                         <Pressable
-                          onPress={() => router.push({ pathname: "/college/[collegeId]", params: { collegeId: collegeId } })}
+                          onPress={() => router.push(ROUTES.collegeDetail(collegeId))}
                           style={{ flex: 1 }}
                         >
                           <Text className={`${textClass} font-semibold`} numberOfLines={1}>
@@ -513,7 +520,7 @@ export default function ComparePage() {
                           <View className="flex-row items-center justify-between">
                             <Pressable
                               onPress={() =>
-                                router.push({ pathname: "/college/[collegeId]", params: { collegeId: collegeId } })
+                                router.push(ROUTES.collegeDetail(collegeId))
                               }
                             >
                               <Text className="text-emerald-500 font-medium">{t("compare.openDetails")}</Text>

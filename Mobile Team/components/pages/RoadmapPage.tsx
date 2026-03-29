@@ -1,11 +1,26 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { View, Text, Pressable, ScrollView, TextInput, Animated, Alert, Platform, Linking } from "react-native";
+import {
+  View,
+  Text,
+  Pressable,
+  ScrollView,
+  TextInput,
+  Animated,
+  Alert,
+  Platform,
+  Linking,
+  useWindowDimensions,
+} from "react-native";
 import { useRouter } from "expo-router";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
+import { ROUTES } from "@/constants/routes";
+import { STORAGE_KEYS } from "@/constants/schema";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppData } from "@/hooks/use-app-data";
+import { useOpportunities } from "@/hooks/use-opportunities";
+import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import {
   aiService,
   buildAiConversationContext,
@@ -28,6 +43,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { storageService } from "@/services/storage.service";
 import { APP_VERSION } from "@/constants/app-version";
 import { StateCard } from "@/components/ui/StateCard";
+import { getLocaleForLanguage } from "@/utils/locale-format";
 
 type GroupedTasks = { id: RoadmapSectionId; name: string; data: RoadmapTask[] };
 
@@ -42,14 +58,90 @@ const getDisplayFileName = (value?: string | null) => {
   return decodeURIComponent(segments[segments.length - 1] || raw);
 };
 
+const formatOpportunityDueLabel = (value: string | null, locale: string) => {
+  if (!value) return null;
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) return null;
+  try {
+    return new Intl.DateTimeFormat(locale, {
+      month: "short",
+      day: "numeric",
+    }).format(parsed);
+  } catch {
+    return parsed.toDateString();
+  }
+};
+
+const formatDocumentTimestamp = (value: string | null, locale: string) => {
+  if (!value) return null;
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) return null;
+  try {
+    return new Intl.DateTimeFormat(locale, {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+    }).format(parsed);
+  } catch {
+    return parsed.toLocaleString();
+  }
+};
+
+const formatDocumentSize = (value: number | null, locale: string) => {
+  if (!value || value <= 0) return null;
+  const numberFormatter = new Intl.NumberFormat(locale);
+  const compactFormatter = new Intl.NumberFormat(locale, {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  });
+  if (value >= 1024 * 1024) return `${compactFormatter.format(value / (1024 * 1024))} MB`;
+  if (value >= 1024) return `${numberFormatter.format(Math.round(value / 1024))} KB`;
+  return `${numberFormatter.format(value)} B`;
+};
+
+const formatDocumentType = (fileName: string | null, mimeType: string | null) => {
+  const normalizedMime = String(mimeType ?? "").trim().toLowerCase();
+  if (normalizedMime === "application/pdf") return "PDF";
+  if (normalizedMime === "application/msword") return "DOC";
+  if (normalizedMime === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") return "DOCX";
+  if (normalizedMime === "text/plain") return "TXT";
+  if (normalizedMime === "image/png") return "PNG";
+  if (normalizedMime === "image/jpeg") return "JPG";
+  if (normalizedMime === "image/webp") return "WEBP";
+
+  const rawName = String(fileName ?? "").trim();
+  const ext = rawName.split(".").pop()?.trim().toUpperCase();
+  return ext || null;
+};
+
+const openDocumentUrl = (url: string) => {
+  if (Platform.OS === "web") {
+    (window as unknown as { open: (u: string, target: string) => void }).open(url, "_blank");
+    return;
+  }
+  return Linking.openURL(url);
+};
+
 export default function RoadmapPage() {
   const router = useRouter();
+  const { width } = useWindowDimensions();
+  const { getScrollContentPadding } = useResponsiveLayout();
   const styles = useThemeStyles();
-  const { t } = useAppLanguage();
+  const { t, language } = useAppLanguage();
   const { theme, setTheme, isDark, isGreen } = useAppTheme();
   const back = useBack();
   const { state, restoreData, isHydrated } = useAppData();
-  const { textClass, secondaryTextClass, cardBgClass, borderClass } = styles;
+  const { matchedOpportunities, setOpportunityDone } = useOpportunities();
+  const { textClass, secondaryTextClass, cardBgClass, borderClass, progressBgClass } = styles;
+  const locale = getLocaleForLanguage(language);
+  const getOpportunityDueBadgeLabel = (value: string | null) => {
+    const formatted = formatOpportunityDueLabel(value, locale);
+    return formatted
+      ? t("roadmap.dueOn", { date: formatted })
+      : t("roadmap.openDeadline");
+  };
   const user = state.user;
   const userId = user?.uid ?? "";
 
@@ -109,7 +201,7 @@ export default function RoadmapPage() {
 
   useEffect(() => {
     if (!user?.isGuest) return;
-    AsyncStorage.getItem("gatorguide:guestRoadmap:show").then((value) => {
+    AsyncStorage.getItem(STORAGE_KEYS.guestRoadmapShow).then((value) => {
       if (value === "true") setShowGuestRoadmap(true);
     });
   }, [user?.isGuest]);
@@ -133,7 +225,7 @@ export default function RoadmapPage() {
           handled: true,
           source: "roadmap-page",
           screen: "roadmap",
-          route: "/roadmap",
+          route: ROUTES.roadmap,
           metadata: {
             userId,
             isGuest: !!user?.isGuest,
@@ -171,10 +263,20 @@ export default function RoadmapPage() {
         const uploaded = storedDocuments[docKey];
         if (!uploaded) continue;
         const existing = documentsTask.documents[docKey];
-        if (existing.fileName === uploaded.name && existing.fileUrl === uploaded.url && existing.status === "completed") continue;
+        if (
+          existing.fileName === uploaded.name &&
+          existing.fileUrl === uploaded.url &&
+          existing.status === "completed" &&
+          existing.updatedAt === uploaded.uploadedAt &&
+          existing.mimeType === uploaded.mimeType &&
+          existing.sizeBytes === uploaded.sizeBytes
+        ) continue;
         nextRoadmap = roadmapService.updateRoadmapDocument(nextRoadmap, docKey, {
           fileName: uploaded.name,
           fileUrl: uploaded.url,
+          updatedAt: uploaded.uploadedAt,
+          mimeType: uploaded.mimeType,
+          sizeBytes: uploaded.sizeBytes,
         });
         changed = true;
       }
@@ -189,7 +291,7 @@ export default function RoadmapPage() {
         handled: true,
         source: "roadmap-page",
         screen: "roadmap",
-        route: "/roadmap",
+        route: ROUTES.roadmap,
         metadata: {
           userId,
         },
@@ -330,10 +432,18 @@ export default function RoadmapPage() {
       });
       if (result.canceled || !result.assets?.[0]?.uri) return;
       setIsUploadingDoc(true);
-      const uploaded = await storageService.uploadDocument(userId, docKey, result.assets[0].uri, result.assets[0].name);
+      const asset = result.assets[0];
+      const uploaded = await storageService.uploadDocument(userId, docKey, asset.uri, {
+        fileName: asset.name,
+        mimeType: asset.mimeType,
+        sizeBytes: asset.size,
+      });
       const nextRoadmap = roadmapService.updateRoadmapDocument(roadmap, docKey, {
         fileName: uploaded.name,
         fileUrl: uploaded.url,
+        updatedAt: uploaded.uploadedAt,
+        mimeType: uploaded.mimeType,
+        sizeBytes: uploaded.sizeBytes,
       });
       await persistRoadmap(nextRoadmap);
       setActiveUpload(null);
@@ -345,7 +455,7 @@ export default function RoadmapPage() {
         handled: true,
         source: "roadmap-page",
         screen: "roadmap",
-        route: "/roadmap",
+        route: ROUTES.roadmap,
         metadata: {
           userId,
         },
@@ -369,7 +479,7 @@ export default function RoadmapPage() {
     const aiContext = buildAiConversationContext({
       source: {
         screen: "roadmap-chat",
-        route: "/roadmap",
+        route: ROUTES.roadmap,
       },
       user,
       questionnaireAnswers: state.questionnaireAnswers,
@@ -391,7 +501,7 @@ export default function RoadmapPage() {
         handled: true,
         source: "roadmap-page",
         screen: "roadmap",
-        route: "/roadmap",
+        route: ROUTES.roadmap,
       });
       Alert.alert(t("general.error"), t("profile.prepareDataError"));
     }
@@ -474,7 +584,43 @@ export default function RoadmapPage() {
     [roadmap, t]
   );
 
+  const roadmapOpportunities = useMemo(
+    () => matchedOpportunities.filter((opportunity) => !opportunity.isDone).slice(0, 4),
+    [matchedOpportunities]
+  );
+
   const progress = roadmap?.progress.percent ?? 0;
+  const isTabletLayout = width >= 768;
+  const isDesktopLayout = width >= 1180;
+  const shellMaxWidth = isDesktopLayout ? 1240 : isTabletLayout ? 1040 : 760;
+  const shellPaddingHorizontal = width >= 960 ? 32 : 24;
+  const shellPaddingTop = isTabletLayout ? 24 : 16;
+  const earlyStateMaxWidth = Math.min(shellMaxWidth, isDesktopLayout ? 900 : isTabletLayout ? 760 : 448);
+  const scrollContentPadding = getScrollContentPadding({
+    includeTopInset: true,
+    includeBottomTabClearance: true,
+    extraTop: 8,
+  });
+  const shouldStackInputActions = width < 640;
+  const shouldStackDocumentDetails = width < 760;
+  const shouldStackOpportunityActions = width < 520;
+  const supportCardsLayoutStyle = isDesktopLayout
+    ? { gap: 16 }
+    : isTabletLayout
+      ? { flexDirection: "row" as const, flexWrap: "wrap" as const, gap: 16 }
+      : { gap: 16 };
+  const supportCardStyle = !isDesktopLayout && isTabletLayout
+    ? { flexBasis: 0, flexGrow: 1, minWidth: 280 }
+    : undefined;
+  const contentLayoutStyle = isDesktopLayout
+    ? { flexDirection: "row" as const, gap: 20, alignItems: "flex-start" as const }
+    : { gap: 20 };
+  const guestFeatureList = [
+    t("roadmap.applicationChecklist"),
+    t("roadmap.documentManagement"),
+    t("roadmap.aiGuidance"),
+    t("roadmap.timelineProgress"),
+  ];
 
   const getDocIcon = (key: RoadmapDocumentKey) => {
     switch (key) {
@@ -493,17 +639,29 @@ export default function RoadmapPage() {
   };
 
   const formatDocLabel = (key: RoadmapDocumentKey) => {
-    if (key === "personalStatement") return t("roadmap.personalStatement");
-    if (key === "recommendation1") return t("roadmap.recommendation1");
-    if (key === "recommendation2") return t("roadmap.recommendation2");
-    return key.charAt(0).toUpperCase() + key.slice(1);
+    switch (key) {
+      case "resume":
+        return t("profile.resume");
+      case "transcripts":
+        return t("profile.transcript");
+      case "personalStatement":
+        return t("roadmap.personalStatement");
+      case "recommendation1":
+        return t("roadmap.recommendation1");
+      case "recommendation2":
+        return t("roadmap.recommendation2");
+      default:
+        return key;
+    }
   };
 
   if (!isHydrated) {
     return (
       <ScreenBackground>
-        <View className="flex-1 items-center justify-center px-6">
-          <StateCard variant="loading" className="w-full max-w-md" />
+        <View className="flex-1 justify-center px-6">
+          <View style={{ width: "100%", maxWidth: earlyStateMaxWidth, alignSelf: "center" }}>
+            <StateCard variant="loading" className="w-full" />
+          </View>
         </View>
       </ScreenBackground>
     );
@@ -512,16 +670,18 @@ export default function RoadmapPage() {
   if (!user) {
     return (
       <ScreenBackground>
-        <View className="flex-1 items-center justify-center px-6">
-          <StateCard
-            variant="empty"
-            icon="person-circle-outline"
-            title={t("profile.notSignedIn")}
-            message={t("profile.notSignedInMessage")}
-            actionLabel={t("profile.goToLogin")}
-            onAction={() => router.replace("/login")}
-            className="w-full max-w-md"
-          />
+        <View className="flex-1 justify-center px-6">
+          <View style={{ width: "100%", maxWidth: earlyStateMaxWidth, alignSelf: "center" }}>
+            <StateCard
+              variant="empty"
+              icon="person-circle-outline"
+              title={t("profile.notSignedIn")}
+              message={t("profile.notSignedInMessage")}
+              actionLabel={t("profile.goToLogin")}
+              onAction={() => router.replace(ROUTES.login)}
+              className="w-full"
+            />
+          </View>
         </View>
       </ScreenBackground>
     );
@@ -530,9 +690,21 @@ export default function RoadmapPage() {
   if (user?.isGuest && !showGuestRoadmap) {
     return (
       <ScreenBackground>
-        <ScrollView contentContainerStyle={{ paddingBottom: 32 }}>
-          <View className="max-w-md w-full self-center px-6 pt-8">
-            <Pressable onPress={back} className="mb-4 flex-row items-center">
+        <ScrollView
+          className="flex-1"
+          contentContainerStyle={scrollContentPadding}
+          keyboardShouldPersistTaps="handled"
+        >
+          <View
+            style={{
+              width: "100%",
+              maxWidth: Math.min(shellMaxWidth, 880),
+              alignSelf: "center",
+              paddingHorizontal: shellPaddingHorizontal,
+              paddingTop: shellPaddingTop,
+            }}
+          >
+            <Pressable onPress={back} className="mb-4 flex-row items-center self-start">
               <MaterialIcons name="arrow-back" size={20} color={styles.placeholderColor} />
               <Text className={`${secondaryTextClass} ml-2`}>{t("roadmap.back")}</Text>
             </Pressable>
@@ -544,24 +716,51 @@ export default function RoadmapPage() {
                 <Text className={`text-3xl ${textClass} text-center font-semibold mb-3`}>{t("roadmap.yourCollegeRoadmap")}</Text>
                 <Text className={`${secondaryTextClass} text-center`}>{t("roadmap.unlockJourney")}</Text>
               </View>
-              <View className="gap-3 mb-6">
-                <Text className={textClass}>{t("roadmap.applicationChecklist")}</Text>
-                <Text className={textClass}>{t("roadmap.documentManagement")}</Text>
-                <Text className={textClass}>{t("roadmap.aiGuidance")}</Text>
-                <Text className={textClass}>{t("roadmap.timelineProgress")}</Text>
-              </View>
-              <Pressable onPress={() => router.push("/login")} className="bg-emerald-500 rounded-lg py-4 items-center mb-3">
-                <Text className={`${isDark ? "text-white" : "text-emerald-900"} font-semibold`}>{t("roadmap.createProfileToStart")}</Text>
-              </Pressable>
-              <Pressable
-                onPress={() => {
-                  setShowGuestRoadmap(true);
-                  AsyncStorage.setItem("gatorguide:guestRoadmap:show", "true").catch(() => {});
-                }}
-                className={`${cardBgClass} border rounded-lg py-3 items-center`}
+              <View
+                className="mb-6"
+                style={
+                  isTabletLayout
+                    ? { flexDirection: "row", flexWrap: "wrap", gap: 12 }
+                    : { gap: 12 }
+                }
               >
-                <Text className={secondaryTextClass}>{t("profile.continueAsGuest")}</Text>
-              </Pressable>
+                {guestFeatureList.map((feature) => (
+                  <View
+                    key={feature}
+                    className={`${isDark ? "bg-gray-950/50 border-gray-800" : isGreen ? "bg-emerald-950/30 border-emerald-700" : "bg-emerald-50 border-emerald-200"} border rounded-xl px-4 py-3`}
+                    style={isTabletLayout ? { flexBasis: 0, flexGrow: 1, minWidth: 240 } : undefined}
+                  >
+                    <Text className={textClass}>{feature}</Text>
+                  </View>
+                ))}
+              </View>
+              <View
+                style={
+                  isTabletLayout
+                    ? { flexDirection: "row", gap: 12 }
+                    : { gap: 12 }
+                }
+              >
+                <Pressable
+                  onPress={() => router.push(ROUTES.login)}
+                  className="bg-emerald-500 rounded-lg py-4 items-center"
+                  style={isTabletLayout ? { flex: 1 } : undefined}
+                >
+                  <Text className={`${isDark ? "text-white" : "text-emerald-900"} font-semibold`}>
+                    {t("roadmap.createProfileToStart")}
+                  </Text>
+                </Pressable>
+                <Pressable
+                  onPress={() => {
+                    setShowGuestRoadmap(true);
+                    AsyncStorage.setItem(STORAGE_KEYS.guestRoadmapShow, "true").catch(() => {});
+                  }}
+                  className={`${cardBgClass} border rounded-lg py-3 items-center justify-center`}
+                  style={isTabletLayout ? { flex: 1 } : undefined}
+                >
+                  <Text className={secondaryTextClass}>{t("profile.continueAsGuest")}</Text>
+                </Pressable>
+              </View>
             </View>
           </View>
         </ScrollView>
@@ -571,59 +770,62 @@ export default function RoadmapPage() {
 
   return (
     <ScreenBackground>
-      <ScrollView contentContainerStyle={{ paddingBottom: 32 }}>
-        <View className="max-w-md w-full self-center px-6 pt-8">
-          <Pressable onPress={back} className="mb-4 flex-row items-center">
+      <ScrollView
+        className="flex-1"
+        contentContainerStyle={scrollContentPadding}
+        keyboardShouldPersistTaps="handled"
+      >
+        <View
+          style={{
+            width: "100%",
+            maxWidth: shellMaxWidth,
+            alignSelf: "center",
+            paddingHorizontal: shellPaddingHorizontal,
+            paddingTop: shellPaddingTop,
+          }}
+        >
+          <Pressable onPress={back} className="mb-4 flex-row items-center self-start">
             <MaterialIcons name="arrow-back" size={20} color={styles.placeholderColor} />
             <Text className={`${secondaryTextClass} ml-2`}>{t("roadmap.back")}</Text>
           </Pressable>
-          <View className={`${cardBgClass} border rounded-2xl p-5 mb-4`}>
-            <Text className={`text-2xl ${textClass}`}>{t("roadmap.roadmapTitle")}</Text>
-            <Text className={`${secondaryTextClass} mt-2`}>{t("roadmap.subtitleChecklist")}</Text>
-            <View className="mt-4 h-4 w-full bg-emerald-300 rounded-full overflow-hidden">
-              <Animated.View style={{ width: `${progress}%`, height: 16, backgroundColor: "#008f4e", borderRadius: 8 }} />
-            </View>
-          </View>
-
-          {user?.isGuest ? (
-            <View className={`${cardBgClass} border rounded-2xl p-4 mb-4`}>
-              <Text className={textClass}>{t("roadmap.guestTools")}</Text>
-              <Text className={`${secondaryTextClass} text-sm mb-3`}>{t("roadmap.importExport")}</Text>
-              <View className="gap-2">
-                <Pressable onPress={handleImportData} className="bg-emerald-500 rounded-lg px-4 py-3 items-center">
-                  <Text className={`${isDark ? "text-white" : "text-emerald-900"} font-semibold`}>{t("settings.import")}</Text>
-                </Pressable>
-                <Pressable onPress={handleExportData} className={`${cardBgClass} border rounded-lg px-4 py-3 items-center`}>
-                  <Text className={secondaryTextClass}>{t("settings.export")}</Text>
+          <View style={contentLayoutStyle}>
+            <View style={{ flex: 1, minWidth: 0, width: "100%" }}>
+              <View className={`${cardBgClass} border rounded-2xl p-5 mb-4`}>
+                <View
+                  style={
+                    isTabletLayout
+                      ? { flexDirection: "row", justifyContent: "space-between", gap: 16, alignItems: "flex-start" }
+                      : { gap: 12 }
+                  }
+                >
+                  <View style={{ flex: 1, minWidth: 0 }}>
+                    <Text className={`text-2xl ${textClass}`}>{t("roadmap.roadmapTitle")}</Text>
+                    <Text className={`${secondaryTextClass} mt-2`}>{t("roadmap.subtitleChecklist")}</Text>
+                  </View>
+                  <View className={`${progressBgClass} rounded-xl px-4 py-3`} style={isTabletLayout ? { minWidth: 132 } : undefined}>
+                    <Text className={`${secondaryTextClass} text-xs uppercase`}>Progress</Text>
+                    <Text className={`${textClass} text-lg font-semibold mt-1`}>{Math.round(progress)}%</Text>
+                  </View>
+                </View>
+                <View className={`mt-4 h-4 w-full ${progressBgClass} rounded-full overflow-hidden`}>
+                  <Animated.View style={{ width: `${progress}%`, height: 16, backgroundColor: "#008f4e", borderRadius: 8 }} />
+                </View>
+                <Pressable
+                  onPress={() => router.push(ROUTES.calendar)}
+                  className="mt-4 px-4 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex-row items-center justify-between"
+                >
+                  <View className="flex-row items-center flex-1 pr-3">
+                    <Ionicons name="calendar-outline" size={18} color="#008f4e" />
+                    <View className="ml-3 flex-1">
+                      <Text className={`${textClass} font-medium`}>Deadline calendar</Text>
+                      <Text className={`${secondaryTextClass} text-sm`}>
+                        View roadmap tasks, scholarships, and college deadlines together
+                      </Text>
+                    </View>
+                  </View>
+                  <MaterialIcons name="chevron-right" size={20} color={styles.placeholderColor} />
                 </Pressable>
               </View>
-            </View>
-          ) : null}
-
-          <View className={`${cardBgClass} border rounded-2xl p-5 mb-4`}>
-            <Text className={`${textClass} text-base mb-2`}>{t("roadmap.personalAssistant")}</Text>
-            <TextInput
-              value={aiInput}
-              onChangeText={setAiInput}
-              placeholder={t("roadmap.askAssistant")}
-              placeholderTextColor={styles.placeholderColor}
-              onSubmitEditing={handleSendAI}
-              className={`border p-2 rounded-lg mb-2 ${styles.inputBgClass} ${textClass}`}
-            />
-            <Pressable onPress={handleSendAI} className="bg-emerald-500 rounded-lg px-4 py-2 mb-2 items-center">
-              <Text className={`${isDark ? "text-white" : "text-emerald-900"} font-semibold`}>{t("roadmap.sendMessage")}</Text>
-            </Pressable>
-            {aiMessages.map((msg) => (
-              <View key={msg.id} className="mb-2">
-                <Text className={`${textClass} text-sm`}>{msg.role === "user" ? t("roadmap.youPrefix").replace("{message}", msg.content) : msg.content}</Text>
-                {msg.role === "assistant" && msg.source && msg.source !== "live" ? (
-                  <Text className={`${secondaryTextClass} text-xs mt-0.5`}>
-                    {msg.source === "cached" ? t("roadmap.cachedResponse") : msg.source === "stub" ? t("roadmap.sampleResponse") : null}
-                  </Text>
-                ) : null}
-              </View>
-            ))}
-          </View>
 
           {isRoadmapLoading && !roadmap ? (
             <StateCard variant="loading" className="mb-4" />
@@ -700,6 +902,19 @@ export default function RoadmapPage() {
                               {ROADMAP_DOCUMENT_KEYS.map((docKey) => {
                                 const documentItem = task.documents?.[docKey];
                                 const isUploaded = documentItem?.status === "completed";
+                                const updatedLabel = formatDocumentTimestamp(
+                                  documentItem?.updatedAt ?? null,
+                                  locale
+                                );
+                                const documentType = formatDocumentType(
+                                  documentItem?.fileName ?? null,
+                                  documentItem?.mimeType ?? null
+                                );
+                                const documentSize = formatDocumentSize(
+                                  documentItem?.sizeBytes ?? null,
+                                  locale
+                                );
+                                const metadataParts = [documentType, documentSize].filter(Boolean);
                                 return (
                                   <View key={docKey}>
                                     <Pressable
@@ -713,38 +928,82 @@ export default function RoadmapPage() {
                                       <Ionicons name={isUploaded ? "checkmark-circle" : "cloud-upload-outline"} size={20} color={isUploaded ? "#008f4e" : styles.placeholderColor} />
                                     </Pressable>
                                     {documentItem?.fileName ? (
-                                      documentItem.fileUrl ? (
-                                        <Pressable
-                                          onPress={() => {
-                                            const url = documentItem.fileUrl as string;
-                                            if (Platform.OS === "web") {
-                                              (window as unknown as { open: (u: string, target: string) => void }).open(url, "_blank");
-                                            } else {
-                                              Linking.openURL(url);
-                                            }
-                                          }}
-                                          className="mt-1.5 ml-9"
-                                          accessibilityRole="link"
+                                      <View
+                                        className={`mt-2 ml-9 rounded-xl border p-3 ${
+                                          isDark
+                                            ? "bg-gray-900/80 border-gray-800"
+                                            : isGreen
+                                              ? "bg-emerald-950/25 border-emerald-700"
+                                              : "bg-white/90 border-emerald-200"
+                                        }`}
+                                      >
+                                        <View
+                                          style={
+                                            shouldStackDocumentDetails
+                                              ? { gap: 12 }
+                                              : { flexDirection: "row", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }
+                                          }
                                         >
-                                          <Text className="text-xs text-blue-600 dark:text-blue-400 underline">{documentItem.fileName}</Text>
-                                        </Pressable>
-                                      ) : (
-                                        <Text className="mt-1.5 ml-9 text-xs text-blue-600 dark:text-blue-400">{documentItem.fileName}</Text>
-                                      )
-                                    ) : null}
+                                          <View style={{ flex: 1, minWidth: 0 }}>
+                                            <Text className={`${textClass} text-sm font-medium`} numberOfLines={shouldStackDocumentDetails ? 2 : 1}>
+                                              {documentItem.fileName}
+                                            </Text>
+                                            {updatedLabel ? (
+                                              <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                                                {t("roadmap.lastUpdated", { date: updatedLabel })}
+                                              </Text>
+                                            ) : null}
+                                            {metadataParts.length ? (
+                                              <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8, marginTop: 8 }}>
+                                                {metadataParts.map((part, index) => (
+                                                  <View
+                                                    key={`${docKey}-${index}`}
+                                                    className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20"
+                                                  >
+                                                    <Text className={`${isDark || isGreen ? "text-emerald-100" : "text-emerald-700"} text-xs font-medium`}>
+                                                      {part}
+                                                    </Text>
+                                                  </View>
+                                                ))}
+                                              </View>
+                                            ) : null}
+                                          </View>
+
+                                          {documentItem.fileUrl ? (
+                                            <Pressable
+                                              onPress={() => {
+                                                void openDocumentUrl(documentItem.fileUrl as string);
+                                              }}
+                                              className="px-3 py-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20"
+                                              style={shouldStackDocumentDetails ? { alignSelf: "stretch" } : { alignSelf: "flex-start" }}
+                                              accessibilityRole="link"
+                                            >
+                                              <Text className="text-xs text-emerald-600 font-semibold text-center">
+                                                {t("roadmap.openFileInNewTab")}
+                                              </Text>
+                                            </Pressable>
+                                          ) : null}
+                                        </View>
+                                      </View>
+                                    ) : (
+                                      <Text className={`mt-1.5 ml-9 text-xs ${secondaryTextClass}`}>
+                                        {t("profile.notUploaded")}
+                                      </Text>
+                                    )}
                                     {activeUpload === docKey ? (
                                       <View className="mt-2 border-2 border-dashed border-emerald-300 dark:border-gray-700 rounded-xl p-6 items-center justify-center bg-emerald-50/50 dark:bg-gray-900/80">
                                         <Ionicons name="cloud-upload" size={28} color="#008f4e" />
-                                        <Text className={`${textClass} mt-2 text-sm font-medium`}>
+                                        <Text className={`${textClass} mt-2 text-sm font-medium text-center`}>
                                           {t("roadmap.uploadDocument").replace("{document}", formatDocLabel(docKey))}
                                         </Text>
-                                        <Text className={`${secondaryTextClass} text-xs`}>{t("roadmap.supportedFormats")}</Text>
+                                        <Text className={`${secondaryTextClass} text-xs text-center`}>{t("roadmap.supportedFormats")}</Text>
                                         <Pressable
                                           onPress={() => handlePickDocument(docKey)}
                                           disabled={isUploadingDoc}
                                           className={`mt-3 bg-white dark:bg-gray-900/80 border border-emerald-200 dark:border-gray-700 px-4 py-1.5 rounded-lg ${isUploadingDoc ? "opacity-60" : ""}`}
+                                          style={shouldStackDocumentDetails ? { alignSelf: "stretch" } : undefined}
                                         >
-                                          <Text className={`${textClass} text-xs font-bold`}>
+                                          <Text className={`${textClass} text-xs font-bold text-center`}>
                                             {isUploadingDoc ? t("general.pleaseWait") : t("roadmap.selectFile")}
                                           </Text>
                                         </Pressable>
@@ -768,46 +1027,82 @@ export default function RoadmapPage() {
                 })}
 
                 {group.id === "courses" ? (
-                  <View className="flex-row items-center gap-2 mt-2">
+                  <View
+                    className="mt-2"
+                    style={
+                      shouldStackInputActions
+                        ? { gap: 8 }
+                        : { flexDirection: "row", alignItems: "center", gap: 8 }
+                    }
+                  >
                     <TextInput
                       value={newCourseInput}
                       onChangeText={setNewCourseInput}
                       placeholder={t("roadmap.addCoursePlaceholder")}
                       placeholderTextColor={styles.placeholderColor}
                       onSubmitEditing={(e) => addCourse(e.nativeEvent.text).catch(() => {})}
-                      className={`flex-1 border p-2 rounded-lg ${styles.inputBgClass} ${textClass}`}
+                      className={`border p-2 rounded-lg ${styles.inputBgClass} ${textClass}`}
+                      style={shouldStackInputActions ? undefined : { flex: 1 }}
                     />
-                    <Pressable onPress={() => addCourse(newCourseInput).catch(() => {})} className={`px-4 py-2 rounded-lg border items-center justify-center ${borderClass}`}>
+                    <Pressable
+                      onPress={() => addCourse(newCourseInput).catch(() => {})}
+                      className={`px-4 py-2 rounded-lg border items-center justify-center ${borderClass}`}
+                      style={shouldStackInputActions ? { width: "100%" } : undefined}
+                    >
                       <Text className={`${textClass} text-sm font-medium`}>{t("roadmap.addCourse")}</Text>
                     </Pressable>
                   </View>
                 ) : null}
                 {group.id === "applications" ? (
-                  <View className="flex-row items-center gap-2 mt-2">
+                  <View
+                    className="mt-2"
+                    style={
+                      shouldStackInputActions
+                        ? { gap: 8 }
+                        : { flexDirection: "row", alignItems: "center", gap: 8 }
+                    }
+                  >
                     <TextInput
                       value={newSchoolInput}
                       onChangeText={setNewSchoolInput}
                       placeholder={t("roadmap.addApplicationPlaceholder")}
                       placeholderTextColor={styles.placeholderColor}
                       onSubmitEditing={(e) => addApplication(e.nativeEvent.text).catch(() => {})}
-                      className={`flex-1 border p-2 rounded-lg ${styles.inputBgClass} ${textClass}`}
+                      className={`border p-2 rounded-lg ${styles.inputBgClass} ${textClass}`}
+                      style={shouldStackInputActions ? undefined : { flex: 1 }}
                     />
-                    <Pressable onPress={() => addApplication(newSchoolInput).catch(() => {})} className={`px-4 py-2 rounded-lg border items-center justify-center ${borderClass}`}>
+                    <Pressable
+                      onPress={() => addApplication(newSchoolInput).catch(() => {})}
+                      className={`px-4 py-2 rounded-lg border items-center justify-center ${borderClass}`}
+                      style={shouldStackInputActions ? { width: "100%" } : undefined}
+                    >
                       <Text className={`${textClass} text-sm font-medium`}>{t("roadmap.addApplication")}</Text>
                     </Pressable>
                   </View>
                 ) : null}
                 {group.id === "interests" ? (
-                  <View className="flex-row items-center gap-2 mt-2">
+                  <View
+                    className="mt-2"
+                    style={
+                      shouldStackInputActions
+                        ? { gap: 8 }
+                        : { flexDirection: "row", alignItems: "center", gap: 8 }
+                    }
+                  >
                     <TextInput
                       value={newInterestInput}
                       onChangeText={setNewInterestInput}
                       placeholder={t("roadmap.addInterestPlaceholder")}
                       placeholderTextColor={styles.placeholderColor}
                       onSubmitEditing={(e) => addInterest(e.nativeEvent.text).catch(() => {})}
-                      className={`flex-1 border p-2 rounded-lg ${styles.inputBgClass} ${textClass}`}
+                      className={`border p-2 rounded-lg ${styles.inputBgClass} ${textClass}`}
+                      style={shouldStackInputActions ? undefined : { flex: 1 }}
                     />
-                    <Pressable onPress={() => addInterest(newInterestInput).catch(() => {})} className={`px-4 py-2 rounded-lg border items-center justify-center ${borderClass}`}>
+                    <Pressable
+                      onPress={() => addInterest(newInterestInput).catch(() => {})}
+                      className={`px-4 py-2 rounded-lg border items-center justify-center ${borderClass}`}
+                      style={shouldStackInputActions ? { width: "100%" } : undefined}
+                    >
                       <Text className={`${textClass} text-sm font-medium`}>{t("roadmap.addInterest")}</Text>
                     </Pressable>
                   </View>
@@ -815,6 +1110,144 @@ export default function RoadmapPage() {
               </View>
             ))}
           </View>
+            </View>
+
+          <View style={{ width: isDesktopLayout ? 360 : "100%", minWidth: 0 }}>
+            <View style={supportCardsLayoutStyle}>
+              {user?.isGuest ? (
+                <View style={supportCardStyle}>
+                  <View className={`${cardBgClass} border rounded-2xl p-4`}>
+                    <Text className={textClass}>{t("roadmap.guestTools")}</Text>
+                    <Text className={`${secondaryTextClass} text-sm mb-3`}>{t("roadmap.importExport")}</Text>
+                    <View className="gap-2">
+                      <Pressable onPress={handleImportData} className="bg-emerald-500 rounded-lg px-4 py-3 items-center">
+                        <Text className={`${isDark ? "text-white" : "text-emerald-900"} font-semibold`}>{t("settings.import")}</Text>
+                      </Pressable>
+                      <Pressable onPress={handleExportData} className={`${cardBgClass} border rounded-lg px-4 py-3 items-center`}>
+                        <Text className={secondaryTextClass}>{t("settings.export")}</Text>
+                      </Pressable>
+                    </View>
+                  </View>
+                </View>
+              ) : null}
+
+              <View style={supportCardStyle}>
+                <View className={`${cardBgClass} border rounded-2xl p-5`}>
+                  <Text className={`${textClass} text-base mb-2`}>{t("roadmap.personalAssistant")}</Text>
+                  <TextInput
+                    value={aiInput}
+                    onChangeText={setAiInput}
+                    placeholder={t("roadmap.askAssistant")}
+                    placeholderTextColor={styles.placeholderColor}
+                    onSubmitEditing={handleSendAI}
+                    className={`border p-2 rounded-lg mb-2 ${styles.inputBgClass} ${textClass}`}
+                  />
+                  <Pressable onPress={handleSendAI} className="bg-emerald-500 rounded-lg px-4 py-2 mb-3 items-center">
+                    <Text className={`${isDark ? "text-white" : "text-emerald-900"} font-semibold`}>{t("roadmap.sendMessage")}</Text>
+                  </Pressable>
+                  {aiMessages.map((msg) => (
+                    <View key={msg.id} className="mb-2">
+                      <Text className={`${textClass} text-sm`}>
+                        {msg.role === "user" ? t("roadmap.youPrefix").replace("{message}", msg.content) : msg.content}
+                      </Text>
+                      {msg.role === "assistant" && msg.source && msg.source !== "live" ? (
+                        <Text className={`${secondaryTextClass} text-xs mt-0.5`}>
+                          {msg.source === "cached" ? t("roadmap.cachedResponse") : msg.source === "stub" ? t("roadmap.sampleResponse") : null}
+                        </Text>
+                      ) : null}
+                    </View>
+                  ))}
+                </View>
+              </View>
+
+              {roadmapOpportunities.length ? (
+                <View style={supportCardStyle}>
+                  <View className={`${cardBgClass} border rounded-2xl p-5`}>
+                    <View
+                      className="mb-3"
+                      style={
+                        shouldStackOpportunityActions
+                          ? { gap: 8 }
+                          : { flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 12 }
+                      }
+                    >
+                      <View style={{ flex: 1, minWidth: 0 }}>
+                        <Text className={`${textClass} text-base font-semibold`}>Scholarships & Opportunities</Text>
+                        <Text className={`${secondaryTextClass} text-sm`}>
+                          Starter GRC-focused items using the shared opportunity model
+                        </Text>
+                      </View>
+                      <Pressable onPress={() => router.push(ROUTES.tabsResources)} className="self-start">
+                        <Text className="text-emerald-500 text-sm font-medium">
+                          {t("roadmap.viewAll")}
+                        </Text>
+                      </Pressable>
+                    </View>
+
+                    <View className="gap-3">
+                      {roadmapOpportunities.map((opportunity) => (
+                        <View
+                          key={opportunity.opportunityId}
+                          className={`${isDark ? "bg-gray-950/60 border-gray-800" : isGreen ? "bg-emerald-950/20 border-emerald-700" : "bg-emerald-50 border-emerald-200"} border rounded-xl p-4`}
+                        >
+                          <Text className={`${textClass} font-medium`} numberOfLines={2}>
+                            {opportunity.title}
+                          </Text>
+                          <Text className={`${secondaryTextClass} text-sm mt-1`} numberOfLines={3}>
+                            {opportunity.summary}
+                          </Text>
+                          <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8, marginTop: 12 }}>
+                            <View className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                              <Text className="text-emerald-500 text-xs font-semibold">
+                                {getOpportunityDueBadgeLabel(opportunity.computedDueAt)}
+                              </Text>
+                            </View>
+                          </View>
+                          <View
+                            className="mt-3"
+                            style={
+                              shouldStackOpportunityActions
+                                ? { gap: 8 }
+                                : { flexDirection: "row", gap: 8 }
+                            }
+                          >
+                            <Pressable
+                              onPress={() => {
+                                void setOpportunityDone(opportunity.opportunityId, true);
+                              }}
+                              className="bg-emerald-500 rounded-lg px-3 py-2 items-center justify-center"
+                              style={shouldStackOpportunityActions ? undefined : { flex: 1 }}
+                            >
+                              <Text className={`${isDark ? "text-white" : "text-emerald-900"} text-xs font-semibold`}>
+                                {t("roadmap.markDone")}
+                              </Text>
+                            </Pressable>
+
+                            <Pressable
+                              onPress={() => {
+                                if (opportunity.externalUrl) {
+                                  void Linking.openURL(opportunity.externalUrl);
+                                  return;
+                                }
+                                router.push(ROUTES.tabsResources);
+                              }}
+                              className={`${cardBgClass} border ${borderClass} rounded-lg px-3 py-2 items-center justify-center`}
+                              style={shouldStackOpportunityActions ? undefined : { flex: 1 }}
+                            >
+                              <Text className={`${secondaryTextClass} text-xs font-semibold`}>
+                                {t("roadmap.open")}
+                              </Text>
+                            </Pressable>
+                          </View>
+                        </View>
+                      ))}
+                    </View>
+                  </View>
+                </View>
+              ) : null}
+            </View>
+          </View>
+        </View>
         </View>
       </ScrollView>
     </ScreenBackground>

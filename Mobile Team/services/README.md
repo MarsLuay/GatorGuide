@@ -78,6 +78,8 @@ const tasks = await aiService.generateRoadmap(userProfile);
 
 Structured chat context now lives in [`ai-context.service.ts`](./ai-context.service.ts). Use `buildAiConversationContext(...)` to pass a versioned, sanitized JSON context into AI chat calls instead of hand-built prompt strings. The context intentionally excludes user email, uid, avatar, resume/transcript URLs, and document filenames while still including profile, questionnaire answers, saved colleges, and roadmap state.
 
+The Firestore persistence contract for future chat history now lives in [`../constants/chat-history.ts`](../constants/chat-history.ts) and [`../docs/FIREBASE_CHAT_HISTORY_SCHEMA.md`](../docs/FIREBASE_CHAT_HISTORY_SCHEMA.md). Read/write helpers are intentionally deferred until the shared chat assistant architecture is finalized.
+
 ### 4. Storage Service (`storage.service.ts`)
 **What it does:** Upload/download resumes and transcripts  
 **Stub behavior:** Saves filenames to AsyncStorage  

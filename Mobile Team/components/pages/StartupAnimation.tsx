@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
+import { FontAwesome5 } from '@expo/vector-icons';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -59,7 +60,7 @@ export default function StartupAnimation({ onFinish }: { onFinish: () => void })
           />
         ) : (
           <View style={styles.fallbackLogo}>
-            <Text style={styles.fallbackIcon}>🎓</Text>
+            <FontAwesome5 name="graduation-cap" size={76} color="#001f0f" />
           </View>
         )}
         <Text style={styles.title}>Gator Guide</Text>
@@ -88,12 +89,9 @@ const styles = StyleSheet.create({
     height: 160,
     marginBottom: 20,
     borderRadius: 80,
-    backgroundColor: '#008f4e',
+    backgroundColor: '#34D399',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  fallbackIcon: {
-    fontSize: 80,
   },
   title: {
     fontSize: 36,

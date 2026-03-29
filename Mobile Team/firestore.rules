@@ -24,10 +24,178 @@ service cloud.firestore {
         resource.data.userId == userId;
     }
 
+    function hasValidChatRetention(data) {
+      return data.keys().hasAll(["retention"]) &&
+        data.retention.keys().hasAll(["policy", "expiresAt", "deleteOnAccountDeletion"]) &&
+        data.retention.keys().hasOnly(["policy", "expiresAt", "deleteOnAccountDeletion"]) &&
+        data.retention.policy == "ttl_365d" &&
+        data.retention.deleteOnAccountDeletion == true;
+    }
+
+    function hasValidChatSourceMap(source) {
+      return source == null ||
+        (
+          source.keys().hasAll(["screen", "route"]) &&
+          source.keys().hasOnly(["screen", "route"])
+        );
+    }
+
+    function hasValidChatModelMetadata(metadata) {
+      return metadata == null ||
+        (
+          metadata.keys().hasAll(["provider", "model", "gateway", "outputFormat", "requestId", "contextSchemaVersion"]) &&
+          metadata.keys().hasOnly(["provider", "model", "gateway", "outputFormat", "requestId", "contextSchemaVersion"])
+        );
+    }
+
+    function isValidChatSessionRequest(chatId) {
+      return request.resource.data.keys().hasAll([
+          "schemaVersion",
+          "sessionId",
+          "userId",
+          "assistantKey",
+          "assistantSurface",
+          "title",
+          "status",
+          "source",
+          "contextSchemaVersion",
+          "lastOutputFormat",
+          "messageCount",
+          "userMessageCount",
+          "assistantMessageCount",
+          "latestMessageAt",
+          "latestMessageRole",
+          "latestMessagePreview",
+          "createdAt",
+          "updatedAt",
+          "retention"
+        ]) &&
+        request.resource.data.keys().hasOnly([
+          "schemaVersion",
+          "sessionId",
+          "userId",
+          "assistantKey",
+          "assistantSurface",
+          "title",
+          "status",
+          "source",
+          "contextSchemaVersion",
+          "lastOutputFormat",
+          "messageCount",
+          "userMessageCount",
+          "assistantMessageCount",
+          "latestMessageAt",
+          "latestMessageRole",
+          "latestMessagePreview",
+          "createdAt",
+          "updatedAt",
+          "retention"
+        ]) &&
+        request.resource.data.userId == request.auth.uid &&
+        request.resource.data.sessionId == chatId &&
+        hasValidChatRetention(request.resource.data) &&
+        hasValidChatSourceMap(request.resource.data.source) &&
+        (
+          request.resource.data.status == "active" ||
+          request.resource.data.status == "archived"
+        ) &&
+        (
+          request.resource.data.latestMessageRole == null ||
+          request.resource.data.latestMessageRole == "user" ||
+          request.resource.data.latestMessageRole == "assistant" ||
+          request.resource.data.latestMessageRole == "system"
+        );
+    }
+
+    function isValidChatMessageRequest(chatId, messageId) {
+      return request.resource.data.keys().hasAll([
+          "schemaVersion",
+          "sessionId",
+          "messageId",
+          "userId",
+          "role",
+          "content",
+          "status",
+          "source",
+          "sourceRef",
+          "createdAt",
+          "clientCreatedAt",
+          "updatedAt",
+          "retention",
+          "modelMetadata"
+        ]) &&
+        request.resource.data.keys().hasOnly([
+          "schemaVersion",
+          "sessionId",
+          "messageId",
+          "userId",
+          "role",
+          "content",
+          "status",
+          "source",
+          "sourceRef",
+          "createdAt",
+          "clientCreatedAt",
+          "updatedAt",
+          "retention",
+          "modelMetadata"
+        ]) &&
+        request.resource.data.userId == request.auth.uid &&
+        request.resource.data.sessionId == chatId &&
+        request.resource.data.messageId == messageId &&
+        hasValidChatRetention(request.resource.data) &&
+        hasValidChatSourceMap(request.resource.data.sourceRef) &&
+        hasValidChatModelMetadata(request.resource.data.modelMetadata) &&
+        (
+          request.resource.data.role == "user" ||
+          request.resource.data.role == "assistant" ||
+          request.resource.data.role == "system"
+        ) &&
+        (
+          request.resource.data.status == "committed" ||
+          request.resource.data.status == "superseded" ||
+          request.resource.data.status == "deleted"
+        ) &&
+        (
+          request.resource.data.source == "client" ||
+          request.resource.data.source == "live" ||
+          request.resource.data.source == "cached" ||
+          request.resource.data.source == "cached-stale" ||
+          request.resource.data.source == "stub" ||
+          request.resource.data.source == "imported"
+        );
+    }
+
     function isRootChatOwner(chatId) {
       return signedIn() &&
         exists(/databases/$(database)/documents/chatHistory/$(chatId)) &&
         get(/databases/$(database)/documents/chatHistory/$(chatId)).data.userId == request.auth.uid;
+    }
+
+    function isValidOpportunityStatusRequest(userId, opportunityId) {
+      return request.resource.data.keys().hasAll([
+          "schemaVersion",
+          "userId",
+          "opportunityId",
+          "isDone",
+          "doneAt",
+          "doneCycleKey",
+          "clientUpdatedAt",
+          "updatedAt"
+        ]) &&
+        request.resource.data.keys().hasOnly([
+          "schemaVersion",
+          "userId",
+          "opportunityId",
+          "isDone",
+          "doneAt",
+          "doneCycleKey",
+          "clientUpdatedAt",
+          "updatedAt"
+        ]) &&
+        request.resource.data.schemaVersion == 1 &&
+        request.resource.data.userId == userId &&
+        request.resource.data.opportunityId == opportunityId;
     }
 
     match /users/{userId} {
@@ -35,6 +203,12 @@ service cloud.firestore {
 
       match /savedColleges/{collegeId} {
         allow read, create, update, delete: if ownsId(userId);
+      }
+
+      match /opportunityStatuses/{opportunityId} {
+        allow read, delete: if ownsId(userId);
+        allow create, update: if ownsId(userId) &&
+          isValidOpportunityStatusRequest(userId, opportunityId);
       }
 
       // Future-proofed nested chat history paths if chat sessions move under users/{uid}/...
@@ -72,18 +246,27 @@ service cloud.firestore {
         requestHasUserId(userId);
     }
 
+    match /opportunities/{opportunityId} {
+      allow read: if true;
+      allow create, update, delete: if false;
+    }
+
     // Root chat history path for the upcoming shared AI chat persistence work.
     match /chatHistory/{chatId} {
       allow create: if signedIn() &&
-        requestHasUserId(request.auth.uid);
+        requestHasUserId(request.auth.uid) &&
+        isValidChatSessionRequest(chatId);
       allow read, delete: if signedIn() &&
         resourceHasUserId(request.auth.uid);
       allow update: if signedIn() &&
         resourceHasUserId(request.auth.uid) &&
-        requestHasUserId(request.auth.uid);
+        requestHasUserId(request.auth.uid) &&
+        isValidChatSessionRequest(chatId);
 
       match /messages/{messageId} {
-        allow read, create, update, delete: if isRootChatOwner(chatId);
+        allow read, delete: if isRootChatOwner(chatId);
+        allow create, update: if isRootChatOwner(chatId) &&
+          isValidChatMessageRequest(chatId, messageId);
       }
     }
 

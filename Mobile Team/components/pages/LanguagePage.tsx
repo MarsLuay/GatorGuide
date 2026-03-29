@@ -1,41 +1,45 @@
-import { useMemo } from "react";
-import { View, Text, Pressable, ScrollView } from "react-native";
+import { View, Text, Pressable, ScrollView, useWindowDimensions } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import useBack from "@/hooks/use-back";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppLanguage } from "@/hooks/use-app-language";
+import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import { Language } from "@/services/translations";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
+
+type LanguageOption = {
+  key: Language;
+  nativeLabel: string;
+  direction?: "ltr" | "rtl";
+};
+
+const LANGUAGE_OPTIONS: readonly LanguageOption[] = [
+  { key: "English", nativeLabel: "English" },
+  { key: "Spanish", nativeLabel: "Espa\u00f1ol" },
+  { key: "Chinese (Simplified)", nativeLabel: "\u7b80\u4f53\u4e2d\u6587" },
+  { key: "Chinese (Traditional)", nativeLabel: "\u7e41\u9ad4\u4e2d\u6587" },
+  { key: "French", nativeLabel: "Fran\u00e7ais" },
+  { key: "German", nativeLabel: "Deutsch" },
+  { key: "Italian", nativeLabel: "Italiano" },
+  { key: "Japanese", nativeLabel: "\u65e5\u672c\u8a9e" },
+  { key: "Korean", nativeLabel: "\ud55c\uad6d\uc5b4" },
+  { key: "Portuguese", nativeLabel: "Portugu\u00eas" },
+  { key: "Russian", nativeLabel: "\u0420\u0443\u0441\u0441\u043a\u0438\u0439" },
+  { key: "Arabic", nativeLabel: "\u0627\u0644\u0639\u0631\u0628\u064a\u0629", direction: "rtl" },
+  { key: "Hindi", nativeLabel: "\u0939\u093f\u0928\u094d\u0926\u0940" },
+  { key: "Vietnamese", nativeLabel: "Ti\u1ebfng Vi\u1ec7t" },
+  { key: "Persian", nativeLabel: "\u0641\u0627\u0631\u0633\u06cc", direction: "rtl" },
+  { key: "Tagalog", nativeLabel: "Tagalog" },
+] as const;
 
 export default function LanguagePage() {
   const { isDark, isGreen, isLight } = useAppTheme();
   const { language, setLanguage, t } = useAppLanguage();
   const back = useBack("/(tabs)/settings");
-  // Keep a stable, localized language list so rows don't re-create on every render.
-  const languages = useMemo(
-    () => [
-      { key: "English" as Language, label: "English" },
-      { key: "Spanish" as Language, label: "Español" },
-      { key: "Chinese (Simplified)" as Language, label: "简体中文" },
-      { key: "Chinese (Traditional)" as Language, label: "繁體中文" },
-      { key: "French" as Language, label: "Français" },
-      { key: "German" as Language, label: "Deutsch" },
-      { key: "Italian" as Language, label: "Italiano" },
-      { key: "Japanese" as Language, label: "日本語" },
-      { key: "Korean" as Language, label: "한국어" },
-      { key: "Portuguese" as Language, label: "Português" },
-      { key: "Russian" as Language, label: "Русский" },
-      { key: "Arabic" as Language, label: "العربية" },
-      { key: "Hindi" as Language, label: "हिन्दी" },
-      { key: "Vietnamese" as Language, label: "Tiếng Việt" },
-      { key: "Persian" as Language, label: "فارسی" },
-      { key: "Tagalog" as Language, label: "Tagalog" },
-    ],
-    []
-  );
+  const { getScrollContentPadding } = useResponsiveLayout();
+  const { width } = useWindowDimensions();
 
-  // Theme-aware utility classes/colors shared across this screen.
   const textClass = isDark ? "text-white" : isGreen ? "text-white" : isLight ? "text-emerald-900" : "text-gray-900";
   const secondaryTextClass = isDark ? "text-gray-400" : isGreen ? "text-emerald-100" : isLight ? "text-emerald-700" : "text-gray-600";
   const cardBgClass = isDark
@@ -47,52 +51,143 @@ export default function LanguagePage() {
         : "bg-white/90 border-gray-200";
   const itemBorderClass = isDark ? "border-gray-800" : isGreen ? "border-emerald-700" : isLight ? "border-emerald-300" : "border-gray-200";
   const iconColor = isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280";
+  const isPageRTL = language === "Arabic" || language === "Persian";
+  const isCompactPhone = width < 390;
+  const isTablet = width >= 768;
+  const isWideLayout = width >= 1120;
+  const showLanguageGrid = width >= 860;
+  const shellHorizontalPadding = width >= 1280 ? 32 : isTablet ? 24 : isCompactPhone ? 16 : 20;
+  const pageMaxWidth = isWideLayout ? 1080 : isTablet ? 860 : 560;
+  const scrollContentPadding = getScrollContentPadding({
+    includeTopInset: true,
+    includeBottomTabClearance: true,
+    extraTop: 16,
+  });
+  const optionCardWidth = showLanguageGrid ? (isWideLayout ? "48.8%" : "48.2%") : "100%";
+  const optionMinHeight = isTablet ? 96 : 84;
 
   const handleSelectLanguage = (lang: Language) => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     setLanguage(lang);
-    // Delay route change slightly so selection feedback is noticeable.
-    setTimeout(() => {
-      back();
-    }, 300);
+    back();
   };
 
   return (
-    <ScreenBackground>
-      <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 32 }}>
-        <View className="max-w-md w-full self-center pt-20">
-          <View className="px-6 pb-6">
-            <Pressable onPress={back} className="mb-4 flex-row items-center">
-              <MaterialIcons name="arrow-back" size={20} color={iconColor} />
-              <Text className={`${secondaryTextClass} ml-2`}>{t("general.back")}</Text>
+    <ScreenBackground includeBottomInset={false}>
+      <ScrollView
+        className="flex-1"
+        contentContainerStyle={scrollContentPadding}
+        contentInsetAdjustmentBehavior="automatic"
+        showsVerticalScrollIndicator={false}
+      >
+        <View
+          style={{
+            width: "100%",
+            maxWidth: pageMaxWidth,
+            alignSelf: "center",
+            paddingHorizontal: shellHorizontalPadding,
+          }}
+        >
+          <View className="pb-6">
+            <Pressable
+              onPress={back}
+              className="mb-4 items-center"
+              style={{
+                flexDirection: isPageRTL ? "row-reverse" : "row",
+                alignSelf: isPageRTL ? "flex-end" : "flex-start",
+              }}
+            >
+              <MaterialIcons name={isPageRTL ? "arrow-forward" : "arrow-back"} size={20} color={iconColor} />
+              <Text className={`${secondaryTextClass} ${isPageRTL ? "mr-2" : "ml-2"}`}>{t("general.back")}</Text>
             </Pressable>
 
-            <Text className={`text-2xl ${textClass}`}>{t("settings.language")}</Text>
+            <Text className={`text-2xl ${isPageRTL ? "text-right" : ""} ${textClass}`}>{t("settings.language")}</Text>
           </View>
 
-          <View className="px-6">
-            <View className={`${cardBgClass} border rounded-2xl overflow-hidden`}>
-              {languages.map((lang, index) => {
-                const isSelected = language === lang.key;
+          <View
+            style={{
+              flexDirection: showLanguageGrid ? "row" : "column",
+              flexWrap: showLanguageGrid ? "wrap" : "nowrap",
+              gap: 14,
+            }}
+          >
+            {LANGUAGE_OPTIONS.map((lang) => {
+              const isSelected = language === lang.key;
+              const isNativeRTL = lang.direction === "rtl";
 
-                return (
-                  <Pressable
-                    key={lang.key}
-                    onPress={() => handleSelectLanguage(lang.key)}
-                    className={`flex-row items-center justify-between px-4 py-5 ${
-                      index !== languages.length - 1 ? `border-b ${itemBorderClass}` : ""
-                    }`}
+              return (
+                <Pressable
+                  key={lang.key}
+                  onPress={() => handleSelectLanguage(lang.key)}
+                  className={`${cardBgClass} border rounded-2xl px-4 py-4`}
+                  style={{
+                    width: optionCardWidth,
+                    minHeight: optionMinHeight,
+                    justifyContent: "center",
+                    borderColor: isSelected ? "#10B981" : undefined,
+                    backgroundColor: isSelected
+                      ? isDark
+                        ? "rgba(16, 185, 129, 0.16)"
+                        : isGreen
+                          ? "rgba(16, 185, 129, 0.18)"
+                          : "rgba(16, 185, 129, 0.1)"
+                      : undefined,
+                  }}
+                >
+                  <View
+                    style={{
+                      flexDirection: isNativeRTL ? "row-reverse" : "row",
+                      alignItems: "center",
+                    }}
                   >
-                    <Text className={textClass}>{lang.label}</Text>
-                    {isSelected ? <MaterialIcons name="check" size={20} color="#008f4e" /> : null}
-                  </Pressable>
-                );
-              })}
-            </View>
+                    <View style={{ flex: 1, minWidth: 0 }}>
+                      <Text
+                        className={textClass}
+                        style={{
+                          fontSize: 17,
+                          lineHeight: 24,
+                          textAlign: isNativeRTL ? "right" : "left",
+                          writingDirection: isNativeRTL ? "rtl" : "ltr",
+                        }}
+                      >
+                        {lang.nativeLabel}
+                      </Text>
+                      {lang.nativeLabel !== lang.key ? (
+                        <Text
+                          className={`${secondaryTextClass} mt-1`}
+                          numberOfLines={2}
+                          style={{
+                            lineHeight: 20,
+                            textAlign: isNativeRTL ? "right" : "left",
+                          }}
+                        >
+                          {lang.key}
+                        </Text>
+                      ) : null}
+                    </View>
+
+                    <View
+                      style={{
+                        marginLeft: isNativeRTL ? 0 : 12,
+                        marginRight: isNativeRTL ? 12 : 0,
+                      }}
+                    >
+                      {isSelected ? (
+                        <MaterialIcons name="check-circle" size={22} color="#10B981" />
+                      ) : (
+                        <View
+                          className={`rounded-full border ${itemBorderClass}`}
+                          style={{ width: 22, height: 22, opacity: 0.8 }}
+                        />
+                      )}
+                    </View>
+                  </View>
+                </Pressable>
+              );
+            })}
           </View>
         </View>
       </ScrollView>
     </ScreenBackground>
   );
 }
-

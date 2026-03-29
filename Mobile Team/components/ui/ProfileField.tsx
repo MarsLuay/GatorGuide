@@ -46,7 +46,7 @@ type LinkFieldProps = BaseFieldProps & {
 
 type RadioFieldProps = BaseFieldProps & {
   type: "radio";
-  options: Array<{ key: string; labelKey: string }>;
+  options: { key: string; labelKey: string }[];
   editValue: string;
   onSelect: (key: string) => void;
 };
@@ -83,9 +83,9 @@ export function ProfileField(props: ProfileFieldProps) {
 
   return (
     <View className={wrapperClass}>
-      <View className="flex-row items-start">
+      <View className="flex-row items-start min-w-0">
         <MaterialIcons name={icon} size={20} color="#008f4e" />
-        <View className="flex-1 ml-3">
+        <View className="flex-1 ml-3 min-w-0">
           <Text className={`text-sm ${secondaryTextClass} mb-1`}>{label}</Text>
 
           {props.type === "link" ? (
@@ -128,7 +128,9 @@ export function ProfileField(props: ProfileFieldProps) {
               )}
             </>
           ) : !isEditing || props.type === "display" ? (
-            <Text className={textClass}>{value || resolvedEmptyText}</Text>
+            <Text className={textClass} numberOfLines={props.type === "upload" ? 2 : undefined}>
+              {value || resolvedEmptyText}
+            </Text>
           ) : props.type === "text" || props.type === "textarea" ? (
             <TextInput
               value={props.editValue}
@@ -145,7 +147,7 @@ export function ProfileField(props: ProfileFieldProps) {
               onPress={props.onPress}
               className={`${props.inputBgClass} border rounded-lg px-3 py-3 flex-row items-center justify-between`}
             >
-              <Text className={`${textClass} text-sm`}>
+              <Text className={`${textClass} text-sm flex-1 mr-3`} numberOfLines={2}>
                 {props.editValue || props.uploadText || t("general.uploadFile")}
               </Text>
               <MaterialIcons name="upload" size={18} color="#008f4e" />

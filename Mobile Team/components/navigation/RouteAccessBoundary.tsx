@@ -1,6 +1,7 @@
 import { useEffect, useMemo, type ReactNode } from "react";
 import { type Href, useRouter } from "expo-router";
 import { LoadingScreen } from "@/components/LoadingScreen";
+import { ROUTES } from "@/constants/routes";
 import { useAppData, type User } from "@/hooks/use-app-data";
 
 type RouteAccessBoundaryProps = {
@@ -22,8 +23,8 @@ export function RouteAccessBoundary({
   requireUser = true,
   allowGuest = true,
   loadingMessage = "Preparing your data",
-  unauthenticatedRedirect = "/login",
-  guestRedirect = "/(tabs)",
+  unauthenticatedRedirect = ROUTES.login,
+  guestRedirect = ROUTES.tabs,
   resolveRedirect,
 }: RouteAccessBoundaryProps) {
   const router = useRouter();

@@ -1,3 +1,4 @@
+import { QUESTIONNAIRE_FIELD_IDS, type QuestionnaireFieldId } from '@/constants/schema';
 import type { Language } from './translations';
 import { translations } from './translations';
 
@@ -46,7 +47,7 @@ export const QUESTIONNAIRE_RADIO_OPTIONS = {
 
 type RadioField = keyof typeof QUESTIONNAIRE_RADIO_OPTIONS;
 
-type QuestionnaireRecord = Record<string, any>;
+type QuestionnaireRecord = Partial<Record<QuestionnaireFieldId, any>> & Record<string, any>;
 
 const STATE_ABBR_TO_NAME: Record<string, string> = {
   AL: 'Alabama', AK: 'Alaska', AZ: 'Arizona', AR: 'Arkansas', CA: 'California', CO: 'Colorado', CT: 'Connecticut', DE: 'Delaware', FL: 'Florida', GA: 'Georgia',
@@ -267,13 +268,21 @@ export function normalizeQuestionnaireAnswers(answers: QuestionnaireRecord | nul
     else normalized[field] = 'no_preference';
   });
 
-  if ('location' in normalized) {
-    normalized.location = normalizeLocationPreference(normalized.location, activeLanguage);
+  if (QUESTIONNAIRE_FIELD_IDS.location in normalized) {
+    normalized[QUESTIONNAIRE_FIELD_IDS.location] = normalizeLocationPreference(
+      normalized[QUESTIONNAIRE_FIELD_IDS.location],
+      activeLanguage
+    );
   }
 
-  if (typeof normalized.useWeightedSearch !== 'boolean') {
-    if (String(normalized.useWeightedSearch).toLowerCase() === 'false') normalized.useWeightedSearch = false;
-    else normalized.useWeightedSearch = true;
+  if (typeof normalized[QUESTIONNAIRE_FIELD_IDS.useWeightedSearch] !== 'boolean') {
+    if (
+      String(normalized[QUESTIONNAIRE_FIELD_IDS.useWeightedSearch]).toLowerCase() === 'false'
+    ) {
+      normalized[QUESTIONNAIRE_FIELD_IDS.useWeightedSearch] = false;
+    } else {
+      normalized[QUESTIONNAIRE_FIELD_IDS.useWeightedSearch] = true;
+    }
   }
 
   return normalized;

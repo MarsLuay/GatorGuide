@@ -10,10 +10,12 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { AppThemeProvider } from "@/hooks/use-app-theme";
 import { AppLanguageProvider } from "@/hooks/use-app-language";
 import { AppDataProvider } from "@/hooks/use-app-data";
+import { OpportunitiesProvider } from "@/hooks/use-opportunities";
 import { AuthEmailLinkHandler } from "@/components/AuthEmailLinkHandler";
+import { STORAGE_KEYS } from "@/constants/schema";
 import { cacheManagerService, errorLoggingService } from "@/services";
 
-const HAS_SEEN_STARTUP_KEY = 'gatorguide:hasSeenStartup';
+const HAS_SEEN_STARTUP_KEY = STORAGE_KEYS.hasSeenStartup;
 
 const buildErrorLog = (error: Error) => {
   const lines = [
@@ -170,7 +172,7 @@ export default function RootLayout() {
           style={{ width: 96, height: 96, marginBottom: 16 }}
           resizeMode="contain"
         />
-        <Text style={{ color: "#001f0f", fontSize: 16, fontWeight: "600" }}>Loading...</Text>
+        <Text style={{ color: "#001f0f", fontSize: 16, fontWeight: "600" }}>Loading Gator Guide...</Text>
       </View>
     );
   }
@@ -186,16 +188,18 @@ export default function RootLayout() {
       <AppThemeProvider>
         <AppLanguageProvider>
           <AppDataProvider>
-            <AuthEmailLinkHandler />
-            <Stack
-              screenOptions={{
-                headerShown: false,
-                animation: 'slide_from_right',
-                animationDuration: 300,
-              }}
-            >
-              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            </Stack>
+            <OpportunitiesProvider>
+              <AuthEmailLinkHandler />
+              <Stack
+                screenOptions={{
+                  headerShown: false,
+                  animation: 'slide_from_right',
+                  animationDuration: 300,
+                }}
+              >
+                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              </Stack>
+            </OpportunitiesProvider>
           </AppDataProvider>
         </AppLanguageProvider>
       </AppThemeProvider>

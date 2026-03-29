@@ -4,6 +4,10 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { deleteDoc, doc, serverTimestamp, setDoc } from 'firebase/firestore';
+import {
+  FIRESTORE_COLLECTIONS,
+  FIRESTORE_USER_SUBCOLLECTIONS,
+} from '@/constants/schema';
 import { API_CONFIG, isStubMode } from './config';
 import { errorLoggingService } from './error-logging.service';
 import { db } from './firebase';
@@ -138,7 +142,7 @@ class CollegeService {
 
     try {
       const user = firebaseAuth.currentUser;
-      const docRef = doc(db, 'questionnaires', user.uid);
+      const docRef = doc(db, FIRESTORE_COLLECTIONS.questionnaires, user.uid);
       await setDoc(docRef, {
         userId: user.uid,
         answers,
@@ -170,7 +174,13 @@ class CollegeService {
     if (!db || !firebaseAuth?.currentUser) return;
 
     const user = firebaseAuth.currentUser;
-    const savedCollegeRef = doc(db, 'users', user.uid, 'savedColleges', String(collegeId));
+    const savedCollegeRef = doc(
+      db,
+      FIRESTORE_COLLECTIONS.users,
+      user.uid,
+      FIRESTORE_USER_SUBCOLLECTIONS.savedColleges,
+      String(collegeId)
+    );
 
     if (!isSaved) {
       await deleteDoc(savedCollegeRef);

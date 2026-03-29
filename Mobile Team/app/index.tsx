@@ -2,9 +2,11 @@ import { useEffect, useRef } from "react";
 import { useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { LoadingScreen } from "@/components/LoadingScreen";
+import { ROUTES } from "@/constants/routes";
+import { STORAGE_KEYS } from "@/constants/schema";
 import { useAppData } from "@/hooks/use-app-data";
 
-const ONBOARDING_DEBUG_LOG_KEY = "gatorguide:onboarding-debug-log:v1";
+const ONBOARDING_DEBUG_LOG_KEY = STORAGE_KEYS.onboardingDebugLog;
 
 export default function Index() {
   const router = useRouter();
@@ -38,8 +40,8 @@ export default function Index() {
           `user=${state.user.uid} guest=${String(!!state.user.isGuest)} hasSeenOnboarding=${String(state.user.hasSeenOnboarding)} major=${String(!!state.user.major)} gpa=${String(!!state.user.gpa)}`
         );
         if (state.user.isGuest) {
-          await appendDebug("route -> /(tabs) (guest)");
-          router.replace("/(tabs)");
+          await appendDebug(`route -> ${ROUTES.tabs} (guest)`);
+          router.replace(ROUTES.tabs);
           return;
         }
 
@@ -50,15 +52,15 @@ export default function Index() {
         );
 
         if (hasCompletedSetup) {
-          await appendDebug("route -> /(tabs) (profile complete)");
-          router.replace("/(tabs)");
+          await appendDebug(`route -> ${ROUTES.tabs} (profile complete)`);
+          router.replace(ROUTES.tabs);
         } else {
-          await appendDebug("route -> /profile-setup (profile incomplete)");
-          router.replace("/profile-setup");
+          await appendDebug(`route -> ${ROUTES.profileSetup} (profile incomplete)`);
+          router.replace(ROUTES.profileSetup);
         }
       } else {
-        await appendDebug("route -> /login (no user)");
-        router.replace("/login");
+        await appendDebug(`route -> ${ROUTES.login} (no user)`);
+        router.replace(ROUTES.login);
       }
     };
 

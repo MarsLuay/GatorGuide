@@ -2,11 +2,13 @@ import { useCallback, useEffect, useRef } from "react";
 import { Platform, Linking, Alert } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
+import { ROUTES } from "@/constants/routes";
+import { STORAGE_KEYS } from "@/constants/schema";
 import { authService, EMAIL_LINK_STORAGE_KEY } from "@/services/auth.service";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
 
-const PENDING_LINK_STORAGE_KEY = "gatorguide:pendingEmailLinkUrl";
+const PENDING_LINK_STORAGE_KEY = STORAGE_KEYS.pendingEmailLinkUrl;
 const VERIFIED_EMAIL_QUERY_FLAG = "emailVerified=1";
 
 /**
@@ -21,7 +23,7 @@ export function AuthEmailLinkHandler() {
   const processingRef = useRef(false);
 
   const redirectToVerifiedLogin = useCallback(() => {
-    router.replace(`/login?${VERIFIED_EMAIL_QUERY_FLAG}`);
+    router.replace(ROUTES.loginWithQuery(VERIFIED_EMAIL_QUERY_FLAG));
   }, [router]);
 
   const tryCompleteEmailVerification = useCallback(async (url: string | null) => {
@@ -35,7 +37,7 @@ export function AuthEmailLinkHandler() {
       return true;
     } catch {
       Alert.alert(t("general.error"), t("auth.emailActionLinkFailed"));
-      router.replace("/login");
+      router.replace(ROUTES.login);
       return true;
     } finally {
       processingRef.current = false;
@@ -64,7 +66,7 @@ export function AuthEmailLinkHandler() {
         } else {
           await AsyncStorage.setItem(PENDING_LINK_STORAGE_KEY, url);
         }
-        router.replace("/login");
+        router.replace(ROUTES.login);
         processingRef.current = false;
         return;
       }
@@ -78,7 +80,7 @@ export function AuthEmailLinkHandler() {
       }
 
       await signInWithAuthUser(authUser);
-      setTimeout(() => router.replace("/"), 50);
+      setTimeout(() => router.replace(ROUTES.root), 50);
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "Sign-in failed";
       Alert.alert(t("general.error"), msg);
@@ -115,7 +117,7 @@ export function AuthEmailLinkHandler() {
     authService.getRedirectResult().then((authUser) => {
       if (!mounted || !authUser) return;
       signInWithAuthUser(authUser);
-      setTimeout(() => router.replace("/"), 50);
+      setTimeout(() => router.replace(ROUTES.root), 50);
     });
     return () => { mounted = false; };
   }, [state.user, signInWithAuthUser, router]);

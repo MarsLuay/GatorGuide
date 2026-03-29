@@ -1,7 +1,8 @@
 import { doc, getDoc, setDoc, Timestamp } from "firebase/firestore";
+import { FIRESTORE_COLLECTIONS } from "@/constants/schema";
 import { db } from "./firebase";
 
-export const ROADMAP_SCHEMA_VERSION = 2 as const;
+export const ROADMAP_SCHEMA_VERSION = 3 as const;
 export const ROADMAP_SECTION_ORDER = ["documents", "courses", "applications", "interests"] as const;
 export const ROADMAP_DOCUMENT_KEYS = [
   "resume",
@@ -29,6 +30,8 @@ export interface RoadmapDocumentItem {
   fileName: string | null;
   fileUrl: string | null;
   updatedAt: string | null;
+  mimeType: string | null;
+  sizeBytes: number | null;
 }
 
 export interface RoadmapTask {
@@ -87,7 +90,13 @@ export interface RoadmapSeedInput {
   targetSchools?: string[];
   currentCourses?: string[];
   interests?: string[];
-  documents?: Partial<Record<RoadmapDocumentKey, { fileName?: string | null; fileUrl?: string | null }>>;
+  documents?: Partial<Record<RoadmapDocumentKey, {
+    fileName?: string | null;
+    fileUrl?: string | null;
+    updatedAt?: string | null;
+    mimeType?: string | null;
+    sizeBytes?: number | null;
+  }>>;
 }
 
 type TaskMutation = (task: RoadmapTask) => RoadmapTask;
@@ -164,6 +173,16 @@ function nullableTimestampToIso(value: unknown): string | null {
   return iso || null;
 }
 
+function normalizeDocumentMimeType(value: unknown): string | null {
+  const raw = String(value ?? "").trim();
+  return raw || null;
+}
+
+function normalizeDocumentSizeBytes(value: unknown): number | null {
+  const parsed = Number.parseInt(String(value ?? ""), 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
+}
+
 function createProgress(completedCount: number, totalCount: number, updatedAt: string): RoadmapProgress {
   const safeTotal = Math.max(0, totalCount);
   const safeCompleted = Math.min(Math.max(0, completedCount), safeTotal);
@@ -203,6 +222,8 @@ function defaultDocuments(now: string): Record<RoadmapDocumentKey, RoadmapDocume
       fileName: null,
       fileUrl: null,
       updatedAt: null,
+      mimeType: null,
+      sizeBytes: null,
     };
     return acc;
   }, {} as Record<RoadmapDocumentKey, RoadmapDocumentItem>);
@@ -221,7 +242,7 @@ function normalizeDocuments(
     const seeded = seedDocuments?.[key];
     const rawFileName = String(rawItem.fileName ?? seeded?.fileName ?? "").trim() || null;
     const rawFileUrl = String(rawItem.fileUrl ?? seeded?.fileUrl ?? "").trim() || null;
-    const rawUpdatedAt = nullableTimestampToIso(rawItem.updatedAt) ?? (rawFileName || rawFileUrl ? fallbackUpdatedAt : null);
+    const rawUpdatedAt = nullableTimestampToIso(rawItem.updatedAt ?? seeded?.updatedAt);
 
     const completed = normalizeStatus(rawItem.status, rawFileName || rawFileUrl ? "completed" : "not_started");
 
@@ -231,6 +252,8 @@ function normalizeDocuments(
       fileName: rawFileName,
       fileUrl: rawFileUrl,
       updatedAt: rawUpdatedAt,
+      mimeType: normalizeDocumentMimeType(rawItem.mimeType ?? seeded?.mimeType),
+      sizeBytes: normalizeDocumentSizeBytes(rawItem.sizeBytes ?? rawItem.size ?? seeded?.sizeBytes),
     };
   }
 
@@ -786,7 +809,7 @@ export const roadmapService = {
       return seedInput ? createInitialRoadmap(userId, seedInput) : null;
     }
 
-    const docSnap = await getDoc(doc(db!, "roadmaps", userId));
+    const docSnap = await getDoc(doc(db!, FIRESTORE_COLLECTIONS.roadmaps, userId));
     if (!docSnap.exists()) {
       return seedInput ? createInitialRoadmap(userId, seedInput) : null;
     }
@@ -800,13 +823,13 @@ export const roadmapService = {
     if (!existing) {
       const created = createInitialRoadmap(userId, seed);
       if (saveAllowed(userId)) {
-        await setDoc(doc(db!, "roadmaps", userId), created);
+        await setDoc(doc(db!, FIRESTORE_COLLECTIONS.roadmaps, userId), created);
       }
       return created;
     }
 
     if (saveAllowed(userId)) {
-      await setDoc(doc(db!, "roadmaps", userId), existing, { merge: true });
+      await setDoc(doc(db!, FIRESTORE_COLLECTIONS.roadmaps, userId), existing, { merge: true });
     }
     return existing;
   },
@@ -819,7 +842,7 @@ export const roadmapService = {
     });
 
     if (saveAllowed(userId)) {
-      await setDoc(doc(db!, "roadmaps", userId), normalized);
+      await setDoc(doc(db!, FIRESTORE_COLLECTIONS.roadmaps, userId), normalized);
     }
 
     return normalized;
@@ -919,7 +942,13 @@ export const roadmapService = {
   updateRoadmapDocument(
     roadmap: UserRoadmapDocument,
     documentKey: RoadmapDocumentKey,
-    file?: { fileName?: string | null; fileUrl?: string | null } | null
+    file?: {
+      fileName?: string | null;
+      fileUrl?: string | null;
+      updatedAt?: string | null;
+      mimeType?: string | null;
+      sizeBytes?: number | null;
+    } | null
   ): UserRoadmapDocument {
     const now = new Date().toISOString();
     const documentsTask = roadmap.sections.documents.tasks.find((task) => task.id === "documents-checklist");
@@ -937,7 +966,12 @@ export const roadmapService = {
             status: file?.fileName || file?.fileUrl ? "completed" : "not_started",
             fileName: file?.fileName?.trim() || null,
             fileUrl: file?.fileUrl?.trim() || null,
-            updatedAt: file?.fileName || file?.fileUrl ? now : null,
+            updatedAt:
+              file?.fileName || file?.fileUrl
+                ? nullableTimestampToIso(file?.updatedAt) ?? now
+                : null,
+            mimeType: normalizeDocumentMimeType(file?.mimeType),
+            sizeBytes: normalizeDocumentSizeBytes(file?.sizeBytes),
           },
         },
       };

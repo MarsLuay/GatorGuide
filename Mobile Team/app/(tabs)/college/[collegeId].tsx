@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { View, Text, ScrollView, Pressable, Linking, Alert, TextInput } from "react-native";
+import { View, Text, ScrollView, Pressable, Linking, Alert, TextInput, useWindowDimensions } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppLanguage } from "@/hooks/use-app-language";
+import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import { collegeService, College } from "@/services";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useAppTheme } from "@/hooks/use-app-theme";
@@ -17,7 +17,8 @@ export default function CollegeDetailsPage() {
   const rawId = params?.collegeId;
   const collegeId = Array.isArray(rawId) ? rawId[0] : rawId;
   const router = useRouter();
-  const insets = useSafeAreaInsets();
+  const { getScrollContentPadding } = useResponsiveLayout();
+  const { width } = useWindowDimensions();
   const { t } = useAppLanguage();
 
   const [college, setCollege] = useState<College | null>(null);
@@ -27,15 +28,33 @@ export default function CollegeDetailsPage() {
   const styles = useThemeStyles();
   const { isDark } = useAppTheme();
   const { state, addSavedCollege, removeSavedCollege, isCollegeSaved } = useAppData();
-  const savedCollege = state.savedColleges?.find((c) => c.id === collegeId);
-  const { textClass, secondaryTextClass, cardBgClass, borderClass, placeholderColor } = styles;
+  const savedCollege = state.savedColleges?.find((c) => String(c.id) === String(collegeId));
+  const { textClass, secondaryTextClass, cardBgClass, borderClass, placeholderColor, inputBgClass } = styles;
 
   // All-data UI state
   const [showAllDataCollapsed, setShowAllDataCollapsed] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [rowLimit, setRowLimit] = useState(300);
 
-  const inputClass = `w-full ${cardBgClass} ${textClass} border ${borderClass} rounded-lg px-3 py-2`;
+  const isCompactPhone = width < 390;
+  const isTablet = width >= 768;
+  const isDesktop = width >= 1080;
+  const shellHorizontalPadding = width >= 1280 ? 32 : isTablet ? 24 : isCompactPhone ? 16 : 20;
+  const shellMaxWidth = isDesktop ? 1280 : isTablet ? 1040 : 720;
+  const contentGap = isDesktop ? 20 : 16;
+  const sidebarWidth = isDesktop ? 340 : undefined;
+  const nestedDataMaxHeight = isDesktop ? 560 : isTablet ? 480 : isCompactPhone ? 320 : 380;
+  const stackDetailRows = width < 540;
+  const stackHeaderRow = width < 780;
+  const cardPadding = isTablet ? 20 : 16;
+  const keyStatCardWidth = isDesktop ? "31%" : width >= 520 ? "48%" : "100%";
+  const scrollContentPadding = getScrollContentPadding({
+    includeTopInset: true,
+    includeBottomTabClearance: true,
+    extraTop: 12,
+  });
+
+  const inputClass = `w-full ${inputBgClass} ${textClass} border ${borderClass} rounded-2xl px-4 py-3`;
 
   // Flatten raw Scorecard JSON into path/value pairs (primitive leaves only)
   const flattened = useMemo(() => {
@@ -85,7 +104,7 @@ export default function CollegeDetailsPage() {
         const isUrl = typeof v === "string" && urlLike(v);
         const str = v === null ? "null" : String(v);
         const isTruncated = typeof v === "string" && v.length > 120;
-        const display = isTruncated ? `${str.slice(0, 120)}…` : str;
+        const display = isTruncated ? `${str.slice(0, 120)}...` : str;
         // Hybrid label: try translations first, then fall back to humanized path
         const humanize = (p: string) =>
           p
@@ -177,36 +196,302 @@ export default function CollegeDetailsPage() {
     }
   };
 
-  return (
-    <ScreenBackground>
-      <ScrollView contentContainerStyle={{ paddingTop: insets.top + 12, paddingBottom: 96 }} className="flex-1">
-        <View className="max-w-md w-full self-center px-6 pt-2">
-          {/* Header */}
-          <View className="flex-row items-center gap-3 mb-4">
-            <Pressable onPress={() => router.back()} className="p-2">
-              <Ionicons name="chevron-back" size={22} color={placeholderColor} />
-            </Pressable>
-            <View style={{ flex: 1 }}>
-              <Text className={`text-2xl ${textClass} font-semibold`} numberOfLines={2}>
-                {college?.name ?? t("home.notAvailable")}
-              </Text>
-              <Text className={`${secondaryTextClass} text-sm`}>
-                {college?.location?.city ? `${college.location.city}, ` : ""}
-                {college?.location?.state ?? ""}
+  const keyStats = [
+    college?.admissionRate != null
+      ? { key: "admission-rate", label: t("details.admissionRate"), value: formatRate(college.admissionRate) }
+      : null,
+    college?.completionRate != null
+      ? { key: "completion-rate", label: t("details.completionRate"), value: formatRate(college.completionRate ?? null) }
+      : null,
+    college?.studentSize != null
+      ? { key: "student-size", label: t("details.studentSize"), value: `${String(college.studentSize)} (${college.size ?? "unknown"})` }
+      : null,
+  ].filter((item): item is { key: string; label: string; value: string } => !!item);
+
+  const costRows = [
+    college?.tuitionInState != null
+      ? { key: "in-state", label: t("details.inStateTuition"), value: formatMoney((college as any).tuitionInState) }
+      : null,
+    college?.tuitionOutOfState != null
+      ? { key: "out-of-state", label: t("details.outOfStateTuition"), value: formatMoney((college as any).tuitionOutOfState) }
+      : null,
+  ].filter((item): item is { key: string; label: string; value: string } => !!item);
+
+  const moreInfoRows = [
+    college?.degreesAwarded?.highest
+      ? { key: "school-type", label: "School type", value: String(college.degreesAwarded.highest) }
+      : null,
+    college?.degreesAwarded?.predominant
+      ? { key: "predominant-degree", label: "Predominant degree", value: String(college.degreesAwarded.predominant) }
+      : null,
+    college?.locale
+      ? { key: "locale", label: "Locale", value: String(college.locale) }
+      : null,
+    college?.avgNetPriceOverall != null
+      ? { key: "avg-net-price", label: "Avg net price", value: formatMoney(college.avgNetPriceOverall) }
+      : null,
+    college?.attendanceAcademicYear != null
+      ? { key: "attendance-year", label: "Attendance year", value: String(college.attendanceAcademicYear) }
+      : null,
+    college?.pellGrantRate != null
+      ? { key: "pell-grant-rate", label: "Pell grant rate", value: formatRate(college.pellGrantRate) }
+      : null,
+    college?.medianDebtCompletersOverall != null
+      ? {
+          key: "median-debt",
+          label: "Median debt (completers)",
+          value: formatMoney(college.medianDebtCompletersOverall),
+        }
+      : null,
+  ].filter((item): item is { key: string; label: string; value: string } => !!item);
+
+  const renderDataRow = (row: { key: string; label: string; value: string }) => (
+    <View
+      key={row.key}
+      style={{
+        flexDirection: stackDetailRows ? "column" : "row",
+        justifyContent: "space-between",
+        alignItems: stackDetailRows ? "flex-start" : "center",
+        gap: stackDetailRows ? 4 : 16,
+      }}
+    >
+      <Text
+        className={secondaryTextClass}
+        style={stackDetailRows ? { fontSize: 13, lineHeight: 18 } : { flex: 1, minWidth: 0, fontSize: 13, lineHeight: 18, paddingRight: 12 }}
+      >
+        {row.label}
+      </Text>
+      <Text
+        className={textClass}
+        style={
+          stackDetailRows
+            ? { fontSize: 15, lineHeight: 22 }
+            : { flex: 1, minWidth: 0, fontSize: 15, lineHeight: 22, textAlign: "right" }
+        }
+      >
+        {row.value}
+      </Text>
+    </View>
+  );
+
+  const keyStatsCard =
+    keyStats.length > 0 ? (
+      <View className={`${cardBgClass} border rounded-3xl`} style={{ padding: cardPadding }}>
+        <Text className={`text-sm ${secondaryTextClass} mb-3`}>{t("details.keyStats")}</Text>
+        <View className="flex-row flex-wrap" style={{ gap: 12 }}>
+          {keyStats.map((stat) => (
+            <View key={stat.key} className={`${inputBgClass} border rounded-2xl px-4 py-4`} style={{ width: keyStatCardWidth }}>
+              <Text className={`${secondaryTextClass} text-xs`}>{stat.label}</Text>
+              <Text className={`${textClass} mt-2 font-semibold`} style={{ fontSize: 21, lineHeight: 28 }}>
+                {stat.value}
               </Text>
             </View>
-            {college && (
+          ))}
+        </View>
+      </View>
+    ) : null;
+
+  const costCard =
+    costRows.length > 0 ? (
+      <View className={`${cardBgClass} border rounded-3xl`} style={{ padding: cardPadding }}>
+        <Text className={`text-sm ${secondaryTextClass} mb-3`}>{t("details.cost")}</Text>
+        <View style={{ gap: 12 }}>
+          {costRows.map((row) => renderDataRow(row))}
+        </View>
+      </View>
+    ) : null;
+
+  const moreInfoCard =
+    moreInfoRows.length > 0 ? (
+      <View className={`${cardBgClass} border rounded-3xl`} style={{ padding: cardPadding }}>
+        <Text className={`text-sm ${secondaryTextClass} mb-3`}>{t("details.moreInfo") ?? "More details"}</Text>
+        <View style={{ gap: 12 }}>
+          {moreInfoRows.map((row) => renderDataRow(row))}
+        </View>
+      </View>
+    ) : null;
+
+  const hasSidebarCards = costRows.length > 0 || !!college?.website;
+
+  const linksCard =
+    college?.website ? (
+      <View className={`${cardBgClass} border rounded-3xl`} style={{ padding: cardPadding }}>
+        <Text className={`text-sm ${secondaryTextClass} mb-3`}>{t("details.links")}</Text>
+
+        <Pressable
+          onPress={() => openUrl(college.website)}
+          className={`${inputBgClass} border rounded-2xl px-4 py-4`}
+        >
+          <View className="flex-row items-start justify-between">
+            <View style={{ flex: 1, minWidth: 0, paddingRight: 12 }}>
+              <Text className={secondaryTextClass}>{t("details.website")}</Text>
+              <Text className={`${textClass} mt-2`} numberOfLines={isDesktop ? 2 : 3} ellipsizeMode="tail" style={{ fontSize: 15, lineHeight: 22 }}>
+                {college.website}
+              </Text>
+            </View>
+            <Ionicons name="open-outline" size={18} color={placeholderColor} />
+          </View>
+        </Pressable>
+      </View>
+    ) : null;
+
+  const allDataCard =
+    flattened.length > 0 ? (
+      <View className={`${cardBgClass} border rounded-3xl`} style={{ padding: cardPadding }}>
+        <Pressable
+          onPress={() => setShowAllDataCollapsed((s) => !s)}
+          className="flex-row items-center justify-between mb-3"
+        >
+          <Text className={`text-sm ${secondaryTextClass}`}>All data (Scorecard)</Text>
+          <Text className={`${secondaryTextClass}`}>{showAllDataCollapsed ? "+" : "-"}</Text>
+        </Pressable>
+
+        {!showAllDataCollapsed ? (
+          <>
+            <TextInput
+              value={searchTerm}
+              onChangeText={setSearchTerm}
+              placeholder={(t("details.searchData") as any) ?? "Search keys or values"}
+              placeholderTextColor={placeholderColor}
+              className={`${inputClass} mb-3`}
+            />
+
+            <ScrollView
+              style={{ maxHeight: nestedDataMaxHeight }}
+              contentContainerStyle={{ paddingRight: isDesktop ? 6 : 0 }}
+              keyboardShouldPersistTaps="handled"
+              nestedScrollEnabled
+              showsVerticalScrollIndicator
+            >
+              {displayRows.length === 0 ? (
+                <Text className={secondaryTextClass}>{t("home.notAvailable")}</Text>
+              ) : (
+                displayRows.map((row, idx) => (
+                  <View
+                    key={`${row.path}-${idx}`}
+                    className={`py-3 ${idx < displayRows.length - 1 ? "border-b " + borderClass : ""}`}
+                  >
+                    <Text className={`${secondaryTextClass} text-xs`} style={{ lineHeight: 18 }}>
+                      {row.label}
+                    </Text>
+
+                    {row.isUrl ? (
+                      <Pressable onPress={() => openUrl(row.value as string)} className="mt-2">
+                        <Text className={`${textClass} text-sm underline`} style={{ lineHeight: 22 }}>
+                          {String(row.value)}
+                        </Text>
+                      </Pressable>
+                    ) : (
+                      <View
+                        style={{
+                          marginTop: 8,
+                          flexDirection: stackDetailRows ? "column" : "row",
+                          alignItems: stackDetailRows ? "flex-start" : "center",
+                          justifyContent: "space-between",
+                          gap: 8,
+                        }}
+                      >
+                        <Text
+                          className={`${textClass} text-sm`}
+                          numberOfLines={stackDetailRows ? 3 : 2}
+                          ellipsizeMode="tail"
+                          style={stackDetailRows ? { lineHeight: 22 } : { flex: 1, minWidth: 0, lineHeight: 22 }}
+                        >
+                          {row.display}
+                        </Text>
+
+                        {row.isTruncated ? (
+                          <Pressable onPress={() => Alert.alert(row.path, String(row.value))} style={stackDetailRows ? undefined : { flexShrink: 0 }}>
+                            <Text className={`${secondaryTextClass} text-xs`}>
+                              {(t("details.showFull") as any) ?? "Show full"}
+                            </Text>
+                          </Pressable>
+                        ) : null}
+                      </View>
+                    )}
+                  </View>
+                ))
+              )}
+            </ScrollView>
+
+            {filteredRows.length > rowLimit ? (
               <Pressable
-                onPress={() => (isCollegeSaved(college.id) ? removeSavedCollege(college.id) : addSavedCollege(college))}
-                className="p-2"
+                onPress={() => setRowLimit(filteredRows.length)}
+                className="mt-3 rounded-2xl py-3 items-center bg-emerald-500"
               >
-                <Ionicons
-                  name={isCollegeSaved(college.id) ? "bookmark" : "bookmark-outline"}
-                  size={26}
-                  color={isCollegeSaved(college.id) ? "#008f4e" : placeholderColor}
-                />
+                <Text className={`${isDark ? "text-white" : "text-emerald-900"} font-semibold`}>
+                  {(t("details.showMore") as any) ?? "Show more"}
+                </Text>
               </Pressable>
-            )}
+            ) : null}
+          </>
+        ) : null}
+      </View>
+    ) : null;
+
+  return (
+    <ScreenBackground>
+      <ScrollView
+        className="flex-1"
+        keyboardShouldPersistTaps="handled"
+        contentContainerStyle={scrollContentPadding}
+      >
+        <View
+          style={{
+            width: "100%",
+            maxWidth: shellMaxWidth,
+            alignSelf: "center",
+            paddingHorizontal: shellHorizontalPadding,
+            paddingTop: 8,
+          }}
+        >
+          <View className={`${cardBgClass} border rounded-3xl mb-4`} style={{ padding: cardPadding }}>
+            <View
+              style={{
+                flexDirection: stackHeaderRow ? "column" : "row",
+                alignItems: stackHeaderRow ? "stretch" : "flex-start",
+                gap: 16,
+              }}
+            >
+              <View style={{ flex: 1, minWidth: 0 }}>
+                <View className="flex-row items-center justify-between mb-4">
+                  <Pressable onPress={() => router.back()} className={`flex-row items-center self-start rounded-2xl border px-3 py-2 ${inputBgClass}`}>
+                    <Ionicons name="chevron-back" size={18} color={placeholderColor} />
+                    <Text className={`${secondaryTextClass} ml-2`}>{t("general.back")}</Text>
+                  </Pressable>
+
+                  {college ? (
+                    <Pressable
+                      onPress={() => (isCollegeSaved(college.id) ? removeSavedCollege(college.id) : addSavedCollege(college))}
+                      className={`h-11 w-11 rounded-2xl border items-center justify-center ${inputBgClass}`}
+                    >
+                      <Ionicons
+                        name={isCollegeSaved(college.id) ? "bookmark" : "bookmark-outline"}
+                        size={20}
+                        color={isCollegeSaved(college.id) ? "#008f4e" : placeholderColor}
+                      />
+                    </Pressable>
+                  ) : null}
+                </View>
+
+                <Text className={`${textClass} font-semibold`} numberOfLines={isDesktop ? 3 : 2} style={{ fontSize: isTablet ? 32 : 28, lineHeight: isTablet ? 40 : 34 }}>
+                  {college?.name ?? t("home.notAvailable")}
+                </Text>
+                <Text className={`${secondaryTextClass} mt-2`} style={{ fontSize: 15, lineHeight: 22 }}>
+                  {college?.location?.city ? `${college.location.city}, ` : ""}
+                  {college?.location?.state ?? ""}
+                </Text>
+              </View>
+
+              {typeof savedCollege?.matchScore === "number" ? (
+                <View style={{ width: stackHeaderRow ? "100%" : isDesktop ? 260 : 240, flexShrink: 0 }}>
+                  <MatchScoreBadge
+                    score={savedCollege.matchScore}
+                    text={t("savedColleges.matchLabel", { score: Math.round(savedCollege.matchScore) })}
+                  />
+                </View>
+              ) : null}
+            </View>
           </View>
 
           {/* Loading */}
@@ -231,204 +516,38 @@ export default function CollegeDetailsPage() {
               className="mb-4"
             />
           ) : (
-            <View>
-              {/* Match score (when saved from recommendations) */}
-              {typeof savedCollege?.matchScore === "number" && (
-                <MatchScoreBadge
-                  score={savedCollege.matchScore}
-                  text={t("savedColleges.matchLabel", { score: Math.round(savedCollege.matchScore) })}
-                  className="mb-4"
-                />
-              )}
-              {/* Key stats card (only show present fields) */}
-              {(college.admissionRate != null || college.completionRate != null || college.studentSize != null) && (
-                <View className={`${cardBgClass} border rounded-2xl p-4 mb-4`}>
-                  <Text className={`text-sm ${secondaryTextClass} mb-3`}>{t("details.keyStats")}</Text>
-                  <View className="flex-row gap-4">
-                    {college.admissionRate != null ? (
-                      <View style={{ flex: 1 }}>
-                        <Text className={`${secondaryTextClass} text-xs`}>{t("details.admissionRate")}</Text>
-                        <Text className={`${textClass} text-lg`}>{formatRate(college.admissionRate)}</Text>
-                      </View>
-                    ) : null}
-
-                    {college.completionRate != null ? (
-                      <View style={{ flex: 1 }}>
-                        <Text className={`${secondaryTextClass} text-xs`}>{t("details.completionRate")}</Text>
-                        <Text className={`${textClass} text-lg`}>{formatRate(college.completionRate ?? null)}</Text>
-                      </View>
-                    ) : null}
+            isDesktop && hasSidebarCards ? (
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "flex-start",
+                  gap: contentGap,
+                }}
+              >
+                <View style={{ flex: 1, minWidth: 0 }}>
+                  <View style={{ gap: 16 }}>
+                    {keyStatsCard}
+                    {moreInfoCard}
+                    {allDataCard}
                   </View>
-
-                  {college.studentSize != null ? (
-                    <View className="mt-3">
-                      <Text className={`${secondaryTextClass} text-xs`}>{t("details.studentSize")}</Text>
-                      <Text className={`${textClass} text-lg`}>
-                        {String(college.studentSize)} ({college.size ?? "unknown"})
-                      </Text>
-                    </View>
-                  ) : null}
                 </View>
-              )}
 
-              {/* Cost card (only show if there is cost data) */}
-              {(college.tuitionInState != null || college.tuitionOutOfState != null) && (
-                <View className={`${cardBgClass} border rounded-2xl p-4 mb-4`}>
-                  <Text className={`text-sm ${secondaryTextClass} mb-3`}>{t("details.cost")}</Text>
-                  {college.tuitionInState != null ? (
-                    <View className="flex-row justify-between items-center mb-3">
-                      <Text className={secondaryTextClass}>{t("details.inStateTuition")}</Text>
-                      <Text className={textClass}>{formatMoney((college as any).tuitionInState)}</Text>
-                    </View>
-                  ) : null}
-                  {college.tuitionOutOfState != null ? (
-                    <View className="flex-row justify-between items-center">
-                      <Text className={secondaryTextClass}>{t("details.outOfStateTuition")}</Text>
-                      <Text className={textClass}>{formatMoney((college as any).tuitionOutOfState)}</Text>
-                    </View>
-                  ) : null}
+                <View style={{ width: sidebarWidth, flexShrink: 0 }}>
+                  <View style={{ gap: 16 }}>
+                    {costCard}
+                    {linksCard}
+                  </View>
                 </View>
-              )}
-
-              {/* Additional API fields (only show when present) */}
-              {(college.degreesAwarded?.highest ||
-                college.degreesAwarded?.predominant ||
-                college.locale ||
-                college.avgNetPriceOverall != null ||
-                college.attendanceAcademicYear != null ||
-                college.pellGrantRate != null ||
-                college.medianDebtCompletersOverall != null) && (
-                <View className={`${cardBgClass} border rounded-2xl p-4 mb-6`}>
-                  <Text className={`text-sm ${secondaryTextClass} mb-3`}>{t("details.moreInfo") ?? "More details"}</Text>
-
-                  {college.degreesAwarded?.highest ? (
-                    <View className="flex-row justify-between items-center mb-2">
-                      <Text className={secondaryTextClass}>School type</Text>
-                      <Text className={textClass}>{String(college.degreesAwarded.highest)}</Text>
-                    </View>
-                  ) : null}
-
-                  {college.degreesAwarded?.predominant ? (
-                    <View className="flex-row justify-between items-center mb-2">
-                      <Text className={secondaryTextClass}>Predominant degree</Text>
-                      <Text className={textClass}>{String(college.degreesAwarded.predominant)}</Text>
-                    </View>
-                  ) : null}
-
-                  {college.locale ? (
-                    <View className="flex-row justify-between items-center mb-2">
-                      <Text className={secondaryTextClass}>Locale</Text>
-                      <Text className={textClass}>{String(college.locale)}</Text>
-                    </View>
-                  ) : null}
-
-                  {college.avgNetPriceOverall != null ? (
-                    <View className="flex-row justify-between items-center mb-2">
-                      <Text className={secondaryTextClass}>Avg net price</Text>
-                      <Text className={textClass}>{formatMoney(college.avgNetPriceOverall)}</Text>
-                    </View>
-                  ) : null}
-
-                  {college.attendanceAcademicYear != null ? (
-                    <View className="flex-row justify-between items-center mb-2">
-                      <Text className={secondaryTextClass}>Attendance year</Text>
-                      <Text className={textClass}>{String(college.attendanceAcademicYear)}</Text>
-                    </View>
-                  ) : null}
-
-                  {college.pellGrantRate != null ? (
-                    <View className="flex-row justify-between items-center mb-2">
-                      <Text className={secondaryTextClass}>Pell grant rate</Text>
-                      <Text className={textClass}>{formatRate(college.pellGrantRate)}</Text>
-                    </View>
-                  ) : null}
-
-                  {college.medianDebtCompletersOverall != null ? (
-                    <View className="flex-row justify-between items-center">
-                      <Text className={secondaryTextClass}>Median debt (completers)</Text>
-                      <Text className={textClass}>{formatMoney(college.medianDebtCompletersOverall)}</Text>
-                    </View>
-                  ) : null}
-                </View>
-              )}
-              {/* Links card (only if website or price calculator present) */}
-              {college.website ? (
-                <View className={`${cardBgClass} border rounded-2xl p-4 mb-6`}>
-                  <Text className={`text-sm ${secondaryTextClass} mb-3`}>{t("details.links")}</Text>
-
-                  <Pressable onPress={() => openUrl(college.website)} className={`flex-row items-center justify-between py-3`}>
-                    <View className="flex-1">
-                      <Text className={secondaryTextClass}>{t("details.website")}</Text>
-                      <Text className={textClass} numberOfLines={1}>
-                        {college.website}
-                      </Text>
-                    </View>
-                    <Ionicons name="chevron-forward" size={18} color={placeholderColor} />
-                  </Pressable>
-                </View>
-              ) : null}
-
-              {/* All Scorecard Data (collapsible, searchable) */}
-              {flattened.length > 0 && (
-                <View className={`${cardBgClass} border rounded-2xl p-4 mb-6`}>
-                  <Pressable onPress={() => setShowAllDataCollapsed((s) => !s)} className="flex-row items-center justify-between mb-3">
-                    <Text className={`text-sm ${secondaryTextClass}`}>All data (Scorecard)</Text>
-                    <Text className={`${secondaryTextClass}`}>{showAllDataCollapsed ? "+" : "-"}</Text>
-                  </Pressable>
-
-                  {!showAllDataCollapsed && (
-                    <React.Fragment>
-                      <TextInput
-                        value={searchTerm}
-                        onChangeText={setSearchTerm}
-                        placeholder={(t("details.searchData") as any) ?? "Search keys or values"}
-                        placeholderTextColor={placeholderColor}
-                        className={`${inputClass} mb-3`}
-                      />
-
-                      <ScrollView style={{ maxHeight: 420 }} nestedScrollEnabled>
-                        {displayRows.length === 0 ? (
-                          <Text className={secondaryTextClass}>{t("home.notAvailable")}</Text>
-                        ) : (
-                          displayRows.map((row, idx) => (
-                            <View
-                              key={`${row.path}-${idx}`}
-                              className={`py-2 ${idx < displayRows.length - 1 ? "border-b " + borderClass : ""}`}
-                            >
-                              <Text className={`${secondaryTextClass} text-xs`}>{row.label}</Text>
-                              {row.isUrl ? (
-                                <Pressable onPress={() => openUrl(row.value as string)}>
-                                  <Text className={`${textClass} text-sm underline`}>{String(row.value)}</Text>
-                                </Pressable>
-                              ) : (
-                                <View className="flex-row items-center justify-between">
-                                  <Text className={`${textClass} text-sm`} numberOfLines={1} ellipsizeMode="tail">
-                                    {row.display}
-                                  </Text>
-                                  {row.isTruncated && (
-                                    <Pressable onPress={() => Alert.alert(row.path, String(row.value))} className="ml-2">
-                                      <Text className={`${secondaryTextClass} text-xs`}>
-                                        {(t("details.showFull") as any) ?? "Show full"}
-                                      </Text>
-                                    </Pressable>
-                                  )}
-                                </View>
-                              )}
-                            </View>
-                          ))
-                        )}
-                      </ScrollView>
-
-                      {filteredRows.length > rowLimit && (
-                        <Pressable onPress={() => setRowLimit(filteredRows.length)} className="mt-3 rounded-lg py-2 items-center bg-emerald-500">
-                          <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} font-semibold`}>{(t("details.showMore") as any) ?? "Show more"}</Text>
-                        </Pressable>
-                      )}
-                    </React.Fragment>
-                  )}
-                </View>
-              )}
-            </View>
+              </View>
+            ) : (
+              <View style={{ gap: 16 }}>
+                {keyStatsCard}
+                {costCard}
+                {moreInfoCard}
+                {linksCard}
+                {allDataCard}
+              </View>
+            )
           )}
         </View>
       </ScrollView>

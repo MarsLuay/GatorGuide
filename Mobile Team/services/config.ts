@@ -53,6 +53,18 @@ export const API_CONFIG = {
     timeoutMs: parseIntegerEnv(process.env.EXPO_PUBLIC_AI_TIMEOUT_MS, 15000, 4000, 30000),
   },
 
+  opportunities: {
+    gatewayFunctionName:
+      process.env.EXPO_PUBLIC_OPPORTUNITY_GATEWAY_FUNCTION_NAME ??
+      "opportunityGateway",
+    timeoutMs: parseIntegerEnv(
+      process.env.EXPO_PUBLIC_OPPORTUNITY_TIMEOUT_MS,
+      20000,
+      4000,
+      30000
+    ),
+  },
+
   useStubData: false,
 
   googleWebClientId: process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID ?? "",

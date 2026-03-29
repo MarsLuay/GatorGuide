@@ -2,14 +2,16 @@ import { useMemo, useState } from "react";
 import { Pressable, ScrollView, Text, TextInput, View, useWindowDimensions, type GestureResponderEvent } from "react-native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { ROUTES } from "@/constants/routes";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
+import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { MatchScoreBadge } from "@/components/ui/MatchScoreBadge";
 import useBack from "@/hooks/use-back";
 import type { College } from "@/services/college.service";
+import { formatLocalizedCurrency, formatLocalizedNumber, formatLocalizedPercent } from "@/utils/locale-format";
 
 function getCollegeTuition(college: College): number | null {
   const tuition = typeof college.tuition === "number" ? college.tuition : college.tuitionInState ?? college.tuitionOutOfState ?? null;
@@ -18,10 +20,10 @@ function getCollegeTuition(college: College): number | null {
 
 export default function SavedCollegesPage() {
   const router = useRouter();
-  const back = useBack("/(tabs)/resources");
-  const insets = useSafeAreaInsets();
+  const back = useBack(ROUTES.tabsResources);
   const { width } = useWindowDimensions();
-  const { t } = useAppLanguage();
+  const { t, language } = useAppLanguage();
+  const { getScrollContentPadding } = useResponsiveLayout();
   const styles = useThemeStyles();
   const { state, removeSavedCollege } = useAppData();
   const [query, setQuery] = useState("");
@@ -29,6 +31,10 @@ export default function SavedCollegesPage() {
   const savedColleges = useMemo(() => state.savedColleges ?? [], [state.savedColleges]);
   const { textClass, secondaryTextClass, borderClass, cardBgClass, inputBgClass, placeholderColor } = styles;
   const columns = width >= 900 ? 2 : 1;
+  const scrollContentPadding = getScrollContentPadding({
+    includeTopInset: true,
+    includeBottomTabClearance: true,
+  });
 
   const filteredColleges = useMemo(() => {
     const search = query.trim().toLowerCase();
@@ -62,19 +68,19 @@ export default function SavedCollegesPage() {
 
   const formatTuition = (value: number | null) => {
     if (value === null) return t("home.notAvailable");
-    return value.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+    return formatLocalizedCurrency(value, language);
   };
 
   const formatRate = (value: number | null | undefined) => {
     if (typeof value !== "number") return t("home.notAvailable");
-    return `${Math.round(value * 100)}%`;
+    return formatLocalizedPercent(value, language);
   };
 
   return (
     <ScreenBackground>
       <ScrollView
         className="flex-1"
-        contentContainerStyle={{ paddingTop: insets.top, paddingBottom: 96 }}
+        contentContainerStyle={scrollContentPadding}
       >
         <View
           style={{ width: "100%", maxWidth: 1040, alignSelf: "center", paddingHorizontal: 24, paddingTop: 24 }}
@@ -96,11 +102,11 @@ export default function SavedCollegesPage() {
               <View className="flex-row flex-wrap gap-3 mb-4">
                 <View className={`${cardBgClass} border rounded-2xl px-4 py-3`}>
                   <Text className={`${secondaryTextClass} text-xs uppercase`}>{t("savedColleges.summarySaved")}</Text>
-                  <Text className={`${textClass} text-lg font-semibold`}>{savedColleges.length}</Text>
+                  <Text className={`${textClass} text-lg font-semibold`}>{formatLocalizedNumber(savedColleges.length, language)}</Text>
                 </View>
                 <View className={`${cardBgClass} border rounded-2xl px-4 py-3`}>
                   <Text className={`${secondaryTextClass} text-xs uppercase`}>{t("savedColleges.summaryMatched")}</Text>
-                  <Text className={`${textClass} text-lg font-semibold`}>{matchedCount}</Text>
+                  <Text className={`${textClass} text-lg font-semibold`}>{formatLocalizedNumber(matchedCount, language)}</Text>
                 </View>
               </View>
 
@@ -121,7 +127,7 @@ export default function SavedCollegesPage() {
                   />
                 </View>
                 <Text className={`${secondaryTextClass} text-sm mt-3`}>
-                  {t("savedColleges.resultsCount", { count: filteredColleges.length })}
+                  {t("savedColleges.resultsCount", { count: formatLocalizedNumber(filteredColleges.length, language) })}
                 </Text>
               </View>
             </>
@@ -167,7 +173,7 @@ export default function SavedCollegesPage() {
                 return (
                   <Pressable
                     key={college.id}
-                    onPress={() => router.push({ pathname: "/college/[collegeId]", params: { collegeId: String(college.id) } })}
+                    onPress={() => router.push(ROUTES.collegeDetail(String(college.id)))}
                     className={`${cardBgClass} border rounded-2xl p-4 mb-4`}
                     style={{ width: columns === 1 ? "100%" : "48.7%" }}
                   >
@@ -194,7 +200,9 @@ export default function SavedCollegesPage() {
                     {typeof college.matchScore === "number" ? (
                       <MatchScoreBadge
                         score={college.matchScore}
-                        text={t("savedColleges.matchLabel", { score: Math.round(college.matchScore) })}
+                        text={t("savedColleges.matchLabel", {
+                          score: formatLocalizedNumber(Math.round(college.matchScore), language),
+                        })}
                         className="mb-3"
                       />
                     ) : null}

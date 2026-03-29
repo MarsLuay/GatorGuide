@@ -22,13 +22,15 @@ import {
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { Platform } from "react-native";
+import { ROUTES } from "@/constants/routes";
+import { FIRESTORE_COLLECTIONS, STORAGE_KEYS } from "@/constants/schema";
 import { isStubMode } from "./config";
 import { errorLoggingService } from "./error-logging.service";
 import { db, firebaseAuth } from "./firebase";
 import { deleteAllUserData } from "./userData.service";
 
 /** Storage key for email when sending sign-in link (same-device completion) */
-export const EMAIL_LINK_STORAGE_KEY = "gatorguide:emailForSignIn";
+export const EMAIL_LINK_STORAGE_KEY = STORAGE_KEYS.emailForSignIn;
 
 function firebaseUserToAuthUser(u: FirebaseUser): AuthUser {
   return {
@@ -58,12 +60,13 @@ type EmailActionType = "verify-email" | "email-link-sign-in";
 class AuthService {
   private buildEmailActionUrl(action: EmailActionType): string {
     const query = new URLSearchParams({ authFlow: action }).toString();
+    const loginPath = ROUTES.login.replace(/^\//, "");
 
     if (Platform.OS === "web" && typeof window !== "undefined") {
-      return `${window.location.origin}/login?${query}`;
+      return `${window.location.origin}${ROUTES.login}?${query}`;
     }
 
-    return `gatorguide://login?${query}`;
+    return `gatorguide://${loginPath}?${query}`;
   }
 
   private getEmailActionSettings(action: EmailActionType, handleCodeInApp = true): ActionCodeSettings {
@@ -126,7 +129,7 @@ class AuthService {
       // Enforce verification at signup time before allowing a normal login session.
       if (db) {
         await setDoc(
-          doc(db, "users", userCredential.user.uid),
+          doc(db, FIRESTORE_COLLECTIONS.users, userCredential.user.uid),
           {
             hasSeenOnboarding: false,
             email: userCredential.user.email ?? credentials.email,
