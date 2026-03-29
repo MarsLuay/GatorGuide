@@ -379,7 +379,7 @@ function buildGreenRiverSeedDocument(now) {
       hasToBeMajor: false,
     },
     requirements: {
-      needsRecommendations: false,
+      needsRecommendations: true,
       essayCount: 3,
     },
     college: {

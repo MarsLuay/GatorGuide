@@ -93,10 +93,6 @@ function scoreOpportunity(opportunity: Opportunity, input: MatchInput): MatchedO
     matchReasons.push("Financial aid fit");
   }
 
-  if (opportunity.requirements.needsRecommendations) {
-    matchReasons.push("Needs recommendations");
-  }
-
   if (opportunity.requirements.essayCount > 0) {
     matchReasons.push(
       `${opportunity.requirements.essayCount} essay${
@@ -116,6 +112,10 @@ function scoreOpportunity(opportunity: Opportunity, input: MatchInput): MatchedO
       score += 15;
       matchReasons.push("Upcoming deadline");
     }
+  }
+
+  if (opportunity.requirements.needsRecommendations) {
+    matchReasons.push("1+ recommendations required");
   }
 
   if (opportunity.type === "college_deadline") {

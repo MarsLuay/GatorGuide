@@ -805,7 +805,7 @@ const rawTranslations = {
     "resources.statusDone": "Done",
     "resources.dueOn": "Due {date}",
     "resources.yearly": "Yearly",
-    "resources.needsRecommendations": "Needs recommendations",
+    "resources.needsRecommendations": "1+ recommendations required",
     "resources.essayLabelSingular": "{count} essay",
     "resources.essayLabelPlural": "{count} essays",
     "resources.actionOpen": "Open",

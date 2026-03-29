@@ -34,7 +34,7 @@ export const STARTER_OPPORTUNITIES: Opportunity[] = [
       hasToBeMajor: false,
     },
     requirements: {
-      needsRecommendations: false,
+      needsRecommendations: true,
       essayCount: 3,
     },
     college: {
