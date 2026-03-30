@@ -110,7 +110,8 @@ const PROMPT_TEMPLATES = {
             "Find the most relevant transfer or application deadline from the evidence provided.",
             "Prefer official institution sources over summaries.",
             "If the evidence is ambiguous, return the best candidate and mark confidence accordingly.",
-            "Return STRICT JSON only with keys: collegeName, deadlineLabel, dueDate, timezone, sourceUrl, confidence, notes.",
+            "Return STRICT JSON only with keys: collegeName, deadlineLabel, deadlineType, dueDate, timezone, sourceUrl, confidence, notes.",
+            'Set deadlineType to "priority", "final", or "rolling" when supported by the evidence, otherwise use "final".',
             'Set dueDate to ISO 8601 date form when possible, otherwise null.',
           ].join("\n")
         ),
@@ -137,6 +138,9 @@ const PROMPT_TEMPLATES = {
             "Each extracted field should include value, sourceSnippet, and confidence.",
             "Only use these extracted field keys when supported by the document: gpa, major, majorSignals, completedCourses, transferCredits, resumeSkills.",
             "majorSignals, completedCourses, and resumeSkills should use arrays of short strings for value when possible.",
+            "For transcript documents, completedCourses should include only completed past classes that earned credit or grade entries.",
+            "For transcript documents, do not include current, in-progress, planned, or future courses in completedCourses.",
+            "For transcript documents, each completedCourses entry should begin with the course code exactly as shown, followed by the course title when available.",
             "transferCredits should be a short string such as a total count or a concise summary when explicitly supported.",
             "If a field is not supported, omit it from extractedFields.",
           ].join("\n")
@@ -186,7 +190,7 @@ const PROMPT_TEMPLATES = {
             "Create a normalized opportunity record for the app.",
             "The opportunity can be an internship, scholarship, or college deadline.",
             "Use only information supported by the source material and structured context.",
-            "Return STRICT JSON with keys: type, title, provider, dueDate, yearly, financialAidTags, suggestedMajors, hasToBeMajor, needsRecommendations, essayCount, sourceUrl, notes.",
+            "Return STRICT JSON with keys: type, title, provider, dueDate, yearly, deadlineType, financialAidTags, suggestedMajors, hasToBeMajor, gpaMin, residencyTypes, transferOnly, needsRecommendations, recommendationCountMin, essayCount, awardAmountMin, awardAmountMax, awardCurrency, awardAmountText, sourceUrl, notes.",
             "If a field is unknown, set it to null instead of guessing.",
           ].join("\n")
         ),

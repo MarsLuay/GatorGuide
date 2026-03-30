@@ -721,6 +721,93 @@ Planner caveat:
 | MSE | `999Q` | Add `ENGR 140`, programming, and chemistry depth. |
 | ME | `999Q` | Add `CHEM& 163` and `MATH 240` when possible. |
 
+## Missing Information Still Needed
+
+This section is the concrete collection checklist for the planner. The current docs and sources are good enough to build a strong v1, but not enough to treat every output as fully complete forever without more advisor-reviewed data.
+
+### Green River data still needed
+
+- Full `2024-2025` and `2025-2026` course requirements for the engineering-relevant Green River tracks, not just the summary PDF:
+  - `999B`
+  - `999Q`
+  - `999O`
+  - `999P`
+- The exact approved course choices behind every `SELECT COURSE FROM LIST` slot in those tracks, by catalog year.
+- Quarter availability by year for the courses the planner will recommend:
+  - fall / winter / spring / summer availability
+  - courses that are only offered once per year
+  - courses that rotate or disappear in some years
+- Green River prerequisite and co-requisite chains for engineering-support courses such as:
+  - `ENGR 140`
+  - `ENGR 250`
+  - `ENGR& 204`
+  - `ENGR& 214`
+  - `ENGR& 215`
+  - `ENGR& 224`
+  - `ENGR& 225`
+- Advisor-approved examples of the easiest / safest humanities and social science fillers that still keep students inside the correct transfer track.
+- Any financial-aid or degree-audit constraints for students who need one or two off-track add-on courses.
+
+### UW Seattle engineering data still needed
+
+- The full bachelor's degree map for each supported engineering major, not just transfer admission prerequisites.
+- A clean label for which requirements are:
+  - required before application
+  - required before enrollment
+  - still worth finishing at Green River after transfer admission
+  - better saved for UW
+- Advisor-reviewed confirmation of which GRC equivalents are preferred when multiple UW options exist.
+- Major-specific minimum-grade or sequencing caveats where a course is technically equivalent but not the strongest planning choice.
+- Archived snapshots or manually saved notes for year-specific department changes so the planner is not relying only on whatever the current web page says later.
+
+### Major-specific gaps still to confirm
+
+- `BioE`: the best exact Green River biology + programming path for the current BioE admission model.
+- `ChemE`: the best Green River sequencing for the spring-start cohort when a student wants to stay aid-safe and still finish as many UW-usable courses as possible.
+- `HCDE`: the strongest Green River science + stats combination for different student backgrounds.
+- `MSE`: confirmation of the best GRC path for `MSE 170` prep plus programming.
+- `Civil`, `ISE`, and `ME`: the cleanest recommendation for when programming, linear algebra, or second-quarter chemistry should be prioritized over general-ed fillers.
+
+### Scheduling data still needed for the quarter planner
+
+- Real quarter-by-quarter Green River offering history for `2024-2025`, `2025-2026`, and future years as they publish.
+- Typical credit-load guidance from advising for transfer students who are also working.
+- A curated `core STEM` vs `lighter elective / general-ed` tagging pass for the recommended GRC courses so the planner's suggested quarter mixes are based on explicit data rather than heuristic logic alone.
+- Recommended substitute buckets for placeholders such as:
+  - `5 credits of humanities`
+  - `5 credits of social science`
+  - `5 credits of elective/general education`
+- A future rule for when a quarter should intentionally use `2 core classes` instead of `1 core + 2 easier classes`.
+
+### Transcript-parser validation data still needed
+
+- More sample Green River unofficial transcripts, especially with:
+  - repeated courses
+  - withdrawals
+  - transfer credit from another school
+  - in-progress current-quarter classes
+  - older transcript layouts
+- Confirmation that the current parser should always ignore:
+  - current classes
+  - planned classes
+  - zero-earned-credit rows
+  - summary rows
+
+### Bothell and Tacoma data still needed later
+
+- Year-specific equivalent major worksheets for UW Bothell engineering / computing where available.
+- Tacoma major planning details wherever the Tacoma equivalency guide remains under maintenance.
+- Campus-specific confirmation that a Seattle recommendation should or should not carry over to Bothell or Tacoma.
+
+## Recommended Next Collection Pass
+
+If the team wants the highest-value next data pass, collect these in this order:
+
+1. Green River yearly track requirements plus every `SELECT COURSE FROM LIST` expansion.
+2. Quarter availability by year for the engineering-relevant Green River courses.
+3. Full UW Seattle engineering degree maps beyond admissions prerequisites.
+4. More sample Green River unofficial transcripts for parser validation.
+
 ## Product Recommendation For A Roadmap Feature
 
 The most efficient feature design is not a general "course planner" for every college.

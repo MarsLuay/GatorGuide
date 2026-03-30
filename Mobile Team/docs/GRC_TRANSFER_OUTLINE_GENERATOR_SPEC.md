@@ -495,6 +495,7 @@ This is the section the team can use as the manual collection checklist.
 
 - 2025-2026 Green River associate-track requirements
 - 2024-2025 Green River associate-track requirements
+- quarter-by-quarter Green River course offering history by year so the planner can later stop suggesting classes in terms when Green River does not actually run them
 - UW Seattle engineering degree requirement maps by major
 - UW Bothell major planning worksheet prerequisite details by major
 - UW Tacoma planning worksheet prerequisite details by major

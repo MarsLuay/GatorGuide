@@ -1,7 +1,8 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as DocumentPicker from "expo-document-picker";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
+  ActivityIndicator,
   Alert,
   Linking,
   Pressable,
@@ -13,35 +14,53 @@ import {
 
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { StateCard } from "@/components/ui/StateCard";
-import { StatusBanner } from "@/components/ui/StatusBanner";
 import {
   getTransferPlannerMajorsForCampus,
   getTransferPlannerTrack,
   TRANSFER_PLANNER_CAMPUSES,
-  TRANSFER_PLANNER_INVOLVEMENT_LINKS,
   type TransferPlannerCampusId,
-  type TransferPlannerChecklistItem,
-  type TransferPlannerCoverage,
+  type TransferPlannerLink,
 } from "@/constants/transfer-planner-data";
+import { useAppData } from "@/hooks/use-app-data";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
+import { storageService, type UploadedFile } from "@/services/storage.service";
+import {
+  buildSuggestedQuarterPlan,
+  buildRequirementStatuses,
+  buildTrackUsageSummary,
+  countCompletedRequirements,
+  parseCompletedTranscriptCourses,
+  type SuggestedQuarterPlan,
+  type TrackUsageSummary,
+  type TranscriptCourseEntry,
+  type TransferRequirementStatus,
+} from "@/services/transfer-planner.service";
+import { transcriptPdfService } from "@/services/transcript-pdf.service";
 
-const STORAGE_KEY = "gatorguide:transfer-planner:progress:v1";
+const CTCLINK_UNOFFICIAL_TRANSCRIPT_URL =
+  "https://csprd.ctclink.us/psp/csprd/EMPLOYEE/SA/c/SA_LEARNER_SERVICES.SSS_TSRQST_UNOFF.GBL?pts_Portal=EMPLOYEE&pts_PortalHostNode=SA&pts_Market=GBL";
 
-type ProgressMap = Record<string, boolean>;
+const TRANSCRIPT_SOURCE_FIELD = "transferPlannerTranscriptSource";
+const TRANSCRIPT_UPLOADED_AT_FIELD = "transferPlannerTranscriptUploadedAt";
 
-function buildProgressKey(majorId: string, itemId: string) {
-  return `${majorId}:${itemId}`;
+type TranscriptDocument = UploadedFile;
+
+function formatCourseList(items: string[]) {
+  return items.join(" | ");
 }
 
-function getCoverageBadgeClass(coverage: TransferPlannerCoverage) {
-  return coverage === "detailed"
-    ? "bg-emerald-500/10 border border-emerald-500/30"
-    : "bg-amber-500/10 border border-amber-500/30";
+function dedupeLinks(links: TransferPlannerLink[]) {
+  const seen = new Set<string>();
+  return links.filter((link) => {
+    if (seen.has(link.url)) return false;
+    seen.add(link.url);
+    return true;
+  });
 }
 
-function getCoverageTextClass(coverage: TransferPlannerCoverage) {
-  return coverage === "detailed" ? "text-emerald-500" : "text-amber-500";
+function buildFriendlyTranscriptError() {
+  return "We couldn't read past classes from this unofficial transcript yet. Try uploading the PDF directly from ctcLink.";
 }
 
 async function openExternalLink(url: string) {
@@ -59,13 +78,201 @@ async function openExternalLink(url: string) {
   }
 }
 
-function ChecklistSection({
+function SelectorCard({
+  label,
+  value,
+  helper,
+  open,
+  onToggle,
+  options,
+  onSelect,
+  textClass,
+  secondaryTextClass,
+  cardClass,
+  borderClass,
+}: {
+  label: string;
+  value: string;
+  helper: string;
+  open: boolean;
+  onToggle: () => void;
+  options: { id: string; label: string; description?: string }[];
+  onSelect: (id: string) => void;
+  textClass: string;
+  secondaryTextClass: string;
+  cardClass: string;
+  borderClass: string;
+}) {
+  return (
+    <View className={`${cardClass} border rounded-[28px] p-5`}>
+      <Text className={`${textClass} text-base font-semibold`}>{label}</Text>
+      <Text className={`${secondaryTextClass} text-sm mt-1`}>{helper}</Text>
+
+      <Pressable
+        onPress={onToggle}
+        className={`mt-4 border ${borderClass} rounded-2xl px-4 py-4 flex-row items-center justify-between`}
+      >
+        <View className="flex-1 min-w-0 pr-3">
+          <Text className={`${textClass} font-semibold`} numberOfLines={1}>
+            {value}
+          </Text>
+        </View>
+        <MaterialIcons
+          name={open ? "keyboard-arrow-up" : "keyboard-arrow-down"}
+          size={22}
+          color="#008f4e"
+        />
+      </Pressable>
+
+      {open ? (
+        <View className="gap-3 mt-3">
+          {options.map((option) => (
+            <Pressable
+              key={option.id}
+              onPress={() => onSelect(option.id)}
+              className={`border ${borderClass} rounded-2xl px-4 py-4`}
+            >
+              <Text className={`${textClass} font-semibold`}>{option.label}</Text>
+              {option.description ? (
+                <Text className={`${secondaryTextClass} text-sm mt-1`}>
+                  {option.description}
+                </Text>
+              ) : null}
+            </Pressable>
+          ))}
+        </View>
+      ) : null}
+    </View>
+  );
+}
+
+function TranscriptSummaryCard({
+  transcriptDocument,
+  completedCourses,
+  isAnalyzing,
+  errorMessage,
+  onUpload,
+  onOpenTranscriptLink,
+  textClass,
+  secondaryTextClass,
+  cardClass,
+  borderClass,
+}: {
+  transcriptDocument: TranscriptDocument | null;
+  completedCourses: TranscriptCourseEntry[];
+  isAnalyzing: boolean;
+  errorMessage: string | null;
+  onUpload: () => void;
+  onOpenTranscriptLink: () => void;
+  textClass: string;
+  secondaryTextClass: string;
+  cardClass: string;
+  borderClass: string;
+}) {
+  if (!transcriptDocument) {
+    return (
+      <View className={`${cardClass} border rounded-[28px] p-5`}>
+        <View className="flex-row items-start">
+          <View className="w-11 h-11 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">
+            <Ionicons name="document-text-outline" size={20} color="#008f4e" />
+          </View>
+          <View className="flex-1 min-w-0">
+            <Text className={`${textClass} text-lg font-semibold`}>
+              Upload your unofficial transcript
+            </Text>
+            <Text className={`${secondaryTextClass} text-sm mt-1`}>
+              This planner uses your past completed classes from the unofficial transcript PDF. It does not need current in-progress classes.
+            </Text>
+          </View>
+        </View>
+
+        <View className="gap-3 mt-4">
+          <Pressable
+            onPress={onUpload}
+            className="px-4 py-3 rounded-2xl bg-emerald-500 border border-emerald-500 items-center"
+          >
+            <Text className="text-white font-medium">Upload unofficial transcript</Text>
+          </Pressable>
+          <Pressable
+            onPress={onOpenTranscriptLink}
+            className="px-4 py-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 items-center"
+          >
+            <Text className="text-emerald-500 font-medium">Get transcript in ctcLink</Text>
+          </Pressable>
+        </View>
+      </View>
+    );
+  }
+
+  return (
+    <View className={`${cardClass} border rounded-[28px] p-5`}>
+      <View className="flex-row items-start justify-between gap-4">
+        <View className="flex-1 min-w-0">
+          <Text className={`${textClass} text-lg font-semibold`}>
+            Transcript-based course plan
+          </Text>
+          <Text className={`${secondaryTextClass} text-sm mt-1`}>
+            The planner is reading past completed classes from your unofficial transcript so it can mark what is already done.
+          </Text>
+        </View>
+      </View>
+
+      <Pressable onPress={onUpload} className="self-start mt-3">
+        <Text className="text-emerald-500 text-sm font-medium">Update transcript</Text>
+      </Pressable>
+
+      <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-4`}>
+        <Text className={`${textClass} font-semibold`} numberOfLines={1}>
+          {transcriptDocument.name}
+        </Text>
+        <Text className={`${secondaryTextClass} text-sm mt-1`}>
+          {isAnalyzing
+            ? "Reading your past classes from the PDF now."
+            : completedCourses.length
+              ? `${completedCourses.length} past classes found from your transcript.`
+              : "Transcript on file. We still need to read the past classes from it."}
+        </Text>
+      </View>
+
+      {isAnalyzing ? (
+        <View className="flex-row items-center mt-4">
+          <ActivityIndicator color="#008f4e" />
+          <Text className={`${secondaryTextClass} text-sm ml-3`}>
+            Pulling completed classes from your unofficial transcript...
+          </Text>
+        </View>
+      ) : null}
+
+      {errorMessage ? (
+        <View className="mt-4 px-4 py-4 rounded-2xl bg-amber-500/10 border border-amber-500/20">
+          <Text className="text-amber-500 font-semibold">Transcript needs another try</Text>
+          <Text className={`${secondaryTextClass} text-sm mt-1`}>{errorMessage}</Text>
+        </View>
+      ) : null}
+
+      {completedCourses.length ? (
+        <View className="mt-4">
+          <Text className={`${textClass} font-semibold`}>Past classes found</Text>
+          <View className="flex-row flex-wrap gap-2 mt-3">
+            {completedCourses.map((course) => (
+              <View
+                key={course.code}
+                className="px-3 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20"
+              >
+                <Text className="text-emerald-500 text-xs font-semibold">{course.code}</Text>
+              </View>
+            ))}
+          </View>
+        </View>
+      ) : null}
+    </View>
+  );
+}
+
+function RequirementSection({
   title,
   subtitle,
-  items,
-  majorId,
-  progress,
-  onToggle,
+  statuses,
   textClass,
   secondaryTextClass,
   cardClass,
@@ -73,16 +280,13 @@ function ChecklistSection({
 }: {
   title: string;
   subtitle: string;
-  items: TransferPlannerChecklistItem[];
-  majorId: string;
-  progress: ProgressMap;
-  onToggle: (item: TransferPlannerChecklistItem) => void;
+  statuses: TransferRequirementStatus[];
   textClass: string;
   secondaryTextClass: string;
   cardClass: string;
   borderClass: string;
 }) {
-  if (!items.length) return null;
+  if (!statuses.length) return null;
 
   return (
     <View className={`${cardClass} border rounded-[28px] p-5`}>
@@ -90,34 +294,164 @@ function ChecklistSection({
       <Text className={`${secondaryTextClass} text-sm mt-1`}>{subtitle}</Text>
 
       <View className="gap-3 mt-4">
-        {items.map((item) => {
-          const isDone = !!progress[buildProgressKey(majorId, item.id)];
-          return (
-            <Pressable
-              key={`${majorId}-${item.id}`}
-              onPress={() => onToggle(item)}
-              className={`${isDone ? "bg-emerald-500/8 border-emerald-500/25" : ""} border ${borderClass} rounded-2xl px-4 py-4 flex-row items-start`}
-            >
-              <View className="mt-0.5">
-                <Ionicons
-                  name={isDone ? "checkmark-circle" : "ellipse-outline"}
-                  size={20}
-                  color={isDone ? "#008f4e" : "#9CA3AF"}
-                />
-              </View>
+        {statuses.map((status) => (
+          <View
+            key={status.item.id}
+            className={`${status.matched ? "bg-emerald-500/8 border-emerald-500/25" : ""} border ${borderClass} rounded-2xl px-4 py-4 flex-row items-start`}
+          >
+            <View className="mt-0.5">
+              <Ionicons
+                name={status.matched ? "checkmark-circle" : "ellipse-outline"}
+                size={20}
+                color={status.matched ? "#008f4e" : "#9CA3AF"}
+              />
+            </View>
 
-              <View className="flex-1 ml-3">
-                <Text className={`${textClass} font-semibold`}>{item.title}</Text>
-                <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                  Best Green River options: {item.grcCourses.join(" • ")}
+            <View className="flex-1 ml-3 min-w-0">
+              <Text className={`${textClass} font-semibold`}>{status.item.title}</Text>
+              <Text className={`${secondaryTextClass} text-sm mt-1`}>
+                Best Green River class match: {formatCourseList(status.item.grcCourses)}
+              </Text>
+              <Text
+                className={`${status.matched ? "text-emerald-500" : secondaryTextClass} text-sm mt-2`}
+              >
+                {status.matched
+                  ? `Already found in your transcript: ${formatCourseList(
+                      status.matchedCourses.map((course) => course.code)
+                    )}`
+                  : "Not found in your transcript yet."}
+              </Text>
+              {status.item.note ? (
+                <Text className={`${secondaryTextClass} text-xs mt-2`}>{status.item.note}</Text>
+              ) : null}
+            </View>
+          </View>
+        ))}
+      </View>
+    </View>
+  );
+}
+
+function TrackUsageCard({
+  trackCode,
+  trackTitle,
+  trackSummary,
+  financialAidNote,
+  usageSummary,
+  textClass,
+  secondaryTextClass,
+  cardClass,
+  borderClass,
+}: {
+  trackCode: string | null;
+  trackTitle: string;
+  trackSummary: string;
+  financialAidNote: string;
+  usageSummary: TrackUsageSummary | null;
+  textClass: string;
+  secondaryTextClass: string;
+  cardClass: string;
+  borderClass: string;
+}) {
+  return (
+    <View className={`${cardClass} border rounded-[28px] p-5`}>
+      <Text className={`${textClass} text-lg font-semibold`}>Best Green River path</Text>
+      <Text className={`${secondaryTextClass} text-sm mt-1`}>
+        This tells the student which Green River associate path best supports the UW bachelor&apos;s they chose.
+      </Text>
+
+      <View className={`mt-4 border ${borderClass} rounded-2xl px-4 py-4`}>
+        <Text className={`${textClass} font-semibold`}>
+          {trackCode ? `${trackCode} | ${trackTitle}` : trackTitle}
+        </Text>
+        <Text className={`${secondaryTextClass} text-sm mt-2`}>{trackSummary}</Text>
+        <Text className={`${secondaryTextClass} text-sm mt-3`}>{financialAidNote}</Text>
+      </View>
+
+      {usageSummary ? (
+        <View className="mt-4 gap-3">
+          <View className="px-4 py-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20">
+            <Text className="text-emerald-500 font-semibold">
+              {usageSummary.directUseCount} of {usageSummary.specificCourseCount} specific track classes feed directly into this UW bachelor&apos;s plan
+            </Text>
+            <Text className={`${secondaryTextClass} text-sm mt-2`}>
+              This count includes the UW prerequisites and lower-division classes the planner is explicitly trying to keep at Green River.
+            </Text>
+          </View>
+
+          {usageSummary.extraSpecificEntries.length ? (
+            <View className={`border ${borderClass} rounded-2xl px-4 py-4`}>
+              <Text className={`${textClass} font-semibold`}>
+                Classes in the associate path that are not direct must-haves for this UW bachelor&apos;s path
+              </Text>
+              <Text className={`${secondaryTextClass} text-sm mt-2`}>
+                {formatCourseList(usageSummary.extraSpecificEntries)}
+              </Text>
+            </View>
+          ) : null}
+
+          {usageSummary.generalEdEntryCount ? (
+            <View className={`border ${borderClass} rounded-2xl px-4 py-4`}>
+              <Text className={`${textClass} font-semibold`}>
+                General-ed and elective slots
+              </Text>
+              <Text className={`${secondaryTextClass} text-sm mt-2`}>
+                {usageSummary.generalEdEntries.join(" | ")}
+              </Text>
+            </View>
+          ) : null}
+        </View>
+      ) : null}
+    </View>
+  );
+}
+
+function SuggestedScheduleCard({
+  quarters,
+  textClass,
+  secondaryTextClass,
+  cardClass,
+  borderClass,
+}: {
+  quarters: SuggestedQuarterPlan[];
+  textClass: string;
+  secondaryTextClass: string;
+  cardClass: string;
+  borderClass: string;
+}) {
+  return (
+    <View className={`${cardClass} border rounded-[28px] p-5`}>
+      <Text className={`${textClass} text-lg font-semibold`}>Suggested GRC quarter plan</Text>
+      <Text className={`${secondaryTextClass} text-sm mt-1`}>
+        This is the ideal next-step schedule based on what is still left for UW. It prefers one core STEM class plus two lighter or general-ed classes each quarter whenever possible.
+      </Text>
+
+      <View className="gap-4 mt-4">
+        {quarters.map((quarter) => (
+          <View key={quarter.label} className={`border ${borderClass} rounded-2xl px-4 py-4`}>
+            <Text className={`${textClass} font-semibold`}>{quarter.label}</Text>
+            <View className="gap-2 mt-3">
+              {quarter.courses.length ? (
+                quarter.courses.map((course) => (
+                  <View
+                    key={`${quarter.label}-${course.label}`}
+                    className={`px-3 py-3 rounded-2xl ${course.type === "core" ? "bg-emerald-500/10 border border-emerald-500/20" : "bg-white/5 border border-white/10"}`}
+                  >
+                    <Text
+                      className={`${course.type === "core" ? "text-emerald-500" : textClass} text-sm font-medium`}
+                    >
+                      {course.label}
+                    </Text>
+                  </View>
+                ))
+              ) : (
+                <Text className={`${secondaryTextClass} text-sm`}>
+                  Nothing else is required in this draft quarter.
                 </Text>
-                {item.note ? (
-                  <Text className={`${secondaryTextClass} text-xs mt-2`}>{item.note}</Text>
-                ) : null}
-              </View>
-            </Pressable>
-          );
-        })}
+              )}
+            </View>
+          </View>
+        ))}
       </View>
     </View>
   );
@@ -126,14 +460,20 @@ function ChecklistSection({
 export default function TransferPlannerPage() {
   const styles = useThemeStyles();
   const { width } = useWindowDimensions();
+  const { state, updateUser, setQuestionnaireAnswers } = useAppData();
   const { getScrollContentPadding } = useResponsiveLayout();
+
   const [selectedCampusId, setSelectedCampusId] =
     useState<TransferPlannerCampusId>("uw-seattle");
   const [selectedMajorId, setSelectedMajorId] = useState<string>(
     getTransferPlannerMajorsForCampus("uw-seattle")[0]?.id ?? ""
   );
-  const [progress, setProgress] = useState<ProgressMap>({});
-  const [hydrated, setHydrated] = useState(false);
+  const [openSelector, setOpenSelector] = useState<"campus" | "major" | null>(null);
+  const [transcriptDocument, setTranscriptDocument] = useState<TranscriptDocument | null>(null);
+  const [isAnalyzingTranscript, setIsAnalyzingTranscript] = useState(false);
+  const [transcriptError, setTranscriptError] = useState<string | null>(null);
+
+  const transcriptAnalysisAttemptsRef = useRef<Set<string>>(new Set());
 
   const { textClass, secondaryTextClass, cardBgClass, inactiveButtonClass, borderClass } = styles;
   const isDesktop = width >= 1180;
@@ -145,6 +485,15 @@ export default function TransferPlannerPage() {
     includeBottomTabClearance: true,
     extraTop: 16,
   });
+
+  const user = state.user;
+  const completedCourses = useMemo(
+    () => parseCompletedTranscriptCourses(state.questionnaireAnswers?.completedCourses),
+    [state.questionnaireAnswers?.completedCourses]
+  );
+  const storedTranscriptSource = String(
+    state.questionnaireAnswers?.[TRANSCRIPT_SOURCE_FIELD] ?? ""
+  ).trim();
 
   const campus = useMemo(
     () =>
@@ -161,6 +510,10 @@ export default function TransferPlannerPage() {
     [campusMajors, selectedMajorId]
   );
   const track = useMemo(() => getTransferPlannerTrack(plan?.bestTrackId ?? null), [plan]);
+  const transcriptSourceKey = transcriptDocument
+    ? `${transcriptDocument.url}|${transcriptDocument.uploadedAt}`
+    : "";
+  const autoMajorSelectionRef = useRef(false);
 
   useEffect(() => {
     const nextFirstMajorId = campusMajors[0]?.id ?? "";
@@ -170,96 +523,204 @@ export default function TransferPlannerPage() {
   }, [campusMajors, selectedMajorId]);
 
   useEffect(() => {
-    let mounted = true;
+    if (autoMajorSelectionRef.current) return;
+    const rawMajor = String(user?.major ?? "").trim().toLowerCase();
+    if (!rawMajor) return;
 
-    AsyncStorage.getItem(STORAGE_KEY)
-      .then((raw) => {
-        if (!mounted) return;
-        if (!raw) {
-          setHydrated(true);
-          return;
-        }
+    const matchedMajor = campusMajors.find((entry) =>
+      entry.title.toLowerCase().includes(rawMajor) ||
+      rawMajor.includes(entry.shortTitle.toLowerCase()) ||
+      rawMajor.includes(entry.title.toLowerCase())
+    );
 
-        try {
-          const parsed = JSON.parse(raw) as ProgressMap;
-          setProgress(parsed ?? {});
-        } catch {
-          setProgress({});
-        } finally {
-          setHydrated(true);
-        }
-      })
-      .catch(() => {
-        if (mounted) {
-          setProgress({});
-          setHydrated(true);
-        }
-      });
+    if (!matchedMajor) return;
+    autoMajorSelectionRef.current = true;
+    setSelectedMajorId(matchedMajor.id);
+  }, [campusMajors, user?.major]);
+
+  useEffect(() => {
+    let active = true;
+
+    if (!user?.uid || !user?.transcript) {
+      setTranscriptDocument(null);
+      return () => {
+        active = false;
+      };
+    }
+
+    const transcriptUrl = user.transcript;
+
+    void (async () => {
+      const stored = await storageService.getTranscript(user.uid).catch(() => null);
+      const fallbackName =
+        transcriptUrl.split("/").pop()?.split("?")[0] || "unofficial-transcript.pdf";
+      const nextDocument: TranscriptDocument =
+        stored && stored.url
+          ? stored
+          : {
+              name: fallbackName,
+              url: transcriptUrl,
+              uploadedAt: "",
+              mimeType: "application/pdf",
+              sizeBytes: null,
+            };
+
+      if (!active) return;
+      setTranscriptDocument(nextDocument);
+    })();
 
     return () => {
-      mounted = false;
+      active = false;
     };
-  }, []);
+  }, [user?.uid, user?.transcript]);
 
-  const toggleItem = useCallback(
-    (item: TransferPlannerChecklistItem) => {
-      if (!plan) return;
+  const analyzeTranscript = useCallback(
+    async (document: TranscriptDocument) => {
+      setIsAnalyzingTranscript(true);
+      setTranscriptError(null);
 
-      setProgress((current) => {
-        const key = buildProgressKey(plan.id, item.id);
-        const next = {
-          ...current,
-          [key]: !current[key],
-        };
-        AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(next)).catch(() => {});
-        return next;
-      });
+      try {
+        const parsedCourses = await transcriptPdfService.extractCompletedCoursesFromPdf(
+          document.url
+        );
+
+        if (!parsedCourses.length) throw new Error("No completed courses extracted.");
+
+        await setQuestionnaireAnswers({
+          ...state.questionnaireAnswers,
+          completedCourses: parsedCourses.map((course) => course.label),
+          [TRANSCRIPT_SOURCE_FIELD]: document.url,
+          [TRANSCRIPT_UPLOADED_AT_FIELD]:
+            document.uploadedAt || new Date().toISOString(),
+        });
+      } catch {
+        setTranscriptError(buildFriendlyTranscriptError());
+      } finally {
+        setIsAnalyzingTranscript(false);
+      }
     },
-    [plan]
+    [setQuestionnaireAnswers, state.questionnaireAnswers]
   );
 
-  const resetMajorProgress = useCallback(() => {
-    if (!plan) return;
+  useEffect(() => {
+    if (!transcriptDocument) return;
+    if (completedCourses.length && storedTranscriptSource === transcriptDocument.url) return;
+    if (!transcriptSourceKey) return;
+    if (transcriptAnalysisAttemptsRef.current.has(transcriptSourceKey)) return;
 
-    setProgress((current) => {
-      const next = { ...current };
-      Object.keys(next).forEach((key) => {
-        if (key.startsWith(`${plan.id}:`)) {
-          delete next[key];
-        }
+    transcriptAnalysisAttemptsRef.current.add(transcriptSourceKey);
+    void analyzeTranscript(transcriptDocument);
+  }, [
+    analyzeTranscript,
+    completedCourses.length,
+    storedTranscriptSource,
+    transcriptDocument,
+    transcriptSourceKey,
+  ]);
+
+  const handlePickTranscript = useCallback(async () => {
+    if (!user?.uid) {
+      Alert.alert("Profile needed", "Open the app as a guest or signed-in student first.");
+      return;
+    }
+
+    try {
+      const result = await DocumentPicker.getDocumentAsync({
+        type: ["application/pdf"],
+        copyToCacheDirectory: true,
       });
-      AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(next)).catch(() => {});
-      return next;
-    });
-  }, [plan]);
+      if (result.canceled || !result.assets?.[0]?.uri) return;
 
-  const uniqueChecklistItems = useMemo(() => {
-    if (!plan) return [];
+      const asset = result.assets[0];
+      const uploaded = await storageService.uploadTranscript(user.uid, asset.uri, {
+        fileName: asset.name,
+        mimeType: asset.mimeType,
+        sizeBytes: asset.size,
+      });
+      await updateUser({ transcript: uploaded.url });
+      setTranscriptDocument(uploaded);
+      transcriptAnalysisAttemptsRef.current.delete(
+        `${uploaded.url}|${uploaded.uploadedAt}`
+      );
+      await analyzeTranscript(uploaded);
+    } catch {
+      Alert.alert(
+        "Transcript upload failed",
+        "We couldn't use that transcript yet. Try the PDF you downloaded from ctcLink."
+      );
+    }
+  }, [analyzeTranscript, updateUser, user?.uid]);
 
-    const map = new Map<string, TransferPlannerChecklistItem>();
-    [...plan.applicationChecklist, ...plan.beforeEnrollmentChecklist, ...plan.stayAtGrcChecklist].forEach(
-      (item) => {
-        map.set(item.id, item);
-      }
+  const applicationStatuses = useMemo(
+    () =>
+      plan ? buildRequirementStatuses(plan.applicationChecklist, completedCourses) : [],
+    [completedCourses, plan]
+  );
+  const beforeEnrollmentStatuses = useMemo(
+    () =>
+      plan ? buildRequirementStatuses(plan.beforeEnrollmentChecklist, completedCourses) : [],
+    [completedCourses, plan]
+  );
+  const stayAtGrcStatuses = useMemo(
+    () =>
+      plan ? buildRequirementStatuses(plan.stayAtGrcChecklist, completedCourses) : [],
+    [completedCourses, plan]
+  );
+  const totalRequirementCount =
+    applicationStatuses.length + beforeEnrollmentStatuses.length + stayAtGrcStatuses.length;
+  const completedRequirementCount =
+    countCompletedRequirements(applicationStatuses) +
+    countCompletedRequirements(beforeEnrollmentStatuses) +
+    countCompletedRequirements(stayAtGrcStatuses);
+  const trackUsageSummary = useMemo(
+    () => (plan ? buildTrackUsageSummary(track, plan) : null),
+    [plan, track]
+  );
+  const suggestedQuarterPlan = useMemo(
+    () =>
+      buildSuggestedQuarterPlan({
+        applicationStatuses,
+        beforeEnrollmentStatuses,
+        stayAtGrcStatuses,
+        track,
+      }),
+    [applicationStatuses, beforeEnrollmentStatuses, stayAtGrcStatuses, track]
+  );
+  const visibleOfficialLinks = useMemo(
+    () => dedupeLinks([...(plan?.officialLinks ?? []), ...campus.officialLinks]),
+    [campus.officialLinks, plan?.officialLinks]
+  );
+
+  const campusOptions = useMemo(
+    () =>
+      TRANSFER_PLANNER_CAMPUSES.map((entry) => ({
+        id: entry.id,
+        label: entry.title,
+      })),
+    []
+  );
+  const majorOptions = useMemo(
+    () =>
+      campusMajors.map((entry) => ({
+        id: entry.id,
+        label: entry.title,
+      })),
+    [campusMajors]
+  );
+
+  if (!user) {
+    return (
+      <ScreenBackground includeTopInset includeBottomInset={false}>
+        <View style={{ flex: 1, alignItems: "center", justifyContent: "center", padding: 24 }}>
+          <StateCard
+            variant="empty"
+            title="Open this as a student profile first"
+            message="Start as a guest or sign in, then come back here to build a transcript-based transfer course plan."
+          />
+        </View>
+      </ScreenBackground>
     );
-    return Array.from(map.values());
-  }, [plan]);
-
-  const visibleOfficialLinks = useMemo(() => {
-    if (!plan) return [];
-
-    const seen = new Set<string>();
-    return [...plan.officialLinks, ...campus.officialLinks].filter((link) => {
-      if (seen.has(link.url)) return false;
-      seen.add(link.url);
-      return true;
-    });
-  }, [campus.officialLinks, plan]);
-
-  const completedCount = useMemo(() => {
-    if (!plan) return 0;
-    return uniqueChecklistItems.filter((item) => progress[buildProgressKey(plan.id, item.id)]).length;
-  }, [plan, progress, uniqueChecklistItems]);
+  }
 
   if (!plan) {
     return (
@@ -268,27 +729,12 @@ export default function TransferPlannerPage() {
           <StateCard
             variant="empty"
             title="No planner data yet"
-            message="There is not a transfer-planner entry for this campus yet."
+            message="There is not a course plan for this campus yet."
           />
         </View>
       </ScreenBackground>
     );
   }
-
-  const coverageBanner =
-    plan.coverage === "detailed"
-      ? {
-          variant: "success" as const,
-          title: "Detailed Seattle-style planning",
-          message:
-            "This path is backed by the Green River sample transfer plans, the UW Green River equivalency guide, and current department prerequisite pages. Still confirm deadlines and year-specific changes before final registration.",
-        }
-      : {
-          variant: "warning" as const,
-          title: "Planning start, not a final audit",
-          message:
-            "This path is useful for choosing the right Green River base track and opening the right official worksheets, but the final schedule should still be reviewed against the current campus program materials.",
-        };
 
   return (
     <ScreenBackground includeTopInset includeBottomInset={false}>
@@ -315,381 +761,234 @@ export default function TransferPlannerPage() {
               </View>
               <View className="flex-1">
                 <Text className={`${textClass} text-2xl font-semibold`}>
-                  {"GRC -> UW Transfer Planner"}
+                  {"GRC -> UW Course Planner"}
                 </Text>
                 <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                  Engineering-first planning tool for Green River students. Pick a campus and major to see the strongest Green River track, the best UW prerequisite substitutes, and which extra classes are still worth finishing at Green River before transfer.
+                  Upload your unofficial transcript, pick a UW campus and major, and the planner will show which Green River classes already count, which ones still matter before transfer, and how much of the Green River associate path is actually used by the UW bachelor&apos;s.
                 </Text>
               </View>
             </View>
 
-            <StatusBanner
-              variant="info"
-              title="How to use this"
-              message="Start with the campus and major, then work top to bottom: apply checklist, before-enrollment checklist, and the classes still worth finishing at Green River because they are cheaper, easier, or cleaner to transfer. This v1 is strongest for UW Seattle engineering and computing paths."
-            />
+            <View className="px-4 py-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20">
+              <Text className="text-emerald-500 font-semibold">
+                This planner uses past completed classes from the unofficial transcript.
+              </Text>
+              <Text className={`${secondaryTextClass} text-sm mt-1`}>
+                Current or in-progress classes are intentionally ignored here because unofficial transcripts usually only show finished coursework.
+              </Text>
+            </View>
+          </View>
+
+          <TranscriptSummaryCard
+            transcriptDocument={transcriptDocument}
+            completedCourses={completedCourses}
+            isAnalyzing={isAnalyzingTranscript}
+            errorMessage={transcriptError}
+            onUpload={handlePickTranscript}
+            onOpenTranscriptLink={() => {
+              void openExternalLink(CTCLINK_UNOFFICIAL_TRANSCRIPT_URL);
+            }}
+            textClass={textClass}
+            secondaryTextClass={secondaryTextClass}
+            cardClass={cardBgClass}
+            borderClass={borderClass}
+          />
+
+          <View
+            style={isDesktop ? { flexDirection: "row", alignItems: "flex-start", gap: 16 } : { gap: 16 }}
+          >
+            <View style={isDesktop ? { flex: 1, minWidth: 0 } : undefined}>
+              <SelectorCard
+                label="Campus"
+                value={campus.title}
+                helper="The default is UW Seattle. Switch campuses here if the student is targeting Bothell or Tacoma."
+                open={openSelector === "campus"}
+                onToggle={() =>
+                  setOpenSelector((current) => (current === "campus" ? null : "campus"))
+                }
+                options={campusOptions}
+                onSelect={(id) => {
+                  setSelectedCampusId(id as TransferPlannerCampusId);
+                  setOpenSelector(null);
+                }}
+                textClass={textClass}
+                secondaryTextClass={secondaryTextClass}
+                cardClass={cardBgClass}
+                borderClass={borderClass}
+              />
+            </View>
+
+            <View style={isDesktop ? { flex: 1, minWidth: 0 } : undefined}>
+              <SelectorCard
+                label="Major"
+                value={plan.title}
+                helper="Pick the UW bachelor&apos;s degree you want the Green River course plan to match against."
+                open={openSelector === "major"}
+                onToggle={() =>
+                  setOpenSelector((current) => (current === "major" ? null : "major"))
+                }
+                options={majorOptions}
+                onSelect={(id) => {
+                  setSelectedMajorId(id);
+                  setOpenSelector(null);
+                }}
+                textClass={textClass}
+                secondaryTextClass={secondaryTextClass}
+                cardClass={cardBgClass}
+                borderClass={borderClass}
+              />
+            </View>
           </View>
 
           <View
-            style={isDesktop ? { flexDirection: "row", alignItems: "flex-start", gap: 24 } : undefined}
+            style={isDesktop ? { flexDirection: "row", alignItems: "stretch", gap: 16 } : { gap: 16 }}
           >
-            <View style={isDesktop ? { width: 360, flexShrink: 0, gap: 16 } : { gap: 16 }}>
-              <View className={`${cardBgClass} border rounded-[28px] p-5`}>
-                <Text className={`${textClass} text-lg font-semibold`}>Campus</Text>
-                <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                  Seattle is the most detailed. Bothell and Tacoma are intentionally marked as advisor-review planning starts.
-                </Text>
+            <View
+              className={`${cardBgClass} border rounded-[28px] p-5`}
+              style={isDesktop ? { flex: 1, minWidth: 0 } : undefined}
+            >
+              <Text className={`${textClass} text-lg font-semibold`}>
+                Your transcript progress
+              </Text>
+              <Text className={`${secondaryTextClass} text-sm mt-1`}>
+                This is how many UW-aligned checklist items the planner can already confirm from your past Green River classes.
+              </Text>
 
-                <View className="gap-3 mt-4">
-                  {TRANSFER_PLANNER_CAMPUSES.map((entry) => {
-                    const selected = entry.id === selectedCampusId;
-                    return (
-                      <Pressable
-                        key={entry.id}
-                        onPress={() => setSelectedCampusId(entry.id)}
-                        className={`${selected ? "bg-emerald-500/10 border-emerald-500/30" : `${inactiveButtonClass} ${borderClass}`} border rounded-2xl px-4 py-4`}
-                      >
-                        <View className="flex-row items-start justify-between gap-3">
-                          <View className="flex-1 min-w-0">
-                            <Text className={`${textClass} font-semibold`}>{entry.title}</Text>
-                            <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                              {entry.summary}
-                            </Text>
-                          </View>
-                          <MaterialIcons
-                            name={selected ? "radio-button-checked" : "radio-button-unchecked"}
-                            size={20}
-                            color={selected ? "#008f4e" : "#9CA3AF"}
-                          />
-                        </View>
-                      </Pressable>
-                    );
-                  })}
-                </View>
-              </View>
-
-              <View className={`${cardBgClass} border rounded-[28px] p-5`}>
-                <Text className={`${textClass} text-lg font-semibold`}>Major</Text>
-                <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                  Pick the target program first. The planner then matches the best Green River base track and add-ons.
-                </Text>
-
-                <View className="gap-3 mt-4">
-                  {campusMajors.map((entry) => {
-                    const selected = entry.id === plan.id;
-                    return (
-                      <Pressable
-                        key={entry.id}
-                        onPress={() => setSelectedMajorId(entry.id)}
-                        className={`${selected ? "bg-emerald-500/10 border-emerald-500/30" : `${inactiveButtonClass} ${borderClass}`} border rounded-2xl px-4 py-4`}
-                      >
-                        <View className="flex-row items-center justify-between gap-3">
-                          <View className="flex-1 min-w-0">
-                            <Text className={`${textClass} font-semibold`}>{entry.title}</Text>
-                            <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                              {entry.summary}
-                            </Text>
-                          </View>
-                          <View className={`${getCoverageBadgeClass(entry.coverage)} px-2.5 py-1 rounded-full`}>
-                            <Text className={`${getCoverageTextClass(entry.coverage)} text-xs font-semibold`}>
-                              {entry.coverage === "detailed" ? "Detailed" : "Review"}
-                            </Text>
-                          </View>
-                        </View>
-                      </Pressable>
-                    );
-                  })}
-                </View>
-              </View>
-
-              <View className={`${cardBgClass} border rounded-[28px] p-5`}>
-                <Text className={`${textClass} text-lg font-semibold`}>Progress</Text>
-                <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                  Saved locally on this device so a student or advisor can track which requirements are already done.
-                </Text>
-
-                <View className="mt-4 flex-row items-center justify-between">
-                  <View>
-                    <Text className={`${textClass} text-2xl font-semibold`}>
-                      {hydrated ? `${completedCount}/${uniqueChecklistItems.length}` : "--"}
-                    </Text>
-                    <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                      checklist items marked complete
-                    </Text>
-                  </View>
-
-                  <View className={`${getCoverageBadgeClass(plan.coverage)} px-3 py-2 rounded-2xl`}>
-                    <Text className={`${getCoverageTextClass(plan.coverage)} text-xs font-semibold`}>
-                      {plan.coverage === "detailed" ? "Detailed v1" : "Advisor review"}
-                    </Text>
-                  </View>
-                </View>
-
-                <Pressable
-                  onPress={resetMajorProgress}
-                  className={`mt-4 px-4 py-3 rounded-2xl border ${borderClass} ${inactiveButtonClass}`}
-                >
-                  <Text className={`${textClass} text-sm font-medium text-center`}>
-                    {"Reset this major's checklist"}
+              <View className="mt-4 flex-row items-end justify-between gap-4">
+                <View>
+                  <Text className={`${textClass} text-3xl font-semibold`}>
+                    {completedCourses.length ? `${completedRequirementCount}/${totalRequirementCount}` : "--"}
                   </Text>
-                </Pressable>
+                  <Text className={`${secondaryTextClass} text-sm mt-1`}>
+                    planner items already covered
+                  </Text>
+                </View>
+                <View className="px-3 py-2 rounded-2xl bg-emerald-500/10 border border-emerald-500/20">
+                  <Text className="text-emerald-500 text-xs font-semibold">
+                    {completedCourses.length
+                      ? `${completedCourses.length} past classes found`
+                      : "Waiting for transcript"}
+                  </Text>
+                </View>
               </View>
+
+              {!completedCourses.length && transcriptDocument && !isAnalyzingTranscript ? (
+                <Text className={`${secondaryTextClass} text-sm mt-4`}>
+                  Once the planner reads your unofficial transcript, it will automatically mark matching classes as already done.
+                </Text>
+              ) : null}
             </View>
 
-            <View style={isDesktop ? { flex: 1, minWidth: 0, gap: 16 } : { gap: 16, marginTop: 16 }}>
-              <View className={`${cardBgClass} border rounded-[28px] p-5`}>
-                <View className="flex-row flex-wrap items-start gap-2 mb-4">
-                  <View className={`${getCoverageBadgeClass(plan.coverage)} px-3 py-1.5 rounded-full`}>
-                    <Text className={`${getCoverageTextClass(plan.coverage)} text-xs font-semibold`}>
-                      {plan.coverage === "detailed" ? "Detailed v1 dataset" : "Advisor-review path"}
-                    </Text>
-                  </View>
-                  <View className="px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30">
-                    <Text className="text-emerald-500 text-xs font-semibold">{plan.startQuarter}</Text>
-                  </View>
-                </View>
+            <View
+              className={`${cardBgClass} border rounded-[28px] p-5`}
+              style={isDesktop ? { flex: 1, minWidth: 0 } : undefined}
+            >
+              <Text className={`${textClass} text-lg font-semibold`}>
+                What this UW plan uses
+              </Text>
+              <Text className={`${secondaryTextClass} text-sm mt-1`}>
+                This helps students see that not every class in a Green River associate path is necessarily used by the UW bachelor&apos;s.
+              </Text>
 
-                <Text className={`${textClass} text-2xl font-semibold`}>{plan.title}</Text>
-                <Text className={`${secondaryTextClass} text-sm mt-2`}>{plan.summary}</Text>
-
-                <View className="mt-4 gap-3">
-                  <StatusBanner
-                    variant={coverageBanner.variant}
-                    title={coverageBanner.title}
-                    message={coverageBanner.message}
-                  />
-
-                  <StatusBanner
-                    variant="info"
-                    title="Application timing"
-                    message={plan.applicationWindow}
-                  />
-                </View>
-              </View>
-
-              <View className={`${cardBgClass} border rounded-[28px] p-5`}>
-                <Text className={`${textClass} text-lg font-semibold`}>Best Green River path</Text>
-                <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                  This section answers the most important advising question first: which Green River track should the student stay on?
-                </Text>
-
-                <View className={`mt-4 border ${borderClass} rounded-2xl px-4 py-4`}>
-                  <Text className={`${textClass} font-semibold`}>
-                    {track ? `${track.code} - ${track.title}` : "Custom advisor-reviewed path"}
+              {trackUsageSummary ? (
+                <View className="mt-4">
+                  <Text className={`${textClass} text-3xl font-semibold`}>
+                    {trackUsageSummary.directUseCount}/{trackUsageSummary.specificCourseCount}
                   </Text>
-                  <Text className={`${secondaryTextClass} text-sm mt-2`}>
-                    {plan.bestTrackSummary}
-                  </Text>
-                  <Text className={`${secondaryTextClass} text-sm mt-3`}>
-                    {plan.financialAidNote}
-                  </Text>
-                </View>
-
-                <View className="gap-2 mt-4">
-                  {plan.whyThisTrack.map((line) => (
-                    <View key={line} className="flex-row items-start">
-                      <Ionicons name="checkmark-circle-outline" size={18} color="#008f4e" style={{ marginTop: 2 }} />
-                      <Text className={`${secondaryTextClass} text-sm ml-2 flex-1`}>{line}</Text>
-                    </View>
-                  ))}
-                </View>
-              </View>
-
-              {track ? (
-                <View className={`${cardBgClass} border rounded-[28px] p-5`}>
-                  <Text className={`${textClass} text-lg font-semibold`}>Typical Green River track shape</Text>
                   <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                    Use this as the base skeleton, then layer the major-specific checklist items on top.
+                    specific Green River track classes directly support this UW bachelor&apos;s
                   </Text>
-
-                  <View className="gap-3 mt-4">
-                    {track.terms.map((term) => (
-                      <View key={`${track.id}-${term.label}`} className={`border ${borderClass} rounded-2xl px-4 py-4`}>
-                        <Text className={`${textClass} font-semibold`}>{term.label}</Text>
-                        <Text className={`${secondaryTextClass} text-sm mt-2`}>
-                          {term.courses.join(" • ")}
-                        </Text>
-                      </View>
-                    ))}
-                  </View>
-
-                  {track.notes.length ? (
-                    <View className="gap-2 mt-4">
-                      {track.notes.map((note) => (
-                        <Text key={note} className={`${secondaryTextClass} text-xs`}>
-                          • {note}
-                        </Text>
-                      ))}
-                    </View>
+                  {trackUsageSummary.generalEdEntryCount ? (
+                    <Text className={`${secondaryTextClass} text-sm mt-3`}>
+                      Plus {trackUsageSummary.generalEdEntryCount} general-ed or elective slots in the associate path.
+                    </Text>
                   ) : null}
                 </View>
-              ) : null}
-
-              <ChecklistSection
-                title="Finish before you apply"
-                subtitle="These are the items the planner treats as the strongest application-floor checklist for this path."
-                items={plan.applicationChecklist}
-                majorId={plan.id}
-                progress={progress}
-                onToggle={toggleItem}
-                textClass={textClass}
-                secondaryTextClass={secondaryTextClass}
-                cardClass={cardBgClass}
-                borderClass={borderClass}
-              />
-
-              <ChecklistSection
-                title="Finish before UW starts"
-                subtitle="These items are the next things to push at Green River when the student wants the cleanest launch after admission."
-                items={plan.beforeEnrollmentChecklist}
-                majorId={plan.id}
-                progress={progress}
-                onToggle={toggleItem}
-                textClass={textClass}
-                secondaryTextClass={secondaryTextClass}
-                cardClass={cardBgClass}
-                borderClass={borderClass}
-              />
-
-              <ChecklistSection
-                title="Worth finishing at Green River"
-                subtitle="These are the cheaper, cleaner, or easier lower-division classes the planner still tries to keep at Green River when possible."
-                items={plan.stayAtGrcChecklist}
-                majorId={plan.id}
-                progress={progress}
-                onToggle={toggleItem}
-                textClass={textClass}
-                secondaryTextClass={secondaryTextClass}
-                cardClass={cardBgClass}
-                borderClass={borderClass}
-              />
-
-              {plan.advisorFlags.length ? (
-                <View className={`${cardBgClass} border rounded-[28px] p-5`}>
-                  <Text className={`${textClass} text-lg font-semibold`}>Advisor flags</Text>
-                  <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                    These are the spots where the UI should push the student back to an advisor instead of pretending the path is automatic.
-                  </Text>
-
-                  <View className="gap-3 mt-4">
-                    {plan.advisorFlags.map((flag) => (
-                      <StatusBanner
-                        key={flag}
-                        variant="warning"
-                        message={flag}
-                      />
-                    ))}
-                  </View>
-                </View>
-              ) : null}
-
-              <View
-                style={isDesktop ? { flexDirection: "row", alignItems: "stretch", gap: 16 } : { gap: 16 }}
-              >
-                <View
-                  style={isDesktop ? { flex: 1, minWidth: 0 } : undefined}
-                  className={`${cardBgClass} border rounded-[28px] p-5`}
-                >
-                  <Text className={`${textClass} text-lg font-semibold`}>Leadership and involvement</Text>
-                  <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                    {"Lady Ivory's advising request was bigger than prerequisites. This section pushes students toward stronger Green River involvement too."}
-                  </Text>
-
-                  <View className="gap-2 mt-4">
-                    {plan.involvementIdeas.map((idea) => (
-                      <Text key={idea} className={`${secondaryTextClass} text-sm`}>
-                        • {idea}
-                      </Text>
-                    ))}
-                  </View>
-
-                  <View className="gap-3 mt-4">
-                    {TRANSFER_PLANNER_INVOLVEMENT_LINKS.map((link) => (
-                      <Pressable
-                        key={link.url}
-                        onPress={() => {
-                          void openExternalLink(link.url);
-                        }}
-                        className={`border ${borderClass} rounded-2xl px-4 py-4 flex-row items-start`}
-                      >
-                        <View className="w-9 h-9 rounded-full bg-emerald-500/10 items-center justify-center mr-3">
-                          <Ionicons name="people-outline" size={18} color="#008f4e" />
-                        </View>
-                        <View className="flex-1 min-w-0">
-                          <Text className={`${textClass} font-semibold`}>{link.label}</Text>
-                          {link.note ? (
-                            <Text className={`${secondaryTextClass} text-sm mt-1`}>{link.note}</Text>
-                          ) : null}
-                        </View>
-                        <MaterialIcons name="open-in-new" size={18} color="#008f4e" />
-                      </Pressable>
-                    ))}
-                  </View>
-                </View>
-
-                <View
-                  style={isDesktop ? { flex: 1, minWidth: 0 } : undefined}
-                  className={`${cardBgClass} border rounded-[28px] p-5`}
-                >
-                  <Text className={`${textClass} text-lg font-semibold`}>Project ideas</Text>
-                  <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                    Curated Green River-first ideas so the feature is useful even before AI personalization exists.
-                  </Text>
-
-                  <View className="gap-3 mt-4">
-                    {plan.projectIdeas.map((idea) => (
-                      <View key={idea} className={`border ${borderClass} rounded-2xl px-4 py-4`}>
-                        <Text className={`${secondaryTextClass} text-sm`}>{idea}</Text>
-                      </View>
-                    ))}
-                  </View>
-                </View>
-              </View>
-
-              <View className={`${cardBgClass} border rounded-[28px] p-5`}>
-                <Text className={`${textClass} text-lg font-semibold`}>Official source links</Text>
-                <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                  Open the exact source pages the plan is built from before making year-sensitive advising changes.
+              ) : (
+                <Text className={`${secondaryTextClass} text-sm mt-4`}>
+                  This major uses a custom Green River plan instead of one stock associate template.
                 </Text>
+              )}
+            </View>
+          </View>
 
-                <View className="gap-3 mt-4">
-                  {visibleOfficialLinks.map((link) => (
-                    <Pressable
-                      key={`${plan.id}-${link.url}`}
-                      onPress={() => {
-                        void openExternalLink(link.url);
-                      }}
-                      className={`border ${borderClass} rounded-2xl px-4 py-4 flex-row items-start`}
-                    >
-                      <View className="w-9 h-9 rounded-full bg-emerald-500/10 items-center justify-center mr-3">
-                        <Ionicons name="link-outline" size={18} color="#008f4e" />
-                      </View>
-                      <View className="flex-1 min-w-0">
-                        <Text className={`${textClass} font-semibold`}>{link.label}</Text>
-                        {link.note ? (
-                          <Text className={`${secondaryTextClass} text-sm mt-1`}>{link.note}</Text>
-                        ) : null}
-                      </View>
-                      <MaterialIcons name="open-in-new" size={18} color="#008f4e" />
-                    </Pressable>
-                  ))}
-                </View>
-              </View>
+          <TrackUsageCard
+            trackCode={track?.code ?? null}
+            trackTitle={track?.title ?? "Custom Green River path"}
+            trackSummary={plan.bestTrackSummary}
+            financialAidNote={plan.financialAidNote}
+            usageSummary={trackUsageSummary}
+            textClass={textClass}
+            secondaryTextClass={secondaryTextClass}
+            cardClass={cardBgClass}
+            borderClass={borderClass}
+          />
 
-              {plan.manualReviewNotes?.length ? (
-                <View className={`${cardBgClass} border rounded-[28px] p-5`}>
-                  <Text className={`${textClass} text-lg font-semibold`}>Still needs manual review</Text>
-                  <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                    This is the part of the tool that is intentionally honest instead of pretending every campus has the same level of structured data.
-                  </Text>
+          <RequirementSection
+            title="Still needed before you apply"
+            subtitle="These are the strongest UW-facing prerequisites the planner expects a student to finish first."
+            statuses={applicationStatuses}
+            textClass={textClass}
+            secondaryTextClass={secondaryTextClass}
+            cardClass={cardBgClass}
+            borderClass={borderClass}
+          />
 
-                  <View className="gap-3 mt-4">
-                    {plan.manualReviewNotes.map((note) => (
-                      <StatusBanner key={note} variant="warning" message={note} />
-                    ))}
+          <RequirementSection
+            title="Good to finish before UW starts"
+            subtitle="These are the extra Green River classes that make the transfer cleaner or help the student start stronger after admission."
+            statuses={beforeEnrollmentStatuses}
+            textClass={textClass}
+            secondaryTextClass={secondaryTextClass}
+            cardClass={cardBgClass}
+            borderClass={borderClass}
+          />
+
+          <RequirementSection
+            title="Worth keeping at Green River"
+            subtitle="These are the lower-division classes the planner still tries to keep at Green River because they are cleaner, cheaper, or easier to finish before transfer."
+            statuses={stayAtGrcStatuses}
+            textClass={textClass}
+            secondaryTextClass={secondaryTextClass}
+            cardClass={cardBgClass}
+            borderClass={borderClass}
+          />
+
+          <SuggestedScheduleCard
+            quarters={suggestedQuarterPlan}
+            textClass={textClass}
+            secondaryTextClass={secondaryTextClass}
+            cardClass={cardBgClass}
+            borderClass={borderClass}
+          />
+
+          <View className={`${cardBgClass} border rounded-[28px] p-5`}>
+            <Text className={`${textClass} text-lg font-semibold`}>Official UW and Green River links</Text>
+            <Text className={`${secondaryTextClass} text-sm mt-1`}>
+              Use these pages when the student wants to double-check the current campus materials before final registration.
+            </Text>
+
+            <View className="gap-3 mt-4">
+              {visibleOfficialLinks.map((link) => (
+                <Pressable
+                  key={`${plan.id}-${link.url}`}
+                  onPress={() => {
+                    void openExternalLink(link.url);
+                  }}
+                  className={`border ${borderClass} rounded-2xl px-4 py-4 flex-row items-start ${inactiveButtonClass}`}
+                >
+                  <View className="w-9 h-9 rounded-full bg-emerald-500/10 items-center justify-center mr-3">
+                    <Ionicons name="link-outline" size={18} color="#008f4e" />
                   </View>
-                </View>
-              ) : null}
+                  <View className="flex-1 min-w-0">
+                    <Text className={`${textClass} font-semibold`}>{link.label}</Text>
+                    {link.note ? (
+                      <Text className={`${secondaryTextClass} text-sm mt-1`}>{link.note}</Text>
+                    ) : null}
+                  </View>
+                  <MaterialIcons name="open-in-new" size={18} color="#008f4e" />
+                </Pressable>
+              ))}
             </View>
           </View>
         </View>

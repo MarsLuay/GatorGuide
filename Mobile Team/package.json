@@ -3,11 +3,23 @@
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
-    "start": "cross-env EXPO_OFFLINE=1 expo start --offline --port 8081",
+    "start": "node scripts/start-expo.cjs",
+    "start:tunnel": "node scripts/start-expo.cjs --mode=tunnel",
+    "start:lan": "node scripts/start-expo.cjs --mode=lan",
+    "start:offline": "node scripts/start-expo.cjs --mode=offline",
+    "catalog:add": "node scripts/add-catalog-item.cjs",
+    "size:publish": "node scripts/report-publish-size.cjs",
     "android": "expo run:android",
     "android:sdk": "cmd /c scripts/run-android.cmd",
     "ios": "expo run:ios",
-    "web": "cross-env EXPO_OFFLINE=1 expo start --web --offline --port 8081",
+    "web": "node scripts/start-expo.cjs --web",
+    "web:tunnel": "node scripts/start-expo.cjs --web --mode=tunnel",
+    "web:lan": "node scripts/start-expo.cjs --web --mode=lan",
+    "web:offline": "node scripts/start-expo.cjs --web --mode=offline",
+    "qa:windows:build": "npx expo export --platform web --output-dir .tools/qa-web",
+    "qa:windows:screenshots": "node .tools/windows-qa.mjs",
+    "qa:windows:interactions": "node .tools/windows-interactions.mjs",
+    "qa:windows:ci": "node scripts/run-windows-qa.cjs",
     "assets:brand": "node scripts/brand-assets.cjs",
     "assets:brand:verify": "node scripts/brand-assets.cjs --check",
     "lint": "expo lint",
@@ -29,6 +41,7 @@
     "expo-asset": "~12.0.12",
     "expo-audio": "^1.1.1",
     "expo-auth-session": "~7.0.10",
+    "expo-clipboard": "~8.0.8",
     "expo-constants": "~18.0.13",
     "expo-crypto": "~15.0.8",
     "expo-document-picker": "^14.0.8",
@@ -48,6 +61,7 @@
     "expo-web-browser": "~15.0.10",
     "firebase": "^12.9.0",
     "nativewind": "^4.2.1",
+    "pdfjs-dist": "^5.6.205",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-i18next": "^16.5.4",
@@ -71,6 +85,19 @@
     "playwright": "^1.58.2",
     "tailwindcss": "^3.4.19",
     "typescript": "~5.9.2"
+  },
+  "overrides": {
+    "flatted": "3.4.2",
+    "node-forge": "1.4.0",
+    "chokidar": {
+      "picomatch": "2.3.2"
+    },
+    "jest-util": {
+      "picomatch": "2.3.2"
+    },
+    "micromatch": {
+      "picomatch": "2.3.2"
+    }
   },
   "private": true
 }
