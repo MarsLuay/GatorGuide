@@ -166,6 +166,12 @@ export default function ResourcesPage() {
             url: "https://www.greenriver.edu/students/pay-for-college/financial-aid/student-employment/",
             tags: ["work-study", "jobs", "grc"],
           },
+          {
+            title: "UW Resume Examples",
+            description: "Common resume examples courtesy of the University of Washington Career & Internship Center.",
+            url: "https://careers.uw.edu/resources/sample-resumes/",
+            tags: ["resume", "uw", "career center", "sample resume", "application materials"],
+          },
         ],
       },
       {

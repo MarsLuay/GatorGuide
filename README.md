@@ -23,11 +23,12 @@ We make that possible by combining three connected parts of the project:
 - [Data Team](Data%20Team/README.md): datasets, research notes, and transfer-data work.
 - [AI Team](AI%20Team/README.md): AI planning, prompts, and integration direction.
 
-## Setup: Download and Run (Windows)
+## Setup: Download and Run
 
 ### Quick start
 
-- Double-click `Start-to-run.bat` in the repo root.
+- On Windows, double-click `Start-to-run.bat` in the repo root.
+- On macOS or Linux, run `bash ./Start-to-run.sh` from the repo root.
 - After the server comes online, it tries to open `http://127.0.0.1:8081` in your default browser automatically.
 
 ### 1) Install required tools
