@@ -5,7 +5,15 @@ import { useAppTheme } from "@/hooks/use-app-theme";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 
 const PRIMARY_TAB_ROUTES = ["index", "resources", "profile", "settings"] as const;
-const RESOURCES_CHILD_ROUTES = ["compare", "cost-calculator", "saved-colleges", "calendar", "college-search"];
+const RESOURCES_CHILD_ROUTES = [
+  "compare",
+  "cost-calculator",
+  "saved-colleges",
+  "calendar",
+  "transfer-planner",
+  "college-search",
+  "opportunity-admin",
+];
 const TAB_ROUTE_ALIASES: Record<string, (typeof PRIMARY_TAB_ROUTES)[number]> = {
   roadmap: "index",
   questionnaire: "index",
@@ -13,7 +21,9 @@ const TAB_ROUTE_ALIASES: Record<string, (typeof PRIMARY_TAB_ROUTES)[number]> = {
   "cost-calculator": "resources",
   "saved-colleges": "resources",
   calendar: "resources",
+  "transfer-planner": "resources",
   "college-search": "resources",
+  "opportunity-admin": "resources",
   "college/[collegeId]": "resources",
   language: "settings",
   about: "settings",

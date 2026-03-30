@@ -12,6 +12,8 @@ export const ROUTES = {
   questionnaire: "/questionnaire" as const,
   roadmap: "/roadmap" as const,
   calendar: "/calendar" as Href,
+  opportunityAdmin: "/opportunity-admin" as const,
+  transferPlanner: "/transfer-planner" as const,
   compare: "/compare" as const,
   costCalculator: "/cost-calculator" as const,
   savedColleges: "/saved-colleges" as const,

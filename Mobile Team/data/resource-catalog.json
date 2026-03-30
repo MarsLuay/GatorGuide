@@ -1,0 +1,256 @@
+[
+  {
+    "id": "tools",
+    "titleKey": "resources.tools",
+    "icon": "build",
+    "items": [
+      {
+        "titleKey": "resources.transferPlanner",
+        "descriptionKey": "resources.transferPlannerDesc",
+        "url": "app://transfer-planner",
+        "tags": [
+          "transfer planner",
+          "grc",
+          "uw",
+          "engineering",
+          "stem pathway",
+          "tools"
+        ]
+      },
+      {
+        "titleKey": "resources.collegeSearchTool",
+        "descriptionKey": "resources.collegeSearchToolDesc",
+        "url": "app://college-search",
+        "tags": [
+          "search",
+          "college search",
+          "recommendations",
+          "advanced search",
+          "tools"
+        ]
+      },
+      {
+        "titleKey": "resources.deadlineCalendar",
+        "descriptionKey": "resources.deadlineCalendarDesc",
+        "url": "app://calendar",
+        "tags": [
+          "calendar",
+          "deadlines",
+          "planning",
+          "tools"
+        ]
+      },
+      {
+        "titleKey": "resources.savedColleges",
+        "descriptionKey": "resources.savedCollegesDesc",
+        "url": "app://saved-colleges",
+        "tags": [
+          "saved",
+          "bookmarks",
+          "favorites",
+          "colleges"
+        ]
+      },
+      {
+        "titleKey": "resources.compareColleges",
+        "descriptionKey": "resources.compareCollegesDesc",
+        "url": "app://compare",
+        "tags": [
+          "compare",
+          "colleges",
+          "tools"
+        ]
+      },
+      {
+        "titleKey": "resources.costCalculator",
+        "descriptionKey": "resources.costCalculatorDesc",
+        "url": "app://cost-calculator",
+        "tags": [
+          "cost",
+          "calculator",
+          "tools"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "student-tools",
+    "titleKey": "resources.studentTools",
+    "icon": "account-circle",
+    "items": [
+      {
+        "titleKey": "resources.ctcLink",
+        "descriptionKey": "resources.ctcLinkDesc",
+        "url": "https://myaccount.ctclink.us/",
+        "tags": [
+          "portal",
+          "ctclink",
+          "registration",
+          "financial aid"
+        ]
+      },
+      {
+        "titleKey": "resources.canvas",
+        "descriptionKey": "resources.canvasDesc",
+        "url": "https://egator.greenriver.edu/login/saml",
+        "tags": [
+          "canvas",
+          "egator",
+          "classes",
+          "lms"
+        ]
+      },
+      {
+        "titleKey": "resources.workStudy",
+        "descriptionKey": "resources.workStudyDesc",
+        "url": "https://www.greenriver.edu/students/pay-for-college/financial-aid/student-employment/",
+        "tags": [
+          "work-study",
+          "jobs",
+          "grc"
+        ]
+      },
+      {
+        "title": "FAFSA",
+        "description": "Apply for federal student aid, grants, work-study, and eligible loans through the official Federal Student Aid application.",
+        "url": "https://studentaid.gov/apply-for-aid/fafsa",
+        "tags": [
+          "fafsa",
+          "financial aid",
+          "federal aid",
+          "grants",
+          "student loans"
+        ]
+      },
+      {
+        "title": "Unofficial Transcript",
+        "description": "Open the ctcLink transcript page to view or download your unofficial academic transcript.",
+        "url": "https://csprd.ctclink.us/psp/csprd/EMPLOYEE/SA/s/WEBLIB_HCX_RE.H_VW_UNOFF_TRANSCR.FieldFormula.IScript_Main",
+        "tags": [
+          "transcript",
+          "unofficial transcript",
+          "ctclink",
+          "records",
+          "grades"
+        ]
+      },
+      {
+        "title": "UW Resume Examples",
+        "description": "Common resume examples courtesy of the University of Washington Career & Internship Center.",
+        "url": "https://careers.uw.edu/resources/sample-resumes/",
+        "tags": [
+          "resume",
+          "uw",
+          "career center",
+          "sample resume",
+          "application materials"
+        ]
+      },
+      {
+        "title": "Rate My Professors",
+        "description": "Look up professor reviews, student feedback, and course experience notes before building your schedule.",
+        "url": "https://www.ratemyprofessors.com/",
+        "tags": [
+          "rate my professors",
+          "professor reviews",
+          "class planning",
+          "schedule",
+          "instructors"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "green-river-transfer",
+    "titleKey": "resources.greenRiverTransfer",
+    "icon": "school",
+    "items": [
+      {
+        "titleKey": "resources.transferAdvising",
+        "descriptionKey": "resources.transferAdvisingDesc",
+        "url": "https://www.greenriver.edu/students/academics/career-and-advising-center/advising/transfer-students.html",
+        "tags": [
+          "transfer",
+          "advising",
+          "grc"
+        ]
+      },
+      {
+        "titleKey": "resources.transferHub",
+        "descriptionKey": "resources.transferHubDesc",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/university-and-college-transfer/",
+        "tags": [
+          "transfer",
+          "planning",
+          "grc"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "common-wa-universities",
+    "titleKey": "resources.commonWaUniversities",
+    "icon": "map",
+    "items": [
+      {
+        "titleKey": "resources.uw",
+        "descriptionKey": "resources.uwDesc",
+        "url": "https://admit.washington.edu/apply/",
+        "tags": [
+          "uw",
+          "transfer",
+          "apply"
+        ]
+      },
+      {
+        "titleKey": "resources.wwu",
+        "descriptionKey": "resources.wwuDesc",
+        "url": "https://aasac.wwu.edu/transfer-students",
+        "tags": [
+          "wwu",
+          "transfer",
+          "apply"
+        ]
+      },
+      {
+        "titleKey": "resources.wsu",
+        "descriptionKey": "resources.wsuDesc",
+        "url": "https://admission.wsu.edu/apply/transfer/",
+        "tags": [
+          "wsu",
+          "transfer",
+          "apply"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "transfer-guides",
+    "titleKey": "resources.transferGuides",
+    "icon": "find-in-page",
+    "items": [
+      {
+        "titleKey": "resources.uwEquivalency",
+        "descriptionKey": "resources.uwEquivalencyDesc",
+        "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+        "tags": [
+          "uw",
+          "equivalency",
+          "transfer credit",
+          "grc"
+        ]
+      },
+      {
+        "titleKey": "resources.uwBothell",
+        "descriptionKey": "resources.uwBothellDesc",
+        "url": "https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college",
+        "tags": [
+          "uw bothell",
+          "equivalency",
+          "transfer credit",
+          "grc"
+        ]
+      }
+    ]
+  }
+]

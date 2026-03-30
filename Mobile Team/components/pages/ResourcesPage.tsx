@@ -12,10 +12,16 @@ import {
 } from "react-native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
+import {
+  RESOURCE_CATALOG,
+  type ResourceCatalogItem,
+  type ResourceCatalogSection,
+} from "@/constants/resource-catalog";
 import { ROUTES } from "@/constants/routes";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useAppLanguage } from "@/hooks/use-app-language";
+import { useAppData } from "@/hooks/use-app-data";
 import { useOpportunities } from "@/hooks/use-opportunities";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import type { MatchedOpportunity } from "@/services/opportunity-matching.service";
@@ -29,10 +35,22 @@ type ResourceItem = {
 };
 
 type ResourceSection = {
+  id: string;
   title: string;
   icon: keyof typeof MaterialIcons.glyphMap;
   items: ResourceItem[];
 };
+
+function resolveCatalogText(
+  entry: Pick<ResourceCatalogItem, "title" | "titleKey" | "description" | "descriptionKey">,
+  kind: "title" | "description",
+  t: (key: string, options?: Record<string, string | number>) => string
+) {
+  const key = kind === "title" ? entry.titleKey : entry.descriptionKey;
+  const value = kind === "title" ? entry.title : entry.description;
+  if (key) return t(key);
+  return String(value ?? "").trim();
+}
 
 function formatDueDate(value: string | null, locale: string) {
   if (!value) return null;
@@ -55,9 +73,12 @@ function buildOpportunitySearchText(opportunity: MatchedOpportunity) {
     opportunity.organizationName,
     opportunity.summary,
     opportunity.type,
+    opportunity.deadline?.label,
+    opportunity.award?.amountText,
     ...(opportunity.matchReasons ?? []),
     ...(opportunity.matching?.suggestedMajors ?? []),
     ...(opportunity.matching?.financialAidTags ?? []),
+    ...(opportunity.eligibility?.residencyTypes ?? []),
   ]
     .join(" ")
     .toLowerCase();
@@ -67,6 +88,7 @@ export default function ResourcesPage() {
   const router = useRouter();
   const styles = useThemeStyles();
   const { t, language } = useAppLanguage();
+  const { state } = useAppData();
   const { isHydrated, isRefreshing, matchedOpportunities, refreshOpportunities, setOpportunityDone } =
     useOpportunities();
   const { width } = useWindowDimensions();
@@ -99,143 +121,105 @@ export default function ResourcesPage() {
   const emeraldBadgeClass = "px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20";
   const desktopFullWidthStyle = { width: "100%" as DimensionValue };
   const locale = getLocaleForLanguage(language);
-  const getOpportunityDueLabel = (value: string | null) => {
-    const formatted = formatDueDate(value, locale);
-    return formatted
-      ? t("resources.dueOn", { date: formatted })
-      : t("resources.openDeadline");
+  const canShowOpportunityAdminTool = !!state.user && !state.user.isGuest;
+  const getOpportunityDueLabel = (item: MatchedOpportunity) => {
+    const formatted = formatDueDate(item.computedDueAt, locale);
+    if (item.deadline.type === "rolling" && !formatted) {
+      return t("resources.rollingDeadline");
+    }
+    if (!formatted) return t("resources.openDeadline");
+    if (item.deadline.type === "priority") {
+      return t("resources.priorityDueOn", { date: formatted });
+    }
+    if (item.deadline.type === "rolling") {
+      return t("resources.rollingDueOn", { date: formatted });
+    }
+    return t("resources.dueOn", { date: formatted });
+  };
+  const formatMoney = (amount: number | null, currency: string) => {
+    if (amount == null) return null;
+    try {
+      return new Intl.NumberFormat(locale, {
+        style: "currency",
+        currency: currency || "USD",
+        maximumFractionDigits: 0,
+      }).format(amount);
+    } catch {
+      return String(amount);
+    }
+  };
+  const getAwardLabel = (item: MatchedOpportunity) => {
+    if (item.award.amountText) return item.award.amountText;
+    const amountMin = formatMoney(item.award.amountMin, item.award.currency);
+    const amountMax = formatMoney(item.award.amountMax, item.award.currency);
+    if (amountMin && amountMax && amountMin !== amountMax) {
+      return t("resources.awardRange", { min: amountMin, max: amountMax });
+    }
+    if (amountMin || amountMax) {
+      return t("resources.awardAmount", { amount: amountMin ?? amountMax ?? "" });
+    }
+    return null;
+  };
+  const getRecommendationLabel = (item: MatchedOpportunity) => {
+    const count =
+      item.requirements.recommendationCountMin ||
+      (item.requirements.needsRecommendations ? 1 : 0);
+    if (count <= 0) return null;
+    return t("resources.recommendationMinimum", { count });
+  };
+  const getEligibilityLabels = (item: MatchedOpportunity) => {
+    const labels: string[] = [];
+    if (item.eligibility.transferOnly) {
+      labels.push(t("resources.transferOnly"));
+    }
+    if (item.eligibility.gpaMin != null) {
+      labels.push(t("resources.gpaMinimum", { gpa: item.eligibility.gpaMin }));
+    }
+    return labels;
+  };
+  const getProgressLabel = (item: MatchedOpportunity) => {
+    if (item.progress === "won") return t("resources.statusWon");
+    if (item.progress === "expired") return t("resources.statusExpired");
+    if (item.progress === "submitted") return t("resources.statusSubmitted");
+    return item.isDone ? t("resources.statusDone") : null;
   };
 
   const referenceSections: ResourceSection[] = useMemo(
-    () => [
-      {
-        title: t("resources.tools"),
-        icon: "build",
-        items: [
-          {
-            title: t("resources.collegeSearchTool"),
-            description: t("resources.collegeSearchToolDesc"),
-            url: "app://college-search",
-            tags: ["search", "college search", "recommendations", "advanced search", "tools"],
-          },
-          {
-            title: t("resources.deadlineCalendar"),
-            description: t("resources.deadlineCalendarDesc"),
-            url: "app://calendar",
-            tags: ["calendar", "deadlines", "planning", "tools"],
-          },
-          {
-            title: t("resources.savedColleges"),
-            description: t("resources.savedCollegesDesc"),
-            url: "app://saved-colleges",
-            tags: ["saved", "bookmarks", "favorites", "colleges"],
-          },
-          {
-            title: t("resources.compareColleges"),
-            description: t("resources.compareCollegesDesc"),
-            url: "app://compare",
-            tags: ["compare", "colleges", "tools"],
-          },
-          {
-            title: t("resources.costCalculator"),
-            description: t("resources.costCalculatorDesc"),
-            url: "app://cost-calculator",
-            tags: ["cost", "calculator", "tools"],
-          },
-        ],
-      },
-      {
-        title: t("resources.studentTools"),
-        icon: "account-circle",
-        items: [
-          {
-            title: t("resources.ctcLink"),
-            description: t("resources.ctcLinkDesc"),
-            url: "https://myaccount.ctclink.us/",
-            tags: ["portal", "ctclink", "registration", "financial aid"],
-          },
-          {
-            title: t("resources.canvas"),
-            description: t("resources.canvasDesc"),
-            url: "https://egator.greenriver.edu/login/saml",
-            tags: ["canvas", "egator", "classes", "lms"],
-          },
-          {
-            title: t("resources.workStudy"),
-            description: t("resources.workStudyDesc"),
-            url: "https://www.greenriver.edu/students/pay-for-college/financial-aid/student-employment/",
-            tags: ["work-study", "jobs", "grc"],
-          },
-          {
-            title: "UW Resume Examples",
-            description: "Common resume examples courtesy of the University of Washington Career & Internship Center.",
-            url: "https://careers.uw.edu/resources/sample-resumes/",
-            tags: ["resume", "uw", "career center", "sample resume", "application materials"],
-          },
-        ],
-      },
-      {
-        title: t("resources.greenRiverTransfer"),
-        icon: "school",
-        items: [
-          {
-            title: t("resources.transferAdvising"),
-            description: t("resources.transferAdvisingDesc"),
-            url: "https://www.greenriver.edu/students/academics/career-and-advising-center/advising/transfer-students.html",
-            tags: ["transfer", "advising", "grc"],
-          },
-          {
-            title: t("resources.transferHub"),
-            description: t("resources.transferHubDesc"),
-            url: "https://www.greenriver.edu/students/academics/areas-of-interest/university-and-college-transfer/",
-            tags: ["transfer", "planning", "grc"],
-          },
-        ],
-      },
-      {
-        title: t("resources.commonWaUniversities"),
-        icon: "map",
-        items: [
-          {
-            title: t("resources.uw"),
-            description: t("resources.uwDesc"),
-            url: "https://admit.washington.edu/apply/",
-            tags: ["uw", "transfer", "apply"],
-          },
-          {
-            title: t("resources.wwu"),
-            description: t("resources.wwuDesc"),
-            url: "https://aasac.wwu.edu/transfer-students",
-            tags: ["wwu", "transfer", "apply"],
-          },
-          {
-            title: t("resources.wsu"),
-            description: t("resources.wsuDesc"),
-            url: "https://admission.wsu.edu/apply/transfer/",
-            tags: ["wsu", "transfer", "apply"],
-          },
-        ],
-      },
-      {
-        title: t("resources.transferGuides"),
-        icon: "find-in-page",
-        items: [
-          {
-            title: t("resources.uwEquivalency"),
-            description: t("resources.uwEquivalencyDesc"),
-            url: "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
-            tags: ["uw", "equivalency", "transfer credit", "grc"],
-          },
-          {
-            title: t("resources.uwBothell"),
-            description: t("resources.uwBothellDesc"),
-            url: "https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college",
-            tags: ["uw bothell", "equivalency", "transfer credit", "grc"],
-          },
-        ],
-      },
-    ],
-    [t]
+    () => {
+      const sections = RESOURCE_CATALOG.map((section: ResourceCatalogSection) => ({
+        id: section.id,
+        title: resolveCatalogText(section, "title", t),
+        icon: section.icon,
+        items: section.items.map((item) => ({
+          title: resolveCatalogText(item, "title", t),
+          description: resolveCatalogText(item, "description", t),
+          url: item.url,
+          tags: item.tags ?? [],
+        })),
+      }));
+
+      if (!canShowOpportunityAdminTool) {
+        return sections;
+      }
+
+      return sections.map((section) => {
+        if (section.id !== "tools") return section;
+        return {
+          ...section,
+          items: [
+            ...section.items,
+            {
+              title: "Opportunity Admin",
+              description:
+                "Create, edit, archive, and review shared opportunity records without touching source files.",
+              url: "app://opportunity-admin",
+              tags: ["admin", "opportunity editor", "catalog", "staff tools"],
+            },
+          ],
+        };
+      });
+    },
+    [canShowOpportunityAdminTool, t]
   );
 
   const filteredOpportunities = useMemo(() => {
@@ -348,16 +332,28 @@ export default function ResourcesPage() {
         {item.isDone ? (
           <View className={emeraldBadgeClass}>
             <Text className="text-emerald-500 text-xs font-semibold">
-              {t("resources.statusDone")}
+              {getProgressLabel(item) ?? t("resources.statusDone")}
             </Text>
           </View>
         ) : null}
+        {getAwardLabel(item) ? (
+          <View className={emeraldBadgeClass}>
+            <Text className="text-emerald-500 text-xs font-semibold">
+              {getAwardLabel(item)}
+            </Text>
+          </View>
+        ) : null}
+        {getEligibilityLabels(item).map((label) => (
+          <View key={`${item.opportunityId}-${label}`} className={emeraldBadgeClass}>
+            <Text className="text-emerald-500 text-xs font-semibold">{label}</Text>
+          </View>
+        ))}
       </View>
 
       <View className="flex-row flex-wrap gap-2 mt-3">
         <View className={emeraldBadgeClass}>
           <Text className="text-emerald-500 text-xs font-semibold">
-            {getOpportunityDueLabel(item.computedDueAt)}
+            {getOpportunityDueLabel(item)}
           </Text>
         </View>
         {item.recurrence.isYearly ? (
@@ -367,10 +363,10 @@ export default function ResourcesPage() {
             </Text>
           </View>
         ) : null}
-        {item.requirements.needsRecommendations ? (
+        {getRecommendationLabel(item) ? (
           <View className={emeraldBadgeClass}>
             <Text className="text-emerald-500 text-xs font-semibold">
-              {t("resources.needsRecommendations")}
+              {getRecommendationLabel(item)}
             </Text>
           </View>
         ) : null}
@@ -419,7 +415,7 @@ export default function ResourcesPage() {
   );
 
   const renderDesktopReferenceSection = (section: ResourceSection) => (
-    <View key={section.title} className={`${nestedCardClass} p-4`}>
+    <View key={section.id} className={`${nestedCardClass} p-4`}>
       <View className="flex-row items-center justify-between gap-3 mb-4">
         <View className="flex-row items-center flex-1 min-w-0">
           <View className="w-10 h-10 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">
@@ -437,7 +433,7 @@ export default function ResourcesPage() {
       <View className="gap-2">
         {section.items.map((item) => (
           <Pressable
-            key={`${section.title}-${item.title}`}
+            key={`${section.id}-${item.title}`}
             onPress={() => {
               void openLink(item.url);
             }}
@@ -510,6 +506,15 @@ export default function ResourcesPage() {
           </View>
 
           <View className="flex-row flex-wrap gap-3 mt-4">
+            <Pressable
+              onPress={() => router.push(ROUTES.transferPlanner)}
+              className="px-4 py-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 items-center"
+              style={{ flexGrow: 1, minWidth: 150 }}
+            >
+              <Text className="text-emerald-500 text-sm font-medium">
+                {t("resources.transferPlanner")}
+              </Text>
+            </Pressable>
             <Pressable
               onPress={() => router.push(ROUTES.collegeSearch)}
               className="px-4 py-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 items-center"
@@ -807,7 +812,7 @@ export default function ResourcesPage() {
                                     <View className="flex-row flex-wrap gap-2 mb-3">
                                       <View className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
                                         <Text className="text-emerald-500 text-xs">
-                                          {getOpportunityDueLabel(item.computedDueAt)}
+                                          {getOpportunityDueLabel(item)}
                                         </Text>
                                       </View>
                                       {item.recurrence.isYearly ? (
@@ -817,10 +822,10 @@ export default function ResourcesPage() {
                                           </Text>
                                         </View>
                                       ) : null}
-                                      {item.requirements.needsRecommendations ? (
+                                      {getRecommendationLabel(item) ? (
                                         <View className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
                                           <Text className="text-emerald-500 text-xs">
-                                            {t("resources.needsRecommendations")}
+                                            {getRecommendationLabel(item)}
                                           </Text>
                                         </View>
                                       ) : null}
@@ -837,10 +842,27 @@ export default function ResourcesPage() {
                                           </Text>
                                         </View>
                                       ) : null}
+                                      {getAwardLabel(item) ? (
+                                        <View className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                                          <Text className="text-emerald-500 text-xs">
+                                            {getAwardLabel(item)}
+                                          </Text>
+                                        </View>
+                                      ) : null}
+                                      {getEligibilityLabels(item).map((label) => (
+                                        <View
+                                          key={`${item.opportunityId}-${label}`}
+                                          className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20"
+                                        >
+                                          <Text className="text-emerald-500 text-xs">
+                                            {label}
+                                          </Text>
+                                        </View>
+                                      ))}
                                       {item.isDone ? (
                                         <View className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
                                           <Text className="text-emerald-500 text-xs">
-                                            {t("resources.statusDone")}
+                                            {getProgressLabel(item) ?? t("resources.statusDone")}
                                           </Text>
                                         </View>
                                       ) : null}
@@ -910,7 +932,7 @@ export default function ResourcesPage() {
                   {filteredReferenceSections.length > 0 ? (
                     <View className="gap-6">
                       {filteredReferenceSections.map((section) => (
-                        <View key={section.title}>
+                        <View key={section.id}>
                           <View className="flex-row items-center mb-3 px-2">
                             <MaterialIcons
                               name={section.icon}
@@ -923,7 +945,7 @@ export default function ResourcesPage() {
                           <View className={`${cardClass} border rounded-2xl overflow-hidden`}>
                             {section.items.map((item, index) => (
                               <Pressable
-                                key={`${section.title}-${item.title}`}
+                                key={`${section.id}-${item.title}`}
                                 onPress={() => {
                                   void openLink(item.url);
                                 }}
