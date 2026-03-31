@@ -38,6 +38,14 @@ if errorlevel 1 (
 )
 
 echo Server is live at %SERVER_URL%
+echo Warming up the Expo web preview before opening your browser...
+call :wait_for_browser_preview "%SERVER_URL%" 180
+if errorlevel 1 (
+  echo The web preview did not finish warming in time. Opening the browser anyway...
+) else (
+  echo Web preview is ready.
+)
+
 start "" "%SERVER_URL%" >nul 2>&1
 if errorlevel 1 (
   echo The browser did not open automatically.
@@ -188,8 +196,18 @@ exit /b 0
 
 :ensure_app_dependencies
 if exist "%APP_DIR%\node_modules" (
-  echo App dependencies are already installed.
-  exit /b 0
+  echo Checking app dependencies...
+  pushd "%APP_DIR%" >nul
+  call npm ls --depth=0 >nul 2>&1
+  set "NPM_LS_EXIT=!ERRORLEVEL!"
+  popd >nul
+
+  if "!NPM_LS_EXIT!"=="0" (
+    echo App dependencies are already installed.
+    exit /b 0
+  )
+
+  echo App dependencies are incomplete. Reinstalling...
 )
 
 echo Installing app dependencies. This may take a few minutes...
@@ -223,3 +241,36 @@ for /l %%I in (1,1,%MAX_WAIT_SECONDS%) do (
 )
 
 exit /b 1
+
+:wait_for_browser_preview
+set "PREVIEW_URL=%~1"
+set "PREVIEW_WAIT_SECONDS=%~2"
+if "%PREVIEW_WAIT_SECONDS%"=="" set "PREVIEW_WAIT_SECONDS=180"
+
+powershell -NoProfile -ExecutionPolicy Bypass -Command ^
+  "$url = '%PREVIEW_URL%';" ^
+  "$timeoutSeconds = [int]'%PREVIEW_WAIT_SECONDS%';" ^
+  "$deadline = (Get-Date).AddSeconds($timeoutSeconds);" ^
+  "while ((Get-Date) -lt $deadline) {" ^
+  "  try {" ^
+  "    $rootResponse = Invoke-WebRequest -UseBasicParsing -Uri $url -TimeoutSec 120;" ^
+  "    if ($rootResponse.StatusCode -lt 200 -or $rootResponse.StatusCode -ge 400) { throw 'Root page did not return a success status.' }" ^
+  "    $rootContent = [string]$rootResponse.Content;" ^
+  "    $bundleMatch = [regex]::Match($rootContent, '<script src=""([^""]*entry\.bundle[^""]*)""');" ^
+  "    if (-not $bundleMatch.Success) { exit 0 }" ^
+  "    $bundlePath = $bundleMatch.Groups[1].Value;" ^
+  "    if ([string]::IsNullOrWhiteSpace($bundlePath)) { exit 0 }" ^
+  "    if ($bundlePath -match '^(https?:)?//') {" ^
+  "      if ($bundlePath.StartsWith('//')) { $bundleUrl = 'http:' + $bundlePath } else { $bundleUrl = $bundlePath }" ^
+  "    } else {" ^
+  "      $bundleUrl = ([System.Uri]::new([System.Uri]$url, $bundlePath)).AbsoluteUri" ^
+  "    }" ^
+  "    $bundleResponse = Invoke-WebRequest -UseBasicParsing -Uri $bundleUrl -TimeoutSec 120;" ^
+  "    if ($bundleResponse.StatusCode -ge 200 -and $bundleResponse.StatusCode -lt 400 -and ([string]$bundleResponse.Content).Length -ge 1024) { exit 0 }" ^
+  "  } catch {" ^
+  "    Start-Sleep -Seconds 2" ^
+  "  }" ^
+  "}" ^
+  "exit 1" >nul 2>&1
+
+exit /b %ERRORLEVEL%

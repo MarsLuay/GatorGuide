@@ -440,6 +440,7 @@ export function buildSuggestedQuarterPlan(input: {
   track: TransferPlannerTrack | null;
   currentCourseLabels?: string[];
   referenceDate?: Date;
+  includeStayAtGrcCourses?: boolean;
 }) {
   const selectedCurrentCourseLabels = new Set(
     unique(
@@ -453,7 +454,7 @@ export function buildSuggestedQuarterPlan(input: {
     [
       ...input.applicationStatuses,
       ...input.beforeEnrollmentStatuses,
-      ...input.stayAtGrcStatuses,
+      ...(input.includeStayAtGrcCourses === false ? [] : input.stayAtGrcStatuses),
     ]
       .filter((status) => !status.matched)
       .flatMap((status) => {

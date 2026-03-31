@@ -1,9 +1,12 @@
 #!/usr/bin/env node
 
+const fs = require("node:fs");
 const net = require("node:net");
 const path = require("node:path");
 const { spawn } = require("node:child_process");
 
+const OUTPUT_BRIDGE_ENV = "GATORGUIDE_EXPO_OUTPUT_BRIDGE";
+const OUTPUT_BRIDGE_FILE_ENV = "GATORGUIDE_EXPO_OUTPUT_FILE";
 const VALID_MODES = ["tunnel", "lan", "offline"];
 const DEFAULT_MODE_ORDER = ["tunnel", "lan", "offline"];
 const MODE_TIMEOUTS_MS = {
@@ -11,6 +14,16 @@ const MODE_TIMEOUTS_MS = {
   lan: 20000,
   offline: 20000,
 };
+const READY_STABILITY_DELAY_MS = 2500;
+const TUNNEL_SUCCESS_PATTERNS = ["tunnel ready.", "tunnel connected."];
+const TUNNEL_FAILURE_PATTERNS = [
+  "ngrok tunnel took too long to connect.",
+  "tunnel connection has been closed.",
+  "cannot start tunnel url",
+  "cannot use ngrok with a robot user.",
+];
+const ANSI_ESCAPE_PATTERN = /\u001b\[[0-9;?]*[ -/]*[@-~]/g;
+const OUTPUT_BRIDGE_POLL_MS = 150;
 
 function log(message) {
   process.stdout.write(`[expo-start] ${message}\n`);
@@ -19,6 +32,124 @@ function log(message) {
 function fail(message) {
   process.stderr.write(`[expo-start] ${message}\n`);
   process.exit(1);
+}
+
+function stripAnsi(value) {
+  return String(value || "").replace(ANSI_ESCAPE_PATTERN, "");
+}
+
+function toText(chunk, encoding) {
+  if (typeof chunk === "string") {
+    return chunk;
+  }
+
+  if (Buffer.isBuffer(chunk)) {
+    return chunk.toString(typeof encoding === "string" ? encoding : "utf8");
+  }
+
+  if (chunk == null) {
+    return "";
+  }
+
+  return String(chunk);
+}
+
+function createLineForwarder(streamName, stream) {
+  const originalWrite = stream.write.bind(stream);
+  let buffer = "";
+  const bridgeOutputFile = String(process.env[OUTPUT_BRIDGE_FILE_ENV] || "").trim();
+
+  const sendLine = (line) => {
+    if (!bridgeOutputFile) {
+      return;
+    }
+
+    try {
+      fs.appendFileSync(bridgeOutputFile, `${JSON.stringify({
+        stream: streamName,
+        line,
+      })}\n`);
+    } catch (error) {
+      // Ignore output bridge write errors and continue writing to the terminal.
+    }
+  };
+
+  const flushCompleteLines = () => {
+    let index = 0;
+
+    while (index < buffer.length) {
+      const char = buffer[index];
+      if (char !== "\n" && char !== "\r") {
+        index += 1;
+        continue;
+      }
+
+      const line = buffer.slice(0, index);
+      sendLine(line);
+
+      let nextIndex = index + 1;
+      if (char === "\r" && buffer[nextIndex] === "\n") {
+        nextIndex += 1;
+      }
+
+      buffer = buffer.slice(nextIndex);
+      index = 0;
+    }
+  };
+
+  const flushRemainder = () => {
+    if (!buffer) {
+      return;
+    }
+
+    sendLine(buffer);
+    buffer = "";
+  };
+
+  stream.write = function patchedWrite(chunk, encoding, callback) {
+    const text = toText(chunk, encoding);
+    if (text) {
+      buffer += text;
+      flushCompleteLines();
+    }
+
+    return originalWrite(chunk, encoding, callback);
+  };
+
+  return flushRemainder;
+}
+
+function installOutputBridge() {
+  const flushers = [
+    createLineForwarder("stdout", process.stdout),
+    createLineForwarder("stderr", process.stderr),
+  ];
+
+  const flushAll = () => {
+    for (const flush of flushers) {
+      try {
+        flush();
+      } catch (error) {
+        // Ignore flush errors during shutdown.
+      }
+    }
+  };
+
+  process.on("beforeExit", flushAll);
+  process.on("exit", flushAll);
+  process.on("SIGINT", flushAll);
+  process.on("SIGTERM", flushAll);
+}
+
+function quoteNodeOptionValue(value) {
+  return `"${String(value || "").replace(/(["\\])/g, "\\$1")}"`;
+}
+
+function buildNodeOptionsWithRequire(existingNodeOptions, requirePath) {
+  const requireOption = `--require ${quoteNodeOptionValue(requirePath)}`;
+  return String(existingNodeOptions || "").trim()
+    ? `${String(existingNodeOptions || "").trim()} ${requireOption}`
+    : requireOption;
 }
 
 function parseCliArgs(argv) {
@@ -140,6 +271,94 @@ async function waitForPort(port, timeoutMs) {
   return false;
 }
 
+function createOutputTracker() {
+  let lastErrorLine = "";
+  let lastCommandErrorLine = "";
+
+  return {
+    pushLine(line, isErrorStream) {
+      const normalizedLine = stripAnsi(line).trim();
+      if (!normalizedLine) {
+        return;
+      }
+
+      if (isErrorStream) {
+        lastErrorLine = normalizedLine;
+      }
+
+      if (/^commanderror:/i.test(normalizedLine)) {
+        lastCommandErrorLine = normalizedLine;
+      }
+    },
+    getFailureReason() {
+      return lastCommandErrorLine || lastErrorLine || "";
+    },
+  };
+}
+
+function createTunnelStatusMonitor(timeoutMs) {
+  let settled = false;
+  let resolveStatus = () => {};
+
+  const promise = new Promise((resolve) => {
+    resolveStatus = resolve;
+  });
+
+  const settle = (status) => {
+    if (settled) {
+      return;
+    }
+
+    settled = true;
+    clearTimeout(timeoutId);
+    resolveStatus(status);
+  };
+
+  const timeoutId = setTimeout(() => {
+    settle({
+      ready: false,
+      reason: "Tunnel mode did not report ready in time.",
+    });
+  }, timeoutMs);
+
+  return {
+    promise,
+    pushLine(line) {
+      const normalizedLine = stripAnsi(line).trim().toLowerCase();
+      if (!normalizedLine) {
+        return;
+      }
+
+      if (normalizedLine.startsWith("commanderror:")) {
+        settle({
+          ready: false,
+          reason: stripAnsi(line).trim(),
+        });
+        return;
+      }
+
+      if (
+        TUNNEL_SUCCESS_PATTERNS.some((pattern) =>
+          normalizedLine.includes(pattern)
+        )
+      ) {
+        settle({ ready: true });
+        return;
+      }
+
+      const failurePattern = TUNNEL_FAILURE_PATTERNS.find((pattern) =>
+        normalizedLine.includes(pattern)
+      );
+      if (failurePattern) {
+        settle({
+          ready: false,
+          reason: stripAnsi(line).trim(),
+        });
+      }
+    },
+  };
+}
+
 function terminateChild(child) {
   return new Promise((resolve) => {
     if (!child || child.exitCode != null) {
@@ -167,21 +386,145 @@ function terminateChild(child) {
   });
 }
 
+function resolveNpxCommand() {
+  return process.platform === "win32" ? "npx.cmd" : "npx";
+}
+
+function quoteShellArg(value) {
+  const text = String(value ?? "");
+  if (process.platform !== "win32") {
+    if (!text) {
+      return "''";
+    }
+    return "'" + text.replace(/'/g, "'\"'\"'") + "'";
+  }
+
+  if (!text) {
+    return '""';
+  }
+
+  if (/^[A-Za-z0-9_./:=@+-]+$/.test(text)) {
+    return text;
+  }
+
+  return `"${text.replace(/"/g, '""')}"`;
+}
+
 function buildExpoArgs({ web, port, mode, extraExpoArgs }) {
   const args = ["start"];
   if (web) args.push("--web");
   if (mode === "tunnel") args.push("--tunnel");
-  if (mode === "lan") args.push("--lan");
   if (mode === "offline") args.push("--offline");
   args.push("--port", String(port), ...extraExpoArgs);
   return args;
 }
 
+function spawnExpoProcess({ args, env }) {
+  if (process.platform === "win32") {
+    const commandLine = ["npx", "expo", ...args].map(quoteShellArg).join(" ");
+    return spawn("cmd.exe", ["/d", "/s", "/c", commandLine], {
+      cwd: process.cwd(),
+      stdio: "inherit",
+      env,
+    });
+  }
+
+  return spawn(resolveNpxCommand(), ["expo", ...args], {
+    cwd: process.cwd(),
+    stdio: "inherit",
+    env,
+  });
+}
+
+function createOutputBridgeTail(filePath, onLine) {
+  let offset = 0;
+  let buffer = "";
+
+  const poll = () => {
+    try {
+      if (!fs.existsSync(filePath)) {
+        return;
+      }
+
+      const stats = fs.statSync(filePath);
+      if (stats.size <= offset) {
+        return;
+      }
+
+      const length = stats.size - offset;
+      const fileHandle = fs.openSync(filePath, "r");
+      const chunk = Buffer.alloc(length);
+
+      try {
+        const bytesRead = fs.readSync(fileHandle, chunk, 0, length, offset);
+        offset += bytesRead;
+        buffer += chunk.toString("utf8", 0, bytesRead);
+      } finally {
+        fs.closeSync(fileHandle);
+      }
+
+      let newlineIndex = buffer.indexOf("\n");
+      while (newlineIndex !== -1) {
+        const rawLine = buffer.slice(0, newlineIndex).trim();
+        buffer = buffer.slice(newlineIndex + 1);
+
+        if (rawLine) {
+          try {
+            const event = JSON.parse(rawLine);
+            onLine(String(event.line || ""), event.stream === "stderr");
+          } catch (error) {
+            // Ignore malformed bridge lines.
+          }
+        }
+
+        newlineIndex = buffer.indexOf("\n");
+      }
+    } catch (error) {
+      // Ignore bridge tail errors and continue monitoring.
+    }
+  };
+
+  const intervalId = setInterval(poll, OUTPUT_BRIDGE_POLL_MS);
+  if (typeof intervalId.unref === "function") {
+    intervalId.unref();
+  }
+
+  return {
+    stop() {
+      clearInterval(intervalId);
+      poll();
+
+      const trailingLine = buffer.trim();
+      if (!trailingLine) {
+        return;
+      }
+
+      try {
+        const event = JSON.parse(trailingLine);
+        onLine(String(event.line || ""), event.stream === "stderr");
+      } catch (error) {
+        // Ignore malformed trailing bridge data.
+      }
+    },
+  };
+}
+
 async function attemptExpoStart({ mode, web, port, extraExpoArgs }) {
-  const localExpoCli = path.join(process.cwd(), "node_modules", "expo", "bin", "cli");
-  const command = process.execPath;
   const args = buildExpoArgs({ web, port, mode, extraExpoArgs });
-  const env = { ...process.env };
+  const outputBridgeFilePath = path.join(
+    process.cwd(),
+    ".expo",
+    `start-expo-bridge-${mode}-${process.pid}.log`
+  );
+  const env =
+    mode === "tunnel"
+      ? {
+          ...process.env,
+          [OUTPUT_BRIDGE_ENV]: "1",
+          [OUTPUT_BRIDGE_FILE_ENV]: outputBridgeFilePath,
+          NODE_OPTIONS: buildNodeOptionsWithRequire(process.env.NODE_OPTIONS, __filename),
+        }
+      : { ...process.env };
 
   if (mode === "offline") {
     env.EXPO_OFFLINE = "1";
@@ -191,42 +534,126 @@ async function attemptExpoStart({ mode, web, port, extraExpoArgs }) {
 
   log(`Trying Expo ${mode} mode on port ${port}${web ? " (web)" : ""}...`);
 
-  const child = spawn(command, [localExpoCli, ...args], {
-    cwd: process.cwd(),
-    stdio: "inherit",
-    env,
-  });
+  if (mode === "tunnel") {
+    try {
+      fs.mkdirSync(path.dirname(outputBridgeFilePath), { recursive: true });
+      fs.writeFileSync(outputBridgeFilePath, "");
+    } catch (error) {
+      // Ignore bridge file prep failures and continue startup.
+    }
+  }
 
-  const exitPromise = new Promise((resolve) => {
-    child.once("exit", (code, signal) => resolve({ code, signal }));
-  });
+  const child = spawnExpoProcess({ args, env });
 
-  const readyPromise = waitForPort(port, MODE_TIMEOUTS_MS[mode]).then((ready) => ({
-    ready,
-  }));
+  const outputTracker = createOutputTracker();
+  const tunnelMonitor =
+    mode === "tunnel" ? createTunnelStatusMonitor(MODE_TIMEOUTS_MS[mode]) : null;
+  const outputBridgeTail =
+    mode === "tunnel"
+      ? createOutputBridgeTail(outputBridgeFilePath, (line, isErrorStream) => {
+          outputTracker.pushLine(line, isErrorStream);
+          tunnelMonitor?.pushLine(line);
+        })
+      : null;
 
-  const result = await Promise.race([exitPromise, readyPromise]);
-
-  if (result && typeof result === "object" && "ready" in result && result.ready) {
-    log(`Expo is live in ${mode} mode at http://127.0.0.1:${port}`);
-    const exitCode = await new Promise((resolve) => {
-      child.once("exit", (code) => resolve(code ?? 0));
+  const closePromise = new Promise((resolve) => {
+    child.once("close", (code, signal) => {
+      outputBridgeTail?.stop();
+      resolve({ type: "exit", code, signal });
     });
-    process.exit(Number(exitCode) || 0);
+  });
+
+  const spawnErrorPromise = new Promise((resolve) => {
+    child.once("error", (error) => {
+      outputBridgeTail?.stop();
+      resolve({
+        type: "spawn-error",
+        reason: error instanceof Error ? error.message : String(error),
+      });
+    });
+  });
+
+  const startupChecks = [
+    waitForPort(port, MODE_TIMEOUTS_MS[mode]).then((ready) => {
+      if (!ready) {
+        throw new Error(`Expo ${mode} mode did not open port ${port} in time.`);
+      }
+    }),
+  ];
+
+  if (tunnelMonitor) {
+    startupChecks.push(
+      tunnelMonitor.promise.then((status) => {
+        if (!status.ready) {
+          throw new Error(status.reason || "Tunnel mode failed to connect.");
+        }
+      })
+    );
+  }
+
+  const readyPromise = Promise.all(startupChecks)
+    .then(() => ({ type: "ready" }))
+    .catch((error) => ({
+      type: "startup-failed",
+      reason: error instanceof Error ? error.message : String(error),
+    }));
+
+  const result = await Promise.race([closePromise, spawnErrorPromise, readyPromise]);
+
+  if (result && typeof result === "object" && result.type === "ready") {
+    const stabilityResult = await Promise.race([
+      closePromise,
+      wait(READY_STABILITY_DELAY_MS).then(() => ({ type: "stable" })),
+    ]);
+
+    if (
+      stabilityResult &&
+      typeof stabilityResult === "object" &&
+      stabilityResult.type === "exit"
+    ) {
+      const detail =
+        stabilityResult.signal != null
+          ? `signal ${stabilityResult.signal}`
+          : `exit code ${stabilityResult.code ?? "unknown"}`;
+      log(`Expo ${mode} mode ended during startup verification (${detail}).`);
+      return false;
+    }
+
+    log(`Expo is live in ${mode} mode at http://127.0.0.1:${port}`);
+    const exitResult = await closePromise;
+    process.exit(Number(exitResult.code) || 0);
   }
 
   await terminateChild(child);
 
-  if (result && typeof result === "object" && "code" in result) {
+  if (result && typeof result === "object" && result.type === "spawn-error") {
+    log(
+      result.reason
+        ? `Expo ${mode} mode could not launch: ${result.reason}`
+        : `Expo ${mode} mode could not launch.`
+    );
+    return false;
+  }
+
+  if (result && typeof result === "object" && result.type === "exit") {
+    const failureReason = outputTracker.getFailureReason();
     const detail =
       result.signal != null
         ? `signal ${result.signal}`
         : `exit code ${result.code ?? "unknown"}`;
-    log(`Expo ${mode} mode ended before it came online (${detail}).`);
+    if (failureReason) {
+      log(`Expo ${mode} mode failed before it came online: ${failureReason}`);
+    } else {
+      log(`Expo ${mode} mode ended before it came online (${detail}).`);
+    }
     return false;
   }
 
-  log(`Expo ${mode} mode did not come online in time.`);
+  log(
+    result.reason
+      ? `Expo ${mode} mode failed before it came online: ${result.reason}`
+      : `Expo ${mode} mode did not come online in time.`
+  );
   return false;
 }
 
@@ -275,4 +702,8 @@ async function main() {
   );
 }
 
-void main();
+if (process.env[OUTPUT_BRIDGE_ENV] === "1" && require.main !== module) {
+  installOutputBridge();
+} else {
+  void main();
+}

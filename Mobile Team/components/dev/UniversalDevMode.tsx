@@ -84,12 +84,56 @@ type DevSnapshot = {
           scrollY: number | null;
           devicePixelRatio: number | null;
           online: boolean | null;
+          readyState: string | null;
+          visibilityState: string | null;
           documentDir: string | null;
           activeElement:
             | {
                 tagName: string | null;
                 id: string | null;
                 className: string | null;
+              }
+            | null;
+          iconFonts: {
+            status: string | null;
+            totalFontFaces: number | null;
+            checks: Array<{
+              family: string;
+              available: boolean | null;
+            }>;
+            matchingFaces: Array<{
+              family: string | null;
+              status: string | null;
+              style: string | null;
+              weight: string | null;
+            }>;
+          };
+          resourceDiagnostics: {
+            relevantEntryCount: number;
+            relevantEntries: Array<{
+              name: string | null;
+              initiatorType: string | null;
+              durationMs: number | null;
+              transferSize: number | null;
+              encodedBodySize: number | null;
+              decodedBodySize: number | null;
+              startTimeMs: number | null;
+              responseEndMs: number | null;
+            }>;
+            recentLoadErrors: Array<{
+              timestamp: string;
+              tagName: string | null;
+              url: string | null;
+              rel: string | null;
+              as: string | null;
+            }>;
+          };
+          navigationTiming:
+            | {
+                type: string | null;
+                domContentLoadedMs: number | null;
+                loadEventMs: number | null;
+                responseEndMs: number | null;
               }
             | null;
         }
@@ -266,6 +310,29 @@ const HIDDEN_CHILD_ROUTES = [
   "college/[collegeId]",
 ];
 
+const ICON_FONT_FAMILIES = [
+  "Ionicons",
+  "MaterialIcons",
+  "Material Icons",
+  "FontAwesome",
+  "FontAwesome5Free-Regular",
+  "FontAwesome5Free-Solid",
+  "FontAwesome5Brands-Regular",
+] as const;
+
+const MAX_WEB_RESOURCE_ENTRIES = 20;
+const MAX_WEB_RESOURCE_ERRORS = 20;
+
+type RecentWebLoadError = {
+  timestamp: string;
+  tagName: string | null;
+  url: string | null;
+  rel: string | null;
+  as: string | null;
+};
+
+const recentWebLoadErrors: RecentWebLoadError[] = [];
+
 function isRTL(language: string) {
   return language === "Arabic" || language === "Persian";
 }
@@ -348,6 +415,151 @@ function sanitizeHref(rawHref: string | null) {
   } catch {
     return rawHref;
   }
+}
+
+function pushRecentWebLoadError(entry: RecentWebLoadError) {
+  recentWebLoadErrors.push(entry);
+  if (recentWebLoadErrors.length > MAX_WEB_RESOURCE_ERRORS) {
+    recentWebLoadErrors.splice(0, recentWebLoadErrors.length - MAX_WEB_RESOURCE_ERRORS);
+  }
+}
+
+function roundMetric(value: unknown) {
+  if (typeof value !== "number" || !Number.isFinite(value)) return null;
+  return Math.round(value * 100) / 100;
+}
+
+function getWebIconFontDiagnostics() {
+  if (typeof document === "undefined") {
+    return {
+      status: null,
+      totalFontFaces: null,
+      checks: ICON_FONT_FAMILIES.map((family) => ({ family, available: null })),
+      matchingFaces: [] as Array<{
+        family: string | null;
+        status: string | null;
+        style: string | null;
+        weight: string | null;
+      }>,
+    };
+  }
+
+  const fontSet = (document as Document & { fonts?: any }).fonts;
+  const checks = ICON_FONT_FAMILIES.map((family) => {
+    if (!fontSet || typeof fontSet.check !== "function") {
+      return { family, available: null };
+    }
+
+    const available =
+      fontSet.check(`16px "${family}"`) || fontSet.check(`16px ${family}`);
+
+    return { family, available };
+  });
+
+  const matchingFaces =
+    fontSet && typeof fontSet[Symbol.iterator] === "function"
+      ? Array.from(fontSet)
+          .map((face: any) => ({
+            family:
+              typeof face?.family === "string"
+                ? face.family.replace(/^["']|["']$/g, "")
+                : null,
+            status: typeof face?.status === "string" ? face.status : null,
+            style: typeof face?.style === "string" ? face.style : null,
+            weight:
+              typeof face?.weight === "string" || typeof face?.weight === "number"
+                ? String(face.weight)
+                : null,
+          }))
+          .filter((face) =>
+            ICON_FONT_FAMILIES.some((family) =>
+              String(face.family || "").toLowerCase().includes(family.toLowerCase())
+            )
+          )
+          .slice(0, MAX_WEB_RESOURCE_ENTRIES)
+      : [];
+
+  return {
+    status: fontSet && typeof fontSet.status === "string" ? fontSet.status : null,
+    totalFontFaces:
+      fontSet && typeof fontSet.size === "number" && Number.isFinite(fontSet.size)
+        ? fontSet.size
+        : null,
+    checks,
+    matchingFaces,
+  };
+}
+
+function getWebResourceDiagnostics() {
+  if (typeof performance === "undefined" || typeof performance.getEntriesByType !== "function") {
+    return {
+      relevantEntryCount: 0,
+      relevantEntries: [] as Array<{
+        name: string | null;
+        initiatorType: string | null;
+        durationMs: number | null;
+        transferSize: number | null;
+        encodedBodySize: number | null;
+        decodedBodySize: number | null;
+        startTimeMs: number | null;
+        responseEndMs: number | null;
+      }>,
+      recentLoadErrors: [...recentWebLoadErrors],
+    };
+  }
+
+  const resourceEntries = performance
+    .getEntriesByType("resource")
+    .filter((entry) =>
+      /entry\.bundle|expo-router|react-native-vector-icons|\/Fonts\/|\.ttf(\?|$)|\.otf(\?|$)|\.woff2?(\?|$)|\.(png|jpe?g|webp|svg)(\?|$)/i.test(
+        String((entry as PerformanceResourceTiming).name || "")
+      )
+    )
+    .slice(-MAX_WEB_RESOURCE_ENTRIES)
+    .map((entry) => {
+      const resource = entry as PerformanceResourceTiming;
+      return {
+        name: sanitizeHref(String(resource.name || "")) || null,
+        initiatorType: resource.initiatorType || null,
+        durationMs: roundMetric(resource.duration),
+        transferSize:
+          typeof resource.transferSize === "number" ? resource.transferSize : null,
+        encodedBodySize:
+          typeof resource.encodedBodySize === "number"
+            ? resource.encodedBodySize
+            : null,
+        decodedBodySize:
+          typeof resource.decodedBodySize === "number"
+            ? resource.decodedBodySize
+            : null,
+        startTimeMs: roundMetric(resource.startTime),
+        responseEndMs: roundMetric(resource.responseEnd),
+      };
+    });
+
+  return {
+    relevantEntryCount: resourceEntries.length,
+    relevantEntries: resourceEntries,
+    recentLoadErrors: [...recentWebLoadErrors],
+  };
+}
+
+function getWebNavigationTiming() {
+  if (typeof performance === "undefined" || typeof performance.getEntriesByType !== "function") {
+    return null;
+  }
+
+  const entry = performance.getEntriesByType("navigation")[0] as
+    | PerformanceNavigationTiming
+    | undefined;
+  if (!entry) return null;
+
+  return {
+    type: entry.type || null,
+    domContentLoadedMs: roundMetric(entry.domContentLoadedEventEnd),
+    loadEventMs: roundMetric(entry.loadEventEnd),
+    responseEndMs: roundMetric(entry.responseEnd),
+  };
 }
 
 function getPageLabel(pathname: string) {
@@ -465,6 +677,13 @@ export function UniversalDevMode() {
           }
         : null;
 
+    const webIconFontDiagnostics =
+      Platform.OS === "web" ? getWebIconFontDiagnostics() : null;
+    const webResourceDiagnostics =
+      Platform.OS === "web" ? getWebResourceDiagnostics() : null;
+    const webNavigationTiming =
+      Platform.OS === "web" ? getWebNavigationTiming() : null;
+
     return {
       meta: {
         generatedAt: now.toISOString(),
@@ -507,11 +726,31 @@ export function UniversalDevMode() {
                 devicePixelRatio:
                   typeof window !== "undefined" ? window.devicePixelRatio : null,
                 online: typeof navigator !== "undefined" ? navigator.onLine : null,
+                readyState:
+                  typeof document !== "undefined" ? document.readyState ?? null : null,
+                visibilityState:
+                  typeof document !== "undefined"
+                    ? document.visibilityState ?? null
+                    : null,
                 documentDir:
                   typeof document !== "undefined"
                     ? document.documentElement.getAttribute("dir")
                     : null,
                 activeElement,
+                iconFonts:
+                  webIconFontDiagnostics ?? {
+                    status: null,
+                    totalFontFaces: null,
+                    checks: [],
+                    matchingFaces: [],
+                  },
+                resourceDiagnostics:
+                  webResourceDiagnostics ?? {
+                    relevantEntryCount: 0,
+                    relevantEntries: [],
+                    recentLoadErrors: [],
+                  },
+                navigationTiming: webNavigationTiming,
               }
             : null,
       },
@@ -754,6 +993,49 @@ export function UniversalDevMode() {
     if (!visible) return;
     void refreshSnapshot();
   }, [refreshSnapshot, visible]);
+
+  useEffect(() => {
+    if (!__DEV__ || Platform.OS !== "web" || typeof window === "undefined") return;
+
+    const onResourceError = (event: Event) => {
+      const target = event.target as
+        | (EventTarget & {
+            tagName?: string;
+            src?: string;
+            href?: string;
+            rel?: string;
+            as?: string;
+            currentSrc?: string;
+          })
+        | null;
+
+      if (!target || target === window) return;
+
+      const url =
+        sanitizeHref(
+          typeof target.currentSrc === "string" && target.currentSrc
+            ? target.currentSrc
+            : typeof target.src === "string" && target.src
+              ? target.src
+              : typeof target.href === "string" && target.href
+                ? target.href
+                : null
+        ) ?? null;
+
+      if (!url) return;
+
+      pushRecentWebLoadError({
+        timestamp: new Date().toISOString(),
+        tagName: typeof target.tagName === "string" ? target.tagName : null,
+        url,
+        rel: typeof target.rel === "string" ? target.rel : null,
+        as: typeof target.as === "string" ? target.as : null,
+      });
+    };
+
+    window.addEventListener("error", onResourceError, true);
+    return () => window.removeEventListener("error", onResourceError, true);
+  }, []);
 
   useEffect(() => {
     if (!__DEV__ || Platform.OS !== "web") return;
