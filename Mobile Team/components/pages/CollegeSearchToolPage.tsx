@@ -9,7 +9,7 @@ import {
   View,
   useWindowDimensions,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
@@ -21,7 +21,9 @@ import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
+import useBack from "@/hooks/use-back";
 import { aiService, collegeService, errorLoggingService, type DisabledInfluences, type EmptyState, type College } from "@/services";
+import { formatLocalizedRate } from "@/utils/locale-format";
 
 type RecommendedCollege = {
   college: College;
@@ -30,12 +32,6 @@ type RecommendedCollege = {
   score?: number;
   scoreText?: string;
 };
-
-function formatPercent(value: unknown) {
-  const n = Number(value);
-  if (!Number.isFinite(n)) return null;
-  return `${Math.round(n)}%`;
-}
 
 function getMatchText(item: RecommendedCollege, fallback: string) {
   if (typeof item.scoreText === "string" && item.scoreText.trim().length) return item.scoreText;
@@ -51,7 +47,8 @@ function getMatchScore(item: RecommendedCollege): number | null {
 
 function buildSimpleWhy(
   item: RecommendedCollege,
-  t: (key: string, params?: Record<string, string | number>) => string
+  t: (key: string, params?: Record<string, string | number>) => string,
+  language?: Parameters<typeof formatLocalizedRate>[1]
 ): string[] {
   const breakdown = (item.breakdown ?? {}) as Record<string, unknown>;
   const lines: string[] = [];
@@ -65,9 +62,7 @@ function buildSimpleWhy(
   if (Number(breakdown.waMrpParticipant ?? 0) > 0) lines.push(t("home.whyTransferPathway"));
 
   if (!lines.length) {
-    const admission = formatPercent(
-      item.college.admissionRate ? Number(item.college.admissionRate) * 100 : null
-    );
+    const admission = formatLocalizedRate(Number(item.college.admissionRate ?? NaN), language);
     lines.push(
       admission
         ? t("home.whyAdmissionRate", { value: admission })
@@ -80,7 +75,8 @@ function buildSimpleWhy(
 
 export default function CollegeSearchToolPage() {
   const router = useRouter();
-  const { t } = useAppLanguage();
+  const { t, language } = useAppLanguage();
+  const back = useBack(ROUTES.tabsResources);
   const { textClass, secondaryTextClass, cardBgClass, inputBgClass, placeholderColor } =
     useThemeStyles();
   const {
@@ -565,9 +561,9 @@ export default function CollegeSearchToolPage() {
                     {college.location.state}
                   </Text>
 
-                  {buildSimpleWhy(result, t).length ? (
+                  {buildSimpleWhy(result, t, language).length ? (
                     <View className="mt-3">
-                      {buildSimpleWhy(result, t).map((line) => (
+                      {buildSimpleWhy(result, t, language).map((line) => (
                         <Text key={`${college.id}-${line}`} className={`text-xs ${secondaryTextClass}`}>
                           {line}
                         </Text>
@@ -600,6 +596,11 @@ export default function CollegeSearchToolPage() {
           }}
         >
           <View className="pt-8 pb-6">
+            <Pressable onPress={back} className="mb-4 flex-row items-center self-start">
+              <MaterialIcons name="arrow-back" size={24} color={placeholderColor} />
+              <Text className={`${secondaryTextClass} ml-2`}>{t("general.back")}</Text>
+            </Pressable>
+
             <Text className={`text-3xl ${textClass}`}>{t("collegeSearchTool.title")}</Text>
             <Text className={`${secondaryTextClass} mt-2`} style={{ lineHeight: 22 }}>
               {headerSubtitle}

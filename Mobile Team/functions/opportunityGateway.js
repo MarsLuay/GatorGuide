@@ -47,6 +47,50 @@ function assertAuthenticated(request) {
   }
 }
 
+function parseConfigList(value, options = {}) {
+  const normalizeCase = options.normalizeCase ?? "none";
+  return String(value ?? "")
+    .split(",")
+    .map((item) => String(item ?? "").trim())
+    .filter(Boolean)
+    .map((item) => {
+      if (normalizeCase === "lower") return item.toLowerCase();
+      if (normalizeCase === "upper") return item.toUpperCase();
+      return item;
+    });
+}
+
+function getOpportunityAdminDecision(request) {
+  const allowedEmails = parseConfigList(process.env.OPPORTUNITY_ADMIN_EMAILS, {
+    normalizeCase: "lower",
+  });
+  const allowedUids = parseConfigList(process.env.OPPORTUNITY_ADMIN_UIDS);
+  const uid = truncate(request.auth?.uid, 128);
+  const email = truncate(request.auth?.token?.email, 320).toLowerCase() || null;
+  const authorizedBy = allowedUids.includes(uid)
+    ? "uid"
+    : email && allowedEmails.includes(email)
+      ? "email"
+      : null;
+
+  return {
+    authorized: !!authorizedBy,
+    authorizedBy,
+    email,
+    allowedEmailsConfigured: allowedEmails.length > 0,
+    allowedUidsConfigured: allowedUids.length > 0,
+  };
+}
+
+function assertOpportunityAdmin(request) {
+  const decision = getOpportunityAdminDecision(request);
+  if (decision.authorized) return decision;
+  throw new HttpsError(
+    "permission-denied",
+    "This account is not allowed to edit opportunity content."
+  );
+}
+
 function truncate(value, max = 500) {
   return String(value ?? "").trim().slice(0, max);
 }
@@ -117,6 +161,81 @@ function normalizeUrl(value) {
       return null;
     }
   }
+}
+
+function normalizeDeadlineType(value) {
+  const parsed = String(value ?? "").trim().toLowerCase();
+  if (parsed === "priority") return "priority";
+  if (parsed === "rolling") return "rolling";
+  return "final";
+}
+
+function normalizeOpportunityType(value) {
+  const parsed = String(value ?? "").trim().toLowerCase();
+  if (parsed === "internship") return "internship";
+  if (parsed === "college_deadline") return "college_deadline";
+  return "scholarship";
+}
+
+function normalizeOpportunityStatus(value) {
+  const parsed = String(value ?? "").trim().toLowerCase();
+  if (parsed === "draft") return "draft";
+  if (parsed === "archived") return "archived";
+  return "active";
+}
+
+function parseBoolean(value, fallback = false) {
+  if (typeof value === "boolean") return value;
+  const parsed = String(value ?? "").trim().toLowerCase();
+  if (!parsed) return fallback;
+  if (["1", "true", "yes", "on"].includes(parsed)) return true;
+  if (["0", "false", "no", "off"].includes(parsed)) return false;
+  return fallback;
+}
+
+function parseNullableInteger(value, min = 0, max = 9999) {
+  const raw = String(value ?? "").trim();
+  if (!raw) return null;
+  const parsed = Number.parseInt(raw, 10);
+  if (!Number.isFinite(parsed)) return null;
+  return Math.min(max, Math.max(min, parsed));
+}
+
+function parseNullableNumber(value, min = 0, max = 999999999) {
+  const raw = String(value ?? "").trim();
+  if (!raw) return null;
+  const parsed = Number(raw);
+  if (!Number.isFinite(parsed)) return null;
+  return Math.min(max, Math.max(min, parsed));
+}
+
+function normalizeCurrency(value) {
+  const parsed = String(value ?? "").trim().toUpperCase();
+  return /^[A-Z]{3}$/.test(parsed) ? parsed : "USD";
+}
+
+function normalizeTagList(values, options = {}) {
+  const lowercase = options.lowercase ?? true;
+  const rawList = Array.isArray(values)
+    ? values
+    : String(values ?? "")
+        .split(",")
+        .map((item) => item.trim())
+        .filter(Boolean);
+
+  return Array.from(
+    new Set(
+      rawList
+        .map((value) => truncate(value, 120))
+        .map((value) => (lowercase ? value.toLowerCase() : value))
+        .filter(Boolean)
+    )
+  );
+}
+
+function normalizeDateOnly(value) {
+  const parsed = String(value ?? "").trim();
+  return /^\d{4}-\d{2}-\d{2}$/.test(parsed) ? parsed : null;
 }
 
 function getHost(value) {
@@ -286,6 +405,8 @@ async function lookupDeadline(config, college) {
     normalizeUrl(parsed?.sourceUrl) ?? normalizeUrl(evidence[0]?.url) ?? null;
   const dueDate = truncate(parsed?.dueDate, 20);
   const timezone = truncate(parsed?.timezone, 80) || "America/Los_Angeles";
+  const deadlineType = normalizeDeadlineType(parsed?.deadlineType);
+  const deadlineLabel = truncate(parsed?.deadlineLabel, 160) || null;
   const confidence = truncate(parsed?.confidence, 80) || null;
   const notes = truncate(parsed?.notes, 400) || null;
 
@@ -294,6 +415,8 @@ async function lookupDeadline(config, college) {
     dueDate,
     dueAt: buildIsoDueDate(dueDate, timezone),
     timezone,
+    deadlineType,
+    deadlineLabel,
     confidence,
     notes,
   };
@@ -373,14 +496,31 @@ function buildGreenRiverSeedDocument(now) {
       day: 30,
       timezone: "America/Los_Angeles",
     },
+    deadline: {
+      type: "final",
+      label: "Annual scholarship deadline",
+    },
     matching: {
       financialAidTags: ["need_based", "merit"],
       suggestedMajors: [],
       hasToBeMajor: false,
     },
+    eligibility: {
+      gpaMin: null,
+      residencyTypes: [],
+      transferOnly: false,
+    },
     requirements: {
       needsRecommendations: true,
+      recommendationCountMin: 1,
       essayCount: 3,
+    },
+    award: {
+      amountMin: null,
+      amountMax: null,
+      currency: "USD",
+      amountText: "Amount varies by scholarship award",
+      renewable: null,
     },
     college: {
       collegeId: null,
@@ -453,14 +593,31 @@ async function upsertCollegeDeadlineOpportunity(data, requestId, config) {
       day,
       timezone: deadline.timezone || "America/Los_Angeles",
     },
+    deadline: {
+      type: deadline.deadlineType || (deadline.dueAt ? "final" : "rolling"),
+      label: deadline.deadlineLabel ?? null,
+    },
     matching: {
       financialAidTags: [],
       suggestedMajors: [],
       hasToBeMajor: false,
     },
+    eligibility: {
+      gpaMin: null,
+      residencyTypes: [],
+      transferOnly: false,
+    },
     requirements: {
       needsRecommendations: false,
+      recommendationCountMin: 0,
       essayCount: 0,
+    },
+    award: {
+      amountMin: null,
+      amountMax: null,
+      currency: "USD",
+      amountText: null,
+      renewable: null,
     },
     college: {
       collegeId: college.collegeId ?? null,
@@ -494,6 +651,190 @@ async function upsertCollegeDeadlineOpportunity(data, requestId, config) {
   };
 }
 
+async function getOpportunityDoc(opportunityId) {
+  const normalizedId = truncate(opportunityId, 160);
+  if (!normalizedId) {
+    throw new HttpsError("invalid-argument", "Opportunity ID is required.");
+  }
+
+  const ref = db.collection("opportunities").doc(normalizedId);
+  const snapshot = await ref.get();
+  return { ref, snapshot, normalizedId };
+}
+
+function buildManualOpportunityPayload(data, now, existingData = null) {
+  const title = truncate(data.title, 180);
+  if (!title) {
+    throw new HttpsError("invalid-argument", "Title is required.");
+  }
+
+  const organizationName = truncate(data.organizationName, 180);
+  const summary = truncate(data.summary, 600);
+  const opportunityId =
+    truncate(data.opportunityId, 160) || slugify(title) || `opportunity-${Date.now()}`;
+  const timezone = truncate(data.timezone, 80) || "America/Los_Angeles";
+  const dueDate = normalizeDateOnly(data.dueDate);
+  const isYearly = parseBoolean(data.isYearly, false);
+  const deadlineType = normalizeDeadlineType(data.deadlineType);
+  const dueAtIso = deadlineType === "rolling" ? null : buildIsoDueDate(dueDate, timezone);
+  const { month, day } = getMonthDayFromIso(dueDate);
+  const recommendationCountMin = parseNullableInteger(data.recommendationCountMin, 0, 12) ?? 0;
+  const essayCount = parseNullableInteger(data.essayCount, 0, 20) ?? 0;
+
+  return {
+    opportunityId,
+    payload: {
+      schemaVersion: 1,
+      opportunityId,
+      type: normalizeOpportunityType(data.type),
+      status: normalizeOpportunityStatus(data.status),
+      title,
+      organizationName: organizationName || title,
+      summary,
+      externalUrl:
+        normalizeUrl(data.externalUrl) ??
+        normalizeUrl(existingData?.externalUrl) ??
+        null,
+      dueAt: dueAtIso ? Timestamp.fromDate(new Date(dueAtIso)) : null,
+      recurrence: {
+        isYearly,
+        month: isYearly ? month : null,
+        day: isYearly ? day : null,
+        timezone,
+      },
+      deadline: {
+        type: deadlineType,
+        label: truncate(data.deadlineLabel, 160) || null,
+      },
+      matching: {
+        financialAidTags: normalizeTagList(data.financialAidTags, { lowercase: true }),
+        suggestedMajors: normalizeTagList(data.suggestedMajors, { lowercase: true }),
+        hasToBeMajor: parseBoolean(data.hasToBeMajor, false),
+      },
+      eligibility: {
+        gpaMin: parseNullableNumber(data.gpaMin, 0, 4.5),
+        residencyTypes: normalizeTagList(data.residencyTypes, { lowercase: true }),
+        transferOnly: parseBoolean(data.transferOnly, false),
+      },
+      requirements: {
+        needsRecommendations:
+          recommendationCountMin > 0 || parseBoolean(data.needsRecommendations, false),
+        recommendationCountMin,
+        essayCount,
+      },
+      award: {
+        amountMin: parseNullableNumber(data.awardAmountMin, 0, 100000000),
+        amountMax: parseNullableNumber(data.awardAmountMax, 0, 100000000),
+        currency: normalizeCurrency(data.awardCurrency),
+        amountText: truncate(data.awardAmountText, 160) || null,
+        renewable:
+          data.awardRenewable == null || String(data.awardRenewable).trim() === ""
+            ? null
+            : parseBoolean(data.awardRenewable, false),
+      },
+      college: {
+        collegeId: truncate(data.collegeId, 120) || null,
+        collegeName: truncate(data.collegeName, 180) || null,
+        city: truncate(data.collegeCity, 120) || null,
+        state: truncate(data.collegeState, 80) || null,
+        website:
+          normalizeUrl(data.collegeWebsite) ??
+          normalizeUrl(existingData?.college?.website) ??
+          null,
+      },
+      source: {
+        kind: "manual",
+        sourceUrl:
+          normalizeUrl(data.sourceUrl) ??
+          normalizeUrl(existingData?.source?.sourceUrl) ??
+          null,
+        sourceLabel: truncate(data.sourceLabel, 160) || "Opportunity Admin",
+        model: null,
+        fetchedAt: existingData?.source?.fetchedAt ?? Timestamp.fromDate(now),
+        verifiedAt: Timestamp.fromDate(now),
+      },
+      createdAt: existingData?.createdAt ?? Timestamp.fromDate(now),
+      updatedAt: Timestamp.fromDate(now),
+    },
+  };
+}
+
+async function upsertManualOpportunity(request, requestId) {
+  assertOpportunityAdmin(request);
+  const now = new Date();
+  const requestedId = truncate(request.data?.opportunityId, 160);
+  const existingSnapshot = requestedId
+    ? await db.collection("opportunities").doc(requestedId).get()
+    : null;
+  const existingData = existingSnapshot?.exists ? existingSnapshot.data() : null;
+  const { opportunityId, payload } = buildManualOpportunityPayload(
+    request.data ?? {},
+    now,
+    existingData
+  );
+
+  await db.collection("opportunities").doc(opportunityId).set(payload, {
+    merge: true,
+  });
+
+  return {
+    ok: true,
+    requestId,
+    opportunityId,
+    created: !existingSnapshot?.exists,
+    status: payload.status,
+  };
+}
+
+async function archiveOpportunity(request, requestId) {
+  assertOpportunityAdmin(request);
+  const { ref, snapshot, normalizedId } = await getOpportunityDoc(
+    request.data?.opportunityId
+  );
+  if (!snapshot.exists) {
+    throw new HttpsError("not-found", "Opportunity record was not found.");
+  }
+
+  const archived = parseBoolean(request.data?.archived, true);
+  await ref.set(
+    {
+      status: archived ? "archived" : "active",
+      updatedAt: Timestamp.fromDate(new Date()),
+      source: {
+        ...(snapshot.data()?.source ?? {}),
+        kind: snapshot.data()?.source?.kind ?? "manual",
+        verifiedAt: Timestamp.fromDate(new Date()),
+      },
+    },
+    { merge: true }
+  );
+
+  return {
+    ok: true,
+    requestId,
+    opportunityId: normalizedId,
+    status: archived ? "archived" : "active",
+  };
+}
+
+async function deleteOpportunity(request, requestId) {
+  assertOpportunityAdmin(request);
+  const { ref, snapshot, normalizedId } = await getOpportunityDoc(
+    request.data?.opportunityId
+  );
+  if (!snapshot.exists) {
+    throw new HttpsError("not-found", "Opportunity record was not found.");
+  }
+
+  await ref.delete();
+  return {
+    ok: true,
+    requestId,
+    opportunityId: normalizedId,
+    deleted: true,
+  };
+}
+
 exports.opportunityGateway = onCall(
   {
     region: GATEWAY_REGION,
@@ -506,12 +847,32 @@ exports.opportunityGateway = onCall(
     const action = truncate(request.data?.action, 80);
     const config = getConfig();
 
+    if (action === "getOpportunityAdminAccess") {
+      return {
+        ok: true,
+        requestId,
+        ...getOpportunityAdminDecision(request),
+      };
+    }
+
     if (action === "seedGreenRiverFoundationScholarship") {
       return seedGreenRiverFoundationScholarship(requestId);
     }
 
     if (action === "upsertCollegeDeadlineOpportunity") {
       return upsertCollegeDeadlineOpportunity(request.data ?? {}, requestId, config);
+    }
+
+    if (action === "upsertManualOpportunity") {
+      return upsertManualOpportunity(request, requestId);
+    }
+
+    if (action === "archiveOpportunity") {
+      return archiveOpportunity(request, requestId);
+    }
+
+    if (action === "deleteOpportunity") {
+      return deleteOpportunity(request, requestId);
     }
 
     throw new HttpsError("invalid-argument", "Unsupported opportunity action.");

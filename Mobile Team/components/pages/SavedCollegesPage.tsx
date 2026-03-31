@@ -11,7 +11,7 @@ import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { MatchScoreBadge } from "@/components/ui/MatchScoreBadge";
 import useBack from "@/hooks/use-back";
 import type { College } from "@/services/college.service";
-import { formatLocalizedCurrency, formatLocalizedNumber, formatLocalizedPercent } from "@/utils/locale-format";
+import { formatLocalizedCurrency, formatLocalizedNumber, formatLocalizedRate } from "@/utils/locale-format";
 
 function getCollegeTuition(college: College): number | null {
   const tuition = typeof college.tuition === "number" ? college.tuition : college.tuitionInState ?? college.tuitionOutOfState ?? null;
@@ -72,8 +72,7 @@ export default function SavedCollegesPage() {
   };
 
   const formatRate = (value: number | null | undefined) => {
-    if (typeof value !== "number") return t("home.notAvailable");
-    return formatLocalizedPercent(value, language);
+    return formatLocalizedRate(value, language) ?? t("home.notAvailable");
   };
 
   return (

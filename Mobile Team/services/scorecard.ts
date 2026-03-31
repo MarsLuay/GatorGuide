@@ -2,7 +2,7 @@
 // Helper utilities for calling the College Scorecard API with timeout, error handling
 // and a small in-memory cache. This keeps fetch logic centralized.
 
-import { API_CONFIG } from './config';
+import { API_CONFIG, hasCollegeScorecardApiKey } from './config';
 import { errorLoggingService } from './error-logging.service';
 
 const DEFAULT_TIMEOUT_MS = 8000;
@@ -22,6 +22,29 @@ const sanitizeUpstreamBody = (text: string) => {
   return raw.slice(0, 240);
 };
 
+const getScorecardConfigMessage = () =>
+  "College Scorecard API key is missing or invalid. Update EXPO_PUBLIC_COLLEGE_SCORECARD_KEY in Mobile Team/.env with a valid api.data.gov key, then restart Expo.";
+
+const getApiKeyErrorMessage = (text: string) => {
+  const raw = (text || "").trim();
+  if (!raw) return null;
+
+  try {
+    const parsed = JSON.parse(raw);
+    if (parsed?.error?.code === "API_KEY_INVALID") {
+      return getScorecardConfigMessage();
+    }
+  } catch {
+    // ignore non-JSON bodies
+  }
+
+  if (/API_KEY_INVALID/i.test(raw) || /invalid api[_ ]?key/i.test(raw)) {
+    return getScorecardConfigMessage();
+  }
+
+  return null;
+};
+
 const isTransientStatus = (status?: number) =>
   status === 429 || status === 500 || status === 502 || status === 503 || status === 504;
 
@@ -30,7 +53,10 @@ const isRetryableError = (err: any) =>
 
 export const buildScorecardUrl = (params: Params) => {
   const base = API_CONFIG.collegeScorecard.baseUrl.replace(/\/$/, '');
-  const p = new URLSearchParams({ ...params, api_key: API_CONFIG.collegeScorecard.apiKey, keys_nested: 'true' });
+  const p = new URLSearchParams({ ...params, keys_nested: 'true' });
+  if (hasCollegeScorecardApiKey()) {
+    p.set("api_key", API_CONFIG.collegeScorecard.apiKey);
+  }
   return `${base}/schools?${p.toString()}`;
 };
 
@@ -50,6 +76,12 @@ export const fetchScorecardUrl = async (url: string, timeoutMs = DEFAULT_TIMEOUT
       if (!res.ok) {
         const text = await res.text().catch(() => '');
         const details = sanitizeUpstreamBody(text);
+        const apiKeyMessage = getApiKeyErrorMessage(text);
+        if (apiKeyMessage) {
+          const err = new Error(apiKeyMessage);
+          (err as any).status = res.status;
+          throw err;
+        }
         const msg = isTransientStatus(res.status)
           ? `Scorecard API temporary error (${res.status}). Please try again shortly.`
           : `Scorecard API error: ${res.status} ${res.statusText}${details ? ` ${details}` : ''}`;

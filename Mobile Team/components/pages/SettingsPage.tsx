@@ -2,7 +2,6 @@ import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppLanguage } from "@/hooks/use-app-language";
-import { useOpportunities } from "@/hooks/use-opportunities";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
@@ -13,7 +12,6 @@ import { notificationsService, cacheManagerService } from "@/services";
 import { APP_VERSION } from "@/constants/app-version";
 import { ROUTES } from "@/constants/routes";
 import { SUPPORT_EMAIL, SUPPORT_MAILTO } from "@/constants/support";
-import { translations } from "@/services/translations";
 import { StateCard } from "@/components/ui/StateCard";
 import { StatusBanner } from "@/components/ui/StatusBanner";
 import * as FileSystem from "expo-file-system";
@@ -45,156 +43,6 @@ type SettingsItem =
       value: string;
     };
 
-type SettingsDevLogSnapshot = {
-  meta: {
-    generatedAt: string;
-    screen: "SettingsPage";
-    route: string;
-    appVersion: string;
-    isDev: boolean;
-  };
-  runtime: {
-    platform: string;
-    width: number;
-    height: number;
-    fontScale: number;
-    language: string;
-    isRTL: boolean;
-    breakpoint: string;
-    isPhoneLikeViewport: boolean;
-    topInset: number;
-    bottomInset: number;
-    currentTime: string;
-    web:
-      | {
-          href: string | null;
-          userAgent: string | null;
-          innerWidth: number | null;
-          innerHeight: number | null;
-          devicePixelRatio: number | null;
-          clipboardAvailable: boolean;
-        }
-      | null;
-  };
-  theme: {
-    selectedTheme: string;
-    resolvedTheme: string;
-    isDark: boolean;
-    isGreen: boolean;
-    isLight: boolean;
-    themeHydrated: boolean;
-  };
-  layout: {
-    isCompactPhone: boolean;
-    isTablet: boolean;
-    isWideLayout: boolean;
-    showSectionGrid: boolean;
-    stackDialogActions: boolean;
-    useDesktopSettingsLayout: boolean;
-    shellHorizontalPadding: number;
-    pageMaxWidth: number;
-    earlyStateMaxWidth: number;
-    sectionCardWidth: string;
-    dialogMaxWidth: number;
-    dialogPadding: number;
-    dialogHorizontalPadding: number;
-    modalTopPadding: number;
-    modalBottomPadding: number;
-    supportInputMinHeight: number;
-    scrollContentPadding: {
-      paddingTop: number;
-      paddingBottom: number;
-    };
-    tabBar: {
-      minHeight: number;
-      paddingTop: number;
-      paddingBottom: number;
-      iconSize: number;
-      labelFontSize: number;
-      labelLineHeight: number;
-      labelMaxWidth: number;
-      horizontalPadding: number;
-      itemPaddingVertical: number;
-      itemPaddingHorizontal: number;
-      contentClearance: number;
-    };
-  };
-  settingsPage: {
-    notificationsEnabled: boolean;
-    showAdvancedSettings: boolean;
-    autoClearCacheEnabled: boolean;
-    showSupportComposer: boolean;
-    supportMessage: string;
-    supportMessageLength: number;
-    isSendingSupport: boolean;
-    supportStatus: string;
-    supportStatusText: string;
-    showDeleteConfirm: boolean;
-    showClearCacheConfirm: boolean;
-    showCacheClearedPopup: boolean;
-    cacheClearedCount: number;
-    isClearingCache: boolean;
-    supportWebhookConfigured: boolean;
-  };
-  account: {
-    isHydrated: boolean;
-    hasUser: boolean;
-    user: unknown;
-    summary: {
-      uid: string | null;
-      email: string | null;
-      isGuest: boolean;
-      hasAvatar: boolean;
-      hasMajor: boolean;
-      hasGpa: boolean;
-      hasResume: boolean;
-      hasTranscript: boolean;
-      hasCompletedQuestionnaire: boolean;
-      hasSeenOnboarding: boolean | null;
-      savedCollegeCount: number;
-      questionnaireFieldCount: number;
-    };
-  };
-  opportunities: {
-    isHydrated: boolean;
-    isRefreshing: boolean;
-    catalogCount: number;
-    statusCount: number;
-    totalMatched: number;
-    completedMatched: number;
-    pendingMatched: number;
-    upcomingWithDueDate: number;
-    statusById: unknown;
-    catalogPreview: {
-      opportunityId: string;
-      title: string;
-      type: string;
-      status: string;
-      dueAt: string | null;
-    }[];
-    preview: {
-      opportunityId: string;
-      title: string;
-      type: string;
-      isDone: boolean;
-      computedDueAt: string | null;
-      externalUrl: string | null;
-      matchReasons: string[];
-    }[];
-  };
-  sections: {
-    title: string;
-    items: {
-      label: string;
-      type: string;
-      value?: string;
-      enabled?: boolean;
-    }[];
-  }[];
-  appState: unknown;
-  notes: string[];
-};
-
 const SUPPORT_MESSAGE_WEBHOOK =
   process.env.EXPO_PUBLIC_SUPPORT_MESSAGE_WEBHOOK ||
   "https://us-central1-gatorguide.cloudfunctions.net/sendSupportMessage";
@@ -206,47 +54,19 @@ export default function SettingsPage() {
   const [showCacheClearedPopup, setShowCacheClearedPopup] = useState(false);
   const [cacheClearedCount, setCacheClearedCount] = useState(0);
   const [isClearingCache, setIsClearingCache] = useState(false);
-  const [showAdvancedSettings, setShowAdvancedSettings] = useState(false);
   const [autoClearCacheEnabled, setAutoClearCacheEnabled] = useState(false);
   const [showSupportComposer, setShowSupportComposer] = useState(false);
   const [supportMessage, setSupportMessage] = useState("");
   const [isSendingSupport, setIsSendingSupport] = useState(false);
   const [supportStatus, setSupportStatus] = useState<"" | "sent" | "error">("");
   const [supportStatusText, setSupportStatusText] = useState("");
-  const [showDevLog, setShowDevLog] = useState(false);
-  const [devLogSnapshot, setDevLogSnapshot] = useState<SettingsDevLogSnapshot | null>(null);
-  const [devLogCopyStatus, setDevLogCopyStatus] = useState<"" | "copied" | "failed">("");
 
-  const { theme, resolvedTheme, isDark, isGreen, isLight, hydrated: themeHydrated, setTheme } = useAppTheme();
+  const { theme, isDark, isGreen, setTheme } = useAppTheme();
   const { t, language } = useAppLanguage();
   const { isHydrated, state, signOut, deleteAccount, setNotificationsEnabled, restoreData } = useAppData();
-  const {
-    isHydrated: areOpportunitiesHydrated,
-    isRefreshing: areOpportunitiesRefreshing,
-    opportunities,
-    matchedOpportunities,
-    statusById,
-  } = useOpportunities();
-  const {
-    getScrollContentPadding,
-    breakpoint,
-    isPhoneLikeViewport,
-    topInset,
-    bottomInset,
-    tabBarPaddingTop,
-    tabBarPaddingBottom,
-    tabBarIconSize,
-    tabBarLabelFontSize,
-    tabBarLabelLineHeight,
-    tabBarLabelMaxWidth,
-    tabBarHorizontalPadding,
-    tabBarItemPaddingVertical,
-    tabBarItemPaddingHorizontal,
-    tabBarMinHeight,
-    tabBarContentClearance,
-  } = useResponsiveLayout();
+  const { getScrollContentPadding } = useResponsiveLayout();
   const insets = useSafeAreaInsets();
-  const { width, height, fontScale = 1 } = useWindowDimensions();
+  const { width } = useWindowDimensions();
 
   // removed currentLanguageName (unused) to satisfy linter
 
@@ -464,28 +284,6 @@ export default function SettingsPage() {
     }
   }, []);
 
-  const handleCopyEnglishKeyLog = useCallback(async () => {
-    try {
-      const keys = Object.keys(translations.English)
-        .sort((a, b) => a.localeCompare(b));
-      const logText = [
-        `English key count: ${keys.length}`,
-        "",
-        ...keys,
-      ].join("\n");
-
-      if (Platform.OS === "web" && typeof navigator !== "undefined" && navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(logText);
-        Alert.alert(t("settings.debugCopiedTitle"), t("settings.debugCopiedMessage"));
-        return;
-      }
-
-      Alert.alert(t("settings.debugUnavailableTitle"), t("settings.debugUnavailableMessage"));
-    } catch {
-      Alert.alert(t("general.error"), t("settings.debugCopyFailed"));
-    }
-  }, [t]);
-
   const sendSupportMessage = async () => {
     const message = supportMessage.trim();
     if (!message) {
@@ -636,300 +434,7 @@ export default function SettingsPage() {
     [currentThemeLabel, theme, notificationsEnabled, language, setTheme, handleToggleNotifications, handleExportData, handleImportData, router, t]
   );
 
-  const [settingsSection, dataSection, aboutSection] = sections;
-
-  const buildSettingsDevLogSnapshot = useCallback((): SettingsDevLogSnapshot => {
-    const now = new Date();
-    const questionnaireKeys = Object.keys(state.questionnaireAnswers ?? {});
-    const webSnapshot =
-      Platform.OS === "web"
-        ? {
-            href: typeof window !== "undefined" ? window.location.href : null,
-            userAgent: typeof navigator !== "undefined" ? navigator.userAgent : null,
-            innerWidth: typeof window !== "undefined" ? window.innerWidth : null,
-            innerHeight: typeof window !== "undefined" ? window.innerHeight : null,
-            devicePixelRatio: typeof window !== "undefined" ? window.devicePixelRatio : null,
-            clipboardAvailable:
-              typeof navigator !== "undefined" && !!navigator.clipboard?.writeText,
-          }
-        : null;
-
-    const matchedPreview = matchedOpportunities.slice(0, 20).map((opportunity) => ({
-      opportunityId: opportunity.opportunityId,
-      title: opportunity.title,
-      type: opportunity.type,
-      isDone: opportunity.isDone,
-      computedDueAt: opportunity.computedDueAt ?? null,
-      externalUrl: opportunity.externalUrl ?? null,
-      matchReasons: opportunity.matchReasons ?? [],
-    }));
-
-    const notes: string[] = [];
-    if (useDesktopSettingsLayout) {
-      notes.push("Settings is using the desktop dashboard layout.");
-    } else {
-      notes.push("Settings is using the mobile/tablet stacked layout.");
-    }
-    if (showSupportComposer) {
-      notes.push("Support composer modal is open.");
-    }
-    if (showDeleteConfirm || showClearCacheConfirm || showCacheClearedPopup) {
-      notes.push("At least one confirmation/status modal is currently open.");
-    }
-    if (!notificationsEnabled) {
-      notes.push("Notifications are currently disabled in app state.");
-    }
-    if ((state.savedColleges?.length ?? 0) === 0) {
-      notes.push("No saved colleges are currently stored in app state.");
-    }
-    if (!questionnaireKeys.length) {
-      notes.push("Questionnaire answers are currently empty.");
-    }
-
-    return {
-      meta: {
-        generatedAt: now.toISOString(),
-        screen: "SettingsPage",
-        route: ROUTES.tabsSettings,
-        appVersion: APP_VERSION,
-        isDev: __DEV__,
-      },
-      runtime: {
-        platform: Platform.OS,
-        width,
-        height,
-        fontScale,
-        language,
-        isRTL,
-        breakpoint,
-        isPhoneLikeViewport,
-        topInset,
-        bottomInset,
-        currentTime: now.toString(),
-        web: webSnapshot,
-      },
-      theme: {
-        selectedTheme: theme,
-        resolvedTheme,
-        isDark,
-        isGreen,
-        isLight,
-        themeHydrated,
-      },
-      layout: {
-        isCompactPhone,
-        isTablet,
-        isWideLayout,
-        showSectionGrid,
-        stackDialogActions,
-        useDesktopSettingsLayout,
-        shellHorizontalPadding,
-        pageMaxWidth,
-        earlyStateMaxWidth,
-        sectionCardWidth,
-        dialogMaxWidth,
-        dialogPadding,
-        dialogHorizontalPadding,
-        modalTopPadding,
-        modalBottomPadding,
-        supportInputMinHeight,
-        scrollContentPadding,
-        tabBar: {
-          minHeight: tabBarMinHeight,
-          paddingTop: tabBarPaddingTop,
-          paddingBottom: tabBarPaddingBottom,
-          iconSize: tabBarIconSize,
-          labelFontSize: tabBarLabelFontSize,
-          labelLineHeight: tabBarLabelLineHeight,
-          labelMaxWidth: tabBarLabelMaxWidth,
-          horizontalPadding: tabBarHorizontalPadding,
-          itemPaddingVertical: tabBarItemPaddingVertical,
-          itemPaddingHorizontal: tabBarItemPaddingHorizontal,
-          contentClearance: tabBarContentClearance,
-        },
-      },
-      settingsPage: {
-        notificationsEnabled,
-        showAdvancedSettings,
-        autoClearCacheEnabled,
-        showSupportComposer,
-        supportMessage,
-        supportMessageLength: supportMessage.length,
-        isSendingSupport,
-        supportStatus,
-        supportStatusText,
-        showDeleteConfirm,
-        showClearCacheConfirm,
-        showCacheClearedPopup,
-        cacheClearedCount,
-        isClearingCache,
-        supportWebhookConfigured: !!SUPPORT_MESSAGE_WEBHOOK,
-      },
-      account: {
-        isHydrated,
-        hasUser: !!user,
-        user,
-        summary: {
-          uid: user?.uid ?? null,
-          email: user?.email ?? null,
-          isGuest: !!user?.isGuest,
-          hasAvatar: !!user?.avatar,
-          hasMajor: !!String(user?.major ?? "").trim(),
-          hasGpa: !!String(user?.gpa ?? "").trim(),
-          hasResume: !!String(user?.resume ?? "").trim(),
-          hasTranscript: !!String(user?.transcript ?? "").trim(),
-          hasCompletedQuestionnaire: questionnaireKeys.length > 0,
-          hasSeenOnboarding: user?.hasSeenOnboarding ?? null,
-          savedCollegeCount: state.savedColleges?.length ?? 0,
-          questionnaireFieldCount: questionnaireKeys.length,
-        },
-      },
-      opportunities: {
-        isHydrated: areOpportunitiesHydrated,
-        isRefreshing: areOpportunitiesRefreshing,
-        catalogCount: opportunities.length,
-        statusCount: Object.keys(statusById ?? {}).length,
-        totalMatched: matchedOpportunities.length,
-        completedMatched: matchedOpportunities.filter((opportunity) => opportunity.isDone).length,
-        pendingMatched: matchedOpportunities.filter((opportunity) => !opportunity.isDone).length,
-        upcomingWithDueDate: matchedOpportunities.filter(
-          (opportunity) => !opportunity.isDone && !!opportunity.computedDueAt
-        ).length,
-        statusById,
-        catalogPreview: opportunities.slice(0, 20).map((opportunity) => ({
-          opportunityId: opportunity.opportunityId,
-          title: opportunity.title,
-          type: opportunity.type,
-          status: opportunity.status,
-          dueAt: opportunity.dueAt ?? null,
-        })),
-        preview: matchedPreview,
-      },
-      sections: [
-        ...sections.map((section) => ({
-          title: section.title,
-          items: section.items.map((item) => ({
-            label: item.label,
-            type: item.type,
-            value:
-              item.type === "display" || ("value" in item && item.value)
-                ? String(item.type === "display" ? item.value : item.value)
-                : undefined,
-            enabled: item.type === "toggle" ? item.enabled : undefined,
-          })),
-        })),
-        {
-          title: t("settings.advanced"),
-          items: [
-            {
-              label: t("settings.cacheSettings"),
-              type: "toggle-group",
-              value: showAdvancedSettings ? "expanded" : "collapsed",
-            },
-            {
-              label: t("settings.cacheAutoClear5d"),
-              type: "toggle",
-              enabled: autoClearCacheEnabled,
-            },
-            {
-              label: t("settings.clearCacheNow"),
-              type: "action",
-            },
-            {
-              label: t("settings.debugTools"),
-              type: "action",
-            },
-          ],
-        },
-      ],
-      appState: state,
-      notes,
-    };
-  }, [
-    areOpportunitiesHydrated,
-    areOpportunitiesRefreshing,
-    autoClearCacheEnabled,
-    bottomInset,
-    breakpoint,
-    cacheClearedCount,
-    dialogHorizontalPadding,
-    dialogMaxWidth,
-    dialogPadding,
-    earlyStateMaxWidth,
-    fontScale,
-    height,
-    isCompactPhone,
-    isClearingCache,
-    isDark,
-    isGreen,
-    isHydrated,
-    isLight,
-    isPhoneLikeViewport,
-    isRTL,
-    isSendingSupport,
-    isTablet,
-    isWideLayout,
-    language,
-    matchedOpportunities,
-    modalBottomPadding,
-    modalTopPadding,
-    notificationsEnabled,
-    opportunities,
-    pageMaxWidth,
-    resolvedTheme,
-    scrollContentPadding,
-    sectionCardWidth,
-    sections,
-    shellHorizontalPadding,
-    showAdvancedSettings,
-    showCacheClearedPopup,
-    showClearCacheConfirm,
-    showDeleteConfirm,
-    showSectionGrid,
-    showSupportComposer,
-    stackDialogActions,
-    state,
-    supportInputMinHeight,
-    supportMessage,
-    supportStatus,
-    supportStatusText,
-    statusById,
-    tabBarContentClearance,
-    tabBarHorizontalPadding,
-    tabBarIconSize,
-    tabBarItemPaddingHorizontal,
-    tabBarItemPaddingVertical,
-    tabBarLabelFontSize,
-    tabBarLabelLineHeight,
-    tabBarLabelMaxWidth,
-    tabBarMinHeight,
-    tabBarPaddingBottom,
-    tabBarPaddingTop,
-    t,
-    theme,
-    themeHydrated,
-    topInset,
-    useDesktopSettingsLayout,
-    user,
-    width,
-  ]);
-
-  const copySettingsDevLog = useCallback(async () => {
-    try {
-      const snapshot = buildSettingsDevLogSnapshot();
-      setDevLogSnapshot(snapshot);
-
-      if (typeof navigator === "undefined" || !navigator.clipboard?.writeText) {
-        setDevLogCopyStatus("failed");
-        return;
-      }
-
-      await navigator.clipboard.writeText(JSON.stringify(snapshot, null, 2));
-      setDevLogCopyStatus("copied");
-    } catch {
-      setDevLogCopyStatus("failed");
-    }
-  }, [buildSettingsDevLogSnapshot]);
+  const [settingsSection, , aboutSection] = sections;
 
   const renderSettingsRows = (
     items: SettingsItem[],
@@ -1017,6 +522,52 @@ export default function SettingsPage() {
     </View>
   );
 
+  const advancedDesktopItems: {
+    key: string;
+    icon: IconName;
+    label: string;
+    description: string;
+    type: "toggle" | "nav";
+    enabled?: boolean;
+    onPress: () => void;
+    danger?: boolean;
+  }[] = [
+    {
+      key: "import",
+      icon: "cloud-upload-outline",
+      label: t("settings.import"),
+      description: t("settings.importDescription"),
+      type: "nav",
+      onPress: handleImportData,
+    },
+    {
+      key: "export",
+      icon: "cloud-download-outline",
+      label: t("settings.export"),
+      description: t("settings.exportDescription"),
+      type: "nav",
+      onPress: handleExportData,
+    },
+    {
+      key: "auto-clear",
+      icon: "refresh-outline",
+      label: t("settings.cacheAutoClear5d"),
+      description: t("settings.cacheAutoClearDescription"),
+      type: "toggle",
+      enabled: autoClearCacheEnabled,
+      onPress: handleToggleAutoClearCache,
+    },
+    {
+      key: "clear-cache",
+      icon: "trash-outline",
+      label: t("settings.clearCacheNow"),
+      description: t("settings.clearCacheDescription"),
+      type: "nav",
+      onPress: handleClearCacheNow,
+      danger: true,
+    },
+  ];
+
   const handleDeleteConfirm = async () => {
     if (!isHydrated) return;
     try {
@@ -1087,30 +638,8 @@ export default function SettingsPage() {
   };
 
   useEffect(() => {
-    if (!showDevLog) return;
-    setDevLogSnapshot(buildSettingsDevLogSnapshot());
-    setDevLogCopyStatus("");
-  }, [buildSettingsDevLogSnapshot, showDevLog]);
-
-  useEffect(() => {
     void loadAutoClearSetting();
   }, [loadAutoClearSetting]);
-
-  useEffect(() => {
-    if (!__DEV__ || Platform.OS !== "web") return;
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.repeat) return;
-
-      if (event.key === "~" || event.key === "`" || event.code === "Backquote") {
-        event.preventDefault();
-        setShowDevLog((visible) => !visible);
-      }
-    };
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, []);
 
   if (!isHydrated) {
     return (
@@ -1129,192 +658,108 @@ export default function SettingsPage() {
       <View
         style={{
           flexDirection: isRTL ? "row-reverse" : "row",
-          flexWrap: "wrap",
-          gap: 12,
-          justifyContent: isRTL ? "flex-end" : "flex-start",
-          marginBottom: 24,
-        }}
-      >
-        {[
-          { label: t("settings.theme"), value: currentThemeLabel },
-          { label: t("settings.language"), value: language },
-          { label: t("settings.notifications"), value: notificationsEnabled ? t("settings.on") : t("settings.off") },
-          {
-            label: user?.isGuest ? t("settings.mode") : t("settings.account"),
-            value: user?.isGuest ? t("settings.guest") : user?.email || user?.name || t("settings.signedIn"),
-          },
-        ].map((item) => (
-          <View
-            key={item.label}
-            className={`${nestedPanelClass} rounded-2xl px-4 py-3`}
-            style={{ minWidth: 160, flexGrow: 1 }}
-          >
-            <Text className={`${secondaryTextClass} text-xs uppercase tracking-[0.8px]`}>
-              {item.label}
-            </Text>
-            <Text className={`${textClass} mt-1 font-semibold`} numberOfLines={1}>
-              {item.value}
-            </Text>
-          </View>
-        ))}
-      </View>
-
-      <View
-        style={{
-          flexDirection: isRTL ? "row-reverse" : "row",
           alignItems: "stretch",
           gap: 24,
         }}
       >
-        <View style={{ flex: 1.02, gap: 24 }}>
-          <View className={desktopPanelClass}>
-            <View className={`${flexDirection} items-start mb-5`}>
-              <View className="w-12 h-12 rounded-2xl bg-emerald-500/10 items-center justify-center">
-                <Ionicons name="settings-outline" size={20} color={accentColor} />
-              </View>
-              <View className={`flex-1 ${isRTL ? "mr-4" : "ml-4"}`}>
-                <Text className={`${isRTL ? "text-right" : ""} ${textClass} text-xl font-semibold`}>
-                  {settingsSection.title}
-                </Text>
-                <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} mt-1`} style={{ lineHeight: 21 }}>
-                  {t("settings.desktopSettingsDescription")}
-                </Text>
-              </View>
+        <View className={desktopPanelClass} style={{ flex: 1, minHeight: 0 }}>
+          <View className={`${flexDirection} items-start mb-5`}>
+            <View className="w-12 h-12 rounded-2xl bg-emerald-500/10 items-center justify-center">
+              <Ionicons name="settings-outline" size={20} color={accentColor} />
             </View>
-
-            <View className={`${nestedPanelClass} rounded-2xl overflow-hidden`}>
-              {renderSettingsRows(settingsSection.items, { valueMaxWidth: 260, rowPaddingVertical: 18 })}
+            <View className={`flex-1 ${isRTL ? "mr-4" : "ml-4"}`}>
+              <Text className={`${isRTL ? "text-right" : ""} ${textClass} text-xl font-semibold`}>
+                {settingsSection.title}
+              </Text>
+              <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} mt-1`} style={{ lineHeight: 21 }}>
+                {t("settings.desktopSettingsDescription")}
+              </Text>
             </View>
           </View>
 
-          <View className={desktopPanelClass}>
-            <View className={`${flexDirection} items-start mb-5`}>
-              <View className="w-12 h-12 rounded-2xl bg-emerald-500/10 items-center justify-center">
-                <Ionicons name="cloud-outline" size={20} color={accentColor} />
-              </View>
-              <View className={`flex-1 ${isRTL ? "mr-4" : "ml-4"}`}>
-                <Text className={`${isRTL ? "text-right" : ""} ${textClass} text-xl font-semibold`}>
-                  {dataSection.title}
-                </Text>
-                <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} mt-1`} style={{ lineHeight: 21 }}>
-                  {t("settings.desktopDataDescription")}
-                </Text>
-              </View>
-            </View>
-
-            <View className={`${nestedPanelClass} rounded-2xl overflow-hidden`}>
-              {renderSettingsRows(dataSection.items, { valueMaxWidth: 240, rowPaddingVertical: 18 })}
-            </View>
+          <View className={`${nestedPanelClass} rounded-2xl overflow-hidden`}>
+            {renderSettingsRows(settingsSection.items, { valueMaxWidth: 260, rowPaddingVertical: 18 })}
           </View>
         </View>
 
-        <View style={{ flex: 0.98, gap: 24 }}>
-          <View className={desktopPanelClass}>
-            <View className={`${flexDirection} items-start mb-5`}>
-              <View className="w-12 h-12 rounded-2xl bg-emerald-500/10 items-center justify-center">
-                <Ionicons name="information-circle-outline" size={20} color={accentColor} />
-              </View>
-              <View className={`flex-1 ${isRTL ? "mr-4" : "ml-4"}`}>
-                <Text className={`${isRTL ? "text-right" : ""} ${textClass} text-xl font-semibold`}>
-                  {aboutSection.title}
-                </Text>
-                <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} mt-1`} style={{ lineHeight: 21 }}>
-                  {t("settings.desktopAboutDescription")}
-                </Text>
-              </View>
+        <View className={desktopPanelClass} style={{ flex: 1, minHeight: 0 }}>
+          <View className={`${flexDirection} items-start mb-5`}>
+            <View className="w-12 h-12 rounded-2xl bg-emerald-500/10 items-center justify-center">
+              <Ionicons name="information-circle-outline" size={20} color={accentColor} />
             </View>
-
-            <View className={`${nestedPanelClass} rounded-2xl overflow-hidden`}>
-              {renderSettingsRows(aboutSection.items, { valueMaxWidth: 260, rowPaddingVertical: 18 })}
+            <View className={`flex-1 ${isRTL ? "mr-4" : "ml-4"}`}>
+              <Text className={`${isRTL ? "text-right" : ""} ${textClass} text-xl font-semibold`}>
+                {aboutSection.title}
+              </Text>
+              <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} mt-1`} style={{ lineHeight: 21 }}>
+                {t("settings.desktopAboutDescription")}
+              </Text>
             </View>
           </View>
 
-          <View className={desktopPanelClass}>
-            <View className={`${flexDirection} items-start mb-5`}>
-              <View className="w-12 h-12 rounded-2xl bg-emerald-500/10 items-center justify-center">
-                <Ionicons name="construct-outline" size={20} color={accentColor} />
-              </View>
-              <View className={`flex-1 ${isRTL ? "mr-4" : "ml-4"}`}>
-                <Text className={`${isRTL ? "text-right" : ""} ${textClass} text-xl font-semibold`}>
-                  {t("settings.advanced")}
-                </Text>
-                <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} mt-1`} style={{ lineHeight: 21 }}>
-                  {t("settings.desktopAdvancedDescription")}
-                </Text>
-              </View>
+          <View className={`${nestedPanelClass} rounded-2xl overflow-hidden`} style={{ flex: 1, minHeight: 0 }}>
+            <ScrollView
+              style={{ flex: 1 }}
+              contentContainerStyle={{ flexGrow: 1 }}
+              nestedScrollEnabled
+              showsVerticalScrollIndicator
+            >
+              {renderSettingsRows(aboutSection.items, { valueMaxWidth: 260, rowPaddingVertical: 18 })}
+            </ScrollView>
+          </View>
+        </View>
+      </View>
+
+      <View className={desktopPanelClass} style={{ marginTop: 24 }}>
+        <View className={`${flexDirection} items-start mb-5`}>
+          <View className="w-12 h-12 rounded-2xl bg-emerald-500/10 items-center justify-center">
+            <Ionicons name="construct-outline" size={20} color={accentColor} />
+          </View>
+          <View className={`flex-1 ${isRTL ? "mr-4" : "ml-4"}`}>
+            <Text className={`${isRTL ? "text-right" : ""} ${textClass} text-xl font-semibold`}>
+              {t("settings.advanced")}
+            </Text>
+            <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} mt-1`} style={{ lineHeight: 21 }}>
+              {t("settings.desktopAdvancedDescription")}
+            </Text>
+          </View>
+        </View>
+
+        <View className={`${nestedPanelClass} rounded-2xl overflow-hidden`} style={{ maxHeight: 320 }}>
+          <ScrollView nestedScrollEnabled showsVerticalScrollIndicator>
+            <View className="px-4 py-4">
+              <Text className={`${secondaryTextClass} text-sm ${isRTL ? "text-right" : ""}`}>
+                {t("settings.desktopAdvancedCollapsedDescription")}
+              </Text>
             </View>
 
-            <View className={`${nestedPanelClass} rounded-2xl overflow-hidden`}>
+            {advancedDesktopItems.map((item, index) => (
               <Pressable
-                onPress={() => setShowAdvancedSettings((v) => !v)}
+                key={item.key}
+                onPress={item.onPress}
                 className={`${flexDirection} items-center px-4`}
-                style={{ paddingVertical: 18 }}
+                style={{ paddingVertical: 18, borderTopWidth: 1, borderColor: dividerColor }}
               >
-                <Ionicons name="construct-outline" size={20} color={accentColor} />
-                <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${textClass}`}>
-                  {t("settings.cacheSettings")}
-                </Text>
-                <Ionicons name={showAdvancedSettings ? "chevron-up" : "chevron-down"} size={22} color={accessoryIconColor} />
-              </Pressable>
-
-              {showAdvancedSettings ? (
-                <>
-                  <Pressable
-                    onPress={handleToggleAutoClearCache}
-                    className={`${flexDirection} items-center px-4`}
-                    style={{ paddingVertical: 18, borderTopWidth: 1, borderColor: dividerColor }}
-                  >
-                    <Ionicons name="refresh-outline" size={20} color={accentColor} />
-                    <View className={`flex-1 ${isRTL ? "mr-3" : "ml-3"}`}>
-                      <Text className={`${isRTL ? "text-right" : ""} ${textClass}`}>{t("settings.cacheAutoClear5d")}</Text>
-                      <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} text-xs mt-1`}>
-                        {t("settings.cacheAutoClearDescription")}
-                      </Text>
-                    </View>
-                    <View className={`w-12 h-6 rounded-full ${autoClearCacheEnabled ? "bg-emerald-500" : isDark ? "bg-gray-700" : isGreen ? "bg-emerald-700" : "bg-emerald-300"}`}>
-                      <View className={`w-5 h-5 bg-white rounded-full mt-0.5 ${autoClearCacheEnabled ? "ml-6" : "ml-0.5"}`} />
-                    </View>
-                  </Pressable>
-
-                  <Pressable
-                    onPress={handleClearCacheNow}
-                    className={`${flexDirection} items-center px-4`}
-                    style={{ paddingVertical: 18, borderTopWidth: 1, borderColor: dividerColor }}
-                  >
-                    <Ionicons name="trash-outline" size={20} color="#EF4444" />
-                    <View className={`flex-1 ${isRTL ? "mr-3" : "ml-3"}`}>
-                      <Text className={`${isRTL ? "text-right" : ""} ${dangerTextClass}`}>{t("settings.clearCacheNow")}</Text>
-                      <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} text-xs mt-1`}>
-                        {t("settings.clearCacheDescription")}
-                      </Text>
-                    </View>
-                    <Ionicons name={isRTL ? "chevron-back" : "chevron-forward"} size={22} color={accessoryIconColor} />
-                  </Pressable>
-
-                  <Pressable
-                    onPress={handleCopyEnglishKeyLog}
-                    className={`${flexDirection} items-center px-4`}
-                    style={{ paddingVertical: 18, borderTopWidth: 1, borderColor: dividerColor }}
-                  >
-                    <Ionicons name="bug-outline" size={20} color={accentColor} />
-                    <View className={`flex-1 ${isRTL ? "mr-3" : "ml-3"}`}>
-                      <Text className={`${isRTL ? "text-right" : ""} ${textClass}`}>{t("settings.debugTools")}</Text>
-                      <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} text-xs mt-1`}>
-                        {t("settings.copyEnglishKeyLog")}
-                      </Text>
-                    </View>
-                    <Ionicons name="copy-outline" size={20} color={accessoryIconColor} />
-                  </Pressable>
-                </>
-              ) : (
-                <View style={{ borderTopWidth: 1, borderColor: dividerColor }} className="px-4 py-4">
-                  <Text className={`${secondaryTextClass} text-sm ${isRTL ? "text-right" : ""}`}>
-                    {t("settings.desktopAdvancedCollapsedDescription")}
+                <Ionicons name={item.icon} size={20} color={item.danger ? "#EF4444" : accentColor} />
+                <View className={`flex-1 ${isRTL ? "mr-3" : "ml-3"}`}>
+                  <Text className={`${isRTL ? "text-right" : ""} ${item.danger ? dangerTextClass : textClass}`}>
+                    {item.label}
+                  </Text>
+                  <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} text-xs mt-1`}>
+                    {item.description}
                   </Text>
                 </View>
-              )}
-            </View>
-          </View>
+
+                {item.type === "toggle" ? (
+                  <View className={`w-12 h-6 rounded-full ${item.enabled ? "bg-emerald-500" : isDark ? "bg-gray-700" : isGreen ? "bg-emerald-700" : "bg-emerald-300"}`}>
+                    <View className={`w-5 h-5 bg-white rounded-full mt-0.5 ${item.enabled ? "ml-6" : "ml-0.5"}`} />
+                  </View>
+                ) : (
+                  <Ionicons name={isRTL ? "chevron-back" : "chevron-forward"} size={22} color={accessoryIconColor} />
+                )}
+              </Pressable>
+            ))}
+          </ScrollView>
         </View>
       </View>
 
@@ -1416,62 +861,41 @@ export default function SettingsPage() {
                 <View style={{ width: sectionCardWidth }}>
                   <Text className={`text-sm font-medium ${secondaryTextClass} mb-3 px-2`}>{t("settings.advanced")}</Text>
                   <View className={`${cardBgClass} border rounded-2xl overflow-hidden`}>
+                    <View className="px-4 py-4">
+                      <Text className={`${secondaryTextClass} text-sm ${isRTL ? "text-right" : ""}`}>
+                        {t("settings.desktopAdvancedCollapsedDescription")}
+                      </Text>
+                    </View>
+
                     <Pressable
-                      onPress={() => setShowAdvancedSettings((v) => !v)}
-                      className={`${flexDirection} items-center px-4 py-5`}
+                      onPress={handleToggleAutoClearCache}
+                      className={`${flexDirection} items-center px-4 py-5 border-t ${cardBorderClass}`}
                     >
-                      <Ionicons name="construct-outline" size={20} color={accentColor} />
-                      <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${textClass}`}>{t("settings.cacheSettings")}</Text>
-                      <Ionicons name={showAdvancedSettings ? "chevron-up" : "chevron-down"} size={22} color={accessoryIconColor} />
+                      <Ionicons name="refresh-outline" size={20} color={accentColor} />
+                      <View className={`flex-1 ${isRTL ? "mr-3" : "ml-3"}`}>
+                        <Text className={`${isRTL ? "text-right" : ""} ${textClass}`}>{t("settings.cacheAutoClear5d")}</Text>
+                        <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} text-xs mt-1`}>
+                          {t("settings.cacheAutoClearDescription")}
+                        </Text>
+                      </View>
+                      <View className={`w-12 h-6 rounded-full ${autoClearCacheEnabled ? "bg-emerald-500" : isDark ? "bg-gray-700" : isGreen ? "bg-emerald-700" : "bg-emerald-300"}`}>
+                        <View className={`w-5 h-5 bg-white rounded-full mt-0.5 ${autoClearCacheEnabled ? "ml-6" : "ml-0.5"}`} />
+                      </View>
                     </Pressable>
 
-                    {showAdvancedSettings ? (
-                      <>
-                        <Pressable
-                          onPress={handleToggleAutoClearCache}
-                          className={`${flexDirection} items-center px-4 py-5 border-t ${cardBorderClass}`}
-                        >
-                          <Ionicons name="refresh-outline" size={20} color={accentColor} />
-                          <View className={`flex-1 ${isRTL ? "mr-3" : "ml-3"}`}>
-                            <Text className={`${isRTL ? "text-right" : ""} ${textClass}`}>{t("settings.cacheAutoClear5d")}</Text>
-                            <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} text-xs mt-1`}>
-                              {t("settings.cacheAutoClearDescription")}
-                            </Text>
-                          </View>
-                          <View className={`w-12 h-6 rounded-full ${autoClearCacheEnabled ? "bg-emerald-500" : isDark ? "bg-gray-700" : isGreen ? "bg-emerald-700" : "bg-emerald-300"}`}>
-                            <View className={`w-5 h-5 bg-white rounded-full mt-0.5 ${autoClearCacheEnabled ? "ml-6" : "ml-0.5"}`} />
-                          </View>
-                        </Pressable>
-
-                        <Pressable
-                          onPress={handleClearCacheNow}
-                          className={`${flexDirection} items-center px-4 py-5 border-t ${cardBorderClass}`}
-                        >
-                          <Ionicons name="trash-outline" size={20} color="#EF4444" />
-                          <View className={`flex-1 ${isRTL ? "mr-3" : "ml-3"}`}>
-                            <Text className={`${isRTL ? "text-right" : ""} ${dangerTextClass}`}>{t("settings.clearCacheNow")}</Text>
-                            <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} text-xs mt-1`}>
-                              {t("settings.clearCacheDescription")}
-                            </Text>
-                          </View>
-                          <Ionicons name={isRTL ? "chevron-back" : "chevron-forward"} size={22} color={accessoryIconColor} />
-                        </Pressable>
-
-                        <Pressable
-                          onPress={handleCopyEnglishKeyLog}
-                          className={`${flexDirection} items-center px-4 py-5 border-t ${cardBorderClass}`}
-                        >
-                          <Ionicons name="bug-outline" size={20} color={accentColor} />
-                          <View className={`flex-1 ${isRTL ? "mr-3" : "ml-3"}`}>
-                            <Text className={`${isRTL ? "text-right" : ""} ${textClass}`}>{t("settings.debugTools")}</Text>
-                            <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} text-xs mt-1`}>
-                              {t("settings.copyEnglishKeyLog")}
-                            </Text>
-                          </View>
-                          <Ionicons name="copy-outline" size={20} color={accessoryIconColor} />
-                        </Pressable>
-                      </>
-                    ) : null}
+                    <Pressable
+                      onPress={handleClearCacheNow}
+                      className={`${flexDirection} items-center px-4 py-5 border-t ${cardBorderClass}`}
+                    >
+                      <Ionicons name="trash-outline" size={20} color="#EF4444" />
+                      <View className={`flex-1 ${isRTL ? "mr-3" : "ml-3"}`}>
+                        <Text className={`${isRTL ? "text-right" : ""} ${dangerTextClass}`}>{t("settings.clearCacheNow")}</Text>
+                        <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} text-xs mt-1`}>
+                          {t("settings.clearCacheDescription")}
+                        </Text>
+                      </View>
+                      <Ionicons name={isRTL ? "chevron-back" : "chevron-forward"} size={22} color={accessoryIconColor} />
+                    </Pressable>
                   </View>
                 </View>
               </View>
@@ -1523,66 +947,6 @@ export default function SettingsPage() {
           )}
         </View>
       </ScrollView>
-      {__DEV__
-        ? renderOverlay(
-            showDevLog,
-            () => setShowDevLog(false),
-            <>
-              <Text className={`text-xl ${isRTL ? "text-right" : ""} ${textClass} mb-2`}>
-                Dev Log
-              </Text>
-              <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} mb-4`}>
-                Copy one full JSON snapshot with runtime, layout, settings, account, opportunities, and raw app state for debugging.
-              </Text>
-
-              {devLogCopyStatus === "copied" ? (
-                <StatusBanner variant="success" message="Full dev log copied to clipboard." className="mb-4" />
-              ) : devLogCopyStatus === "failed" ? (
-                <StatusBanner variant="error" message="Could not copy the dev log on this platform." className="mb-4" />
-              ) : null}
-
-              <View
-                style={{
-                  flexDirection: stackDialogActions ? "column" : isRTL ? "row-reverse" : "row",
-                  gap: 12,
-                  marginBottom: 16,
-                }}
-              >
-                <Pressable
-                  onPress={copySettingsDevLog}
-                  className="bg-emerald-500 rounded-lg py-4 items-center"
-                  style={{ flex: stackDialogActions ? undefined : 1 }}
-                >
-                  <Text className={`${isDark || isGreen ? "text-white" : "text-emerald-900"} font-semibold`}>
-                    Copy Log
-                  </Text>
-                </Pressable>
-
-                <Pressable
-                  onPress={() => setShowDevLog(false)}
-                  className={`${cardBgClass} border ${cardBorderClass} rounded-lg py-4 items-center`}
-                  style={{ flex: stackDialogActions ? undefined : 1 }}
-                >
-                  <Text className={textClass}>{t("general.close")}</Text>
-                </Pressable>
-              </View>
-
-              <View className={`${inputClass} border rounded-2xl p-3`} style={{ maxHeight: 420 }}>
-                <ScrollView nestedScrollEnabled>
-                  <Text
-                    className={`${textClass} text-xs`}
-                    selectable={Platform.OS === "web"}
-                    style={{ fontFamily: Platform.OS === "ios" ? "Menlo" : Platform.OS === "android" ? "monospace" : "Consolas" }}
-                  >
-                    {devLogSnapshot
-                      ? JSON.stringify(devLogSnapshot, null, 2)
-                      : "Press Copy Log to generate the latest snapshot."}
-                  </Text>
-                </ScrollView>
-              </View>
-            </>
-          )
-        : null}
       {renderOverlay(
         showSupportComposer,
         () => setShowSupportComposer(false),

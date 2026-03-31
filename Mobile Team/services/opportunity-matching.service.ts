@@ -3,16 +3,23 @@ import {
   type Opportunity,
   type UserOpportunityStatus,
   type OpportunityFinancialAidTag,
+  type OpportunityProgressState,
+  isCompletedOpportunityProgress,
   isOpportunityDoneForCurrentCycle,
   normalizeMajorTag,
+  normalizeResidencyTag,
   OPPORTUNITY_FINANCIAL_AID_TAGS,
+  OPPORTUNITY_DEADLINE_TYPES,
+  OPPORTUNITY_PROGRESS_STATES,
   OPPORTUNITY_STATUSES,
+  resolveOpportunityProgress,
   resolveOpportunityDueDate,
 } from "@/constants/opportunities";
 import { QUESTIONNAIRE_FIELD_IDS } from "@/constants/schema";
 
 export type MatchedOpportunity = Opportunity & {
   computedDueAt: string | null;
+  progress: OpportunityProgressState | null;
   isDone: boolean;
   matchScore: number;
   matchReasons: string[];
@@ -26,6 +33,46 @@ type MatchInput = {
 
 function uniqueStrings(values: string[]) {
   return Array.from(new Set(values.filter(Boolean)));
+}
+
+function formatRequirementCountLabel(
+  count: number,
+  singular: string,
+  plural: string = `${singular}s`
+) {
+  if (count <= 0) return "";
+  if (count === 1) return `1 ${singular}`;
+  return `${count} ${plural}`;
+}
+
+function parseUserGpa(input: MatchInput) {
+  const candidates = [
+    input.user?.gpa,
+    input.questionnaireAnswers?.[QUESTIONNAIRE_FIELD_IDS.gpa],
+  ];
+
+  for (const value of candidates) {
+    const parsed = Number.parseFloat(String(value ?? "").trim());
+    if (Number.isFinite(parsed) && parsed >= 0 && parsed <= 5) {
+      return parsed;
+    }
+  }
+
+  return null;
+}
+
+function getUserResidency(input: MatchInput) {
+  return normalizeResidencyTag(
+    input.user?.residencyType ??
+      input.questionnaireAnswers?.[QUESTIONNAIRE_FIELD_IDS.inStateOutOfState]
+  );
+}
+
+function getProgressReason(progress: OpportunityProgressState | null) {
+  if (progress === OPPORTUNITY_PROGRESS_STATES.won) return "Awarded";
+  if (progress === OPPORTUNITY_PROGRESS_STATES.expired) return "Expired";
+  if (progress === OPPORTUNITY_PROGRESS_STATES.submitted) return "Submitted";
+  return "Completed";
 }
 
 function getNeedAidSignal(questionnaireAnswers: QuestionnaireAnswers) {
@@ -53,8 +100,11 @@ function scoreOpportunity(opportunity: Opportunity, input: MatchInput): MatchedO
   if (opportunity.status === OPPORTUNITY_STATUSES.archived) return null;
 
   const status = input.statusById[opportunity.opportunityId];
+  const progress = resolveOpportunityProgress(opportunity, status ?? null);
   const isDone = isOpportunityDoneForCurrentCycle(opportunity, status ?? null);
   const userMajor = normalizeMajorTag(input.user?.major);
+  const userGpa = parseUserGpa(input);
+  const userResidency = getUserResidency(input);
   const suggestedMajors = opportunity.matching.suggestedMajors.map(normalizeMajorTag);
   const dueDate = resolveOpportunityDueDate(opportunity);
   const dueAt = dueDate ? dueDate.toISOString() : null;
@@ -63,14 +113,46 @@ function scoreOpportunity(opportunity: Opportunity, input: MatchInput): MatchedO
     return {
       ...opportunity,
       computedDueAt: dueAt,
+      progress,
       isDone: true,
       matchScore: -1,
-      matchReasons: ["Completed"],
+      matchReasons: [getProgressReason(progress)],
     };
   }
 
   const matchReasons: string[] = [];
   let score = 0;
+
+  if (opportunity.eligibility.gpaMin != null) {
+    if (userGpa != null && userGpa < opportunity.eligibility.gpaMin) {
+      return null;
+    }
+    if (userGpa != null && userGpa >= opportunity.eligibility.gpaMin) {
+      score += 15;
+      matchReasons.push(`GPA ${opportunity.eligibility.gpaMin}+ fit`);
+    }
+  }
+
+  if (opportunity.eligibility.residencyTypes.length) {
+    if (
+      userResidency &&
+      !opportunity.eligibility.residencyTypes.includes(userResidency)
+    ) {
+      return null;
+    }
+    if (
+      userResidency &&
+      opportunity.eligibility.residencyTypes.includes(userResidency)
+    ) {
+      score += 12;
+      matchReasons.push("Residency fit");
+    }
+  }
+
+  if (opportunity.eligibility.transferOnly) {
+    score += 8;
+    matchReasons.push("Transfer fit");
+  }
 
   if (opportunity.matching.hasToBeMajor) {
     if (!userMajor || !suggestedMajors.includes(userMajor)) {
@@ -93,11 +175,17 @@ function scoreOpportunity(opportunity: Opportunity, input: MatchInput): MatchedO
     matchReasons.push("Financial aid fit");
   }
 
+  if (opportunity.requirements.recommendationCountMin > 0) {
+    const recommendationLabel =
+      opportunity.requirements.recommendationCountMin === 1
+        ? "1+ recommendations required"
+        : `${opportunity.requirements.recommendationCountMin}+ recommendations required`;
+    matchReasons.push(recommendationLabel);
+  }
+
   if (opportunity.requirements.essayCount > 0) {
     matchReasons.push(
-      `${opportunity.requirements.essayCount} essay${
-        opportunity.requirements.essayCount === 1 ? "" : "s"
-      }`
+      formatRequirementCountLabel(opportunity.requirements.essayCount, "essay")
     );
   }
 
@@ -114,8 +202,15 @@ function scoreOpportunity(opportunity: Opportunity, input: MatchInput): MatchedO
     }
   }
 
-  if (opportunity.requirements.needsRecommendations) {
-    matchReasons.push("1+ recommendations required");
+  if (opportunity.deadline.type === OPPORTUNITY_DEADLINE_TYPES.priority) {
+    score += 10;
+    matchReasons.push("Priority deadline");
+  } else if (
+    opportunity.deadline.type === OPPORTUNITY_DEADLINE_TYPES.rolling &&
+    !dueDate
+  ) {
+    score += 5;
+    matchReasons.push("Rolling deadline");
   }
 
   if (opportunity.type === "college_deadline") {
@@ -125,6 +220,7 @@ function scoreOpportunity(opportunity: Opportunity, input: MatchInput): MatchedO
   return {
     ...opportunity,
     computedDueAt: dueAt,
+    progress,
     isDone: false,
     matchScore: score,
     matchReasons: uniqueStrings(matchReasons),

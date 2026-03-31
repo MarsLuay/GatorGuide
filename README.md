@@ -31,7 +31,9 @@ We make that possible by combining three connected parts of the project:
 - On macOS or Linux, run `bash ./Start-to-run.sh` from the repo root.
 - After the server comes online, it tries to open `http://127.0.0.1:8081` in your default browser automatically.
 
-### 1) Install required tools
+### Manual Start
+
+#### 1) Install required tools
 
 - Download VS Code: https://code.visualstudio.com/download
 - Download Node.js: https://nodejs.org/en/download
@@ -48,7 +50,7 @@ npx -v
 git --version
 ```
 
-### 2) Clone and install the project
+#### 2) Clone and install the project
 
 Open PowerShell (or your preferred shell) and run the following commands:
 
@@ -72,10 +74,11 @@ npm run start
 Notes:
 
 - If you use Git Bash, WSL, or a POSIX shell, use forward slashes and drop the `$env:` prefix.
+- `npm run start` now automatically falls back from `tunnel` to `lan` to `offline` if an earlier mode does not come online.
 - After Expo starts, open the Metro/Expo devtools in your browser and scan the QR code with Expo Go.
 - If you are working on Data Team or AI Team tasks, you can open the repo without starting the mobile app.
 
-### 3) Open in VS Code (edit files)
+#### 3) Open in VS Code (edit files)
 
 Open VS Code -> File -> Open Folder ->
 
@@ -108,3 +111,15 @@ git commit -m "enter descriptive message"
 git pull --rebase origin main
 git push origin main
 ```
+
+## Adding new resources
+
+### Bat File
+
+To add new scholarships, internships, or helpful resource links, there is an easy script for this.
+
+This script is called `add-or-remove-resources.bat`.
+
+Just double-click it, answer the prompts, and it will walk you through adding the item. It asks for the important information, including things like title, link, deadline style, yearly recurrence, essays, recommendations, and any other details it can collect.
+
+After it saves your changes, commit and push them so the new scholarship, internship, or resource is added to the repo.

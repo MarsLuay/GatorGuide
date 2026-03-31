@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useRef, useCallback } from "react";
-import { View, Text, TextInput, Pressable, ScrollView, Switch, ActivityIndicator, useWindowDimensions, Linking, Image, Platform, type DimensionValue } from "react-native";
+import { View, Text, TextInput, Pressable, ScrollView, Switch, ActivityIndicator, useWindowDimensions, Linking, Image, type DimensionValue } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -16,66 +16,10 @@ import { MatchScoreBadge } from "@/components/ui/MatchScoreBadge";
 import { StateCard } from "@/components/ui/StateCard";
 import { StatusBanner } from "@/components/ui/StatusBanner";
 import { College } from "@/services/college.service";
-import { aiService, collegeService, deadlineCalendarService, devConsoleLogService, errorLoggingService, roadmapService } from "@/services";
-import type { DeadlineCalendarEntry, DisabledInfluences, EmptyState, RecommendDebug, RoadmapTask, UserRoadmapDocument } from "@/services";
+import { aiService, collegeService, deadlineCalendarService, errorLoggingService, roadmapService } from "@/services";
+import type { DeadlineCalendarEntry, DisabledInfluences, EmptyState, RoadmapTask, UserRoadmapDocument } from "@/services";
 import type { MatchedOpportunity } from "@/services/opportunity-matching.service";
-
-type DebugAiLimitMeta = {
-  reached: boolean;
-  limit: number;
-  requestedWeighted: boolean;
-  effectiveWeighted: boolean;
-  aiComponentEnabled: boolean;
-};
-type DebugSnapshotWithLimit = RecommendDebug & {
-  aiLimit?: DebugAiLimitMeta;
-};
-type LayoutDebugSnapshot = {
-  viewport: {
-    width: number;
-    height: number;
-    fontScale: number;
-    breakpoint: string;
-    localPhoneLikeViewport: boolean;
-    responsivePhoneLikeViewport: boolean;
-    topInset: number;
-    bottomInset: number;
-  };
-  tabBar: {
-    minHeight: number;
-    paddingTop: number;
-    paddingBottom: number;
-    iconSize: number;
-    labelFontSize: number;
-    labelLineHeight: number;
-    labelMaxWidth: number;
-    shellMaxWidth: number | null;
-    shellHorizontalPadding: number;
-    barHorizontalPadding: number;
-    itemPaddingHorizontal: number;
-    itemPaddingVertical: number;
-    labels: string[];
-    configuredRouteNames: string[];
-    visibleRouteNames: string[];
-    hiddenRouteNames: string[];
-  };
-  homeLayout: {
-    isDesktopHome: boolean;
-    contentMaxWidth: number;
-    desktopHorizontalPadding: number;
-    desktopColumnsShouldStack: boolean;
-    desktopHeaderShouldStack: boolean;
-    desktopSearchShouldStack: boolean;
-    desktopActionCardsShouldStack: boolean;
-    desktopSideColumnWidth: number;
-    floatingOverlayBottom: number;
-  };
-  notes: string[];
-};
-type DevConsoleSnapshot = {
-  recommendation: DebugSnapshotWithLimit | null;
-  layout: LayoutDebugSnapshot;
-};
+import { formatLocalizedRate } from "@/utils/locale-format";
 type HomeImportantMessage = {
   id: string;
   icon: keyof typeof Ionicons.glyphMap;
@@ -85,18 +29,6 @@ type HomeImportantMessage = {
   onPress: () => void;
   tone: "success" | "warning" | "info";
 };
-type DevConsoleLogStatus =
-  | {
-      kind: "saved";
-      message: string;
-      relativePath: string;
-      fileUri: string;
-    }
-  | {
-      kind: "failed";
-      message: string;
-    }
-  | null;
 
 type HomeTourStep = {
   id: string;
@@ -124,21 +56,6 @@ type RoadmapTaskWithSection = RoadmapTask & {
 
 const DESKTOP_HOME_MIN_WIDTH = 960;
 const PHONE_FALLBACK_ASPECT_RATIO = 1.5;
-const PRIMARY_TAB_ROUTE_NAMES = ["index", "resources", "profile", "settings"] as const;
-const HIDDEN_TAB_ROUTE_NAMES = [
-  "roadmap",
-  "calendar",
-  "college-search",
-  "questionnaire",
-  "compare",
-  "cost-calculator",
-  "saved-colleges",
-  "language",
-  "about",
-  "privacy",
-  "terms",
-  "college/[collegeId]",
-] as const;
 
 function formatOpportunityDueLabel(value: string | null) {
   if (!value) return "Rolling";
@@ -187,26 +104,10 @@ function getUpcomingDeadlineEntries(entries: DeadlineCalendarEntry[], limit = 3)
 export default function HomePage() {
   const router = useRouter();
   const { isDark, isGreen, isLight } = useAppTheme();
-  const { t } = useAppLanguage();
+  const { t, language } = useAppLanguage();
   const { isHydrated, state, setQuestionnaireAnswers, addSavedCollege, removeSavedCollege, isCollegeSaved, setOnboardingSeen } = useAppData();
   const { matchedOpportunities } = useOpportunities();
-  const {
-    breakpoint,
-    isPhoneLikeViewport: responsivePhoneLikeViewport,
-    topInset,
-    bottomInset,
-    getScrollContentPadding,
-    tabBarPaddingTop,
-    tabBarPaddingBottom,
-    tabBarIconSize,
-    tabBarLabelFontSize,
-    tabBarLabelLineHeight,
-    tabBarLabelMaxWidth,
-    tabBarHorizontalPadding,
-    tabBarItemPaddingVertical,
-    tabBarItemPaddingHorizontal,
-    tabBarMinHeight,
-  } = useResponsiveLayout();
+  const { getScrollContentPadding } = useResponsiveLayout();
   const insets = useSafeAreaInsets();
   const { width: screenWidth, height: screenHeight, fontScale = 1 } = useWindowDimensions();
 
@@ -256,19 +157,7 @@ export default function HomePage() {
   const [showCooldownPopup, setShowCooldownPopup] = useState(false);
   const [remainingSeconds, setRemainingSeconds] = useState(0);
   const cooldownRef = useRef<number | null>(null);
-  const [showDebugConsole, setShowDebugConsole] = useState(false);
-  const [debugSnapshot, setDebugSnapshot] = useState<DevConsoleSnapshot | null>(null);
-  const [debugHotkeyEnabled, setDebugHotkeyEnabled] = useState(false);
-  const [copyStatus, setCopyStatus] = useState<"" | "copied" | "failed">("");
-  const [debugLogStatus, setDebugLogStatus] = useState<DevConsoleLogStatus>(null);
   const [aiLimitNotice, setAiLimitNotice] = useState<string | null>(null);
-  const [lastAiLimitMeta, setLastAiLimitMeta] = useState<DebugAiLimitMeta>({
-    reached: false,
-    limit: 0,
-    requestedWeighted: true,
-    effectiveWeighted: true,
-    aiComponentEnabled: true,
-  });
   const [showAdvancedSearch, setShowAdvancedSearch] = useState(false);
   const [disabledInfluences, setDisabledInfluences] = useState<DisabledInfluences>({});
   const [tourStepIndex, setTourStepIndex] = useState(0);
@@ -370,111 +259,45 @@ export default function HomePage() {
   const dashboardSectionWidth = desktopColumnsShouldStack
     ? { width: "100%" as DimensionValue }
     : { width: "48.8%" as DimensionValue };
-  const devConsoleLayoutSnapshot = useMemo<LayoutDebugSnapshot>(() => {
-    const tabLabels = [
-      t("navigation.home"),
-      t("navigation.resources"),
-      t("navigation.profile"),
-      t("navigation.settings"),
-    ];
-    const configuredRouteNames = [...PRIMARY_TAB_ROUTE_NAMES, ...HIDDEN_TAB_ROUTE_NAMES];
-    const notes: string[] = [];
+  const renderGuestAccountCta = ({ desktop }: { desktop: boolean }) => (
+    <View style={desktop ? { flex: 1, justifyContent: "space-between" } : undefined}>
+      <View className={`flex-row items-start ${desktop ? "gap-4" : "gap-3"}`}>
+        <View
+          className={`${desktop ? "rounded-[24px]" : "rounded-full"} ${guestCtaIconBgClass} items-center justify-center ${desktop ? "" : "mt-1"}`}
+          style={desktop ? { width: 76, height: 76 } : undefined}
+        >
+          <Ionicons name="person-add" size={desktop ? 28 : 20} color={guestCtaIconColor} />
+        </View>
 
-    if (!isDesktopHome) {
-      notes.push("Home is using the phone layout because the viewport is below the desktop threshold or is phone-like.");
-    }
-    if (responsivePhoneLikeViewport) {
-      notes.push("Responsive layout currently classifies this viewport as phone-like.");
-    }
-    if (fontScale > 1.25) {
-      notes.push("Large font scaling is active, so tab labels may wrap or increase tab bar height.");
-    }
-    if (screenWidth > 1280) {
-      notes.push("Desktop tabs are centered inside a 1280px shell with 24px horizontal desktop padding.");
-    }
-    if (tabLabels.some((label) => label.length > 10)) {
-      notes.push("One or more tab labels are long enough that two-line wrapping is more likely.");
-    }
-    notes.push("The rendered desktop tab bar filters hidden child routes so only Home, Resources, Profile, and Settings share the visible row.");
+        <View className="flex-1">
+          <Text className={`font-semibold ${guestCtaTitleClass} ${desktop ? "text-2xl" : "text-base"} mb-1`}>
+            {t("home.createAccount")}
+          </Text>
+          <Text className={`${guestCtaBodyClass} text-sm ${desktop ? "leading-6" : ""}`}>
+            {t("home.signUpMessage")}
+          </Text>
+        </View>
+      </View>
 
-    return {
-      viewport: {
-        width: screenWidth,
-        height: screenHeight,
-        fontScale,
-        breakpoint,
-        localPhoneLikeViewport: isPhoneLikeViewport,
-        responsivePhoneLikeViewport,
-        topInset,
-        bottomInset,
-      },
-      tabBar: {
-        minHeight: tabBarMinHeight,
-        paddingTop: tabBarPaddingTop,
-        paddingBottom: tabBarPaddingBottom,
-        iconSize: tabBarIconSize,
-        labelFontSize: tabBarLabelFontSize,
-        labelLineHeight: tabBarLabelLineHeight,
-        labelMaxWidth: tabBarLabelMaxWidth,
-        shellMaxWidth: breakpoint === "desktop" ? 1280 : null,
-        shellHorizontalPadding: breakpoint === "desktop" ? 24 : 0,
-        barHorizontalPadding: tabBarHorizontalPadding,
-        itemPaddingHorizontal: tabBarItemPaddingHorizontal,
-        itemPaddingVertical: tabBarItemPaddingVertical,
-        labels: tabLabels,
-        configuredRouteNames,
-        visibleRouteNames: [...PRIMARY_TAB_ROUTE_NAMES],
-        hiddenRouteNames: [...HIDDEN_TAB_ROUTE_NAMES],
-      },
-      homeLayout: {
-        isDesktopHome,
-        contentMaxWidth,
-        desktopHorizontalPadding,
-        desktopColumnsShouldStack,
-        desktopHeaderShouldStack,
-        desktopSearchShouldStack,
-        desktopActionCardsShouldStack,
-        desktopSideColumnWidth,
-        floatingOverlayBottom,
-      },
-      notes,
-    };
-  }, [
-    bottomInset,
-    breakpoint,
-    contentMaxWidth,
-    desktopActionCardsShouldStack,
-    desktopColumnsShouldStack,
-    desktopHeaderShouldStack,
-    desktopHorizontalPadding,
-    desktopSearchShouldStack,
-    desktopSideColumnWidth,
-    floatingOverlayBottom,
-    fontScale,
-    isDesktopHome,
-    isPhoneLikeViewport,
-    responsivePhoneLikeViewport,
-    screenHeight,
-    screenWidth,
-    t,
-    tabBarHorizontalPadding,
-    tabBarIconSize,
-    tabBarItemPaddingHorizontal,
-    tabBarItemPaddingVertical,
-    tabBarLabelFontSize,
-    tabBarLabelLineHeight,
-    tabBarLabelMaxWidth,
-    tabBarMinHeight,
-    tabBarPaddingBottom,
-    tabBarPaddingTop,
-    topInset,
-  ]);
-  const formatPercent = (value: unknown) => {
-    const n = Number(value);
-    if (!Number.isFinite(n)) return null;
-    return `${Math.round(n)}%`;
-  };
+      <View className={`flex-row gap-2 ${desktop ? "mt-5" : "mt-3"}`}>
+        <Pressable
+          onPress={() => router.push(ROUTES.login)}
+          className={`flex-1 ${guestCtaPrimaryButtonClass} rounded-lg py-2 items-center justify-center`}
+        >
+          <Text className={`${guestCtaPrimaryTextClass} font-semibold text-sm`}>{t("home.signUp")}</Text>
+        </Pressable>
 
+        {!desktop ? (
+          <Pressable
+            onPress={() => setDismissedGuestPrompt(true)}
+            className={`flex-1 ${guestCtaSecondaryButtonClass} rounded-lg py-2 items-center justify-center`}
+          >
+            <Text className={`${guestCtaSecondaryTextClass} font-semibold text-sm`}>{t("home.later")}</Text>
+          </Pressable>
+        ) : null}
+      </View>
+    </View>
+  );
   const getMatchText = (item: Recommended) => {
     const scoreText = (item as any)?.scoreText;
     if (typeof scoreText === "string" && scoreText.trim().length) return scoreText;
@@ -500,29 +323,11 @@ export default function HomePage() {
     if (Number.isFinite(preferenceFit) && preferenceFit >= 55) lines.push(t("home.whyPreferences"));
     if (Number(b.waMrpParticipant ?? 0) > 0) lines.push(t("home.whyTransferPathway"));
     if (!lines.length) {
-      const admission = formatPercent((item.college as any)?.admissionRate ? Number((item.college as any).admissionRate) * 100 : null);
+      const admission = formatLocalizedRate(Number((item.college as any)?.admissionRate ?? NaN), language);
       lines.push(admission ? t("home.whyAdmissionRate", { value: admission }) : t("home.whyGeneralMatch"));
     }
     return lines.slice(0, 2);
   };
-
-  const withAiLimitMeta = useCallback(
-    (snap: RecommendDebug | null, override?: DebugAiLimitMeta): DebugSnapshotWithLimit | null => {
-      if (!snap) return null;
-      return {
-        ...snap,
-        aiLimit: override ?? lastAiLimitMeta,
-      };
-    },
-    [lastAiLimitMeta]
-  );
-  const buildDevConsoleSnapshot = useCallback(
-    (recommendationOverride?: DebugSnapshotWithLimit | null): DevConsoleSnapshot => ({
-      recommendation: recommendationOverride ?? withAiLimitMeta(aiService.getLastRecommendDebug()),
-      layout: devConsoleLayoutSnapshot,
-    }),
-    [devConsoleLayoutSnapshot, withAiLimitMeta]
-  );
 
   const openOpportunity = useCallback(async (opportunity: MatchedOpportunity) => {
     try {
@@ -1018,14 +823,6 @@ export default function HomePage() {
 
     const effectiveUseWeighted = activeUseWeighted;
     const disableAiComponent = false;
-    const aiLimitMeta: DebugAiLimitMeta = {
-      reached: false,
-      limit: 0,
-      requestedWeighted: activeUseWeighted,
-      effectiveWeighted: effectiveUseWeighted,
-      aiComponentEnabled: true,
-    };
-    setLastAiLimitMeta(aiLimitMeta);
 
     setIsSearching(true);
     try {
@@ -1041,7 +838,6 @@ export default function HomePage() {
       setResults(resp.results as Recommended[]);
       setEmptyState(resp.emptyState);
       setResultsSource('live');
-      setDebugSnapshot(buildDevConsoleSnapshot(withAiLimitMeta(aiService.getLastRecommendDebug(), aiLimitMeta)));
     } catch (e) {
       void errorLoggingService.captureException(e, {
         category: "ai",
@@ -1068,63 +864,6 @@ export default function HomePage() {
       setIsSearching(false);
     }
   };
-
-  const refreshDebugSnapshot = () => {
-    setDebugSnapshot(buildDevConsoleSnapshot());
-  };
-
-  const logDebugSnapshot = async () => {
-    const snap = buildDevConsoleSnapshot();
-    setDebugSnapshot(snap);
-    console.log("[DevConsole]", JSON.stringify(snap, null, 2));
-    try {
-      const savedLog = await devConsoleLogService.saveSnapshot(snap);
-      const message =
-        savedLog.delivery === "filesystem"
-          ? `Saved log to ${savedLog.relativePath}`
-          : `Downloaded ${savedLog.fileName}. Web controls the final save location.`;
-      setDebugLogStatus({
-        kind: "saved",
-        message,
-        relativePath: savedLog.relativePath,
-        fileUri: savedLog.fileUri,
-      });
-    } catch (error) {
-      setDebugLogStatus({
-        kind: "failed",
-        message: error instanceof Error ? error.message : "Failed to save dev console log.",
-      });
-      void errorLoggingService.captureException(error, {
-        category: "storage",
-        operation: "save-dev-console-log",
-        severity: "warn",
-        handled: true,
-        source: "HomePage",
-        screen: "HomePage",
-        route: "/",
-      });
-    }
-  };
-
-  const copyDebugSnapshot = async () => {
-    try {
-      const snap = buildDevConsoleSnapshot();
-      const text = JSON.stringify(snap, null, 2);
-      if (!text) {
-        setCopyStatus("failed");
-        return;
-      }
-      if (typeof navigator === "undefined" || !navigator.clipboard?.writeText) {
-        setCopyStatus("failed");
-        return;
-      }
-      await navigator.clipboard.writeText(text);
-      setCopyStatus("copied");
-    } catch {
-      setCopyStatus("failed");
-    }
-  };
-
 
   useEffect(() => {
     const stored = state.questionnaireAnswers?.useWeightedSearch;
@@ -1172,29 +911,6 @@ export default function HomePage() {
       if (interval) clearInterval(interval as any);
     };
   }, [showCooldownPopup, cooldownUntil]);
-
-  useEffect(() => {
-    if (!__DEV__ || Platform.OS !== "web") return;
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.repeat) return;
-
-      if (event.key === "~" || event.key === "`" || event.code === "Backquote") {
-        event.preventDefault();
-        setDebugHotkeyEnabled((isEnabled) => {
-          const nextEnabled = !isEnabled;
-          setShowDebugConsole(nextEnabled);
-          if (nextEnabled) {
-            setDebugSnapshot(buildDevConsoleSnapshot());
-          }
-          return nextEnabled;
-        });
-      }
-    };
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [buildDevConsoleSnapshot]);
 
   const shouldShowTour = Boolean(user && !user.isGuest && user.hasSeenOnboarding !== true);
   const tourCardWidth = Math.min(448, Math.max(280, screenWidth - 32));
@@ -1283,89 +999,6 @@ export default function HomePage() {
     setTourStepIndex((prev) => prev + 1);
   };
 
-  const renderDebugConsole = (placement: "inline" | "overlay" = "inline") => {
-    if (!__DEV__ || !debugHotkeyEnabled) return null;
-
-    const isOverlay = placement === "overlay";
-    const overlayMaxWidth = Math.min(contentMaxWidth, 860);
-    const snapshotMaxHeight = Math.max(160, Math.min(screenHeight * 0.45, 360));
-
-    return (
-      <View
-        style={
-          isOverlay
-            ? {
-                pointerEvents: "box-none",
-                position: "absolute",
-                top: Math.max(insets.top + 12, 12),
-                left: 0,
-                right: 0,
-                alignItems: "center",
-                paddingHorizontal: 12,
-                zIndex: 60,
-              }
-            : undefined
-        }
-      >
-        <View
-          className={`${cardClass} border rounded-2xl p-3 ${isOverlay ? "" : "mb-4"}`}
-          style={isOverlay ? { width: "100%", maxWidth: overlayMaxWidth } : undefined}
-        >
-          <View className="flex-row items-center justify-between">
-            <Text className={`${textClass} font-semibold`}>Dev Console</Text>
-            <Pressable
-              onPress={() => setShowDebugConsole((v) => !v)}
-              className="px-3 py-1 rounded-lg bg-emerald-500"
-            >
-              <Text className={`${isDark ? "text-white" : "text-emerald-900"} font-semibold`}>
-                {showDebugConsole ? "Hide" : "Show"}
-              </Text>
-            </Pressable>
-          </View>
-          <View className="flex-row flex-wrap gap-2 mt-3">
-            <Pressable onPress={refreshDebugSnapshot} className="px-3 py-2 rounded-lg bg-emerald-300">
-              <Text className={`${isDark ? "text-white" : "text-emerald-900"} text-xs font-semibold`}>
-                Refresh Snapshot
-              </Text>
-            </Pressable>
-            <Pressable onPress={() => void logDebugSnapshot()} className="px-3 py-2 rounded-lg bg-emerald-300">
-              <Text className={`${isDark ? "text-white" : "text-emerald-900"} text-xs font-semibold`}>Save Log</Text>
-            </Pressable>
-            <Pressable onPress={copyDebugSnapshot} className="px-3 py-2 rounded-lg bg-emerald-300">
-              <Text className={`${isDark ? "text-white" : "text-emerald-900"} text-xs font-semibold`}>
-                Copy Snapshot
-              </Text>
-            </Pressable>
-          </View>
-          {copyStatus ? (
-            <Text className={`${secondaryTextClass} text-xs mt-2`}>
-              {copyStatus === "copied" ? "Snapshot copied to clipboard." : "Clipboard copy failed."}
-            </Text>
-          ) : null}
-          {debugLogStatus ? (
-            <View className="mt-2">
-              <Text className={`${secondaryTextClass} text-xs`}>{debugLogStatus.message}</Text>
-              {"relativePath" in debugLogStatus ? (
-                <Text selectable className={`${secondaryTextClass} text-xs mt-1`}>
-                  {debugLogStatus.relativePath}
-                  {"\n"}
-                  {debugLogStatus.fileUri}
-                </Text>
-              ) : null}
-            </View>
-          ) : null}
-          {showDebugConsole ? (
-            <ScrollView nestedScrollEnabled className="mt-3" style={{ maxHeight: snapshotMaxHeight }}>
-              <Text selectable className={`${secondaryTextClass} text-xs`}>
-                {debugSnapshot ? JSON.stringify(debugSnapshot, null, 2) : "Tap Refresh Snapshot to capture the latest dev console data."}
-              </Text>
-            </ScrollView>
-          ) : null}
-        </View>
-      </View>
-    );
-  };
-
   const renderDeadlinePanel = (
     title: string,
     subtitle: string,
@@ -1433,43 +1066,52 @@ export default function HomePage() {
           alignItems: "stretch",
         }}
       >
-        <View className={`${dashboardPanelClass} border rounded-[28px] p-5`} style={dashboardSectionWidth}>
-          <View className="flex-row items-start justify-between gap-4">
-            <View className="flex-row items-center flex-1 min-w-0">
-              <View
-                className={`rounded-[24px] overflow-hidden items-center justify-center ${user?.avatar ? "" : "bg-emerald-500/10"}`}
-                style={{ width: 76, height: 76 }}
-              >
-                {user?.avatar ? (
-                  <Image source={{ uri: user.avatar }} style={{ width: "100%", height: "100%" }} resizeMode="cover" />
-                ) : (
-                  <Text className="text-emerald-500 text-2xl font-semibold">
-                    {desktopProfileName.charAt(0).toUpperCase() || "S"}
-                  </Text>
-                )}
+        <View
+          className={`${user?.isGuest ? guestCtaCardClass : dashboardPanelClass} border rounded-[28px] p-5`}
+          style={[dashboardSectionWidth, user?.isGuest ? guestCtaCardStyle : undefined]}
+        >
+          {user?.isGuest ? (
+            renderGuestAccountCta({ desktop: true })
+          ) : (
+            <>
+              <View className="flex-row items-start justify-between gap-4">
+                <View className="flex-row items-center flex-1 min-w-0">
+                  <View
+                    className={`rounded-[24px] overflow-hidden items-center justify-center ${user?.avatar ? "" : "bg-emerald-500/10"}`}
+                    style={{ width: 76, height: 76 }}
+                  >
+                    {user?.avatar ? (
+                      <Image source={{ uri: user.avatar }} style={{ width: "100%", height: "100%" }} resizeMode="cover" />
+                    ) : (
+                      <Text className="text-emerald-500 text-2xl font-semibold">
+                        {desktopProfileName.charAt(0).toUpperCase() || "S"}
+                      </Text>
+                    )}
+                  </View>
+                  <View className="ml-4 flex-1 min-w-0">
+                    <Text className={`${secondaryTextClass} text-xs uppercase tracking-[1px] mb-2`}>{t("home.yourProfile")}</Text>
+                    <Text className={`${textClass} text-2xl font-semibold`} numberOfLines={1}>
+                      {desktopProfileName}
+                    </Text>
+                    <Text className={`${secondaryTextClass} text-sm mt-1`} numberOfLines={1}>
+                      {t("home.desktopSnapshot")}
+                    </Text>
+                  </View>
+                </View>
               </View>
-              <View className="ml-4 flex-1 min-w-0">
-                <Text className={`${secondaryTextClass} text-xs uppercase tracking-[1px] mb-2`}>{t("home.yourProfile")}</Text>
-                <Text className={`${textClass} text-2xl font-semibold`} numberOfLines={1}>
-                  {desktopProfileName}
-                </Text>
-                <Text className={`${secondaryTextClass} text-sm mt-1`} numberOfLines={1}>
-                  {user?.isGuest ? t("home.guestAccount") : t("home.desktopSnapshot")}
-                </Text>
-              </View>
-            </View>
-          </View>
 
-          <View className="gap-3 mt-5">
-            <View className={`border rounded-3xl p-4 ${dashboardItemClass}`}>
-              <Text className={`${secondaryTextClass} text-xs uppercase tracking-[0.8px]`}>{t("home.major")}</Text>
-              <Text className={`${textClass} text-base font-semibold mt-2`}>{desktopProfileMajor}</Text>
-            </View>
-            <View className={`border rounded-3xl p-4 ${dashboardItemClass}`}>
-              <Text className={`${secondaryTextClass} text-xs uppercase tracking-[0.8px]`}>{t("home.gpa")}</Text>
-              <Text className={`${textClass} text-base font-semibold mt-2`}>{desktopProfileGpa}</Text>
-            </View>
-          </View>
+              <View className="gap-3 mt-5">
+                <View className={`border rounded-3xl p-4 ${dashboardItemClass}`}>
+                  <Text className={`${secondaryTextClass} text-xs uppercase tracking-[0.8px]`}>{t("home.major")}</Text>
+                  <Text className={`${textClass} text-base font-semibold mt-2`}>{desktopProfileMajor}</Text>
+                </View>
+                <View className={`border rounded-3xl p-4 ${dashboardItemClass}`}>
+                  <Text className={`${secondaryTextClass} text-xs uppercase tracking-[0.8px]`}>{t("home.gpa")}</Text>
+                  <Text className={`${textClass} text-base font-semibold mt-2`}>{desktopProfileGpa}</Text>
+                </View>
+              </View>
+            </>
+          )}
         </View>
 
         {renderDeadlinePanel(
@@ -1538,6 +1180,214 @@ export default function HomePage() {
       <View className="mt-6">
         <HomeTaskMarquee items={desktopMarqueeItems} />
       </View>
+
+      <View className="mt-4">
+        <View
+          className="mb-4"
+          style={
+            desktopSearchShouldStack
+              ? { gap: 12 }
+              : { flexDirection: "row", alignItems: "stretch", gap: 12 }
+          }
+        >
+          <View className="relative" style={{ flex: 1, minWidth: 0 }}>
+            <View className="absolute left-4 top-4 z-10">
+              <Ionicons name="search" size={20} color={placeholderTextColor} />
+            </View>
+            <TextInput
+              value={searchQuery}
+              onChangeText={(v) => {
+                setSearchQuery(v);
+                setSearchTooShort(false);
+              }}
+              onSubmitEditing={() => {
+                void handleSearch();
+              }}
+              placeholder={t("home.pressEnterToStart")}
+              placeholderTextColor={placeholderTextColor}
+              className={`w-full ${inputClass} ${textClass} border rounded-2xl pl-12 pr-4 py-4`}
+              returnKeyType="search"
+            />
+          </View>
+          <Pressable
+            onPress={() => {
+              void handleSearch();
+            }}
+            disabled={showCooldownPopup || isSearching}
+            className={`rounded-xl px-4 py-3 items-center justify-center ${showCooldownPopup || isSearching ? 'bg-emerald-400' : 'bg-emerald-500'}`}
+            style={desktopSearchShouldStack ? { width: "100%" } : { minWidth: 140 }}
+          >
+            {isSearching ? (
+              <View className="flex-row items-center gap-2">
+                <ActivityIndicator size="small" color="#FFFFFF" />
+                <Text className="text-white font-semibold">{t("home.searching")}</Text>
+              </View>
+            ) : (
+              <Text className={`${showCooldownPopup || isDark ? 'text-white' : 'text-emerald-900'} font-semibold`}>
+                {t("home.search")}
+              </Text>
+            )}
+          </Pressable>
+        </View>
+
+        {aiLimitNotice ? (
+          <StatusBanner
+            variant={emptyState?.code === "UPSTREAM_ERROR" ? "error" : "warning"}
+            title={emptyState?.code === "UPSTREAM_ERROR" ? t("general.error") : undefined}
+            message={aiLimitNotice}
+            className="mb-3"
+          />
+        ) : null}
+
+        <View className="mt-2">
+          <View className="flex-row items-center justify-between mb-3">
+            <Text className={`${textClass} mr-2`}>{t("home.weightedSearch")}</Text>
+            <Switch
+              value={useWeighted}
+              onValueChange={handleToggleWeighted}
+            />
+          </View>
+          {useWeighted ? (
+            <View className="mb-3">
+              <Pressable
+                onPress={() => setShowAdvancedSearch((v) => !v)}
+                className={`${cardClass} border rounded-xl px-3 py-2 flex-row items-center justify-between`}
+              >
+                <Text className={`${textClass} font-medium`}>{t("home.advancedSearch")}</Text>
+                <Ionicons
+                  name={showAdvancedSearch ? "chevron-up" : "chevron-down"}
+                  size={18}
+                  color={placeholderTextColor}
+                />
+              </Pressable>
+              {showAdvancedSearch ? (
+                <View className={`${cardClass} border rounded-xl p-3 mt-2`}>
+                  <Text className={`${secondaryTextClass} text-xs mb-2`}>
+                    {t("home.advancedSearchHint")}
+                  </Text>
+                  {([
+                    ["gpa", t("home.rankingFactorGpa")],
+                    ["prestige", t("home.rankingFactorPrestige")],
+                    ["major", t("home.rankingFactorMajor")],
+                    ["preference", t("home.rankingFactorPreference")],
+                    ["query", t("home.rankingFactorQuery")],
+                    ["ai", t("home.rankingFactorAi")],
+                  ] as [keyof DisabledInfluences, string][]).map(([key, label]) => (
+                    <View key={key} className="flex-row items-center justify-between py-1.5">
+                      <Text className={textClass}>{label}</Text>
+                      <Switch
+                        value={!Boolean(disabledInfluences[key])}
+                        onValueChange={(v) => toggleDisabledInfluence(key, !v)}
+                      />
+                    </View>
+                  ))}
+                </View>
+              ) : null}
+            </View>
+          ) : null}
+          <View className="flex-row items-center justify-between mb-2">
+            <Text className={`text-lg ${textClass}`}>{t("home.recommendedColleges")}</Text>
+            {resultsSource ? (
+              <Text className={`${secondaryTextClass} text-xs`}>
+                {resultsSource === 'cached' ? t("home.cachedResults") : resultsSource === 'stub' ? t("home.sampleData") : null}
+              </Text>
+            ) : null}
+          </View>
+
+          {!showRecommendationSection ? (
+            <StateCard
+              variant="empty"
+              title={t("home.recommendedColleges")}
+              message={t("collegeSearchTool.searchPromptBody")}
+              compact
+            />
+          ) : isSearching ? (
+            <StateCard
+              variant="loading"
+              title={t("home.searching")}
+              message={t("general.pleaseWait")}
+              compact
+            />
+          ) : searchTooShort ? (
+            <StateCard
+              variant="empty"
+              title={t("home.searchTooShort")}
+              message={t("home.pressEnterToStart")}
+              compact
+            />
+          ) : results.length === 0 ? (
+            <StateCard
+              variant={emptyState?.code === "UPSTREAM_ERROR" ? "error" : "empty"}
+              title={emptyState?.title ?? t("home.noResults")}
+              message={emptyState?.message ?? t("home.adjustFilters")}
+              actionLabel={emptyState?.code === "UPSTREAM_ERROR" ? t("general.retry") : undefined}
+              onAction={emptyState?.code === "UPSTREAM_ERROR" ? () => { void handleSearch({ bypassCooldown: true }); } : undefined}
+              compact
+            />
+          ) : (
+            <View className="gap-3">
+              {results.map((r) => {
+                const college = r.college;
+                const saved = isCollegeSaved(college.id);
+                const matchScore = getMatchScore(r);
+                return (
+                  <Pressable
+                    key={college.id}
+                    className={`${cardClass} border rounded-xl p-4`}
+                    onPress={() => router.push(ROUTES.collegeDetail(String(college.id)))}
+                  >
+                    <View className="flex-row items-center justify-between">
+                      <View className="flex-1">
+                        <Text className={textClass}>{college.name}</Text>
+                        {matchScore != null ? (
+                          <MatchScoreBadge
+                            score={matchScore}
+                            text={t("home.matchLabel", { value: getMatchText(r) })}
+                            className="mt-1"
+                            textClassName="text-sm"
+                          />
+                        ) : (
+                          <Text className={`${secondaryTextClass} font-semibold mt-1`}>
+                            {t("home.matchLabel", { value: getMatchText(r) })}
+                          </Text>
+                        )}
+                      </View>
+                      <Pressable
+                        onPress={(e) => {
+                          e?.stopPropagation?.();
+                          if (saved) {
+                            void removeSavedCollege(college.id);
+                            return;
+                          }
+
+                          void addSavedCollege(matchScore != null ? { ...college, matchScore } : college);
+                        }}
+                        className="p-2"
+                      >
+                        <Ionicons
+                          name={saved ? "bookmark" : "bookmark-outline"}
+                          size={24}
+                          color={saved ? "#008f4e" : placeholderTextColor}
+                        />
+                      </Pressable>
+                    </View>
+                    <Text className={`text-sm ${secondaryTextClass} mt-1`}>
+                      {college.location.city ? `${college.location.city}, ` : ""}{college.location.state}
+                    </Text>
+                    {buildSimpleWhy(r).length ? (
+                      <View className="mt-2">
+                        {buildSimpleWhy(r).map((line) => (
+                          <Text key={`${college.id}-${line}`} className={`text-xs ${secondaryTextClass}`}>{line}</Text>
+                        ))}
+                      </View>
+                    ) : null}
+                  </Pressable>
+                );
+              })}
+            </View>
+          )}
+        </View>
+      </View>
     </>
   ) : null;
 
@@ -1605,32 +1455,7 @@ export default function HomePage() {
 
               {user?.isGuest && !dismissedGuestPrompt && !isDesktopHome && (
                 <View className={`mb-6 rounded-2xl p-4 ${guestCtaCardClass}`} style={guestCtaCardStyle}>
-                  <View className="flex-row items-start gap-3">
-                    <View className={`p-2 rounded-full ${guestCtaIconBgClass} mt-1`}>
-                      <Ionicons name="person-add" size={20} color={guestCtaIconColor} />
-                    </View>
-
-                    <View className="flex-1">
-                      <Text className={`font-semibold ${guestCtaTitleClass} text-base mb-1`}>{t("home.createAccount")}</Text>
-                      <Text className={`${guestCtaBodyClass} text-sm mb-3`}>{t("home.signUpMessage")}</Text>
-
-                      <View className="flex-row gap-2">
-                        <Pressable
-                          onPress={() => router.push(ROUTES.login)}
-                          className={`flex-1 ${guestCtaPrimaryButtonClass} rounded-lg py-2 items-center`}
-                        >
-                          <Text className={`${guestCtaPrimaryTextClass} font-semibold text-sm`}>{t("home.signUp")}</Text>
-                        </Pressable>
-
-                        <Pressable
-                          onPress={() => setDismissedGuestPrompt(true)}
-                          className={`flex-1 ${guestCtaSecondaryButtonClass} rounded-lg py-2 items-center`}
-                        >
-                          <Text className={`${guestCtaSecondaryTextClass} font-semibold text-sm`}>{t("home.later")}</Text>
-                        </Pressable>
-                      </View>
-                    </View>
-                  </View>
+                  {renderGuestAccountCta({ desktop: false })}
                 </View>
               )}
 
@@ -1715,44 +1540,6 @@ export default function HomePage() {
 
               {!isDesktopHome ? (
                 <>
-
-              <View className="relative mb-4">
-                <View className="absolute left-4 top-4 z-10">
-                  <Ionicons name="search" size={20} color={placeholderTextColor} />
-                </View>
-                <TextInput
-                  value={searchQuery}
-                  onChangeText={(v) => { setSearchQuery(v); setSearchTooShort(false); }}
-                  onSubmitEditing={() => { void handleSearch(); }}
-                  placeholder={t("home.pressEnterToStart")}
-                  placeholderTextColor={placeholderTextColor}
-                  className={`w-full ${inputClass} ${textClass} border rounded-2xl pl-12 pr-24 py-4`}
-                  returnKeyType="search"
-                />
-                <Pressable
-                  onPress={() => { void handleSearch(); }}
-                  disabled={showCooldownPopup || isSearching}
-                  className={`absolute right-2 top-2 rounded-xl px-4 py-2 ${showCooldownPopup || isSearching ? 'bg-emerald-400' : 'bg-emerald-500'}`}
-                >
-                  {isSearching ? (
-                    <View className="flex-row items-center gap-2">
-                      <ActivityIndicator size="small" color="#FFFFFF" />
-                      <Text className="text-white font-semibold">{t("home.searching")}</Text>
-                    </View>
-                  ) : (
-                    <Text className={`${showCooldownPopup || isDark ? 'text-white' : 'text-emerald-900'} font-semibold`}>{t("home.search")}</Text>
-                  )}
-                </Pressable>
-              </View>
-              {aiLimitNotice ? (
-                <StatusBanner
-                  variant={emptyState?.code === "UPSTREAM_ERROR" ? "error" : "warning"}
-                  title={emptyState?.code === "UPSTREAM_ERROR" ? t("general.error") : undefined}
-                  message={aiLimitNotice}
-                  className="mb-3"
-                />
-              ) : null}
-
               {!hasCompletedQuestionnaire && (
                 <Pressable
                   onPress={() => router.push(ROUTES.questionnaire)}
@@ -1874,6 +1661,43 @@ export default function HomePage() {
                     ))}
                   </View>
                 </View>
+              ) : null}
+
+              <View className="relative mt-4 mb-4">
+                <View className="absolute left-4 top-4 z-10">
+                  <Ionicons name="search" size={20} color={placeholderTextColor} />
+                </View>
+                <TextInput
+                  value={searchQuery}
+                  onChangeText={(v) => { setSearchQuery(v); setSearchTooShort(false); }}
+                  onSubmitEditing={() => { void handleSearch(); }}
+                  placeholder={t("home.pressEnterToStart")}
+                  placeholderTextColor={placeholderTextColor}
+                  className={`w-full ${inputClass} ${textClass} border rounded-2xl pl-12 pr-24 py-4`}
+                  returnKeyType="search"
+                />
+                <Pressable
+                  onPress={() => { void handleSearch(); }}
+                  disabled={showCooldownPopup || isSearching}
+                  className={`absolute right-2 top-2 rounded-xl px-4 py-2 ${showCooldownPopup || isSearching ? 'bg-emerald-400' : 'bg-emerald-500'}`}
+                >
+                  {isSearching ? (
+                    <View className="flex-row items-center gap-2">
+                      <ActivityIndicator size="small" color="#FFFFFF" />
+                      <Text className="text-white font-semibold">{t("home.searching")}</Text>
+                    </View>
+                  ) : (
+                    <Text className={`${showCooldownPopup || isDark ? 'text-white' : 'text-emerald-900'} font-semibold`}>{t("home.search")}</Text>
+                  )}
+                </Pressable>
+              </View>
+              {aiLimitNotice ? (
+                <StatusBanner
+                  variant={emptyState?.code === "UPSTREAM_ERROR" ? "error" : "warning"}
+                  title={emptyState?.code === "UPSTREAM_ERROR" ? t("general.error") : undefined}
+                  message={aiLimitNotice}
+                  className="mb-3"
+                />
               ) : null}
 
               {!isDesktopHome && showExtraInfoPrompt ? (
@@ -2159,54 +1983,6 @@ export default function HomePage() {
           {isDesktopHome ? (
             <View className="mt-6">
               <View
-                className="mb-4"
-                style={
-                  desktopSearchShouldStack
-                    ? { gap: 12 }
-                    : { flexDirection: "row", alignItems: "stretch", gap: 12 }
-                }
-              >
-                <View className="relative" style={{ flex: 1, minWidth: 0 }}>
-                  <View className="absolute left-4 top-4 z-10">
-                    <Ionicons name="search" size={20} color={placeholderTextColor} />
-                  </View>
-                  <TextInput
-                    value={searchQuery}
-                    onChangeText={(v) => { setSearchQuery(v); setSearchTooShort(false); }}
-                    onSubmitEditing={() => { void handleSearch(); }}
-                    placeholder={t("home.pressEnterToStart")}
-                    placeholderTextColor={placeholderTextColor}
-                    className={`w-full ${inputClass} ${textClass} border rounded-2xl pl-12 pr-4 py-4`}
-                    returnKeyType="search"
-                  />
-                </View>
-                <Pressable
-                  onPress={() => { void handleSearch(); }}
-                  disabled={showCooldownPopup || isSearching}
-                  className={`rounded-xl px-4 py-3 items-center justify-center ${showCooldownPopup || isSearching ? 'bg-emerald-400' : 'bg-emerald-500'}`}
-                  style={desktopSearchShouldStack ? { width: "100%" } : { minWidth: 140 }}
-                >
-                  {isSearching ? (
-                    <View className="flex-row items-center gap-2">
-                      <ActivityIndicator size="small" color="#FFFFFF" />
-                      <Text className="text-white font-semibold">{t("home.searching")}</Text>
-                    </View>
-                  ) : (
-                    <Text className={`${showCooldownPopup || isDark ? 'text-white' : 'text-emerald-900'} font-semibold`}>{t("home.search")}</Text>
-                  )}
-                </Pressable>
-              </View>
-
-              {aiLimitNotice ? (
-                <StatusBanner
-                  variant={emptyState?.code === "UPSTREAM_ERROR" ? "error" : "warning"}
-                  title={emptyState?.code === "UPSTREAM_ERROR" ? t("general.error") : undefined}
-                  message={aiLimitNotice}
-                  className="mb-3"
-                />
-              ) : null}
-
-              <View
                 style={
                   desktopActionCardsShouldStack
                     ? { gap: 16 }
@@ -2282,7 +2058,7 @@ export default function HomePage() {
             </View>
           ) : null}
 
-          {showRecommendationSection ? (
+          {!isDesktopHome && showRecommendationSection ? (
             <View className="mt-8">
               <View className="flex-row items-center justify-between mb-3">
                 <Text className={`${textClass} mr-2`}>{t("home.weightedSearch")}</Text>
@@ -2441,7 +2217,6 @@ export default function HomePage() {
           )}
         </View>
       </ScrollView>
-      {renderDebugConsole("overlay")}
       {showCooldownPopup ? (
         <View
           className="absolute left-0 right-0 items-center px-4"

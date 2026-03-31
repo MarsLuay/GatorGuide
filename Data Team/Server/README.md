@@ -34,3 +34,22 @@ python manage.py check
 - Django settings live in `Server/settings.py`.
 - API models and endpoints live under `API/`.
 - The ETL loader in `../DataScrape/db_loader.py` is configured to target this backend layout.
+- If MySQL env vars are not set, the backend now falls back to local SQLite for development and tests.
+
+## API Surface
+
+Read endpoints:
+
+- `GET /api/read/users/`
+- `GET /api/read/users/<user_id>/`
+- `GET /api/read/schools/`
+- `GET /api/read/schools/<school_id>/`
+
+Write endpoints:
+
+- `POST /api/write/users/`
+- `PUT|PATCH|DELETE /api/write/users/<user_id>/`
+- `POST /api/write/schools/`
+- `PUT|PATCH|DELETE /api/write/schools/<school_id>/`
+
+`GET /api/read/schools/` also supports simple query filters like `q`, `state`, `school_type`, and `climate`.

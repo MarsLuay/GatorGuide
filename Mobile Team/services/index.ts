@@ -20,3 +20,4 @@ export * from "./roadmap.service";
 export * from "./cache-manager.service";
 export * from "./saved-colleges.service";
 export * from "./dev-console-log.service";
+export * from "./transcript-planner-debug.service";

@@ -12,7 +12,7 @@ import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import { MatchScoreBadge } from "@/components/ui/MatchScoreBadge";
 import useBack from "@/hooks/use-back";
 import { collegeService, type College } from "@/services";
-import { formatLocalizedCurrency, formatLocalizedNumber, formatLocalizedPercent } from "@/utils/locale-format";
+import { formatLocalizedCurrency, formatLocalizedNumber, formatLocalizedRate } from "@/utils/locale-format";
 import { formatMatchScore } from "@/utils/match-color";
 
 const MAX_SELECT = 4;
@@ -91,9 +91,7 @@ export default function ComparePage() {
   };
 
   const formatRate = (value: number | null | undefined) => {
-    if (typeof value !== "number") return notAvailable;
-    const normalized = value > 1 ? value : value * 100;
-    return formatLocalizedPercent(normalized / 100, language);
+    return formatLocalizedRate(value, language) ?? notAvailable;
   };
 
   const formatSize = (college: College) => {

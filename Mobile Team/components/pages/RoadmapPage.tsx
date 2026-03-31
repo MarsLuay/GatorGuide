@@ -21,6 +21,7 @@ import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppData } from "@/hooks/use-app-data";
 import { useOpportunities } from "@/hooks/use-opportunities";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
+import type { MatchedOpportunity } from "@/services/opportunity-matching.service";
 import {
   aiService,
   buildAiConversationContext,
@@ -136,11 +137,69 @@ export default function RoadmapPage() {
   const { matchedOpportunities, setOpportunityDone } = useOpportunities();
   const { textClass, secondaryTextClass, cardBgClass, borderClass, progressBgClass } = styles;
   const locale = getLocaleForLanguage(language);
-  const getOpportunityDueBadgeLabel = (value: string | null) => {
-    const formatted = formatOpportunityDueLabel(value, locale);
-    return formatted
-      ? t("roadmap.dueOn", { date: formatted })
-      : t("roadmap.openDeadline");
+  const getOpportunityDueBadgeLabel = (value: {
+    computedDueAt: string | null;
+    deadline: { type: string };
+  }) => {
+    const formatted = formatOpportunityDueLabel(value.computedDueAt, locale);
+    if (value.deadline.type === "rolling" && !formatted) {
+      return t("resources.rollingDeadline");
+    }
+    if (!formatted) return t("roadmap.openDeadline");
+    if (value.deadline.type === "priority") {
+      return t("resources.priorityDueOn", { date: formatted });
+    }
+    if (value.deadline.type === "rolling") {
+      return t("resources.rollingDueOn", { date: formatted });
+    }
+    return t("roadmap.dueOn", { date: formatted });
+  };
+  const formatOpportunityMoney = (amount: number | null, currency: string) => {
+    if (amount == null) return null;
+    try {
+      return new Intl.NumberFormat(locale, {
+        style: "currency",
+        currency: currency || "USD",
+        maximumFractionDigits: 0,
+      }).format(amount);
+    } catch {
+      return String(amount);
+    }
+  };
+  const getOpportunityAwardBadgeLabel = (opportunity: MatchedOpportunity) => {
+    if (opportunity.award.amountText) return opportunity.award.amountText;
+    const amountMin = formatOpportunityMoney(
+      opportunity.award.amountMin,
+      opportunity.award.currency
+    );
+    const amountMax = formatOpportunityMoney(
+      opportunity.award.amountMax,
+      opportunity.award.currency
+    );
+    if (amountMin && amountMax && amountMin !== amountMax) {
+      return t("resources.awardRange", { min: amountMin, max: amountMax });
+    }
+    if (amountMin || amountMax) {
+      return t("resources.awardAmount", { amount: amountMin ?? amountMax ?? "" });
+    }
+    return null;
+  };
+  const getOpportunityRecommendationBadgeLabel = (opportunity: MatchedOpportunity) => {
+    const count =
+      opportunity.requirements.recommendationCountMin ||
+      (opportunity.requirements.needsRecommendations ? 1 : 0);
+    if (count <= 0) return null;
+    return t("resources.recommendationMinimum", { count });
+  };
+  const getOpportunityEligibilityBadges = (opportunity: MatchedOpportunity) => {
+    const labels: string[] = [];
+    if (opportunity.eligibility.transferOnly) {
+      labels.push(t("resources.transferOnly"));
+    }
+    if (opportunity.eligibility.gpaMin != null) {
+      labels.push(t("resources.gpaMinimum", { gpa: opportunity.eligibility.gpaMin }));
+    }
+    return labels;
   };
   const user = state.user;
   const userId = user?.uid ?? "";
@@ -1199,9 +1258,33 @@ export default function RoadmapPage() {
                           <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8, marginTop: 12 }}>
                             <View className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
                               <Text className="text-emerald-500 text-xs font-semibold">
-                                {getOpportunityDueBadgeLabel(opportunity.computedDueAt)}
+                                {getOpportunityDueBadgeLabel(opportunity)}
                               </Text>
                             </View>
+                            {getOpportunityRecommendationBadgeLabel(opportunity) ? (
+                              <View className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                                <Text className="text-emerald-500 text-xs font-semibold">
+                                  {getOpportunityRecommendationBadgeLabel(opportunity)}
+                                </Text>
+                              </View>
+                            ) : null}
+                            {getOpportunityAwardBadgeLabel(opportunity) ? (
+                              <View className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                                <Text className="text-emerald-500 text-xs font-semibold">
+                                  {getOpportunityAwardBadgeLabel(opportunity)}
+                                </Text>
+                              </View>
+                            ) : null}
+                            {getOpportunityEligibilityBadges(opportunity).map((label) => (
+                              <View
+                                key={`${opportunity.opportunityId}-${label}`}
+                                className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20"
+                              >
+                                <Text className="text-emerald-500 text-xs font-semibold">
+                                  {label}
+                                </Text>
+                              </View>
+                            ))}
                           </View>
                           <View
                             className="mt-3"

@@ -55,3 +55,27 @@ export function formatLocalizedPercent(
     ...options,
   }).format(value);
 }
+
+export function normalizeRateValue(value: number | null | undefined) {
+  if (typeof value !== "number" || Number.isNaN(value)) return null;
+
+  let normalized = value;
+  if (normalized > 1 && normalized <= 100) {
+    normalized = normalized / 100;
+  } else if (normalized > 0 && normalized < 0.01) {
+    // Heal older or double-normalized cache values like 0.003915 -> 0.3915.
+    normalized = normalized * 100;
+  }
+
+  return Math.min(1, Math.max(0, normalized));
+}
+
+export function formatLocalizedRate(
+  value: number | null | undefined,
+  language?: Language,
+  options?: Omit<Intl.NumberFormatOptions, "style">
+) {
+  const normalized = normalizeRateValue(value);
+  if (normalized === null) return null;
+  return formatLocalizedPercent(normalized, language, options);
+}

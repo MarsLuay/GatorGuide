@@ -230,10 +230,10 @@ start_expo_server() {
     rm -f "$EXPO_PID_FILE"
   fi
 
-  log "Starting Expo with tunnel mode..."
+  log "Starting Expo with tunnel -> lan -> offline fallback..."
   (
     cd "$APP_DIR"
-    nohup npx expo start --tunnel --port "$SERVER_PORT" >"$EXPO_LOG_FILE" 2>&1 </dev/null &
+    EXPO_START_PORT="$SERVER_PORT" nohup npm run start >"$EXPO_LOG_FILE" 2>&1 </dev/null &
     echo $! >"$EXPO_PID_FILE"
   )
 

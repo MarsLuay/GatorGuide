@@ -3,9 +3,10 @@
 // Firebase: enable Authentication and Firestore in the console before use.
 //
 // NOTE about stub/sample data:
-// - Stub mode is intended for local development and testing only.
-// - Do NOT enable stub mode in production or commit a production .env with stubs enabled.
-// - To enable locally, set EXPO_PUBLIC_USE_STUB_DATA=true in your local .env (local only).
+// - The app no longer exposes an env-driven global stub mode toggle.
+// - Some services still keep sample/fallback behavior internally, but the shared config
+//   defaults to live/cached integrations.
+// - EXPO_PUBLIC_USE_STUB_DATA is a legacy env var and is intentionally ignored here.
 //
 // On localhost, email-link / verification redirects require `localhost` in
 // Firebase Authentication -> Settings -> Authorized domains.
@@ -45,7 +46,7 @@ export const API_CONFIG = {
 
   collegeScorecard: {
     baseUrl: "https://api.data.gov/ed/collegescorecard/v1",
-    apiKey: process.env.EXPO_PUBLIC_COLLEGE_SCORECARD_KEY || "STUB",
+    apiKey: String(process.env.EXPO_PUBLIC_COLLEGE_SCORECARD_KEY ?? "").trim(),
   },
 
   ai: {
@@ -73,7 +74,12 @@ export const API_CONFIG = {
 };
 
 export const isStubMode = () => {
-  // Stub mode is determined only by the in-repo config flag.
-  // Environment-based overrides are intentionally not used for production builds.
+  // Stub mode is currently controlled only by this in-repo config flag.
+  // Environment-based overrides are intentionally ignored.
   return !!API_CONFIG.useStubData;
+};
+
+export const hasCollegeScorecardApiKey = () => {
+  const apiKey = String(API_CONFIG.collegeScorecard.apiKey ?? "").trim();
+  return !!apiKey && apiKey.toUpperCase() !== "STUB";
 };

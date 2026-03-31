@@ -1,4 +1,5 @@
 import * as FileSystem from "expo-file-system";
+import { inflate } from "pako";
 import { Platform } from "react-native";
 
 export type ParsedTranscriptCourse = {
@@ -13,6 +14,13 @@ const BASE64_CHARS =
 const COURSE_LINE_PATTERN =
   /^([A-Z]{2,6}&?)\s+(\d{3}[A-Z]?)\s+(.+?)\s+(\d+\.\d{3})\s+(\d+\.\d{3})\s+(\d+(?:\.\d+)?|[A-Z][A-Z+\-]*)\s+(\d+\.\d{3})$/;
 
+type PdfTextItem = {
+  str?: string;
+  x?: number;
+  y?: number;
+  transform?: number[];
+};
+
 function normalizeWhitespace(value: string) {
   return String(value ?? "").replace(/\s+/g, " ").trim();
 }
@@ -20,11 +28,6 @@ function normalizeWhitespace(value: string) {
 function normalizeCourseCode(subject: string, number: string) {
   return normalizeWhitespace(`${subject} ${number}`).toUpperCase();
 }
-
-type PdfTextItem = {
-  str?: string;
-  transform?: number[];
-};
 
 function base64ToUint8Array(base64: string) {
   const cleaned = String(base64 ?? "").replace(/\s+/g, "");
@@ -54,10 +57,46 @@ function base64ToUint8Array(base64: string) {
   return new Uint8Array(bytes);
 }
 
+function binaryStringToUint8Array(value: string) {
+  const bytes = new Uint8Array(value.length);
+  for (let i = 0; i < value.length; i += 1) {
+    bytes[i] = value.charCodeAt(i) & 0xff;
+  }
+  return bytes;
+}
+
+function uint8ArrayToBinaryString(bytes: Uint8Array) {
+  let result = "";
+  for (let i = 0; i < bytes.length; i += 0x8000) {
+    result += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+  }
+  return result;
+}
+
+function decodeDataUrlToBytes(fileUri: string) {
+  const commaIndex = fileUri.indexOf(",");
+  if (commaIndex < 0) {
+    throw new Error("Transcript data URL is invalid.");
+  }
+
+  const meta = fileUri.slice(0, commaIndex);
+  const payload = fileUri.slice(commaIndex + 1);
+
+  if (/;base64/i.test(meta)) {
+    return base64ToUint8Array(payload);
+  }
+
+  return new TextEncoder().encode(decodeURIComponent(payload));
+}
+
 async function readPdfBytes(fileUri: string) {
   const normalizedUri = String(fileUri ?? "").trim();
   if (!normalizedUri) {
     throw new Error("Transcript file URL is missing.");
+  }
+
+  if (normalizedUri.startsWith("data:")) {
+    return decodeDataUrlToBytes(normalizedUri);
   }
 
   if (
@@ -83,8 +122,10 @@ function buildPageLines(items: PdfTextItem[]) {
     const text = normalizeWhitespace(item?.str ?? "");
     if (!text) continue;
 
-    const y = Math.round(Number(item?.transform?.[5] ?? 0) * 10) / 10;
-    const x = Number(item?.transform?.[4] ?? 0);
+    const ySource = item?.y ?? item?.transform?.[5] ?? 0;
+    const xSource = item?.x ?? item?.transform?.[4] ?? 0;
+    const y = Math.round(Number(ySource) * 10) / 10;
+    const x = Number(xSource);
 
     if (!lineMap.has(y)) {
       lineMap.set(y, []);
@@ -115,7 +156,11 @@ function parseTranscriptCourseLines(lines: string[]) {
     if (!match) continue;
 
     const [, subject, number, rawTitle, attempted, earned, , points] = match;
-    if (!CREDIT_PATTERN.test(attempted) || !CREDIT_PATTERN.test(earned) || !CREDIT_PATTERN.test(points)) {
+    if (
+      !CREDIT_PATTERN.test(attempted) ||
+      !CREDIT_PATTERN.test(earned) ||
+      !CREDIT_PATTERN.test(points)
+    ) {
       continue;
     }
 
@@ -142,22 +187,173 @@ function parseTranscriptCourseLines(lines: string[]) {
   return parsed;
 }
 
+function extractFlateStreams(data: Uint8Array) {
+  const binary = uint8ArrayToBinaryString(data);
+  const streams: Uint8Array[] = [];
+  let searchIndex = 0;
+
+  while (searchIndex < binary.length) {
+    const streamIndex = binary.indexOf("stream", searchIndex);
+    if (streamIndex < 0) break;
+
+    const dictionaryStart = binary.lastIndexOf("<<", streamIndex);
+    const dictionaryEnd = binary.lastIndexOf(">>", streamIndex);
+    const dictionary =
+      dictionaryStart >= 0 && dictionaryEnd > dictionaryStart
+        ? binary.slice(dictionaryStart, dictionaryEnd + 2)
+        : "";
+
+    let dataStart = streamIndex + "stream".length;
+    if (binary.slice(dataStart, dataStart + 2) === "\r\n") {
+      dataStart += 2;
+    } else if (binary[dataStart] === "\r" || binary[dataStart] === "\n") {
+      dataStart += 1;
+    }
+
+    const endstreamIndex = binary.indexOf("endstream", dataStart);
+    if (endstreamIndex < 0) break;
+
+    let dataEnd = endstreamIndex;
+    if (binary.slice(dataEnd - 2, dataEnd) === "\r\n") {
+      dataEnd -= 2;
+    } else if (binary[dataEnd - 1] === "\r" || binary[dataEnd - 1] === "\n") {
+      dataEnd -= 1;
+    }
+
+    if (/\/FlateDecode\b/.test(dictionary) && dataEnd > dataStart) {
+      streams.push(binaryStringToUint8Array(binary.slice(dataStart, dataEnd)));
+    }
+
+    searchIndex = endstreamIndex + "endstream".length;
+  }
+
+  return streams;
+}
+
+function decodePdfString(value: string) {
+  let result = "";
+
+  for (let index = 0; index < value.length; index += 1) {
+    const current = value[index];
+    if (current !== "\\") {
+      result += current;
+      continue;
+    }
+
+    const next = value[index + 1];
+    if (!next) break;
+
+    if (/[0-7]/.test(next)) {
+      let octal = next;
+      let step = 1;
+      while (step < 3 && /[0-7]/.test(value[index + step + 1] ?? "")) {
+        octal += value[index + step + 1];
+        step += 1;
+      }
+      result += String.fromCharCode(Number.parseInt(octal, 8));
+      index += octal.length;
+      continue;
+    }
+
+    switch (next) {
+      case "n":
+        result += "\n";
+        break;
+      case "r":
+        result += "\r";
+        break;
+      case "t":
+        result += "\t";
+        break;
+      case "b":
+        result += "\b";
+        break;
+      case "f":
+        result += "\f";
+        break;
+      case "(":
+      case ")":
+      case "\\":
+        result += next;
+        break;
+      default:
+        result += next;
+        break;
+    }
+
+    index += 1;
+  }
+
+  return normalizeWhitespace(result);
+}
+
+function extractTextItemsFromStreamContent(content: string) {
+  const items: PdfTextItem[] = [];
+  let currentX = 0;
+  let currentY = 0;
+
+  for (const rawLine of content.split(/\r?\n/)) {
+    const line = rawLine.trim();
+    if (!line) continue;
+
+    const matrixMatch = line.match(
+      /(?:-?\d+(?:\.\d+)?\s+){4}(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)\s+Tm\b/
+    );
+    if (matrixMatch) {
+      currentX = Number(matrixMatch[1] ?? 0);
+      currentY = Number(matrixMatch[2] ?? 0);
+    }
+
+    const relativeMatch = line.match(/(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)\s+Td\b/);
+    if (relativeMatch) {
+      currentX += Number(relativeMatch[1] ?? 0);
+      currentY += Number(relativeMatch[2] ?? 0);
+    }
+
+    for (const match of line.matchAll(/\(((?:\\.|[^\\)])*)\)\s*Tj/g)) {
+      const text = decodePdfString(match[1] ?? "");
+      if (!text) continue;
+      items.push({ str: text, x: currentX, y: currentY });
+    }
+
+    for (const match of line.matchAll(/\[(.*?)\]\s*TJ/g)) {
+      const text = [...String(match[1] ?? "").matchAll(/\(((?:\\.|[^\\)])*)\)/g)]
+        .map((part) => decodePdfString(part[1] ?? ""))
+        .join("");
+
+      if (!text) continue;
+      items.push({ str: text, x: currentX, y: currentY });
+    }
+  }
+
+  return items;
+}
+
+function extractTextItemsFromPdf(data: Uint8Array) {
+  const items: PdfTextItem[] = [];
+
+  for (const stream of extractFlateStreams(data)) {
+    try {
+      const content = inflate(stream, { to: "string" });
+      if (!content.includes("Tj") && !content.includes("TJ")) {
+        continue;
+      }
+      items.push(...extractTextItemsFromStreamContent(content));
+    } catch {
+      continue;
+    }
+  }
+
+  return items;
+}
+
 class TranscriptPdfService {
   async extractCompletedCoursesFromPdf(fileUri: string): Promise<ParsedTranscriptCourse[]> {
-    const pdfjsLib = await import("pdfjs-dist/legacy/build/pdf.mjs");
     const data = await readPdfBytes(fileUri);
-    const document = await pdfjsLib.getDocument({
-      data,
-      useWorkerFetch: false,
-      isEvalSupported: false,
-    }).promise;
+    const allLines = buildPageLines(extractTextItemsFromPdf(data));
 
-    const allLines: string[] = [];
-    for (let pageNumber = 1; pageNumber <= document.numPages; pageNumber += 1) {
-      const page = await document.getPage(pageNumber);
-      const text = await page.getTextContent();
-      const pageLines = buildPageLines(text.items as PdfTextItem[]);
-      allLines.push(...pageLines);
+    if (!allLines.length) {
+      throw new Error("No readable transcript text found in PDF.");
     }
 
     return parseTranscriptCourseLines(allLines);

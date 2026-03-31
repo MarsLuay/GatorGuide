@@ -1,0 +1,205 @@
+[
+  {
+    "schemaVersion": 1,
+    "opportunityId": "green-river-foundation-scholarship",
+    "type": "scholarship",
+    "status": "active",
+    "title": "Green River College Foundation Scholarship",
+    "organizationName": "Green River College Foundation",
+    "summary": "Annual scholarship application for Green River students with a short essay-style application and broad eligibility.",
+    "externalUrl": "https://grcfoundation.awardspring.com/",
+    "dueAt": "2026-04-30T16:00:00.000Z",
+    "recurrence": {
+      "isYearly": true,
+      "month": 4,
+      "day": 30,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Annual scholarship deadline"
+    },
+    "matching": {
+      "financialAidTags": [
+        "need_based",
+        "merit"
+      ],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": true,
+      "recommendationCountMin": 1,
+      "essayCount": 3
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": "Amount varies by scholarship award",
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "seed",
+      "sourceUrl": "https://www.greenriver.edu/marketing/media/documents/grad-to-gator/Green-River-College_Free-money-for-College.pdf",
+      "sourceLabel": "Green River Foundation scholarship flyer",
+      "model": null,
+      "fetchedAt": "2026-03-29T00:00:00.000Z",
+      "verifiedAt": "2026-03-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-03-29T00:00:00.000Z",
+    "updatedAt": "2026-03-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "wsos-career-technical-scholarship",
+    "type": "scholarship",
+    "status": "active",
+    "title": "WSOS Career & Technical Scholarship",
+    "organizationName": "Washington State Opportunity Scholarship",
+    "summary": "Need-based scholarship for Washington residents in eligible STEM, health care, trades, and apprenticeship programs. File FAFSA/WASFA by the deadline, plan for at least 3 credits per term, and note that no references or transcripts are required.",
+    "externalUrl": "https://waopportunityscholarship.org/applicants/career-technical/",
+    "dueAt": "2026-04-16T04:00:00.000Z",
+    "recurrence": {
+      "isYearly": true,
+      "month": 4,
+      "day": 15,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Application deadline"
+    },
+    "matching": {
+      "financialAidTags": [
+        "need_based",
+        "fafsa_required"
+      ],
+      "suggestedMajors": [
+        "apprenticeship",
+        "computer science",
+        "engineering",
+        "nursing",
+        "information technology",
+        "healthcare",
+        "stem",
+        "trades",
+        "manufacturing",
+        "welding"
+      ],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [
+        "instate",
+        "in state"
+      ],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 1
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": 1500,
+      "currency": "USD",
+      "amountText": "Up to $1,500 per quarter for the duration of your program",
+      "renewable": true
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "seed",
+      "sourceUrl": "https://waopportunityscholarship.org/applicants/career-technical/",
+      "sourceLabel": "WSOS CTS applicant page",
+      "model": null,
+      "fetchedAt": "2026-03-30T00:00:00.000Z",
+      "verifiedAt": "2026-03-30T00:00:00.000Z"
+    },
+    "createdAt": "2026-03-29T00:00:00.000Z",
+    "updatedAt": "2026-03-30T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "green-river-student-employment",
+    "type": "internship",
+    "status": "active",
+    "title": "Green River Student Employment & Work Study",
+    "organizationName": "Green River College",
+    "summary": "On-campus student employment and work study openings for eligible Green River students. Good first step for building experience while enrolled.",
+    "externalUrl": "https://www.greenriver.edu/students/pay-for-college/financial-aid/student-employment/index.html",
+    "dueAt": null,
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "rolling",
+      "label": "Open while positions remain available"
+    },
+    "matching": {
+      "financialAidTags": [
+        "work_study",
+        "need_based"
+      ],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": null,
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "seed",
+      "sourceUrl": "https://www.greenriver.edu/students/pay-for-college/financial-aid/student-employment/index.html",
+      "sourceLabel": "Green River student employment page",
+      "model": null,
+      "fetchedAt": "2026-03-29T00:00:00.000Z",
+      "verifiedAt": "2026-03-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-03-29T00:00:00.000Z",
+    "updatedAt": "2026-03-29T00:00:00.000Z"
+  }
+]

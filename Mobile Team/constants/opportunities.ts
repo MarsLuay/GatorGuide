@@ -36,6 +36,24 @@ export const OPPORTUNITY_FINANCIAL_AID_TAGS = {
 export type OpportunityFinancialAidTag =
   ValueOf<typeof OPPORTUNITY_FINANCIAL_AID_TAGS>;
 
+export const OPPORTUNITY_DEADLINE_TYPES = {
+  priority: "priority",
+  final: "final",
+  rolling: "rolling",
+} as const;
+
+export type OpportunityDeadlineType = ValueOf<typeof OPPORTUNITY_DEADLINE_TYPES>;
+
+export const OPPORTUNITY_PROGRESS_STATES = {
+  saved: "saved",
+  started: "started",
+  submitted: "submitted",
+  won: "won",
+  expired: "expired",
+} as const;
+
+export type OpportunityProgressState = ValueOf<typeof OPPORTUNITY_PROGRESS_STATES>;
+
 export const OPPORTUNITY_SCHEMA_VERSION = 1 as const;
 export const OPPORTUNITY_NOTIFICATION_OFFSETS_DAYS = [7, 1, 0] as const;
 
@@ -54,7 +72,27 @@ export type OpportunityMatching = {
 
 export type OpportunityRequirements = {
   needsRecommendations: boolean;
+  recommendationCountMin: number;
   essayCount: number;
+};
+
+export type OpportunityAward = {
+  amountMin: number | null;
+  amountMax: number | null;
+  currency: string;
+  amountText: string | null;
+  renewable: boolean | null;
+};
+
+export type OpportunityEligibility = {
+  gpaMin: number | null;
+  residencyTypes: string[];
+  transferOnly: boolean;
+};
+
+export type OpportunityDeadline = {
+  type: OpportunityDeadlineType;
+  label: string | null;
 };
 
 export type OpportunityCollege = {
@@ -85,8 +123,11 @@ export type Opportunity = {
   externalUrl: string | null;
   dueAt: string | null;
   recurrence: OpportunityRecurrence;
+  deadline: OpportunityDeadline;
   matching: OpportunityMatching;
+  eligibility: OpportunityEligibility;
   requirements: OpportunityRequirements;
+  award: OpportunityAward;
   college: OpportunityCollege;
   source: OpportunitySource;
   createdAt: string | null;
@@ -97,6 +138,8 @@ export type UserOpportunityStatus = {
   schemaVersion: number;
   userId: string;
   opportunityId: string;
+  progress: OpportunityProgressState | null;
+  progressUpdatedAt: string | null;
   isDone: boolean;
   doneAt: string | null;
   doneCycleKey: string | null;
@@ -111,7 +154,23 @@ function clampInteger(value: unknown, min: number, max: number) {
   return parsed;
 }
 
+function clampNumber(value: unknown, min: number, max: number) {
+  const parsed = Number(String(value ?? ""));
+  if (!Number.isFinite(parsed)) return null;
+  if (parsed < min || parsed > max) return null;
+  return parsed;
+}
+
 export function normalizeMajorTag(value: unknown): string {
+  return String(value ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+export function normalizeResidencyTag(value: unknown): string {
   return String(value ?? "")
     .trim()
     .toLowerCase()
@@ -138,6 +197,41 @@ export function normalizeOpportunityStatus(
   if (parsed === OPPORTUNITY_STATUSES.draft) return OPPORTUNITY_STATUSES.draft;
   if (parsed === OPPORTUNITY_STATUSES.archived) return OPPORTUNITY_STATUSES.archived;
   return OPPORTUNITY_STATUSES.active;
+}
+
+export function normalizeOpportunityDeadlineType(
+  value: unknown
+): OpportunityDeadlineType {
+  const parsed = String(value ?? "").trim();
+  if (parsed === OPPORTUNITY_DEADLINE_TYPES.priority) {
+    return OPPORTUNITY_DEADLINE_TYPES.priority;
+  }
+  if (parsed === OPPORTUNITY_DEADLINE_TYPES.rolling) {
+    return OPPORTUNITY_DEADLINE_TYPES.rolling;
+  }
+  return OPPORTUNITY_DEADLINE_TYPES.final;
+}
+
+export function normalizeOpportunityProgress(
+  value: unknown
+): OpportunityProgressState | null {
+  const parsed = String(value ?? "").trim();
+  if (parsed === OPPORTUNITY_PROGRESS_STATES.saved) {
+    return OPPORTUNITY_PROGRESS_STATES.saved;
+  }
+  if (parsed === OPPORTUNITY_PROGRESS_STATES.started) {
+    return OPPORTUNITY_PROGRESS_STATES.started;
+  }
+  if (parsed === OPPORTUNITY_PROGRESS_STATES.submitted) {
+    return OPPORTUNITY_PROGRESS_STATES.submitted;
+  }
+  if (parsed === OPPORTUNITY_PROGRESS_STATES.won) {
+    return OPPORTUNITY_PROGRESS_STATES.won;
+  }
+  if (parsed === OPPORTUNITY_PROGRESS_STATES.expired) {
+    return OPPORTUNITY_PROGRESS_STATES.expired;
+  }
+  return null;
 }
 
 export function normalizeOpportunityDate(value: unknown): string | null {
@@ -206,13 +300,77 @@ export function resolveOpportunityCycleKey(
   return dueDate ? String(dueDate.getFullYear()) : String(now.getFullYear());
 }
 
-export function isOpportunityDoneForCurrentCycle(
+export function isCompletedOpportunityProgress(
+  progress: OpportunityProgressState | null | undefined
+) {
+  return (
+    progress === OPPORTUNITY_PROGRESS_STATES.submitted ||
+    progress === OPPORTUNITY_PROGRESS_STATES.won ||
+    progress === OPPORTUNITY_PROGRESS_STATES.expired
+  );
+}
+
+function getStoredOpportunityProgress(
+  status: Pick<UserOpportunityStatus, "progress" | "isDone"> | null | undefined
+) {
+  const normalized = normalizeOpportunityProgress(status?.progress);
+  if (normalized) return normalized;
+  return status?.isDone ? OPPORTUNITY_PROGRESS_STATES.submitted : null;
+}
+
+function shouldAutoExpireOpportunity(
   opportunity: Pick<Opportunity, "dueAt" | "recurrence">,
-  status: Pick<UserOpportunityStatus, "isDone" | "doneCycleKey"> | null | undefined,
   now: Date = new Date()
 ) {
-  if (!status?.isDone) return false;
-  return status.doneCycleKey === resolveOpportunityCycleKey(opportunity, now);
+  if (opportunity.recurrence?.isYearly) return false;
+  const dueAt = normalizeOpportunityDate(opportunity.dueAt);
+  if (!dueAt) return false;
+  const parsed = new Date(dueAt);
+  if (Number.isNaN(parsed.getTime())) return false;
+  return parsed.getTime() < now.getTime();
+}
+
+export function resolveOpportunityProgress(
+  opportunity: Pick<Opportunity, "dueAt" | "recurrence">,
+  status:
+    | Pick<UserOpportunityStatus, "progress" | "isDone" | "doneCycleKey">
+    | null
+    | undefined,
+  now: Date = new Date()
+): OpportunityProgressState | null {
+  const storedProgress = getStoredOpportunityProgress(status);
+  if (storedProgress && isCompletedOpportunityProgress(storedProgress)) {
+    const cycleKey = resolveOpportunityCycleKey(opportunity, now);
+    if (!status?.doneCycleKey || status.doneCycleKey === cycleKey) {
+      return storedProgress;
+    }
+    return null;
+  }
+
+  if (storedProgress && !isCompletedOpportunityProgress(storedProgress)) {
+    return shouldAutoExpireOpportunity(opportunity, now)
+      ? OPPORTUNITY_PROGRESS_STATES.expired
+      : storedProgress;
+  }
+
+  if (shouldAutoExpireOpportunity(opportunity, now)) {
+    return OPPORTUNITY_PROGRESS_STATES.expired;
+  }
+
+  return null;
+}
+
+export function isOpportunityDoneForCurrentCycle(
+  opportunity: Pick<Opportunity, "dueAt" | "recurrence">,
+  status:
+    | Pick<UserOpportunityStatus, "progress" | "isDone" | "doneCycleKey">
+    | null
+    | undefined,
+  now: Date = new Date()
+) {
+  return isCompletedOpportunityProgress(
+    resolveOpportunityProgress(opportunity, status, now)
+  );
 }
 
 export function normalizeOpportunityRecurrence(
@@ -227,11 +385,68 @@ export function normalizeOpportunityRecurrence(
   };
 }
 
+export function normalizeOpportunityEligibility(
+  value: Partial<OpportunityEligibility> | null | undefined
+): OpportunityEligibility {
+  return {
+    gpaMin: clampNumber(value?.gpaMin, 0, 5),
+    residencyTypes: Array.from(
+      new Set(
+        (Array.isArray(value?.residencyTypes) ? value?.residencyTypes : [])
+          .map(normalizeResidencyTag)
+          .filter(Boolean)
+      )
+    ),
+    transferOnly: !!value?.transferOnly,
+  };
+}
+
+export function normalizeOpportunityAward(
+  value: Partial<OpportunityAward> | null | undefined
+): OpportunityAward {
+  const amountMin = clampNumber(value?.amountMin, 0, Number.MAX_SAFE_INTEGER);
+  const amountMax = clampNumber(value?.amountMax, 0, Number.MAX_SAFE_INTEGER);
+  return {
+    amountMin,
+    amountMax,
+    currency: String(value?.currency ?? "").trim().toUpperCase() || "USD",
+    amountText: String(value?.amountText ?? "").trim() || null,
+    renewable:
+      typeof value?.renewable === "boolean" ? value.renewable : null,
+  };
+}
+
+export function normalizeOpportunityDeadline(
+  value: Partial<OpportunityDeadline> | null | undefined,
+  dueAt: string | null
+): OpportunityDeadline {
+  return {
+    type: normalizeOpportunityDeadlineType(
+      value?.type ?? (dueAt ? OPPORTUNITY_DEADLINE_TYPES.final : OPPORTUNITY_DEADLINE_TYPES.rolling)
+    ),
+    label: String(value?.label ?? "").trim() || null,
+  };
+}
+
 export function normalizeOpportunity(input: Partial<Opportunity>): Opportunity {
   const matching: Partial<OpportunityMatching> = input.matching ?? {};
+  const eligibility: Partial<OpportunityEligibility> = input.eligibility ?? {};
   const requirements: Partial<OpportunityRequirements> = input.requirements ?? {};
+  const award: Partial<OpportunityAward> = input.award ?? {};
+  const deadline: Partial<OpportunityDeadline> = input.deadline ?? {};
   const college: Partial<OpportunityCollege> = input.college ?? {};
   const source: Partial<OpportunitySource> = input.source ?? {};
+  const dueAt = normalizeOpportunityDate(input.dueAt);
+  const recommendationCountMin = Math.max(
+    0,
+    Number.parseInt(
+      String(
+        requirements.recommendationCountMin ??
+          (requirements.needsRecommendations ? 1 : 0)
+      ),
+      10
+    ) || 0
+  );
 
   return {
     schemaVersion: Number(input.schemaVersion) || OPPORTUNITY_SCHEMA_VERSION,
@@ -242,8 +457,9 @@ export function normalizeOpportunity(input: Partial<Opportunity>): Opportunity {
     organizationName: String(input.organizationName ?? "").trim(),
     summary: String(input.summary ?? "").trim(),
     externalUrl: String(input.externalUrl ?? "").trim() || null,
-    dueAt: normalizeOpportunityDate(input.dueAt),
+    dueAt,
     recurrence: normalizeOpportunityRecurrence(input.recurrence),
+    deadline: normalizeOpportunityDeadline(deadline, dueAt),
     matching: {
       financialAidTags: Array.from(
         new Set(
@@ -261,10 +477,14 @@ export function normalizeOpportunity(input: Partial<Opportunity>): Opportunity {
       ),
       hasToBeMajor: !!matching.hasToBeMajor,
     },
+    eligibility: normalizeOpportunityEligibility(eligibility),
     requirements: {
-      needsRecommendations: !!requirements.needsRecommendations,
+      needsRecommendations:
+        recommendationCountMin > 0 || !!requirements.needsRecommendations,
+      recommendationCountMin,
       essayCount: Math.max(0, Number.parseInt(String(requirements.essayCount ?? 0), 10) || 0),
     },
+    award: normalizeOpportunityAward(award),
     college: {
       collegeId: String(college.collegeId ?? "").trim() || null,
       collegeName: String(college.collegeName ?? "").trim() || null,
@@ -292,13 +512,23 @@ export function normalizeUserOpportunityStatus(
 ): UserOpportunityStatus {
   const clientUpdatedAt =
     normalizeOpportunityDate(input.clientUpdatedAt) ?? new Date().toISOString();
+  const progress = normalizeOpportunityProgress(
+    input.progress ?? (input.isDone ? OPPORTUNITY_PROGRESS_STATES.submitted : null)
+  );
+  const isDone = isCompletedOpportunityProgress(progress) || !!input.isDone;
+  const progressUpdatedAt =
+    normalizeOpportunityDate(input.progressUpdatedAt ?? input.doneAt) ?? null;
 
   return {
     schemaVersion: Number(input.schemaVersion) || OPPORTUNITY_SCHEMA_VERSION,
     userId: String(input.userId ?? userId).trim() || userId,
     opportunityId: normalizeOpportunityId(input.opportunityId ?? opportunityId),
-    isDone: !!input.isDone,
-    doneAt: normalizeOpportunityDate(input.doneAt),
+    progress,
+    progressUpdatedAt,
+    isDone,
+    doneAt: isDone
+      ? normalizeOpportunityDate(input.doneAt ?? progressUpdatedAt)
+      : null,
     doneCycleKey: String(input.doneCycleKey ?? "").trim() || null,
     clientUpdatedAt,
     updatedAt: normalizeOpportunityDate(input.updatedAt),

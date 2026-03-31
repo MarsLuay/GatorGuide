@@ -12,6 +12,7 @@ import { AppLanguageProvider } from "@/hooks/use-app-language";
 import { AppDataProvider } from "@/hooks/use-app-data";
 import { OpportunitiesProvider } from "@/hooks/use-opportunities";
 import { AuthEmailLinkHandler } from "@/components/AuthEmailLinkHandler";
+import { UniversalDevMode } from "@/components/dev/UniversalDevMode";
 import { STORAGE_KEYS } from "@/constants/schema";
 import { cacheManagerService, errorLoggingService } from "@/services";
 
@@ -199,6 +200,7 @@ export default function RootLayout() {
               >
                 <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
               </Stack>
+              <UniversalDevMode />
             </OpportunitiesProvider>
           </AppDataProvider>
         </AppLanguageProvider>

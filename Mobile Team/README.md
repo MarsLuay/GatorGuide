@@ -22,6 +22,9 @@ The Mobile Team helps by:
 - [`docs/OFFLINE_ONLINE_SYNC_SPEC.md`](docs/OFFLINE_ONLINE_SYNC_SPEC.md): current offline/online caching, sync, and conflict-resolution behavior.
 - [`docs/BRANDING_ASSET_PIPELINE.md`](docs/BRANDING_ASSET_PIPELINE.md): icon, splash, adaptive icon, and favicon source-of-truth pipeline.
 - [`docs/FIREBASE_CHAT_HISTORY_SCHEMA.md`](docs/FIREBASE_CHAT_HISTORY_SCHEMA.md): planned Firestore schema, ownership rules, and retention policy for assistant chat sessions/messages.
+- [`docs/OPPORTUNITY_ADMIN_TOOL.md`](docs/OPPORTUNITY_ADMIN_TOOL.md): staff editor flow for creating and managing shared opportunity records without code changes.
+- [`docs/GRC_UW_ENGINEERING_TRANSFER_PLANNER.md`](docs/GRC_UW_ENGINEERING_TRANSFER_PLANNER.md): research/spec for a Green River -> UW engineering transfer roadmap and course planner.
+- [`docs/GRC_TRANSFER_OUTLINE_GENERATOR_SPEC.md`](docs/GRC_TRANSFER_OUTLINE_GENERATOR_SPEC.md): broader product/data spec for a Green River transfer outline generator, best-track matcher, and involvement/project guidance system.
 - [`../Data Team/docs/COLLEGE_RANKING.md`](../Data Team/docs/COLLEGE_RANKING.md): shared college ranking philosophy and score model used by recommendations.
 
 ## Setup: Download and Run
@@ -47,6 +50,7 @@ git --version
 
 - On Windows, double-click `../Start-to-run.bat` from the repo root.
 - On macOS or Linux, run `bash ../Start-to-run.sh` from the repo root.
+- The shared launcher now tries Expo in `tunnel`, then `lan`, then `offline` mode automatically.
 
 ### 2) Clone and install the project
 
@@ -72,8 +76,9 @@ npm run start
 Notes:
 
 - If you use Git Bash, WSL, or a POSIX shell, use forward slashes and drop the `$env:` prefix.
+- `npm run start` uses the same fallback order as the root launchers: `tunnel -> lan -> offline`.
 - After Expo starts, open the Metro/Expo devtools in your browser and scan the QR code with the Expo Go app.
-- If you are wiring up services, the guide in [`services/README.md`](services/README.md) explains the current stub-based setup.
+- If you are wiring up services, the guide in [`services/README.md`](services/README.md) explains the current live/cached service setup and the remaining fallback behavior.
 
 ### 3) Open in VS Code (edit files)
 
@@ -91,6 +96,21 @@ git checkout main
 git pull --rebase origin main
 cd "Mobile Team"
 ```
+
+## Windows QA
+
+You can run the Playwright-based Windows/web QA harness locally from `Mobile Team`:
+
+```bash
+npm run qa:windows:screenshots
+npm run qa:windows:interactions
+npm run qa:windows:ci
+```
+
+Notes:
+
+- `qa:windows:screenshots` expects an existing app server unless you set `QA_BASE_URL` / `QA_STATIC_EXPORT` yourself.
+- `qa:windows:ci` is the full CI-style path: it exports the web build, serves it locally, runs screenshots, then runs interaction checks.
 
 ## Commit and Push Changes
 

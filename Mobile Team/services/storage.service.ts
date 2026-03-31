@@ -49,18 +49,66 @@ function normalizeSizeBytes(value: unknown) {
   return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
 }
 
+function looksLikeEncodedFileName(value: unknown) {
+  const raw = String(value ?? "").trim();
+  if (!raw) return true;
+  if (raw.startsWith("data:") || raw.startsWith("blob:")) return true;
+  if (raw.includes("base64,")) return true;
+  return /^[A-Za-z0-9+/=]{120,}$/.test(raw.replace(/\s+/g, ""));
+}
+
+function extractFileNameFromUrl(value: unknown) {
+  const raw = String(value ?? "").trim();
+  if (!raw || raw.startsWith("data:") || raw.startsWith("blob:")) return null;
+
+  const withoutQuery = raw.split(/[?#]/)[0] ?? "";
+  const lastSegment = withoutQuery.split("/").pop() ?? "";
+
+  try {
+    const decoded = decodeURIComponent(lastSegment).trim();
+    return decoded && decoded.length <= 180 ? decoded : null;
+  } catch {
+    const trimmed = lastSegment.trim();
+    return trimmed && trimmed.length <= 180 ? trimmed : null;
+  }
+}
+
+function buildFallbackFileName(url: unknown, mimeType: unknown) {
+  const inferredFromUrl = extractFileNameFromUrl(url);
+  if (inferredFromUrl && !looksLikeEncodedFileName(inferredFromUrl)) {
+    return inferredFromUrl;
+  }
+
+  const normalizedMimeType = String(mimeType ?? "").trim().toLowerCase();
+  if (normalizedMimeType.includes("pdf")) {
+    return "uploaded-document.pdf";
+  }
+
+  return "uploaded-file";
+}
+
+function normalizeUploadedFileName(name: unknown, url: unknown, mimeType: unknown) {
+  const raw = String(name ?? "").trim();
+  if (raw && raw.length <= 180 && !looksLikeEncodedFileName(raw)) {
+    return raw;
+  }
+
+  return buildFallbackFileName(url, mimeType);
+}
+
 function normalizeUploadedFile(raw: unknown): UploadedFile | null {
   if (!raw || typeof raw !== "object" || Array.isArray(raw)) return null;
   const record = raw as Record<string, unknown>;
-  const name = String(record.name ?? "").trim();
   const url = String(record.url ?? "").trim();
-  if (!name || !url) return null;
+  if (!url) return null;
+  const mimeType = normalizeMimeType(record.mimeType);
+  const name = normalizeUploadedFileName(record.name, url, mimeType);
 
   return {
     name,
     url,
     uploadedAt: normalizeUploadedAt(record.uploadedAt),
-    mimeType: normalizeMimeType(record.mimeType),
+    mimeType,
     sizeBytes: normalizeSizeBytes(record.sizeBytes ?? record.size),
   };
 }
@@ -76,9 +124,43 @@ async function uriToBlob(uri: string): Promise<Blob> {
   });
 }
 
+async function blobToDataUrl(blob: Blob): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const result = typeof reader.result === 'string' ? reader.result : '';
+      if (!result) {
+        reject(new TypeError('Failed to encode file'));
+        return;
+      }
+      resolve(result);
+    };
+    reader.onerror = () => reject(new TypeError('Failed to encode file'));
+    reader.readAsDataURL(blob);
+  });
+}
+
+async function persistWebFileUrl(sourceUri: string): Promise<string> {
+  const normalizedUri = String(sourceUri ?? '').trim();
+  if (!normalizedUri) {
+    throw new TypeError('Missing file URL');
+  }
+
+  if (
+    normalizedUri.startsWith('data:') ||
+    normalizedUri.startsWith('http://') ||
+    normalizedUri.startsWith('https://')
+  ) {
+    return normalizedUri;
+  }
+
+  const blob = await uriToBlob(normalizedUri);
+  return blobToDataUrl(blob);
+}
+
 async function copyToLocalStorage(sourceUri: string, fileName: string, subDir: string): Promise<string> {
   if (Platform.OS === 'web') {
-    return sourceUri;
+    return persistWebFileUrl(sourceUri);
   }
   const baseDir = (FileSystem as any).documentDirectory ?? (FileSystem as any).cacheDirectory ?? "";
   const dir = `${baseDir}${LOCAL_DOCUMENTS_DIR_NAME}/${subDir}/`;

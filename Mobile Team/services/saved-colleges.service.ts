@@ -7,6 +7,7 @@ import {
 } from "@/constants/schema";
 import { collegeService, type College } from "./college.service";
 import { db } from "./firebase";
+import { normalizeRateValue } from "@/utils/locale-format";
 
 type SavedCollegeSnapshot = Omit<College, "raw"> & {
   collegeId: string;
@@ -116,8 +117,8 @@ function toSavedCollegeSnapshot(college: College): SavedCollegeSnapshot {
     studentSize: normalizeNumber(college.studentSize),
     size: college.size ?? "unknown",
     setting: college.setting ?? "suburban",
-    admissionRate: normalizeNumber(college.admissionRate),
-    completionRate: normalizeNumber(college.completionRate),
+    admissionRate: normalizeRateValue(normalizeNumber(college.admissionRate)),
+    completionRate: normalizeRateValue(normalizeNumber(college.completionRate)),
     website: normalizeString(college.website),
     priceCalculator: normalizeString(college.priceCalculator),
     programs: uniqueStrings(college.programs),
@@ -126,7 +127,7 @@ function toSavedCollegeSnapshot(college: College): SavedCollegeSnapshot {
     ...(college.locale ? { locale: college.locale } : {}),
     ...(college.avgNetPriceOverall != null ? { avgNetPriceOverall: college.avgNetPriceOverall } : {}),
     ...(college.attendanceAcademicYear != null ? { attendanceAcademicYear: college.attendanceAcademicYear } : {}),
-    ...(college.pellGrantRate != null ? { pellGrantRate: college.pellGrantRate } : {}),
+    ...(college.pellGrantRate != null ? { pellGrantRate: normalizeRateValue(college.pellGrantRate) } : {}),
     ...(college.medianDebtCompletersOverall != null ? { medianDebtCompletersOverall: college.medianDebtCompletersOverall } : {}),
   };
 }
@@ -144,8 +145,8 @@ function fromSavedCollegeSnapshot(collegeId: string, snapshot: Partial<SavedColl
     studentSize: normalizeNumber(snapshot.studentSize),
     size: snapshot.size ?? "unknown",
     setting: snapshot.setting ?? "suburban",
-    admissionRate: normalizeNumber(snapshot.admissionRate),
-    completionRate: normalizeNumber(snapshot.completionRate),
+    admissionRate: normalizeRateValue(normalizeNumber(snapshot.admissionRate)),
+    completionRate: normalizeRateValue(normalizeNumber(snapshot.completionRate)),
     website: normalizeString(snapshot.website),
     priceCalculator: normalizeString(snapshot.priceCalculator),
     programs: uniqueStrings(snapshot.programs),
@@ -154,7 +155,7 @@ function fromSavedCollegeSnapshot(collegeId: string, snapshot: Partial<SavedColl
     ...(snapshot.locale ? { locale: snapshot.locale } : {}),
     ...(snapshot.avgNetPriceOverall != null ? { avgNetPriceOverall: snapshot.avgNetPriceOverall } : {}),
     ...(snapshot.attendanceAcademicYear != null ? { attendanceAcademicYear: snapshot.attendanceAcademicYear } : {}),
-    ...(snapshot.pellGrantRate != null ? { pellGrantRate: snapshot.pellGrantRate } : {}),
+    ...(snapshot.pellGrantRate != null ? { pellGrantRate: normalizeRateValue(snapshot.pellGrantRate) } : {}),
     ...(snapshot.medianDebtCompletersOverall != null
       ? { medianDebtCompletersOverall: snapshot.medianDebtCompletersOverall }
       : {}),

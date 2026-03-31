@@ -7,7 +7,12 @@ import React, {
   useRef,
   useState,
 } from "react";
-import type { Opportunity, UserOpportunityStatus } from "@/constants/opportunities";
+import {
+  type Opportunity,
+  type OpportunityProgressState,
+  type UserOpportunityStatus,
+  OPPORTUNITY_PROGRESS_STATES,
+} from "@/constants/opportunities";
 import {
   type MatchedOpportunity,
   opportunityMatchingService,
@@ -27,11 +32,17 @@ type OpportunitiesContextValue = {
   matchedOpportunities: MatchedOpportunity[];
   statusById: OpportunityStatusMap;
   refreshOpportunities: () => Promise<void>;
+  refreshOpportunitiesIfNeeded: (options?: { maxAgeMs?: number }) => Promise<void>;
+  setOpportunityProgress: (
+    opportunityId: string,
+    progress: OpportunityProgressState
+  ) => Promise<void>;
   setOpportunityDone: (opportunityId: string, isDone: boolean) => Promise<void>;
   isOpportunityDone: (opportunityId: string) => boolean;
 };
 
 const OpportunitiesContext = createContext<OpportunitiesContextValue | null>(null);
+const DEFAULT_BACKGROUND_REFRESH_MAX_AGE_MS = 15 * 60 * 1000;
 
 function hasStatuses(statuses: OpportunityStatusMap) {
   return Object.keys(statuses ?? {}).length > 0;
@@ -45,6 +56,9 @@ export function OpportunitiesProvider({ children }: { children: React.ReactNode 
   const [statusById, setStatusById] = useState<Record<string, UserOpportunityStatus>>({});
   const seedAttemptedRef = useRef(false);
   const deadlineEnsureInFlightRef = useRef<Set<string>>(new Set());
+  const refreshPromiseRef = useRef<Promise<void> | null>(null);
+  const lastCatalogSyncAtRef = useRef(0);
+  const lastRefreshAttemptAtRef = useRef(0);
 
   const signedInUid = state.user?.uid && !state.user.isGuest ? state.user.uid : null;
   const userKey = signedInUid ?? opportunityStatusService.getGuestUserKey();
@@ -64,6 +78,11 @@ export function OpportunitiesProvider({ children }: { children: React.ReactNode 
     [opportunities, state.user, state.questionnaireAnswers, statusById]
   );
 
+  const recordCatalogSyncTime = useCallback((value: string | null | undefined) => {
+    const parsed = value ? Date.parse(value) : Number.NaN;
+    lastCatalogSyncAtRef.current = Number.isFinite(parsed) ? parsed : Date.now();
+  }, []);
+
   const hydrate = useCallback(async () => {
     const catalog = await opportunitiesService.loadCatalog({ preferCache: true });
     const localStatuses = await opportunityStatusService.readLocalStatuses(userKey);
@@ -71,6 +90,7 @@ export function OpportunitiesProvider({ children }: { children: React.ReactNode 
     setOpportunities(opportunitiesService.filterActiveCatalog(catalog.opportunities));
     setStatusById(localStatuses);
     setIsHydrated(true);
+    recordCatalogSyncTime(catalog.fetchedAt);
 
     if (!signedInUid) return;
 
@@ -109,47 +129,89 @@ export function OpportunitiesProvider({ children }: { children: React.ReactNode 
         },
       });
     }
-  }, [signedInUid, userKey]);
+  }, [recordCatalogSyncTime, signedInUid, userKey]);
 
   const refreshOpportunities = useCallback(async () => {
-    setIsRefreshing(true);
-    try {
-      let refreshed = await opportunitiesService.refreshCatalog();
+    if (refreshPromiseRef.current) {
+      return refreshPromiseRef.current;
+    }
+
+    const refreshTask = (async () => {
+      lastRefreshAttemptAtRef.current = Date.now();
+      setIsRefreshing(true);
+      try {
+        let refreshed = await opportunitiesService.refreshCatalog();
+
+        if (
+          signedInUid &&
+          !seedAttemptedRef.current &&
+          !opportunitiesService.findOpportunityById(
+            refreshed.opportunities,
+            "green-river-foundation-scholarship"
+          )
+        ) {
+          seedAttemptedRef.current = true;
+          try {
+            const seeded = await opportunitiesService.ensureGreenRiverFoundationScholarshipSeeded();
+            if (seeded) refreshed = seeded;
+          } catch (error) {
+            void errorLoggingService.captureException(error, {
+              category: "sync",
+              operation: "seed-green-river-foundation-scholarship",
+              severity: "warn",
+              handled: true,
+              source: "use-opportunities",
+            });
+          }
+        }
+
+        setOpportunities(opportunitiesService.filterActiveCatalog(refreshed.opportunities));
+        recordCatalogSyncTime(refreshed.fetchedAt);
+      } finally {
+        setIsRefreshing(false);
+        refreshPromiseRef.current = null;
+      }
+    })();
+
+    refreshPromiseRef.current = refreshTask;
+    return refreshTask;
+  }, [recordCatalogSyncTime, signedInUid]);
+
+  const refreshOpportunitiesIfNeeded = useCallback(
+    async (options: { maxAgeMs?: number } = {}) => {
+      const maxAgeMs =
+        options.maxAgeMs ?? DEFAULT_BACKGROUND_REFRESH_MAX_AGE_MS;
+      const referenceTime = Math.max(
+        lastCatalogSyncAtRef.current,
+        lastRefreshAttemptAtRef.current
+      );
 
       if (
-        signedInUid &&
-        !seedAttemptedRef.current &&
-        !opportunitiesService.findOpportunityById(
-          refreshed.opportunities,
-          "green-river-foundation-scholarship"
-        )
+        isHydrated &&
+        opportunities.length > 0 &&
+        referenceTime > 0 &&
+        Date.now() - referenceTime < maxAgeMs
       ) {
-        seedAttemptedRef.current = true;
-        try {
-          const seeded = await opportunitiesService.ensureGreenRiverFoundationScholarshipSeeded();
-          if (seeded) refreshed = seeded;
-        } catch (error) {
-          void errorLoggingService.captureException(error, {
-            category: "sync",
-            operation: "seed-green-river-foundation-scholarship",
-            severity: "warn",
-            handled: true,
-            source: "use-opportunities",
-          });
-        }
+        return;
       }
 
-      setOpportunities(opportunitiesService.filterActiveCatalog(refreshed.opportunities));
-    } finally {
-      setIsRefreshing(false);
-    }
-  }, [signedInUid]);
+      await refreshOpportunities();
+    },
+    [isHydrated, opportunities.length, refreshOpportunities]
+  );
 
   useEffect(() => {
     if (!isAppHydrated) return;
-    void hydrate();
-    void refreshOpportunities();
-  }, [hydrate, isAppHydrated, refreshOpportunities]);
+    let cancelled = false;
+    void (async () => {
+      await hydrate();
+      if (cancelled) return;
+      await refreshOpportunitiesIfNeeded();
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [hydrate, isAppHydrated, refreshOpportunitiesIfNeeded]);
 
   useEffect(() => {
     if (!isAppHydrated || !isHydrated || !signedInUid) return;
@@ -225,8 +287,8 @@ export function OpportunitiesProvider({ children }: { children: React.ReactNode 
       });
   }, [isAppHydrated, isHydrated, opportunities, state.notificationsEnabled, statusById]);
 
-  const setOpportunityDone = useCallback(
-    async (opportunityId: string, isDone: boolean) => {
+  const setOpportunityProgress = useCallback(
+    async (opportunityId: string, progress: OpportunityProgressState) => {
       const opportunity = opportunitiesService.findOpportunityById(
         opportunities,
         opportunityId
@@ -234,10 +296,10 @@ export function OpportunitiesProvider({ children }: { children: React.ReactNode 
       if (!opportunity) return;
 
       const actingUserId = signedInUid ?? userKey;
-      const nextStatus = opportunityStatusService.buildStatus(
+      const nextStatus = opportunityStatusService.buildProgressStatus(
         actingUserId,
         opportunity,
-        isDone,
+        progress,
         statusById[opportunityId]
       );
       const nextStatuses = {
@@ -267,12 +329,24 @@ export function OpportunitiesProvider({ children }: { children: React.ReactNode 
           metadata: {
             opportunityId,
             signedInUid,
-            isDone,
+            progress,
           },
         });
       }
     },
     [opportunities, signedInUid, statusById, userKey]
+  );
+
+  const setOpportunityDone = useCallback(
+    async (opportunityId: string, isDone: boolean) => {
+      await setOpportunityProgress(
+        opportunityId,
+        isDone
+          ? OPPORTUNITY_PROGRESS_STATES.submitted
+          : OPPORTUNITY_PROGRESS_STATES.saved
+      );
+    },
+    [setOpportunityProgress]
   );
 
   const isOpportunityDone = useCallback(
@@ -288,6 +362,8 @@ export function OpportunitiesProvider({ children }: { children: React.ReactNode 
       matchedOpportunities,
       statusById,
       refreshOpportunities,
+      refreshOpportunitiesIfNeeded,
+      setOpportunityProgress,
       setOpportunityDone,
       isOpportunityDone,
     }),
@@ -298,6 +374,8 @@ export function OpportunitiesProvider({ children }: { children: React.ReactNode 
       matchedOpportunities,
       statusById,
       refreshOpportunities,
+      refreshOpportunitiesIfNeeded,
+      setOpportunityProgress,
       setOpportunityDone,
       isOpportunityDone,
     ]

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import {
   Alert,
   Linking,
@@ -11,7 +11,7 @@ import {
   View,
 } from "react-native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
+import { useFocusEffect, useRouter } from "expo-router";
 import {
   RESOURCE_CATALOG,
   type ResourceCatalogItem,
@@ -32,6 +32,7 @@ type ResourceItem = {
   description: string;
   url: string;
   tags?: string[];
+  expiresAt?: string | null;
 };
 
 type ResourceSection = {
@@ -67,6 +68,21 @@ function formatDueDate(value: string | null, locale: string) {
   }
 }
 
+function getLocalDateOnly() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function isExpiredResource(value: string | null | undefined) {
+  const expiresAt = String(value ?? "").trim();
+  if (!expiresAt) return false;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(expiresAt)) return false;
+  return expiresAt < getLocalDateOnly();
+}
+
 function buildOpportunitySearchText(opportunity: MatchedOpportunity) {
   return [
     opportunity.title,
@@ -89,7 +105,7 @@ export default function ResourcesPage() {
   const styles = useThemeStyles();
   const { t, language } = useAppLanguage();
   const { state } = useAppData();
-  const { isHydrated, isRefreshing, matchedOpportunities, refreshOpportunities, setOpportunityDone } =
+  const { isHydrated, matchedOpportunities, refreshOpportunitiesIfNeeded, setOpportunityDone } =
     useOpportunities();
   const { width } = useWindowDimensions();
   const { getScrollContentPadding } = useResponsiveLayout();
@@ -184,19 +200,28 @@ export default function ResourcesPage() {
     return item.isDone ? t("resources.statusDone") : null;
   };
 
+  useFocusEffect(
+    useCallback(() => {
+      void refreshOpportunitiesIfNeeded();
+    }, [refreshOpportunitiesIfNeeded])
+  );
+
   const referenceSections: ResourceSection[] = useMemo(
     () => {
       const sections = RESOURCE_CATALOG.map((section: ResourceCatalogSection) => ({
         id: section.id,
         title: resolveCatalogText(section, "title", t),
         icon: section.icon,
-        items: section.items.map((item) => ({
-          title: resolveCatalogText(item, "title", t),
-          description: resolveCatalogText(item, "description", t),
-          url: item.url,
-          tags: item.tags ?? [],
-        })),
-      }));
+        items: section.items
+          .filter((item) => !isExpiredResource(item.expiresAt))
+          .map((item) => ({
+            title: resolveCatalogText(item, "title", t),
+            description: resolveCatalogText(item, "description", t),
+            url: item.url,
+            tags: item.tags ?? [],
+            expiresAt: item.expiresAt ?? null,
+          })),
+      })).filter((section) => section.items.length > 0);
 
       if (!canShowOpportunityAdminTool) {
         return sections;
@@ -298,6 +323,15 @@ export default function ResourcesPage() {
   const openLink = async (url: string) => {
     if (url.startsWith("app://")) {
       const path = url.replace("app://", "/");
+      if (path === ROUTES.transferPlanner) {
+        router.push(
+          {
+            pathname: ROUTES.transferPlanner,
+            params: { returnTo: ROUTES.tabsResources },
+          } as never
+        );
+        return;
+      }
       router.push(path as never);
       return;
     }
@@ -507,7 +541,14 @@ export default function ResourcesPage() {
 
           <View className="flex-row flex-wrap gap-3 mt-4">
             <Pressable
-              onPress={() => router.push(ROUTES.transferPlanner)}
+              onPress={() =>
+                router.push(
+                  {
+                    pathname: ROUTES.transferPlanner,
+                    params: { returnTo: ROUTES.tabsResources },
+                  } as never
+                )
+              }
               className="px-4 py-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 items-center"
               style={{ flexGrow: 1, minWidth: 150 }}
             >
@@ -531,17 +572,6 @@ export default function ResourcesPage() {
             >
               <Text className="text-emerald-500 text-sm font-medium">
                 {t("resources.deadlineCalendar")}
-              </Text>
-            </Pressable>
-            <Pressable
-              onPress={() => {
-                void refreshOpportunities();
-              }}
-              className="px-4 py-3 rounded-2xl bg-emerald-500 border border-emerald-500 items-center"
-              style={{ flexGrow: 1, minWidth: 150 }}
-            >
-              <Text className="text-white text-sm font-medium">
-                {isRefreshing ? t("resources.actionRefreshing") : t("resources.actionRefresh")}
               </Text>
             </Pressable>
           </View>
@@ -726,17 +756,6 @@ export default function ResourcesPage() {
                     >
                       <Text className="text-emerald-500 text-sm">
                         {t("resources.deadlineCalendar")}
-                      </Text>
-                    </Pressable>
-                    <Pressable
-                      onPress={() => {
-                        void refreshOpportunities();
-                      }}
-                      className="px-4 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 items-center"
-                      style={stackHeaderActions ? { width: "100%" } : undefined}
-                    >
-                      <Text className="text-emerald-500 text-sm">
-                        {isRefreshing ? t("resources.actionRefreshing") : t("resources.actionRefresh")}
                       </Text>
                     </Pressable>
                   </View>

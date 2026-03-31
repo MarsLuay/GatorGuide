@@ -319,6 +319,11 @@ export default function ProfilePage() {
   const documentCompletionLabel = `${uploadedDocumentCount}/2`;
   const currentMajor = capitalizeWords(editData.major || user?.major || "") || t("profile.undecided");
   const currentGpa = editData.gpa || user?.gpa || t("general.notSpecified");
+  const hasDocumentReviewCards = (["resume", "transcript"] as const).some((documentType) => !!documentReviews[documentType]);
+  const shouldPrioritizeGuestProfileSpace =
+    useDesktopFitLayout && !!user?.isGuest && !activeDocumentAnalysis && !hasDocumentReviewCards;
+  const desktopProfileCardFlex = shouldPrioritizeGuestProfileSpace ? 1.28 : 1.1;
+  const desktopDocumentsCardFlex = shouldPrioritizeGuestProfileSpace ? 0.78 : 0.95;
   const residencyLabels: Record<string, string> = {
     inState: t("profile.residencyInState"),
     outOfState: t("profile.residencyOutOfState"),
@@ -1605,7 +1610,7 @@ export default function ProfilePage() {
                 <View style={{ flex: 1, minWidth: 0, gap: desktopPanelGap }}>
                   <View
                     className={`${cardBgClass} border rounded-2xl overflow-hidden`}
-                    style={{ flex: 1.1, minHeight: 0 }}
+                    style={{ flex: desktopProfileCardFlex, minHeight: 0 }}
                   >
                     {renderProfileHero()}
                     <ScrollView
@@ -1619,7 +1624,7 @@ export default function ProfilePage() {
                   </View>
 
                   {renderDocumentsCard({
-                    style: { flex: 0.95, minHeight: 0 },
+                    style: { flex: desktopDocumentsCardFlex, minHeight: 0 },
                     useInternalScroll: true,
                   })}
                 </View>

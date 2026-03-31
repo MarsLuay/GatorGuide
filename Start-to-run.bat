@@ -22,8 +22,8 @@ if errorlevel 1 exit /b 1
 call :ensure_app_dependencies
 if errorlevel 1 exit /b 1
 
-echo Starting Expo with tunnel mode...
-start "%SERVER_WINDOW_TITLE%" cmd /k "cd /d ""%APP_DIR%"" && call npx expo start --tunnel --port %SERVER_PORT%"
+echo Starting Expo with tunnel^>lan^>offline fallback...
+start "%SERVER_WINDOW_TITLE%" cmd /k "cd /d ""%APP_DIR%"" && set EXPO_START_PORT=%SERVER_PORT% && call npm run start"
 if errorlevel 1 (
   echo Failed to start the Expo server window.
   exit /b 1

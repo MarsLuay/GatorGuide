@@ -1,0 +1,69 @@
+name: Mobile Windows QA
+
+on:
+  pull_request:
+    paths:
+      - "Mobile Team/**"
+      - "Start-to-run.bat"
+      - "Start-to-run.sh"
+      - ".github/workflows/mobile-windows-qa.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "Mobile Team/**"
+      - "Start-to-run.bat"
+      - "Start-to-run.sh"
+      - ".github/workflows/mobile-windows-qa.yml"
+  workflow_dispatch:
+
+jobs:
+  windows-qa:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: Mobile Team
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: Mobile Team/package-lock.json
+
+      - name: Ensure local env file exists
+        shell: pwsh
+        run: |
+          if (!(Test-Path ".env") -and (Test-Path "env.example")) {
+            Copy-Item "env.example" ".env"
+          }
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium
+        run: npx playwright install chromium
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npx tsc --noEmit
+
+      - name: Run Windows QA harness
+        run: npm run qa:windows:ci
+
+      - name: Upload QA artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mobile-windows-qa
+          path: |
+            Mobile Team/.tools/qa-results/**
+            Mobile Team/.tools/qa-results-*/**
+            Mobile Team/.tools/qa-web/**
+          if-no-files-found: warn

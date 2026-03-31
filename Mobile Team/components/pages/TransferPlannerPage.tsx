@@ -1,4 +1,5 @@
 import * as DocumentPicker from "expo-document-picker";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
@@ -11,8 +12,10 @@ import {
   View,
   useWindowDimensions,
 } from "react-native";
+import { useTranslation } from "react-i18next";
 
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
+import { ROUTES } from "@/constants/routes";
 import { StateCard } from "@/components/ui/StateCard";
 import {
   getTransferPlannerMajorsForCampus,
@@ -24,6 +27,7 @@ import {
 import { useAppData } from "@/hooks/use-app-data";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
+import { errorLoggingService, transcriptPlannerDebugService } from "@/services";
 import { storageService, type UploadedFile } from "@/services/storage.service";
 import {
   buildSuggestedQuarterPlan,
@@ -60,7 +64,108 @@ function dedupeLinks(links: TransferPlannerLink[]) {
 }
 
 function buildFriendlyTranscriptError() {
-  return "We couldn't read past classes from this unofficial transcript yet. Try uploading the PDF directly from ctcLink.";
+  return "We couldn't read past classes from this unofficial transcript yet. Upload the PDF directly from ctcLink using the link below.";
+}
+
+function getReadableTranscriptFileName(document: TranscriptDocument | null) {
+  const rawName = String(document?.name ?? "").trim();
+  if (
+    rawName &&
+    rawName.length <= 180 &&
+    !rawName.startsWith("data:") &&
+    !rawName.startsWith("blob:") &&
+    !rawName.includes("base64,")
+  ) {
+    return rawName;
+  }
+
+  const rawUrl = String(document?.url ?? "").trim();
+  if (rawUrl && !rawUrl.startsWith("data:") && !rawUrl.startsWith("blob:")) {
+    const withoutQuery = rawUrl.split(/[?#]/)[0] ?? "";
+    const lastSegment = withoutQuery.split("/").pop() ?? "";
+    try {
+      const decoded = decodeURIComponent(lastSegment).trim();
+      if (decoded && decoded.length <= 180) {
+        return decoded;
+      }
+    } catch {
+      if (lastSegment.trim() && lastSegment.trim().length <= 180) {
+        return lastSegment.trim();
+      }
+    }
+  }
+
+  return "unofficial-transcript.pdf";
+}
+
+function getTranscriptUrlKind(url: string | null | undefined) {
+  const raw = String(url ?? "").trim();
+  if (!raw) return "missing";
+  if (raw.startsWith("data:")) return "data-url";
+  if (raw.startsWith("blob:")) return "blob-url";
+  if (raw.startsWith("http://") || raw.startsWith("https://")) return "remote-url";
+  if (raw.startsWith("file://")) return "file-url";
+  if (/^[A-Za-z]:[\\/]/.test(raw)) return "windows-local-path";
+  if (raw.startsWith("/")) return "local-path";
+  return "other";
+}
+
+function buildTranscriptDebugSnapshot({
+  phase,
+  document,
+  transcriptSourceKey,
+  storedTranscriptSource,
+  completedCoursesBeforeCount,
+  questionnaireCompletedCourseCount,
+  parsedCourseCount,
+  parsedCourseCodesPreview,
+  error,
+}: {
+  phase: "analysis-start" | "analysis-success" | "analysis-failure" | "upload-failure";
+  document: TranscriptDocument;
+  transcriptSourceKey: string;
+  storedTranscriptSource: string;
+  completedCoursesBeforeCount: number;
+  questionnaireCompletedCourseCount: number;
+  parsedCourseCount: number | null;
+  parsedCourseCodesPreview: string[];
+  error: unknown;
+}) {
+  const normalizedError =
+    error instanceof Error
+      ? {
+          name: error.name || "Error",
+          message: error.message || "Unexpected transcript error",
+          code: String((error as Error & { code?: unknown }).code ?? "").trim() || null,
+        }
+      : error
+        ? {
+            name: "Error",
+            message: String((error as { message?: unknown })?.message ?? error),
+            code: String((error as { code?: unknown })?.code ?? "").trim() || null,
+          }
+        : null;
+
+  return {
+    timestamp: new Date().toISOString(),
+    phase,
+    document: {
+      name: document.name ?? null,
+      displayName: getReadableTranscriptFileName(document),
+      urlKind: getTranscriptUrlKind(document.url),
+      urlLength: String(document.url ?? "").length,
+      mimeType: document.mimeType ?? null,
+      sizeBytes: document.sizeBytes ?? null,
+      uploadedAt: document.uploadedAt || null,
+    },
+    transcriptSourceKey: transcriptSourceKey || null,
+    storedTranscriptSource: storedTranscriptSource || null,
+    completedCoursesBeforeCount,
+    questionnaireCompletedCourseCount,
+    parsedCourseCount,
+    parsedCourseCodesPreview,
+    error: normalizedError,
+  };
 }
 
 async function openExternalLink(url: string) {
@@ -223,7 +328,7 @@ function TranscriptSummaryCard({
 
       <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-4`}>
         <Text className={`${textClass} font-semibold`} numberOfLines={1}>
-          {transcriptDocument.name}
+          {getReadableTranscriptFileName(transcriptDocument)}
         </Text>
         <Text className={`${secondaryTextClass} text-sm mt-1`}>
           {isAnalyzing
@@ -247,6 +352,12 @@ function TranscriptSummaryCard({
         <View className="mt-4 px-4 py-4 rounded-2xl bg-amber-500/10 border border-amber-500/20">
           <Text className="text-amber-500 font-semibold">Transcript needs another try</Text>
           <Text className={`${secondaryTextClass} text-sm mt-1`}>{errorMessage}</Text>
+          <Pressable
+            onPress={() => void openExternalLink(CTCLINK_UNOFFICIAL_TRANSCRIPT_URL)}
+            className="self-start mt-3"
+          >
+            <Text className="text-emerald-500 font-medium">Open unofficial transcript in ctcLink</Text>
+          </Pressable>
         </View>
       ) : null}
 
@@ -458,6 +569,9 @@ function SuggestedScheduleCard({
 }
 
 export default function TransferPlannerPage() {
+  const router = useRouter();
+  const params = useLocalSearchParams<{ returnTo?: string | string[] }>();
+  const { t } = useTranslation();
   const styles = useThemeStyles();
   const { width } = useWindowDimensions();
   const { state, updateUser, setQuestionnaireAnswers } = useAppData();
@@ -514,6 +628,34 @@ export default function TransferPlannerPage() {
     ? `${transcriptDocument.url}|${transcriptDocument.uploadedAt}`
     : "";
   const autoMajorSelectionRef = useRef(false);
+  const returnTo = useMemo(() => {
+    const raw = Array.isArray(params.returnTo) ? params.returnTo[0] : params.returnTo;
+    const normalized = String(raw ?? "").trim();
+    return normalized.startsWith("/") ? normalized : null;
+  }, [params.returnTo]);
+  const backLabel = useMemo(() => {
+    const translated = t("general.back");
+    return translated && translated !== "general.back" ? translated : "Back";
+  }, [t]);
+
+  const handleGoBack = useCallback(() => {
+    if (returnTo) {
+      router.replace(returnTo as never);
+      return;
+    }
+
+    if (typeof window !== "undefined") {
+      if (window.history.length > 1) {
+        router.back();
+        return;
+      }
+
+      router.replace(ROUTES.tabsResources);
+      return;
+    }
+
+    router.back();
+  }, [returnTo, router]);
 
   useEffect(() => {
     const nextFirstMajorId = campusMajors[0]?.id ?? "";
@@ -552,8 +694,13 @@ export default function TransferPlannerPage() {
 
     void (async () => {
       const stored = await storageService.getTranscript(user.uid).catch(() => null);
-      const fallbackName =
-        transcriptUrl.split("/").pop()?.split("?")[0] || "unofficial-transcript.pdf";
+      const fallbackName = getReadableTranscriptFileName({
+        name: "",
+        url: transcriptUrl,
+        uploadedAt: "",
+        mimeType: "application/pdf",
+        sizeBytes: null,
+      });
       const nextDocument: TranscriptDocument =
         stored && stored.url
           ? stored
@@ -578,6 +725,26 @@ export default function TransferPlannerPage() {
     async (document: TranscriptDocument) => {
       setIsAnalyzingTranscript(true);
       setTranscriptError(null);
+      const debugBase = {
+        document,
+        transcriptSourceKey:
+          document.url || document.uploadedAt ? `${document.url}|${document.uploadedAt}` : "",
+        storedTranscriptSource,
+        completedCoursesBeforeCount: completedCourses.length,
+        questionnaireCompletedCourseCount: Array.isArray(state.questionnaireAnswers?.completedCourses)
+          ? state.questionnaireAnswers.completedCourses.length
+          : 0,
+      };
+
+      transcriptPlannerDebugService.setLastTranscriptPlannerDebug(
+        buildTranscriptDebugSnapshot({
+          ...debugBase,
+          phase: "analysis-start",
+          parsedCourseCount: null,
+          parsedCourseCodesPreview: [],
+          error: null,
+        })
+      );
 
       try {
         const parsedCourses = await transcriptPdfService.extractCompletedCoursesFromPdf(
@@ -586,6 +753,18 @@ export default function TransferPlannerPage() {
 
         if (!parsedCourses.length) throw new Error("No completed courses extracted.");
 
+        transcriptPlannerDebugService.setLastTranscriptPlannerDebug(
+          buildTranscriptDebugSnapshot({
+            ...debugBase,
+            phase: "analysis-success",
+            parsedCourseCount: parsedCourses.length,
+            parsedCourseCodesPreview: parsedCourses
+              .slice(0, 20)
+              .map((course) => course.code),
+            error: null,
+          })
+        );
+
         await setQuestionnaireAnswers({
           ...state.questionnaireAnswers,
           completedCourses: parsedCourses.map((course) => course.label),
@@ -593,13 +772,38 @@ export default function TransferPlannerPage() {
           [TRANSCRIPT_UPLOADED_AT_FIELD]:
             document.uploadedAt || new Date().toISOString(),
         });
-      } catch {
+      } catch (error) {
+        const failureSnapshot = buildTranscriptDebugSnapshot({
+          ...debugBase,
+          phase: "analysis-failure",
+          parsedCourseCount: null,
+          parsedCourseCodesPreview: [],
+          error,
+        });
+
+        transcriptPlannerDebugService.setLastTranscriptPlannerDebug(failureSnapshot);
+        void errorLoggingService.captureException(error, {
+          category: "storage",
+          operation: "transfer-planner-analyze-transcript",
+          severity: "warn",
+          handled: true,
+          source: "TransferPlannerPage",
+          screen: "TransferPlannerPage",
+          route: "/transfer-planner",
+          tags: ["transcript", "transfer-planner", failureSnapshot.document.urlKind],
+          metadata: failureSnapshot,
+        });
         setTranscriptError(buildFriendlyTranscriptError());
       } finally {
         setIsAnalyzingTranscript(false);
       }
     },
-    [setQuestionnaireAnswers, state.questionnaireAnswers]
+    [
+      completedCourses.length,
+      setQuestionnaireAnswers,
+      state.questionnaireAnswers,
+      storedTranscriptSource,
+    ]
   );
 
   useEffect(() => {
@@ -643,13 +847,59 @@ export default function TransferPlannerPage() {
         `${uploaded.url}|${uploaded.uploadedAt}`
       );
       await analyzeTranscript(uploaded);
-    } catch {
-      Alert.alert(
-        "Transcript upload failed",
-        "We couldn't use that transcript yet. Try the PDF you downloaded from ctcLink."
+    } catch (error) {
+      transcriptPlannerDebugService.setLastTranscriptPlannerDebug(
+        buildTranscriptDebugSnapshot({
+          phase: "upload-failure",
+          document: {
+            name: "unofficial-transcript.pdf",
+            url: "",
+            uploadedAt: "",
+            mimeType: "application/pdf",
+            sizeBytes: null,
+          },
+          transcriptSourceKey: "",
+          storedTranscriptSource,
+          completedCoursesBeforeCount: completedCourses.length,
+          questionnaireCompletedCourseCount: Array.isArray(state.questionnaireAnswers?.completedCourses)
+            ? state.questionnaireAnswers.completedCourses.length
+            : 0,
+          parsedCourseCount: null,
+          parsedCourseCodesPreview: [],
+          error,
+        })
       );
+      void errorLoggingService.captureException(error, {
+        category: "upload",
+        operation: "transfer-planner-upload-transcript",
+        severity: "warn",
+        handled: true,
+        source: "TransferPlannerPage",
+        screen: "TransferPlannerPage",
+        route: "/transfer-planner",
+        tags: ["transcript", "transfer-planner", "upload"],
+      });
+      Alert.alert("Transcript upload failed", "We couldn't use that transcript yet.", [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        {
+          text: "Open ctcLink",
+          onPress: () => {
+            void openExternalLink(CTCLINK_UNOFFICIAL_TRANSCRIPT_URL);
+          },
+        },
+      ]);
     }
-  }, [analyzeTranscript, updateUser, user?.uid]);
+  }, [
+    analyzeTranscript,
+    completedCourses.length,
+    state.questionnaireAnswers?.completedCourses,
+    storedTranscriptSource,
+    updateUser,
+    user?.uid,
+  ]);
 
   const applicationStatuses = useMemo(
     () =>
@@ -755,6 +1005,20 @@ export default function TransferPlannerPage() {
           }}
         >
           <View className="gap-4">
+            <Pressable
+              onPress={handleGoBack}
+              className="flex-row items-center self-start"
+            >
+              <MaterialIcons
+                name="arrow-back"
+                size={20}
+                color="#1f8a5d"
+              />
+              <Text className={`${secondaryTextClass} ml-2`}>
+                {backLabel}
+              </Text>
+            </Pressable>
+
             <View className="flex-row items-start">
               <View className="w-12 h-12 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">
                 <Ionicons name="trail-sign-outline" size={22} color="#008f4e" />

@@ -8,8 +8,11 @@ import {
 } from "firebase/firestore";
 import {
   type Opportunity,
+  type OpportunityProgressState,
   type UserOpportunityStatus,
+  isCompletedOpportunityProgress,
   normalizeUserOpportunityStatus,
+  OPPORTUNITY_PROGRESS_STATES,
   resolveOpportunityCycleKey,
 } from "@/constants/opportunities";
 import {
@@ -194,6 +197,8 @@ class OpportunityStatusService {
         schemaVersion: status.schemaVersion,
         userId: uid,
         opportunityId: status.opportunityId,
+        progress: status.progress,
+        progressUpdatedAt: status.progressUpdatedAt,
         isDone: status.isDone,
         doneAt: status.doneAt,
         doneCycleKey: status.doneCycleKey,
@@ -204,24 +209,43 @@ class OpportunityStatusService {
     );
   }
 
+  buildProgressStatus(
+    userId: string,
+    opportunity: Opportunity,
+    progress: OpportunityProgressState,
+    existing?: UserOpportunityStatus | null
+  ) {
+    const nowIso = new Date().toISOString();
+    const isDone = isCompletedOpportunityProgress(progress);
+
+    return normalizeUserOpportunityStatus(
+      {
+        ...(existing ?? {}),
+        progress,
+        progressUpdatedAt: nowIso,
+        isDone,
+        doneAt: isDone ? nowIso : null,
+        doneCycleKey: resolveOpportunityCycleKey(opportunity),
+        clientUpdatedAt: nowIso,
+      },
+      userId,
+      opportunity.opportunityId
+    );
+  }
+
   buildStatus(
     userId: string,
     opportunity: Opportunity,
     isDone: boolean,
     existing?: UserOpportunityStatus | null
   ) {
-    return normalizeUserOpportunityStatus(
-      {
-        ...(existing ?? {}),
-        isDone,
-        doneAt: isDone ? new Date().toISOString() : null,
-        doneCycleKey: isDone
-          ? resolveOpportunityCycleKey(opportunity)
-          : resolveOpportunityCycleKey(opportunity),
-        clientUpdatedAt: new Date().toISOString(),
-      },
+    return this.buildProgressStatus(
       userId,
-      opportunity.opportunityId
+      opportunity,
+      isDone
+        ? OPPORTUNITY_PROGRESS_STATES.submitted
+        : OPPORTUNITY_PROGRESS_STATES.saved,
+      existing
     );
   }
 

@@ -8,18 +8,26 @@ import {
   FIRESTORE_COLLECTIONS,
   FIRESTORE_USER_SUBCOLLECTIONS,
 } from '@/constants/schema';
-import { API_CONFIG, isStubMode } from './config';
+import { hasCollegeScorecardApiKey, isStubMode } from './config';
 import { errorLoggingService } from './error-logging.service';
 import { db } from './firebase';
 import { firebaseAuth } from './firebase';
 import { buildScorecardUrl, fetchScorecardUrl } from './scorecard';
+import { normalizeRateValue } from '@/utils/locale-format';
 
 const CACHE_TTL_MS = 1000 * 60 * 60 * 24; // 24 hours
 const ZIP_CACHE_TTL_MS = 1000 * 60 * 60 * 24 * 3; // 3 days for ZIP geocode cache
-const CACHE_VERSION = 'v3';
+const CACHE_VERSION = 'v4';
+const COLLEGE_CACHE_PREFIX = 'college:';
+const CACHE_CLEANUP_MARKER_KEY = 'college:cache:cleanup:version';
 
 const getCacheKey = (type: 'matches' | 'search' | 'details', payload: string) =>
   `college:${CACHE_VERSION}:${type}:${payload}`;
+
+const getCollegeScorecardSetupError = () =>
+  new Error(
+    'College Scorecard API key is missing or invalid. Update EXPO_PUBLIC_COLLEGE_SCORECARD_KEY in Mobile Team/.env with a valid api.data.gov key, then restart Expo.'
+  );
 
 const readCache = async (key: string): Promise<College[] | College | null> => {
   // Shared TTL check for list/detail/search cache entries.
@@ -28,7 +36,9 @@ const readCache = async (key: string): Promise<College[] | College | null> => {
   try {
     const parsed = JSON.parse(raw) as { timestamp: number; data: College[] | College };
     if (Date.now() - parsed.timestamp > CACHE_TTL_MS) return null;
-    return parsed.data;
+    return Array.isArray(parsed.data)
+      ? parsed.data.map((college) => normalizeCollegeRates(college))
+      : normalizeCollegeRates(parsed.data);
   } catch {
     return null;
   }
@@ -38,6 +48,48 @@ const writeCache = async (key: string, data: College[] | College) => {
   const payload = JSON.stringify({ timestamp: Date.now(), data });
   await AsyncStorage.setItem(key, payload);
 };
+
+let legacyCollegeCacheCleanupPromise: Promise<void> | null = null;
+
+const removeLegacyCollegeCaches = async () => {
+  try {
+    const lastCleanupVersion = await AsyncStorage.getItem(CACHE_CLEANUP_MARKER_KEY);
+    if (lastCleanupVersion === CACHE_VERSION) return;
+
+    const keys = await AsyncStorage.getAllKeys();
+    const legacyKeys = keys.filter(
+      (key) =>
+        key.startsWith(COLLEGE_CACHE_PREFIX) &&
+        key !== CACHE_CLEANUP_MARKER_KEY &&
+        !key.startsWith(`${COLLEGE_CACHE_PREFIX}${CACHE_VERSION}:`)
+    );
+
+    if (legacyKeys.length > 0) {
+      await AsyncStorage.multiRemove(legacyKeys);
+    }
+
+    await AsyncStorage.setItem(CACHE_CLEANUP_MARKER_KEY, CACHE_VERSION);
+  } catch {
+    // Best-effort cleanup only; stale cache keys should never block college data reads.
+  }
+};
+
+const ensureLegacyCollegeCacheCleanup = async () => {
+  if (!legacyCollegeCacheCleanupPromise) {
+    legacyCollegeCacheCleanupPromise = removeLegacyCollegeCaches().finally(() => {
+      legacyCollegeCacheCleanupPromise = null;
+    });
+  }
+
+  await legacyCollegeCacheCleanupPromise;
+};
+
+const normalizeCollegeRates = <T extends College>(college: T): T => ({
+  ...college,
+  admissionRate: normalizeRateValue(college.admissionRate),
+  completionRate: normalizeRateValue(college.completionRate),
+  pellGrantRate: normalizeRateValue(college.pellGrantRate),
+});
 
 export type College = {
   id: string;
@@ -199,12 +251,17 @@ class CollegeService {
 
   // --- Original Stub Methods (保持原样) ---
   async getMatches(criteria: CollegeMatchCriteria): Promise<College[]> {
+    await ensureLegacyCollegeCacheCleanup();
 
     const cacheKey = getCacheKey('matches', JSON.stringify(criteria));
     const cached = await readCache(cacheKey);
     if (cached && Array.isArray(cached)) {
       this.lastSource = 'cached';
       return cached;
+    }
+
+    if (!hasCollegeScorecardApiKey()) {
+      throw getCollegeScorecardSetupError();
     }
     // Request an enriched field set once so ranking and detail UI have needed data.
     const fields = [
@@ -252,7 +309,7 @@ class CollegeService {
         const locale = (r?.school?.locale || '').toString();
         const setting: College['setting'] = locale.toLowerCase().includes('city') ? 'urban' : locale.toLowerCase().includes('rural') ? 'rural' : 'suburban';
 
-        return {
+        return normalizeCollegeRates({
           id: String(r?.id ?? index),
           name: r?.school?.name ?? 'Unknown College',
           location: {
@@ -279,7 +336,7 @@ class CollegeService {
           attendanceAcademicYear: r?.latest?.cost?.attendance?.academic_year ?? null,
           pellGrantRate: r?.latest?.aid?.pell_grant_rate ?? null,
           medianDebtCompletersOverall: r?.latest?.aid?.median_debt?.completers?.overall ?? null,
-        } as College;
+        } as College);
       });
 
       await writeCache(cacheKey, results);
@@ -295,12 +352,17 @@ class CollegeService {
   }
 
   async getCollegeDetails(collegeId: string): Promise<College> {
+    await ensureLegacyCollegeCacheCleanup();
 
     const cacheKey = getCacheKey('details', collegeId);
     const cached = await readCache(cacheKey);
     if (cached && !Array.isArray(cached)) {
       this.lastSource = 'cached';
       return cached;
+    }
+
+    if (!hasCollegeScorecardApiKey()) {
+      throw getCollegeScorecardSetupError();
     }
 
     const fields = [
@@ -348,7 +410,7 @@ class CollegeService {
       const locale = (r?.school?.locale || '').toString();
       const setting: College['setting'] = locale.toLowerCase().includes('city') ? 'urban' : locale.toLowerCase().includes('rural') ? 'rural' : 'suburban';
 
-      const result: College = {
+      const result: College = normalizeCollegeRates({
         id: String(r?.id ?? collegeId),
         name: r?.school?.name ?? 'Unknown College',
         location: {
@@ -375,7 +437,7 @@ class CollegeService {
         medianDebtCompletersOverall: r?.latest?.aid?.median_debt?.completers?.overall ?? null,
         // include raw full Scorecard result for advanced views (do NOT log this)
         raw: r ?? null,
-      } as College;
+      } as College);
 
       await writeCache(cacheKey, result);
       this.lastSource = 'live';
@@ -390,20 +452,12 @@ class CollegeService {
   }
 
   async searchColleges(query: string): Promise<College[]> {
+    await ensureLegacyCollegeCacheCleanup();
+
     const q = query.trim();
     if (q.length < 3) {
       this.lastSource = isStubMode() ? 'stub' : 'cached';
       return [];
-    }
-
-    if (isStubMode() || API_CONFIG.collegeScorecard.apiKey === 'STUB') {
-      this.lastSource = 'stub';
-      await new Promise((resolve) => setTimeout(resolve, 300));
-
-      const allColleges = await this.getMatches({});
-      return allColleges.filter((c) =>
-        c.name.toLowerCase().includes(q.toLowerCase())
-      );
     }
 
     const cacheKey = getCacheKey('search', q);
@@ -411,6 +465,10 @@ class CollegeService {
     if (cached && Array.isArray(cached)) {
       this.lastSource = 'cached';
       return cached;
+    }
+
+    if (isStubMode() || !hasCollegeScorecardApiKey()) {
+      throw getCollegeScorecardSetupError();
     }
 
     const fields = [
@@ -443,7 +501,7 @@ class CollegeService {
         const locale = (r?.school?.locale || '').toString();
         const setting: College['setting'] = locale.toLowerCase().includes('city') ? 'urban' : locale.toLowerCase().includes('rural') ? 'rural' : 'suburban';
 
-        return {
+        return normalizeCollegeRates({
           id: String(r?.id ?? index),
           name: r?.school?.name ?? 'Unknown College',
           location: {
@@ -459,7 +517,7 @@ class CollegeService {
           admissionRate: r?.latest?.admissions?.admission_rate?.overall ?? null,
           website: r?.school?.school_url ?? null,
           programs: [],
-        } as College;
+        } as College);
       });
 
       await writeCache(cacheKey, results);

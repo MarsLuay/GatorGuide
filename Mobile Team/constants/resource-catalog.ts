@@ -7,6 +7,7 @@ export type ResourceCatalogItem = {
   descriptionKey?: string;
   url: string;
   tags?: string[];
+  expiresAt?: string | null;
 };
 
 export type ResourceCatalogSection = {

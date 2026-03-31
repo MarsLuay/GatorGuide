@@ -27,7 +27,7 @@ export function getMatchScoreTier(score: number | null | undefined): MatchScoreT
 /**
  * Shared text color for match scores:
  * - Green (70-100): high match
- * - Yellow (40-69): medium match
+ * - Green (40-69): medium match
  * - Red (0-39): low match
  */
 export function getMatchColorClass(score: number | null | undefined): string {
@@ -35,7 +35,7 @@ export function getMatchColorClass(score: number | null | undefined): string {
     case "high":
       return "text-emerald-600";
     case "medium":
-      return "text-amber-600";
+      return "text-emerald-600";
     case "low":
       return "text-red-600";
     default:
@@ -48,7 +48,7 @@ export function getMatchBadgeClass(score: number | null | undefined): string {
     case "high":
       return "border-emerald-400/40 bg-emerald-500/10";
     case "medium":
-      return "border-amber-400/40 bg-amber-500/10";
+      return "border-emerald-300/40 bg-emerald-500/10";
     case "low":
       return "border-red-400/40 bg-red-500/10";
     default:

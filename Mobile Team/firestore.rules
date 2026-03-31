@@ -177,6 +177,8 @@ service cloud.firestore {
           "schemaVersion",
           "userId",
           "opportunityId",
+          "progress",
+          "progressUpdatedAt",
           "isDone",
           "doneAt",
           "doneCycleKey",
@@ -187,6 +189,8 @@ service cloud.firestore {
           "schemaVersion",
           "userId",
           "opportunityId",
+          "progress",
+          "progressUpdatedAt",
           "isDone",
           "doneAt",
           "doneCycleKey",
@@ -195,7 +199,15 @@ service cloud.firestore {
         ]) &&
         request.resource.data.schemaVersion == 1 &&
         request.resource.data.userId == userId &&
-        request.resource.data.opportunityId == opportunityId;
+        request.resource.data.opportunityId == opportunityId &&
+        (
+          request.resource.data.progress == null ||
+          request.resource.data.progress == "saved" ||
+          request.resource.data.progress == "started" ||
+          request.resource.data.progress == "submitted" ||
+          request.resource.data.progress == "won" ||
+          request.resource.data.progress == "expired"
+        );
     }
 
     match /users/{userId} {
