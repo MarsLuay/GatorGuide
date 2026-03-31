@@ -1,5 +1,15 @@
+import {
+  TRANSFER_PLANNER_MASTER_BANK_LIBRARY,
+  TRANSFER_PLANNER_MASTER_CHAIN_LIBRARY,
+  TRANSFER_PLANNER_MASTER_MAJOR_ROWS,
+  type TransferPlannerMasterBank,
+  type TransferPlannerMasterChain,
+  type TransferPlannerMasterMajorRow,
+} from "./transfer-planner-master-generated";
+
 export type TransferPlannerCampusId = "uw-seattle" | "uw-bothell" | "uw-tacoma";
 export type TransferPlannerCoverage = "detailed" | "partial";
+export type TransferPlannerSourceType = "detailed" | "master-generated";
 
 export type TransferPlannerLink = {
   label: string;
@@ -12,6 +22,7 @@ export type TransferPlannerChecklistItem = {
   title: string;
   grcCourses: string[];
   note?: string;
+  minCompletedCount?: number;
 };
 
 export type TransferPlannerTrackTerm = {
@@ -58,6 +69,11 @@ export type TransferPlannerMajorPlan = {
   projectIdeas: string[];
   officialLinks: TransferPlannerLink[];
   manualReviewNotes?: string[];
+  family?: string;
+  bankIds?: string[];
+  chainIds?: string[];
+  plannerNote?: string;
+  sourceType?: TransferPlannerSourceType;
 };
 
 const item = (
@@ -71,6 +87,27 @@ const item = (
   grcCourses,
   note,
 });
+
+const itemCount = (
+  id: string,
+  title: string,
+  grcCourses: string[],
+  minCompletedCount: number,
+  note?: string
+): TransferPlannerChecklistItem => ({
+  id,
+  title,
+  grcCourses,
+  note,
+  minCompletedCount,
+});
+
+const itemAny = (
+  id: string,
+  title: string,
+  grcCourses: string[],
+  note?: string
+): TransferPlannerChecklistItem => itemCount(id, title, grcCourses, 1, note);
 
 export const TRANSFER_PLANNER_CAMPUSES: TransferPlannerCampus[] = [
   {
@@ -277,14 +314,14 @@ export const TRANSFER_PLANNER_MAJOR_PLANS: TransferPlannerMajorPlan[] = [
     startQuarter: "Spring or autumn",
     bestTrackId: "999P",
     bestTrackSummary:
-      "999P already carries the programming, math, and physics backbone Allen expects, while staying on a clear Green River engineering track.",
+      "999P is the Green River path that best lines up with UW Computer Engineering.",
     whyThisTrack: [
       "It preserves the CS 121 / 122 / 123 sequence at Green River.",
       "It keeps calculus and physics moving without forcing the student off a valid engineering pathway.",
       "It minimizes random off-track classes that can create financial-aid headaches.",
     ],
     financialAidNote:
-      "If the student is still deciding between Allen CompE and ECE, 999P is the safest shared Green River track to hold both options open.",
+      "If you are still choosing between Computer Engineering and ECE, 999P is the best path to keep both options open.",
     applicationChecklist: [
       item("calc123", "MATH 124, 125, 126", ["MATH& 151", "MATH& 152", "MATH& 163"], "Use the current UW equivalency guide when the older GRC sample plan still shows MATH& 153."),
       item("cs123", "CSE 143 or CSE 123", ["CS 121", "CS 122", "CS 123"], "Allen strongly prefers the full modern CS intro sequence."),
@@ -403,14 +440,14 @@ export const TRANSFER_PLANNER_MAJOR_PLANS: TransferPlannerMajorPlan[] = [
       "999P is the easiest Green River degree story to defend if the student is using aid and still deciding between ECE and Computer Engineering.",
     applicationChecklist: [
       item("calc123", "MATH 124, 125, 126", ["MATH& 151", "MATH& 152", "MATH& 163"]),
-      item("cse122or123", "CSE 122 or CSE 123", ["CS 121", "CS 122", "CS 123"], "Completing the full three-course sequence is the safest Green River option."),
+      itemCount("cse122or123", "CSE 122 or CSE 123", ["CS 121", "CS 122", "CS 123"], 2, "Completing the full three-course sequence is the safest Green River option."),
       item("phys121-122", "PHYS 121 and PHYS 122", ["PHYS& 221", "PHYS& 222"]),
       item("engl101", "English composition", ["ENGL& 101"]),
     ],
     beforeEnrollmentChecklist: [
       item("math207", "MATH 207 or AMATH 351", ["MATH 238"]),
       item("cse123", "CSE 123 or equivalent strongest programming finish", ["CS 123"]),
-      item("science-two", "Two additional science / math depth options", ["CHEM& 161", "PHYS& 223", "MATH 240", "MATH& 254"], "ECE accepts several second-tier science and math options; these Green River classes are the cleanest substitutes."),
+      itemCount("science-two", "Two additional science / math depth options", ["CHEM& 161", "PHYS& 223", "MATH 240", "MATH& 254"], 2, "ECE accepts several second-tier science and math options; these Green River classes are the cleanest substitutes."),
     ],
     stayAtGrcChecklist: [
       item("engr204", "Circuit analysis head start", ["ENGR& 204"]),
@@ -529,7 +566,7 @@ export const TRANSFER_PLANNER_MAJOR_PLANS: TransferPlannerMajorPlan[] = [
       item("engl101", "English composition", ["ENGL& 101"]),
     ],
     beforeEnrollmentChecklist: [
-      item("computing", "One approved computing course", ["ENGR 250", "CS 121", "CS 122", "CS 123"], "UW Civil accepts several computing paths; these are the cleanest Green River choices."),
+      itemAny("computing", "One approved computing course", ["ENGR 250", "CS 121", "CS 122", "CS 123"], "UW Civil accepts several computing paths; these are the cleanest Green River choices."),
       item("cee220", "CEE 220", ["ENGR& 225"]),
       item("me230", "M E 230", ["ENGR& 215"]),
       item("math208", "MATH 208 or AMATH 352", ["MATH 240"]),
@@ -654,7 +691,7 @@ export const TRANSFER_PLANNER_MAJOR_PLANS: TransferPlannerMajorPlan[] = [
     beforeEnrollmentChecklist: [
       item("chem152", "CHEM 152", ["CHEM& 162", "CHEM& 163"]),
       item("phys123", "PHYS 123", ["PHYS& 223"]),
-      item("cee220orme230", "CEE 220 or M E 230", ["ENGR& 225", "ENGR& 215"]),
+      itemAny("cee220orme230", "CEE 220 or M E 230", ["ENGR& 225", "ENGR& 215"]),
     ],
     stayAtGrcChecklist: [
       item("cse122", "Programming strongly recommended", ["CS 121", "CS 122"]),
@@ -712,7 +749,7 @@ export const TRANSFER_PLANNER_MAJOR_PLANS: TransferPlannerMajorPlan[] = [
     beforeEnrollmentChecklist: [
       item("math207", "MATH 207", ["MATH 238"]),
       item("mse170", "MSE 170", ["ENGR 140"]),
-      item("programming", "One programming course", ["ENGR 250", "CS 122"]),
+      itemAny("programming", "One programming course", ["ENGR 250", "CS 122"]),
     ],
     stayAtGrcChecklist: [
       item("chem162depth", "CHEM 162 depth", ["CHEM& 163"]),
@@ -833,7 +870,7 @@ export const TRANSFER_PLANNER_MAJOR_PLANS: TransferPlannerMajorPlan[] = [
       item("phys121-122", "PHYS 121 and PHYS 122", ["PHYS& 221", "PHYS& 222"]),
       item("biol180", "BIOL 180", ["BIOL& 211"], "For the cleanest biology start, continue the full sequence if the student can."),
       item("organic", "CHEM 223 or CHEM 237", ["CHEM& 261"]),
-      item("programming", "AMATH 301 or approved programming path", ["ENGR 250", "CS 121", "CS 122", "CS 123"]),
+      itemAny("programming", "AMATH 301 or approved programming path", ["ENGR 250", "CS 121", "CS 122", "CS 123"]),
       item("engl101", "English composition", ["ENGL& 101"]),
     ],
     beforeEnrollmentChecklist: [
@@ -895,7 +932,7 @@ export const TRANSFER_PLANNER_MAJOR_PLANS: TransferPlannerMajorPlan[] = [
     beforeEnrollmentChecklist: [
       item("math207", "MATH 207 or AMATH 351", ["MATH 238"]),
       item("biol180", "BIOL 180", ["BIOL& 211"]),
-      item("computing", "One approved computing course", ["ENGR 250", "CS 121", "CS 122"]),
+      itemAny("computing", "One approved computing course", ["ENGR 250", "CS 121", "CS 122"]),
       item("aa260", "A A 260", ["ENGR& 224"]),
     ],
     stayAtGrcChecklist: [
@@ -945,15 +982,15 @@ export const TRANSFER_PLANNER_MAJOR_PLANS: TransferPlannerMajorPlan[] = [
       "Keep the student inside the closest valid Green River STEM path possible, then use advisor review to place statistics and science choices strategically.",
     applicationChecklist: [
       item("ten-calc-credits", "Ten credits from MATH 124, 125, 126", ["MATH& 151", "MATH& 152", "MATH& 163"]),
-      item("programming", "One approved programming course", ["CS 121", "CS 122", "CS 123"]),
-      item("stats", "One approved statistics course", ["MATH& 146", "MATH 256"]),
-      item("science-three", "Three approved science courses", ["CHEM& 161", "PHYS& 221", "PHYS& 222", "BIOL& 211"], "Pick the best set for the student's strongest HCDE story and backup majors."),
+      itemAny("programming", "One approved programming course", ["CS 121", "CS 122", "CS 123"]),
+      itemAny("stats", "One approved statistics course", ["MATH& 146", "MATH 256"]),
+      itemCount("science-three", "Three approved science courses", ["CHEM& 161", "PHYS& 221", "PHYS& 222", "BIOL& 211"], 3, "Pick the best set for the student's strongest HCDE story and backup majors."),
       item("engl101", "English composition", ["ENGL& 101"]),
     ],
     beforeEnrollmentChecklist: [],
     stayAtGrcChecklist: [
-      item("cs122", "Programming depth if the student wants a stronger technical portfolio", ["CS 122", "CS 123"]),
-      item("science-depth", "Extra science depth that still supports the chosen Green River path", ["PHYS& 223", "BIOL& 212"]),
+      itemAny("cs122", "Programming depth if the student wants a stronger technical portfolio", ["CS 122", "CS 123"]),
+      itemAny("science-depth", "Extra science depth that still supports the chosen Green River path", ["PHYS& 223", "BIOL& 212"]),
     ],
     advisorFlags: [
       "HCDE removed some older prerequisite options for students starting autumn 2026 or later.",
@@ -1197,11 +1234,294 @@ export const TRANSFER_PLANNER_MAJOR_PLANS: TransferPlannerMajorPlan[] = [
   },
 ];
 
+export type TransferPlannerReferenceBank = TransferPlannerMasterBank;
+export type TransferPlannerReferenceChain = TransferPlannerMasterChain;
+
+const TRANSFER_PLANNER_BANK_LABELS: Record<string, string> = {
+  WRIT: "Writing and composition",
+  MATH: "Mathematics",
+  CS: "Computer science and programming",
+  ENGR: "Engineering",
+  PHYS: "Physics",
+  CHEM: "Chemistry",
+  BIO: "Biology and anatomy",
+  EARTH: "Earth, environment, and geoscience",
+  BUS: "Business and economics",
+  AAMES: "American ethnic studies, anthropology, and social science",
+  COMM: "Communication, journalism, and film",
+  ENGL: "English and literature",
+  HIST: "History and humanities",
+  PHIL: "Philosophy",
+  PSYED: "Psychology, education, and ECED",
+  ART: "Art and photography",
+  PERF: "Dance and drama",
+  MUSIC: "Music",
+  "LANG-CHIN": "Chinese",
+  "LANG-FR": "French",
+  "LANG-GER": "German",
+  "LANG-JP": "Japanese",
+  "LANG-SP": "Spanish",
+  HEALTH: "Health and rehabilitation",
+  POLSOC: "Political science, criminal justice, and sociology",
+};
+
+const TRANSFER_PLANNER_CHAIN_LABELS: Record<string, string> = {
+  "WRIT-SEQ": "Writing sequence",
+  "MATH-STEM": "STEM calculus sequence",
+  "MATH-BUS": "Business and applied math options",
+  "CS-NEW": "Modern CS sequence",
+  "CS-LEGACY": "Legacy CS sequence",
+  "PHYS-CALC": "Calculus-based physics sequence",
+  "PHYS-ALG": "Algebra-based physics sequence",
+  "CHEM-GEN": "General chemistry sequence",
+  "CHEM-ORG": "Organic chemistry sequence",
+  "BIO-MAJORS": "Biology majors sequence",
+  "BIO-ANAT": "Anatomy and physiology sequence",
+  "ACCT-COMBO": "Accounting full-credit combo",
+  "ASTR-COMBO": "Astronomy full-credit combo",
+  "HIST-US": "US history full-credit combo",
+  "ENGL-250": "English 250 full-credit combo",
+  "COMM-266": "CMST 266 credit rule",
+  "LANG-CHIN": "Chinese language sequence",
+  "LANG-FR": "French language sequence",
+  "LANG-GER": "German language sequence",
+  "LANG-JP": "Japanese language sequence",
+  "LANG-SP": "Spanish language sequence",
+  "NATRS-COMBO": "Natural resources ESRM combo",
+};
+
+const TRANSFER_PLANNER_MASTER_TITLE_ALIASES: Record<string, string> = {
+  "uw-seattle-industrial-systems-engineering": "Industrial Engineering",
+};
+
+const TRANSFER_PLANNER_CAMPUS_SORT_ORDER: Record<TransferPlannerCampusId, number> = {
+  "uw-seattle": 0,
+  "uw-bothell": 1,
+  "uw-tacoma": 2,
+};
+
+const MASTER_BANK_BY_ID = new Map(
+  TRANSFER_PLANNER_MASTER_BANK_LIBRARY.map((bank) => [bank.id, bank] as const)
+);
+
+const MASTER_CHAIN_BY_ID = new Map(
+  TRANSFER_PLANNER_MASTER_CHAIN_LIBRARY.map((chain) => [chain.id, chain] as const)
+);
+
+function normalizePlannerLookupValue(value: string) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/\([^)]*\)/g, " ")
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function buildPlannerLookupKey(campusId: TransferPlannerCampusId, title: string) {
+  return `${campusId}:${normalizePlannerLookupValue(title)}`;
+}
+
+function buildPlannerPlanId(campusId: TransferPlannerCampusId, title: string) {
+  return `${campusId}-${normalizePlannerLookupValue(title).replace(/\s+/g, "-")}`;
+}
+
+function buildShortPlannerTitle(title: string) {
+  return String(title ?? "")
+    .replace(/\s+\([^)]*\)/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+const MASTER_MAJOR_ROW_BY_KEY = new Map(
+  TRANSFER_PLANNER_MASTER_MAJOR_ROWS.map((row) => [
+    buildPlannerLookupKey(row.campusId, row.title),
+    row,
+  ] as const)
+);
+
+function getMasterRowForPlan(plan: TransferPlannerMajorPlan) {
+  const aliasedTitle = TRANSFER_PLANNER_MASTER_TITLE_ALIASES[plan.id] ?? plan.title;
+  return (
+    MASTER_MAJOR_ROW_BY_KEY.get(buildPlannerLookupKey(plan.campusId, aliasedTitle)) ??
+    MASTER_MAJOR_ROW_BY_KEY.get(buildPlannerLookupKey(plan.campusId, plan.shortTitle)) ??
+    null
+  );
+}
+
+function getMergedReferenceIds(existingIds: string[] | undefined, masterIds: string[]) {
+  return Array.from(new Set([...(existingIds ?? []), ...masterIds]));
+}
+
+function mergeDetailedPlanWithMaster(plan: TransferPlannerMajorPlan): TransferPlannerMajorPlan {
+  const masterRow = getMasterRowForPlan(plan);
+  if (!masterRow) {
+    return {
+      ...plan,
+      sourceType: "detailed",
+    };
+  }
+
+  return {
+    ...plan,
+    family: masterRow.family,
+    bankIds: getMergedReferenceIds(plan.bankIds, masterRow.bankIds),
+    chainIds: getMergedReferenceIds(plan.chainIds, masterRow.chainIds),
+    plannerNote: plan.plannerNote ?? masterRow.note,
+    sourceType: "detailed",
+  };
+}
+
+function inferGeneratedTrackId(row: TransferPlannerMasterMajorRow) {
+  const searchableText = `${row.title} ${row.family} ${row.note}`.toLowerCase();
+  const bankIds = new Set(row.bankIds);
+
+  if (
+    /bioengineering|chemical engineering|chemistry|biochemistry|biology|neuroscience/.test(
+      searchableText
+    ) ||
+    (bankIds.has("BIO") && bankIds.has("CHEM"))
+  ) {
+    return "999O";
+  }
+
+  if (
+    /computer|electrical|software|informatics|cyber|data science|quantitative|mathematical/.test(
+      searchableText
+    ) ||
+    (bankIds.has("CS") && bankIds.has("ENGR"))
+  ) {
+    return "999P";
+  }
+
+  if (
+    /mechanical|civil|aeronaut|industrial|materials|environmental engineering|construction/.test(
+      searchableText
+    ) ||
+    (bankIds.has("ENGR") && bankIds.has("PHYS") && bankIds.has("CHEM"))
+  ) {
+    return "999Q";
+  }
+
+  if (bankIds.has("MATH") || bankIds.has("CS") || bankIds.has("PHYS")) {
+    return "999B";
+  }
+
+  return null;
+}
+
+function buildGeneratedTrackSummary(trackId: string | null) {
+  const track = trackId
+    ? TRANSFER_PLANNER_TRACKS.find((entry) => entry.id === trackId) ?? null
+    : null;
+
+  if (!track) {
+    return "Use the GRC class banks and prerequisite/full-credit chains below to build a custom transfer path for this degree.";
+  }
+
+  return `${track.code} is the closest Green River base path for this degree. Use it as the backbone, then apply the major-specific class banks and chain rules below.`;
+}
+
+function buildGeneratedMajorPlan(row: TransferPlannerMasterMajorRow): TransferPlannerMajorPlan {
+  const bestTrackId = inferGeneratedTrackId(row);
+  const shortTitle = buildShortPlannerTitle(row.title);
+  const campus = TRANSFER_PLANNER_CAMPUSES.find((entry) => entry.id === row.campusId);
+
+  return {
+    id: buildPlannerPlanId(row.campusId, row.title),
+    campusId: row.campusId,
+    title: row.title,
+    shortTitle: shortTitle || row.title,
+    coverage: "partial",
+    summary: `Current Green River -> UW planning reference for ${row.title}. Use the applicable GRC class banks and prerequisite/full-credit chains below as the baseline before final advisor review.`,
+    applicationWindow: "Check the official program transfer page",
+    startQuarter: "Varies by major",
+    bestTrackId,
+    bestTrackSummary: buildGeneratedTrackSummary(bestTrackId),
+    whyThisTrack: [
+      "This is the closest current Green River transfer-associate backbone for the major's math, science, or programming mix.",
+      "Use the bank and chain sections below to decide which GRC classes are the strongest fit for this specific degree.",
+    ],
+    financialAidNote:
+      "Keep your Green River associate track, aid load, and extra prerequisite classes aligned with advisor and financial-aid rules before adding elective bank courses.",
+    applicationChecklist: [],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [],
+    advisorFlags: [
+      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy.",
+    ],
+    involvementIdeas: [],
+    projectIdeas: [],
+    officialLinks: campus?.officialLinks ?? [],
+    manualReviewNotes: row.note ? [row.note] : undefined,
+    family: row.family,
+    bankIds: row.bankIds,
+    chainIds: row.chainIds,
+    plannerNote: row.note,
+    sourceType: "master-generated",
+  };
+}
+
+const TRANSFER_PLANNER_DETAILED_MAJOR_PLANS = TRANSFER_PLANNER_MAJOR_PLANS.map(
+  mergeDetailedPlanWithMaster
+);
+
+const DETAILED_PLAN_LOOKUP_KEYS = new Set(
+  TRANSFER_PLANNER_DETAILED_MAJOR_PLANS.map((plan) => {
+    const masterRow = getMasterRowForPlan(plan);
+    return buildPlannerLookupKey(plan.campusId, masterRow?.title ?? plan.title);
+  })
+);
+
+export const TRANSFER_PLANNER_ALL_MAJOR_PLANS: TransferPlannerMajorPlan[] = [
+  ...TRANSFER_PLANNER_DETAILED_MAJOR_PLANS,
+  ...TRANSFER_PLANNER_MASTER_MAJOR_ROWS
+    .filter(
+      (row) => !DETAILED_PLAN_LOOKUP_KEYS.has(buildPlannerLookupKey(row.campusId, row.title))
+    )
+    .map(buildGeneratedMajorPlan),
+].sort((left, right) => {
+  const campusDelta =
+    TRANSFER_PLANNER_CAMPUS_SORT_ORDER[left.campusId] -
+    TRANSFER_PLANNER_CAMPUS_SORT_ORDER[right.campusId];
+
+  if (campusDelta !== 0) return campusDelta;
+  return left.title.localeCompare(right.title);
+});
+
 export function getTransferPlannerTrack(trackId: string | null) {
   if (!trackId) return null;
   return TRANSFER_PLANNER_TRACKS.find((track) => track.id === trackId) ?? null;
 }
 
 export function getTransferPlannerMajorsForCampus(campusId: TransferPlannerCampusId) {
-  return TRANSFER_PLANNER_MAJOR_PLANS.filter((plan) => plan.campusId === campusId);
+  return TRANSFER_PLANNER_ALL_MAJOR_PLANS.filter((plan) => plan.campusId === campusId);
+}
+
+export function getTransferPlannerBankLabel(bankId: string) {
+  return TRANSFER_PLANNER_BANK_LABELS[bankId] ?? bankId;
+}
+
+export function getTransferPlannerChainLabel(chainId: string) {
+  return TRANSFER_PLANNER_CHAIN_LABELS[chainId] ?? chainId;
+}
+
+export function getTransferPlannerBanksForPlan(
+  plan: TransferPlannerMajorPlan | null | undefined
+) {
+  if (!plan?.bankIds?.length) return [] as TransferPlannerReferenceBank[];
+
+  return plan.bankIds
+    .map((bankId) => MASTER_BANK_BY_ID.get(bankId) ?? null)
+    .filter((bank): bank is TransferPlannerReferenceBank => !!bank);
+}
+
+export function getTransferPlannerChainsForPlan(
+  plan: TransferPlannerMajorPlan | null | undefined
+) {
+  if (!plan?.chainIds?.length) return [] as TransferPlannerReferenceChain[];
+
+  return plan.chainIds
+    .map((chainId) => MASTER_CHAIN_BY_ID.get(chainId) ?? null)
+    .filter((chain): chain is TransferPlannerReferenceChain => !!chain);
 }
