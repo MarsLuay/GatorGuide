@@ -27,6 +27,7 @@ export type AiConversationSource = {
 export type AiConversationProfile = {
   isGuest: boolean;
   major: string | null;
+  gender: string | null;
   gpa: string | null;
   homeState: string | null;
   residencyType: string | null;
@@ -128,6 +129,7 @@ export type AiConversationContextInput = {
   user?: {
     isGuest?: boolean;
     major?: string | null;
+    gender?: string | null;
     gpa?: string | number | null;
     state?: string | null;
     residencyType?: string | null;
@@ -349,6 +351,7 @@ export function buildAiConversationContext(input: AiConversationContextInput): A
     profile: {
       isGuest: !!input.user?.isGuest,
       major: cleanString(input.user?.major, 120),
+      gender: cleanString(input.user?.gender, 80),
       gpa: cleanString(input.user?.gpa, 40),
       homeState: cleanString(input.user?.state, 40),
       residencyType: cleanString(input.user?.residencyType, 80),

@@ -77,190 +77,182 @@
     "id": "student-tools",
     "titleKey": "resources.studentTools",
     "icon": "account-circle",
-    "items": [
+    "items": [],
+    "subsections": [
       {
-        "titleKey": "resources.ctcLink",
-        "descriptionKey": "resources.ctcLinkDesc",
-        "url": "https://myaccount.ctclink.us/",
-        "tags": [
-          "portal",
-          "ctclink",
-          "registration",
-          "financial aid"
+        "id": "student-links",
+        "title": "Student Links",
+        "items": [
+          {
+            "titleKey": "resources.ctcLink",
+            "descriptionKey": "resources.ctcLinkDesc",
+            "url": "https://myaccount.ctclink.us/",
+            "tags": [
+              "portal",
+              "ctclink",
+              "registration",
+              "financial aid"
+            ]
+          },
+          {
+            "titleKey": "resources.canvas",
+            "descriptionKey": "resources.canvasDesc",
+            "url": "https://egator.greenriver.edu/login/saml",
+            "tags": [
+              "canvas",
+              "egator",
+              "classes",
+              "lms"
+            ]
+          },
+          {
+            "titleKey": "resources.workStudy",
+            "descriptionKey": "resources.workStudyDesc",
+            "url": "https://www.greenriver.edu/students/pay-for-college/financial-aid/student-employment/",
+            "tags": [
+              "work-study",
+              "jobs",
+              "grc"
+            ]
+          },
+          {
+            "title": "WSOS Jobs Board",
+            "description": "Explore internship and job opportunities shared through the Washington State Opportunity Scholarship career network.",
+            "url": "https://waopportunityscholarship.org/jobs/",
+            "tags": [
+              "internships",
+              "jobs",
+              "wsos",
+              "career opportunities",
+              "stem"
+            ]
+          },
+          {
+            "title": "FAFSA",
+            "description": "Apply for federal student aid, grants, work-study, and eligible loans through the official Federal Student Aid application.",
+            "url": "https://studentaid.gov/apply-for-aid/fafsa",
+            "tags": [
+              "fafsa",
+              "financial aid",
+              "federal aid",
+              "grants",
+              "student loans"
+            ]
+          },
+          {
+            "title": "Unofficial Transcript",
+            "description": "Open the ctcLink unofficial transcript request page to view or download your unofficial academic transcript.",
+            "url": "https://csprd.ctclink.us/psp/csprd/EMPLOYEE/SA/c/SA_LEARNER_SERVICES.SSS_TSRQST_UNOFF.GBL?pts_Portal=EMPLOYEE&pts_PortalHostNode=SA&pts_Market=GBL",
+            "tags": [
+              "transcript",
+              "unofficial transcript",
+              "ctclink",
+              "records",
+              "grades"
+            ]
+          },
+          {
+            "title": "UW Resume Examples",
+            "description": "Common resume examples courtesy of the University of Washington Career & Internship Center.",
+            "url": "https://careers.uw.edu/resources/sample-resumes/",
+            "tags": [
+              "resume",
+              "uw",
+              "career center",
+              "sample resume",
+              "application materials"
+            ]
+          },
+          {
+            "title": "Rate My Professors",
+            "description": "Look up professor reviews, student feedback, and course experience notes before building your schedule.",
+            "url": "https://www.ratemyprofessors.com/",
+            "tags": [
+              "rate my professors",
+              "professor reviews",
+              "class planning",
+              "schedule",
+              "instructors"
+            ]
+          }
         ]
       },
       {
-        "titleKey": "resources.canvas",
-        "descriptionKey": "resources.canvasDesc",
-        "url": "https://egator.greenriver.edu/login/saml",
-        "tags": [
-          "canvas",
-          "egator",
-          "classes",
-          "lms"
-        ]
-      },
-      {
-        "titleKey": "resources.workStudy",
-        "descriptionKey": "resources.workStudyDesc",
-        "url": "https://www.greenriver.edu/students/pay-for-college/financial-aid/student-employment/",
-        "tags": [
-          "work-study",
-          "jobs",
-          "grc"
-        ]
-      },
-      {
-        "title": "WSOS Jobs Board",
-        "description": "Explore internship and job opportunities shared through the Washington State Opportunity Scholarship career network.",
-        "url": "https://waopportunityscholarship.org/jobs/",
-        "tags": [
-          "internships",
-          "jobs",
-          "wsos",
-          "career opportunities",
-          "stem"
-        ]
-      },
-      {
-        "title": "FAFSA",
-        "description": "Apply for federal student aid, grants, work-study, and eligible loans through the official Federal Student Aid application.",
-        "url": "https://studentaid.gov/apply-for-aid/fafsa",
-        "tags": [
-          "fafsa",
-          "financial aid",
-          "federal aid",
-          "grants",
-          "student loans"
-        ]
-      },
-      {
-        "title": "Unofficial Transcript",
-        "description": "Open the ctcLink unofficial transcript request page to view or download your unofficial academic transcript.",
-        "url": "https://csprd.ctclink.us/psp/csprd/EMPLOYEE/SA/c/SA_LEARNER_SERVICES.SSS_TSRQST_UNOFF.GBL?pts_Portal=EMPLOYEE&pts_PortalHostNode=SA&pts_Market=GBL",
-        "tags": [
-          "transcript",
-          "unofficial transcript",
-          "ctclink",
-          "records",
-          "grades"
-        ]
-      },
-      {
-        "title": "UW Resume Examples",
-        "description": "Common resume examples courtesy of the University of Washington Career & Internship Center.",
-        "url": "https://careers.uw.edu/resources/sample-resumes/",
-        "tags": [
-          "resume",
-          "uw",
-          "career center",
-          "sample resume",
-          "application materials"
-        ]
-      },
-      {
-        "title": "Rate My Professors",
-        "description": "Look up professor reviews, student feedback, and course experience notes before building your schedule.",
-        "url": "https://www.ratemyprofessors.com/",
-        "tags": [
-          "rate my professors",
-          "professor reviews",
-          "class planning",
-          "schedule",
-          "instructors"
-        ]
-      }
-    ]
-  },
-  {
-    "id": "green-river-transfer",
-    "titleKey": "resources.greenRiverTransfer",
-    "icon": "school",
-    "items": [
-      {
-        "titleKey": "resources.transferAdvising",
-        "descriptionKey": "resources.transferAdvisingDesc",
-        "url": "https://www.greenriver.edu/students/academics/career-and-advising-center/advising/transfer-students.html",
-        "tags": [
-          "transfer",
-          "advising",
-          "grc"
-        ]
-      },
-      {
-        "titleKey": "resources.transferHub",
-        "descriptionKey": "resources.transferHubDesc",
-        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/university-and-college-transfer/",
-        "tags": [
-          "transfer",
-          "planning",
-          "grc"
-        ]
-      }
-    ]
-  },
-  {
-    "id": "common-wa-universities",
-    "titleKey": "resources.commonWaUniversities",
-    "icon": "map",
-    "items": [
-      {
-        "titleKey": "resources.uw",
-        "descriptionKey": "resources.uwDesc",
-        "url": "https://admit.washington.edu/apply/",
-        "tags": [
-          "uw",
-          "transfer",
-          "apply"
-        ]
-      },
-      {
-        "titleKey": "resources.wwu",
-        "descriptionKey": "resources.wwuDesc",
-        "url": "https://aasac.wwu.edu/transfer-students",
-        "tags": [
-          "wwu",
-          "transfer",
-          "apply"
-        ]
-      },
-      {
-        "titleKey": "resources.wsu",
-        "descriptionKey": "resources.wsuDesc",
-        "url": "https://admission.wsu.edu/apply/transfer/",
-        "tags": [
-          "wsu",
-          "transfer",
-          "apply"
-        ]
-      }
-    ]
-  },
-  {
-    "id": "transfer-guides",
-    "titleKey": "resources.transferGuides",
-    "icon": "find-in-page",
-    "items": [
-      {
-        "titleKey": "resources.uwEquivalency",
-        "descriptionKey": "resources.uwEquivalencyDesc",
-        "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
-        "tags": [
-          "uw",
-          "equivalency",
-          "transfer credit",
-          "grc"
-        ]
-      },
-      {
-        "titleKey": "resources.uwBothell",
-        "descriptionKey": "resources.uwBothellDesc",
-        "url": "https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college",
-        "tags": [
-          "uw bothell",
-          "equivalency",
-          "transfer credit",
-          "grc"
+        "id": "transfer-planning",
+        "title": "Transfer Planning",
+        "items": [
+          {
+            "titleKey": "resources.transferAdvising",
+            "descriptionKey": "resources.transferAdvisingDesc",
+            "url": "https://www.greenriver.edu/students/academics/career-and-advising-center/advising/transfer-students.html",
+            "tags": [
+              "transfer",
+              "advising",
+              "grc"
+            ]
+          },
+          {
+            "titleKey": "resources.transferHub",
+            "descriptionKey": "resources.transferHubDesc",
+            "url": "https://www.greenriver.edu/students/academics/areas-of-interest/university-and-college-transfer/",
+            "tags": [
+              "transfer",
+              "planning",
+              "grc"
+            ]
+          },
+          {
+            "titleKey": "resources.uwEquivalency",
+            "descriptionKey": "resources.uwEquivalencyDesc",
+            "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+            "tags": [
+              "uw",
+              "equivalency",
+              "transfer credit",
+              "grc"
+            ]
+          },
+          {
+            "titleKey": "resources.uwBothell",
+            "descriptionKey": "resources.uwBothellDesc",
+            "url": "https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college",
+            "tags": [
+              "uw bothell",
+              "equivalency",
+              "transfer credit",
+              "grc"
+            ]
+          },
+          {
+            "titleKey": "resources.uw",
+            "descriptionKey": "resources.uwDesc",
+            "url": "https://admit.washington.edu/apply/",
+            "tags": [
+              "uw",
+              "transfer",
+              "apply"
+            ]
+          },
+          {
+            "titleKey": "resources.wwu",
+            "descriptionKey": "resources.wwuDesc",
+            "url": "https://aasac.wwu.edu/transfer-students",
+            "tags": [
+              "wwu",
+              "transfer",
+              "apply"
+            ]
+          },
+          {
+            "titleKey": "resources.wsu",
+            "descriptionKey": "resources.wsuDesc",
+            "url": "https://admission.wsu.edu/apply/transfer/",
+            "tags": [
+              "wsu",
+              "transfer",
+              "apply"
+            ]
+          }
         ]
       }
     ]

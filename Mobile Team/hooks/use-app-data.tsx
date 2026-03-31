@@ -24,6 +24,7 @@ export type User = {
   avatar?: string; // URI to profile avatar image
   state?: string;
   major?: string;
+  gender?: string;
   /** American in-state | American out-of-state | International */
   residencyType?: string;
   /** Native | Advanced | Intermediate | Beginner */
@@ -233,6 +234,7 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
           ...(typeof data.name === "string" ? { name: data.name } : {}),
           state: data.state ?? "",
           major: data.major ?? "",
+          gender: data.gender ?? "",
           gpa: data.gpa ?? "",
           resume: data.resume ?? "",
           transcript: data.transcript ?? "",
@@ -329,6 +331,7 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
           email: authUser.email,
           isGuest: false,
           major: "",
+          gender: "",
           state: "",
           gpa: "",
           resume: "",
@@ -356,6 +359,7 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
         email: authUser.email,
         isGuest: false,
         major: "",
+        gender: "",
         state: "",
         gpa: "",
         resume: "",
@@ -376,6 +380,7 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
         email: `guest-${Date.now()}@gatorguide.local`,
         isGuest: true,
         major: "",
+        gender: "",
         state: "",
         gpa: "",
         resume: "",

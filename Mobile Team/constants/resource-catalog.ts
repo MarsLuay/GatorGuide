@@ -10,12 +10,20 @@ export type ResourceCatalogItem = {
   expiresAt?: string | null;
 };
 
+export type ResourceCatalogSubsection = {
+  id: string;
+  title?: string;
+  titleKey?: string;
+  items: ResourceCatalogItem[];
+};
+
 export type ResourceCatalogSection = {
   id: string;
   title?: string;
   titleKey?: string;
   icon: keyof typeof MaterialIcons.glyphMap;
   items: ResourceCatalogItem[];
+  subsections?: ResourceCatalogSubsection[];
 };
 
 type RawResourceCatalog = ResourceCatalogSection[] | { default?: ResourceCatalogSection[] };

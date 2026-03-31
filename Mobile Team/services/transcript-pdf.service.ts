@@ -6,6 +6,9 @@ export type ParsedTranscriptCourse = {
   code: string;
   title: string;
   label: string;
+  termLabel: string | null;
+  termStartDate: string | null;
+  termEndDate: string | null;
 };
 
 const CREDIT_PATTERN = /^\d+\.\d{3}$/;
@@ -13,6 +16,8 @@ const BASE64_CHARS =
   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 const COURSE_LINE_PATTERN =
   /^([A-Z]{2,6}&?)\s+(\d{3}[A-Z]?)\s+(.+?)\s+(\d+\.\d{3})\s+(\d+\.\d{3})\s+(\d+(?:\.\d+)?|[A-Z][A-Z+\-]*)\s+(\d+\.\d{3})$/;
+const TERM_HEADING_PATTERN =
+  /^(FALL|WINTER|SPRING|SUMMER)\s+(\d{4})\s+\((\d{2}\/\d{2}\/\d{4})\s*-\s*(\d{2}\/\d{2}\/\d{4})\)$/i;
 
 type PdfTextItem = {
   str?: string;
@@ -27,6 +32,19 @@ function normalizeWhitespace(value: string) {
 
 function normalizeCourseCode(subject: string, number: string) {
   return normalizeWhitespace(`${subject} ${number}`).toUpperCase();
+}
+
+function normalizeTranscriptDate(value: string) {
+  const raw = String(value ?? "").trim();
+  const match = raw.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+  if (!match) return null;
+  const [, month, day, year] = match;
+  return `${year}-${month}-${day}`;
+}
+
+function normalizeTranscriptTermLabel(term: string, year: string) {
+  const normalizedTerm = String(term ?? "").trim().toLowerCase();
+  return `${normalizedTerm.charAt(0).toUpperCase()}${normalizedTerm.slice(1)} ${year}`;
 }
 
 function base64ToUint8Array(base64: string) {
@@ -150,8 +168,19 @@ function buildPageLines(items: PdfTextItem[]) {
 function parseTranscriptCourseLines(lines: string[]) {
   const parsed: ParsedTranscriptCourse[] = [];
   const seen = new Set<string>();
+  let currentTermLabel: string | null = null;
+  let currentTermStartDate: string | null = null;
+  let currentTermEndDate: string | null = null;
 
   for (const line of lines) {
+    const termMatch = line.match(TERM_HEADING_PATTERN);
+    if (termMatch) {
+      currentTermLabel = normalizeTranscriptTermLabel(termMatch[1], termMatch[2]);
+      currentTermStartDate = normalizeTranscriptDate(termMatch[3]);
+      currentTermEndDate = normalizeTranscriptDate(termMatch[4]);
+      continue;
+    }
+
     const match = line.match(COURSE_LINE_PATTERN);
     if (!match) continue;
 
@@ -181,6 +210,9 @@ function parseTranscriptCourseLines(lines: string[]) {
       code,
       title,
       label: `${code} ${title}`.trim(),
+      termLabel: currentTermLabel,
+      termStartDate: currentTermStartDate,
+      termEndDate: currentTermEndDate,
     });
   }
 
@@ -329,8 +361,8 @@ function extractTextItemsFromStreamContent(content: string) {
   return items;
 }
 
-function extractTextItemsFromPdf(data: Uint8Array) {
-  const items: PdfTextItem[] = [];
+function extractTranscriptLinesFromPdf(data: Uint8Array) {
+  const allLines: string[] = [];
 
   for (const stream of extractFlateStreams(data)) {
     try {
@@ -338,19 +370,27 @@ function extractTextItemsFromPdf(data: Uint8Array) {
       if (!content.includes("Tj") && !content.includes("TJ")) {
         continue;
       }
-      items.push(...extractTextItemsFromStreamContent(content));
+
+      const streamItems = extractTextItemsFromStreamContent(content);
+      if (!streamItems.length) {
+        continue;
+      }
+
+      // Keep each PDF text stream isolated so page-local Y positions do not
+      // collide across multiple transcript pages.
+      allLines.push(...buildPageLines(streamItems));
     } catch {
       continue;
     }
   }
 
-  return items;
+  return allLines;
 }
 
 class TranscriptPdfService {
   async extractCompletedCoursesFromPdf(fileUri: string): Promise<ParsedTranscriptCourse[]> {
     const data = await readPdfBytes(fileUri);
-    const allLines = buildPageLines(extractTextItemsFromPdf(data));
+    const allLines = extractTranscriptLinesFromPdf(data);
 
     if (!allLines.length) {
       throw new Error("No readable transcript text found in PDF.");

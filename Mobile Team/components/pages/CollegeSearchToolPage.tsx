@@ -123,6 +123,21 @@ export default function CollegeSearchToolPage() {
   const hasCompletedQuestionnaire = !!(
     state.questionnaireAnswers && Object.keys(state.questionnaireAnswers).length > 0
   );
+  const openAdjacentTool = useCallback(
+    (path: Parameters<typeof router.push>[0]) => {
+      const pathname =
+        typeof path === "string"
+          ? path
+          : String((path as { pathname?: unknown })?.pathname ?? "").trim();
+      router.push(
+        {
+          pathname: pathname as never,
+          params: { returnTo: ROUTES.collegeSearch },
+        } as never
+      );
+    },
+    [router]
+  );
 
   useEffect(() => {
     const stored = state.questionnaireAnswers?.useWeightedSearch;
@@ -404,21 +419,21 @@ export default function CollegeSearchToolPage() {
               icon: "calendar-outline" as const,
               title: t("home.deadlineCalendarTitle"),
               description: t("deadlineCalendar.subtitle"),
-              onPress: () => router.push(ROUTES.calendar),
+              onPress: () => openAdjacentTool(ROUTES.calendar),
             },
             {
               id: "saved-colleges",
               icon: "bookmark-outline" as const,
               title: t("resources.savedColleges"),
               description: t("resources.savedCollegesDesc"),
-              onPress: () => router.push(ROUTES.savedColleges),
+              onPress: () => openAdjacentTool(ROUTES.savedColleges),
             },
             {
               id: "compare",
               icon: "git-compare-outline" as const,
               title: t("resources.compareColleges"),
               description: t("resources.compareCollegesDesc"),
-              onPress: () => router.push(ROUTES.compare),
+              onPress: () => openAdjacentTool(ROUTES.compare),
             },
           ].map((tool) => (
             <Pressable

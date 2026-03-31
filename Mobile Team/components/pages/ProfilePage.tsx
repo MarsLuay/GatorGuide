@@ -48,6 +48,55 @@ type RadioOption = { key: string; label: string };
 type Question =
   | { id: QuestionnaireFieldId; question: string; type: "text" | "textarea"; placeholder: string }
   | { id: QuestionnaireFieldId; question: string; type: "radio"; options: RadioOption[] };
+type UploadedDocumentMeta = {
+  name: string;
+  url: string;
+};
+
+function looksLikeEncodedFileName(value: string | undefined | null) {
+  const raw = String(value ?? "").trim();
+  if (!raw) return true;
+  if (raw.startsWith("data:") || raw.startsWith("blob:")) return true;
+  if (raw.includes("base64,")) return true;
+  return /^[A-Za-z0-9+/=]{120,}$/.test(raw.replace(/\s+/g, ""));
+}
+
+function getReadableDocumentFileName({
+  name,
+  url,
+  fallbackName,
+}: {
+  name?: string | null;
+  url?: string | null;
+  fallbackName: string;
+}) {
+  const rawName = String(name ?? "").trim();
+  if (rawName && rawName.length <= 180 && !looksLikeEncodedFileName(rawName)) {
+    return rawName;
+  }
+
+  const rawUrl = String(url ?? "").trim();
+  if (!rawUrl) return "";
+  if (rawUrl.startsWith("data:") || rawUrl.startsWith("blob:")) {
+    return fallbackName;
+  }
+
+  const withoutQuery = rawUrl.split(/[?#]/)[0] ?? "";
+  const lastSegment = withoutQuery.split("/").pop() ?? "";
+  try {
+    const decoded = decodeURIComponent(lastSegment).trim();
+    if (decoded && decoded.length <= 180 && !looksLikeEncodedFileName(decoded)) {
+      return decoded;
+    }
+  } catch {
+    const trimmed = lastSegment.trim();
+    if (trimmed && trimmed.length <= 180 && !looksLikeEncodedFileName(trimmed)) {
+      return trimmed;
+    }
+  }
+
+  return fallbackName;
+}
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -68,6 +117,7 @@ export default function ProfilePage() {
     name: "",
     state: "",
     major: "",
+    gender: "",
     gpa: "",
     resume: "",
     transcript: "",
@@ -82,6 +132,9 @@ export default function ProfilePage() {
   const [isConfettiPlaying, setIsConfettiPlaying] = useState(false);
   const [confettiCooldown, setConfettiCooldown] = useState(false);
   const [showGuestProfile, setShowGuestProfile] = useState(false);
+  const [uploadedDocumentMeta, setUploadedDocumentMeta] = useState<
+    Partial<Record<"resume" | "transcript", UploadedDocumentMeta>>
+  >({});
   const [activeDocumentAnalysis, setActiveDocumentAnalysis] = useState<"resume" | "transcript" | null>(null);
   const [documentReviews, setDocumentReviews] = useState<Partial<Record<"resume" | "transcript", DocumentExtractionReview>>>({});
 
@@ -91,6 +144,44 @@ export default function ProfilePage() {
       if (value === "true") setShowGuestProfile(true);
     });
   }, [user?.isGuest]);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    if (!user?.uid) {
+      setUploadedDocumentMeta({});
+      return;
+    }
+
+    void (async () => {
+      try {
+        const { storageService } = await import("@/services/storage.service");
+        const [resumeDocument, transcriptDocument] = await Promise.all([
+          storageService.getResume(user.uid),
+          storageService.getTranscript(user.uid),
+        ]);
+
+        if (cancelled) return;
+
+        setUploadedDocumentMeta({
+          ...(resumeDocument
+            ? { resume: { name: resumeDocument.name, url: resumeDocument.url } }
+            : {}),
+          ...(transcriptDocument
+            ? { transcript: { name: transcriptDocument.name, url: transcriptDocument.url } }
+            : {}),
+        });
+      } catch {
+        if (!cancelled) {
+          setUploadedDocumentMeta({});
+        }
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [user?.uid, user?.resume, user?.transcript]);
   const handleExportData = async () => {
     if (!isHydrated) return;
 
@@ -232,6 +323,7 @@ export default function ProfilePage() {
       name: user?.name ?? "",
       state: user?.state ?? "",
       major: user?.major ?? "",
+      gender: user?.gender ?? "",
       gpa: user?.gpa ?? "",
       resume: user?.resume ?? "",
       transcript: user?.transcript ?? "",
@@ -241,7 +333,7 @@ export default function ProfilePage() {
       englishTestValue: user?.englishTestValue ?? "",
     });
     setLocalAnswers({ ...blankAnswers, ...normalizeQuestionnaireAnswers(state.questionnaireAnswers ?? {}, language) });
-  }, [isHydrated, user?.name, user?.state, user?.major, user?.gpa, user?.resume, user?.transcript, user?.residencyType, user?.englishProficiency, user?.englishTestType, user?.englishTestValue, blankAnswers, state.questionnaireAnswers, language]);
+  }, [isHydrated, user?.name, user?.state, user?.major, user?.gender, user?.gpa, user?.resume, user?.transcript, user?.residencyType, user?.englishProficiency, user?.englishTestType, user?.englishTestValue, blankAnswers, state.questionnaireAnswers, language]);
 
   const textClass = isDark ? "text-white" : isGreen ? "text-white" : isLight ? "text-emerald-900" : "text-gray-900";
   const secondaryTextClass = isDark ? "text-gray-400" : isGreen ? "text-emerald-100" : isLight ? "text-emerald-700" : "text-gray-600";
@@ -305,7 +397,15 @@ export default function ProfilePage() {
     return text.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
   };
 
-  const fileDisplayName = (path: string | undefined) => (path ? (path.split("/").pop() || path) : "");
+  const fileDisplayName = (documentType: "resume" | "transcript", path: string | undefined) =>
+    getReadableDocumentFileName({
+      name:
+        uploadedDocumentMeta[documentType]?.url === String(path ?? "")
+          ? uploadedDocumentMeta[documentType]?.name
+          : null,
+      url: path,
+      fallbackName: documentType === "transcript" ? "unofficial-transcript.pdf" : "uploaded-file",
+    });
   const questionnaireAnsweredCount = useMemo(
     () =>
       questions.reduce((count, question) => {
@@ -329,6 +429,17 @@ export default function ProfilePage() {
     outOfState: t("profile.residencyOutOfState"),
     international: t("profile.residencyInternational"),
   };
+  const genderLabels: Record<string, string> = {
+    woman: t("profile.genderWoman"),
+    man: t("profile.genderMan"),
+    nonbinary: t("profile.genderNonbinary"),
+    preferNotToSay: t("profile.genderPreferNotToSay"),
+  };
+  const currentGender = editData.gender
+    ? genderLabels[editData.gender] ?? editData.gender
+    : user?.gender
+      ? genderLabels[user.gender] ?? user.gender
+      : t("general.notSpecified");
   const currentResidency = editData.residencyType
     ? residencyLabels[editData.residencyType] ?? editData.residencyType
     : user?.residencyType
@@ -337,6 +448,7 @@ export default function ProfilePage() {
   const profileSummaryCards = [
     { key: "major", icon: "school" as const, label: t("profile.major"), value: currentMajor },
     { key: "gpa", icon: "description" as const, label: t("profile.gpa"), value: currentGpa },
+    { key: "gender", icon: "wc" as const, label: t("profile.gender"), value: currentGender },
     { key: "residency", icon: "home" as const, label: t("profile.residencyType"), value: currentResidency },
     { key: "questionnaire", icon: "assignment" as const, label: t("profile.questionnaire"), value: questionnaireCompletionLabel },
   ];
@@ -348,6 +460,7 @@ export default function ProfilePage() {
         name: editData.name,
         state: editData.state,
         major: editData.major,
+        gender: editData.gender,
         gpa: editData.gpa,
         resume: editData.resume,
         transcript: editData.transcript,
@@ -512,6 +625,10 @@ export default function ProfilePage() {
       });
       await updateUser({ resume: uploaded.url });
       setEditData((p) => ({ ...p, resume: uploaded.url }));
+      setUploadedDocumentMeta((current) => ({
+        ...current,
+        resume: { name: uploaded.name, url: uploaded.url },
+      }));
       await analyzeUploadedDocument("resume", asset);
     } catch (err) {
       void errorLoggingService.captureException(err, {
@@ -552,6 +669,10 @@ export default function ProfilePage() {
       });
       await updateUser({ transcript: uploaded.url });
       setEditData((p) => ({ ...p, transcript: uploaded.url }));
+      setUploadedDocumentMeta((current) => ({
+        ...current,
+        transcript: { name: uploaded.name, url: uploaded.url },
+      }));
       await analyzeUploadedDocument("transcript", asset);
     } catch (err) {
       void errorLoggingService.captureException(err, {
@@ -856,6 +977,28 @@ export default function ProfilePage() {
 
       <ProfileField
         type="radio"
+        icon="wc"
+        label={t("profile.gender")}
+        value={user?.gender}
+        isEditing={isEditing}
+        editValue={editData.gender}
+        options={[
+          { key: "woman", labelKey: "profile.genderWoman" },
+          { key: "man", labelKey: "profile.genderMan" },
+          { key: "nonbinary", labelKey: "profile.genderNonbinary" },
+          { key: "preferNotToSay", labelKey: "profile.genderPreferNotToSay" },
+        ]}
+        onSelect={(key) => {
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+          setEditData((prev) => ({ ...prev, gender: key }));
+        }}
+        textClass={textClass}
+        secondaryTextClass={secondaryTextClass}
+        borderClass={borderClass}
+      />
+
+      <ProfileField
+        type="radio"
         icon="home"
         label={t("profile.residencyType")}
         value={user?.residencyType}
@@ -1033,9 +1176,9 @@ export default function ProfilePage() {
         type="upload"
         icon="upload-file"
         label={t("profile.resume")}
-        value={fileDisplayName(user?.resume)}
+        value={fileDisplayName("resume", user?.resume)}
         isEditing={isEditing}
-        editValue={fileDisplayName(editData.resume)}
+        editValue={fileDisplayName("resume", editData.resume)}
         onPress={handlePickResume}
         uploadText={t("profile.uploadResume")}
         emptyText={t("profile.notUploaded")}
@@ -1049,9 +1192,9 @@ export default function ProfilePage() {
         type="upload"
         icon="upload-file"
         label={t("profile.transcript")}
-        value={fileDisplayName(user?.transcript)}
+        value={fileDisplayName("transcript", user?.transcript)}
         isEditing={isEditing}
-        editValue={fileDisplayName(editData.transcript)}
+        editValue={fileDisplayName("transcript", editData.transcript)}
         onPress={handlePickTranscript}
         uploadText={t("profile.uploadTranscript")}
         emptyText={t("profile.notUploaded")}

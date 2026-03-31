@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* global __dirname */
 
 const fs = require("node:fs");
 const path = require("node:path");
@@ -15,10 +16,23 @@ const RESOURCES_PATH =
 
 const RESOURCE_SECTION_LABELS = {
   "resources.tools": "Tools",
-  "resources.studentTools": "Student Tools",
+  "resources.studentTools": "College Links",
   "resources.greenRiverTransfer": "Green River Transfer",
   "resources.commonWaUniversities": "Common WA Universities",
   "resources.transferGuides": "Transfer Guides",
+};
+
+const RESOURCE_SUBSECTION_LABELS = {
+  "student-links": "Student Links",
+  "transfer-planning": "Transfer Planning",
+};
+
+const RESOURCE_KIND_TARGETS = {
+  tools: { sectionId: "tools", subsectionId: null },
+  "student-tools": { sectionId: "student-tools", subsectionId: "student-links" },
+  "green-river-transfer": { sectionId: "student-tools", subsectionId: "transfer-planning" },
+  "common-wa-universities": { sectionId: "student-tools", subsectionId: "transfer-planning" },
+  "transfer-guides": { sectionId: "student-tools", subsectionId: "transfer-planning" },
 };
 
 const RESOURCE_KIND_OPTIONS = [
@@ -28,7 +42,7 @@ const RESOURCE_KIND_OPTIONS = [
   },
   {
     value: "student-tools",
-    label: "Student tool",
+    label: "Student link",
   },
   {
     value: "green-river-transfer",
@@ -216,6 +230,34 @@ function safeDisplayLabel(section) {
   if (section?.title) return String(section.title).trim();
   const key = String(section?.titleKey ?? "").trim();
   return RESOURCE_SECTION_LABELS[key] ?? key ?? "Custom section";
+}
+
+function safeSubsectionLabel(subsection) {
+  if (subsection?.title) return String(subsection.title).trim();
+  const key = String(subsection?.titleKey ?? "").trim();
+  return RESOURCE_SUBSECTION_LABELS[subsection?.id] ?? RESOURCE_SECTION_LABELS[key] ?? key ?? "Custom subsection";
+}
+
+function formatSectionPath(section, subsection = null) {
+  const sectionLabel = safeDisplayLabel(section);
+  if (!subsection) return sectionLabel;
+  return `${sectionLabel} > ${safeSubsectionLabel(subsection)}`;
+}
+
+function findTargetResourceLocation(resourceCatalog, resourceKind) {
+  const target = RESOURCE_KIND_TARGETS[resourceKind];
+  if (!target) return { section: null, subsection: null };
+
+  const section =
+    resourceCatalog.find((item) => String(item.id) === String(target.sectionId)) ?? null;
+  const subsection =
+    section && target.subsectionId
+      ? (Array.isArray(section.subsections)
+          ? section.subsections.find((item) => String(item.id) === String(target.subsectionId)) ?? null
+          : null)
+      : null;
+
+  return { section, subsection };
 }
 
 function normalizeWhitespace(value) {
@@ -1324,20 +1366,6 @@ async function addOpportunity(rl, type) {
         answers.deadlineLabel ??
           (deadlineMode === "rolling" ? "Rolling applications" : null)
       );
-    const recurrence =
-      deadlineMode === "rolling"
-        ? {
-            isYearly: false,
-            month: null,
-            day: null,
-            timezone: "America/Los_Angeles",
-          }
-        : {
-            isYearly: deadlineMode === "yearly",
-            month: deadlineMode === "yearly" ? getMonthDay(dueDate).month : null,
-            day: deadlineMode === "yearly" ? getMonthDay(dueDate).day : null,
-            timezone: "America/Los_Angeles",
-          };
     const financialAidTags = answers.financialAidTags ?? [];
     const suggestedMajors = normalizeMajorList(answers.suggestedMajors ?? []);
     const hasToBeMajor = answers.hasToBeMajor ?? false;
@@ -1597,10 +1625,25 @@ async function addResource(rl) {
   log('Type "back" at any prompt to return to the previous question.');
 
   const resourceCatalog = loadJsonArray(RESOURCES_PATH);
-  const existingSectionOptions = resourceCatalog.map((section) => ({
-    value: section.id,
-    label: safeDisplayLabel(section),
-  }));
+  const existingSectionOptions = resourceCatalog.flatMap((section) => {
+    const options = [
+      {
+        value: section.id,
+        label: safeDisplayLabel(section),
+      },
+    ];
+
+    if (Array.isArray(section.subsections)) {
+      options.push(
+        ...section.subsections.map((subsection) => ({
+          value: `${section.id}::${subsection.id}`,
+          label: formatSectionPath(section, subsection),
+        }))
+      );
+    }
+
+    return options;
+  });
   let answers = {};
 
   while (true) {
@@ -1733,21 +1776,30 @@ async function addResource(rl) {
   ], answers);
 
     let targetSection = null;
+    let targetSubsection = null;
     if (
       answers.resourceKind !== "__other_existing__" &&
       answers.resourceKind !== "__new__"
     ) {
-      targetSection =
-        resourceCatalog.find((section) => section.id === answers.resourceKind) ?? null;
+      const location = findTargetResourceLocation(resourceCatalog, answers.resourceKind);
+      targetSection = location.section;
+      targetSubsection = location.subsection;
     }
 
     if (!targetSection && answers.resourceKind === "__other_existing__") {
+      const [sectionId, subsectionId] = String(answers.sectionChoice ?? "").split("::");
       targetSection =
-        resourceCatalog.find((section) => section.id === answers.sectionChoice) ?? null;
+        resourceCatalog.find((section) => String(section.id) === sectionId) ?? null;
+      targetSubsection =
+        targetSection && subsectionId
+          ? (Array.isArray(targetSection.subsections)
+              ? targetSection.subsections.find((subsection) => String(subsection.id) === subsectionId) ?? null
+              : null)
+          : null;
     }
 
     const sectionLabel = targetSection
-      ? safeDisplayLabel(targetSection)
+      ? formatSectionPath(targetSection, targetSubsection)
       : smartTitleCase(answers.sectionTitle);
     const title = smartTitleCase(answers.title);
     const description = polishedSentence(answers.description ?? `${title} resource link.`);
@@ -1800,17 +1852,26 @@ async function addResource(rl) {
   }
 
   let targetSection = null;
+  let targetSubsection = null;
   if (
     answers.resourceKind !== "__other_existing__" &&
     answers.resourceKind !== "__new__"
   ) {
-    targetSection =
-      resourceCatalog.find((section) => section.id === answers.resourceKind) ?? null;
+    const location = findTargetResourceLocation(resourceCatalog, answers.resourceKind);
+    targetSection = location.section;
+    targetSubsection = location.subsection;
   }
 
   if (!targetSection && answers.resourceKind === "__other_existing__") {
+    const [sectionId, subsectionId] = String(answers.sectionChoice ?? "").split("::");
     targetSection =
-      resourceCatalog.find((section) => section.id === answers.sectionChoice) ?? null;
+      resourceCatalog.find((section) => String(section.id) === sectionId) ?? null;
+    targetSubsection =
+      targetSection && subsectionId
+        ? (Array.isArray(targetSection.subsections)
+            ? targetSection.subsections.find((subsection) => String(subsection.id) === subsectionId) ?? null
+            : null)
+        : null;
   }
 
   if (!targetSection) {
@@ -1829,7 +1890,12 @@ async function addResource(rl) {
   const expiresAt = answers.expiresAt ?? null;
   const tags = answers.tags ?? [];
 
-  targetSection.items.push({
+  const targetItemList =
+    targetSubsection && Array.isArray(targetSubsection.items)
+      ? targetSubsection.items
+      : targetSection.items;
+
+  targetItemList.push({
     title,
     description,
     url,
@@ -1841,7 +1907,7 @@ async function addResource(rl) {
 
   log("");
   log(`Saved resource "${title}" to ${RESOURCES_PATH}`);
-  log(`Section: ${safeDisplayLabel(targetSection)}`);
+  log(`Section: ${formatSectionPath(targetSection, targetSubsection)}`);
   log(`Backup written to ${RESOURCES_PATH}.bak`);
 }
 
@@ -1946,11 +2012,33 @@ async function removeResource(rl) {
   log('Type "back" at any prompt to return to the previous question.');
 
   const resourceCatalog = loadJsonArray(RESOURCES_PATH);
-  const nonEmptySections = resourceCatalog.filter(
-    (section) => Array.isArray(section.items) && section.items.some(hasDisplayTitle)
-  );
+  const nonEmptyLocations = resourceCatalog.flatMap((section) => {
+    const locations = [];
 
-  if (!nonEmptySections.length) {
+    if (Array.isArray(section.items) && section.items.some(hasDisplayTitle)) {
+      locations.push({
+        value: section.id,
+        label: safeDisplayLabel(section),
+      });
+    }
+
+    if (Array.isArray(section.subsections)) {
+      locations.push(
+        ...section.subsections
+          .filter(
+            (subsection) => Array.isArray(subsection.items) && subsection.items.some(hasDisplayTitle)
+          )
+          .map((subsection) => ({
+            value: `${section.id}::${subsection.id}`,
+            label: formatSectionPath(section, subsection),
+          }))
+      );
+    }
+
+    return locations;
+  });
+
+  if (!nonEmptyLocations.length) {
     log("There are no resources to remove.");
     return;
   }
@@ -1961,10 +2049,7 @@ async function removeResource(rl) {
         askChoice(
           rl,
           "Which section contains the resource you want to remove?",
-          nonEmptySections.map((section) => ({
-            value: section.id,
-            label: safeDisplayLabel(section),
-          }))
+          nonEmptyLocations
         ),
       assign(state, value) {
         state.sectionChoice = value;
@@ -1972,9 +2057,17 @@ async function removeResource(rl) {
     },
     {
       prompt: (state) => {
+        const [sectionId, subsectionId] = String(state.sectionChoice ?? "").split("::");
         const section =
-          resourceCatalog.find((item) => String(item.id) === state.sectionChoice) ?? null;
-        if (!section || !Array.isArray(section.items) || !section.items.length) {
+          resourceCatalog.find((item) => String(item.id) === sectionId) ?? null;
+        const itemList =
+          section && subsectionId
+            ? (Array.isArray(section.subsections)
+                ? section.subsections.find((subsection) => String(subsection.id) === subsectionId)?.items ?? null
+                : null)
+            : section?.items ?? null;
+
+        if (!section || !Array.isArray(itemList) || !itemList.length) {
           log("Could not find any items in that section.");
           return BACK_SIGNAL;
         }
@@ -1982,7 +2075,7 @@ async function removeResource(rl) {
         return askChoice(
           rl,
           "Which resource would you like to remove?",
-          section.items.flatMap((item, index) =>
+          itemList.flatMap((item, index) =>
             hasDisplayTitle(item)
               ? [
                   {
@@ -2000,16 +2093,25 @@ async function removeResource(rl) {
     },
     {
       prompt: (state) => {
+        const [sectionId, subsectionId] = String(state.sectionChoice ?? "").split("::");
         const section =
-          resourceCatalog.find((item) => String(item.id) === state.sectionChoice) ?? null;
+          resourceCatalog.find((item) => String(item.id) === sectionId) ?? null;
+        const subsection =
+          section && subsectionId
+            ? (Array.isArray(section.subsections)
+                ? section.subsections.find((item) => String(item.id) === subsectionId) ?? null
+                : null)
+            : null;
         const selectedIndex = Number.parseInt(state.itemChoice, 10);
-        const selectedItem = section?.items?.[selectedIndex];
+        const selectedItem = subsection
+          ? subsection.items?.[selectedIndex]
+          : section?.items?.[selectedIndex];
         const selectedLabel = normalizeWhitespace(
           selectedItem?.title ?? selectedItem?.titleKey
         );
         return confirmAction(
           rl,
-          `Remove "${selectedLabel || "this resource"}" from ${safeDisplayLabel(section)}?`
+          `Remove "${selectedLabel || "this resource"}" from ${formatSectionPath(section, subsection)}?`
         );
       },
       assign(state, value) {
@@ -2023,10 +2125,19 @@ async function removeResource(rl) {
     return;
   }
 
+  const [sectionId, subsectionId] = String(answers.sectionChoice ?? "").split("::");
   const targetSection =
-    resourceCatalog.find((section) => String(section.id) === answers.sectionChoice) ?? null;
+    resourceCatalog.find((section) => String(section.id) === sectionId) ?? null;
+  const targetSubsection =
+    targetSection && subsectionId
+      ? (Array.isArray(targetSection.subsections)
+          ? targetSection.subsections.find((subsection) => String(subsection.id) === subsectionId) ?? null
+          : null)
+      : null;
   const selectedIndex = Number.parseInt(answers.itemChoice, 10);
-  const selectedItem = targetSection?.items?.[selectedIndex];
+  const selectedItem = targetSubsection
+    ? targetSubsection.items?.[selectedIndex]
+    : targetSection?.items?.[selectedIndex];
   const selectedLabel = normalizeWhitespace(selectedItem?.title ?? selectedItem?.titleKey);
 
   if (!targetSection || !selectedItem || !selectedLabel) {
@@ -2034,12 +2145,16 @@ async function removeResource(rl) {
     return;
   }
 
-  targetSection.items.splice(selectedIndex, 1);
+  if (targetSubsection) {
+    targetSubsection.items.splice(selectedIndex, 1);
+  } else {
+    targetSection.items.splice(selectedIndex, 1);
+  }
   writeJsonArray(RESOURCES_PATH, resourceCatalog);
 
   log("");
   log(`Removed resource "${selectedLabel}" from ${RESOURCES_PATH}`);
-  log(`Section: ${safeDisplayLabel(targetSection)}`);
+  log(`Section: ${formatSectionPath(targetSection, targetSubsection)}`);
   log(`Backup written to ${RESOURCES_PATH}.bak`);
 }
 

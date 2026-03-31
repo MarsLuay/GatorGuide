@@ -168,14 +168,20 @@ export default function RoadmapPage() {
   };
   const getOpportunityAwardBadgeLabel = (opportunity: MatchedOpportunity) => {
     if (opportunity.award.amountText) return opportunity.award.amountText;
-    const amountMin = formatOpportunityMoney(
-      opportunity.award.amountMin,
-      opportunity.award.currency
-    );
-    const amountMax = formatOpportunityMoney(
-      opportunity.award.amountMax,
-      opportunity.award.currency
-    );
+    const amountMin =
+      opportunity.award.amountMin != null && Number(opportunity.award.amountMin) > 0
+        ? formatOpportunityMoney(
+            opportunity.award.amountMin,
+            opportunity.award.currency
+          )
+        : null;
+    const amountMax =
+      opportunity.award.amountMax != null && Number(opportunity.award.amountMax) > 0
+        ? formatOpportunityMoney(
+            opportunity.award.amountMax,
+            opportunity.award.currency
+          )
+        : null;
     if (amountMin && amountMax && amountMin !== amountMax) {
       return t("resources.awardRange", { min: amountMin, max: amountMax });
     }
@@ -191,15 +197,34 @@ export default function RoadmapPage() {
     if (count <= 0) return null;
     return t("resources.recommendationMinimum", { count });
   };
+  const getOpportunityEssayLabel = (opportunity: MatchedOpportunity) => {
+    if (opportunity.requirements.essayCount <= 0) return null;
+    return opportunity.requirements.essayCount === 1
+      ? t("resources.essayLabelSingular", { count: opportunity.requirements.essayCount })
+      : t("resources.essayLabelPlural", { count: opportunity.requirements.essayCount });
+  };
   const getOpportunityEligibilityBadges = (opportunity: MatchedOpportunity) => {
     const labels: string[] = [];
     if (opportunity.eligibility.transferOnly) {
       labels.push(t("resources.transferOnly"));
     }
-    if (opportunity.eligibility.gpaMin != null) {
+    if (opportunity.eligibility.gpaMin != null && Number(opportunity.eligibility.gpaMin) > 0) {
       labels.push(t("resources.gpaMinimum", { gpa: opportunity.eligibility.gpaMin }));
     }
     return labels;
+  };
+  const getOpportunitySummaryParts = (opportunity: MatchedOpportunity) => {
+    if (opportunity.matchReasons.length) {
+      return opportunity.matchReasons;
+    }
+
+    return [
+      getOpportunityRecommendationBadgeLabel(opportunity),
+      getOpportunityEssayLabel(opportunity),
+      getOpportunityAwardBadgeLabel(opportunity),
+      ...getOpportunityEligibilityBadges(opportunity),
+      getOpportunityDueBadgeLabel(opportunity),
+    ].filter((value): value is string => Boolean(value));
   };
   const user = state.user;
   const userId = user?.uid ?? "";
@@ -649,6 +674,14 @@ export default function RoadmapPage() {
   );
 
   const progress = roadmap?.progress.percent ?? 0;
+  const openCalendar = useCallback(() => {
+    router.push(
+      {
+        pathname: ROUTES.calendar,
+        params: { returnTo: ROUTES.roadmap },
+      } as never
+    );
+  }, [router]);
   const isTabletLayout = width >= 768;
   const isDesktopLayout = width >= 1180;
   const shellMaxWidth = isDesktopLayout ? 1240 : isTabletLayout ? 1040 : 760;
@@ -870,7 +903,7 @@ export default function RoadmapPage() {
                   <Animated.View style={{ width: `${progress}%`, height: 16, backgroundColor: "#008f4e", borderRadius: 8 }} />
                 </View>
                 <Pressable
-                  onPress={() => router.push(ROUTES.calendar)}
+                  onPress={openCalendar}
                   className="mt-4 px-4 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex-row items-center justify-between"
                 >
                   <View className="flex-row items-center flex-1 pr-3">
@@ -1255,37 +1288,11 @@ export default function RoadmapPage() {
                           <Text className={`${secondaryTextClass} text-sm mt-1`} numberOfLines={3}>
                             {opportunity.summary}
                           </Text>
-                          <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8, marginTop: 12 }}>
-                            <View className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
-                              <Text className="text-emerald-500 text-xs font-semibold">
-                                {getOpportunityDueBadgeLabel(opportunity)}
-                              </Text>
-                            </View>
-                            {getOpportunityRecommendationBadgeLabel(opportunity) ? (
-                              <View className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
-                                <Text className="text-emerald-500 text-xs font-semibold">
-                                  {getOpportunityRecommendationBadgeLabel(opportunity)}
-                                </Text>
-                              </View>
-                            ) : null}
-                            {getOpportunityAwardBadgeLabel(opportunity) ? (
-                              <View className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
-                                <Text className="text-emerald-500 text-xs font-semibold">
-                                  {getOpportunityAwardBadgeLabel(opportunity)}
-                                </Text>
-                              </View>
-                            ) : null}
-                            {getOpportunityEligibilityBadges(opportunity).map((label) => (
-                              <View
-                                key={`${opportunity.opportunityId}-${label}`}
-                                className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20"
-                              >
-                                <Text className="text-emerald-500 text-xs font-semibold">
-                                  {label}
-                                </Text>
-                              </View>
-                            ))}
-                          </View>
+                          {getOpportunitySummaryParts(opportunity).length ? (
+                            <Text className={`${secondaryTextClass} text-xs mt-3`}>
+                              {getOpportunitySummaryParts(opportunity).join(" | ")}
+                            </Text>
+                          ) : null}
                           <View
                             className="mt-3"
                             style={

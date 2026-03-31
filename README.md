@@ -39,17 +39,6 @@ We make that possible by combining three connected parts of the project:
 - Download Node.js: https://nodejs.org/en/download
 - Install Git: https://git-scm.com/downloads
 
-Verify installs:
-
-Open a terminal and run:
-
-```bash
-node -v
-npm -v
-npx -v
-git --version
-```
-
 #### 2) Clone and install the project
 
 Open PowerShell (or your preferred shell) and run the following commands:
@@ -67,8 +56,6 @@ cd "Mobile Team"
 npm install
 npm run start
 
-# optional: clear Metro cache if you need a fresh start
-# npx expo start -c
 ```
 
 Notes:

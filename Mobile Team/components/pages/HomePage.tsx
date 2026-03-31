@@ -1,5 +1,5 @@
-import { useState, useEffect, useMemo, useRef, useCallback } from "react";
-import { View, Text, TextInput, Pressable, ScrollView, Switch, ActivityIndicator, useWindowDimensions, Linking, Image, type DimensionValue } from "react-native";
+import { useState, useEffect, useMemo, useCallback } from "react";
+import { View, Text, Pressable, ScrollView, useWindowDimensions, Linking, Image, type DimensionValue } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -12,14 +12,9 @@ import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { OpportunityCarouselWheel } from "@/components/ui/OpportunityCarouselWheel";
 import { HomeTaskMarquee, type HomeTaskMarqueeItem } from "@/components/ui/HomeTaskMarquee";
-import { MatchScoreBadge } from "@/components/ui/MatchScoreBadge";
-import { StateCard } from "@/components/ui/StateCard";
-import { StatusBanner } from "@/components/ui/StatusBanner";
-import { College } from "@/services/college.service";
-import { aiService, collegeService, deadlineCalendarService, errorLoggingService, roadmapService } from "@/services";
-import type { DeadlineCalendarEntry, DisabledInfluences, EmptyState, RoadmapTask, UserRoadmapDocument } from "@/services";
+import { deadlineCalendarService, errorLoggingService, roadmapService } from "@/services";
+import type { DeadlineCalendarEntry, RoadmapTask, UserRoadmapDocument } from "@/services";
 import type { MatchedOpportunity } from "@/services/opportunity-matching.service";
-import { formatLocalizedRate } from "@/utils/locale-format";
 type HomeImportantMessage = {
   id: string;
   icon: keyof typeof Ionicons.glyphMap;
@@ -53,6 +48,8 @@ type RoadmapTaskWithSection = RoadmapTask & {
   sectionTitle: string;
   sectionOrder: number;
 };
+
+const TRANSFER_PLANNER_CURRENT_COURSES_FIELD = "transferPlannerCurrentCoursesByPath";
 
 const DESKTOP_HOME_MIN_WIDTH = 960;
 const PHONE_FALLBACK_ASPECT_RATIO = 1.5;
@@ -104,8 +101,8 @@ function getUpcomingDeadlineEntries(entries: DeadlineCalendarEntry[], limit = 3)
 export default function HomePage() {
   const router = useRouter();
   const { isDark, isGreen, isLight } = useAppTheme();
-  const { t, language } = useAppLanguage();
-  const { isHydrated, state, setQuestionnaireAnswers, addSavedCollege, removeSavedCollege, isCollegeSaved, setOnboardingSeen } = useAppData();
+  const { t } = useAppLanguage();
+  const { isHydrated, state, setOnboardingSeen } = useAppData();
   const { matchedOpportunities } = useOpportunities();
   const { getScrollContentPadding } = useResponsiveLayout();
   const insets = useSafeAreaInsets();
@@ -142,36 +139,31 @@ export default function HomePage() {
   );
   const [desktopRoadmap, setDesktopRoadmap] = useState<UserRoadmapDocument | null>(null);
 
-  const [searchQuery, setSearchQuery] = useState("");
-  type Recommended = { college: College; reason?: string; breakdown?: Record<string, number>; score?: number };
-  const [results, setResults] = useState<Recommended[]>([]);
-  const [emptyState, setEmptyState] = useState<EmptyState | undefined>(undefined);
-  const [useWeighted, setUseWeighted] = useState<boolean>(state.questionnaireAnswers?.useWeightedSearch !== "false" && state.questionnaireAnswers?.useWeightedSearch !== false);
-  const [hasSubmittedSearch, setHasSubmittedSearch] = useState(false);
   const [dismissedGuestPrompt, setDismissedGuestPrompt] = useState(false);
-  const showExtraInfoPrompt = !hasSubmittedSearch;
-  const [resultsSource, setResultsSource] = useState<'live' | 'cached' | 'stub' | null>(null);
-  const [isSearching, setIsSearching] = useState(false);
-  const [searchTooShort, setSearchTooShort] = useState(false);
-  const [cooldownUntil, setCooldownUntil] = useState<number | null>(null);
-  const [showCooldownPopup, setShowCooldownPopup] = useState(false);
-  const [remainingSeconds, setRemainingSeconds] = useState(0);
-  const cooldownRef = useRef<number | null>(null);
-  const [aiLimitNotice, setAiLimitNotice] = useState<string | null>(null);
-  const [showAdvancedSearch, setShowAdvancedSearch] = useState(false);
-  const [disabledInfluences, setDisabledInfluences] = useState<DisabledInfluences>({});
+  const showExtraInfoPrompt = true;
   const [tourStepIndex, setTourStepIndex] = useState(0);
-  type SearchRunOptions = {
-    overrideUseWeighted?: boolean;
-    overrideDisabledInfluences?: DisabledInfluences;
-    bypassCooldown?: boolean;
-  };
 
   const capitalizedName = user?.name 
     ? user.name.split(' ')[0].charAt(0).toUpperCase() + user.name.split(' ')[0].slice(1).toLowerCase()
     : t("home.student");
 
   const hasCompletedQuestionnaire = !!(state.questionnaireAnswers && Object.keys(state.questionnaireAnswers).length > 0);
+  const openCalendar = useCallback(() => {
+    router.push(
+      {
+        pathname: ROUTES.calendar,
+        params: { returnTo: ROUTES.root },
+      } as never
+    );
+  }, [router]);
+  const openCollegeSearchTool = useCallback(() => {
+    router.push(
+      {
+        pathname: ROUTES.collegeSearch,
+        params: { returnTo: ROUTES.root },
+      } as never
+    );
+  }, [router]);
   const desktopRoadmapSeed = useMemo(
     () =>
       roadmapService.buildRoadmapSeedInput({
@@ -196,13 +188,6 @@ export default function HomePage() {
       : isLight
         ? "bg-white border-emerald-200"
         : "bg-white/90 border-gray-200";
-  const inputClass = isDark
-    ? "bg-gray-800 border-gray-700"
-    : isGreen
-      ? "bg-emerald-900/70 border-emerald-700"
-      : isLight
-        ? "bg-white border-emerald-300"
-        : "bg-gray-50 border-gray-300";
   const placeholderTextColor = isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280";
   const guestCtaCardClass = isLight ? "bg-emerald-100 border border-emerald-200" : isDark ? "bg-emerald-500 border" : "bg-emerald-500";
   const guestCtaCardStyle = isDark ? { backgroundColor: "#00572b", borderColor: "#00753e" } : undefined;
@@ -239,7 +224,6 @@ export default function HomePage() {
     ? "bg-emerald-500/10 border border-emerald-500/20"
     : "bg-emerald-50 border border-emerald-200";
   const dashboardBadgeTextClass = isDark || isGreen ? "text-emerald-100" : "text-emerald-700";
-  const showRecommendationSection = hasSubmittedSearch || isSearching || searchTooShort || !!emptyState || results.length > 0;
   const effectiveFontScale = Math.max(1, fontScale);
   const contentMaxWidth = isDesktopHome ? 1280 : 448;
   const desktopHorizontalPadding = isDesktopHome && screenWidth < 1100 ? 24 : isDesktopHome ? 32 : 24;
@@ -248,11 +232,9 @@ export default function HomePage() {
     includeBottomTabClearance: true,
     extraBottom: isDesktopHome ? 24 : 0,
   });
-  const floatingOverlayBottom = insets.bottom + (isDesktopHome ? 24 : 32);
   const desktopColumnsShouldStack = isDesktopHome && (screenWidth < 1120 || effectiveFontScale > 1.15);
   const desktopSideColumnWidth = Math.min(380, Math.max(320, screenWidth * 0.31));
   const desktopHeaderShouldStack = isDesktopHome && (screenWidth < 1240 || effectiveFontScale > 1.15);
-  const desktopSearchShouldStack = isDesktopHome && (screenWidth < 1280 || effectiveFontScale > 1.1);
   const desktopActionCardsShouldStack = isDesktopHome && (screenWidth < 1280 || effectiveFontScale > 1.15);
   const mobileOpportunityHeaderShouldStack =
     !isDesktopHome && (screenWidth < 420 || effectiveFontScale > 1.05);
@@ -298,37 +280,6 @@ export default function HomePage() {
       </View>
     </View>
   );
-  const getMatchText = (item: Recommended) => {
-    const scoreText = (item as any)?.scoreText;
-    if (typeof scoreText === "string" && scoreText.trim().length) return scoreText;
-    const score = Number((item as any)?.score);
-    if (Number.isFinite(score)) return `${Math.round(score)}/100`;
-    return t("home.scoreNotAvailable");
-  };
-
-  const getMatchScore = (item: Recommended): number | null => {
-    const score = Number((item as any)?.score);
-    return Number.isFinite(score) ? score : null;
-  };
-
-  const buildSimpleWhy = (item: Recommended): string[] => {
-    const b = ((item as any)?.breakdown ?? {}) as Record<string, unknown>;
-    const lines: string[] = [];
-
-    const majorFit = Number(b.majorFit);
-    if (Number.isFinite(majorFit) && majorFit >= 75) lines.push(t("home.whyMajorAlignment"));
-    const queryMatch = Number(b.queryMatch);
-    if (Number.isFinite(queryMatch) && queryMatch >= 75) lines.push(t("home.whySearchIntent"));
-    const preferenceFit = Number(b.preferenceFit);
-    if (Number.isFinite(preferenceFit) && preferenceFit >= 55) lines.push(t("home.whyPreferences"));
-    if (Number(b.waMrpParticipant ?? 0) > 0) lines.push(t("home.whyTransferPathway"));
-    if (!lines.length) {
-      const admission = formatLocalizedRate(Number((item.college as any)?.admissionRate ?? NaN), language);
-      lines.push(admission ? t("home.whyAdmissionRate", { value: admission }) : t("home.whyGeneralMatch"));
-    }
-    return lines.slice(0, 2);
-  };
-
   const openOpportunity = useCallback(async (opportunity: MatchedOpportunity) => {
     try {
       if (opportunity.type === "college_deadline" && opportunity.college.collegeId) {
@@ -425,21 +376,77 @@ export default function HomePage() {
     () => desktopPendingRoadmapTasks.find((task) => task.id !== "documents-checklist") ?? null,
     [desktopPendingRoadmapTasks]
   );
-  const desktopCurrentCourses = desktopRoadmap?.profileSnapshot.currentCourses ?? [];
-  const desktopRequiredCourses = desktopRoadmap?.profileSnapshot.requiredCourses ?? [];
-  const desktopRecommendedCourses = desktopRoadmap?.profileSnapshot.recommendedCourses ?? [];
-  const desktopCoursePlanningDeadline = desktopRoadmap?.profileSnapshot.deadline?.trim() || null;
+  const desktopCurrentCourses = useMemo(
+    () => desktopRoadmap?.profileSnapshot.currentCourses ?? [],
+    [desktopRoadmap?.profileSnapshot.currentCourses]
+  );
+  const desktopRequiredCourses = useMemo(
+    () => desktopRoadmap?.profileSnapshot.requiredCourses ?? [],
+    [desktopRoadmap?.profileSnapshot.requiredCourses]
+  );
+  const desktopRecommendedCourses = useMemo(
+    () => desktopRoadmap?.profileSnapshot.recommendedCourses ?? [],
+    [desktopRoadmap?.profileSnapshot.recommendedCourses]
+  );
+  const desktopCoursePlanningDeadline = useMemo(
+    () => desktopRoadmap?.profileSnapshot.deadline?.trim() || null,
+    [desktopRoadmap?.profileSnapshot.deadline]
+  );
+  const plannerCurrentCourses = useMemo(() => {
+    const rawValue = state.questionnaireAnswers?.[TRANSFER_PLANNER_CURRENT_COURSES_FIELD];
+    if (!rawValue || typeof rawValue !== "object" || Array.isArray(rawValue)) {
+      return [] as string[];
+    }
+
+    const seen = new Set<string>();
+    const merged: string[] = [];
+
+    for (const value of Object.values(rawValue)) {
+      if (!Array.isArray(value)) continue;
+
+      for (const entry of value) {
+        const normalized = String(entry ?? "").trim();
+        if (!normalized || seen.has(normalized)) continue;
+        seen.add(normalized);
+        merged.push(normalized);
+      }
+    }
+
+    return merged;
+  }, [state.questionnaireAnswers]);
+  const linkedCurrentCourses = useMemo(() => {
+    const seen = new Set<string>();
+    const merged: string[] = [];
+
+    for (const source of [desktopCurrentCourses, plannerCurrentCourses]) {
+      for (const entry of source) {
+        const normalized = String(entry ?? "").trim();
+        if (!normalized || seen.has(normalized)) continue;
+        seen.add(normalized);
+        merged.push(normalized);
+      }
+    }
+
+    return merged;
+  }, [desktopCurrentCourses, plannerCurrentCourses]);
   const desktopPrimaryOpportunity = unfinishedRecommendedOpportunities[0] ?? null;
   const desktopProfileName = user?.name?.trim() || t("home.student");
   const desktopProfileMajor = user?.major?.trim() || desktopRoadmap?.profileSnapshot.major?.trim() || t("home.undecided");
   const desktopProfileGpa = user?.gpa?.trim() || desktopRoadmap?.profileSnapshot.gpa?.trim() || t("general.notSpecified");
-  const desktopRoadmapDeadlineEntries = useMemo(
-    () => getUpcomingDeadlineEntries(deadlineCalendarService.buildRoadmapEntries(desktopRoadmap)),
-    [desktopRoadmap]
+  const desktopCombinedDeadlineEntries = useMemo(
+    () =>
+      getUpcomingDeadlineEntries(
+        deadlineCalendarService.buildEntries({
+          roadmap: desktopRoadmap,
+          opportunities: unfinishedRecommendedOpportunities,
+        }),
+        5
+      ),
+    [desktopRoadmap, unfinishedRecommendedOpportunities]
   );
-  const desktopOpportunityDeadlineEntries = useMemo(
-    () => getUpcomingDeadlineEntries(deadlineCalendarService.buildOpportunityEntries(unfinishedRecommendedOpportunities)),
-    [unfinishedRecommendedOpportunities]
+  const desktopNextDeadlineEntry = useMemo(
+    () => desktopCombinedDeadlineEntries[0] ?? null,
+    [desktopCombinedDeadlineEntries]
   );
   const getLocalizedOpportunityDueLabel = useCallback(
     (value: string | null) => {
@@ -720,7 +727,7 @@ export default function HomePage() {
         title: "Class planning deadline",
         body: `Keep registration moving before ${formatImportantDate(desktopCoursePlanningDeadline, "your next planning window")}.`,
         actionLabel: "Open calendar",
-        onPress: () => router.push(ROUTES.calendar),
+        onPress: openCalendar,
         tone: "warning",
       });
     }
@@ -745,7 +752,7 @@ export default function HomePage() {
       title: "Deadline calendar is live",
       body: "Track roadmap milestones, scholarships, and college deadlines from one view.",
       actionLabel: "Open calendar",
-      onPress: () => router.push(ROUTES.calendar),
+      onPress: openCalendar,
       tone: "info",
     });
 
@@ -776,7 +783,7 @@ export default function HomePage() {
         title: "Save colleges for more deadlines",
         body: "Saved colleges help generate college-deadline opportunities and reminders.",
         actionLabel: "Search colleges",
-        onPress: () => router.push(ROUTES.root),
+        onPress: openCollegeSearchTool,
         tone: "info",
       });
     }
@@ -785,132 +792,15 @@ export default function HomePage() {
   }, [
     desktopCoursePlanningDeadline,
     hasCompletedQuestionnaire,
+    openCollegeSearchTool,
     nextUpcomingOpportunity,
     router,
     state.notificationsEnabled,
     state.savedColleges,
     user?.isGuest,
+    openCalendar,
     openOpportunity,
   ]);
-
-  const handleSearch = async (runOptions: SearchRunOptions = {}) => {
-    const activeUseWeighted = runOptions.overrideUseWeighted ?? useWeighted;
-    const activeDisabledInfluences = runOptions.overrideDisabledInfluences ?? disabledInfluences;
-    const q = searchQuery.trim();
-    setHasSubmittedSearch(true);
-    setSearchTooShort(false);
-    setAiLimitNotice(null);
-
-    const now = Date.now();
-    if (!runOptions.bypassCooldown && cooldownUntil && now < cooldownUntil) {
-      const secs = Math.ceil((cooldownUntil - now) / 1000);
-      setRemainingSeconds(secs);
-      setShowCooldownPopup(true);
-      return;
-    }
-
-    if (activeUseWeighted && q.length < 2) {
-      setResults([]);
-      setSearchTooShort(true);
-      try { collegeService.getLastSource(); } catch {}
-      return;
-    }
-
-    // Enforce a short cooldown to prevent accidental rapid repeat searches.
-    const nextUntil = Date.now() + 5000;
-    setCooldownUntil(nextUntil);
-    cooldownRef.current = nextUntil;
-
-    const effectiveUseWeighted = activeUseWeighted;
-    const disableAiComponent = false;
-
-    setIsSearching(true);
-    try {
-      const resp = await aiService.recommendColleges({
-        query: q,
-        userProfile: user,
-        questionnaire: state.questionnaireAnswers,
-        maxResults: 20,
-        useWeightedSearch: effectiveUseWeighted,
-        disableAiComponent,
-        disabledInfluences: activeDisabledInfluences,
-      });
-      setResults(resp.results as Recommended[]);
-      setEmptyState(resp.emptyState);
-      setResultsSource('live');
-    } catch (e) {
-      void errorLoggingService.captureException(e, {
-        category: "ai",
-        operation: "recommend-colleges-search",
-        severity: "error",
-        handled: true,
-        source: "HomePage",
-        screen: "HomePage",
-        route: "/",
-        metadata: {
-          queryLength: q.length,
-          useWeightedSearch: effectiveUseWeighted,
-          disabledInfluences: activeDisabledInfluences,
-        },
-      });
-      setResults([]);
-      setEmptyState({
-        code: "UPSTREAM_ERROR",
-        title: t("home.searchUnavailableTitle"),
-        message: t("home.searchUnavailableMessage"),
-      });
-      setAiLimitNotice((e as any)?.message || t("home.searchFailed"));
-    } finally {
-      setIsSearching(false);
-    }
-  };
-
-  useEffect(() => {
-    const stored = state.questionnaireAnswers?.useWeightedSearch;
-    if (typeof stored === 'boolean') setUseWeighted(stored);
-  }, [state.questionnaireAnswers?.useWeightedSearch]);
-
-  const handleToggleWeighted = async (v: boolean) => {
-    setUseWeighted(v);
-    await setQuestionnaireAnswers({ ...state.questionnaireAnswers, useWeightedSearch: v } as any);
-    if (searchQuery.trim().length > 0 || hasSubmittedSearch || results.length > 0) {
-      await handleSearch({ overrideUseWeighted: v, bypassCooldown: true });
-    }
-  };
-
-  const toggleDisabledInfluence = (key: keyof DisabledInfluences, value: boolean) => {
-    const next = {
-      ...disabledInfluences,
-      [key]: value,
-    };
-    setDisabledInfluences(next);
-    if (searchQuery.trim().length > 0 || hasSubmittedSearch || results.length > 0) {
-      void handleSearch({ overrideDisabledInfluences: next, bypassCooldown: true });
-    }
-  };
-  // countdown effect for cooldown popup
-  useEffect(() => {
-    if (!showCooldownPopup && !cooldownUntil) return;
-
-    let interval: ReturnType<typeof setInterval> | null = null;
-    interval = setInterval(() => {
-      const now = Date.now();
-      const until = cooldownRef.current ?? cooldownUntil ?? 0;
-      const diff = Math.max(0, until - now);
-      const secs = Math.ceil(diff / 1000);
-      setRemainingSeconds(secs);
-      if (diff <= 0) {
-        setShowCooldownPopup(false);
-        setCooldownUntil(null);
-        cooldownRef.current = null;
-        if (interval) clearInterval(interval as any);
-      }
-    }, 250);
-
-    return () => {
-      if (interval) clearInterval(interval as any);
-    };
-  }, [showCooldownPopup, cooldownUntil]);
 
   const shouldShowTour = Boolean(user && !user.isGuest && user.hasSeenOnboarding !== true);
   const tourCardWidth = Math.min(448, Math.max(280, screenWidth - 32));
@@ -920,13 +810,6 @@ export default function HomePage() {
 
   const tourSteps = useMemo<HomeTourStep[]>(() => [
     {
-      id: "search-bar",
-      title: "Search Bar",
-      description: "Type what you are looking for and run Search to get college recommendations.",
-      x: tourCardLeft + tourCardWidth * 0.5,
-      y: topAnchor + 118,
-    },
-    {
       id: "roadmap",
       title: "Roadmap",
       description: "Roadmap tracks tasks and transfer milestones so you always know your next step.",
@@ -934,16 +817,9 @@ export default function HomePage() {
       y: topAnchor + 360,
     },
     {
-      id: "keyboard-search",
-      title: "Keyboard Search",
-      description: "After typing, press your keyboard Enter/Search key for quick search.",
-      x: tourCardLeft + tourCardWidth * 0.86,
-      y: topAnchor + 118,
-    },
-    {
       id: "tab-home",
       title: "Home",
-      description: "Home is your main page for search and recommendations.",
+      description: "Home is your main page for tasks, deadlines, and your roadmap snapshot.",
       x: screenWidth * 0.125,
       y: tabAnchorY,
     },
@@ -1000,21 +876,18 @@ export default function HomePage() {
   };
 
   const renderDeadlinePanel = (
-    title: string,
-    subtitle: string,
-    icon: keyof typeof Ionicons.glyphMap,
-    entries: DeadlineCalendarEntry[],
-    emptyTitle: string,
-    emptyBody: string
+    entries: DeadlineCalendarEntry[]
   ) => (
-    <View className={`${dashboardPanelClass} border rounded-[28px] p-5`} style={dashboardSectionWidth}>
+    <View className={`${dashboardPanelClass} border rounded-[28px] p-5`} style={{ width: "100%" as DimensionValue }}>
       <View className="flex-row items-start mb-4">
         <View className="w-11 h-11 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">
-          <Ionicons name={icon} size={18} color="#008f4e" />
+          <Ionicons name="calendar-outline" size={18} color="#008f4e" />
         </View>
         <View className="flex-1">
-          <Text className={`${textClass} text-lg font-semibold`}>{title}</Text>
-          <Text className={`${secondaryTextClass} text-sm mt-1`}>{subtitle}</Text>
+          <Text className={`${textClass} text-lg font-semibold`}>Upcoming deadlines</Text>
+          <Text className={`${secondaryTextClass} text-sm mt-1`}>
+            School dates, scholarships, and other important deadlines coming up for you.
+          </Text>
         </View>
       </View>
 
@@ -1036,7 +909,20 @@ export default function HomePage() {
                   <Text className={`${secondaryTextClass} text-sm mt-1`} numberOfLines={2}>
                     {entry.subtitle}
                   </Text>
-                  <Text className="text-emerald-500 text-xs font-semibold mt-3">{t("home.openAction")}</Text>
+                  <View className="flex-row flex-wrap items-center gap-2 mt-3">
+                    <View className={`px-3 py-1.5 rounded-full ${dashboardBadgeClass}`}>
+                      <Text className={`${dashboardBadgeTextClass} text-xs font-semibold`}>
+                        {entry.kind === "roadmap_task"
+                          ? "School"
+                          : entry.kind === "scholarship"
+                            ? "Scholarship"
+                            : entry.kind === "internship"
+                              ? "Internship"
+                              : "College"}
+                      </Text>
+                    </View>
+                    <Text className="text-emerald-500 text-xs font-semibold">{t("home.openAction")}</Text>
+                  </View>
                 </View>
                 <View className={`px-3 py-1.5 rounded-full ${dashboardBadgeClass}`}>
                   <Text className={`${dashboardBadgeTextClass} text-xs font-semibold`}>
@@ -1049,8 +935,10 @@ export default function HomePage() {
         </View>
       ) : (
         <View className={`border rounded-3xl p-4 ${dashboardMutedClass}`}>
-          <Text className={`${textClass} font-semibold`}>{emptyTitle}</Text>
-          <Text className={`${secondaryTextClass} text-sm mt-1`}>{emptyBody}</Text>
+          <Text className={`${textClass} font-semibold`}>No deadlines yet</Text>
+          <Text className={`${secondaryTextClass} text-sm mt-1`}>
+            Add dates to your roadmap or finish your profile to see more deadlines here.
+          </Text>
         </View>
       )}
     </View>
@@ -1114,279 +1002,67 @@ export default function HomePage() {
           )}
         </View>
 
-        {renderDeadlinePanel(
-          t("home.schoolDeadlinesTitle"),
-          t("home.schoolDeadlinesBody"),
-          "calendar-outline",
-          desktopRoadmapDeadlineEntries,
-          t("home.schoolDeadlinesEmptyTitle"),
-          t("home.schoolDeadlinesEmptyBody")
-        )}
-
         <View className={`${dashboardPanelClass} border rounded-[28px] p-5`} style={dashboardSectionWidth}>
           <View className="flex-row items-start mb-4">
             <View className="w-11 h-11 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">
-              <Ionicons name="school-outline" size={18} color="#008f4e" />
+              <Ionicons name="calendar-outline" size={18} color="#008f4e" />
             </View>
             <View className="flex-1">
-              <Text className={`${textClass} text-lg font-semibold`}>{t("roadmap.currentCourses")}</Text>
+              <Text className={`${textClass} text-lg font-semibold`}>{t("home.deadlineCalendarTitle")}</Text>
               <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                {user?.transcript
-                  ? t("home.currentCoursesWithTranscript")
-                  : t("home.currentCoursesWithoutTranscript")}
+                {t("home.deadlineCalendarBody")}
               </Text>
             </View>
           </View>
 
-          {user?.uid && !desktopRoadmap ? (
-            <View className={`border rounded-3xl p-4 ${dashboardMutedClass}`}>
-              <Text className={`${textClass} font-semibold`}>{t("home.loadingCourseSnapshotTitle")}</Text>
-              <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                {t("home.loadingCourseSnapshotBody")}
-              </Text>
-            </View>
-          ) : desktopCurrentCourses.length ? (
-            <View className="gap-3">
-              {desktopCurrentCourses.slice(0, 6).map((course) => (
-                <View key={course} className={`border rounded-3xl px-4 py-3 ${dashboardItemClass}`}>
-                  <Text className={textClass}>{course}</Text>
+          {desktopNextDeadlineEntry ? (
+            <Pressable
+              onPress={() => {
+                void handleOpenDeadlineEntry(desktopNextDeadlineEntry);
+              }}
+              className={`border rounded-3xl p-4 ${dashboardItemClass}`}
+            >
+              <View className="flex-row items-start">
+                <View className="flex-1 min-w-0 pr-3">
+                  <Text className={`${textClass} font-semibold`} numberOfLines={2}>
+                    {desktopNextDeadlineEntry.title}
+                  </Text>
+                  <Text className={`${secondaryTextClass} text-sm mt-1`} numberOfLines={2}>
+                    {desktopNextDeadlineEntry.subtitle}
+                  </Text>
+                  <Text className="text-emerald-500 text-xs font-semibold mt-3">
+                    {t("home.openAction")}
+                  </Text>
                 </View>
-              ))}
-            </View>
+                <View className={`px-3 py-1.5 rounded-full ${dashboardBadgeClass}`}>
+                  <Text className={`${dashboardBadgeTextClass} text-xs font-semibold`}>
+                    {formatImportantDate(desktopNextDeadlineEntry.dueAt)}
+                  </Text>
+                </View>
+              </View>
+            </Pressable>
           ) : (
             <View className={`border rounded-3xl p-4 ${dashboardMutedClass}`}>
-              <Text className={`${textClass} font-semibold`}>
-                {user?.transcript ? t("home.noCurrentCoursesDetectedTitle") : t("home.transcriptNeededTitle")}
-              </Text>
+              <Text className={`${textClass} font-semibold`}>No deadlines yet</Text>
               <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                {user?.transcript
-                  ? t("home.noCurrentCoursesDetectedBody")
-                  : t("home.transcriptNeededBody")}
+                Add dates to your roadmap or finish your profile to see more deadlines here.
               </Text>
             </View>
           )}
+
+          <Pressable
+            onPress={openCalendar}
+            className="mt-4 rounded-xl bg-emerald-500 px-4 py-3 items-center"
+          >
+            <Text className="text-white font-semibold">Open deadline calendar</Text>
+          </Pressable>
         </View>
 
-        {renderDeadlinePanel(
-          t("home.opportunityDeadlinesTitle"),
-          t("home.opportunityDeadlinesBody"),
-          "time-outline",
-          desktopOpportunityDeadlineEntries,
-          t("home.opportunityDeadlinesEmptyTitle"),
-          t("home.opportunityDeadlinesEmptyBody")
-        )}
+        {renderDeadlinePanel(desktopCombinedDeadlineEntries)}
       </View>
 
       <View className="mt-6">
         <HomeTaskMarquee items={desktopMarqueeItems} />
-      </View>
-
-      <View className="mt-4">
-        <View
-          className="mb-4"
-          style={
-            desktopSearchShouldStack
-              ? { gap: 12 }
-              : { flexDirection: "row", alignItems: "stretch", gap: 12 }
-          }
-        >
-          <View className="relative" style={{ flex: 1, minWidth: 0 }}>
-            <View className="absolute left-4 top-4 z-10">
-              <Ionicons name="search" size={20} color={placeholderTextColor} />
-            </View>
-            <TextInput
-              value={searchQuery}
-              onChangeText={(v) => {
-                setSearchQuery(v);
-                setSearchTooShort(false);
-              }}
-              onSubmitEditing={() => {
-                void handleSearch();
-              }}
-              placeholder={t("home.pressEnterToStart")}
-              placeholderTextColor={placeholderTextColor}
-              className={`w-full ${inputClass} ${textClass} border rounded-2xl pl-12 pr-4 py-4`}
-              returnKeyType="search"
-            />
-          </View>
-          <Pressable
-            onPress={() => {
-              void handleSearch();
-            }}
-            disabled={showCooldownPopup || isSearching}
-            className={`rounded-xl px-4 py-3 items-center justify-center ${showCooldownPopup || isSearching ? 'bg-emerald-400' : 'bg-emerald-500'}`}
-            style={desktopSearchShouldStack ? { width: "100%" } : { minWidth: 140 }}
-          >
-            {isSearching ? (
-              <View className="flex-row items-center gap-2">
-                <ActivityIndicator size="small" color="#FFFFFF" />
-                <Text className="text-white font-semibold">{t("home.searching")}</Text>
-              </View>
-            ) : (
-              <Text className={`${showCooldownPopup || isDark ? 'text-white' : 'text-emerald-900'} font-semibold`}>
-                {t("home.search")}
-              </Text>
-            )}
-          </Pressable>
-        </View>
-
-        {aiLimitNotice ? (
-          <StatusBanner
-            variant={emptyState?.code === "UPSTREAM_ERROR" ? "error" : "warning"}
-            title={emptyState?.code === "UPSTREAM_ERROR" ? t("general.error") : undefined}
-            message={aiLimitNotice}
-            className="mb-3"
-          />
-        ) : null}
-
-        <View className="mt-2">
-          <View className="flex-row items-center justify-between mb-3">
-            <Text className={`${textClass} mr-2`}>{t("home.weightedSearch")}</Text>
-            <Switch
-              value={useWeighted}
-              onValueChange={handleToggleWeighted}
-            />
-          </View>
-          {useWeighted ? (
-            <View className="mb-3">
-              <Pressable
-                onPress={() => setShowAdvancedSearch((v) => !v)}
-                className={`${cardClass} border rounded-xl px-3 py-2 flex-row items-center justify-between`}
-              >
-                <Text className={`${textClass} font-medium`}>{t("home.advancedSearch")}</Text>
-                <Ionicons
-                  name={showAdvancedSearch ? "chevron-up" : "chevron-down"}
-                  size={18}
-                  color={placeholderTextColor}
-                />
-              </Pressable>
-              {showAdvancedSearch ? (
-                <View className={`${cardClass} border rounded-xl p-3 mt-2`}>
-                  <Text className={`${secondaryTextClass} text-xs mb-2`}>
-                    {t("home.advancedSearchHint")}
-                  </Text>
-                  {([
-                    ["gpa", t("home.rankingFactorGpa")],
-                    ["prestige", t("home.rankingFactorPrestige")],
-                    ["major", t("home.rankingFactorMajor")],
-                    ["preference", t("home.rankingFactorPreference")],
-                    ["query", t("home.rankingFactorQuery")],
-                    ["ai", t("home.rankingFactorAi")],
-                  ] as [keyof DisabledInfluences, string][]).map(([key, label]) => (
-                    <View key={key} className="flex-row items-center justify-between py-1.5">
-                      <Text className={textClass}>{label}</Text>
-                      <Switch
-                        value={!Boolean(disabledInfluences[key])}
-                        onValueChange={(v) => toggleDisabledInfluence(key, !v)}
-                      />
-                    </View>
-                  ))}
-                </View>
-              ) : null}
-            </View>
-          ) : null}
-          <View className="flex-row items-center justify-between mb-2">
-            <Text className={`text-lg ${textClass}`}>{t("home.recommendedColleges")}</Text>
-            {resultsSource ? (
-              <Text className={`${secondaryTextClass} text-xs`}>
-                {resultsSource === 'cached' ? t("home.cachedResults") : resultsSource === 'stub' ? t("home.sampleData") : null}
-              </Text>
-            ) : null}
-          </View>
-
-          {!showRecommendationSection ? (
-            <StateCard
-              variant="empty"
-              title={t("home.recommendedColleges")}
-              message={t("collegeSearchTool.searchPromptBody")}
-              compact
-            />
-          ) : isSearching ? (
-            <StateCard
-              variant="loading"
-              title={t("home.searching")}
-              message={t("general.pleaseWait")}
-              compact
-            />
-          ) : searchTooShort ? (
-            <StateCard
-              variant="empty"
-              title={t("home.searchTooShort")}
-              message={t("home.pressEnterToStart")}
-              compact
-            />
-          ) : results.length === 0 ? (
-            <StateCard
-              variant={emptyState?.code === "UPSTREAM_ERROR" ? "error" : "empty"}
-              title={emptyState?.title ?? t("home.noResults")}
-              message={emptyState?.message ?? t("home.adjustFilters")}
-              actionLabel={emptyState?.code === "UPSTREAM_ERROR" ? t("general.retry") : undefined}
-              onAction={emptyState?.code === "UPSTREAM_ERROR" ? () => { void handleSearch({ bypassCooldown: true }); } : undefined}
-              compact
-            />
-          ) : (
-            <View className="gap-3">
-              {results.map((r) => {
-                const college = r.college;
-                const saved = isCollegeSaved(college.id);
-                const matchScore = getMatchScore(r);
-                return (
-                  <Pressable
-                    key={college.id}
-                    className={`${cardClass} border rounded-xl p-4`}
-                    onPress={() => router.push(ROUTES.collegeDetail(String(college.id)))}
-                  >
-                    <View className="flex-row items-center justify-between">
-                      <View className="flex-1">
-                        <Text className={textClass}>{college.name}</Text>
-                        {matchScore != null ? (
-                          <MatchScoreBadge
-                            score={matchScore}
-                            text={t("home.matchLabel", { value: getMatchText(r) })}
-                            className="mt-1"
-                            textClassName="text-sm"
-                          />
-                        ) : (
-                          <Text className={`${secondaryTextClass} font-semibold mt-1`}>
-                            {t("home.matchLabel", { value: getMatchText(r) })}
-                          </Text>
-                        )}
-                      </View>
-                      <Pressable
-                        onPress={(e) => {
-                          e?.stopPropagation?.();
-                          if (saved) {
-                            void removeSavedCollege(college.id);
-                            return;
-                          }
-
-                          void addSavedCollege(matchScore != null ? { ...college, matchScore } : college);
-                        }}
-                        className="p-2"
-                      >
-                        <Ionicons
-                          name={saved ? "bookmark" : "bookmark-outline"}
-                          size={24}
-                          color={saved ? "#008f4e" : placeholderTextColor}
-                        />
-                      </Pressable>
-                    </View>
-                    <Text className={`text-sm ${secondaryTextClass} mt-1`}>
-                      {college.location.city ? `${college.location.city}, ` : ""}{college.location.state}
-                    </Text>
-                    {buildSimpleWhy(r).length ? (
-                      <View className="mt-2">
-                        {buildSimpleWhy(r).map((line) => (
-                          <Text key={`${college.id}-${line}`} className={`text-xs ${secondaryTextClass}`}>{line}</Text>
-                        ))}
-                      </View>
-                    ) : null}
-                  </Pressable>
-                );
-              })}
-            </View>
-          )}
-        </View>
       </View>
     </>
   ) : null;
@@ -1405,7 +1081,7 @@ export default function HomePage() {
             <Text className={`text-2xl ${textClass} mb-1`}>
               {t("home.welcomeBack").replace("{name}", capitalizedName)}
             </Text>
-            <Text className={secondaryTextClass}>{t("home.findPerfectCollege")}</Text>
+            <Text className={secondaryTextClass}>{t("home.trackApplicationJourney")}</Text>
           </View>
 
           {isDesktopHome ? (
@@ -1571,7 +1247,7 @@ export default function HomePage() {
               </Pressable>
 
               <Pressable
-                onPress={() => router.push(ROUTES.calendar)}
+                onPress={openCalendar}
                 className={`w-full rounded-2xl p-4 flex-row items-center ${cardClass} border mt-4`}
               >
                 <View className="mr-3 p-2 rounded-xl bg-emerald-500/20">
@@ -1661,43 +1337,6 @@ export default function HomePage() {
                     ))}
                   </View>
                 </View>
-              ) : null}
-
-              <View className="relative mt-4 mb-4">
-                <View className="absolute left-4 top-4 z-10">
-                  <Ionicons name="search" size={20} color={placeholderTextColor} />
-                </View>
-                <TextInput
-                  value={searchQuery}
-                  onChangeText={(v) => { setSearchQuery(v); setSearchTooShort(false); }}
-                  onSubmitEditing={() => { void handleSearch(); }}
-                  placeholder={t("home.pressEnterToStart")}
-                  placeholderTextColor={placeholderTextColor}
-                  className={`w-full ${inputClass} ${textClass} border rounded-2xl pl-12 pr-24 py-4`}
-                  returnKeyType="search"
-                />
-                <Pressable
-                  onPress={() => { void handleSearch(); }}
-                  disabled={showCooldownPopup || isSearching}
-                  className={`absolute right-2 top-2 rounded-xl px-4 py-2 ${showCooldownPopup || isSearching ? 'bg-emerald-400' : 'bg-emerald-500'}`}
-                >
-                  {isSearching ? (
-                    <View className="flex-row items-center gap-2">
-                      <ActivityIndicator size="small" color="#FFFFFF" />
-                      <Text className="text-white font-semibold">{t("home.searching")}</Text>
-                    </View>
-                  ) : (
-                    <Text className={`${showCooldownPopup || isDark ? 'text-white' : 'text-emerald-900'} font-semibold`}>{t("home.search")}</Text>
-                  )}
-                </Pressable>
-              </View>
-              {aiLimitNotice ? (
-                <StatusBanner
-                  variant={emptyState?.code === "UPSTREAM_ERROR" ? "error" : "warning"}
-                  title={emptyState?.code === "UPSTREAM_ERROR" ? t("general.error") : undefined}
-                  message={aiLimitNotice}
-                  className="mb-3"
-                />
               ) : null}
 
               {!isDesktopHome && showExtraInfoPrompt ? (
@@ -1886,9 +1525,9 @@ export default function HomePage() {
                         <Text className={`${textClass} font-semibold mb-2`}>
                           Enrolled or planned now
                         </Text>
-                        {desktopCurrentCourses.length ? (
+                        {linkedCurrentCourses.length ? (
                           <View className="gap-2">
-                            {desktopCurrentCourses.slice(0, 5).map((course) => (
+                            {linkedCurrentCourses.slice(0, 5).map((course) => (
                               <View
                                 key={course}
                                 className={`border rounded-2xl px-3 py-3 ${isDark ? "border-gray-800 bg-gray-950/50" : isLight ? "border-emerald-200 bg-emerald-50" : "border-gray-200 bg-gray-50"}`}
@@ -1964,7 +1603,7 @@ export default function HomePage() {
                           <Text className="text-white font-semibold">Open roadmap</Text>
                         </Pressable>
                         <Pressable
-                          onPress={() => router.push(ROUTES.calendar)}
+                          onPress={openCalendar}
                           className={`flex-1 rounded-xl px-4 py-3 items-center border ${isDark ? "border-gray-700 bg-gray-900" : isLight ? "border-emerald-200 bg-white" : "border-gray-200 bg-white"}`}
                           style={desktopActionCardsShouldStack ? { width: "100%" } : undefined}
                         >
@@ -2022,7 +1661,7 @@ export default function HomePage() {
                 </Pressable>
 
                 <Pressable
-                  onPress={() => router.push(ROUTES.calendar)}
+                  onPress={openCalendar}
                   className={`rounded-2xl p-4 flex-row items-center ${cardClass} border`}
                   style={desktopActionCardsShouldStack ? { width: "100%" } : { flex: 1, minWidth: 220 }}
                 >
@@ -2057,151 +1696,6 @@ export default function HomePage() {
               ) : null}
             </View>
           ) : null}
-
-          {!isDesktopHome && showRecommendationSection ? (
-            <View className="mt-8">
-              <View className="flex-row items-center justify-between mb-3">
-                <Text className={`${textClass} mr-2`}>{t("home.weightedSearch")}</Text>
-                <Switch
-                  value={useWeighted}
-                  onValueChange={handleToggleWeighted}
-                />
-              </View>
-              {useWeighted ? (
-                <View className="mb-3">
-                  <Pressable
-                    onPress={() => setShowAdvancedSearch((v) => !v)}
-                    className={`${cardClass} border rounded-xl px-3 py-2 flex-row items-center justify-between`}
-                  >
-                    <Text className={`${textClass} font-medium`}>{t("home.advancedSearch")}</Text>
-                    <Ionicons
-                      name={showAdvancedSearch ? "chevron-up" : "chevron-down"}
-                      size={18}
-                      color={placeholderTextColor}
-                    />
-                  </Pressable>
-                  {showAdvancedSearch ? (
-                    <View className={`${cardClass} border rounded-xl p-3 mt-2`}>
-                      <Text className={`${secondaryTextClass} text-xs mb-2`}>
-                        {t("home.advancedSearchHint")}
-                      </Text>
-                      {([
-                        ["gpa", t("home.rankingFactorGpa")],
-                        ["prestige", t("home.rankingFactorPrestige")],
-                        ["major", t("home.rankingFactorMajor")],
-                        ["preference", t("home.rankingFactorPreference")],
-                        ["query", t("home.rankingFactorQuery")],
-                        ["ai", t("home.rankingFactorAi")],
-                      ] as [keyof DisabledInfluences, string][]).map(([key, label]) => (
-                        <View key={key} className="flex-row items-center justify-between py-1.5">
-                          <Text className={textClass}>{label}</Text>
-                          <Switch
-                            value={!Boolean(disabledInfluences[key])}
-                            onValueChange={(v) => toggleDisabledInfluence(key, !v)}
-                          />
-                        </View>
-                      ))}
-                    </View>
-                  ) : null}
-                </View>
-              ) : null}
-              <View className="flex-row items-center justify-between mb-2">
-                <Text className={`text-lg ${textClass}`}>{t("home.recommendedColleges")}</Text>
-                {resultsSource ? (
-                  <Text className={`${secondaryTextClass} text-xs`}>
-                    {resultsSource === 'cached' ? t("home.cachedResults") : resultsSource === 'stub' ? t("home.sampleData") : null}
-                  </Text>
-                ) : null}
-              </View>
-
-              {isSearching ? (
-                <StateCard
-                  variant="loading"
-                  title={t("home.searching")}
-                  message={t("general.pleaseWait")}
-                  compact
-                />
-              ) : searchTooShort ? (
-                <StateCard
-                  variant="empty"
-                  title={t("home.searchTooShort")}
-                  message={t("home.pressEnterToStart")}
-                  compact
-                />
-              ) : results.length === 0 ? (
-                <StateCard
-                  variant={emptyState?.code === "UPSTREAM_ERROR" ? "error" : "empty"}
-                  title={emptyState?.title ?? t("home.noResults")}
-                  message={emptyState?.message ?? t("home.adjustFilters")}
-                  actionLabel={emptyState?.code === "UPSTREAM_ERROR" ? t("general.retry") : undefined}
-                  onAction={emptyState?.code === "UPSTREAM_ERROR" ? () => { void handleSearch({ bypassCooldown: true }); } : undefined}
-                  compact
-                />
-              ) : (
-                <View className="gap-3">
-                  {results.map((r) => {
-                    const college = r.college;
-                    const saved = isCollegeSaved(college.id);
-                    const matchScore = getMatchScore(r);
-                    return (
-                      <Pressable
-                        key={college.id}
-                        className={`${cardClass} border rounded-xl p-4`}
-                        onPress={() => router.push(ROUTES.collegeDetail(String(college.id)))}
-                      >
-                        <View className="flex-row items-center justify-between">
-                          <View className="flex-1">
-                            <Text className={textClass}>{college.name}</Text>
-                            {matchScore != null ? (
-                              <MatchScoreBadge
-                                score={matchScore}
-                                text={t("home.matchLabel", { value: getMatchText(r) })}
-                                className="mt-1"
-                                textClassName="text-sm"
-                              />
-                            ) : (
-                              <Text className={`${secondaryTextClass} font-semibold mt-1`}>
-                                {t("home.matchLabel", { value: getMatchText(r) })}
-                              </Text>
-                            )}
-                          </View>
-                          <Pressable
-                            onPress={(e) => {
-                              e?.stopPropagation?.();
-                              if (saved) {
-                                void removeSavedCollege(college.id);
-                                return;
-                              }
-
-                              void addSavedCollege(matchScore != null ? { ...college, matchScore } : college);
-                            }}
-                            className="p-2"
-                          >
-                            <Ionicons
-                              name={saved ? "bookmark" : "bookmark-outline"}
-                              size={24}
-                              color={saved ? "#008f4e" : placeholderTextColor}
-                            />
-                          </Pressable>
-                        </View>
-                        <Text className={`text-sm ${secondaryTextClass} mt-1`}>
-                          {college.location.city ? `${college.location.city}, ` : ""}{college.location.state}
-                        </Text>
-                        {buildSimpleWhy(r).length ? (
-                          <View className="mt-2">
-                            {buildSimpleWhy(r).map((line) => (
-                              <Text key={`${college.id}-${line}`} className={`text-xs ${secondaryTextClass}`}>{line}</Text>
-                            ))}
-                          </View>
-                        ) : null}
-                      </Pressable>
-                    );
-                  })}
-                </View>
-              )}
-            </View>
-          ) : null}
-
           {isDesktopHome && wheelOpportunities.length ? (
             <View className="mt-8">
               <OpportunityCarouselWheel
@@ -2217,16 +1711,6 @@ export default function HomePage() {
           )}
         </View>
       </ScrollView>
-      {showCooldownPopup ? (
-        <View
-          className="absolute left-0 right-0 items-center px-4"
-          style={{ pointerEvents: "none", bottom: floatingOverlayBottom }}
-        >
-          <View className="px-4 py-2 bg-black/70 rounded-full">
-            <Text className="text-white text-sm">Try again in {remainingSeconds}s</Text>
-          </View>
-        </View>
-      ) : null}
       {shouldShowTour && activeTourStep ? (
         <View className="absolute inset-0">
           <View className="absolute inset-0 bg-black/45" />

@@ -6,7 +6,6 @@ import {
   ScrollView,
   Text,
   TextInput,
-  type DimensionValue,
   useWindowDimensions,
   View,
 } from "react-native";
@@ -16,6 +15,7 @@ import {
   RESOURCE_CATALOG,
   type ResourceCatalogItem,
   type ResourceCatalogSection,
+  type ResourceCatalogSubsection,
 } from "@/constants/resource-catalog";
 import { ROUTES } from "@/constants/routes";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
@@ -40,10 +40,21 @@ type ResourceSection = {
   title: string;
   icon: keyof typeof MaterialIcons.glyphMap;
   items: ResourceItem[];
+  subsections: ResourceSubsection[];
+};
+
+type ResourceSubsection = {
+  id: string;
+  title: string;
+  items: ResourceItem[];
 };
 
 function resolveCatalogText(
-  entry: Pick<ResourceCatalogItem, "title" | "titleKey" | "description" | "descriptionKey">,
+  entry: Pick<
+    ResourceCatalogItem | ResourceCatalogSection | ResourceCatalogSubsection,
+    "title" | "titleKey"
+  > &
+    Partial<Pick<ResourceCatalogItem, "description" | "descriptionKey">>,
   kind: "title" | "description",
   t: (key: string, options?: Record<string, string | number>) => string
 ) {
@@ -51,6 +62,26 @@ function resolveCatalogText(
   const value = kind === "title" ? entry.title : entry.description;
   if (key) return t(key);
   return String(value ?? "").trim();
+}
+
+function mapCatalogItem(
+  item: ResourceCatalogItem,
+  t: (key: string, options?: Record<string, string | number>) => string
+): ResourceItem {
+  return {
+    title: resolveCatalogText(item, "title", t),
+    description: resolveCatalogText(item, "description", t),
+    url: item.url,
+    tags: item.tags ?? [],
+    expiresAt: item.expiresAt ?? null,
+  };
+}
+
+function countResourceSectionItems(section: ResourceSection) {
+  return (
+    section.items.length +
+    section.subsections.reduce((sum, subsection) => sum + subsection.items.length, 0)
+  );
 }
 
 function formatDueDate(value: string | null, locale: string) {
@@ -110,32 +141,24 @@ export default function ResourcesPage() {
   const { width } = useWindowDimensions();
   const { getScrollContentPadding } = useResponsiveLayout();
   const [query, setQuery] = useState("");
+  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
 
   const { textClass, secondaryTextClass, borderClass, inactiveButtonClass, placeholderColor } = styles;
   const cardClass = styles.cardBgClass;
   const inputClass = styles.inputBgClass;
   const placeholderTextColor = placeholderColor;
-  const isTablet = width >= 768;
   const isDesktop = width >= 1180;
-  const stackHeaderActions = width < 620;
   const stackOpportunityActions = width < 760;
   const shellMaxWidth = isDesktop ? 1280 : width >= 900 ? 1040 : 720;
   const shellHorizontalPadding = width >= 1280 ? 32 : 24;
   const shellTopPadding = width >= 900 ? 32 : 40;
-  const contentColumnsClass = isDesktop ? "flex-row items-start gap-6" : "gap-6";
-  const opportunityColumnStyle = isDesktop ? { flex: 1, minWidth: 0 } : undefined;
-  const referenceColumnStyle = isDesktop
-    ? { width: width >= 1440 ? 420 : 392, flexShrink: 0 }
-    : undefined;
   const scrollContentPadding = getScrollContentPadding({
     includeTopInset: true,
     includeBottomTabClearance: true,
   });
   const panelClass = `${cardClass} border rounded-[28px] p-5`;
-  const nestedCardClass = `${cardClass} border rounded-3xl`;
   const mutedCardClass = `${inactiveButtonClass} border ${borderClass} rounded-3xl`;
   const emeraldBadgeClass = "px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20";
-  const desktopFullWidthStyle = { width: "100%" as DimensionValue };
   const locale = getLocaleForLanguage(language);
   const canShowOpportunityAdminTool = !!state.user && !state.user.isGuest;
   const getOpportunityDueLabel = (item: MatchedOpportunity) => {
@@ -166,8 +189,14 @@ export default function ResourcesPage() {
   };
   const getAwardLabel = (item: MatchedOpportunity) => {
     if (item.award.amountText) return item.award.amountText;
-    const amountMin = formatMoney(item.award.amountMin, item.award.currency);
-    const amountMax = formatMoney(item.award.amountMax, item.award.currency);
+    const amountMin =
+      item.award.amountMin != null && Number(item.award.amountMin) > 0
+        ? formatMoney(item.award.amountMin, item.award.currency)
+        : null;
+    const amountMax =
+      item.award.amountMax != null && Number(item.award.amountMax) > 0
+        ? formatMoney(item.award.amountMax, item.award.currency)
+        : null;
     if (amountMin && amountMax && amountMin !== amountMax) {
       return t("resources.awardRange", { min: amountMin, max: amountMax });
     }
@@ -183,12 +212,18 @@ export default function ResourcesPage() {
     if (count <= 0) return null;
     return t("resources.recommendationMinimum", { count });
   };
+  const getEssayLabel = (item: MatchedOpportunity) => {
+    if (item.requirements.essayCount <= 0) return null;
+    return item.requirements.essayCount === 1
+      ? t("resources.essayLabelSingular", { count: item.requirements.essayCount })
+      : t("resources.essayLabelPlural", { count: item.requirements.essayCount });
+  };
   const getEligibilityLabels = (item: MatchedOpportunity) => {
     const labels: string[] = [];
     if (item.eligibility.transferOnly) {
       labels.push(t("resources.transferOnly"));
     }
-    if (item.eligibility.gpaMin != null) {
+    if (item.eligibility.gpaMin != null && Number(item.eligibility.gpaMin) > 0) {
       labels.push(t("resources.gpaMinimum", { gpa: item.eligibility.gpaMin }));
     }
     return labels;
@@ -198,6 +233,21 @@ export default function ResourcesPage() {
     if (item.progress === "expired") return t("resources.statusExpired");
     if (item.progress === "submitted") return t("resources.statusSubmitted");
     return item.isDone ? t("resources.statusDone") : null;
+  };
+  const getOpportunitySummaryParts = (item: MatchedOpportunity) => {
+    if (item.matchReasons.length) {
+      return item.matchReasons;
+    }
+
+    return [
+      getRecommendationLabel(item),
+      getEssayLabel(item),
+      getAwardLabel(item),
+      ...getEligibilityLabels(item),
+      item.recurrence.isYearly ? t("resources.yearly") : null,
+      getOpportunityDueLabel(item),
+      item.isDone ? getProgressLabel(item) ?? t("resources.statusDone") : null,
+    ].filter((value): value is string => Boolean(value));
   };
 
   useFocusEffect(
@@ -212,16 +262,19 @@ export default function ResourcesPage() {
         id: section.id,
         title: resolveCatalogText(section, "title", t),
         icon: section.icon,
-        items: section.items
+        items: (section.items ?? [])
           .filter((item) => !isExpiredResource(item.expiresAt))
-          .map((item) => ({
-            title: resolveCatalogText(item, "title", t),
-            description: resolveCatalogText(item, "description", t),
-            url: item.url,
-            tags: item.tags ?? [],
-            expiresAt: item.expiresAt ?? null,
-          })),
-      })).filter((section) => section.items.length > 0);
+          .map((item) => mapCatalogItem(item, t)),
+        subsections: (section.subsections ?? [])
+          .map((subsection) => ({
+            id: subsection.id,
+            title: resolveCatalogText(subsection, "title", t),
+            items: subsection.items
+              .filter((item) => !isExpiredResource(item.expiresAt))
+              .map((item) => mapCatalogItem(item, t)),
+          }))
+          .filter((subsection) => subsection.items.length > 0),
+      })).filter((section) => countResourceSectionItems(section) > 0);
 
       if (!canShowOpportunityAdminTool) {
         return sections;
@@ -303,14 +356,21 @@ export default function ResourcesPage() {
       .map((section) => ({
         ...section,
         items: section.items.filter(matches),
+        subsections: section.subsections
+          .map((subsection) => ({
+            ...subsection,
+            items: subsection.items.filter(matches),
+          }))
+          .filter((subsection) => subsection.items.length > 0),
       }))
-      .filter((section) => section.items.length > 0);
+      .filter((section) => countResourceSectionItems(section) > 0);
   }, [query, referenceSections]);
 
   const visibleReferenceLinks = useMemo(
-    () => filteredReferenceSections.reduce((sum, section) => sum + section.items.length, 0),
+    () => filteredReferenceSections.reduce((sum, section) => sum + countResourceSectionItems(section), 0),
     [filteredReferenceSections]
   );
+  const hasActiveSearch = query.trim().length > 0;
   const opportunityCountLabel =
     filteredOpportunities.length === 1
       ? t("resources.countOpportunitySingular", { count: filteredOpportunities.length })
@@ -320,19 +380,38 @@ export default function ResourcesPage() {
       ? t("resources.countLinkSingular", { count: visibleReferenceLinks })
       : t("resources.countLinkPlural", { count: visibleReferenceLinks });
 
+  const openInternalTool = useCallback(
+    (path: string | Parameters<typeof router.push>[0]) => {
+      const pathname =
+        typeof path === "string"
+          ? path
+          : String((path as { pathname?: unknown })?.pathname ?? "").trim();
+      router.push(
+        {
+          pathname: pathname as never,
+          params: { returnTo: ROUTES.tabsResources },
+        } as never
+      );
+    },
+    [router]
+  );
+
+  const toggleSection = useCallback((sectionKey: string) => {
+    setExpandedSections((current) => ({
+      ...current,
+      [sectionKey]: !current[sectionKey],
+    }));
+  }, []);
+
+  const isSectionExpanded = useCallback(
+    (sectionKey: string) => hasActiveSearch || Boolean(expandedSections[sectionKey]),
+    [expandedSections, hasActiveSearch]
+  );
+
   const openLink = async (url: string) => {
     if (url.startsWith("app://")) {
       const path = url.replace("app://", "/");
-      if (path === ROUTES.transferPlanner) {
-        router.push(
-          {
-            pathname: ROUTES.transferPlanner,
-            params: { returnTo: ROUTES.tabsResources },
-          } as never
-        );
-        return;
-      }
-      router.push(path as never);
+      openInternalTool(path);
       return;
     }
 
@@ -352,6 +431,7 @@ export default function ResourcesPage() {
     }
   };
 
+  /*
   const renderDesktopOpportunityItem = (item: MatchedOpportunity) => (
     <View key={item.opportunityId} className={`${nestedCardClass} p-4`}>
       <View className="flex-row items-start justify-between gap-3">
@@ -488,6 +568,266 @@ export default function ResourcesPage() {
     </View>
   );
 
+  */
+  const renderReferenceLinkItems = (
+    items: ResourceItem[],
+    keyPrefix: string,
+    options?: { inset?: boolean }
+  ) =>
+    items.map((item, index) => (
+      <Pressable
+        key={`${keyPrefix}-${item.title}`}
+        onPress={() => {
+          void openLink(item.url);
+        }}
+        className={`px-4 py-5 flex-row items-start ${
+          index !== items.length - 1 ? `border-b ${borderClass}` : ""
+        }`}
+        style={options?.inset ? { paddingLeft: 52 } : undefined}
+        accessibilityRole="link"
+      >
+        <View className="mt-0.5">
+          <Ionicons name="link-outline" size={18} color={placeholderColor} />
+        </View>
+
+        <View className="flex-1 ml-3">
+          <Text className={`${textClass} font-medium mb-1`}>{item.title}</Text>
+          <Text className={`${secondaryTextClass} text-sm`}>{item.description}</Text>
+        </View>
+
+        <MaterialIcons name="open-in-new" size={18} color={placeholderColor} />
+      </Pressable>
+    ));
+
+  const renderReferenceSubsection = (
+    section: ResourceSection,
+    subsection: ResourceSubsection,
+    index: number
+  ) => {
+    const subsectionKey = `resource:${section.id}:sub:${subsection.id}`;
+    const expanded = isSectionExpanded(subsectionKey);
+
+    return (
+      <View
+        key={subsection.id}
+        className={index !== 0 || section.items.length ? `border-t ${borderClass}` : ""}
+      >
+        <Pressable
+          onPress={() => toggleSection(subsectionKey)}
+          className="px-4 py-4 flex-row items-center"
+          accessibilityRole="button"
+        >
+          <View className="w-2 h-2 rounded-full bg-emerald-500/70 mr-3" />
+          <Text className={`${textClass} flex-1`} numberOfLines={1}>
+            {subsection.title}
+          </Text>
+          <View className={`${emeraldBadgeClass} mr-3`}>
+            <Text className="text-emerald-500 text-xs font-semibold">{subsection.items.length}</Text>
+          </View>
+          <Ionicons
+            name={expanded ? "chevron-down" : "chevron-forward"}
+            size={18}
+            color={placeholderColor}
+          />
+        </Pressable>
+
+        {expanded ? (
+          <View className={`border-t ${borderClass}`}>
+            {renderReferenceLinkItems(subsection.items, `${section.id}-${subsection.id}`, {
+              inset: true,
+            })}
+          </View>
+        ) : null}
+      </View>
+    );
+  };
+
+  const renderListStyleReferenceSection = (section: ResourceSection) => {
+    const sectionKey = `resource:${section.id}`;
+    const expanded = isSectionExpanded(sectionKey);
+    const sectionItemCount = countResourceSectionItems(section);
+
+    return (
+      <View key={section.id} className={`${cardClass} border rounded-2xl overflow-hidden`}>
+        <Pressable
+          onPress={() => toggleSection(sectionKey)}
+          className="px-4 py-4 flex-row items-center"
+          accessibilityRole="button"
+        >
+          <MaterialIcons name={section.icon} size={18} color={placeholderColor} />
+          <Text className={`${textClass} ml-2 flex-1`} numberOfLines={1}>
+            {section.title}
+          </Text>
+          <View className={`${emeraldBadgeClass} mr-3`}>
+            <Text className="text-emerald-500 text-xs font-semibold">{sectionItemCount}</Text>
+          </View>
+          <Ionicons
+            name={expanded ? "chevron-down" : "chevron-forward"}
+            size={18}
+            color={placeholderColor}
+          />
+        </Pressable>
+
+        {expanded ? (
+          <View className={`border-t ${borderClass}`}>
+            {renderReferenceLinkItems(section.items, section.id)}
+            {section.subsections.map((subsection, index) =>
+              renderReferenceSubsection(section, subsection, index)
+            )}
+          </View>
+        ) : null}
+      </View>
+    );
+  };
+
+  const renderListStyleOpportunitySection = (section: {
+    key: string;
+    title: string;
+    icon: keyof typeof MaterialIcons.glyphMap;
+    items: MatchedOpportunity[];
+  }) => {
+    const sectionKey = `opportunity:${section.key}`;
+    const expanded = isSectionExpanded(sectionKey);
+
+    return (
+      <View key={section.key} className={`${cardClass} border rounded-2xl overflow-hidden`}>
+        <Pressable
+          onPress={() => toggleSection(sectionKey)}
+          className="px-4 py-4 flex-row items-center"
+          accessibilityRole="button"
+        >
+          <MaterialIcons name={section.icon} size={18} color={placeholderColor} />
+          <Text className={`${textClass} ml-2 flex-1`} numberOfLines={1}>
+            {section.title}
+          </Text>
+          <View className={`${emeraldBadgeClass} mr-3`}>
+            <Text className="text-emerald-500 text-xs font-semibold">{section.items.length}</Text>
+          </View>
+          <Ionicons
+            name={expanded ? "chevron-down" : "chevron-forward"}
+            size={18}
+            color={placeholderColor}
+          />
+        </Pressable>
+
+        {expanded ? (
+          <View className={`border-t ${borderClass}`}>
+            {section.items.map((item, index) => (
+              <View
+                key={item.opportunityId}
+                className={`px-4 py-5 ${
+                  index !== section.items.length - 1 ? `border-b ${borderClass}` : ""
+                }`}
+              >
+                <View
+                  className={
+                    stackOpportunityActions
+                      ? "gap-4"
+                      : "flex-row items-start justify-between"
+                  }
+                >
+                  <View
+                    style={
+                      stackOpportunityActions
+                        ? undefined
+                        : { flex: 1, minWidth: 0, paddingRight: 16 }
+                    }
+                  >
+                    <Text className={`${textClass} font-medium mb-1`}>{item.title}</Text>
+                    <Text className={`${secondaryTextClass} text-sm mb-3`}>{item.summary}</Text>
+
+                    {getOpportunitySummaryParts(item).length ? (
+                      <Text className={`${secondaryTextClass} text-xs mb-3`}>
+                        {getOpportunitySummaryParts(item).join(" | ")}
+                      </Text>
+                    ) : null}
+                  </View>
+
+                  {item.type === "scholarship" || item.type === "internship" ? (
+                    <View
+                      className="flex-row items-center gap-2"
+                      style={stackOpportunityActions ? { width: "100%" } : undefined}
+                    >
+                      {item.externalUrl ? (
+                        <Pressable
+                          onPress={() => {
+                            void openLink(item.externalUrl ?? "");
+                          }}
+                          className="px-4 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 items-center"
+                          style={stackOpportunityActions ? { flex: 1, minWidth: 0 } : undefined}
+                        >
+                          <Text className="text-emerald-500 text-sm">
+                            {t("resources.actionOpen")}
+                          </Text>
+                        </Pressable>
+                      ) : (
+                        <View className="flex-1" />
+                      )}
+
+                      <Pressable
+                        onPress={() => {
+                          void setOpportunityDone(item.opportunityId, !item.isDone);
+                        }}
+                        accessibilityRole="checkbox"
+                        accessibilityState={{ checked: item.isDone }}
+                        className={`w-11 h-11 rounded-xl border items-center justify-center ${
+                          item.isDone
+                            ? "bg-emerald-500 border-emerald-500"
+                            : "bg-emerald-500/10 border-emerald-500/30"
+                        }`}
+                      >
+                        <MaterialIcons
+                          name={item.isDone ? "check-box" : "check-box-outline-blank"}
+                          size={22}
+                          color={item.isDone ? "#FFFFFF" : "#008f4e"}
+                        />
+                      </Pressable>
+                    </View>
+                  ) : (
+                    <View
+                      className={stackOpportunityActions ? "gap-2" : "items-end gap-2"}
+                      style={stackOpportunityActions ? { width: "100%" } : undefined}
+                    >
+                      {item.externalUrl ? (
+                        <Pressable
+                          onPress={() => {
+                            void openLink(item.externalUrl ?? "");
+                          }}
+                          className="px-4 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 items-center"
+                          style={stackOpportunityActions ? { width: "100%" } : undefined}
+                        >
+                          <Text className="text-emerald-500 text-sm">
+                            {t("resources.actionOpen")}
+                          </Text>
+                        </Pressable>
+                      ) : null}
+
+                      <Pressable
+                        onPress={() => {
+                          void setOpportunityDone(item.opportunityId, !item.isDone);
+                        }}
+                        className={`px-4 py-2.5 rounded-xl border items-center ${
+                          item.isDone
+                            ? "bg-white/10 border-white/20"
+                            : "bg-emerald-500 border-emerald-500"
+                        }`}
+                        style={stackOpportunityActions ? { width: "100%" } : undefined}
+                      >
+                        <Text className={`text-sm ${item.isDone ? textClass : "text-white"}`}>
+                          {item.isDone ? t("resources.actionUndo") : t("resources.actionMarkDone")}
+                        </Text>
+                      </Pressable>
+                    </View>
+                  )}
+                </View>
+              </View>
+            ))}
+          </View>
+        ) : null}
+      </View>
+    );
+  };
+
   const desktopResourcesDashboard = isDesktop ? (
     <>
       <View
@@ -498,7 +838,7 @@ export default function ResourcesPage() {
           alignItems: "stretch",
         }}
       >
-        <View className={panelClass} style={desktopFullWidthStyle}>
+        <View className={panelClass} style={{ width: "100%" }}>
           <View className="flex-row items-start mb-4">
             <View className="w-11 h-11 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">
               <Ionicons name="search-outline" size={18} color="#008f4e" />
@@ -539,69 +879,30 @@ export default function ResourcesPage() {
             </View>
           </View>
 
-          <View className="flex-row flex-wrap gap-3 mt-4">
-            <Pressable
-              onPress={() =>
-                router.push(
-                  {
-                    pathname: ROUTES.transferPlanner,
-                    params: { returnTo: ROUTES.tabsResources },
-                  } as never
-                )
-              }
-              className="px-4 py-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 items-center"
-              style={{ flexGrow: 1, minWidth: 150 }}
-            >
-              <Text className="text-emerald-500 text-sm font-medium">
-                {t("resources.transferPlanner")}
-              </Text>
-            </Pressable>
-            <Pressable
-              onPress={() => router.push(ROUTES.collegeSearch)}
-              className="px-4 py-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 items-center"
-              style={{ flexGrow: 1, minWidth: 150 }}
-            >
-              <Text className="text-emerald-500 text-sm font-medium">
-                {t("resources.collegeSearchTool")}
-              </Text>
-            </Pressable>
-            <Pressable
-              onPress={() => router.push(ROUTES.calendar)}
-              className="px-4 py-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 items-center"
-              style={{ flexGrow: 1, minWidth: 150 }}
-            >
-              <Text className="text-emerald-500 text-sm font-medium">
-                {t("resources.deadlineCalendar")}
-              </Text>
-            </Pressable>
-          </View>
-
-          <View className={`mt-6 pt-6 border-t ${borderClass}`}>
-            <View className="flex-row items-start mb-4">
-              <View className="w-11 h-11 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">
-                <Ionicons name="compass-outline" size={18} color="#008f4e" />
-              </View>
-              <View className="flex-1">
-                <Text className={`${textClass} text-lg font-semibold`}>
-                  {t("resources.referenceHubTitle")}
+          <View className="mt-6">
+            {!isHydrated ? (
+              <View className={`${mutedCardClass} p-4 mb-4`}>
+                <Text className={`${textClass} font-semibold`}>
+                  {t("resources.loadingOpportunitiesTitle")}
                 </Text>
                 <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                  {t("resources.referenceHubBody")}
+                  {t("resources.loadingOpportunitiesBody")}
                 </Text>
               </View>
-            </View>
+            ) : null}
 
-            {filteredReferenceSections.length > 0 ? (
-              <View className="gap-4">
-                {filteredReferenceSections.map((section) => renderDesktopReferenceSection(section))}
+            {groupedOpportunities.length > 0 || filteredReferenceSections.length > 0 ? (
+              <View className="gap-6">
+                {groupedOpportunities.map((section) => renderListStyleOpportunitySection(section))}
+                {filteredReferenceSections.map((section) => renderListStyleReferenceSection(section))}
               </View>
             ) : (
               <View className={`${mutedCardClass} p-4`}>
                 <Text className={`${textClass} font-semibold`}>
-                  {t("resources.noResourceLinksTitle")}
+                  {t("resources.noMatches")}
                 </Text>
                 <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                  {t("resources.noResourceLinksBody")}
+                  {t("resources.tryDifferentSearch")}
                 </Text>
               </View>
             )}
@@ -610,79 +911,6 @@ export default function ResourcesPage() {
               {t("resources.openInBrowser")}
             </Text>
           </View>
-
-          {!isHydrated ? (
-            <View className={`${mutedCardClass} p-4 mt-4`}>
-              <Text className={`${textClass} font-semibold`}>
-                {t("resources.loadingCachedTitle")}
-              </Text>
-              <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                {t("resources.loadingCachedBody")}
-              </Text>
-            </View>
-          ) : null}
-        </View>
-
-        <View className={panelClass} style={desktopFullWidthStyle}>
-          <View className="flex-row items-start mb-4">
-            <View className="w-11 h-11 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">
-              <Ionicons name="sparkles-outline" size={18} color="#008f4e" />
-            </View>
-            <View className="flex-1">
-              <Text className={`${textClass} text-lg font-semibold`}>
-                {t("resources.opportunitiesPanelTitle")}
-              </Text>
-              <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                {t("resources.opportunitiesPanelBody")}
-              </Text>
-            </View>
-          </View>
-
-          {!isHydrated ? (
-            <View className={`${mutedCardClass} p-4`}>
-              <Text className={`${textClass} font-semibold`}>
-                {t("resources.loadingOpportunitiesTitle")}
-              </Text>
-              <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                {t("resources.loadingOpportunitiesBody")}
-              </Text>
-            </View>
-          ) : groupedOpportunities.length === 0 ? (
-            <View className={`${mutedCardClass} p-4`}>
-              <Text className={`${textClass} font-semibold`}>
-                {t("resources.noOpportunitiesTitle")}
-              </Text>
-              <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                {t("resources.noOpportunitiesBody")}
-              </Text>
-            </View>
-          ) : (
-            <View className="gap-5">
-              {groupedOpportunities.map((section) => (
-                <View key={section.key}>
-                  <View className="flex-row items-center justify-between mb-3">
-                    <View className="flex-row items-center flex-1 min-w-0">
-                      <View className="w-10 h-10 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">
-                        <MaterialIcons name={section.icon} size={18} color="#008f4e" />
-                      </View>
-                      <Text className={`${textClass} font-semibold flex-1`} numberOfLines={1}>
-                        {section.title}
-                      </Text>
-                    </View>
-                    <View className={emeraldBadgeClass}>
-                      <Text className="text-emerald-500 text-xs font-semibold">
-                        {section.items.length}
-                      </Text>
-                    </View>
-                  </View>
-
-                  <View className="gap-3">
-                    {section.items.map((item) => renderDesktopOpportunityItem(item))}
-                  </View>
-                </View>
-              ))}
-            </View>
-          )}
         </View>
       </View>
     </>
@@ -731,286 +959,37 @@ export default function ResourcesPage() {
                   autoCorrect={false}
                 />
               </View>
-
-              <View className={`${cardClass} border rounded-2xl p-5 mb-6`}>
-                <View
-                  className={stackHeaderActions ? "gap-4" : "flex-row items-start justify-between gap-4"}
-                >
-                  <View style={stackHeaderActions ? undefined : { flex: 1, minWidth: 0, paddingRight: 16 }}>
-                    <Text className={`${textClass} font-medium mb-1`}>
-                      {t("resources.mobileOpportunitiesTitle")}
-                    </Text>
-                    <Text className={`${secondaryTextClass} text-sm`}>
-                      {t("resources.mobileOpportunitiesBody")}
-                    </Text>
-                  </View>
-
-                  <View
-                    className={stackHeaderActions ? "gap-2" : "flex-row flex-wrap justify-end gap-2"}
-                    style={stackHeaderActions ? { width: "100%" } : { maxWidth: isTablet ? 320 : 260 }}
-                  >
-                    <Pressable
-                      onPress={() => router.push(ROUTES.calendar)}
-                      className="px-4 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 items-center"
-                      style={stackHeaderActions ? { width: "100%" } : undefined}
-                    >
-                      <Text className="text-emerald-500 text-sm">
-                        {t("resources.deadlineCalendar")}
-                      </Text>
-                    </Pressable>
-                  </View>
+              {!isHydrated ? (
+                <View className={`${cardClass} border rounded-2xl p-5 mb-6`}>
+                  <Text className={`${textClass} mb-1`}>
+                    {t("resources.loadingOpportunitiesTitle")}
+                  </Text>
+                  <Text className={`${secondaryTextClass} text-sm`}>
+                    {t("resources.loadingOpportunitiesBody")}
+                  </Text>
                 </View>
-              </View>
+              ) : null}
 
-              <View className={contentColumnsClass}>
-                <View style={opportunityColumnStyle}>
-                  {!isHydrated ? (
-                    <View className={`${cardClass} border rounded-2xl p-5 mb-6`}>
-                      <Text className={`${textClass} mb-1`}>
-                        {t("resources.loadingOpportunitiesTitle")}
-                      </Text>
-                      <Text className={`${secondaryTextClass} text-sm`}>
-                        {t("resources.loadingOpportunitiesBody")}
-                      </Text>
-                    </View>
-                  ) : null}
-
-                  {groupedOpportunities.length === 0 ? (
-                    <View className={`${cardClass} border rounded-2xl p-5 mb-6`}>
-                      <Text className={`${textClass} mb-1`}>
-                        {t("resources.noOpportunitiesTitle")}
-                      </Text>
-                      <Text className={`${secondaryTextClass} text-sm`}>
-                        {t("resources.noOpportunitiesBody")}
-                      </Text>
-                    </View>
-                  ) : (
-                    <View className="gap-6 mb-8">
-                      {groupedOpportunities.map((section) => (
-                        <View key={section.key}>
-                          <View className="flex-row items-center mb-3 px-2">
-                            <MaterialIcons
-                              name={section.icon}
-                              size={18}
-                              color={placeholderColor}
-                            />
-                            <Text className={`${textClass} ml-2`}>{section.title}</Text>
-                          </View>
-
-                          <View className={`${cardClass} border rounded-2xl overflow-hidden`}>
-                            {section.items.map((item, index) => (
-                              <View
-                                key={item.opportunityId}
-                                className={`px-4 py-5 ${
-                                  index !== section.items.length - 1
-                                    ? `border-b ${borderClass}`
-                                    : ""
-                                }`}
-                              >
-                                <View
-                                  className={
-                                    stackOpportunityActions
-                                      ? "gap-4"
-                                      : "flex-row items-start justify-between"
-                                  }
-                                >
-                                  <View
-                                    style={
-                                      stackOpportunityActions
-                                        ? undefined
-                                        : { flex: 1, minWidth: 0, paddingRight: 16 }
-                                    }
-                                  >
-                                    <Text className={`${textClass} font-medium mb-1`}>
-                                      {item.title}
-                                    </Text>
-                                    <Text className={`${secondaryTextClass} text-sm mb-3`}>
-                                      {item.summary}
-                                    </Text>
-
-                                    <View className="flex-row flex-wrap gap-2 mb-3">
-                                      <View className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
-                                        <Text className="text-emerald-500 text-xs">
-                                          {getOpportunityDueLabel(item)}
-                                        </Text>
-                                      </View>
-                                      {item.recurrence.isYearly ? (
-                                        <View className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
-                                          <Text className="text-emerald-500 text-xs">
-                                            {t("resources.yearly")}
-                                          </Text>
-                                        </View>
-                                      ) : null}
-                                      {getRecommendationLabel(item) ? (
-                                        <View className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
-                                          <Text className="text-emerald-500 text-xs">
-                                            {getRecommendationLabel(item)}
-                                          </Text>
-                                        </View>
-                                      ) : null}
-                                      {item.requirements.essayCount > 0 ? (
-                                        <View className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
-                                          <Text className="text-emerald-500 text-xs">
-                                            {item.requirements.essayCount === 1
-                                              ? t("resources.essayLabelSingular", {
-                                                  count: item.requirements.essayCount,
-                                                })
-                                              : t("resources.essayLabelPlural", {
-                                                  count: item.requirements.essayCount,
-                                                })}
-                                          </Text>
-                                        </View>
-                                      ) : null}
-                                      {getAwardLabel(item) ? (
-                                        <View className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
-                                          <Text className="text-emerald-500 text-xs">
-                                            {getAwardLabel(item)}
-                                          </Text>
-                                        </View>
-                                      ) : null}
-                                      {getEligibilityLabels(item).map((label) => (
-                                        <View
-                                          key={`${item.opportunityId}-${label}`}
-                                          className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20"
-                                        >
-                                          <Text className="text-emerald-500 text-xs">
-                                            {label}
-                                          </Text>
-                                        </View>
-                                      ))}
-                                      {item.isDone ? (
-                                        <View className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
-                                          <Text className="text-emerald-500 text-xs">
-                                            {getProgressLabel(item) ?? t("resources.statusDone")}
-                                          </Text>
-                                        </View>
-                                      ) : null}
-                                    </View>
-
-                                    {item.matchReasons.length ? (
-                                      <Text className={`${secondaryTextClass} text-xs`}>
-                                        {item.matchReasons.join(" | ")}
-                                      </Text>
-                                    ) : null}
-                                  </View>
-
-                                  <View
-                                    className={stackOpportunityActions ? "gap-2" : "items-end gap-2"}
-                                    style={stackOpportunityActions ? { width: "100%" } : undefined}
-                                  >
-                                    {item.externalUrl ? (
-                                      <Pressable
-                                        onPress={() => {
-                                          void openLink(item.externalUrl ?? "");
-                                        }}
-                                        className="px-4 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 items-center"
-                                        style={stackOpportunityActions ? { width: "100%" } : undefined}
-                                      >
-                                        <Text className="text-emerald-500 text-sm">
-                                          {t("resources.actionOpen")}
-                                        </Text>
-                                      </Pressable>
-                                    ) : null}
-
-                                    <Pressable
-                                      onPress={() => {
-                                        void setOpportunityDone(
-                                          item.opportunityId,
-                                          !item.isDone
-                                        );
-                                      }}
-                                      className={`px-4 py-2.5 rounded-xl border items-center ${
-                                        item.isDone
-                                          ? "bg-white/10 border-white/20"
-                                          : "bg-emerald-500 border-emerald-500"
-                                      }`}
-                                      style={stackOpportunityActions ? { width: "100%" } : undefined}
-                                    >
-                                      <Text
-                                        className={`text-sm ${
-                                          item.isDone ? textClass : "text-white"
-                                        }`}
-                                      >
-                                        {item.isDone
-                                          ? t("resources.actionUndo")
-                                          : t("resources.actionMarkDone")}
-                                      </Text>
-                                    </Pressable>
-                                  </View>
-                                </View>
-                              </View>
-                            ))}
-                          </View>
-                        </View>
-                      ))}
-                    </View>
-                  )}
+              {groupedOpportunities.length > 0 || filteredReferenceSections.length > 0 ? (
+                <View className="gap-6 mb-8">
+                  {groupedOpportunities.map((section) => renderListStyleOpportunitySection(section))}
+                  {filteredReferenceSections.map((section) => renderListStyleReferenceSection(section))}
                 </View>
-
-                <View style={referenceColumnStyle}>
-                  {filteredReferenceSections.length > 0 ? (
-                    <View className="gap-6">
-                      {filteredReferenceSections.map((section) => (
-                        <View key={section.id}>
-                          <View className="flex-row items-center mb-3 px-2">
-                            <MaterialIcons
-                              name={section.icon}
-                              size={18}
-                              color={placeholderColor}
-                            />
-                            <Text className={`${textClass} ml-2`}>{section.title}</Text>
-                          </View>
-
-                          <View className={`${cardClass} border rounded-2xl overflow-hidden`}>
-                            {section.items.map((item, index) => (
-                              <Pressable
-                                key={`${section.id}-${item.title}`}
-                                onPress={() => {
-                                  void openLink(item.url);
-                                }}
-                                className={`px-4 py-5 flex-row items-start ${
-                                  index !== section.items.length - 1
-                                    ? `border-b ${borderClass}`
-                                    : ""
-                                }`}
-                                accessibilityRole="link"
-                              >
-                                <View className="mt-0.5">
-                                  <Ionicons
-                                    name="link-outline"
-                                    size={18}
-                                    color={placeholderColor}
-                                  />
-                                </View>
-
-                                <View className="flex-1 ml-3">
-                                  <Text className={`${textClass} font-medium mb-1`}>
-                                    {item.title}
-                                  </Text>
-                                  <Text className={`${secondaryTextClass} text-sm`}>
-                                    {item.description}
-                                  </Text>
-                                </View>
-
-                                <MaterialIcons
-                                  name="open-in-new"
-                                  size={18}
-                                  color={placeholderColor}
-                                />
-                              </Pressable>
-                            ))}
-                          </View>
-                        </View>
-                      ))}
-                    </View>
-                  ) : null}
-
-                  <View className={filteredReferenceSections.length > 0 ? "mt-8" : isDesktop ? "mt-2" : "mt-0"}>
-                    <Text className={`text-xs ${secondaryTextClass} text-center`}>
-                      {t("resources.openInBrowser")}
-                    </Text>
-                  </View>
+              ) : (
+                <View className={`${cardClass} border rounded-2xl p-5 mb-6`}>
+                  <Text className={`${textClass} mb-1`}>
+                    {t("resources.noMatches")}
+                  </Text>
+                  <Text className={`${secondaryTextClass} text-sm`}>
+                    {t("resources.tryDifferentSearch")}
+                  </Text>
                 </View>
+              )}
+
+              <View className="mb-8">
+                <Text className={`text-xs ${secondaryTextClass} text-center`}>
+                  {t("resources.openInBrowser")}
+                </Text>
               </View>
             </>
           )}

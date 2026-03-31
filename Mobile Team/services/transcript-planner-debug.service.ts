@@ -14,12 +14,25 @@ export type TranscriptPlannerDebugSnapshot = {
     sizeBytes: number | null;
     uploadedAt: string | null;
   };
+  parserVersion: number | null;
+  storedParserVersion: number | null;
   transcriptSourceKey: string | null;
   storedTranscriptSource: string | null;
   completedCoursesBeforeCount: number;
   questionnaireCompletedCourseCount: number;
   parsedCourseCount: number | null;
   parsedCourseCodesPreview: string[];
+  parsedCourseAssignmentsPreview: {
+    code: string;
+    label: string;
+    termLabel: string | null;
+    termStartDate: string | null;
+  }[];
+  parsedQuarterBuckets: {
+    termLabel: string | null;
+    termStartDate: string | null;
+    courseCodes: string[];
+  }[];
   error:
     | {
         name: string | null;

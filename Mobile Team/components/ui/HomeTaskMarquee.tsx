@@ -19,6 +19,10 @@ type HomeTaskMarqueeProps = {
 
 const CARD_WIDTH = 288;
 const CARD_GAP = 16;
+const INITIAL_AUTO_SCROLL_DELAY_MS = 20000;
+const AUTO_SCROLL_RESUME_DELAY_MS = 4000;
+const MIN_AUTO_SCROLL_DURATION_MS = 30000;
+const AUTO_SCROLL_MS_PER_PIXEL = 48;
 
 export function HomeTaskMarquee({ items }: HomeTaskMarqueeProps) {
   const { resolvedTheme } = useAppTheme();
@@ -50,6 +54,7 @@ export function HomeTaskMarquee({ items }: HomeTaskMarqueeProps) {
   const animationRef = useRef<Animated.CompositeAnimation | null>(null);
   const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const suppressPressTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const mountedAtRef = useRef(Date.now());
   const offsetRef = useRef(0);
   const dragStartOffsetRef = useRef(0);
   const suppressPressRef = useRef(false);
@@ -125,26 +130,64 @@ export function HomeTaskMarquee({ items }: HomeTaskMarqueeProps) {
       animationRef.current?.stop();
       translateX.stopAnimation();
 
-      const normalizedStart = normalizeOffset(startValue);
-      offsetRef.current = normalizedStart;
-      translateX.setValue(normalizedStart);
-
       if (sequenceWidth <= 0 || items.length === 0) {
         return;
       }
 
-      const duration = Math.max(18000, Math.round(sequenceWidth * 32));
-      const animation = Animated.loop(
-        Animated.timing(translateX, {
-          toValue: normalizedStart - sequenceWidth,
-          duration,
-          easing: Easing.linear,
-          useNativeDriver: Platform.OS !== "web",
-        })
+      const normalizedStart = normalizeOffset(startValue);
+      const cycleStart = normalizedStart === 0 ? -sequenceWidth : normalizedStart;
+      offsetRef.current = cycleStart;
+      translateX.setValue(cycleStart);
+
+      const duration = Math.max(
+        MIN_AUTO_SCROLL_DURATION_MS,
+        Math.round(sequenceWidth * AUTO_SCROLL_MS_PER_PIXEL)
+      );
+      const initialDuration = Math.max(
+        1,
+        Math.round((Math.abs(0 - cycleStart) / sequenceWidth) * duration)
       );
 
+      const loopAnimation = Animated.loop(
+        Animated.sequence([
+          Animated.timing(translateX, {
+            toValue: 0,
+            duration,
+            easing: Easing.linear,
+            useNativeDriver: Platform.OS !== "web",
+          }),
+          Animated.timing(translateX, {
+            toValue: -sequenceWidth,
+            duration: 0,
+            easing: Easing.linear,
+            useNativeDriver: Platform.OS !== "web",
+          }),
+        ])
+      );
+
+      const animation = Animated.sequence([
+        Animated.timing(translateX, {
+          toValue: 0,
+          duration: initialDuration,
+          easing: Easing.linear,
+          useNativeDriver: Platform.OS !== "web",
+        }),
+        Animated.timing(translateX, {
+          toValue: -sequenceWidth,
+          duration: 0,
+          easing: Easing.linear,
+          useNativeDriver: Platform.OS !== "web",
+        }),
+      ]);
+
       animationRef.current = animation;
-      animation.start();
+      animation.start(({ finished }) => {
+        if (!finished) return;
+        offsetRef.current = -sequenceWidth;
+        translateX.setValue(-sequenceWidth);
+        animationRef.current = loopAnimation;
+        loopAnimation.start();
+      });
     },
     [clearResumeTimeout, items.length, normalizeOffset, sequenceWidth, translateX]
   );
@@ -171,7 +214,9 @@ export function HomeTaskMarquee({ items }: HomeTaskMarqueeProps) {
   );
 
   useEffect(() => {
-    scheduleAutoScrollResume(0);
+    const elapsedMs = Date.now() - mountedAtRef.current;
+    const remainingDelayMs = Math.max(0, INITIAL_AUTO_SCROLL_DELAY_MS - elapsedMs);
+    scheduleAutoScrollResume(0, remainingDelayMs);
     return () => {
       clearResumeTimeout();
       clearSuppressPressTimeout();
@@ -211,7 +256,7 @@ export function HomeTaskMarquee({ items }: HomeTaskMarqueeProps) {
           const normalized = normalizeOffset(offsetRef.current);
           offsetRef.current = normalized;
           translateX.setValue(normalized);
-          scheduleAutoScrollResume(normalized, 4000);
+          scheduleAutoScrollResume(normalized, AUTO_SCROLL_RESUME_DELAY_MS);
         },
         onPanResponderTerminate: () => {
           setIsDragging(false);
@@ -219,7 +264,7 @@ export function HomeTaskMarquee({ items }: HomeTaskMarqueeProps) {
           const normalized = normalizeOffset(offsetRef.current);
           offsetRef.current = normalized;
           translateX.setValue(normalized);
-          scheduleAutoScrollResume(normalized, 4000);
+          scheduleAutoScrollResume(normalized, AUTO_SCROLL_RESUME_DELAY_MS);
         },
       }),
     [clampDragOffset, clearResumeTimeout, normalizeOffset, scheduleAutoScrollResume, temporarilySuppressPress, translateX]
@@ -293,14 +338,14 @@ export function HomeTaskMarquee({ items }: HomeTaskMarqueeProps) {
             transform: [{ translateX }],
           }}
         >
+          <View style={{ flexDirection: "row", gap: CARD_GAP, paddingRight: CARD_GAP }}>
+            {sequenceItems.map((item, index) => renderCard(item, `${item.id}-clone-${index}`))}
+          </View>
           <View
             onLayout={(event) => setSequenceWidth(event.nativeEvent.layout.width)}
             style={{ flexDirection: "row", gap: CARD_GAP, paddingRight: CARD_GAP }}
           >
             {sequenceItems.map((item) => renderCard(item, item.id))}
-          </View>
-          <View style={{ flexDirection: "row", gap: CARD_GAP, paddingRight: CARD_GAP }}>
-            {sequenceItems.map((item, index) => renderCard(item, `${item.id}-clone-${index}`))}
           </View>
         </Animated.View>
       </View>
