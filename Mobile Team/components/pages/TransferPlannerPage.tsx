@@ -9,6 +9,7 @@ import {
   Pressable,
   ScrollView,
   Text,
+  TextInput,
   View,
   useWindowDimensions,
 } from "react-native";
@@ -279,6 +280,14 @@ async function openExternalLink(url: string) {
   }
 }
 
+function normalizeSelectorSearchValue(value: string) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 function SelectorField({
   label,
   value,
@@ -287,6 +296,8 @@ function SelectorField({
   onToggle,
   options,
   onSelect,
+  searchable,
+  searchPlaceholder,
   textClass,
   secondaryTextClass,
   cardClass,
@@ -299,11 +310,66 @@ function SelectorField({
   onToggle: () => void;
   options: { id: string; label: string; description?: string }[];
   onSelect: (id: string) => void;
+  searchable?: boolean;
+  searchPlaceholder?: string;
   textClass: string;
   secondaryTextClass: string;
   cardClass: string;
   borderClass: string;
 }) {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    if (!open) {
+      setSearchQuery("");
+    }
+  }, [open]);
+
+  const normalizedQuery = normalizeSelectorSearchValue(searchQuery);
+  const filteredOptions = useMemo(() => {
+    if (!searchable || !normalizedQuery) {
+      return searchable ? options.slice(0, 12) : options;
+    }
+
+    const startsWithMatches: { id: string; label: string; description?: string }[] = [];
+    const includesMatches: { id: string; label: string; description?: string }[] = [];
+
+    for (const option of options) {
+      const normalizedLabel = normalizeSelectorSearchValue(option.label);
+      if (normalizedLabel.startsWith(normalizedQuery)) {
+        startsWithMatches.push(option);
+        continue;
+      }
+      if (normalizedLabel.includes(normalizedQuery)) {
+        includesMatches.push(option);
+      }
+    }
+
+    return [...startsWithMatches, ...includesMatches];
+  }, [normalizedQuery, options, searchable]);
+
+  const autocompleteOption = useMemo(() => {
+    if (!searchable || !normalizedQuery) return null;
+    const selectedOption =
+      options.find((option) => option.label === value) ?? null;
+    if (selectedOption) {
+      const normalizedSelectedLabel = normalizeSelectorSearchValue(selectedOption.label);
+      if (
+        normalizedSelectedLabel.startsWith(normalizedQuery) &&
+        normalizedSelectedLabel !== normalizedQuery
+      ) {
+        return selectedOption;
+      }
+    }
+
+    const firstOption = filteredOptions[0] ?? null;
+    if (!firstOption) return null;
+    const normalizedLabel = normalizeSelectorSearchValue(firstOption.label);
+    if (!normalizedLabel.startsWith(normalizedQuery)) return null;
+    if (normalizedLabel === normalizedQuery) return null;
+    return firstOption;
+  }, [filteredOptions, normalizedQuery, options, searchable, value]);
+
   return (
     <View>
       <Text className={`${textClass} text-base font-semibold`}>{label}</Text>
@@ -327,10 +393,53 @@ function SelectorField({
 
       {open ? (
         <View className="gap-3 mt-3">
-          {options.map((option) => (
+          {searchable ? (
+            <View className={`border ${borderClass} rounded-2xl px-4 py-2`}>
+              <TextInput
+                value={searchQuery}
+                onChangeText={setSearchQuery}
+                placeholder={searchPlaceholder ?? `Search ${label.toLowerCase()}`}
+                placeholderTextColor="#9CA3AF"
+                autoCapitalize="none"
+                autoCorrect={false}
+                className={`${textClass} text-sm`}
+                onSubmitEditing={() => {
+                  if (!autocompleteOption) return;
+                  setSearchQuery("");
+                  onSelect(autocompleteOption.id);
+                }}
+              />
+            </View>
+          ) : null}
+
+          {searchable && autocompleteOption ? (
+            <Pressable
+              onPress={() => {
+                setSearchQuery("");
+                onSelect(autocompleteOption.id);
+              }}
+              className={`border ${borderClass} rounded-2xl px-4 py-4 bg-emerald-500/5`}
+            >
+              <Text className="text-emerald-500 text-xs font-semibold">Autocomplete</Text>
+              <Text className={`${textClass} font-semibold mt-1`}>
+                {autocompleteOption.label}
+              </Text>
+            </Pressable>
+          ) : null}
+
+          {searchable && !normalizedQuery ? (
+            <Text className={`${secondaryTextClass} text-xs`}>
+              Start typing to search all majors. Showing the first 12 until you type.
+            </Text>
+          ) : null}
+
+          {filteredOptions.map((option) => (
             <Pressable
               key={option.id}
-              onPress={() => onSelect(option.id)}
+              onPress={() => {
+                setSearchQuery("");
+                onSelect(option.id);
+              }}
               className={`border ${borderClass} rounded-2xl px-4 py-4`}
             >
               <Text className={`${textClass} font-semibold`}>{option.label}</Text>
@@ -341,6 +450,12 @@ function SelectorField({
               ) : null}
             </Pressable>
           ))}
+
+          {searchable && normalizedQuery && !filteredOptions.length ? (
+            <Text className={`${secondaryTextClass} text-sm`}>
+              No majors match that search yet.
+            </Text>
+          ) : null}
         </View>
       ) : null}
     </View>
@@ -465,6 +580,8 @@ function TranscriptSummaryCard({
                 onToggle={onToggleMajor}
                 options={majorOptions}
                 onSelect={onSelectMajor}
+                searchable
+                searchPlaceholder="Search majors"
                 textClass={textClass}
                 secondaryTextClass={secondaryTextClass}
                 cardClass={cardClass}
@@ -568,6 +685,8 @@ function TranscriptSummaryCard({
               onToggle={onToggleMajor}
               options={majorOptions}
               onSelect={onSelectMajor}
+              searchable
+              searchPlaceholder="Search majors"
               textClass={textClass}
               secondaryTextClass={secondaryTextClass}
               cardClass={cardClass}
@@ -757,6 +876,26 @@ function PlannerReferenceCard({
   const currentCourseCodeSet = new Set(
     [...currentCourseLabels].flatMap((label) => extractCourseCodes(label))
   );
+  const [openBankId, setOpenBankId] = useState<string | null>(banks[0]?.id ?? null);
+  const [openChainId, setOpenChainId] = useState<string | null>(chains[0]?.id ?? null);
+
+  useEffect(() => {
+    setOpenBankId((currentOpenBankId) => {
+      if (currentOpenBankId && banks.some((bank) => bank.id === currentOpenBankId)) {
+        return currentOpenBankId;
+      }
+      return banks[0]?.id ?? null;
+    });
+  }, [banks]);
+
+  useEffect(() => {
+    setOpenChainId((currentOpenChainId) => {
+      if (currentOpenChainId && chains.some((chain) => chain.id === currentOpenChainId)) {
+        return currentOpenChainId;
+      }
+      return chains[0]?.id ?? null;
+    });
+  }, [chains]);
 
   return (
     <View className={`${cardClass} border rounded-[28px] p-5`}>
@@ -767,84 +906,85 @@ function PlannerReferenceCard({
           : "This degree uses the current master GRC bank and sequence coverage. Use it as the main planning reference before final advisor review."}
       </Text>
 
-      <View className="flex-row flex-wrap gap-2 mt-4">
-        <View className="px-3 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/10">
-          <Text className="text-xs font-semibold text-emerald-500">
-            {plan.sourceType === "detailed" ? "Detailed planner" : "Master reference"}
-          </Text>
-        </View>
-        <View className="px-3 py-1 rounded-full border border-white/10 bg-white/5">
-          <Text className={`text-xs font-semibold ${textClass}`}>
-            {plan.coverage === "detailed" ? "Detailed coverage" : "Reference coverage"}
-          </Text>
-        </View>
-        {plan.family ? (
-          <View className="px-3 py-1 rounded-full border border-white/10 bg-white/5">
-            <Text className={`text-xs font-semibold ${textClass}`}>{plan.family}</Text>
-          </View>
-        ) : null}
-      </View>
-
-      {plan.plannerNote ? (
-        <View className={`mt-4 border ${borderClass} rounded-2xl px-4 py-4`}>
-          <Text className={`${textClass} font-semibold`}>Planner note</Text>
-          <Text className={`${secondaryTextClass} text-sm mt-2`}>{plan.plannerNote}</Text>
-        </View>
-      ) : null}
-
       {banks.length ? (
         <View className="mt-5 gap-4">
           <Text className={`${textClass} text-base font-semibold`}>Current GRC class banks</Text>
+          <Text className={`${secondaryTextClass} text-sm`}>
+            Open a bank to see every current Green River class that fits this UW degree path.
+          </Text>
           {banks.map((bank) => {
             const completedCount = bank.courses.filter((course) =>
               extractCourseCodes(course).some((code) => completedCourseCodeSet.has(code))
             ).length;
+            const isOpen = openBankId === bank.id;
 
             return (
               <View key={bank.id} className={`border ${borderClass} rounded-2xl px-4 py-4`}>
-                <View className="flex-row items-center justify-between gap-3">
-                  <Text className={`${textClass} font-semibold flex-1`}>
-                    {getTransferPlannerBankLabel(bank.id)}
-                  </Text>
-                  <View className="px-3 py-1 rounded-full border border-white/10 bg-white/5">
-                    <Text className={`${secondaryTextClass} text-xs font-semibold`}>
-                      {`${completedCount}/${bank.courses.length} completed`}
-                    </Text>
-                  </View>
-                </View>
-
-                <View className="flex-row flex-wrap gap-2 mt-3">
-                  {bank.courses.map((course) => {
-                    const courseCodes = extractCourseCodes(course);
-                    const isCompleted = courseCodes.some((code) => completedCourseCodeSet.has(code));
-                    const isCurrent = !isCompleted && courseCodes.some((code) => currentCourseCodeSet.has(code));
-
-                    return (
-                      <View
-                        key={`${bank.id}-${course}`}
-                        className={`px-3 py-2 rounded-full border ${
-                          isCompleted
-                            ? "bg-emerald-500/10 border-emerald-500/20"
-                            : isCurrent
-                              ? "bg-sky-500/10 border-sky-500/20"
-                              : "bg-white/5 border-white/10"
-                        }`}
-                      >
-                        <Text
-                          className={`text-xs font-semibold ${
-                            isCompleted
-                              ? "text-emerald-500"
-                              : isCurrent
-                                ? "text-sky-400"
-                                : textClass
-                          }`}
-                        >
-                          {course}
+                <Pressable
+                  onPress={() =>
+                    setOpenBankId((currentBankId) => (currentBankId === bank.id ? null : bank.id))
+                  }
+                  accessibilityRole="button"
+                  accessibilityState={{ expanded: isOpen }}
+                >
+                  <View className="flex-row items-center justify-between gap-3">
+                    <View className="flex-1 min-w-0">
+                      <Text className={`${textClass} font-semibold`}>
+                        {getTransferPlannerBankLabel(bank.id)}
+                      </Text>
+                      <Text className={`${secondaryTextClass} text-sm mt-1`}>
+                        {`${bank.courses.length} current GRC classes`}
+                      </Text>
+                    </View>
+                    <View className="flex-row items-center gap-2">
+                      <View className="px-3 py-1 rounded-full border border-white/10 bg-white/5">
+                        <Text className={`${secondaryTextClass} text-xs font-semibold`}>
+                          {`${completedCount}/${bank.courses.length} completed`}
                         </Text>
                       </View>
-                    );
-                  })}
-                </View>
+                      <Ionicons
+                        name={isOpen ? "chevron-up" : "chevron-down"}
+                        size={18}
+                        color="#9CA3AF"
+                      />
+                    </View>
+                  </View>
+                </Pressable>
+
+                {isOpen ? (
+                  <View className="flex-row flex-wrap gap-2 mt-3">
+                    {bank.courses.map((course) => {
+                      const courseCodes = extractCourseCodes(course);
+                      const isCompleted = courseCodes.some((code) => completedCourseCodeSet.has(code));
+                      const isCurrent = !isCompleted && courseCodes.some((code) => currentCourseCodeSet.has(code));
+
+                      return (
+                        <View
+                          key={`${bank.id}-${course}`}
+                          className={`px-3 py-2 rounded-full border ${
+                            isCompleted
+                              ? "bg-emerald-500/10 border-emerald-500/20"
+                              : isCurrent
+                                ? "bg-sky-500/10 border-sky-500/20"
+                                : "bg-white/5 border-white/10"
+                          }`}
+                        >
+                          <Text
+                            className={`text-xs font-semibold ${
+                              isCompleted
+                                ? "text-emerald-500"
+                                : isCurrent
+                                  ? "text-sky-400"
+                                  : textClass
+                            }`}
+                          >
+                            {course}
+                          </Text>
+                        </View>
+                      );
+                    })}
+                  </View>
+                ) : null}
               </View>
             );
           })}
@@ -856,23 +996,48 @@ function PlannerReferenceCard({
           <Text className={`${textClass} text-base font-semibold`}>
             Prerequisite and full-credit chain rules
           </Text>
-          {chains.map((chain) => (
-            <View key={chain.id} className={`border ${borderClass} rounded-2xl px-4 py-4`}>
-              <View className="flex-row items-center justify-between gap-3">
-                <Text className={`${textClass} font-semibold flex-1`}>
-                  {getTransferPlannerChainLabel(chain.id)}
-                </Text>
-                <View className="px-3 py-1 rounded-full border border-white/10 bg-white/5">
-                  <Text className={`${secondaryTextClass} text-xs font-semibold`}>
-                    {chain.type}
+          <Text className={`${secondaryTextClass} text-sm`}>
+            Open a rule to see the exact sequence or full-credit condition that matters for transfer planning.
+          </Text>
+          {chains.map((chain) => {
+            const isOpen = openChainId === chain.id;
+
+            return (
+              <View key={chain.id} className={`border ${borderClass} rounded-2xl px-4 py-4`}>
+                <Pressable
+                  onPress={() =>
+                    setOpenChainId((currentChainId) =>
+                      currentChainId === chain.id ? null : chain.id
+                    )
+                  }
+                  accessibilityRole="button"
+                  accessibilityState={{ expanded: isOpen }}
+                >
+                  <View className="flex-row items-center justify-between gap-3">
+                    <View className="flex-1 min-w-0">
+                      <Text className={`${textClass} font-semibold`}>
+                        {getTransferPlannerChainLabel(chain.id)}
+                      </Text>
+                      <Text className={`${secondaryTextClass} text-sm mt-1`}>
+                        {chain.type}
+                      </Text>
+                    </View>
+                    <Ionicons
+                      name={isOpen ? "chevron-up" : "chevron-down"}
+                      size={18}
+                      color="#9CA3AF"
+                    />
+                  </View>
+                </Pressable>
+
+                {isOpen ? (
+                  <Text className={`${secondaryTextClass} text-sm mt-3`}>
+                    {chain.rule.replace(/`/g, "")}
                   </Text>
-                </View>
+                ) : null}
               </View>
-              <Text className={`${secondaryTextClass} text-sm mt-2`}>
-                {chain.rule.replace(/`/g, "")}
-              </Text>
-            </View>
-          ))}
+            );
+          })}
         </View>
       ) : null}
     </View>
