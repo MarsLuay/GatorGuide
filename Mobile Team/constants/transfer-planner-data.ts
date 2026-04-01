@@ -21,6 +21,7 @@ export type TransferPlannerChecklistItem = {
   id: string;
   title: string;
   grcCourses: string[];
+  alternatives?: string[][];
   note?: string;
   minCompletedCount?: number;
 };
@@ -76,6 +77,13 @@ export type TransferPlannerMajorPlan = {
   sourceType?: TransferPlannerSourceType;
 };
 
+const STEM_CALCULUS_CURRENT_SEQUENCE = ["MATH& 151", "MATH& 152", "MATH& 163"];
+const STEM_CALCULUS_OLDER_SEQUENCE = ["MATH& 151", "MATH& 152", "MATH& 153", "MATH& 254"];
+const FULL_GENERAL_CHEMISTRY_SEQUENCE = ["CHEM& 161", "CHEM& 162", "CHEM& 163"];
+const FULL_BIOLOGY_MAJORS_SEQUENCE = ["BIOL& 211", "BIOL& 212", "BIOL& 213"];
+const STEM_CALCULUS_ALTERNATIVE_NOTE =
+  "Current UW guidance accepts MATH& 163 for MATH 126. Older UW and Green River materials also use the MATH& 153 + MATH& 254 combination, which UW lists as transferring as MATH 126, 224, and 2XX credit when both courses are completed.";
+
 const item = (
   id: string,
   title: string,
@@ -85,6 +93,20 @@ const item = (
   id,
   title,
   grcCourses,
+  note,
+});
+
+const itemWithAlternatives = (
+  id: string,
+  title: string,
+  grcCourses: string[],
+  alternatives: string[][],
+  note?: string
+): TransferPlannerChecklistItem => ({
+  id,
+  title,
+  grcCourses,
+  alternatives,
   note,
 });
 
@@ -108,6 +130,50 @@ const itemAny = (
   grcCourses: string[],
   note?: string
 ): TransferPlannerChecklistItem => itemCount(id, title, grcCourses, 1, note);
+
+const itemCountWithAlternatives = (
+  id: string,
+  title: string,
+  grcCourses: string[],
+  alternatives: string[][],
+  minCompletedCount: number,
+  note?: string
+): TransferPlannerChecklistItem => ({
+  id,
+  title,
+  grcCourses,
+  alternatives,
+  note,
+  minCompletedCount,
+});
+
+const itemStemCalcSequence = (
+  id: string,
+  title: string,
+  note = STEM_CALCULUS_ALTERNATIVE_NOTE
+): TransferPlannerChecklistItem =>
+  itemWithAlternatives(
+    id,
+    title,
+    STEM_CALCULUS_CURRENT_SEQUENCE,
+    [STEM_CALCULUS_OLDER_SEQUENCE],
+    note
+  );
+
+const itemStemCalcCredits = (
+  id: string,
+  title: string,
+  minCompletedCount: number,
+  note = STEM_CALCULUS_ALTERNATIVE_NOTE
+): TransferPlannerChecklistItem =>
+  itemCountWithAlternatives(
+    id,
+    title,
+    STEM_CALCULUS_CURRENT_SEQUENCE,
+    [STEM_CALCULUS_OLDER_SEQUENCE],
+    minCompletedCount,
+    note
+  );
 
 export const TRANSFER_PLANNER_CAMPUSES: TransferPlannerCampus[] = [
   {
@@ -189,7 +255,7 @@ export const TRANSFER_PLANNER_TRACKS: TransferPlannerTrack[] = [
     terms: [
       { label: "Year 1 Fall", courses: ["ENGL& 101", "MATH& 151", "ENGR 100"] },
       { label: "Year 1 Winter", courses: ["CHEM& 161", "MATH& 152", "ENGR 106"] },
-      { label: "Year 1 Spring", courses: ["CHEM& 162", "MATH& 153", "Humanities"] },
+      { label: "Year 1 Spring", courses: ["CHEM& 162", "MATH& 163", "Humanities"] },
       { label: "Year 2 Fall", courses: ["PHYS& 221", "MATH& 254", "ENGR& 214"] },
       { label: "Year 2 Winter", courses: ["PHYS& 222", "MATH 238", "ENGR& 215"] },
       { label: "Year 2 Spring", courses: ["PHYS& 223", "MATH 240", "Social Science"] },
@@ -197,6 +263,7 @@ export const TRANSFER_PLANNER_TRACKS: TransferPlannerTrack[] = [
     notes: [
       "Useful as the shared backbone behind several engineering pathways.",
       "Most Seattle engineering majors still need a more specific MRP or custom add-on set on top of this base.",
+      "Older sample plans may still show MATH& 153 before MATH& 254. The current direct UW MATH 126 path uses MATH& 163 instead.",
     ],
   },
   {
@@ -215,7 +282,7 @@ export const TRANSFER_PLANNER_TRACKS: TransferPlannerTrack[] = [
     terms: [
       { label: "Year 1 Fall", courses: ["ENGL& 101", "MATH& 151", "ENGR 100"] },
       { label: "Year 1 Winter", courses: ["CHEM& 161", "MATH& 152", "ENGR 106"] },
-      { label: "Year 1 Spring", courses: ["CHEM& 162", "MATH& 153", "Humanities"] },
+      { label: "Year 1 Spring", courses: ["CHEM& 162", "MATH& 163", "Humanities"] },
       { label: "Year 2 Fall", courses: ["PHYS& 221", "MATH& 254", "ENGR& 214"] },
       { label: "Year 2 Winter", courses: ["PHYS& 222", "MATH 238", "ENGR& 215"] },
       { label: "Year 2 Spring", courses: ["PHYS& 223", "MATH 240", "Social Science"] },
@@ -225,6 +292,7 @@ export const TRANSFER_PLANNER_TRACKS: TransferPlannerTrack[] = [
     notes: [
       "Use the elective slots intentionally for add-ons like ENGR& 224, ENGR 250, or programming.",
       "This track is especially good when you want to maximize financial-aid-safe engineering credits at Green River.",
+      "Older sample plans may still show MATH& 153 before MATH& 254. The current direct UW MATH 126 path uses MATH& 163 instead.",
     ],
   },
   {
@@ -237,8 +305,8 @@ export const TRANSFER_PLANNER_TRACKS: TransferPlannerTrack[] = [
     terms: [
       { label: "Year 1 Fall", courses: ["ENGL& 101", "MATH& 151", "ENGR 100"] },
       { label: "Year 1 Winter", courses: ["CHEM& 161", "MATH& 152", "Humanities"] },
-      { label: "Year 1 Spring", courses: ["CS 121", "MATH& 153", "Social Science", "ENGR 106"] },
-      { label: "Year 2 Fall", courses: ["PHYS& 221", "MATH& 254", "CS 122"] },
+      { label: "Year 1 Spring", courses: ["CS 121", "MATH& 163", "Social Science", "ENGR 106"] },
+      { label: "Year 2 Fall", courses: ["PHYS& 221", "MATH& 254 if you are finishing the older Calc III path", "CS 122"] },
       { label: "Year 2 Winter", courses: ["PHYS& 222", "MATH 238", "CS 123"] },
       { label: "Year 2 Spring", courses: ["PHYS& 223", "ENGR& 204", "Humanities or Social Science"] },
       { label: "Year 3 Fall", courses: ["Select course from list", "Select course from list"] },
@@ -246,6 +314,7 @@ export const TRANSFER_PLANNER_TRACKS: TransferPlannerTrack[] = [
     notes: [
       "This is the best stock fit when the destination major needs the full CS 121 / 122 / 123 sequence.",
       "It also keeps physics, higher math, and circuit preparation aligned with UW engineering expectations.",
+      "Current UW guidance maps MATH& 163 cleanly to UW MATH 126. Older planning materials may still show the alternative MATH& 153 + MATH& 254 route.",
     ],
   },
   {
@@ -264,7 +333,7 @@ export const TRANSFER_PLANNER_TRACKS: TransferPlannerTrack[] = [
         label: "Year 1 Winter",
         courses: ["ENGR 100", "MATH& 152", "CHEM& 162", "Humanities or Social Science"],
       },
-      { label: "Year 1 Spring", courses: ["MATH& 153", "CHEM& 163"] },
+      { label: "Year 1 Spring", courses: ["MATH& 163", "CHEM& 163"] },
       { label: "Year 2 Fall", courses: ["PHYS& 221", "MATH& 254", "CHEM& 261"] },
       { label: "Year 2 Winter", courses: ["PHYS& 222", "MATH 238", "BIOL& 260 or CHEM& 262"] },
       { label: "Year 2 Spring", courses: ["PHYS& 223", "Humanities or Social Science", "Select course from list"] },
@@ -273,6 +342,7 @@ export const TRANSFER_PLANNER_TRACKS: TransferPlannerTrack[] = [
     notes: [
       "BioE now needs biology plus programming decisions beyond the stock PDF path.",
       "ChemE has spring-start timing, so term planning should be treated separately from a normal autumn engineering transfer.",
+      "Older sample plans may still show MATH& 153 before MATH& 254. The current direct UW MATH 126 path uses MATH& 163 instead.",
     ],
   },
 ];
@@ -323,7 +393,7 @@ export const TRANSFER_PLANNER_MAJOR_PLANS: TransferPlannerMajorPlan[] = [
     financialAidNote:
       "If you are still choosing between Computer Engineering and ECE, 999P is the best path to keep both options open.",
     applicationChecklist: [
-      item("calc123", "MATH 124, 125, 126", ["MATH& 151", "MATH& 152", "MATH& 163"], "Use the current UW equivalency guide when the older GRC sample plan still shows MATH& 153."),
+      itemStemCalcSequence("calc123", "MATH 124, 125, 126"),
       item("cs123", "CSE 143 or CSE 123", ["CS 121", "CS 122", "CS 123"], "Allen strongly prefers the full modern CS intro sequence."),
       item("phys121", "PHYS 121", ["PHYS& 221"]),
       item("engl101", "English composition", ["ENGL& 101"]),
@@ -382,7 +452,7 @@ export const TRANSFER_PLANNER_MAJOR_PLANS: TransferPlannerMajorPlan[] = [
     financialAidNote:
       "If the student is mostly CS-focused but still wants engineering backup options, 999P is a better Green River anchor than a looser custom schedule.",
     applicationChecklist: [
-      item("calc123", "MATH 124, 125, 126", ["MATH& 151", "MATH& 152", "MATH& 163"]),
+      itemStemCalcSequence("calc123", "MATH 124, 125, 126"),
       item("cs123", "CSE 143 or CSE 123", ["CS 121", "CS 122", "CS 123"]),
       item("engl101", "English composition", ["ENGL& 101"]),
       item("phys121", "PHYS 121", ["PHYS& 221"], "Allen lists PHYS 121 on the transfer preparation path."),
@@ -439,7 +509,7 @@ export const TRANSFER_PLANNER_MAJOR_PLANS: TransferPlannerMajorPlan[] = [
     financialAidNote:
       "999P is the easiest Green River degree story to defend if the student is using aid and still deciding between ECE and Computer Engineering.",
     applicationChecklist: [
-      item("calc123", "MATH 124, 125, 126", ["MATH& 151", "MATH& 152", "MATH& 163"]),
+      itemStemCalcSequence("calc123", "MATH 124, 125, 126"),
       itemCount("cse122or123", "CSE 122 or CSE 123", ["CS 121", "CS 122", "CS 123"], 2, "Completing the full three-course sequence is the safest Green River option."),
       item("phys121-122", "PHYS 121 and PHYS 122", ["PHYS& 221", "PHYS& 222"]),
       item("engl101", "English composition", ["ENGL& 101"]),
@@ -499,7 +569,7 @@ export const TRANSFER_PLANNER_MAJOR_PLANS: TransferPlannerMajorPlan[] = [
       "Use 999Q as the base, then deliberately place chemistry depth and linear algebra into approved slots so the student does not drift into random extra credits.",
     applicationChecklist: [
       item("engl101", "English composition", ["ENGL& 101"]),
-      item("calc123", "MATH 124, 125, 126", ["MATH& 151", "MATH& 152", "MATH& 163"]),
+      itemStemCalcSequence("calc123", "MATH 124, 125, 126"),
       item("phys121-122", "PHYS 121 and PHYS 122", ["PHYS& 221", "PHYS& 222"]),
       item("chem142", "CHEM 142", ["CHEM& 161"]),
       item("aa210", "A A 210", ["ENGR& 214"]),
@@ -559,7 +629,7 @@ export const TRANSFER_PLANNER_MAJOR_PLANS: TransferPlannerMajorPlan[] = [
     financialAidNote:
       "The main risk is forgetting to place a computing course into the plan early enough; keep that add-on visible from the start.",
     applicationChecklist: [
-      item("calc123", "MATH 124, 125, 126", ["MATH& 151", "MATH& 152", "MATH& 163"]),
+      itemStemCalcSequence("calc123", "MATH 124, 125, 126"),
       item("chem142", "CHEM 142", ["CHEM& 161"]),
       item("phys121-122", "PHYS 121 and PHYS 122", ["PHYS& 221", "PHYS& 222"]),
       item("aa210", "A A 210", ["ENGR& 214"]),
@@ -619,7 +689,7 @@ export const TRANSFER_PLANNER_MAJOR_PLANS: TransferPlannerMajorPlan[] = [
     financialAidNote:
       "A&A works best when the student treats the list-based slots as intentional placeholders for ENGR& 224 and ENGR 250 rather than letting them fill with low-value random electives.",
     applicationChecklist: [
-      item("calc123", "MATH 124, 125, 126", ["MATH& 151", "MATH& 152", "MATH& 163"]),
+      itemStemCalcSequence("calc123", "MATH 124, 125, 126"),
       item("chem142", "CHEM 142", ["CHEM& 161"]),
       item("phys121-122", "PHYS 121 and PHYS 122", ["PHYS& 221", "PHYS& 222"]),
       item("aa210", "A A 210", ["ENGR& 214"]),
@@ -682,7 +752,7 @@ export const TRANSFER_PLANNER_MAJOR_PLANS: TransferPlannerMajorPlan[] = [
     financialAidNote:
       "ISE planning usually stays aid-safe if programming is added intentionally rather than as a last-minute unrelated extra.",
     applicationChecklist: [
-      item("calc123", "MATH 124, 125, 126", ["MATH& 151", "MATH& 152", "MATH& 163"]),
+      itemStemCalcSequence("calc123", "MATH 124, 125, 126"),
       item("chem142", "CHEM 142", ["CHEM& 161"]),
       item("phys121-122", "PHYS 121 and PHYS 122", ["PHYS& 221", "PHYS& 222"]),
       item("aa210", "A A 210", ["ENGR& 214"]),
@@ -741,7 +811,7 @@ export const TRANSFER_PLANNER_MAJOR_PLANS: TransferPlannerMajorPlan[] = [
     financialAidNote:
       "MSE works best when the student keeps 999Q as the declared path and uses add-on slots for materials-specific prep rather than layering random extra science classes.",
     applicationChecklist: [
-      item("calc123", "MATH 124, 125, 126", ["MATH& 151", "MATH& 152", "MATH& 163"]),
+      itemStemCalcSequence("calc123", "MATH 124, 125, 126"),
       item("chem142-152", "CHEM 142 and CHEM 152", ["CHEM& 161", "CHEM& 162", "CHEM& 163"]),
       item("phys121-122", "PHYS 121 and PHYS 122", ["PHYS& 221", "PHYS& 222"]),
       item("engl101", "English composition", ["ENGL& 101"]),
@@ -801,13 +871,17 @@ export const TRANSFER_PLANNER_MAJOR_PLANS: TransferPlannerMajorPlan[] = [
     financialAidNote:
       "ChemE planning should keep students inside the 999O chemistry-heavy path while deliberately timing MATH 238, organic chemistry, and ENGR 250 so the spring-start window still works.",
     applicationChecklist: [
-      item("chem142-152", "CHEM 142 and CHEM 152", ["CHEM& 161", "CHEM& 162", "CHEM& 163"]),
-      item("calc123", "MATH 124, 125, 126", ["MATH& 151", "MATH& 152", "MATH& 163"]),
+      item(
+        "chem142-162",
+        "CHEM 142, 152, 162",
+        FULL_GENERAL_CHEMISTRY_SEQUENCE,
+        "Current UW Green River equivalencies only produce the full CHEM 142 / 152 / 162 set when CHEM& 161, 162, and 163 are all completed."
+      ),
+      itemStemCalcSequence("calc123", "MATH 124, 125, 126"),
       item("phys121", "PHYS 121", ["PHYS& 221"]),
       item("engl101", "English composition", ["ENGL& 101"]),
     ],
     beforeEnrollmentChecklist: [
-      item("chem162", "CHEM 162", ["CHEM& 163"]),
       item("phys122", "PHYS 122", ["PHYS& 222"]),
       item("math207", "MATH 207", ["MATH 238"]),
     ],
@@ -865,17 +939,20 @@ export const TRANSFER_PLANNER_MAJOR_PLANS: TransferPlannerMajorPlan[] = [
     financialAidNote:
       "BioE students should stay anchored to the chemistry-heavy Green River path, then layer in biology and programming inside advisor-approved slots whenever possible.",
     applicationChecklist: [
-      item("calc123", "MATH 124, 125, 126", ["MATH& 151", "MATH& 152", "MATH& 163"]),
-      item("chem-general", "CHEM 142, 152, 162", ["CHEM& 161", "CHEM& 162", "CHEM& 163"]),
+      itemStemCalcSequence("calc123", "MATH 124, 125, 126"),
+      item("chem-general", "CHEM 142, 152, 162", FULL_GENERAL_CHEMISTRY_SEQUENCE),
       item("phys121-122", "PHYS 121 and PHYS 122", ["PHYS& 221", "PHYS& 222"]),
-      item("biol180", "BIOL 180", ["BIOL& 211"], "For the cleanest biology start, continue the full sequence if the student can."),
+      item(
+        "biol180",
+        "BIOL 180 pathway",
+        FULL_BIOLOGY_MAJORS_SEQUENCE,
+        "Current UW Green River equivalencies award the clean BIOL 180 / 200 / 220 sequence only when BIOL& 211, 212, and 213 are all completed."
+      ),
       item("organic", "CHEM 223 or CHEM 237", ["CHEM& 261"]),
       itemAny("programming", "AMATH 301 or approved programming path", ["ENGR 250", "CS 121", "CS 122", "CS 123"]),
       item("engl101", "English composition", ["ENGL& 101"]),
     ],
-    beforeEnrollmentChecklist: [
-      item("bio-sequence", "Continue the biology sequence if the student wants the strongest biology foundation", ["BIOL& 212", "BIOL& 213"]),
-    ],
+    beforeEnrollmentChecklist: [],
     stayAtGrcChecklist: [
       item("cs-sequence", "Programming depth beyond the minimum", ["CS 121", "CS 122", "CS 123"]),
       item("chem262", "Organic chemistry continuation", ["CHEM& 262"]),
@@ -923,21 +1000,24 @@ export const TRANSFER_PLANNER_MAJOR_PLANS: TransferPlannerMajorPlan[] = [
     financialAidNote:
       "Advisor review matters here because the best Green River base depends on whether the student needs chemistry-heavy or mechanics-heavy momentum first.",
     applicationChecklist: [
-      item("calc123", "MATH 124, 125, 126", ["MATH& 151", "MATH& 152", "MATH& 163"]),
-      item("chem142-152", "CHEM 142 and CHEM 152", ["CHEM& 161", "CHEM& 162", "CHEM& 163"]),
+      itemStemCalcSequence("calc123", "MATH 124, 125, 126"),
+      item("chem142-152", "CHEM 142 and CHEM 152", FULL_GENERAL_CHEMISTRY_SEQUENCE),
       item("phys121-122", "PHYS 121 and PHYS 122", ["PHYS& 221", "PHYS& 222"]),
       item("aa210", "A A 210", ["ENGR& 214"]),
       item("engl101", "English composition", ["ENGL& 101"]),
     ],
     beforeEnrollmentChecklist: [
       item("math207", "MATH 207 or AMATH 351", ["MATH 238"]),
-      item("biol180", "BIOL 180", ["BIOL& 211"]),
+      item(
+        "biol180",
+        "BIOL 180 pathway",
+        FULL_BIOLOGY_MAJORS_SEQUENCE,
+        "Current UW Green River equivalencies award the clean BIOL 180 / 200 / 220 sequence only when BIOL& 211, 212, and 213 are all completed."
+      ),
       itemAny("computing", "One approved computing course", ["ENGR 250", "CS 121", "CS 122"]),
       item("aa260", "A A 260", ["ENGR& 224"]),
     ],
-    stayAtGrcChecklist: [
-      item("bio-sequence", "Continue biology when it helps the student's target focus", ["BIOL& 212", "BIOL& 213"]),
-    ],
+    stayAtGrcChecklist: [],
     advisorFlags: [
       "Treat this as a hybrid plan, not a one-click stock MRP.",
       "Use advisor review whenever the student is choosing between 999O and 999Q as the starting base.",
@@ -981,7 +1061,12 @@ export const TRANSFER_PLANNER_MAJOR_PLANS: TransferPlannerMajorPlan[] = [
     financialAidNote:
       "Keep the student inside the closest valid Green River STEM path possible, then use advisor review to place statistics and science choices strategically.",
     applicationChecklist: [
-      item("ten-calc-credits", "Ten credits from MATH 124, 125, 126", ["MATH& 151", "MATH& 152", "MATH& 163"]),
+      itemStemCalcCredits(
+        "ten-calc-credits",
+        "Ten credits from MATH 124, 125, 126",
+        2,
+        "HCDE needs at least 10 credits from UW's Calc I-III sequence. At Green River that usually starts with MATH& 151 and 152, and the older MATH& 153 + MATH& 254 route also counts if the student is already on it."
+      ),
       itemAny("programming", "One approved programming course", ["CS 121", "CS 122", "CS 123"]),
       itemAny("stats", "One approved statistics course", ["MATH& 146", "MATH 256"]),
       itemCount("science-three", "Three approved science courses", ["CHEM& 161", "PHYS& 221", "PHYS& 222", "BIOL& 211"], 3, "Pick the best set for the student's strongest HCDE story and backup majors."),
@@ -1036,7 +1121,7 @@ export const TRANSFER_PLANNER_MAJOR_PLANS: TransferPlannerMajorPlan[] = [
     financialAidNote:
       "Use 999P as the declared base while advisor review confirms any Bothell-only nuances.",
     applicationChecklist: [
-      item("bothell-calc123", "Calculus sequence", ["MATH& 151", "MATH& 152", "MATH& 163"]),
+      itemStemCalcSequence("bothell-calc123", "Calculus sequence"),
       item("bothell-physics", "Physics sequence", ["PHYS& 221", "PHYS& 222"]),
       item("bothell-programming", "Programming sequence", ["CS 121", "CS 122", "CS 123"]),
       item("bothell-engl", "English composition", ["ENGL& 101"]),
@@ -1077,7 +1162,7 @@ export const TRANSFER_PLANNER_MAJOR_PLANS: TransferPlannerMajorPlan[] = [
     ],
     financialAidNote: "999Q is the cleanest aid-safe starting point while Bothell details are confirmed.",
     applicationChecklist: [
-      item("bothell-me-calc", "Calculus sequence", ["MATH& 151", "MATH& 152", "MATH& 163"]),
+      itemStemCalcSequence("bothell-me-calc", "Calculus sequence"),
       item("bothell-me-physics", "Physics sequence", ["PHYS& 221", "PHYS& 222", "PHYS& 223"]),
       item("bothell-me-chem", "Chemistry preparation", ["CHEM& 161", "CHEM& 162", "CHEM& 163"]),
       item("bothell-me-engl", "English composition", ["ENGL& 101"]),
@@ -1113,7 +1198,7 @@ export const TRANSFER_PLANNER_MAJOR_PLANS: TransferPlannerMajorPlan[] = [
     ],
     financialAidNote: "Keep the student on a programming-heavy STEM path and confirm the final worksheet fit with advising.",
     applicationChecklist: [
-      item("bothell-csse-calc", "Calculus sequence", ["MATH& 151", "MATH& 152", "MATH& 163"]),
+      itemStemCalcSequence("bothell-csse-calc", "Calculus sequence"),
       item("bothell-csse-cs", "Programming sequence", ["CS 121", "CS 122", "CS 123"]),
       item("bothell-csse-engl", "English composition", ["ENGL& 101"]),
     ],
@@ -1146,7 +1231,7 @@ export const TRANSFER_PLANNER_MAJOR_PLANS: TransferPlannerMajorPlan[] = [
     ],
     financialAidNote: "Stay on 999P while Tacoma-specific program review happens.",
     applicationChecklist: [
-      item("tacoma-calc", "Calculus sequence", ["MATH& 151", "MATH& 152", "MATH& 163"]),
+      itemStemCalcSequence("tacoma-calc", "Calculus sequence"),
       item("tacoma-physics", "Physics sequence", ["PHYS& 221", "PHYS& 222"]),
       item("tacoma-cs", "Programming sequence", ["CS 121", "CS 122", "CS 123"]),
       item("tacoma-engl", "English composition", ["ENGL& 101"]),
@@ -1182,7 +1267,7 @@ export const TRANSFER_PLANNER_MAJOR_PLANS: TransferPlannerMajorPlan[] = [
     ],
     financialAidNote: "Stay on 999P while Tacoma-specific program review happens.",
     applicationChecklist: [
-      item("tacoma-calc", "Calculus sequence", ["MATH& 151", "MATH& 152", "MATH& 163"]),
+      itemStemCalcSequence("tacoma-calc", "Calculus sequence"),
       item("tacoma-physics", "Physics sequence", ["PHYS& 221", "PHYS& 222"]),
       item("tacoma-cs", "Programming sequence", ["CS 121", "CS 122", "CS 123"]),
       item("tacoma-engl", "English composition", ["ENGL& 101"]),
@@ -1216,7 +1301,7 @@ export const TRANSFER_PLANNER_MAJOR_PLANS: TransferPlannerMajorPlan[] = [
     ],
     financialAidNote: "Stay on 999Q while Tacoma-specific program review happens.",
     applicationChecklist: [
-      item("tacoma-me-calc", "Calculus sequence", ["MATH& 151", "MATH& 152", "MATH& 163"]),
+      itemStemCalcSequence("tacoma-me-calc", "Calculus sequence"),
       item("tacoma-me-physics", "Physics sequence", ["PHYS& 221", "PHYS& 222", "PHYS& 223"]),
       item("tacoma-me-chem", "Chemistry sequence", ["CHEM& 161", "CHEM& 162", "CHEM& 163"]),
       item("tacoma-me-engl", "English composition", ["ENGL& 101"]),

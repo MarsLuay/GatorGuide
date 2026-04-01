@@ -43,6 +43,10 @@ export type SuggestedQuarterPlan = {
   courses: SuggestedQuarterCourse[];
 };
 
+type PendingSuggestedCourse = SuggestedQuarterCourse & {
+  sequenceGroup: string | null;
+};
+
 function unique<T>(items: T[]) {
   return Array.from(new Set(items));
 }
@@ -127,6 +131,80 @@ export function parseCompletedTranscriptCourses(rawValue: unknown): TranscriptCo
   return parsed;
 }
 
+type RequirementCourseOption = {
+  courseLabels: string[];
+  explicitCourseCodes: string[];
+  matchedCourses: TranscriptCourseEntry[];
+  requiredCompletedCount: number;
+  matched: boolean;
+  remainingCourseCodes: string[];
+  index: number;
+};
+
+function getChecklistCourseOptions(item: TransferPlannerChecklistItem) {
+  return [item.grcCourses, ...(item.alternatives ?? [])]
+    .map((courseLabels) =>
+      Array.from(
+        new Set(
+          courseLabels
+            .map((label) => String(label ?? "").trim())
+            .filter(Boolean)
+        )
+      )
+    )
+    .filter((courseLabels) => courseLabels.length > 0);
+}
+
+function buildRequirementCourseOption(
+  item: TransferPlannerChecklistItem,
+  courseLabels: string[],
+  index: number,
+  completedByCode: Map<string, TranscriptCourseEntry>
+): RequirementCourseOption {
+  const explicitCourseCodes = unique(
+    courseLabels.flatMap((courseLabel) => extractCourseCodes(courseLabel))
+  );
+  const matchedCourses = explicitCourseCodes
+    .map((code) => completedByCode.get(code) ?? null)
+    .filter((course): course is TranscriptCourseEntry => !!course);
+  const requiredCompletedCount = explicitCourseCodes.length
+    ? Math.max(
+        1,
+        Math.min(item.minCompletedCount ?? explicitCourseCodes.length, explicitCourseCodes.length)
+      )
+    : 0;
+  const matchedCodes = new Set(matchedCourses.map((course) => course.code));
+  const remainingCourseCodes = explicitCourseCodes.filter((code) => !matchedCodes.has(code));
+
+  return {
+    courseLabels,
+    explicitCourseCodes,
+    matchedCourses,
+    requiredCompletedCount,
+    matched: requiredCompletedCount > 0 && matchedCourses.length >= requiredCompletedCount,
+    remainingCourseCodes,
+    index,
+  };
+}
+
+function selectPreferredRequirementOption(options: RequirementCourseOption[]) {
+  return [...options].sort((left, right) => {
+    const matchedStatusDelta = Number(right.matched) - Number(left.matched);
+    if (matchedStatusDelta !== 0) return matchedStatusDelta;
+
+    const matchedDelta = right.matchedCourses.length - left.matchedCourses.length;
+    if (matchedDelta !== 0) return matchedDelta;
+
+    const remainingDelta = left.remainingCourseCodes.length - right.remainingCourseCodes.length;
+    if (remainingDelta !== 0) return remainingDelta;
+
+    const sizeDelta = left.explicitCourseCodes.length - right.explicitCourseCodes.length;
+    if (sizeDelta !== 0) return sizeDelta;
+
+    return left.index - right.index;
+  })[0] ?? null;
+}
+
 export function buildRequirementStatuses(
   items: TransferPlannerChecklistItem[],
   completedCourses: TranscriptCourseEntry[]
@@ -137,25 +215,20 @@ export function buildRequirementStatuses(
   }
 
   return items.map<TransferRequirementStatus>((item) => {
-    const explicitCourseCodes = unique(
-      item.grcCourses.flatMap((courseLabel) => extractCourseCodes(courseLabel))
-    );
-    const matchedCourses = explicitCourseCodes
-      .map((code) => completedByCode.get(code) ?? null)
-      .filter((course): course is TranscriptCourseEntry => !!course);
-    const requiredCompletedCount = explicitCourseCodes.length
-      ? Math.max(
-          1,
-          Math.min(item.minCompletedCount ?? explicitCourseCodes.length, explicitCourseCodes.length)
+    const selectedOption =
+      selectPreferredRequirementOption(
+        getChecklistCourseOptions(item).map((courseLabels, index) =>
+          buildRequirementCourseOption(item, courseLabels, index, completedByCode)
         )
-      : 0;
+      ) ??
+      buildRequirementCourseOption(item, item.grcCourses, 0, completedByCode);
 
     return {
       item,
-      matched: requiredCompletedCount > 0 && matchedCourses.length >= requiredCompletedCount,
-      matchedCourses,
-      explicitCourseCodes,
-      requiredCompletedCount,
+      matched: selectedOption.matched,
+      matchedCourses: selectedOption.matchedCourses,
+      explicitCourseCodes: selectedOption.explicitCourseCodes,
+      requiredCompletedCount: selectedOption.requiredCompletedCount,
     };
   });
 }
@@ -176,7 +249,11 @@ export function buildTrackUsageSummary(
         ...plan.applicationChecklist,
         ...plan.beforeEnrollmentChecklist,
         ...plan.stayAtGrcChecklist,
-      ].flatMap((item) => item.grcCourses.flatMap((course) => extractCourseCodes(course)))
+      ].flatMap((item) =>
+        getChecklistCourseOptions(item).flatMap((courseLabels) =>
+          courseLabels.flatMap((course) => extractCourseCodes(course))
+        )
+      )
     )
   );
 
@@ -394,42 +471,116 @@ function buildGeneralEducationPlaceholders(track: TransferPlannerTrack | null) {
     : ["5 credits of Humanities", "5 credits of Social Science"];
 }
 
+function takeNextEligibleCourse(
+  pool: PendingSuggestedCourse[],
+  selectedCourses: PendingSuggestedCourse[]
+) {
+  const selectedSequenceGroups = new Set(
+    selectedCourses
+      .map((course) => course.sequenceGroup)
+      .filter((group): group is string => !!group)
+  );
+
+  const nextIndex = pool.findIndex((course) => {
+    if (!course.sequenceGroup) return true;
+    return !selectedSequenceGroups.has(course.sequenceGroup);
+  });
+
+  if (nextIndex === -1) {
+    return null;
+  }
+
+  const [course] = pool.splice(nextIndex, 1);
+  return course ?? null;
+}
+
 function allocateQuarterCourses({
   seedCourses,
   corePool,
   electivePool,
   fillerPool,
 }: {
-  seedCourses?: SuggestedQuarterCourse[];
-  corePool: SuggestedQuarterCourse[];
-  electivePool: SuggestedQuarterCourse[];
-  fillerPool: SuggestedQuarterCourse[];
+  seedCourses?: PendingSuggestedCourse[];
+  corePool: PendingSuggestedCourse[];
+  electivePool: PendingSuggestedCourse[];
+  fillerPool: PendingSuggestedCourse[];
 }) {
   const courses = [...(seedCourses ?? [])];
 
   if (courses.length >= 3) {
-    return courses;
+    return courses.map<SuggestedQuarterCourse>(({ label, type, status }) => ({
+      label,
+      type,
+      status,
+    }));
   }
 
   const hasCoreCourse = courses.some((course) => course.type === "core");
 
   if (!hasCoreCourse && corePool.length) {
-    courses.push(corePool.shift() as SuggestedQuarterCourse);
+    const nextCore = takeNextEligibleCourse(corePool, courses);
+    if (nextCore) {
+      courses.push(nextCore);
+    }
   }
 
   while (courses.length < 3 && electivePool.length) {
-    courses.push(electivePool.shift() as SuggestedQuarterCourse);
+    const nextElective = takeNextEligibleCourse(electivePool, courses);
+    if (!nextElective) break;
+    courses.push(nextElective);
   }
 
   while (courses.length < 3 && fillerPool.length) {
-    courses.push(fillerPool.shift() as SuggestedQuarterCourse);
+    const nextFiller = takeNextEligibleCourse(fillerPool, courses);
+    if (!nextFiller) break;
+    courses.push(nextFiller);
   }
 
   while (courses.length < 3 && corePool.length) {
-    courses.push(corePool.shift() as SuggestedQuarterCourse);
+    const nextCore = takeNextEligibleCourse(corePool, courses);
+    if (!nextCore) break;
+    courses.push(nextCore);
   }
 
-  return courses;
+  return courses.map<SuggestedQuarterCourse>(({ label, type, status }) => ({
+    label,
+    type,
+    status,
+  }));
+}
+
+function buildRemainingSuggestedCourses(statuses: TransferRequirementStatus[]) {
+  const remainingByLabel = new Map<string, PendingSuggestedCourse>();
+
+  for (const status of statuses.filter((entry) => !entry.matched)) {
+    const matchedCodes = new Set(status.matchedCourses.map((course) => course.code));
+    const missingExplicitCodes = status.explicitCourseCodes.filter((code) => !matchedCodes.has(code));
+    const remainingNeeded =
+      status.requiredCompletedCount < status.explicitCourseCodes.length
+        ? Math.max(1, status.requiredCompletedCount - status.matchedCourses.length)
+        : status.explicitCourseCodes.length;
+    const labelsToSchedule = !missingExplicitCodes.length
+      ? [status.item.grcCourses[0] ?? status.item.title]
+      : status.requiredCompletedCount < status.explicitCourseCodes.length
+        ? missingExplicitCodes.slice(0, remainingNeeded)
+        : missingExplicitCodes;
+    const shouldSequenceCourses =
+      status.requiredCompletedCount === status.explicitCourseCodes.length &&
+      status.explicitCourseCodes.length > 1;
+
+    for (const label of labelsToSchedule) {
+      if (remainingByLabel.has(label)) continue;
+
+      remainingByLabel.set(label, {
+        label,
+        type: isCoreCourseLabel(label) ? "core" : "elective",
+        status: "planned",
+        sequenceGroup: shouldSequenceCourses ? status.item.id : null,
+      });
+    }
+  }
+
+  return [...remainingByLabel.values()];
 }
 
 export function buildSuggestedQuarterPlan(input: {
@@ -450,67 +601,45 @@ export function buildSuggestedQuarterPlan(input: {
     )
   );
 
-  const remainingCourses = unique(
-    [
-      ...input.applicationStatuses,
-      ...input.beforeEnrollmentStatuses,
-      ...(input.includeStayAtGrcCourses === false ? [] : input.stayAtGrcStatuses),
-    ]
-      .filter((status) => !status.matched)
-      .flatMap((status) => {
-        const matchedCodes = new Set(status.matchedCourses.map((course) => course.code));
-        const missingExplicitCodes = status.explicitCourseCodes.filter((code) => !matchedCodes.has(code));
-        if (!missingExplicitCodes.length) {
-          return [status.item.grcCourses[0] ?? status.item.title];
-        }
-
-        // When an item is satisfied by any one of several options, only schedule the number still needed.
-        if (status.requiredCompletedCount < status.explicitCourseCodes.length) {
-          const remainingNeeded = Math.max(
-            1,
-            status.requiredCompletedCount - status.matchedCourses.length
-          );
-          return missingExplicitCodes.slice(0, remainingNeeded);
-        }
-
-        return missingExplicitCodes;
-      })
-      .filter(Boolean)
-  );
+  const remainingCourses = buildRemainingSuggestedCourses([
+    ...input.applicationStatuses,
+    ...input.beforeEnrollmentStatuses,
+    ...(input.includeStayAtGrcCourses === false ? [] : input.stayAtGrcStatuses),
+  ]);
   const completedQuarterPlans = buildCompletedQuarterPlans(input.completedCourses);
   const currentQuarterCourses = remainingCourses
-    .filter((course) => selectedCurrentCourseLabels.has(course))
-    .map<SuggestedQuarterCourse>((label) => ({
-      label,
-      type: isCoreCourseLabel(label) ? "core" : "elective",
+    .filter((course) => selectedCurrentCourseLabels.has(course.label))
+    .map<PendingSuggestedCourse>((course) => ({
+      ...course,
       status: "current",
     }));
   const currentQuarterSlot = currentQuarterCourses.length
     ? getCurrentOrNextQuarterSlot(input.referenceDate)
     : null;
   const coursesStillToPlan = remainingCourses.filter(
-    (course) => !selectedCurrentCourseLabels.has(course)
+    (course) => !selectedCurrentCourseLabels.has(course.label)
   );
 
   const corePool = coursesStillToPlan
-    .filter((course) => isCoreCourseLabel(course))
-    .map<SuggestedQuarterCourse>((label) => ({
-      label,
+    .filter((course) => isCoreCourseLabel(course.label))
+    .map<PendingSuggestedCourse>((course) => ({
+      ...course,
       type: "core",
       status: "planned",
     }));
   const electivePool = coursesStillToPlan
-    .filter((course) => !isCoreCourseLabel(course))
-    .map<SuggestedQuarterCourse>((label) => ({
-      label,
+    .filter((course) => !isCoreCourseLabel(course.label))
+    .map<PendingSuggestedCourse>((course) => ({
+      ...course,
       type: "elective",
       status: "planned",
     }));
-  const fillerPool = buildGeneralEducationPlaceholders(input.track).map<SuggestedQuarterCourse>(
+  const fillerPool = buildGeneralEducationPlaceholders(input.track).map<PendingSuggestedCourse>(
     (label) => ({
       label,
       type: "elective",
       status: "planned",
+      sequenceGroup: null,
     })
   );
   const currentQuarterPlan = currentQuarterCourses.length

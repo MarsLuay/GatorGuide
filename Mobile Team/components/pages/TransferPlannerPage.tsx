@@ -751,9 +751,14 @@ function SuggestedScheduleCard({
             onPress={onToggleOnlyUwEssentialClasses}
             accessibilityRole="checkbox"
             accessibilityState={{ checked: onlyUwEssentialClasses }}
-            className={`border ${borderClass} rounded-xl px-3 py-2 flex-row items-center justify-center`}
+            accessibilityLabel="Only show classes that transfer into UW on this track"
+            accessibilityHint="Hides optional Green River classes that do not count toward the UW track."
+            className={`border ${borderClass} rounded-xl px-3 py-2 flex-row items-center justify-center gap-2`}
             hitSlop={8}
           >
+            <Text className={`${secondaryTextClass} text-xs font-medium`}>
+              Classes for UW transfer only
+            </Text>
             <Ionicons
               name={onlyUwEssentialClasses ? "checkbox" : "square-outline"}
               size={20}
