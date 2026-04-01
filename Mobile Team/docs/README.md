@@ -1,81 +1,70 @@
 # Docs Index
 
-This folder contains planning docs, product specs, transfer-reference docs, and implementation notes for the Green River to UW planning work.
+This folder contains the mobile app's planner docs, remaining reference artifacts, and product or implementation specs.
 
-## Start Here
+## Folder Layout
 
-If you want the newest Green River transfer-degree list and latest published course plans, start with:
+- `planner/`: campus-specific planner docs plus the planner summary, the consolidated planner-facing equivalency reference, and the planner backlog.
+- `reference/`: remaining non-planner reference artifacts.
+- `product/`: product and technical implementation docs for the mobile app.
 
-- [GRC_LATEST_TRANSFER_ASSOCIATE_DEGREES_AND_COURSES.md](./GRC_LATEST_TRANSFER_ASSOCIATE_DEGREES_AND_COURSES.md)
+## Planner Docs
 
-If you want Green River to UW Seattle equivalencies, start with:
+- [UWS_DEGREE_COURSES.md](./planner/UWS_DEGREE_COURSES.md)
+  Current Green River -> UW Seattle degree rows, course lists, and tracked requirement sequences.
 
-- [GRC_UW_CURRENT_EQUIVALENCY_FULL_WITH_SERIES_RULES.md](./GRC_UW_CURRENT_EQUIVALENCY_FULL_WITH_SERIES_RULES.md)
-- [GRC_UW_CURRENT_EQUIVALENCY_GUIDE.md](./GRC_UW_CURRENT_EQUIVALENCY_GUIDE.md)
+- [UWB_DEGREE_COURSES.md](./planner/UWB_DEGREE_COURSES.md)
+  Current Green River -> UW Bothell degree rows, course lists, and tracked requirement sequences.
 
-If you want the main planner-routing doc for all current UW bachelor's degrees and applicable Green River transfer coursework, start with:
+- [UWT_DEGREE_COURSES.md](./planner/UWT_DEGREE_COURSES.md)
+  Current Green River -> UW Tacoma degree rows, course lists, and tracked requirement sequences.
 
-- [UW_ALL_BACHELOR_DEGREES_GRC_TRANSFER_PLANNER_MASTER.md](./UW_ALL_BACHELOR_DEGREES_GRC_TRANSFER_PLANNER_MASTER.md)
+- [GRC_EQUIVALENCY_GUIDE_REFERENCE.md](./planner/GRC_EQUIVALENCY_GUIDE_REFERENCE.md)
+  Consolidated planner-facing equivalency and transfer-track rules pulled from the raw reference docs.
 
-If you want engineering-specific transfer planning, start with:
+- [TRANSFER_PLANNER_TOOL_SUMMARY.md](./planner/TRANSFER_PLANNER_TOOL_SUMMARY.md)
+  One-place summary of what the planner does and what data it uses.
 
-- [GRC_UW_ENGINEERING_TRANSFER_PLANNER.md](./GRC_UW_ENGINEERING_TRANSFER_PLANNER.md)
+- [TRANSFER_PLANNER_GENERAL_TODO.md](./planner/TRANSFER_PLANNER_GENERAL_TODO.md)
+  One-place backlog for the remaining planner data, parser, product, and quarter-planning work.
 
-## Transfer Reference Docs
+## Planner Reference Migration
 
-- [GRC_LATEST_TRANSFER_ASSOCIATE_DEGREES_AND_COURSES.md](./GRC_LATEST_TRANSFER_ASSOCIATE_DEGREES_AND_COURSES.md)
-  Current-only Green River transfer associate degrees and the latest published course plans.
-
-- [GRC_UW_CURRENT_EQUIVALENCY_FULL_WITH_SERIES_RULES.md](./GRC_UW_CURRENT_EQUIVALENCY_FULL_WITH_SERIES_RULES.md)
-  Current Green River to UW Seattle equivalencies, including series and full-credit combo rules.
-
-- [GRC_UW_CURRENT_EQUIVALENCY_GUIDE.md](./GRC_UW_CURRENT_EQUIVALENCY_GUIDE.md)
-  Cleaner summary version of the current Green River to UW equivalency guide.
-
-- [GRC_UW_ENGINEERING_TRANSFER_PLANNER.md](./GRC_UW_ENGINEERING_TRANSFER_PLANNER.md)
-  Engineering-focused Green River to UW planning notes and transfer strategy.
-
-- [UW_ALL_BACHELOR_DEGREES_GRC_TRANSFER_PLANNER_MASTER.md](./UW_ALL_BACHELOR_DEGREES_GRC_TRANSFER_PLANNER_MASTER.md)
-  Current master degree-to-bank routing doc for UW Seattle, UW Bothell, and UW Tacoma bachelor's planning from Green River.
-
-- [COURSE_PLANNER_MAJORS_AND_DEGREE_REQUIREMENTS.md](./COURSE_PLANNER_MAJORS_AND_DEGREE_REQUIREMENTS.md)
-  Major-by-major planner requirements and recommended Green River base tracks.
-
-- [GRC_TRANSFER_OUTLINE_GENERATOR_SPEC.md](./GRC_TRANSFER_OUTLINE_GENERATOR_SPEC.md)
-  Spec for generating Green River transfer outlines from degree and equivalency data.
+- [GRC_EQUIVALENCY_GUIDE_REFERENCE.md](./planner/GRC_EQUIVALENCY_GUIDE_REFERENCE.md)
+  This doc now carries the migrated planner-facing content that used to live in the separate Green River transfer-degree and UW equivalency markdown references.
 
 ## Product And Technical Docs
 
-- [OFFLINE_ONLINE_SYNC_SPEC.md](./OFFLINE_ONLINE_SYNC_SPEC.md)
+- [OFFLINE_ONLINE_SYNC_SPEC.md](./product/OFFLINE_ONLINE_SYNC_SPEC.md)
   Sync behavior and data-handling spec for offline/online app workflows.
 
-- [FIREBASE_CHAT_HISTORY_SCHEMA.md](./FIREBASE_CHAT_HISTORY_SCHEMA.md)
+- [FIREBASE_CHAT_HISTORY_SCHEMA.md](./product/FIREBASE_CHAT_HISTORY_SCHEMA.md)
   Firebase data-structure notes for chat history.
 
-- [OPPORTUNITY_ADMIN_TOOL.md](./OPPORTUNITY_ADMIN_TOOL.md)
+- [OPPORTUNITY_ADMIN_TOOL.md](./product/OPPORTUNITY_ADMIN_TOOL.md)
   Notes for the opportunity admin tool.
 
-- [BRANDING_ASSET_PIPELINE.md](./BRANDING_ASSET_PIPELINE.md)
+- [BRANDING_ASSET_PIPELINE.md](./product/BRANDING_ASSET_PIPELINE.md)
   Branding and asset-generation pipeline notes.
 
 ## Reference Files
 
-- [SSR_TSRPT.pdf](./SSR_TSRPT.pdf)
+- [SSR_TSRPT.pdf](./reference/SSR_TSRPT.pdf)
   Reference PDF kept in this folder.
 
 ## Suggested Reading Order
 
 For transfer-planner work:
 
-1. [GRC_LATEST_TRANSFER_ASSOCIATE_DEGREES_AND_COURSES.md](./GRC_LATEST_TRANSFER_ASSOCIATE_DEGREES_AND_COURSES.md)
-2. [GRC_UW_CURRENT_EQUIVALENCY_FULL_WITH_SERIES_RULES.md](./GRC_UW_CURRENT_EQUIVALENCY_FULL_WITH_SERIES_RULES.md)
-3. [UW_ALL_BACHELOR_DEGREES_GRC_TRANSFER_PLANNER_MASTER.md](./UW_ALL_BACHELOR_DEGREES_GRC_TRANSFER_PLANNER_MASTER.md)
-4. [COURSE_PLANNER_MAJORS_AND_DEGREE_REQUIREMENTS.md](./COURSE_PLANNER_MAJORS_AND_DEGREE_REQUIREMENTS.md)
-5. [GRC_UW_ENGINEERING_TRANSFER_PLANNER.md](./GRC_UW_ENGINEERING_TRANSFER_PLANNER.md)
-6. [GRC_TRANSFER_OUTLINE_GENERATOR_SPEC.md](./GRC_TRANSFER_OUTLINE_GENERATOR_SPEC.md)
+1. [TRANSFER_PLANNER_TOOL_SUMMARY.md](./planner/TRANSFER_PLANNER_TOOL_SUMMARY.md)
+2. [GRC_EQUIVALENCY_GUIDE_REFERENCE.md](./planner/GRC_EQUIVALENCY_GUIDE_REFERENCE.md)
+3. [UWS_DEGREE_COURSES.md](./planner/UWS_DEGREE_COURSES.md)
+4. [UWB_DEGREE_COURSES.md](./planner/UWB_DEGREE_COURSES.md)
+5. [UWT_DEGREE_COURSES.md](./planner/UWT_DEGREE_COURSES.md)
+6. [TRANSFER_PLANNER_GENERAL_TODO.md](./planner/TRANSFER_PLANNER_GENERAL_TODO.md)
 
 ## Notes
 
-- Some transfer docs are current-only and intentionally avoid backfilling from older public planning sheets.
-- When two docs overlap, prefer the more specific and newer source.
-- The equivalency docs and transfer-degree docs serve different purposes: one shows course transfer mappings, the other shows Green River degree structures and sample course plans.
+- The planner docs are now intentionally split by target UW campus.
+- The planner-facing transfer and equivalency markdown references have been migrated into `GRC_EQUIVALENCY_GUIDE_REFERENCE.md`.
+- When two planner docs overlap, update the more specific one instead of duplicating the same rule in several places.

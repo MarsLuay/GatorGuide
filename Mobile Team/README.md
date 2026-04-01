@@ -19,12 +19,16 @@ The Mobile Team helps by:
 - `services/`: app services for AI, auth, storage, college data, and config.
 - `constants/`, `hooks/`, and `utils/`: shared logic and support files.
 - `functions/`: Firebase Functions code related to the mobile app.
-- [`docs/OFFLINE_ONLINE_SYNC_SPEC.md`](docs/OFFLINE_ONLINE_SYNC_SPEC.md): current offline/online caching, sync, and conflict-resolution behavior.
-- [`docs/BRANDING_ASSET_PIPELINE.md`](docs/BRANDING_ASSET_PIPELINE.md): icon, splash, adaptive icon, and favicon source-of-truth pipeline.
-- [`docs/FIREBASE_CHAT_HISTORY_SCHEMA.md`](docs/FIREBASE_CHAT_HISTORY_SCHEMA.md): planned Firestore schema, ownership rules, and retention policy for assistant chat sessions/messages.
-- [`docs/OPPORTUNITY_ADMIN_TOOL.md`](docs/OPPORTUNITY_ADMIN_TOOL.md): staff editor flow for creating and managing shared opportunity records without code changes.
-- [`docs/GRC_UW_ENGINEERING_TRANSFER_PLANNER.md`](docs/GRC_UW_ENGINEERING_TRANSFER_PLANNER.md): research/spec for a Green River -> UW engineering transfer roadmap and course planner.
-- [`docs/GRC_TRANSFER_OUTLINE_GENERATOR_SPEC.md`](docs/GRC_TRANSFER_OUTLINE_GENERATOR_SPEC.md): broader product/data spec for a Green River transfer outline generator, best-track matcher, and involvement/project guidance system.
+- [`docs/product/OFFLINE_ONLINE_SYNC_SPEC.md`](docs/product/OFFLINE_ONLINE_SYNC_SPEC.md): current offline/online caching, sync, and conflict-resolution behavior.
+- [`docs/product/BRANDING_ASSET_PIPELINE.md`](docs/product/BRANDING_ASSET_PIPELINE.md): icon, splash, adaptive icon, and favicon source-of-truth pipeline.
+- [`docs/product/FIREBASE_CHAT_HISTORY_SCHEMA.md`](docs/product/FIREBASE_CHAT_HISTORY_SCHEMA.md): planned Firestore schema, ownership rules, and retention policy for assistant chat sessions/messages.
+- [`docs/product/OPPORTUNITY_ADMIN_TOOL.md`](docs/product/OPPORTUNITY_ADMIN_TOOL.md): staff editor flow for creating and managing shared opportunity records without code changes.
+- [`docs/planner/UWS_DEGREE_COURSES.md`](docs/planner/UWS_DEGREE_COURSES.md): current Green River -> UW Seattle degree rows, Green River equivalent courses, and tracked requirement sequences.
+- [`docs/planner/UWB_DEGREE_COURSES.md`](docs/planner/UWB_DEGREE_COURSES.md): current Green River -> UW Bothell degree rows, Green River equivalent courses, and tracked requirement sequences.
+- [`docs/planner/UWT_DEGREE_COURSES.md`](docs/planner/UWT_DEGREE_COURSES.md): current Green River -> UW Tacoma degree rows, Green River equivalent courses, and tracked requirement sequences.
+- [`docs/planner/GRC_EQUIVALENCY_GUIDE_REFERENCE.md`](docs/planner/GRC_EQUIVALENCY_GUIDE_REFERENCE.md): consolidated planner-facing Green River -> UW equivalency and transfer-track rules.
+- [`docs/planner/TRANSFER_PLANNER_TOOL_SUMMARY.md`](docs/planner/TRANSFER_PLANNER_TOOL_SUMMARY.md): summary of what the transfer planner does and what it uses.
+- [`docs/planner/TRANSFER_PLANNER_GENERAL_TODO.md`](docs/planner/TRANSFER_PLANNER_GENERAL_TODO.md): single backlog doc for the remaining planner work.
 - [`../Data Team/docs/COLLEGE_RANKING.md`](../Data Team/docs/COLLEGE_RANKING.md): shared college ranking philosophy and score model used by recommendations.
 
 ## Setup: Download and Run

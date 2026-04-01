@@ -19,10 +19,9 @@ import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { ROUTES } from "@/constants/routes";
 import { StateCard } from "@/components/ui/StateCard";
 import {
-  getTransferPlannerBankLabel,
-  getTransferPlannerBanksForPlan,
   getTransferPlannerChainLabel,
   getTransferPlannerChainsForPlan,
+  getTransferPlannerGrcCourseList,
   getTransferPlannerMajorsForCampus,
   getTransferPlannerTrack,
   TRANSFER_PLANNER_CAMPUSES,
@@ -891,24 +890,26 @@ function PlannerReferenceCard({
   cardClass: string;
   borderClass: string;
 }) {
-  const banks = getTransferPlannerBanksForPlan(plan);
+  const grcCourseList = getTransferPlannerGrcCourseList(plan);
   const chains = getTransferPlannerChainsForPlan(plan);
+  const degreeMapSections = plan.degreeMapSections ?? [];
+  const referenceSummaryLabel = [
+    `${grcCourseList.length} Green River class${grcCourseList.length === 1 ? "" : "es"}`,
+    ...(degreeMapSections.length
+      ? [
+          `${degreeMapSections.length} UW degree-map section${
+            degreeMapSections.length === 1 ? "" : "s"
+          }`,
+        ]
+      : []),
+    `${chains.length} class-order note${chains.length === 1 ? "" : "s"}`,
+  ].join(", ");
   const completedCourseCodeSet = new Set(completedCourses.map((course) => course.code));
   const currentCourseCodeSet = new Set(
     [...currentCourseLabels].flatMap((label) => extractCourseCodes(label))
   );
   const [isReferenceOpen, setIsReferenceOpen] = useState(false);
-  const [openBankId, setOpenBankId] = useState<string | null>(banks[0]?.id ?? null);
   const [openChainId, setOpenChainId] = useState<string | null>(chains[0]?.id ?? null);
-
-  useEffect(() => {
-    setOpenBankId((currentOpenBankId) => {
-      if (currentOpenBankId && banks.some((bank) => bank.id === currentOpenBankId)) {
-        return currentOpenBankId;
-      }
-      return banks[0]?.id ?? null;
-    });
-  }, [banks]);
 
   useEffect(() => {
     setOpenChainId((currentOpenChainId) => {
@@ -937,7 +938,7 @@ function PlannerReferenceCard({
                 : "This major uses Green River class lists and class-order notes as the planning guide. Use them to choose the strongest classes, then confirm everything with an advisor."}
             </Text>
             <Text className={`${secondaryTextClass} text-xs mt-3`}>
-              {`${banks.length} course group${banks.length === 1 ? "" : "s"} and ${chains.length} class-order note${chains.length === 1 ? "" : "s"}.`}
+              {`${referenceSummaryLabel}.`}
             </Text>
           </View>
           <Ionicons
@@ -950,88 +951,96 @@ function PlannerReferenceCard({
 
       {isReferenceOpen ? (
         <>
-          {banks.length ? (
+          {grcCourseList.length ? (
             <View className="mt-5 gap-4">
-              <Text className={`${textClass} text-base font-semibold`}>Green River course groups</Text>
+              <Text className={`${textClass} text-base font-semibold`}>Green River class list</Text>
               <Text className={`${secondaryTextClass} text-sm`}>
-                Open a group to see Green River classes that match this UW major.
+                This is the explicit Green River course list currently attached to this UW major.
               </Text>
-              {banks.map((bank) => {
-                const completedCount = bank.courses.filter((course) =>
-                  extractCourseCodes(course).some((code) => completedCourseCodeSet.has(code))
-                ).length;
-                const isOpen = openBankId === bank.id;
-
-                return (
-                  <View key={bank.id} className={`border ${borderClass} rounded-2xl px-4 py-4`}>
-                    <Pressable
-                      onPress={() =>
-                        setOpenBankId((currentBankId) => (currentBankId === bank.id ? null : bank.id))
-                      }
-                      accessibilityRole="button"
-                      accessibilityState={{ expanded: isOpen }}
-                    >
-                      <View className="flex-row items-center justify-between gap-3">
-                        <View className="flex-1 min-w-0">
-                          <Text className={`${textClass} font-semibold`}>
-                            {getTransferPlannerBankLabel(bank.id)}
-                          </Text>
-                          <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                            {`${bank.courses.length} Green River classes to consider`}
-                          </Text>
-                        </View>
-                        <View className="flex-row items-center gap-2">
-                          <View className="px-3 py-1 rounded-full border border-white/10 bg-white/5">
-                            <Text className={`${secondaryTextClass} text-xs font-semibold`}>
-                              {`${completedCount}/${bank.courses.length} completed`}
-                            </Text>
-                          </View>
-                          <Ionicons
-                            name={isOpen ? "chevron-up" : "chevron-down"}
-                            size={18}
-                            color="#9CA3AF"
-                          />
-                        </View>
-                      </View>
-                    </Pressable>
-
-                    {isOpen ? (
-                      <View className="flex-row flex-wrap gap-2 mt-3">
-                        {bank.courses.map((course) => {
-                          const courseCodes = extractCourseCodes(course);
-                          const isCompleted = courseCodes.some((code) => completedCourseCodeSet.has(code));
-                          const isCurrent = !isCompleted && courseCodes.some((code) => currentCourseCodeSet.has(code));
-
-                          return (
-                            <View
-                              key={`${bank.id}-${course}`}
-                              className={`px-3 py-2 rounded-full border ${
-                                isCompleted
-                                  ? "bg-emerald-500/10 border-emerald-500/20"
-                                  : isCurrent
-                                    ? "bg-sky-500/10 border-sky-500/20"
-                                    : "bg-white/5 border-white/10"
-                              }`}
-                            >
-                              <Text
-                                className={`text-xs font-semibold ${
-                                  isCompleted
-                                    ? "text-emerald-500"
-                                    : isCurrent
-                                      ? "text-sky-400"
-                                      : textClass
-                                }`}
-                              >
-                                {course}
-                              </Text>
-                            </View>
-                          );
-                        })}
-                      </View>
-                    ) : null}
+              <View className={`border ${borderClass} rounded-2xl px-4 py-4`}>
+                <View className="flex-row items-center justify-between gap-3">
+                  <View className="flex-1 min-w-0">
+                    <Text className={`${textClass} font-semibold`}>
+                      Per-major Green River course list
+                    </Text>
+                    <Text className={`${secondaryTextClass} text-sm mt-1`}>
+                      {`${grcCourseList.length} Green River classes currently tracked for this major`}
+                    </Text>
                   </View>
-                );
-              })}
+                  <View className="px-3 py-1 rounded-full border border-white/10 bg-white/5">
+                    <Text className={`${secondaryTextClass} text-xs font-semibold`}>
+                      {`${
+                        grcCourseList.filter((course) =>
+                          extractCourseCodes(course).some((code) => completedCourseCodeSet.has(code))
+                        ).length
+                      }/${grcCourseList.length} completed`}
+                    </Text>
+                  </View>
+                </View>
+
+                <View className="flex-row flex-wrap gap-2 mt-3">
+                  {grcCourseList.map((course) => {
+                    const courseCodes = extractCourseCodes(course);
+                    const isCompleted = courseCodes.some((code) => completedCourseCodeSet.has(code));
+                    const isCurrent =
+                      !isCompleted && courseCodes.some((code) => currentCourseCodeSet.has(code));
+
+                    return (
+                      <View
+                        key={`${plan.id}-${course}`}
+                        className={`px-3 py-2 rounded-full border ${
+                          isCompleted
+                            ? "bg-emerald-500/10 border-emerald-500/20"
+                            : isCurrent
+                              ? "bg-sky-500/10 border-sky-500/20"
+                              : "bg-white/5 border-white/10"
+                        }`}
+                      >
+                        <Text
+                          className={`text-xs font-semibold ${
+                            isCompleted
+                              ? "text-emerald-500"
+                              : isCurrent
+                                ? "text-sky-400"
+                                : textClass
+                          }`}
+                        >
+                          {course}
+                        </Text>
+                      </View>
+                    );
+                  })}
+                </View>
+              </View>
+            </View>
+          ) : null}
+
+          {degreeMapSections.length ? (
+            <View className="mt-5 gap-4">
+              <Text className={`${textClass} text-base font-semibold`}>
+                UW degree map highlights
+              </Text>
+              <Text className={`${secondaryTextClass} text-sm`}>
+                These sections summarize the official UW degree structure already lifted into the planner for this major.
+              </Text>
+              {degreeMapSections.map((section) => (
+                <View key={section.id} className={`border ${borderClass} rounded-2xl px-4 py-4`}>
+                  <Text className={`${textClass} font-semibold`}>{section.title}</Text>
+                  {section.note ? (
+                    <Text className={`${secondaryTextClass} text-sm mt-1`}>
+                      {section.note}
+                    </Text>
+                  ) : null}
+                  <View className="mt-3 gap-2">
+                    {section.items.map((item) => (
+                      <View key={`${section.id}-${item}`} className="flex-row items-start gap-2">
+                        <Text className={`${secondaryTextClass} text-sm`}>{"•"}</Text>
+                        <Text className={`${secondaryTextClass} flex-1 text-sm`}>{item}</Text>
+                      </View>
+                    ))}
+                  </View>
+                </View>
+              ))}
             </View>
           ) : null}
 
@@ -1721,7 +1730,7 @@ export default function TransferPlannerPage() {
                 Quarter plan note
               </Text>
               <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                This degree does not have a fixed quarter-by-quarter plan yet. Use the Green River course groups and class-order notes above as your starting point, then confirm the final class order with an advisor.
+                This degree does not have a fixed quarter-by-quarter plan yet. Use the Green River class list and class-order notes above as your starting point, then confirm the final class order with an advisor.
               </Text>
             </View>
           ) : null}
