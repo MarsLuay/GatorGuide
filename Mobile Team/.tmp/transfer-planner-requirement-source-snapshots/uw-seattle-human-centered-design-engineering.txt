@@ -1,0 +1,268 @@
+Owner: uw-seattle-human-centered-design-engineering
+Source: https://www.hcde.washington.edu/bs/requirements/2024
+Title: Degree Requirements: Autumn 2024 Onwards | Human Centered Design & Engineering
+
+Degree Requirements: Autumn 2024 Onwards | Human Centered Design & Engineering
+Skip to main content
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDDQSLD"
+height="0" width="0" style="display:none;visibility:hidden">
+MyUW
+Calendar
+Directories
+Libraries
+UW Medicine
+Maps
+UW Today
+Helpful Links
+<a href="https://www.washington.edu/itconnect/forstudents.html"
+tabindex="-1">Computing/IT
+ISC/Workday
+Husky Card
+UW Bothell
+UW Tacoma
+UW Facebook
+UW Twitter
+<nav aria-label="Audience links, search, and quick links"
+class="d-none d-sm-flex justify-content-end desktop-section position-absolute">
+Internal Resources
+<button aria-label="Open search" aria-haspopup="true" aria-owns="search-modal" aria-controls="search-modal"
+class="px-1 search d-flex align-self-center align-items-center" data-bs-toggle="modal"
+data-bs-target="#search-modal">
+<button class="uw-links-wrapper mr-n2 uwlinks-button-toggle" role="button" aria-label="Show UW quick links" aria-owns="uwlinks"
+aria-controls="uwlinks" aria-haspopup="true">
+UW Links
+<button class="menu-toggler d-sm-none collapsed" type="button" data-toggle="collapse" data-target="#main-menu"
+aria-controls="toggleMainMenu" aria-expanded="false" aria-label="Toggle Main Menu">
+Menu
+Search
+Main menu
+About
+<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
+data-toggle="collapse" data-target="#main-menu-1"
+aria-controls="toggle_main-menu-1" aria-expanded="false"
+aria-label="Toggle main-menu-1" href="#main-menu-1">
+About
+Mission, vision, and guiding principles
+HCDE impact
+Strategic plan
+Diversity, equity, and inclusion
+K-12 outreach
+External Advisory Board
+Employment opportunities
+Department history
+Contact us
+People
+<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
+data-toggle="collapse" data-target="#main-menu-2"
+aria-controls="toggle_main-menu-2" aria-expanded="false"
+aria-label="Toggle main-menu-2" href="#main-menu-2">
+People
+Faculty
+Students
+Staff
+Research scientists
+Adjunct & affiliate faculty
+Outgoing PhDs & postdocs
+Emeriti faculty
+Research
+<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
+data-toggle="collapse" data-target="#main-menu-3"
+aria-controls="toggle_main-menu-3" aria-expanded="false"
+aria-label="Toggle main-menu-3" href="#main-menu-3">
+Research
+HCDE research impact
+Research areas
+Directed research groups
+Research labs and centers
+Research updates
+PhD dissertations & technical reports
+News & events
+<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
+data-toggle="collapse" data-target="#main-menu-4"
+aria-controls="toggle_main-menu-4" aria-expanded="false"
+aria-label="Toggle main-menu-4" href="#main-menu-4">
+News & events
+HCDE news
+Events calendar
+UX Speaker Series
+HCDE Research Showcase
+Distinguished lecture series
+Capstone Showcase
+Graduation ceremony
+HCDE Research Speaker Series
+Join our mailing list
+Designing Up magazine
+Future students
+<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
+data-toggle="collapse" data-target="#main-menu-5"
+aria-controls="toggle_main-menu-5" aria-expanded="false"
+aria-label="Toggle main-menu-5" href="#main-menu-5">
+Future students
+Bachelor of Science
+Master of Science
+PhD program
+Graduate Certificate in User Centered Design
+Graduate Certificate in Human Centered Artificial Intelligence
+Information sessions
+Careers
+Speak to an adviser
+Current students
+<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
+data-toggle="collapse" data-target="#main-menu-6"
+aria-controls="toggle_main-menu-6" aria-expanded="false"
+aria-label="Toggle main-menu-6" href="#main-menu-6">
+Current students
+Undergraduate students
+Master's students
+Ph.D. students
+Certificate students
+HCDE student resources
+Student associations
+Voicing concerns
+Design tools & resources
+Careers & internships
+Industry & alumni
+<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
+data-toggle="collapse" data-target="#main-menu-7"
+aria-controls="toggle_main-menu-7" aria-expanded="false"
+aria-label="Toggle main-menu-7" href="#main-menu-7">
+Industry & alumni
+Get involved & stay connected
+Sponsor student projects
+Alumni & industry events calendar
+Recruiting & hiring students
+Alumni directory
+Design for passion
+Outstanding alumni award
+Corporate & foundation relations
+<a class="toggler nav-link collapsed" data-toggle="collapse" data-target="#main-menu-links"
+aria-controls="toggleMainMenuLinks" aria-expanded="false" aria-label="Toggle Main Menu Links"
+href="#main-menu-links">Additional Links
+Additional Links
+Internal Resources
+<a class="toggler hide-menu-arrow search nav-link collapsed" data-bs-toggle="modal" data-bs-target="#search-modal"
+aria-controls="toggleMainMenuSearch" aria-expanded="false" aria-label="Toggle Main Menu Search" href="#">
+Search
+Give
+<a class="toggler hide-menu-arrow nav-link collapsed uw-links-wrapper uwlinks-button-toggle" aria-owns="uwlinks"
+aria-controls="uwlinks" aria-label="Show UW links">
+UW Links
+GIVE
+Internal Resources
+Current students
+Current students
+Undergraduate students
+Degree requirements
+Degree Requirements: After Autumn 2024
+Degree Requirements: Autumn 2024 Onwards
+Degree Requirements: Autumn 2024 Onwards
+Note: The requirements on this page apply to HCDE undergraduates admitted to the HCDE bachelor's program for Autumn 2024 onwards. For more information regarding changes to the HCDE BS curriculum for students admitted Autumn 2024 or later, see the HCDE Undergraduate Curriculum Changes FAQs . HCDE undergraduates admitted to the HCDE bachelor's program prior to Autumn 2024 should instead refer to our former degree requirements .
+To graduate, students in the HCDE bachelor's program must complete 180 credits, including the following:
+General Education Courses (85 credits minimum)
+Engineering Fundamentals (12 credits)
+Experiential Learning (2 credits)
+HCDE Core Courses (46 credits)
+HCDE Electives (23 credits)
+Free (a.k.a “General”) Electives (if needed to reach 180 credits)
+Students are encouraged to use MyPlan and DARS * for degree planning and for tracking their progress through the HCDE major requirements. Students can also refer to the HCDE planned undergraduate course schedule for information regarding HCDE course scheduling in the upcoming year.
+*Note: Prospective students may not see these new major requirements reflected in DARS until they have declared the major and registered for Autumn 2024 or until Autumn 2024 has begun.
+General Education Courses
+Students must take a minimum of 85 credits of general education courses, as outlined below. See note regarding requirement overlap for more information regarding overlap restrictions.
+Written and Oral Communication
+5 credits English composition (C)
+7 credits Writing (W) 5 credits met by HCDE 313. HCDE 417 and HCDE 419 may also apply towards the W requirement if taken Autumn 2025 or later.
+Reasoning
+5 credits Reasoning (RSN) Met by HCDE mathematics requirement.
+Diversity
+5 credits* Diversity (DIV) Met by HCDE 315 or another DIV course.
+*For students admitted to the university prior to Autumn 2023, the DIV requirement is 3 credits.
+Areas of Inquiry
+Arts and Humanities (A&H) and Social Sciences (SSc) (30 credits)
+10 credits A&H
+10 credits SSc
+10 additional credits of A&H or SSc
+Natural Sciences (NSc) (50 credits)
+5 credits mathematics
+5 credits statistics
+5 additional credits of mathematics or statistics
+15 credits sciences
+20 additional credits from mathematics, statistics, or sciences
+All courses taken for the HCDE Natural Sciences requirements must come from the HCDE-specific mathematics, statistics, and sciences course lists .
+Additional credit may not be earned for a course that overlaps in content with a previously completed course. See UW Course Catalog descriptions for specific credit allowances for overlapping courses. Credit is also not awarded for mathematics courses taken out of sequence.
+Engineering Fundamentals
+Students must take 12 credits of engineering fundamentals.
+Minimum one course from:
+CSE 121 : Introduction to Computer Programming I (4)
+CSE 122 : Introduction to Computer Programming II (4)
+CSE 123 : Introduction to Computer Programming III (4)
+CSE 142 : Computer Programming I (4)
+CSE 160 : Data Programming (4)
+Additional courses from HCDE engineering fundamentals list to reach 12 credits minimum
+Additional credit may not be earned for a course that overlaps in content with a previously completed course. See UW Course Catalog descriptions for specific credit allowances for overlapping courses.
+Experiential Learning
+Students must take 2 credits of experiential learning from the list below. “Experiential learning” refers to learning though experience or learning by doing, rather than a traditional course. Aside from HCDE 497 (see note below), courses on this list are not eligible to apply towards any other HCDE degree requirements. For more information regarding limits on HCDE research credits, see the HCDE Research Credits Policy .
+ENGR 321 : Engineering Internship Education (variable credits) See details and steps to register on Career Center @ Engineering website .
+ENGR 490 : Engineering Leadership (2) See Emerging Leaders in Engineering .
+HCDE 496 : Directed Research in HCDE (variable credits) See HCDE DRG listings .
+HCDE 497 : Study Abroad: HCDE* (variable credits) See HCDE study abroad .
+HCDE 499 : Individual Research (variable credits)
+*If not applied towards Systems and Society Electives requirement.
+HCDE Core Courses
+Students must take 46 credits of required HCDE core courses. The 300-level HCDE core courses should be completed by the end of students’ junior/second-to-last year to meet the prerequisites for the HCDE capstone sequence (HCDE 492, HCDE 493) in their senior/final year.
+HCDE 302 : Foundations of Human Centered Design I (5)
+HCDE 303 : Foundations of Human Centered Design II (5)
+HCDE 308 : Visual Communication in HCDE (5)
+HCDE 310 : Interactive Systems Design and Technology (5)
+HCDE 313 : Introduction to User Research (5) Writing (W) course.
+One course from:
+HCDE 315 : Inclusive Design and Engineering (5) Diversity (DIV) course.
+HCDE 316 : Sustainable Design (5)
+HCDE 321 : Professional Portfolio (2)
+HCDE 322 : Organizational Teamwork (2)
+HCDE 351 : User Experience Prototyping Techniques (5)
+HCDE 492 : Capstone Planning (2)
+HCDE 493 : Senior Capstone (5)
+HCDE Electives
+Students must take 23 credits of HCDE electives, with at least 15 credits from the Engineering Electives list and at least 8 credits from the Systems and Society Electives list. Additional courses from the Engineering Electives list may also apply towards the Systems and Society Electives requirement if the Engineering Electives requirement has been satisfied.
+Engineering Electives (15 credits)
+HCDE 315 : Inclusive Design and Engineering* (5) Diversity (DIV) course.
+HCDE 316 : Sustainable Design* (5)
+HCDE 410 : Human Data Interaction (5)
+HCDE 411 : Information Visualization (5)
+HCDE 417 : Usability Research Techniques (5)
+HCDE 438 : Web Technologies (5)
+HCDE 439 : Physical Computing (5)
+*If not applied towards core course requirements.
+Systems and Society Electives (8 credits)
+HCDE 412 : Qualitative Research Methods in HCDE (5)
+HCDE 418 : Advanced Projects in HCDE (5) See special topics course descriptions .
+HCDE 419 : Concepts in Human-Computer Interaction (5)
+HCDE 450 : Product Management (5)
+HCDE 485 : Material and Cultural Bias in Algorithmic Systems (5)
+HCDE 497 : Study Abroad: HCDE* (variable credits) See HCDE study abroad .
+HCDE 498 : Advanced Special Topics (variable credits) See special topics course descriptions .
+CSE 414 : Introduction to Database Systems (4)
+CSE 416 : Introduction to Machine Learning (4)
+*If not applied towards Experiential Learning requirement.
+Note Regarding Requirement Overlap
+With the exception of the Writing (W) requirement and Diversity (DIV) requirement, which can overlap with other requirements, all classes can only count toward one requirement. Courses applied towards HCDE major requirements do not also apply towards the Areas of Inquiry requirements. Courses which appear on the course lists for more than one major requirement can only satisfy one requirement.
+Course Substitution Petition
+Use this form to request to count a course not listed above towards an HCDE degree requirement (login with UWNetID required). Substitutions will not be approved for general education requirements or other degree requirements not included in this form.
+We recommend submitting your petition at least 3 weeks before the quarter in which you plan to take the course . You are required to include a syllabus. Please note that petitions are not guaranteed to be approved. Additional guidance can be found in the petition form.
+Degree requirements
+Degree Requirements: Before Autumn 2024
+Degree Requirements: After Autumn 2024
+HCDE Engineering Fundamentals List
+HCDE Natural Sciences Course Lists
+Connect with HCDE
+Join our mailing list
+UW College of Engineering
+College of Engineering University of Washington logo
+Be Boundless
+University of Washington
+Webmaster
+Site Map
+Login
+Privacy
+Terms
+&copy; 2026 Human Centered Design & Engineering | UW College of Engineering | Seattle, WA

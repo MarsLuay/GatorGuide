@@ -1,0 +1,382 @@
+Owner: uw-seattle-electrical-computer-engineering
+Source: https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/
+Title: BSECE Degree Requirements | UW Department of Electrical & Computer Engineering
+
+BSECE Degree Requirements | UW Department of Electrical & Computer Engineering
+Skip to main content
+Helpful Links
+Operations and Intranet
+Schedule an Advising Appointment
+Links for Faculty
+Departmental Computing
+Course Offerings and Enrollments
+<!-- Rather than edit these items here, edit template file menu-quicklinks.php
+Helpful Links
+Internal Web Pages ("Intranet")
+Schedule an Advising Appointment
+Departmental Computing
+Links for Faculty
+Course Offerings & Course Enrollments
+-->
+University of Washington -->
+University of Washington
+<img src="/wp-content/themes/uw-ee-main/images/button-give.png"
+class="pr-button" style="max-height: 70px; max-width: 180px; border: 0;" alt="" />
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+width="19px" height="51px" viewBox="0 0 18.776 51.062" enable-background="new 0 0 18.776 51.062" xml:space="preserve" focusable="false">
+Quick Links
+Site Menu
+About
+Message from the Chair
+Office of the Chair
+Quick Facts
+About Us
+Faculty Highlights
+Community Engagement
+Advisory Board
+ABET Accreditation: BSECE
+ABET Accreditation: BSEE
+News + Events
+Latest News
+Events Calendar
+Event Photos
+The Link Newsletter
+The Integrator News &#038; Research Magazine
+Research Colloquium Lecture Series
+Lytle Lecture Series
+ENGINE Showcase
+Research Showcase
+Graduation
+Ph.D. Graduate Visit Days
+WAFER: WomXn at the Forefront of Engineering Research
+People
+Faculty
+Affiliate Faculty
+Adjunct Faculty
+Emeritus Faculty
+Ph.D. Students
+Staff
+In Memoriam
+Academics
+Bachelor of Science
+Bachelor of Science in Electrical Engineering (BSEE)
+Bachelor of Science in Electrical and Computer Engineering (BSECE)
+BSECE Pathways
+Computer Architecture Pathway
+Control Systems Pathway
+Digital Systems Design Pathway
+Embedded Systems Pathway
+Microelectronics and Nanotechnology Pathway
+Machine Learning Pathway
+Neurotechnology Pathway
+Photonics Pathway
+Sensing and Communication Pathway
+Sustainable Energy Systems Pathway
+VLSI Design / Digital Systems Design Pathway
+BSECE Satisfactory Progress
+UW ECE Undergraduate Program Mission Objectives and Outcomes
+BSECE Admissions Requirements
+BSECE Transfer Admissions FAQs
+BSECE and BSEE FAQs
+Combined BS-MS
+Master’s &#038; Ph.D. Programs
+Professional Master’s Program
+Professional Master’s Certificate Programs
+Certificate Program in Machine Learning &#038; Deep Learning
+Certificate Program in GPU-Accelerated Computing &#038; Visualization
+Applied Cybersecurity Engineering (ACE)
+Professional Master’s Short Courses
+Hands-on Master Class on LLMs and ChatGPT
+Certificate Programs
+UW ECE Entrepreneurial Fellows Program (UW ECE-EFP)
+Non-Degree Options
+Advising
+Laptop Policy
+Courses
+Research
+Biosystems
+Computing and Networking
+Data Science
+Electronic, Photonic, and Integrated Quantum Systems (EPIQS)
+Power and Energy Systems
+Robotics and Controls
+Research Centers
+Research Labs
+CHIPS at UW ECE
+CHIPS News &#038; Media
+CHIPS Faculty
+Innovation
+ENGINE: Engineering Innovation &#038; Entrepreneurship Capstone
+UW ECE Entrepreneurial Fellows Program
+Washington Nanofabrication Facility
+Makerspace: Accelerating Innovation
+Tunoptix: Tunable metasurface optics for machine vision and AR/VR
+Proprio: Using computer vision and machine learning to enhance human and computer performance
+ThruWave: Providing state-of-the-art millimeter-wave (mmW) 3D imaging
+Parse BioSciences: Providing scalable single cell RNA-sequencing solutions
+OneRadio: Changing the way we access the radio-frequency spectrum
+Jeeva Wireless (now WaveWorks): Reimagining connectivity with low-power backscatter technology
+MicrobiomX (Tend): Providing rapid, personalized restorative guy therapy through microbiota transplants
+BluHaptics (Olis Robotics): Underwater Robots with Human Touch
+SNUPI: Home Monitoring Systems
+WiBotic: Wireless Power for Robots
+Get Involved
+Researchers
+Current Students
+Resources for Students
+Prospective Students
+Industry
+Alumni
+Give to UW ECE
+Job Openings
+Student Job &#038; Internship Opportunities
+Community Engagement
+Contact Us
+About
+Message from the Chair
+Office of the Chair
+Quick Facts
+About Us
+Faculty Highlights
+Community Engagement
+Advisory Board
+ABET Accreditation: BSECE
+ABET Accreditation: BSEE
+News + Events
+Latest News
+Events Calendar
+Event Photos
+The Link Newsletter
+The Integrator News &#038; Research Magazine
+Research Colloquium Lecture Series
+Lytle Lecture Series
+ENGINE Showcase
+Research Showcase
+Graduation
+Ph.D. Graduate Visit Days
+WAFER: WomXn at the Forefront of Engineering Research
+People
+Faculty
+Affiliate Faculty
+Adjunct Faculty
+Emeritus Faculty
+Ph.D. Students
+Staff
+In Memoriam
+Academics
+Bachelor of Science
+Combined BS-MS
+Master’s &#038; Ph.D. Programs
+Professional Master’s Program
+Professional Master’s Certificate Programs
+Professional Master’s Short Courses
+Certificate Programs
+UW ECE Entrepreneurial Fellows Program (UW ECE-EFP)
+Non-Degree Options
+Advising
+Laptop Policy
+Courses
+Research
+Biosystems
+Computing and Networking
+Data Science
+Electronic, Photonic, and Integrated Quantum Systems (EPIQS)
+Power and Energy Systems
+Robotics and Controls
+Research Centers
+Research Labs
+CHIPS at UW ECE
+Innovation
+ENGINE: Engineering Innovation &#038; Entrepreneurship Capstone
+UW ECE Entrepreneurial Fellows Program
+Washington Nanofabrication Facility
+Makerspace: Accelerating Innovation
+Tunoptix: Tunable metasurface optics for machine vision and AR/VR
+Proprio: Using computer vision and machine learning to enhance human and computer performance
+ThruWave: Providing state-of-the-art millimeter-wave (mmW) 3D imaging
+Parse BioSciences: Providing scalable single cell RNA-sequencing solutions
+OneRadio: Changing the way we access the radio-frequency spectrum
+Jeeva Wireless (now WaveWorks): Reimagining connectivity with low-power backscatter technology
+MicrobiomX (Tend): Providing rapid, personalized restorative guy therapy through microbiota transplants
+BluHaptics (Olis Robotics): Underwater Robots with Human Touch
+SNUPI: Home Monitoring Systems
+WiBotic: Wireless Power for Robots
+Get Involved
+Researchers
+Current Students
+Prospective Students
+Industry
+Alumni
+Give to UW ECE
+Job Openings
+Community Engagement
+Contact Us
+<!--
+COVID-19 Information and Resources for
+ECE Students, Faculty, and Staff
+-->
+<!--
+UW ECE Launches New BSECE Degree Program
+-->
+Bachelor of Science in Electrical and Computer Engineering (BSECE)
+Home
+UW Department of Electrical & Computer Engineering
+Academics
+Bachelor of Science
+Bachelor of Science in Electrical and Computer Engineering (BSECE)
+BSECE Degree Requirements
+Our Bachelor of Science in Electrical and Computer Engineering (BSECE) degree prepares undergraduates for careers in industry or further study at the graduate level. Degree requirements include UW general graduation requirements as well as BSECE prerequisites and curriculum.
+BSECE Degree Requirements
+A minimum of 180 credit hours of coursework
+A minimum of 45 credits earned in residence at the UW
+BSECE Coursework Requirements
+Students must complete coursework in the following three areas:
+1.A. BSECE Major Requirements and Electives (73-80 credits) *For Students Admitted to Start in ECE in Autumn 2025 and Onward*
+The major requirements are comprised of the following areas of study ( Grade requirements: minimum 2.0 cumulative GPA in all courses applied to the major, with no grade below 1.0 in these courses) :
+Computer Programming (4-5 credits):
+Either CSE 123: Intro to Computer Programming III or CSE 143: Computer Programming II
+Minimum 2.0 grade in course required
+Electrical and Computer Engineering Core (22 &#8211; 24 credits) :
+EE 201 , EE 215 , EE 241 or CSE 163 , EE 242 , EE 271 , EE 280
+Minimum 2.0 grade in each course
+Advanced Technical Communication (4 credits) :
+EE 393 or Department-approved alternative
+Capstone (4 &#8211; 8 credits):
+For multi-quarter capstones, students must complete all courses in the capstone sequence to receive credit. One of the following must be completed:
+EE 437: Integrated Systems Capstone
+EE 449: Robotics and Controls Capstone
+EE 461: Neural Engineering Tech Studio
+EE 475: Embedded Systems Capstone
+EE 478: Capstone Integrated Digital Design Projects
+EE 497: Engineering Entrepreneurial Capstone and EE 498: Engineering Entrepreneurial Capstone
+Advanced Electrical and Computer Engineering Electives (39 credits):
+(Only EE course credits may apply except where specifically noted)
+Professional Issues (1–4 credits): see adviser for list of approved courses (scroll to &#8220;Other Degree Information&#8221; on bottom of page and open &#8220;Department-Approved Lists&#8221; accordion to review list)
+Additional 300 and 400 level EE courses to reach 39 credits. These credits are subject to the following:
+A maximum of 2 credits of seminar courses (see adviser for list of approved seminar courses &#8211; scroll to &#8220;Other Degree Information&#8221; on bottom of page and open &#8220;Department-Approved Lists&#8221; accordion to review list )
+The following course at the 200 level may count: EE 233
+A maximum of 6 credits of EE 499 may apply toward Advanced ECE Electives. (How to register for research credit)
+EE 490 (graded CR/NC) may not apply toward Advanced ECE Electives and may only apply to free electives.
+The following non-EE courses may count: CSE 373 , CSE 374 and ENGR 321
+Maximum of 4 credits of ENGR 321 may apply toward Advanced ECE Electives
+Up to a maximum of 6 credits combined of ENGR 321 and EE 499 may apply toward Advanced ECE Electives.
+Students may pursue optional pathways in order to complete their 39 credits of Advanced ECE Electives.
+Capstone courses do NOT count toward Advanced ECE Electives.
+At least 20 EE course credits from the 39 credits of Advanced ECE Electives must be completed at the 400 level .
+Graduate Courses Applied to Advanced ECE Electives
+Under special circumstances you may petition, as an undergraduate, to apply up to 4 credits earned in EE graduate courses toward your 400 level Advanced ECE Electives. Before such a request can be approved, you must demonstrate that you have the required background for the graduate courses. Consult the UW ECE Advising Office for additional information about the petition process.
+1.B. BSECE Major Requirements and Electives (66-69 credits) *For Students Admitted Prior to Autumn 2025*
+The BSECE major requirements are comprised of the following areas of study ( Grade requirements: minimum 2.0 cumulative GPA in all courses applied to the major, with no grade below 1.0 in these courses) :
+Computer Programming (4-5 credits):
+Either CSE 123: Intro to Computer Programming III or CSE 143: Computer Programming II
+Minimum 2.0 grade in course required
+Electrical and Computer Engineering Core (22 &#8211; 24 credits) :
+EE 201 , EE 215 , EE 241 or CSE 163 , EE 242 , EE 271 , EE 280
+Minimum 2.0 grade in each course
+Advanced Technical Communication (4 credits) :
+EE 393 , ENGR 333 (ENGR 333 will no longer be offered after the Spring 2024 quarter), or Department-approved alternative
+Advanced Electrical and Computer Engineering Electives (36 credits):
+(Only EE course credits may apply except where specifically noted)
+Professional Issues (1–4 credits): see adviser for list of approved courses (scroll to &#8220;Other Degree Information&#8221; on bottom of page and open &#8220;Department-Approved Lists&#8221; accordion to review list)
+Capstone (4–8 credits): see adviser for list of approved courses (scroll to &#8220;Other Degree Information&#8221; on bottom of page and open &#8220;Department-Approved Lists&#8221; accordion to review list)
+Additional 300 and 400 level EE courses to reach 36 credits. These credits are subject to the following:
+A maximum of 2 credits of seminar courses (see adviser for list of approved seminar courses &#8211; scroll to &#8220;Other Degree Information&#8221; on bottom of page and open &#8220;Department-Approved Lists&#8221; accordion to review list )
+The following course at the 200 level may count: EE 233
+For students who started the BSECE major prior to Autumn 2024: A maximum of 10 credits of EE 499 may apply toward Advanced ECE Electives. (How to register for research credit)
+For students starting the BSECE major in Autumn 2024 or later: A maximum of 6 credits of EE 499 may apply toward Advanced ECE Electives. (How to register for research credit)
+EE 490 (graded CR/NC) may not apply toward Advanced ECE Electives and may only apply to free electives.
+The following non-EE courses may count: CSE 373 , CSE 374 and ENGR 321
+Maximum of 4 credits of ENGR 321 may apply toward Advanced ECE Electives
+For students who started the BSECE major prior to Autumn 2024: Up to a maximum of 10 credits combined of ENGR 321 and EE 499 may apply toward Advanced ECE Electives.
+For students starting the BSECE major in Autumn 2024 or later: Up to a maximum of 6 credits combined of ENGR 321 and EE 499 may apply toward Advanced ECE Electives.
+Students may pursue optional pathways in order to complete their 36 credits of Advanced ECE Electives.
+At least 20 EE course credits from the 36 credits of Advanced ECE Electives must be completed at the 400 level .
+Graduate Courses Applied to Advanced ECE Electives
+Under special circumstances you may petition, as an undergraduate, to apply up to 4 credits earned in EE graduate courses toward your 400 level Advanced ECE Electives. Before such a request can be approved, you must demonstrate that you have the required background for the graduate courses. Consult the UW ECE Advising Office for additional information about the petition process.
+2. General Education Courses
+General Education Courses are comprised of the following:
+Written and Oral Communication (12 credits)
+This requirement includes two components described below: English Composition and Additional Writing Requirements.
+English Composition: 5 credits from the University-approved list
+Writing: 3 credits of &#8220;W&#8221; coursework
+Writing: Remaining 4 credits met by coursework in the major ( EE 393 )
+Note: if you have transfer credit that is similar to the courses above, but which did not transfer as one of the courses listed above, please check with the ECE Advising Office.
+Areas of Inquiry (69 credits)
+A&H/SSc courses are designated in the quarterly time schedule and the UW course catalog . A minimum of 5 credits of diversity (DIV) coursework is required. The DIV credits may overlap with A&H or SSc. Special Note: For students admitted to the University prior to autumn quarter 2023, the DIV requirement is 3 credits.
+Arts and Humanities (A&H), Social Sciences (SSc) (24 credits):
+A&H (10 credits)
+SSc (10 credits)
+Additional credits in A&H or SSc to bring total to 24 credits
+Natural Science (NSc) Courses (45 credits):
+Mathematics (15–21 credits), complete one of the following:
+MATH 124 , MATH 125 , MATH 126 , MATH 207 (or AMATH 351 ), MATH 208 (or AMATH 352 )
+MATH 134 , MATH 135 , MATH 136
+Physics (10 credits): PHYS 121 , PHYS 122 (or PHYS 141 , PHYS 142 )
+Two courses from BIOL 130 , BIOL 220 , CHEM 142 (or CHEM 143 or CHEM 145 ), MATH 224 , PHYS 123 (or PHYS 143 )
+Statistics (3–4 credits): one of IND E 315 , or STAT 390
+Additional NSc courses from approved list to reach 45 credits: see adviser for list of approved courses (scroll to &#8220;Other Degree Information&#8221; on bottom of page and open &#8220;Department-Approved Lists&#8221; accordion to review list).
+3. Free Electives
+Students must take additional electives in order to reach the 180 total credits required to graduate with the BSECE. Free elective credits may be fulfilled by any course for which the University of Washington gives credit, except courses that duplicate or parallel courses for which you have already received credit.
+Other Degree Information
+Department-Approved Lists
+Professional Issues:
+EE 397: Sex and Gender in Engineering
+EE 398: Introduction to Professional Issues *
+EE 406: Teaching Engineering
+EE 418: Network Security and Cryptography
+*Recommended. Please note that EE 398 is not considered a seminar and thus does not apply to the 2-credit seminar limit.
+Approved Additional Natural Sciences (NSc) Courses:
+Any Natural Sciences (NSc) course from this list:
+Any MATH class at 200 level or above
+Any AMATH class
+Any STAT class with STAT 394: Probability I as a prerequisite
+Any PHYS class at 200 level or above
+CHEM 152: General Chemistry , CHEM 153: Accelerated General Chemistry , CHEM 155: Honors General Chemistry , CHEM 220: Principles of Chemistry II
+Any BIOL class except for BIOL 100: Introductory Biology , BIOL 161: Advanced Placement (AP) in General Biology 1 , BIOL 162: Advanced Placement (AP) in General Biology 2
+Any NEUSCI class
+Department-approved alternative
+Capstone:
+For multi-quarter capstones, students must complete all courses in the capstone sequence to receive credit. One of the following must be completed:
+EE 437: Integrated Systems Capstone
+EE 449: Robotics and Controls Capstone
+EE 461: Neural Engineering Tech Studio
+EE 475: Embedded Systems Capstone
+EE 478: Capstone Integrated Digital Design Projects
+EE 497: Engineering Entrepreneurial Capstone and EE 498: Engineering Entrepreneurial Capstone
+Seminars:
+EE 491: Undergraduate Seminar
+EE 492: Electrical Engineering Leadership Seminar
+(Please note that EE 398 is not considered a seminar and thus does not apply to the 2-credit seminar limit.)
+Passing Grades
+Students must achieve passing grades in their classes to fulfill degree requirements. Passing grades are defined as the following:​
+2.0 or higher in the ECE Core and Computer Programming (CSE 123 or 143) requirements​
+1.0 or higher in the Advanced Technical Communication, Capstone and Advanced ECE Electives requirements​
+0.7 or higher for all other requirements​
+Courses used to satisfy requirements must be taken on a graded basis. Courses taken as S/NS cannot be used towards degree requirements.
+Contact Advising
+undergradece@uw.edu
+Current UW ECE students can schedule an appointment with an adviser online.
+Prospective student drop-in hours
+Bachelor of Science in Electrical and Computer Engineering (BSECE)
+BSECE Pathways
+BSECE Degree Requirements
+BSECE Satisfactory Progress
+BSECE Honors Options
+BSECE Admissions Requirements
+Policies and Course Registration
+Contact Advising
+Connect with ECE:
+Facebook
+Twitter
+Instagram
+YouTube
+LinkedIn
+University of Washington
+Be boundless
+Accessibility
+Contact Us
+Campus Safety
+My UW
+Privacy
+Terms
+&copy; 2026 University of Washington | Seattle, WA

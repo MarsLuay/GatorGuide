@@ -1,4 +1,4 @@
-import type { Language } from "@/services/translations";
+import type { Language } from "@/services/app/translations";
 
 export const LANGUAGE_TO_LOCALE: Record<Language, string> = {
   English: "en-US",

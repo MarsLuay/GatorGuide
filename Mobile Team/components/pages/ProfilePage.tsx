@@ -23,7 +23,7 @@ import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
-import { normalizeQuestionnaireAnswers, QUESTIONNAIRE_RADIO_OPTIONS } from "@/services/questionnaire.enums";
+import { normalizeQuestionnaireAnswers, QUESTIONNAIRE_RADIO_OPTIONS } from "@/services/app/questionnaire.enums";
 import { useAppData } from "@/hooks/use-app-data";
 import { ProfileField } from "@/components/ui/ProfileField";
 import { DocumentExtractionReviewCard } from "@/components/ui/DocumentExtractionReviewCard";
@@ -35,7 +35,7 @@ import * as Sharing from "expo-sharing";
 import * as DocumentPicker from "expo-document-picker";
 import * as ImagePicker from "expo-image-picker";
 import { ROUTES } from "@/constants/routes";
-import { collegeService } from "@/services/college.service";
+import { collegeService } from "@/services/colleges/college.service";
 import { APP_VERSION } from "@/constants/app-version";
 import {
   QUESTIONNAIRE_FIELD_IDS,
@@ -155,7 +155,7 @@ export default function ProfilePage() {
 
     void (async () => {
       try {
-        const { storageService } = await import("@/services/storage.service");
+        const { storageService } = await import("@/services/storage/storage.service");
         const [resumeDocument, transcriptDocument] = await Promise.all([
           storageService.getResume(user.uid),
           storageService.getTranscript(user.uid),
@@ -617,7 +617,7 @@ export default function ProfilePage() {
       });
       if (result.canceled || !result.assets?.[0]?.uri) return;
       const asset = result.assets[0];
-      const { storageService } = await import("@/services/storage.service");
+      const { storageService } = await import("@/services/storage/storage.service");
       const uploaded = await storageService.uploadResume(user.uid, asset.uri, {
         fileName: asset.name,
         mimeType: asset.mimeType,
@@ -661,7 +661,7 @@ export default function ProfilePage() {
       });
       if (result.canceled || !result.assets?.[0]?.uri) return;
       const asset = result.assets[0];
-      const { storageService } = await import("@/services/storage.service");
+      const { storageService } = await import("@/services/storage/storage.service");
       const uploaded = await storageService.uploadTranscript(user.uid, asset.uri, {
         fileName: asset.name,
         mimeType: asset.mimeType,
@@ -704,7 +704,7 @@ export default function ProfilePage() {
       });
       if (result.canceled || !result.assets?.[0]?.uri) return;
       const uri = result.assets[0].uri;
-      const { storageService } = await import("@/services/storage.service");
+      const { storageService } = await import("@/services/storage/storage.service");
       const uploaded = await storageService.uploadAvatar(user.uid, uri);
       await updateUser({ avatar: uploaded.url });
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);

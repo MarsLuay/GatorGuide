@@ -1,0 +1,241 @@
+Owner: uw-seattle-chemical-engineering
+Source: https://www.cheme.washington.edu/undergraduate_students/curriculum
+Title: Curriculum | UW Chemical Engineering
+
+Curriculum | UW Chemical Engineering
+Skip to main content
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDDQSLD"
+height="0" width="0" style="display:none;visibility:hidden">
+MyUW
+Calendar
+Directories
+Libraries
+UW Medicine
+Maps
+UW Today
+Helpful Links
+<a href="https://www.washington.edu/itconnect/forstudents.html"
+tabindex="-1">Computing/IT
+ISC/Workday
+Husky Card
+UW Bothell
+UW Tacoma
+UW Facebook
+UW Twitter
+<nav aria-label="Audience links, search, and quick links"
+class="d-none d-sm-flex justify-content-end desktop-section position-absolute">
+Diversity, Equity, Inclusion and Accessibility
+MyChemE
+<button aria-label="Open search" aria-haspopup="true" aria-owns="search-modal" aria-controls="search-modal"
+class="px-1 search d-flex align-self-center align-items-center" data-bs-toggle="modal"
+data-bs-target="#search-modal">
+<button class="uw-links-wrapper mr-n2 uwlinks-button-toggle" role="button" aria-label="Show UW quick links" aria-owns="uwlinks"
+aria-controls="uwlinks" aria-haspopup="true">
+UW Links
+<button class="menu-toggler d-sm-none collapsed" type="button" data-toggle="collapse" data-target="#main-menu"
+aria-controls="toggleMainMenu" aria-expanded="false" aria-label="Toggle Main Menu">
+Menu
+Search
+Main menu
+About us
+<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
+data-toggle="collapse" data-target="#main-menu-1"
+aria-controls="toggle_main-menu-1" aria-expanded="false"
+aria-label="Toggle main-menu-1" href="#main-menu-1">
+About us
+What Is Chemical Engineering?
+Degrees & accreditation
+Diversity, Equity, Inclusion & Accessibility
+Employment
+Contact us
+People
+<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
+data-toggle="collapse" data-target="#main-menu-2"
+aria-controls="toggle_main-menu-2" aria-expanded="false"
+aria-label="Toggle main-menu-2" href="#main-menu-2">
+People
+Faculty
+Postdoctoral scholars
+Staff
+Student Profiles
+Research areas
+<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
+data-toggle="collapse" data-target="#main-menu-3"
+aria-controls="toggle_main-menu-3" aria-expanded="false"
+aria-label="Toggle main-menu-3" href="#main-menu-3">
+Research areas
+Advanced Materials & Interfacial Engineering
+Data Science & Molecular Simulation
+Health & Biotechnology
+Clean Energy & Sustainability
+Research and fabrication facilities
+News & Events
+<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
+data-toggle="collapse" data-target="#main-menu-4"
+aria-controls="toggle_main-menu-4" aria-expanded="false"
+aria-label="Toggle main-menu-4" href="#main-menu-4">
+News & Events
+News
+Seminars & annual events
+Catalyst Newsletter
+Event calendar
+Undergraduates
+<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
+data-toggle="collapse" data-target="#main-menu-5"
+aria-controls="toggle_main-menu-5" aria-expanded="false"
+aria-label="Toggle main-menu-5" href="#main-menu-5">
+Undergraduates
+Why choose UW ChemE?
+Admission
+Curriculum
+Plan of study
+Careers in Chemical Engineering
+Application requirements
+Study abroad
+Scholarships
+Policies
+Degrees & accreditation
+Graduate students
+<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
+data-toggle="collapse" data-target="#main-menu-6"
+aria-controls="toggle_main-menu-6" aria-expanded="false"
+aria-label="Toggle main-menu-6" href="#main-menu-6">
+Graduate students
+Ph.D. Degree Program
+M.S. Degree Program
+Application process
+Financial support and housing
+Frequently asked questions
+Industry & Alumni
+<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
+data-toggle="collapse" data-target="#main-menu-7"
+aria-controls="toggle_main-menu-7" aria-expanded="false"
+aria-label="Toggle main-menu-7" href="#main-menu-7">
+Industry & Alumni
+Alumni opportunities
+Industry partnerships
+Give to ChemE
+Alumni Profiles
+In Memoriam
+<a class="toggler nav-link collapsed" data-toggle="collapse" data-target="#main-menu-links"
+aria-controls="toggleMainMenuLinks" aria-expanded="false" aria-label="Toggle Main Menu Links"
+href="#main-menu-links">Additional Links
+Additional Links
+Diversity, Equity, Inclusion and Accessibility
+MyChemE
+<a class="toggler hide-menu-arrow search nav-link collapsed" data-bs-toggle="modal" data-bs-target="#search-modal"
+aria-controls="toggleMainMenuSearch" aria-expanded="false" aria-label="Toggle Main Menu Search" href="#">
+Search
+Give
+<a class="toggler hide-menu-arrow nav-link collapsed uw-links-wrapper uwlinks-button-toggle" aria-owns="uwlinks"
+aria-controls="uwlinks" aria-label="Show UW links">
+UW Links
+GIVE
+Diversity, Equity, Inclusion and Accessibility
+MyChemE
+Undergraduates
+Undergraduates
+Curriculum
+Curriculum
+The minimum number of credits required for a B.S.Ch.E degree is 180. Some courses cannot be counted toward degree requirements. Students should consult with a departmental adviser to determine whether a particular course can be counted. Among those that cannot be counted are chemistry, mathematics, and physics courses at a lower level than those required by the Department.
+For a sample four-year plan, please see the Plan of Study page.
+General education requirements
+ChemE undergraduate students complete 94 credits of general education requirements, which includes 5 credits of written and oral communication, 24 credits in Arts and Humanities and Social Sciences, and 65 credits of natural world courses.
+Written and Oral Communication (12 credits)
+English Composition: 5 credits from the university list
+Arts and Humanities and Social Sciences (24 credits)
+Of the 24 credits, minimum 10 credits in Arts and Humanities (A&H)
+Of the 24 credits, minimum 10 credits in Social Sciences (Ssc)
+At least 5 credits must be in Diversity (DIV).
+Natural World (65 credits)
+Mathematics (24 credits):
+MATH 124 (5): Calculus with Analytic Geometry I
+MATH 125 (5): Calculus with Analytic Geometry II
+MATH 126 (5): Calculus with Analytic Geomet ry III
+MATH 207 (4): Differential Equations (or AMATH 351)
+MATH 208 (4): Linear Algebra (or AMATH 352)
+Math Elective (4)*
+*Math Electives: MATH 209, MATH 224, IND E 315, MATH/STAT 390, AMATH 353.
+Students may alternatively complete MATH 134, 135, and 136 as a substitute for Math 124, 125, 126, 207, and 208.
+Chemistry (26 credits):
+CHEM 142 (5): General Chemistry, with lab
+CHEM 152 (5): General Chemistry, with lab
+CHEM 162 (5): General Chemistry, with lab
+CHEM 237 (4): Organic Chemistry
+CHEM 238 (4): Organic Chemistry
+CHEM 455 (3): Physical Chemistry OR
+CHEM E 456: Quantum Mechanics for Chemical Engineers
+*CHEM 143 and CHEM 153 or CHEM 145, 155, 165 may substitute for CHEM 142, 152, 162
+CHEM 223 and 224 or CHEM 257 and 258 may substitute for CHEM 237 and 238
+Physics (15 credits):
+PHYS 121 (5): Mechanics (with Lab)
+PHYS 122 (5): Electromagnetism and Oscillatory Motion (with Lab)
+PHYS 123 (5): Waves (with Lab)
+PHYS 141, 142, 143 may substitute for completing this requirement.
+Major Requirements (74 credits):
+Chemical Engineering Core Courses (57 credits)
+CHEM E 310 (4): Material and Energy Balances
+CHEM E 325 (4): Energy and Entropy
+CHEM E 326 (4): Chemical Engineering Thermodynamics
+CHEM E 330 (5): Transport Processes I
+CHEM E 340 (4): Transport Processes II
+CHEM E 375 (3): Chemical Engineering Computing
+CHEM E 435 (4): Transport Processes III
+CHEM E 436 (3): Chemical Engineering Laboratory I
+CHEM E 437 (3): Chemical Engineering Laboratory II
+CHEM E 457 (3): Principles of Molecular Engineering
+CHEM E 465 (4): Reactor Design
+CHEM E 480 (4): Process Dynamics and Control
+CHEM E 485 (4): Process Design I
+CHEM E 486 (5): Process Design II
+Molecular and Nano-Engineering (3 credits):
+CHEM E 455 (3): Surface and Colloid Lab OR CHEM E 460 (3): Polymers Lab
+Engineering Electives (16 credits)
+Standard option: Any 16 credits listed on the Engineering Electives page. Students may also petition for other engineering courses to count. Most courses from outside the College of Engineering do not count.
+Nanoscience and Molecular Engineering (NME) option: The Nanoscience and Molecular Engineering (NME) Option in the Bachelor of Science in Chemical Engineering is a transcripted option focusing on nanoscale principles in molecular engineering that provides hands-on experience and stresses the interdisciplinary nature of the field. To declare the NME option, students must complete NME 220 and CHEM E 310, which are generally taken together in spring quarter of their sophomore year. For more information about the NME option for the B.S. ChemE, please see our NME Option page.
+Optional focus areas: Students may choose to complete an optional focus area. These focus areas are not listed on the transcript. Many courses that count for the focus areas also count as engineering electives. For a list of focus areas, please see our Optional Focus Areas page.
+Unspecified Electives
+The total number of credits needed for graduation is 180. If additional credits are needed, students can take additional electives to reach the credit requirement.
+Undergraduates
+Why choose UW ChemE?
+Admission
+Curriculum
+Engineering electives
+NME option
+Optional focus areas
+Honors Program
+Pre-health planning
+Plan of study
+Careers in Chemical Engineering
+Application requirements
+Study abroad
+Scholarships
+Policies
+Degrees & accreditation
+Questions?
+In-Person Appointments
+Zoom & Phone Appointments
+Dave Drischell
+Academic Services Director
+206-543-2252
+rdd@uw.edu
+Benson Hall 137C
+SeEun Kim
+Academic Program Manager
+206-685-1634
+kimseeun@uw.edu
+Benson Hall 137B
+Explore ChemE
+Air & Space Computing & Data Science Energy & Environment Health & Medicine Transportation & Society Manufacturing & Robotics
+UW College of Engineering
+College of Engineering University of Washington logo
+Be Boundless
+Connect with us:
+Accessibility
+UW Home
+Contact Us
+Login
+Privacy
+Terms
+Learn about our ABET Accreditation
+&copy; 2026 UW Chemical Engineering | UW College of Engineering | Seattle, WA

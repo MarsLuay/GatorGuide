@@ -1,0 +1,246 @@
+Owner: uw-seattle-aeronautics-astronautics
+Source: https://www.aa.washington.edu/students/academics/bsaae
+Title: Undergraduate Degree Requirements | UW William E. Boeing Department of Aeronautics & Astronautics
+
+Undergraduate Degree Requirements | UW William E. Boeing Department of Aeronautics & Astronautics
+Skip to main content
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDDQSLD"
+height="0" width="0" style="display:none;visibility:hidden">
+MyUW
+Calendar
+Directories
+Libraries
+UW Medicine
+Maps
+UW Today
+Helpful Links
+<a href="https://www.washington.edu/itconnect/forstudents.html"
+tabindex="-1">Computing/IT
+ISC/Workday
+Husky Card
+UW Bothell
+UW Tacoma
+UW Facebook
+UW Twitter
+<nav aria-label="Audience links, search, and quick links"
+class="d-none d-sm-flex justify-content-end desktop-section position-absolute">
+Alumni
+Industry
+MyA&A
+Site Map
+<button aria-label="Open search" aria-haspopup="true" aria-owns="search-modal" aria-controls="search-modal"
+class="px-1 search d-flex align-self-center align-items-center" data-bs-toggle="modal"
+data-bs-target="#search-modal">
+<button class="uw-links-wrapper mr-n2 uwlinks-button-toggle" role="button" aria-label="Show UW quick links" aria-owns="uwlinks"
+aria-controls="uwlinks" aria-haspopup="true">
+UW Links
+<button class="menu-toggler d-sm-none collapsed" type="button" data-toggle="collapse" data-target="#main-menu"
+aria-controls="toggleMainMenu" aria-expanded="false" aria-label="Toggle Main Menu">
+Menu
+Search
+Main menu
+About us
+<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
+data-toggle="collapse" data-target="#main-menu-1"
+aria-controls="toggle_main-menu-1" aria-expanded="false"
+aria-label="Toggle main-menu-1" href="#main-menu-1">
+About us
+Quick facts
+Diversity, equity, inclusion and accessibility (DEIA)
+A&A's groundbreaking impact
+Visiting A&A
+Employment
+Undergraduate education & ABET accreditation
+K-12 outreach
+Contact us
+People
+<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
+data-toggle="collapse" data-target="#main-menu-2"
+aria-controls="toggle_main-menu-2" aria-expanded="false"
+aria-label="Toggle main-menu-2" href="#main-menu-2">
+People
+Faculty
+Staff
+Affiliates, adjuncts, and emeriti
+Postdocs
+External advisory board
+Student profiles
+Research
+<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
+data-toggle="collapse" data-target="#main-menu-3"
+aria-controls="toggle_main-menu-3" aria-expanded="false"
+aria-label="Toggle main-menu-3" href="#main-menu-3">
+Research
+Research programs
+Centers and laboratories
+Facilities
+<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
+data-toggle="collapse" data-target="#main-menu-4"
+aria-controls="toggle_main-menu-4" aria-expanded="false"
+aria-label="Toggle main-menu-4" href="#main-menu-4">
+Facilities
+UWAL | Kirsten Wind Tunnel
+C. Bossart Machine Shop
+Composites Lab
+3x3 Low-Speed Wind Tunnel
+News & Events
+<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
+data-toggle="collapse" data-target="#main-menu-5"
+aria-controls="toggle_main-menu-5" aria-expanded="false"
+aria-label="Toggle main-menu-5" href="#main-menu-5">
+News & Events
+News
+Events calendar
+Faculty honors
+Graduation
+Highflight Magazine
+SHowcase of Aerospace Research & Capstones (SHARC)
+Admissions
+<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
+data-toggle="collapse" data-target="#main-menu-6"
+aria-controls="toggle_main-menu-6" aria-expanded="false"
+aria-label="Toggle main-menu-6" href="#main-menu-6">
+Admissions
+Why study A&A at the UW?
+Prospective undergraduate students
+Prospective graduate students
+Professional graduate programs
+Students
+<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
+data-toggle="collapse" data-target="#main-menu-7"
+aria-controls="toggle_main-menu-7" aria-expanded="false"
+aria-label="Toggle main-menu-7" href="#main-menu-7">
+Students
+Student facilities & meeting room access
+Academic advising
+Degree requirements
+Student clubs & organizations
+Student employment
+Student resources
+Careers and internship
+Policy on academic performance for matriculated graduate students
+<a class="toggler nav-link collapsed" data-toggle="collapse" data-target="#main-menu-links"
+aria-controls="toggleMainMenuLinks" aria-expanded="false" aria-label="Toggle Main Menu Links"
+href="#main-menu-links">Additional Links
+Additional Links
+Alumni
+Industry
+MyA&A
+Site Map
+<a class="toggler hide-menu-arrow search nav-link collapsed" data-bs-toggle="modal" data-bs-target="#search-modal"
+aria-controls="toggleMainMenuSearch" aria-expanded="false" aria-label="Toggle Main Menu Search" href="#">
+Search
+Give
+<a class="toggler hide-menu-arrow nav-link collapsed uw-links-wrapper uwlinks-button-toggle" aria-owns="uwlinks"
+aria-controls="uwlinks" aria-label="Show UW links">
+UW Links
+GIVE
+Alumni
+Industry
+MyA&A
+Site Map
+Students
+Students
+Degree requirements
+Bachelor of Science
+Undergraduate Degree Requirements
+Undergraduate Degree Requirements
+To earn a Bachelor of Science in Aeronautical & Astronautical Engineering, a student must complete the requirements listed below. A minimum of 180 credits is required to complete the degree.
+Current A&A undergraduate students are able to access detailed information about degree requirements, deadlines, and policies on the A&A Undergraduate Student Resource Canvas.
+Expand All | Collapse All
+Mathematics (27 credits)
+MATH 124 Calculus with Analytic Geometry I (5)
+MATH 125 Calculus with Analytic Geometry II (5)
+MATH 126 Calculus with Analytic Geometry III (5)
+MATH 207 (formerly MATH 307) Introduction to Differential Equations (4)
+MATH 208 (formerly MATH 308) Matrix Algebra with Applications (4)
+MATH 224 (formerly MATH 324) Advanced Multivariable Calculus (4)
+Sciences (25 credits)
+CHEM 142 General Chemistry (5)
+CSE 160* Data Programming (Python) or ME 123 Introduction to Visualization and Computer-Aided Design (Solidworks) (5) or other Natural Sciences - NSc (5)
+PHYS 121 Mechanics (5)
+PHYS 122 Electromagnetism (5)
+PHYS 123 Waves (5)
+*If you have prior programming experience, then ME 123 is recommended.
+Engineering Fundamentals (16 credits)
+AA 210 Engineering Statics (4)
+CEE 220 Introduction to Mechanics of Materials (4)
+M E 230 Kinematics and Dynamics (4)
+A A 260 Thermodynamics (4)
+Written & Oral Communication (5 credits)
+English Composition - C (5)
+9 additional writing credits are built into A&A core courses - W
+Areas of Inquiry Requirements (24 credits)
+Arts and Humanities - A&H (10)
+Social Sciences - SSc (10)
+Additional A&H and/or SSc (4)
+5 additional diversity credits are required and can overlap with other areas of inquiry requirements - DIV
+A&A Core Courses (50 credits)
+A MATH 301** Beginning Scientific Computing (4)
+AA 301 Compressible Aerodynamics (4)
+A A 302 Incompressible Aerodynamics (4)
+A A 310 Orbital and Space Flight Mechanics (4)
+A A 311 Atmospheric Flight Mechanics (4)
+A A 312 Structural Vibrations (4)
+A A 320 Aerospace Instrumentation (3) - W
+A A 321 Aerospace Laboratory I (3) - W
+A A 322 Aerospace Laboratory II (3) - W
+A A 331 Aerospace Structures I (4)
+A A 332 Aerospace Structures II (4)
+A A 395 Undergraduate Seminar (1)
+A A 447 Control in Aerospace Systems (4)
+A A 460 Propulsion (4)
+** Please take AMATH 301 with MATLAB: typically offered Autumn and Spring quarters. Check the Time-schedule or contact Advising if you have questions.
+A&A Capstone Design Courses (8 credits)
+Select one sequence:
+A A 410 Aircraft Design I (4)
+A A 411 Aircraft Design II (4)
+OR
+A A 420 Spacecraft and Space Systems Design I (4)
+A A 421 Spacecraft and Space Systems Design II (4)
+A&A Technical Electives (15 credits)
+Choose from the following:
+A A 402 Viscous Fluid Mechanics (3)
+A A 405 Introduction to Aerospace Plasmas (3)
+A A 406 Electric Propulsion (3)
+A A 419 Aerospace Heat Transfer (3)
+A A 430 Finite Element Analysis I (3)
+A A 448 Control Systems Sensors and Actuators (3)
+A A 461 Air Breathing Propulsion (3)
+A A 462 Rocket Propulsion (3)
+A A 470 System Engineering (4)
+A A 516 Stability and Control of Flight Vehicles (3)
+A A 532 Mechanics of Composite Materials (3)
+A A 498 Special Topics (may only be used when pre-approved by the department)
+A A 499 Undergraduate Research *
+ENGR 321 Engineering Internship Education *
+* Up to 6 credits combined from A A 499 and ENGR 321 may be applied toward technical electives (e.g., 3 credits of A A 499 + 3 credits of ENGR 321, or up to 6 credits of either course)
+Free Electives (13 credits)
+Choose from the following:
+Additional coursework in any subject area not used elsewhere in degree.
+Degree requirements
+Bachelor of Science
+Undergraduate Course Syllabi
+Senior capstone projects
+Undergraduate Minor
+Master of Aerospace Engineering
+Master of Science
+Doctor of Philosophy (PhD)
+Undergraduate advising
+Erica Coleman,
+Undergraduate Academic Adviser
+206-543-6322
+aeroadvising@uw.edu
+317B GUG
+UW College of Engineering
+College of Engineering University of Washington logo
+Be Boundless
+Connect with us:
+Accessibility
+UW Home
+Contact Us
+Login
+Privacy
+Terms
+Learn about our ABET Accreditation
+&copy; 2026 UW William E. Boeing Department of Aeronautics & Astronautics | UW College of Engineering | Seattle, WA

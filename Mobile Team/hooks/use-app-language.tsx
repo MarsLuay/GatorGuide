@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Language, translations } from "@/services/translations";
+import { Language, translations } from "@/services/app/translations";
 
 const STORAGE_KEY = "app-language";
 const DEFAULT_LANGUAGE: Language = "English";

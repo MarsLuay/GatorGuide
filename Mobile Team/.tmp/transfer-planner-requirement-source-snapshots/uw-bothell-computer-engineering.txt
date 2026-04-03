@@ -1,0 +1,788 @@
+Owner: uw-bothell-computer-engineering
+Source: https://www.uwb.edu/stem/undergraduate/majors/bscompe/curriculum
+Title: Computer Engineering Curriculum - School of Science, Technology, Engineering & Mathematics
+
+Computer Engineering Curriculum - School of Science, Technology, Engineering & Mathematics
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
+height="0" width="0" style="display:none;visibility:hidden">
+Skip To Content
+Current site
+All UW Bothell
+Search keywords
+Search
+Open mobile menu
+Quick Links
+School of Science, Technology, Engineering & Mathematics
+Close mobile menu
+School of Science, Technology, Engineering & Mathematics
+Search keywords
+Current site
+All UW Bothell
+About
+Expand Navigation
+STEM Advisory Board
+Departments
+Expand Navigation
+Biological Sciences
+Computing &#038; Software Systems
+Engineering &#038; Mathematics
+Physical Sciences
+Awards & Endowments
+Undergraduate
+Expand Navigation
+Admissions
+Majors
+Expand Navigation
+Applied Computing
+Expand Navigation
+Admissions
+Curriculum
+Capstone
+Student Forms &#038; Resources
+Careers
+Biology
+Expand Navigation
+Admissions
+Curriculum
+Investigative Biology
+Student Forms &#038; Resources
+Research &#038; Internships
+Student Organizations
+Friday Harbor Laboratories
+Chemistry
+Expand Navigation
+Admissions
+Curriculum
+Student Forms &#038; Resources
+Research
+Computer Engineering
+Expand Navigation
+Admissions
+Curriculum
+Capstone
+Student Forms &#038; Resources
+Computer Science & Software Engineering
+Expand Navigation
+Admissions
+Curriculum
+Capstone
+Student Forms &#038; Resources
+Earth System Science
+Electrical Engineering
+Expand Navigation
+Admissions
+Curriculum
+Capstone
+Student Forms &#038; Resources
+Mathematics
+Expand Navigation
+Admissions
+Curriculum
+Student Forms &#038; Resources
+Mechanical Engineering
+Expand Navigation
+Admissions
+Curriculum
+Student Forms &#038; Resources
+Student Organizations
+Physics
+Expand Navigation
+Admissions
+Curriculum
+Student Forms &#038; Resources
+Research
+Student Organizations
+Minors
+Expand Navigation
+Actuarial Science
+Biology
+Chemistry
+Computer Science &#038; Software Engineering (CSSE)
+Cybersecurity
+Data Science
+Information Technology (IT)
+Marine Biology
+Mathematics
+Neuroscience
+Physics
+STEM Symposium Event
+Undergraduate Policies & Procedures
+Resources
+Expand Navigation
+CSS Registration
+Getting Started with Computer Science
+Graduate
+Expand Navigation
+Admissions
+Master of Science in Cybersecurity Engineering
+Expand Navigation
+Excellence in Cybersecurity Education
+Admissions
+How to Apply
+Tuition
+Curriculum
+Expand Navigation
+Core Courses
+Elective Courses
+Culminating Experience
+Advising
+Careers
+Master of Science in Computer Science & Software Engineering
+Expand Navigation
+Admissions
+How to Apply
+Tuition
+Curriculum
+Expand Navigation
+Core Courses
+Elective Courses
+Project or Thesis
+Advising
+Careers
+Master of Science in Electrical & Computer Engineering
+Expand Navigation
+Admissions
+How to Apply
+Tuition
+Curriculum
+Research
+Expand Navigation
+Computer Engineering
+Power &#038; Energy
+Signal Processing
+Biomedical Systems and Devices
+Microelectronics and Devices
+Wireless, RF/Microwave, and Telecommunications
+Advising
+Careers
+Graduate Certificate in Software Design & Development
+Expand Navigation
+Admissions
+Prerequisites guide
+Tuition
+Curriculum
+Careers
+Frequently Asked Questions
+Graduate Certificate in Electrical & Computer Engineering Foundations
+Expand Navigation
+Admissions
+Prerequisites guide
+Tuition
+Curriculum
+Careers
+Frequently Asked Questions
+Career Resources
+Thesis/Project Final Defense Schedule
+Expand Navigation
+Previous Quarters
+Faculty
+Expand Navigation
+Department of Biological Sciences Faculty
+Department of Computing & Software Systems Faculty
+Department of Engineering & Mathematics Faculty
+Department of Physical Sciences Faculty
+Promotion & Tenure Guidelines
+Expand Navigation
+Associate Professor with Tenure
+Full Professor
+Teaching Track Faculty
+Promotion and Tenure Public Statement
+Teaching Effectiveness Public Statement
+Staff
+Industry partners
+Expand Navigation
+Capstones
+Events
+News
+Research &#038; labs
+Expand Navigation
+Center for Biotechnology Innovation & Training
+National Center of Academic Excellence in Cybersecurity
+Department of Physical Sciences Research
+Expand Navigation
+Faculty Research Projects
+Mechanical Engineering Research
+Expand Navigation
+Biomedical
+Materials
+Ocean Engineering
+Safety and Security Studies and Modeling in Fluids
+Laboratories
+Expand Navigation
+EE Open lab schedule
+CSS Labs
+Friday Harbor Laboratories
+Research Experiences for Undergraduates
+Expand Navigation
+Mathematics
+Physics
+Heritage University REU
+Give
+UW Bothell Home
+Quick Links
+MyUW
+Canvas
+Directory
+Library
+Workday Login
+Give
+Apply As Undergraduate
+More Links
+Time Schedule
+Information Technology
+Commuter Services
+Facilities
+Human Resources
+Campus Safety
+Alumni
+About
+STEM Advisory Board
+Departments
+Awards & Endowments
+Undergraduate
+Admissions
+Majors
+Minors
+STEM Symposium Event
+Undergraduate Policies & Procedures
+Resources
+Graduate
+Admissions
+Master of Science in Cybersecurity Engineering
+Master of Science in Computer Science & Software Engineering
+Master of Science in Electrical & Computer Engineering
+Graduate Certificate in Software Design & Development
+Graduate Certificate in Electrical & Computer Engineering Foundations
+Career Resources
+Thesis/Project Final Defense Schedule
+Faculty
+Department of Biological Sciences Faculty
+Department of Computing & Software Systems Faculty
+Department of Engineering & Mathematics Faculty
+Department of Physical Sciences Faculty
+Promotion & Tenure Guidelines
+Staff
+Industry partners
+Capstones
+Events
+News
+Research &#038; labs
+Center for Biotechnology Innovation & Training
+National Center of Academic Excellence in Cybersecurity
+Department of Physical Sciences Research
+Mechanical Engineering Research
+Laboratories
+CSS Labs
+Friday Harbor Laboratories
+Research Experiences for Undergraduates
+Give
+Close mobile menu
+In this section
+About
+Expand Navigation
+STEM Advisory Board
+Departments
+Expand Navigation
+Biological Sciences
+Computing &#038; Software Systems
+Engineering &#038; Mathematics
+Physical Sciences
+Awards & Endowments
+Undergraduate
+Expand Navigation
+Admissions
+Majors
+Expand Navigation
+Applied Computing
+Expand Navigation
+Admissions
+Curriculum
+Capstone
+Student Forms &#038; Resources
+Careers
+Biology
+Expand Navigation
+Admissions
+Curriculum
+Investigative Biology
+Student Forms &#038; Resources
+Research &#038; Internships
+Student Organizations
+Friday Harbor Laboratories
+Chemistry
+Expand Navigation
+Admissions
+Curriculum
+Student Forms &#038; Resources
+Research
+Computer Engineering
+Expand Navigation
+Admissions
+Curriculum
+Capstone
+Student Forms &#038; Resources
+Computer Science & Software Engineering
+Expand Navigation
+Admissions
+Curriculum
+Capstone
+Student Forms &#038; Resources
+Earth System Science
+Electrical Engineering
+Expand Navigation
+Admissions
+Curriculum
+Capstone
+Student Forms &#038; Resources
+Mathematics
+Expand Navigation
+Admissions
+Curriculum
+Student Forms &#038; Resources
+Mechanical Engineering
+Expand Navigation
+Admissions
+Curriculum
+Student Forms &#038; Resources
+Student Organizations
+Physics
+Expand Navigation
+Admissions
+Curriculum
+Student Forms &#038; Resources
+Research
+Student Organizations
+Minors
+Expand Navigation
+Actuarial Science
+Biology
+Chemistry
+Computer Science &#038; Software Engineering (CSSE)
+Cybersecurity
+Data Science
+Information Technology (IT)
+Marine Biology
+Mathematics
+Neuroscience
+Physics
+STEM Symposium Event
+Undergraduate Policies & Procedures
+Resources
+Expand Navigation
+CSS Registration
+Getting Started with Computer Science
+Graduate
+Expand Navigation
+Admissions
+Master of Science in Cybersecurity Engineering
+Expand Navigation
+Excellence in Cybersecurity Education
+Admissions
+How to Apply
+Tuition
+Curriculum
+Expand Navigation
+Core Courses
+Elective Courses
+Culminating Experience
+Advising
+Careers
+Master of Science in Computer Science & Software Engineering
+Expand Navigation
+Admissions
+How to Apply
+Tuition
+Curriculum
+Expand Navigation
+Core Courses
+Elective Courses
+Project or Thesis
+Advising
+Careers
+Master of Science in Electrical & Computer Engineering
+Expand Navigation
+Admissions
+How to Apply
+Tuition
+Curriculum
+Research
+Expand Navigation
+Computer Engineering
+Power &#038; Energy
+Signal Processing
+Biomedical Systems and Devices
+Microelectronics and Devices
+Wireless, RF/Microwave, and Telecommunications
+Advising
+Careers
+Graduate Certificate in Software Design & Development
+Expand Navigation
+Admissions
+Prerequisites guide
+Tuition
+Curriculum
+Careers
+Frequently Asked Questions
+Graduate Certificate in Electrical & Computer Engineering Foundations
+Expand Navigation
+Admissions
+Prerequisites guide
+Tuition
+Curriculum
+Careers
+Frequently Asked Questions
+Career Resources
+Thesis/Project Final Defense Schedule
+Expand Navigation
+Previous Quarters
+Faculty
+Expand Navigation
+Department of Biological Sciences Faculty
+Department of Computing & Software Systems Faculty
+Department of Engineering & Mathematics Faculty
+Department of Physical Sciences Faculty
+Promotion & Tenure Guidelines
+Expand Navigation
+Associate Professor with Tenure
+Full Professor
+Teaching Track Faculty
+Promotion and Tenure Public Statement
+Teaching Effectiveness Public Statement
+Staff
+Industry partners
+Expand Navigation
+Capstones
+Events
+News
+Research &#038; labs
+Expand Navigation
+Center for Biotechnology Innovation & Training
+National Center of Academic Excellence in Cybersecurity
+Department of Physical Sciences Research
+Expand Navigation
+Faculty Research Projects
+Mechanical Engineering Research
+Expand Navigation
+Biomedical
+Materials
+Ocean Engineering
+Safety and Security Studies and Modeling in Fluids
+Laboratories
+Expand Navigation
+EE Open lab schedule
+CSS Labs
+Friday Harbor Laboratories
+Research Experiences for Undergraduates
+Expand Navigation
+Mathematics
+Physics
+Heritage University REU
+Give
+School of Science, Technology, Engineering & Mathematics
+&#124;
+Computer Engineering
+School of Science, Technology, Engineering & Mathematics
+&#124;
+Undergraduate
+&#124;
+Majors
+&#124;
+Computer Engineering
+&#124;
+Computer Engineering Curriculum
+Computer Engineering Curriculum
+The Computer Engineering curriculum is ABET accredited and students need to complete major requirements and meet learning objectives and outcomes .
+For a more visual version of the information on this page, download the Computer Engineering degree checklist .
+All prerequisite courses and major requirements require a minimum grade of 2.0 or higher .
+Course descriptions
+General education requirements
+Entry prerequisites
+Core requirements
+Elective requirements
+Petitions
+Course descriptions
+Follow the links below to read about the content covered in each course:
+Chemistry (BCHEM)
+Computing and Software Systems (CSS)
+Computer Engineering Capstone (BCE)
+Electrical Engineering (BEE)
+Science and Technology Mathematics (STMATH)
+General education requirements
+All UW students must complete a common set of general education requirements . As a Computer Engineering major, you will be on track for completing the English Composition (C), some Additional Writing (W), Natural Science (NSc) , and Reasoning (R) , but make sure to plan for completion of the following:
+Additional Writing (W) &#8211; 5 credits
+BWRIT 135 (Research Writing) or similar recommended
+Diversity (DIV) &#8211; 5 credits
+Almost always also fulfills A&H or SSc
+Only 3 credits prior if admitted prior to autumn 2023
+Arts & Humanities (A&H) &#8211; 15 credits
+Cannot overlap with SSc
+Social Sciences (SSc) &#8211; 15 credits
+Cannot overlap with A&H
+Entry prerequisites
+Visit our Admissions page for information on prerequisite coursework.
+Core requirements
+Math and Chemistry (26 credits)
+These courses can be taken before or after entry into the major.
+BCHEM 143+144: General Chemistry I + Lab (6 credits)
+STMATH 207: Introduction to Differential Equations (5 credits)
+STMATH 208: Matrix Algebra with Applications (5 credits)
+STMATH 224: Multivariable Calculus (5 credits)
+STMATH 390: Probability & Statistics in Engineering (5 credits)
+Computer Science (30 credits)
+CSS 301: Technical Writing (5 credits)
+CSS 342: Advanced Data Structures, Algorithms, and Discrete Mathematics I (5 credits)
+CSS 343: Advanced Data Structures, Algorithms, and Discrete Mathematics II (5 credits)
+CSS 360: Software Engineering (5 credits)
+CSS 427: Intro to Embedded Systems (5 credits)
+CSS 430: Operating Systems (5 credits)
+Electrical Engineering (30 credits)
+BEE 215: Fundamentals of EE (5 credits)
+BEE 233: Circuit Theory (5 credits)
+BEE 235: Continuous Time Linear Systems (5 credits)
+BEE 271: Digital Circuits & Systems (5 credits)
+BEE 331: Devices & Circuits I (5 credits)
+One of either BEE 425: Microprocessor System Design (5 credits) or CSS 422: Hardware and Computer Organization (5 credits)
+Computer Engineering Capstone (10 credits)
+Note: BCE 495 and BCE 496 no longer offered; BENGR 495 and BENGR 496 will satisfy those requirements.
+BENGR 494 (3 credits)
+BENGR 495 (3 credits)
+BENGR 496 (3 credits)
+Elective requirements
+You must complete ten (10) credits (usually two courses) of &#8220;CSS&#8221; or &#8220;BEE&#8221; elective coursework. Of these 10 credits:
+Elective courses must have either the CSS or BEE prefix
+At least 5 elective credits must be 400-level
+The remaining 5 elective credits must be 300-level or higher
+Maximum of 5 credits combined can be CSS or BEE &#8220;Special Topics&#8221; courses
+Maximum of 5 credits combined can be CSS or BEE Independent Study (498) or Undergrad Research (499)
+Petitions
+Computer Engineering-related courses that are not included on the core or elective requirements lists are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you wish to use as an elective, you may submit a petition to request for the course to count.
+Submit a computer engineering petition
+In this section
+About
+Expand Navigation
+STEM Advisory Board
+Departments
+Expand Navigation
+Biological Sciences
+Computing &#038; Software Systems
+Engineering &#038; Mathematics
+Physical Sciences
+Awards & Endowments
+Undergraduate
+Expand Navigation
+Admissions
+Majors
+Expand Navigation
+Applied Computing
+Expand Navigation
+Admissions
+Curriculum
+Capstone
+Student Forms &#038; Resources
+Careers
+Biology
+Expand Navigation
+Admissions
+Curriculum
+Investigative Biology
+Student Forms &#038; Resources
+Research &#038; Internships
+Student Organizations
+Friday Harbor Laboratories
+Chemistry
+Expand Navigation
+Admissions
+Curriculum
+Student Forms &#038; Resources
+Research
+Computer Engineering
+Expand Navigation
+Admissions
+Curriculum
+Capstone
+Student Forms &#038; Resources
+Computer Science & Software Engineering
+Expand Navigation
+Admissions
+Curriculum
+Capstone
+Student Forms &#038; Resources
+Earth System Science
+Electrical Engineering
+Expand Navigation
+Admissions
+Curriculum
+Capstone
+Student Forms &#038; Resources
+Mathematics
+Expand Navigation
+Admissions
+Curriculum
+Student Forms &#038; Resources
+Mechanical Engineering
+Expand Navigation
+Admissions
+Curriculum
+Student Forms &#038; Resources
+Student Organizations
+Physics
+Expand Navigation
+Admissions
+Curriculum
+Student Forms &#038; Resources
+Research
+Student Organizations
+Minors
+Expand Navigation
+Actuarial Science
+Biology
+Chemistry
+Computer Science &#038; Software Engineering (CSSE)
+Cybersecurity
+Data Science
+Information Technology (IT)
+Marine Biology
+Mathematics
+Neuroscience
+Physics
+STEM Symposium Event
+Undergraduate Policies & Procedures
+Resources
+Expand Navigation
+CSS Registration
+Getting Started with Computer Science
+Graduate
+Expand Navigation
+Admissions
+Master of Science in Cybersecurity Engineering
+Expand Navigation
+Excellence in Cybersecurity Education
+Admissions
+How to Apply
+Tuition
+Curriculum
+Expand Navigation
+Core Courses
+Elective Courses
+Culminating Experience
+Advising
+Careers
+Master of Science in Computer Science & Software Engineering
+Expand Navigation
+Admissions
+How to Apply
+Tuition
+Curriculum
+Expand Navigation
+Core Courses
+Elective Courses
+Project or Thesis
+Advising
+Careers
+Master of Science in Electrical & Computer Engineering
+Expand Navigation
+Admissions
+How to Apply
+Tuition
+Curriculum
+Research
+Expand Navigation
+Computer Engineering
+Power &#038; Energy
+Signal Processing
+Biomedical Systems and Devices
+Microelectronics and Devices
+Wireless, RF/Microwave, and Telecommunications
+Advising
+Careers
+Graduate Certificate in Software Design & Development
+Expand Navigation
+Admissions
+Prerequisites guide
+Tuition
+Curriculum
+Careers
+Frequently Asked Questions
+Graduate Certificate in Electrical & Computer Engineering Foundations
+Expand Navigation
+Admissions
+Prerequisites guide
+Tuition
+Curriculum
+Careers
+Frequently Asked Questions
+Career Resources
+Thesis/Project Final Defense Schedule
+Expand Navigation
+Previous Quarters
+Faculty
+Expand Navigation
+Department of Biological Sciences Faculty
+Department of Computing & Software Systems Faculty
+Department of Engineering & Mathematics Faculty
+Department of Physical Sciences Faculty
+Promotion & Tenure Guidelines
+Expand Navigation
+Associate Professor with Tenure
+Full Professor
+Teaching Track Faculty
+Promotion and Tenure Public Statement
+Teaching Effectiveness Public Statement
+Staff
+Industry partners
+Expand Navigation
+Capstones
+Events
+News
+Research &#038; labs
+Expand Navigation
+Center for Biotechnology Innovation & Training
+National Center of Academic Excellence in Cybersecurity
+Department of Physical Sciences Research
+Expand Navigation
+Faculty Research Projects
+Mechanical Engineering Research
+Expand Navigation
+Biomedical
+Materials
+Ocean Engineering
+Safety and Security Studies and Modeling in Fluids
+Laboratories
+Expand Navigation
+EE Open lab schedule
+CSS Labs
+Friday Harbor Laboratories
+Research Experiences for Undergraduates
+Expand Navigation
+Mathematics
+Physics
+Heritage University REU
+Give
+Contact Us
+School of STEM Student Success
+stemsuccess@uw.edu
+University of Washington Bothell Homepage
+Bothell, Washington View our location on Google maps.
+Contact us by phone at:
+425.352.5000
+Contact
+Visitors
+Maps & directions
+Jobs
+Accessibility
+Privacy
+Rules Docket
+Terms
+Seattle Campus
+Tacoma Campus
+UW Bothell Instagram
+UW Bothell Linkedin
+UW Bothell Facebook
+UW Bothell Twitter
+UW Bothell Youtube
+&copy; 2026 University of Washington Bothell
+UW Bothell Instagram
+UW Bothell Linkedin
+UW Bothell Facebook
+UW Bothell Twitter
+UW Bothell Youtube

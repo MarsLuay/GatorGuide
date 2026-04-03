@@ -81,6 +81,7 @@ Notes:
 
 - If you use Git Bash, WSL, or a POSIX shell, use forward slashes and drop the `$env:` prefix.
 - `npm run start` uses the same fallback order as the root launchers: `tunnel -> lan -> offline`.
+- `npm run health:repo` runs a quick repo preflight for Expo startup issues such as corrupted `node_modules` packages or broken Metro config loading.
 - After Expo starts, open the Metro/Expo devtools in your browser and scan the QR code with the Expo Go app.
 - If you are wiring up services, the guide in [`services/README.md`](services/README.md) explains the current live/cached service setup and the remaining fallback behavior.
 

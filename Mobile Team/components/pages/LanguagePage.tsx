@@ -5,7 +5,7 @@ import useBack from "@/hooks/use-back";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
-import { Language } from "@/services/translations";
+import { Language } from "@/services/app/translations";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 
 type LanguageOption = {

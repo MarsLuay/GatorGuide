@@ -1,0 +1,281 @@
+Owner: uw-seattle-informatics
+Source: https://ischool.uw.edu/academics/informatics/curriculum
+Title: Informatics Curriculum | Information School | University of Washington
+
+Informatics Curriculum | Information School | University of Washington
+<!--
+Informatics Curriculum
+Courses in the UW Informatics program: lower-division requirements, core classes and degree concentrations at the Information School.
+2026-03-10
+-->
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TM46LWX"
+height="0" width="0" style="display:none;visibility:hidden">
+Jump to Main Content
+Jump to Top Navigation
+Jump to Page Navigation
+Jump to Footer Navigation
+University of Washington
+University of Washington Information School
+Programs
+Informatics
+Undergraduate major and minor
+MLIS
+Master of Library and Information Science
+MSIM
+Master of Science in Information Management
+Museology
+Master of Arts
+Law Librarianship
+Specialized MLIS for those with a JD
+Ph.D.
+Doctorate Program
+AI for Organizations
+9-month online graduate certificate program
+Professional & Cont. Ed.
+Related programs & non-degree options
+Research
+Research Impact
+How our research drives progress and helps people
+Updates
+The latest news from our faculty and research staff
+Research Areas
+Core topics of iSchool research
+Research Groups
+Hubs for innovative scholarship & research
+Grants & Awards
+Recent funding for iSchool research projects
+News & Events
+News
+The latest stories from our community
+Events
+What's happening on campus and beyond
+Podcast
+Documents That Changed the World, with Joe Janes
+People
+Directory
+Find iSchool faculty, staff and students
+Alumni
+Stay connected with the iSchool and fellow alumni
+Advising & Support
+Find help from our team of student advisors
+Faculty Affairs
+Making the iSchool a joyful professional community for faculty
+I Am the iSchool
+Meet some of our students and alumni
+The School
+About Us
+The iSchool is home to innovators and leaders who make information work
+Diversity
+We are committed to building an inclusive community
+Employers & Partners
+How to collaborate with faculty and students
+Capstone
+Students work with organizations to solve information problems
+Support the iSchool
+Every gift makes a difference to students
+Request Information
+Information
+Tools
+Search
+Menu
+Informatics
+Informatics
+Academics
+Course Schedules
+Standard Grading Scale
+Special Topics & New Courses
+Registration
+Degree Planning
+Capstone
+Experiential Learning
+Study Abroad
+Graduation
+Community
+Careers
+Focus Areas
+Research
+Financial Aid & Scholarships
+Informatics Minor
+Admissions
+MLIS
+MSIM
+Museology
+Law Librarianship
+Ph.D.
+Academics
+Admissions
+Committees
+Career Outcomes
+Scholarships & Funding
+People
+AI for Organizations
+Professional & Cont. Ed.
+Resources:
+Advising & Support
+Capstone Projects
+Upcoming Info Sessions
+Videos: Alumni at Work
+Request more information
+Informatics Academics
+Programs
+Informatics
+Academics
+I am the iSchool
+Jasper Maynard Zhang : Jasper Maynard Zhang, Informatics: "I am interested in how technology and data science can be used to address causes I care about." Read more.
+The Informatics curriculum includes six core areas:
+Foundations (INFO 20x, 30x, 40x courses). These courses teach the foundations of data, information and knowledge, helping students understand what information is, and how we create and use it in our lives, organizations and communities.
+Design (INFO 36x, 46x courses). These courses teach creative design skills, helping students imagine how information might be used to address problems, opportunities and injustices in the world.
+Development (INFO 34x, 44x courses). These courses teach foundational skills in processing and provisioning data through software, including web and app development.
+Data (INFO 33x, 43x courses). These courses teach foundational concepts and skills in how to represent, organize, store and retrieve data using technologies such as databases.
+Organizations (INFO 38x, 48x course). These courses teach key perspectives on how information is used in organizations such as businesses, communities and governments, ensuring that students’ perspectives go beyond the individual.
+Society (INFO 35x, 45x courses). These courses teach core concepts in data and information ethics, policy, and society, giving students perspectives on how information is used in our society.
+Informatics courses can also be understood as informing a variety of focus areas, which are lenses that frame different considerations of information in the curriculum. For example, Informatics offers courses in data science (INFO 37x/47x), cybersecurity (INFO 31x/41x), and search and retrieval (INFO 32x/42x). Most Informatics courses can be labeled as drawing on one or more focus areas; students can use these focus areas to help plan their core classes and electives. See the full list of focus areas for details.
+Informatics major requirements
+The Informatics major includes a core that spans the breadth of the curriculum, allowing students to learn to study, design, and develop information technology for the good of people, organizations and society. Each course provides a foundation that students use in their Capstone projects. Students further their expertise in a broad range of electives taught by iSchool faculty and invited guest faculty from industry, government and nonprofits around the Puget Sound area.
+To earn a Bachelor of Science in Informatics, students must complete the following major requirements (effective Autumn 2023; see previous requirements ):
+Courses required for admission (15-20 credits)
+INFO 200: Intellectual Foundations of Informatics
+One course in statistics; see the list of accepted courses
+One course in computer programming; see the list of accepted courses
+One course in the social sciences (SSc) area of inquiry ; must be another course that is not INFO 200
+See the prerequisites page for details.
+Core courses (54-58 credits)
+Exploring Informatics: Students take foundational skills to understand the domain of Informatics.
+INFO 201: Foundational Skills for Data Science
+INFO 290: Orientation to Informatics
+Studying Information: Students learn how to analyze and research information technologies.
+INFO 300: Research Methods
+Developing Information Technology: Students learn how to build and maintain computing and information technologies. This includes foundational topics in computer science.
+one course from CSE 123: Introduction to Computer Programming III, CSE 143: Computer Programming II, or CSE 163: Intermediate Data Programming
+INFO 330: Databases and Data Modeling
+INFO 340: Client-Side Development
+one course from CSE 373: Data Structures and Algorithms (4 credits), INFO 442: Cooperative Software Development (5 credits), or INFO 443: Software Architecture (5 credits)
+Designing Information Experiences: Students learn how to envision and create new information technologies.
+INFO 360: Design Methods
+Information and Organizations: Students learn to analyze the impacts and use of information technologies within organizations.
+INFO 380: Product and Information Systems Management
+Information and Society (8-10 credits): Students learn to analyze the impacts of information technologies on individuals and society as a whole.
+any two courses at the INFO 35x-level.
+Capstone (8-credits): Students complete a culminating experience.
+INFO 490: Project Capstone I and INFO 491: Project Capstone II (8 credits total)
+Electives (12-15 credits)
+Students take a range of Informatics electives (other upper-division INFO courses). Courses outside of INFO can also count as electives; please reach out to informatics@uw.edu for more information. Students may also complete a degree option in either Data Science or Biomedical and Health Informatics by choosing electives in the Data Science or Health & Well-Being focus areas respectively. Completing either option requires 4 electives:
+Data Science Option: INFO 370, INFO 371, INFO 430, INFO 474, or other approved data science elective
+Biomedical and Health Informatics Option: BIME 300, BIME 435, INFO 468, INFO 478.
+Watch : A breakdown of the courses you need to take to complete the Informatics major and a bachelor's degree at the University of Washington.
+Resources:
+Advising & Support
+Capstone Projects
+Upcoming Info Sessions
+Videos: Alumni at Work
+Request more information
+News
+AI for Organizations certificate to launch in autumn
+Wednesday, April 1, 2026
+The University of Washington Information School is introducing a new graduate certificate geared toward professionals in organizations that are responding to the opportunities and challenges represented by artificial intelligence. The...
+Read more
+MisinfoDay brings Washington educators to UW
+Tuesday, March 31, 2026
+Approximately 120 teachers, librarians and educators from across Washington gathered at the University of Washington’s Seattle campus on March 17 for a day of learning activities and professional development organized by the Center for...
+Read more
+Events
+Apr 2
+3:00-4:00 PM
+Informatics Application Q&A / Application Workshop
+Zoom / Online
+Apr 7
+4:30-5:30 PM
+MLIS Prospective Student Information Session with Faculty Panel
+Zoom / Online
+Apr 8
+12:30-1:20 PM
+Networking & Neurodiversity
+Online
+Apr 9
+4:00-5:00 PM
+MLIS Prospective Student Information Session - Fireside Chat with Chair
+Zoom / Online
+iSchools.org
+Jobs
+Contact Us
+Privacy Policy
+Terms & Conditions
+Logo & Brand Guidelines
+IT / Help Desk
+Bluesky
+Facebook
+Instagram
+Youtube
+LinkedIn
+Make a Gift
+iSchools.org
+&copy; 2026 UW Information School
+Box 352840 - Mary Gates Hall, Ste. 370
+Seattle , WA 98195-2840
+United States of America
+206-685-9937
+Close
+Close menu
+Toolkit
+Request Information
+Search:
+All
+People
+Programs
+Informatics
+MLIS
+MSIM
+Museology
+Law Librarianship
+Ph.D.
+AI for Organizations
+Professional & Cont. Ed.
+Research
+Research Impact
+Updates
+Research Areas
+Research Groups
+Grants & Awards
+News & Events
+News
+Events
+Podcast
+People
+Directory
+Alumni
+Advising & Support
+Faculty Affairs
+I Am the iSchool
+The School
+About Us
+Diversity
+Employers & Partners
+Capstone
+Support the iSchool
+toolkit
+iSchool Intranet
+MyUW
+Outlook on the web
+Office 365
+Workday
+UW Time Schedule
+UW Academic Calendar
+Knowledge Base
+Watermark
+Azure Dev Tools
+Canvas LMS
+Qualtrics
+Emergency Info
+Site Login
+Enter search text
+Loading Results... Loading search results, please wait.
+Highlights
+Full Results
+See Full Results
+See Full Directory
+Customize Your Experience
+Future Students
+Current Students
+Faculty & Staff
+Everyone
+Close

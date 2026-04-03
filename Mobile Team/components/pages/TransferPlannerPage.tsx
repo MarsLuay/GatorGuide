@@ -19,20 +19,24 @@ import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { ROUTES } from "@/constants/routes";
 import { StateCard } from "@/components/ui/StateCard";
 import {
-  getTransferPlannerChainLabel,
-  getTransferPlannerChainsForPlan,
+  getTransferPlannerPrimaryDegreeRequirementsSource,
   getTransferPlannerGrcCourseList,
+  getTransferPlannerGrcCourseListGuidance,
   getTransferPlannerMajorsForCampus,
+  getTransferPlannerPathwaysForPlan,
   getTransferPlannerTrack,
+  resolveTransferPlannerMajorPlan,
   TRANSFER_PLANNER_CAMPUSES,
   type TransferPlannerCampusId,
   type TransferPlannerMajorPlan,
-} from "@/constants/transfer-planner-data";
+  type TransferPlannerMajorPathway,
+  type TransferPlannerResolvedMajorPlan,
+} from "@/constants/transfer-planner-source";
 import { useAppData } from "@/hooks/use-app-data";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { errorLoggingService, transcriptPlannerDebugService } from "@/services";
-import { storageService, type UploadedFile } from "@/services/storage.service";
+import { storageService, type UploadedFile } from "@/services/storage/storage.service";
 import {
   buildSuggestedQuarterPlan,
   buildRequirementStatuses,
@@ -40,8 +44,8 @@ import {
   parseCompletedTranscriptCourses,
   type SuggestedQuarterPlan,
   type TranscriptCourseEntry,
-} from "@/services/transfer-planner.service";
-import { transcriptPdfService } from "@/services/transcript-pdf.service";
+} from "@/services/planning/transfer-planner.service";
+import { transcriptPdfService } from "@/services/documents/transcript-pdf.service";
 
 const CTCLINK_UNOFFICIAL_TRANSCRIPT_URL =
   "https://csprd.ctclink.us/psp/csprd/EMPLOYEE/SA/c/SA_LEARNER_SERVICES.SSS_TSRQST_UNOFF.GBL?pts_Portal=EMPLOYEE&pts_PortalHostNode=SA&pts_Market=GBL";
@@ -51,6 +55,7 @@ const TRANSCRIPT_SOURCE_FIELD = "transferPlannerTranscriptSource";
 const TRANSCRIPT_UPLOADED_AT_FIELD = "transferPlannerTranscriptUploadedAt";
 const TRANSCRIPT_PARSER_VERSION_FIELD = "transferPlannerTranscriptParserVersion";
 const CURRENT_PLANNED_COURSES_FIELD = "transferPlannerCurrentCoursesByPath";
+const SELECTED_PATHWAY_FIELD = "transferPlannerSelectedPathwayByPlan";
 const TRANSCRIPT_PARSER_VERSION = 2;
 
 type TranscriptDocument = UploadedFile;
@@ -150,8 +155,10 @@ function buildParsedQuarterBuckets(courses: TranscriptCourseEntry[]) {
     .slice(0, 12);
 }
 
-function getPlannerPathKey(campusId: string, majorId: string) {
-  return `${String(campusId ?? "").trim()}::${String(majorId ?? "").trim()}`;
+function getPlannerPathKey(campusId: string, majorId: string, pathwayId?: string | null) {
+  return `${String(campusId ?? "").trim()}::${String(majorId ?? "").trim()}::${String(
+    pathwayId ?? "base"
+  ).trim()}`;
 }
 
 function normalizePlannerCurrentCourseMap(rawValue: unknown) {
@@ -173,6 +180,23 @@ function normalizePlannerCurrentCourseMap(rawValue: unknown) {
     if (nextValues.length) {
       normalized[pathKey] = nextValues;
     }
+  }
+
+  return normalized;
+}
+
+function normalizePlannerSelectedPathwayMap(rawValue: unknown) {
+  if (!rawValue || typeof rawValue !== "object" || Array.isArray(rawValue)) {
+    return {} as Record<string, string>;
+  }
+
+  const normalized: Record<string, string> = {};
+
+  for (const [planId, value] of Object.entries(rawValue)) {
+    const normalizedPlanId = String(planId ?? "").trim();
+    const normalizedPathwayId = String(value ?? "").trim();
+    if (!normalizedPlanId || !normalizedPathwayId) continue;
+    normalized[normalizedPlanId] = normalizedPathwayId;
   }
 
   return normalized;
@@ -275,7 +299,7 @@ async function openExternalLink(url: string) {
     }
     await Linking.openURL(safeUrl);
   } catch {
-    Alert.alert("Link unavailable", "This link could not be opened on this device.");
+  Alert.alert("Link unavailable", "This link could not be opened on this device.");
   }
 }
 
@@ -455,12 +479,17 @@ function TranscriptSummaryCard({
   transcriptDocument,
   isAnalyzing,
   errorMessage,
+  plan,
+  pathwayOptions,
+  selectedPathwayLabel,
   selectedCampusLabel,
   selectedMajorLabel,
   trackCode,
   trackTitle,
   trackSummary,
   financialAidNote,
+  completedCourses,
+  currentCourseLabels,
   openSelector,
   campusOptions,
   majorOptions,
@@ -468,6 +497,7 @@ function TranscriptSummaryCard({
   onToggleMajor,
   onSelectCampus,
   onSelectMajor,
+  onSelectPathway,
   onUpload,
   onOpenTranscriptLink,
   isDesktop,
@@ -479,12 +509,17 @@ function TranscriptSummaryCard({
   transcriptDocument: TranscriptDocument | null;
   isAnalyzing: boolean;
   errorMessage: string | null;
+  plan: TransferPlannerResolvedMajorPlan;
+  pathwayOptions: TransferPlannerMajorPathway[];
+  selectedPathwayLabel: string | null;
   selectedCampusLabel: string;
   selectedMajorLabel: string;
   trackCode: string | null;
   trackTitle: string;
   trackSummary: string;
   financialAidNote: string;
+  completedCourses: TranscriptCourseEntry[];
+  currentCourseLabels: Set<string>;
   openSelector: "campus" | "major" | null;
   campusOptions: { id: string; label: string; description?: string }[];
   majorOptions: { id: string; label: string; description?: string }[];
@@ -492,6 +527,7 @@ function TranscriptSummaryCard({
   onToggleMajor: () => void;
   onSelectCampus: (id: string) => void;
   onSelectMajor: (id: string) => void;
+  onSelectPathway: (pathwayId: string) => void;
   onUpload: () => void;
   onOpenTranscriptLink: () => void;
   isDesktop: boolean;
@@ -500,6 +536,8 @@ function TranscriptSummaryCard({
   cardClass: string;
   borderClass: string;
 }) {
+  const [isPathwaySelectorOpen, setIsPathwaySelectorOpen] = useState(false);
+
   if (!transcriptDocument) {
     return (
       <View className={`${cardClass} border rounded-[28px] p-5`}>
@@ -580,6 +618,21 @@ function TranscriptSummaryCard({
         </View>
       </View>
 
+      <MajorPathwaySection
+        pathwayOptions={pathwayOptions}
+        selectedPathwayLabel={selectedPathwayLabel}
+        isPathwaySelectorOpen={isPathwaySelectorOpen}
+        onTogglePathway={() => setIsPathwaySelectorOpen((currentValue) => !currentValue)}
+        onSelectPathway={(pathwayId) => {
+          setIsPathwaySelectorOpen(false);
+          onSelectPathway(pathwayId);
+        }}
+        textClass={textClass}
+        secondaryTextClass={secondaryTextClass}
+        cardClass={cardClass}
+        borderClass={borderClass}
+      />
+
       <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-4`}>
         <Text className={`${textClass} text-base font-semibold`}>Best Green River Transfer Associates path</Text>
         <Text className={`${secondaryTextClass} text-sm mt-1`}>
@@ -594,6 +647,16 @@ function TranscriptSummaryCard({
           <Text className={`${secondaryTextClass} text-sm mt-3`}>{financialAidNote}</Text>
         </View>
       </View>
+
+      <MajorSpecificsSection
+        plan={plan}
+        selectedPathwayLabel={selectedPathwayLabel}
+        completedCourses={completedCourses}
+        currentCourseLabels={currentCourseLabels}
+        textClass={textClass}
+        secondaryTextClass={secondaryTextClass}
+        borderClass={borderClass}
+      />
     </View>
   );
   }
@@ -685,6 +748,21 @@ function TranscriptSummaryCard({
         </View>
       </View>
 
+      <MajorPathwaySection
+        pathwayOptions={pathwayOptions}
+        selectedPathwayLabel={selectedPathwayLabel}
+        isPathwaySelectorOpen={isPathwaySelectorOpen}
+        onTogglePathway={() => setIsPathwaySelectorOpen((currentValue) => !currentValue)}
+        onSelectPathway={(pathwayId) => {
+          setIsPathwaySelectorOpen(false);
+          onSelectPathway(pathwayId);
+        }}
+        textClass={textClass}
+        secondaryTextClass={secondaryTextClass}
+        cardClass={cardClass}
+        borderClass={borderClass}
+      />
+
       <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-4`}>
         <Text className={`${textClass} text-base font-semibold`}>Best Green River Transfer Associates path</Text>
         <Text className={`${secondaryTextClass} text-sm mt-1`}>
@@ -700,6 +778,71 @@ function TranscriptSummaryCard({
         </View>
       </View>
 
+      <MajorSpecificsSection
+        plan={plan}
+        selectedPathwayLabel={selectedPathwayLabel}
+        completedCourses={completedCourses}
+        currentCourseLabels={currentCourseLabels}
+        textClass={textClass}
+        secondaryTextClass={secondaryTextClass}
+        borderClass={borderClass}
+      />
+
+    </View>
+  );
+}
+
+function MajorPathwaySection({
+  pathwayOptions,
+  selectedPathwayLabel,
+  isPathwaySelectorOpen,
+  onTogglePathway,
+  onSelectPathway,
+  textClass,
+  secondaryTextClass,
+  cardClass,
+  borderClass,
+}: {
+  pathwayOptions: TransferPlannerMajorPathway[];
+  selectedPathwayLabel: string | null;
+  isPathwaySelectorOpen: boolean;
+  onTogglePathway: () => void;
+  onSelectPathway: (pathwayId: string) => void;
+  textClass: string;
+  secondaryTextClass: string;
+  cardClass: string;
+  borderClass: string;
+}) {
+  if (pathwayOptions.length <= 1) {
+    return null;
+  }
+
+  return (
+    <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-4`}>
+      <Text className={`${textClass} text-base font-semibold`}>Major pathway</Text>
+      <Text className={`${secondaryTextClass} text-sm mt-1`}>
+        This major has multiple supported routes. Pick the route you want this planner to follow.
+      </Text>
+
+      <View className="mt-4">
+        <SelectorField
+          label="Pathway"
+          value={selectedPathwayLabel ?? pathwayOptions[0]?.label ?? "Select pathway"}
+          helper=""
+          open={isPathwaySelectorOpen}
+          onToggle={onTogglePathway}
+          options={pathwayOptions.map((pathway) => ({
+            id: pathway.id,
+            label: pathway.label,
+            description: pathway.summary,
+          }))}
+          onSelect={onSelectPathway}
+          textClass={textClass}
+          secondaryTextClass={secondaryTextClass}
+          cardClass={cardClass}
+          borderClass={borderClass}
+        />
+      </View>
     </View>
   );
 }
@@ -823,20 +966,26 @@ function SuggestedScheduleCard({
                             style={{ marginTop: 1, marginRight: 8 }}
                           />
                         ) : null}
-                        <Text
-                          className={`text-sm font-medium ${
-                            course.status === "completed"
-                              ? "text-emerald-500"
-                              : course.status === "current"
-                                ? "text-sky-400"
-                                : course.type === "core"
-                                  ? "text-emerald-500"
-                                  : textClass
-                          }`}
-                          style={{ flex: 1 }}
-                        >
-                          {course.label}
-                        </Text>
+                        <View style={{ flex: 1 }}>
+                          <Text
+                            className={`text-sm font-medium ${
+                              course.status === "completed"
+                                ? "text-emerald-500"
+                                : course.status === "current"
+                                  ? "text-sky-400"
+                                  : course.type === "core"
+                                    ? "text-emerald-500"
+                                    : textClass
+                            }`}
+                          >
+                            {course.label}
+                          </Text>
+                          {course.guidanceSummary ? (
+                            <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                              {course.guidanceSummary}
+                            </Text>
+                          ) : null}
+                        </View>
                       </View>
                       {course.status !== "completed" ? (
                         <Pressable
@@ -873,55 +1022,44 @@ function SuggestedScheduleCard({
   );
 }
 
-function PlannerReferenceCard({
+function MajorSpecificsSection({
   plan,
+  selectedPathwayLabel,
   completedCourses,
   currentCourseLabels,
   textClass,
   secondaryTextClass,
-  cardClass,
   borderClass,
 }: {
-  plan: TransferPlannerMajorPlan;
+  plan: TransferPlannerResolvedMajorPlan;
+  selectedPathwayLabel: string | null;
   completedCourses: TranscriptCourseEntry[];
   currentCourseLabels: Set<string>;
   textClass: string;
   secondaryTextClass: string;
-  cardClass: string;
   borderClass: string;
 }) {
   const grcCourseList = getTransferPlannerGrcCourseList(plan);
-  const chains = getTransferPlannerChainsForPlan(plan);
+  const grcCourseListGuidance = getTransferPlannerGrcCourseListGuidance(plan);
   const degreeMapSections = plan.degreeMapSections ?? [];
-  const referenceSummaryLabel = [
-    `${grcCourseList.length} Green River class${grcCourseList.length === 1 ? "" : "es"}`,
-    ...(degreeMapSections.length
-      ? [
-          `${degreeMapSections.length} UW degree-map section${
-            degreeMapSections.length === 1 ? "" : "s"
-          }`,
-        ]
-      : []),
-    `${chains.length} class-order note${chains.length === 1 ? "" : "s"}`,
-  ].join(", ");
+  const primaryDegreeSource = getTransferPlannerPrimaryDegreeRequirementsSource(
+    plan.id,
+    plan.selectedPathwayId
+  );
+  const primaryUwDegreeLink = primaryDegreeSource?.url
+    ? {
+        label: primaryDegreeSource.label,
+        url: primaryDegreeSource.url,
+      }
+    : plan.officialLinks[0] ?? null;
   const completedCourseCodeSet = new Set(completedCourses.map((course) => course.code));
   const currentCourseCodeSet = new Set(
     [...currentCourseLabels].flatMap((label) => extractCourseCodes(label))
   );
   const [isReferenceOpen, setIsReferenceOpen] = useState(false);
-  const [openChainId, setOpenChainId] = useState<string | null>(chains[0]?.id ?? null);
-
-  useEffect(() => {
-    setOpenChainId((currentOpenChainId) => {
-      if (currentOpenChainId && chains.some((chain) => chain.id === currentOpenChainId)) {
-        return currentOpenChainId;
-      }
-      return chains[0]?.id ?? null;
-    });
-  }, [chains]);
 
   return (
-    <View className={`${cardClass} border rounded-[28px] p-5`}>
+    <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-4`}>
       <Pressable
         onPress={() => setIsReferenceOpen((currentValue) => !currentValue)}
         accessibilityRole="button"
@@ -930,15 +1068,12 @@ function PlannerReferenceCard({
         <View className="flex-row items-start justify-between gap-3">
           <View className="flex-1 min-w-0">
             <Text className={`${textClass} text-lg font-semibold`}>
-              Green River classes that fit this major
+              Major Specifics
             </Text>
             <Text className={`${secondaryTextClass} text-sm mt-1`}>
               {plan.sourceType === "detailed"
-                ? "This major has a step-by-step course plan, plus extra Green River class lists and class-order notes to help you choose the right classes."
-                : "This major uses Green River class lists and class-order notes as the planning guide. Use them to choose the strongest classes, then confirm everything with an advisor."}
-            </Text>
-            <Text className={`${secondaryTextClass} text-xs mt-3`}>
-              {`${referenceSummaryLabel}.`}
+                ? "Open this dropdown for the major-specific Green River class list and UW degree details tied to your selected major."
+                : "Open this dropdown for the major-specific Green River planning guidance and the extra notes attached to this major."}
             </Text>
           </View>
           <Ionicons
@@ -951,77 +1086,94 @@ function PlannerReferenceCard({
 
       {isReferenceOpen ? (
         <>
-          {grcCourseList.length ? (
+          {primaryUwDegreeLink ? (
             <View className="mt-5 gap-4">
-              <Text className={`${textClass} text-base font-semibold`}>Green River class list</Text>
+              <Text className={`${textClass} text-base font-semibold`}>Official UW degree page</Text>
               <Text className={`${secondaryTextClass} text-sm`}>
-                This is the explicit Green River course list currently attached to this UW major.
+                This is the main UW page the planner should use for the full degree requirements for this major.
               </Text>
-              <View className={`border ${borderClass} rounded-2xl px-4 py-4`}>
-                <View className="flex-row items-center justify-between gap-3">
-                  <View className="flex-1 min-w-0">
-                    <Text className={`${textClass} font-semibold`}>
-                      Per-major Green River course list
-                    </Text>
-                    <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                      {`${grcCourseList.length} Green River classes currently tracked for this major`}
-                    </Text>
-                  </View>
-                  <View className="px-3 py-1 rounded-full border border-white/10 bg-white/5">
-                    <Text className={`${secondaryTextClass} text-xs font-semibold`}>
-                      {`${
-                        grcCourseList.filter((course) =>
-                          extractCourseCodes(course).some((code) => completedCourseCodeSet.has(code))
-                        ).length
-                      }/${grcCourseList.length} completed`}
-                    </Text>
-                  </View>
-                </View>
+              <Pressable
+                onPress={() => void openExternalLink(primaryUwDegreeLink.url)}
+                className={`border ${borderClass} rounded-2xl px-4 py-4`}
+              >
+                <Text className="text-emerald-500 font-semibold">
+                  {primaryUwDegreeLink.label}
+                </Text>
+                <Text className={`${secondaryTextClass} text-sm mt-1`}>
+                  {primaryUwDegreeLink.url}
+                </Text>
+              </Pressable>
+            </View>
+          ) : null}
 
-                <View className="flex-row flex-wrap gap-2 mt-3">
-                  {grcCourseList.map((course) => {
-                    const courseCodes = extractCourseCodes(course);
-                    const isCompleted = courseCodes.some((code) => completedCourseCodeSet.has(code));
-                    const isCurrent =
-                      !isCompleted && courseCodes.some((code) => currentCourseCodeSet.has(code));
+          {grcCourseList.length || grcCourseListGuidance ? (
+            <View className="mt-5 gap-4">
+              <Text className={`${textClass} text-base font-semibold`}>Green River classes</Text>
+              <Text className={`${secondaryTextClass} text-sm`}>
+                {grcCourseList.length
+                  ? selectedPathwayLabel
+                    ? `This is the explicit Green River course list currently attached to the ${selectedPathwayLabel} route for this major.`
+                    : "This is the explicit Green River course list currently attached to this UW major."
+                  : "This major does not use one fixed universal Green River course list. Follow the custom planning guidance below instead of treating the empty list like missing data."}
+              </Text>
+              {grcCourseList.length ? (
+                <View className={`border ${borderClass} rounded-2xl px-4 py-4`}>
+                  <View className="flex-row flex-wrap gap-2">
+                    {grcCourseList.map((course) => {
+                      const courseCodes = extractCourseCodes(course);
+                      const isCompleted = courseCodes.some((code) => completedCourseCodeSet.has(code));
+                      const isCurrent =
+                        !isCompleted && courseCodes.some((code) => currentCourseCodeSet.has(code));
 
-                    return (
-                      <View
-                        key={`${plan.id}-${course}`}
-                        className={`px-3 py-2 rounded-full border ${
-                          isCompleted
-                            ? "bg-emerald-500/10 border-emerald-500/20"
-                            : isCurrent
-                              ? "bg-sky-500/10 border-sky-500/20"
-                              : "bg-white/5 border-white/10"
-                        }`}
-                      >
-                        <Text
-                          className={`text-xs font-semibold ${
+                      return (
+                        <View
+                          key={`${plan.id}-${course}`}
+                          className={`px-3 py-2 rounded-full border ${
                             isCompleted
-                              ? "text-emerald-500"
+                              ? "bg-emerald-500/10 border-emerald-500/20"
                               : isCurrent
-                                ? "text-sky-400"
-                                : textClass
+                                ? "bg-sky-500/10 border-sky-500/20"
+                                : "bg-white/5 border-white/10"
                           }`}
                         >
-                          {course}
-                        </Text>
-                      </View>
-                    );
-                  })}
+                          <Text
+                            className={`text-xs font-semibold ${
+                              isCompleted
+                                ? "text-emerald-500"
+                                : isCurrent
+                                  ? "text-sky-400"
+                                  : textClass
+                            }`}
+                          >
+                            {course}
+                          </Text>
+                        </View>
+                      );
+                    })}
+                  </View>
                 </View>
-              </View>
+              ) : (
+                <View className={`border ${borderClass} rounded-2xl px-4 py-4`}>
+                  <Text className={`${textClass} font-semibold`}>
+                    Custom Green River planning guidance
+                  </Text>
+                  <Text className={`${secondaryTextClass} text-sm mt-1`}>
+                    {grcCourseListGuidance}
+                  </Text>
+                </View>
+              )}
             </View>
           ) : null}
 
           {degreeMapSections.length ? (
             <View className="mt-5 gap-4">
               <Text className={`${textClass} text-base font-semibold`}>
-                UW degree map highlights
+                Degree Specifics
               </Text>
               <Text className={`${secondaryTextClass} text-sm`}>
-                These sections summarize the official UW degree structure already lifted into the planner for this major.
+                {selectedPathwayLabel
+                  ? `These sections summarize the official UW degree structure currently attached to the ${selectedPathwayLabel} route for this major.`
+                  : "These sections summarize the official UW degree structure already lifted into the planner for this major."}
               </Text>
               {degreeMapSections.map((section) => (
                 <View key={section.id} className={`border ${borderClass} rounded-2xl px-4 py-4`}>
@@ -1041,56 +1193,6 @@ function PlannerReferenceCard({
                   </View>
                 </View>
               ))}
-            </View>
-          ) : null}
-
-          {chains.length ? (
-            <View className="mt-5 gap-4">
-              <Text className={`${textClass} text-base font-semibold`}>
-                Class order and full-credit notes
-              </Text>
-              <Text className={`${secondaryTextClass} text-sm`}>
-                Open a note to see when classes need to be taken in order or fully completed to count the way you expect.
-              </Text>
-              {chains.map((chain) => {
-                const isOpen = openChainId === chain.id;
-
-                return (
-                  <View key={chain.id} className={`border ${borderClass} rounded-2xl px-4 py-4`}>
-                    <Pressable
-                      onPress={() =>
-                        setOpenChainId((currentChainId) =>
-                          currentChainId === chain.id ? null : chain.id
-                        )
-                      }
-                      accessibilityRole="button"
-                      accessibilityState={{ expanded: isOpen }}
-                    >
-                      <View className="flex-row items-center justify-between gap-3">
-                        <View className="flex-1 min-w-0">
-                          <Text className={`${textClass} font-semibold`}>
-                            {getTransferPlannerChainLabel(chain.id)}
-                          </Text>
-                          <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                            {chain.type}
-                          </Text>
-                        </View>
-                        <Ionicons
-                          name={isOpen ? "chevron-up" : "chevron-down"}
-                          size={18}
-                          color="#9CA3AF"
-                        />
-                      </View>
-                    </Pressable>
-
-                    {isOpen ? (
-                      <Text className={`${secondaryTextClass} text-sm mt-3`}>
-                        {chain.rule.replace(/`/g, "")}
-                      </Text>
-                    ) : null}
-                  </View>
-                );
-              })}
             </View>
           ) : null}
         </>
@@ -1176,14 +1278,37 @@ export default function TransferPlannerPage() {
     () => getTransferPlannerMajorsForCampus(selectedCampusId),
     [selectedCampusId]
   );
-  const plan = useMemo(
+  const selectedBasePlan = useMemo(
     () => campusMajors.find((entry) => entry.id === selectedMajorId) ?? campusMajors[0] ?? null,
     [campusMajors, selectedMajorId]
   );
+  const selectedPathwayByPlan = useMemo(
+    () =>
+      normalizePlannerSelectedPathwayMap(
+        state.questionnaireAnswers?.[SELECTED_PATHWAY_FIELD]
+      ),
+    [state.questionnaireAnswers]
+  );
+  const pathwayOptions = useMemo(
+    () => getTransferPlannerPathwaysForPlan(selectedBasePlan),
+    [selectedBasePlan]
+  );
+  const selectedPathwayId = useMemo(() => {
+    if (!selectedBasePlan) return null;
+    const storedPathwayId = selectedPathwayByPlan[selectedBasePlan.id] ?? null;
+    if (storedPathwayId && pathwayOptions.some((entry) => entry.id === storedPathwayId)) {
+      return storedPathwayId;
+    }
+    return pathwayOptions[0]?.id ?? null;
+  }, [pathwayOptions, selectedBasePlan, selectedPathwayByPlan]);
+  const plan = useMemo(
+    () => resolveTransferPlannerMajorPlan(selectedBasePlan, selectedPathwayId),
+    [selectedBasePlan, selectedPathwayId]
+  );
   const track = useMemo(() => getTransferPlannerTrack(plan?.bestTrackId ?? null), [plan]);
   const plannerPathKey = useMemo(
-    () => getPlannerPathKey(selectedCampusId, plan?.id ?? selectedMajorId),
-    [plan?.id, selectedCampusId, selectedMajorId]
+    () => getPlannerPathKey(selectedCampusId, plan?.id ?? selectedMajorId, selectedPathwayId),
+    [plan?.id, selectedCampusId, selectedMajorId, selectedPathwayId]
   );
   const currentCourseSelectionsByPath = useMemo(
     () =>
@@ -1524,6 +1649,7 @@ export default function TransferPlannerPage() {
   const suggestedQuarterPlan = useMemo(
     () =>
       buildSuggestedQuarterPlan({
+        plan,
         applicationStatuses,
         beforeEnrollmentStatuses,
         stayAtGrcStatuses,
@@ -1538,6 +1664,7 @@ export default function TransferPlannerPage() {
       completedCourses,
       currentPlannedCourseLabels,
       onlyUwEssentialClasses,
+      plan,
       stayAtGrcStatuses,
       track,
     ]
@@ -1579,6 +1706,27 @@ export default function TransferPlannerPage() {
       currentPlannedCourseLabels,
       currentPlannedCourseSet,
       plannerPathKey,
+      setQuestionnaireAnswers,
+      state.questionnaireAnswers,
+    ]
+  );
+  const handleSelectPathway = useCallback(
+    async (pathwayId: string) => {
+      if (!selectedBasePlan) return;
+
+      const nextSelectionMap = {
+        ...selectedPathwayByPlan,
+        [selectedBasePlan.id]: pathwayId,
+      };
+
+      await setQuestionnaireAnswers({
+        ...state.questionnaireAnswers,
+        [SELECTED_PATHWAY_FIELD]: nextSelectionMap,
+      });
+    },
+    [
+      selectedBasePlan,
+      selectedPathwayByPlan,
       setQuestionnaireAnswers,
       state.questionnaireAnswers,
     ]
@@ -1680,12 +1828,17 @@ export default function TransferPlannerPage() {
             transcriptDocument={transcriptDocument}
             isAnalyzing={isAnalyzingTranscript || needsTranscriptReparse}
             errorMessage={transcriptError}
+            plan={plan}
+            pathwayOptions={pathwayOptions}
+            selectedPathwayLabel={plan.selectedPathwayLabel}
             selectedCampusLabel={campus.title}
             selectedMajorLabel={plan?.title ?? "Select major"}
             trackCode={track?.code ?? null}
             trackTitle={track?.title ?? "Custom Green River path"}
             trackSummary={plan.bestTrackSummary}
             financialAidNote={plan.financialAidNote}
+            completedCourses={completedCourses}
+            currentCourseLabels={currentPlannedCourseSet}
             openSelector={openSelector}
             campusOptions={campusOptions}
             majorOptions={majorOptions}
@@ -1703,21 +1856,12 @@ export default function TransferPlannerPage() {
               setSelectedMajorId(id);
               setOpenSelector(null);
             }}
+            onSelectPathway={handleSelectPathway}
             onUpload={handlePickTranscript}
             onOpenTranscriptLink={() => {
               void openExternalLink(CTCLINK_UNOFFICIAL_TRANSCRIPT_URL);
             }}
             isDesktop={isDesktop}
-            textClass={textClass}
-            secondaryTextClass={secondaryTextClass}
-            cardClass={cardBgClass}
-            borderClass={borderClass}
-          />
-
-          <PlannerReferenceCard
-            plan={plan}
-            completedCourses={completedCourses}
-            currentCourseLabels={currentPlannedCourseSet}
             textClass={textClass}
             secondaryTextClass={secondaryTextClass}
             cardClass={cardBgClass}
@@ -1738,7 +1882,11 @@ export default function TransferPlannerPage() {
           {hasStructuredPlannerData ? (
             <SuggestedScheduleCard
               quarters={suggestedQuarterPlan}
-              degreeTitle={plan.title}
+              degreeTitle={
+                plan.selectedPathwayLabel
+                  ? `${plan.title} (${plan.selectedPathwayLabel})`
+                  : plan.title
+              }
               campusLabel={campus.title}
               onlyUwEssentialClasses={onlyUwEssentialClasses}
               showOnlyUwEssentialClassesToggle={hasOptionalStayAtGrcChecklist}

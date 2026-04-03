@@ -1,0 +1,181 @@
+# Transfer Planner Source Link Summary
+
+Generated: 2026-04-03T11:10:12.319Z
+
+- Total tracked source URLs: 435
+- Reachable: 320
+- Failed: 115
+- Added since previous snapshot: 2
+- Changed since previous snapshot: 22
+- Removed since previous snapshot: 0
+
+## Changed URLs
+
+- https://acms.washington.edu/admissions
+  - owners: uw-seattle-applied-and-computational-mathematical-sciences
+- https://acms.washington.edu/program-requirements-and-information
+  - owners: uw-seattle-applied-and-computational-mathematical-sciences
+- https://admissions.uwb.edu/register/mpw-aes
+  - owners: uw-bothell-american-and-ethnic-studies
+- https://admissions.uwb.edu/register/mpw-compe
+  - owners: uw-bothell-computer-engineering
+- https://admissions.uwb.edu/register/mpw-csse
+  - owners: uw-bothell-csse, uw-bothell-csse-information-assurance-and-cybersecurity
+- https://admissions.uwb.edu/register/mpw-DataVis-BA
+  - owners: uw-bothell-data-visualization-ba
+- https://admissions.uwb.edu/register/mpw-DataVis-BS
+  - owners: uw-bothell-data-visualization-bs
+- https://admissions.uwb.edu/register/mpw-EE
+  - owners: uw-bothell-electrical-engineering
+- https://admissions.uwb.edu/register/mpw-hs
+  - owners: uw-bothell-health-studies
+- https://admissions.uwb.edu/register/mpw-me
+  - owners: uw-bothell-mechanical-engineering
+- https://com.uw.edu/academics/undergraduate/communication-major/
+  - owners: uw-seattle-communication
+- https://depts.washington.edu/compfin/
+  - owners: uw-seattle-computational-finance-and-risk-management
+- https://disabilitystudies.washington.edu/
+  - owners: uw-seattle-disability-studies
+- https://dlmp.uw.edu/education/mls-apply
+  - owners: uw-seattle-medical-laboratory-science
+- https://dlmp.uw.edu/education/mls-requirements
+  - owners: uw-seattle-medical-laboratory-science
+- https://dlmp.uw.edu/education/mls-undergrad
+  - owners: uw-seattle-medical-laboratory-science
+- https://ischool.uw.edu/academics/informatics/curriculum
+  - owners: uw-seattle-informatics
+- https://ischool.uw.edu/programs/informatics/admissions/prerequisites
+  - owners: uw-seattle-informatics
+- https://ischool.uw.edu/programs/informatics/curriculum/capstone
+  - owners: uw-seattle-informatics
+- https://www.deohs.washington.edu/degree-requirements
+  - owners: uw-seattle-environmental-public-health
+- https://www.uwb.edu/nhs/undergraduate/rn-bsn/becomearn
+  - owners: uw-bothell-nursing-first-year-rn-to-bsn
+- https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum
+  - owners: uw-bothell-csse, uw-bothell-csse-information-assurance-and-cybersecurity
+
+## Failed URLs
+
+- https://admit.washington.edu/majors/english-language-literature-culture/
+  - owners: uw-seattle-english-language-literature-and-culture
+  - error: unknown error
+- https://ais.washington.edu/sites/ais/files/documents/ais_major_requirement_sheet_9.29.21.pdf
+  - owners: uw-seattle-american-indian-studies
+  - error: unknown error
+- https://chem.washington.edu/bs-biochemistry
+  - owners: uw-seattle-biochemistry, uw-seattle-biochemistry::ba-route, uw-seattle-biochemistry::bs-route
+  - error: unknown error
+- https://chem.washington.edu/bs-chemistry
+  - owners: uw-seattle-chemistry, uw-seattle-chemistry::acs-certified-bs-route, uw-seattle-chemistry::ba-route, uw-seattle-chemistry::bs-route
+  - error: unknown error
+- https://chem.washington.edu/bs-chemistry-acs-certified
+  - owners: uw-seattle-chemistry, uw-seattle-chemistry::acs-certified-bs-route, uw-seattle-chemistry::ba-route, uw-seattle-chemistry::bs-route
+  - error: unknown error
+- https://chem.washington.edu/undergraduate-prerequisites-and-admissions-biochemistry
+  - owners: uw-seattle-biochemistry, uw-seattle-biochemistry::ba-route, uw-seattle-biochemistry::bs-route
+  - error: unknown error
+- https://chem.washington.edu/undergraduate-prerequisites-and-admissions-chemistry
+  - owners: uw-seattle-chemistry, uw-seattle-chemistry::acs-certified-bs-route, uw-seattle-chemistry::ba-route, uw-seattle-chemistry::bs-route
+  - error: unknown error
+- https://chid.washington.edu/undergraduate
+  - owners: uw-seattle-comparative-history-of-ideas
+  - error: unknown error
+- https://cinema.washington.edu/ba-comparative-literature
+  - owners: uw-seattle-comparative-literature
+  - error: unknown error
+- https://cinema.washington.edu/undergraduate-programs
+  - owners: uw-seattle-cinema-and-media-studies
+  - error: unknown error
+- https://classics.washington.edu/ba-classical-studies
+  - owners: uw-seattle-classical-studies
+  - error: unknown error
+- https://classics.washington.edu/ba-classics
+  - owners: uw-seattle-classics
+  - error: unknown error
+- https://classics.washington.edu/ba-greek
+  - owners: uw-seattle-greek
+  - error: unknown error
+- https://classics.washington.edu/ba-latin
+  - owners: uw-seattle-latin
+  - error: unknown error
+- https://classics.washington.edu/majors
+  - owners: uw-seattle-classical-studies, uw-seattle-classics
+  - error: unknown error
+- https://classics.washington.edu/undergraduate-program
+  - owners: uw-seattle-classics
+  - error: unknown error
+- https://com.uw.edu/academics/undergraduate/communication-major/
+  - owners: uw-seattle-communication
+  - error: unknown error
+- https://complit.washington.edu/undergraduate
+  - owners: uw-seattle-comparative-literature
+  - error: unknown error
+- https://dance.washington.edu/undergraduate-program
+  - owners: uw-seattle-dance
+  - error: unknown error
+- https://drama.washington.edu/ba-drama-program-requirements
+  - owners: uw-seattle-drama
+  - error: unknown error
+- https://drama.washington.edu/undergraduate-programs
+  - owners: uw-seattle-drama
+  - error: unknown error
+- https://econ.washington.edu/bachelor-arts
+  - owners: uw-seattle-economics, uw-seattle-economics::ba-route, uw-seattle-economics::bs-route
+  - error: unknown error
+- https://econ.washington.edu/bachelor-science
+  - owners: uw-seattle-economics, uw-seattle-economics::ba-route, uw-seattle-economics::bs-route
+  - error: unknown error
+- https://econ.washington.edu/choosing-your-economics-degree
+  - owners: uw-seattle-economics, uw-seattle-economics::ba-route, uw-seattle-economics::bs-route
+  - error: unknown error
+- https://econ.washington.edu/undergraduate
+  - owners: uw-seattle-economics, uw-seattle-economics::ba-route, uw-seattle-economics::bs-route
+  - error: unknown error
+- https://education.washington.edu/academics/program/ba-education-studies-0
+  - owners: uw-seattle-education-studies
+  - error: unknown error
+- https://english.washington.edu/creative-writing
+  - owners: uw-seattle-english-creative-writing
+  - error: unknown error
+- https://english.washington.edu/english-language-literature-and-culture-option
+  - owners: uw-seattle-english-creative-writing, uw-seattle-english-language-literature-and-culture
+  - error: unknown error
+- https://english.washington.edu/english-major-creative-writing-option
+  - owners: uw-seattle-english-creative-writing
+  - error: unknown error
+- https://english.washington.edu/how-apply-undergraduate-creative-writing-option
+  - owners: uw-seattle-english-creative-writing
+  - error: unknown error
+- https://english.washington.edu/language-literature-and-culture
+  - owners: uw-seattle-english-language-literature-and-culture
+  - error: unknown error
+- https://frenchitalian.washington.edu/major-french-studies
+  - owners: uw-seattle-french
+  - error: unknown error
+- https://frenchitalian.washington.edu/major-italian-studies
+  - owners: uw-seattle-italian
+  - error: unknown error
+- https://frenchitalian.washington.edu/undergraduate-studies-french
+  - owners: uw-seattle-french
+  - error: unknown error
+- https://geography.washington.edu/ba-geography
+  - owners: uw-seattle-geography, uw-seattle-geography::data-science-option, uw-seattle-geography::standard-ba-route
+  - error: unknown error
+- https://geography.washington.edu/ba-geography-data-science-option
+  - owners: uw-seattle-geography, uw-seattle-geography::data-science-option, uw-seattle-geography::standard-ba-route
+  - error: unknown error
+- https://german.washington.edu/german-studies
+  - owners: uw-seattle-german
+  - error: unknown error
+- https://history.washington.edu/major
+  - owners: uw-seattle-history
+  - error: unknown error
+- https://history.washington.edu/undergraduate-programs
+  - owners: uw-seattle-history
+  - error: unknown error
+- https://jsis.washington.edu/programs/undergraduate/
+  - owners: uw-seattle-international-studies, uw-seattle-jewish-studies, uw-seattle-latin-american-and-caribbean-studies
+  - error: fetch failed
+

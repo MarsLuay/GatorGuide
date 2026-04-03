@@ -16,8 +16,8 @@ import {
   type QuestionnaireFieldId,
   type QuestionnaireSectionId,
 } from "@/constants/schema";
-import { collegeService } from "@/services/college.service";
-import { errorLoggingService } from "@/services/error-logging.service";
+import { collegeService } from "@/services/colleges/college.service";
+import { errorLoggingService } from "@/services/logging/error-logging.service";
 import {
   buildOtherLocationPreference,
   buildRegionLocationPreference,
@@ -28,7 +28,7 @@ import {
   parseLocationPreference,
   type LocationPrimaryOptionKey,
   US_STATE_OPTIONS,
-} from "@/services/questionnaire.enums";
+} from "@/services/app/questionnaire.enums";
 
 type Question =
   | { id: QuestionnaireSectionId; question: string; type: "section" }

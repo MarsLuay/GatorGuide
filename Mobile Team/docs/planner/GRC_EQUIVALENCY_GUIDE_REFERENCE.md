@@ -23,21 +23,30 @@ It now carries the migrated planner-relevant content that used to live in the se
 ## Migrated Green River transfer-track and latest course-plan reference
 
 
-Checked: March 31, 2026
+Checked: April 2, 2026
 
 ## Scope
 
 This doc is current-only.
 
-It uses only the most recent public Green River sources I could verify on March 31, 2026:
+It uses only the most recent public Green River sources I could verify on April 2, 2026:
 
 - Green River transfer-degree index: `https://www.greenriver.edu/students/academics/areas-of-interest/university-and-college-transfer/index.html`
-- Latest public consolidated planning sheet PDF: `https://www.greenriver.edu/marketing/media/documents/grad-to-gator/Sample-Ed-Plans2.pdf`
+- Latest public consolidated planning sheet PDF: `https://www.greenriver.edu/marketing/media/documents/grad-to-gator/Associate%20Transfer%20Sample%20Ed%20Plans%202024.pdf`
+- Green River `2024-2025` annual schedule PDF: `https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2024-2025-Annual-Schedule.pdf`
+- Green River `2025-2026` annual schedule PDF: `https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf`
 - Recent Green River registrar-form snippets found in search results, used only as cross-checks for active degree codes
 
-This doc does not backfill missing pieces from older 2024 planning sheets.
+This doc does not backfill missing pieces from older pre-2024 planning sheets.
 
-If the latest public source says `HUMANITIES`, `SOCIAL SCIENCE`, `NATURAL SCIENCE`, `ELECTIVE`, `ADDITIONAL CREDITS`, or `SELECT COURSE FROM LIST`, I leave it exactly that way instead of guessing.
+If the latest public source says `HUMANITIES`, `SOCIAL SCIENCE`, `NATURAL SCIENCE`, `ELECTIVE`, or `ADDITIONAL CREDITS`, I still keep that public category wording unless a stronger planner-owned expansion already exists.
+
+For the engineering-relevant Green River tracks `999B`, `999Q`, `999O`, and `999P`, this doc now does one extra planner step:
+
+- it preserves the latest public sample-plan row structure
+- it cross-checks the active courses against the `2024-2025` and `2025-2026` annual schedules
+- it expands each engineering `SELECT COURSE FROM LIST` slot into the strongest current planner-owned options instead of leaving those slots blank
+- it now also feeds a course-level quarter-availability history layer for planner-tracked Green River classes when those courses appear in the latest published annual schedules
 
 ## Current Degree List
 
@@ -210,6 +219,12 @@ Latest public sample plan:
 | Year 2 Winter | `NATURAL SCIENCE`; `NATURAL SCIENCE`; `PHYS& 222` |
 | Year 2 Spring | `NATURAL SCIENCE`; `NATURAL SCIENCE`; `PHYS& 223` |
 
+Current planner-owned yearly note:
+
+- `2024-2025`: the latest public sample plan above is still the active reference, and the `2024-2025` annual schedule keeps the base calculus, chemistry, and physics sequence active.
+- `2025-2026`: the latest public sample plan above is still the active reference, and the `2025-2026` annual schedule still keeps the same base calculus, chemistry, and physics sequence active.
+- There is no `SELECT COURSE FROM LIST` slot in `999B`, so the year-aware expansion work for this track is mainly about preserving the public quarter grid and confirming that the underlying STEM sequence still exists in the annual schedules.
+
 ## Associate in Science - Transfer Track 2, MRP, Civil and Mechanical Engineering Path (`999Q`)
 
 Current field labels shown on the latest sheet:
@@ -229,6 +244,29 @@ Latest public sample plan:
 | Year 3 Fall | `ENGR& 225`; `SELECT COURSE FROM LIST` |
 | Year 3 Winter | `HUMANITIES or SOCIAL SCIENCE`; `SELECT COURSE FROM LIST` |
 
+Planner-owned year-aware `SELECT COURSE FROM LIST` expansion:
+
+- `2024-2025`
+  - `Year 3 Fall` slot: `ENGR& 224`, `ENGR 250`, or `CS 121`
+  - `Year 3 Winter` slot: `CHEM& 163`, `ENGR 140`, or `MATH 240`
+- `2025-2026`
+  - `Year 3 Fall` slot: `ENGR& 224`, `ENGR 250`, or `CS 121`
+  - `Year 3 Winter` slot: `CHEM& 163`, `ENGR 140`, or `MATH 240`
+
+Planner note for how to use those slots:
+
+- `ENGR& 224` is the strongest thermodynamics add-on for A&A, MSE, and some ME planning.
+- `ENGR 250` is the cleanest scientific-computing add-on for A&A, Civil, ISE, and several hybrid engineering plans.
+- `CS 121` is the strongest programming add-on when the destination major needs more than a pure mechanics path.
+- `CHEM& 163` is the best chemistry-depth add-on for ME- and MSE-style paths.
+- `ENGR 140` is the cleanest materials-science add-on when the student is targeting `MSE 170` style prep.
+- `MATH 240` is the cleanest linear-algebra add-on for ISE, ME variants, and some Bothell or Tacoma engineering paths.
+
+Why this is current-safe:
+
+- The latest public sample plan still exposes the same two open slots.
+- The `2024-2025` and `2025-2026` annual schedules both still list the planner-owned fill options above as active Green River courses.
+
 ## Associate in Science - Transfer Track 2, MRP, Biological or Chemical Pre-Engineering (`999O`)
 
 Latest public sample plan:
@@ -242,6 +280,29 @@ Latest public sample plan:
 | Year 2 Winter | `PHYS& 222`; `MATH 238`; `BIOL& 260 or CHEM& 262` |
 | Year 2 Spring | `PHYS& 223`; `HUMANITIES or SOCIAL SCIENCE`; `SELECT COURSE FROM LIST` |
 | Year 3 Fall | `SELECT COURSE FROM LIST`; `SELECT COURSE FROM LIST` |
+
+Planner-owned year-aware `SELECT COURSE FROM LIST` expansion:
+
+- `2024-2025`
+  - `Year 2 Spring` slot: `CHEM& 262`, `BIOL& 211`, or `ENGR 250`
+  - `Year 3 Fall` slot 1: `CHEM& 263`, `BIOL& 212`, or `MATH 240`
+  - `Year 3 Fall` slot 2: `BIOL& 213` or `ENGR 250`
+- `2025-2026`
+  - `Year 2 Spring` slot: `CHEM& 262`, `BIOL& 211`, or `ENGR 250`
+  - `Year 3 Fall` slot 1: `CHEM& 263`, `BIOL& 212`, or `MATH 240`
+  - `Year 3 Fall` slot 2: `BIOL& 213` or `ENGR 250`
+
+Planner note for how to use those slots:
+
+- `999O` now needs an early branch decision instead of one generic “science elective” story.
+- If the student is mainly following the current `ChemE` path, the strongest slot use is usually `CHEM& 262`, `CHEM& 263`, `ENGR 250`, and often `MATH 240`.
+- If the student is mainly following the current `BioE` path, the strongest slot use is usually the full biology sequence add-on `BIOL& 211`, `BIOL& 212`, `BIOL& 213`, plus `ENGR 250` when programming or scientific computing is still missing.
+- `BIOL& 260` remains the public option shown in the base sample plan, but it is not the same thing as the full `BioE` biology path.
+
+Why this is current-safe:
+
+- The latest public sample plan still exposes the same three open slots.
+- The `2024-2025` and `2025-2026` annual schedules both still list `CHEM& 262`, `CHEM& 263`, `BIOL& 211`, `BIOL& 212`, `BIOL& 213`, `ENGR 250`, and `MATH 240`.
 
 ## Associate in Science - Transfer Track 2, MRP, Computer or Electrical Pre-Engineering (`999P`)
 
@@ -257,6 +318,27 @@ Latest public sample plan:
 | Year 2 Spring | `PHYS& 223`; `ENGR& 204`; `HUMANITIES or SOCIAL SCIENCE` |
 | Year 3 Fall | `SELECT COURSE FROM LIST`; `SELECT COURSE FROM LIST` |
 
+Planner-owned year-aware `SELECT COURSE FROM LIST` expansion:
+
+- `2024-2025`
+  - slot 1: `MATH 240` or `ENGR 250`
+  - slot 2: `ENGR& 225` or `CHEM& 261`
+- `2025-2026`
+  - slot 1: `MATH 240` or `ENGR 250`
+  - slot 2: `ENGR& 225` or `CHEM& 261`
+
+Planner note for how to use those slots:
+
+- `MATH 240` is the strongest first fill when the destination path wants linear algebra.
+- `ENGR 250` is the strongest scientific-computing fill when the destination path wants more engineering computing.
+- `ENGR& 225` is the strongest mechanics add-on when the student wants a broader engineering launch or wants to keep some Tacoma or Bothell engineering options open.
+- `CHEM& 261` is the chemistry-depth add-on when the target major or the student's comparison set still benefits from an extra lab-science quarter.
+
+Why this is current-safe:
+
+- The latest public sample plan still exposes the same two open slots.
+- The `2024-2025` and `2025-2026` annual schedules both still list `MATH 240`, `ENGR 250`, `ENGR& 225`, and `CHEM& 261`.
+
 ## Current-Source Gaps And Conflicts
 
 These are the places where the latest current public sources still leave gaps:
@@ -266,12 +348,17 @@ These are the places where the latest current public sources still leave gaps:
 | Associate in Biology, DTA/MRP | The current transfer page and biology program page list it, but I could not extract a clean current quarter-by-quarter grid from the latest public materials in this session. |
 | Associate in Fine Arts, AFA | The latest public sample-plan text clearly exposes year 1 and several year 2 items, but the art-elective placement is not fully exposed in the text extract. The current sheet explicitly says to see an Art Faculty Advisor to schedule the remaining art classes. |
 | Associate in Science - Transfer Track 1 (`999A`) | One year-2 spring slot did not fully surface in the latest text extract, so I left it marked as unresolved rather than backfilling it from older material. |
+| Green River general-education category rows outside the engineering tracks | `HUMANITIES`, `SOCIAL SCIENCE`, `NATURAL SCIENCE`, and similar broad category slots still need a separate catalog-safe expansion pass if the planner ever wants fully named general-ed suggestions by catalog year. |
 
 ## Bottom Line
 
-If you want the strict most-recent public Green River planning-sheet version, the rows above are the current degree-by-degree course lists and placeholders exactly as the latest public materials expose them.
+If you want the strict most-recent public Green River planning-sheet version, the rows above still preserve that latest public quarter-grid structure.
 
-If you later want a second pass that resolves every placeholder like `HUMANITIES`, `SOCIAL SCIENCE`, `NATURAL SCIENCE`, and `SELECT COURSE FROM LIST` into the current catalog-approved options, that would need a catalog-by-catalog follow-up doc.
+For the engineering-relevant Green River tracks `999B`, `999Q`, `999O`, and `999P`, this doc now also adds planner-owned `2024-2025` and `2025-2026` guidance so the open engineering slots are no longer left as blank `SELECT COURSE FROM LIST` placeholders.
+
+The planner now also stores course-level `2024-2025` and `2025-2026` Green River quarter-availability history for tracked classes that appeared in those annual schedules, so quarter planning no longer has to treat every tracked class as if it runs every term.
+
+The remaining unresolved catalog work is the broader general-education side: named `HUMANITIES`, `SOCIAL SCIENCE`, `NATURAL SCIENCE`, and `ELECTIVE` expansions still need a later catalog-by-catalog pass if the planner ever wants fully named filler suggestions by year.
 
 ## Migrated cleaned Green River -> UW equivalency guide
 

@@ -13,12 +13,308 @@ This doc explains what the Green River -> UW transfer planner currently does, wh
 ## What the planner currently uses
 
 - An explicit per-major `grcCourseList`.
+- A year-aware Green River track reference for `999B`, `999Q`, `999O`, and `999P`, including planner-owned expansions for the engineering `SELECT COURSE FROM LIST` slots.
+- Course-level Green River quarter-availability history from the latest published `2024-2025` and `2025-2026` annual schedules, with planner summaries attached when a tracked course is found there.
 - Requirement buckets for:
   - required before application
   - required before enrollment
   - worth finishing at Green River
 - Structured degree-map notes for the majors that now have deeper campus-specific coverage.
 - The transcript parser plus the planner's major/campus selection flow.
+- A new layered planner-source foundation in `constants/transfer-planner-source/`:
+  - `schema.ts`
+  - `registry.ts`
+  - `index.ts`
+- A normalized canonical course-metadata seed in `constants/transfer-planner-source/course-metadata.ts` for planner-critical courses, now carrying source-backed titles, credits, prerequisite/co-requisite structure fields, and effective-year ranges where the current sources support them.
+- A generated Green River schedule-metadata layer in `constants/transfer-planner-source/course-metadata.generated.ts`, sourced from the official `2024-2025` and `2025-2026` annual schedules to widen title and year-range coverage across many additional planner-tracked GRC courses.
+- A one-command refresh pipeline in:
+  - `scripts/planner/check-transfer-planner-sources.cjs`
+  - `scripts/planner/discover-transfer-planner-primary-sources.cjs`
+  - `scripts/planner/promote-transfer-planner-primary-sources.cjs`
+  - `scripts/planner/build-transfer-planner-primary-source-review-queue.cjs`
+  - `scripts/planner/parse-transfer-planner-requirement-sources.cjs`
+  - `scripts/planner/promote-transfer-planner-requirement-diffs.cjs`
+  - `scripts/planner/refresh-transfer-planner-sources.cjs`
+  - `scripts/run-planner-refresh.cmd`
+  - `scripts/run-planner-refresh-no-downloads.cmd`
+  - `npm run planner:check-sources`
+  - `npm run planner:discover-primary-sources`
+  - `npm run planner:promote-primary-sources`
+  - `npm run planner:build-primary-review-queue`
+  - `npm run planner:parse-requirement-sources`
+  - `npm run planner:promote-requirement-diffs`
+  - `npm run planner:refresh`
+
+## Current migration state
+
+- The layered source-of-truth foundation now exists in code.
+- The canonical course registry, equivalency-rule registry, degree-map block registry, major-requirement registry, and planner-policy registry are bootstrapped from the current planner data.
+- The canonical course registry now stores normalized `title`, `creditValue`, `creditLabel`, `prerequisiteAlternativeCourseCodeSets`, `corequisiteAlternativeCourseCodeSets`, and `effectiveYearRanges` fields for the planner-critical seed set.
+- The canonical course registry now also widens Green River title coverage through source-backed schedule-display metadata generated from the current annual schedules.
+- The normalization is still intentionally strongest for planner-critical Green River STEM and support sequences plus a small set of UW anchor courses. The remaining work is expanding source-backed credits, prerequisite/co-requisite structure, and non-abbreviated titles across the long-tail registry without inventing unknown values.
+- The planner now also has a structured major-pathway layer in code, with pathway registry entries and runtime pathway resolution for supported majors.
+- The planner now also has a structured source-manifest registry in code, with one entry per tracked major/pathway/track source link. Each manifest entry now carries:
+  - source role
+  - parser type
+  - confidence
+  - primary degree-requirements flag
+  - validation notes
+- The equivalency-rule registry now stores structured acceptance categories, weaker-than relationships, effective-year ranges, and planner warnings, so legacy-accepted and accepted-with-warning paths live in one source-backed place instead of only in scattered notes.
+- The planner page, generated campus docs, service-layer Green River availability lookups, and planner-facing maintenance scripts now read source-layer runtime helpers or source bootstrap snapshots instead of reaching straight into the mixed legacy row list.
+- `transfer-planner-data.ts` is no longer part of the operational runtime path. It now acts as a bootstrap-only source for snapshot generation and a temporary type-definition bridge while the structured registries keep expanding.
+- Requirement atoms now carry both a source `phase` and a student-facing `displayPhase`, so checklist bucket overrides live in the structured registry layer instead of a runtime-only rebalance list.
+- The next migration step is shrinking that bootstrap-only role further by moving the remaining non-normalized fields fully onto the layered registries and eventually replacing the temporary bootstrap snapshots with fully source-native structured maintenance files.
+- The next source-refresh step is building parser adapters that read from those manifest entries, so the refresh pipeline can move from `check links + rebuild current outputs` toward `fetch snapshot + parse requirements + diff + promote safe updates`.
+- `UW Bothell` is now fully included in the actual planner runtime, not just the Bothell markdown doc: every Bothell major row currently exposes official links, UW degree-map sections, and either an explicit Green River course list or explicit custom guidance.
+- `UW Tacoma` is now fully included in the actual planner runtime, not just the Tacoma markdown doc: every Tacoma major row currently exposes official links, UW degree-map sections, and either an explicit Green River course list or explicit custom guidance.
+
+## Planned major-path selector behavior
+
+Some majors do not really have one single fixed path.
+They have multiple valid internal routes such as:
+
+- `biology-centered path`
+- `chemistry-centered path`
+- different official options or concentrations that materially change the lower-division planning
+
+The planner should support that directly instead of flattening those majors into one blended list.
+
+The current behavior is:
+
+- A major gets a pathway dropdown only when that major actually has multiple named planner-supported paths.
+- If a major has only one path, the dropdown does not appear at all.
+- Each pathway should carry its own:
+  - requirement atoms
+  - Green River equivalent course list
+  - degree-map blocks
+  - planner warnings
+  - official source links
+  - validation date
+- Switching the dropdown should recompute the main course box, done/missing buckets, and suggested quarter plan for that selected path.
+- The planner should never invent a path just to fill the UI. If the docs do not support distinct paths, the dropdown should not exist.
+
+This should be treated as structured planner data, not just a frontend toggle.
+
+The supported pathway-backed majors now include:
+
+- `UW Seattle Biology`
+- `UW Seattle Atmospheric and Climate Science`
+- `UW Seattle Biochemistry`
+- `UW Seattle Chemistry`
+- `UW Seattle Earth & Space Sciences`
+- `UW Seattle Economics`
+- `UW Seattle Geography`
+- `UW Seattle Psychology`
+- `UW Seattle Public Health - Global Health`
+- `UW Seattle Statistics`
+- `UW Tacoma Communications (BA)`
+- `UW Tacoma Arts, Media and Culture (BA)`
+- `UW Tacoma Bachelor of Arts in Business Administration (BABA)`
+- `UW Tacoma Environmental Sustainability (BA)`
+- `UW Tacoma Ethnic, Gender and Labor Studies (BA)`
+- `UW Tacoma Sustainable Urban Development (BA)`
+- `UW Tacoma Urban Studies (BA)`
+- `UW Tacoma Writing Studies (BA)`
+
+## Best long-term maintenance model
+
+The best long-term solution is not one giant per-major hardcoded file and not one giant freeform "god doc."
+The best solution is a layered source-of-truth model with generated planner output.
+
+The recommended layers are:
+
+- `1. Canonical course registry`
+  - Store every Green River and UW course once with a stable ID.
+  - Keep title, credits, campus, subject, level, quarter availability by year, prerequisites, co-requisites, effective years, and source links here.
+  - Never delete historical rows; mark them with effective date ranges or inactive status.
+
+- `2. Equivalency rule registry`
+  - Store transfer rules separately from courses.
+  - Support rule types such as:
+    - direct one-course equivalent
+    - full-sequence-required
+    - partial-credit-only
+    - one-of-many options
+    - only-valid-for-specific catalog years
+    - technically transferable but not planner-recommended
+  - Each rule should also be able to say:
+    - whether it is the preferred path, accepted path, accepted-with-warning path, or legacy-accepted path
+    - whether it is weaker than another rule
+    - whether it only applies to a specific year range or legacy-support window
+    - what planner warnings should be shown when the rule is technically valid but not the strongest planning choice
+  - This is where nuances like `BIOL& 211 + 212 + 213 only counts cleanly as the full UW biology path` should live once instead of being repeated in many majors.
+
+- `3. Major requirement registry`
+  - Store each campus-major-year requirement block as structured requirement atoms instead of repeated freehand lists.
+  - Each requirement should carry:
+    - target UW course or block
+    - requirement phase
+    - minimum grade if known
+    - minimum count if it is a choose-N rule
+    - allowed alternatives
+    - whether it is admissions-critical, enrollment-critical, optional-at-GRC, or better-left-for-UW
+    - year range and source links
+  - Example: `uws:ece:autumn-2025:calc-sequence` should be one reusable requirement object, not copied as text into several places.
+  - If a major has multiple real routes, the registry should also support `major pathway` objects so one major can expose multiple structured variants without being split into fake duplicate majors.
+
+- `4. Planner policy layer`
+  - Keep planning opinions separate from raw equivalency facts.
+  - This layer should hold things like:
+    - best Green River track
+    - strongest recommended programming path
+    - financial-aid-safe path notes
+    - quarter-planning priority rules
+    - when a technically valid equivalent is not the best planning choice
+
+- `5. Generated planner output`
+  - Compile the structured source layers into the app-friendly planner rows, explicit `grcCourseList` arrays, docs, and tests.
+  - The app can still consume explicit per-major data, but humans should not have to hand-maintain the repeated copies.
+
+## Why this is better than one "god code document"
+
+- A single giant file would still duplicate facts across majors.
+- It would mix course facts, equivalency facts, major facts, and planning opinions into one place.
+- That makes yearly updates harder, not easier.
+- It also makes it too easy to accidentally overwrite one nuance while updating another.
+- A layered model keeps every nuance, but stores each nuance in the one layer where it actually belongs.
+
+## What accuracy-focused maintenance should look like
+
+Because the planner is supposed to preserve every nuance, the source data should be designed to keep ambiguity instead of flattening it away.
+
+That means:
+
+- keep catalog-year ranges instead of overwriting old rules
+- keep multiple allowed equivalents when departments publish multiple valid paths
+- keep planner warnings when one equivalent is technically valid but weaker
+- keep source links and last-validated dates on the exact rule or major row they support
+- keep historical or inactive paths marked as historical instead of deleting them
+
+## Recommended implementation direction
+
+If this planner keeps growing, the best implementation direction is:
+
+- move human-edited planner source into structured `JSON` or `YAML` files with a schema
+- keep one registry file or folder for courses
+- keep one registry file or folder for equivalencies
+- keep one registry file or folder for major requirements by campus-major-year
+- keep one registry file or folder for planner policy and recommendation rules
+- generate the TypeScript planner constants and planner docs from those registries
+- keep a temporary bootstrap layer while parity checks compare generated output to the current planner behavior
+
+This gives you the thing you want most:
+
+- explicit per-major outputs in the app
+- no guessed deletions
+- no repeated hardcoding of the same course facts
+- room for very specific per-class and per-major logic when nuance matters
+
+## Next generalization targets
+
+The biggest remaining per-major hardcoding that should still move into structured source data is:
+
+- trait-backed best-track policy generation
+  - `bestTrackId`
+  - `bestTrackSummary`
+  - `whyThisTrack`
+  - `financialAidNote`
+- a single explicit `primaryDegreeRequirementsLink` per major or pathway, so the UI does not need to heuristically choose one page from a broader official-link set
+- family-based templates for repetitive planner copy such as:
+  - `summary`
+  - `applicationWindow`
+  - `startQuarter`
+  - some `advisorFlags`
+- continued replacement of hand-bucketed checklist placement in `transfer-planner-data.ts` with structured major-requirement atoms and display-phase metadata
+
+## What the refresh automation does now
+
+Running `npm run planner:refresh` now does the highest-value automatic maintenance that this repo can safely do today:
+
+- checks every tracked planner source URL already attached to majors, pathways, and tracks
+- discovers and auto-promotes new `high-confidence` primary degree-requirements links into the structured source-manifest override layer
+- rebuilds a campus-grouped review queue for the remaining medium-confidence and unresolved primary-source candidates
+- parses the current primary degree-requirements sources and compares extracted UW course codes against the structured degree-map blocks already in the planner
+- auto-promotes only high-confidence parsed requirement diffs into generated structured requirement-atom overrides when the repo already has strong exact-title consensus for the same UW-to-GRC mapping
+- leaves a requirement-diff promotion report in `.tmp/` for the review-needed and still-unmapped course codes
+- writes a source snapshot plus change summary into `.tmp/`
+- refreshes the local official Green River annual schedule PDFs used by the generators
+- regenerates:
+  - source bootstrap
+  - generated course metadata
+  - generated Green River availability data
+  - campus planner docs
+- runs planner verification:
+  - `tsc --noEmit`
+  - planner tests
+
+This gives the project one script that can check the tracked sources and update all current generated planner outputs.
+
+There are now also non-dev Windows launchers in `scripts/`:
+
+- `run-planner-refresh.cmd`
+- `run-planner-refresh-no-downloads.cmd`
+
+They are meant to be double-clicked, automatically run `npm install` if key dependencies are missing, retry one repair install if the repo health check fails because dependencies look corrupted, save a timestamped log into `.tmp/planner-refresh-logs/`, and open the current source summary plus primary-source review queue when the run finishes.
+
+There is now also a companion discovery script for missing primary UW degree pages:
+
+- `npm run planner:discover-primary-sources`
+- scans majors and pathways that still do not have an explicit primary degree-requirements link
+- scores the current official links plus first-hop internal links
+- writes ranked suggestions into `.tmp/`
+- helps turn a `missing primary source` problem into a reviewable candidate list instead of manual browsing from scratch
+
+And there is now a safe promotion step:
+
+- `npm run planner:promote-primary-sources`
+- reruns discovery first
+- keeps only `high-confidence` suggestions
+- writes them into `constants/transfer-planner-source/source-manifest-primary-overrides.generated.ts`
+- lets the structured source-manifest registry treat those promoted links as the explicit primary degree page on later runs
+
+There is now also a review-queue step for everything that is still not safe to auto-promote:
+
+- `npm run planner:build-primary-review-queue`
+- reruns discovery first
+- collects the remaining `medium-confidence` suggestions plus the `no good suggestion yet` owners
+- groups them by campus
+- writes:
+  - `.tmp/transfer-planner-primary-source-review-queue.json`
+  - `.tmp/transfer-planner-primary-source-review-queue.md`
+- this becomes the manual follow-up queue after the automatic promotion pass
+
+There is now also a first real requirement-parser layer:
+
+- `npm run planner:parse-requirement-sources`
+- parses the current primary UW degree-requirements source for each major or pathway that now has one
+- supports:
+  - HTML degree/curriculum/catalog-style pages
+  - PDF degree sheets and checklists
+- extracts:
+  - UW course codes
+  - headings
+  - requirement cue lines
+  - choose/select statements
+  - pathway/option labels
+- compares those extracted UW course codes against the current structured degree-map blocks already in the planner
+- writes:
+  - `.tmp/transfer-planner-requirement-source-parse-report.json`
+  - `.tmp/transfer-planner-requirement-source-parse-report.md`
+  - `.tmp/transfer-planner-requirement-source-snapshots/`
+- this is the first automatic layer that can actually say “the live source mentions course X but the current structured planner does not”
+
+## What is still not fully automatic
+
+The refresh pipeline still does **not** auto-rewrite every nuanced Seattle, Bothell, or Tacoma major row from live department pages.
+
+That remaining work needs source-family adapters such as:
+
+- UW department-page scrapers/parsers for majors that publish requirement tables in repeatable HTML
+- PDF extractors for majors that still publish degree sheets only as PDFs
+- explicit diff rules for when a page changed cosmetically vs when a requirement really changed
+- a review queue for majors where public pages are category-based, inconsistent, or still require human interpretation
+
+So the new script gets the project much closer to a real `check sources + refresh outputs` workflow, but the last step to full automation is still structured source ingestion for the heterogeneous UW major pages.
 
 ## Equivalency assumptions already folded into the planner
 
@@ -29,9 +325,17 @@ The detailed planner-facing equivalency and series-rule assumptions now live in:
 ## What the planner currently outputs
 
 - A campus-major-specific Green River equivalent course list.
+- For proposal-based or intentionally custom majors, explicit Green River planning guidance instead of a fake universal course list.
 - A done vs missing view for the tracked requirement buckets.
 - A recommended next-step or quarter-plan suggestion based on missing tracked courses.
+- Quarter-plan suggestions that now keep UW-critical requirements ahead of optional Green River-only add-ons.
+- Subject-aware fallback guidance when a checklist item has no hand-authored planner note, so the planner can still describe math, programming, circuit, writing, statistics, language, or other common head starts without adding a custom note for every single major row.
+- Auto-generated fallback checklist items for majors that still have a degree-specific Green River course list but no hand-authored checklist buckets yet, so the planner can still build a usable quarter plan instead of collapsing to the quarter-plan warning block.
+- Quarter-plan course cards that can now show recent Green River offering history when the planner has it.
 - Planner notes, caution flags, and official reference links for the selected major.
+- For supported multi-route majors, a pathway selector inside the `Major Specifics` dropdown at the bottom of the transcript-based course-plan box, and it only appears when the selected major truly has more than one planner-supported route.
+- The `Major Specifics` dropdown should show one primary official UW degree page for the selected major, not a long list of supporting links.
+- The `Major Specifics` dropdown should not surface noisy per-major course counts like `97 tracked` or `2/97 completed`; it should focus on the actual classes, route choice, and degree notes.
 
 ## What the planner is not
 
@@ -39,6 +343,7 @@ The detailed planner-facing equivalency and series-rule assumptions now live in:
 - It is not a live registrar schedule.
 - It is not a promise that every course is offered every quarter.
 - It is not a substitute for advisor review when the major has multiple valid science, math, or programming paths.
+- It should not show fake dropdown choices for majors that do not actually have distinct supported pathways.
 
 ## Planner doc set
 

@@ -9,7 +9,7 @@ import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppData } from "@/hooks/use-app-data";
-import type { College } from "@/services/college.service";
+import type { College } from "@/services/colleges/college.service";
 import { formatLocalizedCurrency } from "@/utils/locale-format";
 
 type ResidencyMode = "inState" | "outOfState";

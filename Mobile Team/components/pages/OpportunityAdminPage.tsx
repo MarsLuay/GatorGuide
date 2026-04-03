@@ -29,7 +29,7 @@ import {
   opportunityGatewayService,
   type OpportunityAdminAccessResponse,
   type UpsertManualOpportunityInput,
-} from "@/services/opportunity-gateway.service";
+} from "@/services/opportunities/opportunity-gateway.service";
 
 type OpportunityAdminDraft = {
   opportunityId: string;

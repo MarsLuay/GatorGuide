@@ -10,8 +10,8 @@ import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ROUTES } from "@/constants/routes";
 import { FIRESTORE_COLLECTIONS } from "@/constants/schema";
-import { db } from "@/services/firebase";
-import { storageService } from "@/services/storage.service";
+import { db } from "@/services/firebase/firebase";
+import { storageService } from "@/services/storage/storage.service";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
@@ -20,7 +20,7 @@ import { useAppTheme } from "@/hooks/use-app-theme";
 import { FormInput } from "@/components/ui/FormInput";
 import { DocumentExtractionReviewCard } from "@/components/ui/DocumentExtractionReviewCard";
 import { documentReaderService, errorLoggingService, type DocumentExtractionReview } from "@/services";
-import { roadmapService } from "@/services/roadmap.service";
+import { roadmapService } from "@/services/planning/roadmap.service";
 
 type SelectedDocument = {
   uri: string;

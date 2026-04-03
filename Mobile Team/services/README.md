@@ -10,7 +10,7 @@ Some services still contain sample or fallback code paths for resilience and loc
 
 The app now runs in **real/cached mode by default**:
 
-- `API_CONFIG.useStubData` is hardcoded to `false` in [`config.ts`](./config.ts)
+- `API_CONFIG.useStubData` is hardcoded to `false` in [`config.ts`](./app/config.ts)
 - `EXPO_PUBLIC_USE_STUB_DATA` is a legacy env flag and is **not** used by the current config
 - live Firebase / API integrations are the expected default path
 - some services may still return cached or sample data in narrow fallback situations, but that is not a supported top-level mode switch
@@ -19,7 +19,7 @@ If you are trying to debug why the app is calling live services, that is the exp
 
 ## Services
 
-### 1. Authentication Service (`auth.service.ts`)
+### 1. Authentication Service (`auth/auth.service.ts`)
 **What it does:** User login, sign up, password reset  
 **Default behavior:** Uses Firebase Authentication  
 **Fallback behavior:** Some local/dev fallback paths still exist in code for resilience and testing
@@ -32,7 +32,7 @@ const user = await authService.signIn({ email, name });
 await authService.sendPasswordReset(email);
 ```
 
-### 2. College Service (`college.service.ts`)
+### 2. College Service (`colleges/college.service.ts`)
 **What it does:** Find matching colleges, search, get details  
 **Default behavior:** Uses live/cached college data and the College Scorecard-backed pipeline  
 **Fallback behavior:** Some sample data can still appear if the live path is unavailable
@@ -50,7 +50,7 @@ const matches = await collegeService.getMatches({
 const results = await collegeService.searchColleges('Florida');
 ```
 
-### 3. AI Service (`ai.service.ts`)
+### 3. AI Service (`ai/ai.service.ts`)
 **What it does:** Chat assistant, generate personalized advice  
 **Default behavior:** Uses Google Gemini through the `geminiGateway` Firebase Function with server-side quota enforcement and usage logging  
 **Fallback behavior:** Some canned/sample responses still exist for limited fallback paths
@@ -73,11 +73,11 @@ const assistant = await aiService.chatAssistant({
 const tasks = await aiService.generateRoadmap(userProfile);
 ```
 
-Structured chat context now lives in [`ai-context.service.ts`](./ai-context.service.ts). Use `buildAiConversationContext(...)` to pass a versioned, sanitized JSON context into AI chat calls instead of hand-built prompt strings. The context intentionally excludes user email, uid, avatar, resume/transcript URLs, and document filenames while still including profile, questionnaire answers, saved colleges, and roadmap state.
+Structured chat context now lives in [`ai-context.service.ts`](./ai/ai-context.service.ts). Use `buildAiConversationContext(...)` to pass a versioned, sanitized JSON context into AI chat calls instead of hand-built prompt strings. The context intentionally excludes user email, uid, avatar, resume/transcript URLs, and document filenames while still including profile, questionnaire answers, saved colleges, and roadmap state.
 
 The Firestore persistence contract for future chat history now lives in [`../constants/chat-history.ts`](../constants/chat-history.ts) and [`../docs/product/FIREBASE_CHAT_HISTORY_SCHEMA.md`](../docs/product/FIREBASE_CHAT_HISTORY_SCHEMA.md). Read/write helpers are intentionally deferred until the shared chat assistant architecture is finalized.
 
-### 4. Storage Service (`storage.service.ts`)
+### 4. Storage Service (`storage/storage.service.ts`)
 **What it does:** Upload/download resumes and transcripts  
 **Default behavior:** Uses the current local/Firebase-backed storage flow  
 **Fallback behavior:** Some local-only handling still exists for unsupported environments
@@ -92,7 +92,7 @@ const resume = await storageService.getResume(userId);
 
 ## Configuration
 
-All API keys and settings are in [`config.ts`](./config.ts). The current config reads these environment variables:
+All API keys and settings are in [`config.ts`](./app/config.ts). The current config reads these environment variables:
 
 ```bash
 # .env file (create from env.example)

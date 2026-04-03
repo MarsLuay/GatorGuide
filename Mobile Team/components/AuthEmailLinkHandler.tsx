@@ -4,7 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
 import { ROUTES } from "@/constants/routes";
 import { STORAGE_KEYS } from "@/constants/schema";
-import { authService, EMAIL_LINK_STORAGE_KEY } from "@/services/auth.service";
+import { authService, EMAIL_LINK_STORAGE_KEY } from "@/services/auth/auth.service";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
 

@@ -16,12 +16,12 @@ import {
 import {
   type MatchedOpportunity,
   opportunityMatchingService,
-} from "@/services/opportunity-matching.service";
-import { opportunitiesService } from "@/services/opportunities.service";
+} from "@/services/opportunities/opportunity-matching.service";
+import { opportunitiesService } from "@/services/opportunities/opportunities.service";
 import {
   type OpportunityStatusMap,
   opportunityStatusService,
-} from "@/services/opportunity-status.service";
+} from "@/services/opportunities/opportunity-status.service";
 import { errorLoggingService, notificationsService } from "@/services";
 import { useAppData } from "./use-app-data";
 

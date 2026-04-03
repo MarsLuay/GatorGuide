@@ -1,0 +1,188 @@
+Owner: uw-seattle-environmental-public-health
+Source: https://www.deohs.washington.edu/degree-requirements
+Title: Degree Requirements | Environmental & Occupational Health Sciences
+
+Degree Requirements | Environmental & Occupational Health Sciences
+Skip to main content
+University of Washington
+Environmental & Occupational Health Sciences
+School of Public Health
+<form action="/search"
+method="get"
+id="searchform">
+<label for="edit-keys"
+class="visually-hidden">Search
+<input class="form-search form-control"
+data-drupal-selector="edit-keys"
+id="edit-keys" maxlength="128"
+name="keys" placeholder="Search"
+size="15" title="Enter the term you want to search for"
+type="search"
+value=""
+/>
+<button class="button js-form-submit form-submit btn-primary btn"
+name=""
+type="submit"
+value="Search"
+aria-label="Search Site">
+<svg enable-background="new 0 0 100.8 100.8"
+version="1.1" viewbox="0 0 100.8 100.8"
+xml:space="preserve">
+About DEOHS
+Faculty Directory
+Regular Faculty
+Affiliate Faculty
+Emeritus Faculty
+Clinical Faculty
+Adjunct Faculty
+Our Mission, Vision & Values
+Serving Washington State
+History
+Advisory Committee
+DEOHS Faculty Positions and Fellowships
+Contact Us
+Directions
+Prospective Students
+Undergraduate Program
+Degree requirements
+Applying to the major
+Transfer
+Career pathways
+Funded Research for UW Undergraduates
+Environmental Public Health Minor
+Graduate Program
+How to Apply
+Graduate degree finder
+Master of Science Applied
+Master of Science Thesis
+Master of Public Health
+PhD in Environmental Health Sciences
+MPH, Occupational and Environmental Medicine
+Areas of Emphasis
+Environmental Public Health
+Environmental Toxicology
+Climate Change and Health
+Infectious Diseases
+Occupational Hygiene/ Exposure Science
+One Health
+Graduate Certificates
+Concurrent Degrees
+Course Information
+Tuition & Funding Opportunities
+Biostatistics, Epidemiologic, and Bioinformatic Training in Environmental Health
+Environmental Pathology/Toxicology Training Program
+Northwest Center for Occupational Health and Safety
+Supporting Undergraduate Research Experiences in Environmental Health (SURE-EH)
+Career Services
+Internship 101
+Job Search Survival Skills
+Job Openings In the Field
+Student and Alumni profiles
+Contact an Adviser
+Research
+Clean Air
+Clean Water
+Safe Food
+Safe Workplaces
+Sustainable Communities
+Funded Projects
+Student Research
+Alumni and Employers
+Alumni
+Alumni profiles
+Job Openings in the Field
+Employers
+Services
+Continuing Education
+Field Research and Consultation Group
+Environmental Health Laboratory
+Occupational & Environmental Medicine
+Pediatric Environmental Health Specialty Unit
+News and Events
+Our Blog
+DEOHS Newsroom
+Calendar
+Environmental Health Seminar
+Giving
+Search
+Degree Requirements
+Upon completion of the B.S. in Environmental Public Health, all graduates will be able to demonstrate the competencies detailed on the B.S. in EH Degree Competencies document (PDF).
+The following is a list of courses required for the completion of the Bachelor of Science in Environmental Public Health. All courses must be completed with a minimum grade of 2.0. Prospective students should consult the applying to the major page for information on the admission process. In addition to the School of Public Health’s general education requirements , students complete the courses listed below.
+Supporting Science
+Math
+One of the following courses :
+MATH 111, MATH 120, or department approved math course (5 credits). This course is a graduation requirement, but we recommend that students complete the math requirement before they register for the other supporting science courses. The recommended preparation for PHYS 114 is a previous algebra course covering concepts such as trigonometry and exponential functions. The recommended preparation for CHEM 142 is a good working knowledge of algebra.
+Biology
+BIOL 180, 200, 220 (15 credits)
+Physics
+PHYS 114/117 (5 credits)
+Chemistry
+One of the following general and organic chemistry sequences :
+CHEM 142, 152, CHEM 220 (15 credits)
+CHEM 142, 152, CHEM 223, 224, 241 (21 credits)
+CHEM 142, 152, 162, CHEM 237, 238, 241 (26 credits)
+Statistics
+One of the following courses :
+BIOST 310 (Recommended), STAT 220, STAT 311, or Q SCI 381, or department approved statistics course (4-5 credits)
+Environmental Public Health Core, complete all courses
+ENV H 311 (3) Introduction to Environmental Health (AUT and SPR)
+ENV H 312 (3) Introduction to Occupational Health and Safety (WIN) required for students who declare the major beginning WIN26.
+ENV H 320 (5) Introduction to Technical Communication in Environmental Health (WIN)
+ENV H 405 (4) Toxic Chemicals & Human Health (SPR)
+ENV H 432 (5) Chemical Sampling and Analysis (SPR)
+ENV H 433 (5) Microbiological Sampling and Analysis (WIN)
+ENV H 472 (3) Environmental Risk and Society (AUT)
+ENV H 473 (4) Environmental Health Policy and Practice (WIN)
+ENV H 480 (1) Undergraduate Seminar (AUT)
+ENV H 482 (2-15) Environmental Health Internship (400 hour required internship)
+EPI 320 (4) Introduction to Epidemiology (AUT and SPR)
+MICROM 301 (3) General Microbiology (AUT and SPR)
+MICROM 302 (2) General Microbiology Lab (AUT and SPR)
+Environmental Public Health Selectives , choose a minimum of 3 of the following courses. Syllabi for all classes below are on the courses page .
+(for students who entered the major before Winter 2026: CHOOSE A MINIMUM OF 4 OF THE FOLLOWING COURSES)
+ENV H 306 (3) Health and Sustainability
+ENV H 406 (3) Disasters and Public Health
+ENV H 409 (3) Microbiome and Environmental Health
+ENV H 417 (3) Case Studies in Children's Environmental Health Disparities (also fulfills Diversity Requirement)
+G H 418/ENV H 418 (3) Understanding and Managing the Health Risks of Climate Change
+ENV H 439 (3) One Health: Human and Animal Health in a Changing Environment
+ENV H 440 (3) Water, Wastewater and Health
+ENV H 441 (3) Food Protection
+ENV H 442 (3) Zoonotic Diseases
+ENV H 443 (3) Housing and Health
+ENV H 444 (4) Antibiotic Resistant Bacteria/Genes Impact on the Environment and Public Health
+ENV H 445 (3) Solid Waste Management
+ENV H 447 (3) Environmental Change and Infectious Disease
+ENV H 448 (3) Community Air Pollution
+ENV H 451 (3) Ecology of Environmentally Transmitted Microbiological Hazards
+ENV H 452 (3) Detection and Control of Environmentally Transmitted Microbiological Hazards
+ENV H 453 (3) Industrial Hygiene
+ENV H 460 (3) Occupational Safety Management
+ENV H 462 (3) Technical Aspects of Occupational Safety
+ENV H 465 (3) Geographic Information Systems (GIS) in Public Health
+ENV H 475 (3) Environmental Justice and Public Health
+ENV H 478 (3) Remote Sensing for Environmental Health
+ENV H 479 (3) Climate Change and Public Health Practice
+ENV H 538 (2) Public Health & the Built Environment (need instructor permission)
+Environmental Public Health Electives
+15 Credits from approved elective list . Run a degree audit or contact an adviser to view the full list.
+Online advising available
+Connect with an adviser now via Zoom or phone.
+Make an appointment
+Main menu
+Undergraduate Program
+Degree requirements
+Applying to the major
+Transfer
+Career pathways
+Funded Research for UW Undergraduates
+Environmental Public Health Minor
+Graduate Program
+Course Information
+Tuition & Funding Opportunities
+Career Services
+Student and Alumni profiles
+Contact an Adviser
+Connect with us
+Contact Us / Intranet / Privacy / Terms
+© 2025 Department of Environmental and Occupational Health Sciences | School of Public Health | University of Washington

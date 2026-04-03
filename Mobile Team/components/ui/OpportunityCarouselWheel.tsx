@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Pressable, Text, View, useWindowDimensions } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import type { MatchedOpportunity } from "@/services/opportunity-matching.service";
+import type { MatchedOpportunity } from "@/services/opportunities/opportunity-matching.service";
 import { useAppTheme } from "@/hooks/use-app-theme";
 
 type OpportunityCarouselWheelProps = {

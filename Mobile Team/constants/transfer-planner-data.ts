@@ -6,6 +6,11 @@ import {
   type TransferPlannerMasterChain,
   type TransferPlannerMasterMajorRow,
 } from "./transfer-planner-master-generated";
+import {
+  TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY,
+  type TransferPlannerGrcCourseAvailabilityEntry,
+  type TransferPlannerGrcCourseAvailabilityQuarter,
+} from "./transfer-planner-grc-availability.generated";
 
 export type TransferPlannerCampusId = "uw-seattle" | "uw-bothell" | "uw-tacoma";
 export type TransferPlannerCoverage = "detailed" | "partial";
@@ -33,9 +38,44 @@ export type TransferPlannerDegreeMapSection = {
   note?: string;
 };
 
+export type TransferPlannerMajorPathway = {
+  id: string;
+  label: string;
+  summary: string;
+  applicationChecklist?: TransferPlannerChecklistItem[];
+  beforeEnrollmentChecklist?: TransferPlannerChecklistItem[];
+  stayAtGrcChecklist?: TransferPlannerChecklistItem[];
+  advisorFlags?: string[];
+  officialLinks?: TransferPlannerLink[];
+  degreeMapSections?: TransferPlannerDegreeMapSection[];
+  manualReviewNotes?: string[];
+  grcCourseList?: string[];
+  grcCourseListGuidance?: string;
+  plannerNote?: string;
+  bestTrackId?: string | null;
+  bestTrackSummary?: string;
+  whyThisTrack?: string[];
+  financialAidNote?: string;
+};
+
 export type TransferPlannerTrackTerm = {
   label: string;
   courses: string[];
+};
+
+export type TransferPlannerTrackSlotExpansion = {
+  termLabel: string;
+  slotLabel: string;
+  recommendedCourses: string[];
+  note?: string;
+};
+
+export type TransferPlannerTrackCatalogYear = {
+  label: string;
+  sourceSummary: string;
+  terms: TransferPlannerTrackTerm[];
+  slotExpansions?: TransferPlannerTrackSlotExpansion[];
+  notes?: string[];
 };
 
 export type TransferPlannerTrack = {
@@ -46,7 +86,14 @@ export type TransferPlannerTrack = {
   bestFor: string[];
   terms: TransferPlannerTrackTerm[];
   notes: string[];
+  officialLinks?: TransferPlannerLink[];
+  catalogYears?: TransferPlannerTrackCatalogYear[];
 };
+
+export type TransferPlannerCourseAvailability =
+  TransferPlannerGrcCourseAvailabilityEntry & {
+    courseCode: string;
+  };
 
 export type TransferPlannerCampus = {
   id: TransferPlannerCampusId;
@@ -80,18 +127,49 @@ export type TransferPlannerMajorPlan = {
   manualReviewNotes?: string[];
   family?: string;
   grcCourseList?: string[];
+  grcCourseListGuidance?: string;
   bankIds?: string[];
   chainIds?: string[];
   plannerNote?: string;
   sourceType?: TransferPlannerSourceType;
+  pathways?: TransferPlannerMajorPathway[];
+};
+
+export type TransferPlannerResolvedMajorPlan = TransferPlannerMajorPlan & {
+  selectedPathwayId: string | null;
+  selectedPathwayLabel: string | null;
+  selectedPathwaySummary: string | null;
 };
 
 const STEM_CALCULUS_CURRENT_SEQUENCE = ["MATH& 151", "MATH& 152", "MATH& 163"];
 const STEM_CALCULUS_OLDER_SEQUENCE = ["MATH& 151", "MATH& 152", "MATH& 153", "MATH& 254"];
 const FULL_GENERAL_CHEMISTRY_SEQUENCE = ["CHEM& 161", "CHEM& 162", "CHEM& 163"];
+const FULL_ORGANIC_CHEMISTRY_SEQUENCE = ["CHEM& 261", "CHEM& 262", "CHEM& 263"];
 const FULL_BIOLOGY_MAJORS_SEQUENCE = ["BIOL& 211", "BIOL& 212", "BIOL& 213"];
 const STEM_CALCULUS_ALTERNATIVE_NOTE =
   "Current UW guidance accepts MATH& 163 for MATH 126. Older UW and Green River materials also use the MATH& 153 + MATH& 254 combination, which UW lists as transferring as MATH 126, 224, and 2XX credit when both courses are completed.";
+const REFERENCE_COURSE_CODE_PATTERN = /\b[A-Z]{2,6}&?\s*\d{3}(?:\.\d+)?[A-Z]?\b/g;
+const QUARTER_AVAILABILITY_LABELS: Record<
+  TransferPlannerGrcCourseAvailabilityQuarter,
+  string
+> = {
+  summer: "Summer",
+  fall: "Fall",
+  winter: "Winter",
+  spring: "Spring",
+};
+
+function extractReferenceCourseCodes(value: string) {
+  return uniqueReferenceCourseLabels(
+    (String(value ?? "").toUpperCase().match(REFERENCE_COURSE_CODE_PATTERN) ?? []).map((match) =>
+      match.replace(/\s+/g, " ").trim()
+    )
+  );
+}
+
+function formatAvailabilityQuarterList(quarters: TransferPlannerGrcCourseAvailabilityQuarter[]) {
+  return quarters.map((quarter) => QUARTER_AVAILABILITY_LABELS[quarter]).join(", ");
+}
 
 const item = (
   id: string,
@@ -156,6 +234,18 @@ const itemCountWithAlternatives = (
   minCompletedCount,
 });
 
+const plannerPathway = (
+  id: string,
+  label: string,
+  summary: string,
+  config: Omit<TransferPlannerMajorPathway, "id" | "label" | "summary"> = {}
+): TransferPlannerMajorPathway => ({
+  id,
+  label,
+  summary,
+  ...config,
+});
+
 const itemStemCalcSequence = (
   id: string,
   title: string,
@@ -183,6 +273,196 @@ const itemStemCalcCredits = (
     minCompletedCount,
     note
   );
+
+type DetailedPlannerPlanConfig = Omit<
+  TransferPlannerMajorPlan,
+  | "coverage"
+  | "applicationChecklist"
+  | "beforeEnrollmentChecklist"
+  | "stayAtGrcChecklist"
+  | "advisorFlags"
+  | "involvementIdeas"
+  | "projectIdeas"
+  | "officialLinks"
+> & {
+  applicationChecklist?: TransferPlannerChecklistItem[];
+  beforeEnrollmentChecklist?: TransferPlannerChecklistItem[];
+  stayAtGrcChecklist?: TransferPlannerChecklistItem[];
+  advisorFlags?: string[];
+  involvementIdeas?: string[];
+  projectIdeas?: string[];
+  officialLinks?: TransferPlannerLink[];
+};
+
+const detailedPlan = (config: DetailedPlannerPlanConfig): TransferPlannerMajorPlan => ({
+  coverage: "detailed",
+  applicationChecklist: [],
+  beforeEnrollmentChecklist: [],
+  stayAtGrcChecklist: [],
+  advisorFlags: [],
+  involvementIdeas: [],
+  projectIdeas: [],
+  officialLinks: [],
+  ...config,
+});
+
+const buildBothellBbaApplicationChecklist = (
+  prefix: string
+): TransferPlannerChecklistItem[] => [
+  item(
+    `${prefix}-engl101`,
+    "English composition",
+    ["ENGL& 101"],
+    "Bothell Business expects the first college composition course before transfer. ENGL& 101 is the clearest current Green River starting point."
+  ),
+  item(
+    `${prefix}-engl128`,
+    "Advanced composition",
+    ["ENGL 128"],
+    "Bothell Business also expects advanced composition before matriculation. ENGL 128 is the clearest current Green River advanced-writing match for business, science, and technical students."
+  ),
+  itemAny(
+    `${prefix}-calc`,
+    "Calculus or business calculus",
+    ["MATH& 148", "MATH& 151"],
+    "The current Bothell prerequisite chart accepts either business calculus or the standard calculus start. Choose the one that still fits the student's broader degree options."
+  ),
+  item(
+    `${prefix}-stats`,
+    "Statistics",
+    ["MATH& 146"],
+    "MATH& 146 is the clearest currently tracked Green River statistics prerequisite for Bothell Business."
+  ),
+  item(
+    `${prefix}-micro`,
+    "Microeconomics",
+    ["ECON& 201"],
+    "Bothell Business lists Microeconomics as a required lower-division business prerequisite."
+  ),
+  item(
+    `${prefix}-macro`,
+    "Macroeconomics",
+    ["ECON& 202"],
+    "Bothell Business lists Macroeconomics as a required lower-division business prerequisite."
+  ),
+  itemCount(
+    `${prefix}-financial-accounting`,
+    "Financial Accounting",
+    ["ACCT& 201", "ACCT& 202"],
+    2,
+    "The current Bothell comparison chart maps Financial Accounting through ACCT& 201 and ACCT& 202 at a common-transfer-numbering school."
+  ),
+  item(
+    `${prefix}-managerial-accounting`,
+    "Managerial Accounting",
+    ["ACCT& 203"],
+    "Bothell Business lists Managerial Accounting as a separate prerequisite on top of the financial-accounting sequence."
+  ),
+  item(
+    `${prefix}-law`,
+    "Law or business law",
+    ["BUS& 201"],
+    "BUS& 201 is the clearest current Green River law / business-law match in the Bothell prerequisite chart."
+  ),
+];
+
+const buildBothellChemistryApplicationChecklist = (
+  prefix: string
+): TransferPlannerChecklistItem[] => [
+  item(
+    `${prefix}-general-chem`,
+    "Full general chemistry sequence",
+    FULL_GENERAL_CHEMISTRY_SEQUENCE,
+    "Bothell Chemistry expects the full general chemistry sequence with labs before admission."
+  ),
+  itemStemCalcSequence(
+    `${prefix}-calc123`,
+    "Calculus I, II, and III",
+    "Bothell Chemistry asks for the full calculus sequence before admission, so the full Green River STEM calculus ladder should be finished before transfer."
+  ),
+];
+
+const buildBothellCsseApplicationChecklist = (
+  prefix: string
+): TransferPlannerChecklistItem[] => [
+  item(
+    `${prefix}-engl101`,
+    "English Composition I",
+    ["ENGL& 101"],
+    "Bothell CSSE lists the first English composition course in the admission baseline."
+  ),
+  item(
+    `${prefix}-engl128`,
+    "English Composition II or advanced writing",
+    ["ENGL 128"],
+    "Bothell CSSE lists English Composition I and II in the admission baseline. ENGL 128 is the clearest current Green River second-writing match."
+  ),
+  itemStemCalcCredits(
+    `${prefix}-calc`,
+    "Calculus I and II",
+    2,
+    "The Bothell CSSE admission baseline requires the first two calculus courses. Calc III is still a strong add-on for broader STEM flexibility."
+  ),
+  itemCount(
+    `${prefix}-programming`,
+    "Programming through the two-course Bothell baseline",
+    ["CS 121", "CS 122", "CS 123"],
+    2,
+    "The public Bothell CSSE admissions materials require a two-course programming sequence equivalent to CSS 142 and 143 or CSS 132 and 133. The safest Green River path is CS 121 -> CS 122 -> CS 123."
+  ),
+];
+
+const buildBothellNursingPrereqChecklist = (
+  prefix: string
+): TransferPlannerChecklistItem[] => [
+  item(
+    `${prefix}-engl101`,
+    "English composition",
+    ["ENGL& 101"],
+    "The Bothell RN-to-BSN pathway materials include English composition in the prerequisite baseline."
+  ),
+  item(
+    `${prefix}-chem`,
+    "General chemistry with lab",
+    FULL_GENERAL_CHEMISTRY_SEQUENCE,
+    "The Bothell nursing-pathway materials still frame the prerequisite spine around general chemistry with lab."
+  ),
+  item(
+    `${prefix}-microbiology`,
+    "Microbiology",
+    ["BIOL& 260"],
+    "The Bothell nursing-pathway materials include microbiology in the prerequisite spine."
+  ),
+  item(
+    `${prefix}-ap`,
+    "Anatomy and Physiology I and II",
+    ["BIOL& 241", "BIOL& 242"],
+    "The Bothell nursing-pathway materials include Anatomy and Physiology I and II in the prerequisite spine."
+  ),
+  itemAny(
+    `${prefix}-stats`,
+    "Statistics",
+    ["MATH& 146", "MATH 256"],
+    "The Bothell nursing-pathway materials include statistics in the prerequisite spine."
+  ),
+];
+
+const buildBothellPhysicsApplicationChecklist = (
+  prefix: string
+): TransferPlannerChecklistItem[] => [
+  itemStemCalcCredits(
+    `${prefix}-calc12`,
+    "Calculus I and II",
+    2,
+    "The Bothell Physics admission baseline requires Calculus I and II before application."
+  ),
+  item(
+    `${prefix}-physics-sequence`,
+    "Full calculus-based introductory physics sequence",
+    ["PHYS& 221", "PHYS& 222", "PHYS& 223"],
+    "The Bothell Physics admission baseline requires the full one-year calculus-based introductory physics sequence before application."
+  ),
+];
 
 const degreeMapSection = (
   id: string,
@@ -285,6 +565,89 @@ export const TRANSFER_PLANNER_TRACKS: TransferPlannerTrack[] = [
       "Useful as the shared backbone behind several engineering pathways.",
       "Most Seattle engineering majors still need a more specific MRP or custom add-on set on top of this base.",
       "Older sample plans may still show MATH& 153 before MATH& 254. The current direct UW MATH 126 path uses MATH& 163 instead.",
+      "The catalog-year reference below preserves the latest public Green River sample-plan layout for 2024-2025 and 2025-2026, even when the planner-friendly backbone above is slightly more modernized.",
+    ],
+    officialLinks: [
+      {
+        label: "Green River transfer-degree index",
+        url: "https://www.greenriver.edu/students/academics/areas-of-interest/university-and-college-transfer/index.html",
+      },
+      {
+        label: "Green River Associate Transfer Sample Ed Plans 2024",
+        url: "https://www.greenriver.edu/marketing/media/documents/grad-to-gator/Associate%20Transfer%20Sample%20Ed%20Plans%202024.pdf",
+      },
+      {
+        label: "Green River 2024-2025 Annual Schedule",
+        url: "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2024-2025-Annual-Schedule.pdf",
+      },
+      {
+        label: "Green River 2025-2026 Annual Schedule",
+        url: "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf",
+      },
+    ],
+    catalogYears: [
+      {
+        label: "2024-2025",
+        sourceSummary: "Latest public 2024 sample-plan PDF plus the 2024-2025 annual schedule.",
+        terms: [
+          { label: "Year 1 Fall", courses: ["ENGL& 101", "MATH& 151", "HUMANITIES"] },
+          {
+            label: "Year 1 Winter",
+            courses: ["ENGL 126 or 127 or 128 (ELECTIVE)", "MATH& 152", "SOCIAL SCIENCE"],
+          },
+          {
+            label: "Year 1 Spring",
+            courses: ["PHYS& 114 (NATURAL SCIENCE)", "MATH& 153", "HUMANITIES or SOCIAL SCIENCE"],
+          },
+          {
+            label: "Year 2 Fall",
+            courses: ["CHEM& 161", "MATH& 254 (NATURAL SCIENCE)", "PHYS& 221"],
+          },
+          {
+            label: "Year 2 Winter",
+            courses: ["NATURAL SCIENCE", "NATURAL SCIENCE", "PHYS& 222"],
+          },
+          {
+            label: "Year 2 Spring",
+            courses: ["NATURAL SCIENCE", "NATURAL SCIENCE", "PHYS& 223"],
+          },
+        ],
+        notes: [
+          "The latest public track sheet still shows the older MATH& 153 version of the calculus path.",
+          "The 2024-2025 annual schedule still lists the core physics, chemistry, and advanced-math courses needed to keep this base active for engineering and physics planning.",
+        ],
+      },
+      {
+        label: "2025-2026",
+        sourceSummary:
+          "Same latest public 2024 sample-plan PDF, cross-checked against the 2025-2026 annual schedule because a newer public consolidated track PDF was not available.",
+        terms: [
+          { label: "Year 1 Fall", courses: ["ENGL& 101", "MATH& 151", "HUMANITIES"] },
+          {
+            label: "Year 1 Winter",
+            courses: ["ENGL 126 or 127 or 128 (ELECTIVE)", "MATH& 152", "SOCIAL SCIENCE"],
+          },
+          {
+            label: "Year 1 Spring",
+            courses: ["PHYS& 114 (NATURAL SCIENCE)", "MATH& 153", "HUMANITIES or SOCIAL SCIENCE"],
+          },
+          {
+            label: "Year 2 Fall",
+            courses: ["CHEM& 161", "MATH& 254 (NATURAL SCIENCE)", "PHYS& 221"],
+          },
+          {
+            label: "Year 2 Winter",
+            courses: ["NATURAL SCIENCE", "NATURAL SCIENCE", "PHYS& 222"],
+          },
+          {
+            label: "Year 2 Spring",
+            courses: ["NATURAL SCIENCE", "NATURAL SCIENCE", "PHYS& 223"],
+          },
+        ],
+        notes: [
+          "The public sample-plan sheet was still the 2024 version, but the 2025-2026 annual schedule still carries the track's core math, chemistry, and physics sequence.",
+        ],
+      },
     ],
   },
   {
@@ -307,13 +670,113 @@ export const TRANSFER_PLANNER_TRACKS: TransferPlannerTrack[] = [
       { label: "Year 2 Fall", courses: ["PHYS& 221", "MATH& 254", "ENGR& 214"] },
       { label: "Year 2 Winter", courses: ["PHYS& 222", "MATH 238", "ENGR& 215"] },
       { label: "Year 2 Spring", courses: ["PHYS& 223", "MATH 240", "Social Science"] },
-      { label: "Year 3 Fall", courses: ["ENGR& 225", "Select course from list"] },
-      { label: "Year 3 Winter", courses: ["Humanities or Social Science", "Select course from list"] },
+      {
+        label: "Year 3 Fall",
+        courses: ["ENGR& 225", "Planner slot: ENGR& 224 or ENGR 250 or CS 121"],
+      },
+      {
+        label: "Year 3 Winter",
+        courses: ["Humanities or Social Science", "Planner slot: CHEM& 163 or ENGR 140 or MATH 240"],
+      },
     ],
     notes: [
       "Use the elective slots intentionally for add-ons like ENGR& 224, ENGR 250, or programming.",
       "This track is especially good when you want to maximize financial-aid-safe engineering credits at Green River.",
       "Older sample plans may still show MATH& 153 before MATH& 254. The current direct UW MATH 126 path uses MATH& 163 instead.",
+      "The catalog-year reference below preserves the latest public 2024 sample-plan layout and then resolves each SELECT COURSE FROM LIST slot into planner-owned options that stayed active in the 2024-2025 and 2025-2026 annual schedules.",
+    ],
+    officialLinks: [
+      {
+        label: "Green River transfer-degree index",
+        url: "https://www.greenriver.edu/students/academics/areas-of-interest/university-and-college-transfer/index.html",
+      },
+      {
+        label: "Green River Associate Transfer Sample Ed Plans 2024",
+        url: "https://www.greenriver.edu/marketing/media/documents/grad-to-gator/Associate%20Transfer%20Sample%20Ed%20Plans%202024.pdf",
+      },
+      {
+        label: "Green River 2024-2025 Annual Schedule",
+        url: "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2024-2025-Annual-Schedule.pdf",
+      },
+      {
+        label: "Green River 2025-2026 Annual Schedule",
+        url: "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf",
+      },
+    ],
+    catalogYears: [
+      {
+        label: "2024-2025",
+        sourceSummary: "Latest public 2024 sample-plan PDF plus the 2024-2025 annual schedule.",
+        terms: [
+          { label: "Year 1 Fall", courses: ["ENGL& 101", "MATH& 151", "ENGR 100"] },
+          { label: "Year 1 Winter", courses: ["CHEM& 161", "MATH& 152", "ENGR 106"] },
+          { label: "Year 1 Spring", courses: ["CHEM& 162", "MATH& 153", "HUMANITIES"] },
+          { label: "Year 2 Fall", courses: ["PHYS& 221", "MATH& 254", "ENGR& 214", "CS 120 or ENGR 120"] },
+          { label: "Year 2 Winter", courses: ["PHYS& 222", "MATH 238", "ENGR& 215"] },
+          { label: "Year 2 Spring", courses: ["PHYS& 223", "MATH 240", "SOCIAL SCIENCE"] },
+          { label: "Year 3 Fall", courses: ["ENGR& 225", "SELECT COURSE FROM LIST"] },
+          {
+            label: "Year 3 Winter",
+            courses: ["HUMANITIES or SOCIAL SCIENCE", "SELECT COURSE FROM LIST"],
+          },
+        ],
+        slotExpansions: [
+          {
+            termLabel: "Year 3 Fall",
+            slotLabel: "SELECT COURSE FROM LIST",
+            recommendedCourses: ["ENGR& 224", "ENGR 250", "CS 121"],
+            note:
+              "Use ENGR& 224 for thermodynamics-heavy paths like A&A, MSE, and some ME variants, ENGR 250 for scientific computing, and CS 121 when the destination major needs a stronger programming launch.",
+          },
+          {
+            termLabel: "Year 3 Winter",
+            slotLabel: "SELECT COURSE FROM LIST",
+            recommendedCourses: ["CHEM& 163", "ENGR 140", "MATH 240"],
+            note:
+              "Use CHEM& 163 for chemistry-sensitive ME or MSE planning, ENGR 140 for MSE 170 preparation, and MATH 240 when linear algebra is the stronger competitive add-on.",
+          },
+        ],
+        notes: [
+          "The 2024-2025 annual schedule still lists ENGR& 224, ENGR 140, ENGR 250, MATH 240, and CS 121 as active courses, so these are the strongest current replacements for the open slots.",
+        ],
+      },
+      {
+        label: "2025-2026",
+        sourceSummary:
+          "Same latest public 2024 sample-plan PDF, cross-checked against the 2025-2026 annual schedule because a newer public consolidated track PDF was not available.",
+        terms: [
+          { label: "Year 1 Fall", courses: ["ENGL& 101", "MATH& 151", "ENGR 100"] },
+          { label: "Year 1 Winter", courses: ["CHEM& 161", "MATH& 152", "ENGR 106"] },
+          { label: "Year 1 Spring", courses: ["CHEM& 162", "MATH& 153", "HUMANITIES"] },
+          { label: "Year 2 Fall", courses: ["PHYS& 221", "MATH& 254", "ENGR& 214", "CS 120 or ENGR 120"] },
+          { label: "Year 2 Winter", courses: ["PHYS& 222", "MATH 238", "ENGR& 215"] },
+          { label: "Year 2 Spring", courses: ["PHYS& 223", "MATH 240", "SOCIAL SCIENCE"] },
+          { label: "Year 3 Fall", courses: ["ENGR& 225", "SELECT COURSE FROM LIST"] },
+          {
+            label: "Year 3 Winter",
+            courses: ["HUMANITIES or SOCIAL SCIENCE", "SELECT COURSE FROM LIST"],
+          },
+        ],
+        slotExpansions: [
+          {
+            termLabel: "Year 3 Fall",
+            slotLabel: "SELECT COURSE FROM LIST",
+            recommendedCourses: ["ENGR& 224", "ENGR 250", "CS 121"],
+            note:
+              "The same thermodynamics, computing, and programming trio still fits the open slot best in 2025-2026.",
+          },
+          {
+            termLabel: "Year 3 Winter",
+            slotLabel: "SELECT COURSE FROM LIST",
+            recommendedCourses: ["CHEM& 163", "ENGR 140", "MATH 240"],
+            note:
+              "The same chemistry, materials, and linear-algebra choices still cover the most common current UW follow-on requirements in 2025-2026.",
+          },
+        ],
+        notes: [
+          "The 2025-2026 annual schedule still carries ENGR& 224, ENGR 140, ENGR 250, MATH 240, and CS 121, so the planner keeps the same current slot expansion.",
+        ],
+      },
     ],
   },
   {
@@ -330,12 +793,104 @@ export const TRANSFER_PLANNER_TRACKS: TransferPlannerTrack[] = [
       { label: "Year 2 Fall", courses: ["PHYS& 221", "MATH& 254 if you are finishing the older Calc III path", "CS 122"] },
       { label: "Year 2 Winter", courses: ["PHYS& 222", "MATH 238", "CS 123"] },
       { label: "Year 2 Spring", courses: ["PHYS& 223", "ENGR& 204", "Humanities or Social Science"] },
-      { label: "Year 3 Fall", courses: ["Select course from list", "Select course from list"] },
+      {
+        label: "Year 3 Fall",
+        courses: [
+          "Planner slot: MATH 240 or ENGR 250",
+          "Planner slot: ENGR& 225 or CHEM& 261",
+        ],
+      },
     ],
     notes: [
       "This is the best stock fit when the destination major needs the full CS 121 / 122 / 123 sequence.",
       "It also keeps physics, higher math, and circuit preparation aligned with UW engineering expectations.",
       "Current UW guidance maps MATH& 163 cleanly to UW MATH 126. Older planning materials may still show the alternative MATH& 153 + MATH& 254 route.",
+      "The catalog-year reference below preserves the latest public 2024 sample-plan layout and resolves the open year-3 slot into the current planner-owned add-on choices that stayed active in the 2024-2025 and 2025-2026 annual schedules.",
+    ],
+    officialLinks: [
+      {
+        label: "Green River transfer-degree index",
+        url: "https://www.greenriver.edu/students/academics/areas-of-interest/university-and-college-transfer/index.html",
+      },
+      {
+        label: "Green River Associate Transfer Sample Ed Plans 2024",
+        url: "https://www.greenriver.edu/marketing/media/documents/grad-to-gator/Associate%20Transfer%20Sample%20Ed%20Plans%202024.pdf",
+      },
+      {
+        label: "Green River 2024-2025 Annual Schedule",
+        url: "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2024-2025-Annual-Schedule.pdf",
+      },
+      {
+        label: "Green River 2025-2026 Annual Schedule",
+        url: "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf",
+      },
+    ],
+    catalogYears: [
+      {
+        label: "2024-2025",
+        sourceSummary: "Latest public 2024 sample-plan PDF plus the 2024-2025 annual schedule.",
+        terms: [
+          { label: "Year 1 Fall", courses: ["ENGL& 101", "MATH& 151", "ENGR 100", "ENGR 106"] },
+          { label: "Year 1 Winter", courses: ["CHEM& 161", "MATH& 152", "HUMANITIES"] },
+          { label: "Year 1 Spring", courses: ["CS 120", "MATH& 153", "SOCIAL SCIENCE"] },
+          { label: "Year 2 Fall", courses: ["PHYS& 221", "MATH& 254", "CS& 131 or CS& 141"] },
+          { label: "Year 2 Winter", courses: ["PHYS& 222", "MATH 238", "CS 132 or CS 145"] },
+          { label: "Year 2 Spring", courses: ["PHYS& 223", "ENGR& 204", "HUMANITIES or SOCIAL SCIENCE"] },
+          { label: "Year 3 Fall", courses: ["SELECT COURSE FROM LIST", "SELECT COURSE FROM LIST"] },
+        ],
+        slotExpansions: [
+          {
+            termLabel: "Year 3 Fall",
+            slotLabel: "SELECT COURSE FROM LIST (slot 1)",
+            recommendedCourses: ["MATH 240", "ENGR 250"],
+            note:
+              "Use MATH 240 first when the destination program wants linear algebra; use ENGR 250 when scientific computing is the stronger add-on.",
+          },
+          {
+            termLabel: "Year 3 Fall",
+            slotLabel: "SELECT COURSE FROM LIST (slot 2)",
+            recommendedCourses: ["ENGR& 225", "CHEM& 261"],
+            note:
+              "Use ENGR& 225 when mechanics depth still helps the destination engineering path, and CHEM& 261 when chemistry depth is the more useful support course.",
+          },
+        ],
+        notes: [
+          "The 2024-2025 annual schedule still lists MATH 240, ENGR 250, ENGR& 225, and CHEM& 261 as active current courses.",
+        ],
+      },
+      {
+        label: "2025-2026",
+        sourceSummary:
+          "Same latest public 2024 sample-plan PDF, cross-checked against the 2025-2026 annual schedule because a newer public consolidated track PDF was not available.",
+        terms: [
+          { label: "Year 1 Fall", courses: ["ENGL& 101", "MATH& 151", "ENGR 100", "ENGR 106"] },
+          { label: "Year 1 Winter", courses: ["CHEM& 161", "MATH& 152", "HUMANITIES"] },
+          { label: "Year 1 Spring", courses: ["CS 120", "MATH& 153", "SOCIAL SCIENCE"] },
+          { label: "Year 2 Fall", courses: ["PHYS& 221", "MATH& 254", "CS& 131 or CS& 141"] },
+          { label: "Year 2 Winter", courses: ["PHYS& 222", "MATH 238", "CS 132 or CS 145"] },
+          { label: "Year 2 Spring", courses: ["PHYS& 223", "ENGR& 204", "HUMANITIES or SOCIAL SCIENCE"] },
+          { label: "Year 3 Fall", courses: ["SELECT COURSE FROM LIST", "SELECT COURSE FROM LIST"] },
+        ],
+        slotExpansions: [
+          {
+            termLabel: "Year 3 Fall",
+            slotLabel: "SELECT COURSE FROM LIST (slot 1)",
+            recommendedCourses: ["MATH 240", "ENGR 250"],
+            note:
+              "The same linear-algebra versus scientific-computing choice is still the cleanest first add-on slot in 2025-2026.",
+          },
+          {
+            termLabel: "Year 3 Fall",
+            slotLabel: "SELECT COURSE FROM LIST (slot 2)",
+            recommendedCourses: ["ENGR& 225", "CHEM& 261"],
+            note:
+              "The same mechanics versus chemistry support choice still fits best in 2025-2026.",
+          },
+        ],
+        notes: [
+          "The 2025-2026 annual schedule still carries MATH 240, ENGR 250, ENGR& 225, and CHEM& 261.",
+        ],
+      },
     ],
   },
   {
@@ -357,13 +912,133 @@ export const TRANSFER_PLANNER_TRACKS: TransferPlannerTrack[] = [
       { label: "Year 1 Spring", courses: ["MATH& 163", "CHEM& 163"] },
       { label: "Year 2 Fall", courses: ["PHYS& 221", "MATH& 254", "CHEM& 261"] },
       { label: "Year 2 Winter", courses: ["PHYS& 222", "MATH 238", "BIOL& 260 or CHEM& 262"] },
-      { label: "Year 2 Spring", courses: ["PHYS& 223", "Humanities or Social Science", "Select course from list"] },
-      { label: "Year 3 Fall", courses: ["Select course from list", "Select course from list"] },
+      {
+        label: "Year 2 Spring",
+        courses: [
+          "PHYS& 223",
+          "Humanities or Social Science",
+          "Planner slot: CHEM& 262 or BIOL& 211 or ENGR 250",
+        ],
+      },
+      {
+        label: "Year 3 Fall",
+        courses: [
+          "Planner slot: CHEM& 263 or BIOL& 212 or MATH 240",
+          "Planner slot: BIOL& 213 or ENGR 250",
+        ],
+      },
     ],
     notes: [
       "BioE now needs biology plus programming decisions beyond the stock PDF path.",
       "ChemE has spring-start timing, so term planning should be treated separately from a normal autumn engineering transfer.",
       "Older sample plans may still show MATH& 153 before MATH& 254. The current direct UW MATH 126 path uses MATH& 163 instead.",
+      "The catalog-year reference below preserves the latest public 2024 sample-plan layout and resolves each SELECT COURSE FROM LIST slot into the current BioE / ChemE add-ons that stayed active in the 2024-2025 and 2025-2026 annual schedules.",
+    ],
+    officialLinks: [
+      {
+        label: "Green River transfer-degree index",
+        url: "https://www.greenriver.edu/students/academics/areas-of-interest/university-and-college-transfer/index.html",
+      },
+      {
+        label: "Green River Associate Transfer Sample Ed Plans 2024",
+        url: "https://www.greenriver.edu/marketing/media/documents/grad-to-gator/Associate%20Transfer%20Sample%20Ed%20Plans%202024.pdf",
+      },
+      {
+        label: "Green River 2024-2025 Annual Schedule",
+        url: "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2024-2025-Annual-Schedule.pdf",
+      },
+      {
+        label: "Green River 2025-2026 Annual Schedule",
+        url: "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf",
+      },
+    ],
+    catalogYears: [
+      {
+        label: "2024-2025",
+        sourceSummary: "Latest public 2024 sample-plan PDF plus the 2024-2025 annual schedule.",
+        terms: [
+          { label: "Year 1 Fall", courses: ["ENGL& 101", "MATH& 151", "CHEM& 161"] },
+          { label: "Year 1 Winter", courses: ["HUMANITIES", "MATH& 152", "CHEM& 162"] },
+          { label: "Year 1 Spring", courses: ["SOCIAL SCIENCE", "MATH& 153", "CHEM& 163"] },
+          { label: "Year 2 Fall", courses: ["PHYS& 221", "MATH& 254", "CHEM& 261"] },
+          { label: "Year 2 Winter", courses: ["PHYS& 222", "MATH 238", "BIOL& 260 or CHEM& 262"] },
+          {
+            label: "Year 2 Spring",
+            courses: ["PHYS& 223", "HUMANITIES or SOCIAL SCIENCE", "SELECT COURSE FROM LIST"],
+          },
+          { label: "Year 3 Fall", courses: ["SELECT COURSE FROM LIST", "SELECT COURSE FROM LIST"] },
+        ],
+        slotExpansions: [
+          {
+            termLabel: "Year 2 Spring",
+            slotLabel: "SELECT COURSE FROM LIST",
+            recommendedCourses: ["CHEM& 262", "BIOL& 211", "ENGR 250"],
+            note:
+              "Stay on the chemistry branch with CHEM& 262, start the BioE biology branch with BIOL& 211, or use ENGR 250 when the destination major needs scientific computing.",
+          },
+          {
+            termLabel: "Year 3 Fall",
+            slotLabel: "SELECT COURSE FROM LIST (slot 1)",
+            recommendedCourses: ["CHEM& 263", "BIOL& 212", "MATH 240"],
+            note:
+              "ChemE usually wants CHEM& 263 and often MATH 240, while BioE usually wants BIOL& 212 in this space.",
+          },
+          {
+            termLabel: "Year 3 Fall",
+            slotLabel: "SELECT COURSE FROM LIST (slot 2)",
+            recommendedCourses: ["BIOL& 213", "ENGR 250"],
+            note:
+              "BioE usually uses this slot for BIOL& 213, while ChemE often uses it for ENGR 250 if scientific computing is still missing.",
+          },
+        ],
+        notes: [
+          "The 2024-2025 annual schedule still lists CHEM& 262, CHEM& 263, BIOL& 211, BIOL& 212, BIOL& 213, ENGR 250, and MATH 240 as active current courses.",
+          "Students should commit to either the chemistry-heavy ChemE branch or the biology-plus-programming BioE branch instead of splitting all open slots randomly.",
+        ],
+      },
+      {
+        label: "2025-2026",
+        sourceSummary:
+          "Same latest public 2024 sample-plan PDF, cross-checked against the 2025-2026 annual schedule because a newer public consolidated track PDF was not available.",
+        terms: [
+          { label: "Year 1 Fall", courses: ["ENGL& 101", "MATH& 151", "CHEM& 161"] },
+          { label: "Year 1 Winter", courses: ["HUMANITIES", "MATH& 152", "CHEM& 162"] },
+          { label: "Year 1 Spring", courses: ["SOCIAL SCIENCE", "MATH& 153", "CHEM& 163"] },
+          { label: "Year 2 Fall", courses: ["PHYS& 221", "MATH& 254", "CHEM& 261"] },
+          { label: "Year 2 Winter", courses: ["PHYS& 222", "MATH 238", "BIOL& 260 or CHEM& 262"] },
+          {
+            label: "Year 2 Spring",
+            courses: ["PHYS& 223", "HUMANITIES or SOCIAL SCIENCE", "SELECT COURSE FROM LIST"],
+          },
+          { label: "Year 3 Fall", courses: ["SELECT COURSE FROM LIST", "SELECT COURSE FROM LIST"] },
+        ],
+        slotExpansions: [
+          {
+            termLabel: "Year 2 Spring",
+            slotLabel: "SELECT COURSE FROM LIST",
+            recommendedCourses: ["CHEM& 262", "BIOL& 211", "ENGR 250"],
+            note:
+              "The same chemistry, biology, and scientific-computing choices still fit best in the first open slot for 2025-2026.",
+          },
+          {
+            termLabel: "Year 3 Fall",
+            slotLabel: "SELECT COURSE FROM LIST (slot 1)",
+            recommendedCourses: ["CHEM& 263", "BIOL& 212", "MATH 240"],
+            note:
+              "The same chemistry-versus-biology-versus-linear-algebra choice still matches the strongest current ChemE and BioE branches in 2025-2026.",
+          },
+          {
+            termLabel: "Year 3 Fall",
+            slotLabel: "SELECT COURSE FROM LIST (slot 2)",
+            recommendedCourses: ["BIOL& 213", "ENGR 250"],
+            note:
+              "The final open slot still works best as either the end of the BioE biology sequence or the ChemE/BioE scientific-computing add-on.",
+          },
+        ],
+        notes: [
+          "The 2025-2026 annual schedule still carries CHEM& 262, CHEM& 263, BIOL& 211, BIOL& 212, BIOL& 213, ENGR 250, and MATH 240.",
+        ],
+      },
     ],
   },
 ];
@@ -420,11 +1095,22 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
       item("engl101", "English composition", ["ENGL& 101"]),
     ],
     beforeEnrollmentChecklist: [
-      item("phys122", "PHYS 122 if you want a stronger launch", ["PHYS& 222"], "Not the minimum Allen floor, but it strengthens the engineering start."),
+      item("phys122", "PHYS 122", ["PHYS& 222"], "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."),
       item("math207", "MATH 207 for engineering flexibility", ["MATH 238"], "Useful if the student is still comparing Allen CompE and ECE."),
+      item(
+        "math208",
+        "MATH 208",
+        ["MATH 240"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
+      ),
     ],
     stayAtGrcChecklist: [
-      item("phys123", "PHYS 123 if time and aid allow", ["PHYS& 223"]),
+      item(
+        "phys123",
+        "PHYS 123 if time and aid allow",
+        ["PHYS& 223"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
+      ),
       item("engr204", "Circuit analysis head start", ["ENGR& 204"], "Helpful if the student may pivot toward ECE."),
     ],
     advisorFlags: [
@@ -446,6 +1132,14 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
         url: "https://www.cs.washington.edu/academics/undergraduate/admissions/transfers/",
       },
       {
+        label: "Allen School CompE graduation requirements (PDF)",
+        url: "https://www.cs.washington.edu/wp-content/uploads/2025/02/CompE_degreq_dec24v2.pdf",
+      },
+      {
+        label: "Allen School CompE transfer planning worksheet (PDF)",
+        url: "https://www.cs.washington.edu/wp-content/uploads/2024/12/CE_TransferPlanningWorksheet.pdf",
+      },
+      {
         label: "Allen School degree requirements",
         url: "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/",
       },
@@ -461,16 +1155,18 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
     degreeMapSections: [
       degreeMapSection("compe-general", "Computer Engineering general education and math/science", [
         "The Computer Engineering degree requires 180 total credits, including 12 credits of written and oral communication, a 5-credit diversity course, and 30 credits of A&H/SSc coursework.",
-        "The mathematics and natural-sciences block requires MATH 124, 125, 126, MATH 208, PHYS 121, PHYS 122, 10 additional credits from Allen's approved CE natural-science list, and 3 to 6 more approved math/science credits to bring the total math/science block to 41 credits.",
-        "Allen's approved CE science list starts with Chemistry 142 or 145 and Biology 180, then allows higher approved Biology, Chemistry, Physics, Earth and Space Sciences, Astronomy, and Atmospheric Science courses from the current course-lists page.",
+        "The mathematics and natural-sciences block centers on MATH 124, 125, 126, MATH 208, PHYS 121 or PHYS 141, PHYS 122 or PHYS 142, 10 additional approved CE natural-science credits, and enough extra approved math/science credits to bring the total block to 41 credits.",
+        "The current CompE degree sheet also explicitly names MATH 207, STAT 391, and AMATH 351 as approved ways to help finish the remaining math/science credits.",
+        "Allen's current course-lists page still carries the detailed CE natural-science menu if the student needs to see the full approved list behind those additional science credits.",
       ]),
       degreeMapSection("compe-fundamentals", "Computer Engineering fundamentals", [
         "The CE fundamentals block is CSE 123 or CSE 143, CSE 311, CSE 312, CSE 332, CSE 351, EE 205 or EE 215, CSE 369, and CSE/EE 371.",
       ]),
       degreeMapSection("compe-core", "Computer Engineering core, systems, and capstone", [
         "Students then complete at least 40 additional CE credits, including one of CSE 403, CSE/EE 474, CSE 480, or CSE 484.",
-        "The degree also requires 3 more courses from the approved CE systems-electives list, which currently includes options such as CSE 401, CSE 444, CSE 451, CSE 452, CSE 453, CSE 461, CSE/EE 469, CSE/EE 470 or CSE 471, CSE 478, EE 476, and EE 477.",
-        "Students must also complete 2 additional CSE core courses, 1 course from the CSE capstone list, and enough additional CSE electives to bring total CSE elective credits to 40.",
+        "The degree also requires 3 more courses from the approved CE systems-electives list, 2 additional CSE core courses, 1 course from the CSE capstone list, and enough additional CSE electives to bring total CSE elective credits to 40.",
+        "If the student takes them, CSE 121 or CSE 122 can count inside that broader CSE elective total, but they are not the cleanest Green River-to-Allen preparation story compared with arriving ready for CSE 123 or CSE 143.",
+        "Allen's current course-lists page still carries the detailed CE systems-electives, core-course, and capstone menus behind these required buckets.",
         "If outside courses are used toward electives, the student may need additional CSE or College of Engineering credits so the total CSE plus Engineering credits still reaches 40 before free electives bring the degree to 180.",
       ]),
     ],
@@ -503,11 +1199,32 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
       item("phys121", "PHYS 121", ["PHYS& 221"], "Allen lists PHYS 121 on the transfer preparation path."),
     ],
     beforeEnrollmentChecklist: [
-      item("phys122", "PHYS 122 if you want stronger technical depth", ["PHYS& 222"]),
-      item("math207", "Differential equations for flexibility", ["MATH 238"]),
+      item(
+        "math208",
+        "MATH 208",
+        ["MATH 240"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
+      ),
     ],
     stayAtGrcChecklist: [
-      item("phys123", "PHYS 123 if the student is also keeping engineering options open", ["PHYS& 223"]),
+      item(
+        "phys122",
+        "PHYS 122 if you want stronger technical depth",
+        ["PHYS& 222"],
+        "Useful extra physics depth at Green River if the student wants a stronger technical base or is still comparing engineering-heavy paths."
+      ),
+      item(
+        "math207",
+        "Differential equations for flexibility",
+        ["MATH 238"],
+        "Useful extra math depth at Green River if the student wants more quantitative flexibility or is still comparing engineering-heavy paths."
+      ),
+      item(
+        "phys123",
+        "PHYS 123 if the student is also keeping engineering options open",
+        ["PHYS& 223"],
+        "Only worth pushing when the student is keeping engineering options open or wants extra science depth before UW."
+      ),
     ],
     advisorFlags: [
       "This is still a very selective transfer path.",
@@ -565,7 +1282,8 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
     coverage: "detailed",
     summary:
       "ECE is another strong 999P match. The path works especially well when the student wants Green River programming, physics, higher math, and circuit prep before transferring.",
-    applicationWindow: "Department application deadline: April 5 for autumn entry.",
+    applicationWindow:
+      "Apply to UW by February 15, then submit the ECE department application by April 5 for autumn entry.",
     startQuarter: "Autumn",
     bestTrackId: "999P",
     bestTrackSummary:
@@ -584,13 +1302,33 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
       item("engl101", "English composition", ["ENGL& 101"]),
     ],
     beforeEnrollmentChecklist: [
-      item("math207", "MATH 207 or AMATH 351", ["MATH 238"]),
-      item("cse123", "CSE 123 or equivalent strongest programming finish", ["CS 123"]),
+      item(
+        "math207",
+        "MATH 207 or AMATH 351",
+        ["MATH 238"],
+        "ECE counts differential equations or AMATH 351 in the math-and-science block, so finishing it before transfer makes the first UW year cleaner."
+      ),
+      item(
+        "cse123",
+        "CSE 123 or equivalent strongest programming finish",
+        ["CS 123"],
+        "CSE 122 can satisfy the minimum admission classes, but the full CS 123 finish is the strongest Green River programming launch for ECE."
+      ),
       itemCount("science-two", "Two additional science / math depth options", ["CHEM& 161", "PHYS& 223", "MATH 240", "MATH& 254"], 2, "ECE accepts several second-tier science and math options; these Green River classes are the cleanest substitutes."),
     ],
     stayAtGrcChecklist: [
-      item("engr204", "Circuit analysis head start", ["ENGR& 204"]),
-      item("phys123", "PHYS 123 if possible before transfer", ["PHYS& 223"]),
+      item(
+        "engr204",
+        "Circuit analysis head start",
+        ["ENGR& 204"],
+        "Not a formal ECE admission requirement, but it is the cleanest Green River circuit head start for the EE 215 / EE 201 sequence."
+      ),
+      item(
+        "phys123",
+        "PHYS 123 if possible before transfer",
+        ["PHYS& 223"],
+        "PHYS 123 is one of the published depth-science options and also keeps Tacoma / Seattle engineering crossover planning simpler."
+      ),
     ],
     advisorFlags: [
       "ECE allows multiple science / math combinations after the core prerequisite set.",
@@ -642,6 +1380,9 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
         "The 45-credit natural-science block includes calculus through MATH 208 or AMATH 352, PHYS 121 and 122, two depth courses from BIOL 130, BIOL 220, CHEM 142, MATH 224, or PHYS 123, plus one statistics course from IND E 315 or STAT 390.",
       ]),
     ],
+    manualReviewNotes: [
+      "Validated against the current UW ECE admissions, degree-requirements, and pathways pages on April 2, 2026.",
+    ],
   },
   {
     id: "uw-seattle-mechanical-engineering",
@@ -672,13 +1413,38 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
     ],
     beforeEnrollmentChecklist: [
       item("chem152", "CHEM 152", ["CHEM& 162", "CHEM& 163"], "The current equivalency guide treats the GRC CHEM& 162 + 163 pair as UW's later chemistry sequence."),
-      item("cee220", "CEE 220", ["ENGR& 225"]),
-      item("me230", "M E 230", ["ENGR& 215"]),
-      item("phys123", "PHYS 123", ["PHYS& 223"]),
+      item(
+        "cee220",
+        "CEE 220",
+        ["ENGR& 225"],
+        "CEE 220 is part of the published BSME engineering-fundamentals block, so finishing ENGR& 225 before transfer keeps the first UW year cleaner."
+      ),
+      item(
+        "me230",
+        "M E 230",
+        ["ENGR& 215"],
+        "ME 230 is part of the published BSME engineering-fundamentals block, so ENGR& 215 is a high-value pre-transfer class."
+      ),
+      item(
+        "phys123",
+        "PHYS 123",
+        ["PHYS& 223"],
+        "The full BSME physics block includes PHYS 123, so finishing the third calculus-based physics course before transfer is worth it when possible."
+      ),
     ],
     stayAtGrcChecklist: [
-      item("math207", "MATH 207 strongly encouraged", ["MATH 238"]),
-      item("math208", "MATH 208 strongly encouraged", ["MATH 240"]),
+      item(
+        "math207",
+        "MATH 207 strongly encouraged",
+        ["MATH 238"],
+        "Differential equations is part of the published BSME math block. Not the first admission screen, but good to complete before or during UW enrollment."
+      ),
+      item(
+        "math208",
+        "MATH 208 strongly encouraged",
+        ["MATH 240"],
+        "Linear algebra is part of the published BSME math block. Not the first admission screen, but good to complete before or during UW enrollment."
+      ),
     ],
     advisorFlags: [
       "Older Green River sample plans may still show MATH& 153 where the current equivalency guide now points students toward MATH& 163 for a clean MATH 126 match.",
@@ -731,7 +1497,8 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
     coverage: "detailed",
     summary:
       "Civil uses the same 999Q backbone as Mechanical and A&A, but students need to deliberately include computing so the path is not just a mechanics-heavy PDF copy.",
-    applicationWindow: "Department application deadline: April 5 for autumn entry.",
+    applicationWindow:
+      "Apply to UW by February 15, then submit the engineering application for Civil by April 5 for autumn entry.",
     startQuarter: "Autumn",
     bestTrackId: "999Q",
     bestTrackSummary:
@@ -752,24 +1519,49 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
     ],
     beforeEnrollmentChecklist: [
       itemAny("computing", "One approved computing course", ["ENGR 250", "CS 121", "CS 122", "CS 123"], "UW Civil accepts several computing paths; these are the cleanest Green River choices."),
-      item("cee220", "CEE 220", ["ENGR& 225"]),
-      item("me230", "M E 230", ["ENGR& 215"]),
-      item("math208", "MATH 208 or AMATH 352", ["MATH 240"]),
+      item(
+        "cee220",
+        "CEE 220",
+        ["ENGR& 225"],
+        "CEE 220 is part of the published BSCE lower-division foundation, so finishing ENGR& 225 before transfer keeps the first UW autumn cleaner."
+      ),
+      item(
+        "me230",
+        "M E 230",
+        ["ENGR& 215"],
+        "ME 230 is part of the published BSCE lower-division foundation, so ENGR& 215 is a strong pre-transfer mechanics finish."
+      ),
+      item(
+        "math208",
+        "MATH 208 or AMATH 352",
+        ["MATH 240"],
+        "Matrix algebra is part of the published BSCE math block. Not the first admission screen, but good to complete before or during UW enrollment."
+      ),
     ],
     stayAtGrcChecklist: [
       item(
         "chem152",
         "Second chemistry course strongly recommended",
         ["CHEM& 162", "CHEM& 163"],
-        "The current BSCE AUT25 degree sheet says Civil can accept any second chemistry course after CHEM 142; the Green River CHEM& 162 + 163 pair is still the cleanest direct substitute."
+        "Current BSCE planning still recommends a second chemistry course after CHEM 142."
       ),
-      item("phys123", "PHYS 123 strongly recommended", ["PHYS& 223"]),
-      item("math207", "MATH 207 if you can finish it before transfer", ["MATH 238"]),
+      item(
+        "phys123",
+        "PHYS 123 strongly recommended",
+        ["PHYS& 223"],
+        "The AUT25 BSCE degree sheet still uses the full calculus-based physics sequence, so PHYS 123 is a strong pre-transfer finish even if it is not part of the minimum transfer-admission classes."
+      ),
+      item(
+        "math207",
+        "MATH 207 if you can finish it before transfer",
+        ["MATH 238"],
+        "Differential equations supports the full BSCE math block and makes the first UW year lighter if the student can finish it before transfer."
+      ),
       item(
         "civil-econ",
         "Economics / CEE topic requirement head start",
         ["ECON& 201", "ECON& 202"],
-        "The current BSCE degree sheet allows ECON 200 or ECON 201 for the economics / CEE topic slot. Green River ECON& 201 and ECON& 202 are the cleanest direct matches."
+        "BSCE planning includes an economics / CEE topic slot aligned with ECON 200 or ECON 201."
       ),
       item(
         "civil-tech-writing",
@@ -791,6 +1583,10 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
       "Document a community-impact idea instead of only a theoretical class project.",
     ],
     officialLinks: [
+      {
+        label: "UW Civil & Environmental Engineering transfer application timeline",
+        url: "https://www.ce.washington.edu/future/undergrad/apply/transfer",
+      },
       {
         label: "UW Civil Engineering degree sheet",
         url: "https://www.ce.washington.edu/sites/default/files/pdfs/current/undergrad/uw-cee-bsce-degree-sheet.pdf",
@@ -830,6 +1626,9 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
         "The AUT25 degree sheet is the strongest current source for how Civil expects the sophomore-to-junior transition to look."
       ),
     ],
+    manualReviewNotes: [
+      "Validated against the current UW CEE transfer timeline page and the posted 2024-25 BSCE degree sheet on April 2, 2026.",
+    ],
   },
   {
     id: "uw-seattle-aeronautics-astronautics",
@@ -859,18 +1658,68 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
       item("engl101", "English composition", ["ENGL& 101"]),
     ],
     beforeEnrollmentChecklist: [
-      item("math207", "MATH 207", ["MATH 238"]),
-      item("math208", "MATH 208", ["MATH 240"]),
-      item("math224", "MATH 224", ["MATH& 254"]),
-      item("phys123", "PHYS 123", ["PHYS& 223"]),
-      item("cee220", "CEE 220", ["ENGR& 225"]),
-      item("me230", "M E 230", ["ENGR& 215"]),
-      item("aa260", "A A 260", ["ENGR& 224"]),
-      item("amath301", "AMATH 301", ["ENGR 250"]),
+      item(
+        "math207",
+        "MATH 207",
+        ["MATH 238"],
+        "Differential equations is part of the published BSAAE math block, so it is best finished before the first A&A autumn."
+      ),
+      item(
+        "math208",
+        "MATH 208",
+        ["MATH 240"],
+        "Linear algebra is part of the published BSAAE math block. Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment."
+      ),
+      item(
+        "math224",
+        "MATH 224",
+        ["MATH& 254"],
+        "Multivariable calculus is part of the published BSAAE math block and should be in place before the upper-division A&A sequence starts."
+      ),
+      item(
+        "phys123",
+        "PHYS 123",
+        ["PHYS& 223"],
+        "The BSAAE science block includes PHYS 123, so finishing the full calculus-based physics sequence keeps the autumn start cleaner."
+      ),
+      item(
+        "cee220",
+        "CEE 220",
+        ["ENGR& 225"],
+        "CEE 220 is one of the named BSAAE engineering fundamentals, so ENGR& 225 is worth finishing before transfer."
+      ),
+      item(
+        "me230",
+        "M E 230",
+        ["ENGR& 215"],
+        "ME 230 is one of the named BSAAE engineering fundamentals, so ENGR& 215 is worth finishing before transfer."
+      ),
+      item(
+        "aa260",
+        "A A 260",
+        ["ENGR& 224"],
+        "AA 260 is part of the published BSAAE engineering-fundamentals block, so ENGR& 224 is good to complete before or during UW enrollment because it is needed in the degree."
+      ),
+      item(
+        "amath301",
+        "AMATH 301",
+        ["ENGR 250"],
+        "AMATH 301 is in the required A&A core, and ENGR 250 is the cleanest current Green River substitute."
+      ),
     ],
     stayAtGrcChecklist: [
-      item("engr224", "Thermodynamics before transfer if possible", ["ENGR& 224"]),
-      item("engr250", "Scientific computing before transfer if possible", ["ENGR 250"]),
+      item(
+        "engr224",
+        "Thermodynamics before transfer if possible",
+        ["ENGR& 224"],
+        "If it does not fit the hard pre-enrollment block, this is still one of the highest-value Green River adds because A&A uses thermodynamics directly."
+      ),
+      item(
+        "engr250",
+        "Scientific computing before transfer if possible",
+        ["ENGR 250"],
+        "If it does not fit the hard pre-enrollment block, this is still one of the highest-value Green River adds because A&A uses scientific computing directly."
+      ),
     ],
     advisorFlags: [
       "UW notes that one of MATH 224 or AMATH 301 may still be taken in the first autumn if needed, but the planner should still push students to finish both at Green River when possible.",
@@ -924,7 +1773,8 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
     coverage: "detailed",
     summary:
       "ISE is a 999Q fit, but the cleanest plan explicitly adds programming and linear algebra so the student is not underprepared for the more systems-oriented side of the major.",
-    applicationWindow: "Department application deadline: April 5 for autumn entry.",
+    applicationWindow:
+      "Apply to UW by February 15, then submit the ISE department application by April 5 for autumn entry.",
     startQuarter: "Autumn",
     bestTrackId: "999Q",
     bestTrackSummary:
@@ -943,14 +1793,44 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
       item("engl101", "English composition", ["ENGL& 101"]),
     ],
     beforeEnrollmentChecklist: [
-      item("chem152", "CHEM 152", ["CHEM& 162", "CHEM& 163"]),
-      item("phys123", "PHYS 123", ["PHYS& 223"]),
-      itemAny("cee220orme230", "CEE 220 or M E 230", ["ENGR& 225", "ENGR& 215"]),
+      item(
+        "chem152",
+        "CHEM 152",
+        ["CHEM& 162", "CHEM& 163"],
+        "The BSIE lower-division science block still includes the second chemistry step, and CHEM& 162 plus 163 is the cleanest Green River substitute."
+      ),
+      item(
+        "phys123",
+        "PHYS 123",
+        ["PHYS& 223"],
+        "PHYS 123 is part of the published BSIE physical-science block, so it is worth finishing before transfer when possible."
+      ),
+      itemAny(
+        "cee220orme230",
+        "CEE 220 or M E 230",
+        ["ENGR& 225", "ENGR& 215"],
+        "The BSIE planning sheet allows the general engineering block to include CEE 220 or ME 230. Use whichever Green River mechanics course fits the student's path first."
+      ),
     ],
     stayAtGrcChecklist: [
-      item("cse122", "Programming strongly recommended", ["CS 121", "CS 122"]),
-      item("math207", "MATH 207 strongly recommended", ["MATH 238"]),
-      item("math208", "MATH 208 strongly recommended", ["MATH 240"]),
+      item(
+        "cse122",
+        "Programming strongly recommended",
+        ["CS 121", "CS 122"],
+        "ISE is more systems- and data-oriented than a pure mechanics path, so finishing programming before transfer is a strong preparation move."
+      ),
+      item(
+        "math207",
+        "MATH 207 strongly recommended",
+        ["MATH 238"],
+        "Differential equations is part of the published BSIE math block. Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment."
+      ),
+      item(
+        "math208",
+        "MATH 208 strongly recommended",
+        ["MATH 240"],
+        "Linear algebra is part of the published BSIE math block. Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment."
+      ),
       item(
         "ise-tech-writing",
         "Technical writing head start",
@@ -1005,6 +1885,9 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
         "This is why the planner still treats programming, differential equations, and linear algebra as valuable Green River depth even after the admission minimums are met.",
       ]),
     ],
+    manualReviewNotes: [
+      "Validated against the current BSIE admissions page, published graduation-requirements PDF, and posted sample schedule on April 2, 2026.",
+    ],
   },
   {
     id: "uw-seattle-materials-science-engineering",
@@ -1014,7 +1897,8 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
     coverage: "detailed",
     summary:
       "MSE starts from 999Q, but ENGR 140 plus programming and chemistry depth are what make the plan truly major-ready instead of just generally engineering-ready.",
-    applicationWindow: "Department application deadline: April 5 for autumn entry.",
+    applicationWindow:
+      "Apply to UW by February 15, then submit the MSE department application by April 5 for autumn entry.",
     startQuarter: "Autumn",
     bestTrackId: "999Q",
     bestTrackSummary:
@@ -1032,28 +1916,68 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
       item("engl101", "English composition", ["ENGL& 101"]),
     ],
     beforeEnrollmentChecklist: [
-      item("math207", "MATH 207", ["MATH 238"]),
-      item("mse170", "MSE 170", ["ENGR 140"]),
-      itemAny("programming", "One programming course", ["ENGR 250", "CS 122"]),
+      item(
+        "math207",
+        "MATH 207",
+        ["MATH 238"],
+        "Differential equations is part of the published MSE math block and is best finished before the upper-division materials sequence starts."
+      ),
+      item(
+        "mse170",
+        "MSE 170",
+        ["ENGR 140"],
+        "MSE 170 is a named materials prerequisite in the current MSE foundation, so ENGR 140 is worth finishing before transfer when possible."
+      ),
+      itemAny(
+        "programming",
+        "One programming course",
+        ["ENGR 250", "CS 122"],
+        "MSE specifically accepts AMATH 301 or a programming equivalent in the engineering-fundamentals block. ENGR 250 is the cleanest current Green River match."
+      ),
     ],
     stayAtGrcChecklist: [
-      item("chem162depth", "CHEM 162 depth", ["CHEM& 163"]),
-      item("math208", "MATH 208", ["MATH 240"]),
+      item(
+        "chem162depth",
+        "CHEM 162 depth",
+        ["CHEM& 163"],
+        "The full Green River chemistry sequence gives the strongest MSE chemistry depth and keeps more science-elective options open."
+      ),
+      item(
+        "math208",
+        "MATH 208",
+        ["MATH 240"],
+        "Linear algebra is part of the published MSE math block. Not the first admission screen, but good to complete before or during UW enrollment."
+      ),
       item(
         "mse-math224",
         "MATH 224 degree-map option",
         ["MATH& 254"],
-        "MATH 224 is one of the named MSE math-elective options, and Green River MATH& 254 is the cleanest direct substitute."
+        "MATH 224 is one of the named MSE math-elective options."
       ),
-      item("aa210", "A A 210 encouraged", ["ENGR& 214"]),
-      item("cee220", "CEE 220 encouraged", ["ENGR& 225"]),
+      item(
+        "aa210",
+        "A A 210 encouraged",
+        ["ENGR& 214"],
+        "AA 210 is one of the named MSE engineering-fundamentals courses, so finishing statics before transfer strengthens the launch."
+      ),
+      item(
+        "cee220",
+        "CEE 220 encouraged",
+        ["ENGR& 225"],
+        "CEE 220 is one of the named MSE engineering-fundamentals courses, so ENGR& 225 is still a strong pre-transfer add."
+      ),
       item(
         "mse-aa260",
         "AA 260 engineering-fundamentals elective",
         ["ENGR& 224"],
         "Thermodynamics is one of the explicit engineering-fundamentals elective options on the current MSE degree page."
       ),
-      item("phys123", "PHYS 123 encouraged", ["PHYS& 223"]),
+      item(
+        "phys123",
+        "PHYS 123 encouraged",
+        ["PHYS& 223"],
+        "PHYS 123 sits in the published MSE natural-science block, so it is worth finishing before transfer when possible."
+      ),
     ],
     advisorFlags: [
       "Do not let students assume the standard mechanics-heavy engineering plan automatically covers the materials-specific prep.",
@@ -1100,6 +2024,9 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
         "Up to 9 technical-elective credits may come from approved non-MSE departments such as AA, BIOEN, CHEM E, CEE, CSE, EE, IND E, or ME.",
       ]),
     ],
+    manualReviewNotes: [
+      "Validated against the current MSE undergraduate admissions page, current graduation-requirements PDF, and junior-start sample schedule on April 2, 2026.",
+    ],
   },
   {
     id: "uw-seattle-chemical-engineering",
@@ -1137,30 +2064,34 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
       item(
         "phys122",
         "PHYS 122 before the first UW spring quarter",
-        ["PHYS& 222"]
+        ["PHYS& 222"],
+        "This must be done before the first UW spring quarter if the published spring-start ChemE cohort plan is going to work."
       ),
       item(
         "math207",
         "MATH 207 before the first UW spring quarter",
-        ["MATH 238"]
+        ["MATH 238"],
+        "This must be done before the first UW spring quarter if the published spring-start ChemE cohort plan is going to work."
       ),
     ],
     stayAtGrcChecklist: [
       item(
         "chem237-238",
         "Organic chemistry sequence before the first autumn at UW",
-        ["CHEM& 261", "CHEM& 262"]
+        ["CHEM& 261", "CHEM& 262"],
+        "Organic chemistry I and II are part of the published pre-autumn ChemE timing, so the sequence should be finished before the following autumn at UW."
       ),
       item(
         "phys123",
         "PHYS 123 before the first autumn at UW",
-        ["PHYS& 223"]
+        ["PHYS& 223"],
+        "PHYS 123 is part of the published pre-autumn ChemE timing, so it should be finished before the following autumn at UW."
       ),
       item(
         "math208",
         "MATH 208 or AMATH 352 if you can finish it before transfer",
         ["MATH 240"],
-        "Current equivalency guidance treats MATH 240 as the cleanest direct MATH 208 match. The ChemE department's Green River sample plan still shows the older MATH& 254 route in its example."
+        "The ChemE department's Green River sample plan still shows the older MATH& 254 route in its example."
       ),
       item(
         "engr250-computing",
@@ -1237,6 +2168,9 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
         "Those later elective spaces are usually better left for UW once the student is inside the ChemE cohort.",
       ]),
     ],
+    manualReviewNotes: [
+      "Validated against the current ChemE admissions, curriculum, plan-of-study, and continuation pages on April 2, 2026.",
+    ],
   },
   {
     id: "uw-seattle-bioengineering",
@@ -1255,7 +2189,7 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
     whyThisTrack: [
       "The chemistry / physics backbone still matters.",
       "BioE now expects a combination of biology and computing decisions that need explicit planning.",
-      "At Green River, ENGR 250 is the cleanest direct programming match because the other official BioE options depend on BIOEN 217, which is not part of the Green River equivalency guide.",
+      "At Green River, ENGR 250 is the supported programming option because the other official BioE options depend on BIOEN 217, which is not part of the Green River equivalency guide.",
     ],
     financialAidNote:
       "BioE students should stay anchored to the chemistry-heavy Green River path, then layer in the full biology sequence and ENGR 250 inside advisor-approved slots whenever possible.",
@@ -1274,7 +2208,7 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
         "programming",
         "AMATH 301 programming path",
         ["ENGR 250"],
-        "For Green River students, ENGR 250 is the cleanest direct BioE programming match because the other official BioE options use BIOEN 217, which is not part of the Green River equivalency guide."
+        "For Green River students, ENGR 250 is the supported BioE programming option because the other official BioE options use BIOEN 217, which is not part of the Green River equivalency guide."
       ),
       item("engl101", "English composition", ["ENGL& 101"]),
     ],
@@ -1292,7 +2226,12 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
         ["CS 121", "CS 122", "CS 123"],
         "CS courses can still strengthen the student's BioE story, but they do not replace the clean ENGR 250 -> AMATH 301 path for Green River planning."
       ),
-      item("chem262", "Organic chemistry continuation", ["CHEM& 262"]),
+      item(
+        "chem262",
+        "Organic chemistry continuation",
+        ["CHEM& 262"],
+        "A second organic chemistry course is not part of the minimum BioE transfer-admission classes, but it keeps the chemistry sequence closer to the current BioE sample schedules."
+      ),
     ],
     advisorFlags: [
       "BioE is not just '999O and done.'",
@@ -1353,6 +2292,9 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
         "The current sample schedules use those elective spaces to support options such as Data Science or Nano & Molecular Engineering.",
       ]),
     ],
+    manualReviewNotes: [
+      "Validated against the current BioE admissions, degree-requirements, core-prerequisites, and sample-schedule pages on April 2, 2026.",
+    ],
   },
   {
     id: "uw-seattle-environmental-engineering",
@@ -1362,7 +2304,8 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
     coverage: "detailed",
     summary:
       "Environmental Engineering is a custom hybrid because it wants biology and thermodynamics together, which no stock Green River MRP covers cleanly by itself.",
-    applicationWindow: "Department application deadline: April 5 for autumn entry.",
+    applicationWindow:
+      "Apply to UW by February 15, then submit the engineering application for Environmental Engineering by April 5 for autumn entry.",
     startQuarter: "Autumn",
     bestTrackId: "999Q",
     bestTrackSummary:
@@ -1381,15 +2324,30 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
       item("engl101", "English composition", ["ENGL& 101"]),
     ],
     beforeEnrollmentChecklist: [
-      item("math207", "MATH 207 or AMATH 351", ["MATH 238"]),
+      item(
+        "math207",
+        "MATH 207 or AMATH 351",
+        ["MATH 238"],
+        "Differential equations or AMATH 351 is part of the math-and-science preparation and is best finished before the upper-division engineering sequence."
+      ),
       item(
         "biol180",
         "BIOL 180 pathway",
         FULL_BIOLOGY_MAJORS_SEQUENCE,
         "Current UW Green River equivalencies award the clean BIOL 180 / 200 / 220 sequence only when BIOL& 211, 212, and 213 are all completed."
       ),
-      itemAny("computing", "One approved computing course", ["ENGR 250", "CS 121", "CS 122"]),
-      item("aa260", "A A 260", ["ENGR& 224"]),
+      itemAny(
+        "computing",
+        "One approved computing course",
+        ["ENGR 250", "CS 121", "CS 122"],
+        "Environmental Engineering expects one approved computing course. ENGR 250 is the cleanest current Green River match, while CS 121 or 122 still work when the student wants a programming-heavy route."
+      ),
+      item(
+        "aa260",
+        "A A 260",
+        ["ENGR& 224"],
+        "Thermodynamics is part of the BSENVE engineering preparation, so ENGR& 224 is a high-value class to finish before transfer when it fits."
+      ),
     ],
     stayAtGrcChecklist: [
       item(
@@ -1398,12 +2356,17 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
         ["CHEM& 163"],
         "The AUT25 BSENVE degree sheet warns that transfer students may need the full three-course chemistry sequence to cover stoichiometry, equilibrium, and kinetics."
       ),
-      item("enve-math208", "Matrix algebra for the full BSENVE degree map", ["MATH 240"]),
+      item(
+        "enve-math208",
+        "Matrix algebra for the full BSENVE degree map",
+        ["MATH 240"],
+        "Matrix algebra supports the full BSENVE degree map. Not essential for admission, but good to complete before or during UW enrollment."
+      ),
       item(
         "enve-econ",
         "Economics / CEE topic requirement head start",
         ["ECON& 201", "ECON& 202"],
-        "The AUT25 BSENVE degree sheet allows ECON 200 or ECON 201 for the economics / CEE topic slot. Green River ECON& 201 and ECON& 202 are the cleanest direct matches."
+        "BSENVE planning includes an economics / CEE topic slot aligned with ECON 200 or ECON 201."
       ),
       item(
         "enve-phys123",
@@ -1431,6 +2394,10 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
       "Use a community-impact framing to make the project easier to explain in applications.",
     ],
     officialLinks: [
+      {
+        label: "UW Environmental Engineering transfer application timeline",
+        url: "https://www.ce.washington.edu/future/undergrad/environmental/transfer",
+      },
       {
         label: "UW Environmental Engineering degree sheet",
         url: "https://www.ce.washington.edu/sites/default/files/pdfs/current/undergrad/uw-cee-bsenve-degree-sheet.pdf",
@@ -1474,6 +2441,9 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
         "CHEM 162, PHYS 123, and CEE 220 are no longer required, but the AUT25 degree sheet still strongly encourages them because they count toward Engineering & Science electives.",
       ]),
     ],
+    manualReviewNotes: [
+      "Validated against the current BSENVE transfer page, AUT25 degree sheet, and major-coursework pages on April 2, 2026.",
+    ],
   },
   {
     id: "uw-seattle-human-centered-design-engineering",
@@ -1483,7 +2453,8 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
     coverage: "detailed",
     summary:
       "HCDE is a structured custom path, not a stock engineering track. It mixes calculus, programming, statistics, science, and later design-focused core work instead of following one narrow pre-major template.",
-    applicationWindow: "Department application deadline: April 5 for autumn entry.",
+    applicationWindow:
+      "Apply to UW by February 15, then submit the HCDE department application by April 5 for autumn entry.",
     startQuarter: "Autumn",
     bestTrackId: null,
     bestTrackSummary:
@@ -1495,6 +2466,8 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
     ],
     financialAidNote:
       "Keep the student inside the closest valid Green River STEM path possible, avoid spending aid on HCDE-removed prerequisites like algebra-based physics, and use advisor review to place statistics, science, and optional engineering-fundamentals courses intentionally.",
+    plannerNote:
+      "Structured admissions-first HCDE baseline with explicit calculus, programming, statistics, and science sequencing before UW core progression.",
     applicationChecklist: [
       itemStemCalcCredits(
         "ten-calc-credits",
@@ -1629,6 +2602,399 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
         "That later elective space is usually better left for UW once the student has entered the HCDE major and can align electives with product, research, data, or society-oriented interests.",
       ]),
     ],
+    manualReviewNotes: [
+      "Validated against the current HCDE admissions, 2024+ degree-requirements, and schedule pages on April 2, 2026.",
+      "Autumn 2026-and-later applicants can no longer use MATH 120, PHYS 114-116 or PHYS 117-119 labs, or PSYCH 202 toward HCDE admissions or major requirements.",
+    ],
+  },
+  {
+    id: "uw-seattle-applied-mathematics",
+    campusId: "uw-seattle",
+    title: "Applied Mathematics",
+    shortTitle: "Applied Math",
+    coverage: "detailed",
+    summary:
+      "Seattle Applied Mathematics is now modeled as a calculus-and-scientific-computing transfer where the Green River plan makes AMATH 301, differential equations, and linear algebra explicit instead of stopping at the bare minimum calculus classes.",
+    applicationWindow:
+      "Apply to UW Seattle, then declare the major under the current department rules after the lower-division math and computing foundation is in place.",
+    startQuarter: "Autumn, winter, or spring",
+    bestTrackId: "999P",
+    bestTrackSummary:
+      "999P is the strongest Applied Mathematics base because it keeps the full calculus ladder visible while leaving room for scientific computing and higher math before transfer.",
+    whyThisTrack: [
+      "Applied Mathematics depends on more than just calculus; scientific computing and later quantitative depth matter too.",
+      "999P leaves the cleanest room for ENGR 250, differential equations, and linear algebra without pushing the student into a fake engineering-only checklist.",
+      "It also preserves enough STEM depth to support the standard Applied Mathematics BS or a later data-oriented variation.",
+    ],
+    financialAidNote:
+      "Stay on 999P and place ENGR 250, differential equations, and linear algebra intentionally, because Applied Mathematics gets much cleaner when those quantitative foundations are already visible before transfer.",
+    applicationChecklist: [
+      itemStemCalcSequence("uws-apmath-calc123", "MATH 124, 125, 126"),
+      item(
+        "uws-apmath-amath301",
+        "AMATH 301 scientific computing requirement",
+        ["ENGR 250"]
+      ),
+    ],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [
+      item(
+        "uws-apmath-math207",
+        "Differential equations head start before AMATH 351",
+        ["MATH 238"],
+        "The department's fixed AMATH 351-353 sequence starts much more smoothly when differential equations is already done before transfer."
+      ),
+      item(
+        "uws-apmath-math208",
+        "Linear algebra head start before AMATH 352",
+        ["MATH 240"],
+        "Linear algebra is part of the Applied Mathematics foundation before AMATH 352."
+      ),
+      itemAny(
+        "uws-apmath-programming-depth",
+        "Additional programming depth for modeling or data-heavy paths",
+        ["CS 121", "CS 122", "CS 123"],
+        "These do not replace ENGR 250 -> AMATH 301, but they strengthen coding fluency before the major's computing and data-science electives."
+      ),
+      itemAny(
+        "uws-apmath-physics-support",
+        "Physics support for modeling-heavy applied mathematics work",
+        ["PHYS& 221", "PHYS& 222", "PHYS& 223"],
+        "Physics is not the formal Applied Mathematics admission gate, but it is still one of the strongest Green River quantitative support sequences for students leaning toward modeling-heavy work."
+      ),
+    ],
+    advisorFlags: [
+      "The current department page treats the standard Applied Mathematics BS as the baseline, but it also separately maintains a Data Science option with a different advanced finish.",
+      "Applied Mathematics is less about a strict transfer-admission gate and more about whether the student arrives with the strongest lower-division quantitative setup for AMATH 351-353 and later methods/modeling/computing work.",
+      "If the student wants the data-heavy side of Applied Mathematics, decide early whether extra CS should be used as true support or whether it starts pulling the plan toward ACMS, CFRM, or Statistics instead.",
+    ],
+    involvementIdeas: [
+      "Use one modeling, data, tutoring, research, or technical problem-solving role that shows the student is doing more than just stacking math courses.",
+    ],
+    projectIdeas: [
+      "Build one applied-modeling or data-analysis project with a short explanation of the assumptions, methods, and interpretation instead of only showing computation.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Applied Mathematics major requirements",
+        url: "https://amath.washington.edu/undergraduate-major-applied-mathematics",
+      },
+      {
+        label: "UW Green River equivalency guide",
+        url: "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("apmath-foundation", "BS in Applied Mathematics required foundation", [
+        "The standard Applied Mathematics major requires 54 to 59 credits in the major.",
+        "The required mathematics foundation is MATH 124, MATH 125, and MATH 126, or the honors calculus sequence MATH 134, 135, and 136.",
+        "The major also requires AMATH 301 for computing plus the introductory AMATH sequence AMATH 351, AMATH 352, and AMATH 353.",
+      ]),
+      degreeMapSection("apmath-electives", "BS in Applied Mathematics elective structure", [
+        "Students must complete at least 27 elective credits inside the department's approved buckets.",
+        "That 27-credit minimum includes at least 2 Methods courses from AMATH 401, 402, 403.",
+        "It also includes at least 2 Modeling courses from AMATH 342, 383, 422, 423.",
+        "It also includes at least 2 Computing and Data Sciences courses from AMATH 481, 482, 483, CFRM 410, CFRM 420, or CFRM 421.",
+        "Additional courses from those same lists bring the elective total to the full 27-credit minimum.",
+      ]),
+      degreeMapSection(
+        "apmath-degree-notes",
+        "College requirements and continuation notes",
+        [
+          "The department page points students back to College of Arts and Sciences general-education rules for the rest of the 180-credit bachelor's degree.",
+          "The department requires a minimum 2.00 cumulative GPA in courses applied to the major.",
+        ],
+        "This planner row treats the standard Applied Mathematics BS as the baseline. The department also separately maintains a Data Science option."
+      ),
+    ],
+    manualReviewNotes: [
+      "Lifted from the current UW Applied Mathematics major-requirements page and Green River equivalency guide on April 2, 2026.",
+      "The planner keeps the standard Applied Mathematics BS as the baseline and treats the separate Data Science option as a later route decision rather than a fake universal transfer checklist.",
+    ],
+  },
+  {
+    id: "uw-seattle-mathematics",
+    campusId: "uw-seattle",
+    title: "Mathematics",
+    shortTitle: "Mathematics",
+    coverage: "detailed",
+    summary:
+      "Seattle Mathematics is now modeled as a shared lower-division math transfer where the full calculus, differential-equations, linear-algebra, and proof-ready setup is made explicit before the student branches into the B.A. or B.S. option.",
+    applicationWindow:
+      "Apply to UW Seattle, then declare the intended Mathematics option under the current department rules after the shared lower-division foundation is complete.",
+    startQuarter: "Autumn, winter, or spring",
+    bestTrackId: "999P",
+    bestTrackSummary:
+      "999P is the strongest Seattle Mathematics base because it preserves the full shared lower-division spine used by both the B.A. Standard and the B.S. mathematics paths.",
+    whyThisTrack: [
+      "The shared Seattle math launch really does depend on calculus, differential equations, and linear algebra, not just a light premajor placeholder.",
+      "999P makes that shared foundation visible while still leaving room for later probability, computing, or applied support.",
+      "It keeps the student honest whether they end up on the B.A. Standard side or the deeper B.S. route.",
+    ],
+    financialAidNote:
+      "Stay on 999P and finish the shared Seattle math core cleanly before transfer, because the BA-versus-BS branch works much better when calculus, differential equations, linear algebra, and MATH 224 preparation are already in place.",
+    applicationChecklist: [
+      itemStemCalcSequence("uws-math-calc123", "MATH 124, 125, 126"),
+      item("uws-math-207", "MATH 207", ["MATH 238"]),
+      item("uws-math-208", "MATH 208", ["MATH 240"]),
+    ],
+    beforeEnrollmentChecklist: [
+      item(
+        "uws-math-224",
+        "MATH 224 strongly encouraged before transfer",
+        ["MATH& 254"],
+        "The current B.A. Standard and B.S. paths both build on MATH 224, so finishing it at Green River makes the shared Seattle foundation much cleaner."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uws-math-probability-computing",
+        "Probability, statistics, or computing support for the eventual math option",
+        ["MATH& 146", "MATH 256", "CS 121", "CS 122", "CS 123"],
+        "These do not replace the shared Seattle Mathematics core, but they support later applied, probability, teacher-prep, or quantitative elective directions."
+      ),
+      itemAny(
+        "uws-math-physics-support",
+        "Physics support for the more quantitative or applied math launch",
+        ["PHYS& 221", "PHYS& 222", "PHYS& 223"],
+        "Physics is not required for every Seattle Mathematics option, but it is one of the strongest supporting sequences when the student may lean toward the B.S. or more applied directions."
+      ),
+    ],
+    advisorFlags: [
+      "The Mathematics department currently offers multiple options, including B.A. Standard, B.A. Teacher Preparation, B.A. Philosophy, and B.S., so the upper-division finish should not be frozen until the student chooses the actual option.",
+      "MATH 300 is part of the published Seattle lower-division-to-upper-division bridge, but it is still a UW course rather than a Green River substitute target.",
+      "The B.S. option is materially deeper than the B.A. Standard option, so students aiming for the B.S. should treat extra proof-heavy preparation and later sequence planning more seriously than a generic shared math major would suggest.",
+    ],
+    involvementIdeas: [
+      "Use one tutoring, problem-solving, mentoring, research, or quantitative-support role that shows mathematical communication and consistency, not only course completion.",
+    ],
+    projectIdeas: [
+      "Create one proof, modeling, or quantitative-analysis sample with a clear written explanation of the reasoning, not just the final computation.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Mathematics undergraduate major requirements overview",
+        url: "https://math.washington.edu/undergraduate-major-requirements",
+      },
+      {
+        label: "UW B.A. Mathematics standard requirements",
+        url: "https://math.washington.edu/ba-mathematics-standard-major-requirements-0",
+      },
+      {
+        label: "UW B.S. Mathematics requirements",
+        url: "https://math.washington.edu/bs-mathematics-major-requirements-0",
+      },
+      {
+        label: "UW Green River equivalency guide",
+        url: "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("math-options", "Mathematics major options and planner baseline", [
+        "The UW Mathematics department currently offers multiple major options, including the B.A. Standard option, B.A. Teacher Preparation option, B.A. Philosophy option, and the B.S. option.",
+        "This planner row treats the general Mathematics path as a shared Seattle launchpad, but the exact upper-division finish depends on which math option the student declares and the year they enter the major.",
+      ]),
+      degreeMapSection("math-ba-standard", "Current B.A. Mathematics standard option", [
+        "For students admitted in Winter 2026 or later, the B.A. Standard option requires 56 to 64 credits in the major.",
+        "The current B.A. core is MATH 124, 125, 126, 207, and 208 or the honors calculus sequence MATH 134, 135, 136, plus MATH 200, MATH 224, and MATH 300.",
+        "After that core, the B.A. standard option requires 3 MATH courses at the 400-level and 4 additional MATH courses at the 300- or 400-level, subject to the department's exclusion list.",
+      ]),
+      degreeMapSection("math-bs", "Current B.S. Mathematics option", [
+        "For students admitted in Winter 2026 or later, the B.S. option requires 74 to 88 credits in the major.",
+        "The B.S. core starts with the same lower-division calculus and differential-equations sequence, then adds MATH 200, 224, 300, 327, and 424, or the accelerated honors sequence MATH 334, 335, and 336.",
+        "The advanced B.S. structure then requires 11 courses across department-approved sequences and major electives, including 2 three-quarter or 3 two-quarter sequences, with at least 1 sequence drawn from modern algebra, concepts of analysis, topology and geometry, or complex analysis.",
+        "The department's listed B.S. sequences also include optimization, combinatorics, numerical analysis, and probability, followed by 5 or 6 more MATH courses at the 300- or 400-level depending on whether MATH 424 is used in the sequence requirement.",
+      ]),
+      degreeMapSection(
+        "math-policies",
+        "Continuation, residency, and outside-course notes",
+        [
+          "Both the B.A. and B.S. pages require at least a 2.0 numerical grade in all courses used toward the major and at least 18 graded MATH credits at the 300-level or higher taken in residence at UW Seattle.",
+          "The B.S. page also allows up to 2 non-MATH electives from one outside department such as AMATH, CSE, ECON, EE, PHYS, or PHIL, subject to adviser approval and department continuation rules.",
+        ],
+        "This planner row is best used to get students to the shared Seattle math foundation; adviser review is still needed to lock the exact B.A. versus B.S. finish."
+      ),
+    ],
+    manualReviewNotes: [
+      "Lifted from the current UW Mathematics option pages and Green River equivalency guide on April 2, 2026.",
+      "Confirm whether the student is aiming for the B.A. Standard option, another B.A. option, or the B.S. option before treating the upper-division course list as final.",
+    ],
+  },
+  {
+    id: "uw-seattle-statistics",
+    campusId: "uw-seattle",
+    title: "Statistics",
+    shortTitle: "Statistics",
+    coverage: "detailed",
+    summary:
+      "Seattle Statistics is now modeled as a track-based quantitative transfer where the shared math, programming, and statistics core stays explicit while the Mathematical Statistics, Applied Statistics, and Data Science routes remain separate.",
+    applicationWindow:
+      "Apply to UW Seattle, then enter the current Statistics B.S. track under the department's current shared-core and track rules.",
+    startQuarter: "Autumn, winter, or spring",
+    bestTrackId: "999P",
+    bestTrackSummary:
+      "999P is the safest default Statistics base because it preserves the shared calculus-plus-programming spine while still supporting the more computing-heavy Data Science route.",
+    whyThisTrack: [
+      "Statistics has a real shared lower-division quantitative core before the track split begins.",
+      "A strong Seattle Statistics launch needs MATH 208, MATH 224, and solid programming preparation visible before transfer.",
+      "999P leaves the cleanest default room for both the shared core and the most computing-heavy track, while pathway selection can still narrow the plan later.",
+    ],
+    financialAidNote:
+      "Keep the shared Statistics math-and-programming core intact first, then let the track selection decide whether the Green River extras should lean toward proof-heavy math, outside applied work, or stronger computing.",
+    plannerNote:
+      "Track-aware Statistics baseline with explicit shared math-programming core before Mathematical Statistics, Applied Statistics, or Data Science specialization.",
+    applicationChecklist: [
+      item("uws-stat-208", "MATH 208", ["MATH 240"]),
+      item("uws-stat-224", "MATH 224", ["MATH& 254"]),
+      item(
+        "uws-stat-cse123",
+        "CSE 123 or equivalent strongest programming finish",
+        ["CS 123"]
+      ),
+    ],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uws-stat-stats-support",
+        "Statistics support before STAT 302",
+        ["MATH& 146", "MATH 256"],
+        "These do not replace Seattle's own STAT 302 core, but they make the probability and methods launch cleaner before transfer."
+      ),
+      itemAny(
+        "uws-stat-interdisciplinary-support",
+        "Interdisciplinary support for applied or data-facing track options",
+        ["ACCT& 201", "ACCT& 202", "ACCT& 203", "BUS 258", "ECON& 201", "ECON& 202"],
+        "These are especially useful when the student may choose Applied Statistics or wants a stronger outside sequence before the Seattle elective stage."
+      ),
+      itemAny(
+        "uws-stat-computing-support",
+        "Extra computing support for the Data Science route",
+        ["CS 121", "CS 122", "ENGR 250"],
+        "These do not replace the shared Statistics programming requirement, but they make the data-heavy track much cleaner."
+      ),
+    ],
+    advisorFlags: [
+      "The Statistics department now expects students to choose their Mathematical Statistics, Applied Statistics, or Data Science track before graduation, so the final upper-division plan should stay track-specific.",
+      "The shared core is stable, but the outside interdisciplinary sequence for Applied Statistics and the computing/data choices for the Data Science track still need deliberate planner review.",
+      "This row uses the shared Statistics B.S. core as the common transfer baseline and lets the dropdown narrow the track-specific Green River emphasis.",
+    ],
+    involvementIdeas: [
+      "Use one tutoring, research, analytics, data, or quantitative-support role that shows the student can communicate evidence and not just complete math classes.",
+    ],
+    projectIdeas: [
+      "Build one small statistical or data-analysis project with a clear question, method, and interpretation, not only charts or code output.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Statistics major overview",
+        url: "https://stat.uw.edu/statistics-major",
+      },
+      {
+        label: "UW Statistics B.S. major requirements",
+        url: "https://stat.uw.edu/academics/undergraduate/statistics-bs/major",
+      },
+      {
+        label: "UW Statistics B.S. track structure",
+        url: "https://stat.uw.edu/academics/undergraduate/statistics-bs/statistics-bs-tracks",
+      },
+      {
+        label: "UW Green River equivalency guide",
+        url: "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("stat-core", "Statistics B.S. core requirements", [
+        "For students enrolling in 2024 and after, the Statistics B.S. is organized around 3 tracks that all share the same admission and core structure.",
+        "The shared core is 37 credits: MATH 208 and MATH 224; STAT 302 and either CSE 163 or CSE 123; STAT 341 and STAT 342; STAT 423, STAT 424, and STAT 435; an ethics course from STAT 303, SOC 225, or INFO 351; and the capstone course STAT 496.",
+        "The department page also requires a minimum 2.0 GPA in major courses and a 2.5 cumulative GPA across the courses used toward the major.",
+      ]),
+      degreeMapSection("stat-tracks", "Statistics B.S. track-specific breadth", [
+        "The Mathematical Statistics track adds one approved 3-course probability or analysis sequence plus 3 electives from the general or computing elective lists.",
+        "The Applied Statistics track adds 3 interdisciplinary courses that form a coherent approved outside sequence plus 3 electives from the general or computing elective lists.",
+        "The Data Science track adds 1 approved data-visualization course, 1 approved databases course, 1 computing elective, and 3 more electives from the general or computing elective lists.",
+      ]),
+      degreeMapSection("stat-electives", "Examples of approved Statistics electives", [
+        "The major-requirements page's general electives list includes options such as CSE 373, CSE 332, MATH 300, MATH 318, MATH/STAT 395, MATH/STAT 491, 492, 493, STAT 403, 425, 427, 428, 441, 498, 529, and STAT 534.",
+        "The computing electives list includes CSE 373, CSE 332, MATH 318, MATH 407, 408, 409, and STAT 534.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Lifted from the current UW Statistics overview, major-requirements, track-structure pages, and Green River equivalency guide on April 2, 2026.",
+      "The Statistics department now expects students to choose their Mathematical Statistics, Applied Statistics, or Data Science track before graduation, so the exact final course list depends on that track choice.",
+    ],
+    pathways: [
+      plannerPathway(
+        "mathematical-statistics-track",
+        "Mathematical Statistics track",
+        "Best when the student wants the more proof, probability, and math-heavy Seattle Statistics finish.",
+        {
+          grcCourseList: [
+            ...STEM_CALCULUS_CURRENT_SEQUENCE,
+            "MATH 238",
+            "MATH 240",
+            "MATH& 146",
+            "CS 121",
+            "CS 122",
+          ],
+          degreeMapSections: [
+            degreeMapSection("stat-common-math", "Statistics B.S. shared core requirements", [
+              "For students enrolling in 2024 and after, the Statistics B.S. is organized around 3 tracks that all share the same admission and core structure.",
+              "The shared core is 37 credits: MATH 208 and MATH 224; STAT 302 and either CSE 163 or CSE 123; STAT 341 and STAT 342; STAT 423, STAT 424, and STAT 435; an ethics course from STAT 303, SOC 225, or INFO 351; and the capstone course STAT 496.",
+            ]),
+            degreeMapSection("stat-math-track", "Mathematical Statistics track-specific breadth", [
+              "The Mathematical Statistics track adds one approved 3-course probability or analysis sequence plus 3 electives from the general or computing elective lists.",
+            ]),
+          ],
+          bestTrackId: "999B",
+          bestTrackSummary:
+            "999B is the clearest Green River base when the student wants the math-heavy Statistics track before transfer.",
+        }
+      ),
+      plannerPathway(
+        "applied-statistics-track",
+        "Applied Statistics track",
+        "Best when the student wants the Seattle Statistics degree but expects the outside interdisciplinary sequence to carry more of the focus than pure math or computing.",
+        {
+          grcCourseList: [...STEM_CALCULUS_CURRENT_SEQUENCE, "MATH& 146", "CS 121"],
+          degreeMapSections: [
+            degreeMapSection("stat-common-applied", "Statistics B.S. shared core requirements", [
+              "For students enrolling in 2024 and after, the Statistics B.S. is organized around 3 tracks that all share the same admission and core structure.",
+              "The shared core is 37 credits: MATH 208 and MATH 224; STAT 302 and either CSE 163 or CSE 123; STAT 341 and STAT 342; STAT 423, STAT 424, and STAT 435; an ethics course from STAT 303, SOC 225, or INFO 351; and the capstone course STAT 496.",
+            ]),
+            degreeMapSection("stat-applied-track", "Applied Statistics track-specific breadth", [
+              "The Applied Statistics track adds 3 interdisciplinary courses that form a coherent approved outside sequence plus 3 electives from the general or computing elective lists.",
+            ]),
+          ],
+        }
+      ),
+      plannerPathway(
+        "data-science-track",
+        "Data Science track",
+        "Best when the student wants the strongest Seattle Statistics computing and data-work route before transfer.",
+        {
+          grcCourseList: [
+            ...STEM_CALCULUS_CURRENT_SEQUENCE,
+            "MATH& 146",
+            "CS 121",
+            "CS 122",
+            "CS 123",
+            "ENGR 250",
+          ],
+          degreeMapSections: [
+            degreeMapSection("stat-common-data", "Statistics B.S. shared core requirements", [
+              "For students enrolling in 2024 and after, the Statistics B.S. is organized around 3 tracks that all share the same admission and core structure.",
+              "The shared core is 37 credits: MATH 208 and MATH 224; STAT 302 and either CSE 163 or CSE 123; STAT 341 and STAT 342; STAT 423, STAT 424, and STAT 435; an ethics course from STAT 303, SOC 225, or INFO 351; and the capstone course STAT 496.",
+            ]),
+            degreeMapSection("stat-data-track", "Data Science track-specific breadth", [
+              "The Data Science track adds 1 approved data-visualization course, 1 approved databases course, 1 computing elective, and 3 more electives from the general or computing elective lists.",
+            ]),
+          ],
+          bestTrackId: "999P",
+          bestTrackSummary:
+            "999P is the clearest Green River base when the student wants the most computing-heavy Seattle Statistics route.",
+        }
+      ),
+    ],
   },
   {
     id: "uw-bothell-computer-engineering",
@@ -1662,8 +3028,18 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
       item("bothell-compe-engl", "English composition", ["ENGL& 101"]),
     ],
     beforeEnrollmentChecklist: [
-      item("bothell-compe-cs123", "Strongest programming finish", ["CS 123"]),
-      item("bothell-compe-circuits", "Circuit preparation", ["ENGR& 204"]),
+      item(
+        "bothell-compe-cs123",
+        "Strongest programming finish",
+        ["CS 123"],
+        "Bothell's public materials center on CSS 142 / 143-level readiness; CS 123 is the strongest Green River finish beyond those minimum admission classes."
+      ),
+      item(
+        "bothell-compe-circuits",
+        "Circuit preparation",
+        ["ENGR& 204"],
+        "Not part of the public minimum admission classes, but ENGR& 204 is the cleanest Green River circuit head start for the Bothell CompE core."
+      ),
     ],
     stayAtGrcChecklist: [],
     advisorFlags: [
@@ -1701,6 +3077,7 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
       ]),
     ],
     manualReviewNotes: [
+      "Validated against the current UW Bothell admissions page, curriculum page, degree map, and active major planning worksheet on April 2, 2026.",
       "Confirm the worksheet version for the student's intended entry year.",
       "Upper-division CSS / B EE sequencing should still be checked against the current curriculum page and degree map.",
     ],
@@ -1731,11 +3108,26 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
       item("bothell-me-engl", "English composition", ["ENGL& 101"]),
     ],
     beforeEnrollmentChecklist: [
-      item("bothell-me-math207", "STMATH 207", ["MATH 238"]),
-      item("bothell-me-math224", "STMATH 224", ["MATH& 254"]),
+      item(
+        "bothell-me-math207",
+        "STMATH 207",
+        ["MATH 238"],
+        "Bothell Mechanical explicitly lists STMATH 207 in the admission baseline, so MATH 238 should be finished before transfer."
+      ),
+      item(
+        "bothell-me-math224",
+        "STMATH 224",
+        ["MATH& 254"],
+        "Bothell Mechanical explicitly lists STMATH 224 in the admission baseline, so MATH& 254 should be finished before transfer."
+      ),
     ],
     stayAtGrcChecklist: [
-      item("bothell-me-mechanics", "Mechanics sequence", ["ENGR& 214", "ENGR& 215", "ENGR& 225"]),
+      item(
+        "bothell-me-mechanics",
+        "Mechanics sequence",
+        ["ENGR& 214", "ENGR& 215", "ENGR& 225"],
+        "These are not the front-door admission minimums, but they are the clearest Green River head start for Bothell Mechanical's engineering block."
+      ),
     ],
     advisorFlags: [
       "Bothell worksheet review is still worth doing because curriculum PDFs and worksheet years can drift slightly.",
@@ -1743,12 +3135,30 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
     involvementIdeas: ["Push build-heavy clubs, MESA, and a documented design project."],
     projectIdeas: ["Build a CAD, fabrication, or mechanism project with a clean engineering write-up."],
     officialLinks: [
+      { label: "UW Bothell Mechanical Engineering admissions", url: "https://www.uwb.edu/stem/undergraduate/majors/mechanical/admissions" },
       { label: "UW Bothell Mechanical Engineering curriculum", url: "https://www.uwb.edu/stem/undergraduate/majors/mechanical/curriculum" },
       { label: "UW Bothell Mechanical Engineering curriculum PDF", url: "https://www.uwb.edu/stem/wp-content/uploads/sites/31/2025/01/B-ME-Curriculum-AY24_25.pdf" },
       { label: "UW Bothell Mechanical Engineering planning worksheet", url: "https://admissions.uwb.edu/register/mpw-me" },
       { label: "UW Bothell Green River equivalency guide", url: "https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college" },
     ],
+    degreeMapSections: [
+      degreeMapSection("uwb-me-admission", "Mechanical Engineering admission baseline", [
+        "Mechanical Engineering admits for autumn quarter entry.",
+        "The current admissions page requires English composition I, the full one-year calculus sequence, differential equations, multivariable calculus, calculus-based Physics I and II, and General Chemistry I with lab, all with minimum 2.0 grades.",
+        "The admissions page also notes that the third physics course, BPHYS 123, is useful preparation but not required for admission.",
+      ]),
+      degreeMapSection("uwb-me-core", "Mechanical Engineering required curriculum", [
+        "The current ABET-accredited curriculum is a 180-credit B.S. built from 21 credits of science, 30 credits of mathematics, 90 credits of engineering, and 39 credits of general education and additional coursework.",
+        "The current science and math spine is BCHEM 143/144, BPHYS 121, 122, 123, and STMATH 124, 125, 126, 207, 224, and 390.",
+        "The required engineering block is BENGR 310, 320, 321, BME 221, 222, 223, 301, 315, 331, 332, 333, 334, 341, 342, 343, 410, 481, BENGR 494, and BME 495 and 496.",
+      ]),
+      degreeMapSection("uwb-me-electives", "Mechanical Engineering electives and finish", [
+        "Students also complete 16 credits of Mechanical Engineering electives from the published list, which currently includes BME 345, 431, 432, 433, 435, 440, 446, 450, 460, 483, selected BME 493 topics, and limited BME 498 or 499 use.",
+        "The curriculum page notes that elective offerings can change by year and that UW Seattle engineering courses only count with adviser approval.",
+      ]),
+    ],
     manualReviewNotes: [
+      "Validated against the current UW Bothell admissions page, curriculum page, AY24-25 curriculum PDF, and active major planning worksheet on April 2, 2026.",
       "Use the worksheet year that matches the student's intended entry term.",
       "The public curriculum PDF is now reflected in planner data, but advisor review is still smart before freezing the final term order.",
     ],
@@ -1765,32 +3175,33 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
     startQuarter: "Advisor review needed",
     bestTrackId: "999P",
     bestTrackSummary:
-      "999P is still the strongest Bothell CSSE start because it keeps the Green River programming path deeper than the minimum public degree map floor.",
+      "999P is still the strongest Bothell CSSE start because it keeps the Green River programming path deeper than the minimum public degree-map classes.",
     whyThisTrack: [
       "It keeps Green River programming depth strong while still fitting a clean STEM transfer story.",
       "It preserves room for students who may still compare Bothell CSSE with Seattle Allen or Tacoma computing paths.",
     ],
     financialAidNote:
       "Keep the student on a programming-heavy STEM path, then use advisor review to decide whether the student should stop at the public minimum or finish the stronger CS 123 / Calc III path.",
-    applicationChecklist: [
-      itemStemCalcCredits(
-        "bothell-csse-calc",
-        "STMATH 124 and 125 foundation",
-        2,
-        "The public Bothell CSSE degree map visibly starts with the first two calculus courses. Finishing Calc III is still a strong optional add-on for broader STEM flexibility."
-      ),
-      itemCount(
-        "bothell-csse-cs",
-        "Programming through CSS 143-equivalent level",
-        ["CS 121", "CS 122", "CS 123"],
-        2,
-        "The public degree map visibly reaches the CSS 142 / 143 level. CS 123 is still the strongest Green River finish when the student wants more flexibility."
-      ),
-      item("bothell-csse-engl", "English composition", ["ENGL& 101"]),
-    ],
+    applicationChecklist: buildBothellCsseApplicationChecklist("bothell-csse"),
     beforeEnrollmentChecklist: [
-      item("bothell-csse-calc3", "Calc III for stronger STEM flexibility", ["MATH& 163"]),
-      item("bothell-csse-cs123", "CS 123 for the strongest programming finish", ["CS 123"]),
+      itemAny(
+        "bothell-csse-stats",
+        "Statistics for the shared CSSE core",
+        ["MATH& 146", "MATH 256"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the shared CSSE degree still needs one statistics course either way."
+      ),
+      item(
+        "bothell-csse-calc3",
+        "Calc III for stronger STEM flexibility",
+        ["MATH& 163"],
+        "Not part of the visible CSSE minimum admission classes, but Calc III keeps more STEM flexibility open and makes later math choices easier."
+      ),
+      item(
+        "bothell-csse-cs123",
+        "CS 123 for the strongest programming finish",
+        ["CS 123"],
+        "Bothell's public materials center on CSS 142 / 143-level readiness; CS 123 is still the strongest Green River programming finish."
+      ),
     ],
     stayAtGrcChecklist: [],
     advisorFlags: [
@@ -1823,9 +3234,2298 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
       ]),
     ],
     manualReviewNotes: [
+      "Validated against the current UW Bothell admissions page, curriculum page, degree map, and active major planning worksheet on April 2, 2026.",
       "The public degree map still leaves some upper-division core details better handled through advising.",
     ],
   },
+  detailedPlan({
+    id: "uw-bothell-american-and-ethnic-studies",
+    campusId: "uw-bothell",
+    title: "American & Ethnic Studies (BA)",
+    shortTitle: "AES",
+    summary:
+      "Bothell American & Ethnic Studies is best treated as a custom IAS humanities-and-social-science transfer where composition, history, and ethnic-studies support are finished early before the fixed AES core begins on campus.",
+    applicationWindow:
+      "Check current IAS declaration timing. Autumn is the safest launch because the core BISAES 305 course is taught in autumn.",
+    startQuarter: "Autumn preferred",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "AES has a real UW Bothell core, but Green River is most useful for writing, history, and related ethnic-studies support before transfer.",
+      "A custom humanities-and-social-science path is more honest than forcing AES into a stock business or STEM track.",
+    ],
+    financialAidNote:
+      "Keep the student on a coherent IAS-style humanities path and finish the writing sequence early instead of filling space with random electives.",
+    beforeEnrollmentChecklist: [
+      item(
+        "uwb-aes-engl101",
+        "First composition course",
+        ["ENGL& 101"],
+        "AES requires 10 composition credits in the degree, so the first composition course should be done before transfer."
+      ),
+      itemAny(
+        "uwb-aes-second-composition",
+        "Second composition or advanced writing course",
+        ["ENGL 126", "ENGL 127", "ENGL 128"],
+        "Green River normally uses ENGL 126, 127, or 128 as the second composition course. Finishing one before transfer makes the upper-division AES writing load easier."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwb-aes-foundation",
+        "American, ethnic, and social-inquiry foundation",
+        ["AMES 100", "AMES 150", "ANTH& 100", "S SCI 160"],
+        "These do not replace the fixed AES core at Bothell, but they are the clearest Green River supports before BIS 290, BISAES 305, and the AES area-course work begin."
+      ),
+      itemAny(
+        "uwb-aes-history",
+        "History support for the AES area lists",
+        ["HIST 101", "HIST 102", "HIST 103", "HIST& 136", "HIST& 137"],
+        "AES later uses historical and social inquiry heavily, so early history work is a strong Green River support."
+      ),
+      itemAny(
+        "uwb-aes-writing",
+        "Reading and analytical-writing support",
+        ["ENGL 128", "ENGL& 244", "ENGL& 245"],
+        "Use one more writing-heavy humanities course if it still fits the student's load, because the AES upper division is reading- and writing-intensive."
+      ),
+    ],
+    advisorFlags: [
+      "BISAES 305 is taught only in autumn, so start-quarter timing matters more than it does for many other IAS majors.",
+      "AES limits how much 100- and 200-level work can count into the major, so Green River classes should be treated as foundation rather than as a one-to-one replacement for the upper-division AES finish.",
+    ],
+    involvementIdeas: [
+      "Use one community, cultural, equity, or history-centered role to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Document one community, history, or equity project with research, context, and reflection rather than only course completion.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-applied-computing",
+    campusId: "uw-bothell",
+    title: "Applied Computing (BA)",
+    shortTitle: "Applied Computing",
+    summary:
+      "Bothell Applied Computing is best treated as a programming-plus-second-discipline transfer. The key move is finishing writing, calculus, and the programming pair while choosing the non-computing discipline early enough to shape the Green River electives.",
+    applicationWindow:
+      "Use the current Applied Computing review cycle and finish the published prerequisites before applying whenever possible.",
+    startQuarter: "Varies by cycle",
+    bestTrackId: "999P",
+    bestTrackSummary:
+      "999P is the strongest current Applied Computing base because it preserves programming depth and quantitative support without forcing the student off the second-discipline model.",
+    whyThisTrack: [
+      "Applied Computing still expects a real programming start rather than a one-course intro-only path.",
+      "999P leaves the cleanest room for a second discipline while keeping calculus and technical writing visible.",
+    ],
+    financialAidNote:
+      "Stay on 999P, then use the open electives to start the second discipline intentionally instead of stacking unrelated computing classes.",
+    applicationChecklist: [
+      item(
+        "uwb-acomp-engl101",
+        "English Composition I",
+        ["ENGL& 101"],
+        "Applied Computing requires the first composition course before transfer."
+      ),
+      item(
+        "uwb-acomp-engl128",
+        "English Composition II or advanced writing",
+        ["ENGL 128"],
+        "Applied Computing requires a second writing course before admission review. ENGL 128 is the clearest current Green River advanced-writing match."
+      ),
+      item(
+        "uwb-acomp-calc1",
+        "Calculus I",
+        ["MATH& 151"],
+        "Applied Computing names Calculus I in the published admission baseline, so MATH& 151 should be finished before transfer."
+      ),
+      itemCount(
+        "uwb-acomp-programming",
+        "Programming through the two-course Bothell baseline",
+        ["CS 121", "CS 122", "CS 123"],
+        2,
+        "The public admissions page expects a two-course programming sequence equivalent to CSS 142 and 143 or CSS 132 and 133. The safest Green River path is CS 121 -> CS 122 -> CS 123."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uwb-acomp-stats",
+        "Statistics for the Applied Computing core",
+        ["MATH& 146", "MATH 256"],
+        "Statistics is part of the Applied Computing core, so it is good to complete before or during UW enrollment."
+      ),
+      item(
+        "uwb-acomp-cs123",
+        "Strongest programming finish",
+        ["CS 123"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it gives the strongest launch into later data-structures and upper-division CSS work."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwb-acomp-second-discipline",
+        "Early second-discipline launch classes",
+        ["ACCT& 201", "BUS& 101", "ECON& 201", "CMST& 102"],
+        "Applied Computing combines CSS with a second discipline, so use Green River electives to start the intended non-computing domain instead of adding random filler."
+      ),
+    ],
+    advisorFlags: [
+      "The second discipline is not a throwaway elective bucket. Decide it early, because it changes which Green River electives are actually useful.",
+      "The final Bothell data-structures path can run through CSS 340 or CSS 342, and the management requirement can use CSS 350 or approved BBUS 300 use, so final upper-division sequencing should still be checked with advising.",
+    ],
+    involvementIdeas: [
+      "Build one computing project that clearly connects to the intended second discipline instead of stopping at generic programming practice.",
+    ],
+    projectIdeas: [
+      "Create one applied-computing portfolio project tied to business, communication, science, or another non-computing domain the student may use for the second discipline.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-biology",
+    campusId: "uw-bothell",
+    title: "Biology (BS)",
+    shortTitle: "Biology",
+    summary:
+      "Bothell Biology is a true science-sequence transfer. The full introductory biology and chemistry series are the admission anchor, and then calculus, statistics, and the right physics sequence should be finished early enough to make the upper-division biology launch smoother.",
+    applicationWindow:
+      "Biology is currently a minimum-requirements major once the full introductory biology and chemistry baseline is complete.",
+    startQuarter: "After prerequisite completion",
+    bestTrackId: "999O",
+    bestTrackSummary:
+      "999O is the clearest Bothell Biology base because it keeps the biology-and-chemistry spine intact before the later ecology, cell, physiology, and research blocks begin.",
+    whyThisTrack: [
+      "The Bothell Biology admission baseline is dominated by the full biology and general-chemistry sequences.",
+      "999O matches that science-heavy launch more honestly than a lighter general-transfer path.",
+    ],
+    financialAidNote:
+      "Stay on a science-heavy path and do not let generic electives crowd out the full biology and chemistry series that Bothell Biology uses for guaranteed admission.",
+    applicationChecklist: [
+      item(
+        "uwb-bio-biology",
+        "Full introductory biology sequence",
+        FULL_BIOLOGY_MAJORS_SEQUENCE,
+        "Bothell Biology requires the full BBIO 180 / 200 / 220-equivalent introductory biology sequence for admission."
+      ),
+      item(
+        "uwb-bio-general-chem",
+        "Full general chemistry sequence",
+        FULL_GENERAL_CHEMISTRY_SEQUENCE,
+        "Bothell Biology requires the full general chemistry sequence for admission, and the admissions page treats it as part of the guaranteed-admission baseline."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      item(
+        "uwb-bio-calc",
+        "One calculus course",
+        ["MATH& 151"],
+        "Bothell Biology requires one calculus course in the degree core. MATH& 151 is the clearest current Green River match."
+      ),
+      itemAny(
+        "uwb-bio-stats",
+        "One statistics course",
+        ["MATH& 146", "MATH 256"],
+        "Bothell Biology also requires one statistics course before the full upper-division biology sequence is finished."
+      ),
+      itemCountWithAlternatives(
+        "uwb-bio-physics",
+        "Physics I and II sequence",
+        ["PHYS& 114", "PHYS& 154", "PHYS& 115", "PHYS& 155"],
+        [["PHYS& 221", "PHYS& 222"]],
+        4,
+        "Bothell Biology accepts either the general-physics-with-lab pair or the calculus-based pair. Finish the sequence that best fits the student's graduate-school and science plans."
+      ),
+    ],
+    stayAtGrcChecklist: [],
+    advisorFlags: [
+      "Bothell Biology guarantees admission when the listed prerequisites are met, but the strongest post-transfer plan still depends on whether the student is leaning ecology, cell biology, physiology, or a pre-health path.",
+      "Physics III is not required for the Biology degree itself, but it can still matter for some graduate-school or professional-school plans.",
+    ],
+    involvementIdeas: [
+      "Use one lab, field, tutoring, research, or ecology role to show science readiness beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Document one biology, ecology, or lab project with methods, data, and a clear scientific question rather than only course completion.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-business-administration",
+    campusId: "uw-bothell",
+    title: "Business Administration (BA)",
+    shortTitle: "BBA",
+    summary:
+      "Bothell Business Administration is best treated as a shared lower-division business-prerequisite transfer. The Green River job is to finish the accounting, economics, math, law, and writing baseline cleanly before the student commits to a final Bothell option or concentration.",
+    applicationWindow:
+      "Apply when most of the prerequisite set is finished and complete the full prerequisite list before matriculation.",
+    startQuarter: "After lower-division prerequisite completion",
+    bestTrackId: "999B",
+    bestTrackSummary:
+      "999B is the clearest Bothell BBA base because it already carries the business math, economics, accounting, and writing backbone without forcing unrelated STEM detours.",
+    whyThisTrack: [
+      "The BBA is an upper-division program built on lower-division accounting, economics, math, law, and writing prerequisites.",
+      "999B keeps those business prerequisites visible early and is still the easiest track to explain to both Green River and Bothell advisers.",
+    ],
+    financialAidNote:
+      "Stay on 999B and place accounting, economics, statistics, and advanced writing deliberately so the student does not look close to transfer while still missing a business prerequisite.",
+    applicationChecklist: buildBothellBbaApplicationChecklist("uwb-bba"),
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [
+      itemCount(
+        "uwb-bba-full-accounting",
+        "Full three-course accounting sequence",
+        ["ACCT& 201", "ACCT& 202", "ACCT& 203"],
+        3,
+        "The whole Bothell business option menu stays easier to keep open when the full Green River accounting sequence is already finished before transfer."
+      ),
+    ],
+    advisorFlags: [
+      "The general BBA row is only a baseline. The final exact course map depends on which Bothell option or concentration the student chooses after admission.",
+      "Bothell Business expects the majority of the prerequisite set at application time and the whole set before matriculation, so do not wait too long on accounting, law, or advanced writing.",
+    ],
+    involvementIdeas: [
+      "Pair coursework with one business, entrepreneurship, retail, accounting, or client-facing activity that creates a leadership or teamwork story.",
+    ],
+    projectIdeas: [
+      "Build one business-analysis, budgeting, forecasting, or market-research project tied to a real organization, internship, or student venture idea.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-business-administration-accounting",
+    campusId: "uw-bothell",
+    title: "Business Administration: Accounting (BA)",
+    shortTitle: "Accounting",
+    summary:
+      "Bothell Accounting is the BBA path where the lower-division accounting sequence matters most before transfer. The Green River plan should finish the full business-prerequisite set and keep the accounting grades strong enough for the internal declaration threshold.",
+    applicationWindow:
+      "Apply through the shared BBA cycle, then use advising to confirm the stronger accounting-option declaration threshold.",
+    startQuarter: "After lower-division prerequisite completion",
+    bestTrackId: "999B",
+    bestTrackSummary:
+      "999B is the strongest Bothell Accounting base because it keeps the accounting, economics, math, and writing prerequisites together in one clean transfer story.",
+    whyThisTrack: [
+      "Accounting uses the shared BBA prerequisite set, but it also cares more than the other Bothell business options about the exact accounting-course performance before declaration.",
+      "999B already matches the accounting, economics, and quantitative backbone that Accounting students need.",
+    ],
+    financialAidNote:
+      "Stay on 999B and finish the full accounting sequence with strong grades before transfer, because the Bothell option has a higher internal accounting threshold than the general BBA.",
+    applicationChecklist: buildBothellBbaApplicationChecklist("uwb-accounting"),
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [
+      itemCount(
+        "uwb-accounting-full-accounting",
+        "Full accounting sequence with strong grades",
+        ["ACCT& 201", "ACCT& 202", "ACCT& 203"],
+        3,
+        "The Bothell Accounting option's internal declaration rule is built on the prerequisite accounting courses, so complete the whole Green River accounting sequence before transfer if possible."
+      ),
+    ],
+    advisorFlags: [
+      "The Bothell Accounting option adds a stronger declaration threshold than the shared BBA baseline: at least 2.5 in each prerequisite accounting course and a 3.0 average across the accounting prerequisites.",
+      "Students cannot start accounting-option courses until they meet with a Bothell adviser to confirm eligibility.",
+    ],
+    involvementIdeas: [
+      "Use one accounting, bookkeeping, finance-office, tax-volunteer, or business-operations role to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Create one accounting or reporting portfolio piece with journal entries, financial statements, and a short explanation of the business decisions behind the numbers.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-business-administration-finance",
+    campusId: "uw-bothell",
+    title: "Business Administration: Finance (BA)",
+    shortTitle: "Finance",
+    summary:
+      "Bothell Finance still starts with the shared BBA prerequisite set, but the stronger launch comes from arriving with accounting, economics, math, and writing already clean before the student chooses the full Finance Option or the lighter Finance concentration.",
+    applicationWindow:
+      "Apply through the shared BBA cycle, then confirm with advising whether the student wants the full Finance Option or the lighter Finance concentration.",
+    startQuarter: "After lower-division prerequisite completion",
+    bestTrackId: "999B",
+    bestTrackSummary:
+      "999B is the clearest Bothell Finance base because it already centers accounting, economics, and quantitative business preparation.",
+    whyThisTrack: [
+      "Finance still depends on the same BBA accounting, economics, and quantitative prerequisite set before the student reaches the upper-division finance block.",
+      "999B keeps the accounting and economics backbone visible while leaving room to decide later between the option and concentration finish.",
+    ],
+    financialAidNote:
+      "Stay on 999B and keep the accounting sequence intact, because both Bothell finance paths launch more cleanly when the lower-division business prerequisites are already finished.",
+    applicationChecklist: buildBothellBbaApplicationChecklist("uwb-finance"),
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [
+      itemCount(
+        "uwb-finance-full-accounting",
+        "Full accounting sequence before the finance finish",
+        ["ACCT& 201", "ACCT& 202", "ACCT& 203"],
+        3,
+        "The full accounting sequence is part of the shared Bothell business foundation and makes the finance launch cleaner before the student reaches BBUS 451 to 454."
+      ),
+    ],
+    advisorFlags: [
+      "The public Bothell finance page has 2 real finishes: the full Finance Option and the lighter Finance concentration. Confirm which one the student wants before treating the exact upper-division list as final.",
+      "The full Finance Option normally expects at least a 3.0 in BBUS 350 after transfer, while the concentration only requires BBUS 350 before declaration.",
+    ],
+    involvementIdeas: [
+      "Use one banking, investing, budgeting, analytics, or finance-club activity to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Build one finance project with valuation, forecasting, or portfolio-analysis work and a short written explanation of the assumptions and tradeoffs.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-business-administration-leadership-and-strategic-innovation",
+    campusId: "uw-bothell",
+    title: "Business Administration: Leadership & Strategic Innovation (BA)",
+    shortTitle: "LSI",
+    summary:
+      "Bothell Leadership and Strategic Innovation still starts from the shared BBA prerequisite set, but it works best when the student arrives with business writing, economics, accounting, and a clear leadership or team-based story already in place.",
+    applicationWindow:
+      "Apply through the shared BBA cycle, then use advising to confirm the Leadership and Strategic Innovation declaration rules after transfer.",
+    startQuarter: "After lower-division prerequisite completion",
+    bestTrackId: "999B",
+    bestTrackSummary:
+      "999B is the strongest Bothell LSI base because it preserves the shared business math, economics, accounting, and writing baseline before the upper-division leadership finish begins.",
+    whyThisTrack: [
+      "LSI still uses the shared BBA prerequisite set, so the same lower-division business backbone matters before transfer.",
+      "The option is leadership- and strategy-heavy after admission, which makes strong writing and team-based preparation especially useful before the upper division.",
+    ],
+    financialAidNote:
+      "Stay on 999B and keep the shared business prerequisite set intact so the student does not reach Bothell still missing accounting, economics, or advanced writing.",
+    applicationChecklist: buildBothellBbaApplicationChecklist("uwb-lsi"),
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [],
+    advisorFlags: [
+      "The LSI option adds an internal declaration rule after transfer: students must complete BBUS 300 and BBUS 307 with at least a 3.0 in each course.",
+      "That declaration threshold is not something Green River can satisfy directly, so the pre-transfer focus should stay on the shared BBA prerequisite set and on building a strong writing-and-leadership profile.",
+    ],
+    involvementIdeas: [
+      "Use one leadership, team, organizing, mentoring, or client-facing role where the student can point to initiative and follow-through, not just membership.",
+    ],
+    projectIdeas: [
+      "Document one leadership, operations, or strategic-planning project with a clear problem, decision process, and outcome summary.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-business-administration-marketing",
+    campusId: "uw-bothell",
+    title: "Business Administration: Marketing (BA)",
+    shortTitle: "Marketing",
+    summary:
+      "Bothell Marketing starts from the shared BBA prerequisite set, but the strongest transfer launch also keeps communication and audience-facing work visible before the student chooses the full Marketing Option or the lighter Marketing concentration.",
+    applicationWindow:
+      "Apply through the shared BBA cycle, then confirm whether the student wants the transcripted Marketing Option or the Marketing concentration.",
+    startQuarter: "After lower-division prerequisite completion",
+    bestTrackId: "999B",
+    bestTrackSummary:
+      "999B is the clearest Bothell Marketing base because it preserves the shared business prerequisite set while still leaving room for communication-heavy support work.",
+    whyThisTrack: [
+      "Marketing still depends on the same BBA accounting, economics, math, law, and writing baseline before the specialized marketing block begins.",
+      "999B leaves room to add communication support at Green River without forcing the student off the business transfer backbone.",
+    ],
+    financialAidNote:
+      "Stay on 999B and use any extra room for communication-heavy support work instead of random electives, because the Bothell marketing finish is more presentation- and audience-facing than the general BBA baseline.",
+    applicationChecklist: buildBothellBbaApplicationChecklist("uwb-marketing"),
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwb-marketing-communication",
+        "Communication support before upper-division marketing work",
+        ["CMST& 102", "CMST& 220", "JOURN 100.1"],
+        "Marketing is stronger when the student arrives with at least one audience-facing communication course already done, even though these are not formal BBA admission prerequisites."
+      ),
+    ],
+    advisorFlags: [
+      "The current Bothell marketing page has 2 real finishes: the full Marketing Option and the lighter Marketing concentration. Confirm which one the student wants before treating the exact upper-division list as final.",
+      "Marketing electives and the amount of upper-division general electives change between the option and concentration, so do not assume one fixed finish for every student.",
+    ],
+    involvementIdeas: [
+      "Use one communications, retail, media, events, customer-service, or student-marketing role to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Build one marketing project with audience research, messaging, deliverables, and a short explanation of the strategy and results.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-business-administration-supply-chain-management",
+    campusId: "uw-bothell",
+    title: "Business Administration: Supply Chain Management (BA)",
+    shortTitle: "SCM",
+    summary:
+      "Bothell Supply Chain Management still starts from the shared BBA prerequisite set, but the option is more operations- and quantitative-heavy than the other business finishes, so calculus, statistics, accounting, and business-law preparation should be placed deliberately before transfer.",
+    applicationWindow:
+      "Apply through the shared BBA cycle, then confirm the Supply Chain declaration threshold after transfer.",
+    startQuarter: "After lower-division prerequisite completion",
+    bestTrackId: "999B",
+    bestTrackSummary:
+      "999B is the strongest Bothell Supply Chain base because it keeps the accounting, economics, law, statistics, and calculus backbone visible before the operations-heavy upper division begins.",
+    whyThisTrack: [
+      "Supply Chain uses the shared BBA prerequisite set but then leans harder on operations, analytics, and quantitative decision-making than many of the other business paths.",
+      "999B keeps the cleanest lower-division business-and-quantitative story before the upper-division SCM block starts.",
+    ],
+    financialAidNote:
+      "Stay on 999B and do not postpone calculus, statistics, or business law, because the Supply Chain option adds a stronger internal threshold after transfer.",
+    applicationChecklist: buildBothellBbaApplicationChecklist("uwb-scm"),
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [],
+    advisorFlags: [
+      "The Bothell Supply Chain option adds a higher internal declaration threshold after transfer: students must complete Calculus, Statistics, and BBUS 340 with at least a 3.0 in each course.",
+      "The option is STEM-designated, so it is especially important to keep the lower-division quantitative business prerequisites intact before transfer.",
+    ],
+    involvementIdeas: [
+      "Use one logistics, retail, operations, inventory, analytics, or process-improvement role to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Build one operations or supply-chain project with a process map, spreadsheet or dashboard, and a short explanation of the bottlenecks and proposed improvements.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-chemistry-ba",
+    campusId: "uw-bothell",
+    title: "Chemistry (BA)",
+    shortTitle: "Chemistry BA",
+    summary:
+      "Bothell Chemistry B.A. is the more flexible chemistry route, but it still expects a full chemistry-and-calculus launch. The Green River job is to finish general chemistry and Calculus I-III before admission, then use organic chemistry and one full physics sequence to strengthen the Bothell start.",
+    applicationWindow:
+      "Apply after the full general chemistry sequence and Calculus I-III are complete.",
+    startQuarter: "Autumn, winter, or spring",
+    bestTrackId: "999O",
+    bestTrackSummary:
+      "999O is the clearest Bothell Chemistry B.A. base because it keeps the chemistry, math, and lab-science backbone visible without forcing a heavier engineering-only path.",
+    whyThisTrack: [
+      "The Chemistry B.A. still uses a real chemistry-and-calculus admission baseline, even though it is the more flexible chemistry option after transfer.",
+      "999O keeps the chemistry core intact and still leaves room for the interdisciplinary flexibility the B.A. is designed for.",
+    ],
+    financialAidNote:
+      "Stay on a chemistry-heavy path and do not let electives crowd out the full general chemistry sequence, the calculus ladder, and the strongest possible organic-chemistry start.",
+    applicationChecklist: buildBothellChemistryApplicationChecklist("uwb-chem-ba"),
+    beforeEnrollmentChecklist: [
+      item(
+        "uwb-chem-ba-organic",
+        "Full organic chemistry sequence",
+        FULL_ORGANIC_CHEMISTRY_SEQUENCE,
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
+      ),
+      itemCountWithAlternatives(
+        "uwb-chem-ba-physics",
+        "One full three-course physics sequence",
+        ["PHYS& 114", "PHYS& 154", "PHYS& 115", "PHYS& 155", "PHYS& 116", "PHYS& 156"],
+        [["PHYS& 221", "PHYS& 222", "PHYS& 223"]],
+        6,
+        "Bothell Chemistry accepts either the general-physics-with-lab sequence or the calculus-based sequence. Finish the sequence that best fits the student's broader science plan."
+      ),
+    ],
+    stayAtGrcChecklist: [],
+    advisorFlags: [
+      "The Bothell Chemistry B.A. is flexible after transfer, but it still expects the chemistry-and-calculus admission baseline to be complete before applying.",
+      "The department strongly recommends taking analytical chemistry before physical chemistry and not stacking those sequences at the same time once the student reaches Bothell.",
+    ],
+    involvementIdeas: [
+      "Use one lab, tutoring, supplemental instruction, research, or science-outreach role to show chemistry readiness beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Document one chemistry or lab project with procedures, data, and a short explanation of the scientific reasoning rather than only course completion.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-chemistry-bs",
+    campusId: "uw-bothell",
+    title: "Chemistry (BS)",
+    shortTitle: "Chemistry BS",
+    summary:
+      "Bothell Chemistry B.S. is the heavier chemistry route. The Green River job is to finish general chemistry and Calculus I-III before admission, then use organic chemistry, physics, and one more advanced math course to make the upper-division chemistry launch cleaner.",
+    applicationWindow:
+      "Apply after the full general chemistry sequence and Calculus I-III are complete.",
+    startQuarter: "Autumn, winter, or spring",
+    bestTrackId: "999O",
+    bestTrackSummary: buildGeneratedTrackSummary("999O"),
+    whyThisTrack: [
+      "The Chemistry B.S. still starts from the same chemistry-and-calculus entry baseline as the B.A., but it uses a stronger chemistry-heavy finish after transfer.",
+      "999O is still the clearest Bothell Chemistry base because it keeps chemistry, math, and lab science visible before the larger upper-division chemistry core begins.",
+    ],
+    financialAidNote:
+      "Stay on a chemistry-heavy path and do not let electives crowd out the full chemistry, calculus, organic chemistry, physics, and advanced-math spine the B.S. still needs.",
+    applicationChecklist: buildBothellChemistryApplicationChecklist("uwb-chem-bs"),
+    beforeEnrollmentChecklist: [
+      item(
+        "uwb-chem-bs-organic",
+        "Full organic chemistry sequence",
+        FULL_ORGANIC_CHEMISTRY_SEQUENCE,
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
+      ),
+      itemCountWithAlternatives(
+        "uwb-chem-bs-physics",
+        "One full three-course physics sequence",
+        ["PHYS& 114", "PHYS& 154", "PHYS& 115", "PHYS& 155", "PHYS& 116", "PHYS& 156"],
+        [["PHYS& 221", "PHYS& 222", "PHYS& 223"]],
+        6,
+        "Bothell Chemistry accepts either the general-physics-with-lab sequence or the calculus-based sequence. Finish the sequence that best fits the student's broader science plan."
+      ),
+      itemAny(
+        "uwb-chem-bs-advanced-math",
+        "One advanced math course for the B.S. core",
+        ["MATH& 254", "MATH 238", "MATH 240", "MATH& 146", "MATH 256"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the B.S. general option still needs one advanced math course either way."
+      ),
+    ],
+    stayAtGrcChecklist: [],
+    advisorFlags: [
+      "This row is specifically the Bothell Chemistry B.S. general option, not the separate Biochemistry option.",
+      "The department strongly recommends planning the physical-chemistry sequence with adviser input because the B.S. chemistry finish is more tightly sequenced than the B.A.",
+    ],
+    involvementIdeas: [
+      "Use one lab, tutoring, supplemental instruction, research, or science-outreach role to show chemistry readiness beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Document one chemistry or lab project with procedures, data, and a short explanation of the scientific reasoning rather than only course completion.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-chemistry-biochemistry",
+    campusId: "uw-bothell",
+    title: "Chemistry: Biochemistry (BS)",
+    shortTitle: "Biochemistry",
+    summary:
+      "Bothell Biochemistry uses the same chemistry-and-calculus entry baseline as the other chemistry paths, but it adds biology and a larger lab-heavy chemistry / biochemistry core after transfer.",
+    applicationWindow:
+      "Apply after the full general chemistry sequence and Calculus I-III are complete.",
+    startQuarter: "Autumn, winter, or spring",
+    bestTrackId: "999O",
+    bestTrackSummary: buildGeneratedTrackSummary("999O"),
+    whyThisTrack: [
+      "Biochemistry still starts with the same chemistry-and-calculus admissions baseline, then adds biology and a heavier chemistry / biochemistry finish.",
+      "999O is still the clearest base because it keeps the chemistry, biology, and math backbone visible before the lab-heavy upper division begins.",
+    ],
+    financialAidNote:
+      "Stay on a science-heavy path and protect room for biology, organic chemistry, and physics instead of filling space with lighter electives too early.",
+    applicationChecklist: buildBothellChemistryApplicationChecklist("uwb-biochem"),
+    beforeEnrollmentChecklist: [
+      item(
+        "uwb-biochem-organic",
+        "Full organic chemistry sequence",
+        FULL_ORGANIC_CHEMISTRY_SEQUENCE,
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
+      ),
+      itemCount(
+        "uwb-biochem-bio-foundation",
+        "Biology through the first two majors-biology courses",
+        FULL_BIOLOGY_MAJORS_SEQUENCE,
+        2,
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Biochemistry option still needs biology through the BBIO 180 and 200 level either way."
+      ),
+      itemCountWithAlternatives(
+        "uwb-biochem-physics",
+        "One full three-course physics sequence",
+        ["PHYS& 114", "PHYS& 154", "PHYS& 115", "PHYS& 155", "PHYS& 116", "PHYS& 156"],
+        [["PHYS& 221", "PHYS& 222", "PHYS& 223"]],
+        6,
+        "Bothell Biochemistry accepts either the general-physics-with-lab sequence or the calculus-based sequence. Finish the sequence that best fits the student's broader science plan."
+      ),
+      itemAny(
+        "uwb-biochem-advanced-math",
+        "One advanced math course for the Biochemistry option",
+        ["MATH& 254", "MATH 238", "MATH 240", "MATH& 146", "MATH 256"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Biochemistry option still needs one advanced math course either way."
+      ),
+    ],
+    stayAtGrcChecklist: [],
+    advisorFlags: [
+      "The Biochemistry option leaves less elective room than the general Chemistry B.S., so the pre-transfer science sequencing matters more.",
+      "This is a lab-heavy finish, so students should still confirm the final timing of organic chemistry, biology, and physics with advising.",
+    ],
+    involvementIdeas: [
+      "Use one lab, tutoring, research, or health-science-facing experience to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Document one chemistry, biochemistry, or biology project with procedures, data, and a clear explanation of the scientific question and result.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-csse-information-assurance-and-cybersecurity",
+    campusId: "uw-bothell",
+    title: "Computer Science & Software Engineering: Information Assurance & Cybersecurity (BS)",
+    shortTitle: "CSSE IAC",
+    summary:
+      "Bothell CSSE Information Assurance and Cybersecurity starts from the same admissions baseline as general CSSE, then shifts the elective space toward cybersecurity after the student is already in the major.",
+    applicationWindow:
+      "Apply through the same CSSE review cycle as the general major, then choose the IAC option after admission.",
+    startQuarter: "Autumn, winter, or spring",
+    bestTrackId: "999P",
+    bestTrackSummary: buildGeneratedTrackSummary("999P"),
+    whyThisTrack: [
+      "The IAC path still depends on the same writing, calculus, and programming foundation as the general CSSE major.",
+      "999P is still the strongest base because it keeps the programming sequence deeper than the minimum while preserving STEM flexibility.",
+    ],
+    financialAidNote:
+      "Stay on a programming-heavy STEM path, then use the option choice to shape the upper division after transfer instead of drifting into unrelated lower-division electives.",
+    applicationChecklist: buildBothellCsseApplicationChecklist("uwb-csse-iac"),
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uwb-csse-iac-stats",
+        "Statistics for the shared CSSE core",
+        ["MATH& 146", "MATH 256"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the shared CSSE degree still needs one statistics course either way."
+      ),
+      item(
+        "uwb-csse-iac-calc3",
+        "Calc III for stronger STEM flexibility",
+        ["MATH& 163"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it keeps later STEM choices cleaner."
+      ),
+      item(
+        "uwb-csse-iac-cs123",
+        "CS 123 for the strongest programming finish",
+        ["CS 123"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it gives the strongest launch into the shared upper-division CSSE core."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwb-csse-iac-communication",
+        "Communication and media support that still fits the IAC path",
+        ["CMST& 210", "CMST& 220", "JOURN 101", "JOURN 205"],
+        "These do not replace the cybersecurity courses at Bothell, but they are reasonable Green River support classes because the IAC option still uses communication-heavy documentation and applied project work."
+      ),
+    ],
+    advisorFlags: [
+      "Students do not apply separately to IAC as transfer students; they first enter the general CSSE major and then choose the option.",
+      "The approved IAC course list can change and can include cross-campus INFO and T INFO courses, so the exact upper-division finish still needs advising confirmation.",
+    ],
+    involvementIdeas: [
+      "Pair the programming sequence with one security, systems, networking, or technical-communication activity instead of only generic coding practice.",
+    ],
+    projectIdeas: [
+      "Build one security- or systems-facing project with documentation, testing, and a short explanation of the design choices and threat model.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-conservation-and-restoration-science",
+    campusId: "uw-bothell",
+    title: "Conservation & Restoration Science (BS)",
+    shortTitle: "CRS",
+    summary:
+      "Bothell Conservation and Restoration Science is a minimum-requirements environmental major. The Green River job is to finish writing and the introductory science baseline, then add GIS, ecology, and restoration support before the fixed Bothell core begins.",
+    applicationWindow:
+      "Use the current IAS planning worksheet and apply once the listed entry courses are complete.",
+    startQuarter: "After entry review",
+    bestTrackId: "999O",
+    bestTrackSummary: buildGeneratedTrackSummary("999O"),
+    whyThisTrack: [
+      "CRS still benefits from a real science base, even though the major is not built around a long engineering-style prerequisite ladder.",
+      "999O leaves the cleanest room for biology, chemistry, and environmental support before the restoration-focused upper division begins.",
+    ],
+    financialAidNote:
+      "Keep the Green River plan science- and environment-facing instead of filling open slots with unrelated electives before the CRS core begins.",
+    applicationChecklist: [
+      item(
+        "uwb-crs-engl101",
+        "English composition",
+        ["ENGL& 101"],
+        "The current CRS planning worksheet expects English composition before entry review."
+      ),
+      itemCountWithAlternatives(
+        "uwb-crs-biology",
+        "Introductory biology",
+        ["BIOL& 100"],
+        [FULL_BIOLOGY_MAJORS_SEQUENCE],
+        1,
+        "The worksheet expects introductory biology. BIOL& 100 is the clearest lighter starting point, and the majors-biology sequence is a stronger alternative."
+      ),
+      itemAny(
+        "uwb-crs-chemistry",
+        "Introductory chemistry",
+        ["CHEM& 121", "CHEM& 161"],
+        "The worksheet expects introductory chemistry before review. CHEM& 161 is the stronger science start, but CHEM& 121 is still relevant when the student is building a lighter entry profile."
+      ),
+      itemAny(
+        "uwb-crs-math",
+        "College-level math at precalculus or higher",
+        ["MATH& 141", "MATH& 148", "MATH& 151"],
+        "The worksheet expects one college-level math course at precalculus or higher before review."
+      ),
+    ],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwb-crs-gis",
+        "GIS and spatial restoration support",
+        ["GIS 202", "GEOG& 200", "ENV S 204"],
+        "CRS later uses GIS, environmental methods, and spatial analysis heavily, so one of these is a strong Green River add-on before transfer."
+      ),
+      itemAny(
+        "uwb-crs-restoration",
+        "Conservation and restoration support",
+        ["NATRS 180", "NATRS 210", "NATRS 270"],
+        "These do not replace the Bothell CRS core, but they are strong restoration- and ecology-facing supports before the upper division begins."
+      ),
+    ],
+    advisorFlags: [
+      "CRS is a minimum-requirements major, so the worksheet GPA snapshot is a competitiveness guide rather than a guaranteed-admission promise.",
+      "The public requirements page is category-based in places, so the exact final upper-division mix should still be reviewed with advising.",
+    ],
+    involvementIdeas: [
+      "Use one ecology, restoration, GIS, environmental, or field-based activity to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Document one restoration, ecology, GIS, or sustainability project with methods, data, and a short explanation of the environmental problem and response.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-culture-literature-and-the-arts",
+    campusId: "uw-bothell",
+    title: "Culture, Literature & the Arts (BA)",
+    shortTitle: "CLA",
+    summary:
+      "Bothell Culture, Literature and the Arts is a broad IAS humanities major. Green River is best used for composition, reading-heavy humanities work, and one deliberate arts or history foundation course before the fixed CLA core begins on campus.",
+    applicationWindow:
+      "Use the current IAS planning worksheet and strongest-term entry guidance.",
+    startQuarter: "After entry review",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "CLA is not a stock STEM or business transfer path, so a custom humanities-first Green River plan is more honest than forcing it into a fixed track.",
+      "The published worksheet expects writing and humanities support more than a narrow prerequisite ladder.",
+    ],
+    financialAidNote:
+      "Keep the student on a coherent reading- and writing-heavy humanities path instead of filling space with unrelated electives that do not support the CLA core.",
+    applicationChecklist: [
+      item(
+        "uwb-cla-engl101",
+        "English composition",
+        ["ENGL& 101"],
+        "The CLA worksheet expects the first composition course before entry review."
+      ),
+      itemAny(
+        "uwb-cla-humanities",
+        "One additional Arts and Humanities course",
+        ["ART& 100", "ENGL& 111", "HIST 101"],
+        "The current CLA worksheet expects at least one more Arts and Humanities course before entry review. Choose the class that best fits the student's intended literature, writing, art, or history direction."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uwb-cla-second-writing",
+        "Second composition or advanced writing course",
+        ["ENGL 126", "ENGL 127", "ENGL 128"],
+        "CLA requires 10 composition credits in the degree, so a second writing course is good to complete before or during UW enrollment."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwb-cla-reading",
+        "Reading-heavy literature or humanities support",
+        ["ENGL& 111", "ENGL& 112", "ENGL& 113", "ENGL& 244", "ENGL& 245"],
+        "CLA is reading- and writing-heavy after transfer, so one more literature or humanities course is a strong Green River support."
+      ),
+    ],
+    advisorFlags: [
+      "CLA follows IAS lower-division limits, so Green River classes should be treated as foundation rather than as one-to-one replacements for the upper-division Bothell finish.",
+      "The published CLA core changed in Winter 2026, so students should still confirm the current entry-year worksheet before locking the final plan.",
+    ],
+    involvementIdeas: [
+      "Use one arts, writing, literature, publishing, history, performance, or cultural-community activity to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Build one humanities portfolio piece such as an essay set, curation project, review series, or creative-critical work with a short reflective explanation.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-data-visualization-ba",
+    campusId: "uw-bothell",
+    title: "Data Visualization (BA)",
+    shortTitle: "Data Vis BA",
+    summary:
+      "Bothell Data Visualization B.A. is the lighter entry path built around writing, statistics, and visual / spatial thinking. Green River should cover the writing-and-math baseline first, then add deliberate visual-communication support before transfer.",
+    applicationWindow:
+      "Use the current IAS planning worksheet and apply once the listed entry courses are complete.",
+    startQuarter: "After entry review",
+    bestTrackId: "999P",
+    bestTrackSummary: buildGeneratedTrackSummary("999P"),
+    whyThisTrack: [
+      "Data Visualization still benefits from quantitative and technical support even in the B.A. version.",
+      "999P is the cleanest stock base because it keeps math and technical flexibility visible without forcing the student into the heavier B.S. quantitative load.",
+    ],
+    financialAidNote:
+      "Use the base track for math and technical support, then spend the remaining room on visual-communication classes that actually help the later Data Visualization finish.",
+    applicationChecklist: [
+      item(
+        "uwb-dv-ba-engl101",
+        "English composition",
+        ["ENGL& 101"],
+        "The current Data Visualization B.A. worksheet expects the first composition course before entry review."
+      ),
+      item(
+        "uwb-dv-ba-engl128",
+        "Advanced composition",
+        ["ENGL 128"],
+        "The B.A. worksheet expects advanced composition before entry review. ENGL 128 is the clearest currently tracked Green River fit."
+      ),
+      itemAny(
+        "uwb-dv-ba-math",
+        "Precalculus or higher math",
+        ["MATH& 141", "MATH& 148", "MATH& 151"],
+        "The B.A. worksheet expects precalculus before review, but a higher Green River math course also works well when the student may compare the B.A. with more quantitative paths."
+      ),
+      itemAny(
+        "uwb-dv-ba-stats",
+        "Statistics",
+        ["MATH& 146", "MATH 256"],
+        "The Data Visualization B.A. worksheet expects one statistics course before entry review."
+      ),
+    ],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwb-dv-ba-visual",
+        "Visual communication or design support",
+        ["ART 130", "PHOTO 101", "CMST& 210", "JOURN 101"],
+        "These do not replace the Bothell Data Visualization core, but they are strong Green River supports for visual storytelling and presentation work."
+      ),
+    ],
+    advisorFlags: [
+      "The B.A. is the lighter-entry Data Visualization path, so students should not assume it automatically includes the same quantitative spine as the B.S.",
+      "The IAS lower-division cap still matters, so Green River classes should be used for foundation rather than as a fake substitute for the upper-division Bothell visualization sequence.",
+    ],
+    involvementIdeas: [
+      "Use one design, journalism, media, GIS, analytics, or communications activity that shows visual storytelling or data communication.",
+    ],
+    projectIdeas: [
+      "Build one visualization portfolio piece such as an infographic, small dashboard, or visual story with a short explanation of the audience and design choices.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-data-visualization-bs",
+    campusId: "uw-bothell",
+    title: "Data Visualization (BS)",
+    shortTitle: "Data Vis BS",
+    summary:
+      "Bothell Data Visualization B.S. is the more quantitative version of the degree. Green River should finish the writing, programming, statistics, and initial calculus baseline first, then add the extra calculus and linear-algebra work that the B.S. still needs after transfer.",
+    applicationWindow:
+      "Use the current IAS planning worksheet and apply once the listed entry courses are complete.",
+    startQuarter: "After entry review",
+    bestTrackId: "999P",
+    bestTrackSummary: buildGeneratedTrackSummary("999P"),
+    whyThisTrack: [
+      "The B.S. uses a real quantitative and programming launch rather than only the lighter B.A. baseline.",
+      "999P is still the clearest stock base because it keeps programming and math visible without forcing a completely different engineering path.",
+    ],
+    financialAidNote:
+      "Use 999P as the backbone, then make sure the extra B.S. math courses do not get pushed so late that the student reaches Bothell still missing the quantitative core.",
+    applicationChecklist: [
+      item(
+        "uwb-dv-bs-engl101",
+        "English composition",
+        ["ENGL& 101"],
+        "The current Data Visualization B.S. worksheet expects the first composition course before entry review."
+      ),
+      item(
+        "uwb-dv-bs-calc1",
+        "Calculus I",
+        ["MATH& 151"],
+        "The B.S. worksheet expects Calculus I before entry review."
+      ),
+      itemAny(
+        "uwb-dv-bs-stats",
+        "Statistics",
+        ["MATH& 146", "MATH 256"],
+        "The B.S. worksheet expects one statistics course before entry review."
+      ),
+      itemCount(
+        "uwb-dv-bs-programming",
+        "Programming through the two-course Bothell baseline",
+        ["CS 121", "CS 122", "CS 123"],
+        2,
+        "The B.S. worksheet expects a two-course programming sequence equivalent to CSS 142 and 143. The safest Green River path is CS 121 -> CS 122 -> CS 123."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      item(
+        "uwb-dv-bs-calc2",
+        "Calculus II",
+        ["MATH& 152"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
+      ),
+      item(
+        "uwb-dv-bs-calc3",
+        "Calculus III",
+        ["MATH& 163"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
+      ),
+      item(
+        "uwb-dv-bs-linear",
+        "Linear algebra or matrix algebra",
+        ["MATH 240"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
+      ),
+      item(
+        "uwb-dv-bs-cs123",
+        "CS 123 for the strongest programming finish",
+        ["CS 123"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it gives the strongest programming launch for the B.S. path."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwb-dv-bs-visual",
+        "Visual communication or design support",
+        ["ART 130", "PHOTO 101", "CMST& 210", "JOURN 101"],
+        "These do not replace the Bothell Data Visualization core, but they are strong Green River supports for visual storytelling and presentation work."
+      ),
+    ],
+    advisorFlags: [
+      "The B.S. and B.A. share part of the same core, but the B.S. adds a real extra quantitative spine. Do not assume the two versions can use the same lower-division plan.",
+      "The IAS lower-division cap still applies, so the visual-support classes should stay deliberate rather than turning into random extra electives.",
+    ],
+    involvementIdeas: [
+      "Use one analytics, GIS, design, journalism, or technical-communication activity that shows both quantitative and visual storytelling readiness.",
+    ],
+    projectIdeas: [
+      "Build one visualization project such as a dashboard, interactive chart set, or spatial-data story with a short explanation of the audience, methods, and design choices.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-developmental-and-youth-studies",
+    campusId: "uw-bothell",
+    title: "Developmental and Youth Studies (BA)",
+    shortTitle: "DYS",
+    summary:
+      "Bothell Developmental and Youth Studies is not a long STEM-style prerequisite major. The Green River job is to finish the writing baseline, build a coherent psychology / education / youth-development story, and avoid wasting space on unrelated electives before the School of Educational Studies core begins.",
+    applicationWindow:
+      "Apply after the first composition course and the broader transfer baseline are complete.",
+    startQuarter: "After entry review",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "DYS is best handled as a custom education-and-youth-development path rather than forcing it into a stock STEM or business track.",
+      "The published admissions page emphasizes transferable credits and writing readiness more than a narrow prerequisite ladder.",
+    ],
+    financialAidNote:
+      "Keep the Green River plan centered on education, psychology, and youth-development support instead of letting open electives turn random before transfer.",
+    applicationChecklist: [
+      item(
+        "uwb-dys-engl101",
+        "English composition",
+        ["ENGL& 101"],
+        "The DYS admissions page expects one composition course equivalent to BWRIT 134 before entry review."
+      ),
+    ],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwb-dys-psych",
+        "Foundational psychology support",
+        ["PSYC& 100", "PSYC& 200", "PSYC& 220"],
+        "These are strong Green River supports because the DYS major later leans on developmental, social, and learning-focused work."
+      ),
+      itemAny(
+        "uwb-dys-child-development",
+        "Child, youth, and education support",
+        ["ECED& 105", "ECED& 132", "ECED& 160", "ECED& 170", "EDUC& 205"],
+        "These do not replace the fixed School of Educational Studies core, but they are strong supports before the DYS foundation and applied-experience sequence begins."
+      ),
+    ],
+    advisorFlags: [
+      "DYS is not built around a long prerequisite ladder, so the real pre-transfer priority is a coherent education / youth-development story rather than maximum course stacking.",
+      "Students still need enough general-education space left after transfer for the wider UW Bothell bachelor's requirements.",
+    ],
+    involvementIdeas: [
+      "Use one tutoring, mentoring, childcare, school, after-school, or youth-program role to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Document one youth, education, or community-engagement project with clear goals, reflection, and evidence of the student's role and impact.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-earth-system-science",
+    campusId: "uw-bothell",
+    title: "Earth System Science (BS)",
+    shortTitle: "ESS",
+    summary:
+      "Bothell Earth System Science is a broad environmental-science degree with an earth-systems entry signal rather than one narrow front-door prerequisite stack. Green River should cover writing, one clear earth-systems intro course, and early math-and-science support before the wider ESS science core begins.",
+    applicationWindow:
+      "Use the current Earth System Science page and strongest-term entry guidance.",
+    startQuarter: "After entry review",
+    bestTrackId: "999P",
+    bestTrackSummary: buildGeneratedTrackSummary("999P"),
+    whyThisTrack: [
+      "ESS still benefits from a real calculus-and-science launch even though the public page frames entry more broadly than an engineering major does.",
+      "999P leaves room for math and science support without forcing the student into a narrower engineering-only path.",
+    ],
+    financialAidNote:
+      "Keep the Green River plan earth- and science-facing so the student reaches Bothell with visible environmental and quantitative preparation instead of scattered electives.",
+    applicationChecklist: [
+      item(
+        "uwb-ess-engl101",
+        "English composition",
+        ["ENGL& 101"],
+        "The current Earth System Science page expects B WRIT 134 or an equivalent composition course before entry."
+      ),
+      itemAny(
+        "uwb-ess-earth-intro",
+        "One introductory Earth System Science course",
+        ["GEOL& 101", "GEOG& 100", "OCEA& 101", "ASTR& 100"],
+        "The ESS page expects one introductory Earth System Science course from the approved list before entry."
+      ),
+      itemAny(
+        "uwb-ess-math-science-intro",
+        "One introductory math or science course from the ESS preparation lists",
+        ["MATH& 151", "CHEM& 161", "PHYS& 221", "MATH& 146"],
+        "The ESS page also expects one introductory math-and-science preparation course from the approved lists before entry."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      item(
+        "uwb-ess-calc",
+        "Calculus I",
+        ["MATH& 151"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the ESS degree still uses calculus in the introductory science block either way."
+      ),
+      itemAny(
+        "uwb-ess-stats",
+        "Statistics",
+        ["MATH& 146", "MATH 256"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the ESS degree still uses statistics in the introductory science block either way."
+      ),
+      item(
+        "uwb-ess-chem",
+        "Introductory chemistry start",
+        ["CHEM& 161"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the ESS degree still uses introductory chemistry either way."
+      ),
+      itemAny(
+        "uwb-ess-physics",
+        "Introductory physics start",
+        ["PHYS& 114", "PHYS& 221"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the ESS degree still uses introductory physics either way."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwb-ess-spatial",
+        "Earth, GIS, or spatial-science support",
+        ["GIS 202", "GEOG& 200", "GEOL 200", "ENV S 204"],
+        "These do not replace the ESS core, but they are strong Green River supports for spatial, earth-systems, and environmental-methods work before transfer."
+      ),
+    ],
+    advisorFlags: [
+      "The public ESS page is category-based in places, so the exact science mix should still be confirmed with advising after transfer.",
+      "Students should keep enough space open for the larger upper-division Earth Systems Ascent block rather than overfilling lower-division electives.",
+    ],
+    involvementIdeas: [
+      "Use one GIS, geology, sustainability, environmental, or field-based activity to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Document one earth-science, mapping, climate, or sustainability project with data, method, and a short explanation of the environmental question.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-economics",
+    campusId: "uw-bothell",
+    title: "Economics (BS)",
+    shortTitle: "Economics",
+    summary:
+      "Bothell Economics is a STEM-designated economics degree with a clear five-course entry baseline. Green River should finish that prerequisite set cleanly before transfer, then use any extra room for business or accounting support that strengthens the later BBECN and BBUS core.",
+    applicationWindow:
+      "Apply after the five published Economics prerequisites are complete.",
+    startQuarter: "After prerequisite completion",
+    bestTrackId: "999P",
+    bestTrackSummary: buildGeneratedTrackSummary("999P"),
+    whyThisTrack: [
+      "Economics still depends on calculus, statistics, and the two introductory economics courses before transfer.",
+      "999P preserves the quantitative backbone more cleanly than a lighter custom path while still leaving room for economics support.",
+    ],
+    financialAidNote:
+      "Stay on a quantitative path and place the five published Economics prerequisites deliberately so the student does not look transfer-ready while still missing calculus, statistics, or advanced writing.",
+    applicationChecklist: [
+      itemAny(
+        "uwb-econ-stats",
+        "Statistics",
+        ["MATH& 146", "MATH 256"],
+        "The current Bothell Economics prerequisite page lists statistics in the five-course entry baseline."
+      ),
+      itemAny(
+        "uwb-econ-calc",
+        "Calculus",
+        ["MATH& 148", "MATH& 151"],
+        "The current Bothell Economics prerequisite page lists either business calculus or standard calculus in the five-course entry baseline."
+      ),
+      item(
+        "uwb-econ-micro",
+        "Microeconomics",
+        ["ECON& 201"],
+        "Bothell Economics lists Microeconomics in the published prerequisite set."
+      ),
+      item(
+        "uwb-econ-macro",
+        "Macroeconomics",
+        ["ECON& 202"],
+        "Bothell Economics lists Macroeconomics in the published prerequisite set."
+      ),
+      item(
+        "uwb-econ-advanced-writing",
+        "Advanced composition",
+        ["ENGL 128"],
+        "Bothell Economics lists advanced composition in the entry prerequisite set. The public prerequisite page uses ENG& 102 as a common transfer match; ENGL 128 is the clearest currently tracked Green River advanced-writing fit."
+      ),
+    ],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwb-econ-business-support",
+        "Business or accounting support for the later BBUS and BBECN core",
+        ["ACCT& 201", "BUS& 101"],
+        "These do not replace the five entry prerequisites, but they are useful Green River supports because the Bothell Economics core later overlaps with BBUS coursework."
+      ),
+    ],
+    advisorFlags: [
+      "All entry pathways use the same five prerequisites, so do not treat transfer-source differences as permission to skip any one of them.",
+      "Economics is a STEM-designated Bothell degree, so it is worth keeping the math and statistics preparation strong instead of aiming only for the minimum entry set.",
+    ],
+    involvementIdeas: [
+      "Use one economics, research, data, tutoring, business, or policy-facing activity to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Build one economics or policy analysis project with data, charts, and a short explanation of the question, method, and conclusion.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-educational-studies-elementary-education",
+    campusId: "uw-bothell",
+    title: "Educational Studies: Elementary Education (BA)",
+    shortTitle: "Elementary Ed",
+    summary:
+      "Bothell Elementary Education now allows direct entry into the option, but the strongest Green River launch still starts with composition, child-development support, and quantitative readiness before the cohorted teaching sequence begins.",
+    applicationWindow:
+      "Use the current declaration cycle and teacher-certification deadlines.",
+    startQuarter: "Autumn preferred",
+    bestTrackId: "999B",
+    bestTrackSummary: buildGeneratedTrackSummary("999B"),
+    whyThisTrack: [
+      "Elementary Education is not a STEM-heavy degree, but 999B still keeps writing and quantitative preparation visible without pushing the student into an engineering or science-first path.",
+      "The endorsement and teacher-preparation finish works best when early education and child-development support are already in place before transfer.",
+    ],
+    financialAidNote:
+      "Keep the Green River plan centered on writing, education, child-development, and quantitative breadth instead of drifting into unrelated electives before the cohorted teacher-prep block starts.",
+    applicationChecklist: [
+      item(
+        "uwb-elementary-ed-engl101",
+        "English composition",
+        ["ENGL& 101"],
+        "The current Elementary Education declaration baseline requires one composition course equivalent to B WRIT 134 with at least a 2.0."
+      ),
+    ],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwb-elementary-ed-child-development",
+        "Child-development or education foundation",
+        ["ECED& 105", "ECED& 132", "PSYC& 200", "EDUC& 205"],
+        "These do not replace the cohorted Bothell teaching sequence, but they are strong Green River supports before the Elementary Education foundations and methods courses begin."
+      ),
+      itemAny(
+        "uwb-elementary-ed-quantitative",
+        "Elementary-math or quantitative support",
+        ["MATH& 141", "MATH& 148", "MATH& 151", "MATH& 146"],
+        "Elementary Education still includes substantial endorsement and teaching-method breadth, so one intentional math or statistics course is a useful head start before transfer."
+      ),
+    ],
+    advisorFlags: [
+      "The direct-entry Elementary Education option still relies on state basic-skills and certification requirements that Green River coursework alone cannot satisfy.",
+      "The final dual-endorsement block, NES / WEST-E testing, and student-teaching timeline should still be confirmed with Bothell advising.",
+    ],
+    involvementIdeas: [
+      "Use one tutoring, mentoring, school, childcare, or youth-program role to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Document one education or youth-development project with clear goals, reflection, and evidence of the student's role and impact.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-electrical-engineering",
+    campusId: "uw-bothell",
+    title: "Electrical Engineering (BS)",
+    shortTitle: "EE",
+    summary:
+      "Bothell Electrical Engineering is a calculus-and-physics entry path. Green River should finish composition, Calculus I-II, and calculus-based Physics I before admission, then use the remaining time for the strongest math, physics, and circuit preparation before transfer.",
+    applicationWindow:
+      "Apply through the current autumn or winter EE cycle once the published prerequisites are complete.",
+    startQuarter: "Autumn or winter",
+    bestTrackId: "999P",
+    bestTrackSummary: buildGeneratedTrackSummary("999P"),
+    whyThisTrack: [
+      "EE still depends on the standard engineering math and calculus-based physics launch.",
+      "999P is the cleanest Bothell EE base because it preserves calculus, physics, and computing flexibility without forcing the student off the core engineering spine.",
+    ],
+    financialAidNote:
+      "Stay on an engineering-heavy path and do not postpone calculus or physics, because the Bothell EE admission review is sensitive to the core STEM prerequisite grades.",
+    applicationChecklist: [
+      item(
+        "uwb-ee-engl101",
+        "English composition",
+        ["ENGL& 101"],
+        "Bothell EE requires English composition in the admission baseline."
+      ),
+      itemStemCalcCredits(
+        "uwb-ee-calc12",
+        "Calculus I and II",
+        2,
+        "The Bothell EE admission baseline requires the first two calculus courses before transfer."
+      ),
+      item(
+        "uwb-ee-physics1",
+        "Calculus-based Physics I",
+        ["PHYS& 221"],
+        "Bothell EE requires Engineering Physics I in the admission baseline."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      item(
+        "uwb-ee-calc3",
+        "Calculus III",
+        ["MATH& 163"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because later EE math and engineering work still benefit from it either way."
+      ),
+      item(
+        "uwb-ee-diffeq",
+        "Differential equations",
+        ["MATH& 254"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because later EE math and engineering work still benefit from it either way."
+      ),
+      item(
+        "uwb-ee-circuits",
+        "Circuit preparation",
+        ["ENGR& 204"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it is the clearest Green River head start for the Bothell EE core."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      item(
+        "uwb-ee-physics2",
+        "Physics II for a stronger engineering launch",
+        ["PHYS& 222"],
+        "Physics II is not part of the published front-door admission minimum, but it still strengthens the transition into the later EE curriculum."
+      ),
+      item(
+        "uwb-ee-programming",
+        "Programming support",
+        ["CS 121"],
+        "Programming is not the visible EE admission minimum, but one programming course is still a useful Green River add-on before the upper-division engineering sequence begins."
+      ),
+    ],
+    advisorFlags: [
+      "The public EE admissions page includes GPA thresholds in the STEM prerequisites, so grade quality matters as much as simple completion.",
+      "Final EE elective choices and capstone sequencing should still be checked against the current curriculum page and planning worksheet.",
+    ],
+    involvementIdeas: [
+      "Use one engineering, robotics, build, tutoring, or technical-team activity to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Build one hardware, circuits, embedded, or electrical-systems project with a short explanation of the design choices and results.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-environmental-studies",
+    campusId: "uw-bothell",
+    title: "Environmental Studies (BA)",
+    shortTitle: "Environmental Studies",
+    summary:
+      "Bothell Environmental Studies has no formal prerequisite gate, so the Green River job is to build a clean writing-and-environment foundation before the daytime Bothell core begins.",
+    applicationWindow:
+      "Direct entry or declaration in good standing; use the current IAS timing guidance.",
+    startQuarter: "Varies",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "Environmental Studies is broader and less front-door-prescriptive than an engineering or science major, so a custom environmental path is more honest than forcing it into a stock track.",
+      "The strongest pre-transfer preparation is composition plus deliberate environmental, spatial, and social-context support.",
+    ],
+    financialAidNote:
+      "Keep the Green River plan environment-facing and writing-ready instead of filling space with unrelated electives before the Bothell ENST core begins.",
+    applicationChecklist: [],
+    beforeEnrollmentChecklist: [
+      item(
+        "uwb-enst-second-writing",
+        "Two composition courses total",
+        ["ENGL& 101", "ENGL 128"],
+        "Environmental Studies requires 10 credits of composition in the degree, so it is good to finish the writing pair before or during UW enrollment."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwb-enst-environment-foundation",
+        "Environmental or earth-systems foundation",
+        ["ENV S 204", "GEOL& 101", "GEOG& 100", "OCEA& 101"],
+        "These do not replace the fixed Bothell Environmental Studies core, but they are the clearest Green River foundations before the upper-division ENST sequence begins."
+      ),
+      itemAny(
+        "uwb-enst-spatial",
+        "GIS or spatial support",
+        ["GIS 202", "GEOG& 200", "GEOG 205"],
+        "BGIS 342 is part of the Bothell Environmental Studies core, so earlier GIS or mapping work is a useful Green River head start."
+      ),
+    ],
+    advisorFlags: [
+      "Environmental Studies has no formal prerequisite gate, but ENST courses are offered primarily during daytime hours, so timing after transfer still matters.",
+      "Because the public page is category-based, the final elective mix should still be reviewed with advising once the student's focus is clearer.",
+    ],
+    involvementIdeas: [
+      "Use one sustainability, climate, GIS, environmental, or field-based activity to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Document one environmental, mapping, climate, or sustainability project with data, method, and a short explanation of the issue and response.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-gender-women-and-sexuality-studies",
+    campusId: "uw-bothell",
+    title: "Gender, Women, & Sexuality Studies (BA)",
+    shortTitle: "GWSS",
+    summary:
+      "Bothell GWSS has no formal prerequisite gate, so the strongest Green River plan is a writing-first humanities and social-science path that already shows feminist, social, historical, or cultural inquiry before transfer.",
+    applicationWindow:
+      "Direct entry or declaration in good standing; use the current IAS timing guidance.",
+    startQuarter: "Varies",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "GWSS is not a stock STEM or business transfer path, so a custom humanities-and-social-science route is more honest than forcing it into a fixed track.",
+      "The major page emphasizes prior coursework in feminist studies, history, sociology, culture, and literature more than a rigid front-door prerequisite ladder.",
+    ],
+    financialAidNote:
+      "Keep the Green River plan centered on writing, history, sociology, and related social inquiry instead of filling space with unrelated electives before the upper-division GWSS core begins.",
+    applicationChecklist: [],
+    beforeEnrollmentChecklist: [
+      item(
+        "uwb-gwss-second-writing",
+        "Two composition courses total",
+        ["ENGL& 101", "ENGL 128"],
+        "GWSS requires 10 composition credits in the degree, so it is good to finish the writing pair before or during UW enrollment."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwb-gwss-social-inquiry",
+        "Gender, society, and social-inquiry support",
+        ["SOC& 101", "PSYC& 100", "AMES 100", "ANTH& 100"],
+        "These do not replace the Bothell GWSS core, but they are strong Green River foundations for the later upper-division feminist and social-justice-focused work."
+      ),
+      itemAny(
+        "uwb-gwss-history-culture",
+        "History or culture support",
+        ["HIST& 136", "HIST& 137", "HUMAN 100", "ENGL& 244"],
+        "GWSS later depends heavily on historical, cultural, and critical reading work, so one of these is a useful Green River add-on."
+      ),
+    ],
+    advisorFlags: [
+      "GWSS has no formal prerequisite gate, but the major still relies on a strong reading and writing foundation after transfer.",
+      "The public page is category-based after the core, so the final upper-division course mix should still be reviewed with advising.",
+    ],
+    involvementIdeas: [
+      "Use one equity, advocacy, community, literature, social-justice, or cultural-organization activity to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Build one humanities or social-analysis project with sources, argument, and a short explanation of the issue, perspective, and conclusion.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-global-studies",
+    campusId: "uw-bothell",
+    title: "Global Studies (BA)",
+    shortTitle: "Global Studies",
+    summary:
+      "Bothell Global Studies has no formal prerequisite gate, so the strongest Green River start is a writing-heavy international, historical, language, and social-science path before the current GST core begins.",
+    applicationWindow:
+      "Direct entry or declaration in good standing; use the current IAS timing guidance.",
+    startQuarter: "Varies",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "Global Studies is best handled as a custom international and social-science path rather than forcing it into a stock business or STEM track.",
+      "The degree page emphasizes composition, methods, and globally focused humanities / social-science preparation more than a rigid lower-division prerequisite ladder.",
+    ],
+    financialAidNote:
+      "Keep the Green River plan centered on writing, world history, politics, and language support instead of using open space on unrelated electives.",
+    applicationChecklist: [],
+    beforeEnrollmentChecklist: [
+      item(
+        "uwb-global-second-writing",
+        "Two composition courses total",
+        ["ENGL& 101", "ENGL 128"],
+        "Global Studies requires 10 composition credits in the degree, so it is good to finish the writing pair before or during UW enrollment."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwb-global-politics-history",
+        "Global politics or history foundation",
+        ["POLS& 101", "POLS& 203", "HIST 101", "HIST& 214"],
+        "These are strong Green River supports before the Global Studies core because the major later depends on international, historical, and policy-oriented work."
+      ),
+      itemAny(
+        "uwb-global-language",
+        "World-language support",
+        ["SPAN& 121", "FRCH& 121", "JAPN& 121", "CHIN& 121"],
+        "Language study is not a formal declaration prerequisite, but it is still a strong Green River add-on for students building a global-studies profile."
+      ),
+    ],
+    advisorFlags: [
+      "Global Studies has no formal prerequisite gate, but the methods-course choices after transfer mean students should keep some quantitative, GIS, or policy-method flexibility open.",
+      "Because the degree page is category-based, the final upper-division course mix should still be checked with advising.",
+    ],
+    involvementIdeas: [
+      "Use one internationally focused, language, cultural, diplomacy, community, or policy activity to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Document one global, international, migration, language, or policy project with sources, analysis, and a short explanation of the issue and stakes.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-health-studies",
+    campusId: "uw-bothell",
+    title: "Health Studies (BA)",
+    shortTitle: "Health Studies",
+    summary:
+      "Bothell Health Studies is a broad health-focused degree with a real lower-division breadth baseline. Green River should finish the writing, reasoning, and area-of-inquiry spread first, then add health-facing science and social-context support before transfer.",
+    applicationWindow:
+      "Apply through the current autumn, winter, or spring Health Studies cycle once the breadth baseline is complete.",
+    startQuarter: "Autumn, winter, or spring",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "Health Studies is broader than a single science-prep path, so a custom health-facing breadth plan is more honest than forcing it into a stock track.",
+      "The public admissions page explicitly emphasizes writing, reasoning, and area-of-inquiry breadth before the Health Studies core begins.",
+    ],
+    financialAidNote:
+      "Keep the Green River plan health- and breadth-focused so the student reaches Bothell with the published baseline done instead of a transcript full of unrelated electives.",
+    applicationChecklist: [
+      item(
+        "uwb-health-engl101",
+        "First composition course",
+        ["ENGL& 101"],
+        "Health Studies requires two composition courses before application, so the first composition course should be finished early."
+      ),
+      item(
+        "uwb-health-engl128",
+        "Second composition or advanced writing",
+        ["ENGL 128"],
+        "Health Studies requires two composition courses before application. ENGL 128 is the clearest currently tracked Green River second-writing fit."
+      ),
+      itemAny(
+        "uwb-health-reasoning",
+        "Reasoning course with statistics preferred",
+        ["MATH& 146", "MATH 256", "MATH& 148"],
+        "The current Health Studies admissions page requires 5 credits of Reasoning, with statistics preferred."
+      ),
+      itemCount(
+        "uwb-health-social-science-breadth",
+        "10 credits of Social Sciences",
+        ["PSYC& 100", "PSYC& 200", "SOC& 101", "ECON& 201"],
+        2,
+        "Health Studies requires 10 credits of Social Sciences before application."
+      ),
+      itemCount(
+        "uwb-health-natural-science-breadth",
+        "10 credits of Natural Sciences",
+        ["BIOL& 100", "BIOL& 211", "AP 100", "NUTR& 101"],
+        2,
+        "Health Studies requires 10 credits of Natural Sciences before application."
+      ),
+    ],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwb-health-health-foundation",
+        "Health and life-science support",
+        ["NUTR& 101", "HL ED 190", "BIOL& 241", "BIOL& 242"],
+        "These do not replace the Bothell Health Studies core, but they are strong Green River supports before the later health-focused elective blocks begin."
+      ),
+    ],
+    advisorFlags: [
+      "The public admissions page also requires 10 Arts and Humanities credits before application, so students should still confirm that breadth area while building the final Green River plan.",
+      "The exact elective mix depends on the student's intended health pathway and the annually approved Health Studies elective lists.",
+    ],
+    involvementIdeas: [
+      "Use one health, community, clinic, wellness, caregiving, or public-health-facing activity to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Document one health, wellness, community, or policy project with clear goals, data or evidence, and a short explanation of the impact.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-interactive-media-design",
+    campusId: "uw-bothell",
+    title: "Interactive Media Design (BA)",
+    shortTitle: "IMD",
+    summary:
+      "Bothell Interactive Media Design is an archival planner row only. The public program is permanently suspended, so the planner can only preserve the old admission and studio-pattern guidance for students who were already in the pipeline.",
+    applicationWindow:
+      "No current admission cycle. Use archived materials only if the student is already tied to the suspended program.",
+    startQuarter: "Archival only",
+    bestTrackId: "999B",
+    bestTrackSummary: buildGeneratedTrackSummary("999B"),
+    whyThisTrack: [
+      "The archived IMD materials mix writing, design, web/programming, and quantitative preparation rather than a heavy STEM ladder.",
+      "999B is the closest stock base because it leaves room for design, communication, and business-facing digital-media support.",
+    ],
+    financialAidNote:
+      "Treat IMD as an archival exception only. Do not build a new student around this row if the program is no longer accepting applicants.",
+    applicationChecklist: [
+      item(
+        "uwb-imd-engl101",
+        "English composition",
+        ["ENGL& 101"],
+        "The archived IMD materials include composition in the prerequisite baseline."
+      ),
+      itemAny(
+        "uwb-imd-design-foundation",
+        "Interactive media or design foundation",
+        ["ART& 100", "ART 130", "CMST& 210", "JOURN 101"],
+        "The archived IMD worksheet expects one introductory course in interactive media, design thinking, or visual arts."
+      ),
+      itemAny(
+        "uwb-imd-programming",
+        "Web development or programming foundation",
+        ["CS 121", "CS 122"],
+        "The archived IMD worksheet expects one web-development or programming course before admission review."
+      ),
+      itemAny(
+        "uwb-imd-quant",
+        "Statistics or quantitative-methods foundation",
+        ["MATH& 146", "MATH 256"],
+        "The archived IMD worksheet expects one statistics, quantitative-methods, or data-visualization course."
+      ),
+    ],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwb-imd-visual-media",
+        "Visual and media support",
+        ["PHOTO 101", "ART 251", "JOURN 205", "CMST& 220"],
+        "These do not replace the suspended Bothell IMD studio sequence, but they are the clearest archived Green River supports for students still finishing that older path."
+      ),
+    ],
+    advisorFlags: [
+      "IMD is permanently suspended and no longer accepts applications, so this row should be treated as archival guidance only.",
+      "Any current student still finishing IMD should rely on adviser-approved archived materials rather than assuming the old public plan still runs unchanged.",
+    ],
+    involvementIdeas: [
+      "Use one design, media, web, storytelling, or portfolio activity to show fit if the student is still tied to the archived IMD path.",
+    ],
+    projectIdeas: [
+      "Build one interface, media, or digital-storytelling portfolio piece with a short explanation of the audience, design choices, and technical implementation.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-interdisciplinary-arts",
+    campusId: "uw-bothell",
+    title: "Interdisciplinary Arts (BA)",
+    shortTitle: "Interdisciplinary Arts",
+    summary:
+      "Bothell Interdisciplinary Arts has no formal prerequisite gate, so the strongest Green River launch is a writing-plus-creative-practice path with one clear artistic direction before the daytime IA core begins.",
+    applicationWindow:
+      "Direct entry or declaration in good standing; use the current IAS timing guidance.",
+    startQuarter: "Varies",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "Interdisciplinary Arts is broader than one studio discipline, so a custom creative path is more honest than forcing it into a stock transfer track.",
+      "The major page emphasizes prior visual, written, digital, or performing-arts experience more than a rigid lower-division prerequisite ladder.",
+    ],
+    financialAidNote:
+      "Keep the Green River plan centered on writing plus one or two deliberate artistic practice areas instead of taking scattered arts electives with no clear portfolio story.",
+    applicationChecklist: [],
+    beforeEnrollmentChecklist: [
+      item(
+        "uwb-ia-second-writing",
+        "Two composition courses total",
+        ["ENGL& 101", "ENGL 128"],
+        "Interdisciplinary Arts requires 10 composition credits in the degree, so it is good to finish the writing pair before or during UW enrollment."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwb-ia-arts-foundation",
+        "Visual, performing, or digital-arts foundation",
+        ["ART 130", "PHOTO 101", "DRMA& 101", "MUSC 101"],
+        "These do not replace the Bothell IA core, but they are strong Green River foundations before the art-studios, workshops, and upper-division interdisciplinary sequence begins."
+      ),
+      itemAny(
+        "uwb-ia-writing-creative",
+        "Writing or literary-arts support",
+        ["ENGL& 244", "ENGL& 245", "ENGL 239"],
+        "Interdisciplinary Arts often combines studio and written work, so one more writing- or literature-based course is a useful Green River support."
+      ),
+    ],
+    advisorFlags: [
+      "IA classes are offered primarily during daytime hours, so timing after transfer still matters even though there is no formal prerequisite gate.",
+      "Because the public page is category-based, the final studio and upper-division mix should still be reviewed with advising.",
+    ],
+    involvementIdeas: [
+      "Use one art, writing, music, theater, media, or creative-community activity to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Build one portfolio-ready creative project with a short explanation of the medium, intent, process, and final result.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-interdisciplinary-studies-individualized-study",
+    campusId: "uw-bothell",
+    title: "Interdisciplinary Studies: Individualized Study (BA)",
+    shortTitle: "Individualized Study",
+    summary:
+      "Bothell Individualized Study is a proposal-based degree. The Green River plan should stay broad but intentional: finish writing and reasoning, then begin a clear theme that can later be shaped into a faculty-reviewed portfolio proposal at Bothell.",
+    applicationWindow:
+      "Use the normal IAS timing, then build the proposal after transfer with faculty guidance.",
+    startQuarter: "Proposal-based",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "Individualized Study is explicitly student-designed, so a custom theme-based plan is more honest than pretending there is one frozen prerequisite ladder.",
+      "The public catalog emphasizes composition, reasoning, breadth, and a later faculty-reviewed proposal rather than one universal lower-division checklist.",
+    ],
+    financialAidNote:
+      "Keep the Green River plan theme-driven and coherent so the later faculty-reviewed proposal has an obvious foundation instead of looking like a pile of unrelated electives.",
+    applicationChecklist: [
+      item(
+        "uwb-individualized-engl101",
+        "English composition",
+        ["ENGL& 101"],
+        "The public Individualized Study model still sits inside the standard IAS composition expectations."
+      ),
+      itemAny(
+        "uwb-individualized-reasoning",
+        "Reasoning foundation",
+        ["MATH& 146", "MATH& 148", "MATH& 151"],
+        "The catalog keeps the normal IAS reasoning expectation in place before the proposal-based finish begins."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      item(
+        "uwb-individualized-second-writing",
+        "Second composition or advanced writing course",
+        ["ENGL 128"],
+        "It is good to complete a second writing course before or during UW enrollment because the later Individualized Study proposal and portfolio work are writing-heavy."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwb-individualized-theme-course",
+        "Theme-aligned starter course",
+        ["ENV S 204", "AMES 100", "ART 130", "CMST& 210", "GEOG& 200"],
+        "Choose the Green River course that best matches the student's intended proposal theme instead of pretending there is one fake universal course list for every Individualized Study student."
+      ),
+    ],
+    advisorFlags: [
+      "This is intentionally a proposal-based degree. The exact UW course list must stay faculty-approved rather than being treated like a frozen universal checklist.",
+      "Students normally apply to the individualized option after IAS coursework at Bothell, so the pre-transfer goal is coherent theme-building, not overfitting a fake major map.",
+    ],
+    involvementIdeas: [
+      "Use one activity that clearly matches the intended proposal theme so the later portfolio has a stronger story than coursework alone.",
+    ],
+    projectIdeas: [
+      "Document one theme-aligned project with clear goals, process, and reflection so it can later support the faculty-reviewed proposal and portfolio.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-law-economics-and-public-policy",
+    campusId: "uw-bothell",
+    title: "Law, Economics & Public Policy (BA)",
+    shortTitle: "LEPP",
+    summary:
+      "Bothell LEPP has a clearer front-door baseline than many IAS majors: writing, microeconomics, and American politics should be finished before declaration, then Green River can add policy, philosophy, and social-analysis support before transfer.",
+    applicationWindow:
+      "Declare after the published prerequisite set is complete and the student is ready for the daytime LEPP sequence.",
+    startQuarter: "Varies",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "LEPP is still best handled as a custom policy-and-social-science path rather than forcing it into a stock business or STEM track.",
+      "The major page publishes a real lower-division declaration baseline, so the Green River plan should finish that baseline first before adding broader policy support.",
+    ],
+    financialAidNote:
+      "Keep the Green River plan centered on writing, economics, policy, and politics instead of filling space with unrelated electives before the LEPP core begins.",
+    applicationChecklist: [
+      item(
+        "uwb-lepp-engl101",
+        "First composition course",
+        ["ENGL& 101"],
+        "LEPP requires two composition courses before declaration, so the first writing course should be finished early."
+      ),
+      item(
+        "uwb-lepp-engl128",
+        "Second composition or advanced writing course",
+        ["ENGL 128"],
+        "LEPP requires two composition courses before declaration. ENGL 128 is the clearest currently tracked Green River second-writing fit."
+      ),
+      item(
+        "uwb-lepp-micro",
+        "Microeconomics",
+        ["ECON& 201"],
+        "LEPP requires introductory microeconomics before declaration."
+      ),
+      item(
+        "uwb-lepp-government",
+        "American government or American politics",
+        ["POLS& 101"],
+        "LEPP requires one American government or American politics course before declaration."
+      ),
+    ],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwb-lepp-policy-support",
+        "Policy, law, or social-analysis support",
+        ["BUS& 201", "PHIL& 101", "SOC& 101", "CJ& 101"],
+        "These do not replace the LEPP core, but they are strong Green River supports before the later policy-foundation and policy-problem blocks begin."
+      ),
+    ],
+    advisorFlags: [
+      "LEPP publishes upper-division course buckets instead of one single fixed finish, so the final Skills and Methods / Policy Foundation / Policy Problem mix should still be checked with advising.",
+      "LEPP courses are offered primarily during daytime hours, so start-quarter timing after transfer still matters.",
+    ],
+    involvementIdeas: [
+      "Use one policy, government, law, community, debate, advocacy, or public-service activity to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Build one policy or social-analysis project with sources, argument, and a short explanation of the problem, stakeholders, and proposed response.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-mathematical-thinking-and-visualization",
+    campusId: "uw-bothell",
+    title: "Mathematical Thinking & Visualization (BA)",
+    shortTitle: "MTV",
+    summary:
+      "Bothell Mathematical Thinking & Visualization is now a legacy continuing-student row because the major shifted into Data Visualization. For students still attached to MTV, the Green River plan should cover calculus, statistics, light programming, and visual-design support before the archived Bothell finish.",
+    applicationWindow:
+      "Legacy / continuing-student row only. Use adviser-approved archived guidance.",
+    startQuarter: "Legacy only",
+    bestTrackId: "999P",
+    bestTrackSummary: buildGeneratedTrackSummary("999P"),
+    whyThisTrack: [
+      "The legacy MTV row still combines math, visualization, and a little programming rather than a heavy engineering-only spine.",
+      "999P is still the closest stock base because it keeps quantitative and computing support visible without forcing the student into a different active major.",
+    ],
+    financialAidNote:
+      "Treat MTV as a legacy exception only. Keep the plan coherent for a continuing student, but do not aim new students into the retired path.",
+    applicationChecklist: [
+      itemAny(
+        "uwb-mtv-calc",
+        "One quarter of calculus",
+        ["MATH& 151", "MATH& 148"],
+        "The legacy MTV page lists one quarter of calculus in the minimum prerequisite baseline."
+      ),
+      itemAny(
+        "uwb-mtv-stats",
+        "One quarter of statistics",
+        ["MATH& 146", "MATH 256"],
+        "The legacy MTV page lists one quarter of statistics in the minimum prerequisite baseline."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      item(
+        "uwb-mtv-calc2",
+        "Second-quarter calculus",
+        ["MATH& 152"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the archived MTV page recommends a second calculus course."
+      ),
+      item(
+        "uwb-mtv-programming",
+        "Early programming support",
+        ["CS 121"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the archived MTV page recommends early programming."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwb-mtv-visual",
+        "Interaction design or visual-art support",
+        ["ART 130", "PHOTO 101", "CMST& 210"],
+        "These do not replace the archived MTV upper division, but they are the clearest Green River visual-support courses for students still finishing that older path."
+      ),
+    ],
+    advisorFlags: [
+      "MTV is no longer accepting new students and changed into Data Visualization, so this row should be treated as a continuing-students-only legacy path.",
+      "Any current student still finishing MTV should rely on adviser-approved legacy guidance rather than assuming the old public plan still runs unchanged.",
+    ],
+    involvementIdeas: [
+      "Use one visualization, design, media, or quantitative-storytelling activity to support the legacy MTV profile.",
+    ],
+    projectIdeas: [
+      "Build one visualization or design portfolio piece with a short explanation of the audience, methods, and visual choices.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-mathematics",
+    campusId: "uw-bothell",
+    title: "Mathematics (BS)",
+    shortTitle: "Mathematics",
+    summary:
+      "Bothell Mathematics is an open major, but the strongest Green River launch still looks like a full quantitative spine: calculus, differential equations, matrix algebra, multivariable calculus, and an early programming start.",
+    applicationWindow:
+      "Open major with autumn, winter, and spring entry.",
+    startQuarter: "Autumn, winter, or spring",
+    bestTrackId: "999P",
+    bestTrackSummary: buildGeneratedTrackSummary("999P"),
+    whyThisTrack: [
+      "Mathematics does not publish a strict prerequisite gate, but its strongest preparation is still the full math-and-programming foundation listed on the admissions page.",
+      "999P keeps the quantitative and computing spine visible without forcing a heavier engineering-only path.",
+    ],
+    financialAidNote:
+      "Stay on a math-heavy path and do not let electives crowd out the recommended pre-transfer math backbone, because the later Bothell math core is sequence-sensitive.",
+    applicationChecklist: [],
+    beforeEnrollmentChecklist: [
+      itemStemCalcSequence(
+        "uwb-math-calc123",
+        "Calculus I, II, and III",
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Bothell Mathematics core still needs the full calculus spine either way."
+      ),
+      item(
+        "uwb-math-diffeq",
+        "Differential equations",
+        ["MATH& 254"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Bothell Mathematics core still needs differential equations either way."
+      ),
+      item(
+        "uwb-math-multivariable",
+        "Multivariable calculus",
+        ["MATH 238"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Bothell Mathematics core still needs multivariable calculus either way."
+      ),
+      item(
+        "uwb-math-linear",
+        "Matrix algebra / linear algebra",
+        ["MATH 240"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Bothell Mathematics core still needs matrix algebra either way."
+      ),
+      item(
+        "uwb-math-programming",
+        "Introductory programming",
+        ["CS 121"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Bothell Mathematics core still includes an introductory programming path."
+      ),
+    ],
+    stayAtGrcChecklist: [],
+    advisorFlags: [
+      "The Bothell Mathematics admissions page says Washington-state Calculus III transfer work can still require an added Calculus IV course after transfer, so the exact calculus placement should be confirmed with advising.",
+      "The final probability-statistics and numerical-modeling choices are still option-style course decisions inside the math core, not one single fixed upper-division sequence.",
+    ],
+    involvementIdeas: [
+      "Use one tutoring, math club, problem-solving, data, or programming activity to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Build one math, modeling, or quantitative-analysis project with clear methods, results, and a short explanation of the reasoning.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-media-and-communications-studies",
+    campusId: "uw-bothell",
+    title: "Media & Communications Studies (BA)",
+    shortTitle: "MCS",
+    summary:
+      "Bothell Media and Communication Studies has no formal prerequisite gate, but the strongest Green River launch still looks like writing plus clear media-production and communication support before the Bothell MCS core begins.",
+    applicationWindow:
+      "Direct entry or declaration in good standing; use the current IAS timing guidance.",
+    startQuarter: "Varies",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "MCS is broader than one single media-production discipline, so a custom communication-and-media path is more honest than forcing it into a stock transfer track.",
+      "The major page emphasizes preparation in media production, critical thinking, and collaboration more than a strict front-door prerequisite ladder.",
+    ],
+    financialAidNote:
+      "Keep the Green River plan centered on writing, communication, and media-production support instead of filling space with unrelated electives before the MCS core begins.",
+    applicationChecklist: [],
+    beforeEnrollmentChecklist: [
+      item(
+        "uwb-mcs-second-writing",
+        "Two composition courses total",
+        ["ENGL& 101", "ENGL 128"],
+        "MCS requires 10 composition credits in the degree, so it is good to finish the writing pair before or during UW enrollment."
+      ),
+      itemAny(
+        "uwb-mcs-intro-media",
+        "Introductory media / communication foundation",
+        ["CMST& 210", "CMST& 220", "JOURN 101", "JOURN 205"],
+        "BISMCS 333 expects an introductory MCS-style course before enrollment, so one communication or media-production course is a useful Green River head start."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwb-mcs-production",
+        "Media production or storytelling support",
+        ["FILM 120", "JOURN 110", "CMST 238", "JOURN 207"],
+        "These do not replace the MCS upper division, but they are strong Green River supports before the later communication-practice and media-production coursework begins."
+      ),
+    ],
+    advisorFlags: [
+      "MCS publishes upper-division course buckets instead of one fixed sequence, so the final production and elective mix should still be checked with advising.",
+      "The major page is clear enough for a structured row, but the exact upper-division mix is still partly category-based after transfer.",
+    ],
+    involvementIdeas: [
+      "Use one journalism, media, podcast, film, social-media, or communications activity to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Build one media or communication portfolio piece with a short explanation of the audience, medium, and production choices.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-nursing-first-year-rn-to-bsn",
+    campusId: "uw-bothell",
+    title: "Nursing (BS), First Year RN to BSN (Direct Entry)",
+    shortTitle: "First Year RN-BSN",
+    summary:
+      "Bothell First Year RN-to-BSN is a specialized partner pathway, not a normal community-college transfer finish. The only honest Green River use here is understanding the nursing-school prerequisite spine that sits behind the ADN plus RN-to-BSN completion model.",
+    applicationWindow:
+      "Specialized partner pathway only; use School of Nursing advising.",
+    startQuarter: "Partner pathway only",
+    bestTrackId: "999O",
+    bestTrackSummary: buildGeneratedTrackSummary("999O"),
+    whyThisTrack: [
+      "The pathway still rests on the same science-heavy nursing prerequisite spine even though the public model is built around a university first-year plus partner-ADN route.",
+      "999O is the closest stock science base for the anatomy, microbiology, chemistry, and statistics preparation that sits behind the pathway.",
+    ],
+    financialAidNote:
+      "Do not treat this like a normal Green River transfer target. Use it only as pathway-specific reference guidance with nursing advising.",
+    applicationChecklist: buildBothellNursingPrereqChecklist("uwb-firstyear-rnbsn"),
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwb-firstyear-rnbsn-health-support",
+        "Health and human-development support",
+        ["NUTR& 101", "PSYC& 200", "HL ED 190"],
+        "These do not replace the ADN-plus-RN pathway, but they are reasonable Green River supports for students comparing nursing-related preparation paths."
+      ),
+    ],
+    advisorFlags: [
+      "This is a specialized first-year partner pathway, not a normal community-college transfer finish.",
+      "Use School of Nursing advising before treating it like a standard Green River transfer target, because the Everett partner ADN and NCLEX stages are central to the published model.",
+    ],
+    involvementIdeas: [
+      "Use one health, caregiving, clinic, volunteer, or community-health activity if the student is still comparing nursing pathways.",
+    ],
+    projectIdeas: [
+      "Document one health, patient-support, or community-wellness project with clear goals, reflection, and evidence of the student's role.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-nursing-rn-to-bsn",
+    campusId: "uw-bothell",
+    title: "Nursing (BS), RN to BSN",
+    shortTitle: "RN-BSN",
+    summary:
+      "Bothell RN-to-BSN is a degree-completion path for already licensed or pending-licensure nurses after ADN preparation. The Green River value is understanding the published prerequisite spine, not pretending this is a normal pre-major transfer finish.",
+    applicationWindow:
+      "Use the current RN-to-BSN cycle and School of Nursing advising.",
+    startQuarter: "Autumn or winter by site",
+    bestTrackId: "999O",
+    bestTrackSummary: buildGeneratedTrackSummary("999O"),
+    whyThisTrack: [
+      "The RN-to-BSN route still relies on the same science-heavy nursing prerequisite spine before the licensed-nurse completion year begins.",
+      "999O is the closest stock science base for the anatomy, microbiology, chemistry, and statistics preparation behind the program.",
+    ],
+    financialAidNote:
+      "Do not treat this as a normal direct Green River pre-major finish. The published route assumes an ADN or diploma and a current or pending Washington RN license.",
+    applicationChecklist: buildBothellNursingPrereqChecklist("uwb-rnbsn"),
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [],
+    advisorFlags: [
+      "This is a degree-completion path for already licensed or pending-licensure nurses after ADN preparation, not a normal direct Green River transfer finish.",
+      "The current or pending Washington RN license and ADN / diploma requirement cannot be replaced by extra Green River coursework.",
+    ],
+    involvementIdeas: [
+      "Use actual nursing, clinic, patient-care, or health-system experience if the student is already on the RN pathway.",
+    ],
+    projectIdeas: [
+      "Document one nursing, patient-care, or quality-improvement project with clear goals, evidence, and reflection on the student's role.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-physics-ba",
+    campusId: "uw-bothell",
+    title: "Physics (BA)",
+    shortTitle: "Physics BA",
+    summary:
+      "Bothell Physics B.A. uses the same calc-based physics entry baseline as the B.S., but it is the more flexible physics route after transfer. Green River should finish the published admissions stack first, then add chemistry and the next math course before the upper-division physics core begins.",
+    applicationWindow:
+      "Apply after Calculus I-II and the full calculus-based introductory physics sequence are complete.",
+    startQuarter: "Autumn, winter, or spring",
+    bestTrackId: "999P",
+    bestTrackSummary: buildGeneratedTrackSummary("999P"),
+    whyThisTrack: [
+      "Physics still depends on a real calculus-and-calc-based-physics launch before transfer.",
+      "999P keeps the math and physics backbone intact while still leaving room for the B.A.'s more flexible finish.",
+    ],
+    financialAidNote:
+      "Stay on a physics-heavy path and do not postpone the full calc-based physics sequence, because the Bothell Physics admission baseline requires it before transfer.",
+    applicationChecklist: buildBothellPhysicsApplicationChecklist("uwb-physics-ba"),
+    beforeEnrollmentChecklist: [
+      item(
+        "uwb-physics-ba-calc3",
+        "Calculus III",
+        ["MATH& 163"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Physics B.A. still needs the next calculus course either way."
+      ),
+      item(
+        "uwb-physics-ba-multivariable",
+        "Multivariable calculus",
+        ["MATH 238"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Physics B.A. still needs STMATH 207 either way."
+      ),
+      item(
+        "uwb-physics-ba-chem",
+        "General chemistry preparation",
+        FULL_GENERAL_CHEMISTRY_SEQUENCE,
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Physics B.A. still needs BCHEM 143/144 preparation either way."
+      ),
+    ],
+    stayAtGrcChecklist: [],
+    advisorFlags: [
+      "The public Physics page uses the same admission baseline for the B.A. and B.S., but the two degrees diverge after transfer, so do not treat them as identical long-term plans.",
+      "The B.A. is the more flexible physics option for students pairing physics with another focus.",
+    ],
+    involvementIdeas: [
+      "Use one tutoring, lab, astronomy, makerspace, or problem-solving activity to show physics fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Document one physics or quantitative lab / analysis project with methods, calculations, and a short explanation of the result.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-physics-bs",
+    campusId: "uw-bothell",
+    title: "Physics (BS)",
+    shortTitle: "Physics BS",
+    summary:
+      "Bothell Physics B.S. uses the same calc-based physics admissions stack as the B.A., but it adds a stronger math, programming, and upper-division physics spine after transfer.",
+    applicationWindow:
+      "Apply after Calculus I-II and the full calculus-based introductory physics sequence are complete.",
+    startQuarter: "Autumn, winter, or spring",
+    bestTrackId: "999P",
+    bestTrackSummary: buildGeneratedTrackSummary("999P"),
+    whyThisTrack: [
+      "The B.S. still depends on the same lower-division calculus and physics launch before transfer.",
+      "999P is the clearest Bothell Physics B.S. base because it keeps the math and programming support visible before the stronger B.S. finish begins.",
+    ],
+    financialAidNote:
+      "Stay on a physics-heavy path and do not let electives crowd out the later math and programming backbone that the Physics B.S. still needs after transfer.",
+    applicationChecklist: buildBothellPhysicsApplicationChecklist("uwb-physics-bs"),
+    beforeEnrollmentChecklist: [
+      item(
+        "uwb-physics-bs-calc3",
+        "Calculus III",
+        ["MATH& 163"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Physics B.S. still needs the next calculus course either way."
+      ),
+      item(
+        "uwb-physics-bs-diffeq",
+        "Differential equations",
+        ["MATH& 254"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Physics B.S. still needs STMATH 224 either way."
+      ),
+      item(
+        "uwb-physics-bs-multivariable",
+        "Multivariable calculus",
+        ["MATH 238"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Physics B.S. still needs STMATH 207 either way."
+      ),
+      item(
+        "uwb-physics-bs-linear",
+        "Linear algebra / matrix algebra",
+        ["MATH 240"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Physics B.S. still needs STMATH 208 either way."
+      ),
+      item(
+        "uwb-physics-bs-programming",
+        "Introductory programming",
+        ["CS 121"],
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Physics B.S. still includes a programming course either way."
+      ),
+    ],
+    stayAtGrcChecklist: [],
+    advisorFlags: [
+      "The public Physics page uses the same admission baseline for the B.A. and B.S., but the B.S. adds a stronger post-transfer math and programming spine.",
+      "The current B.S. concentrations are non-transcripted emphasis paths, so the final upper-division elective mix should still be reviewed with advising.",
+    ],
+    involvementIdeas: [
+      "Use one tutoring, lab, astronomy, makerspace, or problem-solving activity to show physics fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Document one physics, modeling, or lab-analysis project with methods, calculations, and a short explanation of the result.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-psychology",
+    campusId: "uw-bothell",
+    title: "Psychology (BA)",
+    shortTitle: "Psychology",
+    summary:
+      "Bothell Psychology has a real lower-division declaration baseline: intro psych, statistics, and the writing pair should be finished before transfer, then Green River can add more psychology support before the category-based upper division begins.",
+    applicationWindow:
+      "Declare after the published lower-division Psychology baseline is complete.",
+    startQuarter: "Varies",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "Psychology is not a stock STEM or business transfer path, but it does publish a real lower-division declaration baseline that should be finished before transfer.",
+      "The best Green River use is intro psych, statistics, and writing first, then more psychology support rather than random electives.",
+    ],
+    financialAidNote:
+      "Keep the Green River plan centered on psychology, statistics, and writing so the student reaches Bothell ready for the category-based upper-division psych finish.",
+    applicationChecklist: [
+      item(
+        "uwb-psych-intro",
+        "Introductory psychology",
+        ["PSYC& 100"],
+        "Bothell Psychology requires an introductory psychology course equivalent to BIS 170 before declaration."
+      ),
+      itemAny(
+        "uwb-psych-stats",
+        "Introductory statistics",
+        ["MATH& 146", "MATH 256"],
+        "Bothell Psychology requires one introductory statistics course before declaration."
+      ),
+      item(
+        "uwb-psych-engl101",
+        "First composition course",
+        ["ENGL& 101"],
+        "Bothell Psychology requires one composition course before declaration."
+      ),
+      item(
+        "uwb-psych-engl128",
+        "Advanced composition",
+        ["ENGL 128"],
+        "Bothell Psychology requires one advanced-composition course before declaration. ENGL 128 is the clearest currently tracked Green River fit."
+      ),
+    ],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwb-psych-support",
+        "Additional psychology support",
+        ["PSYC& 200", "PSYC& 220", "PSYC 225", "PSYC& 180"],
+        "These do not replace the category-based Bothell Psychology upper division, but they are strong Green River supports before the later 200-level, upper-division, and elective psych buckets begin."
+      ),
+    ],
+    advisorFlags: [
+      "Bothell Psychology publishes upper-division category buckets instead of one single locked sequence, so the final psych-core and elective mix should still be checked with advising.",
+      "The page also recommends preparation in additional psychology areas beyond the minimum declaration set, so students should use remaining elective room intentionally.",
+    ],
+    involvementIdeas: [
+      "Use one peer-mentoring, counseling-adjacent, childcare, tutoring, research, or community-support activity to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Document one psychology, behavior, learning, or community-wellness project with clear goals, method, and reflection.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-science-technology-and-society",
+    campusId: "uw-bothell",
+    title: "Science, Technology & Society (BA)",
+    shortTitle: "STS",
+    summary:
+      "Bothell STS has no formal prerequisite gate, but the strongest Green River launch still looks like writing plus a deliberate mix of philosophy, history, science, technology, and data support before the STS core begins.",
+    applicationWindow:
+      "Direct entry or declaration in good standing; use the current IAS timing guidance.",
+    startQuarter: "Varies",
+    bestTrackId: "999B",
+    bestTrackSummary: buildGeneratedTrackSummary("999B"),
+    whyThisTrack: [
+      "STS bridges humanities, policy, data, and technology rather than following one narrow STEM ladder.",
+      "999B is the closest stock base because it keeps some quantitative flexibility visible without pretending STS is just another engineering or science degree.",
+    ],
+    financialAidNote:
+      "Keep the Green River plan centered on writing, reasoning, and science-and-society support instead of filling space with unrelated electives before the category-based STS finish begins.",
+    applicationChecklist: [],
+    beforeEnrollmentChecklist: [
+      item(
+        "uwb-sts-second-writing",
+        "Two composition courses total",
+        ["ENGL& 101", "ENGL 128"],
+        "STS requires 10 composition credits in the degree, so it is good to finish the writing pair before or during UW enrollment."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwb-sts-humanities-foundation",
+        "Humanities or history foundation for STS",
+        ["PHIL& 101", "HIST 101", "HUMAN 100", "ENGL& 244"],
+        "These do not replace the STS core, but they are strong Green River supports before the later science-and-society upper-division work begins."
+      ),
+      itemAny(
+        "uwb-sts-data-tech-support",
+        "Data or technology support",
+        ["CS 121", "MATH& 146", "MATH 256"],
+        "STS still includes methods and data coursework, so one light computing or statistics course is a useful Green River head start."
+      ),
+    ],
+    advisorFlags: [
+      "STS changed requirements for Autumn 2024 and after, so students who entered under older requirements should still confirm the correct plan year with advising.",
+      "The public page is category-based after the core, so the final methods, data, and elective mix should still be reviewed with advising.",
+    ],
+    involvementIdeas: [
+      "Use one technology, ethics, policy, research, community, or science-communication activity to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Build one science-and-society or technology-and-ethics project with sources, analysis, and a short explanation of the issue and tradeoffs.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-bothell-society-ethics-and-human-behavior",
+    campusId: "uw-bothell",
+    title: "Society, Ethics & Human Behavior (BA)",
+    shortTitle: "SEHB",
+    summary:
+      "Bothell Society, Ethics and Human Behavior is now a continuing-students-only legacy row. The honest Green River plan is writing plus psychology, sociology, philosophy, and reasoning support before the archived SEHB finish.",
+    applicationWindow:
+      "Legacy / continuing-student row only. Use adviser-approved guidance.",
+    startQuarter: "Legacy only",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "SEHB is a legacy interdisciplinary humanities-and-social-science path rather than a current stock transfer route.",
+      "The public page recommends psychology, sociology, statistics, and philosophy support more than a rigid prerequisite ladder.",
+    ],
+    financialAidNote:
+      "Treat SEHB as a continuing-student legacy exception only. Keep the Green River plan coherent for the archived finish, but do not aim new students into the retired path.",
+    applicationChecklist: [
+      item(
+        "uwb-sehb-engl101",
+        "English composition",
+        ["ENGL& 101"],
+        "The public SEHB model still sits inside the normal IAS writing expectations."
+      ),
+      itemAny(
+        "uwb-sehb-reasoning",
+        "Reasoning or statistics foundation",
+        ["MATH& 146", "MATH 256", "MATH& 148"],
+        "The public SEHB materials recommend statistics as part of the strongest preparation before the archived upper division."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      item(
+        "uwb-sehb-second-writing",
+        "Second composition or advanced writing course",
+        ["ENGL 128"],
+        "It is good to complete a second writing course before or during UW enrollment because the SEHB finish is still writing-intensive."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwb-sehb-foundation",
+        "Psychology, sociology, or philosophy support",
+        ["PSYC& 100", "SOC& 101", "PHIL& 101", "POLS& 101"],
+        "These do not replace the legacy SEHB upper division, but they are the clearest Green River supports for continuing students still finishing the archived degree."
+      ),
+    ],
+    advisorFlags: [
+      "SEHB is no longer accepting new students and should be treated as a continuing-students-only legacy row.",
+      "Because SEHB is a legacy category-based finish, the final course mix should stay aligned with adviser-approved completion guidance.",
+    ],
+    involvementIdeas: [
+      "Use one ethics, psychology, sociology, community, or public-service activity to support the legacy SEHB profile.",
+    ],
+    projectIdeas: [
+      "Document one ethics, society, behavior, or community-analysis project with sources, reflection, and a short explanation of the issue and conclusion.",
+    ],
+  }),
   {
     id: "uw-tacoma-computer-engineering",
     campusId: "uw-tacoma",
@@ -1860,9 +5560,24 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
       item("tacoma-compe-engl", "English composition", ["ENGL& 101"]),
     ],
     beforeEnrollmentChecklist: [
-      item("tacoma-compe-phys123", "T PHYS 123", ["PHYS& 223"]),
-      item("tacoma-compe-math208", "TMATH 208", ["MATH 240"]),
-      item("tacoma-compe-cs123", "Strongest programming finish", ["CS 123"]),
+      item(
+        "tacoma-compe-phys123",
+        "T PHYS 123",
+        ["PHYS& 223"],
+        "Tacoma CompE lists T PHYS 123 in the added math-and-science block. Not part of the main transfer-admission classes, but good to complete before or during UW enrollment."
+      ),
+      item(
+        "tacoma-compe-math208",
+        "TMATH 208",
+        ["MATH 240"],
+        "Tacoma CompE adds TMATH 208 after the initial prerequisite stack, so MATH 240 is good to complete before or during UW enrollment because it's needed to finish the degree."
+      ),
+      item(
+        "tacoma-compe-cs123",
+        "Strongest programming finish",
+        ["CS 123"],
+        "TCSS 143-level readiness is the clearest public baseline; CS 123 is the strongest Green River finish if the student wants the smoothest upper-division start."
+      ),
     ],
     stayAtGrcChecklist: [],
     advisorFlags: [
@@ -1871,11 +5586,28 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
     involvementIdeas: ["Build one strong technical project while confirming Tacoma details."],
     projectIdeas: ["Create a hardware-plus-software portfolio project that can travel across campuses."],
     officialLinks: [
+      { label: "UW Tacoma Computer Engineering program details", url: "https://www.tacoma.uw.edu/set/programs/undergrad/cengr" },
       { label: "UW Tacoma SET catalog page", url: "https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html" },
       { label: "UW Tacoma transfer planning", url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer" },
       { label: "UW Tacoma course equivalency guide", url: "https://www.tacoma.uw.edu/admissions/course-equivalency-guide" },
     ],
+    degreeMapSections: [
+      degreeMapSection("uwt-compe-admission", "Computer Engineering admission baseline", [
+        "The current Computer Engineering page treats admission as competitive and requires Calculus I, II, and III, Differential Equations, Physics I and II, TCSS 142, TCSS 143, and TCES 215, with at least a 2.0 in each prerequisite and at least a 2.5 cumulative prerequisite GPA.",
+        "The page also says transfer students may need one additional approved lab-based science course to reach the 18 minimum lab-science credits required for graduation, and competitive applicants usually present grades around 3.0 or higher in the prerequisite technical courses.",
+      ]),
+      degreeMapSection("uwt-compe-core", "Computer Engineering required curriculum", [
+        "The current curriculum groups the degree into Computer Science fundamentals, Electrical Engineering fundamentals, Computer Systems, Math and Theory, Ethics and Society, and the Computer Engineering design sequence.",
+        "The required course set shown on the current page is TCES 203, TCSS 342, TCES 310, TCES 312, TCES 372, TCES 420, TCSS 321, TCES 380, TCSS 325, TCES 230, TCES 330, TCES 430, TEE 451, TCSS 460, and the senior-design sequence TCES 480, 481, and 482.",
+      ]),
+      degreeMapSection("uwt-compe-finish", "Computer Engineering electives and additional math/science", [
+        "Students also complete 10 credits from the approved senior-elective list, and the page explicitly allows students to use approved CSS senior electives as part of that space.",
+        "The additional math-and-science requirements currently listed on the page are TPHYS 123 and TMATH 208, on top of the admission prerequisites.",
+      ]),
+    ],
     manualReviewNotes: [
+      "Validated against the current UW Tacoma Computer Engineering program page and transfer-planning pages on April 2, 2026.",
+      "The public Autumn 2026 cycle currently shows a January 28, 2026 opening date and a July 1, 2026 priority deadline, so recheck the program page each year.",
       "Tacoma's equivalency guidance is still less centralized than Seattle, so check the intended entry year before finalizing the schedule.",
     ],
   },
@@ -1907,9 +5639,24 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
       item("tacoma-ee-engl", "English composition", ["ENGL& 101"]),
     ],
     beforeEnrollmentChecklist: [
-      itemAny("tacoma-ee-programming2", "Second programming course for stronger preparation", ["CS 122", "CS 123"]),
-      item("tacoma-ee-phys123", "T PHYS 123", ["PHYS& 223"]),
-      item("tacoma-ee-math208", "TMATH 208", ["MATH 240"]),
+      itemAny(
+        "tacoma-ee-programming2",
+        "Second programming course for stronger preparation",
+        ["CS 122", "CS 123"],
+        "Tacoma EE names one programming course for admission, but the degree later adds 5 more programming credits, so a second course is useful before transfer."
+      ),
+      item(
+        "tacoma-ee-phys123",
+        "T PHYS 123",
+        ["PHYS& 223"],
+        "Tacoma EE lists T PHYS 123 in the additional math-and-science block. Not part of the main transfer-admission classes, but good to complete before or during UW enrollment."
+      ),
+      item(
+        "tacoma-ee-math208",
+        "TMATH 208",
+        ["MATH 240"],
+        "Tacoma EE adds TMATH 208 after the initial prerequisite stack, so MATH 240 is good to complete before or during UW enrollment because it's needed to finish the degree."
+      ),
     ],
     stayAtGrcChecklist: [],
     advisorFlags: [
@@ -1918,11 +5665,29 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
     involvementIdeas: ["Pair MESA with a hardware or systems project."],
     projectIdeas: ["Build an embedded or electronics project with a clear engineering explanation."],
     officialLinks: [
+      { label: "UW Tacoma Electrical Engineering program details", url: "https://www.tacoma.uw.edu/set/programs/undergrad/ee" },
       { label: "UW Tacoma SET catalog page", url: "https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html" },
       { label: "UW Tacoma transfer planning", url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer" },
       { label: "UW Tacoma course equivalency guide", url: "https://www.tacoma.uw.edu/admissions/course-equivalency-guide" },
     ],
+    degreeMapSections: [
+      degreeMapSection("uwt-ee-admission", "Electrical Engineering admission baseline", [
+        "The current Electrical Engineering page treats admission as competitive and requires Calculus I, II, and III, Differential Equations, Physics I and II, Electrical Circuits, and 5 credits of programming in C, C++, Python, Java, or an equivalent course such as TCSS 142.",
+        "The page says all prerequisites must be completed within the last 7 years, with at least a 2.0 in each prerequisite course and at least a 2.5 cumulative prerequisite GPA.",
+        "It also notes that transfer students may need one additional approved lab-based science course, such as Chemistry I or Biology I, to reach the 18 minimum lab-science credits required for graduation.",
+      ]),
+      degreeMapSection("uwt-ee-core", "Electrical Engineering required curriculum", [
+        "The current fixed EE curriculum is TEE 225, TCES 230, TCES 310, TCES 312, TEE 315, TEE 316, TEE 317, TCES 330, TEE 331, TEE 341, TEE 372, TCES 380, TCES 421, TCES 430, TEE 431, TEE 451, TEE 453, and the senior-project sequence TEE 480, 481, and 482.",
+        "The public page frames that required set around electronics, circuits, electromagnetics, communications, power systems, controls, and the senior design sequence.",
+      ]),
+      degreeMapSection("uwt-ee-finish", "Electrical Engineering additional math/science and senior electives", [
+        "The page adds TPHYS 123, TMATH 208, and 5 additional programming credits beyond the admission baseline.",
+        "Students then complete senior-elective work through the published Electronics, Embedded Systems, Signal Processing, and Computer Networks groupings, with approved alternatives like TCES 450, TEE 490, TEE 497, TEE 498, TEE 499, TEE 461, TCSS 487, and TCSS 488 also listed on the current page.",
+      ]),
+    ],
     manualReviewNotes: [
+      "Validated against the current UW Tacoma Electrical Engineering program page and transfer-planning pages on April 2, 2026.",
+      "The public Autumn 2026 cycle currently shows a January 28, 2026 opening date and a July 1, 2026 priority deadline, so recheck the program page each year.",
       "Confirm the intended entry year because Tacoma planning pages and catalog wording can shift over time.",
     ],
   },
@@ -1954,8 +5719,18 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
     ],
     beforeEnrollmentChecklist: [],
     stayAtGrcChecklist: [
-      item("tacoma-me-mechanics", "Mechanics sequence", ["ENGR& 214", "ENGR& 215", "ENGR& 225"]),
-      item("tacoma-me-chem", "Chemistry depth if the current planning path still uses extra science preparation", ["CHEM& 161", "CHEM& 162", "CHEM& 163"]),
+      item(
+        "tacoma-me-mechanics",
+        "Mechanics sequence",
+        ["ENGR& 214", "ENGR& 215", "ENGR& 225"],
+        "Tacoma Mechanical lists statics, mechanics of materials, and dynamics in the admission baseline, so this full Green River mechanics sequence is one of the highest-value pre-transfer groups."
+      ),
+      item(
+        "tacoma-me-chem",
+        "Chemistry depth if the current planning path still uses extra science preparation",
+        ["CHEM& 161", "CHEM& 162", "CHEM& 163"],
+        "Tacoma Mechanical only needs extra lab science in some transfer situations, so keep the extra chemistry sequence visible only when the current science plan still depends on it."
+      ),
     ],
     advisorFlags: [
       "Tacoma's catalog is detailed enough for a stronger planner row, but the intended program should still review the final sequence.",
@@ -1963,14 +5738,4989 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
     involvementIdeas: ["Push build-heavy projects, MESA, and documented teamwork."],
     projectIdeas: ["Create a fabrication or design project with calculations and a brief engineering report."],
     officialLinks: [
+      { label: "UW Tacoma Mechanical Engineering program details", url: "https://www.tacoma.uw.edu/set/programs/undergrad/me" },
       { label: "UW Tacoma SET catalog page", url: "https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html" },
       { label: "UW Tacoma transfer planning", url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer" },
       { label: "UW Tacoma course equivalency guide", url: "https://www.tacoma.uw.edu/admissions/course-equivalency-guide" },
     ],
+    degreeMapSections: [
+      degreeMapSection("uwt-me-admission", "Mechanical Engineering admission baseline", [
+        "The current Mechanical Engineering page treats admission as competitive and requires Calculus I, II, and III, Differential Equations, Multivariable Calculus, Physics I, II, and III, General Chemistry I, Statics, Mechanics of Materials, Dynamics, and 5 credits of programming in Python, Java, C, C++, or an equivalent scientific-computing course.",
+        "The page allows students to apply with prerequisites in progress but says all prerequisites must be completed before enrollment, all prerequisite courses must have been completed within the last 7 years, and applicants need at least 45 college-level credits.",
+        "The published admission rules also require at least a 2.5 cumulative prerequisite GPA, at least a 2.0 in each prerequisite course, and at least a 2.0 cumulative GPA in all college coursework, while Matrix Algebra and Electrical Circuits are listed as recommended but not required for admission.",
+      ]),
+      degreeMapSection("uwt-me-core", "Mechanical Engineering required curriculum", [
+        "The current BSME curriculum requires 180 total quarter credits and says at least 84 credits must come from the published Mechanical Engineering required-course list and senior-elective list.",
+        "The fixed required-course set is TCES 215, TEE 225, TME 310, TME 311, TME 315, TME 320, TME 331, TME 332, TME 341, TME 342, TME 345, TME 351, TME 373, TME 403, TME 433, TME 435, TME 441, and the senior-project sequence TME 480, 481, and 482.",
+      ]),
+      degreeMapSection("uwt-me-finish", "Mechanical Engineering senior electives and completion rules", [
+        "Mechanical Engineering students then complete 15 credits of senior electives from the current Tacoma list, which includes choices such as TME 411, 412, 415, 416, 425, 426, 431, 432, 436, 444, 445, 447, 449, 478, 479, 489, 490, 497, and 499.",
+        "The current page also adds the residency and grade rules for graduation: at least 45 of the final 60 credits must be taken in residence at UW Tacoma, at least 30 credits of required BSME coursework must be taken at Tacoma, and every course applied to the major must be completed with at least a 2.0.",
+      ]),
+    ],
     manualReviewNotes: [
+      "Validated against the current UW Tacoma Mechanical Engineering program page and transfer-planning pages on April 2, 2026.",
+      "The public Autumn 2026 cycle currently shows a January 28, 2026 opening date and a July 1, 2026 priority deadline, so recheck the program page each year.",
       "Confirm the intended entry year because Tacoma's public planning pages can change faster than the Green River equivalency guide.",
     ],
   },
+  {
+    id: "uw-tacoma-bachelor-of-arts-in-business-administration",
+    campusId: "uw-tacoma",
+    title: "Bachelor of Arts in Business Administration (BABA)",
+    shortTitle: "BABA",
+    coverage: "detailed",
+    summary:
+      "Tacoma BABA is now modeled as a capacity-constrained business-admission plan with the Milgard prerequisite list made explicit and the option split preserved for accounting, finance, general business, management, and marketing.",
+    applicationWindow: "Apply to UW Tacoma, then Milgard for autumn or winter entry.",
+    startQuarter: "Autumn or winter",
+    bestTrackId: "999B",
+    bestTrackSummary:
+      "999B is the clearest Tacoma BABA backbone because it already carries business math, economics, and accounting momentum without forcing unrelated STEM detours.",
+    whyThisTrack: [
+      "It keeps the business math and economics backbone visible early.",
+      "It fits the accounting, finance, management, marketing, and general-business options better than a custom off-track schedule.",
+      "It makes the English, accounting, economics, statistics, and business-law prerequisites easier to explain to Milgard and Green River advisors.",
+    ],
+    financialAidNote:
+      "Stay on 999B and place the Milgard prerequisites deliberately, especially Accounting II, Managerial Accounting, statistics, and business law, so the student does not look application-ready while still missing one of the required business classes.",
+    applicationChecklist: [
+      item("uwt-baba-english", "English composition", ["ENGL& 101"]),
+      item("uwt-baba-acct1", "Financial Accounting I", ["ACCT& 201"]),
+      itemAny(
+        "uwt-baba-econ-app",
+        "One economics prerequisite completed by the Milgard application deadline",
+        ["ECON& 201", "ECON& 202"],
+        "Milgard's current admissions page says applicants must already have one of the two economics prerequisites finished when they apply."
+      ),
+      itemCount(
+        "uwt-baba-four-business",
+        "Four completed business prerequisites on the transcript at application time",
+        ["ACCT& 201", "ACCT& 202", "ACCT& 203", "MATH& 146", "MATH 256", "BUS 258", "ECON& 201", "ECON& 202"],
+        4,
+        "The current admissions page says students need English composition plus four business prerequisites completed with final grades by the application deadline. The remaining prerequisites may finish before the entry quarter begins."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      item(
+        "uwt-baba-acct2",
+        "Financial Accounting II",
+        ["ACCT& 202"],
+        "Milgard allows some prerequisites to finish after application, but Accounting II still needs to be complete before the entry quarter begins."
+      ),
+      item(
+        "uwt-baba-managerial",
+        "Managerial Accounting",
+        ["ACCT& 203"],
+        "Milgard allows some prerequisites to finish after application, but Managerial Accounting still needs to be complete before the entry quarter begins."
+      ),
+      itemAny(
+        "uwt-baba-stats",
+        "Statistics prerequisite",
+        ["MATH& 146", "MATH 256"],
+        "MATH& 146 is the cleanest Green River statistics match for business planning, while MATH 256 is also a valid quantitative option already used in Green River business-track planning."
+      ),
+      item(
+        "uwt-baba-buslaw",
+        "Business Law",
+        ["BUS 258"],
+        "Milgard allows some prerequisites to finish after application, but Business Law still needs to be complete before the entry quarter begins."
+      ),
+      item(
+        "uwt-baba-micro",
+        "Microeconomics",
+        ["ECON& 201"],
+        "Milgard requires both economics courses by the start of the program, even though only one must be finished by the application deadline."
+      ),
+      item(
+        "uwt-baba-macro",
+        "Macroeconomics",
+        ["ECON& 202"],
+        "Milgard requires both economics courses by the start of the program, even though only one must be finished by the application deadline."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      item(
+        "uwt-baba-full-acct",
+        "Full accounting sequence if accounting, finance, or general-business options are still in play",
+        ["ACCT& 201", "ACCT& 202", "ACCT& 203"],
+        "Accounting, Finance, and General Business planning all get stronger when the student arrives with the full Green River accounting sequence already finished."
+      ),
+    ],
+    advisorFlags: [
+      "Milgard admission is capacity-constrained, so finishing the prerequisite list does not guarantee admission.",
+      "The BABA options are not interchangeable after admission; the upper-division finish changes materially once the student chooses Accounting, Finance, General Business, Management, or Marketing.",
+      "Milgard's application timing is stricter than its final-enrollment timing: English composition plus four business prerequisites must be done by the deadline, while the remaining prerequisites can finish before the entry quarter begins.",
+    ],
+    involvementIdeas: [
+      "Pair coursework with one business, entrepreneurship, or professional-development activity that creates a leadership or team story.",
+      "Use a campus club, job, or volunteer role where the student can show communication, organization, or client-facing work instead of only classes.",
+    ],
+    projectIdeas: [
+      "Build a small business-analysis, budgeting, or forecasting project tied to a real organization or student venture idea.",
+      "Create a marketing, operations, or accounting case-study portfolio piece with spreadsheets, assumptions, and a short executive summary.",
+      "Document one professional project with decision-making, customer, or leadership evidence rather than only technical coursework.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Tacoma BABA admissions",
+        url: "https://www.tacoma.uw.edu/business/baba-admissions",
+      },
+      {
+        label: "UW Tacoma BABA design and courses",
+        url: "https://www.tacoma.uw.edu/business/design-courses-baba",
+      },
+      {
+        label: "UW Tacoma graduation requirements",
+        url: "https://www.tacoma.uw.edu/registrar/graduation-requirements",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-baba-admission", "BABA admission baseline", [
+        "The current Milgard admissions page treats BABA admission as capacity-constrained and requires at least 60 college-level quarter credits, a minimum 2.75 cumulative GPA, and a minimum 2.75 cumulative GPA across the business prerequisite courses.",
+        "The prerequisite set is English composition, Financial Accounting I, Financial Accounting II, Managerial Accounting, Statistics, Business Law, Microeconomics, and Macroeconomics, with at least a 2.0 in each prerequisite and in English composition.",
+        "At the time of application, students must already have English composition plus 4 business prerequisites completed with final grades, and all business prerequisites must be completed before the admission quarter begins.",
+        "The public admissions page says Tacoma BABA applications are accepted for autumn and winter entry.",
+      ]),
+      degreeMapSection("uwt-baba-shared", "BABA shared upper-division structure", [
+        "Milgard offers one Bachelor of Arts in Business Administration degree, and students complete it through one of 5 published options: Accounting, Finance, General Business, Management, or Marketing.",
+        "Across those options, the public curriculum pages show a common upper-division business backbone of 30 core credits plus the 5-credit capstone TBUS 400 Business Policy and Strategic Management.",
+        "Most options use TBUS 300, 301, 310, 320, 330, and 350 in that shared-core space, while the Accounting option substitutes TACCT 330 Accounting Information Systems for the information-systems slot.",
+      ]),
+      degreeMapSection("uwt-baba-options", "BABA option-specific finish", [
+        "After the shared core, students complete the upper-division option credits for the chosen business path.",
+        "The current pages summarize those finishes as 35 accounting credits plus a TACCT elective for Accounting; 30 upper-division TFIN or TBECON credits for Finance; 30 approved upper-division business credits for General Business; 30 TMGMT credits for Management; and 30 marketing credits that include TMKTG 450, 460, 475, plus 15 additional TMKTG credits for Marketing.",
+        "All BABA paths still require enough total coursework to reach the university-wide 180-credit minimum for graduation.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Validated against the current UW Tacoma BABA admissions and design-and-courses pages on April 2, 2026.",
+      "Do not treat the BABA options as interchangeable. The final upper-division business list changes materially once the student chooses Accounting, Finance, General Business, Management, or Marketing.",
+    ],
+    pathways: [
+      plannerPathway(
+        "accounting-option",
+        "Accounting option",
+        "Best when the student wants the Tacoma BABA accounting finish.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-baba-accounting-admission", "BABA admission baseline", [
+              "The current Milgard admissions page treats BABA admission as capacity-constrained and requires at least 60 college-level quarter credits, a minimum 2.75 cumulative GPA, and a minimum 2.75 cumulative GPA across the business prerequisite courses.",
+              "The prerequisite set is English composition, Financial Accounting I, Financial Accounting II, Managerial Accounting, Statistics, Business Law, Microeconomics, and Macroeconomics, with at least a 2.0 in each prerequisite and in English composition.",
+            ]),
+            degreeMapSection("uwt-baba-accounting-path", "Accounting option finish", [
+              "Milgard offers one Bachelor of Arts in Business Administration degree, and students complete it through one of 5 published options: Accounting, Finance, General Business, Management, or Marketing.",
+              "Across those options, the public curriculum pages show a common upper-division business backbone of 30 core credits plus the 5-credit capstone TBUS 400 Business Policy and Strategic Management.",
+              "The current pages summarize the Accounting finish as 35 accounting credits plus a TACCT elective, and the Accounting option substitutes TACCT 330 Accounting Information Systems for the information-systems slot inside the shared core.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the Tacoma BABA Accounting option. Prioritize the full Green River accounting sequence early and do not leave ACCT& 202 or ACCT& 203 until the last minute.",
+        }
+      ),
+      plannerPathway(
+        "finance-option",
+        "Finance option",
+        "Best when the student wants the Tacoma BABA finance finish.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-baba-finance-admission", "BABA admission baseline", [
+              "The current Milgard admissions page treats BABA admission as capacity-constrained and requires at least 60 college-level quarter credits, a minimum 2.75 cumulative GPA, and a minimum 2.75 cumulative GPA across the business prerequisite courses.",
+              "The prerequisite set is English composition, Financial Accounting I, Financial Accounting II, Managerial Accounting, Statistics, Business Law, Microeconomics, and Macroeconomics, with at least a 2.0 in each prerequisite and in English composition.",
+            ]),
+            degreeMapSection("uwt-baba-finance-path", "Finance option finish", [
+              "Milgard offers one Bachelor of Arts in Business Administration degree, and students complete it through one of 5 published options: Accounting, Finance, General Business, Management, or Marketing.",
+              "Across those options, the public curriculum pages show a common upper-division business backbone of 30 core credits plus the 5-credit capstone TBUS 400 Business Policy and Strategic Management.",
+              "The current pages summarize the Finance finish as 30 upper-division TFIN or TBECON credits beyond the shared core.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the Tacoma BABA Finance option. Keep accounting, economics, and statistics fully on track before transfer so the student can reach the upper-division finance block without catching up later.",
+        }
+      ),
+      plannerPathway(
+        "general-business-option",
+        "General Business option",
+        "Best when the student wants the broad Tacoma BABA finish instead of a narrower named business option.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-baba-general-admission", "BABA admission baseline", [
+              "The current Milgard admissions page treats BABA admission as capacity-constrained and requires at least 60 college-level quarter credits, a minimum 2.75 cumulative GPA, and a minimum 2.75 cumulative GPA across the business prerequisite courses.",
+              "The prerequisite set is English composition, Financial Accounting I, Financial Accounting II, Managerial Accounting, Statistics, Business Law, Microeconomics, and Macroeconomics, with at least a 2.0 in each prerequisite and in English composition.",
+            ]),
+            degreeMapSection("uwt-baba-general-path", "General Business option finish", [
+              "Milgard offers one Bachelor of Arts in Business Administration degree, and students complete it through one of 5 published options: Accounting, Finance, General Business, Management, or Marketing.",
+              "Across those options, the public curriculum pages show a common upper-division business backbone of 30 core credits plus the 5-credit capstone TBUS 400 Business Policy and Strategic Management.",
+              "The current pages summarize the General Business finish as 30 approved upper-division business credits beyond the shared core.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the Tacoma BABA General Business option. Finish the shared Milgard prerequisite list cleanly, then keep flexibility for the broader upper-division business menu.",
+        }
+      ),
+      plannerPathway(
+        "management-option",
+        "Management option",
+        "Best when the student wants the Tacoma BABA management finish.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-baba-management-admission", "BABA admission baseline", [
+              "The current Milgard admissions page treats BABA admission as capacity-constrained and requires at least 60 college-level quarter credits, a minimum 2.75 cumulative GPA, and a minimum 2.75 cumulative GPA across the business prerequisite courses.",
+              "The prerequisite set is English composition, Financial Accounting I, Financial Accounting II, Managerial Accounting, Statistics, Business Law, Microeconomics, and Macroeconomics, with at least a 2.0 in each prerequisite and in English composition.",
+            ]),
+            degreeMapSection("uwt-baba-management-path", "Management option finish", [
+              "Milgard offers one Bachelor of Arts in Business Administration degree, and students complete it through one of 5 published options: Accounting, Finance, General Business, Management, or Marketing.",
+              "Across those options, the public curriculum pages show a common upper-division business backbone of 30 core credits plus the 5-credit capstone TBUS 400 Business Policy and Strategic Management.",
+              "The current pages summarize the Management finish as 30 TMGMT credits beyond the shared core.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the Tacoma BABA Management option. Keep the full shared Milgard prerequisite list intact, then use Green River leadership, teamwork, and communication experiences to strengthen the management story.",
+        }
+      ),
+      plannerPathway(
+        "marketing-option",
+        "Marketing option",
+        "Best when the student wants the Tacoma BABA marketing finish.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-baba-marketing-admission", "BABA admission baseline", [
+              "The current Milgard admissions page treats BABA admission as capacity-constrained and requires at least 60 college-level quarter credits, a minimum 2.75 cumulative GPA, and a minimum 2.75 cumulative GPA across the business prerequisite courses.",
+              "The prerequisite set is English composition, Financial Accounting I, Financial Accounting II, Managerial Accounting, Statistics, Business Law, Microeconomics, and Macroeconomics, with at least a 2.0 in each prerequisite and in English composition.",
+            ]),
+            degreeMapSection("uwt-baba-marketing-path", "Marketing option finish", [
+              "Milgard offers one Bachelor of Arts in Business Administration degree, and students complete it through one of 5 published options: Accounting, Finance, General Business, Management, or Marketing.",
+              "Across those options, the public curriculum pages show a common upper-division business backbone of 30 core credits plus the 5-credit capstone TBUS 400 Business Policy and Strategic Management.",
+              "The current pages summarize the Marketing finish as 30 marketing credits that include TMKTG 450, 460, 475, plus 15 additional TMKTG credits.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the Tacoma BABA Marketing option. Finish the shared Milgard prerequisite list first, then use Green River writing, presentation, and communication-heavy electives only when they fit cleanly beside the business core.",
+        }
+      ),
+    ],
+  },
+  {
+    id: "uw-tacoma-biomedical-sciences",
+    campusId: "uw-tacoma",
+    title: "Biomedical Sciences (BS)",
+    shortTitle: "Biomedical Sciences",
+    coverage: "detailed",
+    summary:
+      "Tacoma Biomedical Sciences is now modeled as a sequence-heavy science transfer where the full biology, chemistry, organic chemistry, calculus, and first-physics preparation are explicit in the planner instead of buried inside a broad science bank.",
+    applicationWindow: "Use current UW Tacoma Biomedical Sciences declaration guidance after completing the lower-division preparation block.",
+    startQuarter: "Advisor review needed",
+    bestTrackId: "999O",
+    bestTrackSummary:
+      "999O is the strongest Tacoma Biomedical Sciences launchpad because it already supports the chemistry-heavy and biology-heavy lower-division preparation the major expects.",
+    whyThisTrack: [
+      "It keeps the full chemistry and organic-chemistry sequence visible early.",
+      "It gives the student a cleaner place to add the full biology-majors sequence instead of treating biology as an afterthought.",
+      "It preserves a stronger pre-health or research launch than a broad custom schedule with mixed science gaps.",
+    ],
+    financialAidNote:
+      "Stay on 999O and complete the full biology and chemistry sequences at Green River whenever possible instead of mixing campuses mid-sequence, because Tacoma's own transfer guidance says those sequences transfer best when finished at one institution.",
+    applicationChecklist: [
+      item(
+        "uwt-biomed-genchem",
+        "General chemistry preparation",
+        FULL_GENERAL_CHEMISTRY_SEQUENCE,
+        "The Tacoma Biomedical Sciences transfer-credits page points Green River students to CHEM& 161, 162, and 163 for the TCHEM 142, 152, and 162 preparation block."
+      ),
+      item(
+        "uwt-biomed-biology",
+        "Biology preparation",
+        FULL_BIOLOGY_MAJORS_SEQUENCE,
+        "The Tacoma Biomedical Sciences transfer-credits page points Green River students to BIOL& 211, 212, and 213 for the TBIOL 120, 130, and 140 preparation block."
+      ),
+      item(
+        "uwt-biomed-organic",
+        "Organic chemistry preparation",
+        FULL_ORGANIC_CHEMISTRY_SEQUENCE,
+        "The Tacoma Biomedical Sciences transfer-credits page points Green River students to CHEM& 261, 262, and 263 for the TCHEM 251 and 261 preparation block."
+      ),
+      item("uwt-biomed-calc1", "TMATH 124", ["MATH& 151"]),
+      item("uwt-biomed-calc2", "TMATH 125", ["MATH& 152"]),
+      itemAny(
+        "uwt-biomed-physics1",
+        "First physics requirement",
+        ["PHYS& 221", "PHYS& 114"],
+        "The transfer-credits page allows either the calculus-based PHYS& 221 route or the PHYS& 114 / 115 algebra-based physics route for the first physics requirement. The planner prefers PHYS& 221 when the student may still need a stronger STEM launch."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uwt-biomed-stats",
+        "Statistics through TMATH 110",
+        ["MATH& 146", "MATH 256"],
+        "Biomedical Sciences still includes a statistics requirement, so finishing a statistics course at Green River usually makes the Tacoma launch cleaner."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwt-biomed-physics2",
+        "Second physics course for pre-health flexibility when the student's target profession still wants it",
+        ["PHYS& 222", "PHYS& 115"],
+        "The department explicitly notes that some pre-health students may still need TPHYS 122 depending on their professional-school goal."
+      ),
+      item(
+        "uwt-biomed-calc3",
+        "TMATH 126 if the student's pre-health or graduate-school path still benefits from extra math depth",
+        ["MATH& 163"],
+        "Tacoma's current Biomedical Sciences materials call out TMATH 126 as an example of extra preparation some pre-health students may still need."
+      ),
+    ],
+    advisorFlags: [
+      "Tacoma's transfer-credits page explicitly says the introductory biology and chemistry sequences transfer best when students complete the full sequences at the same institution instead of mixing campuses mid-sequence.",
+      "Biomedical Sciences has a strong fixed science core, but the electives, ethics, and capstone spaces still need to be matched to the student's pre-health or research goal.",
+      "Some pre-health students may still need extra preparation such as TMATH 126 or TPHYS 122 depending on the professional-school path they plan to pursue after Tacoma.",
+    ],
+    involvementIdeas: [
+      "Pair coursework with one health, research, or lab-adjacent activity so the student has more than a science transcript alone.",
+      "Use volunteer, clinical-observation, tutoring, or lab-support experiences when they strengthen the student's pre-health or research story.",
+    ],
+    projectIdeas: [
+      "Create a biomedical or pre-health portfolio piece that connects biology and chemistry instead of treating them as unrelated sequences.",
+      "Document a research-style literature review, small lab workflow tool, or health-science outreach project with clear scientific reasoning.",
+      "Use one experience to show whether the student is leaning more toward clinical preparation or research preparation.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Tacoma Biomedical Sciences overview",
+        url: "https://www.tacoma.uw.edu/sias/sam/biomedical-sciences",
+      },
+      {
+        label: "UW Tacoma Biomedical Sciences transfer credits",
+        url: "https://www.tacoma.uw.edu/sias/sam/biomedical-sciences-transfer-credits",
+      },
+      {
+        label: "UW Tacoma course equivalency guide",
+        url: "https://www.tacoma.uw.edu/admissions/course-equivalency-guide",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-biomed-prep", "Biomedical Sciences lower-division preparation", [
+        "The current Biomedical Sciences page requires a minimum of 45 lower-division credits before declaring the major.",
+        "The introductory preparation block is 64 credits and must be completed within the past 5 years with at least a 2.0 in each course: TCHEM 142, 152, 162; TBIOL 120, 130, 140; TMATH 124 and 125; TCHEM 251 and 261; and TPHYS 121 or the PHYS 114 / 117 path.",
+        "The transfer-credits page also gives Tacoma's current Green River preparation guidance: CHEM& 161 / 162 / 163 for general chemistry, BIOL& 211 / 212 / 213 for biology, CHEM& 261 / 262 / 263 for organic chemistry, PHYS& 114 or PHYS& 221 for the first physics requirement, and MATH& 151 / 152 for calculus.",
+        "The transfer-credits page adds that the introductory biology and chemistry sequences transfer best when students complete the full sequences at the same institution rather than mixing campuses mid-sequence.",
+      ]),
+      degreeMapSection("uwt-biomed-core", "Biomedical Sciences core and elective structure", [
+        "The current fixed core is 39 credits: TBIOL 301, 302, 303, 304, and 305, plus TCHEM 405 and 406.",
+        "Students then complete 15 credits of advanced Biomedical Sciences electives, with at least 2 courses drawn from the program's List A and the remaining course drawn from List A or List B.",
+        "That makes the upper-division finish partly menu-based even though the microbiology, physiology, cell biology, molecular biology, genetics, and biochemistry block is fixed.",
+      ]),
+      degreeMapSection("uwt-biomed-bookends", "Biomedical Sciences bookend courses, capstone, and context requirements", [
+        "The major includes 8 bookend credits: TBIOMD 310 Foundations in Biomedical Sciences early in the degree and TBIOMD 410 Biomedical Sciences Senior Seminar in the senior year.",
+        "Students also complete a 3- to 10-credit capstone or experiential finish chosen from the approved list, statistics through TMATH 110, 1 approved ethics course, and 1 approved health-and-society course.",
+        "The department explicitly notes that pre-health students may still need extra preparation for specific professional-school goals, with examples such as TMATH 126 and TPHYS 122.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Validated against the current UW Tacoma Biomedical Sciences overview and transfer-credits pages on April 2, 2026.",
+      "Biomedical Sciences has a strong fixed science core, but the electives, ethics, and capstone spaces still need to be matched to the student's pre-health or research goal.",
+    ],
+  },
+  {
+    id: "uw-tacoma-criminal-justice",
+    campusId: "uw-tacoma",
+    title: "Criminal Justice (BA)",
+    shortTitle: "Criminal Justice",
+    coverage: "detailed",
+    summary:
+      "Tacoma Criminal Justice is now modeled as a fixed-core social-science transfer where writing and statistics are made explicit before the upper-division research and capstone sequence begins.",
+    applicationWindow: "Apply to UW Tacoma, then enter the campus major in autumn, winter, or spring after the published baseline is complete.",
+    startQuarter: "Autumn, winter, or spring",
+    bestTrackId: null,
+    bestTrackSummary:
+      "There is no single stock Green River transfer track that perfectly matches Tacoma Criminal Justice. The safest plan is a custom lower-division path built around English composition, early statistics, and criminal-justice / sociology support courses.",
+    whyThisTrack: [
+      "Criminal Justice does not need a heavy engineering or lab-science transfer spine.",
+      "The fixed Tacoma core later depends on writing and statistics more than on a large STEM sequence.",
+      "A custom Green River path lets the student add CJ, sociology, and policy support without being trapped inside the wrong transfer track.",
+    ],
+    financialAidNote:
+      "Use a custom Green River path and make sure English composition plus a statistics course are handled early, because those two pieces do more for Tacoma Criminal Justice readiness than random extra elective banks.",
+    applicationChecklist: [item("uwt-cj-english", "English composition", ["ENGL& 101"])],
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uwt-cj-stats",
+        "Introductory statistics before the T CRIM 390 research-methods sequence",
+        ["MATH& 146", "MATH 256"],
+        "Tacoma Criminal Justice's fixed upper-division core later requires statistics before T CRIM 390, so it is safer to finish a statistics course before transfer."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwt-cj-intro",
+        "Introductory criminal-justice background",
+        ["CJ& 101", "CJ& 105", "CJ& 110"],
+        "These are not published Tacoma admission prerequisites, but they are useful lower-division grounding before the fixed T CRIM core begins."
+      ),
+      itemAny(
+        "uwt-cj-soc",
+        "Sociology support course",
+        ["SOC& 101", "SOC& 201"],
+        "Sociology is useful preparation for Tacoma Criminal Justice's social-science and elective side even though it is not a formal admission prerequisite."
+      ),
+      itemAny(
+        "uwt-cj-policy",
+        "Policy or government support course",
+        ["POLS& 101", "POLS& 200", "POLS& 202"],
+        "Government and policy background can strengthen the student's lower-division preparation before the Tacoma Criminal Justice core and elective menu."
+      ),
+    ],
+    advisorFlags: [
+      "Tacoma Criminal Justice uses a fixed upper-division core, but the final 20 elective credits still need to be matched to the student's interests and the current quarter schedule.",
+      "Statistics is not listed as a separate admission prerequisite, but the published Tacoma core later requires it before T CRIM 390, so delaying it can slow the upper-division sequence after transfer.",
+    ],
+    involvementIdeas: [
+      "Use one community, legal, justice, advocacy, or service experience to show fit beyond coursework.",
+      "Pick involvement that demonstrates responsibility, communication, or public-service motivation rather than only classroom interest.",
+    ],
+    projectIdeas: [
+      "Create a policy, community-safety, or justice-system analysis project with a short written brief and evidence base.",
+      "Document a service, advocacy, or restorative-justice-related project with reflection on people, systems, and outcomes.",
+      "Use a statistics or methods course to build one clean social-science research or data-interpretation sample.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Tacoma Criminal Justice admissions",
+        url: "https://www.tacoma.uw.edu/swcj/admissions",
+      },
+      {
+        label: "UW Tacoma Criminal Justice curriculum",
+        url: "https://www.tacoma.uw.edu/swcj/criminal-justice-campus-curriculum",
+      },
+      {
+        label: "UW Tacoma Criminal Justice overview",
+        url: "https://www.tacoma.uw.edu/swcj/criminal-justice",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-cj-admission", "Criminal Justice admission baseline", [
+        "The current Criminal Justice admission guidance requires students to be admitted to UW Tacoma, hold at least a 2.0 cumulative GPA, complete at least 45 college-level quarter credits before starting the campus major, and complete 5 credits of English composition with at least a 2.0.",
+        "The current campus program admits qualified students in autumn, winter, and spring quarters.",
+      ]),
+      degreeMapSection("uwt-cj-core", "Criminal Justice required curriculum", [
+        "The published campus curriculum describes Criminal Justice as a 65-credit major built from 45 credits of core coursework plus 20 credits of approved core electives.",
+        "The fixed core is T CRIM 225, 361, 362, 390, 370, 371, 372, 395, and 441.",
+        "The curriculum page also publishes the main sequencing rules inside the core: T CRIM 390 requires an introductory statistics course, T CRIM 371 requires T CRIM 225, and T CRIM 441 requires both T CRIM 371 and T CRIM 390.",
+      ]),
+      degreeMapSection("uwt-cj-electives", "Criminal Justice electives and completion rules", [
+        "Students complete 20 credits from the approved interdisciplinary core-elective lists published by the School of Social Work and Criminal Justice.",
+        "The current curriculum page also adds special limits inside that elective space, including a maximum of 5 elective credits total from T CRIM 409 and/or T CRIM 490 and a maximum of 10 elective credits from T CRIM 450.",
+        "All core and core-elective courses applied to the degree must be completed with at least a 2.0, and students must maintain a 2.0 GPA across major coursework.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Validated against the current UW Tacoma Criminal Justice admissions and curriculum pages on April 2, 2026.",
+      "Criminal Justice uses a fixed core plus a broad approved elective menu, so the final 20 elective credits should still be matched to the student's interests and the current quarter schedule.",
+    ],
+  },
+  {
+    id: "uw-tacoma-civil-engineering",
+    campusId: "uw-tacoma",
+    title: "Civil Engineering (BSCE)",
+    shortTitle: "Civil Engineering",
+    coverage: "detailed",
+    summary:
+      "Tacoma Civil is now modeled as a competitive engineering transfer where calculus, full physics, chemistry, mechanics, and a real programming course are explicit before the specialization-heavy upper-division civil curriculum begins.",
+    applicationWindow: "Use current UW Tacoma transfer planning and program guidance.",
+    startQuarter: "Advisor review needed",
+    bestTrackId: "999P",
+    bestTrackSummary:
+      "999P is the clearest Tacoma Civil base because it keeps the calculus, physics, mechanics, and programming-adjacent engineering spine visible for the full admission block.",
+    whyThisTrack: [
+      "It keeps the full lower-division engineering mechanics backbone visible instead of hiding it inside a generic science plan.",
+      "It leaves room for one real programming course without abandoning the engineering transfer story.",
+      "It keeps Tacoma Civil and Tacoma Mechanical overlap visible while the student is still confirming the final engineering path.",
+    ],
+    financialAidNote:
+      "Stay on 999P and place ENGR& 214, ENGR& 215, ENGR& 225, and one real programming course deliberately, because Tacoma Civil expects that full mechanics and computing block before the major begins.",
+    applicationChecklist: [
+      itemStemCalcSequence("uwt-ce-calc123", "TMATH 124, 125, 126"),
+      item("uwt-ce-math207", "TMATH 207", ["MATH 238"]),
+      item("uwt-ce-physics123", "T PHYS 121, 122, and 123", ["PHYS& 221", "PHYS& 222", "PHYS& 223"]),
+      item("uwt-ce-chem142", "TCHEM 142", ["CHEM& 161"]),
+      item("uwt-ce-statics", "Statics", ["ENGR& 214"]),
+      item("uwt-ce-mechanics", "Mechanics of Materials", ["ENGR& 215"]),
+      item("uwt-ce-dynamics", "Dynamics", ["ENGR& 225"]),
+      itemAny(
+        "uwt-ce-programming",
+        "Approved programming or scientific-computing course",
+        ["ENGR 250", "CS 121", "CS 122", "CS 123"],
+        "Tacoma Civil allows a programming course in Python, Java, C, C++, or an equivalent scientific-computing course. These are the cleanest Green River options to track explicitly."
+      ),
+    ],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [],
+    advisorFlags: [
+      "Tacoma Civil is competitive, so finishing the prerequisite block does not guarantee admission.",
+      "The program uses year-specific senior-elective and specialization menus, so the final upper-division focus should always be checked against the intended entry year's Tacoma materials.",
+      "Do not leave programming until the last minute. Tacoma Civil lists it in the admission baseline, not as a casual optional extra.",
+    ],
+    involvementIdeas: [
+      "Use one engineering, design, or community-infrastructure activity that shows teamwork and applied problem-solving.",
+      "Pair the mechanics-heavy coursework with work that looks practical and civic rather than purely theoretical.",
+    ],
+    projectIdeas: [
+      "Build a transportation, structures, water, or site-planning mini project with calculations and a short written summary.",
+      "Use Excel, Python, or another simple modeling tool to show how the student approaches loads, flow, or system tradeoffs.",
+      "Document one project that ties engineering analysis to real public or environmental impact.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Tacoma Civil Engineering program details",
+        url: "https://www.tacoma.uw.edu/set/programs/undergrad/civil",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+      {
+        label: "UW Tacoma course equivalency guide",
+        url: "https://www.tacoma.uw.edu/admissions/course-equivalency-guide",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-ce-admission", "Civil Engineering admission baseline", [
+        "The current Civil Engineering page treats admission as competitive and requires Calculus I, II, and III; Differential Equations; Physics I, II, and III; General Chemistry I; Statics; Mechanics of Materials; Dynamics; and 5 credits of approved programming in Python, Java, C, C++, or the equivalent of AMATH 301.",
+        "The page also says prerequisites must be completed within the last 7 years, with at least a 2.0 in each prerequisite, at least a 2.5 cumulative prerequisite GPA, and at least 45 college-level credits before the major begins.",
+      ]),
+      degreeMapSection("uwt-ce-core", "Civil Engineering required curriculum", [
+        "The current BSCE page lists the required upper-division Civil Engineering course set as TCE 304, 305, 307, 309, 327, 337, 347, 357, 367, 377, 401, 473, 488, and 489, plus TEE 225, TME 310, TME 351, and TME 403.",
+        "The page also requires 1 approved lab science course outside the basic chemistry and physics admission sequence, with approval handled through Civil Engineering advising.",
+      ]),
+      degreeMapSection("uwt-ce-electives", "Civil Engineering electives and residency rules", [
+        "The program requires 180 quarter credits total for graduation.",
+        "At least 45 of the final 60 credits and at least 30 credits of required BSCE major coursework must be completed in residence at UW Tacoma.",
+        "At least 84 credits must come from the published BSCE required courses plus the approved CE senior-elective list.",
+        "Students complete 16 technical-elective credits across at least 2 specialization areas chosen from Geotechnical, Structures, Transportation, and Environmental.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Lifted from the current UW Tacoma Civil Engineering program details and transfer-planning pages on April 2, 2026.",
+      "Tacoma Civil Engineering uses year-specific senior-elective lists, so the final specialization plan should always be checked against the intended entry year's elective menu.",
+    ],
+  },
+  {
+    id: "uw-tacoma-communications",
+    campusId: "uw-tacoma",
+    title: "Communications (BA)",
+    shortTitle: "Communications",
+    coverage: "detailed",
+    summary:
+      "Tacoma Communication is now modeled as a track-based media and writing transfer where Tacoma's own declaration course stays on the UW side and the planner treats Green River communication work as preparation, not a fake one-course replacement.",
+    applicationWindow:
+      "Apply to UW Tacoma, then declare after completing the Tacoma Communication entry course with the required grade.",
+    startQuarter: "Autumn, winter, or spring",
+    bestTrackId: null,
+    bestTrackSummary:
+      "There is no single stock Green River transfer track that cleanly matches Tacoma Communication. The safest plan is a custom communication, writing, and media-prep path built around the student's intended professional or research route.",
+    whyThisTrack: [
+      "Tacoma Communication is declared through Tacoma coursework, not through one universal pre-transfer prerequisite list.",
+      "The major splits early into professional and research tracks, so the best Green River plan depends more on route fit than on one stock transfer template.",
+      "A custom plan lets the student build useful media, writing, and journalism depth without pretending Green River directly replaces Tacoma's declaration course.",
+    ],
+    financialAidNote:
+      "Use a custom Green River plan and do not assume the GRC communication list replaces Tacoma's own declaration course. Before transfer, the goal is strong background credit and a clear route story, not a fake shortcut through the declaration requirement.",
+    applicationChecklist: [],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwt-comm-media-foundation",
+        "Transferable communication and media foundation before Tacoma declaration",
+        ["CMST& 102", "CMST& 210", "CMST& 220", "CMST& 230"],
+        "These courses do not replace Tacoma's TCOM 201 or TCOM 230 declaration course, but they are the cleanest lower-division communication background from the current Green River equivalency set."
+      ),
+      itemAny(
+        "uwt-comm-writing-journalism",
+        "Writing, journalism, or media-practice support",
+        ["JOURN 101", "JOURN 120", "JOURN 150", "JOURN 200"],
+        "Use these when the student wants the professional or research track and wants more applied writing or media practice before transfer."
+      ),
+      itemAny(
+        "uwt-comm-film-media",
+        "Film and screen-media support",
+        ["FILM 120", "FILM 121", "FILM 122"],
+        "These are most useful for students leaning toward the professional/media-facing Tacoma Communication finish."
+      ),
+    ],
+    advisorFlags: [
+      "Tacoma Communication is track-based, so the final upper-division mix changes meaningfully between the professional and research versions of the major.",
+      "The department states that no more than 15 transfer credits may be applied toward the Communication degree, so students should not assume a large block of Green River communication electives will replace Tacoma upper-division coursework.",
+      "Declaration still happens through Tacoma communication coursework, not by substituting a Green River course for TCOM 201 or TCOM 230.",
+    ],
+    involvementIdeas: [
+      "Use one communication, journalism, media, advocacy, or public-facing campus/community role to show fit beyond course completion.",
+      "Choose work that demonstrates writing, interviewing, media-making, presentation, or audience awareness.",
+    ],
+    projectIdeas: [
+      "Build a small journalism, multimedia, or public-communication portfolio piece with a clear audience and message.",
+      "Create a short media-analysis or communication-research sample if the student is leaning toward Tacoma's research track.",
+      "Document one communication project with both a finished product and a short reflection on audience, strategy, and revision.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Tacoma Communication overview",
+        url: "https://www.tacoma.uw.edu/sias/cac/communication",
+      },
+      {
+        label: "UW Tacoma Communication degree requirements",
+        url: "https://www.tacoma.uw.edu/sias/cac/communication-degree-requirements",
+      },
+      {
+        label: "UW Tacoma Communication how-to-apply FAQs",
+        url: "https://www.tacoma.uw.edu/sias/cac/how-apply-faqs",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-comm-declare", "Communication declaration baseline", [
+        "The current Communication guidance says students declare the major by completing either TCOM 201 Media and Society or TCOM 230 Media Globalization and Citizenship with a minimum grade of 2.5.",
+        "The department also states that no more than 15 transfer credits may be applied toward the Communication degree and that transfer students should expect roughly 2 years to finish after transfer.",
+      ]),
+      degreeMapSection("uwt-comm-professional", "Communication professional track structure", [
+        "The Professional Track requires 60 communication credits, including at least 20 upper-division credits, inside the 180-credit bachelor's degree.",
+        "Its foundation block is 1 theory-and-methods course chosen from TCOM 444 or TCOM 453.",
+        "The public track information then uses a 25-credit List A core with at least 10 upper-division credits plus a 30-credit List B professional and media-practice block.",
+      ]),
+      degreeMapSection("uwt-comm-research", "Communication research track structure", [
+        "The Research Track requires 55 communication credits, including at least 20 upper-division credits, inside the 180-credit bachelor's degree.",
+        "Its foundation block is TWRT 211 plus 1 theory-and-methods course chosen from TCOM 444 or TCOM 453.",
+        "The public track guidance then uses a 45-credit research-oriented course structure that includes at least 20 upper-division TCOM credits and allows the thesis-style TCOM 495 capstone inside the research finish.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Lifted from the current UW Tacoma Communication overview, degree-requirements, and FAQ pages on April 2, 2026.",
+      "Tacoma Communication is track-based, so the exact upper-division course mix changes meaningfully between the professional and research versions of the major.",
+    ],
+    pathways: [
+      plannerPathway(
+        "professional-track",
+        "Professional track",
+        "Best when the student wants the more practice-heavy media and professional communication route.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-comm-prof-declare", "Communication declaration baseline", [
+              "The current Communication guidance says students declare the major by completing either TCOM 201 Media and Society or TCOM 230 Media Globalization and Citizenship with a minimum grade of 2.5.",
+              "The department also states that no more than 15 transfer credits may be applied toward the Communication degree and that transfer students should expect roughly 2 years to finish after transfer.",
+            ]),
+            degreeMapSection("uwt-comm-prof-structure", "Communication professional track structure", [
+              "The Professional Track requires 60 communication credits, including at least 20 upper-division credits, inside the 180-credit bachelor's degree.",
+              "Its foundation block is 1 theory-and-methods course chosen from TCOM 444 or TCOM 453.",
+              "The public track information then uses a 25-credit List A core with at least 10 upper-division credits plus a 30-credit List B professional and media-practice block.",
+            ]),
+          ],
+          manualReviewNotes: [
+            "Use this path when the student is intentionally choosing Tacoma Communication's professional track.",
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants Tacoma Communication's professional track. Favor communication, journalism, film, and public-facing writing work at Green River, but still plan to declare through Tacoma's own Communication coursework after transfer.",
+        }
+      ),
+      plannerPathway(
+        "research-track",
+        "Research track",
+        "Best when the student wants the more writing- and research-oriented Tacoma Communication finish.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-comm-research-declare", "Communication declaration baseline", [
+              "The current Communication guidance says students declare the major by completing either TCOM 201 Media and Society or TCOM 230 Media Globalization and Citizenship with a minimum grade of 2.5.",
+              "The department also states that no more than 15 transfer credits may be applied toward the Communication degree and that transfer students should expect roughly 2 years to finish after transfer.",
+            ]),
+            degreeMapSection("uwt-comm-research-structure", "Communication research track structure", [
+              "The Research Track requires 55 communication credits, including at least 20 upper-division credits, inside the 180-credit bachelor's degree.",
+              "Its foundation block is TWRT 211 plus 1 theory-and-methods course chosen from TCOM 444 or TCOM 453.",
+              "The public track guidance then uses a 45-credit research-oriented course structure that includes at least 20 upper-division TCOM credits and allows the thesis-style TCOM 495 capstone inside the research finish.",
+            ]),
+          ],
+          manualReviewNotes: [
+            "Use this path when the student is intentionally choosing Tacoma Communication's research track.",
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants Tacoma Communication's research track. Favor writing, journalism, and analytical communication work at Green River, but still expect to declare through Tacoma's own Communication coursework after transfer.",
+        }
+      ),
+    ],
+  },
+  {
+    id: "uw-tacoma-economics-and-policy-analysis",
+    campusId: "uw-tacoma",
+    title: "Economics and Policy Analysis (BA)",
+    shortTitle: "Economics and Policy Analysis",
+    coverage: "detailed",
+    summary:
+      "Tacoma Economics and Policy Analysis is now modeled as an economics-first public-policy transfer where micro and macro are explicit early, while the lower-division philosophy, writing, and quantitative spaces stay visible as real requirements instead of guessed one-size-fits-all substitutions.",
+    applicationWindow: "Apply to UW Tacoma, then declare after the lower-division EPA baseline is complete.",
+    startQuarter: "Autumn, winter, or spring",
+    bestTrackId: "999B",
+    bestTrackSummary:
+      "999B is the clearest Tacoma EPA base because the lower-division core is anchored on economics plus a lighter public-policy social-science spine rather than on engineering STEM.",
+    whyThisTrack: [
+      "It keeps microeconomics and macroeconomics visible from the start.",
+      "It fits a policy-analysis transfer story better than a generic social-science plan with no economics backbone.",
+      "It preserves room for the broader public-policy and social-science support classes that help the Tacoma upper-division EPA finish make sense.",
+    ],
+    financialAidNote:
+      "Stay on 999B and lock in micro and macro early, then use advisor review for the remaining philosophy, writing, and quantitative pieces instead of guessing one universal Green River substitute where Tacoma publishes a broader lower-division category.",
+    applicationChecklist: [
+      item("uwt-epa-micro", "Microeconomics lower-division core", ["ECON& 201"]),
+      item("uwt-epa-macro", "Macroeconomics lower-division core", ["ECON& 202"]),
+    ],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwt-epa-policy",
+        "Policy or government support course",
+        ["POLS& 101", "POLS& 200", "POLS& 202"],
+        "Useful preparation for the policy-analysis side of EPA even though Tacoma's exact lower-division core is broader than one single Green River policy course."
+      ),
+      itemAny(
+        "uwt-epa-social",
+        "Additional public-systems or social-science support",
+        ["SOC& 101", "SOC& 201", "CJ& 101"],
+        "EPA's final upper-division work sits closer to economics and policy than to pure business, so a second social-science perspective can still strengthen the transfer launch."
+      ),
+    ],
+    advisorFlags: [
+      "The current Tacoma lower-division EPA core also includes philosophy, quantitative reasoning, and advanced writing spaces; those are real requirements, but the best one-to-one Green River matches still need direct advisor confirmation before they are hard-coded as universal substitutes.",
+      "EPA has a clear shared economics backbone, but the upper-division TECON menu and the honors route still make the final course plan somewhat student-specific.",
+    ],
+    involvementIdeas: [
+      "Use one economics, policy, advocacy, government, or community-analysis activity to show fit beyond the transcript.",
+      "Choose work that demonstrates writing, argument, or data-informed decision-making instead of course completion alone.",
+    ],
+    projectIdeas: [
+      "Build a short policy brief, economics memo, or public-systems analysis using real data and a clear recommendation.",
+      "Create one project that connects economics with a Tacoma-relevant policy issue such as housing, labor, health, transportation, or local government.",
+      "Use a spreadsheet or data-visualization sample to show how the student communicates evidence, not just theory.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Tacoma Economics and Policy Analysis overview",
+        url: "https://www.tacoma.uw.edu/sias-new/socs-new/economics-and-policy-analysis-epa",
+      },
+      {
+        label: "UW Tacoma Economics and Policy Analysis major requirements",
+        url: "https://www.tacoma.uw.edu/sias/pppa/economics-and-policy-analysis-major-requirements",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-epa-lower", "Economics and Policy Analysis lower-division baseline", [
+        "The current EPA requirements page defines a 25-credit lower-division core made from TECON 200 or TBECON 220, TECON 201 or TBECON 221, TPHIL 251, TMATH 116 or TMATH 120, and TWRT 211.",
+        "The same public requirements also include transfer-equivalency notes showing that Green River ECON 201 and ECON 202 can satisfy Tacoma's microeconomics and macroeconomics entry points.",
+      ]),
+      degreeMapSection("uwt-epa-upper", "Economics and Policy Analysis upper-division structure", [
+        "After the lower-division baseline, students complete the 5-credit junior seminar TECON 310 Research Seminar in Economics.",
+        "The upper-division major then requires 30 credits of 300- or 400-level TECON coursework, with at least 20 of those credits at the 400 level.",
+        "The current published EPA menu includes courses such as TECON 316, 320, 321, 325, 350, 360, 361, 362, 370, 410, 418, 421, 430, 441, 450, 470, and 496.",
+      ]),
+      degreeMapSection("uwt-epa-capstone", "Economics and Policy Analysis capstone and honors option", [
+        "The degree finishes with the 5-credit capstone TECON 480 Seminar in Economics Analysis.",
+        "Students then complete enough general-education and elective coursework to reach the 180-credit minimum for the bachelor's degree.",
+        "The public materials also describe an honors path that adds TBECON 420, TBECON 421, and either TBECON 422 or TMATH 410, together with the department's published GPA thresholds for honors.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Lifted from the current UW Tacoma Economics and Policy Analysis overview and major-requirements pages on April 2, 2026.",
+      "The lower-division philosophy, writing, and quantitative slots still need direct advisor confirmation if the student wants them treated as universal Green River substitutes.",
+    ],
+  },
+  {
+    id: "uw-tacoma-education",
+    campusId: "uw-tacoma",
+    title: "Education (BA)",
+    shortTitle: "Education",
+    coverage: "detailed",
+    summary:
+      "Tacoma Education is now modeled as a cohort-style teacher-preparation transfer where psychology and writing are explicit early and the endorsement-driven upper-division sequence is treated as planned cohort work, not a loose elective finish.",
+    applicationWindow: "Apply to UW Tacoma, then follow the current School of Education application steps and cohort timing.",
+    startQuarter: "Advisor review needed",
+    bestTrackId: null,
+    bestTrackSummary:
+      "There is no single stock Green River transfer track that cleanly matches Tacoma Education. The safest plan is a custom teacher-preparation path built around psychology, English composition, and lower-division education-support coursework.",
+    whyThisTrack: [
+      "Tacoma Education is endorsement-driven and cohort-sequenced, so one generic transfer template is not enough.",
+      "The lower-division baseline is built more around teacher-prep readiness than around a heavy STEM or business spine.",
+      "A custom plan lets the student add psychology and education-support coursework without pretending the entire teacher-prep sequence can be finished at Green River.",
+    ],
+    financialAidNote:
+      "Use a custom teacher-prep path and follow the current School of Education program-plan year closely, because the endorsement-driven cohort sequence is much less forgiving than a broad open elective major.",
+    applicationChecklist: [
+      item("uwt-education-psych", "Introductory psychology", ["PSYC& 100"]),
+      item("uwt-education-engl", "English composition", ["ENGL& 101"]),
+    ],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwt-education-support",
+        "Early education or teacher-preparation support",
+        ["ECED& 105", "EDUC& 115", "EDUC& 150", "EDUC& 204", "EDUC& 205"],
+        "These do not replace Tacoma's endorsement sequencing, but they are the cleanest lower-division education-support courses in the current Green River planner set."
+      ),
+      itemAny(
+        "uwt-education-development",
+        "Child development or early learning background",
+        ["ECED& 132", "ECED& 139", "ECED& 170", "ECED& 180"],
+        "Use these when the student wants stronger child-development background before the Tacoma field and methods sequence begins."
+      ),
+    ],
+    advisorFlags: [
+      "The exact upper-division sequence depends on the student's endorsement path and the current School of Education program-plan year.",
+      "Tacoma Education is cohort-sequenced, so students should follow the current School of Education calendar instead of assuming the last published plan will always be identical next year.",
+      "The admissions guidance also references an introductory ethnic studies, gender studies, or service-learning prerequisite space; the planner currently treats that slot as advisor-review territory instead of guessing one universal Green River substitute.",
+    ],
+    involvementIdeas: [
+      "Use one tutoring, mentoring, childcare, classroom-support, or youth-facing role to show fit beyond coursework.",
+      "Prioritize experiences that demonstrate patience, communication, and consistency with children or families.",
+    ],
+    projectIdeas: [
+      "Build a lesson, literacy, or family-engagement project with a short reflection on audience and learning goals.",
+      "Document one education-adjacent experience that shows planning, communication, and responsiveness rather than only observation hours.",
+      "Create a teacher-prep portfolio piece that ties child development, equity, and classroom practice together.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Tacoma B.A. in Education overview",
+        url: "https://www.tacoma.uw.edu/soe/bachelor-arts-education",
+      },
+      {
+        label: "UW Tacoma School of Education application information",
+        url: "https://www.tacoma.uw.edu/soe/application-information",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-education-admission", "Education admission baseline", [
+        "The current B.A. in Education admissions guidance expects students to be admitted to UW Tacoma and complete the published prerequisite pattern before entering the campus major, including introductory psychology, an introductory ethnic studies, gender studies, or service-learning course, and English composition.",
+        "The School of Education materials also frame the program around GPA-based review together with the department's current application steps and timing.",
+      ]),
+      degreeMapSection("uwt-education-structure", "Education degree and endorsement structure", [
+        "The current Tacoma B.A. in Education is organized around elementary education preparation together with a dual endorsement path, currently Special Education or English Language Learners.",
+        "The public program page points students to the current program plans and handbook because the endorsement path shapes the detailed upper-division sequence.",
+      ]),
+      degreeMapSection("uwt-education-curriculum", "Education curriculum and field sequence", [
+        "The published curriculum is built from prerequisite and cognate content such as English, social studies, natural sciences, and mathematics for teachers, followed by an upper-division education core and supervised field experiences.",
+        "The fieldwork and methods courses are cohort-sequenced, so the exact quarter-by-quarter finish should follow the current School of Education plan rather than be treated as a fully free-choice upper-division menu.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Lifted from the current UW Tacoma B.A. in Education overview and School of Education application pages on April 2, 2026.",
+      "The exact final sequence depends on the student's endorsement path and the current School of Education program-plan year.",
+    ],
+  },
+  {
+    id: "uw-tacoma-arts-media-culture",
+    campusId: "uw-tacoma",
+    title: "Arts, Media and Culture (BA)",
+    shortTitle: "Arts, Media & Culture",
+    coverage: "detailed",
+    summary:
+      "Tacoma Arts, Media and Culture is now modeled as a track-based interdisciplinary arts transfer where the planner keeps the Green River launch broad on purpose instead of pretending there is one single universal pre-transfer studio path.",
+    applicationWindow:
+      "Apply to UW Tacoma, then enter the campus major after completing the lower-division credit baseline and the current declaration steps.",
+    startQuarter: "Autumn, winter, or spring",
+    bestTrackId: null,
+    bestTrackSummary:
+      "There is no single stock Green River transfer track that cleanly matches Tacoma Arts, Media and Culture. The safest plan is a custom arts, humanities, writing, media, or performance path that stays aligned with the student's intended AMC track.",
+    whyThisTrack: [
+      "Tacoma AMC is explicitly track-based rather than one lockstep fine-arts sequence.",
+      "The best Green River preparation depends on whether the student is leaning toward literature, media, visual art, performance, comparative arts, or American cultures.",
+      "A custom launch keeps the student flexible without inventing fake universal Tacoma prerequisites.",
+    ],
+    financialAidNote:
+      "Use a custom arts-and-humanities transfer path and keep the student's Green River classes tied to the intended AMC track, because Tacoma AMC's upper-division finish changes meaningfully by route.",
+    applicationChecklist: [],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwt-amc-writing-foundation",
+        "Writing, literature, or humanities foundation",
+        ["ENGL& 101", "ENGL& 226", "ENGL& 227", "ENGL& 228", "ENGL& 244", "ENGL& 245"],
+        "Use these when the student is leaning toward the literature or American Cultures versions of AMC."
+      ),
+      itemAny(
+        "uwt-amc-media-foundation",
+        "Media, film, journalism, or communication foundation",
+        [
+          "CMST& 102",
+          "CMST& 210",
+          "CMST& 220",
+          "CMST& 230",
+          "JOURN 101",
+          "JOURN 120",
+          "JOURN 150",
+          "FILM 120",
+          "FILM 121",
+          "FILM 122",
+        ],
+        "Use these when the student is leaning toward the Film and Media track."
+      ),
+      itemAny(
+        "uwt-amc-arts-foundation",
+        "Studio, music, performance, or visual-arts foundation",
+        ["ART& 100", "ART 105", "ART 106", "DANCE 101", "DRMA& 101", "MUSC& 105"],
+        "Use these when the student is leaning toward the Visual and Performing Arts or Comparative Arts track."
+      ),
+    ],
+    advisorFlags: [
+      "AMC is track-based, so the final upper-division course list should be finalized only after the student chooses the literature, media, arts, comparative-arts, or American Cultures route.",
+      "The Tacoma major publishes a track menu rather than one fixed universal upper-division sequence.",
+    ],
+    involvementIdeas: [
+      "Use one publication, performance, studio, journalism, or community-arts role to make the intended AMC route visible before transfer.",
+    ],
+    projectIdeas: [
+      "Build one track-aligned portfolio piece, such as a short media project, arts sample, humanities writing sample, or public-culture project with a clear audience.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Tacoma Arts, Media and Culture overview",
+        url: "https://www.tacoma.uw.edu/sias/cac/arts-media-culture",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+      {
+        label: "UW Tacoma course equivalency guide",
+        url: "https://www.tacoma.uw.edu/admissions/course-equivalency-guide",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-amc-admission", "Arts, Media and Culture admission baseline", [
+        "The current Arts, Media and Culture page says students need at least 45 lower-division credits before entering the major.",
+        "The public overview presents the major as an interdisciplinary arts and culture degree built around literature, media, music, performance, and visual culture rather than as one lockstep studio-only sequence.",
+      ]),
+      degreeMapSection("uwt-amc-structure", "Arts, Media and Culture overall BA structure", [
+        "The current page requires 60 major credits total.",
+        "At least 30 of those 60 credits must be upper-division 300- or 400-level coursework.",
+        "Students still complete the rest of UW Tacoma's graduation and general-education requirements to reach the 180-credit bachelor's minimum.",
+      ]),
+      degreeMapSection("uwt-amc-tracks", "Arts, Media and Culture track structure", [
+        "The current AMC page organizes the major into 5 track choices: Literature, Film and Media, Visual and Performing Arts, Comparative Arts, and American Cultures.",
+        "Because the upper-division finish depends on the chosen track, the public page works more like a track menu than one single universal course list shared by every AMC student.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Lifted from the current UW Tacoma Arts, Media and Culture overview and Tacoma transfer-planning pages on April 2, 2026.",
+      "Arts, Media and Culture is track-based, so the exact upper-division plan should be finalized only after the student picks the literature, media, arts, or American cultures path.",
+    ],
+    pathways: [
+      plannerPathway(
+        "literature-track",
+        "Literature track",
+        "Best when the student wants the literary and text-focused Tacoma AMC finish.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-amc-lit-admission", "Arts, Media and Culture admission baseline", [
+              "The current Arts, Media and Culture page says students need at least 45 lower-division credits before entering the major.",
+              "The public overview presents the major as an interdisciplinary arts and culture degree built around literature, media, music, performance, and visual culture rather than as one lockstep studio-only sequence.",
+            ]),
+            degreeMapSection("uwt-amc-lit-track", "Arts, Media and Culture literature track", [
+              "The current AMC page organizes the major into 5 track choices: Literature, Film and Media, Visual and Performing Arts, Comparative Arts, and American Cultures.",
+              "Use this route when the student plans to finish AMC through the literature-focused track rather than one of the other Tacoma paths.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the Tacoma Arts, Media and Culture Literature track. Favor Green River writing, literature, history, and humanities work rather than overloading film or studio credits too early.",
+        }
+      ),
+      plannerPathway(
+        "film-media-track",
+        "Film and Media track",
+        "Best when the student wants the Tacoma AMC media and screen-culture route.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-amc-film-admission", "Arts, Media and Culture admission baseline", [
+              "The current Arts, Media and Culture page says students need at least 45 lower-division credits before entering the major.",
+              "The public overview presents the major as an interdisciplinary arts and culture degree built around literature, media, music, performance, and visual culture rather than as one lockstep studio-only sequence.",
+            ]),
+            degreeMapSection("uwt-amc-film-track", "Arts, Media and Culture film and media track", [
+              "The current AMC page organizes the major into 5 track choices: Literature, Film and Media, Visual and Performing Arts, Comparative Arts, and American Cultures.",
+              "Use this route when the student plans to finish AMC through the film and media track.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the Tacoma Arts, Media and Culture Film and Media track. Favor communication, journalism, film, and audience-facing writing work at Green River.",
+        }
+      ),
+      plannerPathway(
+        "visual-performing-arts-track",
+        "Visual and Performing Arts track",
+        "Best when the student wants the more arts- and performance-centered Tacoma AMC finish.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-amc-arts-admission", "Arts, Media and Culture admission baseline", [
+              "The current Arts, Media and Culture page says students need at least 45 lower-division credits before entering the major.",
+              "The public overview presents the major as an interdisciplinary arts and culture degree built around literature, media, music, performance, and visual culture rather than as one lockstep studio-only sequence.",
+            ]),
+            degreeMapSection("uwt-amc-arts-track", "Arts, Media and Culture visual and performing arts track", [
+              "The current AMC page organizes the major into 5 track choices: Literature, Film and Media, Visual and Performing Arts, Comparative Arts, and American Cultures.",
+              "Use this route when the student plans to finish AMC through the visual and performing arts track.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the Tacoma Arts, Media and Culture Visual and Performing Arts track. Favor Green River studio, music, drama, dance, and visual-media work early.",
+        }
+      ),
+      plannerPathway(
+        "comparative-arts-track",
+        "Comparative Arts track",
+        "Best when the student wants the Tacoma AMC interdisciplinary comparative-arts finish.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-amc-comp-admission", "Arts, Media and Culture admission baseline", [
+              "The current Arts, Media and Culture page says students need at least 45 lower-division credits before entering the major.",
+              "The public overview presents the major as an interdisciplinary arts and culture degree built around literature, media, music, performance, and visual culture rather than as one lockstep studio-only sequence.",
+            ]),
+            degreeMapSection("uwt-amc-comp-track", "Arts, Media and Culture comparative arts track", [
+              "The current AMC page organizes the major into 5 track choices: Literature, Film and Media, Visual and Performing Arts, Comparative Arts, and American Cultures.",
+              "Use this route when the student plans to finish AMC through the comparative arts track.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the Tacoma Arts, Media and Culture Comparative Arts track. Keep the Green River plan interdisciplinary across writing, media, and arts rather than locking into only one narrow medium.",
+        }
+      ),
+      plannerPathway(
+        "american-cultures-track",
+        "American Cultures track",
+        "Best when the student wants the Tacoma AMC American Cultures finish.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-amc-american-admission", "Arts, Media and Culture admission baseline", [
+              "The current Arts, Media and Culture page says students need at least 45 lower-division credits before entering the major.",
+              "The public overview presents the major as an interdisciplinary arts and culture degree built around literature, media, music, performance, and visual culture rather than as one lockstep studio-only sequence.",
+            ]),
+            degreeMapSection("uwt-amc-american-track", "Arts, Media and Culture American Cultures track", [
+              "The current AMC page organizes the major into 5 track choices: Literature, Film and Media, Visual and Performing Arts, Comparative Arts, and American Cultures.",
+              "Use this route when the student plans to finish AMC through the American Cultures track.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the Tacoma Arts, Media and Culture American Cultures track. Favor history, humanities, writing, and race/culture/public-life coursework at Green River.",
+        }
+      ),
+    ],
+  },
+  {
+    id: "uw-tacoma-environmental-science",
+    campusId: "uw-tacoma",
+    title: "Environmental Science (BS)",
+    shortTitle: "Environmental Science",
+    coverage: "detailed",
+    summary:
+      "Tacoma Environmental Science is now modeled as a science-heavy transfer where the planner keeps the lower-division biology, chemistry, earth-science, and quantitative preparation visible without pretending every finish path uses the exact same upper-division option mix.",
+    applicationWindow:
+      "Apply to UW Tacoma, then declare the major after the current lower-division credit and science baseline is complete.",
+    startQuarter: "Autumn, winter, or spring",
+    bestTrackId: "999O",
+    bestTrackSummary:
+      "999O is the strongest Tacoma Environmental Science launchpad because it keeps the chemistry and biology backbone visible while still leaving room for ecology, geoscience, and GIS preparation.",
+    whyThisTrack: [
+      "Environmental Science is a science-heavy Tacoma major, so the Green River plan needs a real chemistry and biology spine.",
+      "The option-based finish still branches later, but most strong Tacoma Environmental Science starts keep laboratory science visible early.",
+      "999O gives the clearest current Green River science foundation without forcing the student into a fake one-size-fits-all environmental sequence.",
+    ],
+    financialAidNote:
+      "Stay on a science-heavy Green River path and finish the strongest chemistry and biology work you can before transfer, because Tacoma Environmental Science expects substantial lower-division science already in place.",
+    applicationChecklist: [],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [
+      item(
+        "uwt-envsci-biology",
+        "Biology-majors sequence for the science-heavy or ecology-oriented path",
+        FULL_BIOLOGY_MAJORS_SEQUENCE,
+        "This is the cleanest Green River biology foundation when the student may choose the standard Environmental Science path or the Conservation Biology and Ecology finish."
+      ),
+      item(
+        "uwt-envsci-chemistry",
+        "General chemistry sequence for the science-heavy foundation",
+        FULL_GENERAL_CHEMISTRY_SEQUENCE,
+        "Tacoma Environmental Science expects substantial lower-division laboratory science, and the Green River chemistry sequence remains one of the strongest foundations."
+      ),
+      itemAny(
+        "uwt-envsci-earth-gis",
+        "Earth-science, geography, or GIS support for the geoscience or field-oriented route",
+        ["GEOL& 101", "GEOL& 208", "GEOG& 100", "GEOG& 200", "GIS 202", "GIS 260", "NATRS 180"],
+        "Use these when the student may choose the geoscience or spatial-analysis side of Tacoma Environmental Science."
+      ),
+    ],
+    advisorFlags: [
+      "Environmental Science has multiple finish paths, so the exact upper-division list should still be confirmed once the student chooses the standard, ecology, or geoscience route.",
+      "The Tacoma page calls out a 63-credit lower-division preparation set, but the exact science mix still needs to be matched to the student's intended option and current advising guidance.",
+    ],
+    involvementIdeas: [
+      "Use one field, sustainability, ecology, GIS, or science-communication experience to show that the student is building more than a transcript-only science story.",
+    ],
+    projectIdeas: [
+      "Create one science-forward project such as a habitat, water, GIS, or field-observation analysis with a short methods summary and real data.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Tacoma Environmental Science overview",
+        url: "https://www.tacoma.uw.edu/sias/sam/environmental-science",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-envsci-admission", "Environmental Science admission baseline", [
+        "The current Environmental Science page requires students to complete at least 45 lower-division quarter credits before declaring the major.",
+        "The same page describes a 63-credit lower-division preparation set and notes that the prerequisite science work should normally be completed within the last 5 years.",
+      ]),
+      degreeMapSection("uwt-envsci-core", "Environmental Science core structure", [
+        "The current public materials describe Environmental Science as a 135-credit degree built from a 20-credit core plus dedicated environmental law and policy, ethics, social science and environment, and humanities and environment requirements.",
+        "The page also frames the degree as a science-heavy campus major that expects students to arrive with substantial lower-division math and laboratory science already completed.",
+      ]),
+      degreeMapSection("uwt-envsci-options", "Environmental Science options and capstone", [
+        "The current major information supports a standard Environmental Science path together with option-based finishes such as Conservation Biology and Ecology and Geoscience.",
+        "Students then complete the program through the published capstone, research, or internship finish and enough additional coursework to satisfy the degree and option rules.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Lifted from the current UW Tacoma Environmental Science overview and Tacoma transfer-planning pages on April 2, 2026.",
+      "Environmental Science has multiple finish paths, so the exact upper-division list should still be confirmed once the student chooses the standard, ecology, or geoscience route.",
+    ],
+  },
+  {
+    id: "uw-tacoma-environmental-sustainability",
+    campusId: "uw-tacoma",
+    title: "Environmental Sustainability (BA)",
+    shortTitle: "Environmental Sustainability",
+    coverage: "detailed",
+    summary:
+      "Tacoma Environmental Sustainability is now modeled as an option-based sustainability transfer where policy, communication, leadership, and education routes stay separate instead of getting flattened into one fake universal course path.",
+    applicationWindow:
+      "Apply to UW Tacoma, then declare the major after the lower-division credit baseline and current advising steps are complete.",
+    startQuarter: "Autumn, winter, or spring",
+    bestTrackId: null,
+    bestTrackSummary:
+      "There is no single stock Green River transfer track that cleanly matches Tacoma Environmental Sustainability. The safest plan is a custom environmental, policy, communication, and community-facing path that stays aligned with the student's intended option.",
+    whyThisTrack: [
+      "Environmental Sustainability has a shared core but a meaningful option split.",
+      "The strongest Green River choices differ when the student is aiming at policy, communication, nonprofit leadership, or education.",
+      "A custom path keeps the route honest instead of pretending all four Tacoma options use the same pre-transfer setup.",
+    ],
+    financialAidNote:
+      "Use a custom sustainability path and keep the Green River classes matched to the intended Tacoma option, because the upper-division finish changes meaningfully once the student picks policy, communication, leadership, or education.",
+    applicationChecklist: [],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwt-envsus-policy-social",
+        "Policy, justice, or social-science sustainability support",
+        ["POLS& 101", "POLS& 200", "CJ& 101", "SOC& 101", "SOC& 201"],
+        "Most Tacoma Environmental Sustainability routes still benefit from lower-division policy and social-science context."
+      ),
+      itemAny(
+        "uwt-envsus-writing-communication",
+        "Writing, journalism, or communication support",
+        ["ENGL& 101", "CMST& 102", "CMST& 210", "JOURN 101", "JOURN 120"],
+        "These are especially useful for the Environmental Communication route but also strengthen the broader sustainability story."
+      ),
+      itemAny(
+        "uwt-envsus-env-foundation",
+        "Environmental, geography, or GIS foundation",
+        ["GEOG& 100", "GEOG& 200", "GIS 202", "GIS 260", "NATRS 180", "ENV S 204"],
+        "Use these when the student wants a stronger environmental-systems baseline before the Tacoma shared core."
+      ),
+    ],
+    advisorFlags: [
+      "Environmental Sustainability has a clear shared core, but the upper-division finish still depends on the chosen option.",
+      "The student should choose the Tacoma option early enough that the Green River support courses still make sense for the intended route.",
+    ],
+    involvementIdeas: [
+      "Use one sustainability, community, policy, nonprofit, or environmental-communication role to make the chosen Tacoma route visible before transfer.",
+    ],
+    projectIdeas: [
+      "Build one sustainability project with a clear audience, such as a policy brief, communication campaign, leadership plan, or community-learning deliverable.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Tacoma Environmental Sustainability overview",
+        url: "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-envsus-admission", "Environmental Sustainability admission baseline", [
+        "The current Environmental Sustainability page requires at least 45 lower-division quarter credits before declaring the major.",
+        "Its public planning guidance describes a 37- to 38-credit lower-division preparation set that should normally be completed within the last 5 years.",
+      ]),
+      degreeMapSection("uwt-envsus-core", "Environmental Sustainability core and capstone", [
+        "The campus page describes Environmental Sustainability as a 100-credit major built from a 40-credit core plus a capstone of at least 3 credits.",
+        "The shared core is then paired with option work that lets students emphasize policy, communication, leadership, or education.",
+      ]),
+      degreeMapSection("uwt-envsus-options", "Environmental Sustainability option structure", [
+        "The current options are Policy and Law, Environmental Communication, Business and Non-Profit Leadership, and Education.",
+        "Because the option determines a meaningful part of the upper-division finish, students should treat the final sequence as option-specific rather than universal.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Lifted from the current UW Tacoma Environmental Sustainability overview and Tacoma transfer-planning pages on April 2, 2026.",
+      "Environmental Sustainability has a clear shared core, but the upper-division finish still depends on the chosen option.",
+    ],
+    pathways: [
+      plannerPathway(
+        "policy-law-option",
+        "Policy and Law option",
+        "Best when the student wants the Environmental Sustainability option centered on policy, regulation, and public-law coursework.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-envsus-policy-admission", "Environmental Sustainability admission baseline", [
+              "The current Environmental Sustainability page requires at least 45 lower-division quarter credits before declaring the major.",
+              "Its public planning guidance describes a 37- to 38-credit lower-division preparation set that should normally be completed within the last 5 years.",
+            ]),
+            degreeMapSection("uwt-envsus-policy-route", "Environmental Sustainability Policy and Law option", [
+              "The campus page describes Environmental Sustainability as a 100-credit major built from a 40-credit core plus a capstone of at least 3 credits.",
+              "The current options page identifies Policy and Law as one of the four formal finishes and builds it from the shared core plus policy- and law-focused upper-division option coursework.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the Tacoma Environmental Sustainability Policy and Law option. Favor Green River policy, government, law-adjacent, and environmental-social-science preparation instead of treating all option paths as interchangeable.",
+        }
+      ),
+      plannerPathway(
+        "environmental-communication-option",
+        "Environmental Communication option",
+        "Best when the student wants the communication- and media-facing Environmental Sustainability finish.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-envsus-comm-admission", "Environmental Sustainability admission baseline", [
+              "The current Environmental Sustainability page requires at least 45 lower-division quarter credits before declaring the major.",
+              "Its public planning guidance describes a 37- to 38-credit lower-division preparation set that should normally be completed within the last 5 years.",
+            ]),
+            degreeMapSection("uwt-envsus-comm-route", "Environmental Sustainability Environmental Communication option", [
+              "The campus page describes Environmental Sustainability as a 100-credit major built from a 40-credit core plus a capstone of at least 3 credits.",
+              "The current options page identifies Environmental Communication as one of the four formal finishes and builds it from the shared core plus communication-focused upper-division option coursework.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the Tacoma Environmental Sustainability Environmental Communication option. Favor Green River writing, communication, and public-facing environmental coursework where available.",
+        }
+      ),
+      plannerPathway(
+        "business-nonprofit-leadership-option",
+        "Business and Non-Profit Leadership option",
+        "Best when the student wants the leadership- and nonprofit-management Environmental Sustainability finish.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-envsus-business-admission", "Environmental Sustainability admission baseline", [
+              "The current Environmental Sustainability page requires at least 45 lower-division quarter credits before declaring the major.",
+              "Its public planning guidance describes a 37- to 38-credit lower-division preparation set that should normally be completed within the last 5 years.",
+            ]),
+            degreeMapSection(
+              "uwt-envsus-business-route",
+              "Environmental Sustainability Business and Non-Profit Leadership option",
+              [
+                "The campus page describes Environmental Sustainability as a 100-credit major built from a 40-credit core plus a capstone of at least 3 credits.",
+                "The current options page identifies Business and Non-Profit Leadership as one of the four formal finishes and builds it from the shared core plus leadership- and nonprofit-oriented upper-division option coursework.",
+              ]
+            ),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the Tacoma Environmental Sustainability Business and Non-Profit Leadership option. Favor Green River business, management, nonprofit, and policy-support coursework where available.",
+        }
+      ),
+      plannerPathway(
+        "education-option",
+        "Education option",
+        "Best when the student wants the education-facing Environmental Sustainability finish.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-envsus-education-admission", "Environmental Sustainability admission baseline", [
+              "The current Environmental Sustainability page requires at least 45 lower-division quarter credits before declaring the major.",
+              "Its public planning guidance describes a 37- to 38-credit lower-division preparation set that should normally be completed within the last 5 years.",
+            ]),
+            degreeMapSection("uwt-envsus-education-route", "Environmental Sustainability Education option", [
+              "The campus page describes Environmental Sustainability as a 100-credit major built from a 40-credit core plus a capstone of at least 3 credits.",
+              "The current options page identifies Education as one of the four formal finishes and builds it from the shared core plus education-focused upper-division option coursework.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the Tacoma Environmental Sustainability Education option. Favor Green River education, development, and community-learning support courses where available.",
+        }
+      ),
+    ],
+  },
+  {
+    id: "uw-tacoma-history",
+    campusId: "uw-tacoma",
+    title: "History (BA)",
+    shortTitle: "History",
+    coverage: "detailed",
+    summary:
+      "Tacoma History is now modeled as an option-based humanities transfer where the shared history core stays visible while the planner keeps themed routes flexible instead of pretending there is one universal upper-division finish.",
+    applicationWindow:
+      "Apply to UW Tacoma, then declare the major through the current Tacoma campus process.",
+    startQuarter: "Autumn, winter, or spring",
+    bestTrackId: null,
+    bestTrackSummary:
+      "There is no single stock Green River transfer track that cleanly matches Tacoma History. The safest plan is a custom history-and-humanities path with writing and theme support that stays aligned with the intended Tacoma option.",
+    whyThisTrack: [
+      "Tacoma History branches into a general option or several themed options.",
+      "A strong Green River launch is more about broad history and humanities depth than about one rigid pre-transfer prerequisite sheet.",
+      "A custom path keeps the student flexible while still building a real history foundation.",
+    ],
+    financialAidNote:
+      "Use a custom history-and-humanities transfer path and keep the Green River choices tied to the student's likely History theme instead of treating all Tacoma options as interchangeable.",
+    applicationChecklist: [],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [
+      itemCount(
+        "uwt-history-surveys",
+        "History survey foundation across more than one period or region",
+        ["HIST 101", "HIST 102", "HIST 103", "HIST& 136", "HIST& 137", "HIST& 214", "HIST& 215"],
+        2,
+        "Build a broad history foundation before the Tacoma shared core and themed option work begin."
+      ),
+      itemAny(
+        "uwt-history-writing",
+        "Writing-intensive humanities support",
+        ["ENGL& 101", "ENGL 128", "ENGL& 244", "ENGL& 245", "HUMAN 100", "HUMAN 110"],
+        "History students benefit from visible writing depth before the upper-division seminar and capstone work."
+      ),
+      itemAny(
+        "uwt-history-theme-support",
+        "Theme support for labor, culture, politics, or identity pathways",
+        ["POLS& 101", "SOC& 101", "CJ& 101", "HUMAN 133", "HUMAN 142"],
+        "Use these when the student is leaning toward a themed Tacoma History option rather than the general route."
+      ),
+    ],
+    advisorFlags: [
+      "History is option-based, so the final upper-division course list should be confirmed once the student chooses the general or themed pathway.",
+      "The strongest Green River background depends on whether the student is leaning toward labor, identity, global, or culture/history work.",
+    ],
+    involvementIdeas: [
+      "Use one museum, archive, public-history, civic, labor, or community-history activity to make the student's Tacoma theme visible before transfer.",
+    ],
+    projectIdeas: [
+      "Build one history writing sample, public-history mini project, or research brief tied to the student's likely Tacoma history route.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Tacoma History overview",
+        url: "https://www.tacoma.uw.edu/sias/socs/history",
+      },
+      {
+        label: "UW Tacoma Labor and Social Movements option",
+        url: "https://www.tacoma.uw.edu/sias-new/socs-new/labor-and-social-movements-option",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-history-overall", "History admission and overall structure", [
+        "The current Tacoma History materials describe a 60-credit major inside the 180-credit bachelor's degree.",
+        "The public page also presents History as either a general option or a themed option-based finish rather than as one single static upper-division path.",
+      ]),
+      degreeMapSection("uwt-history-core", "History shared core", [
+        "The shared History foundation shown across the current materials is THIST 150, THIST 151, THIST 200, THIST 201, THIST 380, and THIST 498.",
+        "That common core provides the baseline before students move into the general route or one of the themed option finishes.",
+      ]),
+      degreeMapSection("uwt-history-options", "History option finish", [
+        "The major then branches into a general option or thematic paths such as Arts, Culture, and Society; Global History; Labor and Social Movements; and Power, Gender, and Identity.",
+        "The exact upper-division THIST coursework depends on the chosen option, with the public materials emphasizing option-specific credit patterns rather than one universal list for all History majors.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Lifted from the current UW Tacoma History overview, Labor and Social Movements option page, and Tacoma transfer-planning page on April 2, 2026.",
+      "History is option-based, so the final upper-division course list should be confirmed once the student chooses the general or themed pathway.",
+    ],
+  },
+  {
+    id: "uw-tacoma-information-technology",
+    campusId: "uw-tacoma",
+    title: "Information Technology (BS)",
+    shortTitle: "Information Technology",
+    coverage: "detailed",
+    summary:
+      "Tacoma Information Technology is now modeled as an applied computing transfer where the planner makes the real calculus, lab-science, programming, and follow-on math requirements explicit before the upper-division networking, systems, and cybersecurity core begins.",
+    applicationWindow: "Use current UW Tacoma transfer planning and program guidance.",
+    startQuarter: "Advisor review needed",
+    bestTrackId: "999P",
+    bestTrackSummary:
+      "999P is the strongest Tacoma IT base because it keeps programming and STEM depth visible while still leaving room for the extra lab-science and follow-on math the Tacoma IT finish expects.",
+    whyThisTrack: [
+      "Tacoma IT starts lighter than Tacoma engineering, but it still expects real calculus, science, and programming before the upper division.",
+      "999P keeps the CS sequence alive while still fitting the applied-computing and systems direction of Tacoma IT.",
+      "It is the safest current Green River base when the student may still compare Tacoma IT with other Tacoma SET computing majors.",
+    ],
+    financialAidNote:
+      "Stay on 999P and place the extra lab science, TMATH 208 path, and additional programming intentionally, because Tacoma IT's minimum admission classes are lighter than the final degree structure.",
+    applicationChecklist: [
+      item("uwt-it-calc1", "TMATH 124", ["MATH& 151"]),
+      itemAny(
+        "uwt-it-science1",
+        "One approved lab-based science course other than astronomy",
+        ["CHEM& 161", "BIOL& 211", "BIOL& 241", "PHYS& 221", "GEOL& 101"],
+        "Tacoma IT requires one lab-based science course in the admission baseline and specifically excludes astronomy."
+      ),
+      itemCount(
+        "uwt-it-programming1",
+        "Programming through TCSS 142-equivalent level",
+        ["CS 121", "CS 122", "CS 123"],
+        1,
+        "Any one of these gives the student a real programming baseline before Tacoma IT's upper-division systems and security core."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      itemCount(
+        "uwt-it-calc-finish",
+        "Finish the TMATH 126 path before the Tacoma upper division",
+        ["MATH& 152", "MATH& 163"],
+        2,
+        "Tacoma IT later adds TMATH 126, so the clean Green River route is to continue the calculus sequence rather than stop after MATH& 151."
+      ),
+      item(
+        "uwt-it-math208",
+        "TMATH 208",
+        ["MATH 240"],
+        "Tacoma IT adds TMATH 208 after admission. Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment."
+      ),
+      itemAny(
+        "uwt-it-programming2",
+        "Additional programming course beyond the minimum admission classes",
+        ["CS 122", "CS 123", "ENGR 250"],
+        "The Tacoma IT page adds 5 more programming credits beyond the admission baseline."
+      ),
+      itemAny(
+        "uwt-it-science2",
+        "Second approved lab-based science course if needed for the 18-credit lab-science total",
+        ["CHEM& 162", "CHEM& 163", "BIOL& 212", "BIOL& 242", "PHYS& 222", "GEOL& 208"],
+        "Tacoma IT notes that some transfer students need one more approved lab science course to reach the 18 minimum lab-science credits required for graduation."
+      ),
+    ],
+    stayAtGrcChecklist: [],
+    advisorFlags: [
+      "Tacoma IT has a stable public core, but the approved upper-division IT/CSS elective menu should still be checked against the student's intended catalog year.",
+      "Do not assume the minimum admission classes are the whole story; the public page adds TMATH 126, TMATH 208, more programming, and possibly a second lab science after admission.",
+    ],
+    involvementIdeas: [
+      "Use one applied-computing, networking, security, help-desk, or systems project to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Build a small systems, database, automation, or security project with a clear operational or user-support angle.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Tacoma Information Technology program details",
+        url: "https://www.tacoma.uw.edu/set/programs/undergrad/it",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+      {
+        label: "UW Tacoma course equivalency guide",
+        url: "https://www.tacoma.uw.edu/admissions/course-equivalency-guide",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-it-admission", "Information Technology admission baseline", [
+        "The current Information Technology page requires Calculus I, one lab-based science course other than astronomy, and TCSS 142 or an approved equivalent as the main admission-preparation set.",
+        "The same page also expects at least 45 college-level credits, a minimum cumulative prerequisite GPA of 2.5, at least a 2.0 in each prerequisite course, and at least a 2.0 cumulative GPA in all college coursework.",
+        "Its transfer notes also add that some students may need an additional approved lab-based science course to reach the 18 minimum lab-science credits required for graduation.",
+      ]),
+      degreeMapSection("uwt-it-core", "Information Technology required core", [
+        "The current IT core is TCSS 305, 321, 325, 340, 342, 371, 372, 460, and 483.",
+        "The public page frames that required set around networking, systems administration, cybersecurity, databases, and enterprise-oriented applied computing work.",
+      ]),
+      degreeMapSection("uwt-it-finish", "Information Technology additional math/science and electives", [
+        "Beyond the admission baseline, the major adds TMATH 126, TMATH 208, 5 more programming credits, and one additional approved lab-based science course.",
+        "Students then complete 20 graded upper-division IT or CSS elective credits, including the published mix of approved IT electives and additional IT or CSS electives.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Lifted from the current UW Tacoma Information Technology program page, Tacoma transfer-planning page, and Tacoma course-equivalency guide on April 2, 2026.",
+      "Information Technology has a stable public core, but the approved upper-division elective menu should still be checked against the student's intended catalog year.",
+    ],
+  },
+  {
+    id: "uw-tacoma-law-and-policy",
+    campusId: "uw-tacoma",
+    title: "Law and Policy (BA)",
+    shortTitle: "Law and Policy",
+    coverage: "detailed",
+    summary:
+      "Tacoma Law and Policy is now modeled as an interdisciplinary writing, reasoning, and policy-analysis transfer where the planner keeps the philosophy, policy, and law-support pieces visible instead of guessing one fake pre-law checklist.",
+    applicationWindow:
+      "Apply to UW Tacoma, then enter the campus major through the current declaration path.",
+    startQuarter: "Autumn, winter, or spring",
+    bestTrackId: null,
+    bestTrackSummary:
+      "There is no single stock Green River transfer track that cleanly matches Tacoma Law and Policy. The safest plan is a custom writing, philosophy, politics, and social-analysis path built around the current Tacoma shared core.",
+    whyThisTrack: [
+      "Law and Policy is interdisciplinary and does not publish one narrow pre-law prerequisite list.",
+      "The Tacoma shared core clearly depends on writing, methods, law-and-society thinking, and policy context.",
+      "A custom path keeps the law, policy, politics, and reasoning pieces visible without inventing fake universal substitutions.",
+    ],
+    financialAidNote:
+      "Use a custom Green River path and keep the writing, reasoning, and policy-support courses intentional, because the Tacoma major's shared structure is clearer than its one-to-one pre-transfer substitutions.",
+    applicationChecklist: [item("uwt-law-engl", "English composition", ["ENGL& 101"])],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwt-law-philosophy",
+        "Reasoning or philosophy support for the Tacoma methods block",
+        ["PHIL& 120", "PHIL 210", "PHIL 243"],
+        "The current Tacoma shared core uses TPHIL 250 or 251 in the methods space, so logic and reasoning support still helps at Green River."
+      ),
+      itemAny(
+        "uwt-law-policy",
+        "Policy, politics, or law-and-society support",
+        ["POLS& 101", "POLS& 200", "CJ& 101", "SOC& 101", "SOC& 201"],
+        "Use these when the student wants stronger background for Tacoma's Policy and Politics, Law and Social Inequality, and related elective spaces."
+      ),
+      itemAny(
+        "uwt-law-writing",
+        "Writing support beyond basic composition",
+        ["ENGL 128", "ENGL& 244", "ENGL& 245"],
+        "Tacoma Law and Policy includes TWRT 211 in the shared structure, so stronger writing at Green River still helps even when the exact one-to-one substitution stays under advisor review."
+      ),
+    ],
+    advisorFlags: [
+      "Law and Policy has a stable shared structure, but the specific policy, inequality, global-context, and elective selections still vary by student interest.",
+      "The current Tacoma shared structure clearly uses writing and methods, but the exact universal Green River substitutions for those spaces should still be confirmed with current advising when a student wants a tightly optimized plan.",
+    ],
+    involvementIdeas: [
+      "Use one debate, policy, civics, advocacy, legal-aid, or public-service activity to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Build one policy memo, case-analysis brief, or public-issue writing sample that shows argument, evidence, and audience awareness.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Tacoma Law and Policy overview",
+        url: "https://www.tacoma.uw.edu/sias/socs/law-and-policy",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+      {
+        label: "UW Tacoma course equivalency guide",
+        url: "https://www.tacoma.uw.edu/admissions/course-equivalency-guide",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-lawpolicy-overall", "Law and Policy overall degree structure", [
+        "The current Tacoma Law and Policy page describes a 65-credit B.A. that must include at least 45 upper-division credits with at least a 2.0 GPA in coursework applied to the major.",
+        "The public materials also frame the major as an interdisciplinary law, society, and public-policy degree rather than a single narrow pre-law sequence.",
+      ]),
+      degreeMapSection("uwt-lawpolicy-core", "Law and Policy shared core", [
+        "The current shared structure begins with 20 foundation credits: one LAW I course from TLAW 150 or TLAW 215, one methods course from TPHIL 250 or TPHIL 251, and both TLAW 363 and TWRT 211.",
+        "Students then complete one 5-credit course in Policy and Politics, one 5-credit course in Law and Social Inequality, and one 5-credit course in Law in a Global Context from the current approved Tacoma menus.",
+      ]),
+      degreeMapSection("uwt-lawpolicy-electives", "Law and Policy electives and capstone", [
+        "After the shared core, students complete 25 additional elective credits chosen from the current approved Law and Policy elective list, with those courses counting in addition to the core requirements.",
+        "The degree then finishes with a 5-credit capstone or approved internship experience such as TPOLS 480, TPOLS 496, TPOLS 497, or TLAW 496, together with enough remaining coursework to reach the bachelor's minimum.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Lifted from the current UW Tacoma Law and Policy overview, Tacoma transfer-planning page, and Tacoma course-equivalency guide on April 2, 2026.",
+      "Law and Policy has a stable shared structure, but the specific policy, inequality, global-context, and elective selections still vary by student interest.",
+    ],
+  },
+  {
+    id: "uw-tacoma-mathematics",
+    campusId: "uw-tacoma",
+    title: "Mathematics (BS)",
+    shortTitle: "Mathematics",
+    coverage: "detailed",
+    summary:
+      "Tacoma Mathematics is now modeled as a proof-and-analysis-forward STEM transfer where the planner makes the full lower-division calculus, differential-equations, and linear-algebra spine explicit before the branch and elective areas open up.",
+    applicationWindow:
+      "Apply to UW Tacoma, then declare the major after the lower-division mathematics baseline is complete.",
+    startQuarter: "Autumn, winter, or spring",
+    bestTrackId: "999P",
+    bestTrackSummary:
+      "999P is the strongest Tacoma Mathematics base because it keeps the full calculus-and-programming-compatible STEM spine visible while leaving room for later quantitative electives.",
+    whyThisTrack: [
+      "Tacoma Mathematics expects the full lower-division calculus plus differential equations and linear algebra sequence.",
+      "A stronger STEM track keeps the student ready for the proof, modeling, and elective-area work that follows in the major.",
+      "999P leaves room for programming or quantitative electives that still make sense for applied mathematics planning.",
+    ],
+    financialAidNote:
+      "Stay on a strong STEM path and finish the lower-division mathematics backbone cleanly before transfer, because Tacoma Mathematics depends on the full calculus, differential-equations, and linear-algebra sequence.",
+    applicationChecklist: [
+      itemStemCalcSequence("uwt-math-calc123", "TMATH 124, 125, 126"),
+      item("uwt-math-207", "TMATH 207", ["MATH 238"]),
+      item("uwt-math-208", "TMATH 208", ["MATH 240"]),
+      item("uwt-math-224", "TMATH 224", ["MATH& 254"]),
+    ],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwt-math-elective-support",
+        "Programming, probability, or additional quantitative support",
+        ["CS 121", "CS 122", "MATH& 146", "MATH 256"],
+        "These do not replace the Tacoma math core, but they support later Computing or Probability and Statistics elective directions."
+      ),
+    ],
+    advisorFlags: [
+      "Mathematics has a clear published core, but the elective-area mix and the algebra-versus-analysis branch should still be matched to the student's goals.",
+      "The public grade policy on TMATH 402 and TMATH 424 matters for continuation into the paired branch sequence at Tacoma.",
+    ],
+    involvementIdeas: [
+      "Use one tutoring, math-club, coding, or quantitative project role to show applied or teaching-oriented mathematical work before transfer.",
+    ],
+    projectIdeas: [
+      "Build one quantitative project that uses proof-style reasoning, modeling, or programming instead of only worksheet-based class work.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Tacoma Mathematics overview",
+        url: "https://www.tacoma.uw.edu/sias/sam/mathematics",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+      {
+        label: "UW Tacoma course equivalency guide",
+        url: "https://www.tacoma.uw.edu/admissions/course-equivalency-guide",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-math-overall", "Mathematics overall degree structure", [
+        "The current Tacoma Mathematics page describes a 79-credit B.S. within the 180-credit bachelor's degree and requires at least 45 lower-division credits before students declare the major.",
+        "The degree is designed around algebra, analysis, and geometry, with students completing a two-quarter sequence in one of those branches as part of the upper-division finish.",
+      ]),
+      degreeMapSection("uwt-math-core", "Mathematics required core and extended core", [
+        "The current 49-credit core is TMATH 124, 125, 126, 207, 208, 224, 300, 350, 402, and 424.",
+        "The page then adds a 5-credit extended core built from either TMATH 403 or TMATH 425, with the public grade policy requiring at least a 1.5 in TMATH 402 and TMATH 424 to satisfy major requirements and a 2.0 to continue into the second course of the sequence.",
+      ]),
+      degreeMapSection("uwt-math-electives", "Mathematics elective areas and capstone", [
+        "Students complete 20 elective credits using the published elective areas in Computing, Math in Culture, Modeling, Probability and Statistics, and Topology and Geometry, together with approved general electives such as research, internship, and additional upper-division math work.",
+        "The degree finishes with the 5-credit capstone TMATH 450, and the current page says students must begin the capstone-related research experience before TMATH 450 and co-enroll in TMATH 351 while taking the capstone.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Lifted from the current UW Tacoma Mathematics overview, Tacoma transfer-planning page, and Tacoma course-equivalency guide on April 2, 2026.",
+      "Mathematics has a clear published core, but the elective-area mix and the algebra-versus-analysis branch should still be matched to the student's goals.",
+    ],
+  },
+  {
+    id: "uw-tacoma-psychology",
+    campusId: "uw-tacoma",
+    title: "Psychology (BA)",
+    shortTitle: "Psychology",
+    coverage: "detailed",
+    summary:
+      "Tacoma Psychology is now modeled as a methods-and-foundations transfer where the lower-division psychology, statistics, and research-methods baseline is explicit before the upper-division core areas and advanced topics branch out.",
+    applicationWindow:
+      "Apply to UW Tacoma, then declare the major after completing the current lower-division psychology baseline.",
+    startQuarter: "Autumn, winter, or spring",
+    bestTrackId: null,
+    bestTrackSummary:
+      "There is no single stock Green River transfer track that cleanly matches Tacoma Psychology. The safest plan is a custom psychology path built around intro psych, foundation psychology, statistics, and early methods.",
+    whyThisTrack: [
+      "Tacoma Psychology publishes a real lower-division baseline instead of a generic open elective setup.",
+      "The core later spreads across multiple psychology areas, so the best Green River plan is a focused psychology launch rather than a random social-science mix.",
+      "A custom path keeps the methods and statistics pieces visible before the upper-division Tacoma core begins.",
+    ],
+    financialAidNote:
+      "Use a custom psychology transfer path and complete the lower-division psychology, statistics, and methods set before transfer, because Tacoma Psychology depends on that preparation before the upper division opens up.",
+    applicationChecklist: [
+      item("uwt-psych-intro", "Introductory psychology", ["PSYC& 100"]),
+      itemCount(
+        "uwt-psych-foundations",
+        "Two psychology foundation courses from different Tacoma areas",
+        ["PSYC& 180", "PSYC& 220", "PSYC 201", "PSYC 209", "BIOL 110"],
+        2,
+        "The Tacoma page groups these into developmental, abnormal, social, cognition, and biological bases areas. Use two courses from more than one of those areas."
+      ),
+      itemAny("uwt-psych-stats", "Introductory statistics", ["MATH& 146", "MATH 256"]),
+      item("uwt-psych-methods", "Introductory methods", ["PSYC& 200"]),
+    ],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwt-psych-support",
+        "Additional development or human-behavior support",
+        ["ECED& 180", "ECED& 132", "EDUC& 115", "EDUC& 130"],
+        "These are useful when the student wants stronger developmental or education-adjacent background before the Tacoma core areas open up."
+      ),
+    ],
+    advisorFlags: [
+      "Psychology has a strong published framework, but students still need advising help choosing core areas, advanced topics, and the 15 upper-division non-psychology credits.",
+      "Tacoma Psychology requires the two foundation courses to come from more than one area, so do not treat any two psych electives as automatically interchangeable.",
+    ],
+    involvementIdeas: [
+      "Use one tutoring, mentoring, behavioral-health, research, or human-services role to show applied interest beyond coursework.",
+    ],
+    projectIdeas: [
+      "Build one short research-style or applied human-behavior project with clear methods and a simple data or literature component.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Tacoma Psychology overview",
+        url: "https://www.tacoma.uw.edu/sias/socs/psychology",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-psych-admission", "Psychology admission baseline", [
+        "The current Tacoma Psychology page requires a lower-division preparation set made from one introductory psychology course, two foundation psychology courses from different areas, one introductory statistics course, and one introductory methods course, each completed with at least a 2.0.",
+        "The public prerequisite groups are developmental psychology, abnormal psychology, social psychology, human cognition, and biological bases of behavior, with students choosing two courses from more than one of those areas.",
+      ]),
+      degreeMapSection("uwt-psych-core", "Psychology research methods and core areas", [
+        "The current upper-division major includes TPSYCH 309 Fundamentals of Psychological Research II and 15 core-course credits spread across at least two core areas.",
+        "The current core structure includes Clinical, Developmental, Cognitive or Experimental, Social or Applied, and General Psychology groupings, with courses such as TPSYCH 300, 306, 310-314, 319-322, 350-352, and 344-362 appearing in those current published lists.",
+      ]),
+      degreeMapSection("uwt-psych-finish", "Psychology advanced topics and outside-major credits", [
+        "Beyond the core, Tacoma Psychology currently requires at least 10 credits of 400-level advanced topics, plus 5 additional credits from any 300- or 400-level TPSYCH course or an approved internship, directed readings, or research course.",
+        "The current degree requirements also add 15 credits of upper-division coursework outside Psychology, including Arts and Humanities, Social Sciences, and one additional upper-division course from Arts and Humanities, Social Sciences, or Natural Sciences.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Lifted from the current UW Tacoma Psychology overview and Tacoma transfer-planning page on April 2, 2026.",
+      "Psychology has a strong published framework, but students still need advising help choosing core areas, advanced topics, and the 15 upper-division non-psychology credits.",
+    ],
+  },
+  {
+    id: "uw-tacoma-social-welfare",
+    campusId: "uw-tacoma",
+    title: "Social Welfare (BA)",
+    shortTitle: "Social Welfare",
+    coverage: "detailed",
+    summary:
+      "Tacoma Social Welfare is now modeled as a cohort-based BASW transfer where English, psychology, sociology, and the statistics prerequisite are explicit before the sequenced social-work core begins.",
+    applicationWindow:
+      "Apply to UW Tacoma, then follow the current BASW autumn-cohort application cycle and sequencing rules.",
+    startQuarter: "Autumn cohort",
+    bestTrackId: null,
+    bestTrackSummary:
+      "There is no single stock Green River transfer track that cleanly matches Tacoma Social Welfare. The safest plan is a custom human-services path built around writing, psychology, sociology, and early statistics.",
+    whyThisTrack: [
+      "Tacoma Social Welfare is a strict BASW cohort rather than a broad open elective social-science major.",
+      "The current BASW admission class set is clear: writing, introductory psychology, introductory sociology, and enough lower-division credits before the sequence begins.",
+      "A custom path keeps the student aligned with the BASW sequence without pretending the upper-division social-work core is freely reorderable.",
+    ],
+    financialAidNote:
+      "Use a custom human-services path and keep the BASW cohort timing visible, because Tacoma Social Welfare is sequence-based and less forgiving than a broad open social-science major.",
+    applicationChecklist: [
+      item("uwt-basw-engl", "English composition", ["ENGL& 101"]),
+      item("uwt-basw-psych", "Introductory psychology", ["PSYC& 100"]),
+      item("uwt-basw-soc", "Introductory sociology", ["SOC& 101"]),
+    ],
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uwt-basw-stats",
+        "Statistics before TSOCWF 390",
+        ["MATH& 146", "MATH 256"],
+        "The current BASW curriculum notes that successful statistics completion is a prerequisite for TSOCWF 390."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwt-basw-support",
+        "Human-services, justice, or family-support background",
+        ["CJ& 101", "CJ& 105", "SOC& 201", "EDUC& 115", "ECED& 180"],
+        "These do not replace the BASW cohort core, but they strengthen the student's social-services preparation before the Tacoma sequence begins."
+      ),
+    ],
+    advisorFlags: [
+      "BASW is a strict cohort and sequence-based program, so students should plan it from the current model program of study instead of treating the upper division as freely reorderable.",
+      "Tacoma BASW admits an autumn-only cohort, so timing and credit totals matter as much as the individual prerequisite courses.",
+    ],
+    involvementIdeas: [
+      "Use one youth, community, human-services, justice, advocacy, or social-support role to show fit beyond coursework.",
+    ],
+    projectIdeas: [
+      "Document one community-facing or human-services project that shows care, communication, and ethical reflection rather than only classroom completion.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Tacoma BASW admission requirements",
+        url: "https://www.tacoma.uw.edu/swcj/basw-admission-requirements-and-how-apply",
+      },
+      {
+        label: "UW Tacoma BASW curriculum",
+        url: "https://www.tacoma.uw.edu/swcj/basw-curriculum",
+      },
+      {
+        label: "UW Tacoma BASW application",
+        url: "https://www.tacoma.uw.edu/swcj/basw-application",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-basw-admission", "Social Welfare admission baseline", [
+        "The current BASW admission page says the Social Welfare major admits an autumn-only cohort and that the core classes must be taken in sequence.",
+        "To be considered, students must be admitted to UW Tacoma, hold at least a 2.0 cumulative GPA, complete at least 75 college-level quarter credits before the program starts, and complete English composition plus introductory psychology and sociology with at least a 2.0.",
+      ]),
+      degreeMapSection("uwt-basw-core", "Social Welfare required core curriculum", [
+        "The current BASW curriculum describes a 58-credit hybrid program built from foundation courses, social work practice courses, and practicum with seminars.",
+        "The published core set is TSOCWF 300, 310, 311, 312, 320, 390, 402, 404, 405, 406, 414, and 415, and the page notes that a successful statistics course is a prerequisite for TSOCWF 390.",
+      ]),
+      degreeMapSection("uwt-basw-finish", "Social Welfare sequencing and completion rules", [
+        "The current curriculum page says students complete the BASW core in sequence over a two-year period, maintain at least a 2.5 GPA in major coursework, and earn at least a 2.0 in each BASW core course.",
+        "Students also complete 10 upper-division Social Welfare elective credits and enough general-education and elective work to reach the 180-credit minimum for the bachelor's degree.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Lifted from the current UW Tacoma BASW admission, curriculum, and application pages on April 2, 2026.",
+      "BASW is a strict cohort and sequence-based program, so students should plan it from the current model program of study instead of treating the upper division as freely reorderable.",
+    ],
+  },
+  {
+    id: "uw-tacoma-urban-design",
+    campusId: "uw-tacoma",
+    title: "Urban Design (BS)",
+    shortTitle: "Urban Design",
+    coverage: "detailed",
+    summary:
+      "Tacoma Urban Design is now modeled as a design-and-GIS-forward transfer where the planner keeps the minimum admission classes, GIS encouragement, and admit-year split visible instead of flattening the new and legacy plans together.",
+    applicationWindow:
+      "Apply to UW Tacoma and complete the current Urban Design application and advising steps.",
+    startQuarter: "Advisor review needed",
+    bestTrackId: "999P",
+    bestTrackSummary:
+      "999P is the strongest current Urban Design base because it keeps quantitative/GIS-friendly preparation visible while still leaving room for art, design, and urban-systems support.",
+    whyThisTrack: [
+      "Urban Design uses both shared urban curriculum and GIS/design-forward coursework.",
+      "The Tacoma page explicitly encourages early GIS work, so the Green River plan should keep geography, GIS, and quantitative support visible.",
+      "A stronger STEM-friendly base still works better than a random custom arts schedule because the Tacoma degree includes GIS and core urban-design sequencing.",
+    ],
+    financialAidNote:
+      "Keep the Urban Design plan intentionally mixed across GIS, design, and writing support, and tie it to the student's admit year because Tacoma now publishes both a new winter-2026 curriculum and an older legacy plan.",
+    applicationChecklist: [item("uwt-ude-engl", "English composition", ["ENGL& 101"])],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwt-ude-gis",
+        "GIS and geography preparation",
+        ["GEOG& 100", "GEOG& 200", "GIS 202", "GIS 260"],
+        "The Tacoma Urban Design page explicitly encourages students to take T GIS 311 early, so GIS and geography preparation is one of the clearest Green River head starts."
+      ),
+      itemAny(
+        "uwt-ude-design",
+        "Design, art, or photography preparation",
+        ["ART& 100", "ART 105", "ART 106", "PHOTO 101", "PHOTO 102"],
+        "These are the cleanest Green River lower-division design and visual-communication supports before Tacoma's studio-heavy upper division."
+      ),
+      itemAny(
+        "uwt-ude-quant",
+        "Quantitative support for the shared urban curriculum",
+        ["MATH& 151", "MATH& 152", "MATH& 163"],
+        "A stronger quantitative launch helps when the student is planning around GIS and the shared urban curriculum instead of a purely studio-only path."
+      ),
+    ],
+    advisorFlags: [
+      "Urban Design now has a new winter-2026 curriculum and an older legacy plan, so the exact degree map should be tied to the student's admit year before locking the final sequence.",
+      "The page also says the 300- and 400-level Tacoma studio courses cannot be transferred into the major, so the Green River plan should focus on foundation rather than pretending to replace upper-division studios.",
+    ],
+    involvementIdeas: [
+      "Use one design, mapping, public-space, GIS, or community-planning project to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Create a small mapping, spatial-analysis, or urban-design concept project with visuals and a short written explanation of the design problem.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Tacoma Urban Design overview",
+        url: "https://www.tacoma.uw.edu/urban-studies/bs-urban-design",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-ude-admission", "Urban Design admission baseline", [
+        "The current Urban Design page requires at least 40 college-level credits, 5 credits of English composition, and completion of the online Urban Design application, with priority consideration for applicants at a 2.7 GPA or higher.",
+        "The page also encourages pre-majors to take T GIS 311 and meet with the School of Urban Studies advisor before applying.",
+      ]),
+      degreeMapSection("uwt-ude-current", "Urban Design current degree structure", [
+        "Beginning winter 2026, the published Urban Design curriculum uses 20 credits of shared curriculum plus 61 credits of Urban Design core courses and general electives.",
+        "The current shared curriculum is T URB 101, 103, 110, 200, and 403, and the core is T GIS 311, T UDE 210, T URB 220, T UDE 260, T UDE 310, T UDE 340, T UDE 350, T UDE 360, T UDE 440, T UDE 450, T UDE 460, and one approved social-equity or housing course from the published option list.",
+      ]),
+      degreeMapSection("uwt-ude-legacy", "Urban Design legacy plan and transfer caveats", [
+        "The same page also keeps a separate plan for students admitted before winter 2026, built from 16 introductory credits, 57 core credits, 10 Sustainable Urban Development elective credits, and general electives.",
+        "The public page adds transfer-specific caveats for the older plan: some lower-division starred design-history, computer-graphics, or introductory-design preparation can transfer in, but the 300- and 400-level studio courses cannot be transferred into the major.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Lifted from the current UW Tacoma Urban Design overview and Tacoma transfer-planning page on April 2, 2026.",
+      "Urban Design now has a new winter-2026 curriculum and an older legacy plan, so the exact degree map should be tied to the student's admit year before locking the final sequence.",
+    ],
+  },
+  {
+    id: "uw-tacoma-computer-science-and-systems-ba",
+    campusId: "uw-tacoma",
+    title: "Computer Science and Systems (BA)",
+    shortTitle: "CSS (BA)",
+    coverage: "detailed",
+    summary:
+      "Tacoma CSS B.A. is now modeled as an interdisciplinary computing transfer where the full programming ladder, statistics, and outside-minor planning stay visible instead of getting flattened into the heavier B.S. math-and-science spine.",
+    applicationWindow:
+      "Autumn application with rolling decisions; the current page shows a January 28, 2026 opening date and an August 31, 2026 final deadline for Autumn 2026.",
+    startQuarter: "Autumn",
+    bestTrackId: "999P",
+    bestTrackSummary:
+      "999P is the clearest Tacoma CSS B.A. base because it keeps the programming and quantitative spine visible while still leaving room for the non-computing minor that the degree requires.",
+    whyThisTrack: [
+      "The B.A. still expects a real programming ladder rather than a one-course intro-only launch.",
+      "Tacoma CSS B.A. adds statistics and a required outside minor, so a stronger quantitative/computing base is more honest than a generic liberal-arts placeholder.",
+      "999P leaves room for the paired minor or application area without pretending the student should follow the heavier B.S. lab-science spine.",
+    ],
+    financialAidNote:
+      "Stay on 999P and map the outside minor early, because Tacoma CSS B.A. still needs a full programming ladder plus a non-CSS minor rather than only a light intro-computing launch.",
+    applicationChecklist: [
+      item("uwt-cssba-calc1", "TMATH 124", ["MATH& 151"]),
+      itemAny(
+        "uwt-cssba-stats",
+        "Statistics through TMATH 110",
+        ["MATH& 146", "MATH 256"],
+        "Either of these is the clearest current Green River statistics preparation for Tacoma's TMATH 110-style prerequisite."
+      ),
+      itemCount(
+        "uwt-cssba-programming",
+        "Programming through the published Tacoma CSS B.A. prerequisite stack",
+        ["CS 121", "CS 122", "CS 123"],
+        3,
+        "The B.A. page names an introductory programming course plus TCSS 142 and TCSS 143. The planner treats the full CS 121 -> CS 122 -> CS 123 ladder as the safest Green River interpretation. Older CS& 131 / 132 and CS& 141 / 145 combinations should be reviewed individually."
+      ),
+    ],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwt-cssba-programming-depth",
+        "Additional computing depth before TCSS 305 and TCSS 342",
+        ["CS 145", "CS 202"],
+        "These strengthen the Tacoma launch and portfolio story, but they do not replace the published B.A. prerequisite stack."
+      ),
+      itemAny(
+        "uwt-cssba-minor-support",
+        "Quantitative or writing support for the paired minor or application area",
+        ["MATH& 152", "MATH& 146", "MATH 256", "ENGL 126", "ENGL 127", "ENGL 128"],
+        "The B.A. requires a non-CSS minor, so use this space to support the student's planned outside discipline rather than forcing every BA student into the heavier B.S. science path."
+      ),
+    ],
+    advisorFlags: [
+      "The B.A. requires a minor in another discipline, so the best Green River add-ons depend heavily on what the student plans to pair with computing.",
+      "The public prerequisite stack names an intro programming course plus TCSS 142 and TCSS 143, but Tacoma and Green River still need case-by-case review when the student is using older CS& 131 / 132 or CS& 141 / 145 work instead of the modern CS 121 / 122 / 123 path.",
+      "Admission is competitive, and the current page says all prerequisite courses must have been completed within the last 7 years.",
+    ],
+    involvementIdeas: [
+      "Use one internship, research, tutoring, or computing-adjacent role that clearly connects programming to the student's intended minor or applied domain.",
+    ],
+    projectIdeas: [
+      "Build one portfolio-ready project that combines computing with the intended minor, such as a data, business, communications, health, or public-interest application.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Tacoma CSS B.A. program details",
+        url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
+      },
+      {
+        label: "UW Tacoma CSS B.S. program details",
+        url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
+      },
+      {
+        label: "UW Tacoma course equivalency guide",
+        url: "https://www.tacoma.uw.edu/admissions/course-equivalency-guide",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-cssba-admission", "Computer Science and Systems B.A. admission baseline", [
+        "The current B.A. in CSS page treats admission as competitive and requires TMATH 124, TMATH 110, TCSS 101 or TCSS 141, TCSS 142, and TCSS 143 or approved equivalents.",
+        "The page also requires those prerequisites to be completed within the last 7 years, with at least a 2.5 cumulative prerequisite GPA, at least a 2.0 in each prerequisite, at least a 2.0 cumulative GPA in all college coursework, and at least 45 college-level credits before applying.",
+      ]),
+      degreeMapSection("uwt-cssba-core", "Computer Science and Systems B.A. required core", [
+        "The fixed B.A. curriculum starts with TCSS 101 or 141, then TCSS 142 and TCSS 143, and continues into TCSS 305, 321, 325, 342, 360, 371, and 496.",
+        "All courses counted in the major, including TCSS 142 and 143, must be completed with at least a 2.0, and the page says a course can only be repeated once.",
+      ]),
+      degreeMapSection("uwt-cssba-finish", "Computer Science and Systems B.A. interdisciplinary finish", [
+        "The B.A. then requires 20 additional credits of 300- or 400-level CSS electives, excluding TCSS 390.",
+        "Students must also complete a minor in another discipline, unless a previous bachelor's degree is being used in place of the minor requirement.",
+        "The public planning page also includes 15 credits of general electives and frames the degree around portfolio-based learning plus interdisciplinary application of computing.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Lifted from the current UW Tacoma CSS B.A., CSS B.S., course-equivalency, and transfer-planning pages on April 2, 2026.",
+      "The public Autumn 2026 cycle currently shows a January 28, 2026 opening date and an August 31, 2026 final deadline, so recheck the CSS page each year.",
+      "The planner treats the full modern CS 121 -> 122 -> 123 ladder as the safest Green River interpretation of the published B.A. prerequisite stack; older Green River programming combinations should still be reviewed individually.",
+    ],
+  },
+  {
+    id: "uw-tacoma-computer-science-and-systems-bs",
+    campusId: "uw-tacoma",
+    title: "Computer Science and Systems (BS)",
+    shortTitle: "CSS (BS)",
+    coverage: "detailed",
+    summary:
+      "Tacoma CSS B.S. is now modeled as the stronger theory-and-systems transfer where the full programming ladder, calculus, and lab-science spine stay explicit before the upper-division TCSS core and elective stack.",
+    applicationWindow:
+      "Autumn application with rolling decisions; the current page shows a January 28, 2026 opening date and an August 31, 2026 final deadline for Autumn 2026.",
+    startQuarter: "Autumn",
+    bestTrackId: "999P",
+    bestTrackSummary:
+      "999P is the strongest Tacoma CSS B.S. base because it keeps the calculus, programming, and science spine visible before the upper-division algorithms, systems, and architecture core begins.",
+    whyThisTrack: [
+      "The B.S. uses a stronger math-and-systems backbone than the B.A., so the planner should keep calculus, programming, and science explicit before transfer.",
+      "Tacoma CSS B.S. later adds TMATH 126, TMATH 208, TMATH 390, and a second science-or-math branch beyond the minimum admission classes.",
+      "999P keeps the strongest currently tracked Green River launch without pretending the Tacoma B.S. can be reached from an intro-only computing path.",
+    ],
+    financialAidNote:
+      "Stay on 999P and place the calculus, programming, and lab-science spine intentionally, because Tacoma CSS B.S. is capacity-constrained and adds more math and science after the initial minimum admission classes.",
+    applicationChecklist: [
+      itemCountWithAlternatives(
+        "uwt-cssbs-calc12",
+        "TMATH 124 and 125",
+        STEM_CALCULUS_CURRENT_SEQUENCE,
+        [STEM_CALCULUS_OLDER_SEQUENCE],
+        2,
+        "The published B.S. minimum admission classes are Calculus I and II, and the same Green River calculus ladder continues directly into the later TMATH 126 and TMATH 208 requirements."
+      ),
+      itemCount(
+        "uwt-cssbs-programming",
+        "Programming through the published Tacoma CSS B.S. prerequisite stack",
+        ["CS 121", "CS 122", "CS 123"],
+        2,
+        "The current B.S. page names both TCSS 142 and TCSS 143. The planner treats the modern CS 121 -> CS 122 -> CS 123 ladder as the safest Green River route, while older CS& 141 / CS 145 patterns should be reviewed individually."
+      ),
+      itemAny(
+        "uwt-cssbs-labscience1",
+        "First approved lab-based science course",
+        ["PHYS& 221", "PHYS& 222", "PHYS& 223"],
+        "The current Tacoma page accepts several lab-science starts, but the current planner's clearest Tacoma-tracked science path is the calculus-based physics sequence. If the student wants chemistry or biology instead, confirm the exact Tacoma equivalency before finalizing."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      itemStemCalcSequence(
+        "uwt-cssbs-calc123",
+        "TMATH 124, 125, 126",
+        "The B.S. minimum admission classes are Calculus I and II, but Tacoma CSS B.S. later adds TMATH 126, so the planner keeps the full Green River calculus ladder visible."
+      ),
+      item(
+        "uwt-cssbs-math208",
+        "TMATH 208",
+        ["MATH 240"],
+        "Tacoma CSS B.S. adds TMATH 208 after the minimum admission classes. Not essential for application, but good to complete before or during UW enrollment."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwt-cssbs-stats-support",
+        "Statistics support before TMATH 390",
+        ["MATH& 146", "MATH 256"],
+        "These do not replace TMATH 390, but they make the probability/statistics jump cleaner before the Tacoma upper division."
+      ),
+      itemAny(
+        "uwt-cssbs-labscience2",
+        "Second lab-science course for the stronger Tacoma B.S. launch",
+        ["PHYS& 222", "PHYS& 223"],
+        "The B.S. later needs another lab-science course or extra upper-division math. Staying in the calculus-based physics sequence is the cleanest currently tracked Green River option."
+      ),
+      itemAny(
+        "uwt-cssbs-programming-finish",
+        "Finish the full modern programming ladder before transfer",
+        ["CS 123"],
+        "Even when the student already has enough to apply, finishing CS 123 makes the Tacoma upper-division systems and algorithms launch cleaner."
+      ),
+    ],
+    advisorFlags: [
+      "CSS B.S. is capacity-constrained, and the current page says competitive applicants typically have grades of 3.0 and higher in prerequisite math, science, and computer-science work.",
+      "The current B.S. page explicitly names both TCSS 142 and TCSS 143 in the prerequisite stack, so students using older or mixed Green River programming history need individual equivalency review.",
+      "The science finish can be completed with a second lab science or additional upper-division math, so that branch should be chosen with the student's science background and current Tacoma advising in mind.",
+    ],
+    involvementIdeas: [
+      "Use one systems, software, cybersecurity, robotics, research, or applied-computing role that shows technical depth beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Build one systems- or software-heavy project with code, architecture notes, and a short explanation of the design tradeoffs.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Tacoma CSS B.S. program details",
+        url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
+      },
+      {
+        label: "UW Tacoma CSS B.A. program details",
+        url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
+      },
+      {
+        label: "UW Tacoma course equivalency guide",
+        url: "https://www.tacoma.uw.edu/admissions/course-equivalency-guide",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-cssbs-admission", "Computer Science and Systems B.S. admission baseline", [
+        "The current B.S. in CSS page requires Calculus I, Calculus II, 1 lab-based science course other than astronomy, and both TCSS 142 and TCSS 143 or approved equivalents for admission preparation.",
+        "The page also expects at least 45 college-level credits, a minimum cumulative prerequisite GPA of 2.5, a minimum 2.0 in each prerequisite, and a minimum 2.0 cumulative GPA in all college coursework.",
+        "Its transfer-admission notes add that some students may need one additional approved lab-based science course to reach the 18 minimum lab-science credits required for graduation.",
+      ]),
+      degreeMapSection("uwt-cssbs-core", "Computer Science and Systems B.S. required core", [
+        "The current B.S. core is TCSS 305, 321, 325, 342, 343, 360, 371, 372, 380, and 422.",
+        "As with the B.A., all courses counted in the major must be completed with at least a 2.0 and can only be repeated once.",
+      ]),
+      degreeMapSection("uwt-cssbs-mathscience", "Computer Science and Systems B.S. additional math, science, and elective finish", [
+        "The B.S. adds TMATH 126, TMATH 208, and TMATH 390 beyond the admission baseline.",
+        "Students also complete 1 additional lab-based science course plus either a second additional lab-based science course or an extra 300- or 400-level math course other than TMATH 310.",
+        "The senior-elective rules then require 25 graded upper-division CSS elective credits, including 5 design-elective credits, 10 additional upper-division TCSS elective credits, and 10 more 400-level TCSS elective credits.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Lifted from the current UW Tacoma CSS B.S., CSS B.A., course-equivalency, and transfer-planning pages on April 2, 2026.",
+      "The public Autumn 2026 cycle currently shows a January 28, 2026 opening date and an August 31, 2026 final deadline, so recheck the CSS page each year.",
+      "The current B.S. page explicitly names both TCSS 142 and TCSS 143 in the prerequisite stack. Older or mixed Green River programming histories should still be reviewed individually before the final schedule is locked.",
+    ],
+  },
+  detailedPlan({
+    id: "uw-tacoma-ethnic-gender-and-labor-studies",
+    campusId: "uw-tacoma",
+    title: "Ethnic, Gender and Labor Studies (BA)",
+    shortTitle: "EGLS",
+    summary:
+      "Tacoma Ethnic, Gender and Labor Studies is now modeled as an interdisciplinary social-justice transfer where writing, history, and social-analysis preparation stays explicit before students choose option-level work at UW Tacoma.",
+    applicationWindow:
+      "Apply to UW Tacoma, then follow current School of Interdisciplinary Arts and Sciences declaration guidance.",
+    startQuarter: "Autumn, winter, or spring",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "EGLS uses interdisciplinary social-science and humanities preparation rather than a single narrow prerequisite ladder.",
+      "A custom path keeps writing, social-analysis, and history support visible before the upper-division option work begins.",
+    ],
+    financialAidNote:
+      "Use a custom humanities and social-science path and keep writing and social-analysis support intentional instead of adding random electives.",
+    applicationChecklist: [item("uwt-egls-engl101", "English composition", ["ENGL& 101"])],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwt-egls-social-justice-support",
+        "History, labor, or social-justice support",
+        ["HIST 101", "HIST 103", "SOC& 101", "POLS& 101", "AMES 150"],
+        "These support the Tacoma EGLS core and options but do not replace upper-division UW Tacoma coursework."
+      ),
+    ],
+    advisorFlags: [
+      "EGLS is option-based, so confirm option-specific upper-division sequencing once the student chooses the exact pathway.",
+    ],
+    involvementIdeas: [
+      "Use one advocacy, equity, labor, community, or policy role to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Build one short policy, labor, or equity analysis project with clear sources and written argument.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Tacoma Ethnic, Gender and Labor Studies overview",
+        url: "https://www.tacoma.uw.edu/sias/socs/ethnic-gender-and-labor-studies",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-egls-overall", "EGLS overall structure", [
+        "The current Tacoma EGLS materials frame the major as an interdisciplinary social-justice degree with option-based upper-division planning.",
+        "Students should use Green River for writing, social-science, and history support before committing to a specific option at Tacoma.",
+      ]),
+    ],
+  }),
+  detailedPlan({
+    id: "uw-tacoma-healthcare-leadership",
+    campusId: "uw-tacoma",
+    title: "Healthcare Leadership (BA)",
+    shortTitle: "Healthcare Leadership",
+    summary:
+      "Tacoma Healthcare Leadership is now modeled as an interdisciplinary health-systems transfer where writing, statistics, and health-support coursework are explicit before leadership and policy-focused upper-division work.",
+    applicationWindow:
+      "Apply to UW Tacoma and follow current Healthcare Leadership declaration timing.",
+    startQuarter: "Autumn, winter, or spring",
+    bestTrackId: "999B",
+    bestTrackSummary: buildGeneratedTrackSummary("999B"),
+    whyThisTrack: [
+      "Healthcare Leadership depends on communication and quantitative readiness, not only one discipline-specific prerequisite stack.",
+      "A balanced transfer path keeps health, statistics, and writing support visible before Tacoma's upper-division leadership core.",
+    ],
+    financialAidNote:
+      "Keep a balanced health-and-quantitative plan so the student does not transfer with broad credits but without useful statistics and writing support.",
+    applicationChecklist: [
+      item("uwt-hl-engl101", "English composition", ["ENGL& 101"]),
+      itemAny("uwt-hl-stats", "Statistics support", ["MATH& 146", "MATH 256"]),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwt-hl-health-support",
+        "Healthcare and human-services support",
+        ["BIOL 160", "NUTR& 101", "PSYC& 100", "SOC& 101"],
+        "These support the health-systems context of the major but do not replace upper-division Tacoma coursework."
+      ),
+    ],
+    advisorFlags: [
+      "Healthcare Leadership is interdisciplinary, so confirm concentration and elective choices with current Tacoma advising before finalizing the last pre-transfer quarters.",
+    ],
+    involvementIdeas: [
+      "Use one clinic, healthcare support, public-health, or community-wellness role to strengthen transfer readiness.",
+    ],
+    projectIdeas: [
+      "Create one healthcare process-improvement or community-health project summary with clear outcomes.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Tacoma Healthcare Leadership overview",
+        url: "https://www.tacoma.uw.edu/sias/healthcare-leadership",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-healthlead-overall", "Healthcare Leadership planning baseline", [
+        "The major combines health-context coursework with leadership and policy-oriented upper-division study.",
+        "Green River planning should keep writing, statistics, and health-support preparation visible before transfer.",
+      ]),
+    ],
+  }),
+  detailedPlan({
+    id: "uw-tacoma-interdisciplinary-arts-and-sciences",
+    campusId: "uw-tacoma",
+    title: "Interdisciplinary Arts and Sciences (BA)",
+    shortTitle: "IAS",
+    summary:
+      "Tacoma Interdisciplinary Arts and Sciences is now modeled as a concentration-driven transfer where broad foundational preparation is kept explicit while the student's option focus is built with advising.",
+    applicationWindow:
+      "Apply to UW Tacoma and use current SIAS declaration and concentration-planning guidance.",
+    startQuarter: "Autumn, winter, or spring",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "IAS is explicitly concentration-driven and does not map to one fixed prerequisite ladder.",
+      "A custom path keeps breadth while leaving room to target the chosen concentration before transfer.",
+    ],
+    financialAidNote:
+      "Use a custom concentration-first plan and avoid random electives that do not support the intended IAS theme.",
+    applicationChecklist: [item("uwt-ias-engl101", "English composition", ["ENGL& 101"])],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwt-ias-breadth",
+        "Breadth support across humanities and social sciences",
+        ["ENGL 128", "HIST 103", "POLS& 101", "SOC& 101", "ANTH& 100"],
+        "IAS planning works best when Green River coursework builds clear breadth tied to the student's intended concentration."
+      ),
+    ],
+    advisorFlags: [
+      "Confirm concentration structure early so upper-division Tacoma requirements can be planned intentionally.",
+    ],
+    involvementIdeas: [
+      "Use one leadership or project role aligned with the planned concentration area.",
+    ],
+    projectIdeas: [
+      "Document one interdisciplinary portfolio artifact that combines methods or perspectives from more than one field.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Tacoma Interdisciplinary Arts and Sciences overview",
+        url: "https://www.tacoma.uw.edu/sias/interdisciplinary-arts-and-sciences",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-ias-overall", "IAS concentration-based structure", [
+        "The major is built around concentration planning rather than one universal static upper-division sequence.",
+        "Students should build a clear concentration intent before transfer so Tacoma advising can map final requirements precisely.",
+      ]),
+    ],
+  }),
+  detailedPlan({
+    id: "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed",
+    campusId: "uw-tacoma",
+    title: "Interdisciplinary Arts and Sciences: Individually-designed (BA)",
+    shortTitle: "IAS Individually-designed",
+    summary:
+      "Tacoma Individually-designed IAS is now modeled as a proposal-driven transfer where students build a custom interdisciplinary plan with advisor approval instead of following a fixed preset option.",
+    applicationWindow:
+      "Apply to UW Tacoma and follow current SIAS guidance for individually-designed concentration planning.",
+    startQuarter: "Autumn, winter, or spring",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "The individually-designed path requires proposal quality and advising alignment rather than a fixed prerequisite script.",
+      "A custom Green River plan should mirror the student's intended interdisciplinary design.",
+    ],
+    financialAidNote:
+      "Keep a documented concentration rationale so transfer coursework supports the intended individually-designed proposal.",
+    applicationChecklist: [item("uwt-iasid-engl101", "English composition", ["ENGL& 101"])],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwt-iasid-proposal-support",
+        "Coursework that supports the intended custom concentration",
+        ["ENGL 128", "HIST 103", "POLS& 101", "SOC& 101", "ART 105"],
+        "Choose support coursework from the student's intended interdisciplinary focus so the Tacoma proposal can be specific and coherent."
+      ),
+    ],
+    advisorFlags: [
+      "This path requires early advising coordination because approval depends on a coherent custom concentration proposal.",
+    ],
+    involvementIdeas: [
+      "Use one experience tied directly to the proposed concentration theme.",
+    ],
+    projectIdeas: [
+      "Develop one concise proposal-ready portfolio artifact that demonstrates interdisciplinary intent.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Tacoma SIAS overview",
+        url: "https://www.tacoma.uw.edu/sias",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-iasid-overall", "Individually-designed IAS structure", [
+        "This path centers on an advisor-approved custom concentration rather than a preset major option.",
+        "Green River coursework should be selected to support proposal coherence and upper-division planning readiness.",
+      ]),
+    ],
+  }),
+  detailedPlan({
+    id: "uw-tacoma-nursing",
+    campusId: "uw-tacoma",
+    title: "Nursing (BSN)",
+    shortTitle: "Nursing",
+    summary:
+      "Tacoma Nursing is now modeled as pre-nursing transfer preparation where core science, writing, and health-support requirements are explicit before BSN cohort and application sequencing.",
+    applicationWindow:
+      "Follow current UW Tacoma Nursing admission cycle dates and prerequisite deadlines.",
+    startQuarter: "Cohort-based",
+    bestTrackId: "999O",
+    bestTrackSummary: buildGeneratedTrackSummary("999O"),
+    whyThisTrack: [
+      "Nursing admission preparation depends on strong biology and chemistry completion before transfer.",
+      "A pre-health-heavy path is the safest baseline while nursing cohort timing and clinical readiness are finalized.",
+    ],
+    financialAidNote:
+      "Keep pre-nursing science sequencing and application timing aligned because late prerequisite completion can delay BSN entry.",
+    applicationChecklist: [
+      item("uwt-nursing-engl101", "English composition", ["ENGL& 101"]),
+      itemAny(
+        "uwt-nursing-anat",
+        "Anatomy and physiology preparation",
+        ["BIOL& 241", "BIOL& 242", "BIOL& 260"],
+        "Use the current Tacoma equivalency guidance to confirm the strongest anatomy and physiology match before application."
+      ),
+      itemAny(
+        "uwt-nursing-chem",
+        "Chemistry preparation",
+        ["CHEM& 121", "CHEM& 131", "CHEM& 161"],
+        "Nursing planning typically expects chemistry support in the pre-nursing baseline."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uwt-nursing-stats",
+        "Statistics support",
+        ["MATH& 146", "MATH 256"],
+        "Statistics is commonly required in pre-nursing pathways and should be finished early when possible."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwt-nursing-health-support",
+        "Additional health-support coursework",
+        ["NUTR& 101", "PSYC& 100", "CMST& 220"],
+        "These courses can strengthen BSN readiness but do not replace Tacoma's nursing-sequence requirements."
+      ),
+    ],
+    advisorFlags: [
+      "Nursing is selective and cohort-based, so application timing and current prerequisite mapping must be confirmed each cycle.",
+    ],
+    involvementIdeas: [
+      "Use one healthcare, caregiving, or community-health role to strengthen pre-nursing preparation.",
+    ],
+    projectIdeas: [
+      "Document one patient-care, health-education, or community-wellness project with clear scope and reflection.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Tacoma Nursing overview",
+        url: "https://www.tacoma.uw.edu/nursing",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-nursing-overall", "Nursing pre-transfer baseline", [
+        "Current nursing planning should be treated as prerequisite and cohort preparation rather than a fully portable upper-division sequence.",
+        "Students should finish core science and writing support early and verify cycle-specific requirements with Tacoma nursing advising.",
+      ]),
+    ],
+  }),
+  detailedPlan({
+    id: "uw-tacoma-politics-philosophy-and-economics",
+    campusId: "uw-tacoma",
+    title: "Politics, Philosophy and Economics (BA)",
+    shortTitle: "PPE",
+    summary:
+      "Tacoma PPE is now modeled as an interdisciplinary policy and reasoning transfer where economics, political science, and philosophy foundations stay explicit before the upper-division synthesis work.",
+    applicationWindow:
+      "Apply to UW Tacoma and follow current SIAS declaration guidance for PPE.",
+    startQuarter: "Autumn, winter, or spring",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "PPE combines political science, economics, and philosophy rather than following one narrow prerequisite ladder.",
+      "A custom transfer path is the cleanest way to keep all three foundations visible.",
+    ],
+    financialAidNote:
+      "Use a coherent interdisciplinary plan so credits support economics, policy, and reasoning foundations together.",
+    applicationChecklist: [
+      item("uwt-ppe-micro", "Microeconomics", ["ECON& 201"]),
+      itemAny("uwt-ppe-politics", "Introductory political science", ["POLS& 101", "POLS& 202"]),
+      itemAny("uwt-ppe-philosophy", "Reasoning or philosophy support", ["PHIL& 101", "PHIL& 120"]),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwt-ppe-writing",
+        "Writing support for policy and argument-heavy coursework",
+        ["ENGL 128", "ENGL& 244", "ENGL& 245"],
+        "PPE coursework depends on sustained analytical writing, so advanced writing support is a useful transfer head start."
+      ),
+    ],
+    advisorFlags: [
+      "PPE elective choices vary by focus, so confirm upper-division emphasis with current Tacoma advising.",
+    ],
+    involvementIdeas: [
+      "Use one debate, policy, civics, or economics-facing role to strengthen transfer narrative.",
+    ],
+    projectIdeas: [
+      "Write one interdisciplinary policy brief that combines economic reasoning with philosophical and political analysis.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Tacoma Politics, Philosophy and Economics overview",
+        url: "https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-ppe-overall", "PPE interdisciplinary foundation", [
+        "The major is designed around integrated politics, philosophy, and economics preparation rather than one single-discipline sequence.",
+        "Green River planning should keep all three foundations visible before Tacoma upper-division focus areas are selected.",
+      ]),
+    ],
+  }),
+  detailedPlan({
+    id: "uw-tacoma-spanish-language-and-cultures",
+    campusId: "uw-tacoma",
+    title: "Spanish Language and Cultures (BA)",
+    shortTitle: "Spanish",
+    summary:
+      "Tacoma Spanish Language and Cultures is now modeled as a language-sequence transfer where sustained Spanish progression and writing support are explicit before upper-division cultural and literature work.",
+    applicationWindow:
+      "Apply to UW Tacoma and follow current language-placement and declaration guidance.",
+    startQuarter: "Autumn, winter, or spring",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "Spanish progression depends on continuous language development, not a one-course checkpoint.",
+      "A language-focused custom path keeps placement momentum and writing readiness visible before transfer.",
+    ],
+    financialAidNote:
+      "Keep Spanish sequence continuity and avoid long gaps between language terms to protect placement and transfer momentum.",
+    applicationChecklist: [
+      itemCount(
+        "uwt-spanish-sequence",
+        "Spanish language sequence progression",
+        ["SPAN& 121", "SPAN& 122", "SPAN& 123"],
+        2,
+        "Complete as much of the lower-division sequence as possible before transfer, then confirm placement with Tacoma."
+      ),
+      item("uwt-spanish-engl101", "English composition", ["ENGL& 101"]),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwt-spanish-advanced",
+        "Additional Spanish and writing support",
+        ["SPAN& 221", "SPAN& 222", "ENGL 128"],
+        "Higher-level language and writing support makes the transition into upper-division Spanish analysis and culture coursework smoother."
+      ),
+    ],
+    advisorFlags: [
+      "Placement level and credit applicability can vary, so confirm final sequence mapping with current Tacoma language advising.",
+    ],
+    involvementIdeas: [
+      "Use one bilingual, cultural, tutoring, or community role to strengthen language-transfer readiness.",
+    ],
+    projectIdeas: [
+      "Build one Spanish-language portfolio sample such as a cultural analysis or translation-centered writing piece.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Tacoma Spanish Language and Cultures overview",
+        url: "https://www.tacoma.uw.edu/sias/sam/spanish-language-and-cultures",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-spanish-overall", "Spanish sequence and upper-division launch", [
+        "The degree depends on sustained language progression and transition into upper-division culture, literature, and language-analysis coursework.",
+        "Green River planning should preserve Spanish-sequence continuity before transfer and placement review.",
+      ]),
+    ],
+  }),
+  detailedPlan({
+    id: "uw-tacoma-sustainable-urban-development",
+    campusId: "uw-tacoma",
+    title: "Sustainable Urban Development (BA)",
+    shortTitle: "Sustainable Urban Development",
+    summary:
+      "Tacoma Sustainable Urban Development is now modeled as an urban-planning transfer where policy, sustainability, and GIS support are explicit before upper-division urban systems and option-specific work.",
+    applicationWindow:
+      "Apply to UW Tacoma and use current School of Urban Studies declaration guidance.",
+    startQuarter: "Autumn, winter, or spring",
+    bestTrackId: "999B",
+    bestTrackSummary: buildGeneratedTrackSummary("999B"),
+    whyThisTrack: [
+      "SUD combines policy, sustainability, and quantitative/geospatial preparation.",
+      "A balanced track keeps urban-systems and GIS readiness visible while leaving room for option-level choices.",
+    ],
+    financialAidNote:
+      "Plan sustainability and GIS support deliberately so transfer coursework still aligns with Tacoma's option-based upper-division finish.",
+    applicationChecklist: [item("uwt-sud-engl101", "English composition", ["ENGL& 101"])],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwt-sud-gis-support",
+        "GIS support before upper-division urban work",
+        ["GIS 202", "GIS 260", "GEOG& 200"],
+        "GIS support is one of the clearest Green River add-ons for Tacoma SUD option planning."
+      ),
+    ],
+    advisorFlags: [
+      "SUD is option-based, so confirm pathway-specific upper-division sequencing and capstone details with current Tacoma advising.",
+    ],
+    involvementIdeas: [
+      "Use one sustainability, planning, mapping, or civic-engagement role to support transfer goals.",
+    ],
+    projectIdeas: [
+      "Create one neighborhood sustainability or mobility analysis with a map and concise policy recommendations.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Tacoma Sustainable Urban Development overview",
+        url: "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-sud-overall", "SUD planning baseline", [
+        "The degree blends urban policy, sustainability, and geospatial analysis, with option-level variation in upper-division coursework.",
+        "Green River planning should keep writing, policy, and GIS preparation visible before transfer and pathway selection.",
+      ]),
+    ],
+  }),
+  detailedPlan({
+    id: "uw-tacoma-urban-studies",
+    campusId: "uw-tacoma",
+    title: "Urban Studies (BA)",
+    shortTitle: "Urban Studies",
+    summary:
+      "Tacoma Urban Studies is now modeled as a policy-and-community transfer where social analysis, writing, and GIS-ready support are explicit before upper-division urban systems and pathway work.",
+    applicationWindow:
+      "Apply to UW Tacoma and follow current School of Urban Studies declaration guidance.",
+    startQuarter: "Autumn, winter, or spring",
+    bestTrackId: "999B",
+    bestTrackSummary: buildGeneratedTrackSummary("999B"),
+    whyThisTrack: [
+      "Urban Studies planning benefits from social-science and policy preparation plus geospatial support.",
+      "A balanced track leaves room for pathway-specific Tacoma coursework while preserving strong transfer fundamentals.",
+    ],
+    financialAidNote:
+      "Keep the plan aligned to policy, writing, and GIS support so transfer credits connect to the Tacoma Urban Studies pathway finish.",
+    applicationChecklist: [item("uwt-urban-engl101", "English composition", ["ENGL& 101"])],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwt-urban-gis-support",
+        "GIS and urban-analysis support",
+        ["GIS 202", "GIS 260", "GEOG& 200", "POLS& 101"],
+        "GIS and policy support are useful Green River head starts for Tacoma Urban Studies pathway planning."
+      ),
+    ],
+    advisorFlags: [
+      "Urban Studies pathways can shift by catalog year, so confirm option sequencing and elective mapping with Tacoma advising.",
+    ],
+    involvementIdeas: [
+      "Use one civic, planning, community, or mapping role to strengthen the transfer profile.",
+    ],
+    projectIdeas: [
+      "Build one community-planning brief that includes policy context, basic data, and a visual map or chart.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Tacoma Urban Studies overview",
+        url: "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-urban-overall", "Urban Studies planning baseline", [
+        "The degree emphasizes urban policy, community systems, and pathway-level upper-division planning.",
+        "Green River preparation should keep writing, social-science, and GIS support explicit before transfer.",
+      ]),
+    ],
+  }),
+  detailedPlan({
+    id: "uw-tacoma-writing-studies",
+    campusId: "uw-tacoma",
+    title: "Writing Studies (BA)",
+    shortTitle: "Writing Studies",
+    summary:
+      "Tacoma Writing Studies is now modeled as a writing-intensive transfer where composition sequence, rhetorical analysis, and professional-communication support are explicit before upper-division writing pathways.",
+    applicationWindow:
+      "Apply to UW Tacoma and follow current Writing Studies declaration guidance.",
+    startQuarter: "Autumn, winter, or spring",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "Writing Studies depends on sustained writing progression rather than a single prerequisite course.",
+      "A custom writing-first plan keeps composition and communication depth visible before pathway selection.",
+    ],
+    financialAidNote:
+      "Keep writing progression continuous and prioritize advanced composition support before transfer.",
+    applicationChecklist: [
+      item("uwt-writing-engl101", "English composition", ["ENGL& 101"]),
+      itemAny(
+        "uwt-writing-advanced-comp",
+        "Advanced composition support",
+        ["ENGL 126", "ENGL 127", "ENGL 128"],
+        "Advanced composition support strengthens transition into upper-division writing-intensive coursework."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uwt-writing-communication-support",
+        "Communication and writing support",
+        ["CMST& 210", "CMST& 220", "ENGL& 244", "ENGL& 245"],
+        "These courses support rhetorical, technical, and professional writing preparation before Tacoma pathway coursework."
+      ),
+    ],
+    advisorFlags: [
+      "Writing Studies includes pathway-level choices, so confirm track-specific upper-division sequencing with current Tacoma advising.",
+    ],
+    involvementIdeas: [
+      "Use one writing center, editing, tutoring, communications, or publication role to build transfer readiness.",
+    ],
+    projectIdeas: [
+      "Assemble a writing portfolio with analytical, professional, and audience-focused samples.",
+    ],
+    officialLinks: [
+      {
+        label: "UW Tacoma Writing Studies overview",
+        url: "https://www.tacoma.uw.edu/sias/sam/writing-studies",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-writing-overall", "Writing Studies transfer baseline", [
+        "The degree is built around sustained writing development with pathway-level upper-division emphasis.",
+        "Green River planning should keep composition progression and communication support explicit before transfer.",
+      ]),
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-american-ethnic-studies",
+    campusId: "uw-seattle",
+    title: "American Ethnic Studies",
+    shortTitle: "AES",
+    summary:
+      "American Ethnic Studies works best as a custom humanities and social-science transfer. Green River is most useful for related ethnic studies, history, and writing support before the student reaches UW's exact AES core.",
+    applicationWindow: "Check the current AES declaration and UW transfer timing.",
+    startQuarter: "Varies",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "UW AES has a fixed core at Seattle, but not a clean one-to-one Green River prerequisite sequence.",
+      "Green River is most useful for related ethnic-studies, history, and writing support before the concentration is chosen.",
+    ],
+    financialAidNote:
+      "Use a custom humanities and social-science path and keep the reading and writing foundation strong instead of filling the schedule with random electives.",
+    stayAtGrcChecklist: [
+      itemAny(
+        "uws-aes-foundation",
+        "Ethnic studies and related social-science foundation",
+        ["AMES 100", "AMES 150", "ANTH& 100", "S SCI 160"],
+        "These do not replace the exact UW AES core, but they are the clearest Green River foundation before the student reaches AAS 101, AFRAM 101, CHSTU 101, and the rest of the AES core at UW."
+      ),
+      itemAny(
+        "uws-aes-history",
+        "History and humanities support for concentration work",
+        ["HIST 101", "HIST 102", "HIST 103", "HUMAN 100", "HUMAN 110"],
+        "These courses provide background only and do not replace required UW AES core or concentration courses."
+      ),
+      itemAny(
+        "uws-aes-writing",
+        "Writing-heavy humanities support",
+        ["ENGL& 101", "ENGL 128", "ENGL& 244"],
+        "AES is reading- and writing-heavy, so strong composition and analytical writing support is worth finishing before transfer."
+      ),
+    ],
+    advisorFlags: [
+      "UW AES publishes exact Seattle core courses and concentration menus, but Green River support is still best treated as foundation rather than as a one-to-one core replacement.",
+      "Choose the concentration early enough that Green River history and humanities support still lines up with the student's intended AES path.",
+    ],
+    involvementIdeas: [
+      "Use one community, equity, history, or cultural-leadership role to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Document one equity, history, or community-centered project with clear reading, research, and reflection rather than only course completion.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-american-indian-studies",
+    campusId: "uw-seattle",
+    title: "American Indian Studies",
+    shortTitle: "AIS",
+    summary:
+      "American Indian Studies is another custom humanities and social-science transfer. The strongest Green River preparation is Indigenous-history, culture, and writing support before the exact AIS sequence begins at UW.",
+    applicationWindow: "Check the current AIS declaration guidance and UW transfer timing.",
+    startQuarter: "Varies",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "UW AIS uses an exact Seattle course structure rather than a clean Green River prerequisite list.",
+      "Green River is most useful for Indigenous-history, culture, and writing support before the AIS concentration work begins.",
+    ],
+    financialAidNote:
+      "Use a custom humanities path and keep the schedule centered on history, culture, and writing support instead of random filler credits.",
+    plannerNote:
+      "Indigenous-studies baseline centered on language, history, and writing progression before UW AIS core and concentration sequencing.",
+    stayAtGrcChecklist: [
+      itemAny(
+        "uws-ais-foundation",
+        "Indigenous-history, culture, and related humanities foundation",
+        ["AMES 100", "AMES 150", "ANTH& 100", "HIST 120", "HUMAN 110"],
+        "These do not replace AIS 102 and AIS 103, but they are the clearest Green River foundation before the UW AIS introductory sequence begins."
+      ),
+      itemAny(
+        "uws-ais-content-support",
+        "Content support for governance, environment, health, or culture",
+        ["ANTH& 210", "S SCI 160", "HIST& 214", "HUMAN 142"],
+        "AIS later spreads concentration work across governance, environment and health, and culture and history, so these are useful supports before transfer."
+      ),
+      itemAny(
+        "uws-ais-writing",
+        "Writing and reading support",
+        ["ENGL& 101", "ENGL 128", "ENGL& 244"],
+        "AIS is reading- and writing-heavy, so strong composition and analytical writing support is worth finishing before transfer."
+      ),
+    ],
+    advisorFlags: [
+      "The current UW AIS requirement sheet is more exact than the Green River equivalency set, so treat Green River classes as support rather than as direct AIS-core replacements.",
+      "AIS requires all major credits to be taken for a numerical grade, so grading choices should stay visible from the start.",
+    ],
+    involvementIdeas: [
+      "Use one Indigenous, community, history, justice, or cultural-support role to show fit beyond coursework.",
+    ],
+    projectIdeas: [
+      "Document one community or history-centered project with research, context, and ethical reflection rather than only class completion.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-anthropology",
+    campusId: "uw-seattle",
+    title: "Anthropology",
+    shortTitle: "Anthropology",
+    summary:
+      "Anthropology works best as a custom social-science transfer where the student deliberately adds anthropology, statistics, and, when relevant, biology support before choosing the final UW option or B.S. route.",
+    applicationWindow: "Check the current Anthropology declaration guidance and UW transfer timing.",
+    startQuarter: "Varies",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "The general Anthropology B.A. has a clear shared core, but the final finish still varies by option and by whether the student later chooses the B.S. route.",
+      "Green River is strongest when it is used for anthropology, statistics, and biology support rather than as a fake fixed four-year Anthropology map.",
+    ],
+    financialAidNote:
+      "Use a custom social-science path and add statistics intentionally, because Anthropology is broader than the stock Green River humanities paths.",
+    applicationChecklist: [
+      itemAny(
+        "uws-anth-stats",
+        "Statistics support for the shared Anthropology core",
+        ["MATH& 146", "MATH 256", "SOC& 201"],
+        "Anthropology requires one statistics course in the shared core. Use the cleanest Green River statistics option that still fits the student's broader plan."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uws-anth-200level",
+        "Anthropology foundation before the UW 200-level core",
+        ["ANTH& 204", "ANTH& 205", "ANTH& 206", "ANTH& 210", "ANTH& 216"],
+        "These are the clearest Green River anthropology supports before the UW 200-level ANTH and ARCHY core work."
+      ),
+      itemAny(
+        "uws-anth-bio",
+        "Biology support for bio-heavy Anthropology paths",
+        ["BIOL& 211", "BIOL& 212", "BIOL& 213"],
+        "Not required for every Anthropology finish, but useful when the student may later choose the B.S. or a more human-evolution-heavy path."
+      ),
+    ],
+    advisorFlags: [
+      "Anthropology at UW Seattle is not one single fixed upper-division path, so confirm early whether the student is aiming at the general B.A. or one of the published options.",
+    ],
+    involvementIdeas: [
+      "Use one research, culture, community, museum, or fieldwork-style activity to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Document one observation, research, or culture-centered project with methods, evidence, and reflection rather than only class completion.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-applied-and-computational-mathematical-sciences",
+    campusId: "uw-seattle",
+    title: "Applied & Computational Mathematical Sciences (ACMS)",
+    shortTitle: "ACMS",
+    summary:
+      "ACMS is now treated as an option-specific computing-and-math transfer. The key move is getting calculus, programming, and linear algebra done while locking the intended ACMS option early enough to choose the right option-core class.",
+    applicationWindow:
+      "Apply to UW and to one ACMS option for the same quarter, using the current ACMS admissions cycle.",
+    startQuarter: "Varies by option",
+    bestTrackId: "999P",
+    bestTrackSummary: buildGeneratedTrackSummary("999P"),
+    whyThisTrack: [
+      "ACMS now admits directly into one specific option, so the Green River plan needs the strongest shared math and programming spine first.",
+      "999P is still the cleanest current Green River base when the student needs calculus, programming, and quantitative depth together.",
+    ],
+    financialAidNote:
+      "Stay on 999P and choose the intended ACMS option early, because the required option-core class can change the best Green River finish.",
+    applicationChecklist: [
+      itemStemCalcSequence("uws-acms-calc123", "MATH 124, 125, 126"),
+      item(
+        "uws-acms-cs123",
+        "CSE 123 or CSE 143",
+        ["CS 121", "CS 122", "CS 123"],
+        "ACMS names CSE 123 or CSE 143 in the published admission baseline. The full CS 121 -> CS 122 -> CS 123 ladder is the safest Green River path."
+      ),
+      item(
+        "uws-acms-math208",
+        "MATH 208",
+        ["MATH 240"],
+        "Linear algebra is part of the published ACMS admission baseline and should be finished before applying."
+      ),
+      itemAny(
+        "uws-acms-option-core",
+        "One option-core course for the intended ACMS option",
+        ["MATH 238", "ECON& 201", "ECON& 202", "PHYS& 221", "PHYS& 222", "PHYS& 223"],
+        "The exact option-core class depends on the ACMS option. Confirm it early, because ACMS now admits directly into specific options."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      item(
+        "uws-acms-math207",
+        "MATH 207 or AMATH 351",
+        ["MATH 238"],
+        "Differential equations is part of the shared ACMS core for students admitted after Spring 2024, so it is good to complete before or during UW enrollment."
+      ),
+    ],
+    advisorFlags: [
+      "ACMS is now option-specific at admission, and the published option menu differs by admit year, so do not treat one option's upper-division list as universal.",
+    ],
+    involvementIdeas: [
+      "Use one coding, data, modeling, or quantitative research project to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Build one math-and-computing project with code, analysis, and a short explanation of the modeling or algorithmic choices.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-aquatic-conservation-and-ecology",
+    campusId: "uw-seattle",
+    title: "Aquatic Conservation & Ecology",
+    shortTitle: "ACE",
+    summary:
+      "Aquatic Conservation & Ecology is a science-heavy environment transfer where biology, chemistry, early calculus, and a programming or statistics head start matter more than a generic environment-themed course mix.",
+    applicationWindow: "Check the current ACE prepare-and-apply timing and UW transfer cycle.",
+    startQuarter: "Varies",
+    bestTrackId: "999O",
+    bestTrackSummary: buildGeneratedTrackSummary("999O"),
+    whyThisTrack: [
+      "ACE has a real lower-division science baseline, so the Green River plan should stay science-heavy from the start.",
+      "999O is the clearest current chemistry-and-biology backbone before the student layers in ecology, people-and-environment, and programming support.",
+    ],
+    financialAidNote:
+      "Stay on a science-heavy path and place biology, chemistry, and programming intentionally so the student does not arrive short on ACE's lower-division foundation.",
+    plannerNote:
+      "Science-forward ACE baseline emphasizing biology, chemistry, calculus, and programming readiness before UW ecology and fisheries sequences.",
+    applicationChecklist: [
+      itemStemCalcCredits(
+        "uws-ace-calc2",
+        "Two quarters of calculus",
+        2,
+        "ACE accepts either the Q SCI calculus path or MATH 124 and 125. At Green River, the standard calculus sequence is the clearest route."
+      ),
+      item(
+        "uws-ace-biology",
+        "BIOL 180 and BIOL 200 pathway",
+        FULL_BIOLOGY_MAJORS_SEQUENCE,
+        "ACE requires BIOL 180 and 200. The clean Green River route is the full BIOL& 211 / 212 / 213 sequence, which also preserves BIOL 220-style flexibility."
+      ),
+      item(
+        "uws-ace-chem",
+        "CHEM 142 or stronger chemistry start",
+        ["CHEM& 161"],
+        "ACE allows CHEM 120 or the CHEM 142 / 152 path. CHEM& 161 is the cleanest Green River chemistry start."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uws-ace-programming",
+        "One programming or data-science course",
+        ["ENGR 250", "CS 121", "CS 122"],
+        "ACE requires one programming or data-science course from options such as CSE 160 or Q SCI 256. These are the clearest current Green River preparation options."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uws-ace-people-env",
+        "People-and-environment support",
+        ["ANTH& 210", "ENV S 204"],
+        "ACE includes one people-and-environment course, so these are useful Green River supports before transfer."
+      ),
+      itemAny(
+        "uws-ace-stats",
+        "Statistics support before quantitative ecology work",
+        ["MATH& 146", "MATH 256"],
+        "ACE later uses statistics and data-analysis work, so an early statistics course can make the upper-division transition smoother."
+      ),
+    ],
+    advisorFlags: [
+      "ACE still has multiple approved science and electives menus, so confirm the final lower-division science mix if the student is balancing ecology, chemistry, and marine-science interests.",
+    ],
+    involvementIdeas: [
+      "Use one ecology, conservation, marine, fisheries, or fieldwork role to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Document one ecology, fisheries, or conservation project with data, observation, and a clear environmental question.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-architectural-design",
+    campusId: "uw-seattle",
+    title: "Architectural Design",
+    shortTitle: "Arch Design",
+    summary:
+      "Architectural Design is a junior-year admission plan where Green River acts as foundation support rather than a direct substitute for the required UW ARCH prerequisite sequence.",
+    applicationWindow:
+      "Competitive junior-year admission; confirm the current College of Built Environments timeline and ARCH prerequisite plan.",
+    startQuarter: "Autumn",
+    bestTrackId: "999B",
+    bestTrackSummary: buildGeneratedTrackSummary("999B"),
+    whyThisTrack: [
+      "Architectural Design depends on exact UW ARCH prerequisites, so Green River should be used for foundation, writing, and breadth support instead of pretending to replace the UW studio sequence.",
+      "999B is the least disruptive current Green River base while the student builds the broader junior-admission foundation.",
+    ],
+    financialAidNote:
+      "Do not spend aid on random electives while leaving writing, diversity, or visual-foundation work unfinished, because the actual UW ARCH prerequisite sequence still has to be planned carefully.",
+    plannerNote:
+      "Foundation-first Architectural Design baseline that preserves portfolio, writing, and quantitative readiness ahead of UW junior-sequence architecture studios.",
+    stayAtGrcChecklist: [
+      itemAny(
+        "uws-archd-visual-foundation",
+        "Art, design, or visual foundation work",
+        ["ART& 100", "ART 105", "ART 106", "PHOTO 101", "PHOTO 102"],
+        "These do not replace UW ARCH 200, 201, 350, 351, or 352, but they are the clearest Green River visual-design foundation while the student prepares for junior-year admission."
+      ),
+      itemAny(
+        "uws-archd-writing-diversity",
+        "Writing and diversity support",
+        ["ENGL& 101", "ENGL 128", "HUMAN 100", "HUMAN 110"],
+        "The Architectural Design curriculum still requires writing and diversity credits, so it is useful to keep those visible before transfer."
+      ),
+      itemAny(
+        "uws-archd-quant",
+        "Quantitative and science support for structures and building systems",
+        ["MATH& 151", "MATH& 152", "PHYS& 221"],
+        "Not a direct ARCH prerequisite, but quantitative and science support helps before the upper-division structures and systems sequence."
+      ),
+    ],
+    advisorFlags: [
+      "The required UW ARCH prerequisite set is made of UW architecture courses rather than a clean Green River direct-equivalency sequence.",
+      "Treat Green River as foundation support only and confirm the exact junior-admission strategy with architecture advising.",
+    ],
+    involvementIdeas: [
+      "Use one design, drawing, portfolio, or built-environment project to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Build a small design or space-planning portfolio piece with sketches, visuals, and a short explanation of the design problem.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-architectural-studies",
+    campusId: "uw-seattle",
+    title: "Architectural Studies",
+    shortTitle: "Arch Studies",
+    summary:
+      "Architectural Studies is another built-environment junior-admission path where Green River is best used for foundation support, writing, and broad architecture-adjacent preparation rather than as a fake direct studio substitute.",
+    applicationWindow:
+      "Competitive junior-year admission; confirm the current College of Built Environments timeline and prerequisite strategy.",
+    startQuarter: "Autumn",
+    bestTrackId: "999B",
+    bestTrackSummary: buildGeneratedTrackSummary("999B"),
+    whyThisTrack: [
+      "Architectural Studies still depends on exact UW-side architecture planning, so Green River should be used for foundation rather than a fake direct sequence.",
+      "999B is the least disruptive current Green River base while the student builds the broader writing, humanities, and visual foundation.",
+    ],
+    financialAidNote:
+      "Keep the plan centered on writing, humanities, and visual/design support instead of scattered electives, because the exact UW architecture side still needs advising review.",
+    plannerNote:
+      "Foundation-first Architectural Studies baseline emphasizing visual practice, writing, and humanities context ahead of UW junior-sequence architecture coursework.",
+    stayAtGrcChecklist: [
+      itemAny(
+        "uws-archs-visual-foundation",
+        "Art, design, or visual foundation work",
+        ["ART& 100", "ART 105", "ART 106", "PHOTO 101", "PHOTO 102"],
+        "These do not replace the UW architecture core, but they are the clearest Green River visual-design foundation before junior-year admission."
+      ),
+      itemAny(
+        "uws-archs-writing-diversity",
+        "Writing and diversity support",
+        ["ENGL& 101", "ENGL 128", "HUMAN 100", "HUMAN 110"],
+        "The curriculum still requires writing and diversity credits, so it is useful to keep those visible before transfer."
+      ),
+      itemAny(
+        "uws-archs-humanities",
+        "Humanities and history support for architecture-adjacent study",
+        ["HIST 101", "HIST 120", "HUMAN 142", "HUMAN 190"],
+        "Architectural Studies leans more toward history, theory, and concentration work than a pure studio-only path, so humanities support is useful before transfer."
+      ),
+    ],
+    advisorFlags: [
+      "There is no clean current Green River substitute for the exact UW architecture sequence, so treat Green River as support rather than as a direct core replacement.",
+    ],
+    involvementIdeas: [
+      "Use one design, portfolio, history-of-place, or built-environment project to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Document a built-environment or design-history project with visuals and a short written explanation of the design or place question.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-art",
+    campusId: "uw-seattle",
+    title: "Art",
+    shortTitle: "Art",
+    summary:
+      "UW Art is best planned as a concentration-driven studio transfer. Green River is most useful for early studio work, portfolio building, and visual foundation before the concentration-specific upper division begins.",
+    applicationWindow: "Follow the current Art declaration guidance and portfolio/advising steps.",
+    startQuarter: "Varies",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "UW Art is concentration-based, so Green River should build visual and studio readiness rather than pretend there is one universal upper-division path.",
+      "Early studio work at Green River is valuable because UW Art still expects a real visual-practice foundation before declaration.",
+    ],
+    financialAidNote:
+      "Use a custom studio-art path and keep the strongest portfolio-building classes visible instead of filling the schedule with unrelated electives.",
+    plannerNote:
+      "Concentration-ready Art baseline emphasizing studio continuity, portfolio quality, and art-history context before UW upper-division focus areas.",
+    applicationChecklist: [
+      itemAny(
+        "uws-art-5credits",
+        "At least 5 college-level art credits with a 2.5 or higher",
+        ["ART& 100", "ART 105", "ART 106", "ART 107", "PHOTO 101"],
+        "UW Art requires at least 5 credits of college-level art with a 2.5 or higher before declaration."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uws-art-studio",
+        "Studio art foundation",
+        ["ART& 100", "ART 105", "ART 106", "ART 107", "ART 110", "ART 112"],
+        "Use lower-division studio work to build the visual-art foundation before the concentration-specific UW upper division."
+      ),
+      itemAny(
+        "uws-art-photo",
+        "Photomedia support if that concentration is in play",
+        ["PHOTO 101", "PHOTO 102", "PHOTO 103"],
+        "These are especially useful when the student may choose the Photomedia concentration."
+      ),
+      itemAny(
+        "uws-art-context",
+        "Art history and contextual humanities support",
+        ["HUMAN 100", "HUMAN 190", "HIST 101", "HIST 102"],
+        "UW Art still includes art-history work, so contextual humanities support is worth keeping visible before transfer."
+      ),
+    ],
+    advisorFlags: [
+      "The final UW Art finish depends on concentration choice, so do not treat one concentration's upper-division list as universal.",
+    ],
+    involvementIdeas: [
+      "Use one portfolio, exhibition, studio, or community-arts role to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Build a portfolio-ready studio or photomedia project with process notes and a short explanation of the visual choices.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-art-history",
+    campusId: "uw-seattle",
+    title: "Art History",
+    shortTitle: "Art History",
+    summary:
+      "Art History is a reading- and writing-heavy humanities transfer where Green River should front-load visual-culture, history, and writing support before the junior- and senior-level UW sequence begins.",
+    applicationWindow: "Follow the current Art History declaration guidance and GPA expectations.",
+    startQuarter: "Varies",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "UW Art History moves from survey work into 300-level methods and then 400-level research-oriented courses, so Green River should build reading, writing, and historical context early.",
+      "There is no single direct Green River replacement for the exact UW ART H survey and upper-division progression.",
+    ],
+    financialAidNote:
+      "Use a custom humanities path and keep writing and history support visible before transfer instead of drifting into unrelated electives.",
+    plannerNote:
+      "Research-forward Art History baseline emphasizing survey context, writing depth, and historical analysis before UW 300- and 400-level progression.",
+    stayAtGrcChecklist: [
+      itemAny(
+        "uws-arth-visual-culture",
+        "Intro art, visual-culture, or humanities support",
+        ["ART& 100", "ART 105", "HUMAN 100", "HUMAN 190"],
+        "These do not replace UW ART H survey courses, but they are the clearest Green River background for visual and historical study."
+      ),
+      itemAny(
+        "uws-arth-history-writing",
+        "History and writing support",
+        ["HIST 101", "HIST 102", "HIST 103", "ENGL 128", "ENGL& 244"],
+        "Art History is reading- and writing-heavy, so history and analytical-writing support is worth finishing before transfer."
+      ),
+    ],
+    advisorFlags: [
+      "UW Art History caps the amount of transfer art-history credit that can count toward the major, so treat Green River as support rather than as a full major-core replacement.",
+    ],
+    involvementIdeas: [
+      "Use one museum, history, humanities, curatorial, or visual-culture role to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Write one visual-analysis or history-of-art piece that shows research, argument, and close reading rather than only course completion.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-asian-languages-and-cultures",
+    campusId: "uw-seattle",
+    title: "Asian Languages & Cultures",
+    shortTitle: "Asian L&C",
+    summary:
+      "Asian Languages and Cultures is best planned as a language-forward humanities transfer. Green River is most useful for first-year language foundation plus regional history and writing support before the second-year-and-above UW sequence begins.",
+    applicationWindow: "Check the current Asian Languages and Cultures advising guidance and UW transfer timing.",
+    startQuarter: "Varies",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "The degree requires second-year or higher language work plus literature, culture, and linguistics coursework, so Green River should build language momentum early.",
+      "Current Green River language coverage is strongest in Chinese and Japanese, which makes those the clearest current foundation paths before transfer.",
+    ],
+    financialAidNote:
+      "Use a custom language-and-humanities path and keep language study moving instead of stopping after one quarter and hoping to rebuild momentum later at UW.",
+    plannerNote:
+      "Language-continuity Asian Languages baseline emphasizing first-year sequence completion plus regional history and writing readiness.",
+    stayAtGrcChecklist: [
+      itemAny(
+        "uws-alc-language",
+        "Primary Asian language foundation",
+        ["CHIN& 121", "CHIN& 122", "CHIN& 123", "JAPN& 121", "JAPN& 122", "JAPN& 123"],
+        "The degree requires second-year language study or above. Green River's current Chinese and Japanese sequence is the clearest first-year foundation before the UW upper-level language work."
+      ),
+      itemAny(
+        "uws-alc-history",
+        "Asian history and humanities support",
+        ["HIST 120", "HIST 135", "HIST& 136", "HIST& 137", "HUMAN 100"],
+        "These provide regional context for the major's upper-division literature, culture, and linguistics coursework at UW."
+      ),
+      itemAny(
+        "uws-alc-writing",
+        "Writing and reading support",
+        ["ENGL& 101", "ENGL 128", "ENGL& 244"],
+        "The major becomes reading- and writing-heavy once the student enters upper-division literature, culture, or linguistics courses."
+      ),
+    ],
+    advisorFlags: [
+      "The degree still requires at least one class in a language area outside the student's primary language area, so that outside-language rule should stay visible during advising.",
+      "Current Green River language coverage is strongest in Chinese and Japanese, so other primary-language plans may need earlier UW-side advising."
+    ],
+    involvementIdeas: [
+      "Use one language, culture, tutoring, or internationally focused role to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Build one language-and-culture project with reading, translation, or regional-history context rather than only course completion.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-asian-studies",
+    campusId: "uw-seattle",
+    title: "Asian Studies",
+    shortTitle: "Asian Studies",
+    summary:
+      "Asian Studies works best as a concentration-aware language-and-regional-studies transfer. Green River planning should prioritize sustained language progress plus regional history and writing support before the concentration-specific upper-division finish at UW.",
+    applicationWindow:
+      "Follow current Jackson School and UW transfer guidance, then confirm concentration timing with advising.",
+    startQuarter: "Varies by concentration planning",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "The major requires language proficiency plus concentration-specific upper-division planning, so a custom language-and-humanities launch is usually stronger than a generic transfer track.",
+      "Regional concentration choice changes the final UW course map, so Green River should focus on stable foundation courses before transfer.",
+    ],
+    financialAidNote:
+      "Use a custom path that keeps language coursework active each year and avoids replacing language progression with unrelated electives.",
+    plannerNote:
+      "Concentration-aware Asian Studies baseline emphasizing sustained language progression, regional-civilization context, and analytical writing depth.",
+    applicationChecklist: [
+      itemCount(
+        "uws-asst-language-foundation",
+        "Sustained Asian-language sequence heading toward second-year proficiency",
+        ["CHIN& 121", "CHIN& 122", "CHIN& 123", "JAPN& 121", "JAPN& 122", "JAPN& 123"],
+        3,
+        "Asian Studies expects language proficiency through the second-year level. Finishing at least one full first-year language sequence before transfer keeps that trajectory realistic."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uws-asst-civilization",
+        "Asian civilization and regional-history foundation",
+        ["HIST 120", "HIST 135", "HIST& 136", "HIST& 137", "HUMAN 100"],
+        "These courses do not replace the UW JSIS core, but they provide strong context before upper-division Asia-focused coursework."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uws-asst-writing",
+        "Reading and analytical-writing support",
+        ["ENGL& 101", "ENGL 128", "ENGL& 244", "ENGL& 245"],
+        "The major's research-paper and elective components are writing-heavy, so keeping writing progression visible at Green River is useful."
+      ),
+    ],
+    advisorFlags: [
+      "Asian Studies has named regional concentrations, and the exact upper-division finish changes once the student chooses one.",
+      "Language planning should stay active each year; long language gaps make the UW second-year proficiency requirement harder to complete on time.",
+    ],
+    involvementIdeas: [
+      "Use one language, region, or internationally focused role to show fit beyond coursework.",
+    ],
+    projectIdeas: [
+      "Build one Asia-focused research or language-culture project with a short written analysis and clear regional scope.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-astronomy",
+    campusId: "uw-seattle",
+    title: "Astronomy",
+    shortTitle: "Astronomy",
+    summary:
+      "Seattle Astronomy is a physics-and-calculus intensive application major. Green River planning should lock the full calculus and calculus-based physics spine first, then add math/astronomy support that reduces first-year pressure after transfer.",
+    applicationWindow:
+      "Use the current departmental application cycle and complete published prerequisite science and math classes before applying whenever possible.",
+    startQuarter: "Varies by admission cycle",
+    bestTrackId: "999B",
+    bestTrackSummary: buildGeneratedTrackSummary("999B"),
+    whyThisTrack: [
+      "Astronomy admission and progression rely on a strong quantitative foundation anchored in calculus and physics.",
+      "999B is the closest Green River base that keeps the required calculus and physics progression visible before transfer.",
+    ],
+    financialAidNote:
+      "Protect room for the full calculus and physics ladder first, then add astronomy support courses if credits remain.",
+    applicationChecklist: [
+      itemStemCalcSequence("uws-astr-calc123", "Calculus I, II, and III"),
+      item(
+        "uws-astr-physics123",
+        "Calculus-based physics sequence",
+        ["PHYS& 221", "PHYS& 222", "PHYS& 223"],
+        "Astronomy admission expects the full PHYS 121/122/123 equivalent sequence before application review."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uws-astr-math-elective",
+        "Math-elective head start",
+        ["MATH& 254", "MATH 238", "MATH 240"],
+        "The major later needs additional mathematics, so an early matrix or differential-equations head start can reduce pressure after transfer."
+      ),
+      itemAny(
+        "uws-astr-intro-context",
+        "Intro astronomy context",
+        ["ASTR& 100", "ASTR& 101"],
+        "Not part of the minimum transfer-admission classes, but these courses can strengthen astronomy context before upper-division UW coursework."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uws-astr-physics-extension",
+        "Additional physics depth",
+        ["PHYS 225", "PHYS 229"],
+        "These can support astronomy readiness when the student's schedule can absorb extra physics before transfer."
+      ),
+    ],
+    advisorFlags: [
+      "Astronomy is capacity-constrained and application-timed, so quarter-by-quarter deadline planning matters.",
+      "The major is heavily sequenced after transfer; missing a prerequisite physics or calculus class can delay upper-division progress.",
+    ],
+    involvementIdeas: [
+      "Use one astronomy, physics, tutoring, or research-facing activity to strengthen fit beyond transcript completion.",
+    ],
+    projectIdeas: [
+      "Create one astronomy or physics project that includes data interpretation, modeling, or observation-based analysis.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-atmospheric-and-climate-science",
+    campusId: "uw-seattle",
+    title: "Atmospheric and Climate Science",
+    shortTitle: "Atmospheric & Climate",
+    summary:
+      "Atmospheric and Climate Science is a multi-option B.S. family where every route shares a strong calculus and physics base. Green River planning should complete that shared spine, then add chemistry, computing, or extra math based on the intended option.",
+    applicationWindow:
+      "Follow the current department and UW transfer guidance, and lock option direction early enough to sequence shared prerequisites cleanly.",
+    startQuarter: "Varies",
+    bestTrackId: "999B",
+    bestTrackSummary: buildGeneratedTrackSummary("999B"),
+    whyThisTrack: [
+      "All Atmospheric and Climate Science options share a quantitative core rooted in calculus and physics.",
+      "999B provides the strongest default launch before the student commits to the chemistry, climate, data-science, or meteorology finish.",
+    ],
+    financialAidNote:
+      "Prioritize the shared math and physics foundation first, then use remaining room for option-targeted chemistry, programming, or advanced math support.",
+    applicationChecklist: [
+      item(
+        "uws-atmos-engl101",
+        "English composition",
+        ["ENGL& 101"],
+        "English composition is part of the shared admission foundation across current Atmospheric and Climate Science options."
+      ),
+      itemStemCalcSequence("uws-atmos-calc123", "Calculus I, II, and III"),
+      item(
+        "uws-atmos-physics123",
+        "Calculus-based physics sequence",
+        ["PHYS& 221", "PHYS& 222", "PHYS& 223"],
+        "This is the clearest Green River equivalent for the shared PHYS 121/122/123 foundation. UW also accepts alternate physics routes; verify alternates with advising."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uws-atmos-programming",
+        "Programming head start for option flexibility",
+        ["ENGR 250", "CS 121", "CS 122", "CS 123"],
+        "Programming becomes especially important in the Data Science and Meteorology options, and still helps in the broader atmospheric core."
+      ),
+      itemAny(
+        "uws-atmos-advanced-math",
+        "Applied math continuation after Calc III",
+        ["MATH& 254", "MATH 238", "MATH 240"],
+        "Extra applied math keeps the Data Science and Meteorology pathways easier to schedule after transfer."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      item(
+        "uws-atmos-chemistry-sequence",
+        "General chemistry sequence for chemistry-heavy planning",
+        FULL_GENERAL_CHEMISTRY_SEQUENCE,
+        "Not part of every option's minimum transfer-admission classes, but this sequence is valuable when the student may target the Chemistry option or chemistry-heavy electives."
+      ),
+    ],
+    advisorFlags: [
+      "Atmospheric and Climate Science has four official option finishes, and the final upper-division course map changes by option.",
+      "ATMOS 301 is offered autumn only, so transfer timing and first-year UW sequencing should be checked early.",
+    ],
+    involvementIdeas: [
+      "Use one weather, climate, environment, GIS, or data-oriented activity to show fit beyond coursework.",
+    ],
+    projectIdeas: [
+      "Build one atmospheric or climate project using data analysis, forecasting, or environmental trend interpretation.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-biochemistry",
+    campusId: "uw-seattle",
+    title: "Biochemistry",
+    shortTitle: "Biochemistry",
+    summary:
+      "Seattle Biochemistry is a chemistry-and-biology intensive pathway with distinct B.A. and B.S. finishes. Green River planning should secure the chemistry, biology, and core math foundation first, then sequence organic chemistry and physics to keep both routes open.",
+    applicationWindow:
+      "Use the current biochemistry admission pathway guidance and complete the strongest available prerequisite set before applying.",
+    startQuarter: "Varies by admission pathway",
+    bestTrackId: "999O",
+    bestTrackSummary: buildGeneratedTrackSummary("999O"),
+    whyThisTrack: [
+      "Biochemistry admission and progression rely on a strong chemistry and biology backbone rather than lighter general-transfer coverage.",
+      "999O keeps chemistry, biology, and quantitative sequencing aligned with the major's lower-division preparation expectations.",
+    ],
+    financialAidNote:
+      "Keep chemistry and biology sequences continuous and avoid replacing core science classes with unrelated electives.",
+    applicationChecklist: [
+      item(
+        "uws-bioc-general-chem",
+        "General chemistry sequence",
+        FULL_GENERAL_CHEMISTRY_SEQUENCE,
+        "Biochemistry admission starts with a strong general chemistry baseline."
+      ),
+      itemCount(
+        "uws-bioc-biology180200",
+        "Biology through the BIOL 180/200 level outcome",
+        FULL_BIOLOGY_MAJORS_SEQUENCE,
+        2,
+        "Regular admission planning expects biology through BIOL 180 and BIOL 200-level preparation."
+      ),
+      itemStemCalcCredits(
+        "uws-bioc-calc12",
+        "Calculus through MATH 124 and 125",
+        2,
+        "Biochemistry admission planning expects calculus through the first two quarters at minimum."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      item(
+        "uws-bioc-organic",
+        "Organic chemistry sequence",
+        FULL_ORGANIC_CHEMISTRY_SEQUENCE,
+        "Completing organic chemistry early keeps both B.A. and B.S. route planning cleaner after transfer."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemCount(
+        "uws-bioc-physics-progress",
+        "Physics-sequence progress for route flexibility",
+        ["PHYS& 221", "PHYS& 222", "PHYS& 223"],
+        2,
+        "The B.S. route needs a full physics sequence and the B.A. route still uses one approved sequence, so two quarters before transfer is a strong planning anchor."
+      ),
+    ],
+    advisorFlags: [
+      "Biochemistry is capacity-constrained and can be pursued through multiple admission pathways with different competitiveness profiles.",
+      "The final UW finish differs between the broader B.A. route and the more intensive B.S. route.",
+    ],
+    involvementIdeas: [
+      "Use one lab, tutoring, research, or health-science-facing activity to show fit beyond transcript completion.",
+    ],
+    projectIdeas: [
+      "Document one chemistry, biology, or biochemistry project with methods, results, and a short scientific interpretation.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-biology",
+    campusId: "uw-seattle",
+    title: "Biology",
+    shortTitle: "Biology",
+    summary:
+      "Seattle Biology is now a route family rather than one fixed finish. Green River planning should secure the shared biology and chemistry admission base first, then preserve quantitative and physics flexibility so either B.A. or B.S. option planning stays open.",
+    applicationWindow:
+      "Follow quarterly Biology application guidance and complete the strongest shared lower-division baseline before applying.",
+    startQuarter: "Varies by application cycle",
+    bestTrackId: "999O",
+    bestTrackSummary: buildGeneratedTrackSummary("999O"),
+    whyThisTrack: [
+      "Biology admission depends on completing the majors-biology sequence and strong supporting science coursework.",
+      "999O keeps the biology and chemistry spine visible while preserving room for B.A. or B.S. route decisions.",
+    ],
+    financialAidNote:
+      "Prioritize the full biology sequence early and keep chemistry/quantitative support active before adding broad electives.",
+    applicationChecklist: [
+      item(
+        "uws-biol-biology-sequence",
+        "Full majors-biology sequence",
+        FULL_BIOLOGY_MAJORS_SEQUENCE,
+        "Biology admission expects the BIOL 180/200/220 pathway baseline."
+      ),
+      item(
+        "uws-biol-chemistry-sequence",
+        "General chemistry sequence",
+        FULL_GENERAL_CHEMISTRY_SEQUENCE,
+        "Biology route planning expects a complete chemistry sequence as part of the shared lower-division science base."
+      ),
+      itemStemCalcCredits(
+        "uws-biol-quantitative",
+        "Quantitative foundation (calculus/statistics equivalent of at least two courses)",
+        2,
+        "Biology's current route family uses a two-course quantitative baseline across B.A. and B.S. planning."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uws-biol-stats",
+        "Statistics support",
+        ["MATH& 146", "MATH 256"],
+        "Statistics helps with upper-division biology planning across multiple route options."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemCount(
+        "uws-biol-physics-progress",
+        "Physics progress for B.S.-option flexibility",
+        ["PHYS& 221", "PHYS& 222", "PHYS& 223"],
+        2,
+        "The B.A. route can be lighter, but most B.S. option pathways require physics. Completing two quarters before transfer keeps more options open."
+      ),
+    ],
+    advisorFlags: [
+      "Biology now has one B.A. route and multiple B.S. options, so the exact upper-division map should be finalized with advising after route choice.",
+      "Application review uses performance across supporting science coursework, not just the biology sequence alone.",
+    ],
+    involvementIdeas: [
+      "Use one lab, field, ecology, health, or peer-learning role to show biology readiness beyond course completion.",
+    ],
+    projectIdeas: [
+      "Create one biology-focused project with a clear question, methods, and short evidence-based findings.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-business-administration",
+    campusId: "uw-seattle",
+    title: "Business Administration",
+    shortTitle: "Business",
+    summary:
+      "Foster Business Administration is an admission-structured lower-division business transfer. Green River planning should complete accounting, economics, calculus, writing, and quantitative support early so the student enters UW ready for the upper-division BABA core and option selection.",
+    applicationWindow:
+      "Follow current Foster standard-admission deadlines and complete listed prerequisites before the target cycle whenever possible.",
+    startQuarter: "Varies by Foster admission cycle",
+    bestTrackId: "999B",
+    bestTrackSummary: buildGeneratedTrackSummary("999B"),
+    whyThisTrack: [
+      "Foster admission uses a specific lower-division business prerequisite set anchored in economics, accounting, calculus, and writing.",
+      "999B aligns with that prerequisite profile and keeps business-ready sequencing clearer than a generic transfer plan.",
+    ],
+    financialAidNote:
+      "Keep prerequisite business and quantitative courses front-loaded to avoid missing application-cycle eligibility while carrying unrelated electives.",
+    applicationChecklist: [
+      item(
+        "uws-baba-engl101",
+        "English composition",
+        ["ENGL& 101"],
+        "English composition is one of Foster's listed non-business admission prerequisites."
+      ),
+      itemAny(
+        "uws-baba-calculus",
+        "Approved calculus prerequisite",
+        ["MATH& 148", "MATH& 151"],
+        "Foster requires one approved calculus course; these are the clearest current Green River paths."
+      ),
+      item(
+        "uws-baba-micro",
+        "Microeconomics",
+        ["ECON& 201"]
+      ),
+      item(
+        "uws-baba-macro",
+        "Macroeconomics",
+        ["ECON& 202"]
+      ),
+      itemCount(
+        "uws-baba-financial-accounting",
+        "Financial accounting sequence",
+        ["ACCT& 201", "ACCT& 202"],
+        2
+      ),
+      item(
+        "uws-baba-managerial-accounting",
+        "Managerial accounting",
+        ["ACCT& 203"],
+        "Managerial accounting aligns with ACCTG 225 in the published lower-division core."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uws-baba-qmeth",
+        "Quantitative methods head start",
+        ["MATH& 146", "MATH 256"],
+        "QMETH 201 is part of the lower-division business core. Statistics support before transfer can reduce first-year UW bottlenecks."
+      ),
+      itemAny(
+        "uws-baba-management-context",
+        "Business and management context support",
+        ["BUS& 101", "BUS 121", "BUS& 201"],
+        "These courses do not replace Foster upper-division core classes, but they can strengthen readiness for business communication and team-based work."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uws-baba-advanced-writing",
+        "Advanced writing support before Foster upper division",
+        ["ENGL 128", "ENGL& 244", "ENGL& 245"],
+        "Foster uses writing-intensive upper-division coursework, so one additional writing-heavy course can be helpful before transfer."
+      ),
+    ],
+    advisorFlags: [
+      "Foster standard admission also requires the Writing Skills Assessment and cycle-specific deadline planning.",
+      "The final upper-division finish depends on the student's chosen Foster major or area of study after admission.",
+    ],
+    involvementIdeas: [
+      "Use one business, leadership, accounting, or customer-facing experience to strengthen fit beyond prerequisites.",
+    ],
+    projectIdeas: [
+      "Create one business-analysis, financial, or operations project with clear assumptions and decision reasoning.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-chemistry",
+    campusId: "uw-seattle",
+    title: "Chemistry",
+    shortTitle: "Chemistry",
+    summary:
+      "Seattle Chemistry includes B.A., B.S., and ACS-certified B.S. finishes. Green River planning should lock general chemistry, calculus, and physics first, then use organic chemistry and advanced math to keep all three route options viable.",
+    applicationWindow:
+      "Chemistry is currently a minimum-requirements major; complete the strongest shared prerequisite science set before transfer.",
+    startQuarter: "Varies",
+    bestTrackId: "999O",
+    bestTrackSummary: buildGeneratedTrackSummary("999O"),
+    whyThisTrack: [
+      "Chemistry route planning depends on sustained math, chemistry, and physics sequencing before upper-division coursework begins.",
+      "999O is the clearest Green River baseline for preserving the major's shared science spine.",
+    ],
+    financialAidNote:
+      "Keep chemistry and math sequences continuous and avoid displacing required science classes with unrelated electives.",
+    applicationChecklist: [
+      item(
+        "uws-chem-general-chem",
+        "General chemistry sequence",
+        FULL_GENERAL_CHEMISTRY_SEQUENCE,
+        "Chemistry admission and degree progression both rely on a complete general-chemistry foundation."
+      ),
+      itemStemCalcSequence("uws-chem-calc123", "Calculus I, II, and III"),
+      item(
+        "uws-chem-physics123",
+        "Calculus-based physics sequence",
+        ["PHYS& 221", "PHYS& 222", "PHYS& 223"],
+        "This is the clearest current Green River equivalent for the common physics preparation used across Chemistry routes."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      item(
+        "uws-chem-organic",
+        "Organic chemistry sequence",
+        FULL_ORGANIC_CHEMISTRY_SEQUENCE,
+        "Completing organic chemistry early supports the B.A., B.S., and ACS-certified route planning after transfer."
+      ),
+      itemAny(
+        "uws-chem-advanced-math",
+        "Advanced math head start for B.S. and ACS planning",
+        ["MATH& 254", "MATH 238", "MATH 240"],
+        "Extra math support is especially useful for the B.S. and ACS-certified finishes, which are more technical than the B.A. route."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uws-chem-lab-readiness",
+        "Additional chemistry lab readiness",
+        ["CHEM 194", "CHEM 195", "CHEM 296"],
+        "These do not replace UW upper-division chemistry labs, but they can strengthen lab continuity before transfer."
+      ),
+    ],
+    advisorFlags: [
+      "Chemistry has three distinct Seattle finishes (B.A., B.S., ACS-certified B.S.), and the upper-division map changes by route.",
+      "Route choice should be confirmed early because the B.S. and ACS-certified paths are more sequence-sensitive than the B.A. path.",
+    ],
+    involvementIdeas: [
+      "Use one lab, tutoring, research, or science-outreach activity to show chemistry readiness beyond coursework.",
+    ],
+    projectIdeas: [
+      "Document one chemistry project with methods, data, and a short interpretation of findings.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-chinese",
+    campusId: "uw-seattle",
+    title: "Chinese",
+    shortTitle: "Chinese",
+    summary:
+      "Seattle Chinese is a language-progression major where placement level changes the exact remaining credits. Green River planning should keep Chinese language continuity active and pair it with writing and culture/history support before transfer.",
+    applicationWindow:
+      "Follow current Asian Languages and Literature admission guidance and confirm placement timing early.",
+    startQuarter: "Varies",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "The Chinese major's required credits vary by entering proficiency, so sustained language progression is more important than a one-size-fits-all transfer track.",
+      "A custom language-and-humanities plan keeps Chinese momentum while preserving writing and culture support.",
+    ],
+    financialAidNote:
+      "Avoid long breaks in Chinese coursework and keep writing support visible so language progress stays transfer-ready.",
+    plannerNote:
+      "Language-progression Chinese baseline emphasizing sequence continuity, writing readiness, and placement-aware transition planning.",
+    applicationChecklist: [
+      itemCount(
+        "uws-chin-language-credits",
+        "Chinese language sequence before upper-division UW Chinese",
+        ["CHIN 111", "CHIN& 121", "CHIN& 122", "CHIN& 123"],
+        3,
+        "Most students need sustained lower-division Chinese coursework before entering upper-division language, literature, and culture requirements at UW."
+      ),
+      itemAny(
+        "uws-chin-writing",
+        "English writing course",
+        ["ENGL& 101", "ENGL 128", "ENGL& 244"],
+        "The published admission baseline includes one writing course with a qualifying grade."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uws-chin-history-culture",
+        "China-focused history and culture support",
+        ["HIST 120", "HIST 135", "HIST& 136", "HUMAN 100"],
+        "These courses support the culture/literature side of the major while language progression continues."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uws-chin-reading-writing",
+        "Additional reading and writing reinforcement",
+        ["ENGL& 245", "ENGL& 246", "ENGL 247"],
+        "Additional analytical reading and writing support can help with upper-division language and literature coursework after transfer."
+      ),
+    ],
+    advisorFlags: [
+      "The major's final credit total depends on placement and entering Chinese proficiency.",
+      "Department guidance expects the most recent primary-language course to be taken at UW with a minimum grade threshold, so transition planning should include early UW language advising.",
+    ],
+    involvementIdeas: [
+      "Use one language tutoring, cultural, or internationally focused activity to show fit beyond the transcript.",
+    ],
+    projectIdeas: [
+      "Create one Chinese-language or culture project with translation, textual analysis, or historical context.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-cinema-and-media-studies",
+    campusId: "uw-seattle",
+    title: "Cinema & Media Studies",
+    shortTitle: "Cinema & Media",
+    summary:
+      "Cinema and Media Studies is a structured 60-credit major with a clear core plus elective framework. Green River planning should secure an intro CMS-equivalent and writing readiness, then build media-analysis context before transfer.",
+    applicationWindow:
+      "Follow current Cinema and Media Studies declaration guidance and complete the introductory and writing baseline before transfer.",
+    startQuarter: "Varies",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "The major has a fixed UW core but flexible elective space, so pre-transfer planning should emphasize entry readiness rather than over-specifying UW-only upper-division classes.",
+      "A custom communications and humanities foundation is usually the strongest pre-transfer setup.",
+    ],
+    financialAidNote:
+      "Prioritize intro CMS-equivalent and writing readiness first, then add media-support electives that strengthen transfer fit.",
+    plannerNote:
+      "Core-ready Cinema and Media baseline emphasizing intro-course equivalency, writing depth, and media-analysis context before UW residency-heavy upper division.",
+    applicationChecklist: [
+      itemAny(
+        "uws-cms-intro",
+        "Introductory CMS-equivalent course",
+        ["CMST& 102", "CMST& 210", "CMST 266"],
+        "CMS admission requires one introductory CMS course. CMST 266 is the clearest direct CMS 272 match when taken for 5 credits."
+      ),
+      itemAny(
+        "uws-cms-writing",
+        "English composition or W-writing support",
+        ["ENGL& 101", "ENGL 128", "ENGL& 244"],
+        "The major requires composition or W-writing before declaration."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uws-cms-media-support",
+        "Film, media, or journalism support",
+        ["FILM 120", "FILM 121", "JOURN 101", "JOURN 120"],
+        "These courses do not replace the CMS core, but they strengthen media-analysis and production context before transfer."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uws-cms-history-context",
+        "History and humanities context for CMS electives",
+        ["HIST 101", "HIST 102", "HUMAN 190", "HUMAN 224"],
+        "CMS electives are often context-rich, so humanities and history support can reduce reading-load friction after transfer."
+      ),
+    ],
+    advisorFlags: [
+      "The major's fixed core and residency rules mean the majority of upper-division CMS coursework should still be planned at UW Seattle.",
+      "Keep CMST 266 at 5 credits when possible to preserve the strongest published CMS 272 equivalency outcome.",
+    ],
+    involvementIdeas: [
+      "Use one film, media, journalism, or storytelling activity to show fit beyond coursework.",
+    ],
+    projectIdeas: [
+      "Build one media-analysis or storytelling project with a clear thesis, evidence, and audience.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-classical-studies",
+    campusId: "uw-seattle",
+    title: "Classical Studies",
+    shortTitle: "Classical Studies",
+    summary:
+      "Classical Studies is a flexible classics pathway that still relies on language progression plus substantial upper-division humanities coursework. Green River planning should emphasize writing, history, and humanities depth while preparing for UW-side Greek or Latin continuation.",
+    applicationWindow:
+      "Follow current Classics department guidance and verify language-start timing as early as possible.",
+    startQuarter: "Varies",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "Classical Studies can be completed from multiple starting points, so a custom humanities route is more realistic than a rigid one-track transfer template.",
+      "Green River is strongest for writing and historical context support while major language progression is finalized with UW advising.",
+    ],
+    financialAidNote:
+      "Use a custom humanities pathway that protects writing and history continuity while preserving room for UW language sequencing.",
+    plannerNote:
+      "Language-and-text Classical Studies baseline emphasizing writing, ancient-history context, and early language-placement planning.",
+    applicationChecklist: [
+      itemAny(
+        "uws-classt-writing",
+        "English composition or analytical writing support",
+        ["ENGL& 101", "ENGL 128", "ENGL& 244"],
+        "Classical Studies is reading- and writing-intensive, so strong writing preparation before transfer is useful."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uws-classt-ancient-history",
+        "Ancient-history and classics-adjacent humanities support",
+        ["HIST 101", "HIST 120", "HUMAN 133", "HUMAN 142"],
+        "These courses support upper-division classics-in-translation and historical analysis work after transfer."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uws-classt-humanities-depth",
+        "Additional humanities depth before UW upper division",
+        ["HIST& 214", "HIST& 215", "HUMAN 186", "HUMAN 191"],
+        "Extra humanities depth helps prepare for the major's broad upper-division literature, philosophy, and ancient-culture coursework."
+      ),
+    ],
+    advisorFlags: [
+      "Classical Studies still requires Greek or Latin continuation through advanced levels, so language-entry planning should be confirmed with UW Classics advising.",
+      "The exact post-transfer course map depends on prior language background and placement outcomes.",
+    ],
+    involvementIdeas: [
+      "Use one humanities, history, language, or classics-related activity to show fit beyond transcript completion.",
+    ],
+    projectIdeas: [
+      "Write one classics-focused analysis project that ties historical evidence to a clear interpretive argument.",
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-classics",
+    campusId: "uw-seattle",
+    title: "Classics",
+    shortTitle: "Classics",
+    summary:
+      "Seattle Classics is language- and text-driven planning where writing, ancient-history context, and Greek/Latin readiness should be made explicit before upper-division UW sequencing.",
+    applicationWindow:
+      "Follow current UW Classics guidance and confirm language placement early.",
+    startQuarter: "Varies",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "Classics progression is built around language and textual analysis rather than a single transfer-associate template.",
+      "A custom humanities route keeps writing and historical context visible while language sequencing is finalized with UW advising.",
+    ],
+    financialAidNote:
+      "Use a custom humanities plan that protects writing and language continuity rather than filling terms with unrelated electives.",
+    plannerNote:
+      "Text-centered Classics baseline emphasizing writing readiness, historical context, and Greek/Latin continuity planning.",
+    applicationChecklist: [
+      itemAny(
+        "uws-classics-writing",
+        "English composition and analytical writing support",
+        ["ENGL& 101", "ENGL 128", "ENGL& 244"],
+        "Classics is reading- and writing-intensive, so writing readiness should be complete before transfer."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uws-classics-history",
+        "Ancient-history and humanities context",
+        ["HIST 101", "HIST 120", "HUMAN 133", "HUMAN 142"],
+        "These courses support upper-division classics coursework but do not replace UW Greek/Latin progression."
+      ),
+    ],
+    stayAtGrcChecklist: [
+      itemAny(
+        "uws-classics-language-support",
+        "Greek or Latin language head start where available",
+        ["LATIN 101", "LATIN 102", "LATIN 103"],
+        "Starting language early helps avoid first-year sequencing bottlenecks in the required UW Greek/Latin progression."
+      ),
+    ],
+    officialLinks: [
+      {
+        label: "UW Classics undergraduate program",
+        url: "https://classics.washington.edu/undergraduate-program",
+      },
+      {
+        label: "UW Green River equivalency guide",
+        url: "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uws-classics-overall", "Classics planning baseline", [
+        "Classics planning is shaped by language placement and upper-division sequence timing.",
+        "Green River preparation should prioritize writing, ancient-history context, and language continuity before transfer.",
+      ]),
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-communication",
+    campusId: "uw-seattle",
+    title: "Communication",
+    shortTitle: "Communication",
+    summary:
+      "Seattle Communication is now modeled as a communication-theory and media-practice transfer where speaking, writing, and methods readiness remain explicit before upper-division concentration work.",
+    applicationWindow:
+      "Follow current UW Communication admission cycle guidance and prerequisites.",
+    startQuarter: "Varies",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "Communication pathways combine writing, speaking, and media analysis rather than one narrow prerequisite ladder.",
+      "A custom communication-and-humanities route keeps the strongest transfer baseline visible.",
+    ],
+    financialAidNote:
+      "Prioritize speaking and writing prerequisites first, then add media-support electives that strengthen communication fit.",
+    plannerNote:
+      "Application-ready Communication baseline emphasizing public speaking, composition strength, and media-context support.",
+    applicationChecklist: [
+      itemAny(
+        "uws-comm-public-speaking",
+        "Public speaking foundation",
+        ["CMST& 210", "CMST& 220"],
+        "Public speaking readiness supports common Communication application preparation expectations."
+      ),
+      itemAny(
+        "uws-comm-writing",
+        "English composition",
+        ["ENGL& 101", "ENGL 128"],
+        "Writing readiness is a core baseline for upper-division Communication work."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uws-comm-media-support",
+        "Media or journalism context",
+        ["JOURN 101", "JOURN 120", "CMST 266"],
+        "These support communication analysis and practice but do not replace UW upper-division requirements."
+      ),
+    ],
+    stayAtGrcChecklist: [],
+    officialLinks: [
+      {
+        label: "UW Communication undergraduate program",
+        url: "https://com.uw.edu/academics/undergraduate/communication-major/",
+      },
+      {
+        label: "UW Green River equivalency guide",
+        url: "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uws-comm-overall", "Communication planning baseline", [
+        "Communication planning combines speaking, writing, media analysis, and concentration-level upper-division coursework.",
+        "Green River preparation should secure speaking and writing readiness before transfer application timing.",
+      ]),
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-community-environment-and-planning",
+    campusId: "uw-seattle",
+    title: "Community, Environment & Planning",
+    shortTitle: "CEP",
+    summary:
+      "Seattle Community, Environment and Planning is now modeled as an interdisciplinary urban-and-environment planning transfer where writing, quantitative support, and policy context are explicit before UW studio and planning methods work.",
+    applicationWindow:
+      "Follow current CEP application guidance and declaration timing.",
+    startQuarter: "Varies",
+    bestTrackId: "999B",
+    bestTrackSummary: buildGeneratedTrackSummary("999B"),
+    whyThisTrack: [
+      "CEP combines policy, planning, and place-based analysis instead of one single technical prerequisite sequence.",
+      "A balanced track preserves quantitative and social-analysis support before transfer.",
+    ],
+    financialAidNote:
+      "Keep planning and policy support intentional so transfer credits align with CEP methods and studio expectations.",
+    plannerNote:
+      "Interdisciplinary CEP baseline emphasizing writing, quantitative literacy, and policy/community context before UW studio-method sequencing.",
+    applicationChecklist: [
+      itemAny(
+        "uws-cep-calc",
+        "Quantitative support for planning methods",
+        ["MATH& 146", "MATH& 151", "MATH 256"],
+        "Planning programs rely on quantitative literacy and methods readiness."
+      ),
+      item("uws-cep-writing", "English composition", ["ENGL& 101"]),
+    ],
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uws-cep-policy",
+        "Policy and community-context support",
+        ["POLS& 101", "SOC& 101", "GEOG& 100", "GEOG& 200"],
+        "These courses strengthen CEP context before upper-division UW planning coursework."
+      ),
+    ],
+    stayAtGrcChecklist: [],
+    officialLinks: [
+      {
+        label: "UW Community, Environment and Planning program",
+        url: "https://urbdp.be.uw.edu/academic-programs/undergraduate/community-environment-and-planning/",
+      },
+      {
+        label: "UW Green River equivalency guide",
+        url: "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uws-cep-overall", "CEP planning baseline", [
+        "CEP combines planning methods, policy, and community-focused urban analysis.",
+        "Green River preparation should keep writing, quantitative methods, and policy context explicit before transfer.",
+      ]),
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-comparative-history-of-ideas",
+    campusId: "uw-seattle",
+    title: "Comparative History of Ideas",
+    shortTitle: "CHID",
+    summary:
+      "Seattle CHID is now modeled as an interdisciplinary reading-and-writing transfer where humanities depth and argumentation skills are explicit before upper-division theme-focused UW coursework.",
+    applicationWindow:
+      "Follow current CHID admission and declaration guidance.",
+    startQuarter: "Varies",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "CHID is interdisciplinary and writing-intensive rather than driven by one narrow prerequisite list.",
+      "A humanities-forward custom path is the strongest transfer baseline.",
+    ],
+    financialAidNote:
+      "Prioritize writing and reading-heavy humanities coursework before transfer to reduce upper-division load friction.",
+    plannerNote:
+      "Argument-forward CHID baseline emphasizing analytical writing, humanities breadth, and theory/history context.",
+    applicationChecklist: [
+      itemAny(
+        "uws-chi-writing",
+        "Composition and analytical writing",
+        ["ENGL& 101", "ENGL 128", "ENGL& 244"],
+        "CHID coursework is argument-driven and writing-intensive, so writing support should be complete early."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uws-chi-humanities",
+        "Humanities and social-thought context",
+        ["HIST 101", "HIST 103", "PHIL& 101", "HUMAN 190"],
+        "These courses support the interdisciplinary theory and history focus of CHID."
+      ),
+    ],
+    stayAtGrcChecklist: [],
+    officialLinks: [
+      {
+        label: "UW Comparative History of Ideas program",
+        url: "https://chid.washington.edu/undergraduate",
+      },
+      {
+        label: "UW Green River equivalency guide",
+        url: "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uws-chi-overall", "CHID planning baseline", [
+        "CHID planning emphasizes interdisciplinary humanities analysis and strong writing preparation.",
+        "Green River coursework should foreground reading, argumentation, and theory/history context before transfer.",
+      ]),
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-comparative-literature",
+    campusId: "uw-seattle",
+    title: "Comparative Literature",
+    shortTitle: "Comparative Literature",
+    summary:
+      "Seattle Comparative Literature is now modeled as a language-and-literature transfer where writing depth and language continuity are explicit before upper-division comparative analysis.",
+    applicationWindow:
+      "Follow current Comparative Literature declaration guidance and language preparation expectations.",
+    startQuarter: "Varies",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "Comparative Literature progression depends on both writing strength and language readiness.",
+      "A custom literature-and-language path keeps transfer preparation coherent.",
+    ],
+    financialAidNote:
+      "Keep writing and language sequences continuous to avoid delayed placement after transfer.",
+    plannerNote:
+      "Language-and-literature Comparative Literature baseline emphasizing sequence continuity, writing depth, and interpretive reading readiness.",
+    applicationChecklist: [
+      itemAny(
+        "uws-complit-language",
+        "Language sequence support",
+        ["SPAN& 121", "FREN& 121", "GERM& 121", "CHIN& 121"],
+        "Comparative Literature planning benefits from clear language progression before upper-division coursework."
+      ),
+      itemAny(
+        "uws-complit-writing",
+        "Analytical writing support",
+        ["ENGL& 101", "ENGL 128", "ENGL& 245"],
+        "The major is writing-intensive across literature and critical-theory coursework."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uws-complit-humanities",
+        "Literature and humanities context",
+        ["HUMAN 190", "HUMAN 224", "ENGL& 111", "ENGL& 112"],
+        "These courses support reading volume and interpretive depth before transfer."
+      ),
+    ],
+    stayAtGrcChecklist: [],
+    officialLinks: [
+      {
+        label: "UW Comparative Literature program",
+        url: "https://complit.washington.edu/undergraduate",
+      },
+      {
+        label: "UW Green River equivalency guide",
+        url: "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uws-complit-overall", "Comparative Literature planning baseline", [
+        "The major combines language readiness with heavy analytical reading and writing.",
+        "Green River planning should preserve language continuity and writing depth before transfer."
+      ]),
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-comparative-religion",
+    campusId: "uw-seattle",
+    title: "Comparative Religion",
+    shortTitle: "Comparative Religion",
+    summary:
+      "Seattle Comparative Religion is now modeled as a humanities transfer where writing, history, and philosophy context are explicit before upper-division religion-focused analysis.",
+    applicationWindow:
+      "Follow current Comparative Religion declaration guidance.",
+    startQuarter: "Varies",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "Comparative Religion is interdisciplinary and text-heavy rather than dependent on one fixed technical prerequisite set.",
+      "A custom humanities path keeps writing and historical interpretation preparation strong.",
+    ],
+    financialAidNote:
+      "Build a coherent humanities plan so coursework supports religious-studies analysis rather than unaligned elective accumulation.",
+    plannerNote:
+      "Text-and-context Comparative Religion baseline emphasizing composition strength, humanities interpretation, and optional language support.",
+    applicationChecklist: [
+      itemAny(
+        "uws-comprel-humanities",
+        "Humanities and social-thought foundation",
+        ["PHIL& 101", "HIST 101", "HIST 103", "SOC& 101"],
+        "Comparative Religion coursework relies on historical and philosophical interpretation skills."
+      ),
+      itemAny("uws-comprel-writing", "Composition", ["ENGL& 101", "ENGL 128"]),
+    ],
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uws-comprel-language",
+        "Language support for religious-text study",
+        ["SPAN& 121", "FREN& 121", "GERM& 121"],
+        "Language study is optional but can strengthen upper-division source-text and comparative work."
+      ),
+    ],
+    stayAtGrcChecklist: [],
+    officialLinks: [
+      {
+        label: "UW Comparative Religion overview",
+        url: "https://religion.washington.edu/undergraduate",
+      },
+      {
+        label: "UW Green River equivalency guide",
+        url: "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uws-comprel-overall", "Comparative Religion planning baseline", [
+        "Comparative Religion planning emphasizes textual interpretation, historical context, and analytical writing.",
+        "Green River preparation should foreground humanities depth before upper-division UW specialization."
+      ]),
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-computational-finance-and-risk-management",
+    campusId: "uw-seattle",
+    title: "Computational Finance & Risk Management",
+    shortTitle: "CFRM",
+    summary:
+      "Seattle CFRM is now modeled as a quantitative transfer where calculus, linear algebra, programming, and statistics readiness are explicit before upper-division financial modeling and risk coursework.",
+    applicationWindow:
+      "Follow current CFRM admission guidance and prerequisite sequencing.",
+    startQuarter: "Varies",
+    bestTrackId: "999P",
+    bestTrackSummary: buildGeneratedTrackSummary("999P"),
+    whyThisTrack: [
+      "CFRM progression depends on a strong math-and-computing spine before transfer.",
+      "999P keeps quantitative and programming readiness visible for financial modeling coursework.",
+    ],
+    financialAidNote:
+      "Prioritize core quantitative prerequisites first so transfer terms are not consumed by avoidable math catch-up.",
+    applicationChecklist: [
+      itemStemCalcSequence("uws-cfrm-calc123", "Calculus I, II, and III"),
+      item("uws-cfrm-linear", "Linear algebra", ["MATH 240"]),
+      itemAny(
+        "uws-cfrm-programming",
+        "Programming foundation",
+        ["CS 121", "CS 122", "CS 123"],
+        "Programming readiness supports CFRM computational methods and financial modeling work."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uws-cfrm-stats",
+        "Statistics and probability support",
+        ["MATH& 146", "MATH 256"],
+        "Statistics support helps with CFRM probability and risk-analysis coursework."
+      ),
+    ],
+    stayAtGrcChecklist: [],
+    officialLinks: [
+      {
+        label: "UW Computational Finance and Risk Management program",
+        url: "https://depts.washington.edu/compfin/",
+      },
+      {
+        label: "UW Green River equivalency guide",
+        url: "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uws-cfrm-overall", "CFRM planning baseline", [
+        "CFRM requires strong quantitative and computational readiness before upper-division modeling and risk coursework.",
+        "Green River preparation should keep calculus, linear algebra, statistics, and programming explicit before transfer."
+      ]),
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-construction-management",
+    campusId: "uw-seattle",
+    title: "Construction Management",
+    shortTitle: "Construction Management",
+    summary:
+      "Seattle Construction Management is now modeled as an applied technical transfer where math, communication, and construction-context preparation are explicit before upper-division project and systems coursework.",
+    applicationWindow:
+      "Follow current Construction Management transfer admission guidance.",
+    startQuarter: "Varies",
+    bestTrackId: "999Q",
+    bestTrackSummary: buildGeneratedTrackSummary("999Q"),
+    whyThisTrack: [
+      "Construction Management uses quantitative and technical-planning skills plus communication-heavy project work.",
+      "A technical transfer base keeps engineering-adjacent readiness visible before upper-division sequencing.",
+    ],
+    financialAidNote:
+      "Complete quantitative and communication prerequisites first so transfer terms can focus on major coursework.",
+    plannerNote:
+      "Technical-project Construction Management baseline emphasizing math readiness, communication strength, and construction-systems context.",
+    applicationChecklist: [
+      itemAny("uws-cm-math", "Math support", ["MATH& 141", "MATH& 151", "MATH& 146"]),
+      itemAny(
+        "uws-cm-programming",
+        "Technical computing support",
+        ["CS 121", "ENGR 250"],
+        "Technical tools and computing support are useful for construction systems and project analysis."
+      ),
+      item("uws-cm-writing", "English composition", ["ENGL& 101"]),
+    ],
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uws-cm-accounting",
+        "Business/accounting context support",
+        ["ACCT& 201", "BUS& 101"],
+        "These courses support cost and project-management context but do not replace UW CM upper-division requirements."
+      ),
+    ],
+    stayAtGrcChecklist: [],
+    officialLinks: [
+      {
+        label: "UW Construction Management program",
+        url: "https://www.be.washington.edu/academics/construction-management/",
+      },
+      {
+        label: "UW Green River equivalency guide",
+        url: "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uws-cm-overall", "Construction Management planning baseline", [
+        "Construction Management blends technical, quantitative, and communication-heavy project preparation.",
+        "Green River planning should keep math, technical support, and writing readiness explicit before transfer."
+      ]),
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-dance",
+    campusId: "uw-seattle",
+    title: "Dance",
+    shortTitle: "Dance",
+    summary:
+      "Seattle Dance is now modeled as a performance-and-theory transfer where composition, performance readiness, and movement-study support are explicit before upper-division UW choreography and production work.",
+    applicationWindow:
+      "Follow current UW Dance application, audition, and declaration timelines.",
+    startQuarter: "Varies",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "Dance planning depends on both performance readiness and academic coursework.",
+      "A custom arts pathway keeps movement and writing support aligned before transfer."
+    ],
+    financialAidNote:
+      "Keep performance preparation and writing coursework balanced so transfer readiness stays both academic and portfolio-based.",
+    applicationChecklist: [
+      itemAny(
+        "uws-dance-performance",
+        "Dance performance or movement-study foundation",
+        ["DANCE 101", "DANCE 102", "DANCE 120"],
+        "Performance and movement-study preparation supports audition and transition readiness."
+      ),
+      itemAny("uws-dance-writing", "English composition", ["ENGL& 101", "ENGL 128"]),
+    ],
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uws-dance-theory-context",
+        "Humanities context for dance studies",
+        ["HUMAN 100", "HUMAN 190", "ART 105"],
+        "These courses support dance theory/history context before upper-division choreography and performance analysis."
+      ),
+    ],
+    stayAtGrcChecklist: [],
+    officialLinks: [
+      {
+        label: "UW Dance undergraduate program",
+        url: "https://dance.washington.edu/undergraduate-program",
+      },
+      {
+        label: "UW Green River equivalency guide",
+        url: "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uws-dance-overall", "Dance planning baseline", [
+        "Dance transfer planning combines academic preparation with performance and audition readiness.",
+        "Green River coursework should pair movement-study support with writing and humanities context before transfer."
+      ]),
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-danish",
+    campusId: "uw-seattle",
+    title: "Danish",
+    shortTitle: "Danish",
+    summary:
+      "Seattle Danish is now modeled as a language-progression transfer where sustained Danish sequence and writing support are explicit before upper-division language and culture coursework.",
+    applicationWindow:
+      "Follow current Scandinavian Studies declaration and language-placement guidance.",
+    startQuarter: "Varies",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "Danish progression depends on language continuity and placement rather than one standalone prerequisite course.",
+      "A language-focused custom path is the strongest transfer baseline for Danish."
+    ],
+    financialAidNote:
+      "Keep the Danish sequence continuous to avoid losing placement momentum before transfer.",
+    applicationChecklist: [
+      itemCount(
+        "uws-danish-language",
+        "Danish language sequence progression",
+        ["DANISH 101", "DANISH 102", "DANISH 103"],
+        2,
+        "Complete as much of the lower-division Danish sequence as available before transfer and confirm placement with UW."
+      ),
+      itemAny("uws-danish-writing", "English composition", ["ENGL& 101", "ENGL 128"]),
+    ],
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uws-danish-scand-context",
+        "Scandinavian history or culture context",
+        ["HIST 103", "HUMAN 190", "ENGL& 111"],
+        "These courses support upper-division language-in-culture and regional-context coursework."
+      ),
+    ],
+    stayAtGrcChecklist: [],
+    officialLinks: [
+      {
+        label: "UW Scandinavian Studies undergraduate programs",
+        url: "https://scandinavian.washington.edu/undergraduate",
+      },
+      {
+        label: "UW Green River equivalency guide",
+        url: "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uws-danish-overall", "Danish planning baseline", [
+        "Danish transfer planning centers on language-sequence continuity and placement-sensitive progression.",
+        "Green River preparation should preserve Danish and writing momentum before transfer."
+      ]),
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-design",
+    campusId: "uw-seattle",
+    title: "Design",
+    shortTitle: "Design",
+    summary:
+      "Seattle Design is now modeled as a portfolio-forward transfer where visual foundation, composition, and design-process preparation are explicit before upper-division studio and systems work.",
+    applicationWindow: "Follow current UW Design transfer and portfolio submission guidance.",
+    startQuarter: "Varies",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "Design admission readiness depends on visual and process preparation rather than one purely academic prerequisite ladder.",
+      "A custom art-and-design path keeps portfolio quality and writing support visible before transfer.",
+    ],
+    financialAidNote:
+      "Prioritize portfolio-support courses and writing readiness before transfer so upper-division design terms can stay studio-focused.",
+    applicationChecklist: [
+      itemAny(
+        "uws-design-foundation",
+        "Visual art and design foundation",
+        ["ART& 100", "ART 105", "ART 106", "PHOTO 101"],
+        "These courses support portfolio and visual-foundation readiness for design transfer planning."
+      ),
+      item("uws-design-writing", "English composition", ["ENGL& 101"]),
+    ],
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uws-design-digital",
+        "Digital media and communication support",
+        ["CMST 266", "ART 190", "PHOTO 102"],
+        "Digital-communication support can strengthen project presentation and process documentation before transfer."
+      ),
+    ],
+    stayAtGrcChecklist: [],
+    officialLinks: [
+      {
+        label: "UW Design undergraduate program",
+        url: "https://art.washington.edu/design",
+      },
+      {
+        label: "UW Green River equivalency guide",
+        url: "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uws-design-overall", "Design planning baseline", [
+        "Design transfer readiness combines visual foundation, composition, and portfolio quality.",
+        "Green River preparation should keep portfolio-support coursework visible before upper-division UW design studios.",
+      ]),
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-disability-studies",
+    campusId: "uw-seattle",
+    title: "Disability Studies",
+    shortTitle: "Disability Studies",
+    summary:
+      "Seattle Disability Studies is now modeled as an interdisciplinary social-justice transfer where writing, sociology, and policy context are explicit before upper-division UW coursework.",
+    applicationWindow: "Follow current Disability Studies declaration guidance.",
+    startQuarter: "Varies",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "Disability Studies combines social-science and humanities analysis instead of one narrow prerequisite sequence.",
+      "A custom policy-and-human-services path is the strongest pre-transfer foundation.",
+    ],
+    financialAidNote:
+      "Keep writing and social-analysis courses intentional so transfer credits align with disability-studies scholarship and advocacy contexts.",
+    applicationChecklist: [
+      itemAny(
+        "uws-disability-writing",
+        "Composition and analytical writing support",
+        ["ENGL& 101", "ENGL 128", "ENGL& 244"],
+        "Writing readiness supports reading-intensive upper-division Disability Studies coursework."
+      ),
+      itemAny(
+        "uws-disability-social",
+        "Social-science support",
+        ["SOC& 101", "PSYC& 100", "POLS& 101"],
+        "Social-science context supports disability policy, access, and equity analysis."
+      ),
+    ],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [],
+    officialLinks: [
+      {
+        label: "UW Disability Studies program",
+        url: "https://disabilitystudies.washington.edu/",
+      },
+      {
+        label: "UW Green River equivalency guide",
+        url: "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uws-disability-overall", "Disability Studies planning baseline", [
+        "Disability Studies planning emphasizes interdisciplinary social analysis and writing depth.",
+        "Green River preparation should foreground writing and social-context readiness before transfer.",
+      ]),
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-drama",
+    campusId: "uw-seattle",
+    title: "Drama",
+    shortTitle: "Drama",
+    summary:
+      "Seattle Drama is now modeled as a performance-and-production transfer where performance foundation, communication, and writing support are explicit before upper-division UW theater sequences.",
+    applicationWindow: "Follow current UW Drama admission and audition timelines.",
+    startQuarter: "Varies",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "Drama readiness blends performance and production context with academic writing and analysis.",
+      "A custom theater-and-humanities path keeps transfer preparation coherent before UW sequencing.",
+    ],
+    financialAidNote:
+      "Balance performance prep with academic writing so transfer terms are not overloaded with avoidable foundational catch-up.",
+    applicationChecklist: [
+      itemAny(
+        "uws-drama-performance",
+        "Drama and performance foundation",
+        ["DRMA 101", "DRMA 102", "CMST& 210"],
+        "Performance and speaking readiness support Drama audition and transition preparation."
+      ),
+      item("uws-drama-writing", "English composition", ["ENGL& 101"]),
+    ],
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uws-drama-history",
+        "Theater, literature, or humanities context",
+        ["HUMAN 100", "ENGL& 111", "HIST 103"],
+        "These courses support script analysis and historical-context coursework in Drama."
+      ),
+    ],
+    stayAtGrcChecklist: [],
+    officialLinks: [
+      {
+        label: "UW School of Drama undergraduate programs",
+        url: "https://drama.washington.edu/undergraduate-programs",
+      },
+      {
+        label: "UW Green River equivalency guide",
+        url: "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uws-drama-overall", "Drama planning baseline", [
+        "Drama transfer planning combines performance readiness with writing and humanities context.",
+        "Green River preparation should secure performance and communication foundations before upper-division UW sequencing.",
+      ]),
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-early-childhood-and-family-studies",
+    campusId: "uw-seattle",
+    title: "Early Childhood & Family Studies",
+    shortTitle: "ECFS",
+    summary:
+      "Seattle ECFS is now modeled as a child-development and family-systems transfer where psychology, early-childhood, and writing readiness are explicit before upper-division practicum and policy coursework.",
+    applicationWindow: "Follow current ECFS admission and declaration guidance.",
+    startQuarter: "Varies",
+    bestTrackId: "999B",
+    bestTrackSummary: buildGeneratedTrackSummary("999B"),
+    whyThisTrack: [
+      "ECFS progression depends on child-development and family-study context before upper-division methods and practice work.",
+      "A social-science and education-support track keeps transfer readiness focused.",
+    ],
+    financialAidNote:
+      "Prioritize child-development and writing prerequisites first so upper-division terms can focus on practicum and advanced coursework.",
+    applicationChecklist: [
+      itemAny(
+        "uws-ecfs-psych",
+        "Psychology and child-development foundation",
+        ["PSYC& 100", "PSYC& 200", "ECED& 105", "ECED& 132"],
+        "Child-development context supports ECFS readiness before transfer."
+      ),
+      item("uws-ecfs-writing", "English composition", ["ENGL& 101"]),
+    ],
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uws-ecfs-social",
+        "Family and social-systems support",
+        ["SOC& 101", "EDUC& 115", "EDUC& 130"],
+        "These courses support family and community context for ECFS upper-division coursework."
+      ),
+    ],
+    stayAtGrcChecklist: [],
+    officialLinks: [
+      {
+        label: "UW Early Childhood and Family Studies program",
+        url: "https://education.uw.edu/programs/undergraduate/early-childhood-and-family-studies",
+      },
+      {
+        label: "UW Green River equivalency guide",
+        url: "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uws-ecfs-overall", "ECFS planning baseline", [
+        "ECFS preparation emphasizes child-development, family-systems context, and writing readiness.",
+        "Green River coursework should prioritize psychology and early-childhood support before transfer.",
+      ]),
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-earth-and-space-sciences",
+    campusId: "uw-seattle",
+    title: "Earth & Space Sciences",
+    shortTitle: "ESS",
+    summary:
+      "Seattle Earth and Space Sciences is now modeled as a geoscience STEM transfer where calculus, chemistry, and physics readiness are explicit before upper-division earth-systems and field-methods coursework.",
+    applicationWindow: "Follow current ESS declaration and transfer-preparation guidance.",
+    startQuarter: "Varies",
+    bestTrackId: "999O",
+    bestTrackSummary: buildGeneratedTrackSummary("999O"),
+    whyThisTrack: [
+      "ESS progression depends on sustained STEM sequencing before upper-division geoscience coursework.",
+      "A STEM-heavy track preserves calculus and lab-science momentum before transfer.",
+    ],
+    financialAidNote:
+      "Keep math and lab-science sequences continuous to prevent delayed entry into upper-division ESS coursework.",
+    applicationChecklist: [
+      itemStemCalcSequence("uws-ess-calc123", "Calculus I, II, and III"),
+      item(
+        "uws-ess-chem",
+        "General chemistry sequence",
+        FULL_GENERAL_CHEMISTRY_SEQUENCE,
+        "General chemistry supports core earth and space science preparation."
+      ),
+      itemAny(
+        "uws-ess-physics",
+        "Physics support",
+        ["PHYS& 221", "PHYS& 222", "PHYS& 114"],
+        "Physics readiness supports quantitative geoscience and space-science coursework."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uws-ess-earth",
+        "Earth-science context",
+        ["GEOL& 101", "GEOL& 115", "GEOL& 121"],
+        "Earth-science context can ease transition into upper-division ESS field and systems courses."
+      ),
+    ],
+    stayAtGrcChecklist: [],
+    officialLinks: [
+      {
+        label: "UW Earth and Space Sciences program",
+        url: "https://ess.washington.edu/",
+      },
+      {
+        label: "UW Green River equivalency guide",
+        url: "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uws-ess-overall", "ESS planning baseline", [
+        "Earth and Space Sciences planning requires a strong STEM launch before upper-division specialization.",
+        "Green River preparation should keep calculus and lab-science sequencing explicit before transfer.",
+      ]),
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-economics",
+    campusId: "uw-seattle",
+    title: "Economics",
+    shortTitle: "Economics",
+    summary:
+      "Seattle Economics is now modeled as a quantitative social-science transfer where calculus, economics principles, and writing support are explicit before upper-division theory and econometrics work.",
+    applicationWindow: "Follow current UW Economics admission and declaration guidance.",
+    startQuarter: "Varies",
+    bestTrackId: "999B",
+    bestTrackSummary: buildGeneratedTrackSummary("999B"),
+    whyThisTrack: [
+      "Economics progression depends on calculus and core micro/macro preparation before upper-division work.",
+      "A quantitative social-science track keeps econometrics readiness visible.",
+    ],
+    financialAidNote:
+      "Prioritize calculus and economics fundamentals early so transfer terms can focus on upper-division sequencing.",
+    applicationChecklist: [
+      itemAny("uws-econ-calc", "Calculus", ["MATH& 148", "MATH& 151"]),
+      item("uws-econ-micro", "Microeconomics", ["ECON& 201"]),
+      item("uws-econ-macro", "Macroeconomics", ["ECON& 202"]),
+      itemAny("uws-econ-writing", "Writing support", ["ENGL& 101", "ENGL 128"]),
+    ],
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uws-econ-stats",
+        "Statistics support",
+        ["MATH& 146", "MATH 256"],
+        "Statistics support helps prepare for econometrics and quantitative economics coursework."
+      ),
+    ],
+    stayAtGrcChecklist: [],
+    officialLinks: [
+      {
+        label: "UW Economics undergraduate program",
+        url: "https://econ.washington.edu/undergraduate",
+      },
+      {
+        label: "UW Green River equivalency guide",
+        url: "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uws-econ-overall", "Economics planning baseline", [
+        "Economics planning emphasizes calculus-based quantitative readiness and core micro/macro preparation.",
+        "Green River coursework should prioritize calculus, economics fundamentals, and writing before transfer.",
+      ]),
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-education-studies",
+    campusId: "uw-seattle",
+    title: "Education Studies",
+    shortTitle: "Education Studies",
+    summary:
+      "Seattle Education Studies is now modeled as a social-and-educational-analysis transfer where writing, child/youth context, and social-science support are explicit before upper-division program focus work.",
+    applicationWindow: "Follow current Education Studies declaration guidance.",
+    startQuarter: "Varies",
+    bestTrackId: "999B",
+    bestTrackSummary: buildGeneratedTrackSummary("999B"),
+    whyThisTrack: [
+      "Education Studies planning depends on writing and social/educational context rather than a narrow technical prerequisite set.",
+      "A social-science and education-support track is the clearest transfer baseline.",
+    ],
+    financialAidNote:
+      "Build a coherent education-focused schedule so transfer credits align with upper-division education studies goals.",
+    applicationChecklist: [
+      itemAny(
+        "uws-edst-writing",
+        "Composition and writing support",
+        ["ENGL& 101", "ENGL 128", "ENGL& 244"],
+        "Education Studies coursework relies heavily on writing and reflection."
+      ),
+      itemAny(
+        "uws-edst-youth",
+        "Child/youth and education context",
+        ["EDUC& 115", "EDUC& 130", "ECED& 105", "PSYC& 200"],
+        "Education and youth context supports transfer readiness before upper-division specialization."
+      ),
+    ],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [],
+    officialLinks: [
+      {
+        label: "UW Education Studies program",
+        url: "https://education.uw.edu/programs/undergraduate/education-studies",
+      },
+      {
+        label: "UW Green River equivalency guide",
+        url: "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uws-edst-overall", "Education Studies planning baseline", [
+        "Education Studies preparation emphasizes writing, social context, and education-focused analysis.",
+        "Green River coursework should foreground writing and youth/education support before transfer.",
+      ]),
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-education-communities-and-organizations",
+    campusId: "uw-seattle",
+    title: "Education, Communities & Organizations",
+    shortTitle: "ECO",
+    summary:
+      "Seattle ECO is now modeled as an education-and-community systems transfer where writing, leadership, and social-science context are explicit before upper-division organizational and community-focused coursework.",
+    applicationWindow: "Follow current ECO program admission and declaration guidance.",
+    startQuarter: "Varies",
+    bestTrackId: "999B",
+    bestTrackSummary: buildGeneratedTrackSummary("999B"),
+    whyThisTrack: [
+      "ECO combines education, organizational, and community-context analysis.",
+      "A social-science and communication-ready path best supports transfer preparation.",
+    ],
+    financialAidNote:
+      "Prioritize writing and community-context coursework early to keep upper-division ECO terms focused on program requirements.",
+    applicationChecklist: [
+      itemAny("uws-eco-writing", "Composition", ["ENGL& 101", "ENGL 128"]),
+      itemAny(
+        "uws-eco-community",
+        "Community and social-context support",
+        ["SOC& 101", "POLS& 101", "EDUC& 115"],
+        "Community and policy context supports ECO transfer readiness."
+      ),
+    ],
+    beforeEnrollmentChecklist: [
+      itemAny(
+        "uws-eco-leadership",
+        "Communication or leadership support",
+        ["CMST& 210", "CMST& 220", "BUS& 101"],
+        "Communication and leadership support can strengthen organizational coursework readiness."
+      ),
+    ],
+    stayAtGrcChecklist: [],
+    officialLinks: [
+      {
+        label: "UW Education, Communities and Organizations program",
+        url: "https://education.uw.edu/programs/undergraduate/education-communities-and-organizations",
+      },
+      {
+        label: "UW Green River equivalency guide",
+        url: "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uws-eco-overall", "ECO planning baseline", [
+        "ECO planning combines education, organizational, and community-focused analysis.",
+        "Green River preparation should prioritize writing and social-context readiness before transfer.",
+      ]),
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-english-creative-writing",
+    campusId: "uw-seattle",
+    title: "English - Creative Writing",
+    shortTitle: "English (Creative Writing)",
+    summary:
+      "Seattle English Creative Writing is now modeled as a writing-sequence transfer where composition depth and portfolio-ready writing support are explicit before upper-division creative coursework.",
+    applicationWindow: "Follow current UW English Creative Writing admission guidance.",
+    startQuarter: "Varies",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "Creative Writing planning depends on sustained writing progression before upper-division workshops.",
+      "A writing-first humanities path is the strongest transfer baseline.",
+    ],
+    financialAidNote:
+      "Maintain writing sequence continuity so transfer terms can focus on upper-division workshops and electives.",
+    applicationChecklist: [
+      itemAny(
+        "uws-engcw-writing",
+        "Composition and advanced writing support",
+        ["ENGL& 101", "ENGL 126", "ENGL 127", "ENGL 128"],
+        "Creative Writing planning requires strong writing foundations before upper-division coursework."
+      ),
+      itemAny(
+        "uws-engcw-literature",
+        "Literature and reading-context support",
+        ["ENGL& 111", "ENGL& 112", "HUMAN 190"],
+        "Literature context supports creative writing craft and analysis progression."
+      ),
+    ],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [],
+    officialLinks: [
+      {
+        label: "UW English Creative Writing program",
+        url: "https://english.washington.edu/creative-writing",
+      },
+      {
+        label: "UW Green River equivalency guide",
+        url: "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uws-engcw-overall", "English Creative Writing planning baseline", [
+        "Creative Writing preparation depends on strong composition and literature foundations before upper-division workshops.",
+        "Green River coursework should keep writing-sequence momentum explicit before transfer.",
+      ]),
+    ],
+  }),
+  detailedPlan({
+    id: "uw-seattle-english-language-literature-and-culture",
+    campusId: "uw-seattle",
+    title: "English - Language, Literature & Culture",
+    shortTitle: "English (LLC)",
+    summary:
+      "Seattle English LLC is now modeled as a language-and-literature transfer where composition, literature survey, and analytical writing depth are explicit before upper-division specialization.",
+    applicationWindow: "Follow current UW English LLC declaration guidance.",
+    startQuarter: "Varies",
+    bestTrackId: null,
+    bestTrackSummary: buildGeneratedTrackSummary(null),
+    whyThisTrack: [
+      "LLC progression depends on sustained reading and writing development before upper-division concentration coursework.",
+      "A writing-and-literature custom path is the clearest transfer baseline.",
+    ],
+    financialAidNote:
+      "Prioritize composition and literature sequence support before transfer to reduce upper-division bottlenecks.",
+    applicationChecklist: [
+      itemAny(
+        "uws-engllc-writing",
+        "Composition and analytical writing sequence",
+        ["ENGL& 101", "ENGL 126", "ENGL 127", "ENGL 128"],
+        "LLC planning requires strong writing and rhetorical analysis readiness."
+      ),
+      itemAny(
+        "uws-engllc-literature",
+        "Literature foundation",
+        ["ENGL& 111", "ENGL& 112", "ENGL& 113"],
+        "Literature survey support prepares students for upper-division English analysis."
+      ),
+    ],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [],
+    officialLinks: [
+      {
+        label: "UW English Language, Literature and Culture program",
+        url: "https://english.washington.edu/language-literature-and-culture",
+      },
+      {
+        label: "UW Green River equivalency guide",
+        url: "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uws-engllc-overall", "English LLC planning baseline", [
+        "LLC transfer preparation emphasizes composition strength, literature context, and analytical writing depth.",
+        "Green River coursework should keep writing and literature progression explicit before upper-division UW specialization.",
+      ]),
+    ],
+  }),
 ];
 
 export type TransferPlannerReferenceBank = TransferPlannerMasterBank;
@@ -2041,7 +10791,16 @@ const TRANSFER_PLANNER_CAMPUS_SORT_ORDER: Record<TransferPlannerCampusId, number
 
 const GENERATED_PLAN_DOC_OVERRIDES: Record<
   string,
-  Partial<Pick<TransferPlannerMajorPlan, "officialLinks" | "degreeMapSections" | "manualReviewNotes">>
+  Partial<
+    Pick<
+      TransferPlannerMajorPlan,
+      | "officialLinks"
+      | "degreeMapSections"
+      | "manualReviewNotes"
+      | "pathways"
+      | "grcCourseListGuidance"
+    >
+  >
 > = {
   [buildPlannerLookupKey("uw-seattle", "American Ethnic Studies")]: {
     officialLinks: [
@@ -2510,6 +11269,125 @@ const GENERATED_PLAN_DOC_OVERRIDES: Record<
     manualReviewNotes: [
       "Atmospheric and Climate Science has four official option finishes, so the final upper-division UW list depends on option choice.",
     ],
+    pathways: [
+      plannerPathway(
+        "chemistry-option",
+        "Chemistry option",
+        "Best when the student wants the chemistry-heavy atmospheric path and is willing to keep the full Green River chemistry sequence alive before transfer.",
+        {
+          grcCourseList: [
+            "MATH& 151",
+            "MATH& 152",
+            "MATH& 163",
+            "PHYS& 221",
+            "PHYS& 222",
+            "PHYS& 223",
+            ...FULL_GENERAL_CHEMISTRY_SEQUENCE,
+          ],
+          degreeMapSections: [
+            degreeMapSection("atmos-chem-shared", "Atmospheric and Climate Science shared admission and core", [
+              "UW Seattle treats this as a B.S. family with 4 current options: Chemistry, Climate, Data Science, and Meteorology.",
+              "The shared admission foundation is English composition, calculus through MATH 124, 125, and 126 or the honors equivalent, plus PHYS 121, 122, and 123 or the PHYS 141, 142, 143 sequence.",
+              "All four options share the same 30-credit foundation and the same 27-28 credit core centered on STAT 390 or Q SCI 381, ATMOS 220, ATMOS 301, ATMOS 321, ATMOS 340, ATMOS 341, ATMOS 370, and ATMOS 431.",
+            ]),
+            degreeMapSection("atmos-chem-option", "Chemistry option finish", [
+              "The Chemistry option adds chemistry-focused atmospheric work such as ATMOS 458/CHEM 458, CEE 480/ATMOS 480, ATMOS 310 or CSE 160, a general chemistry sequence, and approved electives.",
+              "At Green River, the cleanest early foundation for this path is calculus-based physics plus the full general chemistry sequence.",
+            ]),
+          ],
+          manualReviewNotes: [
+            "This pathway is for students intentionally aiming at the Chemistry option rather than the broader atmospheric family.",
+          ],
+        }
+      ),
+      plannerPathway(
+        "climate-option",
+        "Climate option",
+        "Best when the student wants the climate-focused atmospheric route and does not need the chemistry-heavy or data-heavy branch as the main finish.",
+        {
+          grcCourseList: [
+            "MATH& 151",
+            "MATH& 152",
+            "MATH& 163",
+            "PHYS& 221",
+            "PHYS& 222",
+            "PHYS& 223",
+          ],
+          degreeMapSections: [
+            degreeMapSection("atmos-climate-shared", "Atmospheric and Climate Science shared admission and core", [
+              "UW Seattle treats this as a B.S. family with 4 current options: Chemistry, Climate, Data Science, and Meteorology.",
+              "The shared admission foundation is English composition, calculus through MATH 124, 125, and 126 or the honors equivalent, plus PHYS 121, 122, and 123 or the PHYS 141, 142, 143 sequence.",
+              "All four options share the same 30-credit foundation and the same 27-28 credit core centered on STAT 390 or Q SCI 381, ATMOS 220, ATMOS 301, ATMOS 321, ATMOS 340, ATMOS 341, ATMOS 370, and ATMOS 431.",
+            ]),
+            degreeMapSection("atmos-climate-option", "Climate option finish", [
+              "The Climate option adds ATMOS 350, ATMOS 358, ATMOS 380, ATMOS 487, ATMOS 310 or CSE 160, ESS 431 or ESS 433, OCEAN 423 or OCEAN 450, plus approved electives.",
+              "At Green River, the most stable early preparation is still the calculus-based math and physics spine before the climate-specific upper-division work at UW.",
+            ]),
+          ],
+        }
+      ),
+      plannerPathway(
+        "data-science-option",
+        "Data Science option",
+        "Best when the student wants the atmospheric degree but also wants the stronger programming and applied-math route at Green River.",
+        {
+          grcCourseList: [
+            "MATH& 151",
+            "MATH& 152",
+            "MATH& 163",
+            "MATH 238",
+            "MATH 240",
+            "PHYS& 221",
+            "PHYS& 222",
+            "PHYS& 223",
+            "CS 121",
+            "CS 122",
+            "CS 123",
+          ],
+          degreeMapSections: [
+            degreeMapSection("atmos-data-shared", "Atmospheric and Climate Science shared admission and core", [
+              "UW Seattle treats this as a B.S. family with 4 current options: Chemistry, Climate, Data Science, and Meteorology.",
+              "The shared admission foundation is English composition, calculus through MATH 124, 125, and 126 or the honors equivalent, plus PHYS 121, 122, and 123 or the PHYS 141, 142, 143 sequence.",
+              "All four options share the same 30-credit foundation and the same 27-28 credit core centered on STAT 390 or Q SCI 381, ATMOS 220, ATMOS 301, ATMOS 321, ATMOS 340, ATMOS 341, ATMOS 370, and ATMOS 431.",
+            ]),
+            degreeMapSection("atmos-data-option", "Data Science option finish", [
+              "The Data Science option adds a programming course, data-science and database coursework, an atmospheric option course, and either the MATH 207/208/209 sequence or the AMATH 351/353 sequence.",
+              "At Green River, the strongest early prep is the full current CS sequence together with the stronger applied-math continuation after Calc III.",
+            ]),
+          ],
+        }
+      ),
+      plannerPathway(
+        "meteorology-option",
+        "Meteorology option",
+        "Best when the student wants the most math-heavy atmospheric route and wants to stay close to the later meteorology sequence.",
+        {
+          grcCourseList: [
+            "MATH& 151",
+            "MATH& 152",
+            "MATH& 163",
+            "MATH& 254",
+            "MATH 238",
+            "MATH 240",
+            "PHYS& 221",
+            "PHYS& 222",
+            "PHYS& 223",
+            "CS 121",
+          ],
+          degreeMapSections: [
+            degreeMapSection("atmos-meteorology-shared", "Atmospheric and Climate Science shared admission and core", [
+              "UW Seattle treats this as a B.S. family with 4 current options: Chemistry, Climate, Data Science, and Meteorology.",
+              "The shared admission foundation is English composition, calculus through MATH 124, 125, and 126 or the honors equivalent, plus PHYS 121, 122, and 123 or the PHYS 141, 142, 143 sequence.",
+              "All four options share the same 30-credit foundation and the same 27-28 credit core centered on STAT 390 or Q SCI 381, ATMOS 220, ATMOS 301, ATMOS 321, ATMOS 340, ATMOS 341, ATMOS 370, and ATMOS 431.",
+            ]),
+            degreeMapSection("atmos-meteorology-option", "Meteorology option finish", [
+              "The Meteorology option adds ATMOS 358, 441, 442, 451, 452, ATMOS 310 or CSE 160, and advanced mathematics including MATH 224 plus either AMATH 351 and 353 or MATH 207, 208, and 209.",
+              "At Green River, the safest pre-transfer route is the strongest calculus continuation after Calc III together with the full calculus-based physics sequence.",
+            ]),
+          ],
+        }
+      ),
+    ],
   },
   [buildPlannerLookupKey("uw-seattle", "Biochemistry")]: {
     officialLinks: [
@@ -2551,6 +11429,71 @@ const GENERATED_PLAN_DOC_OVERRIDES: Record<
     manualReviewNotes: [
       "The exact Biochemistry finish depends on whether the student is targeting the B.A. or the more intensive B.S. route.",
     ],
+    pathways: [
+      plannerPathway(
+        "ba-route",
+        "B.A. route",
+        "Broader biochemistry finish that keeps the chemistry and biology spine strong without assuming the more physics-heavy B.S. finish.",
+        {
+          grcCourseList: [
+            ...FULL_GENERAL_CHEMISTRY_SEQUENCE,
+            ...FULL_ORGANIC_CHEMISTRY_SEQUENCE,
+            "BIOL& 211",
+            "BIOL& 212",
+            ...STEM_CALCULUS_CURRENT_SEQUENCE,
+          ],
+          degreeMapSections: [
+            degreeMapSection("bioc-ba-admission", "Biochemistry admission pathways", [
+              "Biochemistry is capacity constrained and currently uses direct first-year admission, regular admission, and direct transfer admission pathways.",
+              "The current admissions page says the regular-admission baseline starts with general chemistry, biology through BIOL 180, and mathematics through MATH 124 and 125 or the honors equivalent.",
+              "Students who are not admitted through the regular pathway can reapply after adding more coursework such as organic chemistry and BIOL 200.",
+            ]),
+            degreeMapSection("bioc-ba-path", "B.A. in Biochemistry structure", [
+              "The B.A. in Biochemistry is the broader, less lab-heavy chemistry-and-biology route.",
+              "The current degree page builds it from mathematics through MATH 124, 125, and 126; general chemistry; organic chemistry with lab; BIOL 180 and BIOL 200; one physics sequence; BIOC 405 and 406; CHEM 452 and 453; and 9 science-elective credits from the department's approved list.",
+              "The B.A. degree page states that this degree requires 180 total credits, a minimum 1.7 in required chemistry, biology, and biochemistry courses, and a 2.0 cumulative major and overall GPA.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the broader Seattle Biochemistry B.A. finish. Keep the chemistry, biology, and calculus spine strong at Green River, then confirm the preferred UW physics sequence with the department before locking the last support courses.",
+          manualReviewNotes: [
+            "Use this path when the student is intentionally targeting the Seattle Biochemistry B.A. instead of the more intensive B.S.",
+          ],
+        }
+      ),
+      plannerPathway(
+        "bs-route",
+        "B.S. route",
+        "More intensive laboratory and upper-division science route that keeps the full chemistry, biology, calculus, and physics spine alive before transfer.",
+        {
+          grcCourseList: [
+            ...FULL_GENERAL_CHEMISTRY_SEQUENCE,
+            ...FULL_ORGANIC_CHEMISTRY_SEQUENCE,
+            "BIOL& 211",
+            "BIOL& 212",
+            ...STEM_CALCULUS_CURRENT_SEQUENCE,
+            "PHYS& 221",
+            "PHYS& 222",
+            "PHYS& 223",
+          ],
+          degreeMapSections: [
+            degreeMapSection("bioc-bs-admission", "Biochemistry admission pathways", [
+              "Biochemistry is capacity constrained and currently uses direct first-year admission, regular admission, and direct transfer admission pathways.",
+              "The current admissions page says the regular-admission baseline starts with general chemistry, biology through BIOL 180, and mathematics through MATH 124 and 125 or the honors equivalent.",
+              "Students who are not admitted through the regular pathway can reapply after adding more coursework such as organic chemistry and BIOL 200.",
+            ]),
+            degreeMapSection("bioc-bs-path", "B.S. in Biochemistry structure", [
+              "The B.S. in Biochemistry is the more intensive laboratory and upper-division science route.",
+              "Its current degree page includes mathematics through MATH 124, 125, and 126; a full physics sequence; general chemistry; organic chemistry with lecture and lab; BIOL 180 and 200; the upper-division biochemistry sequence BIOC 440, 441, and 442; BIOC 426 laboratory; a genome requirement; physical chemistry; and 11 science-elective credits.",
+              "The B.S. page also states that the degree requires 193 total credits, a minimum 2.0 in required courses, a 2.50 cumulative major GPA, a 2.50 average in BIOC 440, 441, and 442, and a 2.50 overall GPA.",
+            ]),
+          ],
+          manualReviewNotes: [
+            "Use this path when the student is intentionally targeting the more technical Seattle Biochemistry B.S. finish.",
+          ],
+        }
+      ),
+    ],
   },
   [buildPlannerLookupKey("uw-seattle", "Biology")]: {
     officialLinks: [
@@ -2591,6 +11534,68 @@ const GENERATED_PLAN_DOC_OVERRIDES: Record<
     ],
     manualReviewNotes: [
       "Biology is no longer one single finish; the exact upper-division map depends on the B.A. route or the chosen B.S. option.",
+    ],
+    pathways: [
+      plannerPathway(
+        "ba-general-biology",
+        "B.A. general biology",
+        "Broader biology route that keeps the chemistry and biology base but does not force the physics-heavy B.S. option family.",
+        {
+          grcCourseList: [
+            ...FULL_BIOLOGY_MAJORS_SEQUENCE,
+            ...FULL_GENERAL_CHEMISTRY_SEQUENCE,
+            "MATH& 151",
+            "MATH& 152",
+            "MATH& 146",
+            "MATH 256",
+          ],
+          degreeMapSections: [
+            degreeMapSection("biol-ba-admission", "Biology admission and shared lower-division baseline", [
+              "Biology is a capacity-constrained Seattle major with quarterly applications.",
+              "The department currently requires BIOL 180, BIOL 200, and BIOL 220 or BIOL 240, with at least a 2.0 in each course, plus at least a 2.5 cumulative GPA across supporting chemistry, physics, mathematics, biology, and related major-prep coursework completed at the time of application.",
+            ]),
+            degreeMapSection("biol-ba-path", "B.A. in Biology general option", [
+              "The B.A. in Biology is the general-biology breadth option and currently runs 87-98 credits in the major.",
+              "It includes BIOL 180, 200, and 220 or BIOL 240, one approved chemistry sequence, 9-10 credits of calculus/statistics, a genetics course, one natural history or biodiversity course, and 42 additional upper-division biology credits.",
+              "The General Catalog explicitly notes that the B.A. does not require physics or a third quarter of organic chemistry.",
+            ]),
+          ],
+          manualReviewNotes: [
+            "Use this pathway when the student wants the broad B.A. route rather than one of the B.S. biology option families.",
+          ],
+        }
+      ),
+      plannerPathway(
+        "bs-option-family",
+        "B.S. option family",
+        "Technical biology route that keeps the shared B.S. science spine alive before the student picks the final Biology option at UW.",
+        {
+          grcCourseList: [
+            ...FULL_BIOLOGY_MAJORS_SEQUENCE,
+            ...FULL_GENERAL_CHEMISTRY_SEQUENCE,
+            "MATH& 151",
+            "MATH& 152",
+            "MATH& 146",
+            "MATH 256",
+            "PHYS& 221",
+            "PHYS& 222",
+          ],
+          degreeMapSections: [
+            degreeMapSection("biol-bs-admission", "Biology admission and shared lower-division baseline", [
+              "Biology is a capacity-constrained Seattle major with quarterly applications.",
+              "The department currently requires BIOL 180, BIOL 200, and BIOL 220 or BIOL 240, with at least a 2.0 in each course, plus at least a 2.5 cumulative GPA across supporting chemistry, physics, mathematics, biology, and related major-prep coursework completed at the time of application.",
+            ]),
+            degreeMapSection("biol-bs-path", "B.S. in Biology option family", [
+              "The B.S. family currently includes Ecology, Evolution, and Conservation; General Biology; Molecular, Cellular, and Developmental Biology; Physiology; and Plant Biology.",
+              "Across those B.S. options, students share the same lower-division biology base, one approved chemistry sequence, one approved two-quarter calculus/statistics sequence, two quarters of physics, a genetics course, a natural history or biodiversity course, a breadth course, and then an option-specific 29-34 credit upper-division block.",
+              "The catalog also applies common B.S. degree rules such as a minimum 2.0 cumulative GPA in courses used toward the major, at least 15 upper-division BIOL credits completed through UW Seattle, two upper-division laboratory courses, and at least 15 credits of 400-level BIOL coursework.",
+            ]),
+          ],
+          manualReviewNotes: [
+            "Use this pathway when the student is intentionally keeping one of the Seattle Biology B.S. option families open.",
+          ],
+        }
+      ),
     ],
   },
   [buildPlannerLookupKey("uw-seattle", "Chemistry")]: {
@@ -2640,6 +11645,90 @@ const GENERATED_PLAN_DOC_OVERRIDES: Record<
     ],
     manualReviewNotes: [
       "UW Chemistry has three distinct degree finishes, so the final upper-division course map depends on whether the student is targeting the B.A., B.S., or ACS-certified B.S.",
+    ],
+    pathways: [
+      plannerPathway(
+        "ba-route",
+        "B.A. route",
+        "Broader chemistry route that keeps the core chemistry spine alive without forcing the extra math and lab depth of the B.S. options.",
+        {
+          grcCourseList: [
+            ...STEM_CALCULUS_CURRENT_SEQUENCE,
+            ...FULL_GENERAL_CHEMISTRY_SEQUENCE,
+            ...FULL_ORGANIC_CHEMISTRY_SEQUENCE,
+          ],
+          degreeMapSections: [
+            degreeMapSection("chem-ba-admission", "Chemistry admission and degree family", [
+              "UW Seattle Chemistry currently offers three major outcomes: a B.A. in Chemistry, a B.S. in Chemistry, and a B.S. in Chemistry with ACS Certification.",
+              "The department treats Chemistry as a minimum-requirements major rather than a capacity-constrained application major.",
+              "The current admissions page requires one approved general-chemistry sequence, one approved physics sequence, and one approved mathematics sequence, with at least a 2.0 in each required course and a 2.50 GPA across the courses used for admission review.",
+            ]),
+            degreeMapSection("chem-ba-path", "B.A. in Chemistry structure", [
+              "The B.A. in Chemistry uses mathematics through MATH 124, 125, and 126, one full physics sequence, one general chemistry sequence, one organic chemistry sequence with lab, 11 credits of upper-division numerically graded CHEM coursework that include either the CHEM 455-456-457 or CHEM 452-453 sequence, and an advanced chemistry lab through CHEM 317 or CHEM 461.",
+              "The B.A. page states that the degree requires 180 total credits, at least a 1.7 in required chemistry courses, and a 2.0 cumulative GPA across chemistry courses used toward the degree.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the Seattle Chemistry B.A. Keep the Green River chemistry and calculus spine intact, then confirm which approved UW physics sequence is the better fit before locking the last science support courses.",
+        }
+      ),
+      plannerPathway(
+        "bs-route",
+        "B.S. route",
+        "More technical chemistry route that adds the stronger math and physics backbone used by the standard non-ACS B.S.",
+        {
+          grcCourseList: [
+            ...STEM_CALCULUS_CURRENT_SEQUENCE,
+            ...FULL_GENERAL_CHEMISTRY_SEQUENCE,
+            ...FULL_ORGANIC_CHEMISTRY_SEQUENCE,
+            "MATH 238",
+            "PHYS& 221",
+            "PHYS& 222",
+            "PHYS& 223",
+          ],
+          degreeMapSections: [
+            degreeMapSection("chem-bs-admission", "Chemistry admission and degree family", [
+              "UW Seattle Chemistry currently offers three major outcomes: a B.A. in Chemistry, a B.S. in Chemistry, and a B.S. in Chemistry with ACS Certification.",
+              "The department treats Chemistry as a minimum-requirements major rather than a capacity-constrained application major.",
+              "The current admissions page requires one approved general-chemistry sequence, one approved physics sequence, and one approved mathematics sequence, with at least a 2.0 in each required course and a 2.50 GPA across the courses used for admission review.",
+            ]),
+            degreeMapSection("chem-bs-path", "B.S. in Chemistry structure", [
+              "The non-ACS B.S. adds a full calculus sequence, one additional math course, one physics sequence, general chemistry, inorganic chemistry, organic chemistry with lab, the physical chemistry sequence, two of the three major chemistry labs, 5 more approved lab credits, and 11 science-elective credits.",
+              "The non-ACS B.S. page lists a minimum 180 credits, a 2.0 minimum in each required chemistry course, and both overall and science GPAs of 2.5.",
+            ]),
+          ],
+        }
+      ),
+      plannerPathway(
+        "acs-certified-bs-route",
+        "ACS-certified B.S. route",
+        "Most extensive chemistry route, built for students who want the ACS-certified laboratory and advanced-chemistry finish.",
+        {
+          grcCourseList: [
+            ...STEM_CALCULUS_CURRENT_SEQUENCE,
+            ...FULL_GENERAL_CHEMISTRY_SEQUENCE,
+            ...FULL_ORGANIC_CHEMISTRY_SEQUENCE,
+            "MATH 238",
+            "PHYS& 221",
+            "PHYS& 222",
+            "PHYS& 223",
+          ],
+          degreeMapSections: [
+            degreeMapSection("chem-acs-admission", "Chemistry admission and degree family", [
+              "UW Seattle Chemistry currently offers three major outcomes: a B.A. in Chemistry, a B.S. in Chemistry, and a B.S. in Chemistry with ACS Certification.",
+              "The department treats Chemistry as a minimum-requirements major rather than a capacity-constrained application major.",
+              "The current admissions page requires one approved general-chemistry sequence, one approved physics sequence, and one approved mathematics sequence, with at least a 2.0 in each required course and a 2.50 GPA across the courses used for admission review.",
+            ]),
+            degreeMapSection("chem-acs-path", "ACS-certified B.S. in Chemistry structure", [
+              "The ACS-certified B.S. is the more extensive route and adds the broader ACS laboratory and advanced-chemistry expectations, including analytical lab, inorganic lecture and lab, physical chemistry with lab, a biochemistry component, and at least 8 credits of advanced chemistry beyond the base lecture/lab core.",
+              "The ACS-certified page lists a minimum of 183 credits and keeps the stricter 2.0-per-course B.S. continuation standards.",
+            ]),
+          ],
+          manualReviewNotes: [
+            "Use this route when the student wants the ACS-certified Seattle Chemistry B.S. rather than the standard B.S.",
+          ],
+        }
+      ),
     ],
   },
   [buildPlannerLookupKey("uw-seattle", "Chinese")]: {
@@ -3264,6 +12353,50 @@ const GENERATED_PLAN_DOC_OVERRIDES: Record<
     manualReviewNotes: [
       "Use the B.A. as the broad default path unless the student has clearly chosen a B.S. option in Geology, Biology, Geoscience, or Physics.",
     ],
+    pathways: [
+      plannerPathway(
+        "ba-route",
+        "B.A. route",
+        "Broader earth-science path for students who want the flexible B.A. finish instead of one of the more technical B.S. options.",
+        {
+          grcCourseList: ["CHEM& 161", "MATH& 151", "MATH& 152", "PHYS& 114"],
+          degreeMapSections: [
+            degreeMapSection("ess-ba-overview", "Earth & Space Sciences degree family", [
+              "Earth and Space Sciences is an open major family with both a B.A. and multiple B.S. option paths.",
+              "The admissions page describes the B.A. as the broader earth-science route and the B.S. as the more technical path, with current B.S. options in Geology, Biology, Physics, and Geoscience.",
+            ]),
+            degreeMapSection("ess-ba-path", "B.A. in Earth & Space Sciences", [
+              "The published B.A. uses 30 credits of supporting science and 43-45 credits of ESS coursework plus a 15-credit concentration.",
+              "The supporting science block requires CHEM 142, two quarters of calculus or quantitative science, one introductory physics course, and 10 more credits from the approved supporting-science list.",
+              "The ESS portion requires multiple introductory ESS courses, 1 upper-division ESS methods/content course, and 25 upper-division ESS elective credits including at least 10 credits at the 400 level.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the broad Seattle Earth and Space Sciences B.A. Build the first chemistry course, two quarters of quantitative math, and one introductory physics course first, then choose the extra supporting science only after the intended concentration is clearer.",
+        }
+      ),
+      plannerPathway(
+        "bs-option-family",
+        "B.S. option family",
+        "More technical earth-science route that keeps the shared B.S. chemistry, calculus, physics, and ESS launchpad alive before the student picks the final UW option.",
+        {
+          grcCourseList: ["CHEM& 161", "MATH& 151", "MATH& 152", "PHYS& 221", "PHYS& 222"],
+          degreeMapSections: [
+            degreeMapSection("ess-bs-overview", "Earth & Space Sciences degree family", [
+              "Earth and Space Sciences is an open major family with both a B.A. and multiple B.S. option paths.",
+              "The admissions page describes the B.A. as the broader earth-science route and the B.S. as the more technical path, with current B.S. options in Geology, Biology, Physics, and Geoscience.",
+            ]),
+            degreeMapSection("ess-bs-path", "B.S. in Earth & Space Sciences option structure", [
+              "The B.S. starts with a shared core of CHEM 142, MATH 124 and 125, PHYS 114/117 or 121, and three ESS core courses chosen from ESS 205, 211, 212, and 213.",
+              "After that shared base, students complete one of the option-area finishes in Geology, Biology, Geoscience, or Physics, each with its own supporting-science package, ESS required courses, and advanced ESS electives.",
+            ]),
+          ],
+          manualReviewNotes: [
+            "Use this path when the student has intentionally chosen the technical Seattle Earth and Space Sciences B.S. family rather than the broader B.A.",
+          ],
+        }
+      ),
+    ],
   },
   [buildPlannerLookupKey("uw-seattle", "Economics")]: {
     officialLinks: [
@@ -3306,6 +12439,52 @@ const GENERATED_PLAN_DOC_OVERRIDES: Record<
     ],
     manualReviewNotes: [
       "Use the B.A. as the default economics row unless the student clearly wants the B.S. and has the full calculus-plus-statistics preparation.",
+    ],
+    pathways: [
+      plannerPathway(
+        "ba-route",
+        "B.A. route",
+        "Standard economics route for students who want the broader Seattle B.A. finish rather than the more quantitative B.S.",
+        {
+          grcCourseList: ["ECON 201", "ECON 202", "ENGL& 101"],
+          degreeMapSections: [
+            degreeMapSection("econ-ba-admission", "Economics admission baseline", [
+              "Economics is a minimum-requirements major, but both the B.A. and B.S. require a separate major application after students reach at least 45 college credits.",
+              "The B.A. application uses ECON 200 and ECON 201 as prerequisites plus English Composition.",
+              "The economics department currently requires at least a 2.5 cumulative GPA for prior college work and at UW.",
+            ]),
+            degreeMapSection("econ-ba-path", "B.A. in Economics structure", [
+              "The B.A. uses a 50-credit economics major built around ECON 300, ECON 301, and ECON 382 or an approved higher econometrics substitute, plus five 400-level ECON electives.",
+              "The department also states that ECON 300, ECON 301, and the econometrics requirement must be completed at UW Seattle and that at least 15 credits of 400-level ECON coursework must be taken at UW.",
+            ]),
+          ],
+        }
+      ),
+      plannerPathway(
+        "bs-route",
+        "B.S. route",
+        "More quantitative economics route that keeps the full calculus and statistics preparation alive before transfer.",
+        {
+          grcCourseList: [
+            "ECON 201",
+            "ECON 202",
+            "ENGL& 101",
+            ...STEM_CALCULUS_CURRENT_SEQUENCE,
+            "MATH& 146",
+          ],
+          degreeMapSections: [
+            degreeMapSection("econ-bs-admission", "Economics admission baseline", [
+              "Economics is a minimum-requirements major, but both the B.A. and B.S. require a separate major application after students reach at least 45 college credits.",
+              "The B.S. adds statistics and the full MATH 124, 125, and 126 calculus sequence to the B.A. baseline.",
+              "The economics department currently requires at least a 2.5 cumulative GPA for prior college work and at UW, with additional course-specific minimums for the B.S. path.",
+            ]),
+            degreeMapSection("econ-bs-path", "B.S. in Economics structure", [
+              "The B.S. is the more quantitative route and uses ECON 300 and ECON 301 plus 15 credits of Theory and Methods courses and 15 more credits of 400-level ECON electives.",
+              "Inside the Theory and Methods requirement, at least 5 credits must come from ECON 400 or 401 and at least 5 credits must come from ECON 424, 482, or 483.",
+            ]),
+          ],
+        }
+      ),
     ],
   },
   [buildPlannerLookupKey("uw-seattle", "Education Studies")]: {
@@ -3832,6 +13011,54 @@ const GENERATED_PLAN_DOC_OVERRIDES: Record<
     manualReviewNotes: [
       "Confirm whether the student is aiming for the standard Geography B.A. or the Data Science Option before treating the exact upper-division map as final.",
     ],
+    pathways: [
+      plannerPathway(
+        "standard-ba-route",
+        "Standard B.A. route",
+        "Best when the student wants the broader Geography B.A. without centering the data-science-heavy upper-division finish.",
+        {
+          degreeMapSections: [
+            degreeMapSection("geog-standard-admission", "Geography admission baseline", [
+              "Geography is a minimum-requirements major.",
+              "Students declare after completing any GEOG-prefix course at the 200 level or above with at least a 2.0 and maintaining a minimum cumulative UW GPA of 2.00.",
+              "Admissions identifies 2 current curricular options: the standard B.A. in Geography and the B.A. in Geography with Data Science Option.",
+            ]),
+            degreeMapSection("geog-standard-route", "Standard B.A. in Geography", [
+              "The standard B.A. requires 60 GEOG credits.",
+              "Students complete 20 credits of breadth by taking one course from each of the 4 tracks, then 20 credits of depth by taking 4 upper-division courses in one chosen track, at least 2 of them at the 400 level.",
+              "The B.A. also requires GEOG 315, one approved methods course, and at least 2 additional GEOG electives at the 200 level or above.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the broader Seattle Geography B.A. Keep Green River geography, GIS, and environmental-social-science preparation broad instead of over-optimizing for the data-science-heavy option.",
+          manualReviewNotes: [
+            "Use this path when the student is intentionally targeting the standard Seattle Geography B.A. rather than the Data Science Option.",
+          ],
+        }
+      ),
+      plannerPathway(
+        "data-science-option",
+        "Data Science option",
+        "Best when the student wants the Geography degree but is intentionally aiming at the data-science-heavy GIS and programming route.",
+        {
+          grcCourseList: ["GEOG& 100", "GEOG& 200", "GIS 202", "GIS 260", "CS 121", "CS 122", "CS 123"],
+          degreeMapSections: [
+            degreeMapSection("geog-ds-admission", "Geography admission baseline", [
+              "Geography is a minimum-requirements major.",
+              "Students declare after completing any GEOG-prefix course at the 200 level or above with at least a 2.0 and maintaining a minimum cumulative UW GPA of 2.00.",
+              "Admissions identifies 2 current curricular options: the standard B.A. in Geography and the B.A. in Geography with Data Science Option.",
+            ]),
+            degreeMapSection("geog-ds-route", "B.A. in Geography with Data Science Option", [
+              "The data science option requires 60 to 65 credits and starts with a foundations block that includes one approved introductory computing or data course, one quantitative-methods course, 5 credits from a designated geography track, GEOG 360, and GEOG 315.",
+              "The upper-division data science finish then requires 2 programming courses, 1 machine-learning course, and 25 credits of upper-division GIS, Mapping, and Society coursework.",
+              "No single course may count toward more than one requirement, and the department requires at least a 2.00 cumulative GPA in courses applied to the major.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student is intentionally targeting the Seattle Geography Data Science Option. Favor Green River GIS and programming preparation early so the student arrives with stronger data-work foundations before the upper-division UW GIS and machine-learning finish.",
+        }
+      ),
+    ],
   },
   [buildPlannerLookupKey("uw-seattle", "German")]: {
     officialLinks: [
@@ -4030,6 +13257,8 @@ const GENERATED_PLAN_DOC_OVERRIDES: Record<
     manualReviewNotes: [
       "Because Individualized Studies is student-designed, the exact UW course list must be finalized case by case with the approved faculty sponsors and adviser.",
     ],
+    grcCourseListGuidance:
+      "Custom Green River course set required. This is a student-designed Seattle major, so the planner should not pretend there is one universal GRC equivalent course list. Build the Green River plan around the student's approved theme, intended departments, and adviser-reviewed transfer strategy.",
   },
   [buildPlannerLookupKey("uw-seattle", "International Studies")]: {
     officialLinks: [
@@ -5049,6 +14278,50 @@ const GENERATED_PLAN_DOC_OVERRIDES: Record<
     manualReviewNotes: [
       "Confirm whether the student is aiming for the B.A. or the research-oriented B.S. before treating the exact upper-division plan as final.",
     ],
+    pathways: [
+      plannerPathway(
+        "ba-route",
+        "B.A. route",
+        "Best when the student wants the broader Seattle Psychology B.A. rather than the more research-intensive B.S.",
+        {
+          degreeMapSections: [
+            degreeMapSection("psych-ba-admission", "Psychology admission baseline", [
+              "Psychology is a capacity-constrained major with the same admission requirements for both the B.A. and B.S.",
+              "Applicants complete PSYCH 101, 202, and 209 plus one math course from MATH 111, 112, 120, 124, or higher, with at least a 2.0 in each course, at least a 2.50 cumulative GPA across PSYCH 101, 202, and 209, and at least a 2.0 UW GPA.",
+            ]),
+            degreeMapSection("psych-ba-route", "Psychology B.A. structure", [
+              "The B.A. requires a minimum of 53 credits in the major.",
+              "Students complete PSYCH 315 or the PSYCH 317 plus 318 sequence, then one course from List A, one course from List B, one additional course from either list, one additional 300/400-level elective, two 400-level electives, one specialized experience worth 3 credits, and related-fields work in math, biology, and anthropology or sociology.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the broader Seattle Psychology B.A. Keep the psych prerequisite trio complete, then add statistics, one biology support course, and one social-science support course rather than overbuilding a research-heavy science spine.",
+        }
+      ),
+      plannerPathway(
+        "bs-route",
+        "B.S. route",
+        "Best when the student wants the more research-oriented Seattle Psychology B.S. with stronger science and methods support.",
+        {
+          degreeMapSections: [
+            degreeMapSection("psych-bs-admission", "Psychology admission baseline", [
+              "Psychology is a capacity-constrained major with the same admission requirements for both the B.A. and B.S.",
+              "Applicants complete PSYCH 101, 202, and 209 plus one math course from MATH 111, 112, 120, 124, or higher, with at least a 2.0 in each course, at least a 2.50 cumulative GPA across PSYCH 101, 202, and 209, and at least a 2.0 UW GPA.",
+            ]),
+            degreeMapSection("psych-bs-route", "Psychology B.S. structure", [
+              "The B.S. requires a minimum of 66 credits and is the more research-intensive option.",
+              "It requires PSYCH 317 and 318, one laboratory course, the same List A/List B core pattern, one additional upper-division elective, two 400-level electives, PSYCH 499 research, a specialized experience, and related-fields work in math, biology, anthropology or sociology, and philosophy.",
+              "The department's BA-versus-BS page says the B.S. is intended for students preparing for more research-oriented graduate work.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student is intentionally targeting the Seattle Psychology B.S. Keep the psych prerequisite trio complete, then favor the stronger math option available at Green River together with biology and philosophy support before transfer.",
+          manualReviewNotes: [
+            "The B.S. is the more research-oriented Psychology route, so advising should still confirm whether the student's long-term plan really needs the heavier science and methods finish.",
+          ],
+        }
+      ),
+    ],
   },
   [buildPlannerLookupKey("uw-seattle", "Public Health - Global Health")]: {
     officialLinks: [
@@ -5091,6 +14364,93 @@ const GENERATED_PLAN_DOC_OVERRIDES: Record<
     ],
     manualReviewNotes: [
       "Confirm BA versus BS and the student's intended option before treating the exact PH-GH upper-division elective bundle as final.",
+    ],
+    pathways: [
+      plannerPathway(
+        "ba-global-health-option",
+        "B.A. Global Health option",
+        "Best when the student wants the broader B.A. path with the Global Health option rather than the more science-heavy B.S. routes.",
+        {
+          degreeMapSections: [
+            degreeMapSection("phgh-ba-gh-admission", "Public Health - Global Health admission baseline", [
+              "Public Health - Global Health is a capacity-constrained major with upper-division admission that normally targets students graduating within the next two years.",
+              "Upper-division applicants need at least 60 college credits, a 2.5 cumulative GPA, English composition, one introductory public-health course with at least a 2.5, and science preparation matched to the BA or BS path.",
+              "The current prerequisites page says BA-path students need one approved introductory natural-science course.",
+            ]),
+            degreeMapSection("phgh-ba-gh-route", "B.A. Global Health option", [
+              "The AUT 2024 Purple Curriculum uses a shared core across the BA and BS pathways.",
+              "Within the B.A. family, the Global Health option is one of the current structured options and is completed through its own 20-credit elective bundle on top of the shared Purple Curriculum core.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the Seattle PH-GH B.A. with the Global Health option. Keep the public-health intro requirement satisfied and pair it with one approved introductory natural-science course instead of overcommitting early to the heavier B.S. science spine.",
+        }
+      ),
+      plannerPathway(
+        "ba-health-education-promotion-option",
+        "B.A. Health Education and Promotion option",
+        "Best when the student wants the B.A. path and is intentionally leaning toward community health education and promotion work.",
+        {
+          degreeMapSections: [
+            degreeMapSection("phgh-ba-hep-admission", "Public Health - Global Health admission baseline", [
+              "Public Health - Global Health is a capacity-constrained major with upper-division admission that normally targets students graduating within the next two years.",
+              "Upper-division applicants need at least 60 college credits, a 2.5 cumulative GPA, English composition, one introductory public-health course with at least a 2.5, and science preparation matched to the BA or BS path.",
+              "The current prerequisites page says BA-path students need one approved introductory natural-science course.",
+            ]),
+            degreeMapSection("phgh-ba-hep-route", "B.A. Health Education and Promotion option", [
+              "The AUT 2024 Purple Curriculum uses a shared core across the BA and BS pathways.",
+              "Within the B.A. family, Health Education and Promotion is the more explicitly education- and promotion-oriented option and is completed through its own 20-credit structured elective bundle on top of the shared core.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the Seattle PH-GH B.A. with the Health Education and Promotion option. Keep the public-health intro requirement satisfied, add one approved introductory natural-science course, and favor health-education- and community-health-adjacent prep at Green River where available.",
+        }
+      ),
+      plannerPathway(
+        "bs-global-health-option",
+        "B.S. Global Health option",
+        "Best when the student wants the B.S. path with a stronger science sequence but still plans to finish inside the Global Health option.",
+        {
+          grcCourseList: [...FULL_BIOLOGY_MAJORS_SEQUENCE, "HL ED 190"],
+          degreeMapSections: [
+            degreeMapSection("phgh-bs-gh-admission", "Public Health - Global Health admission baseline", [
+              "Public Health - Global Health is a capacity-constrained major with upper-division admission that normally targets students graduating within the next two years.",
+              "Upper-division applicants need at least 60 college credits, a 2.5 cumulative GPA, English composition, one introductory public-health course with at least a 2.5, and science preparation matched to the BA or BS path.",
+              "The current prerequisites page says BS-path students need at least two courses from the same year-long biology, chemistry, physics, or math sequence with a 2.5 average.",
+            ]),
+            degreeMapSection("phgh-bs-gh-route", "B.S. Global Health option", [
+              "The AUT 2024 Purple Curriculum uses a shared core across the BA and BS pathways.",
+              "Within the B.S. family, the Global Health option keeps the stronger science-preparation baseline and then completes the Global Health elective bundle on top of the shared core.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the Seattle PH-GH B.S. with the Global Health option. Keep a real year-long science sequence alive at Green River before transfer instead of using only the lighter B.A. science minimum.",
+        }
+      ),
+      plannerPathway(
+        "bs-nutritional-sciences-option",
+        "B.S. Nutritional Sciences option",
+        "Best when the student wants the most nutrition- and natural-science-heavy PH-GH route.",
+        {
+          grcCourseList: ["NUTR& 101", ...FULL_GENERAL_CHEMISTRY_SEQUENCE, "BIOL& 211", "BIOL& 212"],
+          degreeMapSections: [
+            degreeMapSection("phgh-bs-nutr-admission", "Public Health - Global Health admission baseline", [
+              "Public Health - Global Health is a capacity-constrained major with upper-division admission that normally targets students graduating within the next two years.",
+              "Upper-division applicants need at least 60 college credits, a 2.5 cumulative GPA, English composition, one introductory public-health course with at least a 2.5, and science preparation matched to the BA or BS path.",
+              "The current prerequisites page says BS-path students need at least two courses from the same year-long biology, chemistry, physics, or math sequence with a 2.5 average.",
+            ]),
+            degreeMapSection("phgh-bs-nutr-route", "B.S. Nutritional Sciences option", [
+              "The AUT 2024 Purple Curriculum uses a shared core across the BA and BS pathways.",
+              "The Nutritional Sciences option is a B.S.-only route and the current options page describes it as the nutrition-focused science pathway designed to build a stronger natural-science foundation inside PH-GH.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the Seattle PH-GH B.S. Nutritional Sciences option. Favor nutrition plus a real year-long science sequence at Green River so the student arrives with the strongest natural-science foundation.",
+          manualReviewNotes: [
+            "This is the most science-heavy PH-GH route in the current public option set, so students should confirm the exact science-sequence choice with PH-GH advising before transfer.",
+          ],
+        }
+      ),
     ],
   },
   [buildPlannerLookupKey("uw-seattle", "Public Service & Policy")]: {
@@ -5626,6 +14986,79 @@ const GENERATED_PLAN_DOC_OVERRIDES: Record<
     ],
     manualReviewNotes: [
       "The Statistics department now expects students to choose their Mathematical Statistics, Applied Statistics, or Data Science track before graduation, so the exact final course list depends on that track choice.",
+    ],
+    pathways: [
+      plannerPathway(
+        "mathematical-statistics-track",
+        "Mathematical Statistics track",
+        "Best when the student wants the more proof, probability, and math-heavy Seattle Statistics finish.",
+        {
+          grcCourseList: [
+            ...STEM_CALCULUS_CURRENT_SEQUENCE,
+            "MATH 238",
+            "MATH 240",
+            "MATH& 146",
+            "CS 121",
+            "CS 122",
+          ],
+          degreeMapSections: [
+            degreeMapSection("stat-common-math", "Statistics B.S. shared core requirements", [
+              "For students enrolling in 2024 and after, the Statistics B.S. is organized around 3 tracks that all share the same admission and core structure.",
+              "The shared core is 37 credits: MATH 208 and MATH 224; STAT 302 and either CSE 163 or CSE 123; STAT 341 and STAT 342; STAT 423, STAT 424, and STAT 435; an ethics course from STAT 303, SOC 225, or INFO 351; and the capstone course STAT 496.",
+            ]),
+            degreeMapSection("stat-math-track", "Mathematical Statistics track-specific breadth", [
+              "The Mathematical Statistics track adds one approved 3-course probability or analysis sequence plus 3 electives from the general or computing elective lists.",
+            ]),
+          ],
+          bestTrackId: "999B",
+          bestTrackSummary:
+            "999B is the clearest Green River base when the student wants the math-heavy Statistics track before transfer.",
+        }
+      ),
+      plannerPathway(
+        "applied-statistics-track",
+        "Applied Statistics track",
+        "Best when the student wants the Seattle Statistics degree but expects the outside interdisciplinary sequence to carry more of the focus than pure math or computing.",
+        {
+          grcCourseList: [...STEM_CALCULUS_CURRENT_SEQUENCE, "MATH& 146", "CS 121"],
+          degreeMapSections: [
+            degreeMapSection("stat-common-applied", "Statistics B.S. shared core requirements", [
+              "For students enrolling in 2024 and after, the Statistics B.S. is organized around 3 tracks that all share the same admission and core structure.",
+              "The shared core is 37 credits: MATH 208 and MATH 224; STAT 302 and either CSE 163 or CSE 123; STAT 341 and STAT 342; STAT 423, STAT 424, and STAT 435; an ethics course from STAT 303, SOC 225, or INFO 351; and the capstone course STAT 496.",
+            ]),
+            degreeMapSection("stat-applied-track", "Applied Statistics track-specific breadth", [
+              "The Applied Statistics track adds 3 interdisciplinary courses that form a coherent approved outside sequence plus 3 electives from the general or computing elective lists.",
+            ]),
+          ],
+        }
+      ),
+      plannerPathway(
+        "data-science-track",
+        "Data Science track",
+        "Best when the student wants the strongest Seattle Statistics computing and data-work route before transfer.",
+        {
+          grcCourseList: [
+            ...STEM_CALCULUS_CURRENT_SEQUENCE,
+            "MATH& 146",
+            "CS 121",
+            "CS 122",
+            "CS 123",
+            "ENGR 250",
+          ],
+          degreeMapSections: [
+            degreeMapSection("stat-common-data", "Statistics B.S. shared core requirements", [
+              "For students enrolling in 2024 and after, the Statistics B.S. is organized around 3 tracks that all share the same admission and core structure.",
+              "The shared core is 37 credits: MATH 208 and MATH 224; STAT 302 and either CSE 163 or CSE 123; STAT 341 and STAT 342; STAT 423, STAT 424, and STAT 435; an ethics course from STAT 303, SOC 225, or INFO 351; and the capstone course STAT 496.",
+            ]),
+            degreeMapSection("stat-data-track", "Data Science track-specific breadth", [
+              "The Data Science track adds 1 approved data-visualization course, 1 approved databases course, 1 computing elective, and 3 more electives from the general or computing elective lists.",
+            ]),
+          ],
+          bestTrackId: "999P",
+          bestTrackSummary:
+            "999P is the clearest Green River base when the student wants the most computing-heavy Seattle Statistics route.",
+        }
+      ),
     ],
   },
   [buildPlannerLookupKey("uw-seattle", "Business Administration")]: {
@@ -6668,6 +16101,1833 @@ const GENERATED_PLAN_DOC_OVERRIDES: Record<
       ]),
     ],
   },
+  [buildPlannerLookupKey("uw-bothell", "Interdisciplinary Studies: Individualized Study (BA)")]: {
+    officialLinks: [
+      {
+        label: "UW Bothell 2023-2024 general catalog - Interdisciplinary Studies",
+        url: "https://www.uwb.edu/catalog/wp-content/uploads/sites/44/2024/09/2023-2024-General-Catalog_a11y.pdf",
+      },
+      {
+        label: "UW Bothell IAS degree portfolio overview",
+        url: "https://www.uwb.edu/ias/undergraduate/ias-degree-portfolio",
+      },
+      {
+        label: "UW Bothell Green River equivalency guide",
+        url: "https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwb-idst-is-structure", "Individualized Study public program model", [
+        "The current UW Bothell catalog describes Individualized Study as the self-designed option inside Interdisciplinary Studies for highly motivated students who want to build their own course of study.",
+        "Students work closely with one or more faculty mentors in IAS or other UW Bothell programs, and the public catalog frames the degree as a portfolio-based, student-driven path that can support focuses like science communication, environmental education, gender studies, or digital arts.",
+      ]),
+      degreeMapSection("uwb-idst-is-admission", "Individualized Study admission and proposal baseline", [
+        "The current catalog still places this option inside the normal IAS admission expectations, including composition, reasoning, and breadth expectations, with larger breadth and language preparation for applicants entering with 80 or more credits.",
+        "The catalog also says students apply in the junior year after at least one quarter of IAS coursework including BIS 300, then develop a substantive proposal that is reviewed by a faculty oversight committee.",
+      ]),
+      degreeMapSection("uwb-idst-is-finish", "Individualized Study completion rules", [
+        "Once the proposal is approved, exact major requirements vary from proposal to proposal rather than following one fixed public course sheet.",
+        "The standard UW and IAS degree requirements still remain in effect, including BIS 300, the portfolio capstone, the areas-of-knowledge structure, and the overall 180-credit graduation minimum.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "This is intentionally a proposal-based degree. The exact UW course list must stay faculty-approved rather than being treated like a frozen universal checklist.",
+    ],
+    grcCourseListGuidance:
+      "Custom Green River course set required. This Bothell degree is proposal-based, so the planner should use the student's approved theme and faculty-reviewed proposal instead of showing one fake universal GRC equivalent course list.",
+  },
+  [buildPlannerLookupKey("uw-bothell", "Law, Economics & Public Policy (BA)")]: {
+    officialLinks: [
+      {
+        label: "UW Bothell Law, Economics & Public Policy requirements",
+        url: "https://www.uwb.edu/ias/undergraduate/majors/law-economics-public-policy",
+      },
+      {
+        label: "UW Bothell Green River equivalency guide",
+        url: "https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwb-lepp-admission", "Law, Economics & Public Policy admission baseline", [
+        "To declare LEPP, students currently complete two composition courses, one introductory microeconomics course, and one American government or American politics course, all with minimum 2.0 grades.",
+        "The major page also recommends early exposure through courses like BIS 279, BIS 282, or BIS 284.",
+      ]),
+      degreeMapSection("uwb-lepp-core", "Law, Economics & Public Policy required structure", [
+        "The current Autumn 2024+ LEPP major is 70 credits.",
+        "Its required structure is BISLEP 301, BISLEP 302, BIS 215, one additional Skills and Methods course, 10 credits of Policy Foundation courses, 20 credits of Policy Foundation or Policy Problem courses, and 20 additional IAS credits.",
+      ]),
+      degreeMapSection("uwb-lepp-policies", "Law, Economics & Public Policy policies and course buckets", [
+        "The public page also publishes the current course buckets for the Skills and Methods, Policy Foundation, and Policy Problem sections instead of pretending there is only one upper-division path through the degree.",
+        "LEPP courses are offered primarily during daytime hours, and the IAS policies require 30 credits in residence, a 2.00 major GPA, and enough upper-division coursework to stay within the 35-credit lower-division cap.",
+      ]),
+    ],
+  },
+  [buildPlannerLookupKey("uw-bothell", "Mathematical Thinking & Visualization (BA)")]: {
+    officialLinks: [
+      {
+        label: "UW Bothell Mathematical Thinking & Visualization requirements",
+        url: "https://www.uwb.edu/ias/undergraduate/majors/mathematical-thinking-visualization",
+      },
+      {
+        label: "UW Bothell Green River equivalency guide",
+        url: "https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwb-mtv-status", "Mathematical Thinking & Visualization current status", [
+        "The current MTV page says the major is no longer accepting new students.",
+        "That page also says the major began changing its name to Data Visualization in Autumn 2024 and that degree requirements were changing with that transition.",
+      ]),
+      degreeMapSection("uwb-mtv-legacy-admission", "Mathematical Thinking & Visualization legacy admission baseline", [
+        "For students still finishing the MTV row, the page lists one quarter of calculus and one quarter of statistics, each with a minimum 2.0 grade, as the minimum prerequisite classes.",
+        "The recommended preparation list also includes early programming, interaction design, and a second-quarter calculus class.",
+      ]),
+      degreeMapSection("uwb-mtv-legacy-structure", "Mathematical Thinking & Visualization legacy degree structure", [
+        "The legacy MTV degree page lists a 70-credit structure: BIS 300, BIS 232, BIS 231 or STMATH 208, 5 credits of MTV Art coursework, 10 credits of Mathematical Reasoning coursework, 10 credits of Visualization Practice and Methods coursework, one additional MR or VPM course, BIS 499, and 20 additional IAS credits.",
+        "The page also requires at least a 2.5 in BIS 499 and notes that MTV classes are offered primarily during daytime hours.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Treat this as a legacy row for continuing students. New students should not be planned into MTV as if it were still the active admission path.",
+    ],
+  },
+  [buildPlannerLookupKey("uw-bothell", "Mathematics (BS)")]: {
+    officialLinks: [
+      {
+        label: "UW Bothell Mathematics admissions",
+        url: "https://www.uwb.edu/stem/undergraduate/majors/mathematics/admissions",
+      },
+      {
+        label: "UW Bothell Mathematics curriculum",
+        url: "https://www.uwb.edu/stem/undergraduate/majors/mathematics/curriculum",
+      },
+      {
+        label: "UW Bothell Green River equivalency guide",
+        url: "https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwb-math-admission", "Mathematics admission baseline", [
+        "Mathematics is currently an open major that admits for autumn, winter, and spring entry.",
+        "The admissions page says there are no entry prerequisites, but it strongly recommends the full calculus sequence, differential equations, matrix algebra, multivariable calculus, and an introductory programming course before or during entry into the major.",
+        "The page also notes that Washington-state Calculus III transfer work can require an added Calculus IV course to match the full UW Bothell calculus sequence cleanly.",
+      ]),
+      degreeMapSection("uwb-math-core", "Mathematics required core", [
+        "The current curriculum requires the published mathematics core with minimum 2.0 grades in each required course.",
+        "Those slots are one introductory programming path, STMATH 124, 125, 126, 207, 208, 224, 300, 301, one probability-statistics choice from STMATH 341, 390, or 392, one numerical-modeling choice from STMATH 381 or 405, plus STMATH 402 and STMATH 424.",
+      ]),
+      degreeMapSection("uwb-math-electives", "Mathematics electives and finish", [
+        "Students also complete five additional STMATH electives, with at least three advanced electives and at least one of those advanced electives requiring a 400-level STMATH prerequisite.",
+        "The current approved elective lists include courses such as STMATH 403, 406, 408, 409, 425, 441, 407, 420, 427, 444, 330, 381, 392, 405, and limited STMATH 498 or 499 use.",
+        "Outside the major, students still complete the remaining UW Bothell composition, diversity, Arts and Humanities, and Social Sciences requirements.",
+      ]),
+    ],
+  },
+  [buildPlannerLookupKey("uw-bothell", "Media & Communications Studies (BA)")]: {
+    officialLinks: [
+      {
+        label: "UW Bothell Media & Communication Studies requirements",
+        url: "https://www.uwb.edu/ias/undergraduate/majors/media-communication",
+      },
+      {
+        label: "UW Bothell Green River equivalency guide",
+        url: "https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwb-mcs-admission", "Media & Communication Studies admission baseline", [
+        "Media and Communication Studies has no formal prerequisites.",
+        "The current page says students in good academic standing can declare it at any time, and incoming students can apply directly into the major.",
+        "The page recommends preparation in new media production plus strong critical-thinking, communication, and collaboration skills.",
+      ]),
+      degreeMapSection("uwb-mcs-core", "Media & Communication Studies required structure", [
+        "The current Autumn 2024+ MCS major is 75 credits.",
+        "Its required structure is BIS 290, BISMCS 333, 10 credits of Communication Practice and Media Production coursework, 25 credits of additional MCS coursework, 20 additional IAS credits, and 10 credits of composition coursework.",
+        "BISMCS 333 currently requires an introductory MCS course such as BIS 176, 177, 178, 179, or COM 200 before enrollment.",
+      ]),
+      degreeMapSection("uwb-mcs-policies", "Media & Communication Studies policies and course buckets", [
+        "The public page publishes the current Practice and Production and additional MCS course lists instead of one single locked sequence, so the upper-division mix is partly category-based.",
+        "IAS policy on the page requires 30 credits in residence, a 2.00 major GPA, IPR completion, and enough upper-division work to stay within the 35-credit lower-division cap.",
+      ]),
+    ],
+  },
+  [buildPlannerLookupKey("uw-bothell", "Nursing (BS), First Year RN to BSN (Direct Entry)")]: {
+    officialLinks: [
+      {
+        label: "UW Bothell 2023-2024 general catalog - School of Nursing & Health Studies",
+        url: "https://www.uwb.edu/catalog/wp-content/uploads/sites/44/2024/09/2023-2024-General-Catalog_a11y.pdf",
+      },
+      {
+        label: "UW Bothell RN to BSN overview",
+        url: "https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview",
+      },
+      {
+        label: "UW Bothell Become a Registered Nurse pathway page",
+        url: "https://www.uwb.edu/nhs/undergraduate/rn-bsn/becomearn",
+      },
+      {
+        label: "UW Bothell Green River equivalency guide",
+        url: "https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwb-nursing-direct-model", "First Year RN to BSN direct-entry pathway model", [
+        "The current UW Bothell catalog describes this row as a dual-admission pathway between UW Bothell and Everett Community College for university first-year applicants.",
+        "Students complete the Everett Community College and RN-to-BSN prerequisites during the first year at UW Bothell, spend two years in the partner ADN program off-site, then return to UW Bothell for the senior-year RN-to-BSN finish.",
+      ]),
+      degreeMapSection("uwb-nursing-direct-completion", "First Year RN to BSN direct-entry completion structure", [
+        "The current catalog lists the completion structure as 90 transfer credits, 45 NCLEX-RN exam completion credits, 35 upper-division nursing credits, and 10 upper-division non-nursing UW Bothell elective credits.",
+        "The same catalog entry also requires 90 upper-division credits overall, completion of the last 45 credits at UW Bothell, a cumulative 2.0 GPA, and minimum 2.0 grades in all BSN degree coursework.",
+      ]),
+      degreeMapSection("uwb-nursing-direct-prep", "First Year RN to BSN prerequisite spine behind the pathway", [
+        "The current public nursing-pathway pages still frame the RN-to-BSN route around nursing-school prerequisites such as composition, general chemistry with lab, microbiology, anatomy and physiology, statistics, and broader general-education preparation before the ADN plus NCLEX stage.",
+        "Because this row is a specialized partner pathway rather than a standard transfer major, the planning details should be treated as pathway-specific and adviser-verified.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "This row is a specialized first-year partner pathway, not a normal community-college transfer finish. Use School of Nursing advising before treating it like a standard Green River transfer target.",
+    ],
+  },
+  [buildPlannerLookupKey("uw-bothell", "Nursing (BS), RN to BSN")] : {
+    officialLinks: [
+      {
+        label: "UW Bothell RN to BSN admissions",
+        url: "https://www.uwb.edu/nhs/undergraduate/rn-bsn/admissions",
+      },
+      {
+        label: "UW Bothell RN to BSN overview",
+        url: "https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview",
+      },
+      {
+        label: "UW Bothell RN to BSN how to apply",
+        url: "https://www.uwb.edu/nhs/undergraduate/rn-bsn/how-to-apply",
+      },
+      {
+        label: "UW Bothell 2023-2024 general catalog - School of Nursing & Health Studies",
+        url: "https://www.uwb.edu/catalog/wp-content/uploads/sites/44/2024/09/2023-2024-General-Catalog_a11y.pdf",
+      },
+      {
+        label: "UW Bothell Green River equivalency guide",
+        url: "https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwb-rn-bsn-admission", "RN to BSN admission baseline", [
+        "The current RN to BSN admissions page requires English composition, General Chemistry with lab, Microbiology, Anatomy and Physiology I and II, Statistics, 10 Arts and Humanities credits, an Associate Degree in Nursing or Nursing diploma, and a current or pending Washington RN license.",
+        "Applicants also need at least 90 transferable quarter credits, and the public page says the program currently starts in autumn or winter depending on location.",
+      ]),
+      degreeMapSection("uwb-rn-bsn-structure", "RN to BSN completion structure", [
+        "The current catalog and overview describe the RN-to-BSN degree as a completion program built from 90 transfer credits, 45 NCLEX-RN exam credits, 35 upper-division nursing credits, and 10 upper-division non-nursing UW Bothell elective credits.",
+        "The same public materials require 90 upper-division credits overall, the last 45 credits at UW Bothell, a 2.0 cumulative GPA, and minimum 2.0 grades in all BSN degree coursework.",
+      ]),
+      degreeMapSection("uwb-rn-bsn-finish", "RN to BSN schedule and finish", [
+        "The overview page says the program runs in a hybrid format across Bothell, Everett, and Shoreline, with a full-time one-year option or a part-time two-year option.",
+        "The public materials also describe the curriculum as aligned to AACN essentials and built for working nurses rather than first-time pre-nursing students.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "This is a degree-completion path for already licensed or pending-licensure nurses after ADN preparation, so it is not a normal direct Green River pre-major finish.",
+    ],
+  },
+  [buildPlannerLookupKey("uw-bothell", "Physics (BA)")]: {
+    officialLinks: [
+      {
+        label: "UW Bothell Physics admissions",
+        url: "https://www.uwb.edu/stem/undergraduate/majors/physics/admissions",
+      },
+      {
+        label: "UW Bothell Physics curriculum",
+        url: "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
+      },
+      {
+        label: "UW Bothell Green River equivalency guide",
+        url: "https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwb-physics-ba-admission", "Physics admission baseline", [
+        "The Physics majors admit for autumn, winter, and spring entry.",
+        "The current admissions page requires Calculus I and II plus a full three-course calculus-based introductory physics sequence, all with minimum 2.0 grades and completed before applying.",
+      ]),
+      degreeMapSection("uwb-physics-ba-core", "Physics B.A. required structure", [
+        "The current B.A. requires BCHEM 143/144, STMATH 126, STMATH 207, BPHYS 221, 222, 224, 433, 484, and BPHYS 494.",
+        "Students also complete 10 credits of additional BPHYS electives from the approved list, which is usually two courses.",
+      ]),
+      degreeMapSection("uwb-physics-ba-finish", "Physics B.A. general-education finish", [
+        "The curriculum page describes the B.A. as the more flexible physics option for students pairing physics with another academic focus or outside preparation.",
+        "Outside the major, students still finish the remaining UW Bothell composition, writing, diversity, Arts and Humanities, and Social Sciences requirements.",
+      ]),
+    ],
+  },
+  [buildPlannerLookupKey("uw-bothell", "Physics (BS)")]: {
+    officialLinks: [
+      {
+        label: "UW Bothell Physics admissions",
+        url: "https://www.uwb.edu/stem/undergraduate/majors/physics/admissions",
+      },
+      {
+        label: "UW Bothell Physics curriculum",
+        url: "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
+      },
+      {
+        label: "UW Bothell Green River equivalency guide",
+        url: "https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwb-physics-bs-admission", "Physics admission baseline", [
+        "The current Physics admissions page uses the same entry baseline for the B.A. and B.S.: Calculus I and II plus the full one-year calculus-based introductory physics series, all with minimum 2.0 grades.",
+        "The program admits for autumn, winter, and spring entry.",
+      ]),
+      degreeMapSection("uwb-physics-bs-core", "Physics B.S. required structure", [
+        "The current B.S. requires CSS 112, STMATH 126, 207, 208, and 224, plus BPHYS 221, 222, 224, 231, 321, 322, 324, 433, 484, and BPHYS 494.",
+        "Students also complete one experimental-physics choice from BPHYS 431, 432, or 450.",
+      ]),
+      degreeMapSection("uwb-physics-bs-electives", "Physics B.S. electives and concentration finish", [
+        "The current B.S. then adds 20 credits of additional BPHYS electives, usually four courses, from the approved physics elective list.",
+        "The curriculum page says the B.S. supports four current non-transcripted concentrations: general physics, astrophysics, biophysics, and condensed matter.",
+      ]),
+    ],
+  },
+  [buildPlannerLookupKey("uw-bothell", "Psychology (BA)")]: {
+    officialLinks: [
+      {
+        label: "UW Bothell Psychology requirements",
+        url: "https://www.uwb.edu/ias/undergraduate/majors/psychology",
+      },
+      {
+        label: "UW Bothell Psychology planning worksheet",
+        url: "https://admissions.uwb.edu/register/mpw-psy",
+      },
+      {
+        label: "UW Bothell Green River equivalency guide",
+        url: "https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwb-psych-admission", "Psychology admission baseline", [
+        "Students currently complete BIS 170 or an equivalent introductory psychology course, one introductory statistics course, one composition course, and one advanced-composition course, all with minimum 2.0 grades, before declaring the major.",
+        "The current page also recommends early preparation through courses like BIS 220, BIS 222, BIS 225, and BIS 270.",
+      ]),
+      degreeMapSection("uwb-psych-core", "Psychology required structure", [
+        "The current Psychology B.A. is a 70-credit major.",
+        "Its required structure is one Psychology Core course, BIS 312, 10 credits of 200-level Psychology courses, 15 credits of Upper-Division Psychology courses, 15 credits of Psychology electives, and 20 additional IAS credits.",
+      ]),
+      degreeMapSection("uwb-psych-categories", "Psychology course categories and policies", [
+        "The current core-course list is BISPSY 337, 343, 348, or 350; the public page also publishes the current 200-level, upper-division, and elective course buckets instead of one single locked upper-division sequence.",
+        "IAS policy on the page requires 30 credits in residence, a 2.00 major GPA, IPR completion, and enough upper-division coursework to stay within the 35-credit lower-division cap.",
+      ]),
+    ],
+  },
+  [buildPlannerLookupKey("uw-bothell", "Science, Technology & Society (BA)")]: {
+    officialLinks: [
+      {
+        label: "UW Bothell Science, Technology & Society requirements",
+        url: "https://www.uwb.edu/ias/undergraduate/majors/science-technology-society",
+      },
+      {
+        label: "UW Bothell Green River equivalency guide",
+        url: "https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwb-sts-admission", "Science, Technology & Society admission baseline", [
+        "Science, Technology, & Society has no official prerequisites in the School of IAS.",
+        "The current page says students in good academic standing can declare it at any time, and incoming students can apply directly into the major.",
+      ]),
+      degreeMapSection("uwb-sts-core", "Science, Technology & Society required structure", [
+        "For students using the current Autumn 2024+ degree, STS is a 70-credit major with 10 credits of composition, BISSTS 307, BISSTS 355, BES 301, one methods course from BIS 312 or BIS 340, 25 credits of STS coursework, 5 credits of approaches-to-data coursework, and 20 additional IAS credits.",
+        "The public page explicitly notes that students who entered before Autumn 2024 follow older requirements and should use adviser review.",
+      ]),
+      degreeMapSection("uwb-sts-categories", "Science, Technology & Society course categories and policies", [
+        "The page publishes separate current buckets for STS core, methods, data, and STS elective coursework rather than one single upper-division sequence.",
+        "IAS policy on the page requires 30 credits in residence, a 2.00 major GPA, IPR completion, and enough upper-division work to stay within the 35-credit lower-division cap.",
+      ]),
+    ],
+  },
+  [buildPlannerLookupKey("uw-bothell", "Society, Ethics & Human Behavior (BA)")]: {
+    officialLinks: [
+      {
+        label: "UW Bothell Society, Ethics & Human Behavior requirements",
+        url: "https://www.uwb.edu/ias/undergraduate/majors/society-ethics-human-behavior",
+      },
+      {
+        label: "UW Bothell Green River equivalency guide",
+        url: "https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwb-sehb-status", "Society, Ethics & Human Behavior current status", [
+        "The current SEHB page says the major is no longer accepting new students.",
+        "The public information is for students who are already admitted to SEHB and are completing the degree.",
+      ]),
+      degreeMapSection("uwb-sehb-structure", "Society, Ethics & Human Behavior legacy degree structure", [
+        "The legacy SEHB degree page lists a 70-credit structure: BIS 300, one SEB Core course, one methods choice from BIS 215, BIS 312, or BIS 410, 30 credits of SEB coursework, BIS 499, and 20 additional IAS credits.",
+        "The page says there are no official prerequisites beyond normal IAS admission, though psychology, sociology, statistics, and philosophy are recommended preparation.",
+      ]),
+      degreeMapSection("uwb-sehb-categories", "Society, Ethics & Human Behavior course categories and completion notes", [
+        "The current public page still publishes the legacy SEB Core list, the methods list, and the broader SEB course buckets instead of one fixed upper-division sequence.",
+        "Because SEHB is a continuing-students-only row, any final degree plan should stay aligned with adviser-approved legacy completion guidance rather than assuming new-student policies still apply.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "SEHB is a legacy completion row only. New applicants should not be planned into it as if it were still an actively admitting major.",
+    ],
+  },
+  [buildPlannerLookupKey("uw-tacoma", "Arts, Media and Culture (BA)")]: {
+    officialLinks: [
+      {
+        label: "UW Tacoma Arts, Media and Culture overview",
+        url: "https://www.tacoma.uw.edu/sias/cac/arts-media-culture",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+      {
+        label: "UW Tacoma course equivalency guide",
+        url: "https://www.tacoma.uw.edu/admissions/course-equivalency-guide",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-amc-admission", "Arts, Media and Culture admission baseline", [
+        "The current Arts, Media and Culture page says students need at least 45 lower-division credits before entering the major.",
+        "The public overview presents the major as an interdisciplinary arts and culture degree built around literature, media, music, performance, and visual culture rather than as one lockstep studio-only sequence.",
+      ]),
+      degreeMapSection("uwt-amc-structure", "Arts, Media and Culture overall BA structure", [
+        "The current page requires 60 major credits total.",
+        "At least 30 of those 60 credits must be upper-division 300- or 400-level coursework.",
+        "Students still complete the rest of UW Tacoma's graduation and general-education requirements to reach the 180-credit bachelor's minimum.",
+      ]),
+      degreeMapSection("uwt-amc-tracks", "Arts, Media and Culture track structure", [
+        "The current AMC page organizes the major into 5 track choices: Literature, Film and Media, Visual and Performing Arts, Comparative Arts, and American Cultures.",
+        "Because the upper-division finish depends on the chosen track, the public page works more like a track menu than one single universal course list shared by every AMC student.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Arts, Media and Culture is track-based, so the exact upper-division plan should be finalized only after the student picks the literature, media, arts, or American cultures path.",
+    ],
+    pathways: [
+      plannerPathway(
+        "literature-track",
+        "Literature track",
+        "Best when the student wants the literary and text-focused Tacoma AMC finish.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-amc-lit-admission", "Arts, Media and Culture admission baseline", [
+              "The current Arts, Media and Culture page says students need at least 45 lower-division credits before entering the major.",
+              "The public overview presents the major as an interdisciplinary arts and culture degree built around literature, media, music, performance, and visual culture rather than as one lockstep studio-only sequence.",
+            ]),
+            degreeMapSection("uwt-amc-lit-track", "Arts, Media and Culture literature track", [
+              "The current AMC page organizes the major into 5 track choices: Literature, Film and Media, Visual and Performing Arts, Comparative Arts, and American Cultures.",
+              "Use this route when the student plans to finish AMC through the literature-focused track rather than one of the other Tacoma paths.",
+            ]),
+          ],
+        }
+      ),
+      plannerPathway(
+        "film-media-track",
+        "Film and Media track",
+        "Best when the student wants the Tacoma AMC media and screen-culture route.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-amc-film-admission", "Arts, Media and Culture admission baseline", [
+              "The current Arts, Media and Culture page says students need at least 45 lower-division credits before entering the major.",
+              "The public overview presents the major as an interdisciplinary arts and culture degree built around literature, media, music, performance, and visual culture rather than as one lockstep studio-only sequence.",
+            ]),
+            degreeMapSection("uwt-amc-film-track", "Arts, Media and Culture film and media track", [
+              "The current AMC page organizes the major into 5 track choices: Literature, Film and Media, Visual and Performing Arts, Comparative Arts, and American Cultures.",
+              "Use this route when the student plans to finish AMC through the film and media track.",
+            ]),
+          ],
+        }
+      ),
+      plannerPathway(
+        "visual-performing-arts-track",
+        "Visual and Performing Arts track",
+        "Best when the student wants the more arts- and performance-centered Tacoma AMC finish.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-amc-arts-admission", "Arts, Media and Culture admission baseline", [
+              "The current Arts, Media and Culture page says students need at least 45 lower-division credits before entering the major.",
+              "The public overview presents the major as an interdisciplinary arts and culture degree built around literature, media, music, performance, and visual culture rather than as one lockstep studio-only sequence.",
+            ]),
+            degreeMapSection("uwt-amc-arts-track", "Arts, Media and Culture visual and performing arts track", [
+              "The current AMC page organizes the major into 5 track choices: Literature, Film and Media, Visual and Performing Arts, Comparative Arts, and American Cultures.",
+              "Use this route when the student plans to finish AMC through the visual and performing arts track.",
+            ]),
+          ],
+        }
+      ),
+      plannerPathway(
+        "comparative-arts-track",
+        "Comparative Arts track",
+        "Best when the student wants the Tacoma AMC interdisciplinary comparative-arts finish.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-amc-comp-admission", "Arts, Media and Culture admission baseline", [
+              "The current Arts, Media and Culture page says students need at least 45 lower-division credits before entering the major.",
+              "The public overview presents the major as an interdisciplinary arts and culture degree built around literature, media, music, performance, and visual culture rather than as one lockstep studio-only sequence.",
+            ]),
+            degreeMapSection("uwt-amc-comp-track", "Arts, Media and Culture comparative arts track", [
+              "The current AMC page organizes the major into 5 track choices: Literature, Film and Media, Visual and Performing Arts, Comparative Arts, and American Cultures.",
+              "Use this route when the student plans to finish AMC through the comparative arts track.",
+            ]),
+          ],
+        }
+      ),
+      plannerPathway(
+        "american-cultures-track",
+        "American Cultures track",
+        "Best when the student wants the Tacoma AMC American Cultures finish.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-amc-american-admission", "Arts, Media and Culture admission baseline", [
+              "The current Arts, Media and Culture page says students need at least 45 lower-division credits before entering the major.",
+              "The public overview presents the major as an interdisciplinary arts and culture degree built around literature, media, music, performance, and visual culture rather than as one lockstep studio-only sequence.",
+            ]),
+            degreeMapSection("uwt-amc-american-track", "Arts, Media and Culture American Cultures track", [
+              "The current AMC page organizes the major into 5 track choices: Literature, Film and Media, Visual and Performing Arts, Comparative Arts, and American Cultures.",
+              "Use this route when the student plans to finish AMC through the American Cultures track.",
+            ]),
+          ],
+        }
+      ),
+    ],
+  },
+  [buildPlannerLookupKey("uw-tacoma", "Bachelor of Arts in Business Administration (BABA)")]: {
+    officialLinks: [
+      {
+        label: "UW Tacoma BABA admissions",
+        url: "https://www.tacoma.uw.edu/business/baba-admissions",
+      },
+      {
+        label: "UW Tacoma BABA design and courses",
+        url: "https://www.tacoma.uw.edu/business/design-courses-baba",
+      },
+      {
+        label: "UW Tacoma graduation requirements",
+        url: "https://www.tacoma.uw.edu/registrar/graduation-requirements",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-baba-admission", "BABA admission baseline", [
+        "The current Milgard admissions page treats BABA admission as capacity-constrained and requires at least 60 college-level quarter credits, a minimum 2.75 cumulative GPA, and a minimum 2.75 cumulative GPA across the business prerequisite courses.",
+        "The prerequisite set is English composition, Financial Accounting I, Financial Accounting II, Managerial Accounting, Statistics, Business Law, Microeconomics, and Macroeconomics, with at least a 2.0 in each prerequisite and in English composition.",
+        "At the time of application, students must already have English composition plus 4 business prerequisites completed with final grades, and all business prerequisites must be completed before the admission quarter begins.",
+        "The public admissions page says Tacoma BABA applications are accepted for autumn and winter entry.",
+      ]),
+      degreeMapSection("uwt-baba-shared", "BABA shared upper-division structure", [
+        "Milgard offers one Bachelor of Arts in Business Administration degree, and students complete it through one of 5 published options: Accounting, Finance, General Business, Management, or Marketing.",
+        "Across those options, the public curriculum pages show a common upper-division business backbone of 30 core credits plus the 5-credit capstone TBUS 400 Business Policy and Strategic Management.",
+        "Most options use TBUS 300, 301, 310, 320, 330, and 350 in that shared-core space, while the Accounting option substitutes TACCT 330 Accounting Information Systems for the information-systems slot.",
+      ]),
+      degreeMapSection("uwt-baba-options", "BABA option-specific finish", [
+        "After the shared core, students complete the upper-division option credits for the chosen business path.",
+        "The current pages summarize those finishes as 35 accounting credits plus a TACCT elective for Accounting; 30 upper-division TFIN or TBECON credits for Finance; 30 approved upper-division business credits for General Business; 30 TMGMT credits for Management; and 30 marketing credits that include TMKTG 450, 460, 475, plus 15 additional TMKTG credits for Marketing.",
+        "All BABA paths still require enough total coursework to reach the university-wide 180-credit minimum for graduation.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Do not treat the BABA options as interchangeable. The final upper-division business list changes materially once the student chooses Accounting, Finance, General Business, Management, or Marketing.",
+    ],
+    pathways: [
+      plannerPathway(
+        "accounting-option",
+        "Accounting option",
+        "Best when the student wants the Tacoma BABA accounting finish.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-baba-accounting-admission", "BABA admission baseline", [
+              "The current Milgard admissions page treats BABA admission as capacity-constrained and requires at least 60 college-level quarter credits, a minimum 2.75 cumulative GPA, and a minimum 2.75 cumulative GPA across the business prerequisite courses.",
+              "The prerequisite set is English composition, Financial Accounting I, Financial Accounting II, Managerial Accounting, Statistics, Business Law, Microeconomics, and Macroeconomics, with at least a 2.0 in each prerequisite and in English composition.",
+            ]),
+            degreeMapSection("uwt-baba-accounting-path", "Accounting option finish", [
+              "Milgard offers one Bachelor of Arts in Business Administration degree, and students complete it through one of 5 published options: Accounting, Finance, General Business, Management, or Marketing.",
+              "Across those options, the public curriculum pages show a common upper-division business backbone of 30 core credits plus the 5-credit capstone TBUS 400 Business Policy and Strategic Management.",
+              "The current pages summarize the Accounting finish as 35 accounting credits plus a TACCT elective, and the Accounting option substitutes TACCT 330 Accounting Information Systems for the information-systems slot inside the shared core.",
+            ]),
+          ],
+        }
+      ),
+      plannerPathway(
+        "finance-option",
+        "Finance option",
+        "Best when the student wants the Tacoma BABA finance finish.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-baba-finance-admission", "BABA admission baseline", [
+              "The current Milgard admissions page treats BABA admission as capacity-constrained and requires at least 60 college-level quarter credits, a minimum 2.75 cumulative GPA, and a minimum 2.75 cumulative GPA across the business prerequisite courses.",
+              "The prerequisite set is English composition, Financial Accounting I, Financial Accounting II, Managerial Accounting, Statistics, Business Law, Microeconomics, and Macroeconomics, with at least a 2.0 in each prerequisite and in English composition.",
+            ]),
+            degreeMapSection("uwt-baba-finance-path", "Finance option finish", [
+              "Milgard offers one Bachelor of Arts in Business Administration degree, and students complete it through one of 5 published options: Accounting, Finance, General Business, Management, or Marketing.",
+              "Across those options, the public curriculum pages show a common upper-division business backbone of 30 core credits plus the 5-credit capstone TBUS 400 Business Policy and Strategic Management.",
+              "The current pages summarize the Finance finish as 30 upper-division TFIN or TBECON credits beyond the shared core.",
+            ]),
+          ],
+        }
+      ),
+      plannerPathway(
+        "general-business-option",
+        "General Business option",
+        "Best when the student wants the broad Tacoma BABA finish instead of a narrower named business option.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-baba-general-admission", "BABA admission baseline", [
+              "The current Milgard admissions page treats BABA admission as capacity-constrained and requires at least 60 college-level quarter credits, a minimum 2.75 cumulative GPA, and a minimum 2.75 cumulative GPA across the business prerequisite courses.",
+              "The prerequisite set is English composition, Financial Accounting I, Financial Accounting II, Managerial Accounting, Statistics, Business Law, Microeconomics, and Macroeconomics, with at least a 2.0 in each prerequisite and in English composition.",
+            ]),
+            degreeMapSection("uwt-baba-general-path", "General Business option finish", [
+              "Milgard offers one Bachelor of Arts in Business Administration degree, and students complete it through one of 5 published options: Accounting, Finance, General Business, Management, or Marketing.",
+              "Across those options, the public curriculum pages show a common upper-division business backbone of 30 core credits plus the 5-credit capstone TBUS 400 Business Policy and Strategic Management.",
+              "The current pages summarize the General Business finish as 30 approved upper-division business credits beyond the shared core.",
+            ]),
+          ],
+        }
+      ),
+      plannerPathway(
+        "management-option",
+        "Management option",
+        "Best when the student wants the Tacoma BABA management finish.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-baba-management-admission", "BABA admission baseline", [
+              "The current Milgard admissions page treats BABA admission as capacity-constrained and requires at least 60 college-level quarter credits, a minimum 2.75 cumulative GPA, and a minimum 2.75 cumulative GPA across the business prerequisite courses.",
+              "The prerequisite set is English composition, Financial Accounting I, Financial Accounting II, Managerial Accounting, Statistics, Business Law, Microeconomics, and Macroeconomics, with at least a 2.0 in each prerequisite and in English composition.",
+            ]),
+            degreeMapSection("uwt-baba-management-path", "Management option finish", [
+              "Milgard offers one Bachelor of Arts in Business Administration degree, and students complete it through one of 5 published options: Accounting, Finance, General Business, Management, or Marketing.",
+              "Across those options, the public curriculum pages show a common upper-division business backbone of 30 core credits plus the 5-credit capstone TBUS 400 Business Policy and Strategic Management.",
+              "The current pages summarize the Management finish as 30 TMGMT credits beyond the shared core.",
+            ]),
+          ],
+        }
+      ),
+      plannerPathway(
+        "marketing-option",
+        "Marketing option",
+        "Best when the student wants the Tacoma BABA marketing finish.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-baba-marketing-admission", "BABA admission baseline", [
+              "The current Milgard admissions page treats BABA admission as capacity-constrained and requires at least 60 college-level quarter credits, a minimum 2.75 cumulative GPA, and a minimum 2.75 cumulative GPA across the business prerequisite courses.",
+              "The prerequisite set is English composition, Financial Accounting I, Financial Accounting II, Managerial Accounting, Statistics, Business Law, Microeconomics, and Macroeconomics, with at least a 2.0 in each prerequisite and in English composition.",
+            ]),
+            degreeMapSection("uwt-baba-marketing-path", "Marketing option finish", [
+              "Milgard offers one Bachelor of Arts in Business Administration degree, and students complete it through one of 5 published options: Accounting, Finance, General Business, Management, or Marketing.",
+              "Across those options, the public curriculum pages show a common upper-division business backbone of 30 core credits plus the 5-credit capstone TBUS 400 Business Policy and Strategic Management.",
+              "The current pages summarize the Marketing finish as 30 marketing credits that include TMKTG 450, 460, 475, plus 15 additional TMKTG credits.",
+            ]),
+          ],
+        }
+      ),
+    ],
+  },
+  [buildPlannerLookupKey("uw-tacoma", "Biomedical Sciences (BS)")]: {
+    officialLinks: [
+      {
+        label: "UW Tacoma Biomedical Sciences overview",
+        url: "https://www.tacoma.uw.edu/sias/sam/biomedical-sciences",
+      },
+      {
+        label: "UW Tacoma Biomedical Sciences transfer credits",
+        url: "https://www.tacoma.uw.edu/sias/sam/biomedical-sciences-transfer-credits",
+      },
+      {
+        label: "UW Tacoma course equivalency guide",
+        url: "https://www.tacoma.uw.edu/admissions/course-equivalency-guide",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-biomed-prep", "Biomedical Sciences lower-division preparation", [
+        "The current Biomedical Sciences page requires a minimum of 45 lower-division credits before declaring the major.",
+        "The introductory preparation block is 64 credits and must be completed within the past 5 years with at least a 2.0 in each course: TCHEM 142, 152, 162; TBIOL 120, 130, 140; TMATH 124 and 125; TCHEM 251 and 261; and TPHYS 121 or the PHYS 114 / 117 path.",
+        "The transfer-credits page also gives Tacoma's current Green River preparation guidance: CHEM& 161 / 162 / 163 for general chemistry, BIOL& 211 / 212 / 213 for biology, CHEM& 261 / 262 / 263 for organic chemistry, PHYS& 114 or PHYS& 221 for the first physics requirement, and MATH& 151 / 152 for calculus.",
+        "The transfer-credits page adds that the introductory biology and chemistry sequences transfer best when students complete the full sequences at the same institution rather than mixing campuses mid-sequence.",
+      ]),
+      degreeMapSection("uwt-biomed-core", "Biomedical Sciences core and elective structure", [
+        "The current fixed core is 39 credits: TBIOL 301, 302, 303, 304, and 305, plus TCHEM 405 and 406.",
+        "Students then complete 15 credits of advanced Biomedical Sciences electives, with at least 2 courses drawn from the program's List A and the remaining course drawn from List A or List B.",
+        "That makes the upper-division finish partly menu-based even though the microbiology, physiology, cell biology, molecular biology, genetics, and biochemistry block is fixed.",
+      ]),
+      degreeMapSection("uwt-biomed-bookends", "Biomedical Sciences bookend courses, capstone, and context requirements", [
+        "The major includes 8 bookend credits: TBIOMD 310 Foundations in Biomedical Sciences early in the degree and TBIOMD 410 Biomedical Sciences Senior Seminar in the senior year.",
+        "Students also complete a 3- to 10-credit capstone or experiential finish chosen from the approved list, statistics through TMATH 110, 1 approved ethics course, and 1 approved health-and-society course.",
+        "The department explicitly notes that pre-health students may still need extra preparation for specific professional-school goals, with examples such as TMATH 126 and TPHYS 122.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Biomedical Sciences has a strong fixed science core, but the electives, ethics, and capstone spaces still need to be matched to the student's pre-health or research goal.",
+    ],
+  },
+  [buildPlannerLookupKey("uw-tacoma", "Civil Engineering (BSCE)")]: {
+    officialLinks: [
+      {
+        label: "UW Tacoma Civil Engineering program details",
+        url: "https://www.tacoma.uw.edu/set/programs/undergrad/civil",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+      {
+        label: "UW Tacoma course equivalency guide",
+        url: "https://www.tacoma.uw.edu/admissions/course-equivalency-guide",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-ce-admission", "Civil Engineering admission baseline", [
+        "The current Civil Engineering page treats admission as competitive and requires Calculus I, II, and III; Differential Equations; Physics I, II, and III; General Chemistry I; Statics; Mechanics of Materials; Dynamics; and 5 credits of approved programming in Python, Java, C, C++, or the equivalent of AMATH 301.",
+        "The page also says prerequisites must be completed within the last 7 years, with at least a 2.0 in each prerequisite, at least a 2.5 cumulative prerequisite GPA, and at least 45 college-level credits before the major begins.",
+      ]),
+      degreeMapSection("uwt-ce-core", "Civil Engineering required curriculum", [
+        "The current BSCE page lists the required upper-division Civil Engineering course set as TCE 304, 305, 307, 309, 327, 337, 347, 357, 367, 377, 401, 473, 488, and 489, plus TEE 225, TME 310, TME 351, and TME 403.",
+        "The page also requires 1 approved lab science course outside the basic chemistry and physics admission sequence, with approval handled through Civil Engineering advising.",
+      ]),
+      degreeMapSection("uwt-ce-electives", "Civil Engineering electives and residency rules", [
+        "The program requires 180 quarter credits total for graduation.",
+        "At least 45 of the final 60 credits and at least 30 credits of required BSCE major coursework must be completed in residence at UW Tacoma.",
+        "At least 84 credits must come from the published BSCE required courses plus the approved CE senior-elective list.",
+        "Students complete 16 technical-elective credits across at least 2 specialization areas chosen from Geotechnical, Structures, Transportation, and Environmental.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Tacoma Civil Engineering uses year-specific senior-elective lists, so the final specialization plan should always be checked against the intended entry year's elective menu.",
+    ],
+  },
+  [buildPlannerLookupKey("uw-tacoma", "Communications (BA)")]: {
+    officialLinks: [
+      {
+        label: "UW Tacoma Communication overview",
+        url: "https://www.tacoma.uw.edu/sias/cac/communication",
+      },
+      {
+        label: "UW Tacoma Communication degree requirements",
+        url: "https://www.tacoma.uw.edu/sias/cac/communication-degree-requirements",
+      },
+      {
+        label: "UW Tacoma Communication how-to-apply FAQs",
+        url: "https://www.tacoma.uw.edu/sias/cac/how-apply-faqs",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-comm-declare", "Communication declaration baseline", [
+        "The current Communication guidance says students declare the major by completing either TCOM 201 Media and Society or TCOM 230 Media Globalization and Citizenship with a minimum grade of 2.5.",
+        "The department also states that no more than 15 transfer credits may be applied toward the Communication degree and that transfer students should expect roughly 2 years to finish after transfer.",
+      ]),
+      degreeMapSection("uwt-comm-professional", "Communication professional track structure", [
+        "The Professional Track requires 60 communication credits, including at least 20 upper-division credits, inside the 180-credit bachelor's degree.",
+        "Its foundation block is 1 theory-and-methods course chosen from TCOM 444 or TCOM 453.",
+        "The public track information then uses a 25-credit List A core with at least 10 upper-division credits plus a 30-credit List B professional and media-practice block.",
+      ]),
+      degreeMapSection("uwt-comm-research", "Communication research track structure", [
+        "The Research Track requires 55 communication credits, including at least 20 upper-division credits, inside the 180-credit bachelor's degree.",
+        "Its foundation block is TWRT 211 plus 1 theory-and-methods course chosen from TCOM 444 or TCOM 453.",
+        "The public track guidance then uses a 45-credit research-oriented course structure that includes at least 20 upper-division TCOM credits and allows the thesis-style TCOM 495 capstone inside the research finish.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Tacoma Communication is track-based, so the exact upper-division course mix changes meaningfully between the professional and research versions of the major.",
+    ],
+    pathways: [
+      plannerPathway(
+        "professional-track",
+        "Professional track",
+        "Best when the student wants the more practice-heavy media and professional communication route.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-comm-prof-declare", "Communication declaration baseline", [
+              "The current Communication guidance says students declare the major by completing either TCOM 201 Media and Society or TCOM 230 Media Globalization and Citizenship with a minimum grade of 2.5.",
+              "The department also states that no more than 15 transfer credits may be applied toward the Communication degree and that transfer students should expect roughly 2 years to finish after transfer.",
+            ]),
+            degreeMapSection("uwt-comm-prof-structure", "Communication professional track structure", [
+              "The Professional Track requires 60 communication credits, including at least 20 upper-division credits, inside the 180-credit bachelor's degree.",
+              "Its foundation block is 1 theory-and-methods course chosen from TCOM 444 or TCOM 453.",
+              "The public track information then uses a 25-credit List A core with at least 10 upper-division credits plus a 30-credit List B professional and media-practice block.",
+            ]),
+          ],
+          manualReviewNotes: [
+            "Use this path when the student is intentionally choosing Tacoma Communication's professional track.",
+          ],
+        }
+      ),
+      plannerPathway(
+        "research-track",
+        "Research track",
+        "Best when the student wants the more writing- and research-oriented Tacoma Communication finish.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-comm-research-declare", "Communication declaration baseline", [
+              "The current Communication guidance says students declare the major by completing either TCOM 201 Media and Society or TCOM 230 Media Globalization and Citizenship with a minimum grade of 2.5.",
+              "The department also states that no more than 15 transfer credits may be applied toward the Communication degree and that transfer students should expect roughly 2 years to finish after transfer.",
+            ]),
+            degreeMapSection("uwt-comm-research-structure", "Communication research track structure", [
+              "The Research Track requires 55 communication credits, including at least 20 upper-division credits, inside the 180-credit bachelor's degree.",
+              "Its foundation block is TWRT 211 plus 1 theory-and-methods course chosen from TCOM 444 or TCOM 453.",
+              "The public track guidance then uses a 45-credit research-oriented course structure that includes at least 20 upper-division TCOM credits and allows the thesis-style TCOM 495 capstone inside the research finish.",
+            ]),
+          ],
+          manualReviewNotes: [
+            "Use this path when the student is intentionally choosing Tacoma Communication's research track.",
+          ],
+        }
+      ),
+    ],
+  },
+  [buildPlannerLookupKey("uw-tacoma", "Computer Science and Systems (BA)")]: {
+    officialLinks: [
+      {
+        label: "UW Tacoma CSS B.A. program details",
+        url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
+      },
+      {
+        label: "UW Tacoma course equivalency guide",
+        url: "https://www.tacoma.uw.edu/admissions/course-equivalency-guide",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-cssba-admission", "Computer Science and Systems B.A. admission baseline", [
+        "The current B.A. in CSS page treats admission as competitive and requires TMATH 124, TMATH 110, TCSS 101 or TCSS 141, TCSS 142, and TCSS 143 or approved equivalents.",
+        "The page also requires those prerequisites to be completed within the last 7 years, with at least a 2.5 cumulative prerequisite GPA, at least a 2.0 in each prerequisite, at least a 2.0 cumulative GPA in all college coursework, and at least 45 college-level credits before applying.",
+      ]),
+      degreeMapSection("uwt-cssba-core", "Computer Science and Systems B.A. required core", [
+        "The fixed B.A. curriculum starts with TCSS 101 or 141, then TCSS 142 and TCSS 143, and continues into TCSS 305, 321, 325, 342, 360, 371, and 496.",
+        "All courses counted in the major, including TCSS 142 and 143, must be completed with at least a 2.0, and the page says a course can only be repeated once.",
+      ]),
+      degreeMapSection("uwt-cssba-finish", "Computer Science and Systems B.A. interdisciplinary finish", [
+        "The B.A. then requires 20 additional credits of 300- or 400-level CSS electives, excluding TCSS 390.",
+        "Students must also complete a minor in another discipline, unless a previous bachelor's degree is being used in place of the minor requirement.",
+        "The public planning page also includes 15 credits of general electives and frames the degree around portfolio-based learning plus interdisciplinary application of computing.",
+      ]),
+    ],
+  },
+  [buildPlannerLookupKey("uw-tacoma", "Computer Science and Systems (BS)")]: {
+    officialLinks: [
+      {
+        label: "UW Tacoma CSS B.S. program details",
+        url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
+      },
+      {
+        label: "UW Tacoma course equivalency guide",
+        url: "https://www.tacoma.uw.edu/admissions/course-equivalency-guide",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-cssbs-admission", "Computer Science and Systems B.S. admission baseline", [
+        "The current B.S. in CSS page requires Calculus I, Calculus II, 1 lab-based science course other than astronomy, and TCSS 142 or an approved equivalent for admission preparation.",
+        "The page also expects at least 45 college-level credits, a minimum cumulative prerequisite GPA of 2.5, a minimum 2.0 in each prerequisite, and a minimum 2.0 cumulative GPA in all college coursework.",
+        "Its transfer-admission notes add that some students may need one additional approved lab-based science course to reach the 18 minimum lab-science credits required for graduation.",
+      ]),
+      degreeMapSection("uwt-cssbs-core", "Computer Science and Systems B.S. required core", [
+        "The current B.S. core is TCSS 305, 321, 325, 342, 343, 360, 371, 372, 380, and 422.",
+        "As with the B.A., all courses counted in the major must be completed with at least a 2.0 and can only be repeated once.",
+      ]),
+      degreeMapSection("uwt-cssbs-mathscience", "Computer Science and Systems B.S. additional math, science, and elective finish", [
+        "The B.S. adds TMATH 126, TMATH 208, and TMATH 390 beyond the admission baseline.",
+        "Students also complete 1 additional lab-based science course plus either a second additional lab-based science course or an extra 300- or 400-level math course other than TMATH 310.",
+        "The senior-elective rules then require 25 graded upper-division CSS elective credits, including 5 design-elective credits, 10 additional upper-division TCSS elective credits, and 10 more 400-level TCSS elective credits.",
+      ]),
+    ],
+  },
+  [buildPlannerLookupKey("uw-tacoma", "Criminal Justice (BA)")]: {
+    officialLinks: [
+      {
+        label: "UW Tacoma Criminal Justice admissions",
+        url: "https://www.tacoma.uw.edu/swcj/admissions",
+      },
+      {
+        label: "UW Tacoma Criminal Justice curriculum",
+        url: "https://www.tacoma.uw.edu/swcj/criminal-justice-campus-curriculum",
+      },
+      {
+        label: "UW Tacoma Criminal Justice overview",
+        url: "https://www.tacoma.uw.edu/swcj/criminal-justice",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-cj-admission", "Criminal Justice admission baseline", [
+        "The current Criminal Justice admission guidance requires students to be admitted to UW Tacoma, hold at least a 2.0 cumulative GPA, complete at least 45 college-level quarter credits before starting the campus major, and complete 5 credits of English composition with at least a 2.0.",
+        "The current campus program admits qualified students in autumn, winter, and spring quarters.",
+      ]),
+      degreeMapSection("uwt-cj-core", "Criminal Justice required curriculum", [
+        "The published campus curriculum describes Criminal Justice as a 65-credit major built from 45 credits of core coursework plus 20 credits of approved core electives.",
+        "The fixed core is T CRIM 225, 361, 362, 390, 370, 371, 372, 395, and 441.",
+        "The curriculum page also publishes the main sequencing rules inside the core: T CRIM 390 requires an introductory statistics course, T CRIM 371 requires T CRIM 225, and T CRIM 441 requires both T CRIM 371 and T CRIM 390.",
+      ]),
+      degreeMapSection("uwt-cj-electives", "Criminal Justice electives and completion rules", [
+        "Students complete 20 credits from the approved interdisciplinary core-elective lists published by the School of Social Work and Criminal Justice.",
+        "The current curriculum page also adds special limits inside that elective space, including a maximum of 5 elective credits total from T CRIM 409 and/or T CRIM 490 and a maximum of 10 elective credits from T CRIM 450.",
+        "All core and core-elective courses applied to the degree must be completed with at least a 2.0, and students must maintain a 2.0 GPA across major coursework.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Criminal Justice uses a fixed core plus a broad approved elective menu, so the final 20 elective credits should still be matched to the student's interests and the current quarter schedule.",
+    ],
+  },
+  [buildPlannerLookupKey("uw-tacoma", "Economics and Policy Analysis (BA)")]: {
+    officialLinks: [
+      {
+        label: "UW Tacoma Economics and Policy Analysis overview",
+        url: "https://www.tacoma.uw.edu/sias-new/socs-new/economics-and-policy-analysis-epa",
+      },
+      {
+        label: "UW Tacoma Economics and Policy Analysis major requirements",
+        url: "https://www.tacoma.uw.edu/sias/pppa/economics-and-policy-analysis-major-requirements",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-epa-lower", "Economics and Policy Analysis lower-division baseline", [
+        "The current EPA requirements page defines a 25-credit lower-division core made from TECON 200 or TBECON 220, TECON 201 or TBECON 221, TPHIL 251, TMATH 116 or TMATH 120, and TWRT 211.",
+        "The same public requirements also include transfer-equivalency notes showing that Green River ECON 201 and ECON 202 can satisfy Tacoma's microeconomics and macroeconomics entry points.",
+      ]),
+      degreeMapSection("uwt-epa-upper", "Economics and Policy Analysis upper-division structure", [
+        "After the lower-division baseline, students complete the 5-credit junior seminar TECON 310 Research Seminar in Economics.",
+        "The upper-division major then requires 30 credits of 300- or 400-level TECON coursework, with at least 20 of those credits at the 400 level.",
+        "The current published EPA menu includes courses such as TECON 316, 320, 321, 325, 350, 360, 361, 362, 370, 410, 418, 421, 430, 441, 450, 470, and 496.",
+      ]),
+      degreeMapSection("uwt-epa-capstone", "Economics and Policy Analysis capstone and honors option", [
+        "The degree finishes with the 5-credit capstone TECON 480 Seminar in Economics Analysis.",
+        "Students then complete enough general-education and elective coursework to reach the 180-credit minimum for the bachelor's degree.",
+        "The public materials also describe an honors path that adds TBECON 420, TBECON 421, and either TBECON 422 or TMATH 410, together with the department's published GPA thresholds for honors.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "EPA has a clear shared economics core, but the upper-division TECON menu and the honors route still make the final course plan somewhat student-specific.",
+    ],
+  },
+  [buildPlannerLookupKey("uw-tacoma", "Education (BA)")]: {
+    officialLinks: [
+      {
+        label: "UW Tacoma B.A. in Education overview",
+        url: "https://www.tacoma.uw.edu/soe/bachelor-arts-education",
+      },
+      {
+        label: "UW Tacoma School of Education application information",
+        url: "https://www.tacoma.uw.edu/soe/application-information",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-education-admission", "Education admission baseline", [
+        "The current B.A. in Education admissions guidance expects students to be admitted to UW Tacoma and complete the published prerequisite pattern before entering the campus major, including introductory psychology, an introductory ethnic studies, gender studies, or service-learning course, and English composition.",
+        "The School of Education materials also frame the program around GPA-based review together with the department's current application steps and timing.",
+      ]),
+      degreeMapSection("uwt-education-structure", "Education degree and endorsement structure", [
+        "The current Tacoma B.A. in Education is organized around elementary education preparation together with a dual endorsement path, currently Special Education or English Language Learners.",
+        "The public program page points students to the current program plans and handbook because the endorsement path shapes the detailed upper-division sequence.",
+      ]),
+      degreeMapSection("uwt-education-curriculum", "Education curriculum and field sequence", [
+        "The published curriculum is built from prerequisite and cognate content such as English, social studies, natural sciences, and mathematics for teachers, followed by an upper-division education core and supervised field experiences.",
+        "The fieldwork and methods courses are cohort-sequenced, so the exact quarter-by-quarter finish should follow the current School of Education plan rather than be treated as a fully free-choice upper-division menu.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "The exact final sequence depends on the student's endorsement path and the current School of Education program-plan year.",
+    ],
+  },
+  [buildPlannerLookupKey("uw-tacoma", "Environmental Science (BS)")]: {
+    officialLinks: [
+      {
+        label: "UW Tacoma Environmental Science overview",
+        url: "https://www.tacoma.uw.edu/sias/sam/environmental-science",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-envsci-admission", "Environmental Science admission baseline", [
+        "The current Environmental Science page requires students to complete at least 45 lower-division quarter credits before declaring the major.",
+        "The same page describes a 63-credit lower-division preparation set and notes that the prerequisite science work should normally be completed within the last 5 years.",
+      ]),
+      degreeMapSection("uwt-envsci-core", "Environmental Science core structure", [
+        "The current public materials describe Environmental Science as a 135-credit degree built from a 20-credit core plus dedicated environmental law and policy, ethics, social science and environment, and humanities and environment requirements.",
+        "The page also frames the degree as a science-heavy campus major that expects students to arrive with substantial lower-division math and laboratory science already completed.",
+      ]),
+      degreeMapSection("uwt-envsci-options", "Environmental Science options and capstone", [
+        "The current major information supports a standard Environmental Science path together with option-based finishes such as Conservation Biology and Ecology and Geoscience.",
+        "Students then complete the program through the published capstone, research, or internship finish and enough additional coursework to satisfy the degree and option rules.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Environmental Science has multiple finish paths, so the exact upper-division list should still be confirmed once the student chooses the standard, ecology, or geoscience route.",
+    ],
+  },
+  [buildPlannerLookupKey("uw-tacoma", "Environmental Sustainability (BA)")]: {
+    officialLinks: [
+      {
+        label: "UW Tacoma Environmental Sustainability overview",
+        url: "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-envsus-admission", "Environmental Sustainability admission baseline", [
+        "The current Environmental Sustainability page requires at least 45 lower-division quarter credits before declaring the major.",
+        "Its public planning guidance describes a 37- to 38-credit lower-division preparation set that should normally be completed within the last 5 years.",
+      ]),
+      degreeMapSection("uwt-envsus-core", "Environmental Sustainability core and capstone", [
+        "The campus page describes Environmental Sustainability as a 100-credit major built from a 40-credit core plus a capstone of at least 3 credits.",
+        "The shared core is then paired with option work that lets students emphasize policy, communication, leadership, or education.",
+      ]),
+      degreeMapSection("uwt-envsus-options", "Environmental Sustainability option structure", [
+        "The current options are Policy and Law, Environmental Communication, Business and Non-Profit Leadership, and Education.",
+        "Because the option determines a meaningful part of the upper-division finish, students should treat the final sequence as option-specific rather than universal.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Environmental Sustainability has a clear shared core, but the upper-division finish still depends on the chosen option.",
+    ],
+    pathways: [
+      plannerPathway(
+        "policy-law-option",
+        "Policy and Law option",
+        "Best when the student wants the Environmental Sustainability option centered on policy, regulation, and public-law coursework.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-envsus-policy-admission", "Environmental Sustainability admission baseline", [
+              "The current Environmental Sustainability page requires at least 45 lower-division quarter credits before declaring the major.",
+              "Its public planning guidance describes a 37- to 38-credit lower-division preparation set that should normally be completed within the last 5 years.",
+            ]),
+            degreeMapSection("uwt-envsus-policy-route", "Environmental Sustainability Policy and Law option", [
+              "The campus page describes Environmental Sustainability as a 100-credit major built from a 40-credit core plus a capstone of at least 3 credits.",
+              "The current options page identifies Policy and Law as one of the four formal finishes and builds it from the shared core plus policy- and law-focused upper-division option coursework.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the Tacoma Environmental Sustainability Policy and Law option. Favor Green River policy, government, law-adjacent, and environmental-social-science preparation instead of treating all option paths as interchangeable.",
+        }
+      ),
+      plannerPathway(
+        "environmental-communication-option",
+        "Environmental Communication option",
+        "Best when the student wants the communication- and media-facing Environmental Sustainability finish.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-envsus-comm-admission", "Environmental Sustainability admission baseline", [
+              "The current Environmental Sustainability page requires at least 45 lower-division quarter credits before declaring the major.",
+              "Its public planning guidance describes a 37- to 38-credit lower-division preparation set that should normally be completed within the last 5 years.",
+            ]),
+            degreeMapSection("uwt-envsus-comm-route", "Environmental Sustainability Environmental Communication option", [
+              "The campus page describes Environmental Sustainability as a 100-credit major built from a 40-credit core plus a capstone of at least 3 credits.",
+              "The current options page identifies Environmental Communication as one of the four formal finishes and builds it from the shared core plus communication-focused upper-division option coursework.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the Tacoma Environmental Sustainability Environmental Communication option. Favor Green River writing, communication, and public-facing environmental coursework where available.",
+        }
+      ),
+      plannerPathway(
+        "business-nonprofit-leadership-option",
+        "Business and Non-Profit Leadership option",
+        "Best when the student wants the leadership- and nonprofit-management Environmental Sustainability finish.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-envsus-business-admission", "Environmental Sustainability admission baseline", [
+              "The current Environmental Sustainability page requires at least 45 lower-division quarter credits before declaring the major.",
+              "Its public planning guidance describes a 37- to 38-credit lower-division preparation set that should normally be completed within the last 5 years.",
+            ]),
+            degreeMapSection(
+              "uwt-envsus-business-route",
+              "Environmental Sustainability Business and Non-Profit Leadership option",
+              [
+                "The campus page describes Environmental Sustainability as a 100-credit major built from a 40-credit core plus a capstone of at least 3 credits.",
+                "The current options page identifies Business and Non-Profit Leadership as one of the four formal finishes and builds it from the shared core plus leadership- and nonprofit-oriented upper-division option coursework.",
+              ]
+            ),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the Tacoma Environmental Sustainability Business and Non-Profit Leadership option. Favor Green River business, management, nonprofit, and policy-support coursework where available.",
+        }
+      ),
+      plannerPathway(
+        "education-option",
+        "Education option",
+        "Best when the student wants the education-facing Environmental Sustainability finish.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-envsus-education-admission", "Environmental Sustainability admission baseline", [
+              "The current Environmental Sustainability page requires at least 45 lower-division quarter credits before declaring the major.",
+              "Its public planning guidance describes a 37- to 38-credit lower-division preparation set that should normally be completed within the last 5 years.",
+            ]),
+            degreeMapSection("uwt-envsus-education-route", "Environmental Sustainability Education option", [
+              "The campus page describes Environmental Sustainability as a 100-credit major built from a 40-credit core plus a capstone of at least 3 credits.",
+              "The current options page identifies Education as one of the four formal finishes and builds it from the shared core plus education-focused upper-division option coursework.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the Tacoma Environmental Sustainability Education option. Favor Green River education, development, and community-learning support courses where available.",
+        }
+      ),
+    ],
+  },
+  [buildPlannerLookupKey("uw-tacoma", "Ethnic, Gender and Labor Studies (BA)")]: {
+    officialLinks: [
+      {
+        label: "UW Tacoma Ethnic, Gender and Labor Studies overview",
+        url: "https://www.tacoma.uw.edu/sias-new/socs-new/ethnic-gender-and-labor-studies",
+      },
+      {
+        label: "UW Tacoma Ethnic Studies option",
+        url: "https://www.tacoma.uw.edu/sias-new/socs-new/ethnic-studies-option",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-egls-overall", "Ethnic, Gender and Labor Studies shared major structure", [
+        "The current Ethnic, Gender and Labor Studies materials describe a 60-credit major within the 180-credit bachelor's degree.",
+        "The public overview splits the major into three options: Ethnic Studies, Gender Studies, and Labor Studies.",
+      ]),
+      degreeMapSection("uwt-egls-core", "Ethnic, Gender and Labor Studies shared core", [
+        "The shared core shown on the current pages includes TEGL 101, TWOMN 101, one labor or political-economy course, one ethnic-content course, and one methods course.",
+        "Those common requirements create the lower structure students build on before moving into option-specific upper-division work.",
+      ]),
+      degreeMapSection("uwt-egls-options", "Ethnic, Gender and Labor Studies option finish", [
+        "After the shared core, students complete option-specific coursework and additional upper-division electives inside the Ethnic Studies, Gender Studies, or Labor Studies path they choose.",
+        "The current option pages make clear that the final upper-division list varies by option rather than being one single universal sequence for all EGLS majors.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "EGLS is explicitly option-based, so the final upper-division course list should be matched to the student's chosen Ethnic, Gender, or Labor path.",
+    ],
+    pathways: [
+      plannerPathway(
+        "ethnic-studies-option",
+        "Ethnic Studies option",
+        "Best when the student wants the Tacoma EGLS finish centered on race, ethnicity, and community studies.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-egls-ethnic-overall", "Ethnic, Gender and Labor Studies shared major structure", [
+              "The current Ethnic, Gender and Labor Studies materials describe a 60-credit major within the 180-credit bachelor's degree.",
+              "The public overview splits the major into three options: Ethnic Studies, Gender Studies, and Labor Studies.",
+            ]),
+            degreeMapSection("uwt-egls-ethnic-route", "Ethnic Studies option", [
+              "After the shared core, students complete option-specific coursework inside the Ethnic Studies path.",
+              "The current option materials describe this route as the interdisciplinary study of race and ethnicity across areas such as history, literature, politics, economics, sociology, and gender studies.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the Tacoma EGLS Ethnic Studies option. Favor Green River ethnic-studies-adjacent history, sociology, politics, and culture coursework where available.",
+        }
+      ),
+      plannerPathway(
+        "gender-studies-option",
+        "Gender Studies option",
+        "Best when the student wants the Tacoma EGLS finish centered on gender and sexuality studies.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-egls-gender-overall", "Ethnic, Gender and Labor Studies shared major structure", [
+              "The current Ethnic, Gender and Labor Studies materials describe a 60-credit major within the 180-credit bachelor's degree.",
+              "The public overview splits the major into three options: Ethnic Studies, Gender Studies, and Labor Studies.",
+            ]),
+            degreeMapSection("uwt-egls-gender-route", "Gender Studies option", [
+              "After the shared core, students complete option-specific coursework inside the Gender Studies path.",
+              "The current option materials describe this route as focusing on gender roles and gender identity while emphasizing intersections with politics, literature, globalization, race, work, popular culture, and sexuality.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the Tacoma EGLS Gender Studies option. Favor Green River gender-, society-, culture-, and writing-adjacent coursework where available.",
+        }
+      ),
+      plannerPathway(
+        "labor-studies-option",
+        "Labor Studies option",
+        "Best when the student wants the Tacoma EGLS finish centered on work, labor, class, and political economy.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-egls-labor-overall", "Ethnic, Gender and Labor Studies shared major structure", [
+              "The current Ethnic, Gender and Labor Studies materials describe a 60-credit major within the 180-credit bachelor's degree.",
+              "The public overview splits the major into three options: Ethnic Studies, Gender Studies, and Labor Studies.",
+            ]),
+            degreeMapSection("uwt-egls-labor-route", "Labor Studies option", [
+              "After the shared core, students complete option-specific coursework inside the Labor Studies path.",
+              "The current option materials describe this route as studying work and workers through political, economic, and social developments that shape working life, with explicit attention to class, inequality, and the labor movement.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the Tacoma EGLS Labor Studies option. Favor Green River economics, labor-, class-, policy-, and sociology-adjacent coursework where available.",
+        }
+      ),
+    ],
+  },
+  [buildPlannerLookupKey("uw-tacoma", "Healthcare Leadership (BA)")]: {
+    officialLinks: [
+      {
+        label: "UW Tacoma Healthcare Leadership declaration guidance",
+        url: "https://www.tacoma.uw.edu/nursing/declare-healthcare-leadership-major",
+      },
+      {
+        label: "UW Tacoma Healthcare Leadership sample program plan",
+        url: "https://www.tacoma.uw.edu/nursing/healthcare-leadership-sample-program-plan",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-hcl-admission", "Healthcare Leadership admission baseline", [
+        "The current Healthcare Leadership declaration guidance requires admission to UW Tacoma, a minimum 2.0 cumulative GPA, at least 60 transferable quarter credits, and English composition.",
+        "The page also notes that students with professional credentials may need to submit proof of current licensure or certification and that the campus major uses an autumn-entry model.",
+      ]),
+      degreeMapSection("uwt-hcl-sequence", "Healthcare Leadership structured upper-division sequence", [
+        "The current sample program plan uses a structured upper-division sequence that includes THLTH 440, THLEAD 350, THLEAD 360, T HLTH 310, THLEAD 403, THLEAD 460, T HLTH 320, THLEAD 380, THLEAD 405, THLEAD 420, THLEAD 406, and THLEAD 480.",
+        "The published plan presents those courses across a fixed quarter-by-quarter progression rather than as a broad elective menu.",
+      ]),
+      degreeMapSection("uwt-hcl-finish", "Healthcare Leadership finish and electives", [
+        "The sample plan also includes 6 elective credits inside the final 90-credit Healthcare Leadership finish.",
+        "Students then complete the program through that cohort-style sequence and any additional graduation requirements needed to reach the bachelor's minimum.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Healthcare Leadership should be planned from the current sample program plan because the upper-division sequence is structured rather than highly flexible.",
+    ],
+  },
+  [buildPlannerLookupKey("uw-tacoma", "History (BA)")]: {
+    officialLinks: [
+      {
+        label: "UW Tacoma History overview",
+        url: "https://www.tacoma.uw.edu/sias/socs/history",
+      },
+      {
+        label: "UW Tacoma Labor and Social Movements option",
+        url: "https://www.tacoma.uw.edu/sias-new/socs-new/labor-and-social-movements-option",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-history-overall", "History admission and overall structure", [
+        "The current Tacoma History materials describe a 60-credit major inside the 180-credit bachelor's degree.",
+        "The public page also presents History as either a general option or a themed option-based finish rather than as one single static upper-division path.",
+      ]),
+      degreeMapSection("uwt-history-core", "History shared core", [
+        "The shared History foundation shown across the current materials is THIST 150, THIST 151, THIST 200, THIST 201, THIST 380, and THIST 498.",
+        "That common core provides the baseline before students move into the general route or one of the themed option finishes.",
+      ]),
+      degreeMapSection("uwt-history-options", "History option finish", [
+        "The major then branches into a general option or thematic paths such as Arts, Culture, and Society; Global History; Labor and Social Movements; and Power, Gender, and Identity.",
+        "The exact upper-division THIST coursework depends on the chosen option, with the public materials emphasizing option-specific credit patterns rather than one universal list for all History majors.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "History is option-based, so the final upper-division course list should be confirmed once the student chooses the general or themed pathway.",
+    ],
+  },
+  [buildPlannerLookupKey("uw-tacoma", "Information Technology (BS)")]: {
+    officialLinks: [
+      {
+        label: "UW Tacoma Information Technology program details",
+        url: "https://www.tacoma.uw.edu/set/programs/undergrad/it",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+      {
+        label: "UW Tacoma course equivalency guide",
+        url: "https://www.tacoma.uw.edu/admissions/course-equivalency-guide",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-it-admission", "Information Technology admission baseline", [
+        "The current Information Technology page requires Calculus I, one lab-based science course other than astronomy, and TCSS 142 or an approved equivalent as the main admission-preparation set.",
+        "The same page also expects at least 45 college-level credits, a minimum cumulative prerequisite GPA of 2.5, at least a 2.0 in each prerequisite course, and at least a 2.0 cumulative GPA in all college coursework.",
+        "Its transfer notes also add that some students may need an additional approved lab-based science course to reach the 18 minimum lab-science credits required for graduation.",
+      ]),
+      degreeMapSection("uwt-it-core", "Information Technology required core", [
+        "The current IT core is TCSS 305, 321, 325, 340, 342, 371, 372, 460, and 483.",
+        "The public page frames that required set around networking, systems administration, cybersecurity, databases, and enterprise-oriented applied computing work.",
+      ]),
+      degreeMapSection("uwt-it-finish", "Information Technology additional math/science and electives", [
+        "Beyond the admission baseline, the major adds TMATH 126, TMATH 208, 5 more programming credits, and one additional approved lab-based science course.",
+        "Students then complete 20 graded upper-division IT or CSS elective credits, including the published mix of approved IT electives and additional IT or CSS electives.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Information Technology has a stable public core, but the approved upper-division elective menu should still be checked against the student's intended catalog year.",
+    ],
+  },
+  [buildPlannerLookupKey("uw-tacoma", "Interdisciplinary Arts and Sciences (BA)")]: {
+    officialLinks: [
+      {
+        label: "UW Tacoma Interdisciplinary Arts and Sciences overview",
+        url: "https://www.tacoma.uw.edu/sias-new/socs-new/interdisciplinary-arts-and-sciences",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-ias-overall", "Interdisciplinary Arts and Sciences overall structure", [
+        "The current Interdisciplinary Arts and Sciences page describes a 67-credit major designed for broad customization across the arts, humanities, and social sciences.",
+        "The public materials also make clear that the degree is intentionally flexible inside a published category structure rather than built from one narrow fixed course list.",
+      ]),
+      degreeMapSection("uwt-ias-core", "Interdisciplinary Arts and Sciences core", [
+        "The current core is 22 credits built from TIAS 305 plus one course from each of the current Lists A, B, C, and D published on the campus page.",
+        "That shared core provides the framework students then use to build the rest of the major through category-based elective choices.",
+      ]),
+      degreeMapSection("uwt-ias-electives", "Interdisciplinary Arts and Sciences elective distribution", [
+        "Students complete 45 additional elective credits across the paired category sets shown on the current page.",
+        "The current rules also require at least 35 upper-division credits in the major and at least 20 credits at the 400 level, so the exact finish remains student-specific within the published distribution requirements.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "IAS is a category-based customizable major, so the exact elective mix should always be reviewed against the student's own theme and the current SIAS guidance.",
+    ],
+    grcCourseListGuidance:
+      "Custom Green River course set required. Tacoma IAS is a category-based customizable major, so the Green River plan should be built around the student's theme and the current SIAS category rules rather than one universal fixed course list.",
+  },
+  [buildPlannerLookupKey("uw-tacoma", "Interdisciplinary Arts and Sciences: Individually-designed (BA)")]: {
+    officialLinks: [
+      {
+        label: "UW Tacoma individually-designed concentration overview",
+        url: "https://www.tacoma.uw.edu/sias-new/socs-new/individually-designed-concentration",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-idc-proposal", "Individually-designed concentration proposal baseline", [
+        "The current individually-designed concentration guidance centers the degree on a unifying theme that must be proposed with a faculty sponsor and SIAS adviser approval.",
+        "The public materials also say the proposal should be submitted by the end of the junior year so the custom concentration can be approved before the final upper-division sequence is built.",
+      ]),
+      degreeMapSection("uwt-idc-structure", "Individually-designed concentration major structure", [
+        "The current structure is a 55-credit concentration plus a 5-credit thesis or comparable culminating project.",
+        "Unlike a fixed campus major, the concentration is built from the student's approved proposal rather than one universal published course sequence.",
+      ]),
+      degreeMapSection("uwt-idc-rules", "Individually-designed concentration graduation rules", [
+        "The public guidance still attaches the concentration to the campus-wide graduation framework, including 180 total credits, 45 upper-division credits, 45 SIAS-course credits, breadth distribution requirements, and the thesis or capstone finish.",
+        "Because the concentration is proposal-based, the exact course list is always custom even when those overall graduation rules stay fixed.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "This row is inherently proposal-based, so there is never one universal exact course sheet in the same sense as a fixed departmental major.",
+    ],
+    grcCourseListGuidance:
+      "Custom Green River course set required. This Tacoma row is proposal-based, so the planner should keep the Green River list fully custom and tied to the student's approved concentration, faculty sponsor, and SIAS adviser review.",
+  },
+  [buildPlannerLookupKey("uw-tacoma", "Law and Policy (BA)")]: {
+    officialLinks: [
+      {
+        label: "UW Tacoma Law and Policy overview",
+        url: "https://www.tacoma.uw.edu/sias/socs/law-and-policy",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+      {
+        label: "UW Tacoma course equivalency guide",
+        url: "https://www.tacoma.uw.edu/admissions/course-equivalency-guide",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-lawpolicy-overall", "Law and Policy overall degree structure", [
+        "The current Tacoma Law and Policy page describes a 65-credit B.A. that must include at least 45 upper-division credits with at least a 2.0 GPA in coursework applied to the major.",
+        "The public materials also frame the major as an interdisciplinary law, society, and public-policy degree rather than a single narrow pre-law sequence.",
+      ]),
+      degreeMapSection("uwt-lawpolicy-core", "Law and Policy shared core", [
+        "The current shared structure begins with 20 foundation credits: one LAW I course from TLAW 150 or TLAW 215, one methods course from TPHIL 250 or TPHIL 251, and both TLAW 363 and TWRT 211.",
+        "Students then complete one 5-credit course in Policy and Politics, one 5-credit course in Law and Social Inequality, and one 5-credit course in Law in a Global Context from the current approved Tacoma menus.",
+      ]),
+      degreeMapSection("uwt-lawpolicy-electives", "Law and Policy electives and capstone", [
+        "After the shared core, students complete 25 additional elective credits chosen from the current approved Law and Policy elective list, with those courses counting in addition to the core requirements.",
+        "The degree then finishes with a 5-credit capstone or approved internship experience such as TPOLS 480, TPOLS 496, TPOLS 497, or TLAW 496, together with enough remaining coursework to reach the bachelor's minimum.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Law and Policy has a stable shared structure, but the specific policy, inequality, global-context, and elective selections still vary by student interest.",
+    ],
+  },
+  [buildPlannerLookupKey("uw-tacoma", "Mathematics (BS)")]: {
+    officialLinks: [
+      {
+        label: "UW Tacoma Mathematics overview",
+        url: "https://www.tacoma.uw.edu/sias/sam/mathematics",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+      {
+        label: "UW Tacoma course equivalency guide",
+        url: "https://www.tacoma.uw.edu/admissions/course-equivalency-guide",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-math-overall", "Mathematics overall degree structure", [
+        "The current Tacoma Mathematics page describes a 79-credit B.S. within the 180-credit bachelor's degree and requires at least 45 lower-division credits before students declare the major.",
+        "The degree is designed around algebra, analysis, and geometry, with students completing a two-quarter sequence in one of those branches as part of the upper-division finish.",
+      ]),
+      degreeMapSection("uwt-math-core", "Mathematics required core and extended core", [
+        "The current 49-credit core is TMATH 124, 125, 126, 207, 208, 224, 300, 350, 402, and 424.",
+        "The page then adds a 5-credit extended core built from either TMATH 403 or TMATH 425, with the public grade policy requiring at least a 1.5 in TMATH 402 and TMATH 424 to satisfy major requirements and a 2.0 to continue into the second course of the sequence.",
+      ]),
+      degreeMapSection("uwt-math-electives", "Mathematics elective areas and capstone", [
+        "Students complete 20 elective credits using the published elective areas in Computing, Math in Culture, Modeling, Probability and Statistics, and Topology and Geometry, together with approved general electives such as research, internship, and additional upper-division math work.",
+        "The degree finishes with the 5-credit capstone TMATH 450, and the current page says students must begin the capstone-related research experience before TMATH 450 and co-enroll in TMATH 351 while taking the capstone.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Mathematics has a clear published core, but the elective-area mix and the algebra-versus-analysis branch should still be matched to the student's goals.",
+    ],
+  },
+  [buildPlannerLookupKey("uw-tacoma", "Nursing (BSN)")]: {
+    officialLinks: [
+      {
+        label: "UW Tacoma RN-BSN overview",
+        url: "https://www.tacoma.uw.edu/nursing/bachelor-science-nursing-rn-bsn",
+      },
+      {
+        label: "UW Tacoma RN-BSN application overview",
+        url: "https://www.tacoma.uw.edu/nursing/rn-bsn-application-overview",
+      },
+      {
+        label: "UW Tacoma RN-BSN sample program plans",
+        url: "https://www.tacoma.uw.edu/nursing/rn-bsn-sample-program-plans",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-nursing-admission", "Nursing RN-BSN admission baseline", [
+        "The current Tacoma Nursing page is for the RN-BSN pathway and requires at least 90 college-level credits, an associate degree or diploma in nursing, a current Washington RN license, one year of clinical practice, and a minimum 2.0 cumulative GPA.",
+        "The current application-overview page also lists the prerequisite course table as English Composition, Chemistry, Anatomy and Physiology I and II, Microbiology, and Statistics, all completed with at least a 2.0.",
+      ]),
+      degreeMapSection("uwt-nursing-structure", "Nursing RN-BSN program structure", [
+        "The RN-BSN program is described as a hybrid program with in-person Wednesday meetings plus online coursework, and the public page says full-time students can complete it in as little as 3 quarters.",
+        "The current sample-plan page also says RN-BSN students must complete 45 credits in residence at UW Tacoma, including 10 credits of upper-division electives.",
+      ]),
+      degreeMapSection("uwt-nursing-sequence", "Nursing RN-BSN current sample sequence", [
+        "The current sample plans center on T NURS 360, 407, 410, 420, 440, 460, and the practicum T NURS 414, together with upper-division electives such as T HLTH 340 or T HLTH 415.",
+        "The public plans publish both summer-cohort and autumn-cohort pathways, so the exact quarter-by-quarter schedule depends on the student's entry cohort and part-time versus full-time plan.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Tacoma Nursing is an RN-BSN completion path rather than a traditional prelicensure BSN, so the final sequence should always follow the current cohort-specific RN-BSN program plan.",
+    ],
+  },
+  [buildPlannerLookupKey("uw-tacoma", "Politics, Philosophy and Economics (BA)")]: {
+    officialLinks: [
+      {
+        label: "UW Tacoma PP&E overview",
+        url: "https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-ppe",
+      },
+      {
+        label: "UW Tacoma PP&E major requirements",
+        url: "https://www.tacoma.uw.edu/sias/pppa/politics-philosophy-and-economics-ppe",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-ppe-overall", "Politics, Philosophy and Economics admission and overall structure", [
+        "The current Tacoma PP&E materials require at least 45 lower-division credits before declaration and describe the degree as a 65-credit B.A. that includes at least 45 upper-division credits and a capstone.",
+        "The public page presents PP&E as a structured interdisciplinary major that combines politics, philosophy, and economics rather than as a single-subject pathway.",
+      ]),
+      degreeMapSection("uwt-ppe-core", "Politics, Philosophy and Economics shared core and methods", [
+        "The current PP&E degree requirements use a 20-credit shared core built from published Economics, Philosophy, and Politics lists, with students completing coursework across all three areas.",
+        "The same public requirements also add a 10-credit methods block made from TPHIL 250 Practical Reasoning and TPHIL 251 Data and Discourse.",
+      ]),
+      degreeMapSection("uwt-ppe-options", "Politics, Philosophy and Economics specialization and capstone", [
+        "Students then complete one specialization: Politics and Philosophy, Economics, or International Studies.",
+        "The current PP&E requirements describe each specialization as four option courses plus two additional courses from one of the other PP&E option lists, and all majors finish with the capstone TPOLS 480 Politics, Philosophy and Public Affairs Seminar.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "PP&E has a clear shared structure, but the upper-division finish still depends on which specialization the student chooses.",
+    ],
+  },
+  [buildPlannerLookupKey("uw-tacoma", "Psychology (BA)")]: {
+    officialLinks: [
+      {
+        label: "UW Tacoma Psychology overview",
+        url: "https://www.tacoma.uw.edu/sias/socs/psychology",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-psych-admission", "Psychology admission baseline", [
+        "The current Tacoma Psychology page requires a lower-division preparation set made from one introductory psychology course, two foundation psychology courses from different areas, one introductory statistics course, and one introductory methods course, each completed with at least a 2.0.",
+        "The public prerequisite groups are developmental psychology, abnormal psychology, social psychology, human cognition, and biological bases of behavior, with students choosing two courses from more than one of those areas.",
+      ]),
+      degreeMapSection("uwt-psych-core", "Psychology research methods and core areas", [
+        "The current upper-division major includes TPSYCH 309 Fundamentals of Psychological Research II and 15 core-course credits spread across at least two core areas.",
+        "The current core structure includes Clinical, Developmental, Cognitive or Experimental, Social or Applied, and General Psychology groupings, with courses such as TPSYCH 300, 306, 310-314, 319-322, 350-352, and 344-362 appearing in those current published lists.",
+      ]),
+      degreeMapSection("uwt-psych-finish", "Psychology advanced topics and outside-major credits", [
+        "Beyond the core, Tacoma Psychology currently requires at least 10 credits of 400-level advanced topics, plus 5 additional credits from any 300- or 400-level TPSYCH course or an approved internship, directed readings, or research course.",
+        "The current degree requirements also add 15 credits of upper-division coursework outside Psychology, including Arts and Humanities, Social Sciences, and one additional upper-division course from Arts and Humanities, Social Sciences, or Natural Sciences.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Psychology has a strong published framework, but students still need advising help choosing core areas, advanced topics, and the 15 upper-division non-psychology credits.",
+    ],
+  },
+  [buildPlannerLookupKey("uw-tacoma", "Social Welfare (BA)")]: {
+    officialLinks: [
+      {
+        label: "UW Tacoma BASW admission requirements",
+        url: "https://www.tacoma.uw.edu/swcj/basw-admission-requirements-and-how-apply",
+      },
+      {
+        label: "UW Tacoma BASW curriculum",
+        url: "https://www.tacoma.uw.edu/swcj/basw-curriculum",
+      },
+      {
+        label: "UW Tacoma BASW application",
+        url: "https://www.tacoma.uw.edu/swcj/basw-application",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-basw-admission", "Social Welfare admission baseline", [
+        "The current BASW admission page says the Social Welfare major admits an autumn-only cohort and that the core classes must be taken in sequence.",
+        "To be considered, students must be admitted to UW Tacoma, hold at least a 2.0 cumulative GPA, complete at least 75 college-level quarter credits before the program starts, and complete English composition plus introductory psychology and sociology with at least a 2.0.",
+      ]),
+      degreeMapSection("uwt-basw-core", "Social Welfare required core curriculum", [
+        "The current BASW curriculum describes a 58-credit hybrid program built from foundation courses, social work practice courses, and practicum with seminars.",
+        "The published core set is TSOCWF 300, 310, 311, 312, 320, 390, 402, 404, 405, 406, 414, and 415, and the page notes that a successful statistics course is a prerequisite for TSOCWF 390.",
+      ]),
+      degreeMapSection("uwt-basw-finish", "Social Welfare sequencing and completion rules", [
+        "The current curriculum page says students complete the BASW core in sequence over a two-year period, maintain at least a 2.5 GPA in major coursework, and earn at least a 2.0 in each BASW core course.",
+        "Students also complete 10 upper-division Social Welfare elective credits and enough general-education and elective work to reach the 180-credit minimum for the bachelor's degree.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "BASW is a strict cohort and sequence-based program, so students should plan it from the current model program of study instead of treating the upper division as freely reorderable.",
+    ],
+  },
+  [buildPlannerLookupKey("uw-tacoma", "Spanish Language and Cultures (BA)")]: {
+    officialLinks: [
+      {
+        label: "UW Tacoma Spanish Language and Cultures overview",
+        url: "https://www.tacoma.uw.edu/sias/cac/spanish-language-and-cultures",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-spanish-admission", "Spanish Language and Cultures admission baseline", [
+        "The current Tacoma Spanish page says students must demonstrate proficiency at the 300 level in Spanish through placement or coursework before declaring the major.",
+        "The same page encourages students to prepare through interdisciplinary coursework tied to Spanish and Latin American culture.",
+      ]),
+      degreeMapSection("uwt-spanish-core", "Spanish Language and Cultures core structure", [
+        "The current 35-credit core is TSPAN 301, 302, 303, 351, and 352, plus 10 credits of TSPAN 299, 393, or 496 foreign study, experiential learning, or internship work.",
+        "The current notes say TSPAN 301, 302, and 303 are recommended in sequence but not strictly required, and native or heritage speakers can substitute another 300- or 400-level Spanish course in place of TSPAN 302.",
+      ]),
+      degreeMapSection("uwt-spanish-electives", "Spanish Language and Cultures elective requirements", [
+        "Students then complete 25 elective credits, with 10 credits from the Spanish Language list and 15 credits from the Literature, Film, or Culture in Spanish list.",
+        "The current requirements also say the elective mix must include both 300-level and 400-level coursework, and the full major requires 60 upper-division credits overall.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Spanish has a clear published structure, but heritage-speaker substitution and study-abroad or experiential-credit details still deserve advisor review when building the exact final list.",
+    ],
+  },
+  [buildPlannerLookupKey("uw-tacoma", "Sustainable Urban Development (BA)")]: {
+    officialLinks: [
+      {
+        label: "UW Tacoma Sustainable Urban Development overview",
+        url: "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-sud-admission", "Sustainable Urban Development admission baseline", [
+        "The current Sustainable Urban Development page requires a 2.0 cumulative GPA, at least 40 college-level credits, 5 credits of English composition, and an advising meeting to declare the major.",
+        "The public page also says the major admits students every quarter.",
+      ]),
+      degreeMapSection("uwt-sud-current", "Sustainable Urban Development current degree structure", [
+        "Beginning spring 2026, the published SUD curriculum is a 70- to 71-credit major built from 20 credits of shared curriculum, 25 to 26 credits of foundation coursework, and a 25-credit formal option.",
+        "The shared curriculum is T URB 101, 103, 110, 200, and 403, while the foundation list includes courses such as T URB 220, T SUD 222, T SUD 240, T GIS 311, T URB 314, T URB 322, T URB 410, T SUD 444, and T SUD 445.",
+      ]),
+      degreeMapSection("uwt-sud-options", "Sustainable Urban Development option and completion rules", [
+        "Students choose either the Community Engagement option or the GIS option. Community Engagement uses T URB 235, T URB 220, T UDE 340, plus two more approved option courses, while the GIS option uses the sequential GIS Certificate courses T GIS 311, 312, 313, 414, and 415.",
+        "The current page also notes that the GIS option is cohort-based and requires a 2.5 or better in each GIS course, and that students admitted before spring 2026 may remain on the older pre-revision curriculum if they do not switch to the current plan.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "SUD now has a revised spring-2026 structure, so the exact upper-division list should still be tied to the student's admit year and chosen Community Engagement or GIS option.",
+    ],
+    pathways: [
+      plannerPathway(
+        "community-engagement-option",
+        "Community Engagement option",
+        "Best when the student wants the people-, planning-, and community-facing Sustainable Urban Development route.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-sud-community-admission", "Sustainable Urban Development admission baseline", [
+              "The current Sustainable Urban Development page requires a 2.0 cumulative GPA, at least 40 college-level credits, 5 credits of English composition, and an advising meeting to declare the major.",
+              "The public page also says the major admits students every quarter.",
+            ]),
+            degreeMapSection("uwt-sud-community-route", "Sustainable Urban Development Community Engagement option", [
+              "Beginning spring 2026, the published SUD curriculum is a 70- to 71-credit major built from 20 credits of shared curriculum, 25 to 26 credits of foundation coursework, and a 25-credit formal option.",
+              "The current page says students choose either the Community Engagement option or the GIS option, and the Community Engagement option uses T URB 235, T URB 220, T UDE 340, plus two more approved option courses.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the Tacoma Sustainable Urban Development Community Engagement option. Favor Green River social-science, policy, community, and urban-studies-adjacent preparation instead of over-specializing into GIS early.",
+        }
+      ),
+      plannerPathway(
+        "gis-option",
+        "GIS option",
+        "Best when the student wants the GIS-certificate-based Sustainable Urban Development route.",
+        {
+          grcCourseList: ["GEOG& 100", "GEOG& 200", "GIS 202", "GIS 260"],
+          degreeMapSections: [
+            degreeMapSection("uwt-sud-gis-admission", "Sustainable Urban Development admission baseline", [
+              "The current Sustainable Urban Development page requires a 2.0 cumulative GPA, at least 40 college-level credits, 5 credits of English composition, and an advising meeting to declare the major.",
+              "The public page also says the major admits students every quarter.",
+            ]),
+            degreeMapSection("uwt-sud-gis-route", "Sustainable Urban Development GIS option", [
+              "Beginning spring 2026, the published SUD curriculum is a 70- to 71-credit major built from 20 credits of shared curriculum, 25 to 26 credits of foundation coursework, and a 25-credit formal option.",
+              "The current page says students choose either the Community Engagement option or the GIS option, and the GIS option uses the sequential GIS Certificate courses T GIS 311, 312, 313, 414, and 415.",
+              "The same page also says the GIS option is cohort-based and requires a 2.5 or better in each GIS course.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the Tacoma Sustainable Urban Development GIS option. Favor Green River GIS and geography preparation early because the Tacoma GIS finish is sequential and cohort-based.",
+        }
+      ),
+    ],
+  },
+  [buildPlannerLookupKey("uw-tacoma", "Urban Design (BS)")]: {
+    officialLinks: [
+      {
+        label: "UW Tacoma Urban Design overview",
+        url: "https://www.tacoma.uw.edu/urban-studies/bs-urban-design",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-ude-admission", "Urban Design admission baseline", [
+        "The current Urban Design page requires at least 40 college-level credits, 5 credits of English composition, and completion of the online Urban Design application, with priority consideration for applicants at a 2.7 GPA or higher.",
+        "The page also encourages pre-majors to take T GIS 311 and meet with the School of Urban Studies advisor before applying.",
+      ]),
+      degreeMapSection("uwt-ude-current", "Urban Design current degree structure", [
+        "Beginning winter 2026, the published Urban Design curriculum uses 20 credits of shared curriculum plus 61 credits of Urban Design core courses and general electives.",
+        "The current shared curriculum is T URB 101, 103, 110, 200, and 403, and the core is T GIS 311, T UDE 210, T URB 220, T UDE 260, T UDE 310, T UDE 340, T UDE 350, T UDE 360, T UDE 440, T UDE 450, T UDE 460, and one approved social-equity or housing course from the published option list.",
+      ]),
+      degreeMapSection("uwt-ude-legacy", "Urban Design legacy plan and transfer caveats", [
+        "The same page also keeps a separate plan for students admitted before winter 2026, built from 16 introductory credits, 57 core credits, 10 Sustainable Urban Development elective credits, and general electives.",
+        "The public page adds transfer-specific caveats for the older plan: some lower-division starred design-history, computer-graphics, or introductory-design preparation can transfer in, but the 300- and 400-level studio courses cannot be transferred into the major.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Urban Design now has a new winter-2026 curriculum and an older legacy plan, so the exact degree map should be tied to the student's admit year before locking the final sequence.",
+    ],
+  },
+  [buildPlannerLookupKey("uw-tacoma", "Urban Studies (BA)")]: {
+    officialLinks: [
+      {
+        label: "UW Tacoma Urban Studies overview",
+        url: "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
+      },
+      {
+        label: "UW Tacoma transfer planning",
+        url: "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-urbs-admission", "Urban Studies admission baseline", [
+        "The current Urban Studies page requires a 2.0 cumulative GPA, at least 40 college-level credits, 5 credits of English composition, and an advising meeting to declare the major.",
+        "The public page also says Urban Studies admits students every quarter.",
+      ]),
+      degreeMapSection("uwt-urbs-current", "Urban Studies current degree structure", [
+        "Beginning spring 2026, the current Urban Studies curriculum is a 70- to 71-credit degree built from 20 shared-curriculum credits, 25 to 26 credits of foundation coursework, and a 25-credit formal option.",
+        "The current shared courses are T URB 101, 103, 110, 200, and 403, and the foundation list includes choices such as T URB 210, 225, 250, 312, 316, 345, 432, 480, and T GIS 311.",
+      ]),
+      degreeMapSection("uwt-urbs-options", "Urban Studies option structure and legacy plan", [
+        "Students choose either the Community Engagement option or the GIS option. Community Engagement uses T URB 235, T URB 220, T UDE 340, plus two more approved option courses, while the GIS option follows the sequential GIS Certificate course set T GIS 311, 312, 313, 414, and 415.",
+        "The page also preserves a pre-spring-2026 legacy curriculum with introductory, foundation, methods, and formal-option blocks, so the exact degree map depends on whether the student stays on the older plan or follows the revised current one.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Urban Studies uses both current and legacy curriculum structures, and the GIS option is sequential, so the exact final list should always be matched to admit year and chosen option.",
+    ],
+    pathways: [
+      plannerPathway(
+        "community-engagement-option",
+        "Community Engagement option",
+        "Best when the student wants the people-, policy-, and place-based Urban Studies route.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-urbs-community-admission", "Urban Studies admission baseline", [
+              "The current Urban Studies page requires a 2.0 cumulative GPA, at least 40 college-level credits, 5 credits of English composition, and an advising meeting to declare the major.",
+              "The public page also says Urban Studies admits students every quarter.",
+            ]),
+            degreeMapSection("uwt-urbs-community-route", "Urban Studies Community Engagement option", [
+              "Beginning spring 2026, the current Urban Studies curriculum is a 70- to 71-credit degree built from 20 shared-curriculum credits, 25 to 26 credits of foundation coursework, and a 25-credit formal option.",
+              "The current page says students choose either the Community Engagement option or the GIS option, and the Community Engagement option uses T URB 235, T URB 220, T UDE 340, plus two more approved option courses.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the Tacoma Urban Studies Community Engagement option. Favor Green River policy, sociology, community, and urban-studies-adjacent preparation instead of over-specializing into GIS early.",
+        }
+      ),
+      plannerPathway(
+        "gis-option",
+        "GIS option",
+        "Best when the student wants the GIS-certificate-based Urban Studies route.",
+        {
+          grcCourseList: ["GEOG& 100", "GEOG& 200", "GIS 202", "GIS 260"],
+          degreeMapSections: [
+            degreeMapSection("uwt-urbs-gis-admission", "Urban Studies admission baseline", [
+              "The current Urban Studies page requires a 2.0 cumulative GPA, at least 40 college-level credits, 5 credits of English composition, and an advising meeting to declare the major.",
+              "The public page also says Urban Studies admits students every quarter.",
+            ]),
+            degreeMapSection("uwt-urbs-gis-route", "Urban Studies GIS option", [
+              "Beginning spring 2026, the current Urban Studies curriculum is a 70- to 71-credit degree built from 20 shared-curriculum credits, 25 to 26 credits of foundation coursework, and a 25-credit formal option.",
+              "The current page says students choose either the Community Engagement option or the GIS option, and the GIS option follows the sequential GIS Certificate course set T GIS 311, 312, 313, 414, and 415.",
+              "The page also preserves a pre-spring-2026 legacy curriculum, so the exact GIS route should still be matched to admit year.",
+            ]),
+          ],
+          grcCourseListGuidance:
+            "Use this route when the student wants the Tacoma Urban Studies GIS option. Favor Green River GIS and geography preparation early because the Tacoma GIS finish is sequential and catalog-year-sensitive.",
+        }
+      ),
+    ],
+  },
+  [buildPlannerLookupKey("uw-tacoma", "Writing Studies (BA)")]: {
+    officialLinks: [
+      {
+        label: "UW Tacoma Writing Studies overview",
+        url: "https://www.tacoma.uw.edu/sias/cac/writing-studies",
+      },
+      {
+        label: "UW Tacoma Creative Writing track",
+        url: "https://www.tacoma.uw.edu/sias/cac/creative-writing-track",
+      },
+      {
+        label: "UW Tacoma Technical Communication track",
+        url: "https://www.tacoma.uw.edu/sias/cac/technical-communication-track",
+      },
+      {
+        label: "UW Tacoma Rhetoric, Writing and Social Change track",
+        url: "https://www.tacoma.uw.edu/sias/cac/rhetoric-writing-and-social-change-track",
+      },
+    ],
+    degreeMapSections: [
+      degreeMapSection("uwt-writing-admission", "Writing Studies admission baseline", [
+        "The current Writing Studies page uses TCORE 101 or TWRT 121 together with TWRT 211 as the main admission preparation for the major.",
+        "The page also says students must complete a 5-credit composition-designated course with at least a 2.0.",
+      ]),
+      degreeMapSection("uwt-writing-overall", "Writing Studies overall track structure", [
+        "Writing Studies has three tracks: Creative Writing, Technical Communication, and Rhetoric, Writing and Social Change.",
+        "The current degree requirements say the Creative Writing and Rhetoric, Writing and Social Change tracks are 60-credit majors, while the Technical Communication track is a 65-credit major; all tracks require 45 upper-division credits and at least a 2.0 GPA in the major.",
+      ]),
+      degreeMapSection("uwt-writing-tracks", "Writing Studies track-specific foundations and electives", [
+        "The Creative Writing track begins with TWRT 200 and TLIT 101, the Technical Communication track begins with TWRT 291 plus one approved technical-writing foundation course, and the Rhetoric, Writing and Social Change track begins with TWRT 211 and TWRT 388.",
+        "Each track then completes its own upper-division elective structure: Creative Writing uses genre and advanced-writing electives, Technical Communication uses technical-communication and creative or scientific topics electives, and Rhetoric, Writing and Social Change uses rhetoric electives together with social-change electives.",
+      ]),
+    ],
+    manualReviewNotes: [
+      "Writing Studies is track-based, so the exact final course list should always be tied to the student's chosen Creative Writing, Technical Communication, or Rhetoric and Social Change path.",
+    ],
+    pathways: [
+      plannerPathway(
+        "creative-writing-track",
+        "Creative Writing track",
+        "Best when the student wants the literature and advanced-creative-writing version of Tacoma Writing Studies.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-writing-creative-admission", "Writing Studies admission baseline", [
+              "The current Writing Studies page uses TCORE 101 or TWRT 121 together with TWRT 211 as the main admission preparation for the major.",
+              "The page also says students must complete a 5-credit composition-designated course with at least a 2.0.",
+            ]),
+            degreeMapSection("uwt-writing-creative-structure", "Creative Writing track structure", [
+              "The Creative Writing track is one of the current three Writing Studies tracks and is structured as a 60-credit major path.",
+              "The public track pages say it begins with TWRT 200 and TLIT 101, then continues through genre and advanced-writing electives inside the broader Writing Studies degree.",
+            ]),
+          ],
+          manualReviewNotes: [
+            "Use this path when the student is intentionally targeting the Creative Writing track.",
+          ],
+        }
+      ),
+      plannerPathway(
+        "technical-communication-track",
+        "Technical Communication track",
+        "Best when the student wants the most applied professional-writing route inside Tacoma Writing Studies.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-writing-tech-admission", "Writing Studies admission baseline", [
+              "The current Writing Studies page uses TCORE 101 or TWRT 121 together with TWRT 211 as the main admission preparation for the major.",
+              "The page also says students must complete a 5-credit composition-designated course with at least a 2.0.",
+            ]),
+            degreeMapSection("uwt-writing-tech-structure", "Technical Communication track structure", [
+              "The Technical Communication track is the longest current Writing Studies route at 65 credits.",
+              "The public track pages say it begins with TWRT 291 plus one approved technical-writing foundation course, then continues through technical-communication and creative or scientific-topics electives.",
+            ]),
+          ],
+          manualReviewNotes: [
+            "Use this path when the student is intentionally targeting the Technical Communication track.",
+          ],
+        }
+      ),
+      plannerPathway(
+        "rhetoric-social-change-track",
+        "Rhetoric, Writing and Social Change track",
+        "Best when the student wants the rhetoric-heavy and social-change-focused Writing Studies finish.",
+        {
+          degreeMapSections: [
+            degreeMapSection("uwt-writing-rhetoric-admission", "Writing Studies admission baseline", [
+              "The current Writing Studies page uses TCORE 101 or TWRT 121 together with TWRT 211 as the main admission preparation for the major.",
+              "The page also says students must complete a 5-credit composition-designated course with at least a 2.0.",
+            ]),
+            degreeMapSection("uwt-writing-rhetoric-structure", "Rhetoric, Writing and Social Change track structure", [
+              "The Rhetoric, Writing and Social Change track is a 60-credit Writing Studies route.",
+              "The public track pages say it begins with TWRT 211 and TWRT 388, then continues through rhetoric electives together with social-change electives.",
+            ]),
+          ],
+          manualReviewNotes: [
+            "Use this path when the student is intentionally targeting the Rhetoric, Writing and Social Change track.",
+          ],
+        }
+      ),
+    ],
+  },
 };
 
 const MASTER_BANK_BY_ID = new Map(
@@ -6688,7 +17948,20 @@ function normalizePlannerLookupValue(value: string) {
     .trim();
 }
 
+function normalizePlannerLookupKeyValue(value: string) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 function buildPlannerLookupKey(campusId: TransferPlannerCampusId, title: string) {
+  return `${campusId}:${normalizePlannerLookupKeyValue(title)}`;
+}
+
+function buildPlannerMergeKey(campusId: TransferPlannerCampusId, title: string) {
   return `${campusId}:${normalizePlannerLookupValue(title)}`;
 }
 
@@ -6703,9 +17976,16 @@ function buildShortPlannerTitle(title: string) {
     .trim();
 }
 
-const MASTER_MAJOR_ROW_BY_KEY = new Map(
+const MASTER_MAJOR_ROW_BY_EXACT_KEY = new Map(
   TRANSFER_PLANNER_MASTER_MAJOR_ROWS.map((row) => [
     buildPlannerLookupKey(row.campusId, row.title),
+    row,
+  ] as const)
+);
+
+const MASTER_MAJOR_ROW_BY_KEY = new Map(
+  TRANSFER_PLANNER_MASTER_MAJOR_ROWS.map((row) => [
+    buildPlannerMergeKey(row.campusId, row.title),
     row,
   ] as const)
 );
@@ -6713,8 +17993,11 @@ const MASTER_MAJOR_ROW_BY_KEY = new Map(
 function getMasterRowForPlan(plan: TransferPlannerMajorPlan) {
   const aliasedTitle = TRANSFER_PLANNER_MASTER_TITLE_ALIASES[plan.id] ?? plan.title;
   return (
-    MASTER_MAJOR_ROW_BY_KEY.get(buildPlannerLookupKey(plan.campusId, aliasedTitle)) ??
-    MASTER_MAJOR_ROW_BY_KEY.get(buildPlannerLookupKey(plan.campusId, plan.shortTitle)) ??
+    MASTER_MAJOR_ROW_BY_EXACT_KEY.get(buildPlannerLookupKey(plan.campusId, aliasedTitle)) ??
+    MASTER_MAJOR_ROW_BY_EXACT_KEY.get(buildPlannerLookupKey(plan.campusId, plan.title)) ??
+    MASTER_MAJOR_ROW_BY_EXACT_KEY.get(buildPlannerLookupKey(plan.campusId, plan.shortTitle)) ??
+    MASTER_MAJOR_ROW_BY_KEY.get(buildPlannerMergeKey(plan.campusId, aliasedTitle)) ??
+    MASTER_MAJOR_ROW_BY_KEY.get(buildPlannerMergeKey(plan.campusId, plan.shortTitle)) ??
     null
   );
 }
@@ -6741,7 +18024,154 @@ function uniqueReferenceCourseLabels(items: string[]) {
   return uniqueItems;
 }
 
+function uniquePlannerStrings(items: string[]) {
+  const seen = new Set<string>();
+  const uniqueItems: string[] = [];
+
+  for (const item of items) {
+    const normalized = String(item ?? "").trim();
+    if (!normalized || seen.has(normalized)) continue;
+    seen.add(normalized);
+    uniqueItems.push(normalized);
+  }
+
+  return uniqueItems;
+}
+
+function uniquePlannerLinks(items: TransferPlannerLink[]) {
+  const seen = new Set<string>();
+  const uniqueItems: TransferPlannerLink[] = [];
+
+  for (const item of items) {
+    const key = String(item?.url ?? "").trim() || `${item.label}|${item.note ?? ""}`;
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    uniqueItems.push(item);
+  }
+
+  return uniqueItems;
+}
+
+function getChecklistReferenceCoursesFromItems(items: TransferPlannerChecklistItem[]) {
+  return uniqueReferenceCourseLabels(
+    items.flatMap((item) => [item.grcCourses, ...(item.alternatives ?? [])].flat())
+  );
+}
+
 function getChecklistReferenceCourses(plan: TransferPlannerMajorPlan) {
+  return getChecklistReferenceCoursesFromItems([
+    ...plan.applicationChecklist,
+    ...plan.beforeEnrollmentChecklist,
+    ...plan.stayAtGrcChecklist,
+  ]);
+}
+
+function materializePlannerPathway(pathway: TransferPlannerMajorPathway): TransferPlannerMajorPathway {
+  return {
+    ...pathway,
+    grcCourseList: uniqueReferenceCourseLabels([
+      ...(pathway.grcCourseList ?? []),
+      ...getChecklistReferenceCoursesFromItems([
+        ...(pathway.applicationChecklist ?? []),
+        ...(pathway.beforeEnrollmentChecklist ?? []),
+        ...(pathway.stayAtGrcChecklist ?? []),
+      ]),
+    ]),
+    advisorFlags: uniquePlannerStrings(pathway.advisorFlags ?? []),
+    officialLinks: uniquePlannerLinks(pathway.officialLinks ?? []),
+    manualReviewNotes: uniquePlannerStrings(pathway.manualReviewNotes ?? []),
+    grcCourseListGuidance: String(pathway.grcCourseListGuidance ?? "").trim() || undefined,
+    whyThisTrack: uniquePlannerStrings(pathway.whyThisTrack ?? []),
+  };
+}
+
+function materializePlanPathways(plan: TransferPlannerMajorPlan) {
+  return (plan.pathways ?? []).map(materializePlannerPathway);
+}
+
+function mergePlannerPathwayWithPlan(
+  plan: TransferPlannerMajorPlan,
+  pathway: TransferPlannerMajorPathway
+): TransferPlannerResolvedMajorPlan {
+  const mergedPlan = materializePlanReferenceCourses({
+    ...plan,
+    applicationChecklist: pathway.applicationChecklist ?? plan.applicationChecklist,
+    beforeEnrollmentChecklist:
+      pathway.beforeEnrollmentChecklist ?? plan.beforeEnrollmentChecklist,
+    stayAtGrcChecklist: pathway.stayAtGrcChecklist ?? plan.stayAtGrcChecklist,
+    advisorFlags: uniquePlannerStrings([...(plan.advisorFlags ?? []), ...(pathway.advisorFlags ?? [])]),
+    officialLinks: uniquePlannerLinks([...(plan.officialLinks ?? []), ...(pathway.officialLinks ?? [])]),
+    degreeMapSections: pathway.degreeMapSections ?? plan.degreeMapSections,
+    manualReviewNotes: uniquePlannerStrings([
+      ...(plan.manualReviewNotes ?? []),
+      ...(pathway.manualReviewNotes ?? []),
+    ]),
+    grcCourseListGuidance:
+      pathway.grcCourseListGuidance ?? plan.grcCourseListGuidance,
+    grcCourseList:
+      pathway.grcCourseList && pathway.grcCourseList.length
+        ? pathway.grcCourseList
+        : plan.grcCourseList,
+    plannerNote: pathway.plannerNote ?? plan.plannerNote,
+    bestTrackId:
+      pathway.bestTrackId === undefined ? plan.bestTrackId : pathway.bestTrackId,
+    bestTrackSummary: pathway.bestTrackSummary ?? plan.bestTrackSummary,
+    whyThisTrack: pathway.whyThisTrack?.length
+      ? pathway.whyThisTrack
+      : plan.whyThisTrack,
+    financialAidNote: pathway.financialAidNote ?? plan.financialAidNote,
+  });
+
+  return {
+    ...mergedPlan,
+    pathways: materializePlanPathways(plan),
+    selectedPathwayId: pathway.id,
+    selectedPathwayLabel: pathway.label,
+    selectedPathwaySummary: pathway.summary,
+  };
+}
+
+export function getTransferPlannerPathwaysForPlan(
+  plan: TransferPlannerMajorPlan | null | undefined
+) {
+  if (!plan?.pathways?.length) return [] as TransferPlannerMajorPathway[];
+  return materializePlanPathways(plan);
+}
+
+export function resolveTransferPlannerMajorPlan(
+  plan: TransferPlannerMajorPlan | null | undefined,
+  pathwayId: string | null | undefined
+) {
+  if (!plan) return null as TransferPlannerResolvedMajorPlan | null;
+
+  const pathways = materializePlanPathways(plan);
+  if (!pathways.length) {
+    return {
+      ...materializePlanReferenceCourses(plan),
+      pathways: [],
+      selectedPathwayId: null,
+      selectedPathwayLabel: null,
+      selectedPathwaySummary: null,
+    };
+  }
+
+  const selectedPathway =
+    pathways.find((entry) => entry.id === pathwayId) ?? pathways[0] ?? null;
+
+  if (!selectedPathway) {
+    return {
+      ...materializePlanReferenceCourses(plan),
+      pathways,
+      selectedPathwayId: null,
+      selectedPathwayLabel: null,
+      selectedPathwaySummary: null,
+    };
+  }
+
+  return mergePlannerPathwayWithPlan(plan, selectedPathway);
+}
+
+function getResolvedChecklistReferenceCourses(plan: TransferPlannerResolvedMajorPlan) {
   return uniqueReferenceCourseLabels(
     [
       ...plan.applicationChecklist,
@@ -6760,6 +18190,7 @@ function getBankReferenceCourses(bankIds: string[] | undefined) {
 function materializePlanReferenceCourses(plan: TransferPlannerMajorPlan): TransferPlannerMajorPlan {
   return {
     ...plan,
+    pathways: materializePlanPathways(plan),
     grcCourseList: uniqueReferenceCourseLabels([
       ...(plan.grcCourseList ?? []),
       ...getChecklistReferenceCourses(plan),
@@ -6770,9 +18201,26 @@ function materializePlanReferenceCourses(plan: TransferPlannerMajorPlan): Transf
 
 function mergeDetailedPlanWithMaster(plan: TransferPlannerMajorPlan): TransferPlannerMajorPlan {
   const masterRow = getMasterRowForPlan(plan);
+  const override = GENERATED_PLAN_DOC_OVERRIDES[
+    buildPlannerLookupKey(plan.campusId, masterRow?.title ?? plan.title)
+  ];
+  const mergedManualReviewNotes = uniquePlannerStrings([
+    ...(plan.manualReviewNotes ?? []),
+    ...(override?.manualReviewNotes ?? []),
+  ]);
+
   if (!masterRow) {
     return materializePlanReferenceCourses({
       ...plan,
+      officialLinks: uniquePlannerLinks([
+        ...(plan.officialLinks ?? []),
+        ...(override?.officialLinks ?? []),
+      ]),
+      degreeMapSections:
+        plan.degreeMapSections?.length ? plan.degreeMapSections : override?.degreeMapSections,
+      manualReviewNotes: mergedManualReviewNotes.length ? mergedManualReviewNotes : undefined,
+      pathways: plan.pathways?.length ? plan.pathways : override?.pathways,
+      grcCourseListGuidance: plan.grcCourseListGuidance ?? override?.grcCourseListGuidance,
       sourceType: "detailed",
     });
   }
@@ -6783,6 +18231,15 @@ function mergeDetailedPlanWithMaster(plan: TransferPlannerMajorPlan): TransferPl
     bankIds: getMergedReferenceIds(plan.bankIds, masterRow.bankIds),
     chainIds: getMergedReferenceIds(plan.chainIds, masterRow.chainIds),
     plannerNote: plan.plannerNote ?? masterRow.note,
+    officialLinks: uniquePlannerLinks([
+      ...(plan.officialLinks ?? []),
+      ...(override?.officialLinks ?? []),
+    ]),
+    degreeMapSections:
+      plan.degreeMapSections?.length ? plan.degreeMapSections : override?.degreeMapSections,
+    manualReviewNotes: mergedManualReviewNotes.length ? mergedManualReviewNotes : undefined,
+    pathways: plan.pathways?.length ? plan.pathways : override?.pathways,
+    grcCourseListGuidance: plan.grcCourseListGuidance ?? override?.grcCourseListGuidance,
     sourceType: "detailed",
   });
 }
@@ -6922,6 +18379,62 @@ export function getTransferPlannerGrcCourseList(
       ...getBankReferenceCourses(plan.bankIds),
     ]
   );
+}
+
+export function getTransferPlannerGrcCourseListGuidance(
+  plan: TransferPlannerMajorPlan | null | undefined
+) {
+  const guidance = String(plan?.grcCourseListGuidance ?? "").trim();
+  return guidance || null;
+}
+
+export function getTransferPlannerGrcCourseAvailability(
+  courseLabel: string | null | undefined
+): TransferPlannerCourseAvailability | null {
+  const availabilityMap = TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY as Record<
+    string,
+    TransferPlannerGrcCourseAvailabilityEntry
+  >;
+
+  for (const code of extractReferenceCourseCodes(String(courseLabel ?? ""))) {
+    const entry = availabilityMap[code];
+    if (!entry) continue;
+
+    return {
+      courseCode: code,
+      years: entry.years.map((year: TransferPlannerGrcCourseAvailabilityEntry["years"][number]) => ({
+        label: year.label,
+        quarters: [...year.quarters],
+      })),
+      latestPublishedQuarters: [...entry.latestPublishedQuarters],
+      note: entry.note,
+    };
+  }
+
+  return null;
+}
+
+export function getTransferPlannerGrcCourseLatestPublishedQuarters(
+  courseLabel: string | null | undefined
+) {
+  return getTransferPlannerGrcCourseAvailability(courseLabel)?.latestPublishedQuarters ?? null;
+}
+
+export function getTransferPlannerGrcCourseAvailabilitySummary(
+  courseLabel: string | null | undefined
+) {
+  const availability = getTransferPlannerGrcCourseAvailability(courseLabel);
+  if (!availability) return null;
+
+  const yearSummaries = availability.years
+    .filter((year) => year.quarters.length > 0)
+    .map((year) => `${year.label}: ${formatAvailabilityQuarterList(year.quarters)}`);
+
+  if (yearSummaries.length) {
+    return `Recent GRC annual schedule history: ${yearSummaries.join("; ")}.`;
+  }
+
+  return availability.note ?? null;
 }
 
 export function getTransferPlannerMajorsForCampus(campusId: TransferPlannerCampusId) {

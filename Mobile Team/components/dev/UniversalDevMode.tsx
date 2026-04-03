@@ -29,7 +29,7 @@ import {
   notificationsService,
   transcriptPlannerDebugService,
 } from "@/services";
-import { translations } from "@/services/translations";
+import { translations } from "@/services/app/translations";
 
 type SavedLogStatus =
   | {

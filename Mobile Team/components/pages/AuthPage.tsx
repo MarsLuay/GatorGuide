@@ -15,10 +15,10 @@ import { useAppLanguage } from "@/hooks/use-app-language";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { FormInput } from "@/components/ui/FormInput";
-import { authService, EMAIL_LINK_STORAGE_KEY } from "@/services/auth.service";
+import { authService, EMAIL_LINK_STORAGE_KEY } from "@/services/auth/auth.service";
 import { errorLoggingService } from "@/services";
 import { PENDING_LINK_STORAGE_KEY } from "@/components/AuthEmailLinkHandler";
-import { API_CONFIG } from "@/services/config";
+import { API_CONFIG } from "@/services/app/config";
 import { SUPPORT_MAILTO } from "@/constants/support";
 
 WebBrowser.maybeCompleteAuthSession();

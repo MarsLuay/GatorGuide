@@ -20,11 +20,11 @@ import { useAppLanguage } from "@/hooks/use-app-language";
 import { useOpportunities } from "@/hooks/use-opportunities";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import useBack from "@/hooks/use-back";
-import type { Language } from "@/services/translations";
+import type { Language } from "@/services/app/translations";
 import {
   deadlineCalendarService,
   type DeadlineCalendarEntry,
-} from "@/services/deadline-calendar.service";
+} from "@/services/deadlines/deadline-calendar.service";
 import {
   errorLoggingService,
   roadmapService,

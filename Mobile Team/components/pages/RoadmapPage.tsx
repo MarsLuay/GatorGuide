@@ -21,7 +21,7 @@ import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppData } from "@/hooks/use-app-data";
 import { useOpportunities } from "@/hooks/use-opportunities";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
-import type { MatchedOpportunity } from "@/services/opportunity-matching.service";
+import type { MatchedOpportunity } from "@/services/opportunities/opportunity-matching.service";
 import {
   aiService,
   buildAiConversationContext,
@@ -41,7 +41,7 @@ import * as FileSystem from "expo-file-system";
 import * as Sharing from "expo-sharing";
 import * as DocumentPicker from "expo-document-picker";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { storageService } from "@/services/storage.service";
+import { storageService } from "@/services/storage/storage.service";
 import { APP_VERSION } from "@/constants/app-version";
 import { StateCard } from "@/components/ui/StateCard";
 import { getLocaleForLanguage } from "@/utils/locale-format";

@@ -14,7 +14,7 @@ import { OpportunityCarouselWheel } from "@/components/ui/OpportunityCarouselWhe
 import { HomeTaskMarquee, type HomeTaskMarqueeItem } from "@/components/ui/HomeTaskMarquee";
 import { deadlineCalendarService, errorLoggingService, roadmapService } from "@/services";
 import type { DeadlineCalendarEntry, RoadmapTask, UserRoadmapDocument } from "@/services";
-import type { MatchedOpportunity } from "@/services/opportunity-matching.service";
+import type { MatchedOpportunity } from "@/services/opportunities/opportunity-matching.service";
 type HomeImportantMessage = {
   id: string;
   icon: keyof typeof Ionicons.glyphMap;

@@ -9,12 +9,12 @@ import {
   STORAGE_KEYS,
   type FirestoreSyncableProfileFieldKey,
 } from "@/constants/schema";
-import type { AuthUser } from "@/services/auth.service";
-import type { College } from "@/services/college.service";
-import { db, firebaseAuth } from "@/services/firebase";
-import { errorLoggingService } from "@/services/error-logging.service";
-import { normalizeQuestionnaireAnswers } from "@/services/questionnaire.enums";
-import { savedCollegesService, type SyncSavedCollegesOptions } from "@/services/saved-colleges.service";
+import type { AuthUser } from "@/services/auth/auth.service";
+import type { College } from "@/services/colleges/college.service";
+import { db, firebaseAuth } from "@/services/firebase/firebase";
+import { errorLoggingService } from "@/services/logging/error-logging.service";
+import { normalizeQuestionnaireAnswers } from "@/services/app/questionnaire.enums";
+import { savedCollegesService, type SyncSavedCollegesOptions } from "@/services/colleges/saved-colleges.service";
 
 export type User = {
   uid: string;

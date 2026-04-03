@@ -24,7 +24,7 @@ import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppData } from "@/hooks/use-app-data";
 import { useOpportunities } from "@/hooks/use-opportunities";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
-import type { MatchedOpportunity } from "@/services/opportunity-matching.service";
+import type { MatchedOpportunity } from "@/services/opportunities/opportunity-matching.service";
 import { getLocaleForLanguage } from "@/utils/locale-format";
 
 type ResourceItem = {

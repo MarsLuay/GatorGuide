@@ -10,7 +10,7 @@ import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { MatchScoreBadge } from "@/components/ui/MatchScoreBadge";
 import useBack from "@/hooks/use-back";
-import type { College } from "@/services/college.service";
+import type { College } from "@/services/colleges/college.service";
 import { formatLocalizedCurrency, formatLocalizedNumber, formatLocalizedRate } from "@/utils/locale-format";
 
 function getCollegeTuition(college: College): number | null {
