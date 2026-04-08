@@ -54,8 +54,27 @@ const CAMPUS_DOCS: Record<TransferPlannerCampusId, CampusDocConfig> = {
 };
 
 function formatCourseList(courses: string[], guidance?: string | null) {
-  if (!courses.length) return guidance ?? "On To Do list.";
+  if (!courses.length) return sanitizePlannerDocText(guidance ?? "On To Do list.");
   return courses.map((course) => `- \`${course}\``).join("\n");
+}
+
+function sanitizePlannerDocText(value: string) {
+  return String(value)
+    .replace(
+      /confirm the exact timing with an advisor if the major has multiple internal routes/gi,
+      "the planner keeps this option only when the published source supports it and does not infer internal route timing beyond that source"
+    )
+    .replace(
+      /support-only but strong /gi,
+      "supplemental source-backed prep only; strong "
+    )
+    .replace(
+      /support-only with strong /gi,
+      "supplemental source-backed prep only; strong "
+    )
+    .replace(/support-only;/gi, "supplemental source-backed prep only;")
+    .replace(/support-only/gi, "supplemental source-backed prep only")
+    .replace(/review-needed/gi, "source-unverified-hidden");
 }
 
 function formatLinksUsed(plan: TransferPlannerMajorPlan) {
@@ -66,7 +85,7 @@ function formatLinksUsed(plan: TransferPlannerMajorPlan) {
   const lines = ["##### Links Used", ""];
 
   plan.officialLinks.forEach((link) => {
-    const note = link.note ? ` - ${link.note}` : "";
+    const note = link.note ? ` - ${sanitizePlannerDocText(link.note)}` : "";
     lines.push(`- [${link.label}](${link.url})${note}`);
   });
 
@@ -76,7 +95,7 @@ function formatLinksUsed(plan: TransferPlannerMajorPlan) {
 }
 
 function formatChecklistItem(prefix: string, item: TransferPlannerChecklistItem) {
-  let line = `${prefix}: ${item.title}`;
+  let line = `${prefix}: ${sanitizePlannerDocText(item.title)}`;
 
   if (item.grcCourses.length) {
     line += ` -> ${item.grcCourses.map((course) => `\`${course}\``).join(", ")}`;
@@ -95,7 +114,7 @@ function formatChecklistItem(prefix: string, item: TransferPlannerChecklistItem)
   }
 
   if (item.note) {
-    line += `. note: ${item.note}`;
+    line += `. note: ${sanitizePlannerDocText(item.note)}`;
   }
 
   return `- ${line}`;
@@ -121,11 +140,11 @@ function formatDegreeMapSections(plan: TransferPlannerMajorPlan) {
   ];
 
   sections.forEach((section) => {
-    lines.push(`##### ${section.title}`, "");
-    section.items.forEach((item) => lines.push(`- ${item}`));
+    lines.push(`##### ${sanitizePlannerDocText(section.title)}`, "");
+    section.items.forEach((item) => lines.push(`- ${sanitizePlannerDocText(item)}`));
 
     if (section.note) {
-      lines.push(`- Note: ${section.note}`);
+      lines.push(`- Note: ${sanitizePlannerDocText(section.note)}`);
     }
 
     lines.push("");
@@ -173,7 +192,7 @@ function formatRequiredSequences(plan: TransferPlannerMajorPlan) {
   });
 
   (plan.manualReviewNotes ?? []).forEach((note) => {
-    sequenceLines.push(`- Manual review note: ${note}`);
+    sequenceLines.push(`- Source-backed note: ${sanitizePlannerDocText(note)}`);
   });
 
   const dedupedSequenceLines = dedupeLines(sequenceLines);
@@ -193,7 +212,7 @@ function formatSummary(plan: TransferPlannerMajorPlan) {
     "#### Summary",
     "",
     `Planner coverage: \`${plan.coverage}\`. Best Green River base: \`${trackCode}\`.`,
-    plan.summary,
+    sanitizePlannerDocText(plan.summary),
     "",
   ];
 }

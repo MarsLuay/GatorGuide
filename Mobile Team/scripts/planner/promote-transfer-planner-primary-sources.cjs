@@ -50,6 +50,18 @@ function formatHumanDate(isoString) {
   }).format(date);
 }
 
+function formatMachineDate(isoString) {
+  const date = new Date(isoString);
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    timeZone: "America/Los_Angeles",
+  }).formatToParts(date);
+  const partMap = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return `${partMap.year}-${partMap.month}-${partMap.day}`;
+}
+
 function sanitizeStringLiteral(value) {
   return JSON.stringify(String(value ?? ""));
 }
@@ -68,7 +80,7 @@ function buildOverrideEntries(report) {
     .filter((owner) => owner?.suggestedPrimary?.confidence === "high")
     .map((owner) => {
       const suggestion = owner.suggestedPrimary;
-      const promotedOn = report.generatedAt.slice(0, 10);
+      const promotedOn = formatMachineDate(report.generatedAt);
       const humanDate = formatHumanDate(report.generatedAt);
       return {
         ownerId: owner.ownerKey,

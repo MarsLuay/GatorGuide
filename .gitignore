@@ -15,3 +15,5 @@ expo-env.d.ts
 .vscode/
 process.env
 *.env
+Mobile Team/.tmp/transfer-planner-catalog-snapshots/
+Mobile Team/.tmp/transfer-planner-equivalency-guide-snapshots/

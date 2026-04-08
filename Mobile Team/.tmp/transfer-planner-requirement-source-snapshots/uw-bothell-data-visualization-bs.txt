@@ -1,0 +1,627 @@
+Owner: uw-bothell-data-visualization-bs
+Source: https://www.uwb.edu/ias/undergraduate/majors/data-visualization
+Title: Data Visualization - School of Interdisciplinary Arts & Sciences
+
+Data Visualization - School of Interdisciplinary Arts & Sciences
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
+height="0" width="0" style="display:none;visibility:hidden">
+Skip To Content
+Current site
+All UW Bothell
+Search keywords
+Search
+Open mobile menu
+Quick Links
+School of Interdisciplinary Arts & Sciences
+Close mobile menu
+School of Interdisciplinary Arts & Sciences
+Search keywords
+Current site
+All UW Bothell
+About IAS
+Expand Navigation
+Mission, Values, and Goals
+Diversity and Equity
+Expand Navigation
+Diversity Plan
+Scholarship
+Contact Us
+Undergraduate
+Expand Navigation
+How to apply
+Majors
+Expand Navigation
+American & Ethnic Studies
+Community Psychology
+Conservation & Restoration Science
+Culture, Literature & the Arts
+Data Visualization
+Earth System Science
+Environmental Science
+Environmental Studies
+Gender, Women & Sexuality Studies
+Global Studies
+Interdisciplinary Arts
+Interdisciplinary Social Sciences
+Interdisciplinary Studies
+Law, Economics & Public Policy
+Mathematical Thinking & Visualization
+Media & Communication Studies
+Psychology
+Science, Technology & Society
+Society, Ethics & Human Behavior
+Minors
+Expand Navigation
+Minor in Climate Change & Society
+Minor in Creative Writing
+Minor in Diversity Studies
+Minor in Ecological Restoration
+Minor in Gender, Women & Sexuality Studies
+Minor in Geographic Information Systems
+Minor in Human Rights
+Minor in Performance
+Minor in Policy Studies
+Minor in Science, Technology & Society
+Minor in Visual & Media Arts
+Learning Objectives
+Hands-on Learning (IPR)
+Expand Navigation
+Research Opportunities
+Peer Facilitation
+Internships
+Community Engagement
+D.C. Human Rights Seminar
+Study Abroad
+Global Scholars
+Student Resources
+Expand Navigation
+Student Feedback
+Petitions and Forms
+Grade Appeal
+Grievances and Complaints
+Career Planning
+Graduate Programs
+Expand Navigation
+Creative Writing & Poetics (MFA)
+Expand Navigation
+People
+Admissions
+Learning Objectives
+Curriculum
+Thesis Work
+Events
+Fall Convergence
+Spring Festival
+MFA Publications
+Careers
+Policy Studies (MA)
+Expand Navigation
+Why Policy Studies?
+People
+Prospective Students
+Admissions
+Learning Objectives
+Curriculum
+Careers
+Student Resources
+Expand Navigation
+Funding
+Admitted Students
+Housing
+Faculty & staff
+Expand Navigation
+Faculty
+Staff
+News
+Events
+Give
+Expand Navigation
+Educational Access & Opportunity Fund
+Global Scholars Fund
+Experiential & Community Based Learning Fund
+Academic Excellence & Emerging Initiatives Fund
+Nony Clark Milmoe Scholarship
+Sandra Martin Roberts Memorial Scholarship
+Washington D.C. Travel Assistance Fund
+Graduate Studies Excellence Fund
+Master of Fine Arts (MFA) Program Fund
+American Muslim Research Institute Fund
+All IAS Funds
+UW Bothell Home
+Quick Links
+MyUW
+Canvas
+Directory
+Library
+Workday Login
+Give
+Apply As Undergraduate
+More Links
+Time Schedule
+Information Technology
+Commuter Services
+Facilities
+Human Resources
+Campus Safety
+Alumni
+About IAS
+Mission, Values, and Goals
+Diversity and Equity
+Contact Us
+Undergraduate
+How to apply
+Majors
+Minors
+Learning Objectives
+Hands-on Learning (IPR)
+Student Resources
+Graduate Programs
+Creative Writing & Poetics (MFA)
+Policy Studies (MA)
+Student Resources
+Faculty & staff
+Faculty
+Staff
+News
+Events
+Give
+Educational Access & Opportunity Fund
+Global Scholars Fund
+Experiential & Community Based Learning Fund
+Academic Excellence & Emerging Initiatives Fund
+Nony Clark Milmoe Scholarship
+Sandra Martin Roberts Memorial Scholarship
+Washington D.C. Travel Assistance Fund
+Graduate Studies Excellence Fund
+Master of Fine Arts (MFA) Program Fund
+American Muslim Research Institute Fund
+All IAS Funds
+Close mobile menu
+In this section
+About IAS
+Expand Navigation
+Mission, Values, and Goals
+Diversity and Equity
+Expand Navigation
+Diversity Plan
+Scholarship
+Contact Us
+Undergraduate
+Expand Navigation
+How to apply
+Majors
+Expand Navigation
+American & Ethnic Studies
+Community Psychology
+Conservation & Restoration Science
+Culture, Literature & the Arts
+Data Visualization
+Earth System Science
+Environmental Science
+Environmental Studies
+Gender, Women & Sexuality Studies
+Global Studies
+Interdisciplinary Arts
+Interdisciplinary Social Sciences
+Interdisciplinary Studies
+Law, Economics & Public Policy
+Mathematical Thinking & Visualization
+Media & Communication Studies
+Psychology
+Science, Technology & Society
+Society, Ethics & Human Behavior
+Minors
+Expand Navigation
+Minor in Climate Change & Society
+Minor in Creative Writing
+Minor in Diversity Studies
+Minor in Ecological Restoration
+Minor in Gender, Women & Sexuality Studies
+Minor in Geographic Information Systems
+Minor in Human Rights
+Minor in Performance
+Minor in Policy Studies
+Minor in Science, Technology & Society
+Minor in Visual & Media Arts
+Learning Objectives
+Hands-on Learning (IPR)
+Expand Navigation
+Research Opportunities
+Peer Facilitation
+Internships
+Community Engagement
+D.C. Human Rights Seminar
+Study Abroad
+Global Scholars
+Student Resources
+Expand Navigation
+Student Feedback
+Petitions and Forms
+Grade Appeal
+Grievances and Complaints
+Career Planning
+Graduate Programs
+Expand Navigation
+Creative Writing & Poetics (MFA)
+Expand Navigation
+People
+Admissions
+Learning Objectives
+Curriculum
+Thesis Work
+Events
+Fall Convergence
+Spring Festival
+MFA Publications
+Careers
+Policy Studies (MA)
+Expand Navigation
+Why Policy Studies?
+People
+Prospective Students
+Admissions
+Learning Objectives
+Curriculum
+Careers
+Student Resources
+Expand Navigation
+Funding
+Admitted Students
+Housing
+Faculty & staff
+Expand Navigation
+Faculty
+Staff
+News
+Events
+Give
+Expand Navigation
+Educational Access & Opportunity Fund
+Global Scholars Fund
+Experiential & Community Based Learning Fund
+Academic Excellence & Emerging Initiatives Fund
+Nony Clark Milmoe Scholarship
+Sandra Martin Roberts Memorial Scholarship
+Washington D.C. Travel Assistance Fund
+Graduate Studies Excellence Fund
+Master of Fine Arts (MFA) Program Fund
+American Muslim Research Institute Fund
+All IAS Funds
+School of Interdisciplinary Arts & Sciences
+&#124;
+Majors
+School of Interdisciplinary Arts & Sciences
+&#124;
+Undergraduate
+&#124;
+Majors
+&#124;
+Data Visualization
+Data Visualization
+On this page: Major Description | Learning Objectives | Degree Planning
+The Data Visualization major emphasizes fundamental elements of database management, data analysis and visualization, information systems, and quantitative and qualitative analysis. Students in this major will enter the workforce with the ability to identify trends, provide insights, and illustrate the societal impacts of different forms of data while critically engaging with data visualization software and programming languages.
+Two degree options
+BACHELOR OF ARTS
+A student with a Bachelor of Arts (BA) in Data Visualization may enter the variety of academic and career fields focused on data analysis and visualization, including statistics, visual analytics, and geographic information systems and sciences. A Bachelor of Arts in Data Visualization emphasizes fundamental elements of database management, data analysis and visualization, information systems, and quantitative and qualitative analysis.
+BACHELOR OF SCIENCE
+A student with a Bachelor of Science (BS) in Data Visualization will enter into the wide variety of academic and career fields focused on data analysis and visualization, including statistics, visual analytics, and geographic information systems and sciences. This degree emphasizes fundamental elements of data science, visualization, and analytics, advanced research, advanced graduate programs, and geographic information systems.
+PASSION
+Students who are passionate about using data to solve real-world problems as well as communicating across disciplines to data-based solutions.
+PRACTICE
+Data Visualization students will gain high demand skills in data analysis, visualization, and representation through the Data Visualization major.
+PROFESSION
+Graduates will find careers as a data analyst, in data science, with GIS (Geographic Information Systems) and continue on in graduate programs in Data Visualization.
+Learning objectives
+The Data Visualization curriculum advances the five core IAS learning objectives . Students taking courses and/or majoring in Data Visualization:
+Acquire critical competence in different ways to address real-world, quantitative concerns and to find solutions that are both efficient and equitable.
+Learn to apply statistical and mathematical tools and critique their applications, including building and evaluating arguments based on quantitative data.
+Generate reliable data and choose appropriate methods to apply to a given data set.
+Gain experience creating visual representations of problems and data, and communicate these ideas, results, and analyses in multiple formats.
+Learn to work in interdisciplinary teams to communicate and to understand a range of issues, especially those around social and planetary justice, that have quantitative underpinnings.
+Synthesize quantitative research with other ways of knowing.
+Contacts
+Santiago Lopez
+Faculty Coordinator
+Alyssa Berger
+Research Librarian
+Please contact the Data Visualization Faculty Coordinator if you have any questions, concerns or ideas about the Data Visualization major.
+Plan your degree
+Recommended preparation
+Interested in exploring this major but not ready to commit? Consider taking one of the below courses! Any of these selections will help familiarize you with the academic program and prepare you for advanced coursework in the major.
+BIS 140 Numbers in News Media
+BIS 215 Understanding Statistics
+B DATA 232 Introduction to Data Visualization
+B DATA 200 Introduction to Data Studies
+CSS 107 Introduction to Programming through Animated Storytelling
+CSS 112 Introduction to Programming for Scientific Applications
+Ready to apply?
+Current UW Bothell Pre-Major students can declare this major using the online Major Declaration Form .
+<a class="bothell-link-block link-block-1 bothell-link-block--margin-top "
+style="color:var(--wp--custom--color--purple-100)"
+href="https://www.uwb.edu/ias/undergraduate/admissions"
+>
+Learn more about how to apply
+Learn more about how to apply
+Prerequisites
+Bachelor of Arts Prerequisites
+English Composition Coursework (10 credits)
+B WRIT 133 or B WRIT 134 or ENGL 131 or equivalent Composition Course
+B WRIT 135 or ENGL 141 or equivalent Composition course
+Statistics Coursework (5 credits)
+BIS 215 Understanding Statistics or B MATH 215 Health Statistics or B BUS 215 Business Statistics or STAT 220 Statistical Reasoning or equivalent introduction to statistics course
+Pre-Calculus Coursework
+B MATH 123 Precalculus II or MATH 120 Precalculus
+If no math course attempted in a College or University, a minimum score of 400 on the MTHDSP can satisfy this prerequisite course. If a math course was attempted that grade will be used.
+Bachelor of Science Prerequisites
+English Composition Coursework (5 credits)
+B WRIT 133 or B WRIT 134 or ENGL 131 or equivalent Composition Course
+Statistics Coursework (5 credits)
+BIS 215 Understanding Statistics or B MATH 215 Health Statistics or B BUS 215 Business Statistics or STAT 220 Statistical Reasoning or equivalent introduction to statistics course
+Calculus Coursework (5 credits)
+STMATH 124 Calculus 1 or MATH 124 Calculus 1
+Computer Programming Coursework (10 credits)
+CSS 142 Computer Programming I or CSE 142 Computer Programming I or CSE 122 Intro to Computer Programming II
+CSS 143 Computer Programming II or CSE 143 Computer Programming II or CSE 123 Intro to Computer Programming III
+BACK TO TOP
+Major Requirements
+Degree Requirements
+Bachelor of Arts Degree Requirements
+Data Visualization Core Courses
+B DATA 200 Introduction to Data Studies (5 credits)
+B DATA 232 Introduction to Data Visualization (5 credits)
+Either BIS 218 Power of Maps OR BIS 342 Geographic Information Systems (5 credits)
+Either BES 301 Science Methods and Practice OR BST 301 Scientific Writing (5 credits)
+Advanced Data Visualization and Analysis Methods (15 Credits)
+Spatial Data Analysis (15 credits)
+Data Visualization Electives (25 credits)
+Bachelor of Arts- 75 credits total
+Bachelor of Science Degree Requirements
+Data Visualization Core Courses
+B DATA 200 Introduction to Data Studies (5 credits)
+B DATA 232 Introduction to Data Visualization (5 credits)
+Either BIS 218 Power of Maps OR B GIS 342 Geographic Information Systems (5 credits)
+Either BES 301 Science Methods and Practice OR BST 301 Scientific Writing (5 credits)
+Either STMATH 125 or MATH 125 Calculus 2 (5 credits)
+Either STMATH 126 or MATH 126 Calculus 3 (5 credits)
+Either BIS 231 Linear Algebra or STMATH 208 Matrix Algebra (5 credits)
+Advanced Data Visualization and Analysis Methods (15 Credits)
+Spatial Data Analysis (15 credits)
+Data Visualization Electives (25 credits)
+Bachelor of Science- 90 credits total
+School of IAS Requirements & Policies
+Residency Requirement: 30 credits must be completed in residency at UW Bothell.
+Cumulative GPA Requirement: Major GPA must be at a cumulative of 2.00 or higher.
+Interdisciplinary Practice & Reflection (IPR): The IPR requirement can overlap with credits earned in major coursework, or it can be completed through elective course credits. Please see the IPR webpage for course options.
+Upper Division Credit Policy: A maximum of 35 credits earned in 100- and/or 200-level courses may apply toward the Bachelor of Arts degree. A maximum of 45 credits earned in 100- and/or 200-level courses may apply toward the Bachelor of Science degree. Remaining credits must be earned in upper division courses (300-level and above).
+Note: See all IAS polices and procedures on the Student Resources webpage .
+Courses
+A. Core Courses
+B DATA 200 Introduction to Data Studies (5 credits)
+B DATA 232 Introduction to Data Visualization (5 credits)
+Either BIS 218 Power of Maps OR B GIS 342 Geographic Information Systems (5 credits)
+Either BES 301 Science Methods and Practice OR BST 301 Scientific Writing (5 credits)
+B. Advanced Data Visualization and Analysis Methods Courses (15 credits)
+B DATA 411 Network Analysis & Visualization (5 credits)
+B DATA 412 Advanced Data Visualization (5 credits)
+B DATA 497 Advanced Topics in Data Visualization (5 credits)
+Topics may vary; not offered regularly
+BIS 447 Topics in Quantitative Inquiry (5 credits)
+Topics may vary; not offered regularly
+BISMCS 473 Visual Communication (5 credits)
+B BUS 301 Data Management (5 credits)
+C. Spatial Data Analysis Courses (15 credits)
+BIS 218 Power of Maps (5 credits) (if not taken as core)
+B GIS 342 Geographic Information Systems (5 credits) (if not taken as core)
+B GIS 343 Geovisualization (5 credits)
+B GIS 344 Intermediate Geographic Information Systems (5 credits)
+BIS 352 Mapping Communities (5 credits)
+B GIS 442 Advanced Geographic Information Systems (5 credits)
+BES 303 Environmental Monitoring Practicum (5 credits)
+BES 440 Remote Sensing of the Environment (5 credits)
+D. Data Visualization Elective Courses (25 credits)
+Bachelor of Science Elective Courses
+BIS 111/CSS 101 Digital Thinking (5 credits)
+BIS 115 Digital Cultures (5 credits)
+BIS 140 Numbers in News Media (5 credits)
+BIS 180 Human Geography (5 credits)
+BIS 235 Critical Media Literacy (5 credits)
+BIS 236 Introduction to Interactive Media (5 credits)
+BIS 242 Environmental Geography (5 credits)
+BIS 312 Approaches to Social Research Methods (5 credits)
+BIS 332 Digital Global Industries (5 credits)
+BIS 340 Approaches to Cultural Research Methods (5 credits)
+BIS 342 Geographic Information Systems (5 credits)
+BIS 372 Representation, Colonialism, and the Tropical World (5 credits)
+BIS 380 Bioethics (5 credits)
+BIS 406 Urban Planning and Geography (5 credits)
+BIS 410 Topics in Qualitative Inquiry (5 credits)
+BIS 421 Technology Policy (5 credits)
+BIS 490 Advanced Seminar: Smart City Seattle topic (5 credits)
+BEARTH 201 Mapping the Earth System (5 credits)
+BEARTH 202 Modeling Global Systems (5 credits)
+BISIA 244 Time-Based Media Art (5 credits)
+BISIA 250 Photography as Art (5 credits)
+BISIA 344 Video Art (5 credits)
+BISIA 350 Photography and Digital Art (5 credits)
+BISIA 444 Video Installation Art (5 credits)
+BISIA 450 Image and Imagination (5 credits)
+BISLEP 302 Policy Analysis (5 credits)
+BISSTS 307 Science, Technology, and Society (5 credits)
+BISSTS 355 History of Science and Technology (5 credits)
+CSS 130/ B IMD 233 Fundamentals of Web Media Technology (5 credits)
+CSS 211 Computers and Society
+CSS 250 Introduction to Interaction Design (formally B IMD 250) (5 credits)
+CSS 342 Data Structures, Algorithms, and Discrete Mathematics I
+CSS 343 Data Structures, Algorithms, and Discrete Mathematics II
+CSS 385 Introduction to Game Development
+CSS 411 Computing Technology and Policy
+STMATH 300 Foundations of Modern Math
+STMATH 341 Introduction to Statistical Inference
+Bachelor of Arts Elective Courses
+In addition to the Bachelor of Science electives listed above, Bachelor of Arts students can take:
+BIS 231 Linear Algebra (5 credits)
+CSS 110 Intro to Cybersecurity
+CSS 112 Introduction to Programming for Scientific Application (no credit if taken CSS 132 or CSS 142)
+CSS 123 Programming for Data Science (no credit if taken CSS 133 or CSS 143)
+CSS 142 Computer Programming I (no credit if taken CSS 112 or CSS 132)
+CSS 143 Computer Programming II (no credit if taken CSS 123 or CSS 133)
+B MATH 144 Calculus for the Life Sciences (no credit if taken STMATH 124 or MATH 124)
+STMATH 124 Calculus I
+STMATH 125 Calculus II
+STMATH 126 Calculus III
+STMATH 208 Matrix Algebra
+BACK TO TOP
+Plan your career
+Career Resources
+Take advantage of the free resources offered by UW Bothell’s Career Services team. From mock interviews to internships and events, Career Services has everything you need to plan for your future!
+Coaching appointments are offered in-person or over Zoom.
+Did you know? UW Alumni can access Career Services for three years after graduation (and Veterans have lifetime access)!
+The University of Washington offers numerous free resources to help IAS students prepare for a career after college. Featured career planning tools are listed on the IAS Student Resources page.
+BACK TO TOP
+Interested in graduate school?
+Undergraduate degrees offered in the School of IAS prepare students for a wide variety of graduate programs. If you think you might be interested in earning a master’s or doctoral degree, start planning now!
+Tips for exploring graduate school
+Make an appointment for graduate school coaching
+BACK TO TOP
+In this section
+About IAS
+Expand Navigation
+Mission, Values, and Goals
+Diversity and Equity
+Expand Navigation
+Diversity Plan
+Scholarship
+Contact Us
+Undergraduate
+Expand Navigation
+How to apply
+Majors
+Expand Navigation
+American & Ethnic Studies
+Community Psychology
+Conservation & Restoration Science
+Culture, Literature & the Arts
+Data Visualization
+Earth System Science
+Environmental Science
+Environmental Studies
+Gender, Women & Sexuality Studies
+Global Studies
+Interdisciplinary Arts
+Interdisciplinary Social Sciences
+Interdisciplinary Studies
+Law, Economics & Public Policy
+Mathematical Thinking & Visualization
+Media & Communication Studies
+Psychology
+Science, Technology & Society
+Society, Ethics & Human Behavior
+Minors
+Expand Navigation
+Minor in Climate Change & Society
+Minor in Creative Writing
+Minor in Diversity Studies
+Minor in Ecological Restoration
+Minor in Gender, Women & Sexuality Studies
+Minor in Geographic Information Systems
+Minor in Human Rights
+Minor in Performance
+Minor in Policy Studies
+Minor in Science, Technology & Society
+Minor in Visual & Media Arts
+Learning Objectives
+Hands-on Learning (IPR)
+Expand Navigation
+Research Opportunities
+Peer Facilitation
+Internships
+Community Engagement
+D.C. Human Rights Seminar
+Study Abroad
+Global Scholars
+Student Resources
+Expand Navigation
+Student Feedback
+Petitions and Forms
+Grade Appeal
+Grievances and Complaints
+Career Planning
+Graduate Programs
+Expand Navigation
+Creative Writing & Poetics (MFA)
+Expand Navigation
+People
+Admissions
+Learning Objectives
+Curriculum
+Thesis Work
+Events
+Fall Convergence
+Spring Festival
+MFA Publications
+Careers
+Policy Studies (MA)
+Expand Navigation
+Why Policy Studies?
+People
+Prospective Students
+Admissions
+Learning Objectives
+Curriculum
+Careers
+Student Resources
+Expand Navigation
+Funding
+Admitted Students
+Housing
+Faculty & staff
+Expand Navigation
+Faculty
+Staff
+News
+Events
+Give
+Expand Navigation
+Educational Access & Opportunity Fund
+Global Scholars Fund
+Experiential & Community Based Learning Fund
+Academic Excellence & Emerging Initiatives Fund
+Nony Clark Milmoe Scholarship
+Sandra Martin Roberts Memorial Scholarship
+Washington D.C. Travel Assistance Fund
+Graduate Studies Excellence Fund
+Master of Fine Arts (MFA) Program Fund
+American Muslim Research Institute Fund
+All IAS Funds
+Contact Us
+Contact Us
+iasinfo@uw.edu
+425.352.5350
+Box 358530
+18115 Campus Way NE
+Bothell, WA 98011-8246
+University of Washington Bothell Homepage
+Bothell, Washington View our location on Google maps.
+Contact us by phone at:
+425.352.5000
+Contact
+Visitors
+Maps & directions
+Jobs
+Accessibility
+Privacy
+Rules Docket
+Terms
+Seattle Campus
+Tacoma Campus
+UW Bothell Instagram
+UW Bothell Linkedin
+UW Bothell Facebook
+UW Bothell Twitter
+UW Bothell Youtube
+&copy; 2026 University of Washington Bothell
+UW Bothell Instagram
+UW Bothell Linkedin
+UW Bothell Facebook
+UW Bothell Twitter
+UW Bothell Youtube

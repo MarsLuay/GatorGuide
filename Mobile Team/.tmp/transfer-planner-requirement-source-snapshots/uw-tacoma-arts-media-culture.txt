@@ -1,0 +1,206 @@
+Owner: uw-tacoma-arts-media-culture
+Source: https://www.tacoma.uw.edu/sias/cac/arts-media-culture
+Title: Arts, Media & Culture | Culture, Arts & Communication | University of Washington Tacoma
+
+Arts, Media & Culture | Culture, Arts & Communication | University of Washington Tacoma
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMVD9WN"
+height="0"
+width="0"
+style="display:none;
+visibility:hidden">
+Skip to main content
+Apply
+Canvas
+Map
+Calendar
+Library
+Directory
+MyUW
+more_vert
+more_vert
+Close Search
+<img
+src="/sites/default/files/sites/uwtd8main/W.svg"
+alt="Block W - Link to UW Tacoma homepage"/>
+<img class="mobile-hide desktop-show"
+src="/sites/default/files/sites/uwtd8main/wordmark-full.svg"
+alt="University of Washington Tacoma"/>
+<img class="mobile-show desktop-hide"
+src="/sites/default/files/sites/uwtd8main/Wordmark-Tacoma.svg"
+alt="University of Washington Tacoma"/>
+Tools
+25Live
+Canvas
+Directory
+IT Help
+Library
+Map
+MyUW
+Office365
+Panopto
+Scout
+UW Gmail
+Workday
+Zoom
+Search
+<a
+href=" https://www.tacoma.uw.edu/sias ">School of Interdisciplinary Arts & Sciences
+Culture, Arts & Communication
+Culture, Arts & Communication
+Majors
+expand_more
+Arts, Media & Culture
+Communication
+add
+Faculty
+FAQs
+Get Involved
+Post Graduation
+Internships
+Spanish Language and Cultures
+Writing Studies
+Minors
+expand_more
+American Popular Cultures Minor
+Asian Studies Minor
+Latino Studies Minor
+Spanish Language and Cultures Minor
+Technical Communication Minor
+CAC Resources
+expand_more
+CAC Directory
+Open Public Meetings
+Contact
+Advising
+MyUW
+Map
+Tools
+Breadcrumb
+<a href="https://www.tacoma.uw.edu/"
+class="breadcrumb--home-icon uwt-icon" title="UW Tacoma Homepage"
+>Home
+<a href="/sias"
+>School of Interdisciplinary Arts & Sciences
+<a href="/sias/cac"
+>Culture, Arts & Communication
+Arts, Media & Culture
+Arts, Media & Culture
+Bachelor of Arts
+Main Content
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2025-03/tlthappiestsong016_0.jpg"
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2025-03/tlthappiestsong016_0.jpg 1940w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2025-03/tlthappiestsong016_0.jpg 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2025-03/tlthappiestsong016_0.jpg 600w"
+sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
+alt="Group of students singing">
+The AMC major focuses on how the fields of art and media operate within culture and how they transform it by studying formal, aesthetic and socio-cultural ways of understanding literature, visual art, film, music and other media. An Arts, Media & Culture degree prepares students for a range of careers including publishing, the arts, media, museum work, public relations and public history. It is also for those students pursuing a broad cultural literacy, as well as for those planning to continue their education in advanced study in performing and visual arts or the humanities.
+Arts, Media & Culture majors have five tracks to choose from:
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2025-03/sias-lit-sample.jpg"
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2025-03/sias-lit-sample.jpg 1940w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2025-03/sias-lit-sample.jpg 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2025-03/sias-lit-sample.jpg 600w"
+sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
+alt="College student reading in library">
+LITERATURE TRACK
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2025-03/sias-film-sample.jpg"
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2025-03/sias-film-sample.jpg 1940w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2025-03/sias-film-sample.jpg 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2025-03/sias-film-sample.jpg 600w"
+sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
+alt="Suwanchote brothers, alumni filmmakers">
+FILM AND MEDIA TRACK
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2025-03/sias-performing-sample.jpg"
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2025-03/sias-performing-sample.jpg 1940w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2025-03/sias-performing-sample.jpg 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2025-03/sias-performing-sample.jpg 600w"
+sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
+alt="Water play from 2017">
+VISUAL AND PERFORMING ARTS TRACK
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2023-03/IMG_9160_0.jpg"
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2023-03/IMG_9160_0.jpg 1940w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2023-03/IMG_9160_0.jpg 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2023-03/IMG_9160_0.jpg 600w"
+sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
+alt="A professor talking to college students outside in the grass">
+COMPARATIVE ARTS TRACK
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2023-03/IMG_5664_0.jpg"
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2023-03/IMG_5664_0.jpg 1940w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2023-03/IMG_5664_0.jpg 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2023-03/IMG_5664_0.jpg 600w"
+sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
+alt="AMC students in an art gallery with a large bronze sculpted head in the foreground">
+AMERICAN CULTURES TRACK
+ADVISORS
+Brian Burhenn
+Connect with Advising
+MAJOR COORDINATOR
+Professor Andrea Modarres
+DEPARTMENT
+Culture, Arts & Communication (CAC)
+CAREER OPPORTUNITIES
+Media Research
+Post-graduate Studies
+Print and Television writing
+Print and Video editing
+Reporting
+ADMISSION REQUIREMENTS
+At least 45 lower-division credits
+DEGREE REQUIREMENTS
+For a BA in Arts, Media & Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+ALUMNI SPOTLIGHT
+Nuk Suwanchote (BA '17)
+Nut Suwanchote (BA '18)
+Inspired by their immigrant parents, filmmakers and SIAS alumni Nuk and Nut Suwanchote are aiming to change the conversation on Asian culture. READ MORE
+Contact
+Culture, Arts & Communication
+ACADEMICS
+Academic advising
+Academic calendar
+Canvas
+Library
+Schools and programs
+Study Abroad
+Teaching and Learning Center
+CAMPUS
+Campus Safety
+Equity & Inclusion
+Financial Aid
+Housing
+Information Technology
+Student Life
+University YMCA Student Center
+ABOUT UW TACOMA
+Administration
+Admissions
+Institutional Research
+Jobs
+Parking & transportation
+Research
+UWNetID login
+<a href="https://www.tacoma.uw.edu/"
+aria-label="University of Washington Tacoma Homepage">
+<a href="https://www.facebook.com/uwtacoma"
+title="Follow UW Tacoma on Facebook">
+<a href="https://instagram.com/uwtacoma"
+title="Follow UW Tacoma on Instagram">
+<a href="https://www.tiktok.com/@uwtacoma"
+title="Follow UW Tacoma on TikTok">
+<a href="https://www.youtube.com/channel/UC5yP5pgHK5hPnPwfxMykQFw"
+title="Follow UW Tacoma on Youtube">
+<a href="https://www.linkedin.com/school/university-of-washington-tacoma"
+title="Follow UW Tacoma on Linkedin">
+Puyallup Tribe of Indians
+Tribal Sponsor of UW Tacoma
+Learn More >
+Land
+Acknowledgement
+>
+UW Seattle | UW
+Bothell
+&copy; 2026 University of Washington Tacoma
+1900 Commerce Street, Tacoma, WA 98402-3100
+Contact us |
+Terms of Use |
+Privacy |
+Accessibility |
+Rules Docket

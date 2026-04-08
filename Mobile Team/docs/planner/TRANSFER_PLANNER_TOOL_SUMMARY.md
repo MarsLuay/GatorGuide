@@ -4,6 +4,26 @@
 
 This doc explains what the Green River -> UW transfer planner currently does, what data shape it uses, and what it should and should not promise to students.
 
+## Operational Contract
+
+If a planner fact is not backed by an official public source, the planner should not show it to students.
+
+The maintenance rule is:
+
+- refresh the planner from official sources
+- regenerate the structured outputs
+- rerun verification and Windows QA
+- keep unsupported or unverified majors hidden instead of hand-editing planner facts
+
+The current one-click Windows entrypoints are:
+
+- `npm run planner:windows:maintenance`
+- `scripts\run-planner-maintenance.cmd`
+
+The run summary is written to:
+
+- `.tmp/transfer-planner-maintenance-summary.md`
+
 ## What the planner is
 
 - A Green River College transfer-planning tool for UW Seattle, UW Bothell, and UW Tacoma.
@@ -37,6 +57,8 @@ This doc explains what the Green River -> UW transfer planner currently does, wh
   - `scripts/planner/refresh-transfer-planner-sources.cjs`
   - `scripts/run-planner-refresh.cmd`
   - `scripts/run-planner-refresh-no-downloads.cmd`
+  - `scripts/run-transfer-planner-maintenance.ps1`
+  - `scripts/run-planner-maintenance.cmd`
   - `npm run planner:check-sources`
   - `npm run planner:discover-primary-sources`
   - `npm run planner:promote-primary-sources`
@@ -44,6 +66,7 @@ This doc explains what the Green River -> UW transfer planner currently does, wh
   - `npm run planner:parse-requirement-sources`
   - `npm run planner:promote-requirement-diffs`
   - `npm run planner:refresh`
+  - `npm run planner:windows:maintenance`
 
 ## Current migration state
 
@@ -223,7 +246,7 @@ The biggest remaining per-major hardcoding that should still move into structure
   - `summary`
   - `applicationWindow`
   - `startQuarter`
-  - some `advisorFlags`
+  - some source-coverage notes
 - continued replacement of hand-bucketed checklist placement in `transfer-planner-data.ts` with structured major-requirement atoms and display-phase metadata
 
 ## What the refresh automation does now
@@ -232,10 +255,10 @@ Running `npm run planner:refresh` now does the highest-value automatic maintenan
 
 - checks every tracked planner source URL already attached to majors, pathways, and tracks
 - discovers and auto-promotes new `high-confidence` primary degree-requirements links into the structured source-manifest override layer
-- rebuilds a campus-grouped review queue for the remaining medium-confidence and unresolved primary-source candidates
+- rebuilds a campus-grouped source-gap backlog for the remaining medium-confidence and unresolved primary-source candidates
 - parses the current primary degree-requirements sources and compares extracted UW course codes against the structured degree-map blocks already in the planner
 - auto-promotes only high-confidence parsed requirement diffs into generated structured requirement-atom overrides when the repo already has strong exact-title consensus for the same UW-to-GRC mapping
-- leaves a requirement-diff promotion report in `.tmp/` for the review-needed and still-unmapped course codes
+- leaves a requirement-diff classification report in `.tmp/` for the automatically classified and still-non-promoted course codes
 - writes a source snapshot plus change summary into `.tmp/`
 - refreshes the local official Green River annual schedule PDFs used by the generators
 - regenerates:
@@ -249,12 +272,21 @@ Running `npm run planner:refresh` now does the highest-value automatic maintenan
 
 This gives the project one script that can check the tracked sources and update all current generated planner outputs.
 
-There are now also non-dev Windows launchers in `scripts/`:
+There are now also one-click Windows launchers in `scripts/`:
 
 - `run-planner-refresh.cmd`
 - `run-planner-refresh-no-downloads.cmd`
+- `run-planner-maintenance.cmd`
 
-They are meant to be double-clicked, automatically run `npm install` if key dependencies are missing, retry one repair install if the repo health check fails because dependencies look corrupted, save a timestamped log into `.tmp/planner-refresh-logs/`, and open the current source summary plus primary-source review queue when the run finishes.
+They are meant to be double-clicked, automatically run `npm install` if key dependencies are missing, retry one repair install if the repo health check fails because dependencies look corrupted, save a timestamped log into `.tmp/planner-refresh-logs/`, and open the current source summary plus source-gap reports when the run finishes.
+
+The maintenance launcher adds:
+
+- planner refresh and verification
+- Playwright Chromium setup
+- Windows screenshot QA
+- Windows interaction QA
+- one human-readable pass/fail summary
 
 There is now also a companion discovery script for missing primary UW degree pages:
 
@@ -262,7 +294,7 @@ There is now also a companion discovery script for missing primary UW degree pag
 - scans majors and pathways that still do not have an explicit primary degree-requirements link
 - scores the current official links plus first-hop internal links
 - writes ranked suggestions into `.tmp/`
-- helps turn a `missing primary source` problem into a reviewable candidate list instead of manual browsing from scratch
+- helps turn a `missing primary source` problem into a source-gap automation candidate list instead of manual browsing from scratch
 
 And there is now a safe promotion step:
 
@@ -272,7 +304,7 @@ And there is now a safe promotion step:
 - writes them into `constants/transfer-planner-source/source-manifest-primary-overrides.generated.ts`
 - lets the structured source-manifest registry treat those promoted links as the explicit primary degree page on later runs
 
-There is now also a review-queue step for everything that is still not safe to auto-promote:
+There is now also a source-gap backlog step for everything that is still not safe to auto-promote:
 
 - `npm run planner:build-primary-review-queue`
 - reruns discovery first
@@ -281,7 +313,7 @@ There is now also a review-queue step for everything that is still not safe to a
 - writes:
   - `.tmp/transfer-planner-primary-source-review-queue.json`
   - `.tmp/transfer-planner-primary-source-review-queue.md`
-- this becomes the manual follow-up queue after the automatic promotion pass
+- this becomes the internal source-gap report after the automatic promotion pass, not a student-facing review workflow
 
 There is now also a first real requirement-parser layer:
 
@@ -312,7 +344,7 @@ That remaining work needs source-family adapters such as:
 - UW department-page scrapers/parsers for majors that publish requirement tables in repeatable HTML
 - PDF extractors for majors that still publish degree sheets only as PDFs
 - explicit diff rules for when a page changed cosmetically vs when a requirement really changed
-- a review queue for majors where public pages are category-based, inconsistent, or still require human interpretation
+- a source-gap backlog for majors where public pages are category-based, inconsistent, or still need more parser/source coverage
 
 So the new script gets the project much closer to a real `check sources + refresh outputs` workflow, but the last step to full automation is still structured source ingestion for the heterogeneous UW major pages.
 
@@ -342,7 +374,7 @@ The detailed planner-facing equivalency and series-rule assumptions now live in:
 - It is not an official UW degree audit.
 - It is not a live registrar schedule.
 - It is not a promise that every course is offered every quarter.
-- It is not a substitute for advisor review when the major has multiple valid science, math, or programming paths.
+- It is not a claim beyond the current source-backed public requirements; unsupported paths should stay hidden.
 - It should not show fake dropdown choices for majors that do not actually have distinct supported pathways.
 
 ## Planner doc set

@@ -12,12 +12,30 @@ import {
 } from "./bootstrap.generated";
 import { TRANSFER_PLANNER_NORMALIZED_COURSE_METADATA } from "./course-metadata";
 import {
+  TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULES,
+} from "./equivalency-guide.generated";
+import {
+  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS,
+  TRANSFER_PLANNER_REQUIREMENT_SOURCE_ADAPTER_SUMMARY,
+} from "./requirement-source-adapters.generated";
+import {
   TRANSFER_PLANNER_PROMOTED_PRIMARY_SOURCE_OVERRIDES,
   type TransferPlannerPromotedPrimarySourceOverride,
 } from "./source-manifest-primary-overrides.generated";
 import {
   TRANSFER_PLANNER_PROMOTED_REQUIREMENT_ATOM_OVERRIDES,
 } from "./requirement-atom-overrides.generated";
+import {
+  TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATIONS,
+  TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_SUMMARY,
+} from "./requirement-diff-classifications.generated";
+import {
+  TRANSFER_PLANNER_SOURCE_GAP_ENTRIES,
+} from "./source-gaps.generated";
+import {
+  TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS,
+  TRANSFER_PLANNER_SOURCE_FINGERPRINTS,
+} from "./source-fingerprints.generated";
 import type {
   TransferPlannerChecklistItem,
   TransferPlannerDegreeMapSection,
@@ -108,6 +126,18 @@ const PHASE_CONFIG: Array<{
   { phase: "before-enrollment", itemsKey: "beforeEnrollmentChecklist" },
   { phase: "stay-at-grc", itemsKey: "stayAtGrcChecklist" },
 ];
+const AVAILABILITY_QUARTER_LABELS: Record<string, string> = {
+  summer: "Summer",
+  fall: "Fall",
+  winter: "Winter",
+  spring: "Spring",
+};
+const GUIDE_TERM_ORDER: Partial<Record<string, number>> = {
+  WIN: 1,
+  SPR: 2,
+  SUM: 3,
+  AUT: 4,
+};
 const REQUIREMENT_DISPLAY_PHASE_OVERRIDES: Partial<Record<string, TransferPlannerRequirementPhase>> = {
   "uw-seattle-asian-studies:uws-asst-civilization": "stay-at-grc",
   "uw-seattle-astronomy:uws-astr-math-elective": "stay-at-grc",
@@ -362,6 +392,7 @@ type MutableCourseRegistryEntry = Omit<
   | "title"
   | "creditValue"
   | "creditLabel"
+  | "catalogDescription"
   | "sourceKinds"
   | "sourceContexts"
   | "referencedByPlanIds"
@@ -381,6 +412,7 @@ type MutableCourseRegistryEntry = Omit<
   title: string | null;
   creditValue: number | null;
   creditLabel: string | null;
+  catalogDescription: string | null;
   sourceKinds: Set<TransferPlannerCourseSourceKind>;
   sourceContexts: Set<string>;
   referencedByPlanIds: Set<string>;
@@ -403,6 +435,44 @@ function normalizeCourseCode(value: string) {
     .toUpperCase()
     .replace(/\s+/g, " ")
     .trim();
+}
+
+function parseGuideTermSortValue(label: string | null | undefined) {
+  const match = String(label ?? "")
+    .toUpperCase()
+    .match(/\b(WIN|SPR|SUM|AUT)\s+QTR\.\s+(\d{4})\b/);
+  if (!match) {
+    return null;
+  }
+  const quarter = GUIDE_TERM_ORDER[match[1]];
+  if (!quarter) {
+    return null;
+  }
+  return Number.parseInt(match[2], 10) * 10 + quarter;
+}
+
+function isEffectiveRangeActiveForGuideTerm(
+  range: TransferPlannerEffectiveYearRange,
+  termLabel: string
+) {
+  const termValue = parseGuideTermSortValue(termLabel);
+  if (termValue === null) {
+    return true;
+  }
+
+  const endValue = parseGuideTermSortValue(range.endLabel);
+  if (range.startLabel === "prior-to-guide-cutoff") {
+    return endValue === null ? true : termValue < endValue;
+  }
+
+  const startValue = parseGuideTermSortValue(range.startLabel);
+  if (startValue !== null && termValue < startValue) {
+    return false;
+  }
+  if (endValue !== null && termValue > endValue) {
+    return false;
+  }
+  return true;
 }
 
 function normalizeExtractedCourseCode(value: string) {
@@ -442,6 +512,62 @@ function unique<T>(values: T[]) {
 
 function compact<T>(values: Array<T | null | undefined | false>) {
   return values.filter(Boolean) as T[];
+}
+
+function formatAvailabilitySourceWindow(
+  availability: Pick<TransferPlannerGrcCourseAvailabilityEntry, "years">
+) {
+  const labels = availability.years.map((year) => year.label).filter(Boolean);
+  if (!labels.length) return "the latest published Green River annual schedules";
+  if (labels.length === 1) return `the latest published ${labels[0]} Green River annual schedule`;
+  if (labels.length === 2) {
+    return `the latest published ${labels[0]} and ${labels[1]} Green River annual schedules`;
+  }
+  return `the latest published Green River annual schedules (${labels.join(", ")})`;
+}
+
+function formatAvailabilitySummary(
+  availability: Pick<
+    TransferPlannerGrcCourseAvailabilityEntry,
+    "status" | "years" | "latestPublishedQuarters"
+  >
+) {
+  const yearSummaries = availability.years
+    .filter((year) => year.quarters.length > 0)
+    .map(
+      (year) =>
+        `${year.label}: ${year.quarters
+          .map((quarter) => AVAILABILITY_QUARTER_LABELS[String(quarter)] ?? quarter)
+          .join(", ")}`
+    );
+  const sourceWindow = formatAvailabilitySourceWindow(availability);
+  const latestPublishedYearLabel = availability.years[availability.years.length - 1]?.label ?? null;
+
+  if (availability.status === "published-in-latest-schedule") {
+    return yearSummaries.length
+      ? `Recent GRC annual schedule history: ${yearSummaries.join("; ")}.`
+      : null;
+  }
+
+  if (availability.status === "published-in-recent-history-not-latest") {
+    if (yearSummaries.length) {
+      const latestSuffix = latestPublishedYearLabel
+        ? ` Not published in the latest ${latestPublishedYearLabel} annual schedule.`
+        : ` Not published in ${sourceWindow}.`;
+      return `Recent GRC annual schedule history: ${yearSummaries.join("; ")}.${latestSuffix}`;
+    }
+    return `Found in recent Green River annual schedule history, but not in ${sourceWindow}.`;
+  }
+
+  if (availability.status === "catalog-listed-not-in-latest-schedules") {
+    return `Listed in the current Green River catalog, but not found in ${sourceWindow}.`;
+  }
+
+  if (availability.status === "legacy-track-only-no-current-public-source") {
+    return `Referenced only by legacy Green River track history and not found in the current Green River catalog or ${sourceWindow}.`;
+  }
+
+  return `Still referenced by the planner, but not found in the current Green River catalog or ${sourceWindow}.`;
 }
 
 function getRangeKey(range: TransferPlannerEffectiveYearRange) {
@@ -673,6 +799,7 @@ function createMutableCourseEntry(
     title: null,
     creditValue: null,
     creditLabel: null,
+    catalogDescription: null,
     subjectCode: parts.subjectCode,
     catalogNumber: parts.catalogNumber,
     level: parts.level,
@@ -1022,6 +1149,9 @@ function applyNormalizedCourseMetadata(registry: Map<string, MutableCourseRegist
     } else if (metadata.creditValue !== undefined && metadata.creditValue !== null) {
       entry.creditLabel = String(metadata.creditValue);
     }
+    if (metadata.catalogDescription !== undefined) {
+      entry.catalogDescription = metadata.catalogDescription ?? null;
+    }
 
     for (const code of metadata.prerequisiteCourseCodes ?? []) {
       entry.prerequisiteCourseCodes.add(normalizeCourseCode(code));
@@ -1074,17 +1204,18 @@ function finalizeCourseRegistryEntry(
     for (const link of GRC_AVAILABILITY_SOURCE_LINKS) {
       entry.sourceLinks.set(link.url, link);
     }
-    entry.latestAvailabilitySummary =
-      availabilityEntry.note ??
-      `Published in ${availabilityEntry.latestPublishedQuarters.join(", ")} in the latest annual schedules.`;
+    entry.latestAvailabilitySummary = formatAvailabilitySummary(availabilityEntry);
     for (const year of availabilityEntry.years) {
       entry.effectiveYearLabels.add(year.label);
     }
     for (const quarter of availabilityEntry.latestPublishedQuarters) {
       entry.latestPublishedQuarters.add(quarter);
     }
-    if (availabilityEntry.note) {
-      entry.notes.add(availabilityEntry.note);
+    if (
+      availabilityEntry.status !== "published-in-latest-schedule" &&
+      entry.latestAvailabilitySummary
+    ) {
+      entry.notes.add(entry.latestAvailabilitySummary);
     }
   }
 
@@ -1253,6 +1384,8 @@ function buildEquivalencyRuleRegistry() {
     type: rule.type,
     title: rule.title,
     acceptanceCategory: rule.acceptanceCategory,
+    ruleStatus: "active",
+    sourceKind: "manual-planner-rule",
     sourceSchoolId: "grc",
     targetSchoolIds: ALL_UW_CAMPUSES,
     sourceCourseSets: rule.sourceCourseSets,
@@ -1272,6 +1405,8 @@ function buildEquivalencyRuleRegistry() {
       type: mapChainRuleType(chain.id),
       title: chain.id,
       acceptanceCategory: metadata?.acceptanceCategory ?? "accepted",
+      ruleStatus: metadata?.acceptanceCategory === "legacy-accepted" ? "legacy" : "active",
+      sourceKind: "chain-library",
       sourceSchoolId: "grc",
       targetSchoolIds: ALL_UW_CAMPUSES,
       targetOutcome: chain.rule,
@@ -1284,7 +1419,11 @@ function buildEquivalencyRuleRegistry() {
     }
   );
 
-  return [...structuredRules, ...chainRules].sort((left, right) => left.id.localeCompare(right.id));
+  return [
+    ...structuredRules,
+    ...TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULES,
+    ...chainRules,
+  ].sort((left, right) => left.id.localeCompare(right.id));
 }
 
 function buildRequirementAtomRegistry() {
@@ -1616,9 +1755,56 @@ export const TRANSFER_PLANNER_DEGREE_MAP_BLOCK_REGISTRY = buildDegreeMapBlockReg
 export const TRANSFER_PLANNER_POLICY_REGISTRY = buildPolicyRegistry();
 export const TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY = buildPathwayRegistry();
 export const TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY = buildSourceManifestRegistry();
+export const TRANSFER_PLANNER_SOURCE_GAP_REGISTRY = TRANSFER_PLANNER_SOURCE_GAP_ENTRIES;
+export const TRANSFER_PLANNER_SOURCE_FINGERPRINT_REGISTRY = TRANSFER_PLANNER_SOURCE_FINGERPRINTS;
+export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINT_REGISTRY =
+  TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS;
+export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY =
+  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS;
+export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_ADAPTER_REGISTRY_SUMMARY =
+  TRANSFER_PLANNER_REQUIREMENT_SOURCE_ADAPTER_SUMMARY;
+export const TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY =
+  TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATIONS;
+export const TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY_SUMMARY =
+  TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_SUMMARY;
+
+const HIDDEN_SOURCE_GAP_PLAN_IDS = new Set(
+  TRANSFER_PLANNER_SOURCE_GAP_REGISTRY.filter(
+    (entry) => entry.studentVisibility === "hidden" && !entry.pathwayId
+  ).map((entry) => entry.planId)
+);
+const HIDDEN_SOURCE_GAP_PATHWAY_KEYS = new Set(
+  TRANSFER_PLANNER_SOURCE_GAP_REGISTRY.filter(
+    (entry) => entry.studentVisibility === "hidden" && entry.pathwayId
+  ).map((entry) => `${entry.planId}::${entry.pathwayId}`)
+);
+const SOURCE_GENERATED_PATHWAY_COUNT = TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.reduce(
+  (count, plan) => count + (plan.pathways?.length ?? 0),
+  0
+);
+const STUDENT_VISIBLE_SOURCE_GENERATED_PATHWAY_COUNT = TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.reduce(
+  (count, plan) => {
+    if (HIDDEN_SOURCE_GAP_PLAN_IDS.has(plan.id)) return count;
+    return (
+      count +
+      (plan.pathways ?? []).filter(
+        (pathway) => !HIDDEN_SOURCE_GAP_PATHWAY_KEYS.has(`${plan.id}::${pathway.id}`)
+      ).length
+    );
+  },
+  0
+);
 
 export const TRANSFER_PLANNER_SOURCE_SUMMARY = {
   generatedOn: "2026-04-02",
+  sourceGeneratedMajorPlanCount: TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.length,
+  studentVisibleMajorPlanCount: TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.filter(
+    (plan) => !HIDDEN_SOURCE_GAP_PLAN_IDS.has(plan.id)
+  ).length,
+  hiddenSourceGapMajorPlanCount: HIDDEN_SOURCE_GAP_PLAN_IDS.size,
+  sourceGeneratedPathwayCount: SOURCE_GENERATED_PATHWAY_COUNT,
+  studentVisiblePathwayCount: STUDENT_VISIBLE_SOURCE_GENERATED_PATHWAY_COUNT,
+  hiddenSourceGapPathwayCount: HIDDEN_SOURCE_GAP_PATHWAY_KEYS.size,
   canonicalCourseCount: TRANSFER_PLANNER_CANONICAL_COURSE_REGISTRY.length,
   canonicalCourseTitleCount: TRANSFER_PLANNER_CANONICAL_COURSE_REGISTRY.filter(
     (entry) => Boolean(entry.title)
@@ -1640,6 +1826,24 @@ export const TRANSFER_PLANNER_SOURCE_SUMMARY = {
     (entry) => entry.effectiveYearRanges.length > 0
   ).length,
   equivalencyRuleCount: TRANSFER_PLANNER_EQUIVALENCY_RULE_REGISTRY.length,
+  equivalencyGuideParsedRuleCount: TRANSFER_PLANNER_EQUIVALENCY_RULE_REGISTRY.filter(
+    (entry) => entry.sourceKind === "uw-green-river-equivalency-guide"
+  ).length,
+  equivalencyRuleCountsBySourceKind: TRANSFER_PLANNER_EQUIVALENCY_RULE_REGISTRY.reduce(
+    (counts, entry) => {
+      const key = entry.sourceKind ?? "unknown";
+      counts[key] = (counts[key] ?? 0) + 1;
+      return counts;
+    },
+    {} as Record<string, number>
+  ),
+  equivalencyRuleCountsByType: TRANSFER_PLANNER_EQUIVALENCY_RULE_REGISTRY.reduce(
+    (counts, entry) => {
+      counts[entry.type] = (counts[entry.type] ?? 0) + 1;
+      return counts;
+    },
+    {} as Record<string, number>
+  ),
   majorRequirementCount: TRANSFER_PLANNER_MAJOR_REQUIREMENT_REGISTRY.length,
   degreeMapBlockCount: TRANSFER_PLANNER_DEGREE_MAP_BLOCK_REGISTRY.length,
   policyEntryCount: TRANSFER_PLANNER_POLICY_REGISTRY.length,
@@ -1653,8 +1857,44 @@ export const TRANSFER_PLANNER_SOURCE_SUMMARY = {
   ).length,
   sourceManifestPromotedPrimaryOverrideCount:
     TRANSFER_PLANNER_PROMOTED_PRIMARY_SOURCE_OVERRIDES.length,
+  sourceGapCount: TRANSFER_PLANNER_SOURCE_GAP_REGISTRY.length,
+  sourceGapCountsByStatus: TRANSFER_PLANNER_SOURCE_GAP_REGISTRY.reduce(
+    (counts, entry) => {
+      counts[entry.sourceCoverageStatus] = (counts[entry.sourceCoverageStatus] ?? 0) + 1;
+      return counts;
+    },
+    {} as Record<string, number>
+  ),
+  sourceFingerprintCount: TRANSFER_PLANNER_SOURCE_FINGERPRINT_REGISTRY.length,
+  requirementSourceFingerprintCount:
+    TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINT_REGISTRY.length,
+  parsedRequirementSourceBlockCount:
+    TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY.length,
+  parsedRequirementAtomCandidateCount:
+    TRANSFER_PLANNER_REQUIREMENT_SOURCE_ADAPTER_REGISTRY_SUMMARY
+      .parsedRequirementAtomCandidateCount,
+  parsedDegreeMapBlockCandidateCount:
+    TRANSFER_PLANNER_REQUIREMENT_SOURCE_ADAPTER_REGISTRY_SUMMARY
+      .parsedDegreeMapBlockCandidateCount,
+  requirementSourceAdapterCountsById:
+    TRANSFER_PLANNER_REQUIREMENT_SOURCE_ADAPTER_REGISTRY_SUMMARY.countsByAdapterId,
+  catalogDescriptionCount: TRANSFER_PLANNER_CANONICAL_COURSE_REGISTRY.filter(
+    (entry) => Boolean(entry.catalogDescription)
+  ).length,
+  catalogPrerequisiteNoteCount: TRANSFER_PLANNER_CANONICAL_COURSE_REGISTRY.filter(
+    (entry) => entry.prerequisiteNotes.length > 0
+  ).length,
+  catalogCorequisiteNoteCount: TRANSFER_PLANNER_CANONICAL_COURSE_REGISTRY.filter(
+    (entry) => entry.corequisiteNotes.length > 0
+  ).length,
   promotedRequirementAtomOverrideCount:
     TRANSFER_PLANNER_PROMOTED_REQUIREMENT_ATOM_OVERRIDES.length,
+  requirementDiffClassificationCount:
+    TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY.length,
+  requirementDiffClassificationCountsByKind:
+    TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY_SUMMARY.countsByKind,
+  requirementDiffClassificationCountsByCampus:
+    TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY_SUMMARY.countsByCampus,
   courseCountsBySchool: {
     grc: TRANSFER_PLANNER_CANONICAL_COURSE_REGISTRY.filter((entry) => entry.schoolId === "grc")
       .length,
@@ -1715,6 +1955,36 @@ export function getTransferPlannerPromotedRequirementAtomOverrides(
   );
 }
 
+export function getTransferPlannerRequirementDiffClassifications(
+  planId: string,
+  pathwayId?: string | null
+) {
+  return TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY.filter(
+    (entry) =>
+      entry.planId === planId &&
+      (pathwayId === undefined
+        ? true
+        : pathwayId === null
+          ? !entry.pathwayId
+          : entry.pathwayId === pathwayId)
+  );
+}
+
+export function getTransferPlannerParsedRequirementSourceBlocks(
+  planId: string,
+  pathwayId?: string | null
+) {
+  return TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY.filter(
+    (entry) =>
+      entry.planId === planId &&
+      (pathwayId === undefined
+        ? true
+        : pathwayId === null
+          ? !entry.pathwayId
+          : entry.pathwayId === pathwayId)
+  );
+}
+
 export function getTransferPlannerCanonicalCourse(
   schoolId: TransferPlannerSourceSchoolId,
   code: string
@@ -1723,4 +1993,35 @@ export function getTransferPlannerCanonicalCourse(
   return TRANSFER_PLANNER_CANONICAL_COURSE_REGISTRY.find(
     (entry) => entry.schoolId === schoolId && entry.code === normalizedCode
   );
+}
+
+export function isTransferPlannerEquivalencyRuleEffectiveForTerm(
+  rule: TransferPlannerEquivalencyRule,
+  termLabel: string
+) {
+  if (rule.effectiveYearRanges.length === 0) {
+    return true;
+  }
+  return rule.effectiveYearRanges.some((range) =>
+    isEffectiveRangeActiveForGuideTerm(range, termLabel)
+  );
+}
+
+export function getTransferPlannerEquivalencyRulesForSourceCourse(
+  sourceCourseCode: string,
+  effectiveTermLabel?: string | null
+) {
+  const normalizedCode = normalizeCourseCode(sourceCourseCode);
+  return TRANSFER_PLANNER_EQUIVALENCY_RULE_REGISTRY.filter((entry) => {
+    const hasSourceCourse = (entry.sourceCourseSets ?? []).some((courseSet) =>
+      courseSet.includes(normalizedCode)
+    );
+    if (!hasSourceCourse) {
+      return false;
+    }
+    if (!effectiveTermLabel) {
+      return true;
+    }
+    return isTransferPlannerEquivalencyRuleEffectiveForTerm(entry, effectiveTermLabel);
+  });
 }

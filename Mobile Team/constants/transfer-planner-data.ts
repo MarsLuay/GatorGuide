@@ -18381,6 +18381,57 @@ export function getTransferPlannerGrcCourseList(
   );
 }
 
+function formatAvailabilitySourceWindow(
+  availability: Pick<TransferPlannerGrcCourseAvailabilityEntry, "years">
+) {
+  const labels = availability.years.map((year) => year.label).filter(Boolean);
+  if (!labels.length) return "the latest published Green River annual schedules";
+  if (labels.length === 1) return `the latest published ${labels[0]} Green River annual schedule`;
+  if (labels.length === 2) {
+    return `the latest published ${labels[0]} and ${labels[1]} Green River annual schedules`;
+  }
+  return `the latest published Green River annual schedules (${labels.join(", ")})`;
+}
+
+function formatAvailabilityStatusSummary(
+  availability: Pick<
+    TransferPlannerGrcCourseAvailabilityEntry,
+    "status" | "years" | "latestPublishedQuarters"
+  >
+) {
+  const yearSummaries = availability.years
+    .filter((year) => year.quarters.length > 0)
+    .map((year) => `${year.label}: ${formatAvailabilityQuarterList(year.quarters)}`);
+  const sourceWindow = formatAvailabilitySourceWindow(availability);
+  const latestPublishedYearLabel = availability.years[availability.years.length - 1]?.label ?? null;
+
+  if (availability.status === "published-in-latest-schedule") {
+    return yearSummaries.length
+      ? `Recent GRC annual schedule history: ${yearSummaries.join("; ")}.`
+      : null;
+  }
+
+  if (availability.status === "published-in-recent-history-not-latest") {
+    if (yearSummaries.length) {
+      const latestSuffix = latestPublishedYearLabel
+        ? ` Not published in the latest ${latestPublishedYearLabel} annual schedule.`
+        : ` Not published in ${sourceWindow}.`;
+      return `Recent GRC annual schedule history: ${yearSummaries.join("; ")}.${latestSuffix}`;
+    }
+    return `Found in recent Green River annual schedule history, but not in ${sourceWindow}.`;
+  }
+
+  if (availability.status === "catalog-listed-not-in-latest-schedules") {
+    return `Listed in the current Green River catalog, but not found in ${sourceWindow}.`;
+  }
+
+  if (availability.status === "legacy-track-only-no-current-public-source") {
+    return `Referenced only by legacy Green River track history and not found in the current Green River catalog or ${sourceWindow}.`;
+  }
+
+  return `Still referenced by the planner, but not found in the current Green River catalog or ${sourceWindow}.`;
+}
+
 export function getTransferPlannerGrcCourseListGuidance(
   plan: TransferPlannerMajorPlan | null | undefined
 ) {
@@ -18402,12 +18453,12 @@ export function getTransferPlannerGrcCourseAvailability(
 
     return {
       courseCode: code,
+      status: entry.status,
       years: entry.years.map((year: TransferPlannerGrcCourseAvailabilityEntry["years"][number]) => ({
         label: year.label,
         quarters: [...year.quarters],
       })),
       latestPublishedQuarters: [...entry.latestPublishedQuarters],
-      note: entry.note,
     };
   }
 
@@ -18425,16 +18476,7 @@ export function getTransferPlannerGrcCourseAvailabilitySummary(
 ) {
   const availability = getTransferPlannerGrcCourseAvailability(courseLabel);
   if (!availability) return null;
-
-  const yearSummaries = availability.years
-    .filter((year) => year.quarters.length > 0)
-    .map((year) => `${year.label}: ${formatAvailabilityQuarterList(year.quarters)}`);
-
-  if (yearSummaries.length) {
-    return `Recent GRC annual schedule history: ${yearSummaries.join("; ")}.`;
-  }
-
-  return availability.note ?? null;
+  return formatAvailabilityStatusSummary(availability);
 }
 
 export function getTransferPlannerMajorsForCampus(campusId: TransferPlannerCampusId) {

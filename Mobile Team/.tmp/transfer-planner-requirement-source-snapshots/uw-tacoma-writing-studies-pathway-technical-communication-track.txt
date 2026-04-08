@@ -1,0 +1,218 @@
+Owner: uw-tacoma-writing-studies:pathway:technical-communication-track
+Source: https://www.tacoma.uw.edu/sias/cac/technical-communication-track
+Title: Technical Communication Track | Culture, Arts & Communication | University of Washington Tacoma
+
+Technical Communication Track | Culture, Arts & Communication | University of Washington Tacoma
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMVD9WN"
+height="0"
+width="0"
+style="display:none;
+visibility:hidden">
+Skip to main content
+Apply
+Canvas
+Map
+Calendar
+Library
+Directory
+MyUW
+more_vert
+more_vert
+Close Search
+<img
+src="/sites/default/files/sites/uwtd8main/W.svg"
+alt="Block W - Link to UW Tacoma homepage"/>
+<img class="mobile-hide desktop-show"
+src="/sites/default/files/sites/uwtd8main/wordmark-full.svg"
+alt="University of Washington Tacoma"/>
+<img class="mobile-show desktop-hide"
+src="/sites/default/files/sites/uwtd8main/Wordmark-Tacoma.svg"
+alt="University of Washington Tacoma"/>
+Tools
+25Live
+Canvas
+Directory
+IT Help
+Library
+Map
+MyUW
+Office365
+Panopto
+Scout
+UW Gmail
+Workday
+Zoom
+Search
+<a
+href=" https://www.tacoma.uw.edu/sias ">School of Interdisciplinary Arts & Sciences
+Culture, Arts & Communication
+Culture, Arts & Communication
+Majors
+expand_more
+Arts, Media & Culture
+Communication
+add
+Faculty
+FAQs
+Get Involved
+Post Graduation
+Internships
+Spanish Language and Cultures
+Writing Studies
+Minors
+expand_more
+American Popular Cultures Minor
+Asian Studies Minor
+Latino Studies Minor
+Spanish Language and Cultures Minor
+Technical Communication Minor
+CAC Resources
+expand_more
+CAC Directory
+Open Public Meetings
+Contact
+Advising
+MyUW
+Map
+Tools
+Breadcrumb
+<a href="https://www.tacoma.uw.edu/"
+class="breadcrumb--home-icon uwt-icon" title="UW Tacoma Homepage"
+>Home
+<a href="/sias"
+>School of Interdisciplinary Arts & Sciences
+<a href="/sias/cac"
+>Culture, Arts & Communication
+Technical Communication Track
+Technical Communication Track
+Bachelor of Arts in Culture, Arts and Communication
+Main Content
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2025-11/270-outside-workshop-cropped.png"
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2025-11/270-outside-workshop-cropped.png 1940w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2025-11/270-outside-workshop-cropped.png 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2025-11/270-outside-workshop-cropped.png 600w"
+sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
+alt="A photo of students working outside at UW Tacoma">
+Degree Requirements
+To complete a BA in the Technical Communication track of Writing Studies, you need to complete 65 credits, including 45 credits in upper-division (300–400 level) courses, with a minimum 2.0 GPA.
+Foundation (10 credits)
+One required course:
+TWRT 291 Technical Communication in the Workplace
+5 credits from the following list: (These courses can only be taken once, as either Track Foundational Courses or Electives.)
+TWRT 331 Writing in the Natural Sciences
+TWRT 350 Principles of User Centered Design
+TWRT 391 Advanced Technical Communication
+TCOM 320 Principles of Web Design
+Technical Communication Electives (20 credits)
+TWRT 292 Power, Privilege and Bias in Technology Design
+TWRT 330 Written and Visual Rhetoric
+TWRT 331 Writing in the Natural Sciences
+TWRT 350 Principles of User Centered Design
+TWRT 353 User Experience Writing
+TWRT 355 Usability Testing and Research
+TWRT 391 Advanced Technical Communication
+TWRT 440 Cross-Cultural Communication Design
+TWRT 450 Principles of Accessible Design
+TCOM 220 Social Media
+TCOM 320 Principles of Web Design
+Creative, Scientific and Technical Topics Electives (35 credits)
+TWRT 200 Introduction to Creative Writing
+TWRT 201 Creative Writing in the Global Context
+TWRT 270 Poetry Writing
+TWRT 280 Introduction to Fiction Writing
+TWRT 287 Creative Nonfiction Writing
+TWRT 320 Rhetoric, Public Life and Civic Engagement
+TWRT 333 Writing through Comics
+TWRT 340 Asian American Rhetorics, Literacies and Activism
+TWRT 360 Playwriting
+TWRT 364 Food Writing for Cultural Exploration
+TWRT 365 Literary Editing and Publishing
+TWRT 372 Writing Eco-Poetry
+TWRT 382 Writing Popular Fiction
+TWRT 384 Writing Historical Fiction
+TWRT 388 Writing for Social Change
+TWRT 389 Nature Writing
+TWRT 420 Rhetoric and the City: Composing Urban Landscapes
+TWRT 470 Advanced Poetry Writing
+TWRT 480 Advanced Fiction Writing
+TWRT 487 Advanced Creative Nonfiction Writing
+TWRT 492 Special Topics in Community-Engaged Writing
+TWRT 499 Advanced Topics in Creative Writing
+TCOM 221 Artificial Intelligence: Media, Culture and Power
+TCOM 275 Writing, Reporting and Editing for the Mass Media
+TCOM 348 Non-fiction Writing for Television
+TCOM 349 News Writing
+TCOM 387 Writing for Public Relations
+TCOM 482 Investigative Reporting
+TCOM 484 Opinion Writing for the Mass Media
+TCOM 486 Feature Writing for Print Media
+TCSS 142 Introduction to Object-Oriented Programming
+TESC 201 The Science of Environmental Sustainability
+TEST 332 A Natural History of Garbage
+TEST 335 Environmental Impact Analysis
+TGEOS 241 Oceanography
+TGEOS 243 Geography of the Physical Environment
+TGEOS 341 Climate Change
+TINFO 210 Foundations of Information Management
+TINFO 220 Foundations of Human Computer Interaction for Information Technology and Systems
+TINFO 230 Web Design and Programming
+TINFO 310 Foundations of Information Assurance
+TINFO 370 Managing Technical Teams
+TINST 207 Living and Working in the Virtual World
+TINST 312 Computer Networks and the Internet
+TINST 401 Technology in the Service of Society
+TINST 475 Entrepreneurship in Computing and Software Systems
+TWOMN 211 Women in Science
+Contact
+Culture, Arts & Communication
+ACADEMICS
+Academic advising
+Academic calendar
+Canvas
+Library
+Schools and programs
+Study Abroad
+Teaching and Learning Center
+CAMPUS
+Campus Safety
+Equity & Inclusion
+Financial Aid
+Housing
+Information Technology
+Student Life
+University YMCA Student Center
+ABOUT UW TACOMA
+Administration
+Admissions
+Institutional Research
+Jobs
+Parking & transportation
+Research
+UWNetID login
+<a href="https://www.tacoma.uw.edu/"
+aria-label="University of Washington Tacoma Homepage">
+<a href="https://www.facebook.com/uwtacoma"
+title="Follow UW Tacoma on Facebook">
+<a href="https://instagram.com/uwtacoma"
+title="Follow UW Tacoma on Instagram">
+<a href="https://www.tiktok.com/@uwtacoma"
+title="Follow UW Tacoma on TikTok">
+<a href="https://www.youtube.com/channel/UC5yP5pgHK5hPnPwfxMykQFw"
+title="Follow UW Tacoma on Youtube">
+<a href="https://www.linkedin.com/school/university-of-washington-tacoma"
+title="Follow UW Tacoma on Linkedin">
+Puyallup Tribe of Indians
+Tribal Sponsor of UW Tacoma
+Learn More >
+Land
+Acknowledgement
+>
+UW Seattle | UW
+Bothell
+&copy; 2026 University of Washington Tacoma
+1900 Commerce Street, Tacoma, WA 98402-3100
+Contact us |
+Terms of Use |
+Privacy |
+Accessibility |
+Rules Docket

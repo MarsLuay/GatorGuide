@@ -7,17 +7,25 @@ export type TransferPlannerGrcCourseAvailabilityQuarter =
   | "winter"
   | "spring";
 
+export type TransferPlannerGrcCourseAvailabilityStatus =
+  | "published-in-latest-schedule"
+  | "published-in-recent-history-not-latest"
+  | "catalog-listed-not-in-latest-schedules"
+  | "planner-course-no-current-public-source"
+  | "legacy-track-only-no-current-public-source";
+
 export type TransferPlannerGrcCourseAvailabilityEntry = {
+  status: TransferPlannerGrcCourseAvailabilityStatus;
   years: {
     label: string;
     quarters: TransferPlannerGrcCourseAvailabilityQuarter[];
   }[];
   latestPublishedQuarters: TransferPlannerGrcCourseAvailabilityQuarter[];
-  note?: string;
 };
 
 export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
   "ACCT& 201": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -46,6 +54,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ACCT& 202": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -74,6 +83,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ACCT& 203": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -102,6 +112,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "AMES 100": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -130,6 +141,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "AMES 150": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -140,10 +152,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "AMES 194": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -154,10 +166,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "AMES 211": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -168,10 +180,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ANTH 194": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -182,10 +194,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ANTH 211": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -196,10 +208,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ANTH 273": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -210,10 +222,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ANTH 294": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -224,10 +236,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ANTH 298": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -238,10 +250,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ANTH 299": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -252,10 +264,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ANTH& 100": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -284,6 +296,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ANTH& 204": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -301,6 +314,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ANTH& 205": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -325,6 +339,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ANTH& 206": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -353,6 +368,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ANTH& 210": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -363,10 +379,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ANTH& 216": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -377,10 +393,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ANTH& 234": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -401,6 +417,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ANTH& 235": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -411,10 +428,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ANTH& 236": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -425,10 +442,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "AP 100": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -457,6 +474,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "AP 102": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -483,6 +501,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "AP 103": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -509,6 +528,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "AP 104": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -529,6 +549,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "AP 210": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -548,6 +569,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ART 105": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -576,6 +598,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ART 106": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -601,6 +624,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ART 107": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -626,6 +650,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ART 109": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -654,6 +679,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ART 110": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -677,6 +703,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ART 111": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -705,6 +732,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ART 112": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -733,6 +761,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ART 113": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -761,6 +790,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ART 114": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -789,6 +819,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ART 115": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -817,6 +848,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ART 119": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -838,6 +870,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ART 120": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -857,6 +890,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ART 130": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -876,6 +910,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ART 133": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -886,10 +921,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ART 135": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -909,6 +944,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ART 150": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -919,10 +955,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ART 180": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -942,6 +978,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ART 190": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -952,10 +989,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ART 199": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -966,10 +1003,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ART 212": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -989,6 +1026,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ART 213": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -1008,6 +1046,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ART 214": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -1028,6 +1067,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ART 219": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -1038,10 +1078,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ART 251": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -1070,6 +1110,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ART 252": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -1098,6 +1139,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ART 253": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -1126,6 +1168,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ART 255": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -1154,6 +1197,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ART 256": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -1182,6 +1226,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ART 257": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -1210,6 +1255,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ART 275": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -1220,10 +1266,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ART 276": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -1234,10 +1280,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ART 277": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -1248,10 +1294,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ART 294": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -1262,10 +1308,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ART 295": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -1276,10 +1322,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ART 296": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -1290,10 +1336,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ART 297": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -1304,10 +1350,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ART 298": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -1318,10 +1364,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ART 299": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -1332,10 +1378,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ART& 100": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -1364,6 +1410,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ASTR& 100": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -1374,10 +1421,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ASTR& 101": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -1406,6 +1453,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "BIOL 103": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -1429,6 +1477,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "BIOL 110": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -1456,7 +1505,8 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
-  "BIOL 125": {
+  "BIOL 111": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -1467,10 +1517,52 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
+  },
+  "BIOL 115": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIOL 116": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIOL 125": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "BIOL 127": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -1481,10 +1573,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "BIOL 140": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -1495,10 +1587,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "BIOL 160": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -1509,10 +1601,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "BIOL 194": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -1523,10 +1615,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "BIOL 195": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -1537,10 +1629,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "BIOL 298": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -1551,10 +1643,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "BIOL& 100": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -1583,6 +1675,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "BIOL& 211": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -1605,6 +1698,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "BIOL& 212": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -1627,6 +1721,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "BIOL& 213": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -1646,6 +1741,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "BIOL& 241": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -1672,6 +1768,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "BIOL& 242": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -1697,6 +1794,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "BIOL& 260": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -1725,6 +1823,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "BUS 121": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -1753,6 +1852,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "BUS 258": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -1781,6 +1881,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "BUS& 101": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -1809,6 +1910,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "BUS& 201": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -1837,6 +1939,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CHEM 194": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -1847,10 +1950,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "CHEM 195": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -1861,10 +1964,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "CHEM 296": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -1875,10 +1978,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "CHEM 299": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -1889,10 +1992,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "CHEM& 121": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -1921,6 +2024,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CHEM& 131": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -1949,6 +2053,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CHEM& 140": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -1977,6 +2082,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CHEM& 161": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2005,6 +2111,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CHEM& 162": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2033,6 +2140,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CHEM& 163": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2060,6 +2168,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CHEM& 261": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2079,6 +2188,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CHEM& 262": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2099,6 +2209,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CHEM& 263": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2121,6 +2232,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CHIN 111": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -2131,10 +2243,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "CHIN& 121": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -2145,10 +2257,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "CHIN& 122": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -2159,10 +2271,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "CHIN& 123": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -2173,10 +2285,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "CJ 200": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2199,6 +2311,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CJ 205": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2221,6 +2334,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CJ 220": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2243,6 +2357,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CJ 236": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2265,6 +2380,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CJ 294": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2284,6 +2400,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CJ 299": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -2294,10 +2411,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "CJ& 101": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2326,6 +2443,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CJ& 105": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2351,6 +2469,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CJ& 110": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2373,6 +2492,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CJ& 240": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2394,6 +2514,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CMST 194": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -2404,10 +2525,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "CMST 212": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2429,6 +2550,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CMST 215": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2451,6 +2573,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CMST 238": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -2461,10 +2584,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "CMST 245": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2491,6 +2614,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CMST 265": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2516,6 +2640,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CMST 266": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -2526,10 +2651,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "CMST 299": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -2540,10 +2665,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "CMST& 102": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2572,6 +2697,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CMST& 210": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2600,6 +2726,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CMST& 220": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2628,6 +2755,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CMST& 230": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2655,7 +2783,8 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
-  "CS 120": {
+  "CRJ 215": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -2666,10 +2795,24 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
+  },
+  "CS 120": {
+    status: "legacy-track-only-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "CS 121": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2698,6 +2841,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CS 122": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2723,6 +2867,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CS 123": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2750,6 +2895,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CS 132": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2769,6 +2915,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CS 145": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -2779,10 +2926,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "CS 202": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2805,6 +2952,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CS& 131": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2827,6 +2975,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CS& 141": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -2837,10 +2986,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "DANCE 101": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2867,6 +3016,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "DANCE 102": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2893,6 +3043,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "DANCE 103": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -2919,6 +3070,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "DANCE 110": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -2929,10 +3081,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "DANCE 120": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -2943,10 +3095,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "DANCE 204": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -2957,10 +3109,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "DANISH 101": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -2971,10 +3123,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "DANISH 102": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -2985,10 +3137,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "DANISH 103": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -2999,10 +3151,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "DRMA 101": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -3013,10 +3165,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "DRMA 102": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3045,6 +3197,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "DRMA 111": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3070,6 +3223,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "DRMA 112": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3095,6 +3249,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "DRMA 113": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3120,6 +3275,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "DRMA 151": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3139,6 +3295,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "DRMA 152": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3158,6 +3315,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "DRMA 153": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3177,6 +3335,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "DRMA 154": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3202,6 +3361,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "DRMA 155": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3227,6 +3387,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "DRMA 156": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3252,6 +3413,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "DRMA 211": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3277,6 +3439,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "DRMA 212": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3302,6 +3465,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "DRMA 213": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3328,6 +3492,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "DRMA 298": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -3338,10 +3503,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "DRMA& 101": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3370,6 +3535,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ECED 152": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -3380,10 +3546,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ECED 155": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3401,6 +3567,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ECED 165": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3421,6 +3588,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ECED 175": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3440,6 +3608,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ECED 220": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -3450,10 +3619,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ECED& 105": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3482,6 +3651,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ECED& 132": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3502,6 +3672,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ECED& 134": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3521,6 +3692,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ECED& 139": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3540,6 +3712,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ECED& 160": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3562,6 +3735,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ECED& 170": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3584,6 +3758,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ECED& 180": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3607,6 +3782,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ECED& 190": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3630,6 +3806,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ECON 100": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3658,6 +3835,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ECON 101": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -3668,10 +3846,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ECON 194": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -3682,10 +3860,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ECON 298": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -3696,10 +3874,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ECON 299": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -3710,10 +3888,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ECON& 201": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3742,6 +3920,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ECON& 202": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3770,6 +3949,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ED 190": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -3780,10 +3960,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "EDUC 240": {
+    status: "published-in-recent-history-not-latest",
     years: [
       {
         label: "2024-2025",
@@ -3801,6 +3981,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: []
   },
   "EDUC 245": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3825,6 +4006,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "EDUC& 115": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3853,6 +4035,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "EDUC& 130": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3881,6 +4064,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "EDUC& 136": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -3891,10 +4075,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "EDUC& 150": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3917,6 +4101,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "EDUC& 204": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3945,6 +4130,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "EDUC& 205": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -3970,6 +4156,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGL 103": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -3980,10 +4167,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ENGL 109": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4010,6 +4197,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGL 115": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4034,7 +4222,22 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "ENGL 120": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "ENGL 126": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4063,6 +4266,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGL 127": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4091,6 +4295,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGL 128": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4119,6 +4324,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGL 160": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4141,6 +4347,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGL 161": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4160,6 +4367,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGL 163": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4179,6 +4387,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGL 164": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4199,6 +4408,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGL 165": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4221,6 +4431,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGL 168": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4238,6 +4449,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGL 180": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4260,6 +4472,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGL 181": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4277,6 +4490,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGL 183": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4297,6 +4511,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGL 185": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -4307,10 +4522,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ENGL 187": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -4321,10 +4536,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ENGL 190": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4347,6 +4562,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGL 194": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -4357,10 +4573,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ENGL 199": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -4371,10 +4587,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ENGL 239": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -4385,10 +4601,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ENGL 247": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4412,6 +4628,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGL 248": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4432,6 +4649,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGL 249": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4451,6 +4669,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGL 257": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -4461,10 +4680,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ENGL 299": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -4475,10 +4694,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ENGL& 101": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4507,6 +4726,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGL& 111": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -4517,10 +4737,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ENGL& 112": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4545,6 +4765,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGL& 113": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4568,6 +4789,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGL& 114": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4588,6 +4810,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGL& 220": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4607,6 +4830,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGL& 226": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -4617,10 +4841,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ENGL& 227": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -4631,10 +4855,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ENGL& 228": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -4645,10 +4869,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ENGL& 236": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4677,6 +4901,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGL& 237": {
+    status: "published-in-recent-history-not-latest",
     years: [
       {
         label: "2024-2025",
@@ -4693,6 +4918,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: []
   },
   "ENGL& 244": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -4703,10 +4929,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ENGL& 245": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -4717,10 +4943,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ENGL& 246": {
+    status: "published-in-recent-history-not-latest",
     years: [
       {
         label: "2024-2025",
@@ -4736,6 +4962,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: []
   },
   "ENGL& 254": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -4746,10 +4973,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ENGL& 255": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -4760,10 +4987,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ENGL& 256": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -4774,10 +5001,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ENGR 100": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4803,6 +5030,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGR 106": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4831,6 +5059,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGR 120": {
+    status: "legacy-track-only-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -4841,10 +5070,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ENGR 140": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4864,6 +5093,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGR 199": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -4874,10 +5104,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "ENGR 250": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4898,7 +5128,37 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter"
     ]
   },
+  "ENGR 271": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
   "ENGR& 104": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4927,6 +5187,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGR& 114": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4946,6 +5207,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGR& 204": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4965,6 +5227,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGR& 214": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -4990,6 +5253,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGR& 215": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -5009,6 +5273,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGR& 224": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -5029,6 +5294,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGR& 225": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -5050,7 +5316,37 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "FILM 101": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
   "FILM 120": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -5079,6 +5375,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "FILM 121": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -5105,6 +5402,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "FILM 122": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -5123,7 +5421,36 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter"
     ]
   },
+  "FORES 182": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "FORES 197": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "FRCH& 121": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -5152,6 +5479,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "FRCH& 122": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -5177,6 +5505,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "FRCH& 123": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -5197,6 +5526,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "FRCH& 221": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -5218,7 +5548,8 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "fall"
     ]
   },
-  "FREN& 121": {
+  "FREN 203": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -5229,10 +5560,38 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
+  },
+  "FREN& 121": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "GEOG 110": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "GEOG 120": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -5261,6 +5620,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "GEOG 123": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -5271,10 +5631,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "GEOG 190": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -5303,6 +5663,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "GEOG 201": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -5313,10 +5674,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "GEOG 205": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -5327,10 +5688,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "GEOG 298": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -5341,10 +5702,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "GEOG 299": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -5355,10 +5716,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "GEOG& 100": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -5387,6 +5748,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "GEOG& 200": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -5413,6 +5775,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "GEOL 150": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -5423,10 +5786,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "GEOL 152": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -5437,10 +5800,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "GEOL 153": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -5451,10 +5814,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "GEOL 200": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -5465,10 +5828,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "GEOL 206": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -5479,10 +5842,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "GEOL 299": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -5493,10 +5856,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "GEOL& 101": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -5521,6 +5884,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "GEOL& 115": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -5531,10 +5895,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "GEOL& 121": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -5545,10 +5909,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "GEOL& 208": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -5559,10 +5923,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "GERM& 121": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -5588,6 +5952,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "GERM& 122": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -5610,6 +5975,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "GERM& 123": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -5628,7 +5994,8 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
-  "GIS 202": {
+  "GIS 100": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -5639,10 +6006,52 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
+  },
+  "GIS 150": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "GIS 160": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "GIS 202": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "GIS 260": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -5653,10 +6062,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "HIST 101": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -5667,10 +6076,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "HIST 102": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -5681,10 +6090,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "HIST 103": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -5695,10 +6104,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "HIST 120": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -5719,6 +6128,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "HIST 122": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -5729,10 +6139,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "HIST 135": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -5759,6 +6169,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "HIST 194": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -5769,10 +6180,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "HIST 220": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -5783,10 +6194,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "HIST 224": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -5797,10 +6208,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "HIST 226": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -5811,10 +6222,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "HIST 228": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -5825,10 +6236,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "HIST 230": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -5839,10 +6250,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "HIST 231": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -5862,6 +6273,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "HIST 232": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -5872,10 +6284,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "HIST 233": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -5895,6 +6307,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "HIST 235": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -5905,10 +6318,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "HIST 237": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -5919,10 +6332,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "HIST 240": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -5951,6 +6364,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "HIST 245": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -5961,10 +6375,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "HIST 250": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -5975,10 +6389,24 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
+  },
+  "HIST 254": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "HIST 299": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -5989,10 +6417,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "HIST& 136": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -6021,6 +6449,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "HIST& 137": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -6049,6 +6478,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "HIST& 214": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -6068,6 +6498,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "HIST& 215": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -6087,6 +6518,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "HUMAN 100": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -6097,10 +6529,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "HUMAN 110": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -6111,10 +6543,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "HUMAN 133": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -6143,6 +6575,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "HUMAN 142": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -6153,10 +6586,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "HUMAN 186": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -6167,10 +6600,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "HUMAN 190": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -6181,10 +6614,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "HUMAN 191": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -6195,10 +6628,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "HUMAN 194": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -6209,10 +6642,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "HUMAN 224": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -6223,10 +6656,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "IDS 101": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -6237,10 +6670,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "IDS 102": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -6251,10 +6684,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "IDS 103": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -6265,10 +6698,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "JAPN& 121": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -6294,6 +6727,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "JAPN& 122": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -6321,6 +6755,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "JAPN& 123": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -6341,6 +6776,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "JOURN 100.1": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -6351,10 +6787,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "JOURN 100.2": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -6365,10 +6801,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "JOURN 100.3": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -6379,10 +6815,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "JOURN 101": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -6409,6 +6845,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "JOURN 103": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -6419,10 +6856,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "JOURN 107": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -6448,6 +6885,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "JOURN 110": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -6458,10 +6896,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "JOURN 111": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -6472,10 +6910,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "JOURN 112": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -6486,10 +6924,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "JOURN 120": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -6500,10 +6938,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "JOURN 121": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -6514,10 +6952,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "JOURN 122": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -6528,10 +6966,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "JOURN 150": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -6551,6 +6989,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "JOURN 151": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -6561,10 +7000,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "JOURN 152": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -6584,6 +7023,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "JOURN 153": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -6594,10 +7034,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "JOURN 198": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -6608,10 +7048,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "JOURN 199": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -6622,10 +7062,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "JOURN 200": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -6636,10 +7076,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "JOURN 205": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -6650,10 +7090,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "JOURN 206": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -6664,10 +7104,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "JOURN 207": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -6678,10 +7118,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "JOURN 254": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -6692,10 +7132,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "JOURN 255": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -6706,10 +7146,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "JOURN 298": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -6720,10 +7160,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "JOURN 299": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -6734,10 +7174,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "LATIN 101": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -6748,10 +7188,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "LATIN 102": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -6762,10 +7202,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "LATIN 103": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -6776,10 +7216,24 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
+  },
+  "LIB 180": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "MATH 106": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -6790,10 +7244,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "MATH 147": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -6822,6 +7276,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MATH 194": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -6832,10 +7287,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "MATH 238": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -6862,6 +7317,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MATH 240": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -6890,6 +7346,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MATH 256": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -6918,6 +7375,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MATH 297": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -6928,10 +7386,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "MATH& 107": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -6960,6 +7418,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MATH& 141": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -6988,6 +7447,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MATH& 142": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -7016,6 +7476,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MATH& 146": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -7044,6 +7505,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MATH& 148": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -7070,6 +7532,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MATH& 151": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -7098,6 +7561,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MATH& 152": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -7126,6 +7590,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MATH& 153": {
+    status: "published-in-recent-history-not-latest",
     years: [
       {
         label: "2024-2025",
@@ -7144,6 +7609,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: []
   },
   "MATH& 163": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -7167,6 +7633,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MATH& 171": {
+    status: "published-in-recent-history-not-latest",
     years: [
       {
         label: "2024-2025",
@@ -7182,6 +7649,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: []
   },
   "MATH& 172": {
+    status: "published-in-recent-history-not-latest",
     years: [
       {
         label: "2024-2025",
@@ -7198,6 +7666,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: []
   },
   "MATH& 173": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -7208,10 +7677,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "MATH& 254": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -7240,6 +7709,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MUSC 101": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -7259,6 +7729,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MUSC 103": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -7287,6 +7758,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MUSC 104": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -7313,6 +7785,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MUSC 107": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -7335,6 +7808,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MUSC 108": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -7363,6 +7837,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MUSC 109": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -7391,6 +7866,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MUSC 110": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -7419,6 +7895,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MUSC 118": {
+    status: "published-in-recent-history-not-latest",
     years: [
       {
         label: "2024-2025",
@@ -7436,6 +7913,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: []
   },
   "MUSC 119": {
+    status: "published-in-recent-history-not-latest",
     years: [
       {
         label: "2024-2025",
@@ -7453,6 +7931,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: []
   },
   "MUSC 120": {
+    status: "published-in-recent-history-not-latest",
     years: [
       {
         label: "2024-2025",
@@ -7470,6 +7949,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: []
   },
   "MUSC 124": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -7480,10 +7960,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "MUSC 125": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -7509,6 +7989,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MUSC 127": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -7534,6 +8015,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MUSC 128": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -7559,6 +8041,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MUSC 129": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -7584,6 +8067,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MUSC 130.1": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -7594,10 +8078,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "MUSC 130.2": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -7608,10 +8092,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "MUSC 130.3": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -7622,10 +8106,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "MUSC 140": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -7652,6 +8136,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MUSC 141": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -7677,6 +8162,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MUSC 142": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -7702,6 +8188,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MUSC 218": {
+    status: "published-in-recent-history-not-latest",
     years: [
       {
         label: "2024-2025",
@@ -7719,6 +8206,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: []
   },
   "MUSC 219": {
+    status: "published-in-recent-history-not-latest",
     years: [
       {
         label: "2024-2025",
@@ -7736,6 +8224,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: []
   },
   "MUSC 220": {
+    status: "published-in-recent-history-not-latest",
     years: [
       {
         label: "2024-2025",
@@ -7753,6 +8242,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: []
   },
   "MUSC 227": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -7778,6 +8268,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MUSC 230.1": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -7788,10 +8279,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "MUSC 230.2": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -7802,10 +8293,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "MUSC 230.3": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -7816,10 +8307,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "MUSC 298": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -7830,10 +8321,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "MUSC 299": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -7844,10 +8335,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "MUSC& 105": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -7873,6 +8364,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MUSC& 121": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -7898,6 +8390,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MUSC& 122": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -7918,6 +8411,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MUSC& 123": {
+    status: "published-in-recent-history-not-latest",
     years: [
       {
         label: "2024-2025",
@@ -7933,6 +8427,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: []
   },
   "MUSC& 131": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -7958,6 +8453,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MUSC& 132": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -7978,6 +8474,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MUSC& 133": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -7997,6 +8494,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MUSC& 221": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -8007,10 +8505,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "MUSC& 222": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -8021,10 +8519,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "MUSC& 231": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -8035,10 +8533,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "MUSC& 232": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -8049,10 +8547,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "MUSIC 228": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -8063,10 +8561,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "MUSIC 229": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -8077,10 +8575,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "NATRS 100": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -8100,6 +8598,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "NATRS 117": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -8110,10 +8609,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "NATRS 161": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -8133,6 +8632,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "NATRS 162": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -8143,10 +8643,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "NATRS 172": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -8166,6 +8666,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "NATRS 180": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -8185,6 +8686,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "NATRS 181": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -8195,10 +8697,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "NATRS 182": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -8218,6 +8720,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "NATRS 183": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -8238,6 +8741,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "NATRS 184": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -8257,6 +8761,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "NATRS 198": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -8267,10 +8772,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "NATRS 199": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -8281,10 +8786,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "NATRS 210": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -8306,6 +8811,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "NATRS 270": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -8323,6 +8829,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "NATRS 271": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -8342,6 +8849,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "NATRS 284": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -8361,6 +8869,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "NATRS 285": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -8371,10 +8880,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "NATRS 286": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -8396,6 +8905,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "NATRS 292": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -8415,6 +8925,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "NATRS 293": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -8434,6 +8945,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "NATRS 294": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -8444,10 +8956,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "NATRS 297": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -8458,10 +8970,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "NATRS 298": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -8472,10 +8984,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "NATRS 299": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -8486,10 +8998,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "NUTR& 101": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -8518,6 +9030,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "OCEA& 101": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -8537,6 +9050,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "PHIL 102": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -8561,6 +9075,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "PHIL 103": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -8571,10 +9086,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "PHIL 104": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -8585,10 +9100,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "PHIL 105": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -8599,10 +9114,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "PHIL 110": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -8620,6 +9135,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "PHIL 112": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -8646,6 +9162,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "PHIL 114": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -8656,10 +9173,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "PHIL 115": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -8670,10 +9187,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "PHIL 160": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -8684,10 +9201,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "PHIL 194": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -8698,10 +9215,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "PHIL 200": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -8719,6 +9236,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "PHIL 206": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -8738,6 +9256,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "PHIL 210": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -8757,6 +9276,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "PHIL 215": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -8767,10 +9287,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "PHIL 220": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -8788,6 +9308,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "PHIL 236": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -8798,10 +9319,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "PHIL 238": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -8812,10 +9333,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "PHIL 240": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -8844,6 +9365,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "PHIL 243": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -8861,6 +9383,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "PHIL 299": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -8871,10 +9394,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "PHIL& 101": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -8903,6 +9426,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "PHIL& 120": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -8931,6 +9455,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "PHOTO 101": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -8959,6 +9484,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "PHOTO 102": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -8981,6 +9507,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "PHOTO 103": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -9003,6 +9530,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "PHOTO 111": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -9031,6 +9559,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "PHOTO 112": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -9053,6 +9582,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "PHOTO 113": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -9075,6 +9605,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "PHYS 225": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -9085,10 +9616,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "PHYS 229": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -9099,10 +9630,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "PHYS 298": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -9113,10 +9644,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "PHYS& 110": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -9127,10 +9658,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "PHYS& 114": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -9159,6 +9690,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "PHYS& 115": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -9178,6 +9710,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "PHYS& 116": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -9197,6 +9730,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "PHYS& 154": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -9207,10 +9741,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "PHYS& 155": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -9221,10 +9755,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "PHYS& 156": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -9235,10 +9769,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "PHYS& 221": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -9267,6 +9801,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "PHYS& 222": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -9292,6 +9827,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "PHYS& 223": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -9317,6 +9853,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "POLS 194": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -9327,10 +9864,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "POLS 207": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -9359,6 +9896,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "POLS 209": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -9369,10 +9907,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "POLS 298": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -9383,10 +9921,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "POLS& 101": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -9415,6 +9953,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "POLS& 200": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -9443,6 +9982,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "POLS& 202": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -9471,6 +10011,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "POLS& 203": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -9497,6 +10038,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "POLS& 204": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -9525,6 +10067,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "PSYC 201": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -9544,6 +10087,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "PSYC 209": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -9554,10 +10098,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "PSYC 225": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -9568,10 +10112,30 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
+  },
+  "PSYC 240": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "spring"
+    ]
   },
   "PSYC 298": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -9582,10 +10146,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "PSYC 299": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -9596,10 +10160,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "PSYC& 100": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -9628,6 +10192,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "PSYC& 180": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -9638,10 +10203,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "PSYC& 200": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -9670,6 +10235,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "PSYC& 220": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -9688,7 +10254,8 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
-  "SCI 160": {
+  "PSYCH 210": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -9699,10 +10266,38 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
+  },
+  "SCI 100": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SCI 160": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "SCI 194": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -9713,10 +10308,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "SCI 211": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -9727,10 +10322,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "SOC 194": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -9741,10 +10336,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "SOC 215": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -9770,6 +10365,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "SOC 220": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -9795,6 +10391,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "SOC 230": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -9805,10 +10402,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "SOC 240": {
+    status: "published-in-recent-history-not-latest",
     years: [
       {
         label: "2024-2025",
@@ -9824,6 +10421,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: []
   },
   "SOC 245": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -9834,10 +10432,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "SOC 260": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -9848,10 +10446,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "SOC 298": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -9862,10 +10460,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "SOC& 101": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -9894,6 +10492,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "SOC& 201": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -9917,6 +10516,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "SPAN 110": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -9927,10 +10527,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "SPAN 194": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -9941,10 +10541,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "SPAN 299": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -9955,10 +10555,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: []
       }
     ],
-    latestPublishedQuarters: [],
-    note: "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it."
+    latestPublishedQuarters: []
   },
   "SPAN& 121": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -9984,6 +10584,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "SPAN& 122": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -10009,6 +10610,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "SPAN& 123": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -10028,6 +10630,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "SPAN& 221": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -10047,6 +10650,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "SPAN& 222": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -10067,6 +10671,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "SPAN& 223": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",

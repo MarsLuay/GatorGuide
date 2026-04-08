@@ -117,6 +117,26 @@ Notes:
 - `qa:windows:screenshots` expects an existing app server unless you set `QA_BASE_URL` / `QA_STATIC_EXPORT` yourself.
 - `qa:windows:ci` is the full CI-style path: it exports the web build, serves it locally, runs screenshots, then runs interaction checks.
 
+## Planner Maintenance
+
+For the full planner maintenance pass on Windows, including refresh, verification, Playwright Chromium setup, and Windows QA:
+
+```bash
+npm run planner:windows:maintenance
+```
+
+Or double-click:
+
+```text
+scripts\run-planner-maintenance.cmd
+```
+
+This launcher writes one human-readable summary to:
+
+```text
+Mobile Team\.tmp\transfer-planner-maintenance-summary.md
+```
+
 ## Commit and Push Changes
 
 First time only (set your info):

@@ -7,6 +7,9 @@ expo-env.d.ts
 .env.*
 !.env.example
 .tools/
+.tmp/planner-refresh-logs/
+.tmp/transfer-planner-maintenance-summary.md
+.tmp/transfer-planner-high-suggestion-audit.txt
 firebase-debug.log
 firestore-debug.log
 storage-debug.log

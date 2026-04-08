@@ -23,6 +23,18 @@ function hasArg(flag) {
   return process.argv.slice(2).includes(flag);
 }
 
+function runStep(label, callback) {
+  console.log("");
+  console.log(`== ${label} ==`);
+  callback();
+}
+
+function runAsyncStep(label, callback) {
+  console.log("");
+  console.log(`== ${label} ==`);
+  return callback();
+}
+
 function runCommand(command, args, options = {}) {
   const isWindowsCmd = process.platform === "win32" && /\.cmd$/i.test(command);
   const result = spawnSync(isWindowsCmd ? "cmd" : command, isWindowsCmd ? ["/c", command, ...args] : args, {
@@ -38,6 +50,33 @@ function runCommand(command, args, options = {}) {
   if (result.status !== 0) {
     throw new Error(`Command failed: ${command} ${args.join(" ")}`);
   }
+}
+
+function runTsNode(scriptPath) {
+  runCommand(
+    NPX_BIN,
+    [
+      "ts-node",
+      "--project",
+      "tsconfig.json",
+      "--require",
+      "tsconfig-paths/register",
+      scriptPath,
+    ],
+    {
+      env: {
+        TS_NODE_COMPILER_OPTIONS,
+        TS_NODE_BASEURL: ".",
+      },
+    }
+  );
+}
+
+function runVerification() {
+  runStep("Run TypeScript typecheck", () => runCommand(NPX_BIN, ["tsc", "--noEmit"]));
+  runStep("Run transfer planner tests", () =>
+    runTsNode("scripts/planner/transfer-planner.service.test.ts")
+  );
 }
 
 async function downloadFile(url, outputPath) {
@@ -73,6 +112,7 @@ async function refreshScheduleDownloads(forceRefresh) {
 }
 
 async function main() {
+  const verifyOnly = hasArg("--verify-only");
   const skipSourceCheck = hasArg("--skip-source-check");
   const skipPrimaryPromotion = hasArg("--skip-primary-promotion");
   const skipRequirementParse = hasArg("--skip-requirement-parse");
@@ -83,68 +123,79 @@ async function main() {
 
   console.log("Starting transfer planner refresh pipeline...");
 
+  if (verifyOnly) {
+    runVerification();
+    console.log("Transfer planner verification complete.");
+    return;
+  }
+
   if (!skipSourceCheck) {
-    runCommand("node", ["scripts/planner/check-transfer-planner-sources.cjs"]);
+    runStep("Check official source links", () =>
+      runCommand("node", ["scripts/planner/check-transfer-planner-sources.cjs"])
+    );
   }
 
   if (!skipPrimaryPromotion) {
-    runCommand("node", [
-      "scripts/planner/promote-transfer-planner-primary-sources.cjs",
-      "--discover-first",
-    ]);
-    runCommand("node", ["scripts/planner/build-transfer-planner-primary-source-review-queue.cjs"]);
+    runStep("Discover and promote primary official sources", () =>
+      runCommand("node", [
+        "scripts/planner/promote-transfer-planner-primary-sources.cjs",
+        "--discover-first",
+      ])
+    );
+    runStep("Build primary-source automation queue", () =>
+      runCommand("node", ["scripts/planner/build-transfer-planner-primary-source-review-queue.cjs"])
+    );
+    runStep("Classify hidden source gaps", () =>
+      runCommand("node", ["scripts/planner/build-transfer-planner-source-gap-report.cjs"])
+    );
   }
 
   if (!skipRequirementParse) {
-    runCommand("node", ["scripts/planner/parse-transfer-planner-requirement-sources.cjs"]);
+    runStep("Parse UW major requirement sources", () =>
+      runCommand("node", ["scripts/planner/parse-transfer-planner-requirement-sources.cjs"])
+    );
   }
 
   if (!skipRequirementPromotion) {
-    runCommand("node", ["scripts/planner/promote-transfer-planner-requirement-diffs.cjs"]);
+    runStep("Promote source-backed requirement diffs", () =>
+      runCommand("node", ["scripts/planner/promote-transfer-planner-requirement-diffs.cjs"])
+    );
   }
+
+  runStep("Build source and parsed-fact fingerprints", () =>
+    runCommand("node", ["scripts/planner/build-transfer-planner-source-fingerprints.cjs"])
+  );
 
   if (!skipDownloads) {
-    await refreshScheduleDownloads(forceRefreshDownloads);
+    await runAsyncStep("Snapshot Green River annual schedules", () =>
+      refreshScheduleDownloads(forceRefreshDownloads)
+    );
   }
 
-  runCommand("node", ["scripts/planner/generate-transfer-planner-source-bootstrap.cjs"]);
-  runCommand("node", ["scripts/planner/generate-transfer-planner-course-metadata.cjs"]);
-  runCommand("node", ["scripts/planner/generate-transfer-planner-grc-availability.cjs"]);
-  runCommand(
-    NPX_BIN,
-    [
-      "ts-node",
-      "--project",
-      "tsconfig.json",
-      "--require",
-      "tsconfig-paths/register",
-      "scripts/planner/generate-transfer-planner-docs.ts",
-    ],
-    {
-      env: {
-        TS_NODE_COMPILER_OPTIONS,
-      },
-    }
+  runStep("Generate source bootstrap", () =>
+    runCommand("node", ["scripts/planner/generate-transfer-planner-source-bootstrap.cjs"])
+  );
+  runStep("Parse UW Green River equivalency guide", () =>
+    runCommand("node", ["scripts/planner/parse-transfer-planner-equivalency-guide.cjs"])
+  );
+  runStep("Ingest Green River course catalog", () =>
+    runCommand("node", ["scripts/planner/ingest-grc-catalog.cjs"])
+  );
+  runStep("Ingest UW course catalogs", () =>
+    runCommand("node", ["scripts/planner/ingest-uw-catalog.cjs"])
+  );
+  runStep("Generate merged course metadata", () =>
+    runCommand("node", ["scripts/planner/generate-transfer-planner-course-metadata.cjs"])
+  );
+  runStep("Generate Green River availability registry", () =>
+    runCommand("node", ["scripts/planner/generate-transfer-planner-grc-availability.cjs"])
+  );
+  runStep("Generate planner docs", () =>
+    runTsNode("scripts/planner/generate-transfer-planner-docs.ts")
   );
 
   if (!skipVerify) {
-    runCommand(NPX_BIN, ["tsc", "--noEmit"]);
-    runCommand(
-      NPX_BIN,
-      [
-        "ts-node",
-        "--project",
-        "tsconfig.json",
-        "--require",
-        "tsconfig-paths/register",
-        "scripts/planner/transfer-planner.service.test.ts",
-      ],
-      {
-        env: {
-          TS_NODE_COMPILER_OPTIONS,
-        },
-      }
-    );
+    runVerification();
   }
 
   console.log("Transfer planner refresh pipeline complete.");

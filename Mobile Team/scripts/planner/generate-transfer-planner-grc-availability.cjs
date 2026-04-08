@@ -16,6 +16,9 @@ const {
   TRANSFER_PLANNER_TRACKS,
   getTransferPlannerGrcCourseList,
 } = require("../../constants/transfer-planner-source");
+const {
+  TRANSFER_PLANNER_NORMALIZED_COURSE_METADATA,
+} = require("../../constants/transfer-planner-source/course-metadata");
 
 const COURSE_CODE_PATTERN = /\b[A-Z]{2,6}&?\s*\d{3}(?:\.\d+)?[A-Z]?\b/g;
 const QUARTER_KEYS = ["summer", "fall", "winter", "spring"];
@@ -25,6 +28,13 @@ const QUARTER_SOURCE_LABELS = {
   winter: "Winter",
   spring: "Spring",
 };
+const AVAILABILITY_STATUS_ORDER = [
+  "published-in-latest-schedule",
+  "published-in-recent-history-not-latest",
+  "catalog-listed-not-in-latest-schedules",
+  "planner-course-no-current-public-source",
+  "legacy-track-only-no-current-public-source",
+];
 const SCHEDULES = [
   {
     label: "2024-2025",
@@ -57,46 +67,78 @@ function extractCourseCodes(value) {
   );
 }
 
-function collectPlannerCourseCodes() {
+function addExtractedCourseCodes(target, values) {
+  for (const value of values ?? []) {
+    for (const code of extractCourseCodes(value)) {
+      target.add(code);
+    }
+  }
+}
+
+function collectCurrentPlannerCourseCodes() {
   const codes = new Set();
 
   for (const plan of TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS) {
-    for (const label of getTransferPlannerGrcCourseList(plan)) {
-      for (const code of extractCourseCodes(label)) {
-        codes.add(code);
-      }
-    }
+    addExtractedCourseCodes(codes, getTransferPlannerGrcCourseList(plan));
   }
+
+  return codes;
+}
+
+function collectCurrentTrackCourseCodes() {
+  const codes = new Set();
 
   for (const track of TRANSFER_PLANNER_TRACKS) {
     for (const term of track.terms ?? []) {
-      for (const label of term.courses ?? []) {
-        for (const code of extractCourseCodes(label)) {
-          codes.add(code);
-        }
-      }
+      addExtractedCourseCodes(codes, term.courses);
     }
+  }
 
+  return codes;
+}
+
+function collectHistoricalTrackCourseCodes() {
+  const codes = new Set();
+
+  for (const track of TRANSFER_PLANNER_TRACKS) {
     for (const catalogYear of track.catalogYears ?? []) {
       for (const term of catalogYear.terms ?? []) {
-        for (const label of term.courses ?? []) {
-          for (const code of extractCourseCodes(label)) {
-            codes.add(code);
-          }
-        }
+        addExtractedCourseCodes(codes, term.courses);
       }
 
       for (const slot of catalogYear.slotExpansions ?? []) {
-        for (const label of slot.recommendedCourses ?? []) {
-          for (const code of extractCourseCodes(label)) {
-            codes.add(code);
-          }
-        }
+        addExtractedCourseCodes(codes, slot.recommendedCourses);
       }
     }
   }
 
+  return codes;
+}
+
+function collectPlannerCourseCodes() {
+  const codes = new Set();
+
+  for (const code of collectCurrentPlannerCourseCodes()) {
+    codes.add(code);
+  }
+
+  for (const code of collectCurrentTrackCourseCodes()) {
+    codes.add(code);
+  }
+
+  for (const code of collectHistoricalTrackCourseCodes()) {
+    codes.add(code);
+  }
+
   return [...codes].sort((left, right) => left.localeCompare(right));
+}
+
+function collectGrcCatalogCourseCodes() {
+  return new Set(
+    TRANSFER_PLANNER_NORMALIZED_COURSE_METADATA.filter((entry) => entry.schoolId === "grc").map(
+      (entry) => entry.code
+    )
+  );
 }
 
 function normalizePdfItems(items) {
@@ -248,23 +290,58 @@ function sortQuarterKeys(quarters) {
   );
 }
 
-function buildEntry(courseCode, yearlyQuarterMaps) {
+function classifyAvailabilityStatus(params) {
+  const {
+    courseCode,
+    years,
+    latestPublishedQuarters,
+    currentPlannerCourseCodes,
+    historicalTrackCourseCodes,
+    grcCatalogCourseCodes,
+  } = params;
+  const hasAnyPublishedHistory = years.some((year) => year.quarters.length > 0);
+  const hasLatestPublishedHistory = latestPublishedQuarters.length > 0;
+  const isCurrentPlannerCourse = currentPlannerCourseCodes.has(courseCode);
+  const isHistoricalTrackOnly =
+    historicalTrackCourseCodes.has(courseCode) && !isCurrentPlannerCourse;
+  const hasCurrentCatalogEvidence = grcCatalogCourseCodes.has(courseCode);
+
+  if (hasLatestPublishedHistory) {
+    return "published-in-latest-schedule";
+  }
+
+  if (hasAnyPublishedHistory) {
+    return "published-in-recent-history-not-latest";
+  }
+
+  if (hasCurrentCatalogEvidence) {
+    return "catalog-listed-not-in-latest-schedules";
+  }
+
+  if (isHistoricalTrackOnly) {
+    return "legacy-track-only-no-current-public-source";
+  }
+
+  return "planner-course-no-current-public-source";
+}
+
+function buildEntry(courseCode, yearlyQuarterMaps, classificationContext) {
   const years = SCHEDULES.map((schedule) => ({
     label: schedule.label,
     quarters: sortQuarterKeys(yearlyQuarterMaps.get(schedule.label) ?? []),
   }));
   const latestPublishedQuarters = years[years.length - 1]?.quarters ?? [];
-  const hasAnyPublishedHistory = years.some((year) => year.quarters.length > 0);
-
-  return {
+  const status = classifyAvailabilityStatus({
+    courseCode,
     years,
     latestPublishedQuarters,
-    ...(hasAnyPublishedHistory
-      ? {}
-      : {
-          note:
-            "Not found in the latest published 2024-2025 or 2025-2026 Green River annual schedule PDFs. Confirm current availability in ctcLink Class Search before planning around it.",
-        }),
+    ...classificationContext,
+  });
+
+  return {
+    status,
+    years,
+    latestPublishedQuarters,
   };
 }
 
@@ -306,6 +383,9 @@ function formatQuarterList(quarters) {
 async function main() {
   const trackedCourseCodes = collectPlannerCourseCodes();
   const trackedCourseCodeSet = new Set(trackedCourseCodes);
+  const currentPlannerCourseCodes = collectCurrentPlannerCourseCodes();
+  const historicalTrackCourseCodes = collectHistoricalTrackCourseCodes();
+  const grcCatalogCourseCodes = collectGrcCatalogCourseCodes();
   const yearlyAvailabilityMaps = new Map();
 
   for (const schedule of SCHEDULES) {
@@ -324,11 +404,18 @@ async function main() {
         ])
       );
 
-      return [courseCode, buildEntry(courseCode, yearlyQuarterMaps)];
+      return [
+        courseCode,
+        buildEntry(courseCode, yearlyQuarterMaps, {
+          currentPlannerCourseCodes,
+          historicalTrackCourseCodes,
+          grcCatalogCourseCodes,
+        }),
+      ];
     })
   );
 
-  const output = `// This file is generated by scripts/planner/generate-transfer-planner-grc-availability.cjs.\n// It summarizes Green River quarter-offering history from the latest published annual schedule PDFs.\n\nexport type TransferPlannerGrcCourseAvailabilityQuarter =\n  | \"summer\"\n  | \"fall\"\n  | \"winter\"\n  | \"spring\";\n\nexport type TransferPlannerGrcCourseAvailabilityEntry = {\n  years: {\n    label: string;\n    quarters: TransferPlannerGrcCourseAvailabilityQuarter[];\n  }[];\n  latestPublishedQuarters: TransferPlannerGrcCourseAvailabilityQuarter[];\n  note?: string;\n};\n\nexport const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = ${toTypeScriptObject(
+  const output = `// This file is generated by scripts/planner/generate-transfer-planner-grc-availability.cjs.\n// It summarizes Green River quarter-offering history from the latest published annual schedule PDFs.\n\nexport type TransferPlannerGrcCourseAvailabilityQuarter =\n  | \"summer\"\n  | \"fall\"\n  | \"winter\"\n  | \"spring\";\n\nexport type TransferPlannerGrcCourseAvailabilityStatus =\n  | \"published-in-latest-schedule\"\n  | \"published-in-recent-history-not-latest\"\n  | \"catalog-listed-not-in-latest-schedules\"\n  | \"planner-course-no-current-public-source\"\n  | \"legacy-track-only-no-current-public-source\";\n\nexport type TransferPlannerGrcCourseAvailabilityEntry = {\n  status: TransferPlannerGrcCourseAvailabilityStatus;\n  years: {\n    label: string;\n    quarters: TransferPlannerGrcCourseAvailabilityQuarter[];\n  }[];\n  latestPublishedQuarters: TransferPlannerGrcCourseAvailabilityQuarter[];\n};\n\nexport const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = ${toTypeScriptObject(
     entries
   )} as const satisfies Record<string, TransferPlannerGrcCourseAvailabilityEntry>;\n\nexport const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY_SOURCE_URLS = ${toTypeScriptObject(
     SCHEDULES.map((schedule) => schedule.sourceUrl)
@@ -346,13 +433,18 @@ async function main() {
   const knownCount = Object.values(entries).filter((entry) =>
     entry.years.some((year) => year.quarters.length > 0)
   ).length;
-  const missingCount = trackedCourseCodes.length - knownCount;
+  const statusCounts = Object.values(entries).reduce((counts, entry) => {
+    counts[entry.status] = (counts[entry.status] ?? 0) + 1;
+    return counts;
+  }, {});
 
   console.log(
     `Generated ${path.relative(process.cwd(), outputPath)} with ${trackedCourseCodes.length} planner course codes.`
   );
   console.log(`  Found offering history for ${knownCount} courses.`);
-  console.log(`  Left ${missingCount} courses with manual-review notes.`);
+  for (const status of AVAILABILITY_STATUS_ORDER) {
+    console.log(`  ${status}: ${statusCounts[status] ?? 0}`);
+  }
   console.log(
     `  Example: ENGR 250 -> ${formatQuarterList(entries["ENGR 250"]?.latestPublishedQuarters ?? [])}`
   );

@@ -17,8 +17,14 @@ $timestamp = Get-Date -Format "yyyy-MM-dd_HH-mm-ss"
 $modeLabel = if ($SkipDownloads) { "skip-downloads" } else { "full" }
 $logPath = Join-Path $logDir "planner-refresh-$modeLabel-$timestamp.log"
 $sourceSummaryPath = Join-Path $tmpDir "transfer-planner-source-link-summary.md"
-$reviewQueuePath = Join-Path $tmpDir "transfer-planner-primary-source-review-queue.md"
+$primarySourceGapPath = Join-Path $tmpDir "transfer-planner-primary-source-review-queue.md"
+$sourceGapPath = Join-Path $tmpDir "transfer-planner-source-gaps.md"
+$sourceFingerprintPath = Join-Path $tmpDir "transfer-planner-source-fingerprints.md"
 $requirementDiffReportPath = Join-Path $tmpDir "transfer-planner-requirement-diff-promotion-report.md"
+$requirementSourceParsePath = Join-Path $tmpDir "transfer-planner-requirement-source-parse-report.md"
+$equivalencyGuidePath = Join-Path $tmpDir "transfer-planner-equivalency-guide-parse.md"
+$grcCatalogPath = Join-Path $tmpDir "transfer-planner-grc-catalog-ingest.md"
+$uwCatalogPath = Join-Path $tmpDir "transfer-planner-uw-catalog-ingest.md"
 
 function Write-Section {
   param([string]$Message)
@@ -119,19 +125,25 @@ try {
   Write-Host "Success. The planner refresh finished cleanly." -ForegroundColor Green
   Write-Host "Log saved to: $logPath"
 
-  if ((-not $NoOpenReports) -and (Test-Path $sourceSummaryPath)) {
-    Write-Host "Opening source summary..."
-    Start-Process $sourceSummaryPath | Out-Null
-  }
+  if (-not $NoOpenReports) {
+    $reportPaths = @(
+      @{ Label = "source summary"; Path = $sourceSummaryPath },
+      @{ Label = "source-gap automation report"; Path = $sourceGapPath },
+      @{ Label = "source fingerprint report"; Path = $sourceFingerprintPath },
+      @{ Label = "primary-source source-gap report"; Path = $primarySourceGapPath },
+      @{ Label = "requirement source parse report"; Path = $requirementSourceParsePath },
+      @{ Label = "requirement-diff promotion report"; Path = $requirementDiffReportPath },
+      @{ Label = "equivalency guide parse report"; Path = $equivalencyGuidePath },
+      @{ Label = "GRC catalog ingest report"; Path = $grcCatalogPath },
+      @{ Label = "UW catalog ingest report"; Path = $uwCatalogPath }
+    )
 
-  if ((-not $NoOpenReports) -and (Test-Path $reviewQueuePath)) {
-    Write-Host "Opening primary-source review queue..."
-    Start-Process $reviewQueuePath | Out-Null
-  }
-
-  if ((-not $NoOpenReports) -and (Test-Path $requirementDiffReportPath)) {
-    Write-Host "Opening requirement-diff promotion report..."
-    Start-Process $requirementDiffReportPath | Out-Null
+    foreach ($report in $reportPaths) {
+      if (Test-Path $report.Path) {
+        Write-Host "Opening $($report.Label)..."
+        Start-Process $report.Path | Out-Null
+      }
+    }
   }
 
   exit 0

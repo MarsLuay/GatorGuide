@@ -1,0 +1,335 @@
+Owner: uw-tacoma-computer-science-and-systems-ba
+Source: https://www.tacoma.uw.edu/set/programs/undergrad/css/ba
+Title: B.A. in Computer Science & Systems | Engineering & Technology | University of Washington Tacoma
+
+B.A. in Computer Science & Systems | Engineering & Technology | University of Washington Tacoma
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMVD9WN"
+height="0"
+width="0"
+style="display:none;
+visibility:hidden">
+Skip to main content
+Apply
+Canvas
+Map
+Calendar
+Library
+Directory
+MyUW
+more_vert
+more_vert
+Close Search
+<img
+src="/sites/default/files/sites/uwtd8main/W.svg"
+alt="Block W - Link to UW Tacoma homepage"/>
+<img class="mobile-hide desktop-show"
+src="/sites/default/files/sites/uwtd8main/wordmark-full.svg"
+alt="University of Washington Tacoma"/>
+<img class="mobile-show desktop-hide"
+src="/sites/default/files/sites/uwtd8main/Wordmark-Tacoma.svg"
+alt="University of Washington Tacoma"/>
+Tools
+25Live
+Canvas
+Directory
+IT Help
+Library
+Map
+MyUW
+Office365
+Panopto
+Scout
+UW Gmail
+Workday
+Zoom
+Search
+School of
+Engineering & Technology
+<span
+class="path2">
+Make a Gift
+Engineering & Technology
+About SET
+expand_more
+Message from the Dean
+Mission, Vision, Values and Goals
+Diversity, Equity and Inclusion at SET
+SET Faculty Directory
+SET Staff Directory
+SET Advisory Board
+Programs
+expand_more
+Undergraduate Majors
+add
+Civil Engineering
+Computer Engineering
+Computer Science & Systems
+Electrical Engineering
+Information Technology
+Mechanical Engineering
+SET Direct
+Minor in Applied Computing
+Graduate Programs
+add
+M.S. in Computer Science & Systems
+M.S. in Electrical & Computer Engineering
+M.S. in Information Technology
+Master of Cybersecurity & Leadership
+Ph.D. in Computer Science & Systems
+Certificate & Professional Programs
+add
+Data Science Certificate
+Graduate Certificate in Software Development Engineering
+Industry Capstone Program
+Engineering Fellowships
+Admission
+expand_more
+Undergraduate Admission
+Graduate Admission
+Freshman Direct Admission Program
+Advising
+expand_more
+Advising Events
+Tuition & Aid
+expand_more
+SET Scholarships
+Graduate Fellowships and Funding
+Vicky L. Carwein and William B. Andrews Endowment for Graduate Programs
+Student Resources
+expand_more
+Student Success
+add
+Find a Research Project
+Internships for Credit
+Resumes and Job Searching
+Undergraduate Resources
+Graduate Resources
+Academic Support
+Student Organizations
+Academic Policies
+add
+Student Concerns
+Technology Labs
+Student Employee Resources
+Newly Admitted Students
+Faculty & Research
+expand_more
+MySET Faculty and Staff Resources
+Research and Technology Labs
+Center for Data Science
+Center for Brazilian Studies
+Community & Educational Partnerships
+Visiting Appointments
+Events
+expand_more
+Advising Events
+Annual Dean&#039;s Awards
+Engineering Week
+Women in Data Science (WiDS) Tacoma @ UW Tacoma
+End of Quarter Colloquia
+Research Showcase
+Open Public Meetings
+MyUW
+Map
+Tools
+Breadcrumb
+<a href="https://www.tacoma.uw.edu/"
+class="breadcrumb--home-icon uwt-icon" title="UW Tacoma Homepage"
+>Home
+<a href="/set"
+>Engineering & Technology
+<a href="/set/programs"
+>SET Academic Programs
+<a href="/set/programs/undergrad"
+>Undergraduate Programs
+<a href="/set/programs/undergrad/css"
+>Computer Science and Systems
+B.A. in Computer Science & Systems
+B.A. in Computer Science & Systems
+Main Content
+Flexible and Customized Real-World Computer Science & Systems Applications
+The Bachelor of Arts in Computer Science & Systems (CSS) offers a solid foundation in computer science alongside a minor in another discipline, allowing students to customize their education. This program is ideal for students who want flexibility in their coursework and seek to apply computing skills in fields such as health, science, medicine, or business. It provides an opportunity to combine computing with other areas, like Math, Communications, or Data Analytics. Students will build a portfolio of work for prospective employers, gain valuable communication skills, and work closely with faculty mentors to prepare for internships and careers in the rapidly growing tech industry.
+Quick Facts
+Autumn 2026 applications are OPEN NOW!
+Application opens: January 28, 2026
+Final deadline: August 31, 2026
+Students Notified: Rolling decisions until final deadline
+Keep an eye on this page for more info!
+apply now!
+Research and Internship Opportunities
+Senior-level students can explore their areas of interest, complemented by the expertise of the faculty and industry, through research, directed reading, and internship opportunities.
+Industry partner internships at software development design and implementation companies provide work experience, which complements the curriculum and can serve as an on-ramp to the high-tech workforce.
+Undergraduate research, under the supervision of a CSS faculty member, allows students to explore research in preparation for graduate school or to strengthen their educational experience for industry.
+Find a Research Project
+Internships & Careers
+Employment Opportunities
+Our alumni have graduated and gone on to pursue fulfilling careers in many different fields. Visit their employer's websites:
+Kailey Cozart SET ‘20 Math Minor: Hosting Technician at Light House Law Group
+Demarco Best II SET ‘21 Economics Minor Contract Associate Software Developer at Alaska Airlines
+Jordan Holland SET ‘20 Technical communications Minor Contracting with Revature
+Bachelors of Science or Arts?
+Similarities
+Computer Science & Systems degree
+Admission requirements
+Fundamentals of programming and software development principles (TCSS 305, 360)
+Discrete mathematics foundation (TCSS 321)
+Machine organization (TCSS 372)
+Data structures (TCSS 342)
+Computers, ethics, and society (TCSS 325)
+Opportunities to take 400-level CSS electives, including internship (TCSS 497), directed readings (TCSS 498) and directed research (TCSS 499).
+Differences
+B.A. majors must minor in a field that is not computer science , which will encourage interdisciplinary thinking and problem solving.
+B.A. majors build a portfolio of all your coursework related to computing.
+This synthesizes the computer science knowledge you learned with the knowledge you learned in your minor.
+This also provides a narrative of your skills that will not only help you identify what you know and how you can apply it, but also as a way to explain to a prospective employer who you are and what you can do.
+B.S. majors have 4 additional class requirements .
+Computer architecture and operating systems (TCSS 372, 422)
+Algorithm design and analysis (TCSS 343)
+Programming language concepts (TCSS 380)
+Required to take at least one 400-level project course.
+Learn more about B.S. in CSS
+How to Apply
+Admission Information
+Admission Requirements
+Transfer Admission
+Ready to Apply?
+Admission Requirements
+Admission to the major is competitive. Please review the following prerequisites and application process carefully.
+Prerequisites
+To qualify for admission, you must first be admitted to UWT and have completed the following prerequisites*:
+Calculus I (TMATH 124 or equivalent)
+Statistics (TMATH 110 or equivalent)
+TCSS 101 or TCSS 141 (or other introductory CS/programming course)
+Introduction to Programming (Java) (TCSS 142 or equivalent)
+Object-Oriented Programming (Java) (TCSS 143 or equivalent)
+*All pre-requisite courses must be completed in the last seven years
+GPA Requirements
+Required cumulative prerequisite GPA of at least 2.5, with a minimum grade of 2.0 in each individual prerequisite course.
+Required minimum cumulative GPA of 2.0 in all college coursework.
+Transfer Admission
+Notes for transfer students:
+UW Seattle and UW Bothell students seeking to transfer to UW Tacoma also need to have a transfer application on file to be considered for admission.
+If you are not admitted to UWT, you cannot be admitted to a SET major , but you may hold off on accepting your offer of admission to UWT until you have your program admissions decision.
+Transfer students at Washington State community colleges are encouraged to pursue the Associate in Science - Transfer Track 2 to meet the admission requirements. Use the UW Course Equivalency Guide to determine the equivalent prerequisites at your school.
+Ready to Apply?
+Before starting the application, make sure you're ready to apply:
+You've been admitted to UW Tacoma and met the requirements to apply to the major (previous tab).
+You have completed at least 45 college-level credits.
+You completed the prerequisite courses listed in the Admission Requirements tab.
+You've earned a minimum grade of 2.0 in each prerequisite course and maintain a minimum cumulative prerequisite GPA of 2.5
+apply to ba css today!
+Ready to Apply?
+Visit the SET application page and submit your application today!
+Apply now!
+Have Questions?
+Have a question that isn't answered on this page? Send us an email to UWtech@uw.edu .
+Email us
+Curriculum Details
+Curriculum Information
+Courses
+Schedule Planning - Prior to Autumn 2022
+Schedule Planning - Starting Autumn 2022
+Senior Electives
+Courses
+Foundational Courses
+TCSS 101 Computer Science Principles or TCSS 141 Programming for All
+TCSS 142 Programming Principles
+TCSS 143 Fundamentals of Object-Oriented Programming Theory and Application
+Core Courses
+All prerequisites must be completed before you can advance to the next academic level; advanced concentration courses build upon knowledge gained in the core courses.
+TCSS 305 Programming Practicum
+TCSS 321 Discrete Structures I
+TCSS 325 Computers, Ethics, and Society
+TCSS 342 Data Structures
+TCSS 360 Software Development and Quality Assurance Techniques
+TCSS 371 Machine Organization
+TCSS 496 Portfolio Based Learning
+All courses within the major must be completed with a minimum grade of 2.0 (including TCSS 142 and 143). If you don't earn a 2.0 or higher, you can repeat a course once. Please refer to our Undergraduate Resources page for more information.
+Note: the B.A. in CSS requires the completion of a minor in another discipline (students with a previous bachelor's degree can use this in place of the minor requirement).
+Schedule Planning - Prior to Autumn 2022
+The B.A. in CSS schedule planning grid shows a sample pathway to complete the Bachelor of Arts degree in Computer Science & Systems degree. Work with your advisor to make sure you are completing required courses for the program and electives for your area of interest.
+Download the B.A. in CSS Planning Grid (2022)
+Schedule Planning - Starting Autumn 2022
+The B.A. in CSS schedule planning grid shows a sample pathway to complete the Bachelor of Arts degree in Computer Science & Systems degree. Work with your advisor to make sure you are completing required courses for the program and electives for your area of interest.
+Download the B.A. in CSS Planning Grid
+Senior Electives
+CSS Electives: complete 20 additional credits of 300-level or 400-level courses chosen from the Computer Science & Systems program (excluding TCSS 390); see extended course descriptions for more information on individual CSS Elective courses.
+Required Minor: Meet the requirements of your selected minor.
+Electives: Complete 15 credits of general electives of your choice.
+All courses within the major must be completed with a minimum grade of 2.0 (including TCSS 142 and 143). If you don't earn a 2.0 or higher, you can repeat a course once. Please refer to our Undergraduate Resources page for more information.
+Ready to Apply?
+Visit the SET application page and submit your application today!
+Apply Now!
+Have Questions?
+Have a question that isn't answered on this page? Send us an email to UWtech@uw.edu .
+email us
+Need Advising?
+Need help planning your prerequisite courses? Not sure if your courses directly transfer to UWT? Connect with our Prospective Student Advisor, Noelle Wilson , for guidance!
+Connect Now!
+Contact
+Engineering & Technology
+uwtech@uw.edu
+253-692-5860
+Office Hours:
+M-F 8:00a-4:00p
+Office Location
+CP133
+<span
+class="uwt-icon uwt-icon-per-site-facebook">
+<span
+class="uwt-icon uwt-icon-per-site-twitter">
+<span
+class="uwt-icon uwt-icon-per-site-instagram">
+<span
+class="uwt-icon uwt-icon-per-site-youtube">
+ACADEMICS
+Academic advising
+Academic calendar
+Canvas
+Library
+Schools and programs
+Study Abroad
+Teaching and Learning Center
+CAMPUS
+Campus Safety
+Equity & Inclusion
+Financial Aid
+Housing
+Information Technology
+Student Life
+University YMCA Student Center
+ABOUT UW TACOMA
+Administration
+Admissions
+Institutional Research
+Jobs
+Parking & transportation
+Research
+UWNetID login
+<a href="https://www.tacoma.uw.edu/"
+aria-label="University of Washington Tacoma Homepage">
+<a href="https://www.facebook.com/uwtacoma"
+title="Follow UW Tacoma on Facebook">
+<a href="https://instagram.com/uwtacoma"
+title="Follow UW Tacoma on Instagram">
+<a href="https://www.tiktok.com/@uwtacoma"
+title="Follow UW Tacoma on TikTok">
+<a href="https://www.youtube.com/channel/UC5yP5pgHK5hPnPwfxMykQFw"
+title="Follow UW Tacoma on Youtube">
+<a href="https://www.linkedin.com/school/university-of-washington-tacoma"
+title="Follow UW Tacoma on Linkedin">
+Puyallup Tribe of Indians
+Tribal Sponsor of UW Tacoma
+Learn More >
+Land
+Acknowledgement
+>
+UW Seattle | UW
+Bothell
+&copy; 2026 University of Washington Tacoma
+1900 Commerce Street, Tacoma, WA 98402-3100
+Contact us |
+Terms of Use |
+Privacy |
+Accessibility |
+Rules Docket

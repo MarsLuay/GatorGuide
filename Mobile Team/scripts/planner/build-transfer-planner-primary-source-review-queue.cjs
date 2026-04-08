@@ -29,7 +29,7 @@ function runDiscovery() {
   });
 
   if (result.status !== 0) {
-    throw new Error("Primary-source discovery failed, so the review queue could not be built.");
+    throw new Error("Primary-source discovery failed, so the source-gap report could not be built.");
   }
 }
 
@@ -46,7 +46,7 @@ function normalizeCampusLabel(campusId) {
   }
 }
 
-function pickTopReviewCandidates(owner) {
+function pickTopGapCandidates(owner) {
   return (owner.topCandidates ?? [])
     .filter((candidate) => candidate.confidence !== "high")
     .slice(0, 3)
@@ -59,7 +59,8 @@ function pickTopReviewCandidates(owner) {
     }));
 }
 
-function buildOwnerReviewEntry(owner) {
+function buildOwnerSourceGapEntry(owner) {
+  const hasMediumSuggestion = owner?.suggestedPrimary?.confidence === "medium";
   return {
     ownerType: owner.ownerType,
     ownerKey: owner.ownerKey,
@@ -67,8 +68,8 @@ function buildOwnerReviewEntry(owner) {
     pathwayId: owner.pathwayId,
     title: owner.title,
     campusId: owner.campusId,
-    status: owner.suggestedPrimary ? "medium-confidence" : "needs-manual-source",
-    suggestedPrimary: owner.suggestedPrimary
+    status: hasMediumSuggestion ? "medium-confidence" : "needs-source-automation",
+    suggestedPrimary: hasMediumSuggestion
       ? {
           url: owner.suggestedPrimary.url,
           label:
@@ -83,7 +84,7 @@ function buildOwnerReviewEntry(owner) {
       : null,
     candidateCount: owner.candidateCount ?? 0,
     officialLinkCount: (owner.officialLinks ?? []).length,
-    topReviewCandidates: pickTopReviewCandidates(owner),
+    topReviewCandidates: pickTopGapCandidates(owner),
   };
 }
 
@@ -93,12 +94,12 @@ function buildQueue(report) {
 
   for (const owner of report.owners ?? []) {
     if (owner?.suggestedPrimary?.confidence === "medium") {
-      mediumOwners.push(buildOwnerReviewEntry(owner));
+      mediumOwners.push(buildOwnerSourceGapEntry(owner));
       continue;
     }
 
-    if (!owner?.suggestedPrimary) {
-      unresolvedOwners.push(buildOwnerReviewEntry(owner));
+    if (!owner?.suggestedPrimary || owner.suggestedPrimary.confidence === "low") {
+      unresolvedOwners.push(buildOwnerSourceGapEntry(owner));
     }
   }
 
@@ -113,7 +114,7 @@ function buildQueue(report) {
       campusLabel: normalizeCampusLabel(campusId),
       totalReviewOwners: entries.length,
       mediumConfidenceCount: entries.filter((owner) => owner.status === "medium-confidence").length,
-      unresolvedCount: entries.filter((owner) => owner.status === "needs-manual-source").length,
+      unresolvedCount: entries.filter((owner) => owner.status === "needs-source-automation").length,
       entries,
     };
   });
@@ -129,15 +130,16 @@ function buildQueue(report) {
 
 function writeMarkdown(queue) {
   const lines = [
-    "# Transfer Planner Primary Source Review Queue",
+    "# Transfer Planner Primary Source Source-Gap Report",
     "",
     `Generated: ${queue.generatedAt}`,
     "",
-    `- Total review owners: ${queue.totalReviewOwners}`,
+    `- Total source-gap owners: ${queue.totalReviewOwners}`,
     `- Medium-confidence suggestions: ${queue.mediumConfidenceCount}`,
-    `- No suggestion yet: ${queue.unresolvedCount}`,
+    `- Needs source automation: ${queue.unresolvedCount}`,
     "",
-    "This queue is the manual follow-up list after the safe high-confidence auto-promotion step.",
+    "This queue is the source-automation follow-up list after the safe high-confidence auto-promotion step.",
+    "Do not use it to make student-facing claims; add better official-source discovery or parser adapters instead.",
     "",
   ];
 
@@ -147,9 +149,9 @@ function writeMarkdown(queue) {
     }
 
     lines.push(`## ${campus.campusLabel}`, "");
-    lines.push(`- Review owners: ${campus.totalReviewOwners}`);
+      lines.push(`- Source-gap owners: ${campus.totalReviewOwners}`);
     lines.push(`- Medium-confidence suggestions: ${campus.mediumConfidenceCount}`);
-    lines.push(`- No suggestion yet: ${campus.unresolvedCount}`);
+    lines.push(`- Needs source automation: ${campus.unresolvedCount}`);
     lines.push("");
 
     const mediumEntries = campus.entries.filter((entry) => entry.status === "medium-confidence");
@@ -176,9 +178,9 @@ function writeMarkdown(queue) {
       }
     }
 
-    const unresolvedEntries = campus.entries.filter((entry) => entry.status === "needs-manual-source");
+    const unresolvedEntries = campus.entries.filter((entry) => entry.status === "needs-source-automation");
     if (unresolvedEntries.length) {
-      lines.push("### No good suggestion yet", "");
+      lines.push("### Needs source automation", "");
       for (const entry of unresolvedEntries) {
         lines.push(`- ${entry.title}`);
         lines.push(`  - Official links scanned: ${entry.officialLinkCount}`);
@@ -212,11 +214,11 @@ function main() {
   fs.writeFileSync(OUTPUT_JSON_PATH, `${JSON.stringify(queue, null, 2)}\n`);
   writeMarkdown(queue);
 
-  console.log(`Review owners: ${queue.totalReviewOwners}`);
+  console.log(`Source-gap owners: ${queue.totalReviewOwners}`);
   console.log(`Medium-confidence suggestions: ${queue.mediumConfidenceCount}`);
-  console.log(`No suggestion yet: ${queue.unresolvedCount}`);
-  console.log(`JSON queue: ${OUTPUT_JSON_PATH}`);
-  console.log(`Markdown queue: ${OUTPUT_MD_PATH}`);
+  console.log(`Needs source automation: ${queue.unresolvedCount}`);
+  console.log(`JSON report: ${OUTPUT_JSON_PATH}`);
+  console.log(`Markdown report: ${OUTPUT_MD_PATH}`);
 }
 
 try {

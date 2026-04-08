@@ -33,19 +33,17 @@ function log(message) {
 
 function run(command, args, options = {}) {
   return new Promise((resolve, reject) => {
-    const child =
-      process.platform === "win32"
-        ? spawn(command, args, {
-            cwd: options.cwd || rootDir,
-            stdio: "inherit",
-            env: { ...process.env, ...(options.env || {}) },
-            shell: true,
-          })
-        : spawn(command, args, {
-            cwd: options.cwd || rootDir,
-            stdio: "inherit",
-            env: { ...process.env, ...(options.env || {}) },
-          });
+    const isWindowsCmd = process.platform === "win32" && /\.cmd$/i.test(command);
+    const child = spawn(
+      isWindowsCmd ? "cmd.exe" : command,
+      isWindowsCmd ? ["/d", "/s", "/c", command, ...args] : args,
+      {
+      cwd: options.cwd || rootDir,
+      stdio: "inherit",
+      env: { ...process.env, ...(options.env || {}) },
+      windowsHide: true,
+      }
+    );
 
     child.once("exit", (code, signal) => {
       if (code === 0) {
@@ -165,7 +163,7 @@ function createStaticServer(directory, listenPort) {
 }
 
 async function main() {
-  const npxCommand = "npx";
+  const npxCommand = process.platform === "win32" ? "npx.cmd" : "npx";
   const nodeCommand = "node";
   const port = await findAvailablePort(requestedPort);
   const baseUrl = `http://127.0.0.1:${port}`;

@@ -60,6 +60,99 @@ const STOP_TOKENS = new Set([
   "of",
   "in",
 ]);
+const IDENTITY_STOP_TOKENS = new Set([
+  "and",
+  "the",
+  "of",
+  "in",
+  "for",
+  "major",
+  "minor",
+  "program",
+  "degree",
+  "degrees",
+  "route",
+  "option",
+  "track",
+  "path",
+  "pathway",
+  "concentration",
+]);
+const DEGREE_TOKEN_PATTERNS = [
+  { token: "bsce", pattern: /\bbsce\b|\bb\.?\s*s\.?\s*c\.?\s*e\.?\b/i },
+  { token: "bsn", pattern: /\bbsn\b|\bb\.?\s*s\.?\s*n\.?\b/i },
+  { token: "bm", pattern: /\bbm\b|\bb\.?\s*m\.?\b|\bbachelor\s+of\s+music\b/i },
+  { token: "bs", pattern: /\bbs\b|\bb\.?\s*s\.?\b|\bbachelor\s+of\s+science\b/i },
+  { token: "ba", pattern: /\bba\b|\bb\.?\s*a\.?\b|\bbachelor\s+of\s+arts\b/i },
+];
+const TARGETED_OFFICIAL_SOURCE_CANDIDATES = {
+  "uw-seattle-american-indian-studies": [
+    {
+      label: "UW B.A. in American Indian Studies",
+      url: "https://ais.washington.edu/ba-american-indian-studies",
+    },
+  ],
+  "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed": [
+    {
+      label: "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
+      url: "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html#credential-68d16aa4cad998289e687fe1",
+    },
+  ],
+  "uw-tacoma-arts-media-culture:pathway:american-cultures-track": [
+    {
+      label: "UW Tacoma American Cultures track",
+      url: "https://www.tacoma.uw.edu/sias/cac/american-cultures-track",
+    },
+  ],
+  "uw-tacoma-arts-media-culture:pathway:comparative-arts-track": [
+    {
+      label: "UW Tacoma Comparative Arts track",
+      url: "https://www.tacoma.uw.edu/sias/cac/comparative-arts-track",
+    },
+  ],
+  "uw-tacoma-arts-media-culture:pathway:film-media-track": [
+    {
+      label: "UW Tacoma Film and Media track",
+      url: "https://www.tacoma.uw.edu/sias/cac/film-and-media-track",
+    },
+  ],
+  "uw-tacoma-arts-media-culture:pathway:literature-track": [
+    {
+      label: "UW Tacoma Literature track",
+      url: "https://www.tacoma.uw.edu/sias/cac/literature-track",
+    },
+  ],
+  "uw-tacoma-arts-media-culture:pathway:visual-performing-arts-track": [
+    {
+      label: "UW Tacoma Visual and Performing Arts track",
+      url: "https://www.tacoma.uw.edu/sias/cac/visual-and-performing-arts-track",
+    },
+  ],
+  "uw-tacoma-environmental-sustainability:pathway:business-nonprofit-leadership-option": [
+    {
+      label: "UW Tacoma Environmental Sustainability Business and Nonprofit Leadership option",
+      url: "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
+    },
+  ],
+  "uw-tacoma-environmental-sustainability:pathway:education-option": [
+    {
+      label: "UW Tacoma Environmental Sustainability Education option",
+      url: "https://www.tacoma.uw.edu/sias/sam/pre-environmental-education-option",
+    },
+  ],
+  "uw-tacoma-environmental-sustainability:pathway:environmental-communication-option": [
+    {
+      label: "UW Tacoma Environmental Communication option",
+      url: "https://www.tacoma.uw.edu/sias/sam/environmental-communication-option",
+    },
+  ],
+  "uw-tacoma-environmental-sustainability:pathway:policy-law-option": [
+    {
+      label: "UW Tacoma Environmental Policy and Law option",
+      url: "https://www.tacoma.uw.edu/sias/sam/environmental-policy-and-law-option",
+    },
+  ],
+};
 
 function ensureTmpDir() {
   fs.mkdirSync(TMP_DIR, { recursive: true });
@@ -135,7 +228,8 @@ function isAllowedDiscoveryUrl(url, baseDomains) {
     if (
       lower.includes("/search?") ||
       lower.includes("/wp-login") ||
-      lower.includes("/feed")
+      lower.includes("/feed") ||
+      isBlockedPrimarySourceCandidateUrl(lower)
     ) {
       return false;
     }
@@ -153,6 +247,16 @@ function urlMatchesBaseDomains(url, baseDomains) {
   } catch {
     return false;
   }
+}
+
+function isBlockedPrimarySourceCandidateUrl(url) {
+  const lower = String(url ?? "").toLowerCase();
+  return (
+    lower.includes("/saml/login") ||
+    lower.includes("shibboleth.sso/login") ||
+    lower.includes("/wp-login") ||
+    lower.includes("/print/courses")
+  );
 }
 
 function normalizeCandidateUrl(url) {
@@ -177,6 +281,152 @@ function buildKeywordTokens(...values) {
     }
   }
   return uniqueSorted(tokens);
+}
+
+function stripDegreeMarkers(value) {
+  return normalizeWhitespace(value)
+    .replace(/\([^)]*\b(?:b\.?\s*a\.?|b\.?\s*s\.?|b\.?\s*m\.?|bsn|bsce)\b[^)]*\)/gi, " ")
+    .replace(/\b(?:b\.?\s*a\.?|b\.?\s*s\.?|b\.?\s*m\.?|bsn|bsce)\b/gi, " ");
+}
+
+function buildIdentityTokens(...values) {
+  const tokens = [];
+  for (const value of values) {
+    const normalized = slugifyForSearch(stripDegreeMarkers(value));
+    for (const token of normalized.split(" ")) {
+      if (!token || token.length < 2 || IDENTITY_STOP_TOKENS.has(token)) {
+        continue;
+      }
+      tokens.push(token);
+    }
+  }
+  return uniqueSorted(tokens);
+}
+
+function buildIdentitySlug(value) {
+  return buildIdentityTokens(value).join("-");
+}
+
+function getUrlPathIdentitySlugs(url) {
+  try {
+    const pathSegments = new URL(url).pathname.split("/").filter(Boolean);
+    const fullPathSlug = buildIdentitySlug(pathSegments.join(" "));
+    const lastPathSlug = buildIdentitySlug(pathSegments[pathSegments.length - 1] ?? "");
+    return { fullPathSlug, lastPathSlug };
+  } catch {
+    return { fullPathSlug: "", lastPathSlug: "" };
+  }
+}
+
+function getDegreeTokens(value) {
+  const tokens = new Set();
+  const text = String(value ?? "");
+  for (const { token, pattern } of DEGREE_TOKEN_PATTERNS) {
+    if (pattern.test(text)) {
+      tokens.add(token);
+    }
+  }
+  return tokens;
+}
+
+function hasConflictingDegreeRoute(targetText, candidateText) {
+  const targetDegrees = getDegreeTokens(targetText);
+  const candidateDegrees = getDegreeTokens(candidateText);
+  if (!targetDegrees.size || !candidateDegrees.size) {
+    return false;
+  }
+  return [...candidateDegrees].some((token) => !targetDegrees.has(token));
+}
+
+function tokenMatchesCandidateText(token, text) {
+  if (text.includes(token)) {
+    return true;
+  }
+
+  if (token.endsWith("ies") && text.includes(`${token.slice(0, -3)}y`)) {
+    return true;
+  }
+
+  if (token.endsWith("s") && token.length > 3 && text.includes(token.slice(0, -1))) {
+    return true;
+  }
+
+  return false;
+}
+
+function tokensMatchText(tokens, text) {
+  return tokens.length > 0 && tokens.every((token) => tokenMatchesCandidateText(token, text));
+}
+
+function buildIdentityAcronym(tokens) {
+  return tokens.map((token) => token[0]).join("");
+}
+
+function acronymMatchesText(acronym, text) {
+  return acronym.length >= 3 && text.split(" ").includes(acronym);
+}
+
+function scoreIdentityMatch(target, candidate, combinedText) {
+  const candidateIdentityText = slugifyForSearch(combinedText);
+  const ownerTokens = buildIdentityTokens(target.title);
+  const labelTokens = buildIdentityTokens(target.label);
+  const ownerSlug = buildIdentitySlug(target.title);
+  const labelSlug = buildIdentitySlug(target.label);
+  const ownerAcronym = buildIdentityAcronym(ownerTokens);
+  const labelAcronym = buildIdentityAcronym(labelTokens);
+  const { fullPathSlug, lastPathSlug } = getUrlPathIdentitySlugs(candidate.url);
+  const ownerSlugInPath = Boolean(ownerSlug && fullPathSlug.includes(ownerSlug));
+  const labelSlugInPath = Boolean(labelSlug && fullPathSlug.includes(labelSlug));
+  const singleOwnerTokenExactPath =
+    ownerTokens.length === 1 && lastPathSlug === ownerTokens[0];
+  const singleLabelTokenExactPath =
+    labelTokens.length === 1 && lastPathSlug === labelTokens[0];
+  const ownerTokensMatched = tokensMatchText(ownerTokens, candidateIdentityText);
+  const labelTokensMatched = tokensMatchText(labelTokens, candidateIdentityText);
+  const ownerAcronymMatched = acronymMatchesText(ownerAcronym, candidateIdentityText);
+  const labelAcronymMatched = acronymMatchesText(labelAcronym, candidateIdentityText);
+  const reasons = [];
+  let score = 0;
+
+  if (hasConflictingDegreeRoute(`${target.title} ${target.label}`, combinedText)) {
+    score -= 18;
+    reasons.push("candidate appears to describe a different degree route");
+  }
+
+  if (target.ownerType === "pathway" && (labelSlugInPath || singleLabelTokenExactPath)) {
+    score += 34;
+    reasons.push("official source path matches the selected pathway");
+  } else if (ownerSlugInPath || singleOwnerTokenExactPath) {
+    score += 32;
+    reasons.push("official source path matches the selected major");
+  } else if (target.ownerType === "pathway" && labelTokens.length >= 2 && labelTokensMatched) {
+    score += 26;
+    reasons.push("official source text matches the selected pathway");
+  } else if (target.ownerType === "pathway" && labelAcronymMatched) {
+    score += 32;
+    reasons.push("official source acronym matches the selected pathway");
+  } else if (ownerTokens.length >= 2 && ownerTokensMatched) {
+    score += 32;
+    reasons.push("official source text matches the selected major");
+  } else if (ownerAcronymMatched) {
+    score += 32;
+    reasons.push("official source acronym matches the selected major");
+  }
+
+  const strongMatch = score >= 24;
+  if (
+    strongMatch &&
+    (candidate.sourceKind === "official-link" ||
+      candidate.sourceKind === "targeted-official-candidate")
+  ) {
+    score += 6;
+    reasons.push("verified against an official source candidate");
+  }
+
+  return {
+    score,
+    reasons,
+  };
 }
 
 function buildOwnerTargets({ includeExisting, campusFilter }) {
@@ -341,6 +591,14 @@ function addReason(reasons, reason) {
 }
 
 function scoreCandidate(target, candidate) {
+  if (isBlockedPrimarySourceCandidateUrl(candidate.url)) {
+    return {
+      score: -100,
+      confidence: "low",
+      reasons: ["authentication or course-list URL is not a primary degree-requirements source"],
+    };
+  }
+
   const combinedText = [
     candidate.url,
     candidate.label,
@@ -376,6 +634,8 @@ function scoreCandidate(target, candidate) {
     { pattern: /\bfaculty\b|\bpeople\b|\bnews\b|\bresearch\b/, score: -20, reason: "non-degree content wording" },
     { pattern: /\bfaq\b|\bevent\b|\bregister\b|\bworkshop\b/, score: -20, reason: "event or FAQ wording" },
     { pattern: /\bcapstone\b|\bproject\b/, score: -8, reason: "capstone-only wording" },
+    { pattern: /directory\.tacoma\.uw\.edu/, score: -30, reason: "campus directory page is not a degree-requirements source" },
+    { pattern: /\bpage not found\b/, score: -40, reason: "page-not-found response" },
   ];
 
   for (const rule of positiveRules) {
@@ -392,6 +652,12 @@ function scoreCandidate(target, candidate) {
     }
   }
 
+  const identityMatch = scoreIdentityMatch(target, candidate, combinedText);
+  score += identityMatch.score;
+  for (const reason of identityMatch.reasons) {
+    addReason(reasons, reason);
+  }
+
   if (candidate.sourceKind === "official-link") {
     score += 4;
     addReason(reasons, "already stored as an official source");
@@ -400,6 +666,11 @@ function scoreCandidate(target, candidate) {
   if (candidate.sourceKind === "discovered-anchor") {
     score += 2;
     addReason(reasons, "discovered from an official source page");
+  }
+
+  if (candidate.sourceKind === "targeted-official-candidate") {
+    score += 4;
+    addReason(reasons, "hardcoded official source candidate for source-gap resolution");
   }
 
   const majorPhrase = slugifyForSearch(target.title);
@@ -466,6 +737,24 @@ function mergeCandidate(existing, incoming) {
     score: winning.score,
     confidence: winning.confidence,
   };
+}
+
+function compareScoredCandidates(left, right) {
+  const scoreDelta = right.score - left.score;
+  if (scoreDelta !== 0) {
+    return scoreDelta;
+  }
+
+  const leftOfficial = left.sourceKinds?.includes("official-link") ? 1 : 0;
+  const rightOfficial = right.sourceKinds?.includes("official-link") ? 1 : 0;
+  const leftTargeted = left.sourceKinds?.includes("targeted-official-candidate") ? 1 : 0;
+  const rightTargeted = right.sourceKinds?.includes("targeted-official-candidate") ? 1 : 0;
+  const officialDelta = rightOfficial + rightTargeted - (leftOfficial + leftTargeted);
+  if (officialDelta !== 0) {
+    return officialDelta;
+  }
+
+  return left.url.localeCompare(right.url);
 }
 
 function addScoredCandidate(candidateMap, target, rawCandidate) {
@@ -542,6 +831,13 @@ async function analyzeOwner(target, timeoutMs) {
     });
   }
 
+  for (const candidate of TARGETED_OFFICIAL_SOURCE_CANDIDATES[target.ownerKey] ?? []) {
+    addScoredCandidate(candidateMap, target, {
+      ...candidate,
+      sourceKind: "targeted-official-candidate",
+    });
+  }
+
   for (const link of target.officialLinks) {
     const page = await inspectPage(link.url, timeoutMs);
     sourcePages.push({
@@ -576,7 +872,7 @@ async function analyzeOwner(target, timeoutMs) {
   }
 
   const candidateList = [...candidateMap.values()]
-    .sort((left, right) => right.score - left.score || left.url.localeCompare(right.url))
+    .sort(compareScoredCandidates)
     .slice(0, 20);
 
   const verifyTargets = candidateList
@@ -601,7 +897,7 @@ async function analyzeOwner(target, timeoutMs) {
   }
 
   const rescoredCandidates = [...candidateMap.values()]
-    .sort((left, right) => right.score - left.score || left.url.localeCompare(right.url))
+    .sort(compareScoredCandidates)
     .slice(0, 8);
 
   const suggestedPrimary =

@@ -10,6 +10,20 @@ const OUTPUT_PATH = path.resolve(
   "transfer-planner-source",
   "course-metadata.generated.ts"
 );
+const GRC_CATALOG_INGEST_PATH = path.resolve(
+  __dirname,
+  "..",
+  "..",
+  ".tmp",
+  "transfer-planner-grc-catalog-ingest.json"
+);
+const UW_CATALOG_INGEST_PATH = path.resolve(
+  __dirname,
+  "..",
+  "..",
+  ".tmp",
+  "transfer-planner-uw-catalog-ingest.json"
+);
 
 const SCHEDULES = [
   {
@@ -161,12 +175,12 @@ async function parseSchedule(schedule, courseMap) {
       entry.notes.add(
         "Schedule-display title from the official Green River annual schedules. Some longer course names may reflect printed schedule abbreviations rather than full catalog wording."
       );
-      entry.sourceLinks = [
-        {
+      if (!entry.sourceLinks.some((link) => link.url === schedule.sourceUrl)) {
+        entry.sourceLinks.push({
           label: `Green River annual schedule ${schedule.label}`,
           url: schedule.sourceUrl,
-        },
-      ];
+        });
+      }
     }
   }
 }
@@ -186,7 +200,149 @@ function buildRangesFromLabels(labels) {
   }));
 }
 
-function toSerializableEntries(courseMap) {
+function readCatalogIngestEntries(filePath, label) {
+  if (!fs.existsSync(filePath)) {
+    console.warn(`Skipping ${label}; missing ${filePath}`);
+    return [];
+  }
+
+  const report = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  return Array.isArray(report.entries) ? report.entries : [];
+}
+
+function uniqueStrings(values) {
+  return [...new Set((values ?? []).filter(Boolean))].sort();
+}
+
+function mergeRanges(left = [], right = []) {
+  const byKey = new Map();
+  for (const range of [...left, ...right]) {
+    byKey.set(`${range.startLabel}|${range.endLabel ?? ""}|${range.note ?? ""}`, range);
+  }
+  return [...byKey.values()].sort((a, b) => a.startLabel.localeCompare(b.startLabel));
+}
+
+function mergeLinks(left = [], right = []) {
+  const byUrl = new Map();
+  for (const link of [...left, ...right]) {
+    if (link?.url) {
+      byUrl.set(link.url, link);
+    }
+  }
+  return [...byUrl.values()].sort((a, b) => a.label.localeCompare(b.label));
+}
+
+function mergeMetadataEntry(existing, incoming) {
+  return {
+    schoolId: existing.schoolId,
+    code: existing.code,
+    title: incoming.title ?? existing.title ?? null,
+    creditValue:
+      incoming.creditValue !== undefined && incoming.creditValue !== null
+        ? incoming.creditValue
+        : existing.creditValue ?? null,
+    creditLabel: incoming.creditLabel ?? existing.creditLabel ?? null,
+    catalogDescription: incoming.catalogDescription ?? existing.catalogDescription ?? null,
+    prerequisiteCourseCodes: uniqueStrings([
+      ...(existing.prerequisiteCourseCodes ?? []),
+      ...(incoming.prerequisiteCourseCodes ?? []),
+    ]),
+    prerequisiteAlternativeCourseCodeSets: [
+      ...(existing.prerequisiteAlternativeCourseCodeSets ?? []),
+      ...(incoming.prerequisiteAlternativeCourseCodeSets ?? []),
+    ],
+    prerequisiteNotes: uniqueStrings([
+      ...(existing.prerequisiteNotes ?? []),
+      ...(incoming.prerequisiteNotes ?? []),
+    ]),
+    corequisiteCourseCodes: uniqueStrings([
+      ...(existing.corequisiteCourseCodes ?? []),
+      ...(incoming.corequisiteCourseCodes ?? []),
+    ]),
+    corequisiteAlternativeCourseCodeSets: [
+      ...(existing.corequisiteAlternativeCourseCodeSets ?? []),
+      ...(incoming.corequisiteAlternativeCourseCodeSets ?? []),
+    ],
+    corequisiteNotes: uniqueStrings([
+      ...(existing.corequisiteNotes ?? []),
+      ...(incoming.corequisiteNotes ?? []),
+    ]),
+    effectiveYearRanges: mergeRanges(existing.effectiveYearRanges, incoming.effectiveYearRanges),
+    sourceLinks: mergeLinks(existing.sourceLinks, incoming.sourceLinks),
+    notes: uniqueStrings([...(existing.notes ?? []), ...(incoming.notes ?? [])]),
+  };
+}
+
+function pruneEntry(entry) {
+  return Object.fromEntries(
+    Object.entries(entry).filter(([, value]) => {
+      if (value === undefined || value === null) {
+        return false;
+      }
+      if (Array.isArray(value)) {
+        return value.length > 0;
+      }
+      return true;
+    })
+  );
+}
+
+function mergeMetadataEntries(entries) {
+  const byKey = new Map();
+  for (const entry of entries) {
+    const normalizedEntry = {
+      ...entry,
+      schoolId: entry.schoolId,
+      code: normalizeCourseCode(entry.code),
+    };
+    const key = `${normalizedEntry.schoolId}|${normalizedEntry.code}`;
+    const existing = byKey.get(key);
+    byKey.set(
+      key,
+      existing ? mergeMetadataEntry(existing, normalizedEntry) : mergeMetadataEntry(normalizedEntry, {})
+    );
+  }
+  return [...byKey.values()]
+    .map(pruneEntry)
+    .sort((left, right) => left.schoolId.localeCompare(right.schoolId) || left.code.localeCompare(right.code));
+}
+
+function chunkEntries(entries, size) {
+  const chunks = [];
+  for (let index = 0; index < entries.length; index += size) {
+    chunks.push(entries.slice(index, index + size));
+  }
+  return chunks;
+}
+
+function buildGeneratedCourseMetadataSource(entries) {
+  const chunks = chunkEntries(entries, 80);
+  const chunkDeclarations = chunks
+    .map(
+      (chunk, index) =>
+        `const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_${index}: unknown[] = ${JSON.stringify(chunk, null, 2)};`
+    )
+    .join("\n\n");
+  const chunkNames = chunks
+    .map((_, index) => `TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_${index}`)
+    .join(",\n  ");
+
+  return [
+    "/* eslint-disable */",
+    "/* auto-generated by scripts/planner/generate-transfer-planner-course-metadata.cjs */",
+    "",
+    'import type { TransferPlannerNormalizedCourseMetadataEntry } from "./course-metadata";',
+    "",
+    chunkDeclarations,
+    "",
+    `const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_RAW: unknown[] = ([] as unknown[]).concat(\n  ${chunkNames}\n);`,
+    "",
+    "export const TRANSFER_PLANNER_GENERATED_COURSE_METADATA = TRANSFER_PLANNER_GENERATED_COURSE_METADATA_RAW as TransferPlannerNormalizedCourseMetadataEntry[];",
+    "",
+  ].join("\n");
+}
+
+function buildScheduleEntries(courseMap) {
   return [...courseMap.values()]
     .map((entry) => ({
       schoolId: "grc",
@@ -206,8 +362,12 @@ async function main() {
     await parseSchedule(schedule, courseMap);
   }
 
-  const entries = toSerializableEntries(courseMap);
-  const output = `/* eslint-disable */\n/* auto-generated by scripts/planner/generate-transfer-planner-course-metadata.cjs */\n\nimport type { TransferPlannerNormalizedCourseMetadataEntry } from "./course-metadata";\n\nexport const TRANSFER_PLANNER_GENERATED_COURSE_METADATA: TransferPlannerNormalizedCourseMetadataEntry[] = ${JSON.stringify(entries, null, 2)};\n`;
+  const entries = mergeMetadataEntries([
+    ...buildScheduleEntries(courseMap),
+    ...readCatalogIngestEntries(GRC_CATALOG_INGEST_PATH, "Green River catalog ingest"),
+    ...readCatalogIngestEntries(UW_CATALOG_INGEST_PATH, "UW catalog ingest"),
+  ]);
+  const output = buildGeneratedCourseMetadataSource(entries);
 
   fs.writeFileSync(OUTPUT_PATH, output);
   console.log(`Wrote ${entries.length} generated course metadata entries to ${OUTPUT_PATH}`);

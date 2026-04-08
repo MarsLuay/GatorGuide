@@ -1,0 +1,149 @@
+# Transfer Planner Source Fingerprints
+
+Generated: 2026-04-08T14:16:32.360Z
+
+- Source snapshot generated: 2026-04-08T14:05:30.094Z
+- Requirement parse report generated: 2026-04-08T14:16:21.900Z
+- Source fingerprints: 455
+- Requirement-source fingerprints: 244
+- Changed source resource fingerprints: 70
+- Changed parsed requirement fingerprints: 1
+- Added source fingerprints: 0
+- Added requirement fingerprints: 0
+- Removed source fingerprints: 0
+- Removed requirement fingerprints: 0
+
+Source resource fingerprints track official URL metadata/body hashes.
+Requirement-source fingerprints track parsed requirement facts separately, so cosmetic page changes do not automatically become planner requirement changes.
+
+## Changed Source Resources
+
+- https://admissions.uwb.edu/register/mpw-aes
+  - owners: uw-bothell-american-and-ethnic-studies
+  - fingerprint: 2c4139e03f7f09c0bda44951c9e8b1225721724064826f1f907d293726c86ee3
+- https://admissions.uwb.edu/register/mpw-CLA
+  - owners: uw-bothell-culture-literature-and-the-arts
+  - fingerprint: 669ce4704a355da10127025126c9ce7fa1284ec16467ae8397fa56adf203d78d
+- https://admissions.uwb.edu/register/mpw-compe
+  - owners: uw-bothell-computer-engineering
+  - fingerprint: c7dcaa6116c56278beb430bd490fcf263a165f00f388b18629e843d68ddeb81f
+- https://admissions.uwb.edu/register/mpw-DataVis-BA
+  - owners: uw-bothell-data-visualization-ba
+  - fingerprint: 2251d981e11fbf5e88a4e1a92303ed2dfda1cbf6ad1c2bed4aab49330b179798
+- https://admissions.uwb.edu/register/mpw-EE
+  - owners: uw-bothell-electrical-engineering
+  - fingerprint: 9dedde27205597f651f10b6ffe572e1fa0f827eb8952499e0df28fa2e0e20ba2
+- https://admissions.uwb.edu/register/mpw-hs
+  - owners: uw-bothell-health-studies
+  - fingerprint: 2b1f82363b6a7ecfeb7549b843acf22b0d521051fc39d7b551e0d814fc7822ec
+- https://admissions.uwb.edu/register/mpw-me
+  - owners: uw-bothell-mechanical-engineering
+  - fingerprint: 9b0f4be59434d651ad75ad0c617e13b7dafb5480d003f6eb4aa47209f5763c9b
+- https://admissions.uwb.edu/register/mpw-psy
+  - owners: uw-bothell-psychology
+  - fingerprint: 6f28b70fe98bcc299dde7e6df7086fd2a3b46b6da38b7fee1d96da3bed2669b2
+- https://chem.washington.edu/ba-biochemistry
+  - owners: uw-seattle-biochemistry, uw-seattle-biochemistry::ba-route, uw-seattle-biochemistry::bs-route, uw-seattle-biochemistry:pathway:ba-route
+  - fingerprint: 25a017969750a0ef6e4fbb071cb0d3d791550f5b2fa875d2fba2fb0f9b6f42c5
+- https://chem.washington.edu/bs-chemistry
+  - owners: uw-seattle-chemistry, uw-seattle-chemistry::acs-certified-bs-route, uw-seattle-chemistry::ba-route, uw-seattle-chemistry::bs-route, uw-seattle-chemistry:pathway:bs-route
+  - fingerprint: 55d19469a4aca2162a2ea18ea5a7de86321aa2395eb84eedbfb530d325dbb628
+- https://com.uw.edu/academics/undergraduate/communication-major/
+  - owners: uw-seattle-communication
+  - fingerprint: fd099778ce47a45c0cb79d22ff8e1f4cfa68ee33d3fa78b2b5850cac30eba6cc
+- https://dlmp.uw.edu/education/mls-apply
+  - owners: uw-seattle-medical-laboratory-science
+  - fingerprint: 11604cad4dc479ef8325c2dd2c71fb887320c151ade013daf6e5b4539b687379
+- https://dlmp.uw.edu/education/mls-requirements
+  - owners: uw-seattle-medical-laboratory-science
+  - fingerprint: 904f22ecc6a0b5dbcec4530ac717e3ea4f6dcd0fa384346d2e0f3614164665d3
+- https://dlmp.uw.edu/education/mls-undergrad
+  - owners: uw-seattle-medical-laboratory-science
+  - fingerprint: c43cbf2f632f6ede2041e0be8e1d3f4d5a7615320e442f5465e72b3cfb3d7157
+- https://ischool.uw.edu/academics/informatics/curriculum
+  - owners: uw-seattle-informatics
+  - fingerprint: de526267beaf1f5bbbb8e28c2bb5bbc3dba581693d97c2e77d8e8d5f5b17e298
+- https://ischool.uw.edu/programs/informatics/admissions/prerequisites
+  - owners: uw-seattle-informatics
+  - fingerprint: 2084602577149bb6992a3ff86ba2b1498a84d3fde07846afb97ed754bfc28a63
+- https://ischool.uw.edu/programs/informatics/curriculum/capstone
+  - owners: uw-seattle-informatics
+  - fingerprint: 714b0ee29e1aa1161c759bcb3cdbee33a906c139a18ebae989aa093fde9b873d
+- https://www.tacoma.uw.edu/nursing/declare-healthcare-leadership-major
+  - owners: uw-tacoma-healthcare-leadership
+  - fingerprint: 94c3bc0aca332d31c9526b9935ceda88afb62da431ac1cdb976a6514c0012b1e
+- https://www.tacoma.uw.edu/set/programs/undergrad/civil
+  - owners: uw-tacoma-civil-engineering
+  - fingerprint: 94c3bc0aca332d31c9526b9935ceda88afb62da431ac1cdb976a6514c0012b1e
+- https://www.tacoma.uw.edu/set/programs/undergrad/css/ba
+  - owners: uw-tacoma-computer-science-and-systems-ba, uw-tacoma-computer-science-and-systems-bs
+  - fingerprint: 94c3bc0aca332d31c9526b9935ceda88afb62da431ac1cdb976a6514c0012b1e
+- https://www.tacoma.uw.edu/set/programs/undergrad/css/bs
+  - owners: uw-tacoma-computer-science-and-systems-ba, uw-tacoma-computer-science-and-systems-bs
+  - fingerprint: 94c3bc0aca332d31c9526b9935ceda88afb62da431ac1cdb976a6514c0012b1e
+- https://www.tacoma.uw.edu/set/programs/undergrad/ee
+  - owners: uw-tacoma-electrical-engineering
+  - fingerprint: 94c3bc0aca332d31c9526b9935ceda88afb62da431ac1cdb976a6514c0012b1e
+- https://www.tacoma.uw.edu/set/programs/undergrad/it
+  - owners: uw-tacoma-information-technology
+  - fingerprint: 94c3bc0aca332d31c9526b9935ceda88afb62da431ac1cdb976a6514c0012b1e
+- https://www.tacoma.uw.edu/set/programs/undergrad/me
+  - owners: uw-tacoma-mechanical-engineering
+  - fingerprint: 94c3bc0aca332d31c9526b9935ceda88afb62da431ac1cdb976a6514c0012b1e
+- https://www.tacoma.uw.edu/sias
+  - owners: uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed
+  - fingerprint: 94c3bc0aca332d31c9526b9935ceda88afb62da431ac1cdb976a6514c0012b1e
+- https://www.tacoma.uw.edu/sias-new/socs-new/economics-and-policy-analysis-epa
+  - owners: uw-tacoma-economics-and-policy-analysis
+  - fingerprint: 94c3bc0aca332d31c9526b9935ceda88afb62da431ac1cdb976a6514c0012b1e
+- https://www.tacoma.uw.edu/sias-new/socs-new/ethnic-gender-and-labor-studies
+  - owners: uw-tacoma-ethnic-gender-and-labor-studies, uw-tacoma-ethnic-gender-and-labor-studies::ethnic-studies-option, uw-tacoma-ethnic-gender-and-labor-studies::gender-studies-option, uw-tacoma-ethnic-gender-and-labor-studies::labor-studies-option, uw-tacoma-ethnic-gender-and-labor-studies:pathway:gender-studies-option, uw-tacoma-ethnic-gender-and-labor-studies:pathway:labor-studies-option
+  - fingerprint: 94c3bc0aca332d31c9526b9935ceda88afb62da431ac1cdb976a6514c0012b1e
+- https://www.tacoma.uw.edu/sias-new/socs-new/ethnic-studies-option
+  - owners: uw-tacoma-ethnic-gender-and-labor-studies, uw-tacoma-ethnic-gender-and-labor-studies::ethnic-studies-option, uw-tacoma-ethnic-gender-and-labor-studies::gender-studies-option, uw-tacoma-ethnic-gender-and-labor-studies::labor-studies-option, uw-tacoma-ethnic-gender-and-labor-studies:pathway:ethnic-studies-option
+  - fingerprint: 94c3bc0aca332d31c9526b9935ceda88afb62da431ac1cdb976a6514c0012b1e
+- https://www.tacoma.uw.edu/sias-new/socs-new/individually-designed-concentration
+  - owners: uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed
+  - fingerprint: 94c3bc0aca332d31c9526b9935ceda88afb62da431ac1cdb976a6514c0012b1e
+- https://www.tacoma.uw.edu/sias-new/socs-new/interdisciplinary-arts-and-sciences
+  - owners: uw-tacoma-interdisciplinary-arts-and-sciences
+  - fingerprint: 94c3bc0aca332d31c9526b9935ceda88afb62da431ac1cdb976a6514c0012b1e
+- https://www.tacoma.uw.edu/sias-new/socs-new/labor-and-social-movements-option
+  - owners: uw-tacoma-history
+  - fingerprint: 94c3bc0aca332d31c9526b9935ceda88afb62da431ac1cdb976a6514c0012b1e
+- https://www.tacoma.uw.edu/sias/cac/arts-media-culture
+  - owners: uw-tacoma-arts-media-culture, uw-tacoma-arts-media-culture::american-cultures-track, uw-tacoma-arts-media-culture::comparative-arts-track, uw-tacoma-arts-media-culture::film-media-track, uw-tacoma-arts-media-culture::literature-track, uw-tacoma-arts-media-culture::visual-performing-arts-track
+  - fingerprint: 94c3bc0aca332d31c9526b9935ceda88afb62da431ac1cdb976a6514c0012b1e
+- https://www.tacoma.uw.edu/sias/cac/communication
+  - owners: uw-tacoma-communications, uw-tacoma-communications::professional-track, uw-tacoma-communications::research-track, uw-tacoma-communications:pathway:professional-track, uw-tacoma-communications:pathway:research-track
+  - fingerprint: 94c3bc0aca332d31c9526b9935ceda88afb62da431ac1cdb976a6514c0012b1e
+- https://www.tacoma.uw.edu/sias/cac/communication-degree-requirements
+  - owners: uw-tacoma-communications, uw-tacoma-communications::professional-track, uw-tacoma-communications::research-track
+  - fingerprint: 94c3bc0aca332d31c9526b9935ceda88afb62da431ac1cdb976a6514c0012b1e
+- https://www.tacoma.uw.edu/sias/cac/creative-writing-track
+  - owners: uw-tacoma-writing-studies, uw-tacoma-writing-studies::creative-writing-track, uw-tacoma-writing-studies::rhetoric-social-change-track, uw-tacoma-writing-studies::technical-communication-track, uw-tacoma-writing-studies:pathway:creative-writing-track
+  - fingerprint: 94c3bc0aca332d31c9526b9935ceda88afb62da431ac1cdb976a6514c0012b1e
+- https://www.tacoma.uw.edu/sias/cac/how-apply-faqs
+  - owners: uw-tacoma-communications, uw-tacoma-communications::professional-track, uw-tacoma-communications::research-track
+  - fingerprint: 94c3bc0aca332d31c9526b9935ceda88afb62da431ac1cdb976a6514c0012b1e
+- https://www.tacoma.uw.edu/sias/cac/rhetoric-writing-and-social-change-track
+  - owners: uw-tacoma-writing-studies, uw-tacoma-writing-studies::creative-writing-track, uw-tacoma-writing-studies::rhetoric-social-change-track, uw-tacoma-writing-studies::technical-communication-track, uw-tacoma-writing-studies:pathway:rhetoric-social-change-track
+  - fingerprint: 94c3bc0aca332d31c9526b9935ceda88afb62da431ac1cdb976a6514c0012b1e
+- https://www.tacoma.uw.edu/sias/cac/spanish-language-and-cultures
+  - owners: uw-tacoma-spanish-language-and-cultures
+  - fingerprint: 94c3bc0aca332d31c9526b9935ceda88afb62da431ac1cdb976a6514c0012b1e
+- https://www.tacoma.uw.edu/sias/cac/technical-communication-track
+  - owners: uw-tacoma-writing-studies, uw-tacoma-writing-studies::creative-writing-track, uw-tacoma-writing-studies::rhetoric-social-change-track, uw-tacoma-writing-studies::technical-communication-track, uw-tacoma-writing-studies:pathway:technical-communication-track
+  - fingerprint: 94c3bc0aca332d31c9526b9935ceda88afb62da431ac1cdb976a6514c0012b1e
+- https://www.tacoma.uw.edu/sias/cac/writing-studies
+  - owners: uw-tacoma-writing-studies, uw-tacoma-writing-studies::creative-writing-track, uw-tacoma-writing-studies::rhetoric-social-change-track, uw-tacoma-writing-studies::technical-communication-track
+  - fingerprint: 94c3bc0aca332d31c9526b9935ceda88afb62da431ac1cdb976a6514c0012b1e
+
+## Changed Parsed Requirement Facts
+
+- Civil Engineering (BSCE) (uw-tacoma-civil-engineering)
+  - source: https://www.tacoma.uw.edu/set/programs/undergrad/civil
+  - fingerprint: fce060f84ace79c2b951a4400dfada8dfd5b98c631a40e1cfba8b04cab1d2c79
+  - source-only UW course codes: 38
+  - structured-only UW course codes: 0
+

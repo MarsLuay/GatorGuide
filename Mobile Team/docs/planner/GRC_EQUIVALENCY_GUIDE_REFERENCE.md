@@ -58,7 +58,7 @@ The current Green River transfer page lists these current transfer associate deg
 | not surfaced in the current public sources I checked | Associate in Biology, DTA/MRP | Degree is currently listed, but I could not get a clean current quarter grid from the latest public sources in this session |
 | `999F` | Associate in Business, DTA/MRP | Current grid available |
 | `999X` | Associate in Computer Science, DTA/MRP | Current grid available |
-| `99FA` | Associate in Fine Arts, AFA | Current grid partially visible; advisor note controls the remaining art-elective scheduling |
+| `99FA` | Associate in Fine Arts, AFA | Current grid partially visible; the remaining art-elective scheduling is not fully surfaced in the public source text |
 | `999G` | Associate in Math Education, DTA/MRP | Current grid available |
 | `999N` | Associate in Pre-Nursing, DTA/MRP | Current grid available |
 | `999A` | Associate in Science - Transfer Track 1 | Current grid mostly available; one spring slot was not fully surfaced in the latest text extract |
@@ -367,7 +367,7 @@ This is a cleaned working version of the Green River College -> University of Wa
 
 - Included: current Green River course rows from the supplied guide text.
 - Important: course prefixes with `&` matter. `ENGL& 101` and `ENGL 101` are not the same course.
-- This is a planning/reference doc for Gator Guide. Official transfer decisions still belong to UW and Green River advisors.
+- This is a planning/reference doc for Gator Guide. Official transfer decisions still follow UW and Green River published policies and institutional processes.
 
 ## Cleanup Rules Used
 

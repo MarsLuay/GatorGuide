@@ -27,8 +27,8 @@ import {
   getTransferPlannerPrimaryDegreeRequirementsSource,
   getTransferPlannerGrcCourseList,
   getTransferPlannerGrcCourseListGuidance,
-  getTransferPlannerMajorsForCampus,
-  getTransferPlannerPathwaysForPlan,
+  getTransferPlannerStudentVisibleMajorsForCampus,
+  getTransferPlannerStudentVisiblePathwaysForPlan,
   getTransferPlannerTrack,
   resolveTransferPlannerMajorPlan,
   TRANSFER_PLANNER_CAMPUSES,
@@ -36,6 +36,7 @@ import {
   type TransferPlannerMajorPlan,
   type TransferPlannerMajorPathway,
   type TransferPlannerResolvedMajorPlan,
+  type TransferPlannerStudentCourseEvaluation,
 } from "@/constants/transfer-planner-source";
 import { useAppData } from "@/hooks/use-app-data";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
@@ -45,9 +46,12 @@ import { storageService, type UploadedFile } from "@/services/storage/storage.se
 import {
   buildSuggestedQuarterPlan,
   buildRequirementStatuses,
+  buildTransferPlannerStudentCourseEvaluations,
+  buildTransferPlannerStudentEvaluationReport,
   extractCourseCodes,
   parseCompletedTranscriptCourses,
   type SuggestedQuarterPlan,
+  type TransferPlannerStudentEvaluationReport,
   type TranscriptCourseEntry,
 } from "@/services/planning/transfer-planner.service";
 import { transcriptPdfService } from "@/services/documents/transcript-pdf.service";
@@ -212,6 +216,62 @@ function getScheduleCampusLabel(campusLabel: string) {
   if (!trimmed) return "UW";
   if (/^UW\s+/i.test(trimmed)) return trimmed;
   return `UW ${trimmed}`;
+}
+
+function getEvaluationOutcomeBadgeLabel(outcome: TransferPlannerStudentCourseEvaluation["outcome"]) {
+  switch (outcome) {
+    case "auto-approved":
+      return "Applies";
+    case "legacy-rule-used":
+      return "Legacy";
+    case "elective-credit":
+      return "Elective";
+    case "sequence-incomplete":
+      return "Sequence";
+    case "no-credit":
+      return "No credit";
+    case "not-applicable-to-major":
+      return "Not used";
+    case "source-unverified-hidden":
+      return "Hidden";
+  }
+}
+
+function getEvaluationOutcomeBadgeClass(outcome: TransferPlannerStudentCourseEvaluation["outcome"]) {
+  switch (outcome) {
+    case "auto-approved":
+      return "bg-emerald-500/10 border-emerald-500/20";
+    case "legacy-rule-used":
+    case "sequence-incomplete":
+      return "bg-amber-500/10 border-amber-500/20";
+    case "elective-credit":
+      return "bg-sky-500/10 border-sky-500/20";
+    case "no-credit":
+      return "bg-red-500/10 border-red-500/20";
+    case "not-applicable-to-major":
+    case "source-unverified-hidden":
+      return "bg-white/5 border-white/10";
+  }
+}
+
+function getEvaluationOutcomeTextClass(
+  outcome: TransferPlannerStudentCourseEvaluation["outcome"],
+  fallbackTextClass: string
+) {
+  switch (outcome) {
+    case "auto-approved":
+      return "text-emerald-500";
+    case "legacy-rule-used":
+    case "sequence-incomplete":
+      return "text-amber-500";
+    case "elective-credit":
+      return "text-sky-400";
+    case "no-credit":
+      return "text-red-400";
+    case "not-applicable-to-major":
+    case "source-unverified-hidden":
+      return fallbackTextClass;
+  }
 }
 
 function buildTranscriptDebugSnapshot({
@@ -890,7 +950,7 @@ function SuggestedScheduleCard({
         <View className="flex-1 min-w-0">
           <Text className={`${textClass} text-lg font-semibold`}>GRC Quarter Plan</Text>
           <Text className={`${secondaryTextClass} text-sm mt-1`}>
-            {`This is your ideal plan on finishing the ${degreeTitle} degree at ${getScheduleCampusLabel(campusLabel)}! Make sure to confirm with your advisor before scheduling classes.`}
+            {`This is your source-backed plan for finishing the ${degreeTitle} degree at ${getScheduleCampusLabel(campusLabel)}. Unsupported majors, rules, or sequences stay hidden until public sources can verify them.`}
           </Text>
         </View>
 
@@ -1024,6 +1084,133 @@ function SuggestedScheduleCard({
           </View>
         ))}
       </View>
+    </View>
+  );
+}
+
+function TranscriptEvaluationReportCard({
+  report,
+  evaluations,
+  textClass,
+  secondaryTextClass,
+  cardClass,
+  borderClass,
+}: {
+  report: TransferPlannerStudentEvaluationReport;
+  evaluations: TransferPlannerStudentCourseEvaluation[];
+  textClass: string;
+  secondaryTextClass: string;
+  cardClass: string;
+  borderClass: string;
+}) {
+  const studentFacingEvaluations = evaluations.filter((entry) => entry.studentFacing);
+  const highlightedEvaluations = studentFacingEvaluations.slice(0, 8);
+  const hiddenCount = Math.max(studentFacingEvaluations.length - highlightedEvaluations.length, 0);
+  const activeBuckets = report.buckets.filter((bucket) => bucket.count > 0);
+
+  if (!report.completedCourseCount) {
+    return null;
+  }
+
+  return (
+    <View className={`${cardClass} border rounded-[28px] p-5`}>
+      <View className="flex-row items-start justify-between gap-3">
+        <View className="flex-1 min-w-0">
+          <Text className={`${textClass} text-lg font-semibold`}>Transcript evaluation</Text>
+          <Text className={`${secondaryTextClass} text-sm mt-1`}>
+            Source-backed summary for completed classes in {report.majorTitle}. These buckets come from approved equivalency rules, not custom guessing.
+          </Text>
+        </View>
+        <View className="px-3 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/10">
+          <Text className="text-emerald-500 text-xs font-semibold">
+            {report.officialRuleIds.length} rule{report.officialRuleIds.length === 1 ? "" : "s"}
+          </Text>
+        </View>
+      </View>
+
+      <View className="flex-row flex-wrap gap-2 mt-4">
+        {activeBuckets.map((bucket) => (
+          <View key={bucket.id} className={`border ${borderClass} rounded-2xl px-3 py-2`}>
+            <Text className={`${textClass} text-xs font-semibold`}>{bucket.label}</Text>
+            <Text className={`${secondaryTextClass} text-xs mt-1`}>
+              {bucket.count} course{bucket.count === 1 ? "" : "s"}
+            </Text>
+          </View>
+        ))}
+      </View>
+
+      <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-4`}>
+        <Text className={`${textClass} font-semibold`}>Source-backed summary</Text>
+        <View className="gap-2 mt-3">
+          {report.reportSummaryLines.map((line) => (
+            <View key={line} className="flex-row items-start gap-2">
+              <Text className={`${secondaryTextClass} text-sm`}>{"-"}</Text>
+              <Text className={`${secondaryTextClass} text-sm flex-1`}>{line}</Text>
+            </View>
+          ))}
+        </View>
+        <Text className={`${secondaryTextClass} text-xs mt-3`}>
+          {`${report.sourceLinkCount} official source link${report.sourceLinkCount === 1 ? "" : "s"} attached to the evaluated rules.`}
+        </Text>
+      </View>
+
+      {highlightedEvaluations.length ? (
+        <View className="gap-3 mt-4">
+          {highlightedEvaluations.map((evaluation) => (
+            <View
+              key={evaluation.id}
+              className={`border ${borderClass} rounded-2xl px-4 py-4`}
+            >
+              <View className="flex-row items-start justify-between gap-3">
+                <View className="flex-1 min-w-0">
+                  <Text className={`${textClass} font-semibold`}>{evaluation.courseCode}</Text>
+                  <Text className={`${secondaryTextClass} text-xs mt-1`} numberOfLines={2}>
+                    {evaluation.targetOutcome ?? "No source-backed UW target outcome for this selected major."}
+                  </Text>
+                </View>
+                <View className={`px-3 py-1 rounded-full border ${getEvaluationOutcomeBadgeClass(evaluation.outcome)}`}>
+                  <Text
+                    className={`text-xs font-semibold ${getEvaluationOutcomeTextClass(
+                      evaluation.outcome,
+                      textClass
+                    )}`}
+                  >
+                    {getEvaluationOutcomeBadgeLabel(evaluation.outcome)}
+                  </Text>
+                </View>
+              </View>
+
+              {evaluation.missingSourceCourseCodes.length ? (
+                <Text className={`${secondaryTextClass} text-xs mt-2`}>
+                  Missing for strongest sequence: {evaluation.missingSourceCourseCodes.join(", ")}
+                </Text>
+              ) : null}
+              {evaluation.approvedRuleId ? (
+                <Text className={`${secondaryTextClass} text-xs mt-2`}>
+                  Rule: {evaluation.approvedRuleId}
+                </Text>
+              ) : null}
+            </View>
+          ))}
+
+          {hiddenCount ? (
+            <Text className={`${secondaryTextClass} text-xs`}>
+              Plus {hiddenCount} more evaluated completed course{hiddenCount === 1 ? "" : "s"}.
+            </Text>
+          ) : null}
+        </View>
+      ) : null}
+
+      {report.hiddenEvaluationCount ? (
+        <View className="mt-4 px-4 py-3 rounded-2xl bg-amber-500/10 border border-amber-500/20">
+          <Text className="text-amber-500 text-sm font-semibold">
+            Hidden source-gap evaluation
+          </Text>
+          <Text className={`${secondaryTextClass} text-xs mt-1`}>
+            {report.hiddenEvaluationCount} course evaluation{report.hiddenEvaluationCount === 1 ? "" : "s"} stayed internal because this planner path is not source-verified for students.
+          </Text>
+        </View>
+      ) : null}
     </View>
   );
 }
@@ -1219,7 +1406,7 @@ export default function TransferPlannerPage() {
   const [selectedCampusId, setSelectedCampusId] =
     useState<TransferPlannerCampusId>("uw-seattle");
   const [selectedMajorId, setSelectedMajorId] = useState<string>(
-    getTransferPlannerMajorsForCampus("uw-seattle")[0]?.id ?? ""
+    getTransferPlannerStudentVisibleMajorsForCampus("uw-seattle")[0]?.id ?? ""
   );
   const [openSelector, setOpenSelector] = useState<"campus" | "major" | null>(null);
   const [transcriptDocument, setTranscriptDocument] = useState<TranscriptDocument | null>(null);
@@ -1281,7 +1468,7 @@ export default function TransferPlannerPage() {
     [selectedCampusId]
   );
   const campusMajors = useMemo(
-    () => getTransferPlannerMajorsForCampus(selectedCampusId),
+    () => getTransferPlannerStudentVisibleMajorsForCampus(selectedCampusId),
     [selectedCampusId]
   );
   const selectedBasePlan = useMemo(
@@ -1296,7 +1483,7 @@ export default function TransferPlannerPage() {
     [state.questionnaireAnswers]
   );
   const pathwayOptions = useMemo(
-    () => getTransferPlannerPathwaysForPlan(selectedBasePlan),
+    () => getTransferPlannerStudentVisiblePathwaysForPlan(selectedBasePlan),
     [selectedBasePlan]
   );
   const selectedPathwayId = useMemo(() => {
@@ -1675,6 +1862,44 @@ export default function TransferPlannerPage() {
       track,
     ]
   );
+  const studentCourseEvaluations = useMemo(
+    () =>
+      plan
+        ? buildTransferPlannerStudentCourseEvaluations({
+            plan,
+            completedCourses,
+            applicationStatuses,
+            beforeEnrollmentStatuses,
+            stayAtGrcStatuses,
+          })
+        : [],
+    [
+      applicationStatuses,
+      beforeEnrollmentStatuses,
+      completedCourses,
+      plan,
+      stayAtGrcStatuses,
+    ]
+  );
+  const studentEvaluationReport = useMemo(
+    () =>
+      plan
+        ? buildTransferPlannerStudentEvaluationReport({
+            plan,
+            campusLabel: campus.title,
+            completedCourses,
+            evaluations: studentCourseEvaluations,
+            suggestedQuarterPlan,
+          })
+        : null,
+    [
+      campus.title,
+      completedCourses,
+      plan,
+      studentCourseEvaluations,
+      suggestedQuarterPlan,
+    ]
+  );
   const hasStructuredPlannerData = useMemo(
     () =>
       !!plan &&
@@ -1881,32 +2106,45 @@ export default function TransferPlannerPage() {
                 Quarter plan note
               </Text>
               <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                This degree does not have a fixed quarter-by-quarter plan yet. Use the Green River class list and class-order notes above as your starting point, then confirm the final class order with an advisor.
+                This degree does not have a fixed quarter-by-quarter plan yet. Use the Green River class list and source-backed class-order notes above as your starting point. Unsupported ordering details stay hidden until public sources can verify them.
               </Text>
             </View>
           ) : null}
 
           {hasStructuredPlannerData ? (
-            <SuggestedScheduleCard
-              quarters={suggestedQuarterPlan}
-              degreeTitle={
-                plan.selectedPathwayLabel
-                  ? `${plan.title} (${plan.selectedPathwayLabel})`
-                  : plan.title
-              }
-              campusLabel={campus.title}
-              onlyUwEssentialClasses={onlyUwEssentialClasses}
-              showOnlyUwEssentialClassesToggle={hasOptionalStayAtGrcChecklist}
-              onToggleOnlyUwEssentialClasses={() =>
-                setOnlyUwEssentialClasses((current) => !current)
-              }
-              currentCourseLabels={currentPlannedCourseSet}
-              onToggleCurrentCourse={handleToggleCurrentCourse}
-              textClass={textClass}
-              secondaryTextClass={secondaryTextClass}
-              cardClass={cardBgClass}
-              borderClass={borderClass}
-            />
+            <>
+              {studentEvaluationReport && completedCourses.length ? (
+                <TranscriptEvaluationReportCard
+                  report={studentEvaluationReport}
+                  evaluations={studentCourseEvaluations}
+                  textClass={textClass}
+                  secondaryTextClass={secondaryTextClass}
+                  cardClass={cardBgClass}
+                  borderClass={borderClass}
+                />
+              ) : null}
+
+              <SuggestedScheduleCard
+                quarters={suggestedQuarterPlan}
+                degreeTitle={
+                  plan.selectedPathwayLabel
+                    ? `${plan.title} (${plan.selectedPathwayLabel})`
+                    : plan.title
+                }
+                campusLabel={campus.title}
+                onlyUwEssentialClasses={onlyUwEssentialClasses}
+                showOnlyUwEssentialClassesToggle={hasOptionalStayAtGrcChecklist}
+                onToggleOnlyUwEssentialClasses={() =>
+                  setOnlyUwEssentialClasses((current) => !current)
+                }
+                currentCourseLabels={currentPlannedCourseSet}
+                onToggleCurrentCourse={handleToggleCurrentCourse}
+                textClass={textClass}
+                secondaryTextClass={secondaryTextClass}
+                cardClass={cardBgClass}
+                borderClass={borderClass}
+              />
+            </>
           ) : null}
         </View>
       </ScrollView>

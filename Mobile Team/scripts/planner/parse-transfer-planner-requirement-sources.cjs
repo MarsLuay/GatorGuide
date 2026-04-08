@@ -1,5 +1,7 @@
 const fs = require("fs");
 const path = require("path");
+const { execFile } = require("child_process");
+const { promisify } = require("util");
 
 require("ts-node").register({
   skipProject: true,
@@ -21,9 +23,22 @@ const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
 const SNAPSHOT_DIR = path.resolve(TMP_DIR, "transfer-planner-requirement-source-snapshots");
 const OUTPUT_JSON_PATH = path.resolve(TMP_DIR, "transfer-planner-requirement-source-parse-report.json");
 const OUTPUT_MD_PATH = path.resolve(TMP_DIR, "transfer-planner-requirement-source-parse-report.md");
+const OUTPUT_TS_PATH = path.resolve(
+  REPO_ROOT,
+  "constants",
+  "transfer-planner-source",
+  "requirement-source-adapters.generated.ts"
+);
 const DEFAULT_TIMEOUT_MS = 20000;
-const DEFAULT_CONCURRENCY = 3;
+const DEFAULT_CONCURRENCY = 2;
+const DEFAULT_RETRY_ATTEMPTS = 3;
+const DEFAULT_HOST_COOLDOWN_MS = 750;
 const USER_AGENT = "GatorGuideTransferPlannerRequirementParser/1.0";
+const CURL_COMMAND = process.platform === "win32" ? "curl.exe" : "curl";
+const CURL_MAX_BUFFER_BYTES = 40 * 1024 * 1024;
+const CURL_ACCEPT_HEADER =
+  "text/html,application/xhtml+xml,application/xml;q=0.9,application/pdf;q=0.8,*/*;q=0.7";
+const GENERATED_CHUNK_SIZE = 40;
 const COURSE_CODE_PATTERN = /\b[A-Z]{2,8}\s*\d{3}[A-Z]?\b/g;
 const INVALID_EXTRACTED_COURSE_SUBJECTS = new Set([
   "AND",
@@ -65,9 +80,117 @@ const PARSEABLE_PARSER_TYPES = new Set([
   "pdf-worksheet",
   "generic-pdf",
 ]);
+const HOST_REQUEST_CHAINS = new Map();
+const HOST_NEXT_ALLOWED_AT = new Map();
+const execFileAsync = promisify(execFile);
+const REQUIREMENT_SOURCE_ADAPTERS = [
+  {
+    id: "uw-seattle-html-degree-page",
+    family: "UW Seattle HTML degree pages",
+    matches: (entry) =>
+      entry.campusId === "uw-seattle" &&
+      ["html-degree-page", "html-curriculum-page", "html-overview-page"].includes(entry.parserType),
+    parse: parseHtmlSource,
+  },
+  {
+    id: "uw-seattle-catalog-page",
+    family: "UW Seattle catalog pages",
+    matches: (entry) => entry.campusId === "uw-seattle" && entry.parserType === "catalog-page",
+    parse: parseHtmlSource,
+  },
+  {
+    id: "uw-bothell-html-degree-page",
+    family: "UW Bothell HTML degree pages",
+    matches: (entry) =>
+      entry.campusId === "uw-bothell" &&
+      ["html-degree-page", "html-curriculum-page", "html-overview-page"].includes(entry.parserType),
+    parse: parseHtmlSource,
+  },
+  {
+    id: "uw-bothell-catalog-page",
+    family: "UW Bothell catalog pages",
+    matches: (entry) => entry.campusId === "uw-bothell" && entry.parserType === "catalog-page",
+    parse: parseHtmlSource,
+  },
+  {
+    id: "uw-bothell-pdf-worksheet",
+    family: "UW Bothell PDF worksheets",
+    matches: (entry) =>
+      entry.campusId === "uw-bothell" &&
+      ["pdf-degree-sheet", "pdf-worksheet", "generic-pdf"].includes(entry.parserType),
+    parse: parsePdfSource,
+  },
+  {
+    id: "uw-tacoma-html-degree-page",
+    family: "UW Tacoma HTML degree pages",
+    matches: (entry) =>
+      entry.campusId === "uw-tacoma" &&
+      ["html-degree-page", "html-curriculum-page", "html-overview-page"].includes(entry.parserType),
+    parse: parseHtmlSource,
+  },
+  {
+    id: "uw-tacoma-catalog-page",
+    family: "UW Tacoma catalog pages",
+    matches: (entry) => entry.campusId === "uw-tacoma" && entry.parserType === "catalog-page",
+    parse: parseHtmlSource,
+  },
+  {
+    id: "generic-official-pdf-degree-sheet",
+    family: "Generic official PDF degree sheets",
+    matches: (entry) => ["pdf-degree-sheet", "pdf-worksheet", "generic-pdf"].includes(entry.parserType),
+    parse: parsePdfSource,
+  },
+  {
+    id: "generic-official-html-page",
+    family: "Generic official HTML pages",
+    matches: (entry) => ["generic-html", "html-degree-page", "html-curriculum-page", "html-overview-page", "catalog-page"].includes(entry.parserType),
+    parse: parseHtmlSource,
+  },
+];
 
 function ensureDir(directoryPath) {
   fs.mkdirSync(directoryPath, { recursive: true });
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function getHostKey(url) {
+  try {
+    return new URL(url).host.toLowerCase();
+  } catch {
+    return "unknown-host";
+  }
+}
+
+async function withHostThrottle(url, work) {
+  const hostKey = getHostKey(url);
+  const previous = HOST_REQUEST_CHAINS.get(hostKey) ?? Promise.resolve();
+  const run = previous
+    .catch(() => undefined)
+    .then(async () => {
+      const waitMs = Math.max(0, (HOST_NEXT_ALLOWED_AT.get(hostKey) ?? 0) - Date.now());
+      if (waitMs > 0) {
+        await sleep(waitMs);
+      }
+
+      try {
+        return await work();
+      } finally {
+        HOST_NEXT_ALLOWED_AT.set(hostKey, Date.now() + DEFAULT_HOST_COOLDOWN_MS);
+      }
+    });
+
+  HOST_REQUEST_CHAINS.set(
+    hostKey,
+    run.then(
+      () => undefined,
+      () => undefined
+    )
+  );
+
+  return run;
 }
 
 function normalizeWhitespace(value) {
@@ -130,6 +253,84 @@ function slugify(value) {
     .replace(/^-+|-+$/g, "");
 }
 
+function selectRequirementSourceAdapter(entry) {
+  return (
+    REQUIREMENT_SOURCE_ADAPTERS.find((adapter) => adapter.matches(entry)) ??
+    REQUIREMENT_SOURCE_ADAPTERS[REQUIREMENT_SOURCE_ADAPTERS.length - 1]
+  );
+}
+
+function getSourceRoleScore(entry) {
+  switch (entry.role) {
+    case "degree-requirements":
+      return 6;
+    case "curriculum":
+      return 5;
+    case "worksheet":
+      return 4;
+    case "catalog":
+      return 3;
+    case "overview":
+      return 2;
+    default:
+      return 1;
+  }
+}
+
+function getParserTypeScore(parserType) {
+  switch (parserType) {
+    case "html-degree-page":
+      return 8;
+    case "html-curriculum-page":
+      return 7;
+    case "catalog-page":
+      return 6;
+    case "html-overview-page":
+      return 5;
+    case "pdf-degree-sheet":
+      return 4;
+    case "pdf-worksheet":
+      return 3;
+    case "generic-html":
+      return 2;
+    case "generic-pdf":
+      return 1;
+    default:
+      return 0;
+  }
+}
+
+function compareManifestFallbackCandidates(left, right) {
+  const confidenceScoreDelta =
+    ["high", "medium", "low"].indexOf(left.confidence) - ["high", "medium", "low"].indexOf(right.confidence);
+  if (confidenceScoreDelta !== 0) {
+    return confidenceScoreDelta;
+  }
+
+  const roleDelta = getSourceRoleScore(right) - getSourceRoleScore(left);
+  if (roleDelta !== 0) {
+    return roleDelta;
+  }
+
+  const parserTypeDelta = getParserTypeScore(right.parserType) - getParserTypeScore(left.parserType);
+  if (parserTypeDelta !== 0) {
+    return parserTypeDelta;
+  }
+
+  return left.label.localeCompare(right.label);
+}
+
+function getAlternateParseableManifestEntries(entry) {
+  return TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY.filter(
+    (candidate) =>
+      candidate.ownerId === entry.ownerId &&
+      candidate.id !== entry.id &&
+      candidate.url !== entry.url &&
+      candidate.campusId === entry.campusId &&
+      PARSEABLE_PARSER_TYPES.has(candidate.parserType)
+  ).sort(compareManifestFallbackCandidates);
+}
+
 function getStructuredUwCourseCodes(manifestEntry) {
   return uniqueSorted(
     TRANSFER_PLANNER_DEGREE_MAP_BLOCK_REGISTRY.filter(
@@ -149,10 +350,43 @@ function extractCourseCodesFromText(text) {
   );
 }
 
+function getSourceLineHints(lines, courseCode) {
+  return uniqueSorted(
+    lines
+      .filter((line) => line.includes(courseCode))
+      .map((line) => normalizeWhitespace(line))
+      .filter((line) => line.length <= 280)
+      .slice(0, 5)
+  );
+}
+
+function buildParsedRequirementAtomCandidates(owner, parsedCourseCodes, snapshotLines) {
+  return parsedCourseCodes.map((courseCode) => ({
+    id: `${owner.ownerId}:source-atom:${slugify(courseCode)}`,
+    title: courseCode,
+    uwCourseCode: courseCode,
+    sourceLineHints: getSourceLineHints(snapshotLines, courseCode),
+  }));
+}
+
+function buildParsedDegreeMapBlockCandidates(owner, parsedCourseCodes, requirementCueLines) {
+  if (!parsedCourseCodes.length) {
+    return [];
+  }
+
+  return [
+    {
+      id: `${owner.ownerId}:source-degree-map:${slugify(owner.adapterId)}`,
+      title: `${owner.ownerTitle} parsed official source requirements`,
+      uwCourseCodes: parsedCourseCodes,
+      sourceLineHints: requirementCueLines.slice(0, 10),
+    },
+  ];
+}
+
 function writeSnapshot(ownerKey, sourceUrl, title, lines) {
   ensureDir(SNAPSHOT_DIR);
-  const safeFileName = `${slugify(ownerKey)}.txt`;
-  const outputPath = path.resolve(SNAPSHOT_DIR, safeFileName);
+  const outputPath = getSnapshotPath(ownerKey);
   const body = [
     `Owner: ${ownerKey}`,
     `Source: ${sourceUrl}`,
@@ -164,7 +398,94 @@ function writeSnapshot(ownerKey, sourceUrl, title, lines) {
   return outputPath;
 }
 
-async function fetchWithTimeout(url, timeoutMs) {
+function getSnapshotPath(ownerKey) {
+  return path.resolve(SNAPSHOT_DIR, `${slugify(ownerKey)}.txt`);
+}
+
+function readSnapshot(ownerKey) {
+  const snapshotPath = getSnapshotPath(ownerKey);
+  if (!fs.existsSync(snapshotPath)) {
+    return null;
+  }
+
+  const rawLines = fs.readFileSync(snapshotPath, "utf8").split(/\r?\n/);
+  const titleLine = rawLines.find((line) => line.startsWith("Title:"));
+  const bodyStartIndex = rawLines.findIndex((line, index) => index <= 6 && line.trim() === "");
+  const snapshotLines = rawLines
+    .slice(bodyStartIndex >= 0 ? bodyStartIndex + 1 : 0)
+    .map((line) => normalizeWhitespace(line))
+    .filter(Boolean)
+    .slice(0, 1200);
+
+  if (!snapshotLines.length) {
+    return null;
+  }
+
+  return {
+    snapshotPath,
+    title: titleLine ? normalizeWhitespace(titleLine.replace(/^Title:\s*/, "")) : null,
+    snapshotLines,
+  };
+}
+
+function parseSnapshotSource(entry, originalError) {
+  const snapshot = readSnapshot(entry.ownerId);
+  if (!snapshot) {
+    return null;
+  }
+
+  const requirementCueLines = extractRequirementCueLines(snapshot.snapshotLines);
+  const chooseStatements = extractChooseStatements(snapshot.snapshotLines);
+  const pathwayLabels = extractPathwayLabels(snapshot.snapshotLines, []);
+  const courseCodes = extractCourseCodesFromText(snapshot.snapshotLines.join("\n"));
+
+  return {
+    title: snapshot.title,
+    headings: [],
+    requirementCueLines,
+    chooseStatements,
+    pathwayLabels,
+    courseCodes,
+    snapshotLines: snapshot.snapshotLines,
+    parseConfidence: buildParseConfidence(courseCodes, requirementCueLines, entry.parserType),
+    snapshotPath: snapshot.snapshotPath,
+    usedSnapshotFallback: true,
+    snapshotFallbackReason: originalError.message,
+  };
+}
+
+function parseRetryAfterToMs(value) {
+  const normalized = normalizeWhitespace(value);
+  if (!normalized) {
+    return null;
+  }
+
+  if (/^\d+$/.test(normalized)) {
+    return Number(normalized) * 1000;
+  }
+
+  const retryAt = Date.parse(normalized);
+  if (Number.isNaN(retryAt)) {
+    return null;
+  }
+
+  return Math.max(0, retryAt - Date.now());
+}
+
+function isRetryableHttpStatus(status) {
+  return [408, 425, 429, 500, 502, 503, 504].includes(status);
+}
+
+function getRetryDelayMs(attempt, retryAfterHeader = null) {
+  const retryAfterMs = parseRetryAfterToMs(retryAfterHeader);
+  if (retryAfterMs !== null) {
+    return Math.min(Math.max(retryAfterMs, DEFAULT_HOST_COOLDOWN_MS), 8000);
+  }
+
+  return Math.min(DEFAULT_HOST_COOLDOWN_MS * Math.pow(2, Math.max(0, attempt - 1)), 8000);
+}
+
+async function fetchWithTimeoutOnce(url, timeoutMs) {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
@@ -178,6 +499,111 @@ async function fetchWithTimeout(url, timeoutMs) {
     });
   } finally {
     clearTimeout(timeoutId);
+  }
+}
+
+async function fetchWithRetries(url, timeoutMs) {
+  let lastError = null;
+  let lastResponse = null;
+
+  for (let attempt = 1; attempt <= DEFAULT_RETRY_ATTEMPTS; attempt += 1) {
+    try {
+      const response = await withHostThrottle(url, () => fetchWithTimeoutOnce(url, timeoutMs));
+      if (response.ok) {
+        return response;
+      }
+
+      lastResponse = response;
+      if (!isRetryableHttpStatus(response.status) || attempt >= DEFAULT_RETRY_ATTEMPTS) {
+        return response;
+      }
+
+      await sleep(getRetryDelayMs(attempt, response.headers.get("retry-after")));
+    } catch (error) {
+      lastError = error;
+      if (attempt >= DEFAULT_RETRY_ATTEMPTS) {
+        break;
+      }
+
+      await sleep(getRetryDelayMs(attempt));
+    }
+  }
+
+  if (lastResponse) {
+    return lastResponse;
+  }
+
+  throw lastError ?? new Error(`Failed to fetch ${url}.`);
+}
+
+function buildCurlErrorMessage(error, url) {
+  const stderr = normalizeWhitespace(error?.stderr ?? "");
+  const stdout = normalizeWhitespace(error?.stdout ?? "");
+  const details = stderr || stdout || normalizeWhitespace(error?.message ?? "");
+  return details ? `${details}` : `curl failed for ${url}`;
+}
+
+async function downloadWithCurl(url, timeoutMs, binary) {
+  const args = [
+    "--silent",
+    "--show-error",
+    "--location",
+    "--fail",
+    "--user-agent",
+    USER_AGENT,
+    "--header",
+    `Accept: ${CURL_ACCEPT_HEADER}`,
+    "--max-time",
+    String(Math.max(5, Math.ceil(timeoutMs / 1000))),
+    url,
+  ];
+
+  try {
+    const result = await withHostThrottle(url, () =>
+      execFileAsync(CURL_COMMAND, args, {
+        encoding: binary ? "buffer" : "utf8",
+        maxBuffer: CURL_MAX_BUFFER_BYTES,
+        windowsHide: true,
+      })
+    );
+
+    return {
+      body: binary ? Buffer.from(result.stdout) : String(result.stdout ?? ""),
+      fetchMode: "curl",
+    };
+  } catch (error) {
+    throw new Error(buildCurlErrorMessage(error, url));
+  }
+}
+
+async function downloadSource(url, timeoutMs, { binary = false } = {}) {
+  let fetchResponse = null;
+  let fetchError = null;
+
+  try {
+    fetchResponse = await fetchWithRetries(url, timeoutMs);
+    if (fetchResponse.ok) {
+      return {
+        body: binary
+          ? Buffer.from(await fetchResponse.arrayBuffer())
+          : await fetchResponse.text(),
+        fetchMode: "fetch",
+      };
+    }
+  } catch (error) {
+    fetchError = error;
+  }
+
+  try {
+    return await downloadWithCurl(url, timeoutMs, binary);
+  } catch (curlError) {
+    if (fetchResponse && !fetchResponse.ok) {
+      throw new Error(`HTTP ${fetchResponse.status} ${fetchResponse.statusText}`);
+    }
+    if (fetchError) {
+      throw fetchError;
+    }
+    throw curlError;
   }
 }
 
@@ -265,12 +691,7 @@ function buildParseConfidence(parsedCourseCodes, requirementCueLines, parserType
 }
 
 async function parseHtmlSource(entry, timeoutMs) {
-  const response = await fetchWithTimeout(entry.url, timeoutMs);
-  if (!response.ok) {
-    throw new Error(`HTTP ${response.status} ${response.statusText}`);
-  }
-
-  const html = await response.text();
+  const { body: html } = await downloadSource(entry.url, timeoutMs);
   const title = extractTitle(html);
   const headings = extractHeadings(html);
   const lines = buildHtmlLines(html);
@@ -292,12 +713,8 @@ async function parseHtmlSource(entry, timeoutMs) {
 }
 
 async function parsePdfSource(entry, timeoutMs) {
-  const response = await fetchWithTimeout(entry.url, timeoutMs);
-  if (!response.ok) {
-    throw new Error(`HTTP ${response.status} ${response.statusText}`);
-  }
-
-  const pdfData = new Uint8Array(await response.arrayBuffer());
+  const { body } = await downloadSource(entry.url, timeoutMs, { binary: true });
+  const pdfData = new Uint8Array(body);
   const document = await pdfjs.getDocument({ data: pdfData, verbosity: 0 }).promise;
   const pageCount = document.numPages;
   const pageLines = [];
@@ -332,60 +749,134 @@ async function parsePdfSource(entry, timeoutMs) {
   };
 }
 
+function hasMeaningfulParsedContent(parsed) {
+  return Boolean(
+    (parsed.courseCodes ?? []).length ||
+      (parsed.requirementCueLines ?? []).length ||
+      (parsed.chooseStatements ?? []).length ||
+      (parsed.pathwayLabels ?? []).length
+  );
+}
+
+function buildManifestParseSuccess(
+  baseResult,
+  structuredCourseCodes,
+  resolvedEntry,
+  parsed,
+  resolutionStrategy
+) {
+  const parsedCourseCodes = uniqueSorted(parsed.courseCodes);
+  const sourceOnlyCourseCodes = parsedCourseCodes.filter(
+    (code) => !structuredCourseCodes.includes(code)
+  );
+  const structuredOnlyCourseCodes = structuredCourseCodes.filter(
+    (code) => !parsedCourseCodes.includes(code)
+  );
+  const snapshotPath =
+    parsed.snapshotPath ??
+    writeSnapshot(baseResult.ownerId, resolvedEntry.url, parsed.title, parsed.snapshotLines);
+  const parsedRequirementAtomCandidates = buildParsedRequirementAtomCandidates(
+    baseResult,
+    parsedCourseCodes,
+    parsed.snapshotLines
+  );
+  const parsedDegreeMapBlockCandidates = buildParsedDegreeMapBlockCandidates(
+    baseResult,
+    parsedCourseCodes,
+    parsed.requirementCueLines
+  );
+
+  return {
+    ...baseResult,
+    parserType: resolvedEntry.parserType,
+    adapterId: selectRequirementSourceAdapter(resolvedEntry).id,
+    adapterFamily: selectRequirementSourceAdapter(resolvedEntry).family,
+    sourceUrl: resolvedEntry.url,
+    sourceLabel: resolvedEntry.label,
+    resolutionStrategy,
+    ok: true,
+    extractedTitle: parsed.title,
+    extractedHeadings: parsed.headings,
+    requirementCueLines: parsed.requirementCueLines,
+    chooseStatements: parsed.chooseStatements,
+    pathwayLabels: parsed.pathwayLabels,
+    parsedUwCourseCodes: parsedCourseCodes,
+    sourceOnlyUwCourseCodes: sourceOnlyCourseCodes,
+    structuredOnlyUwCourseCodes: structuredOnlyCourseCodes,
+    parsedRequirementAtomCandidates,
+    parsedDegreeMapBlockCandidates,
+    parseConfidence: parsed.parseConfidence,
+    snapshotPath,
+    usedSnapshotFallback: Boolean(parsed.usedSnapshotFallback),
+    snapshotFallbackReason: parsed.snapshotFallbackReason ?? null,
+    error: null,
+  };
+}
+
 async function parseManifestEntry(entry, timeoutMs) {
   const structuredCourseCodes = getStructuredUwCourseCodes(entry);
+  const primaryAdapter = selectRequirementSourceAdapter(entry);
   const baseResult = {
     ownerId: entry.ownerId,
     ownerTitle: entry.ownerTitle,
     planId: entry.planId,
     pathwayId: entry.pathwayId,
     campusId: entry.campusId,
-    parserType: entry.parserType,
-    sourceUrl: entry.url,
-    sourceLabel: entry.label,
+    primaryParserType: entry.parserType,
+    primarySourceUrl: entry.url,
+    primarySourceLabel: entry.label,
     structuredUwCourseCodes: structuredCourseCodes,
   };
 
   try {
-    const parsed =
-      entry.parserType === "pdf-degree-sheet" ||
-      entry.parserType === "pdf-worksheet" ||
-      entry.parserType === "generic-pdf"
-        ? await parsePdfSource(entry, timeoutMs)
-        : await parseHtmlSource(entry, timeoutMs);
-
-    const parsedCourseCodes = uniqueSorted(parsed.courseCodes);
-    const sourceOnlyCourseCodes = parsedCourseCodes.filter(
-      (code) => !structuredCourseCodes.includes(code)
+    const parsed = await primaryAdapter.parse(entry, timeoutMs);
+    return buildManifestParseSuccess(
+      baseResult,
+      structuredCourseCodes,
+      entry,
+      parsed,
+      "primary-source"
     );
-    const structuredOnlyCourseCodes = structuredCourseCodes.filter(
-      (code) => !parsedCourseCodes.includes(code)
-    );
-    const snapshotPath = writeSnapshot(
-      entry.ownerId,
-      entry.url,
-      parsed.title,
-      parsed.snapshotLines
-    );
-
-    return {
-      ...baseResult,
-      ok: true,
-      extractedTitle: parsed.title,
-      extractedHeadings: parsed.headings,
-      requirementCueLines: parsed.requirementCueLines,
-      chooseStatements: parsed.chooseStatements,
-      pathwayLabels: parsed.pathwayLabels,
-      parsedUwCourseCodes: parsedCourseCodes,
-      sourceOnlyUwCourseCodes: sourceOnlyCourseCodes,
-      structuredOnlyUwCourseCodes: structuredOnlyCourseCodes,
-      parseConfidence: parsed.parseConfidence,
-      snapshotPath,
-      error: null,
-    };
   } catch (error) {
+    for (const alternateEntry of getAlternateParseableManifestEntries(entry)) {
+      try {
+        const alternateAdapter = selectRequirementSourceAdapter(alternateEntry);
+        const parsed = await alternateAdapter.parse(alternateEntry, timeoutMs);
+        if (!hasMeaningfulParsedContent(parsed)) {
+          continue;
+        }
+
+        return buildManifestParseSuccess(
+          baseResult,
+          structuredCourseCodes,
+          alternateEntry,
+          parsed,
+          "alternate-official-source"
+        );
+      } catch {
+        // Keep trying other official sources for the same owner before falling back to cached snapshots.
+      }
+    }
+
+    const snapshotParsed = parseSnapshotSource(entry, error);
+    if (snapshotParsed) {
+      return buildManifestParseSuccess(
+        baseResult,
+        structuredCourseCodes,
+        entry,
+        snapshotParsed,
+        "cached-snapshot"
+      );
+    }
+
     return {
       ...baseResult,
+      parserType: entry.parserType,
+      adapterId: primaryAdapter.id,
+      adapterFamily: primaryAdapter.family,
+      sourceUrl: entry.url,
+      sourceLabel: entry.label,
+      resolutionStrategy: "primary-source",
       ok: false,
       extractedTitle: null,
       extractedHeadings: [],
@@ -395,8 +886,12 @@ async function parseManifestEntry(entry, timeoutMs) {
       parsedUwCourseCodes: [],
       sourceOnlyUwCourseCodes: [],
       structuredOnlyUwCourseCodes: structuredCourseCodes,
+      parsedRequirementAtomCandidates: [],
+      parsedDegreeMapBlockCandidates: [],
       parseConfidence: "low",
       snapshotPath: null,
+      usedSnapshotFallback: false,
+      snapshotFallbackReason: null,
       error: error.message,
     };
   }
@@ -413,6 +908,119 @@ function getParseablePrimaryEntries() {
   ).sort((left, right) => left.ownerTitle.localeCompare(right.ownerTitle));
 }
 
+function countBy(values, getKey) {
+  return values.reduce((counts, value) => {
+    const key = getKey(value);
+    counts[key] = (counts[key] ?? 0) + 1;
+    return counts;
+  }, {});
+}
+
+function writeGeneratedRequirementSourceAdapters(report) {
+  const blocks = report.owners.map((owner) => ({
+    id: `${owner.ownerId}:source-block:${slugify(owner.adapterId)}`,
+    ownerId: owner.ownerId,
+    ownerTitle: owner.ownerTitle,
+    planId: owner.planId,
+    pathwayId: owner.pathwayId ?? null,
+    campusId: owner.campusId,
+    primaryParserType: owner.primaryParserType,
+    primarySourceUrl: owner.primarySourceUrl,
+    primarySourceLabel: owner.primarySourceLabel,
+    parserType: owner.parserType,
+    adapterId: owner.adapterId,
+    adapterFamily: owner.adapterFamily,
+    sourceUrl: owner.sourceUrl,
+    sourceLabel: owner.sourceLabel,
+    resolutionStrategy: owner.resolutionStrategy,
+    ok: owner.ok,
+    parseConfidence: owner.parseConfidence,
+    parsedUwCourseCodes: owner.parsedUwCourseCodes,
+    sourceOnlyUwCourseCodes: owner.sourceOnlyUwCourseCodes,
+    structuredOnlyUwCourseCodes: owner.structuredOnlyUwCourseCodes,
+    requirementCueLines: owner.requirementCueLines,
+    chooseStatements: owner.chooseStatements,
+    pathwayLabels: owner.pathwayLabels,
+    parsedRequirementAtomCandidates: owner.parsedRequirementAtomCandidates,
+    parsedDegreeMapBlockCandidates: owner.parsedDegreeMapBlockCandidates,
+    snapshotPath: owner.snapshotPath
+      ? path.relative(REPO_ROOT, owner.snapshotPath).replace(/\\/g, "/")
+      : null,
+    usedSnapshotFallback: owner.usedSnapshotFallback,
+    snapshotFallbackReason: owner.snapshotFallbackReason,
+    error: owner.error,
+  }));
+
+  const chunks = [];
+  for (let index = 0; index < blocks.length; index += GENERATED_CHUNK_SIZE) {
+    chunks.push(blocks.slice(index, index + GENERATED_CHUNK_SIZE));
+  }
+
+  const summary = {
+    generatedAt: report.generatedAt,
+    totalOwners: report.totalOwners,
+    okCount: report.okCount,
+    failedCount: report.failedCount,
+    parsedRequirementSourceBlockCount: blocks.length,
+    parsedRequirementAtomCandidateCount: blocks.reduce(
+      (count, block) => count + block.parsedRequirementAtomCandidates.length,
+      0
+    ),
+    parsedDegreeMapBlockCandidateCount: blocks.reduce(
+      (count, block) => count + block.parsedDegreeMapBlockCandidates.length,
+      0
+    ),
+    snapshotFallbackCount: report.snapshotFallbackCount,
+    countsByAdapterId: report.countsByAdapterId,
+    countsByAdapterFamily: report.countsByAdapterFamily,
+    countsByCampus: report.countsByCampus,
+    countsByResolutionStrategy: report.countsByResolutionStrategy,
+  };
+
+  const lines = [
+    "/* eslint-disable */",
+    "/* auto-generated by scripts/planner/parse-transfer-planner-requirement-sources.cjs */",
+    "",
+    "import type {",
+    "  TransferPlannerParsedRequirementSourceBlock,",
+    "  TransferPlannerRequirementSourceAdapterSummary,",
+    '} from "./schema";',
+    "",
+    `export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_ADAPTER_SUMMARY = ${JSON.stringify(
+      summary,
+      null,
+      2
+    )} as TransferPlannerRequirementSourceAdapterSummary;`,
+    "",
+  ];
+
+  chunks.forEach((chunk, index) => {
+    lines.push(
+      `const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_${index}: unknown[] = ${JSON.stringify(
+        chunk,
+        null,
+        2
+      )};`,
+      ""
+    );
+  });
+
+  const chunkNames = chunks.map(
+    (_, index) => `  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_${index}`
+  );
+  lines.push(
+    "const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS_RAW: unknown[] = ([] as unknown[]).concat(",
+    `${chunkNames.join(",\n")}`,
+    ");",
+    "",
+    "export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS =",
+    "  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS_RAW as TransferPlannerParsedRequirementSourceBlock[];",
+    ""
+  );
+
+  fs.writeFileSync(OUTPUT_TS_PATH, `${lines.join("\n")}\n`);
+}
+
 function buildMarkdownReport(report) {
   const lines = [
     "# Transfer Planner Requirement Source Parse Report",
@@ -422,9 +1030,26 @@ function buildMarkdownReport(report) {
     `- Primary degree sources parsed: ${report.totalOwners}`,
     `- Parsed successfully: ${report.okCount}`,
     `- Parse failures: ${report.failedCount}`,
+    `- Parsed requirement source adapter blocks: ${report.parsedRequirementSourceBlockCount}`,
+    `- Parsed requirement atom candidates: ${report.parsedRequirementAtomCandidateCount}`,
+    `- Parsed degree-map block candidates: ${report.parsedDegreeMapBlockCandidateCount}`,
+    `- Parsed from cached snapshots after live-source failures: ${report.snapshotFallbackCount}`,
+    `- Parsed from alternate official source URLs: ${report.countsByResolutionStrategy["alternate-official-source"] ?? 0}`,
     `- Owners with parsed UW course codes: ${report.withParsedCourseCodesCount}`,
     `- Owners with source-only UW course codes not currently in structured degree-map blocks: ${report.withSourceOnlyCourseCodesCount}`,
     `- Owners with no parsed UW course codes: ${report.withNoParsedCourseCodesCount}`,
+    "",
+    "## Parser Adapters",
+    "",
+    ...Object.entries(report.countsByAdapterId)
+      .sort(([left], [right]) => left.localeCompare(right))
+      .map(([adapterId, count]) => `- ${adapterId}: ${count}`),
+    "",
+    "## Resolution Strategies",
+    "",
+    ...Object.entries(report.countsByResolutionStrategy)
+      .sort(([left], [right]) => left.localeCompare(right))
+      .map(([resolutionStrategy, count]) => `- ${resolutionStrategy}: ${count}`),
     "",
   ];
 
@@ -443,8 +1068,16 @@ function buildMarkdownReport(report) {
         lines.push(`#### ${owner.ownerTitle}`);
         lines.push("");
         lines.push(`- Source: ${owner.sourceUrl}`);
+        if (owner.primarySourceUrl !== owner.sourceUrl) {
+          lines.push(`- Primary source: ${owner.primarySourceUrl}`);
+        }
         lines.push(`- Parser type: ${owner.parserType}`);
+        lines.push(`- Parser adapter: ${owner.adapterId}`);
+        lines.push(`- Resolution strategy: ${owner.resolutionStrategy}`);
         lines.push(`- Parse confidence: ${owner.parseConfidence}`);
+        if (owner.usedSnapshotFallback) {
+          lines.push(`- Snapshot fallback: ${owner.snapshotFallbackReason ?? "used cached source snapshot"}`);
+        }
         lines.push(`- Source-only UW course codes: ${owner.sourceOnlyUwCourseCodes.join(", ")}`);
         if (owner.structuredOnlyUwCourseCodes.length) {
           lines.push(
@@ -506,6 +1139,20 @@ async function main() {
     totalOwners: owners.length,
     okCount: owners.filter((owner) => owner.ok).length,
     failedCount: owners.filter((owner) => !owner.ok).length,
+    parsedRequirementSourceBlockCount: owners.length,
+    parsedRequirementAtomCandidateCount: owners.reduce(
+      (count, owner) => count + owner.parsedRequirementAtomCandidates.length,
+      0
+    ),
+    parsedDegreeMapBlockCandidateCount: owners.reduce(
+      (count, owner) => count + owner.parsedDegreeMapBlockCandidates.length,
+      0
+    ),
+    snapshotFallbackCount: owners.filter((owner) => owner.usedSnapshotFallback).length,
+    countsByAdapterId: countBy(owners, (owner) => owner.adapterId),
+    countsByAdapterFamily: countBy(owners, (owner) => owner.adapterFamily),
+    countsByCampus: countBy(owners, (owner) => owner.campusId),
+    countsByResolutionStrategy: countBy(owners, (owner) => owner.resolutionStrategy),
     withParsedCourseCodesCount: owners.filter((owner) => owner.parsedUwCourseCodes.length > 0).length,
     withSourceOnlyCourseCodesCount: owners.filter(
       (owner) => owner.sourceOnlyUwCourseCodes.length > 0
@@ -517,15 +1164,20 @@ async function main() {
   };
 
   fs.writeFileSync(OUTPUT_JSON_PATH, `${JSON.stringify(report, null, 2)}\n`);
+  writeGeneratedRequirementSourceAdapters(report);
   buildMarkdownReport(report);
 
   console.log(`Parsed successfully: ${report.okCount}/${report.totalOwners}`);
+  console.log(
+    `Parsed from alternate official sources: ${report.countsByResolutionStrategy["alternate-official-source"] ?? 0}`
+  );
   console.log(
     `Owners with source-only UW course codes not in structured degree-map blocks: ${report.withSourceOnlyCourseCodesCount}`
   );
   console.log(`Owners with no parsed UW course codes: ${report.withNoParsedCourseCodesCount}`);
   console.log(`JSON report: ${OUTPUT_JSON_PATH}`);
   console.log(`Markdown report: ${OUTPUT_MD_PATH}`);
+  console.log(`Generated adapters: ${OUTPUT_TS_PATH}`);
   console.log(`Snapshots: ${SNAPSHOT_DIR}`);
 }
 

@@ -1,42 +1,38 @@
 # Transfer Planner Source Link Summary
 
-Generated: 2026-04-03T11:10:12.319Z
+Generated: 2026-04-08T14:05:30.094Z
 
-- Total tracked source URLs: 435
-- Reachable: 320
-- Failed: 115
-- Added since previous snapshot: 2
-- Changed since previous snapshot: 22
+- Total tracked source URLs: 437
+- Reachable: 283
+- Failed: 154
+- Added since previous snapshot: 1
+- Changed since previous snapshot: 69
 - Removed since previous snapshot: 0
 
 ## Changed URLs
 
-- https://acms.washington.edu/admissions
-  - owners: uw-seattle-applied-and-computational-mathematical-sciences
-- https://acms.washington.edu/program-requirements-and-information
-  - owners: uw-seattle-applied-and-computational-mathematical-sciences
 - https://admissions.uwb.edu/register/mpw-aes
   - owners: uw-bothell-american-and-ethnic-studies
+- https://admissions.uwb.edu/register/mpw-CLA
+  - owners: uw-bothell-culture-literature-and-the-arts
 - https://admissions.uwb.edu/register/mpw-compe
   - owners: uw-bothell-computer-engineering
-- https://admissions.uwb.edu/register/mpw-csse
-  - owners: uw-bothell-csse, uw-bothell-csse-information-assurance-and-cybersecurity
 - https://admissions.uwb.edu/register/mpw-DataVis-BA
   - owners: uw-bothell-data-visualization-ba
-- https://admissions.uwb.edu/register/mpw-DataVis-BS
-  - owners: uw-bothell-data-visualization-bs
 - https://admissions.uwb.edu/register/mpw-EE
   - owners: uw-bothell-electrical-engineering
 - https://admissions.uwb.edu/register/mpw-hs
   - owners: uw-bothell-health-studies
 - https://admissions.uwb.edu/register/mpw-me
   - owners: uw-bothell-mechanical-engineering
+- https://admissions.uwb.edu/register/mpw-psy
+  - owners: uw-bothell-psychology
+- https://chem.washington.edu/ba-biochemistry
+  - owners: uw-seattle-biochemistry, uw-seattle-biochemistry::ba-route, uw-seattle-biochemistry::bs-route
+- https://chem.washington.edu/bs-chemistry
+  - owners: uw-seattle-chemistry, uw-seattle-chemistry::acs-certified-bs-route, uw-seattle-chemistry::ba-route, uw-seattle-chemistry::bs-route
 - https://com.uw.edu/academics/undergraduate/communication-major/
   - owners: uw-seattle-communication
-- https://depts.washington.edu/compfin/
-  - owners: uw-seattle-computational-finance-and-risk-management
-- https://disabilitystudies.washington.edu/
-  - owners: uw-seattle-disability-studies
 - https://dlmp.uw.edu/education/mls-apply
   - owners: uw-seattle-medical-laboratory-science
 - https://dlmp.uw.edu/education/mls-requirements
@@ -49,12 +45,52 @@ Generated: 2026-04-03T11:10:12.319Z
   - owners: uw-seattle-informatics
 - https://ischool.uw.edu/programs/informatics/curriculum/capstone
   - owners: uw-seattle-informatics
-- https://www.deohs.washington.edu/degree-requirements
-  - owners: uw-seattle-environmental-public-health
-- https://www.uwb.edu/nhs/undergraduate/rn-bsn/becomearn
-  - owners: uw-bothell-nursing-first-year-rn-to-bsn
-- https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum
-  - owners: uw-bothell-csse, uw-bothell-csse-information-assurance-and-cybersecurity
+- https://www.tacoma.uw.edu/nursing/declare-healthcare-leadership-major
+  - owners: uw-tacoma-healthcare-leadership
+- https://www.tacoma.uw.edu/set/programs/undergrad/civil
+  - owners: uw-tacoma-civil-engineering
+- https://www.tacoma.uw.edu/set/programs/undergrad/css/ba
+  - owners: uw-tacoma-computer-science-and-systems-ba, uw-tacoma-computer-science-and-systems-bs
+- https://www.tacoma.uw.edu/set/programs/undergrad/css/bs
+  - owners: uw-tacoma-computer-science-and-systems-ba, uw-tacoma-computer-science-and-systems-bs
+- https://www.tacoma.uw.edu/set/programs/undergrad/ee
+  - owners: uw-tacoma-electrical-engineering
+- https://www.tacoma.uw.edu/set/programs/undergrad/it
+  - owners: uw-tacoma-information-technology
+- https://www.tacoma.uw.edu/set/programs/undergrad/me
+  - owners: uw-tacoma-mechanical-engineering
+- https://www.tacoma.uw.edu/sias
+  - owners: uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed
+- https://www.tacoma.uw.edu/sias-new/socs-new/economics-and-policy-analysis-epa
+  - owners: uw-tacoma-economics-and-policy-analysis
+- https://www.tacoma.uw.edu/sias-new/socs-new/ethnic-gender-and-labor-studies
+  - owners: uw-tacoma-ethnic-gender-and-labor-studies, uw-tacoma-ethnic-gender-and-labor-studies::ethnic-studies-option, uw-tacoma-ethnic-gender-and-labor-studies::gender-studies-option, uw-tacoma-ethnic-gender-and-labor-studies::labor-studies-option
+- https://www.tacoma.uw.edu/sias-new/socs-new/ethnic-studies-option
+  - owners: uw-tacoma-ethnic-gender-and-labor-studies, uw-tacoma-ethnic-gender-and-labor-studies::ethnic-studies-option, uw-tacoma-ethnic-gender-and-labor-studies::gender-studies-option, uw-tacoma-ethnic-gender-and-labor-studies::labor-studies-option
+- https://www.tacoma.uw.edu/sias-new/socs-new/individually-designed-concentration
+  - owners: uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed
+- https://www.tacoma.uw.edu/sias-new/socs-new/interdisciplinary-arts-and-sciences
+  - owners: uw-tacoma-interdisciplinary-arts-and-sciences
+- https://www.tacoma.uw.edu/sias-new/socs-new/labor-and-social-movements-option
+  - owners: uw-tacoma-history
+- https://www.tacoma.uw.edu/sias/cac/arts-media-culture
+  - owners: uw-tacoma-arts-media-culture, uw-tacoma-arts-media-culture::american-cultures-track, uw-tacoma-arts-media-culture::comparative-arts-track, uw-tacoma-arts-media-culture::film-media-track, uw-tacoma-arts-media-culture::literature-track, uw-tacoma-arts-media-culture::visual-performing-arts-track
+- https://www.tacoma.uw.edu/sias/cac/communication
+  - owners: uw-tacoma-communications, uw-tacoma-communications::professional-track, uw-tacoma-communications::research-track
+- https://www.tacoma.uw.edu/sias/cac/communication-degree-requirements
+  - owners: uw-tacoma-communications, uw-tacoma-communications::professional-track, uw-tacoma-communications::research-track
+- https://www.tacoma.uw.edu/sias/cac/creative-writing-track
+  - owners: uw-tacoma-writing-studies, uw-tacoma-writing-studies::creative-writing-track, uw-tacoma-writing-studies::rhetoric-social-change-track, uw-tacoma-writing-studies::technical-communication-track
+- https://www.tacoma.uw.edu/sias/cac/how-apply-faqs
+  - owners: uw-tacoma-communications, uw-tacoma-communications::professional-track, uw-tacoma-communications::research-track
+- https://www.tacoma.uw.edu/sias/cac/rhetoric-writing-and-social-change-track
+  - owners: uw-tacoma-writing-studies, uw-tacoma-writing-studies::creative-writing-track, uw-tacoma-writing-studies::rhetoric-social-change-track, uw-tacoma-writing-studies::technical-communication-track
+- https://www.tacoma.uw.edu/sias/cac/spanish-language-and-cultures
+  - owners: uw-tacoma-spanish-language-and-cultures
+- https://www.tacoma.uw.edu/sias/cac/technical-communication-track
+  - owners: uw-tacoma-writing-studies, uw-tacoma-writing-studies::creative-writing-track, uw-tacoma-writing-studies::rhetoric-social-change-track, uw-tacoma-writing-studies::technical-communication-track
+- https://www.tacoma.uw.edu/sias/cac/writing-studies
+  - owners: uw-tacoma-writing-studies, uw-tacoma-writing-studies::creative-writing-track, uw-tacoma-writing-studies::rhetoric-social-change-track, uw-tacoma-writing-studies::technical-communication-track
 
 ## Failed URLs
 

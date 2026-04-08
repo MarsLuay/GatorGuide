@@ -1,0 +1,1144 @@
+{
+  "generatedAt": "2026-04-08T14:16:33.215Z",
+  "sourceUrl": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+  "status": 200,
+  "finalUrl": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+  "contentType": "text/html; charset=UTF-8",
+  "snapshotPath": ".tmp/transfer-planner-equivalency-guide-snapshots/uw-green-river-equivalency-guide.html",
+  "snapshotSha256": "e1393b0f6014eafea2cc822ba4e284419ec5013f0f9cf1f05054a91abc323878",
+  "departmentCount": 67,
+  "rowCount": 1316,
+  "ruleCount": 1316,
+  "rulesWithSourceCourseSets": 1316,
+  "rulesWithTargetCourseCodes": 1289,
+  "countsByType": {
+    "sequence": 79,
+    "direct-course": 278,
+    "elective-credit": 770,
+    "limited-credit": 175,
+    "no-credit": 14
+  },
+  "countsByStatus": {
+    "active": 570,
+    "legacy": 746
+  },
+  "countsByAcceptanceCategory": {
+    "accepted-with-warning": 117,
+    "accepted": 449,
+    "legacy-accepted": 736,
+    "no-credit": 14
+  },
+  "countsByDepartment": {
+    "Accounting": 3,
+    "American minority and ethnic studies": 6,
+    "Anatomy and physiology (prefix formerly A-PHY)": 10,
+    "Anthropology": 36,
+    "Art": 68,
+    "Astronomy": 7,
+    "Behavioral science": 7,
+    "Biology": 35,
+    "Business administration": 10,
+    "Business education": 1,
+    "Business management": 6,
+    "Chemistry": 35,
+    "Chinese*": 7,
+    "Communication studies": 28,
+    "§ Computer information systems": 3,
+    "Computer science": 18,
+    "§ Creative arts": 3,
+    "Criminal justice": 26,
+    "Dance": 13,
+    "§ Data processing": 1,
+    "Drama": 38,
+    "Early childhood education": 16,
+    "Economics": 11,
+    "Education": 15,
+    "§ Education in early childhood": 3,
+    "Engineering (formerly General engineering)": 39,
+    "English": 90,
+    "Environmental science": 2,
+    "§ Ethnic studies": 2,
+    "Film": 3,
+    "§ Forest resources": 23,
+    "§ Forestry (formerly Forestry technology)": 1,
+    "French*": 10,
+    "Geographic information systems": 8,
+    "Geography": 18,
+    "Geology": 20,
+    "German*": 12,
+    "Health education": 3,
+    "History": 47,
+    "Humanities": 13,
+    "Interdisciplinary science": 3,
+    "Japanese*": 7,
+    "Journalism": 40,
+    "§ Law enforcement": 11,
+    "Library": 1,
+    "§ Management": 2,
+    "Mathematics": 61,
+    "§ Meteorology": 1,
+    "Music": 113,
+    "Natural resources": 27,
+    "Natural science": 6,
+    "Nursing": 1,
+    "Nutrition": 3,
+    "Occupational therapy": 26,
+    "Oceanography": 2,
+    "Philosophy": 35,
+    "Photography": 13,
+    "Physical education": 100,
+    "§ Physical therapy": 31,
+    "Physics": 23,
+    "Political science": 21,
+    "Psychology": 26,
+    "§ Russian*": 3,
+    "Social science": 14,
+    "Sociology": 17,
+    "Spanish*": 15,
+    "§ Speech": 17
+  },
+  "sampleRules": [
+    {
+      "id": "uw-grc-guide:0001:accounting:acctand-201-202-5-5-formerly-b-a-210-220",
+      "type": "sequence",
+      "title": "ACCT& 201, 202 (5, 5) formerly B A 210, 220 -> ACCTG 215 (5), B A 2XX (5) if both courses taken; otherwise, B A 2XX",
+      "acceptanceCategory": "accepted-with-warning",
+      "ruleStatus": "active",
+      "sourceKind": "uw-green-river-equivalency-guide",
+      "sourceSchoolId": "grc",
+      "targetSchoolIds": [
+        "uw-seattle"
+      ],
+      "sourceCourseSets": [
+        [
+          "ACCT& 201",
+          "ACCT& 202"
+        ]
+      ],
+      "targetCourseCodes": [
+        "ACCTG 215",
+        "B A 2XX"
+      ],
+      "targetOutcome": "ACCTG 215 (5), B A 2XX (5) if both courses taken; otherwise, B A 2XX",
+      "weakerThanRuleIds": [],
+      "effectiveYearRanges": [
+        {
+          "startLabel": "AUT Qtr. 2009",
+          "endLabel": null,
+          "note": "Effective-date start parsed from the official UW Green River equivalency guide."
+        }
+      ],
+      "effectiveDateLabel": "AUT Qtr. 2009",
+      "guideDepartment": "Accounting",
+      "sourceCourseLabel": "ACCT& 201, 202 (5, 5) formerly B A 210, 220",
+      "targetRequirementTags": [],
+      "isObsoleteSourceCourse": false,
+      "parsedFromOfficialGuide": true,
+      "plannerWarnings": [
+        "The official guide describes this as a sequence or combined-course equivalency; do not award the strongest target outcome from a partial sequence.",
+        "Official fallback text: ACCTG 215 (5), B A 2XX (5) if both courses taken; otherwise, B A 2XX"
+      ],
+      "notes": [
+        "UW guide department: Accounting.",
+        "Official Green River row: ACCT& 201, 202 (5, 5) formerly B A 210, 220.",
+        "Official UW equivalency row: ACCTG 215 (5), B A 2XX (5) if both courses taken; otherwise, B A 2XX.",
+        "Official effective date: AUT Qtr. 2009.",
+        "Parsed primary UW target course codes: ACCTG 215, B A 2XX."
+      ],
+      "sourceLinks": [
+        {
+          "label": "UW Green River transfer equivalency guide",
+          "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+          "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+        }
+      ]
+    },
+    {
+      "id": "uw-grc-guide:0002:accounting:acctand-202-5-formerly-b-a-220-5-see-acctand-201-combined-entry",
+      "type": "sequence",
+      "title": "ACCT& 202 (5) formerly B A 220 (5) see ACCT& 201 combined entry -> see combined-entry row",
+      "acceptanceCategory": "accepted-with-warning",
+      "ruleStatus": "active",
+      "sourceKind": "uw-green-river-equivalency-guide",
+      "sourceSchoolId": "grc",
+      "targetSchoolIds": [
+        "uw-seattle"
+      ],
+      "sourceCourseSets": [
+        [
+          "ACCT& 202"
+        ]
+      ],
+      "targetCourseCodes": [],
+      "targetOutcome": "See the official combined-entry wording on the Green River equivalency guide.",
+      "weakerThanRuleIds": [],
+      "effectiveYearRanges": [
+        {
+          "startLabel": "AUT Qtr. 2009",
+          "endLabel": null,
+          "note": "Effective-date start parsed from the official UW Green River equivalency guide."
+        }
+      ],
+      "effectiveDateLabel": "AUT Qtr. 2009",
+      "guideDepartment": "Accounting",
+      "sourceCourseLabel": "ACCT& 202 (5) formerly B A 220 (5) see ACCT& 201 combined entry",
+      "targetRequirementTags": [],
+      "isObsoleteSourceCourse": false,
+      "parsedFromOfficialGuide": true,
+      "plannerWarnings": [
+        "The official guide references a combined-entry or conditional equivalency; preserve the row text until the sequence resolver can evaluate the full student history."
+      ],
+      "notes": [
+        "UW guide department: Accounting.",
+        "Official Green River row: ACCT& 202 (5) formerly B A 220 (5) see ACCT& 201 combined entry.",
+        "Official UW equivalency row: (blank; see row wording).",
+        "Official effective date: AUT Qtr. 2009."
+      ],
+      "sourceLinks": [
+        {
+          "label": "UW Green River transfer equivalency guide",
+          "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+          "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+        }
+      ]
+    },
+    {
+      "id": "uw-grc-guide:0003:accounting:acctand-203-5-formerly-b-a-230",
+      "type": "direct-course",
+      "title": "ACCT& 203 (5) formerly B A 230 -> ACCTG 225 (5)",
+      "acceptanceCategory": "accepted",
+      "ruleStatus": "active",
+      "sourceKind": "uw-green-river-equivalency-guide",
+      "sourceSchoolId": "grc",
+      "targetSchoolIds": [
+        "uw-seattle"
+      ],
+      "sourceCourseSets": [
+        [
+          "ACCT& 203"
+        ]
+      ],
+      "targetCourseCodes": [
+        "ACCTG 225"
+      ],
+      "targetOutcome": "ACCTG 225 (5)",
+      "weakerThanRuleIds": [],
+      "effectiveYearRanges": [
+        {
+          "startLabel": "AUT Qtr. 2009",
+          "endLabel": null,
+          "note": "Effective-date start parsed from the official UW Green River equivalency guide."
+        }
+      ],
+      "effectiveDateLabel": "AUT Qtr. 2009",
+      "guideDepartment": "Accounting",
+      "sourceCourseLabel": "ACCT& 203 (5) formerly B A 230",
+      "targetRequirementTags": [],
+      "isObsoleteSourceCourse": false,
+      "parsedFromOfficialGuide": true,
+      "plannerWarnings": [],
+      "notes": [
+        "UW guide department: Accounting.",
+        "Official Green River row: ACCT& 203 (5) formerly B A 230.",
+        "Official UW equivalency row: ACCTG 225 (5).",
+        "Official effective date: AUT Qtr. 2009.",
+        "Parsed primary UW target course codes: ACCTG 225."
+      ],
+      "sourceLinks": [
+        {
+          "label": "UW Green River transfer equivalency guide",
+          "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+          "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+        }
+      ]
+    },
+    {
+      "id": "uw-grc-guide:0004:american-minority-and-ethnic-studies:ames-100-5-formerly-eth-s-100",
+      "type": "elective-credit",
+      "title": "AMES 100 (5) formerly ETH S 100 -> UW 1XX",
+      "acceptanceCategory": "accepted",
+      "ruleStatus": "active",
+      "sourceKind": "uw-green-river-equivalency-guide",
+      "sourceSchoolId": "grc",
+      "targetSchoolIds": [
+        "uw-seattle"
+      ],
+      "sourceCourseSets": [
+        [
+          "AMES 100"
+        ]
+      ],
+      "targetCourseCodes": [
+        "UW 1XX"
+      ],
+      "targetOutcome": "UW 1XX",
+      "weakerThanRuleIds": [],
+      "effectiveYearRanges": [
+        {
+          "startLabel": "AUT Qtr. 1996",
+          "endLabel": null,
+          "note": "Effective-date start parsed from the official UW Green River equivalency guide."
+        }
+      ],
+      "effectiveDateLabel": "AUT Qtr. 1996",
+      "guideDepartment": "American minority and ethnic studies",
+      "sourceCourseLabel": "AMES 100 (5) formerly ETH S 100",
+      "targetRequirementTags": [
+        "SSc"
+      ],
+      "isObsoleteSourceCourse": false,
+      "parsedFromOfficialGuide": true,
+      "plannerWarnings": [],
+      "notes": [
+        "UW guide department: American minority and ethnic studies.",
+        "Official Green River row: AMES 100 (5) formerly ETH S 100.",
+        "Official UW equivalency row: UW 1XX.",
+        "Official UW requirement tags: SSc.",
+        "Official effective date: AUT Qtr. 1996.",
+        "Parsed primary UW target course codes: UW 1XX."
+      ],
+      "sourceLinks": [
+        {
+          "label": "UW Green River transfer equivalency guide",
+          "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+          "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+        }
+      ]
+    },
+    {
+      "id": "uw-grc-guide:0005:american-minority-and-ethnic-studies:ames-150-5",
+      "type": "elective-credit",
+      "title": "AMES 150 (5) -> UW 1XX",
+      "acceptanceCategory": "accepted",
+      "ruleStatus": "active",
+      "sourceKind": "uw-green-river-equivalency-guide",
+      "sourceSchoolId": "grc",
+      "targetSchoolIds": [
+        "uw-seattle"
+      ],
+      "sourceCourseSets": [
+        [
+          "AMES 150"
+        ]
+      ],
+      "targetCourseCodes": [
+        "UW 1XX"
+      ],
+      "targetOutcome": "UW 1XX",
+      "weakerThanRuleIds": [],
+      "effectiveYearRanges": [
+        {
+          "startLabel": "AUT Qtr. 2011",
+          "endLabel": null,
+          "note": "Effective-date start parsed from the official UW Green River equivalency guide."
+        }
+      ],
+      "effectiveDateLabel": "AUT Qtr. 2011",
+      "guideDepartment": "American minority and ethnic studies",
+      "sourceCourseLabel": "AMES 150 (5)",
+      "targetRequirementTags": [
+        "SSc"
+      ],
+      "isObsoleteSourceCourse": false,
+      "parsedFromOfficialGuide": true,
+      "plannerWarnings": [],
+      "notes": [
+        "UW guide department: American minority and ethnic studies.",
+        "Official Green River row: AMES 150 (5).",
+        "Official UW equivalency row: UW 1XX.",
+        "Official UW requirement tags: SSc.",
+        "Official effective date: AUT Qtr. 2011.",
+        "Parsed primary UW target course codes: UW 1XX."
+      ],
+      "sourceLinks": [
+        {
+          "label": "UW Green River transfer equivalency guide",
+          "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+          "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+        }
+      ]
+    },
+    {
+      "id": "uw-grc-guide:0006:american-minority-and-ethnic-studies:ames-194-1-5",
+      "type": "elective-credit",
+      "title": "AMES 194 (1-5) -> UW 1XX",
+      "acceptanceCategory": "accepted",
+      "ruleStatus": "active",
+      "sourceKind": "uw-green-river-equivalency-guide",
+      "sourceSchoolId": "grc",
+      "targetSchoolIds": [
+        "uw-seattle"
+      ],
+      "sourceCourseSets": [
+        [
+          "AMES 194"
+        ]
+      ],
+      "targetCourseCodes": [
+        "UW 1XX"
+      ],
+      "targetOutcome": "UW 1XX",
+      "weakerThanRuleIds": [],
+      "effectiveYearRanges": [
+        {
+          "startLabel": "SPR Qtr. 1997",
+          "endLabel": null,
+          "note": "Effective-date start parsed from the official UW Green River equivalency guide."
+        }
+      ],
+      "effectiveDateLabel": "SPR Qtr. 1997",
+      "guideDepartment": "American minority and ethnic studies",
+      "sourceCourseLabel": "AMES 194 (1-5)",
+      "targetRequirementTags": [],
+      "isObsoleteSourceCourse": false,
+      "parsedFromOfficialGuide": true,
+      "plannerWarnings": [],
+      "notes": [
+        "UW guide department: American minority and ethnic studies.",
+        "Official Green River row: AMES 194 (1-5).",
+        "Official UW equivalency row: UW 1XX.",
+        "Official effective date: SPR Qtr. 1997.",
+        "Parsed primary UW target course codes: UW 1XX."
+      ],
+      "sourceLinks": [
+        {
+          "label": "UW Green River transfer equivalency guide",
+          "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+          "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+        }
+      ]
+    },
+    {
+      "id": "uw-grc-guide:0007:american-minority-and-ethnic-studies:ames-211-5-formerly-ames-215-same-as-anth-211-and-s-sci-211",
+      "type": "elective-credit",
+      "title": "AMES 211 (5) formerly AMES 215 same as ANTH 211 and S SCI 211 -> AIS 2XX",
+      "acceptanceCategory": "accepted",
+      "ruleStatus": "active",
+      "sourceKind": "uw-green-river-equivalency-guide",
+      "sourceSchoolId": "grc",
+      "targetSchoolIds": [
+        "uw-seattle"
+      ],
+      "sourceCourseSets": [
+        [
+          "AMES 211"
+        ]
+      ],
+      "targetCourseCodes": [
+        "AIS 2XX"
+      ],
+      "targetOutcome": "AIS 2XX",
+      "weakerThanRuleIds": [],
+      "effectiveYearRanges": [
+        {
+          "startLabel": "SUM Qtr. 2009",
+          "endLabel": null,
+          "note": "Effective-date start parsed from the official UW Green River equivalency guide."
+        }
+      ],
+      "effectiveDateLabel": "SUM Qtr. 2009",
+      "guideDepartment": "American minority and ethnic studies",
+      "sourceCourseLabel": "AMES 211 (5) formerly AMES 215 same as ANTH 211 and S SCI 211",
+      "targetRequirementTags": [
+        "SSc"
+      ],
+      "isObsoleteSourceCourse": false,
+      "parsedFromOfficialGuide": true,
+      "plannerWarnings": [],
+      "notes": [
+        "UW guide department: American minority and ethnic studies.",
+        "Official Green River row: AMES 211 (5) formerly AMES 215 same as ANTH 211 and S SCI 211.",
+        "Official UW equivalency row: AIS 2XX.",
+        "Official UW requirement tags: SSc.",
+        "Official effective date: SUM Qtr. 2009.",
+        "Parsed primary UW target course codes: AIS 2XX."
+      ],
+      "sourceLinks": [
+        {
+          "label": "UW Green River transfer equivalency guide",
+          "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+          "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+        }
+      ]
+    },
+    {
+      "id": "uw-grc-guide:0008:american-minority-and-ethnic-studies:ames-215-5-same-as-anthr-215-hist-215-and-s-sci-215",
+      "type": "elective-credit",
+      "title": "§ AMES 215 (5) same as ANTHR 215, HIST 215, and S SCI 215 -> AIS 2XX",
+      "acceptanceCategory": "legacy-accepted",
+      "ruleStatus": "legacy",
+      "sourceKind": "uw-green-river-equivalency-guide",
+      "sourceSchoolId": "grc",
+      "targetSchoolIds": [
+        "uw-seattle"
+      ],
+      "sourceCourseSets": [
+        [
+          "AMES 215"
+        ]
+      ],
+      "targetCourseCodes": [
+        "AIS 2XX"
+      ],
+      "targetOutcome": "AIS 2XX",
+      "weakerThanRuleIds": [],
+      "effectiveYearRanges": [
+        {
+          "startLabel": "AUT Qtr. 1996",
+          "endLabel": "SUM Qtr. 2004",
+          "note": "Effective-date range parsed from the official UW Green River equivalency guide."
+        }
+      ],
+      "effectiveDateLabel": "AUT Qtr. 1996 thru SUM Qtr. 2004",
+      "guideDepartment": "American minority and ethnic studies",
+      "sourceCourseLabel": "§ AMES 215 (5) same as ANTHR 215, HIST 215, and S SCI 215",
+      "targetRequirementTags": [
+        "SSc"
+      ],
+      "isObsoleteSourceCourse": true,
+      "parsedFromOfficialGuide": true,
+      "plannerWarnings": [
+        "The official guide marks this Green River course row as no longer offered."
+      ],
+      "notes": [
+        "UW guide department: American minority and ethnic studies.",
+        "Official Green River row: § AMES 215 (5) same as ANTHR 215, HIST 215, and S SCI 215.",
+        "Official UW equivalency row: AIS 2XX.",
+        "Official UW requirement tags: SSc.",
+        "Official effective date: AUT Qtr. 1996 thru SUM Qtr. 2004.",
+        "Parsed primary UW target course codes: AIS 2XX."
+      ],
+      "sourceLinks": [
+        {
+          "label": "UW Green River transfer equivalency guide",
+          "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+          "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+        }
+      ]
+    },
+    {
+      "id": "uw-grc-guide:0009:american-minority-and-ethnic-studies:ames-215-5-same-as-anthr-215-hist-215-and-s-sci-215",
+      "type": "elective-credit",
+      "title": "§ AMES 215 (5) same as ANTHR 215, HIST 215, and S SCI 215 -> AIS 2XX",
+      "acceptanceCategory": "legacy-accepted",
+      "ruleStatus": "legacy",
+      "sourceKind": "uw-green-river-equivalency-guide",
+      "sourceSchoolId": "grc",
+      "targetSchoolIds": [
+        "uw-seattle"
+      ],
+      "sourceCourseSets": [
+        [
+          "AMES 215"
+        ]
+      ],
+      "targetCourseCodes": [
+        "AIS 2XX"
+      ],
+      "targetOutcome": "AIS 2XX",
+      "weakerThanRuleIds": [],
+      "effectiveYearRanges": [
+        {
+          "startLabel": "SUM Qtr. 2006",
+          "endLabel": "SPR Qtr. 2009",
+          "note": "Effective-date range parsed from the official UW Green River equivalency guide."
+        }
+      ],
+      "effectiveDateLabel": "SUM Qtr. 2006 thru SPR Qtr. 2009",
+      "guideDepartment": "American minority and ethnic studies",
+      "sourceCourseLabel": "§ AMES 215 (5) same as ANTHR 215, HIST 215, and S SCI 215",
+      "targetRequirementTags": [
+        "SSc"
+      ],
+      "isObsoleteSourceCourse": true,
+      "parsedFromOfficialGuide": true,
+      "plannerWarnings": [
+        "The official guide marks this Green River course row as no longer offered."
+      ],
+      "notes": [
+        "UW guide department: American minority and ethnic studies.",
+        "Official Green River row: § AMES 215 (5) same as ANTHR 215, HIST 215, and S SCI 215.",
+        "Official UW equivalency row: AIS 2XX.",
+        "Official UW requirement tags: SSc.",
+        "Official effective date: SUM Qtr. 2006 thru SPR Qtr. 2009.",
+        "Parsed primary UW target course codes: AIS 2XX."
+      ],
+      "sourceLinks": [
+        {
+          "label": "UW Green River transfer equivalency guide",
+          "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+          "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+        }
+      ]
+    },
+    {
+      "id": "uw-grc-guide:0010:anatomy-and-physiology-prefix-formerly-a-phy:ap-100-5",
+      "type": "elective-credit",
+      "title": "AP 100 (5) -> BIOL 1XX",
+      "acceptanceCategory": "accepted",
+      "ruleStatus": "active",
+      "sourceKind": "uw-green-river-equivalency-guide",
+      "sourceSchoolId": "grc",
+      "targetSchoolIds": [
+        "uw-seattle"
+      ],
+      "sourceCourseSets": [
+        [
+          "AP 100"
+        ]
+      ],
+      "targetCourseCodes": [
+        "BIOL 1XX"
+      ],
+      "targetOutcome": "BIOL 1XX",
+      "weakerThanRuleIds": [],
+      "effectiveYearRanges": [
+        {
+          "startLabel": "AUT Qtr. 1992",
+          "endLabel": null,
+          "note": "Effective-date start parsed from the official UW Green River equivalency guide."
+        }
+      ],
+      "effectiveDateLabel": "AUT Qtr. 1992",
+      "guideDepartment": "Anatomy and physiology (prefix formerly A-PHY)",
+      "sourceCourseLabel": "AP 100 (5)",
+      "targetRequirementTags": [
+        "NSc"
+      ],
+      "isObsoleteSourceCourse": false,
+      "parsedFromOfficialGuide": true,
+      "plannerWarnings": [],
+      "notes": [
+        "UW guide department: Anatomy and physiology (prefix formerly A-PHY).",
+        "Official Green River row: AP 100 (5).",
+        "Official UW equivalency row: BIOL 1XX.",
+        "Official UW requirement tags: NSc.",
+        "Official effective date: AUT Qtr. 1992.",
+        "Parsed primary UW target course codes: BIOL 1XX."
+      ],
+      "sourceLinks": [
+        {
+          "label": "UW Green River transfer equivalency guide",
+          "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+          "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+        }
+      ]
+    },
+    {
+      "id": "uw-grc-guide:0011:anatomy-and-physiology-prefix-formerly-a-phy:ap-102-5",
+      "type": "elective-credit",
+      "title": "AP 102 (5) -> BIOL 1XX",
+      "acceptanceCategory": "accepted",
+      "ruleStatus": "active",
+      "sourceKind": "uw-green-river-equivalency-guide",
+      "sourceSchoolId": "grc",
+      "targetSchoolIds": [
+        "uw-seattle"
+      ],
+      "sourceCourseSets": [
+        [
+          "AP 102"
+        ]
+      ],
+      "targetCourseCodes": [
+        "BIOL 1XX"
+      ],
+      "targetOutcome": "BIOL 1XX",
+      "weakerThanRuleIds": [],
+      "effectiveYearRanges": [
+        {
+          "startLabel": "AUT Qtr. 2005",
+          "endLabel": null,
+          "note": "Effective-date start parsed from the official UW Green River equivalency guide."
+        }
+      ],
+      "effectiveDateLabel": "AUT Qtr. 2005",
+      "guideDepartment": "Anatomy and physiology (prefix formerly A-PHY)",
+      "sourceCourseLabel": "AP 102 (5)",
+      "targetRequirementTags": [
+        "NSc"
+      ],
+      "isObsoleteSourceCourse": false,
+      "parsedFromOfficialGuide": true,
+      "plannerWarnings": [],
+      "notes": [
+        "UW guide department: Anatomy and physiology (prefix formerly A-PHY).",
+        "Official Green River row: AP 102 (5).",
+        "Official UW equivalency row: BIOL 1XX.",
+        "Official UW requirement tags: NSc.",
+        "Official effective date: AUT Qtr. 2005.",
+        "Parsed primary UW target course codes: BIOL 1XX."
+      ],
+      "sourceLinks": [
+        {
+          "label": "UW Green River transfer equivalency guide",
+          "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+          "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+        }
+      ]
+    },
+    {
+      "id": "uw-grc-guide:0012:anatomy-and-physiology-prefix-formerly-a-phy:ap-103-5",
+      "type": "elective-credit",
+      "title": "AP 103 (5) -> BIOL 1XX",
+      "acceptanceCategory": "accepted",
+      "ruleStatus": "active",
+      "sourceKind": "uw-green-river-equivalency-guide",
+      "sourceSchoolId": "grc",
+      "targetSchoolIds": [
+        "uw-seattle"
+      ],
+      "sourceCourseSets": [
+        [
+          "AP 103"
+        ]
+      ],
+      "targetCourseCodes": [
+        "BIOL 1XX"
+      ],
+      "targetOutcome": "BIOL 1XX",
+      "weakerThanRuleIds": [],
+      "effectiveYearRanges": [],
+      "effectiveDateLabel": null,
+      "guideDepartment": "Anatomy and physiology (prefix formerly A-PHY)",
+      "sourceCourseLabel": "AP 103 (5)",
+      "targetRequirementTags": [
+        "NSc"
+      ],
+      "isObsoleteSourceCourse": false,
+      "parsedFromOfficialGuide": true,
+      "plannerWarnings": [],
+      "notes": [
+        "UW guide department: Anatomy and physiology (prefix formerly A-PHY).",
+        "Official Green River row: AP 103 (5).",
+        "Official UW equivalency row: BIOL 1XX.",
+        "Official UW requirement tags: NSc.",
+        "Parsed primary UW target course codes: BIOL 1XX."
+      ],
+      "sourceLinks": [
+        {
+          "label": "UW Green River transfer equivalency guide",
+          "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+          "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+        }
+      ]
+    },
+    {
+      "id": "uw-grc-guide:0013:anatomy-and-physiology-prefix-formerly-a-phy:ap-104-5",
+      "type": "elective-credit",
+      "title": "AP 104 (5) -> BIOL 1XX",
+      "acceptanceCategory": "accepted",
+      "ruleStatus": "active",
+      "sourceKind": "uw-green-river-equivalency-guide",
+      "sourceSchoolId": "grc",
+      "targetSchoolIds": [
+        "uw-seattle"
+      ],
+      "sourceCourseSets": [
+        [
+          "AP 104"
+        ]
+      ],
+      "targetCourseCodes": [
+        "BIOL 1XX"
+      ],
+      "targetOutcome": "BIOL 1XX",
+      "weakerThanRuleIds": [],
+      "effectiveYearRanges": [],
+      "effectiveDateLabel": null,
+      "guideDepartment": "Anatomy and physiology (prefix formerly A-PHY)",
+      "sourceCourseLabel": "AP 104 (5)",
+      "targetRequirementTags": [
+        "NSc"
+      ],
+      "isObsoleteSourceCourse": false,
+      "parsedFromOfficialGuide": true,
+      "plannerWarnings": [],
+      "notes": [
+        "UW guide department: Anatomy and physiology (prefix formerly A-PHY).",
+        "Official Green River row: AP 104 (5).",
+        "Official UW equivalency row: BIOL 1XX.",
+        "Official UW requirement tags: NSc.",
+        "Parsed primary UW target course codes: BIOL 1XX."
+      ],
+      "sourceLinks": [
+        {
+          "label": "UW Green River transfer equivalency guide",
+          "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+          "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+        }
+      ]
+    },
+    {
+      "id": "uw-grc-guide:0014:anatomy-and-physiology-prefix-formerly-a-phy:a-phy-197-1-5",
+      "type": "elective-credit",
+      "title": "§ A-PHY 197 (1-5) -> BIOL 1XX",
+      "acceptanceCategory": "legacy-accepted",
+      "ruleStatus": "legacy",
+      "sourceKind": "uw-green-river-equivalency-guide",
+      "sourceSchoolId": "grc",
+      "targetSchoolIds": [
+        "uw-seattle"
+      ],
+      "sourceCourseSets": [
+        [
+          "A-PHY 197"
+        ]
+      ],
+      "targetCourseCodes": [
+        "BIOL 1XX"
+      ],
+      "targetOutcome": "BIOL 1XX",
+      "weakerThanRuleIds": [],
+      "effectiveYearRanges": [
+        {
+          "startLabel": "prior-to-guide-cutoff",
+          "endLabel": "AUT Qtr. 1986",
+          "note": "Legacy effective-date cutoff parsed from the official UW Green River equivalency guide."
+        }
+      ],
+      "effectiveDateLabel": "Prior to AUT Qtr. 1986",
+      "guideDepartment": "Anatomy and physiology (prefix formerly A-PHY)",
+      "sourceCourseLabel": "§ A-PHY 197 (1-5)",
+      "targetRequirementTags": [],
+      "isObsoleteSourceCourse": true,
+      "parsedFromOfficialGuide": true,
+      "plannerWarnings": [
+        "The official guide marks this Green River course row as no longer offered."
+      ],
+      "notes": [
+        "UW guide department: Anatomy and physiology (prefix formerly A-PHY).",
+        "Official Green River row: § A-PHY 197 (1-5).",
+        "Official UW equivalency row: BIOL 1XX.",
+        "Official effective date: Prior to AUT Qtr. 1986.",
+        "Parsed primary UW target course codes: BIOL 1XX."
+      ],
+      "sourceLinks": [
+        {
+          "label": "UW Green River transfer equivalency guide",
+          "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+          "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+        }
+      ]
+    },
+    {
+      "id": "uw-grc-guide:0015:anatomy-and-physiology-prefix-formerly-a-phy:a-phy-198-1-5",
+      "type": "elective-credit",
+      "title": "§ A-PHY 198 (1-5) -> BIOL 1XX",
+      "acceptanceCategory": "legacy-accepted",
+      "ruleStatus": "legacy",
+      "sourceKind": "uw-green-river-equivalency-guide",
+      "sourceSchoolId": "grc",
+      "targetSchoolIds": [
+        "uw-seattle"
+      ],
+      "sourceCourseSets": [
+        [
+          "A-PHY 198"
+        ]
+      ],
+      "targetCourseCodes": [
+        "BIOL 1XX"
+      ],
+      "targetOutcome": "BIOL 1XX",
+      "weakerThanRuleIds": [],
+      "effectiveYearRanges": [
+        {
+          "startLabel": "prior-to-guide-cutoff",
+          "endLabel": "AUT Qtr. 1986",
+          "note": "Legacy effective-date cutoff parsed from the official UW Green River equivalency guide."
+        }
+      ],
+      "effectiveDateLabel": "Prior to AUT Qtr. 1986",
+      "guideDepartment": "Anatomy and physiology (prefix formerly A-PHY)",
+      "sourceCourseLabel": "§ A-PHY 198 (1-5)",
+      "targetRequirementTags": [],
+      "isObsoleteSourceCourse": true,
+      "parsedFromOfficialGuide": true,
+      "plannerWarnings": [
+        "The official guide marks this Green River course row as no longer offered."
+      ],
+      "notes": [
+        "UW guide department: Anatomy and physiology (prefix formerly A-PHY).",
+        "Official Green River row: § A-PHY 198 (1-5).",
+        "Official UW equivalency row: BIOL 1XX.",
+        "Official effective date: Prior to AUT Qtr. 1986.",
+        "Parsed primary UW target course codes: BIOL 1XX."
+      ],
+      "sourceLinks": [
+        {
+          "label": "UW Green River transfer equivalency guide",
+          "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+          "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+        }
+      ]
+    },
+    {
+      "id": "uw-grc-guide:0016:anatomy-and-physiology-prefix-formerly-a-phy:a-phy-199-1-5",
+      "type": "elective-credit",
+      "title": "§ A-PHY 199 (1-5) -> BIOL 1XX",
+      "acceptanceCategory": "legacy-accepted",
+      "ruleStatus": "legacy",
+      "sourceKind": "uw-green-river-equivalency-guide",
+      "sourceSchoolId": "grc",
+      "targetSchoolIds": [
+        "uw-seattle"
+      ],
+      "sourceCourseSets": [
+        [
+          "A-PHY 199"
+        ]
+      ],
+      "targetCourseCodes": [
+        "BIOL 1XX"
+      ],
+      "targetOutcome": "BIOL 1XX",
+      "weakerThanRuleIds": [],
+      "effectiveYearRanges": [
+        {
+          "startLabel": "prior-to-guide-cutoff",
+          "endLabel": "AUT Qtr. 1986",
+          "note": "Legacy effective-date cutoff parsed from the official UW Green River equivalency guide."
+        }
+      ],
+      "effectiveDateLabel": "Prior to AUT Qtr. 1986",
+      "guideDepartment": "Anatomy and physiology (prefix formerly A-PHY)",
+      "sourceCourseLabel": "§ A-PHY 199 (1-5)",
+      "targetRequirementTags": [],
+      "isObsoleteSourceCourse": true,
+      "parsedFromOfficialGuide": true,
+      "plannerWarnings": [
+        "The official guide marks this Green River course row as no longer offered."
+      ],
+      "notes": [
+        "UW guide department: Anatomy and physiology (prefix formerly A-PHY).",
+        "Official Green River row: § A-PHY 199 (1-5).",
+        "Official UW equivalency row: BIOL 1XX.",
+        "Official effective date: Prior to AUT Qtr. 1986.",
+        "Parsed primary UW target course codes: BIOL 1XX."
+      ],
+      "sourceLinks": [
+        {
+          "label": "UW Green River transfer equivalency guide",
+          "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+          "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+        }
+      ]
+    },
+    {
+      "id": "uw-grc-guide:0017:anatomy-and-physiology-prefix-formerly-a-phy:ap-205-206-5-5-formerly-a-phy-205-206",
+      "type": "sequence",
+      "title": "§ AP 205, 206 (5, 5) formerly A-PHY 205, 206 -> BIOL 118, 119 (5,1) NURS 301 (4) if both courses taken; otherwise, BIOL 2XX",
+      "acceptanceCategory": "legacy-accepted",
+      "ruleStatus": "legacy",
+      "sourceKind": "uw-green-river-equivalency-guide",
+      "sourceSchoolId": "grc",
+      "targetSchoolIds": [
+        "uw-seattle"
+      ],
+      "sourceCourseSets": [
+        [
+          "AP 205",
+          "AP 206"
+        ]
+      ],
+      "targetCourseCodes": [
+        "BIOL 118",
+        "BIOL 119"
+      ],
+      "targetOutcome": "BIOL 118, 119 (5,1) NURS 301 (4) if both courses taken; otherwise, BIOL 2XX",
+      "weakerThanRuleIds": [],
+      "effectiveYearRanges": [
+        {
+          "startLabel": "prior-to-guide-cutoff",
+          "endLabel": "SUM Qtr. 2009",
+          "note": "Legacy effective-date cutoff parsed from the official UW Green River equivalency guide."
+        }
+      ],
+      "effectiveDateLabel": "Prior to SUM Qtr. 2009",
+      "guideDepartment": "Anatomy and physiology (prefix formerly A-PHY)",
+      "sourceCourseLabel": "§ AP 205, 206 (5, 5) formerly A-PHY 205, 206",
+      "targetRequirementTags": [
+        "NSc"
+      ],
+      "isObsoleteSourceCourse": true,
+      "parsedFromOfficialGuide": true,
+      "plannerWarnings": [
+        "The official guide marks this Green River course row as no longer offered.",
+        "The official guide describes this as a sequence or combined-course equivalency; do not award the strongest target outcome from a partial sequence.",
+        "Official fallback text: BIOL 118, 119 (5,1) NURS 301 (4) if both courses taken; otherwise, BIOL 2XX"
+      ],
+      "notes": [
+        "UW guide department: Anatomy and physiology (prefix formerly A-PHY).",
+        "Official Green River row: § AP 205, 206 (5, 5) formerly A-PHY 205, 206.",
+        "Official UW equivalency row: BIOL 118, 119 (5,1) NURS 301 (4) if both courses taken; otherwise, BIOL 2XX.",
+        "Official UW requirement tags: NSc.",
+        "Official effective date: Prior to SUM Qtr. 2009.",
+        "Parsed primary UW target course codes: BIOL 118, BIOL 119."
+      ],
+      "sourceLinks": [
+        {
+          "label": "UW Green River transfer equivalency guide",
+          "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+          "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+        }
+      ]
+    },
+    {
+      "id": "uw-grc-guide:0018:anatomy-and-physiology-prefix-formerly-a-phy:ap-206-5-see-a-p-205-combined-entry",
+      "type": "sequence",
+      "title": "§ AP 206 (5) see A P 205 combined entry -> see combined-entry row",
+      "acceptanceCategory": "legacy-accepted",
+      "ruleStatus": "legacy",
+      "sourceKind": "uw-green-river-equivalency-guide",
+      "sourceSchoolId": "grc",
+      "targetSchoolIds": [
+        "uw-seattle"
+      ],
+      "sourceCourseSets": [
+        [
+          "AP 206"
+        ]
+      ],
+      "targetCourseCodes": [],
+      "targetOutcome": "See the official combined-entry wording on the Green River equivalency guide.",
+      "weakerThanRuleIds": [],
+      "effectiveYearRanges": [
+        {
+          "startLabel": "prior-to-guide-cutoff",
+          "endLabel": "SUM Qtr. 2009",
+          "note": "Legacy effective-date cutoff parsed from the official UW Green River equivalency guide."
+        }
+      ],
+      "effectiveDateLabel": "Prior to SUM Qtr. 2009",
+      "guideDepartment": "Anatomy and physiology (prefix formerly A-PHY)",
+      "sourceCourseLabel": "§ AP 206 (5) see A P 205 combined entry",
+      "targetRequirementTags": [],
+      "isObsoleteSourceCourse": true,
+      "parsedFromOfficialGuide": true,
+      "plannerWarnings": [
+        "The official guide marks this Green River course row as no longer offered.",
+        "The official guide references a combined-entry or conditional equivalency; preserve the row text until the sequence resolver can evaluate the full student history."
+      ],
+      "notes": [
+        "UW guide department: Anatomy and physiology (prefix formerly A-PHY).",
+        "Official Green River row: § AP 206 (5) see A P 205 combined entry.",
+        "Official UW equivalency row: (blank; see row wording).",
+        "Official effective date: Prior to SUM Qtr. 2009."
+      ],
+      "sourceLinks": [
+        {
+          "label": "UW Green River transfer equivalency guide",
+          "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+          "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+        }
+      ]
+    },
+    {
+      "id": "uw-grc-guide:0019:anatomy-and-physiology-prefix-formerly-a-phy:ap-210-1",
+      "type": "elective-credit",
+      "title": "AP 210 (1) -> BIOL 2XX",
+      "acceptanceCategory": "accepted",
+      "ruleStatus": "active",
+      "sourceKind": "uw-green-river-equivalency-guide",
+      "sourceSchoolId": "grc",
+      "targetSchoolIds": [
+        "uw-seattle"
+      ],
+      "sourceCourseSets": [
+        [
+          "AP 210"
+        ]
+      ],
+      "targetCourseCodes": [
+        "BIOL 2XX"
+      ],
+      "targetOutcome": "BIOL 2XX",
+      "weakerThanRuleIds": [],
+      "effectiveYearRanges": [
+        {
+          "startLabel": "SPR Qtr. 2000",
+          "endLabel": null,
+          "note": "Effective-date start parsed from the official UW Green River equivalency guide."
+        }
+      ],
+      "effectiveDateLabel": "SPR Qtr. 2000",
+      "guideDepartment": "Anatomy and physiology (prefix formerly A-PHY)",
+      "sourceCourseLabel": "AP 210 (1)",
+      "targetRequirementTags": [
+        "NSc"
+      ],
+      "isObsoleteSourceCourse": false,
+      "parsedFromOfficialGuide": true,
+      "plannerWarnings": [],
+      "notes": [
+        "UW guide department: Anatomy and physiology (prefix formerly A-PHY).",
+        "Official Green River row: AP 210 (1).",
+        "Official UW equivalency row: BIOL 2XX.",
+        "Official UW requirement tags: NSc.",
+        "Official effective date: SPR Qtr. 2000.",
+        "Parsed primary UW target course codes: BIOL 2XX."
+      ],
+      "sourceLinks": [
+        {
+          "label": "UW Green River transfer equivalency guide",
+          "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+          "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+        }
+      ]
+    },
+    {
+      "id": "uw-grc-guide:0020:anthropology:anthand-100-5-formerly-anthr-100",
+      "type": "direct-course",
+      "title": "ANTH& 100 (5) formerly ANTHR 100 -> ANTH 100 (5)",
+      "acceptanceCategory": "accepted",
+      "ruleStatus": "active",
+      "sourceKind": "uw-green-river-equivalency-guide",
+      "sourceSchoolId": "grc",
+      "targetSchoolIds": [
+        "uw-seattle"
+      ],
+      "sourceCourseSets": [
+        [
+          "ANTH& 100"
+        ]
+      ],
+      "targetCourseCodes": [
+        "ANTH 100"
+      ],
+      "targetOutcome": "ANTH 100 (5)",
+      "weakerThanRuleIds": [],
+      "effectiveYearRanges": [
+        {
+          "startLabel": "SUM Qtr. 2009",
+          "endLabel": null,
+          "note": "Effective-date start parsed from the official UW Green River equivalency guide."
+        }
+      ],
+      "effectiveDateLabel": "SUM Qtr. 2009",
+      "guideDepartment": "Anthropology",
+      "sourceCourseLabel": "ANTH& 100 (5) formerly ANTHR 100",
+      "targetRequirementTags": [
+        "SSc"
+      ],
+      "isObsoleteSourceCourse": false,
+      "parsedFromOfficialGuide": true,
+      "plannerWarnings": [],
+      "notes": [
+        "UW guide department: Anthropology.",
+        "Official Green River row: ANTH& 100 (5) formerly ANTHR 100.",
+        "Official UW equivalency row: ANTH 100 (5).",
+        "Official UW requirement tags: SSc.",
+        "Official effective date: SUM Qtr. 2009.",
+        "Parsed primary UW target course codes: ANTH 100."
+      ],
+      "sourceLinks": [
+        {
+          "label": "UW Green River transfer equivalency guide",
+          "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+          "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+        }
+      ]
+    }
+  ]
+}

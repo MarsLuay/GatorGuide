@@ -11,6 +11,7 @@ export type TransferPlannerNormalizedCourseMetadataEntry = {
   title?: string;
   creditValue?: number | null;
   creditLabel?: string | null;
+  catalogDescription?: string | null;
   prerequisiteCourseCodes?: string[];
   prerequisiteAlternativeCourseCodeSets?: string[][];
   prerequisiteNotes?: string[];

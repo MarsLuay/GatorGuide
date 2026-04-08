@@ -1,0 +1,762 @@
+Owner: uw-seattle-early-childhood-and-family-studies
+Source: https://education.uw.edu/academics/undergraduate
+Title: Undergraduate Programs | UW College of Education
+
+Undergraduate Programs | UW College of Education
+Skip to main content
+Enter search text
+Current site
+All the UW
+Search scope
+Current site
+All the UW
+<!-- CACHE TAGS:
+* block_view
+* config:block.block.uw_boundless_barrio_shibbolethloginblock
+* shibboleth_login_block
+-->
+<!-- CACHE CONTEXTS:
+* languages:language_interface
+* theme
+* user.permissions
+* user.roles:anonymous
+* url.path
+* url.query_args
+* url.site
+-->
+Login
+MyUW
+Calendar
+Directories
+Libraries
+UW Medicine
+Maps
+UW Today
+Helpful Links
+Computing/IT
+Employee Self Service
+Husky Card
+UW Bothell
+UW Tacoma
+UW Facebook
+UW Twitter
+University of Washington
+UW College of Education
+<!-- CACHE TAGS:
+* block_view
+* config:block.block.uw_boundless_barrio_thinstripmenu
+* config:system.menu.thinstrip-menu
+* node:22171
+* node:22172
+* node:25308
+* node:825
+-->
+<!-- CACHE CONTEXTS:
+* route.menu_active_trails:thinstrip-menu
+* languages:language_interface
+* theme
+* user.permissions
+-->
+Thinstrip menu
+For Faculty & Staff
+For Students
+Events
+Directory
+Quick Links
+<!-- CACHE TAGS:
+* block_view
+* config:block.block.uw_boundless_barrio_mainnavigation
+* config:system.menu.main
+* node:82
+* node:99
+* node:94
+* node:100
+* node:24931
+* node:24885
+* node:101
+* node:85
+* node:87
+* node:143
+* node:25130
+* node:21732
+* node:21730
+* node:817
+* node:816
+* node:25210
+* node:25316
+* node:151
+* node:829
+* node:830
+* node:25197
+* node:152
+* node:24602
+* node:24643
+* node:827
+* node:24858
+* node:19147
+* config:webform.webform.marketing_request
+* webform:marketing_request
+* config:webform.settings
+* node:153
+* node:23239
+* node:823
+* node:25117
+* node:825
+* node:25000
+* node:25308
+* node:25647
+* node:22154
+* node:24969
+* node:24968
+* node:24972
+* node:25876
+* node:154
+* node:24918
+* node:22172
+* node:22171
+-->
+<!-- CACHE CONTEXTS:
+* route.menu_active_trails:main
+* languages:language_interface
+* theme
+* user.permissions
+-->
+Main navigation
+Menu
+Home
+Academics
+Undergraduate
+Graduate
+Teacher Education
+Professional Learning
+Early Learning
+Leadership
+By Degree
+By Area
+All Programs
+Admissions
+Application Deadlines
+Graduate Admissions
+Undergraduate Admissions
+Tuition & Costs
+Funding, Aid and Scholarships
+Admitted Graduate Students
+Non-Matriculated & Graduate Non-Matriculated Students
+Research
+Research Support
+Research Areas
+Research Centers & Initiatives
+EduTalks
+Newsroom
+News Features
+Videos
+In the News
+Magazine
+Alumni Stories
+Submit a Story
+About
+Our Vision
+About the Dean
+College Leadership
+Faculty and Staff Directory
+Offices & Departments
+College of Education Events
+Giving
+Advancement and Outreach
+How to Give
+Make a Gift
+Making Learning Come Alive
+Teacher Appreciation
+For You
+Alumni
+Current Students
+Faculty & Staff
+Technology Center
+Academics
+<!-- CACHE TAGS:
+* node_view
+* node:99
+* config:filter.format.basic_html
+* config:system.site
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* url.site
+* languages:language_interface
+* theme
+* user.permissions
+* user.roles:authenticated
+-->
+<!-- CACHE TAGS:
+* node_view
+* node:99
+* config:filter.format.basic_html
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* url.site
+* languages:language_interface
+* theme
+* user.permissions
+* user.roles:authenticated
+-->
+<!-- CACHE KEYS:
+* entity_view
+* node
+* 99
+* full
+-->
+<!-- PRE-BUBBLING CACHE TAGS:
+* node_view
+* node:99
+-->
+<!-- PRE-BUBBLING CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* url.site
+* languages:language_interface
+* theme
+* user.permissions
+* user.roles:authenticated
+-->
+<!-- PRE-BUBBLING CACHE KEYS:
+* entity_view
+* node
+* 99
+* full
+-->
+Undergraduate Programs
+UW College of Education, one of the nation's top 15 education schools, offers undergraduate programs that prepare students for a variety of professions related to teaching and learning in classrooms & beyond. Community based learning experiences are integrated into classes taught by our nationally-recognized faculty.
+<!-- CACHE TAGS:
+* block_view
+* config:block.block.views_block__program_list_for_area_and_level_pages_block_1
+* config:views.view.program_list_for_area_and_level_pages
+* node_list
+* node:99
+* node:476
+* node:475
+* node:117
+* node:160
+* node:149
+* node_view
+* taxonomy_term:1160
+* node:477
+* node:106
+* taxonomy_term:1161
+-->
+<!-- CACHE CONTEXTS:
+* languages:language_interface
+* theme
+* url
+* user
+* user.node_grants:view
+* user.permissions
+* route.name.is_layout_builder_ui
+-->
+Our Programs
+<!-- CACHE TAGS:
+* node_view
+* node:149
+* taxonomy_term:1161
+* node:106
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- CACHE KEYS:
+* entity_view
+* node
+* 149
+* card
+-->
+<!-- PRE-BUBBLING CACHE TAGS:
+* node_view
+* node:149
+-->
+<!-- PRE-BUBBLING CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- PRE-BUBBLING CACHE KEYS:
+* entity_view
+* node
+* 149
+* card
+-->
+<!-- CACHE TAGS:
+* node_view
+* node:149
+* taxonomy_term:1161
+* node:106
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- CACHE KEYS:
+* entity_view
+* node
+* 149
+* card
+-->
+<!-- PRE-BUBBLING CACHE TAGS:
+* node_view
+* node:149
+-->
+<!-- PRE-BUBBLING CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- PRE-BUBBLING CACHE KEYS:
+* entity_view
+* node
+* 149
+* card
+-->
+Early Care and Education
+Bachelor of Arts (B.A.)
+Online
+Learn how to create inclusive and thriving learning environments for young children and their families. With our flexible online program, you can continue to live and work in your community while earning your bachelor’s degree.
+<!-- CACHE TAGS:
+* node_view
+* node:160
+* taxonomy_term:1160
+* node:106
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- CACHE KEYS:
+* entity_view
+* node
+* 160
+* card
+-->
+<!-- PRE-BUBBLING CACHE TAGS:
+* node_view
+* node:160
+-->
+<!-- PRE-BUBBLING CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- PRE-BUBBLING CACHE KEYS:
+* entity_view
+* node
+* 160
+* card
+-->
+<!-- CACHE TAGS:
+* node_view
+* node:160
+* taxonomy_term:1160
+* node:106
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- CACHE KEYS:
+* entity_view
+* node
+* 160
+* card
+-->
+<!-- PRE-BUBBLING CACHE TAGS:
+* node_view
+* node:160
+-->
+<!-- PRE-BUBBLING CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- PRE-BUBBLING CACHE KEYS:
+* entity_view
+* node
+* 160
+* card
+-->
+Early Childhood and Family Studies
+Bachelor of Arts (B.A.)
+On-campus
+Earn your bachelor&#039;s degree to pursue careers as educators and advocates for equitable and just early learning.
+<!-- CACHE TAGS:
+* node_view
+* node:117
+* taxonomy_term:1160
+* node:106
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- CACHE KEYS:
+* entity_view
+* node
+* 117
+* card
+-->
+<!-- PRE-BUBBLING CACHE TAGS:
+* node_view
+* node:117
+-->
+<!-- PRE-BUBBLING CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- PRE-BUBBLING CACHE KEYS:
+* entity_view
+* node
+* 117
+* card
+-->
+<!-- CACHE TAGS:
+* node_view
+* node:117
+* taxonomy_term:1160
+* node:106
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- CACHE KEYS:
+* entity_view
+* node
+* 117
+* card
+-->
+<!-- PRE-BUBBLING CACHE TAGS:
+* node_view
+* node:117
+-->
+<!-- PRE-BUBBLING CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- PRE-BUBBLING CACHE KEYS:
+* entity_view
+* node
+* 117
+* card
+-->
+Education Studies
+Bachelor of Arts (B.A.)
+On-campus
+Earn your Bachelor’s degree and study foundational education concepts while concentrating on your specific interests. Prepare yourself for rewarding careers or further graduate studies in education.
+<!-- CACHE TAGS:
+* node_view
+* node:475
+* taxonomy_term:1160
+* node:106
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- CACHE KEYS:
+* entity_view
+* node
+* 475
+* card
+-->
+<!-- PRE-BUBBLING CACHE TAGS:
+* node_view
+* node:475
+-->
+<!-- PRE-BUBBLING CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- PRE-BUBBLING CACHE KEYS:
+* entity_view
+* node
+* 475
+* card
+-->
+<!-- CACHE TAGS:
+* node_view
+* node:475
+* taxonomy_term:1160
+* node:106
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- CACHE KEYS:
+* entity_view
+* node
+* 475
+* card
+-->
+<!-- PRE-BUBBLING CACHE TAGS:
+* node_view
+* node:475
+-->
+<!-- PRE-BUBBLING CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- PRE-BUBBLING CACHE KEYS:
+* entity_view
+* node
+* 475
+* card
+-->
+Education, Communities and Organizations
+Bachelor of Arts (B.A.)
+On-campus
+Earn your bachelor&#039;s degree and become a catalyst for change, equipped to transform communities and organizations through education and human development.
+<!-- CACHE TAGS:
+* node_view
+* node:476
+* taxonomy_term:1160
+* node:477
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- CACHE KEYS:
+* entity_view
+* node
+* 476
+* card
+-->
+<!-- PRE-BUBBLING CACHE TAGS:
+* node_view
+* node:476
+-->
+<!-- PRE-BUBBLING CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- PRE-BUBBLING CACHE KEYS:
+* entity_view
+* node
+* 476
+* card
+-->
+<!-- CACHE TAGS:
+* node_view
+* node:476
+* taxonomy_term:1160
+* node:477
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- CACHE KEYS:
+* entity_view
+* node
+* 476
+* card
+-->
+<!-- PRE-BUBBLING CACHE TAGS:
+* node_view
+* node:476
+-->
+<!-- PRE-BUBBLING CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- PRE-BUBBLING CACHE KEYS:
+* entity_view
+* node
+* 476
+* card
+-->
+Education, Learning and Society Minor
+Undergraduate Minor
+On-campus
+Discover the influence education and learning has on our society through this interdisciplinary minor, available to every non-College of Education undergraduate student at the University of Washington.
+<!-- CACHE TAGS:
+* block_view
+* config:block.block.uw_boundless_barrio_uwsidebarmenu
+* config:system.menu.main
+* node:82
+* node:99
+* node:94
+* node:100
+* node:24931
+* node:24885
+* node:101
+* node:85
+* node:87
+-->
+<!-- CACHE CONTEXTS:
+* route.menu_active_trails:main
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<nav id="desktop-relative" role="navigation" aria-label="mobile menu that is not visible in the desktop version"
+aria-labelledby="block-uw-boundless-barrio-uwsidebarmenu-menu" id="block-uw-boundless-barrio-uwsidebarmenu">
+Main navigation
+Home
+Academics
+Undergraduate
+Graduate
+Teacher Education
+Professional Learning
+Early Learning
+Leadership
+By Degree
+By Area
+All Programs
+<!-- CACHE TAGS:
+* block_view
+* config:block.block.block_program_group_scholarships
+* config:field.storage.node.body
+* config:views.view.program_group_scholarships
+* node_list
+* node:99
+* node:24959
+* node:501
+* node:21729
+* config:filter.format.full_html
+* config:filter.format.basic_html
+-->
+<!-- CACHE CONTEXTS:
+* languages:language_content
+* languages:language_interface
+* url
+* user.node_grants:view
+* user.permissions
+* theme
+-->
+Funding opportunities
+Early Learning Equity Scholarship
+Early Care & Education (ECE) and Early Childhood & Family Studies (ECFS) students can be awarded up to the cost of attendance.
+Undergraduate General Scholarships
+Through this one application, undergraduate students can apply for multiple scholarships worth between $900 - $5,000.
+Zesbaugh and Anderson-Olsen Scholarships
+Undergraduate students committed to a career as an educator can receive awards that range from $3000 - $8,000.
+<!-- CACHE TAGS:
+* block_view
+* config:block.block.block_program_group_events
+* config:views.view.program_group_upcoming_events
+* node_list
+* node:99
+* node:26399
+* node:26398
+* node:26397
+* node:26396
+* node:26395
+* node:26393
+* node:26392
+* node:26391
+* node:26390
+-->
+<!-- CACHE CONTEXTS:
+* languages:language_content
+* languages:language_interface
+* url
+* user.node_grants:view
+* user.permissions
+* theme
+-->
+Upcoming Events
+UW Transfer Thursday: College of Education Undergraduate Programs Information Session
+Apr, 9 2026 | 3:00 PM
+UW Transfer Thursday: College of Education Undergraduate Programs Information Session
+Apr, 16 2026 | 3:00 PM
+UW Transfer Thursday: College of Education Undergraduate Programs Information Session
+Apr, 23 2026 | 3:00 PM
+UW Transfer Thursday: College of Education Undergraduate Programs Information Session
+Apr, 30 2026 | 3:00 PM
+UW Transfer Thursday: College of Education Undergraduate Programs Information Session
+May, 14 2026 | 3:00 PM
+UW Transfer Thursday: College of Education Undergraduate Programs Information Session
+May, 21 2026 | 3:00 PM
+UW Transfer Thursday: College of Education Undergraduate Programs Information Session
+May, 28 2026 | 3:00 PM
+UW Transfer Thursday: College of Education Undergraduate Programs Information Session
+Jun, 4 2026 | 3:00 PM
+UW Transfer Thursday: College of Education Undergraduate Programs Information Session
+Jun, 11 2026 | 3:00 PM
+University of Washington
+UW College of Education
+We believe that every child in every school deserves an outstanding education.
+<!-- CACHE TAGS:
+* node:153
+* node:25117
+* node:825
+* node:152
+* node:827
+* node:22056
+* node:22170
+* node:24918
+* node:24968
+* node:24972
+* config:system.menu.footer
+* config:system.menu.footer
+-->
+<!-- CACHE CONTEXTS:
+* user.permissions
+* route.menu_active_trails:footer
+* languages:language_interface
+* theme
+-->
+About
+Leadership
+Faculty & Staff
+News
+In the News
+News & Media Contact
+Support
+Alumni
+Give to CoE
+Making Learning Come Alive
+Find a Program
+Facebook
+Twitter
+Instagram
+YouTube
+LinkedIn
+University of Washington College of Education • 2012 Skagit Lane, Miller Hall • Box 353600 • Seattle, WA 98195-3600
+General Questions: edinfo@uw.edu &bull; Website Questions: coe@uw.edu
+© 2026 University of Washington, College of Education, Seattle, WA

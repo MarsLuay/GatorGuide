@@ -1,0 +1,189 @@
+Owner: uw-seattle-statistics:pathway:data-science-track
+Source: https://stat.uw.edu/academics/undergraduate/statistics-bs/major
+Title: Major Requirements | University of Washington Department of Statistics
+
+Major Requirements | University of Washington Department of Statistics
+Skip to main content
+University of Washington
+University of Washington
+UW Menu
+UW Home
+College of Arts & Sciences
+ArtsUW
+Directories
+Maps
+MyUW
+Toggle navigation
+Search
+Search
+Main navigation
+About Us
+Overview
+Current Leadership
+Recent News
+Department History
+Chair&#039;s Newsletter
+Diversity
+Land Acknowledgement
+Give Your Support
+Contact Us
+People
+Faculty
+Postdoctoral Researchers
+Students
+Staff
+Alumni
+Faculty Honors
+Student Awards
+Academics
+Undergraduate
+Graduate
+Non-Degree Enrollment
+Courses
+Research
+Preprints
+Faculty Books
+Working Groups
+Department Seminars
+Statistical Consulting
+Resources
+Resources
+Employment
+Undergrad Opportunities
+Department Forms
+Policies and Procedures
+Home
+Academics
+Undergraduate Programs
+Statistics B.S.
+Major Requirements
+Major Requirements
+Students who enrolled before or in 2023
+Major requirements : Students enrolled before or in 2023 must adhere to the major requirements linked here .
+Electives : The list of electives for students who enrolled before or in 2023 can be found here .
+In Spring 2024, as a valid elective we also consider AMATH 490 (Mathematical Theory of Information Entropy and Data).
+All other sections in this page refer to students who will enroll in 2024 and after.
+Students who will enroll in 2024 and after
+Starting in Autumn 2024, the undergraduate program is organized around three tracks:
+Mathematical statistics : this track emphasizes the mathematical foundations of statistical methods.
+Data Science : this track emphasizes the link between statistics and computer science
+Applied Statistics : this track allows students to explore the use of statistical methods in specific scientific domains.
+A minimum GPA of 2.0 and cumulative GPA of 2.5 is required in all courses used to satisfy major requirements.
+Core requirements (all tracks): 37 credits
+Mathematics: MATH 208 and MATH 224. MATH 208 is waved if MATH 136 was taken.
+Computing: STAT 302 and either CSE 163 (strongly recommended) or CSE 123.
+Statistical theory: STAT 341 and STAT 342.
+Statistical and machine learning methodology: STAT 423, STAT 424, and STAT 435.
+Ethics: Either STAT 303 (strongly recommended) or SOC 225 or INFO 351.
+Capstone project: STAT 496. Students can petition to have 2 credits of STAT 497 (Undergraduate Statistics Internship) or ENGR 321 (Undergraduate Engineering Internship) substitute for STAT 496.
+Breadth requirements (track specific): 18-20 credits
+Mathematical Statistics Track
+One of the following three-course sequences: (a) MATH 300, MATH 327 and MATH 424, (b) MATH/STAT 395, MATH/STAT 491, and either MATH/STAT 492 or MATH/STAT 493.
+Three electives, each at least 3 credits, each from either the general electives list or the computing electives list .
+Applied Statistics Track
+Three interdisciplinary courses that form a coherent program (see "Interdisciplinary electives" below).
+Three electives, each at least 3 credits each, chosen from either the general electives list or the computing electives list.
+Data Science Track
+Data visualization: One of STAT 451 (highly recommended), CSE 412, CSE 442, HCDE 411, INFO 474.
+Databases: One of CSE 414, CSE 444, or INFO 330.
+One elective from the computing list.
+Three electives, each at least 3 credits each, chosen from either the general electives list or the computing electives list.
+At the end of your major, this is how your academic curriculum will look:
+List of electives
+General electives
+CSE 373 Data Structures and Algorithms
+CSE 332 Data Structure and Parallelism
+MATH 300 Introduction to Mathematical Reasoning
+MATH 318 Advanced Linear Algebra: tools and methods
+MATH/STAT 395, Probability II
+MATH/STAT 396, Finite Markov Chains and Monte-Carlo Methods
+MATH 407 Linear Optimization
+MATH 408 Non-Linear Optimization
+MATH 409 Discrete Optimizatio
+MATH/STAT 491 Introduction to Stochastic Processes
+MATH/STAT 492 Introduction to Stochastic Processes II
+MATH/STAT 493 Stochastic Calculus for Option Pricing
+STAT 403 Introduction to Re-sampling Inference
+STAT 425 Introduction to Non-parametric Statistics
+STAT 427 Introduction to Analysis of Categorical Data
+STAT 428 Multivariate Analysis for the Social Sciences
+STAT 441 Multivariate Statistical Methods
+STAT 498 Special Topics
+STAT 529: Sample Survey Techniques
+STAT 534 Statistical Computing
+Computing electives
+CSE 373 Data Structures and Algorithms
+CSE 332 Data Structure and Parallelism
+MATH 318 Advanced Linear Algebra: tools and methods
+MATH 407 Linear Optimization
+MATH 408 Non-Linear Optimization
+MATH 409 Discrete Optimization
+STAT 534 Statistical Computing
+Interdisciplinary electives
+Three courses, 300-level or higher, offered by another department that form a coherent sequence. Subject to departmental approval. Here are some examples of a “coherent sequence of three courses”:
+From SOC and CSSS, three of:
+SOC 328 Methodology of Sociological Research (5)
+SOC 330 Human Ecology (5)
+SOC 331 Population and Society (5)
+CSSS 321 (Data Science and Statistics for Social Sciences I) (5)
+CSSS 322 (Data Science and Statistics for Social Sciences II) (5)
+From ECON, three of:
+ECON 300 Intermediate Microeconomics (5)
+ECON 301 Intermediate Macroeconomics (5)
+ECON 400 Advanced Microeconomics (5)
+ECON 401 Advanced Macroeconomics (5)
+ECON 402 Microeconomics: Methods and Applications (5)
+ECON 410 Economics of Networks (5)
+ECON 412 Macroeconomics and Inequality (5)
+ECON 432: Empirical Industrial Organization (5)
+ECON 481 Data Science Computing for Economics (5)
+ECON 482 Econometric Theory and Practice (5)
+ECON 483 Econometric Applications (5)
+ECON 488 Causal Inference (5)
+For example: 300, 401 and 402; 300, 400 and 410; 300, 481 and 482; 300, 301 and 412; 301, 401, and 483; ECON 300, 482 and 488.
+From Epidemiology:
+EPI 320 Introduction to Epidemiology
+EPI 410 Computational and Applied Genetic Epidemiology OR BIOST 401 Computational and Applied Genetic Epidemiology
+ENV H 465 Geographic Information Systems (GIS) in Public Health
+From Linguistics, t hree of:
+LING 400 Survey of Linguistic Method and Theory (5)
+LING 421 R for Linguists (5)
+LING 471 Computational Methods for Linguists (5)
+LING 472 Introduction to Computational Linguistics (5) (prereq: 400 + either LING 461 or CSE 311)
+LING 473 Basics for Computational Linguistics (3) (Prerequisite: CSE 326; STAT 391)
+Example of what your coursework will look like
+The following flow-charts will help you understand the STAT 300 level courses and their pre-requisites. For a full list of courses please see this page .
+STAT 311 and STAT 394 are among the pre-requisites for admission and therefore they are usually taken early in the sophomore year (Plan A), so that students can apply to the Stat major in Spring of their sophomore year. Once students enroll in the major, they should start working on the core major requirements by taking STAT 341 and STAT 342, which represent the statistical theory requirements, serve as pre-requisites for other core courses and give the foundations to understand Machine Learning classes (such as STAT 435) and other breadth requirements classes. STAT 302 and STAT 303 provide, respectively, the foundations of statistical computing and an understanding of the ethical implications of statistical decision-making algorithms. We expect students to take them either during their junior or their senior year. The senior year should be mainly dedicated to the capstone project and to electives; the specific courses will largely depend on the selected track and may require pre-requisites.
+Students who have AP calculus and CS credits from high-school may be eligible to apply for admission to the Statistics major in their freshmen year (see Plan B).
+In This Section
+Undergraduate
+Statistics B.S.
+Admissions
+Major Requirements
+Statistics B.S. Tracks
+Double Majors
+Honors Program
+Continuation and Honesty Policy
+Internships & CPT
+Academic Advising
+Statistics Minor
+Courses for non-majors
+Transfer Credit Evaluations
+Community
+FAQs
+Graduate
+Non-Degree Enrollment
+Courses
+Be boundless
+University of Washington
+Footer menu
+Accessibility
+Contact Us
+Jobs
+MyUW
+Privacy
+Diversity
+Terms
+Intranet
+Login
+&copy; 2026 University of Washington | Seattle, WA

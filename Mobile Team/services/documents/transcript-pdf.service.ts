@@ -9,6 +9,7 @@ export type ParsedTranscriptCourse = {
   termLabel: string | null;
   termStartDate: string | null;
   termEndDate: string | null;
+  catalogYearLabel: string | null;
 };
 
 const CREDIT_PATTERN = /^\d+\.\d{3}$/;
@@ -45,6 +46,35 @@ function normalizeTranscriptDate(value: string) {
 function normalizeTranscriptTermLabel(term: string, year: string) {
   const normalizedTerm = String(term ?? "").trim().toLowerCase();
   return `${normalizedTerm.charAt(0).toUpperCase()}${normalizedTerm.slice(1)} ${year}`;
+}
+
+function formatGrcCatalogYearLabel(startYear: number) {
+  return `${startYear}-${startYear + 1}`;
+}
+
+export function inferGrcCatalogYearLabelFromTranscriptTerm(
+  termLabel: string | null | undefined,
+  termStartDate: string | null | undefined
+) {
+  const termMatch = String(termLabel ?? "").match(/\b(Fall|Autumn|Winter|Spring|Summer)\s+(\d{4})\b/i);
+  if (termMatch) {
+    const term = String(termMatch[1] ?? "").toLowerCase();
+    const year = Number.parseInt(termMatch[2] ?? "", 10);
+    if (Number.isFinite(year)) {
+      return formatGrcCatalogYearLabel(term === "fall" || term === "autumn" ? year : year - 1);
+    }
+  }
+
+  const dateMatch = String(termStartDate ?? "").match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (dateMatch) {
+    const year = Number.parseInt(dateMatch[1] ?? "", 10);
+    const month = Number.parseInt(dateMatch[2] ?? "", 10);
+    if (Number.isFinite(year) && Number.isFinite(month)) {
+      return formatGrcCatalogYearLabel(month >= 8 ? year : year - 1);
+    }
+  }
+
+  return null;
 }
 
 function base64ToUint8Array(base64: string) {
@@ -213,6 +243,10 @@ function parseTranscriptCourseLines(lines: string[]) {
       termLabel: currentTermLabel,
       termStartDate: currentTermStartDate,
       termEndDate: currentTermEndDate,
+      catalogYearLabel: inferGrcCatalogYearLabelFromTranscriptTerm(
+        currentTermLabel,
+        currentTermStartDate
+      ),
     });
   }
 
