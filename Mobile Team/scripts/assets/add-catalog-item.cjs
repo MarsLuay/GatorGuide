@@ -1007,6 +1007,9 @@ function defaultOpportunitySummary(title, type) {
   if (type === "internship") {
     return `${title} is an internship or work opportunity added through the guided catalog tool. Open the official link for the latest details.`;
   }
+  if (type === "general_deadline" || type === "college_deadline") {
+    return `${title} is a deadline added through the guided catalog tool. Open the official link for the latest details.`;
+  }
   return `${title} is a scholarship added through the guided catalog tool. Open the official link for the latest details.`;
 }
 
@@ -1931,6 +1934,7 @@ async function removeOpportunity(rl) {
           [
             { value: "scholarship", label: "Scholarship" },
             { value: "internship", label: "Internship / work opportunity" },
+            { value: "general_deadline", label: "Deadline" },
             { value: "__all__", label: "Show all opportunities" },
           ],
           { defaultValue: "__all__" }
@@ -2163,7 +2167,7 @@ async function main() {
 
   try {
     log("GatorGuide catalog helper");
-    log("This tool adds or removes scholarships, internships, and resources without hand-editing code.");
+    log("This tool adds or removes scholarships, internships, deadlines, and resources without hand-editing code.");
     log("");
     log("Tip: for most fields, you can press Enter if the information is unknown.");
     log('Tip: type "back" to return to the previous question.');
@@ -2198,6 +2202,7 @@ async function main() {
             [
               { value: "scholarship", label: "Scholarship" },
               { value: "internship", label: "Internship / work opportunity" },
+              { value: "general_deadline", label: "Deadline" },
               {
                 value: "resource",
                 label:
@@ -2205,7 +2210,7 @@ async function main() {
               },
             ],
             {
-              invalidMessage: "Enter in 1, 2, or 3 for your choice.",
+              invalidMessage: "Enter in 1, 2, 3, or 4 for your choice.",
             }
           ),
         assign(state, value) {

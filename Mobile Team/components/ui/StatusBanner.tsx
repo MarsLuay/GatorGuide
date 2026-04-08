@@ -1,7 +1,8 @@
 import React from "react";
-import { Pressable, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
+import { AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
 
 type BannerVariant = "info" | "success" | "warning" | "error";
 type IconName = keyof typeof Ionicons.glyphMap;
@@ -47,9 +48,9 @@ export function StatusBanner({
           <Text className={`${secondaryTextClass} text-sm`}>{message}</Text>
 
           {actionLabel && onAction ? (
-            <Pressable onPress={onAction} className="mt-3 self-start">
+            <AnimatedIconPressable onPress={onAction} containerClassName="mt-3 self-start">
               <Text className="text-sm font-semibold text-emerald-500">{actionLabel}</Text>
-            </Pressable>
+            </AnimatedIconPressable>
           ) : null}
         </View>
       </View>

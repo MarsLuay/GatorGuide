@@ -1,6 +1,8 @@
 import React from "react";
 import { View, Text, TextInput, type TextInputProps } from "react-native";
 
+import { GlassInput } from "./GlassInput";
+
 type FormInputProps = {
   label: string;
   value: string;
@@ -11,7 +13,8 @@ type FormInputProps = {
   secondaryTextClass: string;
   inputBgClass: string;
   placeholderColor: string;
-  editable?: boolean; 
+  editable?: boolean;
+  variant?: "default" | "glass";
 } & Partial<Pick<TextInputProps, "keyboardType" | "autoCapitalize" | "autoCorrect" | "returnKeyType" | "secureTextEntry">>;
 
 export function FormInput({
@@ -24,24 +27,38 @@ export function FormInput({
   secondaryTextClass,
   inputBgClass,
   placeholderColor,
-  editable = true, 
+  editable = true,
+  variant = "default",
   ...textInputProps
 }: FormInputProps) {
+  const isGlass = variant === "glass";
+
   return (
     <View className="mb-4">
       <Text className={`text-sm ${secondaryTextClass} mb-2 font-medium`}>{label}</Text>
-      <TextInput
-        value={value}
-        onChangeText={onChangeText}
-        placeholder={placeholder}
-        placeholderTextColor={placeholderColor}
-       
-        className={`w-full ${inputBgClass} ${textClass} border ${
-          error ? 'border-red-500' : ''
-        } rounded-lg px-4 py-3 ${!editable ? 'opacity-50' : ''}`}
-        editable={editable} 
-        {...textInputProps}
-      />
+      {isGlass ? (
+        <View style={!editable ? { opacity: 0.5 } : undefined}>
+          <GlassInput
+            value={value}
+            onChangeText={onChangeText}
+            placeholder={placeholder}
+            editable={editable}
+            {...textInputProps}
+          />
+        </View>
+      ) : (
+        <TextInput
+          value={value}
+          onChangeText={onChangeText}
+          placeholder={placeholder}
+          placeholderTextColor={placeholderColor}
+          className={`w-full ${inputBgClass} ${textClass} border ${
+            error ? "border-red-500" : ""
+          } rounded-lg px-4 py-3 ${!editable ? "opacity-50" : ""}`}
+          editable={editable}
+          {...textInputProps}
+        />
+      )}
       {error && <Text className="text-xs text-red-500 mt-1">{error}</Text>}
     </View>
   );

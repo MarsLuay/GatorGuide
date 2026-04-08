@@ -2,7 +2,6 @@ import { useMemo, useState } from "react";
 import { 
   View, 
   Text, 
-  Pressable, 
   Alert, 
   Keyboard, 
   ScrollView,
@@ -11,7 +10,7 @@ import {
   useWindowDimensions,
 } from "react-native";
 import { useRouter } from "expo-router";
-import { FontAwesome5, MaterialIcons } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ROUTES } from "@/constants/routes";
 import useBack from "@/hooks/use-back";
@@ -21,6 +20,10 @@ import { useAppLanguage } from "@/hooks/use-app-language";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { FormInput } from "@/components/ui/FormInput";
+import { AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
+import { GlassButton } from "@/components/ui/GlassButton";
+import { GlassCard } from "@/components/ui/GlassCard";
+import { GatorGuideMark } from "@/components/ui/GatorGuideMark";
 import { authService } from "@/services";
 
 const isEmailValid = (value: string) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value.trim());
@@ -111,7 +114,8 @@ export default function ForgotPasswordPage() {
               paddingHorizontal: shellHorizontalPadding,
             }}
           >
-            <View className={`${styles.cardBgClass} border`} style={{ borderRadius: 28, padding: formCardPadding }}>
+            <GlassCard borderRadius={28} noPadding>
+              <View style={{ padding: formCardPadding }}>
               <View className="items-center" style={{ marginBottom: heroSpacing }}>
                 <View className="bg-emerald-500 rounded-full" style={{ padding: isTablet ? 20 : 16 }}>
                   <MaterialIcons name="check-circle" size={isTablet ? 56 : 48} color="#001f0f" />
@@ -134,24 +138,21 @@ export default function ForgotPasswordPage() {
                 </Text>
               </View>
 
-              <View className={`${styles.cardBgClass} border rounded-2xl`} style={{ padding: isTablet ? 24 : 20 }}>
+              <GlassCard borderRadius={20} noPadding>
+                <View style={{ padding: isTablet ? 24 : 20 }}>
                 <Text className={`text-sm ${styles.secondaryTextClass} text-center`} style={{ lineHeight: 22 }}>
                   {t("auth.passwordResetInstructions")}
                 </Text>
-              </View>
+                </View>
+              </GlassCard>
 
-              <Pressable 
+              <GlassButton
                 onPress={() => router.replace(ROUTES.login)}
-                className="mt-8 items-center bg-emerald-500 py-4 rounded-xl"
-                style={({ pressed }) => ({
-                  opacity: pressed ? 0.7 : 1,
-                })}
-              >
-                <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} font-bold`}>
-                  {t("auth.backToLogin")}
-                </Text>
-              </Pressable>
-            </View>
+                label={t("auth.backToLogin")}
+                style={{ width: "100%", marginTop: 32 }}
+              />
+              </View>
+            </GlassCard>
           </View>
         </ScrollView>
       </ScreenBackground>
@@ -186,24 +187,20 @@ export default function ForgotPasswordPage() {
               paddingHorizontal: shellHorizontalPadding,
             }}
           >
-            <Pressable
+            <AnimatedIconPressable
               onPress={() => {
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                 back();
               }}
-              className="mb-8 flex-row items-center self-start"
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.7 : 1,
-              })}
+              className="flex-row items-center"
+              containerStyle={{ alignSelf: "flex-start", marginBottom: 32 }}
             >
               <MaterialIcons name="arrow-back" size={20} color={styles.placeholderColor} />
               <Text className={`${styles.secondaryTextClass} ml-2`}>{t("auth.backToLogin")}</Text>
-            </Pressable>
+            </AnimatedIconPressable>
 
             <View className="items-center" style={{ marginBottom: heroSpacing }}>
-              <View className="bg-emerald-500 rounded-full" style={{ padding: isTablet ? 20 : 16 }}>
-                <FontAwesome5 name="graduation-cap" size={isTablet ? 56 : 48} color="#001f0f" />
-              </View>
+              <GatorGuideMark size={isTablet ? 120 : 108} darkMode={isDark} />
             </View>
 
             <Text className={`text-3xl text-center ${styles.textClass} mb-3`}>{t("auth.forgotPasswordTitle")}</Text>
@@ -211,7 +208,8 @@ export default function ForgotPasswordPage() {
               {t("auth.forgotPasswordMessage")}
             </Text>
 
-            <View className={`${styles.cardBgClass} border rounded-2xl gap-4`} style={{ padding: formCardPadding }}>
+            <GlassCard borderRadius={24} noPadding>
+              <View className="gap-4" style={{ padding: formCardPadding }}>
               <FormInput
                 label={t("auth.emailAddress")}
                 value={email}
@@ -222,23 +220,21 @@ export default function ForgotPasswordPage() {
                 secondaryTextClass={styles.secondaryTextClass}
                 inputBgClass={styles.inputBgClass}
                 placeholderColor={styles.placeholderColor}
+                variant="glass"
                 keyboardType="email-address"
                 autoCapitalize="none"
                 autoCorrect={false}
                 returnKeyType="done"
               />
 
-              <Pressable
+              <GlassButton
                 onPress={handleSubmit}
                 disabled={!canSubmit}
-                className={`w-full bg-emerald-500 rounded-lg py-4 items-center mt-2 ${!canSubmit ? "opacity-60" : ""}`}
-                style={({ pressed }) => ({
-                  opacity: pressed && canSubmit ? 0.7 : undefined,
-                })}
-              >
-                <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} font-semibold`}>{t("auth.sendResetLink")}</Text>
-              </Pressable>
-            </View>
+                label={t("auth.sendResetLink")}
+                style={{ width: "100%", marginTop: 8, opacity: !canSubmit ? 0.6 : 1 }}
+              />
+              </View>
+            </GlassCard>
 
             <Text className={`${styles.secondaryTextClass} text-xs text-center mt-6`} style={{ lineHeight: 18 }}>
               {t("general.needHelpEmail")}

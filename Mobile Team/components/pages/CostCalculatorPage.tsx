@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
-import { View, Text, TextInput, Pressable, ScrollView, useWindowDimensions } from "react-native";
+import { View, Text, TextInput, ScrollView, useWindowDimensions } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { ROUTES } from "@/constants/routes";
 import useBack from "@/hooks/use-back";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
+import { AnimatedChipPressable, AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useAppLanguage } from "@/hooks/use-app-language";
@@ -203,13 +204,14 @@ export default function CostCalculatorPage() {
       <Text className={`${secondaryTextClass} text-center text-sm`} style={{ lineHeight: 20 }}>
         {t("tools.saveCollegesFirstHint")}
       </Text>
-      <Pressable
+      <AnimatedChipPressable
         onPress={() => router.push(ROUTES.tabs)}
-        className="mt-4 self-center flex-row items-center rounded-xl bg-emerald-500 px-4 py-3"
+        containerClassName="mt-4 self-center"
+        className="flex-row items-center rounded-xl bg-emerald-500 px-4 py-3"
       >
         <MaterialIcons name="search" size={18} color="#FFFFFF" />
         <Text className="ml-2 text-white font-semibold">{t("home.search")}</Text>
-      </Pressable>
+      </AnimatedChipPressable>
     </View>
   ) : null;
 
@@ -224,7 +226,7 @@ export default function CostCalculatorPage() {
             const tuitionVal = getOfficialTuitionValue(c, residencyMode);
             const isSelected = String(c.id) === selectedCollegeId;
             return (
-              <Pressable
+              <AnimatedChipPressable
                 key={c.id}
                 onPress={() => {
                   setSelectedCollegeId(String(c.id));
@@ -232,7 +234,8 @@ export default function CostCalculatorPage() {
                 className={`rounded-xl border px-3 py-3 ${
                   isSelected ? "bg-emerald-500 border-emerald-500" : borderClass
                 }`}
-                style={{ width: chipCardWidth, minHeight: isTablet ? 76 : 68, justifyContent: "center" }}
+                containerStyle={{ width: chipCardWidth, minHeight: isTablet ? 76 : 68 }}
+                style={{ justifyContent: "center" }}
               >
                 <Text className={`${isSelected ? "text-white font-medium" : `${textClass} text-sm`}`} numberOfLines={2}>
                   {c.name}
@@ -240,7 +243,7 @@ export default function CostCalculatorPage() {
                 <Text className={`${isSelected ? "text-white/80 text-xs" : `${secondaryTextClass} text-xs`}`} style={{ marginTop: 4 }}>
                   {formatMoney(tuitionVal)}
                 </Text>
-              </Pressable>
+              </AnimatedChipPressable>
             );
           })}
         </View>
@@ -251,7 +254,7 @@ export default function CostCalculatorPage() {
               const tuitionVal = getOfficialTuitionValue(c, residencyMode);
               const isSelected = String(c.id) === selectedCollegeId;
               return (
-                <Pressable
+                <AnimatedChipPressable
                   key={c.id}
                   onPress={() => {
                     setSelectedCollegeId(String(c.id));
@@ -259,7 +262,7 @@ export default function CostCalculatorPage() {
                   className={`px-3 py-2 rounded-lg border ${
                     isSelected ? "bg-emerald-500 border-emerald-500" : borderClass
                   }`}
-                  style={{ minWidth: 170, maxWidth: 260 }}
+                  containerStyle={{ minWidth: 170, maxWidth: 260 }}
                 >
                   <Text className={`${isSelected ? "text-white font-medium" : `${textClass} text-sm`}`} numberOfLines={2}>
                     {c.name}
@@ -267,7 +270,7 @@ export default function CostCalculatorPage() {
                   <Text className={`${isSelected ? "text-white/80 text-xs" : `${secondaryTextClass} text-xs`}`} style={{ marginTop: 4 }}>
                     {formatMoney(tuitionVal)}
                   </Text>
-                </Pressable>
+                </AnimatedChipPressable>
               );
             })}
           </View>
@@ -316,18 +319,18 @@ export default function CostCalculatorPage() {
           const label = option === "inState" ? t("cost.inState") : t("cost.outOfState");
 
           return (
-            <Pressable
+            <AnimatedChipPressable
               key={option}
               onPress={() => setResidencyMode(option)}
+              containerStyle={{ flex: 1 }}
               className={`rounded-xl border px-4 py-3 ${
                 isSelected ? "border-emerald-500 bg-emerald-500/10" : borderClass
               }`}
-              style={{ flex: 1 }}
             >
               <Text className={`${isSelected ? "text-emerald-600 font-medium" : textClass} text-center`}>
                 {label}
               </Text>
-            </Pressable>
+            </AnimatedChipPressable>
           );
         })}
       </View>
@@ -560,10 +563,10 @@ export default function CostCalculatorPage() {
             paddingHorizontal: shellHorizontalPadding,
           }}
         >
-          <Pressable onPress={back} className="mb-4 flex-row items-center self-start">
+          <AnimatedIconPressable onPress={back} containerClassName="mb-4 self-start" className="flex-row items-center">
             <MaterialIcons name="arrow-back" size={24} color={placeholderColor} />
             <Text className={`${secondaryTextClass} ml-2`}>{t("general.back")}</Text>
-          </Pressable>
+          </AnimatedIconPressable>
 
           <Text className={`text-2xl ${textClass} mb-1`}>
             {t("cost.title")}

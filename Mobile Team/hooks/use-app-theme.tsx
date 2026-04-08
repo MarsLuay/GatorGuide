@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useMemo, useState } from "
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useColorScheme } from "react-native";
 import { View } from "react-native";
+import { getThemeTokens } from "@/constants/theme-tokens";
 
 export type AppTheme = "light" | "dark" | "green" | "system";
 
@@ -48,6 +49,7 @@ export function AppThemeProvider({ children }: { children: React.ReactNode }) {
   };
 
   const resolvedTheme = theme === "system" ? systemScheme : theme;
+  const themeTokens = getThemeTokens(resolvedTheme);
 
   const value = useMemo<AppThemeContextValue>(
     () => ({
@@ -66,13 +68,8 @@ export function AppThemeProvider({ children }: { children: React.ReactNode }) {
     <AppThemeContext.Provider value={value}>
       <View
         style={{
-          flex: 1,
-          backgroundColor:
-            resolvedTheme === "dark"
-              ? "#151718"
-              : resolvedTheme === "green"
-                ? "#001f0f"
-                : "#ECFDF3",
+              flex: 1,
+          backgroundColor: themeTokens.screenBaseColor,
         }}
       >
         {children}

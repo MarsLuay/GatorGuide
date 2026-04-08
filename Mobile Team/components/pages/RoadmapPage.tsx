@@ -16,6 +16,11 @@ import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import { ROUTES } from "@/constants/routes";
 import { STORAGE_KEYS } from "@/constants/schema";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
+import {
+  AnimatedCardPressable,
+  AnimatedChipPressable,
+  AnimatedIconPressable,
+} from "@/components/ui/AnimatedPressables";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppData } from "@/hooks/use-app-data";
@@ -796,10 +801,10 @@ export default function RoadmapPage() {
               paddingTop: shellPaddingTop,
             }}
           >
-            <Pressable onPress={back} className="mb-4 flex-row items-center self-start">
+            <AnimatedIconPressable onPress={back} className="flex-row items-center" containerStyle={{ alignSelf: "flex-start", marginBottom: 16 }}>
               <MaterialIcons name="arrow-back" size={20} color={styles.placeholderColor} />
               <Text className={`${secondaryTextClass} ml-2`}>{t("roadmap.back")}</Text>
-            </Pressable>
+            </AnimatedIconPressable>
             <View className={`${cardBgClass} border rounded-2xl p-6`}>
               <View className="items-center mb-6">
                 <View className="bg-emerald-500 p-4 rounded-full mb-4">
@@ -833,25 +838,25 @@ export default function RoadmapPage() {
                     : { gap: 12 }
                 }
               >
-                <Pressable
+                <AnimatedChipPressable
                   onPress={() => router.push(ROUTES.login)}
                   className="bg-emerald-500 rounded-lg py-4 items-center"
-                  style={isTabletLayout ? { flex: 1 } : undefined}
+                  containerStyle={isTabletLayout ? { flex: 1 } : undefined}
                 >
                   <Text className={`${isDark ? "text-white" : "text-emerald-900"} font-semibold`}>
                     {t("roadmap.createProfileToStart")}
                   </Text>
-                </Pressable>
-                <Pressable
+                </AnimatedChipPressable>
+                <AnimatedChipPressable
                   onPress={() => {
                     setShowGuestRoadmap(true);
                     AsyncStorage.setItem(STORAGE_KEYS.guestRoadmapShow, "true").catch(() => {});
                   }}
                   className={`${cardBgClass} border rounded-lg py-3 items-center justify-center`}
-                  style={isTabletLayout ? { flex: 1 } : undefined}
+                  containerStyle={isTabletLayout ? { flex: 1 } : undefined}
                 >
                   <Text className={secondaryTextClass}>{t("profile.continueAsGuest")}</Text>
-                </Pressable>
+                </AnimatedChipPressable>
               </View>
             </View>
           </View>
@@ -876,10 +881,10 @@ export default function RoadmapPage() {
             paddingTop: shellPaddingTop,
           }}
         >
-          <Pressable onPress={back} className="mb-4 flex-row items-center self-start">
+          <AnimatedIconPressable onPress={back} className="flex-row items-center" containerStyle={{ alignSelf: "flex-start", marginBottom: 16 }}>
             <MaterialIcons name="arrow-back" size={20} color={styles.placeholderColor} />
             <Text className={`${secondaryTextClass} ml-2`}>{t("roadmap.back")}</Text>
-          </Pressable>
+          </AnimatedIconPressable>
           <View style={contentLayoutStyle}>
             <View style={{ flex: 1, minWidth: 0, width: "100%" }}>
               <View className={`${cardBgClass} border rounded-2xl p-5 mb-4`}>
@@ -902,7 +907,7 @@ export default function RoadmapPage() {
                 <View className={`mt-4 h-4 w-full ${progressBgClass} rounded-full overflow-hidden`}>
                   <Animated.View style={{ width: `${progress}%`, height: 16, backgroundColor: "#008f4e", borderRadius: 8 }} />
                 </View>
-                <Pressable
+                <AnimatedCardPressable
                   onPress={openCalendar}
                   className="mt-4 px-4 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex-row items-center justify-between"
                 >
@@ -916,7 +921,7 @@ export default function RoadmapPage() {
                     </View>
                   </View>
                   <MaterialIcons name="chevron-right" size={20} color={styles.placeholderColor} />
-                </Pressable>
+                </AnimatedCardPressable>
               </View>
 
           {isRoadmapLoading && !roadmap ? (
@@ -954,7 +959,7 @@ export default function RoadmapPage() {
 
                   return (
                     <View key={task.id} className={`${cardBgClass} border rounded-2xl overflow-hidden mb-2`}>
-                      <Pressable className="px-5 py-5" onPress={() => toggleExpanded(task.id)}>
+                      <AnimatedCardPressable className="px-5 py-5" onPress={() => toggleExpanded(task.id)}>
                         <View className="flex-row items-start">
                           {task.id !== "documents-checklist" ? (
                             <Pressable
@@ -985,7 +990,7 @@ export default function RoadmapPage() {
                             </Pressable>
                           ) : null}
                         </View>
-                      </Pressable>
+                      </AnimatedCardPressable>
 
                       {isExpanded ? (
                         <View className="px-5 pb-5">
@@ -1009,7 +1014,7 @@ export default function RoadmapPage() {
                                 const metadataParts = [documentType, documentSize].filter(Boolean);
                                 return (
                                   <View key={docKey}>
-                                    <Pressable
+                                    <AnimatedCardPressable
                                       onPress={() => toggleDocument(docKey)}
                                       className={`flex-row items-center p-3 rounded-xl ${isUploaded ? "bg-emerald-50 dark:bg-gray-900/80" : "bg-emerald-50 dark:bg-gray-900/70"}`}
                                     >
@@ -1018,7 +1023,7 @@ export default function RoadmapPage() {
                                         {formatDocLabel(docKey)}
                                       </Text>
                                       <Ionicons name={isUploaded ? "checkmark-circle" : "cloud-upload-outline"} size={20} color={isUploaded ? "#008f4e" : styles.placeholderColor} />
-                                    </Pressable>
+                                    </AnimatedCardPressable>
                                     {documentItem?.fileName ? (
                                       <View
                                         className={`mt-2 ml-9 rounded-xl border p-3 ${
@@ -1062,18 +1067,18 @@ export default function RoadmapPage() {
                                           </View>
 
                                           {documentItem.fileUrl ? (
-                                            <Pressable
+                                            <AnimatedChipPressable
                                               onPress={() => {
                                                 void openDocumentUrl(documentItem.fileUrl as string);
                                               }}
                                               className="px-3 py-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20"
-                                              style={shouldStackDocumentDetails ? { alignSelf: "stretch" } : { alignSelf: "flex-start" }}
+                                              containerStyle={shouldStackDocumentDetails ? { alignSelf: "stretch" } : { alignSelf: "flex-start" }}
                                               accessibilityRole="link"
                                             >
                                               <Text className="text-xs text-emerald-600 font-semibold text-center">
                                                 {t("roadmap.openFileInNewTab")}
                                               </Text>
-                                            </Pressable>
+                                            </AnimatedChipPressable>
                                           ) : null}
                                         </View>
                                       </View>
@@ -1089,16 +1094,16 @@ export default function RoadmapPage() {
                                           {t("roadmap.uploadDocument").replace("{document}", formatDocLabel(docKey))}
                                         </Text>
                                         <Text className={`${secondaryTextClass} text-xs text-center`}>{t("roadmap.supportedFormats")}</Text>
-                                        <Pressable
+                                        <AnimatedChipPressable
                                           onPress={() => handlePickDocument(docKey)}
                                           disabled={isUploadingDoc}
                                           className={`mt-3 bg-white dark:bg-gray-900/80 border border-emerald-200 dark:border-gray-700 px-4 py-1.5 rounded-lg ${isUploadingDoc ? "opacity-60" : ""}`}
-                                          style={shouldStackDocumentDetails ? { alignSelf: "stretch" } : undefined}
+                                          containerStyle={shouldStackDocumentDetails ? { alignSelf: "stretch" } : undefined}
                                         >
                                           <Text className={`${textClass} text-xs font-bold text-center`}>
                                             {isUploadingDoc ? t("general.pleaseWait") : t("roadmap.selectFile")}
                                           </Text>
-                                        </Pressable>
+                                        </AnimatedChipPressable>
                                       </View>
                                     ) : null}
                                   </View>
@@ -1136,13 +1141,13 @@ export default function RoadmapPage() {
                       className={`border p-2 rounded-lg ${styles.inputBgClass} ${textClass}`}
                       style={shouldStackInputActions ? undefined : { flex: 1 }}
                     />
-                    <Pressable
+                    <AnimatedChipPressable
                       onPress={() => addCourse(newCourseInput).catch(() => {})}
                       className={`px-4 py-2 rounded-lg border items-center justify-center ${borderClass}`}
-                      style={shouldStackInputActions ? { width: "100%" } : undefined}
+                      containerStyle={shouldStackInputActions ? { width: "100%" } : undefined}
                     >
                       <Text className={`${textClass} text-sm font-medium`}>{t("roadmap.addCourse")}</Text>
-                    </Pressable>
+                    </AnimatedChipPressable>
                   </View>
                 ) : null}
                 {group.id === "applications" ? (
@@ -1163,13 +1168,13 @@ export default function RoadmapPage() {
                       className={`border p-2 rounded-lg ${styles.inputBgClass} ${textClass}`}
                       style={shouldStackInputActions ? undefined : { flex: 1 }}
                     />
-                    <Pressable
+                    <AnimatedChipPressable
                       onPress={() => addApplication(newSchoolInput).catch(() => {})}
                       className={`px-4 py-2 rounded-lg border items-center justify-center ${borderClass}`}
-                      style={shouldStackInputActions ? { width: "100%" } : undefined}
+                      containerStyle={shouldStackInputActions ? { width: "100%" } : undefined}
                     >
                       <Text className={`${textClass} text-sm font-medium`}>{t("roadmap.addApplication")}</Text>
-                    </Pressable>
+                    </AnimatedChipPressable>
                   </View>
                 ) : null}
                 {group.id === "interests" ? (
@@ -1190,13 +1195,13 @@ export default function RoadmapPage() {
                       className={`border p-2 rounded-lg ${styles.inputBgClass} ${textClass}`}
                       style={shouldStackInputActions ? undefined : { flex: 1 }}
                     />
-                    <Pressable
+                    <AnimatedChipPressable
                       onPress={() => addInterest(newInterestInput).catch(() => {})}
                       className={`px-4 py-2 rounded-lg border items-center justify-center ${borderClass}`}
-                      style={shouldStackInputActions ? { width: "100%" } : undefined}
+                      containerStyle={shouldStackInputActions ? { width: "100%" } : undefined}
                     >
                       <Text className={`${textClass} text-sm font-medium`}>{t("roadmap.addInterest")}</Text>
-                    </Pressable>
+                    </AnimatedChipPressable>
                   </View>
                 ) : null}
               </View>
@@ -1212,12 +1217,12 @@ export default function RoadmapPage() {
                     <Text className={textClass}>{t("roadmap.guestTools")}</Text>
                     <Text className={`${secondaryTextClass} text-sm mb-3`}>{t("roadmap.importExport")}</Text>
                     <View className="gap-2">
-                      <Pressable onPress={handleImportData} className="bg-emerald-500 rounded-lg px-4 py-3 items-center">
+                      <AnimatedChipPressable onPress={handleImportData} className="bg-emerald-500 rounded-lg px-4 py-3 items-center">
                         <Text className={`${isDark ? "text-white" : "text-emerald-900"} font-semibold`}>{t("settings.import")}</Text>
-                      </Pressable>
-                      <Pressable onPress={handleExportData} className={`${cardBgClass} border rounded-lg px-4 py-3 items-center`}>
+                      </AnimatedChipPressable>
+                      <AnimatedChipPressable onPress={handleExportData} className={`${cardBgClass} border rounded-lg px-4 py-3 items-center`}>
                         <Text className={secondaryTextClass}>{t("settings.export")}</Text>
-                      </Pressable>
+                      </AnimatedChipPressable>
                     </View>
                   </View>
                 </View>
@@ -1234,9 +1239,9 @@ export default function RoadmapPage() {
                     onSubmitEditing={handleSendAI}
                     className={`border p-2 rounded-lg mb-2 ${styles.inputBgClass} ${textClass}`}
                   />
-                  <Pressable onPress={handleSendAI} className="bg-emerald-500 rounded-lg px-4 py-2 mb-3 items-center">
+                  <AnimatedChipPressable onPress={handleSendAI} className="bg-emerald-500 rounded-lg px-4 py-2 mb-3 items-center">
                     <Text className={`${isDark ? "text-white" : "text-emerald-900"} font-semibold`}>{t("roadmap.sendMessage")}</Text>
-                  </Pressable>
+                  </AnimatedChipPressable>
                   {aiMessages.map((msg) => (
                     <View key={msg.id} className="mb-2">
                       <Text className={`${textClass} text-sm`}>
@@ -1269,11 +1274,11 @@ export default function RoadmapPage() {
                           Starter GRC-focused items using the shared opportunity model
                         </Text>
                       </View>
-                      <Pressable onPress={() => router.push(ROUTES.tabsResources)} className="self-start">
+                      <AnimatedIconPressable onPress={() => router.push(ROUTES.tabsResources)} className="self-start">
                         <Text className="text-emerald-500 text-sm font-medium">
                           {t("roadmap.viewAll")}
                         </Text>
-                      </Pressable>
+                      </AnimatedIconPressable>
                     </View>
 
                     <View className="gap-3">
@@ -1301,19 +1306,19 @@ export default function RoadmapPage() {
                                 : { flexDirection: "row", gap: 8 }
                             }
                           >
-                            <Pressable
+                            <AnimatedChipPressable
                               onPress={() => {
                                 void setOpportunityDone(opportunity.opportunityId, true);
                               }}
                               className="bg-emerald-500 rounded-lg px-3 py-2 items-center justify-center"
-                              style={shouldStackOpportunityActions ? undefined : { flex: 1 }}
+                              containerStyle={shouldStackOpportunityActions ? undefined : { flex: 1 }}
                             >
                               <Text className={`${isDark ? "text-white" : "text-emerald-900"} text-xs font-semibold`}>
                                 {t("roadmap.markDone")}
                               </Text>
-                            </Pressable>
+                            </AnimatedChipPressable>
 
-                            <Pressable
+                            <AnimatedChipPressable
                               onPress={() => {
                                 if (opportunity.externalUrl) {
                                   void Linking.openURL(opportunity.externalUrl);
@@ -1322,12 +1327,12 @@ export default function RoadmapPage() {
                                 router.push(ROUTES.tabsResources);
                               }}
                               className={`${cardBgClass} border ${borderClass} rounded-lg px-3 py-2 items-center justify-center`}
-                              style={shouldStackOpportunityActions ? undefined : { flex: 1 }}
+                              containerStyle={shouldStackOpportunityActions ? undefined : { flex: 1 }}
                             >
                               <Text className={`${secondaryTextClass} text-xs font-semibold`}>
                                 {t("roadmap.open")}
                               </Text>
-                            </Pressable>
+                            </AnimatedChipPressable>
                           </View>
                         </View>
                       ))}

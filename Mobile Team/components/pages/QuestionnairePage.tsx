@@ -1,9 +1,11 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { View, Text, TextInput, Pressable, ScrollView, useWindowDimensions } from "react-native";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { View, Text, TextInput, ScrollView, useWindowDimensions } from "react-native";
 import { router } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
+import { AnimatedChipPressable, AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
+import { GlassButton } from "@/components/ui/GlassButton";
 import { ROUTES } from "@/constants/routes";
 import { StateCard } from "@/components/ui/StateCard";
 import { useAppTheme } from "@/hooks/use-app-theme";
@@ -72,8 +74,9 @@ export default function QuestionnairePage() {
   const { isDark, isGreen, isLight } = useAppTheme();
   const { isHydrated, state, setQuestionnaireAnswers } = useAppData();
   const { t, language } = useAppLanguage();
-  const { width } = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
   const { getScrollContentPadding } = useResponsiveLayout();
+  const questionnaireScrollRef = useRef<ScrollView>(null);
 
   // Questionnaire is translation-driven so prompts/options update when language changes.
   const questions = useMemo<Question[]>(
@@ -146,6 +149,7 @@ export default function QuestionnairePage() {
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>(() => blankAnswers);
   const [locationModeDraft, setLocationModeDraft] = useState<LocationPrimaryOptionKey | null>(null);
+  const [isActionLocked, setIsActionLocked] = useState(false);
 
   useEffect(() => {
     if (!isHydrated) return;
@@ -206,6 +210,15 @@ export default function QuestionnairePage() {
   const headerPadding = isTablet ? 24 : isCompactPhone ? 16 : 20;
   const cardPadding = isTablet ? 28 : isCompactPhone ? 18 : 22;
   const textAreaMinHeight = isWideLayout ? 260 : isTablet ? 230 : 200;
+  const questionCardMinHeight = isWideLayout
+    ? Math.max(700, Math.min(height * 0.74, 860))
+    : isTablet
+      ? Math.max(560, Math.min(height * 0.68, 720))
+      : undefined;
+  const questionTitleMinHeight = isWideLayout ? 112 : isTablet ? 96 : 72;
+  const questionBodyMinHeight = typeof questionCardMinHeight === "number"
+    ? Math.max(280, questionCardMinHeight - (isWideLayout ? 280 : 250))
+    : undefined;
   const questionTitleStyle = {
     fontSize: isTablet ? 26 : 22,
     lineHeight: isTablet ? 36 : 30,
@@ -248,6 +261,11 @@ export default function QuestionnairePage() {
         ? "bg-white/95 border-emerald-200"
         : "bg-white/95 border-gray-200";
 
+  useEffect(() => {
+    questionnaireScrollRef.current?.scrollTo({ y: 0, animated: false });
+    setIsActionLocked(false);
+  }, [currentStep]);
+
   if (!isHydrated) {
     return (
       <ScreenBackground>
@@ -281,17 +299,21 @@ export default function QuestionnairePage() {
 
   const handleAnswer = (id: string, value: string) => setAnswers((p) => ({ ...p, [id]: value }));
 
-  const handleNext = async () => { 
+  const handleNext = async () => {
+    if (isActionLocked) return;
+
     if (currentStep < questions.length - 1) {
-      setCurrentStep((s) => s + 1);
+      setIsActionLocked(true);
+      setCurrentStep((s) => Math.min(s + 1, questions.length - 1));
       return;
     }
-    
-    // Normalize localized values before persisting/sharing with backend services.
-    const normalized = normalizeQuestionnaireAnswers(answers, language);
-    await setQuestionnaireAnswers(normalized); 
-    
+
+    setIsActionLocked(true);
+
     try {
+      // Normalize localized values before persisting/sharing with backend services.
+      const normalized = normalizeQuestionnaireAnswers(answers, language);
+      await setQuestionnaireAnswers(normalized);
 
       await collegeService.saveQuestionnaireResult(normalized); 
     } catch (error) {
@@ -304,21 +326,36 @@ export default function QuestionnairePage() {
         screen: "questionnaire",
         route: ROUTES.questionnaire,
       });
+    } finally {
+      setIsActionLocked(false);
     }
-    
+
     router.back(); 
   };
 
-  const handleBack = () => {
-    if (currentStep > 0) setCurrentStep((s) => s - 1);
-    else router.back();
+  const handlePreviousQuestion = () => {
+    if (isActionLocked || currentStep <= 0) return;
+    setIsActionLocked(true);
+    setCurrentStep((s) => Math.max(s - 1, 0));
   };
 
-  const handleSaveAndExit = async () => { 
-    const normalized = normalizeQuestionnaireAnswers(answers, language);
-    await setQuestionnaireAnswers(normalized); 
-    
+  const handleBack = () => {
+    if (isActionLocked) return;
+    if (currentStep > 0) {
+      handlePreviousQuestion();
+      return;
+    }
+    router.back();
+  };
+
+  const handleSaveAndExit = async () => {
+    if (isActionLocked) return;
+
+    setIsActionLocked(true);
+
     try {
+      const normalized = normalizeQuestionnaireAnswers(answers, language);
+      await setQuestionnaireAnswers(normalized);
       await collegeService.saveQuestionnaireResult(normalized);
     } catch (error) {
       void errorLoggingService.captureException(error, {
@@ -330,14 +367,17 @@ export default function QuestionnairePage() {
         screen: "questionnaire",
         route: ROUTES.questionnaire,
       });
+    } finally {
+      setIsActionLocked(false);
     }
-    
+
     router.back();
   };
 
   return (
     <ScreenBackground>
       <ScrollView
+        ref={questionnaireScrollRef}
         className="flex-1"
         keyboardShouldPersistTaps="handled"
         contentContainerStyle={scrollContentPadding}
@@ -424,15 +464,16 @@ export default function QuestionnairePage() {
             <View style={{ flex: 1, minWidth: 0, width: "100%", maxWidth: isWideLayout ? 820 : undefined, alignSelf: "center" }}>
               <View className={`${cardBgClass} border rounded-3xl`} style={{ padding: headerPadding }}>
                 <View className="flex-row items-start">
-                  <Pressable
+                  <AnimatedIconPressable
                     onPress={() => {
-                      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                      void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                       handleBack();
                     }}
                     className={`h-11 w-11 mr-4 items-center justify-center rounded-2xl border ${inputBgClass}`}
+                    disabled={isActionLocked}
                   >
                     <MaterialIcons name="arrow-back" size={24} color={placeholderColor} />
-                  </Pressable>
+                  </AnimatedIconPressable>
 
                   <View style={{ flex: 1, minWidth: 0 }}>
                     <Text className={`${textClass} font-semibold`} style={{ fontSize: isTablet ? 28 : 22, lineHeight: isTablet ? 34 : 28 }}>
@@ -454,11 +495,17 @@ export default function QuestionnairePage() {
                 </View>
               </View>
 
-              <View className={`${cardBgClass} border rounded-3xl mt-5`} style={{ padding: cardPadding }}>
-                <Text className={`${textClass} font-semibold mb-6`} style={questionTitleStyle}>
-                  {currentQuestion.question}
-                </Text>
+              <View
+                className={`${cardBgClass} border rounded-3xl mt-5`}
+                style={{ padding: cardPadding, minHeight: questionCardMinHeight }}
+              >
+                <View style={{ minHeight: questionTitleMinHeight, marginBottom: 24 }}>
+                  <Text className={`${textClass} font-semibold`} style={questionTitleStyle}>
+                    {currentQuestion.question}
+                  </Text>
+                </View>
 
+                <View style={{ flexGrow: 1, minHeight: questionBodyMinHeight }}>
                 {currentQuestion.type === "section" ? (
                   <View>
                     <Text className={`text-sm ${secondaryTextClass} mb-3`} style={{ lineHeight: 22 }}>
@@ -527,7 +574,7 @@ export default function QuestionnairePage() {
                         const isSelected = selectedLocationMode === option.key;
 
                         return (
-                          <Pressable
+                          <AnimatedChipPressable
                             key={option.key}
                             onPress={() => {
                               Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -563,9 +610,10 @@ export default function QuestionnairePage() {
                                 parsedLocation.kind === "other" ? buildOtherLocationPreference(parsedLocation.otherText) : ""
                               );
                             }}
-                            className={`w-full rounded-2xl border px-4 py-4 ${
+                            className={`rounded-2xl border px-4 py-4 ${
                               isSelected ? "bg-emerald-500/10 border-emerald-500" : idleOptionClass
                             }`}
+                            containerStyle={{ width: "100%" }}
                           >
                             <View className="flex-row items-start justify-between">
                               <View style={{ flex: 1, minWidth: 0, paddingRight: 12 }}>
@@ -575,7 +623,7 @@ export default function QuestionnairePage() {
                               </View>
                               {isSelected ? <MaterialIcons name="check-circle" size={20} color="#008f4e" /> : null}
                             </View>
-                          </Pressable>
+                          </AnimatedChipPressable>
                         );
                       })}
                     </View>
@@ -590,7 +638,7 @@ export default function QuestionnairePage() {
                             const isSelected = parsedLocation.kind === "state" && parsedLocation.state === stateOption;
 
                             return (
-                              <Pressable
+                              <AnimatedChipPressable
                                 key={stateOption}
                                 onPress={() => {
                                   Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -604,7 +652,7 @@ export default function QuestionnairePage() {
                                 <Text className={isSelected ? "text-emerald-500 font-semibold" : textClass}>
                                   {stateOption}
                                 </Text>
-                              </Pressable>
+                              </AnimatedChipPressable>
                             );
                           })}
                         </View>
@@ -621,7 +669,7 @@ export default function QuestionnairePage() {
                             const isSelected = parsedLocation.kind === "region" && parsedLocation.regionKey === option.key;
 
                             return (
-                              <Pressable
+                              <AnimatedChipPressable
                                 key={option.key}
                                 onPress={() => {
                                   Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -631,6 +679,7 @@ export default function QuestionnairePage() {
                                 className={`rounded-2xl border px-4 py-3 ${
                                   isSelected ? "bg-emerald-500/10 border-emerald-500" : borderClass
                                 }`}
+                                containerStyle={{ width: "100%" }}
                               >
                                 <View className="flex-row items-start justify-between">
                                   <View style={{ flex: 1, minWidth: 0, paddingRight: 12 }}>
@@ -640,7 +689,7 @@ export default function QuestionnairePage() {
                                   </View>
                                   {isSelected ? <MaterialIcons name="check-circle" size={18} color="#008f4e" /> : null}
                                 </View>
-                              </Pressable>
+                              </AnimatedChipPressable>
                             );
                           })}
                         </View>
@@ -668,15 +717,16 @@ export default function QuestionnairePage() {
                       const isSelected = answers[currentQuestion.id] === option;
 
                       return (
-                        <Pressable
+                        <AnimatedChipPressable
                           key={option}
                           onPress={() => {
                             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                             handleAnswer(currentQuestion.id, option);
                           }}
-                          className={`w-full rounded-2xl border px-4 py-4 ${
+                          className={`rounded-2xl border px-4 py-4 ${
                             isSelected ? "bg-emerald-500/10 border-emerald-500" : idleOptionClass
                           }`}
+                          containerStyle={{ width: "100%" }}
                         >
                           <View className="flex-row items-start justify-between">
                             <View style={{ flex: 1, minWidth: 0, paddingRight: 12 }}>
@@ -686,39 +736,56 @@ export default function QuestionnairePage() {
                             </View>
                             {isSelected ? <MaterialIcons name="check-circle" size={20} color="#008f4e" /> : null}
                           </View>
-                        </Pressable>
+                        </AnimatedChipPressable>
                       );
                     })}
                   </View>
                 ) : null}
+                </View>
 
                 <View className={`mt-6 pt-6 border-t ${borderClass}`} style={{ gap: 12 }}>
                   <View style={{ flexDirection: isTablet ? "row" : "column", gap: 12 }}>
-                    <Pressable
+                    <GlassButton
                       onPress={() => {
-                        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                        handleNext();
+                        void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                        handlePreviousQuestion();
                       }}
-                      className={`bg-emerald-500 rounded-2xl py-4 items-center justify-center ${!isHydrated ? "opacity-60" : ""}`}
-                      style={{ flex: isTablet ? 1 : undefined, width: isTablet ? undefined : "100%" }}
-                      disabled={!isHydrated}
-                    >
-                      <Text className={`${isDark ? "text-white" : "text-emerald-900"} font-semibold`}>
-                        {currentStep === questions.length - 1 ? t("questionnaire.complete") : t("questionnaire.next")}
-                      </Text>
-                    </Pressable>
+                      label={t("general.back")}
+                      variant="secondary"
+                      style={{
+                        flex: isTablet ? 1 : undefined,
+                        width: isTablet ? undefined : "100%",
+                        opacity: !isHydrated || isActionLocked || currentStep === 0 ? 0.6 : 1,
+                      }}
+                      disabled={!isHydrated || isActionLocked || currentStep === 0}
+                    />
 
-                    <Pressable
+                    <GlassButton
                       onPress={() => {
-                        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-                        handleSaveAndExit();
+                        void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                        void handleNext();
                       }}
-                      className={`${isDark ? "bg-gray-800 border-gray-700" : isGreen ? "bg-emerald-900/60 border-emerald-700" : "bg-emerald-50 border-emerald-200"} border rounded-2xl py-4 items-center justify-center ${!isHydrated ? "opacity-60" : ""}`}
-                      style={{ flex: isTablet ? 1 : undefined, width: isTablet ? undefined : "100%" }}
-                      disabled={!isHydrated}
-                    >
-                      <Text className={`${textClass} font-semibold`}>{t("questionnaire.saveAndExit")}</Text>
-                    </Pressable>
+                      label={
+                        isActionLocked && currentStep === questions.length - 1
+                          ? t("general.loading")
+                          : currentStep === questions.length - 1
+                            ? t("questionnaire.complete")
+                            : t("questionnaire.next")
+                      }
+                      style={{ flex: isTablet ? 1 : undefined, width: isTablet ? undefined : "100%", opacity: !isHydrated || isActionLocked ? 0.6 : 1 }}
+                      disabled={!isHydrated || isActionLocked}
+                    />
+
+                    <GlassButton
+                      onPress={() => {
+                        void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+                        void handleSaveAndExit();
+                      }}
+                      label={isActionLocked ? t("general.loading") : t("questionnaire.saveAndExit")}
+                      variant="secondary"
+                      style={{ flex: isTablet ? 1 : undefined, width: isTablet ? undefined : "100%", opacity: !isHydrated || isActionLocked ? 0.6 : 1 }}
+                      disabled={!isHydrated || isActionLocked}
+                    />
                   </View>
                 </View>
               </View>

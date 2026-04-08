@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
-import { View, Text, Pressable, ScrollView, useWindowDimensions, Linking, Image, type DimensionValue } from "react-native";
+import { View, Text, ScrollView, useWindowDimensions, Linking, Image, type DimensionValue } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -10,6 +10,11 @@ import { useAppData } from "@/hooks/use-app-data";
 import { useOpportunities } from "@/hooks/use-opportunities";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
+import {
+  AnimatedCardPressable,
+  AnimatedChipPressable,
+  AnimatedIconPressable,
+} from "@/components/ui/AnimatedPressables";
 import { OpportunityCarouselWheel } from "@/components/ui/OpportunityCarouselWheel";
 import { HomeTaskMarquee, type HomeTaskMarqueeItem } from "@/components/ui/HomeTaskMarquee";
 import { deadlineCalendarService, errorLoggingService, roadmapService } from "@/services";
@@ -121,7 +126,9 @@ export default function HomePage() {
   );
   const wheelOpportunities = useMemo(() => {
     const curated = unfinishedRecommendedOpportunities.filter(
-      (opportunity) => opportunity.type !== "college_deadline"
+      (opportunity) =>
+        opportunity.type !== "college_deadline" &&
+        opportunity.type !== "general_deadline"
     );
     const source = curated.length >= 3 ? curated : unfinishedRecommendedOpportunities;
     return source.slice(0, 7);
@@ -242,7 +249,18 @@ export default function HomePage() {
     ? { width: "100%" as DimensionValue }
     : { width: "48.8%" as DimensionValue };
   const renderGuestAccountCta = ({ desktop }: { desktop: boolean }) => (
-    <View style={desktop ? { flex: 1, justifyContent: "space-between" } : undefined}>
+    <View
+      style={
+        desktop
+          ? {
+              flex: 1,
+              justifyContent: "center",
+              gap: 24,
+              minHeight: "100%",
+            }
+          : undefined
+      }
+    >
       <View className={`flex-row items-start ${desktop ? "gap-4" : "gap-3"}`}>
         <View
           className={`${desktop ? "rounded-[24px]" : "rounded-full"} ${guestCtaIconBgClass} items-center justify-center ${desktop ? "" : "mt-1"}`}
@@ -262,20 +280,22 @@ export default function HomePage() {
       </View>
 
       <View className={`flex-row gap-2 ${desktop ? "mt-5" : "mt-3"}`}>
-        <Pressable
+        <AnimatedChipPressable
           onPress={() => router.push(ROUTES.login)}
-          className={`flex-1 ${guestCtaPrimaryButtonClass} rounded-lg py-2 items-center justify-center`}
+          className={`${guestCtaPrimaryButtonClass} rounded-lg py-2 items-center justify-center`}
+          containerStyle={{ flex: 1 }}
         >
           <Text className={`${guestCtaPrimaryTextClass} font-semibold text-sm`}>{t("home.signUp")}</Text>
-        </Pressable>
+        </AnimatedChipPressable>
 
         {!desktop ? (
-          <Pressable
+          <AnimatedChipPressable
             onPress={() => setDismissedGuestPrompt(true)}
-            className={`flex-1 ${guestCtaSecondaryButtonClass} rounded-lg py-2 items-center justify-center`}
+            className={`${guestCtaSecondaryButtonClass} rounded-lg py-2 items-center justify-center`}
+            containerStyle={{ flex: 1 }}
           >
             <Text className={`${guestCtaSecondaryTextClass} font-semibold text-sm`}>{t("home.later")}</Text>
-          </Pressable>
+          </AnimatedChipPressable>
         ) : null}
       </View>
     </View>
@@ -457,7 +477,12 @@ export default function HomePage() {
   );
   const getOpportunityTypeLabel = useCallback(
     (opportunity: MatchedOpportunity) => {
-      if (opportunity.type === "college_deadline") return t("home.opportunityTypeDeadline");
+      if (
+        opportunity.type === "college_deadline" ||
+        opportunity.type === "general_deadline"
+      ) {
+        return t("home.opportunityTypeDeadline");
+      }
       if (opportunity.type === "scholarship") return t("home.opportunityTypeScholarship");
       return t("home.opportunityTypeInternship");
     },
@@ -543,7 +568,12 @@ export default function HomePage() {
     if (!hasBlockingSetupTasks && desktopPrimaryOpportunity) {
       tasks.push({
         id: `opportunity-${desktopPrimaryOpportunity.opportunityId}`,
-        icon: desktopPrimaryOpportunity.type === "scholarship" ? "gift-outline" : "briefcase-outline",
+        icon:
+          desktopPrimaryOpportunity.type === "scholarship"
+            ? "gift-outline"
+            : desktopPrimaryOpportunity.type === "internship"
+              ? "briefcase-outline"
+              : "calendar-outline",
         title: t("home.desktopTaskApplyNextTitle", { title: desktopPrimaryOpportunity.title }),
         body: t("home.desktopTaskApplyNextBody", {
           due: getLocalizedOpportunityDueLabel(desktopPrimaryOpportunity.computedDueAt),
@@ -582,7 +612,12 @@ export default function HomePage() {
     if (hasBlockingSetupTasks && desktopPrimaryOpportunity) {
       tasks.push({
         id: `opportunity-preview-${desktopPrimaryOpportunity.opportunityId}`,
-        icon: desktopPrimaryOpportunity.type === "scholarship" ? "gift-outline" : "briefcase-outline",
+        icon:
+          desktopPrimaryOpportunity.type === "scholarship"
+            ? "gift-outline"
+            : desktopPrimaryOpportunity.type === "internship"
+              ? "briefcase-outline"
+              : "calendar-outline",
         title: t("home.desktopTaskOpportunityWaitingTitle", {
           title: desktopPrimaryOpportunity.title,
         }),
@@ -660,7 +695,8 @@ export default function HomePage() {
       pushItem({
         id: `marquee-${opportunity.opportunityId}`,
         title:
-          opportunity.type === "college_deadline"
+          opportunity.type === "college_deadline" ||
+          opportunity.type === "general_deadline"
             ? t("home.desktopMarqueeReviewTitle", { title: opportunity.title })
             : t("home.desktopMarqueeApplyTitle", { title: opportunity.title }),
         body: opportunity.summary,
@@ -670,9 +706,11 @@ export default function HomePage() {
         icon:
           opportunity.type === "scholarship"
             ? "gift-outline"
-            : opportunity.type === "college_deadline"
-              ? "school-outline"
-              : "briefcase-outline",
+            : opportunity.type === "internship"
+              ? "briefcase-outline"
+              : opportunity.type === "college_deadline"
+                ? "school-outline"
+                : "calendar-outline",
         badge: opportunity.computedDueAt ? getLocalizedOpportunityDueLabel(opportunity.computedDueAt) : null,
         onPress: () => {
           void openOpportunity(opportunity);
@@ -894,7 +932,7 @@ export default function HomePage() {
       {entries.length ? (
         <View className="gap-3">
           {entries.map((entry) => (
-            <Pressable
+            <AnimatedCardPressable
               key={entry.id}
               onPress={() => {
                 void handleOpenDeadlineEntry(entry);
@@ -930,7 +968,7 @@ export default function HomePage() {
                   </Text>
                 </View>
               </View>
-            </Pressable>
+            </AnimatedCardPressable>
           ))}
         </View>
       ) : (
@@ -1016,7 +1054,7 @@ export default function HomePage() {
           </View>
 
           {desktopNextDeadlineEntry ? (
-            <Pressable
+            <AnimatedCardPressable
               onPress={() => {
                 void handleOpenDeadlineEntry(desktopNextDeadlineEntry);
               }}
@@ -1040,7 +1078,7 @@ export default function HomePage() {
                   </Text>
                 </View>
               </View>
-            </Pressable>
+            </AnimatedCardPressable>
           ) : (
             <View className={`border rounded-3xl p-4 ${dashboardMutedClass}`}>
               <Text className={`${textClass} font-semibold`}>No deadlines yet</Text>
@@ -1050,12 +1088,12 @@ export default function HomePage() {
             </View>
           )}
 
-          <Pressable
+          <AnimatedChipPressable
             onPress={openCalendar}
             className="mt-4 rounded-xl bg-emerald-500 px-4 py-3 items-center"
           >
             <Text className="text-white font-semibold">Open deadline calendar</Text>
-          </Pressable>
+          </AnimatedChipPressable>
         </View>
 
         {renderDeadlinePanel(desktopCombinedDeadlineEntries)}
@@ -1181,7 +1219,7 @@ export default function HomePage() {
                               : "text-sky-800";
 
                       return (
-                        <Pressable
+                        <AnimatedCardPressable
                           key={task.id}
                           onPress={task.onPress}
                           className={`border rounded-2xl p-4 ${toneClass}`}
@@ -1207,7 +1245,7 @@ export default function HomePage() {
                               color={placeholderTextColor}
                             />
                           </View>
-                        </Pressable>
+                        </AnimatedCardPressable>
                       );
                     })}
                   </View>
@@ -1217,7 +1255,7 @@ export default function HomePage() {
               {!isDesktopHome ? (
                 <>
               {!hasCompletedQuestionnaire && (
-                <Pressable
+                <AnimatedCardPressable
                   onPress={() => router.push(ROUTES.questionnaire)}
                   className="w-full rounded-2xl p-4 flex-row items-center bg-emerald-500 mb-4"
                 >
@@ -1229,10 +1267,10 @@ export default function HomePage() {
                     <Text className="text-emerald-900/70 text-sm">{t("home.getPersonalizedRecommendations")}</Text>
                   </View>
                   <Ionicons name="sparkles" size={18} color="#000" />
-                </Pressable>
+                </AnimatedCardPressable>
               )}
 
-              <Pressable
+              <AnimatedCardPressable
                 onPress={() => router.push(ROUTES.roadmap)}
                 className={`w-full rounded-2xl p-4 flex-row items-center ${cardClass} border`}
               >
@@ -1244,9 +1282,9 @@ export default function HomePage() {
                   <Text className={`${secondaryTextClass} text-sm`}>{t("home.trackApplicationJourney")}</Text>
                 </View>
                 <Ionicons name="chevron-forward" size={18} color={placeholderTextColor} />
-              </Pressable>
+              </AnimatedCardPressable>
 
-              <Pressable
+              <AnimatedCardPressable
                 onPress={openCalendar}
                 className={`w-full rounded-2xl p-4 flex-row items-center ${cardClass} border mt-4`}
               >
@@ -1260,7 +1298,7 @@ export default function HomePage() {
                   </Text>
                 </View>
                 <Ionicons name="chevron-forward" size={18} color={placeholderTextColor} />
-              </Pressable>
+              </AnimatedCardPressable>
 
               {!isDesktopHome && featuredOpportunities.length ? (
                 <View className={`${cardClass} border rounded-2xl p-4 mt-4`}>
@@ -1289,7 +1327,7 @@ export default function HomePage() {
                       </View>
                     </View>
 
-                    <Pressable
+                    <AnimatedIconPressable
                       onPress={() => router.push(ROUTES.tabsResources)}
                       style={
                         mobileOpportunityHeaderShouldStack
@@ -1298,12 +1336,12 @@ export default function HomePage() {
                       }
                     >
                       <Text className="text-emerald-500 text-sm font-medium">View all</Text>
-                    </Pressable>
+                    </AnimatedIconPressable>
                   </View>
 
                   <View className="gap-3">
                     {featuredOpportunities.map((opportunity) => (
-                      <Pressable
+                      <AnimatedCardPressable
                         key={opportunity.opportunityId}
                         onPress={() => {
                           void openOpportunity(opportunity);
@@ -1333,7 +1371,7 @@ export default function HomePage() {
                             )}
                           </View>
                         </View>
-                      </Pressable>
+                      </AnimatedCardPressable>
                     ))}
                   </View>
                 </View>
@@ -1395,12 +1433,12 @@ export default function HomePage() {
                       </View>
                     </View>
 
-                    <Pressable
+                    <AnimatedIconPressable
                       onPress={() => router.push(ROUTES.tabsSettings)}
                       style={desktopHeaderShouldStack ? { alignSelf: "flex-start" } : undefined}
                     >
                       <Text className="text-emerald-500 text-sm font-medium">Manage</Text>
-                    </Pressable>
+                    </AnimatedIconPressable>
                   </View>
 
                   <View className="gap-3">
@@ -1431,7 +1469,7 @@ export default function HomePage() {
                               : "text-sky-800";
 
                       return (
-                        <Pressable
+                        <AnimatedCardPressable
                           key={message.id}
                           onPress={message.onPress}
                           className={`border rounded-2xl p-4 ${toneClass}`}
@@ -1457,7 +1495,7 @@ export default function HomePage() {
                               color={placeholderTextColor}
                             />
                           </View>
-                        </Pressable>
+                        </AnimatedCardPressable>
                       );
                     })}
                   </View>
@@ -1491,12 +1529,12 @@ export default function HomePage() {
                       </View>
                     </View>
 
-                    <Pressable
+                    <AnimatedIconPressable
                       onPress={() => router.push(ROUTES.roadmap)}
                       style={desktopHeaderShouldStack ? { alignSelf: "flex-start" } : undefined}
                     >
                       <Text className="text-emerald-500 text-sm font-medium">Roadmap</Text>
-                    </Pressable>
+                    </AnimatedIconPressable>
                   </View>
 
                   {user?.uid && !desktopRoadmap ? (
@@ -1595,22 +1633,26 @@ export default function HomePage() {
                             : { flexDirection: "row", gap: 12 }
                         }
                       >
-                        <Pressable
+                        <AnimatedChipPressable
                           onPress={() => router.push(ROUTES.roadmap)}
-                          className="flex-1 rounded-xl bg-emerald-500 px-4 py-3 items-center"
-                          style={desktopActionCardsShouldStack ? { width: "100%" } : undefined}
+                          className="rounded-xl bg-emerald-500 px-4 py-3 items-center"
+                          containerStyle={
+                            desktopActionCardsShouldStack ? { width: "100%" } : { flex: 1 }
+                          }
                         >
                           <Text className="text-white font-semibold">Open roadmap</Text>
-                        </Pressable>
-                        <Pressable
+                        </AnimatedChipPressable>
+                        <AnimatedChipPressable
                           onPress={openCalendar}
-                          className={`flex-1 rounded-xl px-4 py-3 items-center border ${isDark ? "border-gray-700 bg-gray-900" : isLight ? "border-emerald-200 bg-white" : "border-gray-200 bg-white"}`}
-                          style={desktopActionCardsShouldStack ? { width: "100%" } : undefined}
+                          className={`rounded-xl px-4 py-3 items-center border ${isDark ? "border-gray-700 bg-gray-900" : isLight ? "border-emerald-200 bg-white" : "border-gray-200 bg-white"}`}
+                          containerStyle={
+                            desktopActionCardsShouldStack ? { width: "100%" } : { flex: 1 }
+                          }
                         >
                           <Text className={`${isDark ? "text-white" : "text-emerald-900"} font-semibold`}>
                             Open calendar
                           </Text>
-                        </Pressable>
+                        </AnimatedChipPressable>
                       </View>
                     </View>
                   )}
@@ -1629,10 +1671,10 @@ export default function HomePage() {
                 }
               >
                 {!hasCompletedQuestionnaire ? (
-                  <Pressable
+                  <AnimatedCardPressable
                     onPress={() => router.push(ROUTES.questionnaire)}
                     className="rounded-2xl p-4 flex-row items-center bg-emerald-500"
-                    style={desktopActionCardsShouldStack ? { width: "100%" } : { flex: 1, minWidth: 220 }}
+                    containerStyle={desktopActionCardsShouldStack ? { width: "100%" } : { flex: 1, minWidth: 220 }}
                   >
                     <View className="mr-3 p-2 rounded-xl bg-emerald-900/10">
                       <Ionicons name="document-text" size={18} color="#000" />
@@ -1642,13 +1684,13 @@ export default function HomePage() {
                       <Text className="text-emerald-900/70 text-sm">{t("home.getPersonalizedRecommendations")}</Text>
                     </View>
                     <Ionicons name="sparkles" size={18} color="#000" />
-                  </Pressable>
+                  </AnimatedCardPressable>
                 ) : null}
 
-                <Pressable
+                <AnimatedCardPressable
                   onPress={() => router.push(ROUTES.roadmap)}
                   className={`rounded-2xl p-4 flex-row items-center ${cardClass} border`}
-                  style={desktopActionCardsShouldStack ? { width: "100%" } : { flex: 1, minWidth: 220 }}
+                  containerStyle={desktopActionCardsShouldStack ? { width: "100%" } : { flex: 1, minWidth: 220 }}
                 >
                   <View className="mr-3 p-2 rounded-xl bg-emerald-500/20">
                     <Ionicons name="map" size={18} color="#008f4e" />
@@ -1658,12 +1700,12 @@ export default function HomePage() {
                     <Text className={`${secondaryTextClass} text-sm`}>{t("home.trackApplicationJourney")}</Text>
                   </View>
                   <Ionicons name="chevron-forward" size={18} color={placeholderTextColor} />
-                </Pressable>
+                </AnimatedCardPressable>
 
-                <Pressable
+                <AnimatedCardPressable
                   onPress={openCalendar}
                   className={`rounded-2xl p-4 flex-row items-center ${cardClass} border`}
-                  style={desktopActionCardsShouldStack ? { width: "100%" } : { flex: 1, minWidth: 220 }}
+                  containerStyle={desktopActionCardsShouldStack ? { width: "100%" } : { flex: 1, minWidth: 220 }}
                 >
                   <View className="mr-3 p-2 rounded-xl bg-emerald-500/20">
                     <Ionicons name="calendar-outline" size={18} color="#008f4e" />
@@ -1675,7 +1717,7 @@ export default function HomePage() {
                     </Text>
                   </View>
                   <Ionicons name="chevron-forward" size={18} color={placeholderTextColor} />
-                </Pressable>
+                </AnimatedCardPressable>
               </View>
 
               {showExtraInfoPrompt ? (
@@ -1749,14 +1791,14 @@ export default function HomePage() {
               {tourStepIndex + 1} of {tourSteps.length}
             </Text>
             <View className="flex-row justify-between mt-4">
-              <Pressable onPress={completeTour} className="px-3 py-2 rounded-lg bg-black/25">
+              <AnimatedChipPressable onPress={completeTour} className="px-3 py-2 rounded-lg bg-black/25">
                 <Text className="text-white font-semibold">Exit tutorial</Text>
-              </Pressable>
-              <Pressable onPress={advanceTour} className="px-3 py-2 rounded-lg bg-emerald-500">
+              </AnimatedChipPressable>
+              <AnimatedChipPressable onPress={advanceTour} className="px-3 py-2 rounded-lg bg-emerald-500">
                 <Text className={`${isDark ? "text-white" : "text-emerald-900"} font-semibold`}>
                   {tourStepIndex === tourSteps.length - 1 ? "Finish" : "Next"}
                 </Text>
-              </Pressable>
+              </AnimatedChipPressable>
             </View>
             <View
               style={{

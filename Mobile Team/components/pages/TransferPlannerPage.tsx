@@ -16,6 +16,11 @@ import {
 import { useTranslation } from "react-i18next";
 
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
+import {
+  AnimatedCardPressable,
+  AnimatedChipPressable,
+  AnimatedIconPressable,
+} from "@/components/ui/AnimatedPressables";
 import { ROUTES } from "@/constants/routes";
 import { StateCard } from "@/components/ui/StateCard";
 import {
@@ -408,7 +413,7 @@ function SelectorField({
             selectTextOnFocus
             className={`${textClass} text-sm flex-1 min-w-0`}
           />
-          <Pressable
+          <AnimatedIconPressable
             onPress={onToggle}
             className="ml-3"
             hitSlop={8}
@@ -418,10 +423,10 @@ function SelectorField({
               size={22}
               color="#008f4e"
             />
-          </Pressable>
+          </AnimatedIconPressable>
         </View>
       ) : (
-        <Pressable
+        <AnimatedCardPressable
           onPress={onToggle}
           className={`mt-4 border ${borderClass} rounded-2xl px-4 py-4 flex-row items-center justify-between`}
         >
@@ -435,7 +440,7 @@ function SelectorField({
             size={22}
             color="#008f4e"
           />
-        </Pressable>
+        </AnimatedCardPressable>
       )}
 
       {open ? (
@@ -447,7 +452,7 @@ function SelectorField({
           ) : null}
 
           {filteredOptions.map((option) => (
-            <Pressable
+            <AnimatedCardPressable
               key={option.id}
               onPress={() => {
                 setSearchQuery("");
@@ -461,7 +466,7 @@ function SelectorField({
                   {option.description}
                 </Text>
               ) : null}
-            </Pressable>
+            </AnimatedCardPressable>
           ))}
 
           {searchable && effectiveQuery && !filteredOptions.length ? (
@@ -556,18 +561,18 @@ function TranscriptSummaryCard({
         </View>
 
         <View className="gap-3 mt-4">
-          <Pressable
+          <AnimatedChipPressable
             onPress={onUpload}
             className="px-4 py-3 rounded-2xl bg-emerald-500 border border-emerald-500 items-center"
           >
             <Text className="text-white font-medium">Upload unofficial transcript</Text>
-          </Pressable>
-          <Pressable
+          </AnimatedChipPressable>
+          <AnimatedChipPressable
             onPress={onOpenTranscriptLink}
             className="px-4 py-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 items-center"
           >
             <Text className="text-emerald-500 font-medium">Get transcript in ctcLink</Text>
-          </Pressable>
+          </AnimatedChipPressable>
         </View>
 
       <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-5`}>
@@ -674,9 +679,9 @@ function TranscriptSummaryCard({
         </View>
       </View>
 
-      <Pressable onPress={onUpload} className="self-start mt-3">
+      <AnimatedIconPressable onPress={onUpload} className="self-start" containerStyle={{ marginTop: 12 }}>
         <Text className="text-emerald-500 text-sm font-medium">Update transcript</Text>
-      </Pressable>
+      </AnimatedIconPressable>
 
       {isAnalyzing ? (
         <View className="flex-row items-center mt-4">
@@ -691,12 +696,13 @@ function TranscriptSummaryCard({
         <View className="mt-4 px-4 py-4 rounded-2xl bg-amber-500/10 border border-amber-500/20">
           <Text className="text-amber-500 font-semibold">Transcript needs another try</Text>
           <Text className={`${secondaryTextClass} text-sm mt-1`}>{errorMessage}</Text>
-          <Pressable
+          <AnimatedIconPressable
             onPress={() => void openExternalLink(CTCLINK_UNOFFICIAL_TRANSCRIPT_URL)}
-            className="self-start mt-3"
+            className="self-start"
+            containerStyle={{ marginTop: 12 }}
           >
             <Text className="text-emerald-500 font-medium">Open unofficial transcript in ctcLink</Text>
-          </Pressable>
+          </AnimatedIconPressable>
         </View>
       ) : null}
 
@@ -1060,7 +1066,7 @@ function MajorSpecificsSection({
 
   return (
     <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-4`}>
-      <Pressable
+      <AnimatedCardPressable
         onPress={() => setIsReferenceOpen((currentValue) => !currentValue)}
         accessibilityRole="button"
         accessibilityState={{ expanded: isReferenceOpen }}
@@ -1082,7 +1088,7 @@ function MajorSpecificsSection({
             color="#9CA3AF"
           />
         </View>
-      </Pressable>
+      </AnimatedCardPressable>
 
       {isReferenceOpen ? (
         <>
@@ -1092,7 +1098,7 @@ function MajorSpecificsSection({
               <Text className={`${secondaryTextClass} text-sm`}>
                 This is the main UW page the planner should use for the full degree requirements for this major.
               </Text>
-              <Pressable
+              <AnimatedCardPressable
                 onPress={() => void openExternalLink(primaryUwDegreeLink.url)}
                 className={`border ${borderClass} rounded-2xl px-4 py-4`}
               >
@@ -1102,7 +1108,7 @@ function MajorSpecificsSection({
                 <Text className={`${secondaryTextClass} text-sm mt-1`}>
                   {primaryUwDegreeLink.url}
                 </Text>
-              </Pressable>
+              </AnimatedCardPressable>
             </View>
           ) : null}
 
@@ -1795,9 +1801,10 @@ export default function TransferPlannerPage() {
           }}
         >
           <View className="gap-4">
-            <Pressable
+            <AnimatedIconPressable
               onPress={handleGoBack}
-              className="flex-row items-center self-start"
+              className="flex-row items-center"
+              containerStyle={{ alignSelf: "flex-start" }}
             >
               <MaterialIcons
                 name="arrow-back"
@@ -1807,7 +1814,7 @@ export default function TransferPlannerPage() {
               <Text className={`${secondaryTextClass} ml-2`}>
                 {backLabel}
               </Text>
-            </Pressable>
+            </AnimatedIconPressable>
 
             <View className="flex-row items-start">
               <View className="w-12 h-12 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">

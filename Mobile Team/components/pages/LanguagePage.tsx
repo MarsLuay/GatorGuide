@@ -1,4 +1,4 @@
-import { View, Text, Pressable, ScrollView, useWindowDimensions } from "react-native";
+import { View, Text, ScrollView, useWindowDimensions } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import useBack from "@/hooks/use-back";
@@ -7,6 +7,7 @@ import { useAppLanguage } from "@/hooks/use-app-language";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import { Language } from "@/services/app/translations";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
+import { AnimatedCardPressable, AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
 
 type LanguageOption = {
   key: Language;
@@ -89,17 +90,18 @@ export default function LanguagePage() {
           }}
         >
           <View className="pb-6">
-            <Pressable
+            <AnimatedIconPressable
               onPress={back}
-              className="mb-4 items-center"
+              containerClassName="mb-4"
+              className="items-center"
               style={{
                 flexDirection: isPageRTL ? "row-reverse" : "row",
-                alignSelf: isPageRTL ? "flex-end" : "flex-start",
               }}
+              containerStyle={{ alignSelf: isPageRTL ? "flex-end" : "flex-start" }}
             >
               <MaterialIcons name={isPageRTL ? "arrow-forward" : "arrow-back"} size={20} color={iconColor} />
               <Text className={`${secondaryTextClass} ${isPageRTL ? "mr-2" : "ml-2"}`}>{t("general.back")}</Text>
-            </Pressable>
+            </AnimatedIconPressable>
 
             <Text className={`text-2xl ${isPageRTL ? "text-right" : ""} ${textClass}`}>{t("settings.language")}</Text>
           </View>
@@ -116,13 +118,15 @@ export default function LanguagePage() {
               const isNativeRTL = lang.direction === "rtl";
 
               return (
-                <Pressable
+                <AnimatedCardPressable
                   key={lang.key}
                   onPress={() => handleSelectLanguage(lang.key)}
                   className={`${cardBgClass} border rounded-2xl px-4 py-4`}
-                  style={{
+                  containerStyle={{
                     width: optionCardWidth,
                     minHeight: optionMinHeight,
+                  }}
+                  style={{
                     justifyContent: "center",
                     borderColor: isSelected ? "#10B981" : undefined,
                     backgroundColor: isSelected
@@ -182,7 +186,7 @@ export default function LanguagePage() {
                       )}
                     </View>
                   </View>
-                </Pressable>
+                </AnimatedCardPressable>
               );
             })}
           </View>

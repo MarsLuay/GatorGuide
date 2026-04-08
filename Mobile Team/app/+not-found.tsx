@@ -1,10 +1,11 @@
 import React from "react";
-import { View, Text, Pressable } from "react-native";
+import { View, Text } from "react-native";
 import { useRouter } from "expo-router";
 import { ROUTES } from "@/constants/routes";
 import useBack from "@/hooks/use-back";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppTheme } from "@/hooks/use-app-theme";
+import { AnimatedChipPressable, AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
 
 export default function NotFound() {
   const router = useRouter();
@@ -23,16 +24,17 @@ export default function NotFound() {
             The page you’re looking for doesn’t exist or was moved.
           </Text>
 
-          <Pressable
+          <AnimatedChipPressable
             onPress={() => router.replace(ROUTES.tabs)}
+            containerStyle={{ width: "100%" }}
             className="px-5 py-4 rounded-2xl bg-emerald-500 w-full items-center"
           >
             <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} font-semibold`}>Go Home</Text>
-          </Pressable>
+          </AnimatedChipPressable>
 
-          <Pressable onPress={back} className="mt-4">
+          <AnimatedIconPressable onPress={back} containerClassName="mt-4">
             <Text className="text-emerald-500">Go Back</Text>
-          </Pressable>
+          </AnimatedIconPressable>
         </View>
       </View>
     </ScreenBackground>

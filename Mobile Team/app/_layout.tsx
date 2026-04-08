@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import StartupAnimation from '@/components/pages/StartupAnimation';
 import { Stack } from "expo-router";
 import type { ErrorBoundaryProps } from "expo-router";
-import { View, Text, Pressable, Alert, Platform, Share, Image } from "react-native";
+import { View, Text, Alert, Platform, Share } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { AppThemeProvider } from "@/hooks/use-app-theme";
 import { AppLanguageProvider } from "@/hooks/use-app-language";
@@ -15,6 +15,8 @@ import { AuthEmailLinkHandler } from "@/components/AuthEmailLinkHandler";
 import { UniversalDevMode } from "@/components/dev/UniversalDevMode";
 import { STORAGE_KEYS } from "@/constants/schema";
 import { cacheManagerService, errorLoggingService } from "@/services";
+import { AnimatedChipPressable, AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
+import { GatorGuideMark } from "@/components/ui/GatorGuideMark";
 
 const HAS_SEEN_STARTUP_KEY = STORAGE_KEYS.hasSeenStartup;
 
@@ -105,23 +107,25 @@ export function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
           Please copy the error log and send it so we can fix this quickly.
         </Text>
 
-        <Pressable
+        <AnimatedChipPressable
           onPress={() => copyErrorLog(error)}
-          style={{ backgroundColor: '#22C55E', borderRadius: 12, paddingVertical: 12, alignItems: 'center', marginBottom: 10 }}
+          containerStyle={{ marginBottom: 10 }}
+          style={{ backgroundColor: '#22C55E', borderRadius: 12, paddingVertical: 12, alignItems: 'center' }}
         >
           <Text style={{ color: '#000000', fontWeight: '700' }}>Copy error log</Text>
-        </Pressable>
+        </AnimatedChipPressable>
 
-        <Pressable
+        <AnimatedChipPressable
           onPress={() => sendErrorToSupport(error)}
-          style={{ backgroundColor: '#1F2937', borderRadius: 12, paddingVertical: 12, alignItems: 'center', marginBottom: 10 }}
+          containerStyle={{ marginBottom: 10 }}
+          style={{ backgroundColor: '#1F2937', borderRadius: 12, paddingVertical: 12, alignItems: 'center' }}
         >
           <Text style={{ color: '#FFFFFF', fontWeight: '700' }}>Send error log to support</Text>
-        </Pressable>
+        </AnimatedChipPressable>
 
-        <Pressable onPress={retry} style={{ alignItems: 'center', paddingVertical: 8 }}>
+        <AnimatedIconPressable onPress={retry} style={{ alignItems: 'center', paddingVertical: 8 }}>
           <Text style={{ color: '#93C5FD', fontWeight: '600' }}>Try again</Text>
-        </Pressable>
+        </AnimatedIconPressable>
       </View>
     </View>
   );
@@ -168,11 +172,9 @@ export default function RootLayout() {
   if (!appIsReady || showAnimation === null) {
     return (
       <View style={{ flex: 1, backgroundColor: "#FFFFFF", alignItems: "center", justifyContent: "center" }}>
-        <Image
-          source={require("../assets/images/icon.png")}
-          style={{ width: 96, height: 96, marginBottom: 16 }}
-          resizeMode="contain"
-        />
+        <View style={{ marginBottom: 16 }}>
+          <GatorGuideMark size={96} />
+        </View>
         <Text style={{ color: "#001f0f", fontSize: 16, fontWeight: "600" }}>Loading Gator Guide...</Text>
       </View>
     );

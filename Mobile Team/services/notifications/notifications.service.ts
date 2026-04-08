@@ -172,6 +172,8 @@ function buildOpportunityReminderCopy(
   const opportunityTypeLabel =
     opportunity.type === 'college_deadline'
       ? 'college deadline'
+      : opportunity.type === 'general_deadline'
+        ? 'deadline'
       : opportunity.type === 'internship'
         ? 'internship'
         : 'scholarship';

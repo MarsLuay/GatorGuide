@@ -15,6 +15,10 @@ import { useAppLanguage } from "@/hooks/use-app-language";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { FormInput } from "@/components/ui/FormInput";
+import { AnimatedChipPressable, AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
+import { GlassButton } from "@/components/ui/GlassButton";
+import { GlassCard } from "@/components/ui/GlassCard";
+import { GatorGuideMark } from "@/components/ui/GatorGuideMark";
 import { authService, EMAIL_LINK_STORAGE_KEY } from "@/services/auth/auth.service";
 import { errorLoggingService } from "@/services";
 import { PENDING_LINK_STORAGE_KEY } from "@/components/AuthEmailLinkHandler";
@@ -611,15 +615,14 @@ export default function AuthPage() {
   const authContent = (
     <View className={cardMaxWidthClass}>
       <View className="items-center mb-8">
-        <View className="bg-emerald-500 p-4 rounded-full">
-          <FontAwesome5 name="graduation-cap" size={48} color="#001f0f" />
-        </View>
+        <GatorGuideMark size={112} darkMode={isDark} />
       </View>
 
       <Text className={`text-3xl text-center ${styles.textClass} mb-2`}>{t("auth.gatorguide")}</Text>
       <Text className={`${styles.secondaryTextClass} text-center mb-8`}>{t("auth.findCollege")}</Text>
 
-      <View className={`${styles.cardBgClass} border rounded-2xl p-6 ${isWeb ? "shadow-lg" : ""}`}>
+      <GlassCard borderRadius={24} noPadding className={isWeb ? "shadow-lg" : ""}>
+        <View className="p-6">
         {__DEV__ && onboardingDebugEnabled ? (
           <View className="mb-4 border border-emerald-500/40 rounded-lg p-3">
             <View className="flex-row items-center justify-between">
@@ -659,7 +662,7 @@ export default function AuthPage() {
             </Text>
             <Text className={`${styles.secondaryTextClass} mt-1`}>{t("auth.verificationRequiredHint")}</Text>
             <Text className={`${styles.secondaryTextClass} mt-2 font-medium`}>{verificationPendingEmail}</Text>
-            <Pressable
+            <AnimatedChipPressable
               onPress={async () => {
                 const e = verificationPendingEmail;
                 if (!e || !password || password.length < 6) {
@@ -680,12 +683,13 @@ export default function AuthPage() {
                 }
               }}
               disabled={resendingVerification || !password || password.length < 6}
-              className="mt-3 py-2 rounded-lg items-center border border-emerald-500"
+              className="py-2 rounded-lg items-center border border-emerald-500"
+              containerStyle={{ marginTop: 12 }}
             >
               <Text className={`${resendingVerification || !password || password.length < 6 ? "opacity-60" : ""} ${styles.textClass}`}>
                 {resendingVerification ? t("general.pleaseWait") : t("auth.resendVerificationEmail")}
               </Text>
-            </Pressable>
+            </AnimatedChipPressable>
           </View>
         )}
 
@@ -705,43 +709,46 @@ export default function AuthPage() {
             <Text className={styles.secondaryTextClass + " mb-3"}>
               {t("auth.enterEmailToComplete")}
             </Text>
-            <Pressable
+            <AnimatedChipPressable
               onPress={handleCompleteEmailLink}
               disabled={!isEmailValid(email.trim()) || completingLink}
-              className="bg-amber-500 rounded-lg py-2 items-center mt-2"
+              className="bg-amber-500 rounded-lg py-2 items-center"
+              containerStyle={{ marginTop: 8 }}
             >
               <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} font-semibold`}>
                 {completingLink ? t("general.pleaseWait") : t("auth.completeSignIn")}
               </Text>
-            </Pressable>
+            </AnimatedChipPressable>
           </View>
         )}
 
         <View className="flex-row gap-4 mb-6">
-          <Pressable
+          <AnimatedChipPressable
             onPress={() => {
               if (Platform.OS !== "web") Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
               setVerificationPendingEmail(null);
               setEmailLinkSentTo(null);
               setIsSignUp(true);
             }}
-            className={`flex-1 py-3 rounded-lg items-center ${isSignUp ? "bg-emerald-500" : styles.inactiveButtonClass}`}
+            className={`py-3 rounded-lg items-center ${isSignUp ? "bg-emerald-500" : styles.inactiveButtonClass}`}
+            containerStyle={{ flex: 1 }}
             disabled={!isHydrated}
           >
             <Text className={isSignUp ? (isDark ? "text-white" : "text-emerald-900") : styles.secondaryTextClass}>{t("auth.signUp")}</Text>
-          </Pressable>
+          </AnimatedChipPressable>
 
-          <Pressable
+          <AnimatedChipPressable
             onPress={() => {
               if (Platform.OS !== "web") Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
               setEmailLinkSentTo(null);
               setIsSignUp(false);
             }}
-            className={`flex-1 py-3 rounded-lg items-center ${!isSignUp ? "bg-emerald-500" : styles.inactiveButtonClass}`}
+            className={`py-3 rounded-lg items-center ${!isSignUp ? "bg-emerald-500" : styles.inactiveButtonClass}`}
+            containerStyle={{ flex: 1 }}
             disabled={!isHydrated}
           >
             <Text className={!isSignUp ? (isDark ? "text-white" : "text-emerald-900") : styles.secondaryTextClass}>{t("auth.logIn")}</Text>
-          </Pressable>
+          </AnimatedChipPressable>
         </View>
 
         <View className="gap-4">
@@ -756,6 +763,7 @@ export default function AuthPage() {
               inputBgClass={styles.inputBgClass}
               placeholderColor={styles.placeholderColor}
               editable={isHydrated}
+              variant="glass"
               returnKeyType="next"
             />
           )}
@@ -771,6 +779,7 @@ export default function AuthPage() {
             inputBgClass={styles.inputBgClass}
             placeholderColor={styles.placeholderColor}
             editable={isHydrated}
+            variant="glass"
             keyboardType="email-address"
             autoCapitalize="none"
             autoCorrect={false}
@@ -788,15 +797,16 @@ export default function AuthPage() {
             inputBgClass={styles.inputBgClass}
             placeholderColor={styles.placeholderColor}
             editable={isHydrated}
+            variant="glass"
             secureTextEntry
             returnKeyType="done"
           />
 
           {!isSignUp && (
             <View className="items-end">
-              <Pressable onPress={() => router.push(ROUTES.forgotPassword)} disabled={!isHydrated}>
+              <AnimatedIconPressable onPress={() => router.push(ROUTES.forgotPassword)} disabled={!isHydrated}>
                 <Text className="text-sm text-emerald-500">{t("auth.forgotPassword")}</Text>
-              </Pressable>
+              </AnimatedIconPressable>
             </View>
           )}
 
@@ -813,70 +823,71 @@ export default function AuthPage() {
           )}
 
           {!isSignUp && (
-            <Pressable
+            <GlassButton
               onPress={handleSendEmailLink}
               disabled={!isHydrated || !isEmailValid(email.trim()) || sendingEmailLink}
-              className={`${styles.cardBgClass} border ${styles.borderClass} rounded-lg py-3 flex-row items-center justify-center gap-2 ${!isHydrated || !isEmailValid(email.trim()) || sendingEmailLink ? "opacity-60" : ""}`}
-            >
-              <FontAwesome5 name="envelope" size={16} color="#008f4e" />
-              <Text className={styles.secondaryTextClass}>
-                {sendingEmailLink ? t("general.pleaseWait") : t("auth.signInWithEmailLink")}
-              </Text>
-            </Pressable>
+              label={sendingEmailLink ? t("general.pleaseWait") : t("auth.signInWithEmailLink")}
+              variant="secondary"
+              icon={<FontAwesome5 name="envelope" size={16} color="#008f4e" />}
+              style={{
+                width: "100%",
+                opacity: !isHydrated || !isEmailValid(email.trim()) || sendingEmailLink ? 0.6 : 1,
+              }}
+            />
           )}
 
-          <Pressable
+          <GlassButton
             onPress={handleSubmit}
             disabled={!isHydrated || !canSubmit || isSubmitting}
-            className={`bg-emerald-500 rounded-lg py-4 items-center mt-2 ${
-              !isHydrated || !canSubmit || isSubmitting ? "opacity-60" : ""
-            }`}
-          >
-            <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} font-semibold`}>
-              {isSubmitting ? t("general.pleaseWait") : isSignUp ? t("auth.createAccountByEmailVerification") : t("auth.logIn")}
-            </Text>
-          </Pressable>
+            label={
+              isSubmitting ? t("general.pleaseWait") : isSignUp ? t("auth.createAccountByEmailVerification") : t("auth.logIn")
+            }
+            style={{
+              width: "100%",
+              marginTop: 8,
+              opacity: !isHydrated || !canSubmit || isSubmitting ? 0.6 : 1,
+            }}
+          />
 
 
           <View className="flex-row gap-3 mt-4">
-            <Pressable
+            <GlassButton
               onPress={() => handleProviderSignIn("google")}
               disabled={!isHydrated}
-              className={`flex-1 ${styles.cardBgClass} border ${styles.borderClass} rounded-lg py-3 flex-row items-center justify-center gap-2 ${!isHydrated ? "opacity-60" : ""}`}
-            >
-              <FontAwesome5 name="google" size={18} color="#3a9e75" />
-              <Text className={styles.secondaryTextClass}>{t("auth.continueWithGoogle")}</Text>
-            </Pressable>
-            <Pressable
+              label={t("auth.continueWithGoogle")}
+              variant="secondary"
+              icon={<FontAwesome5 name="google" size={18} color="#3a9e75" />}
+              style={{ flex: 1, opacity: !isHydrated ? 0.6 : 1 }}
+            />
+            <GlassButton
               onPress={() => handleProviderSignIn("microsoft")}
               disabled={!isHydrated}
-              className={`flex-1 ${styles.cardBgClass} border ${styles.borderClass} rounded-lg py-3 flex-row items-center justify-center gap-2 ${!isHydrated ? "opacity-60" : ""}`}
-            >
-              <FontAwesome5 name="microsoft" size={18} color="#3a9e75" />
-              <Text className={styles.secondaryTextClass}>{t("auth.continueWithMicrosoft")}</Text>
-            </Pressable>
+              label={t("auth.continueWithMicrosoft")}
+              variant="secondary"
+              icon={<FontAwesome5 name="microsoft" size={18} color="#3a9e75" />}
+              style={{ flex: 1, opacity: !isHydrated ? 0.6 : 1 }}
+            />
           </View>
 
           <View className="items-center mt-4">
-            <Pressable
+            <GlassButton
               onPress={handleGuestSignIn}
               disabled={!isHydrated}
-              className={`bg-white dark:bg-gray-900/80 border-2 border-emerald-300 dark:border-gray-700 rounded-lg py-3 px-6 w-full items-center ${
-                !isHydrated ? "opacity-60" : ""
-              }`}
-            >
-              <Text className="text-gray-900 dark:text-gray-100 font-semibold">{t("auth.continueAsGuest")}</Text>
-            </Pressable>
+              label={t("auth.continueAsGuest")}
+              variant="secondary"
+              style={{ width: "100%", opacity: !isHydrated ? 0.6 : 1 }}
+            />
           </View>
 
           <View className="flex-row justify-center items-center mt-6">
             <Text className={`${styles.secondaryTextClass} text-xs text-center mr-2`}>{t("general.needHelpQuestion") ?? "Need Help?"}</Text>
-            <Pressable onPress={() => Linking.openURL(SUPPORT_MAILTO)} accessibilityRole="link">
+            <AnimatedIconPressable onPress={() => Linking.openURL(SUPPORT_MAILTO)} accessibilityRole="link">
               <Text className={`text-xs ${isDark ? "text-emerald-200" : "text-emerald-600"} underline font-semibold`}>{t("general.emailUs") ?? "Email Us!"}</Text>
-            </Pressable>
+            </AnimatedIconPressable>
           </View>
         </View>
-      </View>
+        </View>
+      </GlassCard>
     </View>
   );
 

@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import {
   Alert,
-  Pressable,
   ScrollView,
   Text,
   TextInput,
@@ -11,6 +10,11 @@ import {
 import { MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
+import {
+  AnimatedCardPressable,
+  AnimatedChipPressable,
+  AnimatedIconPressable,
+} from "@/components/ui/AnimatedPressables";
 import { STARTER_OPPORTUNITIES } from "@/constants/starter-opportunities";
 import {
   OPPORTUNITY_DEADLINE_TYPES,
@@ -69,6 +73,7 @@ type OpportunityAdminDraft = {
 const TYPE_OPTIONS = [
   OPPORTUNITY_TYPES.scholarship,
   OPPORTUNITY_TYPES.internship,
+  OPPORTUNITY_TYPES.generalDeadline,
   OPPORTUNITY_TYPES.collegeDeadline,
 ] as const;
 
@@ -103,6 +108,10 @@ function parseList(value: string) {
     .split(",")
     .map((item) => item.trim())
     .filter(Boolean);
+}
+
+function formatChoiceLabel(option: string) {
+  return option.replace(/_/g, " ");
 }
 
 function createBlankDraft(): OpportunityAdminDraft {
@@ -467,15 +476,15 @@ export default function OpportunityAdminPage() {
         {options.map((option) => {
           const isActive = value === option;
           return (
-            <Pressable
+            <AnimatedChipPressable
               key={option}
               onPress={() => onChange(option)}
               className={`px-3 py-2 rounded-full border ${isActive ? "bg-emerald-500 border-emerald-500" : `${styles.inactiveButtonClass} ${styles.borderClass}`}`}
             >
               <Text className={`${isActive ? "text-white" : textClass} text-sm font-medium`}>
-                {option}
+                {formatChoiceLabel(option)}
               </Text>
-            </Pressable>
+            </AnimatedChipPressable>
           );
         })}
       </View>
@@ -494,7 +503,7 @@ export default function OpportunityAdminPage() {
           const isActive = value === option;
           const optionLabel = option ? "Yes" : "No";
           return (
-            <Pressable
+            <AnimatedChipPressable
               key={optionLabel}
               onPress={() => onChange(option)}
               className={`px-3 py-2 rounded-full border ${isActive ? "bg-emerald-500 border-emerald-500" : `${styles.inactiveButtonClass} ${styles.borderClass}`}`}
@@ -502,7 +511,7 @@ export default function OpportunityAdminPage() {
               <Text className={`${isActive ? "text-white" : textClass} text-sm font-medium`}>
                 {optionLabel}
               </Text>
-            </Pressable>
+            </AnimatedChipPressable>
           );
         })}
       </View>
@@ -522,10 +531,10 @@ export default function OpportunityAdminPage() {
       >
         <View style={{ width: "100%", maxWidth: pageMaxWidth, alignSelf: "center" }}>
           <View className="mb-6">
-            <Pressable onPress={back} className="mb-4 flex-row items-center self-start">
+            <AnimatedIconPressable onPress={back} containerClassName="mb-4 self-start" className="flex-row items-center">
               <MaterialIcons name="arrow-back" size={24} color={placeholderTextColor} />
               <Text className={`${secondaryTextClass} ml-2`}>Back</Text>
-            </Pressable>
+            </AnimatedIconPressable>
 
             <Text className={`${textClass} text-3xl font-bold`}>Opportunity Admin</Text>
             <Text className={`${secondaryTextClass} mt-2`}>
@@ -539,12 +548,13 @@ export default function OpportunityAdminPage() {
               <Text className={`${secondaryTextClass} mt-2 leading-6`}>
                 This editor is only available to signed-in staff accounts.
               </Text>
-              <Pressable
+              <AnimatedChipPressable
                 onPress={() => router.push(ROUTES.profile)}
-                className="mt-4 self-start px-4 py-3 rounded-2xl bg-emerald-500"
+                containerClassName="mt-4 self-start"
+                className="px-4 py-3 rounded-2xl bg-emerald-500"
               >
                 <Text className="text-white font-semibold">Open profile</Text>
-              </Pressable>
+              </AnimatedChipPressable>
             </View>
           ) : isCheckingAccess ? (
             <View className={`${cardClass} p-6`}>
@@ -561,14 +571,15 @@ export default function OpportunityAdminPage() {
               <Text className={`${secondaryTextClass} mt-2 leading-6`}>
                 {accessError}
               </Text>
-              <Pressable
+              <AnimatedChipPressable
                 onPress={() => {
                   void loadAccess();
                 }}
-                className="mt-4 self-start px-4 py-3 rounded-2xl bg-emerald-500"
+                containerClassName="mt-4 self-start"
+                className="px-4 py-3 rounded-2xl bg-emerald-500"
               >
                 <Text className="text-white font-semibold">Retry</Text>
-              </Pressable>
+              </AnimatedChipPressable>
             </View>
           ) : !access?.authorized ? (
             <View className={`${cardClass} p-6`}>
@@ -600,13 +611,13 @@ export default function OpportunityAdminPage() {
                     </Text>
                   </View>
                   <View className="flex-row flex-wrap gap-2">
-                    <Pressable
+                    <AnimatedChipPressable
                       onPress={handleCreateNew}
                       className={`px-4 py-3 rounded-2xl border ${styles.inactiveButtonClass} ${styles.borderClass}`}
                     >
                       <Text className={`${textClass} font-semibold`}>New blank</Text>
-                    </Pressable>
-                    <Pressable
+                    </AnimatedChipPressable>
+                    <AnimatedChipPressable
                       onPress={() => {
                         void refreshOpportunities();
                       }}
@@ -615,7 +626,7 @@ export default function OpportunityAdminPage() {
                       <Text className="text-white font-semibold">
                         {isRefreshing ? "Refreshing..." : "Refresh catalog"}
                       </Text>
-                    </Pressable>
+                    </AnimatedChipPressable>
                   </View>
                 </View>
               </View>
@@ -643,7 +654,7 @@ export default function OpportunityAdminPage() {
                       const isSelected =
                         opportunity.opportunityId === selectedOpportunityId;
                       return (
-                        <Pressable
+                        <AnimatedCardPressable
                           key={opportunity.opportunityId}
                           onPress={() => handleSelectOpportunity(opportunity)}
                           className={`rounded-3xl border p-4 ${isSelected ? "border-emerald-500 bg-emerald-500/10" : `${styles.borderClass} ${styles.inactiveButtonClass}`}`}
@@ -660,7 +671,7 @@ export default function OpportunityAdminPage() {
                           <Text className={`${secondaryTextClass} text-xs mt-1`}>
                             {formatOpportunityDue(opportunity)}
                           </Text>
-                        </Pressable>
+                        </AnimatedCardPressable>
                       );
                     })}
 
@@ -1044,7 +1055,7 @@ export default function OpportunityAdminPage() {
                         ) : null}
                       </View>
                       <View className="flex-row flex-wrap gap-2">
-                        <Pressable
+                        <AnimatedChipPressable
                           onPress={() => {
                             void handleSave();
                           }}
@@ -1054,9 +1065,9 @@ export default function OpportunityAdminPage() {
                           <Text className="text-white font-semibold">
                             {isSaving ? "Saving..." : selectedOpportunityId ? "Save changes" : "Create opportunity"}
                           </Text>
-                        </Pressable>
+                        </AnimatedChipPressable>
                         {selectedOpportunityId ? (
-                          <Pressable
+                          <AnimatedChipPressable
                             onPress={() => {
                               void handleArchive(draft.status !== OPPORTUNITY_STATUSES.archived);
                             }}
@@ -1066,10 +1077,10 @@ export default function OpportunityAdminPage() {
                             <Text className={`${textClass} font-semibold`}>
                               {draft.status === OPPORTUNITY_STATUSES.archived ? "Restore" : "Archive"}
                             </Text>
-                          </Pressable>
+                          </AnimatedChipPressable>
                         ) : null}
                         {canDeleteSelected ? (
-                          <Pressable
+                          <AnimatedChipPressable
                             onPress={() => {
                               void handleDelete();
                             }}
@@ -1077,7 +1088,7 @@ export default function OpportunityAdminPage() {
                             disabled={isSaving}
                           >
                             <Text className="text-red-500 font-semibold">Delete</Text>
-                          </Pressable>
+                          </AnimatedChipPressable>
                         ) : null}
                       </View>
                     </View>

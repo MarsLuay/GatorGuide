@@ -1,9 +1,10 @@
 import { useMemo, useState } from "react";
-import { Pressable, ScrollView, Text, TextInput, View, useWindowDimensions, type GestureResponderEvent } from "react-native";
+import { ScrollView, Text, TextInput, View, useWindowDimensions, type GestureResponderEvent } from "react-native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { ROUTES } from "@/constants/routes";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
+import { AnimatedCardPressable, AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
@@ -84,10 +85,10 @@ export default function SavedCollegesPage() {
         <View
           style={{ width: "100%", maxWidth: 1040, alignSelf: "center", paddingHorizontal: 24, paddingTop: 24 }}
         >
-          <Pressable onPress={back} className="mb-4 flex-row items-center self-start">
+          <AnimatedIconPressable onPress={back} containerClassName="mb-4 self-start" className="flex-row items-center">
             <MaterialIcons name="arrow-back" size={24} color={placeholderColor} />
             <Text className={`${secondaryTextClass} ml-2`}>{t("general.back")}</Text>
-          </Pressable>
+          </AnimatedIconPressable>
 
           <Text className={`text-2xl ${textClass} mb-1`}>
             {t("savedColleges.title")}
@@ -170,11 +171,11 @@ export default function SavedCollegesPage() {
                 const topPrograms = (college.programs ?? []).slice(0, 2).join(", ");
 
                 return (
-                  <Pressable
+                  <AnimatedCardPressable
                     key={college.id}
                     onPress={() => router.push(ROUTES.collegeDetail(String(college.id)))}
                     className={`${cardBgClass} border rounded-2xl p-4 mb-4`}
-                    style={{ width: columns === 1 ? "100%" : "48.7%" }}
+                    containerStyle={{ width: columns === 1 ? "100%" : "48.7%" }}
                   >
                     <View className="flex-row items-start justify-between mb-3">
                       <View style={{ flex: 1, paddingRight: 12 }}>
@@ -185,7 +186,7 @@ export default function SavedCollegesPage() {
                           {location || t("home.notAvailable")}
                         </Text>
                       </View>
-                      <Pressable
+                      <AnimatedIconPressable
                         onPress={(event: GestureResponderEvent) => {
                           event?.stopPropagation?.();
                           void removeSavedCollege(college.id);
@@ -193,7 +194,7 @@ export default function SavedCollegesPage() {
                         className="p-1"
                       >
                         <Ionicons name="bookmark" size={22} color="#008f4e" />
-                      </Pressable>
+                      </AnimatedIconPressable>
                     </View>
 
                     {typeof college.matchScore === "number" ? (
@@ -234,7 +235,7 @@ export default function SavedCollegesPage() {
                       </Text>
                       <Ionicons name="chevron-forward" size={18} color={placeholderColor} />
                     </View>
-                  </Pressable>
+                  </AnimatedCardPressable>
                 );
               })}
             </View>

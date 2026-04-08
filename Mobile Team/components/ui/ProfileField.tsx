@@ -1,6 +1,11 @@
-import { View, Text, TextInput, Pressable, TextInputProps } from "react-native";
+import { View, Text, TextInput, TextInputProps } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useAppLanguage } from "@/hooks/use-app-language";
+import {
+  AnimatedCardPressable,
+  AnimatedChipPressable,
+  AnimatedIconPressable,
+} from "@/components/ui/AnimatedPressables";
 
 type BaseFieldProps = {
   icon: keyof typeof MaterialIcons.glyphMap;
@@ -89,11 +94,11 @@ export function ProfileField(props: ProfileFieldProps) {
           <Text className={`text-sm ${secondaryTextClass} mb-1`}>{label}</Text>
 
           {props.type === "link" ? (
-            <Pressable onPress={props.onPress}>
+            <AnimatedIconPressable onPress={props.onPress} containerClassName="self-start">
               <Text className="text-emerald-500 underline">
                 {props.linkText || value || resolvedEmptyText}
               </Text>
-            </Pressable>
+            </AnimatedIconPressable>
           ) : props.type === "radio" ? (
             <>
               {!isEditing ? (
@@ -107,7 +112,7 @@ export function ProfileField(props: ProfileFieldProps) {
                   {props.options.map((opt) => {
                     const isSelected = props.editValue === opt.key;
                     return (
-                      <Pressable
+                      <AnimatedChipPressable
                         key={opt.key}
                         onPress={() => props.onSelect(opt.key)}
                         className={`px-4 py-2 rounded-lg border ${
@@ -121,7 +126,7 @@ export function ProfileField(props: ProfileFieldProps) {
                         >
                           {t(opt.labelKey)}
                         </Text>
-                      </Pressable>
+                      </AnimatedChipPressable>
                     );
                   })}
                 </View>
@@ -143,7 +148,7 @@ export function ProfileField(props: ProfileFieldProps) {
               className={props.inputClass}
             />
           ) : props.type === "upload" ? (
-            <Pressable
+            <AnimatedCardPressable
               onPress={props.onPress}
               className={`${props.inputBgClass} border rounded-lg px-3 py-3 flex-row items-center justify-between`}
             >
@@ -151,7 +156,7 @@ export function ProfileField(props: ProfileFieldProps) {
                 {props.editValue || props.uploadText || t("general.uploadFile")}
               </Text>
               <MaterialIcons name="upload" size={18} color="#008f4e" />
-            </Pressable>
+            </AnimatedCardPressable>
           ) : null}
         </View>
       </View>

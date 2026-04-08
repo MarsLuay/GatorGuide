@@ -8,6 +8,7 @@ import type {
 export type DeadlineCalendarEntryKind =
   | "scholarship"
   | "internship"
+  | "general_deadline"
   | "college_deadline"
   | "roadmap_task";
 
@@ -174,11 +175,17 @@ class DeadlineCalendarService {
         subtitle:
           opportunity.type === "college_deadline"
             ? opportunity.college.collegeName || opportunity.organizationName || "College deadline"
+            : opportunity.type === "general_deadline"
+              ? opportunity.organizationName || "Deadline"
             : opportunity.organizationName || "Opportunity",
         description: opportunity.summary,
         kind: opportunity.type,
         sourceLabel:
-          opportunity.type === "college_deadline" ? "College deadline" : "Opportunity",
+          opportunity.type === "college_deadline"
+            ? "College deadline"
+            : opportunity.type === "general_deadline"
+              ? "Deadline"
+              : "Opportunity",
         isDone: opportunity.isDone,
         target,
       });

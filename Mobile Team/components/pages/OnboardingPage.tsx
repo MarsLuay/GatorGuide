@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react";
 import {
   LayoutChangeEvent,
-  Pressable,
   ScrollView,
   Text,
   View,
@@ -11,6 +10,9 @@ import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { ROUTES } from "@/constants/routes";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
+import { AnimatedCardPressable } from "@/components/ui/AnimatedPressables";
+import { GlassButton } from "@/components/ui/GlassButton";
+import { GlassCard } from "@/components/ui/GlassCard";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
@@ -85,8 +87,6 @@ export default function OnboardingPage() {
 
   const textClass = isDark ? "text-white" : "text-emerald-900";
   const secondaryTextClass = isDark ? "text-white/85" : "text-emerald-700";
-  const cardClass = isDark ? "bg-emerald-950/95 border-emerald-800" : "bg-white border-emerald-200";
-  const subCardClass = isDark ? "bg-emerald-950/80 border-emerald-700/70" : "bg-emerald-50/90 border-emerald-200";
 
   const steps = useMemo<TourStep[]>(
     () => [
@@ -324,7 +324,8 @@ export default function OnboardingPage() {
             }}
           >
             <View style={{ width: introWidth, alignSelf: "stretch" }}>
-              <View className={`${cardClass} border rounded-3xl`} style={{ padding: introCardPadding }}>
+              <GlassCard borderRadius={28} noPadding>
+                <View style={{ padding: introCardPadding }}>
                 <Text className={`text-2xl font-semibold ${textClass}`}>Quick Tour</Text>
                 <Text className={`${secondaryTextClass} mt-2`} style={{ lineHeight: 22 }}>
                   Follow the pointers to learn the app in less than a minute.
@@ -336,7 +337,7 @@ export default function OnboardingPage() {
                   </View>
                 </View>
 
-                <View className={`${subCardClass} border rounded-2xl mt-5 px-4 py-4`}>
+                <GlassCard borderRadius={20} className="mt-5">
                   <Text className={`text-sm font-semibold ${textClass}`}>{step.title}</Text>
                   <Text className={`${secondaryTextClass} text-sm mt-1`} style={{ lineHeight: 20 }}>
                     {step.description}
@@ -344,7 +345,7 @@ export default function OnboardingPage() {
                   <Text className={`${secondaryTextClass} text-xs mt-3`}>
                     Step {currentStep + 1} of {steps.length}
                   </Text>
-                </View>
+                </GlassCard>
 
                 {showStepRail ? (
                   <View style={{ gap: 10, marginTop: 18 }}>
@@ -352,7 +353,7 @@ export default function OnboardingPage() {
                       const isActive = index === currentStep;
 
                       return (
-                        <Pressable
+                        <AnimatedCardPressable
                           key={tourStep.id}
                           onPress={() => setCurrentStep(index)}
                           className="rounded-2xl border px-4 py-3"
@@ -379,16 +380,18 @@ export default function OnboardingPage() {
                             </View>
                             <Text className={`flex-1 ${isActive ? textClass : secondaryTextClass}`}>{tourStep.title}</Text>
                           </View>
-                        </Pressable>
+                        </AnimatedCardPressable>
                       );
                     })}
                   </View>
                 ) : null}
-              </View>
+                </View>
+              </GlassCard>
             </View>
 
             <View style={{ flex: 1, minWidth: 0, alignSelf: "stretch" }}>
-              <View className={`${cardClass} border rounded-3xl`} style={{ padding: previewCardPadding }}>
+              <GlassCard borderRadius={28} noPadding>
+                <View style={{ padding: previewCardPadding }}>
                 <View className="mb-4 flex-row items-center justify-between">
                   <Text className={`${textClass} font-semibold`}>Tutorial Preview</Text>
                   <Text className={`${secondaryTextClass} text-sm`}>
@@ -582,59 +585,57 @@ export default function OnboardingPage() {
                     }}
                   />
 
-                  <View
+                  <GlassCard
                     onLayout={onBubbleLayout}
                     style={{
                       position: "absolute",
                       left: bubbleLeft,
                       top: bubbleTop,
                       width: bubbleWidth,
-                      borderRadius: 18,
-                      borderWidth: 1,
-                      borderColor: "#34d399",
-                      backgroundColor: isDark ? "#042f2e" : "#ecfdf5",
-                      paddingHorizontal: 16,
-                      paddingTop: 14,
-                      paddingBottom: 14,
                     }}
+                    borderRadius={18}
+                    noPadding
                   >
-                    <Text className={`${textClass} font-semibold mb-1`}>{step.title}</Text>
-                    <Text className={`${secondaryTextClass} text-sm`} style={{ lineHeight: 20 }}>
-                      {step.description}
-                    </Text>
-                    <Text className={`${secondaryTextClass} text-xs mt-2`}>
-                      {currentStep + 1} of {steps.length}
-                    </Text>
-
-                    <View className="flex-row justify-between mt-4" style={{ gap: 12 }}>
-                      <Pressable onPress={completeTour} className="px-3 py-2 rounded-lg bg-black/25">
-                        <Text className="text-white font-semibold">Exit tutorial</Text>
-                      </Pressable>
-                      <Pressable onPress={onNext} className="px-3 py-2 rounded-lg bg-emerald-500">
-                        <Text className={`${isDark ? "text-white" : "text-emerald-900"} font-semibold`}>
-                          {nextLabel}
-                        </Text>
-                      </Pressable>
-                    </View>
-
                     <View
                       style={{
-                        pointerEvents: "none",
-                        position: "absolute",
-                        width: 16,
-                        height: 16,
-                        backgroundColor: isDark ? "#042f2e" : "#ecfdf5",
-                        borderLeftWidth: 1,
-                        borderTopWidth: 1,
-                        borderColor: "#34d399",
-                        transform: [{ rotate: "45deg" }],
-                        left: pointerOffset,
-                        top: preferTop ? bubbleHeight - 8 : -8,
+                        paddingHorizontal: 16,
+                        paddingTop: 14,
+                        paddingBottom: 14,
                       }}
-                    />
-                  </View>
+                    >
+                      <Text className={`${textClass} font-semibold mb-1`}>{step.title}</Text>
+                      <Text className={`${secondaryTextClass} text-sm`} style={{ lineHeight: 20 }}>
+                        {step.description}
+                      </Text>
+                      <Text className={`${secondaryTextClass} text-xs mt-2`}>
+                        {currentStep + 1} of {steps.length}
+                      </Text>
+
+                      <View className="flex-row justify-between mt-4" style={{ gap: 12 }}>
+                        <GlassButton onPress={completeTour} label="Exit tutorial" variant="secondary" style={{ flex: 1 }} />
+                        <GlassButton onPress={onNext} label={nextLabel} style={{ flex: 1 }} />
+                      </View>
+
+                      <View
+                        style={{
+                          pointerEvents: "none",
+                          position: "absolute",
+                          width: 16,
+                          height: 16,
+                          backgroundColor: isDark ? "#042f2e" : "#ecfdf5",
+                          borderLeftWidth: 1,
+                          borderTopWidth: 1,
+                          borderColor: "#34d399",
+                          transform: [{ rotate: "45deg" }],
+                          left: pointerOffset,
+                          top: preferTop ? bubbleHeight - 8 : -8,
+                        }}
+                      />
+                    </View>
+                  </GlassCard>
                 </View>
-              </View>
+                </View>
+              </GlassCard>
             </View>
           </View>
         </View>

@@ -1,0 +1,66 @@
+{
+  "schools": [
+    {
+      "name": "University of Washington",
+      "location": "Seattle, WA",
+      "courses": [
+        {
+          "code": "PHYS 121",
+          "name": "Mechanics",
+          "description": "Basic principles of mechanics and experiments in mechanics for physical science and engineering majors. Lecture tutorial and lab components must all be taken to receive credit."
+        },
+        {
+          "code": "PHYS 122",
+          "name": "Electromagnetism",
+          "description": "Covers the basic principles of electromagnetism and experiments in these topics for physical science and engineering majors. Lecture tutorial and lab components must all be taken to receive credit."
+        },
+        {
+          "code": "MATH 124",
+          "name": "Calculus I",
+          "description": "First quarter in calculus of functions of a single variable. Emphasizes differential calculus. Emphasizes applications and problem solving using the tools of calculus."
+        },
+        {
+          "code": "MATH 125",
+          "name": "Calculus II",
+          "description": "Second quarter in the calculus of functions of a single variable. Emphasizes integral calculus. Emphasizes applications and problem solving using the tools of calculus."
+        }
+      ]
+    },
+    {
+      "name": "Washington State University",
+      "location": "Pullman, WA",
+      "courses": [
+        {
+          "code": "PHYSICS 201",
+          "name": "Introductory Physics I",
+          "description": "Newtonian mechanics, kinematics, dynamics, work and energy, momentum, rotational motion, oscillations"
+        },
+        {
+          "code": "PHYSICS 202",
+          "name": "Introductory Physics II",
+          "description": "Electricity, magnetism, electric potential, capacitance, current, resistance, electromagnetic waves"
+        },
+        {
+          "code": "MATH 171",
+          "name": "Calculus I",
+          "description": "Functions, limits, continuity, derivatives, differentiation, applications, antiderivatives, Riemann sums"
+        },
+        {
+          "code": "MATH 172",
+          "name": "Calculus II",
+          "description": "Integration techniques, improper integrals, infinite series, Taylor series, parametric equations"
+        },
+        {
+          "code": "CPTS 121",
+          "name": "Program Design and Development",
+          "description": "Problem solving, algorithms, C programming, functions, arrays, pointers, file input output, modular design"
+        },
+        {
+          "code": "CPTS 223",
+          "name": "Advanced Data Structures",
+          "description": "Abstract data types, trees, graphs, hashing, sorting, algorithm analysis, complexity, C++"
+        }
+      ]
+    }
+  ]
+}

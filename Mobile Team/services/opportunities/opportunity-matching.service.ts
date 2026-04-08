@@ -213,7 +213,10 @@ function scoreOpportunity(opportunity: Opportunity, input: MatchInput): MatchedO
     matchReasons.push("Rolling deadline");
   }
 
-  if (opportunity.type === "college_deadline") {
+  if (
+    opportunity.type === "college_deadline" ||
+    opportunity.type === "general_deadline"
+  ) {
     score += 10;
   }
 

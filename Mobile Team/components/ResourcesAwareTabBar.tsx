@@ -1,19 +1,13 @@
 import React from "react";
 import { View } from "react-native";
 import { BottomTabBar, BottomTabBarProps } from "@react-navigation/bottom-tabs";
+
+import { GlassTabBar } from "@/components/GlassTabBar";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
+import { useThemeStyles } from "@/hooks/use-theme-styles";
 
 const PRIMARY_TAB_ROUTES = ["index", "resources", "profile", "settings"] as const;
-const RESOURCES_CHILD_ROUTES = [
-  "compare",
-  "cost-calculator",
-  "saved-colleges",
-  "calendar",
-  "transfer-planner",
-  "college-search",
-  "opportunity-admin",
-];
 const TAB_ROUTE_ALIASES: Record<string, (typeof PRIMARY_TAB_ROUTES)[number]> = {
   roadmap: "index",
   questionnaire: "index",
@@ -31,15 +25,22 @@ const TAB_ROUTE_ALIASES: Record<string, (typeof PRIMARY_TAB_ROUTES)[number]> = {
   terms: "settings",
 };
 
+type ResourcesAwareTabBarProps = BottomTabBarProps & {
+  variant?: "classic" | "glass";
+};
+
 /**
  * Custom tab bar that highlights the Resources tab while users browse tool screens under Resources.
  */
-export function ResourcesAwareTabBar(props: BottomTabBarProps) {
+export function ResourcesAwareTabBar({
+  variant = "glass",
+  ...props
+}: ResourcesAwareTabBarProps) {
   const { state } = props;
   const { resolvedTheme } = useAppTheme();
+  const theme = useThemeStyles();
   const { createResponsiveContainerStyle } = useResponsiveLayout();
   const currentRouteName = state.routes[state.index]?.name ?? "";
-  const isResourcesChild = RESOURCES_CHILD_ROUTES.includes(currentRouteName);
   const isDark = resolvedTheme === "dark";
   const isGreen = resolvedTheme === "green";
   const shellStyle = createResponsiveContainerStyle({
@@ -49,7 +50,7 @@ export function ResourcesAwareTabBar(props: BottomTabBarProps) {
 
   const activeRouteName = TAB_ROUTE_ALIASES[currentRouteName] ?? currentRouteName;
   let modifiedState = state;
-  if (isResourcesChild || activeRouteName !== currentRouteName) {
+  if (activeRouteName !== currentRouteName) {
     const activeIndex = state.routes.findIndex((route) => route.name === activeRouteName);
     if (activeIndex >= 0) {
       modifiedState = { ...state, index: activeIndex };
@@ -79,6 +80,20 @@ export function ResourcesAwareTabBar(props: BottomTabBarProps) {
     ),
   } as typeof modifiedState;
 
+  if (variant === "glass") {
+    return (
+      <View style={{ width: "100%", backgroundColor: theme.screenBaseColor }}>
+        <View style={shellStyle}>
+          <GlassTabBar
+            {...props}
+            state={filteredState}
+            descriptors={filteredDescriptors}
+          />
+        </View>
+      </View>
+    );
+  }
+
   return (
     <View
       style={{
@@ -89,7 +104,11 @@ export function ResourcesAwareTabBar(props: BottomTabBarProps) {
       }}
     >
       <View style={shellStyle}>
-        <BottomTabBar {...props} state={filteredState} descriptors={filteredDescriptors} />
+        <BottomTabBar
+          {...props}
+          state={filteredState}
+          descriptors={filteredDescriptors}
+        />
       </View>
     </View>
   );

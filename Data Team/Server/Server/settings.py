@@ -25,6 +25,9 @@ load_dotenv(ENV_PATH)
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY', 'gator-guide-dev-secret-key')
 
+# Token encryption key for the imported Authenticator app.
+ENCRYPTION_KEY = os.getenv('ENCRYPTION_KEY')
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -47,6 +50,7 @@ INSTALLED_APPS = [
     # Custom apps
     'rest_framework',
     'API',
+    'Authenticator',
 ]
 
 X_FRAME_OPTIONS = "SAMEORIGIN"

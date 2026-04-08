@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { View, Text, Pressable, ScrollView, Keyboard, Alert, Platform, useWindowDimensions } from "react-native";
+import { View, Text, ScrollView, Keyboard, Alert, Platform, useWindowDimensions } from "react-native";
 import { useRouter } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
@@ -18,6 +18,9 @@ import { useAppLanguage } from "@/hooks/use-app-language";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { FormInput } from "@/components/ui/FormInput";
+import { AnimatedCardPressable, AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
+import { GlassButton } from "@/components/ui/GlassButton";
+import { GlassCard } from "@/components/ui/GlassCard";
 import { DocumentExtractionReviewCard } from "@/components/ui/DocumentExtractionReviewCard";
 import { documentReaderService, errorLoggingService, type DocumentExtractionReview } from "@/services";
 import { roadmapService } from "@/services/planning/roadmap.service";
@@ -325,29 +328,41 @@ export default function ProfileSetupPage() {
     <View style={{ width: showUploadGrid ? "48.8%" : "100%" }}>
       <Text className={`text-sm ${styles.secondaryTextClass} mb-2`}>{label}</Text>
 
-      <View className={`${styles.cardBgClass} border rounded-2xl px-4 py-4`} style={{ minHeight: isTablet ? 104 : 92 }}>
-        <Pressable onPress={onPick} className="flex-row items-center justify-between">
-          <Text
-            numberOfLines={selectedDoc ? 2 : 1}
-            className={`flex-1 mr-3 ${selectedDoc ? styles.textClass : styles.secondaryTextClass}`}
-            style={{ lineHeight: 20 }}
-          >
-            {selectedDoc?.name || placeholder}
-          </Text>
-          <MaterialIcons name={selectedDoc ? "check-circle" : "upload-file"} size={20} color="#008f4e" />
-        </Pressable>
+      <AnimatedCardPressable onPress={onPick}>
+        <GlassCard borderRadius={16} noPadding>
+          <View className="px-4 py-4" style={{ minHeight: isTablet ? 104 : 92 }}>
+            <View className="flex-row items-center justify-between">
+              <Text
+                numberOfLines={selectedDoc ? 2 : 1}
+                className={`flex-1 mr-3 ${selectedDoc ? styles.textClass : styles.secondaryTextClass}`}
+                style={{ lineHeight: 20 }}
+              >
+                {selectedDoc?.name || placeholder}
+              </Text>
+              <MaterialIcons name={selectedDoc ? "check-circle" : "upload-file"} size={20} color="#008f4e" />
+            </View>
 
-        {!!selectedDoc && (
-          <View className="mt-3 pt-3 border-t border-emerald-300/40 dark:border-gray-700/60" style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
-            <Text numberOfLines={1} className={`flex-1 text-xs ${styles.secondaryTextClass}`}>
-              {selectedDoc.mimeType || "document"}
-            </Text>
-            <Pressable onPress={onClear} hitSlop={8}>
-              <MaterialIcons name="delete-outline" size={18} color="#EF4444" />
-            </Pressable>
+            {!!selectedDoc && (
+              <View
+                className="mt-3 pt-3 border-t border-emerald-300/40 dark:border-gray-700/60"
+                style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 12 }}
+              >
+                <Text numberOfLines={1} className={`flex-1 text-xs ${styles.secondaryTextClass}`}>
+                  {selectedDoc.mimeType || "document"}
+                </Text>
+                <AnimatedIconPressable
+                  onPress={(event) => {
+                    event.stopPropagation();
+                    onClear();
+                  }}
+                >
+                  <MaterialIcons name="delete-outline" size={18} color="#EF4444" />
+                </AnimatedIconPressable>
+              </View>
+            )}
           </View>
-        )}
-      </View>
+        </GlassCard>
+      </AnimatedCardPressable>
     </View>
   );
 
@@ -371,12 +386,17 @@ export default function ProfileSetupPage() {
               paddingHorizontal: shellHorizontalPadding,
             }}
           >
-            <Pressable onPress={handleBack} className="mb-6 flex-row items-center self-start">
+            <AnimatedIconPressable
+              onPress={handleBack}
+              className="flex-row items-center"
+              containerStyle={{ alignSelf: "flex-start", marginBottom: 24 }}
+            >
               <MaterialIcons name="arrow-back" size={20} color={styles.placeholderColor} />
               <Text className={`ml-2 ${styles.secondaryTextClass}`}>{t("setup.previous")}</Text>
-            </Pressable>
+            </AnimatedIconPressable>
 
-            <View className={`${styles.cardBgClass} border`} style={{ padding: cardPadding, borderRadius: 28 }}>
+            <GlassCard borderRadius={28} noPadding>
+              <View style={{ padding: cardPadding }}>
               <View
                 style={{
                   flexDirection: isWideLayout ? "row" : "column",
@@ -466,6 +486,7 @@ export default function ProfileSetupPage() {
                       secondaryTextClass={styles.secondaryTextClass}
                       inputBgClass={styles.inputBgClass}
                       placeholderColor={styles.placeholderColor}
+                      variant="glass"
                     />
                   )}
 
@@ -481,6 +502,7 @@ export default function ProfileSetupPage() {
                         secondaryTextClass={styles.secondaryTextClass}
                         inputBgClass={styles.inputBgClass}
                         placeholderColor={styles.placeholderColor}
+                        variant="glass"
                       />
                     </>
                   )}
@@ -559,54 +581,51 @@ export default function ProfileSetupPage() {
                     </View>
                   )}
 
-                  <View
-                    style={{
-                      flexDirection: stackFooterActions ? "column" : "row",
-                      gap: 16,
-                      paddingTop: 24,
-                    }}
-                  >
-                    <Pressable
-                      onPress={() => {
-                        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                        handleBack();
+                    <View
+                      style={{
+                        flexDirection: stackFooterActions ? "column" : "row",
+                        gap: 16,
+                        paddingTop: 24,
                       }}
-                      className={`rounded-lg py-4 items-center border ${styles.cardBgClass}`}
-                      style={{ flex: stackFooterActions ? undefined : 1 }}
                     >
-                      <Text className={styles.secondaryTextClass}>{step === 1 ? t("setup.exit") : t("setup.previous")}</Text>
-                    </Pressable>
-
-                    {step < 3 ? (
-                      <Pressable
+                      <GlassButton
                         onPress={() => {
                           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                          handleNext();
+                          handleBack();
                         }}
-                        className="bg-emerald-500 rounded-lg py-4 items-center flex-row justify-center"
+                        label={step === 1 ? t("setup.exit") : t("setup.previous")}
+                        variant="secondary"
                         style={{ flex: stackFooterActions ? undefined : 1 }}
-                      >
-                        <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} font-semibold mr-2`}>{t("setup.next")}</Text>
-                        <MaterialIcons name="arrow-forward" size={18} color={isDark ? "#FFFFFF" : "#000"} />
-                      </Pressable>
-                    ) : (
-                      <Pressable
-                        onPress={() => {
-                          if (isUploading) return;
-                          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-                          handleContinue();
-                        }}
-                        className="bg-emerald-500 rounded-lg py-4 items-center flex-row justify-center"
-                        style={{ flex: stackFooterActions ? undefined : 1 }}
-                      >
-                        <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} font-semibold mr-2`}>{isUploading ? `${t("setup.continue")}...` : t("setup.continue")}</Text>
-                        <MaterialIcons name="arrow-forward" size={18} color={isDark ? "#FFFFFF" : "#000"} />
-                      </Pressable>
-                    )}
+                      />
+
+                      {step < 3 ? (
+                        <GlassButton
+                          onPress={() => {
+                            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                            handleNext();
+                          }}
+                          label={t("setup.next")}
+                          icon={<MaterialIcons name="arrow-forward" size={18} color={isDark ? "#FFFFFF" : "#000"} />}
+                          style={{ flex: stackFooterActions ? undefined : 1 }}
+                        />
+                      ) : (
+                        <GlassButton
+                          onPress={() => {
+                            if (isUploading) return;
+                            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+                            handleContinue();
+                          }}
+                          disabled={isUploading}
+                          label={isUploading ? `${t("setup.continue")}...` : t("setup.continue")}
+                          icon={<MaterialIcons name="arrow-forward" size={18} color={isDark ? "#FFFFFF" : "#000"} />}
+                          style={{ flex: stackFooterActions ? undefined : 1 }}
+                        />
+                      )}
+                    </View>
                   </View>
                 </View>
               </View>
-            </View>
+            </GlassCard>
           </View>
         </ScrollView>
       </ScreenBackground>

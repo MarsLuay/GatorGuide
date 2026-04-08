@@ -1,9 +1,10 @@
 import React, { type ReactNode } from "react";
-import { ActivityIndicator, Pressable, Text, View } from "react-native";
+import { ActivityIndicator, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
+import { AnimatedChipPressable } from "@/components/ui/AnimatedPressables";
 
 type StateCardVariant = "loading" | "empty" | "error" | "info";
 type IconName = keyof typeof Ionicons.glyphMap;
@@ -90,12 +91,13 @@ export function StateCard({
       {children ? <View className={`w-full ${resolvedMessage || resolvedTitle ? "mt-3" : ""}`}>{children}</View> : null}
 
       {actionLabel && onAction ? (
-        <Pressable
+        <AnimatedChipPressable
           onPress={onAction}
+          containerStyle={{ alignSelf: "stretch" }}
           className={`${compact ? "mt-3 px-4 py-2" : "mt-4 px-5 py-3"} bg-emerald-500 rounded-xl items-center self-stretch`}
         >
           <Text className={`${isDark || isGreen ? "text-white" : "text-emerald-900"} font-semibold`}>{actionLabel}</Text>
-        </Pressable>
+        </AnimatedChipPressable>
       ) : null}
     </View>
   );

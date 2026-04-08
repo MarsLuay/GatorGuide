@@ -3,6 +3,7 @@ type ValueOf<T> = T[keyof T];
 export const OPPORTUNITY_TYPES = {
   scholarship: "scholarship",
   internship: "internship",
+  generalDeadline: "general_deadline",
   collegeDeadline: "college_deadline",
 } as const;
 
@@ -186,6 +187,7 @@ export function normalizeOpportunityId(value: unknown): string {
 export function normalizeOpportunityType(value: unknown): OpportunityType {
   const parsed = String(value ?? "").trim();
   if (parsed === OPPORTUNITY_TYPES.internship) return OPPORTUNITY_TYPES.internship;
+  if (parsed === OPPORTUNITY_TYPES.generalDeadline) return OPPORTUNITY_TYPES.generalDeadline;
   if (parsed === OPPORTUNITY_TYPES.collegeDeadline) return OPPORTUNITY_TYPES.collegeDeadline;
   return OPPORTUNITY_TYPES.scholarship;
 }

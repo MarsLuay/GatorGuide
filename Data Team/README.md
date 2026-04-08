@@ -17,7 +17,9 @@ The Data Team helps by:
 - `WA_Transfer_Deadline.csv`: a current example dataset for transfer deadline work.
 - [`docs/PIPELINE_OVERVIEW.md`](docs/PIPELINE_OVERVIEW.md): high-level notes for the imported data/backend workflow.
 - `DataScrape/`: Python ETL pipeline for pulling and transforming College Scorecard data.
+- `CrawlScoreBoard/`: alternate scoreboard crawler pipeline imported from the donor repo.
 - `Server/`: Django backend and API files imported from the fork branch.
+- [`docs/PHASE7_IMPORT_NOTES.md`](docs/PHASE7_IMPORT_NOTES.md): notes for the imported AI/backend additions and the schema pieces that were intentionally left additive.
 - `pyproject.toml` and `uv.lock`: shared Python dependency setup for the Data Team workspace.
 - [`docs/COLLEGE_RANKING.md`](docs/COLLEGE_RANKING.md): shared ranking philosophy so data decisions stay aligned with the app's recommendation model.
 
@@ -51,9 +53,10 @@ git clone https://github.com/MarsLuay/GatorGuide.git
 cd GatorGuide
 ```
 
-This folder now includes two runnable Python workspaces:
+This folder now includes three Python workspaces:
 
 - `Data Team/DataScrape` for ETL and College Scorecard ingestion
+- `Data Team/CrawlScoreBoard` for the alternate scoreboard crawl/load pipeline
 - `Data Team/Server` for the Django backend/API
 
 The student-facing app still lives in `Mobile Team`.
@@ -84,6 +87,7 @@ cd DataScrape
 
 - Copy `.env.example` to `.env` before running the ETL scripts.
 - For the Django backend, use `Data Team\Server\.env.example` as your local template.
+- If you want token-based auth endpoints, also fill in `ENCRYPTION_KEY` in `Data Team\Server\.env`.
 
 ## Commit and Push Changes
 

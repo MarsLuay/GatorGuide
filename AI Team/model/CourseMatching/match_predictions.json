@@ -1,0 +1,42 @@
+[
+  {
+    "source_school": "University of Washington",
+    "source_course_code": "PHYS 121",
+    "source_course_name": "Mechanics",
+    "target_school": "Washington State University",
+    "target_course_code": "PHYSICS 201",
+    "target_course_name": "Introductory Physics I",
+    "confidence": 0.95,
+    "rationale": "Covers Newtonian mechanics, kinematics, dynamics, work and energy, momentum, rotational motion, and oscillations, which align closely with the mechanics principles and experiments in PHYS 121. Both include lecture and lab components."
+  },
+  {
+    "source_school": "University of Washington",
+    "source_course_code": "PHYS 122",
+    "source_course_name": "Electromagnetism",
+    "target_school": "Washington State University",
+    "target_course_code": "PHYSICS 202",
+    "target_course_name": "Introductory Physics II",
+    "confidence": 0.95,
+    "rationale": "PHYSICS 202 covers electricity, magnetism, electric potential, capacitance, current, resistance, and electromagnetic waves, which closely aligns with the source course PHYS 122 Electromagnetism. Both courses focus on electromagnetism principles and include experimental components."
+  },
+  {
+    "source_school": "University of Washington",
+    "source_course_code": "MATH 124",
+    "source_course_name": "Calculus I",
+    "target_school": "Washington State University",
+    "target_course_code": "MATH 171",
+    "target_course_name": "Calculus I",
+    "confidence": 0.95,
+    "rationale": "Covers fundamental topics in single-variable calculus including functions, limits, continuity, derivatives, differentiation, and applications, closely matching the source course's emphasis on differential calculus and problem solving."
+  },
+  {
+    "source_school": "University of Washington",
+    "source_course_code": "MATH 125",
+    "source_course_name": "Calculus II",
+    "target_school": "Washington State University",
+    "target_course_code": "MATH 172",
+    "target_course_name": "Calculus II",
+    "confidence": 0.95,
+    "rationale": "MATH 172 covers integral calculus, integration techniques, improper integrals, and infinite series, which align closely with the source course's emphasis on integral calculus and applications."
+  }
+]

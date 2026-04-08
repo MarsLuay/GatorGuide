@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Animated, Easing, PanResponder, Platform, Pressable, Text, View } from "react-native";
+import { Animated, Easing, PanResponder, Platform, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useAppTheme } from "@/hooks/use-app-theme";
+import { AnimatedCardPressable } from "@/components/ui/AnimatedPressables";
 
 export type HomeTaskMarqueeItem = {
   id: string;
@@ -273,14 +274,14 @@ export function HomeTaskMarquee({ items }: HomeTaskMarqueeProps) {
   if (!items.length) return null;
 
   const renderCard = (item: HomeTaskMarqueeItem, key: string) => (
-    <Pressable
+    <AnimatedCardPressable
       key={key}
       onPress={() => {
         if (suppressPressRef.current) return;
         item.onPress();
       }}
+      containerStyle={{ width: CARD_WIDTH }}
       className={`border rounded-3xl p-4 ${cardClass}`}
-      style={{ width: CARD_WIDTH }}
     >
       <View className="flex-row items-start">
         <View className="w-11 h-11 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">
@@ -305,7 +306,7 @@ export function HomeTaskMarquee({ items }: HomeTaskMarqueeProps) {
           <Text className="text-emerald-500 text-xs font-semibold mt-3">{item.actionLabel}</Text>
         </View>
       </View>
-    </Pressable>
+    </AnimatedCardPressable>
   );
 
   return (

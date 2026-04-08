@@ -1,8 +1,8 @@
 import React from "react";
-import { View, type ViewProps, StatusBar } from "react-native";
+import { View, StyleSheet, type ViewProps, StatusBar } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { SafeAreaView, useSafeAreaInsets, type Edge } from "react-native-safe-area-context";
-import { useAppTheme } from "@/hooks/use-app-theme";
+import { useThemeStyles } from "@/hooks/use-theme-styles";
 
 type Props = ViewProps & {
   children: React.ReactNode;
@@ -21,25 +21,30 @@ export function ScreenBackground({
   includeBottomInset = true,
   ...rest
 }: Props) {
-  const { resolvedTheme } = useAppTheme();
   const insets = useSafeAreaInsets();
-  const isDark = resolvedTheme === "dark";
-  const isGreen = resolvedTheme === "green";
-
-  const colors = isDark
-    ? (["#000000", "#111827", "#000000"] as const)
-    : isGreen
-      ? (["#001f0f", "#003b1a", "#001f0f"] as const)
-      : (["#ECFDF3", "#D9F7E8", "#ECFDF3"] as const);
+  const theme = useThemeStyles();
 
   return (
-    <LinearGradient colors={colors} style={[{ flex: 1 }, style]} {...rest}>
+    <View style={[styles.root, { backgroundColor: theme.screenBaseColor }, style]} {...rest}>
       <StatusBar
-        barStyle={isDark ? "light-content" : "dark-content"}
+        barStyle={theme.statusBarStyle}
         backgroundColor="transparent"
         translucent
       />
-      <SafeAreaView style={{ flex: 1 }} edges={safeAreaEdges}>
+      <LinearGradient colors={theme.screenGradientColors} style={StyleSheet.absoluteFill} />
+      <LinearGradient
+        colors={theme.screenOverlayTopColors}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0.8 }}
+        style={StyleSheet.absoluteFill}
+      />
+      <LinearGradient
+        colors={theme.screenOverlayBottomColors}
+        start={{ x: 1, y: 1 }}
+        end={{ x: 0, y: 0.2 }}
+        style={StyleSheet.absoluteFill}
+      />
+      <SafeAreaView style={styles.safeArea} edges={safeAreaEdges}>
         <View
           style={{
             flex: 1,
@@ -50,6 +55,15 @@ export function ScreenBackground({
           {children}
         </View>
       </SafeAreaView>
-    </LinearGradient>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+  },
+  safeArea: {
+    flex: 1,
+  },
+});

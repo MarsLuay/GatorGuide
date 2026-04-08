@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import {
   ActivityIndicator,
-  Pressable,
   ScrollView,
   Switch,
   Text,
@@ -13,6 +12,11 @@ import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
+import {
+  AnimatedCardPressable,
+  AnimatedChipPressable,
+  AnimatedIconPressable,
+} from "@/components/ui/AnimatedPressables";
 import { MatchScoreBadge } from "@/components/ui/MatchScoreBadge";
 import { StateCard } from "@/components/ui/StateCard";
 import { StatusBanner } from "@/components/ui/StatusBanner";
@@ -303,13 +307,13 @@ export default function CollegeSearchToolPage() {
             />
           </View>
 
-          <Pressable
+          <AnimatedChipPressable
             onPress={() => {
               void handleSearch();
             }}
             disabled={isSearching}
             className={`rounded-2xl px-4 py-3 items-center justify-center ${isSearching ? "bg-emerald-400" : "bg-emerald-500"}`}
-            style={stackSearchActions ? undefined : { minWidth: 132 }}
+            containerStyle={stackSearchActions ? undefined : { minWidth: 132 }}
           >
             {isSearching ? (
               <View className="flex-row items-center gap-2">
@@ -319,7 +323,7 @@ export default function CollegeSearchToolPage() {
             ) : (
               <Text className="text-white font-semibold">{t("home.search")}</Text>
             )}
-          </Pressable>
+          </AnimatedChipPressable>
         </View>
 
         {aiLimitNotice ? (
@@ -332,7 +336,7 @@ export default function CollegeSearchToolPage() {
         ) : null}
 
         {!hasCompletedQuestionnaire ? (
-          <Pressable
+          <AnimatedCardPressable
             onPress={() => router.push(ROUTES.questionnaire)}
             className="mt-4 rounded-2xl p-4 flex-row items-center bg-emerald-500"
           >
@@ -344,7 +348,7 @@ export default function CollegeSearchToolPage() {
               <Text className="text-emerald-900/70 text-sm">{t("home.getPersonalizedRecommendations")}</Text>
             </View>
             <Ionicons name="sparkles" size={18} color="#001f0f" />
-          </Pressable>
+          </AnimatedCardPressable>
         ) : null}
       </View>
 
@@ -361,7 +365,7 @@ export default function CollegeSearchToolPage() {
 
         {useWeighted ? (
           <View className="mt-4">
-            <Pressable
+            <AnimatedCardPressable
               onPress={() => setShowAdvancedSearch((value) => !value)}
               className={`${nestedPanelClass} px-4 py-3 flex-row items-center justify-between`}
             >
@@ -371,7 +375,7 @@ export default function CollegeSearchToolPage() {
                 size={18}
                 color={placeholderColor}
               />
-            </Pressable>
+            </AnimatedCardPressable>
 
             {showAdvancedSearch ? (
               <View className={`${nestedPanelClass} p-4 mt-3`}>
@@ -436,7 +440,7 @@ export default function CollegeSearchToolPage() {
               onPress: () => openAdjacentTool(ROUTES.compare),
             },
           ].map((tool) => (
-            <Pressable
+            <AnimatedCardPressable
               key={tool.id}
               onPress={tool.onPress}
               className={`${nestedPanelClass} px-4 py-4 flex-row items-center`}
@@ -449,7 +453,7 @@ export default function CollegeSearchToolPage() {
                 <Text className={`${secondaryTextClass} text-sm mt-1`}>{tool.description}</Text>
               </View>
               <Ionicons name="chevron-forward" size={18} color={placeholderColor} />
-            </Pressable>
+            </AnimatedCardPressable>
           ))}
         </View>
       </View>
@@ -523,7 +527,7 @@ export default function CollegeSearchToolPage() {
               const matchScore = getMatchScore(result);
 
               return (
-                <Pressable
+                <AnimatedCardPressable
                   key={college.id}
                   className={`${nestedPanelClass} p-4`}
                   onPress={() => router.push(ROUTES.collegeDetail(String(college.id)))}
@@ -552,7 +556,7 @@ export default function CollegeSearchToolPage() {
                       )}
                     </View>
 
-                    <Pressable
+                    <AnimatedIconPressable
                       onPress={(event) => {
                         event?.stopPropagation?.();
                         if (saved) {
@@ -568,7 +572,7 @@ export default function CollegeSearchToolPage() {
                         size={24}
                         color={saved ? "#008f4e" : placeholderColor}
                       />
-                    </Pressable>
+                    </AnimatedIconPressable>
                   </View>
 
                   <Text className={`text-sm ${secondaryTextClass} mt-2`}>
@@ -585,7 +589,7 @@ export default function CollegeSearchToolPage() {
                       ))}
                     </View>
                   ) : null}
-                </Pressable>
+                </AnimatedCardPressable>
               );
             })}
           </View>
@@ -611,10 +615,10 @@ export default function CollegeSearchToolPage() {
           }}
         >
           <View className="pt-8 pb-6">
-            <Pressable onPress={back} className="mb-4 flex-row items-center self-start">
+            <AnimatedIconPressable onPress={back} className="flex-row items-center" containerStyle={{ alignSelf: "flex-start", marginBottom: 16 }}>
               <MaterialIcons name="arrow-back" size={24} color={placeholderColor} />
               <Text className={`${secondaryTextClass} ml-2`}>{t("general.back")}</Text>
-            </Pressable>
+            </AnimatedIconPressable>
 
             <Text className={`text-3xl ${textClass}`}>{t("collegeSearchTool.title")}</Text>
             <Text className={`${secondaryTextClass} mt-2`} style={{ lineHeight: 22 }}>

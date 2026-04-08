@@ -14,15 +14,26 @@ The AI Team helps by:
 ## What's in This Folder
 
 - `AI.md`: notes, planning, and AI-related project direction.
+- `model/`: imported standalone AI workspace for essay RAG, retrieval experiments, and course-matching prototypes.
 
 ## Current Integration Points
 
-This folder is currently light on standalone code. Most of the app-side AI integration lives in the Mobile Team workspace, especially:
+The AI Team now has a standalone experiments workspace under `model/`, but most of the app-side AI integration still lives in the Mobile Team workspace, especially:
 
 - [`../Mobile Team/services/ai.service.ts`](../Mobile%20Team/services/ai.service.ts)
 - [`../Mobile Team/services/README.md`](../Mobile%20Team/services/README.md)
 
 That means this folder is a good home for planning, prompts, experiments, and documentation, while the mobile app currently handles the runtime integration.
+
+## Imported Model Workspace
+
+The donor repo's AI code now lives in:
+
+- `AI Team/model/src/rag_vector/`
+- `AI Team/model/src/essay_chain/`
+- `AI Team/model/CourseMatching/`
+
+Use `AI Team/model/README.md` and `AI Team/model/AI.md` for the experiment-specific commands and environment variables.
 
 ## Setup: Open the AI Workspace (Windows)
 

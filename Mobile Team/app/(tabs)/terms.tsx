@@ -1,10 +1,11 @@
 import type { ReactNode } from "react";
-import { View, Text, Pressable, ScrollView, useWindowDimensions } from "react-native";
+import { View, Text, ScrollView, useWindowDimensions } from "react-native";
 import { useRouter } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 import { ROUTES } from "@/constants/routes";
 import { SUPPORT_EMAIL } from "@/constants/support";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
+import { AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 
@@ -51,10 +52,14 @@ export default function TermsOfServicePage() {
           }}
         >
           <View style={{ width: "100%", maxWidth: readableMaxWidth, alignSelf: "center", paddingBottom: 24 }}>
-            <Pressable onPress={() => router.replace(ROUTES.tabsSettings)} className="mb-4 flex-row items-center self-start">
+            <AnimatedIconPressable
+              onPress={() => router.replace(ROUTES.tabsSettings)}
+              containerClassName="mb-4 self-start"
+              className="flex-row items-center"
+            >
               <MaterialIcons name="arrow-back" size={20} color={isDark ? "#b6e2b6" : "#1f8a5d"} />
               <Text className={`${secondaryTextClass} ml-2`}>Back</Text>
-            </Pressable>
+            </AnimatedIconPressable>
 
             <Text className={`text-2xl ${textClass}`}>Terms of Service</Text>
             <Text className={`${secondaryTextClass} mt-2 text-sm`}>Last updated: {lastUpdated}</Text>

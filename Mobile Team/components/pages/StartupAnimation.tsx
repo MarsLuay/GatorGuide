@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
-import { FontAwesome5 } from '@expo/vector-icons';
+import React, { useEffect } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -10,13 +9,11 @@ import Animated, {
   Easing,
   runOnJS,
 } from 'react-native-reanimated';
-
-const LOGO_SOURCE = require('../../assets/images/icon.png');
+import { GatorGuideMark } from '@/components/ui/GatorGuideMark';
 
 export default function StartupAnimation({ onFinish }: { onFinish: () => void }) {
   const opacity = useSharedValue(0);
   const scale = useSharedValue(0.3);
-  const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
     // Intro sequence: animate in, hold, then fade out before handing control back.
@@ -50,19 +47,9 @@ export default function StartupAnimation({ onFinish }: { onFinish: () => void })
   return (
     <View style={styles.container}>
       <Animated.View style={[styles.content, animatedStyle]}>
-        {/* If the logo asset fails, render a simple fallback mark instead. */}
-        {!imageError ? (
-          <Image
-            source={LOGO_SOURCE}
-            style={styles.logo}
-            resizeMode="contain"
-            onError={() => setImageError(true)}
-          />
-        ) : (
-          <View style={styles.fallbackLogo}>
-            <FontAwesome5 name="graduation-cap" size={76} color="#001f0f" />
-          </View>
-        )}
+        <View style={styles.logo}>
+          <GatorGuideMark size={160} />
+        </View>
         <Text style={styles.title}>Gator Guide</Text>
       </Animated.View>
     </View>
@@ -83,15 +70,6 @@ const styles = StyleSheet.create({
     width: 160,
     height: 160,
     marginBottom: 20,
-  },
-  fallbackLogo: {
-    width: 160,
-    height: 160,
-    marginBottom: 20,
-    borderRadius: 80,
-    backgroundColor: '#34D399',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   title: {
     fontSize: 36,

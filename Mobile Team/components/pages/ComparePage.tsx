@@ -1,9 +1,14 @@
 import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
-import { ActivityIndicator, Pressable, ScrollView, Text, TextInput, View, useWindowDimensions } from "react-native";
+import { ActivityIndicator, ScrollView, Text, TextInput, View, useWindowDimensions } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { ROUTES } from "@/constants/routes";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
+import {
+  AnimatedCardPressable,
+  AnimatedChipPressable,
+  AnimatedIconPressable,
+} from "@/components/ui/AnimatedPressables";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppData } from "@/hooks/use-app-data";
@@ -306,10 +311,10 @@ export default function ComparePage() {
     <ScreenBackground>
       <ScrollView className="flex-1" contentContainerStyle={scrollContentPadding}>
         <View style={{ width: "100%", maxWidth: 1220, alignSelf: "center", paddingHorizontal: 24, paddingTop: 24 }}>
-          <Pressable onPress={back} className="mb-4 flex-row items-center self-start">
+          <AnimatedIconPressable onPress={back} className="flex-row items-center" containerStyle={{ alignSelf: "flex-start", marginBottom: 16 }}>
             <MaterialIcons name="arrow-back" size={24} color={placeholderColor} />
             <Text className={`${secondaryTextClass} ml-2`}>{t("general.back")}</Text>
-          </Pressable>
+          </AnimatedIconPressable>
 
           <Text className={`text-2xl ${textClass} mb-1`}>{t("compare.title")}</Text>
           <Text className={`${secondaryTextClass} mb-6`}>{t("compare.subtitle")}</Text>
@@ -324,13 +329,13 @@ export default function ComparePage() {
               />
               <Text className={`${textClass} text-center font-medium mb-2`}>{t("tools.saveCollegesFirst")}</Text>
               <Text className={`${secondaryTextClass} text-center text-sm`}>{t("tools.saveCollegesFirstHint")}</Text>
-              <Pressable
+              <AnimatedChipPressable
                 onPress={() => router.push(ROUTES.tabs)}
                 className="mt-4 self-center flex-row items-center rounded-xl bg-emerald-500 px-4 py-3"
               >
                 <MaterialIcons name="search" size={18} color="#FFFFFF" />
                 <Text className="ml-2 text-white font-semibold">{t("home.search")}</Text>
-              </Pressable>
+              </AnimatedChipPressable>
             </View>
           ) : (
             <>
@@ -371,7 +376,7 @@ export default function ComparePage() {
                   {(["match", "tuition", "admission"] as const).map((option) => {
                     const active = sortBy === option;
                     return (
-                      <Pressable
+                      <AnimatedChipPressable
                         key={option}
                         onPress={() => setSortBy(option)}
                         className={`px-3 py-2 rounded-lg border ${
@@ -385,7 +390,7 @@ export default function ComparePage() {
                               ? t("compare.sortTuition")
                               : t("compare.sortAdmission")}
                         </Text>
-                      </Pressable>
+                      </AnimatedChipPressable>
                     );
                   })}
                 </View>
@@ -416,7 +421,7 @@ export default function ComparePage() {
                         key={college.id}
                         className={`px-4 py-4 flex-row items-center gap-3 border-b last:border-b-0 ${borderClass}`}
                       >
-                        <Pressable
+                        <AnimatedCardPressable
                           onPress={() => router.push(ROUTES.collegeDetail(collegeId))}
                           style={{ flex: 1 }}
                         >
@@ -429,9 +434,9 @@ export default function ComparePage() {
                           <Text className={`${secondaryTextClass} text-xs mt-1`} numberOfLines={1}>
                             {`${t("compare.tuition")}: ${tuition} | ${t("compare.admissionRate")}: ${admissionRate}`}
                           </Text>
-                        </Pressable>
+                        </AnimatedCardPressable>
 
-                        <Pressable
+                        <AnimatedChipPressable
                           onPress={() => toggleCollege(collegeId)}
                           className={`rounded-xl px-4 py-2 border ${
                             selected
@@ -444,7 +449,7 @@ export default function ComparePage() {
                           <Text className={selected ? (isDark ? "text-white font-semibold" : "text-emerald-950 font-semibold") : textClass}>
                             {selected ? t("compare.selectedBadge") : t("compare.compareAction")}
                           </Text>
-                        </Pressable>
+                        </AnimatedChipPressable>
                       </View>
                     );
                   })}
@@ -455,9 +460,9 @@ export default function ComparePage() {
                 <View className={`${cardBgClass} border rounded-3xl p-4 mb-5`}>
                   <View className="flex-row items-center justify-between mb-3">
                     <Text className={`${textClass} font-semibold`}>{t("compare.selectedColleges")}</Text>
-                    <Pressable onPress={() => setSelectedIds([])}>
+                    <AnimatedIconPressable onPress={() => setSelectedIds([])}>
                       <Text className="text-red-500">{t("compare.clearSelection")}</Text>
-                    </Pressable>
+                    </AnimatedIconPressable>
                   </View>
 
                   <View className="flex-row flex-wrap gap-3">
@@ -481,9 +486,9 @@ export default function ComparePage() {
                                 {location}
                               </Text>
                             </View>
-                            <Pressable onPress={() => toggleCollege(collegeId)}>
+                            <AnimatedIconPressable onPress={() => toggleCollege(collegeId)}>
                               <MaterialIcons name="close" size={20} color={placeholderColor} />
-                            </Pressable>
+                            </AnimatedIconPressable>
                           </View>
 
                           {typeof college.matchScore === "number" ? (
@@ -516,13 +521,13 @@ export default function ComparePage() {
                           </View>
 
                           <View className="flex-row items-center justify-between">
-                            <Pressable
+                            <AnimatedIconPressable
                               onPress={() =>
                                 router.push(ROUTES.collegeDetail(collegeId))
                               }
                             >
                               <Text className="text-emerald-500 font-medium">{t("compare.openDetails")}</Text>
-                            </Pressable>
+                            </AnimatedIconPressable>
                             {isHydrating ? <ActivityIndicator size="small" color="#10b981" /> : null}
                           </View>
                         </View>

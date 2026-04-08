@@ -3,7 +3,6 @@ import {
   View,
   Text,
   TextInput,
-  Pressable,
   ScrollView,
   Keyboard,
   Alert,
@@ -11,7 +10,6 @@ import {
   Image,
   KeyboardAvoidingView,
   useWindowDimensions,
-  type DimensionValue,
 } from "react-native";
 import { useRouter } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -23,8 +21,13 @@ import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
-import { normalizeQuestionnaireAnswers, QUESTIONNAIRE_RADIO_OPTIONS } from "@/services/app/questionnaire.enums";
+import { normalizeQuestionnaireAnswers } from "@/services/app/questionnaire.enums";
 import { useAppData } from "@/hooks/use-app-data";
+import {
+  AnimatedCardPressable,
+  AnimatedChipPressable,
+  AnimatedIconPressable,
+} from "@/components/ui/AnimatedPressables";
 import { ProfileField } from "@/components/ui/ProfileField";
 import { DocumentExtractionReviewCard } from "@/components/ui/DocumentExtractionReviewCard";
 import { StateCard } from "@/components/ui/StateCard";
@@ -38,16 +41,11 @@ import { ROUTES } from "@/constants/routes";
 import { collegeService } from "@/services/colleges/college.service";
 import { APP_VERSION } from "@/constants/app-version";
 import {
-  QUESTIONNAIRE_FIELD_IDS,
+  PROFILE_QUESTIONNAIRE_FIELD_IDS,
   STORAGE_KEYS,
-  type QuestionnaireFieldId,
 } from "@/constants/schema";
 import { documentReaderService, errorLoggingService, type DocumentExtractionReview } from "@/services";
 
-type RadioOption = { key: string; label: string };
-type Question =
-  | { id: QuestionnaireFieldId; question: string; type: "text" | "textarea"; placeholder: string }
-  | { id: QuestionnaireFieldId; question: string; type: "radio"; options: RadioOption[] };
 type UploadedDocumentMeta = {
   name: string;
   url: string;
@@ -127,8 +125,6 @@ export default function ProfilePage() {
     englishTestValue: "",
   });
 
-  const [showQuestionnaire, setShowQuestionnaire] = useState(false);
-  const [questionnaireAnswers, setLocalAnswers] = useState<Record<string, string>>({});
   const [isConfettiPlaying, setIsConfettiPlaying] = useState(false);
   const [confettiCooldown, setConfettiCooldown] = useState(false);
   const [showGuestProfile, setShowGuestProfile] = useState(false);
@@ -294,29 +290,6 @@ export default function ProfilePage() {
   };
   const confettiRef = useRef<any>(null);
 
-  const questions = useMemo<Question[]>(
-    () => [
-      // Keep profile questionnaire concise here; full questionnaire lives on its own page.
-      { id: QUESTIONNAIRE_FIELD_IDS.costOfAttendance, question: t("questionnaire.costOfAttendance"), options: QUESTIONNAIRE_RADIO_OPTIONS.costOfAttendance.map((o) => ({ key: o.key, label: t(o.labelKey) })), type: "radio" },
-      { id: QUESTIONNAIRE_FIELD_IDS.classSize, question: t("questionnaire.classSize"), options: QUESTIONNAIRE_RADIO_OPTIONS.classSize.map((o) => ({ key: o.key, label: t(o.labelKey) })), type: "radio" },
-      { id: QUESTIONNAIRE_FIELD_IDS.transportation, question: t("questionnaire.transportation"), options: QUESTIONNAIRE_RADIO_OPTIONS.transportation.map((o) => ({ key: o.key, label: t(o.labelKey) })), type: "radio" },
-      { id: QUESTIONNAIRE_FIELD_IDS.companiesNearby, question: t("questionnaire.companiesNearby"), placeholder: t("questionnaire.companiesNearbyPlaceholder"), type: "textarea" },
-      { id: QUESTIONNAIRE_FIELD_IDS.inStateOutOfState, question: t("questionnaire.inStateOutOfState"), options: QUESTIONNAIRE_RADIO_OPTIONS.inStateOutOfState.map((o) => ({ key: o.key, label: t(o.labelKey) })), type: "radio" },
-      { id: QUESTIONNAIRE_FIELD_IDS.housing, question: t("questionnaire.housingPreference"), options: QUESTIONNAIRE_RADIO_OPTIONS.housing.map((o) => ({ key: o.key, label: t(o.labelKey) })), type: "radio" },
-      { id: QUESTIONNAIRE_FIELD_IDS.ranking, question: t("questionnaire.ranking"), options: QUESTIONNAIRE_RADIO_OPTIONS.ranking.map((o) => ({ key: o.key, label: t(o.labelKey) })), type: "radio" },
-      { id: QUESTIONNAIRE_FIELD_IDS.continueEducation, question: t("questionnaire.continueEducation"), options: QUESTIONNAIRE_RADIO_OPTIONS.continueEducation.map((o) => ({ key: o.key, label: t(o.labelKey) })), type: "radio" },
-      { id: QUESTIONNAIRE_FIELD_IDS.extracurriculars, question: t("questionnaire.extracurriculars"), placeholder: t("questionnaire.extracurricularsPlaceholder"), type: "textarea" },
-    ],
-    [t]
-  );
-
-  const blankAnswers = useMemo(() => {
-    // Seed all question ids so controlled inputs always have stable values.
-    const init: Record<string, string> = {};
-    for (const q of questions) init[q.id] = "";
-    return init;
-  }, [questions]);
-
   useEffect(() => {
     if (!isHydrated) return;
     setEditData({
@@ -332,8 +305,7 @@ export default function ProfilePage() {
       englishTestType: user?.englishTestType ?? "",
       englishTestValue: user?.englishTestValue ?? "",
     });
-    setLocalAnswers({ ...blankAnswers, ...normalizeQuestionnaireAnswers(state.questionnaireAnswers ?? {}, language) });
-  }, [isHydrated, user?.name, user?.state, user?.major, user?.gender, user?.gpa, user?.resume, user?.transcript, user?.residencyType, user?.englishProficiency, user?.englishTestType, user?.englishTestValue, blankAnswers, state.questionnaireAnswers, language]);
+  }, [isHydrated, user?.name, user?.state, user?.major, user?.gender, user?.gpa, user?.resume, user?.transcript, user?.residencyType, user?.englishProficiency, user?.englishTestType, user?.englishTestValue]);
 
   const textClass = isDark ? "text-white" : isGreen ? "text-white" : isLight ? "text-emerald-900" : "text-gray-900";
   const secondaryTextClass = isDark ? "text-gray-400" : isGreen ? "text-emerald-100" : isLight ? "text-emerald-700" : "text-gray-600";
@@ -370,9 +342,6 @@ export default function ProfilePage() {
   const avatarBadgeSize = isDesktopLayout ? 34 : isWideLayout ? 30 : 24;
   const avatarBadgeIconSize = isDesktopLayout ? 18 : 16;
   const avatarBadgeBorderColor = isDark ? "#111827" : isGreen ? "#065f46" : "#FFFFFF";
-  const questionnaireScrollMaxHeight = isWideLayout
-    ? Math.max(320, Math.min(viewportHeight * (isDesktopLayout ? 0.58 : 0.52), 640))
-    : undefined;
   const desktopViewportHeight = useDesktopFitLayout
     ? Math.max(660, viewportHeight - insets.top - tabBarContentClearance - 20)
     : undefined;
@@ -383,7 +352,6 @@ export default function ProfilePage() {
     includeBottomTabClearance: true,
     extraTop: 16,
   });
-  const stackQuestionnaireActions = isWideLayout && !isDesktopLayout;
 
   const hasQuestionnaireData = useMemo(
     () => Object.keys(state.questionnaireAnswers ?? {}).length > 0,
@@ -408,13 +376,13 @@ export default function ProfilePage() {
     });
   const questionnaireAnsweredCount = useMemo(
     () =>
-      questions.reduce((count, question) => {
-        const value = questionnaireAnswers[question.id];
+      PROFILE_QUESTIONNAIRE_FIELD_IDS.reduce((count, questionId) => {
+        const value = state.questionnaireAnswers?.[questionId];
         return typeof value === "string" && value.trim() ? count + 1 : count;
       }, 0),
-    [questions, questionnaireAnswers]
+    [state.questionnaireAnswers]
   );
-  const questionnaireCompletionLabel = `${questionnaireAnsweredCount}/${questions.length}`;
+  const questionnaireCompletionLabel = `${questionnaireAnsweredCount}/${PROFILE_QUESTIONNAIRE_FIELD_IDS.length}`;
   const uploadedDocumentCount = [editData.resume, editData.transcript].filter((value) => value.trim().length > 0).length;
   const documentCompletionLabel = `${uploadedDocumentCount}/2`;
   const currentMajor = capitalizeWords(editData.major || user?.major || "") || t("profile.undecided");
@@ -445,6 +413,11 @@ export default function ProfilePage() {
     : user?.residencyType
       ? residencyLabels[user.residencyType] ?? user.residencyType
       : t("general.notSpecified");
+  const openQuestionnairePage = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    router.push(ROUTES.questionnaire);
+  };
+
   const profileSummaryCards = [
     { key: "major", icon: "school" as const, label: t("profile.major"), value: currentMajor },
     { key: "gpa", icon: "description" as const, label: t("profile.gpa"), value: currentGpa },
@@ -521,10 +494,7 @@ export default function ProfilePage() {
           major: editData.major || user?.major || "",
           gpa: editData.gpa || user?.gpa || "",
         },
-        questionnaireAnswers: {
-          ...state.questionnaireAnswers,
-          ...questionnaireAnswers,
-        },
+        questionnaireAnswers: state.questionnaireAnswers,
       });
       setDocumentReviews((prev) => ({ ...prev, [documentType]: review }));
     } catch (error) {
@@ -559,16 +529,11 @@ export default function ProfilePage() {
         const nextQuestionnaire = normalizeQuestionnaireAnswers(
           {
             ...state.questionnaireAnswers,
-            ...questionnaireAnswers,
             ...review.questionnairePatch,
           },
           language
         ) as Record<string, string>;
         await setQuestionnaireAnswers(nextQuestionnaire);
-        setLocalAnswers((prev) => ({
-          ...prev,
-          ...(review.questionnairePatch as Record<string, string>),
-        }));
         try {
           await collegeService.saveQuestionnaireResult(nextQuestionnaire);
         } catch (error) {
@@ -722,110 +687,11 @@ export default function ProfilePage() {
     }
   };
 
-  const handleQuestionnaireAnswer = (id: string, value: string) => {
-    setLocalAnswers((p) => ({ ...p, [id]: value }));
-  };
-
-  // Migration: normalize existing collegeSetting stored value to canonical keys
-  const _collegeSettingMigrated = useRef(false);
-  useEffect(() => {
-    if (!isHydrated || _collegeSettingMigrated.current) return;
-    const optionKeys = ["urban", "suburban", "rural", "noPreference"];
-    const raw =
-      questionnaireAnswers[QUESTIONNAIRE_FIELD_IDS.collegeSetting] ??
-      state.questionnaireAnswers?.[QUESTIONNAIRE_FIELD_IDS.collegeSetting] ??
-      '';
-    const normalize = (val: unknown): string | undefined => {
-      if (typeof val !== 'string') return undefined;
-      if (val.startsWith('questionnaire.')) return val.replace(/^questionnaire\./, '');
-      if (optionKeys.includes(val)) return val;
-      for (const k of optionKeys) {
-        try {
-          if (t((`questionnaire.${k}`) as any) === val) return k;
-        } catch {
-          // ignore
-        }
-      }
-      return undefined;
-    };
-
-    const normalized = normalize(raw);
-    if (normalized && raw !== normalized) {
-      // update local answers to canonical key (do not immediately persist to server)
-      handleQuestionnaireAnswer(QUESTIONNAIRE_FIELD_IDS.collegeSetting, normalized);
-    }
-    _collegeSettingMigrated.current = true;
-  }, [
-    isHydrated,
-    questionnaireAnswers,
-    state.questionnaireAnswers,
-    state.questionnaireAnswers?.[QUESTIONNAIRE_FIELD_IDS.collegeSetting],
-    t,
-  ]);
-
-  const _environmentMigrated = useRef(false);
-  useEffect(() => {
-    if (!isHydrated || _environmentMigrated.current) return;
-    const optionKeys = ["researchFocused","liberalArts","technical","preProfessional","mixed","noPreference"];
-    const raw =
-      questionnaireAnswers[QUESTIONNAIRE_FIELD_IDS.environment] ??
-      state.questionnaireAnswers?.[QUESTIONNAIRE_FIELD_IDS.environment] ??
-      '';
-    const normalize = (val: unknown): string | undefined => {
-      if (typeof val !== 'string') return undefined;
-      if (val.startsWith('questionnaire.')) return val.replace(/^questionnaire\./, '');
-      if (optionKeys.includes(val)) return val;
-      for (const k of optionKeys) {
-        try {
-          if (t((`questionnaire.${k}`) as any) === val) return k;
-        } catch {
-          // ignore
-        }
-      }
-      return undefined;
-    };
-
-    const normalized = normalize(raw);
-    if (normalized && raw !== normalized) {
-      handleQuestionnaireAnswer(QUESTIONNAIRE_FIELD_IDS.environment, normalized);
-    }
-    _environmentMigrated.current = true;
-  }, [
-    isHydrated,
-    questionnaireAnswers,
-    state.questionnaireAnswers,
-    state.questionnaireAnswers?.[QUESTIONNAIRE_FIELD_IDS.environment],
-    t,
-  ]);
-
-  const handleSaveQuestionnaire = async () => {
-    // Normalize localized answers into canonical keys before persisting.
-    const toSave = normalizeQuestionnaireAnswers({ ...questionnaireAnswers }, language) as Record<string, string>;
-    // Major is captured on the user profile; do not store major in questionnaire
-    delete toSave.major;
-    delete toSave.majorChoice;
-    await setQuestionnaireAnswers(toSave);
-    try {
-      await collegeService.saveQuestionnaireResult(toSave);
-    } catch (error) {
-      void errorLoggingService.captureException(error, {
-        category: "firestore",
-        operation: "save-profile-questionnaire",
-        severity: "warn",
-        handled: true,
-        source: "profile-page",
-        screen: "profile",
-        route: ROUTES.profile,
-      });
-    }
-    setShowQuestionnaire(false);
-  };
-
   const renderProfileHero = () => (
     <View className="bg-emerald-500/5 px-6 py-5 border-b border-emerald-500/20">
       <View className="flex-row items-center">
         <View className="relative mr-4 pb-1 pr-1">
-          <Pressable
+          <AnimatedIconPressable
             onPress={isEditing ? handlePickAvatar : undefined}
             disabled={!isEditing}
             className="rounded-full overflow-hidden border border-emerald-500/20 bg-emerald-500/10"
@@ -844,10 +710,10 @@ export default function ProfilePage() {
                 )}
               </View>
             )}
-          </Pressable>
+          </AnimatedIconPressable>
 
           {isEditing ? (
-            <Pressable
+            <AnimatedIconPressable
               onPress={handlePickAvatar}
               className="absolute bottom-0 right-0 rounded-full bg-emerald-500 items-center justify-center"
               style={{
@@ -859,7 +725,7 @@ export default function ProfilePage() {
               hitSlop={8}
             >
               <MaterialIcons name="edit" size={avatarBadgeIconSize} color="#001f0f" />
-            </Pressable>
+            </AnimatedIconPressable>
           ) : null}
         </View>
 
@@ -909,7 +775,7 @@ export default function ProfilePage() {
       ) : null}
 
       {user?.isGuest ? (
-        <Pressable
+        <AnimatedCardPressable
           onPress={handleCreateAccount}
           className={`${guestCtaCardClass} rounded-xl p-5 flex-row items-center justify-between mb-4`}
           style={guestCtaCardStyle}
@@ -922,7 +788,7 @@ export default function ProfilePage() {
             <Text className={`${guestCtaBodyClass} text-sm`}>{t("profile.saveDataMessage")}</Text>
           </View>
           <MaterialIcons name="arrow-forward" size={24} color={guestCtaIconColor} />
-        </Pressable>
+        </AnimatedCardPressable>
       ) : (
         <ProfileField
           type="display"
@@ -1062,7 +928,7 @@ export default function ProfilePage() {
                   ].map((option) => {
                     const isSelected = editData.englishProficiency === option.key;
                     return (
-                      <Pressable
+                      <AnimatedChipPressable
                         key={option.key}
                         onPress={() => {
                           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -1075,11 +941,11 @@ export default function ProfilePage() {
                         className={`px-4 py-2 rounded-lg border ${
                           isSelected ? "bg-emerald-500/10 border-emerald-500" : `border ${borderClass}`
                         }`}
-                      >
-                        <Text className={isSelected ? "text-emerald-500 font-semibold" : secondaryTextClass}>
-                          {t(option.labelKey)}
-                        </Text>
-                      </Pressable>
+                        >
+                          <Text className={isSelected ? "text-emerald-500 font-semibold" : secondaryTextClass}>
+                            {t(option.labelKey)}
+                          </Text>
+                      </AnimatedChipPressable>
                     );
                   })}
                 </View>
@@ -1096,7 +962,7 @@ export default function ProfilePage() {
                         const isSelected = editData.englishTestType === type;
 
                         return (
-                          <Pressable
+                          <AnimatedChipPressable
                             key={type}
                             onPress={() => {
                               Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -1109,7 +975,7 @@ export default function ProfilePage() {
                             <Text className={`text-sm ${isSelected ? "text-emerald-500 font-medium" : secondaryTextClass}`}>
                               {t(labelKey)}
                             </Text>
-                          </Pressable>
+                          </AnimatedChipPressable>
                         );
                       })}
                     </View>
@@ -1300,23 +1166,51 @@ export default function ProfilePage() {
     compact?: boolean;
   } = {}) => (
     <View className="flex-row flex-wrap gap-3">
-      {profileSummaryCards.map((card) => (
-        <View
-          key={card.key}
-          className={`${cardBgClass} border rounded-2xl p-4`}
-          style={{ flexBasis: "47%", flexGrow: 1, minHeight: compact ? 112 : 132 }}
-        >
-          <View className="w-10 h-10 rounded-full bg-emerald-500/10 items-center justify-center">
-            <MaterialIcons name={card.icon} size={20} color="#008f4e" />
-          </View>
-          <Text className={`${secondaryTextClass} text-xs mt-3`} numberOfLines={compact ? 1 : 2}>
-            {card.label}
-          </Text>
-          <Text className={`${textClass} text-base font-semibold mt-1`} numberOfLines={compact ? 1 : 2}>
-            {card.value}
-          </Text>
-        </View>
-      ))}
+      {profileSummaryCards.map((card) => {
+        const isQuestionnaireCard = card.key === "questionnaire";
+
+        return (
+          isQuestionnaireCard ? (
+            <AnimatedCardPressable
+              key={card.key}
+              onPress={openQuestionnairePage}
+              accessibilityRole="button"
+              accessibilityLabel={t("profile.questionnaire")}
+              className={`${cardBgClass} border rounded-2xl p-4`}
+              containerStyle={{ flexBasis: "47%", flexGrow: 1, minHeight: compact ? 112 : 132 }}
+            >
+              <View className="w-10 h-10 rounded-full bg-emerald-500/10 items-center justify-center">
+                <MaterialIcons name={card.icon} size={20} color="#008f4e" />
+              </View>
+              <Text className={`${secondaryTextClass} text-xs mt-3`} numberOfLines={compact ? 1 : 2}>
+                {card.label}
+              </Text>
+              <Text className={`${textClass} text-base font-semibold mt-1`} numberOfLines={compact ? 1 : 2}>
+                {card.value}
+              </Text>
+              <View className="mt-3 flex-row items-center">
+                <Text className="text-emerald-500 text-xs font-semibold">{hasQuestionnaireData ? t("profile.edit") : t("profile.complete")}</Text>
+                <MaterialIcons name="open-in-new" size={14} color="#008f4e" style={{ marginLeft: 6 }} />
+              </View>
+            </AnimatedCardPressable>
+          ) : (
+            <View
+              key={card.key}
+              className={`${cardBgClass} border rounded-2xl p-4`}
+              style={{ flexBasis: "47%", flexGrow: 1, minHeight: compact ? 112 : 132 }}
+            >
+              <View className="w-10 h-10 rounded-full bg-emerald-500/10 items-center justify-center">
+                <MaterialIcons name={card.icon} size={20} color="#008f4e" />
+              </View>
+              <Text className={`${secondaryTextClass} text-xs mt-3`} numberOfLines={compact ? 1 : 2}>
+                {card.label}
+              </Text>
+              <Text className={`${textClass} text-base font-semibold mt-1`} numberOfLines={compact ? 1 : 2}>
+                {card.value}
+              </Text>
+            </View>
+          )
+        )})}
     </View>
   );
 
@@ -1326,178 +1220,13 @@ export default function ProfilePage() {
   }: {
     className?: string;
     fitToContainer?: boolean;
-  } = {}) => {
-    const useCompactGrid = fitToContainer && useDesktopFitLayout;
-    const fieldGridStyle = useCompactGrid
-      ? {
-          flexDirection: "row" as const,
-          flexWrap: "wrap" as const,
-          gap: 16,
-        }
-      : undefined;
-    const fieldItemStyle = useCompactGrid ? { width: "48.5%" as DimensionValue } : undefined;
-    const optionGroupStyle = useCompactGrid
-      ? {
-          flexDirection: "row" as const,
-          flexWrap: "wrap" as const,
-          gap: 8,
-        }
-      : undefined;
-    const optionItemStyle = useCompactGrid ? { width: "48.5%" as DimensionValue } : undefined;
-    const questionnaireFields = (
-      <View className="gap-6" style={fieldGridStyle}>
-        {questions.map((question) => (
-          <View key={question.id} style={fieldItemStyle}>
-            <Text className={`text-sm font-semibold ${textClass} mb-3`}>
-              {typeof question.question === "string" && question.question.startsWith("questionnaire.")
-                ? t(question.question as any)
-                : question.question}
-            </Text>
-
-            {(question.type === "text" || question.type === "textarea") ? (
-              <TextInput
-                value={questionnaireAnswers[question.id] ?? ""}
-                onChangeText={(value) => handleQuestionnaireAnswer(question.id, value)}
-                placeholder={question.placeholder}
-                placeholderTextColor={placeholderColor}
-                multiline={question.type === "textarea"}
-                textAlignVertical={question.type === "textarea" ? "top" : undefined}
-                className={`${inputClass} ${question.type === "textarea" ? (useCompactGrid ? "min-h-[76px]" : "min-h-[100px]") : "min-h-[44px]"}`}
-              />
-            ) : null}
-
-            {question.type === "radio" ? (
-              <View className="gap-2" style={optionGroupStyle}>
-                {question.id === QUESTIONNAIRE_FIELD_IDS.collegeSetting ? (
-                  (() => {
-                    const optionKeys = ["urban", "suburban", "rural", "noPreference"];
-                    const stored = questionnaireAnswers[question.id];
-                    let savedKey: string | undefined = undefined;
-                    if (typeof stored === "string") {
-                      if (stored.startsWith("questionnaire.")) {
-                        savedKey = stored.replace(/^questionnaire\./, "");
-                      } else if (optionKeys.includes(stored)) {
-                        savedKey = stored;
-                      } else {
-                        for (const key of optionKeys) {
-                          try {
-                            if (t(`questionnaire.${key}` as any) === stored) {
-                              savedKey = key;
-                              break;
-                            }
-                          } catch {
-                          }
-                        }
-                      }
-                    }
-
-                    return optionKeys.map((key) => {
-                      const optionLabel = t(`questionnaire.${key}` as any);
-                      const isSelected = savedKey === key;
-
-                      return (
-                        <Pressable
-                          key={key}
-                          onPress={() => {
-                            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                            handleQuestionnaireAnswer(question.id, key);
-                          }}
-                          className={`px-4 py-3 rounded-lg border ${
-                            isSelected ? "bg-emerald-500/10 border-emerald-500" : borderClass
-                          }`}
-                          style={optionItemStyle}
-                        >
-                          <View className="flex-row items-center justify-between">
-                            <Text className={isSelected ? "text-emerald-500 font-semibold" : textClass}>{optionLabel}</Text>
-                            {isSelected ? <MaterialIcons name="check-circle" size={18} color="#008f4e" /> : null}
-                          </View>
-                        </Pressable>
-                      );
-                    });
-                  })()
-                ) : question.id === QUESTIONNAIRE_FIELD_IDS.environment ? (
-                  (() => {
-                    const optionKeys = ["researchFocused", "liberalArts", "technical", "preProfessional", "mixed", "noPreference"];
-                    const stored = questionnaireAnswers[question.id];
-                    let savedKey: string | undefined = undefined;
-                    if (typeof stored === "string") {
-                      if (stored.startsWith("questionnaire.")) {
-                        savedKey = stored.replace(/^questionnaire\./, "");
-                      } else if (optionKeys.includes(stored)) {
-                        savedKey = stored;
-                      } else {
-                        for (const key of optionKeys) {
-                          try {
-                            if (t(`questionnaire.${key}` as any) === stored) {
-                              savedKey = key;
-                              break;
-                            }
-                          } catch {
-                          }
-                        }
-                      }
-                    }
-
-                    return optionKeys.map((key) => {
-                      const optionLabel = t(`questionnaire.${key}` as any);
-                      const isSelected = savedKey === key;
-
-                      return (
-                        <Pressable
-                          key={key}
-                          onPress={() => {
-                            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                            handleQuestionnaireAnswer(question.id, key);
-                          }}
-                          className={`px-4 py-3 rounded-lg border ${
-                            isSelected ? "bg-emerald-500/10 border-emerald-500" : borderClass
-                          }`}
-                          style={optionItemStyle}
-                        >
-                          <View className="flex-row items-center justify-between">
-                            <Text className={isSelected ? "text-emerald-500 font-semibold" : textClass}>{optionLabel}</Text>
-                            {isSelected ? <MaterialIcons name="check-circle" size={18} color="#008f4e" /> : null}
-                          </View>
-                        </Pressable>
-                      );
-                    });
-                  })()
-                ) : (
-                  question.options.map((option) => {
-                    const stored = questionnaireAnswers[question.id];
-                    const isSelected = stored === option.key;
-
-                    return (
-                      <Pressable
-                        key={option.key}
-                        onPress={() => {
-                          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                          handleQuestionnaireAnswer(question.id, option.key);
-                        }}
-                        className={`px-4 py-3 rounded-lg border ${
-                          isSelected ? "bg-emerald-500/10 border-emerald-500" : borderClass
-                        }`}
-                        style={optionItemStyle}
-                      >
-                        <View className="flex-row items-center justify-between">
-                          <Text className={isSelected ? "text-emerald-500 font-semibold" : textClass}>{option.label}</Text>
-                          {isSelected ? <MaterialIcons name="check-circle" size={18} color="#008f4e" /> : null}
-                        </View>
-                      </Pressable>
-                    );
-                  })
-                )}
-              </View>
-            ) : null}
-          </View>
-        ))}
-      </View>
-    );
-
-    return (
-      <View
+  } = {}) => (
+      <AnimatedCardPressable
+        onPress={openQuestionnairePage}
+        accessibilityRole="button"
+        accessibilityLabel={t("profile.questionnaire")}
         className={`${cardBgClass} border rounded-2xl p-6 ${className}`.trim()}
-        style={fitToContainer ? { flex: 1, minHeight: 0 } : undefined}
+        containerStyle={fitToContainer ? { flex: 1, minHeight: 0 } : undefined}
       >
         <View className="flex-row items-center justify-between mb-4 gap-3">
           <View className="flex-row items-center flex-1 min-w-0">
@@ -1510,97 +1239,35 @@ export default function ProfilePage() {
               <View className="ml-3 bg-emerald-500/10 rounded-full px-2.5 py-1">
                 <Text className="text-emerald-500 text-xs font-semibold">{questionnaireCompletionLabel}</Text>
               </View>
-            ) : null}
-          </View>
+              ) : null}
+            </View>
 
-          <Pressable
-            onPress={() => {
-              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-              setShowQuestionnaire(!showQuestionnaire);
+          <View
+            className="rounded-full px-3 py-2 flex-row items-center border"
+            style={{
+              backgroundColor: "rgba(16,185,129,0.12)",
+              borderColor: "rgba(16,185,129,0.22)",
             }}
           >
-            <Text className="text-emerald-500 text-sm">
+            <MaterialIcons
+              name={hasQuestionnaireData ? "edit" : "open-in-new"}
+              size={16}
+              color="#008f4e"
+            />
+            <Text className="text-sm font-semibold ml-1.5" style={{ color: "#008f4e" }}>
               {hasQuestionnaireData ? t("profile.edit") : t("profile.complete")}
             </Text>
-          </Pressable>
+          </View>
         </View>
 
-        {!hasQuestionnaireData ? (
-          <Text className={`text-sm ${secondaryTextClass}`}>{t("profile.questionnairePrompt")}</Text>
-        ) : null}
+        <Text className={`text-sm ${secondaryTextClass}`}>
+          {hasQuestionnaireData
+            ? t("profile.questionnaireSummary", { count: questionnaireCompletionLabel })
+            : t("profile.questionnairePrompt")}
+        </Text>
 
-        {!showQuestionnaire && fitToContainer ? (
-          <View className="mt-4 flex-row flex-wrap gap-2">
-            <View className="bg-emerald-500/10 rounded-full px-3 py-1.5 border border-emerald-500/20">
-              <Text className="text-emerald-500 text-xs font-semibold">
-                {t("profile.questionnaireSummary", { count: questionnaireCompletionLabel })}
-              </Text>
-            </View>
-            <View className="bg-emerald-500/10 rounded-full px-3 py-1.5 border border-emerald-500/20">
-              <Text className="text-emerald-500 text-xs font-semibold">
-                {hasQuestionnaireData
-                  ? t("profile.questionnaireExpandHintAdjust")
-                  : t("profile.questionnaireExpandHintSetup")}
-              </Text>
-            </View>
-          </View>
-        ) : null}
-
-        {showQuestionnaire ? (
-          <View
-            className={`mt-6 pt-6 border-t ${borderClass}`}
-            style={fitToContainer ? { flex: 1, minHeight: 0 } : undefined}
-          >
-            {fitToContainer ? (
-              <ScrollView
-                nestedScrollEnabled
-                keyboardShouldPersistTaps="handled"
-                style={{ flex: 1, minHeight: 0 }}
-                contentContainerStyle={{ paddingBottom: 10 }}
-              >
-                {questionnaireFields}
-              </ScrollView>
-            ) : isWideLayout && questionnaireScrollMaxHeight ? (
-              <ScrollView
-                nestedScrollEnabled
-                keyboardShouldPersistTaps="handled"
-                style={{ maxHeight: questionnaireScrollMaxHeight }}
-                contentContainerStyle={{ paddingBottom: 6 }}
-              >
-                {questionnaireFields}
-              </ScrollView>
-            ) : (
-              questionnaireFields
-            )}
-
-            <View className={`${stackQuestionnaireActions ? "flex-col" : "flex-row"} gap-3 mt-6 pt-6 border-t border-emerald-300`}>
-              <Pressable
-                onPress={() => {
-                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                  setShowQuestionnaire(false);
-                }}
-                className={`flex-1 rounded-lg py-3 items-center border ${borderClass}`}
-              >
-                <Text className={secondaryTextClass}>{t("general.close")}</Text>
-              </Pressable>
-
-              <Pressable
-                onPress={() => {
-                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-                  handleSaveQuestionnaire();
-                }}
-                className="flex-1 bg-emerald-500 rounded-lg py-3 items-center"
-              >
-                <Text className={`${isDark ? "text-white" : "text-emerald-900"} font-semibold`}>
-                  {t("profile.saveAnswers")}
-                </Text>
-              </Pressable>
-            </View>
-          </View>
-        ) : null}
-      </View>
+      </AnimatedCardPressable>
     );
-  };
 
   if (!isHydrated) {
     return (
@@ -1652,15 +1319,15 @@ export default function ProfilePage() {
               </Text>
             </View>
 
-            <Pressable
+            <AnimatedChipPressable
               onPress={() => router.push(ROUTES.login)}
               className={`${isLight ? "bg-emerald-200" : "bg-emerald-500"} rounded-lg py-4 px-6 items-center flex-row justify-center`}
             >
               <MaterialIcons name="arrow-forward" size={20} color="#001f0f" />
               <Text className={`${isDark || isGreen ? 'text-white' : 'text-emerald-900'} font-semibold ml-2`}>{t("profile.createYourProfile")}</Text>
-            </Pressable>
+            </AnimatedChipPressable>
 
-            <Pressable
+            <AnimatedChipPressable
               onPress={() => {
                 setShowGuestProfile(true);
                 AsyncStorage.setItem(STORAGE_KEYS.guestProfileShow, "true").catch(() => {});
@@ -1668,7 +1335,7 @@ export default function ProfilePage() {
               className={`${cardBgClass} border rounded-lg py-3 px-6 items-center mt-3`}
             >
               <Text className={secondaryTextClass}>{t("profile.continueAsGuest")}</Text>
-            </Pressable>
+            </AnimatedChipPressable>
           </View>
         </View>
       </ScreenBackground>
@@ -1707,7 +1374,7 @@ export default function ProfilePage() {
                       </View>
                     </View>
                     <View className="flex-row gap-2">
-                      <Pressable
+                      <AnimatedChipPressable
                         onPress={handleImportData}
                         className={`rounded-xl px-4 py-3 flex-row items-center justify-center ${isLight ? "bg-emerald-200" : "bg-emerald-500"}`}
                       >
@@ -1715,14 +1382,14 @@ export default function ProfilePage() {
                         <Text className={`${isDark || isGreen ? "text-white" : "text-emerald-900"} font-semibold ml-2`}>
                           {t("settings.import")}
                         </Text>
-                      </Pressable>
-                      <Pressable
+                      </AnimatedChipPressable>
+                      <AnimatedChipPressable
                         onPress={handleExportData}
                         className={`rounded-xl px-4 py-3 flex-row items-center justify-center ${cardBgClass} border-2 border-emerald-500`}
                       >
                         <MaterialIcons name="file-upload" size={18} color="#008f4e" />
                         <Text className="text-emerald-500 font-semibold ml-2">{t("settings.export")}</Text>
-                      </Pressable>
+                      </AnimatedChipPressable>
                     </View>
                   </View>
                 </View>
@@ -1734,7 +1401,7 @@ export default function ProfilePage() {
                   <Text className={`${secondaryTextClass} text-sm mt-1`}>{t("profile.yourDataSaved")}</Text>
                 </View>
 
-                <Pressable
+                <AnimatedIconPressable
                   onPress={() => {
                     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
                     if (isEditing) {
@@ -1746,7 +1413,7 @@ export default function ProfilePage() {
                   className="bg-emerald-500 p-3 rounded-full"
                 >
                   <MaterialIcons name={isEditing ? "save" : "edit"} size={18} color="#001f0f" />
-                </Pressable>
+                </AnimatedIconPressable>
               </View>
 
               <View style={{ flex: 1, minHeight: 0, flexDirection: "row", gap: desktopPanelGap }}>
@@ -1840,20 +1507,20 @@ export default function ProfilePage() {
                   </View>
                 </View>
                 <View className="flex-row gap-2">
-                  <Pressable
+                  <AnimatedChipPressable
                     onPress={handleImportData}
                     className={`flex-1 ${isLight ? "bg-emerald-200" : "bg-emerald-500"} rounded-xl px-4 py-3 flex-row items-center justify-center`}
                   >
                     <MaterialIcons name="file-download" size={18} color={isDark || isGreen ? "#FFFFFF" : "#000"} />
                     <Text className={`${isDark || isGreen ? 'text-white' : 'text-emerald-900'} font-semibold ml-2`}>{t("settings.import")}</Text>
-                  </Pressable>
-                  <Pressable
+                  </AnimatedChipPressable>
+                  <AnimatedChipPressable
                     onPress={handleExportData}
                     className={`flex-1 ${cardBgClass} border-2 border-emerald-500 rounded-xl px-4 py-3 flex-row items-center justify-center`}
                   >
                     <MaterialIcons name="file-upload" size={18} color="#008f4e" />
                     <Text className="text-emerald-500 font-semibold ml-2">{t("settings.export")}</Text>
-                  </Pressable>
+                  </AnimatedChipPressable>
                 </View>
               </View>
             </View>
@@ -1865,7 +1532,7 @@ export default function ProfilePage() {
               <Text className={`${secondaryTextClass} text-sm mt-1`}>{t("profile.yourDataSaved")}</Text>
             </View>
 
-            <Pressable
+            <AnimatedIconPressable
               onPress={() => {
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
                 if (isEditing) {
@@ -1877,7 +1544,7 @@ export default function ProfilePage() {
               className="bg-emerald-500 p-3 rounded-full"
             >
               <MaterialIcons name={isEditing ? "save" : "edit"} size={18} color="#001f0f" />
-            </Pressable>
+            </AnimatedIconPressable>
           </View>
 
           <View className="px-6">

@@ -15,6 +15,11 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ROUTES } from "@/constants/routes";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { StateCard } from "@/components/ui/StateCard";
+import {
+  AnimatedCardPressable,
+  AnimatedChipPressable,
+  AnimatedIconPressable,
+} from "@/components/ui/AnimatedPressables";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useOpportunities } from "@/hooks/use-opportunities";
@@ -137,6 +142,21 @@ function formatRelativeDate(value: string, locale: string) {
   }
 }
 
+function normalizeAgendaText(value: string | null | undefined) {
+  if (!value) return "";
+  return value.replace(/\s+/g, " ").trim();
+}
+
+function buildAgendaPreviewText(
+  value: string | null | undefined,
+  maxChars: number
+) {
+  const normalized = normalizeAgendaText(value);
+  if (!normalized) return "";
+  if (normalized.length <= maxChars) return normalized;
+  return `${normalized.slice(0, Math.max(0, maxChars - 1)).trimEnd()}...`;
+}
+
 function buildWeekdayLabels(locale: string, wide: boolean) {
   const formatter = new Intl.DateTimeFormat(locale, {
     weekday: wide ? "short" : "narrow",
@@ -162,6 +182,7 @@ function formatKindLabel(
   if (item.kind === "scholarship") return t("deadlineCalendar.kindScholarship");
   if (item.kind === "internship") return t("deadlineCalendar.kindOpportunity");
   if (item.kind === "college_deadline") return t("deadlineCalendar.kindCollegeDeadline");
+  if (item.kind === "general_deadline") return "Deadline";
   return t("deadlineCalendar.kindRoadmapTask");
 }
 
@@ -169,6 +190,7 @@ function getItemIcon(item: DeadlineCalendarEntry): keyof typeof MaterialIcons.gl
   if (item.kind === "scholarship") return "attach-money";
   if (item.kind === "internship") return "work-outline";
   if (item.kind === "college_deadline") return "school";
+  if (item.kind === "general_deadline") return "event";
   return "checklist";
 }
 
@@ -426,6 +448,12 @@ export default function DeadlineCalendarPage() {
       isCompactCalendar ? 44 : 52,
       isDesktop ? 74 : 68
     );
+    const agendaTitleLineHeight = isTablet ? 22 : 21;
+    const agendaSubtitleLineHeight = 20;
+    const agendaDescriptionLineHeight = 20;
+    const agendaSubtitleLines = isDesktop ? 2 : 1;
+    const agendaDescriptionLines = isDesktop ? 3 : 2;
+    const reserveDescriptionSpace = isDesktop;
 
     return {
       isTablet,
@@ -443,6 +471,17 @@ export default function DeadlineCalendarPage() {
       weekdayFontSize: showWideWeekdays ? 12 : 11,
       dayMetaSlotHeight: showDayCountBadge ? 20 : 8,
       isCompactAgendaCard: !isDesktop && width < 430,
+      agendaTitleLineHeight,
+      agendaSubtitleLineHeight,
+      agendaDescriptionLineHeight,
+      agendaSubtitleLines,
+      agendaDescriptionLines,
+      agendaDescriptionCharLimit: isDesktop ? 210 : isTablet ? 150 : 110,
+      agendaSubtitleMinHeight: agendaSubtitleLineHeight * agendaSubtitleLines,
+      agendaDescriptionSlotMinHeight: reserveDescriptionSpace
+        ? agendaDescriptionLineHeight * agendaDescriptionLines
+        : 0,
+      agendaActionColumnMinHeight: isDesktop ? 116 : 72,
     };
   }, [fontScale, width]);
 
@@ -504,10 +543,10 @@ export default function DeadlineCalendarPage() {
             paddingTop: 24,
           }}
         >
-          <Pressable onPress={back} className="mb-4 flex-row items-center self-start">
+          <AnimatedIconPressable onPress={back} containerClassName="mb-4 self-start" className="flex-row items-center">
             <MaterialIcons name="arrow-back" size={20} color={placeholderColor} />
             <Text className={`${secondaryTextClass} ml-2`}>{t("general.back")}</Text>
-          </Pressable>
+          </AnimatedIconPressable>
 
           <View className={`${cardBgClass} border ${borderClass} rounded-2xl p-5 mb-4`}>
             <View className="flex-row items-start justify-between">
@@ -550,12 +589,12 @@ export default function DeadlineCalendarPage() {
                     marginBottom: 16,
                   }}
                 >
-                  <Pressable
+                  <AnimatedIconPressable
                     onPress={() => setVisibleMonth((current) => addMonths(current, -1))}
                     className="w-10 h-10 rounded-xl items-center justify-center bg-emerald-500/10"
                   >
                     <MaterialIcons name="chevron-left" size={22} color="#008f4e" />
-                  </Pressable>
+                  </AnimatedIconPressable>
 
                   <View style={{ flex: 1, minWidth: 0 }}>
                     <Text
@@ -570,12 +609,12 @@ export default function DeadlineCalendarPage() {
                     </Text>
                   </View>
 
-                  <Pressable
+                  <AnimatedIconPressable
                     onPress={() => setVisibleMonth((current) => addMonths(current, 1))}
                     className="w-10 h-10 rounded-xl items-center justify-center bg-emerald-500/10"
                   >
                     <MaterialIcons name="chevron-right" size={22} color="#008f4e" />
-                  </Pressable>
+                  </AnimatedIconPressable>
                 </View>
 
                 <View className="flex-row mb-2">
@@ -711,14 +750,14 @@ export default function DeadlineCalendarPage() {
                     </Text>
                   </View>
                   {selectedDateKey ? (
-                    <Pressable
+                    <AnimatedChipPressable
                       onPress={() => setSelectedDateKey(null)}
                       className="px-3 py-1.5 rounded-full border border-emerald-500/20"
                     >
                       <Text className={`${secondaryTextClass} text-xs font-semibold`}>
                         {t("deadlineCalendar.showAllDates")}
                       </Text>
-                    </Pressable>
+                    </AnimatedChipPressable>
                   ) : null}
                 </View>
 
@@ -791,16 +830,26 @@ export default function DeadlineCalendarPage() {
                       ) : null}
                     </View>
 
-                    {group.items.map((item, index) => (
-                      <Pressable
-                        key={item.id}
-                        onPress={() => {
-                          void handleOpenEntry(item);
-                        }}
-                        className={`px-5 py-4 ${
-                          index !== group.items.length - 1 ? `border-b ${borderClass}` : ""
-                        }`}
-                      >
+                    {group.items.map((item, index) => {
+                      const subtitlePreview = buildAgendaPreviewText(
+                        item.subtitle,
+                        layout.isDesktop ? 90 : 70
+                      );
+                      const descriptionPreview = buildAgendaPreviewText(
+                        item.description,
+                        layout.agendaDescriptionCharLimit
+                      );
+
+                      return (
+                        <AnimatedCardPressable
+                          key={item.id}
+                          onPress={() => {
+                            void handleOpenEntry(item);
+                          }}
+                          className={`px-5 py-4 ${
+                            index !== group.items.length - 1 ? `border-b ${borderClass}` : ""
+                          }`}
+                        >
                         <View style={{ gap: layout.isCompactAgendaCard ? 14 : 0 }}>
                           <View className="flex-row items-start">
                             <View className="w-11 h-11 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">
@@ -833,24 +882,56 @@ export default function DeadlineCalendarPage() {
                                 ) : null}
                               </View>
 
-                              <Text className={`${textClass} font-semibold`} numberOfLines={2}>
+                              <Text
+                                className={`${textClass} font-semibold`}
+                                numberOfLines={2}
+                                style={{ lineHeight: layout.agendaTitleLineHeight }}
+                              >
                                 {item.title}
                               </Text>
-                              <Text className={`${secondaryTextClass} text-sm mt-1`} numberOfLines={1}>
-                                {item.subtitle}
-                              </Text>
-                              {item.description ? (
+                              <View
+                                style={{
+                                  minHeight: layout.agendaSubtitleMinHeight,
+                                  justifyContent: "flex-start",
+                                  marginTop: 4,
+                                }}
+                              >
                                 <Text
-                                  className={`${secondaryTextClass} text-sm mt-2`}
-                                  numberOfLines={2}
+                                  className={`${secondaryTextClass} text-sm`}
+                                  numberOfLines={layout.agendaSubtitleLines}
+                                  style={{ lineHeight: layout.agendaSubtitleLineHeight }}
                                 >
-                                  {item.description}
+                                  {subtitlePreview}
                                 </Text>
-                              ) : null}
+                              </View>
+                              <View
+                                style={{
+                                  minHeight: descriptionPreview
+                                    ? layout.agendaDescriptionSlotMinHeight
+                                    : layout.isDesktop
+                                      ? layout.agendaDescriptionSlotMinHeight
+                                      : 0,
+                                  justifyContent: "flex-start",
+                                  marginTop: descriptionPreview ? 8 : layout.isDesktop ? 8 : 0,
+                                }}
+                              >
+                                {descriptionPreview ? (
+                                  <Text
+                                    className={`${secondaryTextClass} text-sm`}
+                                    numberOfLines={layout.agendaDescriptionLines}
+                                    style={{ lineHeight: layout.agendaDescriptionLineHeight }}
+                                  >
+                                    {descriptionPreview}
+                                  </Text>
+                                ) : null}
+                              </View>
                             </View>
 
                             {!layout.isCompactAgendaCard ? (
-                              <View className="items-end justify-between min-h-[72px]">
+                              <View
+                                className="items-end justify-between"
+                                style={{ minHeight: layout.agendaActionColumnMinHeight }}
+                              >
                                 <View className="px-3 py-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
                                   <Text className="text-emerald-600 text-xs font-semibold">
                                     {getPrimaryActionLabel(item, t)}
@@ -880,8 +961,9 @@ export default function DeadlineCalendarPage() {
                             </View>
                           ) : null}
                         </View>
-                      </Pressable>
-                    ))}
+                        </AnimatedCardPressable>
+                      );
+                    })}
                   </View>
                 ))}
               </View>

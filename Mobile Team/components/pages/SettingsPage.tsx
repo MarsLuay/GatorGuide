@@ -14,6 +14,11 @@ import { ROUTES } from "@/constants/routes";
 import { SUPPORT_EMAIL, SUPPORT_MAILTO } from "@/constants/support";
 import { StateCard } from "@/components/ui/StateCard";
 import { StatusBanner } from "@/components/ui/StatusBanner";
+import {
+  AnimatedCardPressable,
+  AnimatedChipPressable,
+  AnimatedIconPressable,
+} from "@/components/ui/AnimatedPressables";
 import * as FileSystem from "expo-file-system";
 import * as Sharing from "expo-sharing";
 import * as DocumentPicker from "expo-document-picker";
@@ -445,7 +450,7 @@ export default function SettingsPage() {
   ) =>
     items.map((item, index) => {
       const isDisplay = item.type === "display";
-      const Wrapper = isDisplay ? View : Pressable;
+      const Wrapper = isDisplay ? View : item.type === "toggle" ? Pressable : AnimatedCardPressable;
       const wrapperProps = isDisplay ? {} : { onPress: (item as { onPress: () => void }).onPress };
 
       return (
@@ -733,32 +738,36 @@ export default function SettingsPage() {
               </Text>
             </View>
 
-            {advancedDesktopItems.map((item, index) => (
-              <Pressable
-                key={item.key}
-                onPress={item.onPress}
-                className={`${flexDirection} items-center px-4`}
-                style={{ paddingVertical: 18, borderTopWidth: 1, borderColor: dividerColor }}
-              >
-                <Ionicons name={item.icon} size={20} color={item.danger ? "#EF4444" : accentColor} />
-                <View className={`flex-1 ${isRTL ? "mr-3" : "ml-3"}`}>
-                  <Text className={`${isRTL ? "text-right" : ""} ${item.danger ? dangerTextClass : textClass}`}>
-                    {item.label}
-                  </Text>
-                  <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} text-xs mt-1`}>
-                    {item.description}
-                  </Text>
-                </View>
+            {advancedDesktopItems.map((item) => {
+              const AdvancedRow = item.type === "toggle" ? Pressable : AnimatedCardPressable;
 
-                {item.type === "toggle" ? (
-                  <View className={`w-12 h-6 rounded-full ${item.enabled ? "bg-emerald-500" : isDark ? "bg-gray-700" : isGreen ? "bg-emerald-700" : "bg-emerald-300"}`}>
-                    <View className={`w-5 h-5 bg-white rounded-full mt-0.5 ${item.enabled ? "ml-6" : "ml-0.5"}`} />
+              return (
+                <AdvancedRow
+                  key={item.key}
+                  onPress={item.onPress}
+                  className={`${flexDirection} items-center px-4`}
+                  style={{ paddingVertical: 18, borderTopWidth: 1, borderColor: dividerColor }}
+                >
+                  <Ionicons name={item.icon} size={20} color={item.danger ? "#EF4444" : accentColor} />
+                  <View className={`flex-1 ${isRTL ? "mr-3" : "ml-3"}`}>
+                    <Text className={`${isRTL ? "text-right" : ""} ${item.danger ? dangerTextClass : textClass}`}>
+                      {item.label}
+                    </Text>
+                    <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} text-xs mt-1`}>
+                      {item.description}
+                    </Text>
                   </View>
-                ) : (
-                  <Ionicons name={isRTL ? "chevron-back" : "chevron-forward"} size={22} color={accessoryIconColor} />
-                )}
-              </Pressable>
-            ))}
+
+                  {item.type === "toggle" ? (
+                    <View className={`w-12 h-6 rounded-full ${item.enabled ? "bg-emerald-500" : isDark ? "bg-gray-700" : isGreen ? "bg-emerald-700" : "bg-emerald-300"}`}>
+                      <View className={`w-5 h-5 bg-white rounded-full mt-0.5 ${item.enabled ? "ml-6" : "ml-0.5"}`} />
+                    </View>
+                  ) : (
+                    <Ionicons name={isRTL ? "chevron-back" : "chevron-forward"} size={22} color={accessoryIconColor} />
+                  )}
+                </AdvancedRow>
+              );
+            })}
           </ScrollView>
         </View>
       </View>
@@ -782,25 +791,25 @@ export default function SettingsPage() {
               flex: 1,
             }}
           >
-            <Pressable
+            <AnimatedCardPressable
               onPress={handleLogout}
               disabled={!isHydrated}
               className={`${nestedPanelClass} rounded-2xl px-4 py-5 ${flexDirection} items-center ${!isHydrated ? "opacity-60" : ""}`}
-              style={{ flex: 1 }}
+              containerStyle={{ flex: 1 }}
             >
               <Ionicons name="log-out-outline" size={20} color="#EF4444" />
               <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${dangerTextClass}`}>{t("settings.logout")}</Text>
-            </Pressable>
+            </AnimatedCardPressable>
 
-            <Pressable
+            <AnimatedCardPressable
               onPress={() => setShowDeleteConfirm(true)}
               disabled={!isHydrated}
               className={`${nestedPanelClass} rounded-2xl px-4 py-5 ${flexDirection} items-center ${!isHydrated ? "opacity-60" : ""}`}
-              style={{ flex: 1 }}
+              containerStyle={{ flex: 1 }}
             >
               <Ionicons name="trash-outline" size={20} color="#EF4444" />
               <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${dangerTextClass}`}>{t("settings.deleteAccount")}</Text>
-            </Pressable>
+            </AnimatedCardPressable>
           </View>
         </View>
       </View>
@@ -883,7 +892,7 @@ export default function SettingsPage() {
                       </View>
                     </Pressable>
 
-                    <Pressable
+                    <AnimatedCardPressable
                       onPress={handleClearCacheNow}
                       className={`${flexDirection} items-center px-4 py-5 border-t ${cardBorderClass}`}
                     >
@@ -895,7 +904,7 @@ export default function SettingsPage() {
                         </Text>
                       </View>
                       <Ionicons name={isRTL ? "chevron-back" : "chevron-forward"} size={22} color={accessoryIconColor} />
-                    </Pressable>
+                    </AnimatedCardPressable>
                   </View>
                 </View>
               </View>
@@ -907,29 +916,29 @@ export default function SettingsPage() {
                   marginTop: 24,
                 }}
               >
-                <Pressable
+                <AnimatedCardPressable
                   onPress={handleLogout}
                   disabled={!isHydrated}
                   className={`${
                     isDark ? "bg-gray-900/80 border-gray-800" : isGreen ? "bg-emerald-900/90 border-emerald-800" : "bg-white border-emerald-200"
                   } border rounded-2xl px-4 py-5 ${flexDirection} items-center ${!isHydrated ? "opacity-60" : ""}`}
-                  style={{ flex: showSectionGrid ? 1 : undefined }}
+                  containerStyle={{ flex: showSectionGrid ? 1 : undefined }}
                 >
                   <Ionicons name="log-out-outline" size={20} color="#EF4444" />
                   <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${dangerTextClass}`}>{t("settings.logout")}</Text>
-                </Pressable>
+                </AnimatedCardPressable>
 
-                <Pressable
+                <AnimatedCardPressable
                   onPress={() => setShowDeleteConfirm(true)}
                   disabled={!isHydrated}
                   className={`${
                     isDark ? "bg-gray-900/80 border-gray-800" : isGreen ? "bg-emerald-900/90 border-emerald-800" : "bg-white border-emerald-200"
                   } border rounded-2xl px-4 py-5 ${flexDirection} items-center ${!isHydrated ? "opacity-60" : ""}`}
-                  style={{ flex: showSectionGrid ? 1 : undefined }}
+                  containerStyle={{ flex: showSectionGrid ? 1 : undefined }}
                 >
                   <Ionicons name="trash-outline" size={20} color="#EF4444" />
                   <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${dangerTextClass}`}>{t("settings.deleteAccount")}</Text>
-                </Pressable>
+                </AnimatedCardPressable>
               </View>
 
               <Text className={`text-center text-sm ${isDark ? "text-gray-400" : isGreen ? "text-emerald-100" : "text-gray-500"} mt-4`}>
@@ -938,9 +947,9 @@ export default function SettingsPage() {
               <View className="mt-4 mb-2">
                 <View className={`${flexDirection} justify-center items-center`} style={{ flexWrap: "wrap" }}>
                   <Text className={`text-center text-sm ${secondaryTextClass} ${isRTL ? "ml-2" : "mr-2"}`}>{t("general.needHelpQuestion") ?? "Need Help?"}</Text>
-                  <Pressable onPress={() => Linking.openURL(SUPPORT_MAILTO)} accessibilityRole="link">
+                  <AnimatedIconPressable onPress={() => Linking.openURL(SUPPORT_MAILTO)} accessibilityRole="link">
                     <Text className={`text-sm ${isDark ? "text-emerald-200" : isGreen ? "text-emerald-100" : "text-emerald-600"} underline font-semibold`}>{t("general.emailUs") ?? "Email Us!"}</Text>
-                  </Pressable>
+                  </AnimatedIconPressable>
                 </View>
               </View>
             </>
@@ -982,27 +991,27 @@ export default function SettingsPage() {
               marginTop: 20,
             }}
           >
-            <Pressable
+            <AnimatedChipPressable
               onPress={() => setShowSupportComposer(false)}
               className={`${cardBgClass} border ${cardBorderClass} rounded-lg py-4 items-center ${isSendingSupport ? "opacity-60" : ""}`}
-              style={{ flex: stackDialogActions ? undefined : 1 }}
+              containerStyle={{ flex: stackDialogActions ? undefined : 1 }}
               disabled={isSendingSupport}
             >
               <Text className={textClass}>{t("general.close")}</Text>
-            </Pressable>
+            </AnimatedChipPressable>
 
-            <Pressable
+            <AnimatedChipPressable
               onPress={() => {
                 void sendSupportMessage();
               }}
               className={`bg-emerald-500 rounded-lg py-4 items-center ${isSendingSupport ? "opacity-60" : ""}`}
-              style={{ flex: stackDialogActions ? undefined : 1 }}
+              containerStyle={{ flex: stackDialogActions ? undefined : 1 }}
               disabled={isSendingSupport}
             >
               <Text className={`${isDark || isGreen ? "text-white" : "text-emerald-900"} font-semibold`}>
                 {isSendingSupport ? t("settings.sending") : t("settings.send")}
               </Text>
-            </Pressable>
+            </AnimatedChipPressable>
           </View>
         </>,
         { allowBackdropDismiss: !isSendingSupport }
@@ -1022,22 +1031,22 @@ export default function SettingsPage() {
               gap: 12,
             }}
           >
-            <Pressable
+            <AnimatedChipPressable
               onPress={() => setShowDeleteConfirm(false)}
               className={`${cardBgClass} border ${cardBorderClass} rounded-lg py-4 items-center`}
-              style={{ flex: stackDialogActions ? undefined : 1 }}
+              containerStyle={{ flex: stackDialogActions ? undefined : 1 }}
             >
               <Text className={textClass}>{t("general.cancel")}</Text>
-            </Pressable>
+            </AnimatedChipPressable>
 
-            <Pressable
+            <AnimatedChipPressable
               onPress={handleDeleteConfirm}
               className={`bg-emerald-800 rounded-lg py-4 items-center ${!isHydrated ? "opacity-60" : ""}`}
-              style={{ flex: stackDialogActions ? undefined : 1 }}
+              containerStyle={{ flex: stackDialogActions ? undefined : 1 }}
               disabled={!isHydrated}
             >
               <Text className="text-white font-semibold">{t("general.delete")}</Text>
-            </Pressable>
+            </AnimatedChipPressable>
           </View>
         </>
       )}
@@ -1056,23 +1065,23 @@ export default function SettingsPage() {
               gap: 12,
             }}
           >
-            <Pressable
+            <AnimatedChipPressable
               onPress={() => setShowClearCacheConfirm(false)}
               className={`${cardBgClass} border ${cardBorderClass} rounded-lg py-4 items-center`}
-              style={{ flex: stackDialogActions ? undefined : 1 }}
+              containerStyle={{ flex: stackDialogActions ? undefined : 1 }}
               disabled={isClearingCache}
             >
               <Text className={textClass}>{t("general.cancel")}</Text>
-            </Pressable>
+            </AnimatedChipPressable>
 
-            <Pressable
+            <AnimatedChipPressable
               onPress={handleConfirmClearCache}
               className={`bg-red-500 rounded-lg py-4 items-center ${isClearingCache ? "opacity-60" : ""}`}
-              style={{ flex: stackDialogActions ? undefined : 1 }}
+              containerStyle={{ flex: stackDialogActions ? undefined : 1 }}
               disabled={isClearingCache}
             >
               <Text className="text-white font-semibold">{isClearingCache ? t("settings.clearingCache") : t("settings.clearCacheAction")}</Text>
-            </Pressable>
+            </AnimatedChipPressable>
           </View>
         </>,
         { allowBackdropDismiss: !isClearingCache }
@@ -1085,12 +1094,12 @@ export default function SettingsPage() {
           <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} mb-6`}>
             {t("settings.cacheClearedMessage", { count: cacheClearedCount })}
           </Text>
-          <Pressable
+          <AnimatedChipPressable
             onPress={() => setShowCacheClearedPopup(false)}
             className="bg-emerald-500 rounded-lg py-4 items-center"
           >
             <Text className={`${isDark || isGreen ? "text-white" : "text-emerald-900"} font-semibold`}>{t("general.ok")}</Text>
-          </Pressable>
+          </AnimatedChipPressable>
         </>
       )}
     </ScreenBackground>

@@ -1,0 +1,16 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <mask id="mark-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="1024" height="1024">
+      <rect width="1024" height="1024" fill="black"/>
+      <circle cx="512" cy="512" r="330" fill="white"/>
+      <g transform="translate(0 62)">
+        <path d="M484 282Q512 268 540 282L748 364Q776 378 748 392L540 474Q512 488 484 474L276 392Q248 378 276 364L484 282Z" fill="black"/>
+        <path d="M360 448Q436 478 490 494Q512 500 534 494Q588 478 664 448V504C664 574 600 626 512 626C424 626 360 574 360 504V448Z" fill="black"/>
+        <path d="M720 382V490" stroke="black" stroke-width="20" stroke-linecap="round"/>
+        <circle cx="720" cy="496" r="14" fill="black"/>
+        <path d="M708 518L700 572C699 582 706 590 716 590H724C734 590 741 582 740 572L732 518H708Z" fill="black"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="512" cy="512" r="330" fill="#111111" mask="url(#mark-mask)"/>
+</svg>

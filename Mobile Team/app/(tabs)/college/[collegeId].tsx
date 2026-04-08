@@ -1,10 +1,15 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Alert, Linking, Pressable, ScrollView, Text, TextInput, View, useWindowDimensions } from "react-native";
+import { Alert, Linking, ScrollView, Text, TextInput, View, useWindowDimensions } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { MatchScoreBadge } from "@/components/ui/MatchScoreBadge";
 import { StateCard } from "@/components/ui/StateCard";
+import {
+  AnimatedCardPressable,
+  AnimatedChipPressable,
+  AnimatedIconPressable,
+} from "@/components/ui/AnimatedPressables";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppTheme } from "@/hooks/use-app-theme";
@@ -359,8 +364,9 @@ export default function CollegeDetailsPage() {
     t("details.quickActionsBody"),
     <View style={{ gap: 12 }}>
       <View style={{ flexDirection: quickActionStack ? "column" : "row", gap: 12 }}>
-        <Pressable
+        <AnimatedCardPressable
           onPress={() => openUrl(college?.website)}
+          containerStyle={{ flex: 1 }}
           className="flex-1 rounded-2xl bg-emerald-500 px-4 py-4"
         >
           <View className="flex-row items-center justify-between">
@@ -374,13 +380,13 @@ export default function CollegeDetailsPage() {
             </View>
             <Ionicons name="open-outline" size={18} color={isDark ? "#ffffff" : "#083d1f"} />
           </View>
-        </Pressable>
+        </AnimatedCardPressable>
 
         {hasDistinctPriceCalculator ? (
-          <Pressable
+          <AnimatedCardPressable
             onPress={() => openUrl(college?.priceCalculator)}
             className={`${inputBgClass} border rounded-2xl px-4 py-4`}
-            style={{ flex: 1 }}
+            containerStyle={{ flex: 1 }}
           >
             <View className="flex-row items-center justify-between">
               <View style={{ flex: 1, minWidth: 0, paddingRight: 12 }}>
@@ -391,12 +397,12 @@ export default function CollegeDetailsPage() {
               </View>
               <Ionicons name="calculator-outline" size={18} color={placeholderColor} />
             </View>
-          </Pressable>
+          </AnimatedCardPressable>
         ) : null}
       </View>
 
       {college ? (
-        <Pressable
+        <AnimatedCardPressable
           onPress={() => (saved ? removeSavedCollege(college.id) : addSavedCollege(college))}
           className={`${inputBgClass} border rounded-2xl px-4 py-4`}
         >
@@ -411,7 +417,7 @@ export default function CollegeDetailsPage() {
             </View>
             <Ionicons name={saved ? "bookmark" : "bookmark-outline"} size={18} color={saved ? "#008f4e" : placeholderColor} />
           </View>
-        </Pressable>
+        </AnimatedCardPressable>
       ) : null}
 
       <Text className={`${secondaryTextClass} text-xs`} style={{ lineHeight: 18 }}>
@@ -501,7 +507,7 @@ export default function CollegeDetailsPage() {
     flattened.length > 0
       ? (
           <View className={`${cardBgClass} border rounded-3xl`} style={{ padding: cardPadding }}>
-            <Pressable
+            <AnimatedCardPressable
               onPress={() => setShowAllDataCollapsed((value) => !value)}
               className="flex-row items-center justify-between"
             >
@@ -512,7 +518,7 @@ export default function CollegeDetailsPage() {
                 </Text>
               </View>
               <Text className={secondaryTextClass}>{showAllDataCollapsed ? "+" : "-"}</Text>
-            </Pressable>
+            </AnimatedCardPressable>
 
             {!showAllDataCollapsed ? (
               <View style={{ marginTop: 14 }}>
@@ -544,11 +550,11 @@ export default function CollegeDetailsPage() {
                         </Text>
 
                         {row.isUrl ? (
-                          <Pressable onPress={() => openUrl(String(row.value))} className="mt-2">
+                          <AnimatedIconPressable onPress={() => openUrl(String(row.value))} containerClassName="mt-2 self-start">
                             <Text className={`${textClass} text-sm underline`} style={{ lineHeight: 22 }}>
                               {String(row.value)}
                             </Text>
-                          </Pressable>
+                          </AnimatedIconPressable>
                         ) : (
                           <View
                             style={{
@@ -569,12 +575,12 @@ export default function CollegeDetailsPage() {
                             </Text>
 
                             {row.isTruncated ? (
-                              <Pressable
+                              <AnimatedIconPressable
                                 onPress={() => Alert.alert(row.path, String(row.value))}
                                 style={stackDetailRows ? undefined : { flexShrink: 0 }}
                               >
                                 <Text className={`${secondaryTextClass} text-xs`}>{t("details.showFull")}</Text>
-                              </Pressable>
+                              </AnimatedIconPressable>
                             ) : null}
                           </View>
                         )}
@@ -584,14 +590,14 @@ export default function CollegeDetailsPage() {
                 </ScrollView>
 
                 {filteredRows.length > rowLimit ? (
-                  <Pressable
+                  <AnimatedChipPressable
                     onPress={() => setRowLimit(filteredRows.length)}
                     className="mt-3 rounded-2xl py-3 items-center bg-emerald-500"
                   >
                     <Text className={`${isDark ? "text-white" : "text-emerald-900"} font-semibold`}>
                       {t("details.showMore")}
                     </Text>
-                  </Pressable>
+                  </AnimatedChipPressable>
                 ) : null}
               </View>
             ) : null}
@@ -653,21 +659,21 @@ export default function CollegeDetailsPage() {
             >
               <View style={{ flex: 1, minWidth: 0 }}>
                 <View className="flex-row items-center justify-between mb-4">
-                  <Pressable
+                  <AnimatedIconPressable
                     onPress={() => router.back()}
                     className={`flex-row items-center self-start rounded-2xl border px-3 py-2 ${inputBgClass}`}
                   >
                     <Ionicons name="chevron-back" size={18} color={placeholderColor} />
                     <Text className={`${secondaryTextClass} ml-2`}>{t("general.back")}</Text>
-                  </Pressable>
+                  </AnimatedIconPressable>
 
                   {college ? (
-                    <Pressable
+                    <AnimatedIconPressable
                       onPress={() => (saved ? removeSavedCollege(college.id) : addSavedCollege(college))}
                       className={`h-11 w-11 rounded-2xl border items-center justify-center ${inputBgClass}`}
                     >
                       <Ionicons name={saved ? "bookmark" : "bookmark-outline"} size={20} color={saved ? "#008f4e" : placeholderColor} />
-                    </Pressable>
+                    </AnimatedIconPressable>
                   ) : null}
                 </View>
 

@@ -19,6 +19,7 @@ import {
 } from "@/constants/resource-catalog";
 import { ROUTES } from "@/constants/routes";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
+import { AnimatedCardPressable, AnimatedChipPressable } from "@/components/ui/AnimatedPressables";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppData } from "@/hooks/use-app-data";
@@ -321,6 +322,11 @@ export default function ResourcesPage() {
         icon: "work" as const,
       },
       {
+        key: "general_deadline",
+        title: "Deadlines",
+        icon: "event" as const,
+      },
+      {
         key: "college_deadline",
         title: t("resources.collegeDeadlines"),
         icon: "event" as const,
@@ -503,7 +509,7 @@ export default function ResourcesPage() {
 
       <View className="flex-row flex-wrap gap-2 mt-4">
         {item.externalUrl ? (
-          <Pressable
+          <AnimatedChipPressable
             onPress={() => {
               void openLink(item.externalUrl ?? "");
             }}
@@ -512,7 +518,7 @@ export default function ResourcesPage() {
             <Text className="text-emerald-500 text-sm font-medium">
               {t("resources.actionOpen")}
             </Text>
-          </Pressable>
+          </AnimatedChipPressable>
         ) : null}
         <Pressable
           onPress={() => {
@@ -546,7 +552,7 @@ export default function ResourcesPage() {
 
       <View className="gap-2">
         {section.items.map((item) => (
-          <Pressable
+          <AnimatedCardPressable
             key={`${section.id}-${item.title}`}
             onPress={() => {
               void openLink(item.url);
@@ -562,7 +568,7 @@ export default function ResourcesPage() {
               <Text className={`${secondaryTextClass} text-sm`}>{item.description}</Text>
             </View>
             <MaterialIcons name="open-in-new" size={18} color={placeholderColor} />
-          </Pressable>
+          </AnimatedCardPressable>
         ))}
       </View>
     </View>
@@ -575,7 +581,7 @@ export default function ResourcesPage() {
     options?: { inset?: boolean }
   ) =>
     items.map((item, index) => (
-      <Pressable
+      <AnimatedCardPressable
         key={`${keyPrefix}-${item.title}`}
         onPress={() => {
           void openLink(item.url);
@@ -596,7 +602,7 @@ export default function ResourcesPage() {
         </View>
 
         <MaterialIcons name="open-in-new" size={18} color={placeholderColor} />
-      </Pressable>
+      </AnimatedCardPressable>
     ));
 
   const renderReferenceSubsection = (
@@ -612,7 +618,7 @@ export default function ResourcesPage() {
         key={subsection.id}
         className={index !== 0 || section.items.length ? `border-t ${borderClass}` : ""}
       >
-        <Pressable
+        <AnimatedCardPressable
           onPress={() => toggleSection(subsectionKey)}
           className="px-4 py-4 flex-row items-center"
           accessibilityRole="button"
@@ -629,7 +635,7 @@ export default function ResourcesPage() {
             size={18}
             color={placeholderColor}
           />
-        </Pressable>
+        </AnimatedCardPressable>
 
         {expanded ? (
           <View className={`border-t ${borderClass}`}>
@@ -649,7 +655,7 @@ export default function ResourcesPage() {
 
     return (
       <View key={section.id} className={`${cardClass} border rounded-2xl overflow-hidden`}>
-        <Pressable
+        <AnimatedCardPressable
           onPress={() => toggleSection(sectionKey)}
           className="px-4 py-4 flex-row items-center"
           accessibilityRole="button"
@@ -666,7 +672,7 @@ export default function ResourcesPage() {
             size={18}
             color={placeholderColor}
           />
-        </Pressable>
+        </AnimatedCardPressable>
 
         {expanded ? (
           <View className={`border-t ${borderClass}`}>
@@ -691,7 +697,7 @@ export default function ResourcesPage() {
 
     return (
       <View key={section.key} className={`${cardClass} border rounded-2xl overflow-hidden`}>
-        <Pressable
+        <AnimatedCardPressable
           onPress={() => toggleSection(sectionKey)}
           className="px-4 py-4 flex-row items-center"
           accessibilityRole="button"
@@ -708,7 +714,7 @@ export default function ResourcesPage() {
             size={18}
             color={placeholderColor}
           />
-        </Pressable>
+        </AnimatedCardPressable>
 
         {expanded ? (
           <View className={`border-t ${borderClass}`}>
@@ -749,7 +755,7 @@ export default function ResourcesPage() {
                       style={stackOpportunityActions ? { width: "100%" } : undefined}
                     >
                       {item.externalUrl ? (
-                        <Pressable
+                        <AnimatedChipPressable
                           onPress={() => {
                             void openLink(item.externalUrl ?? "");
                           }}
@@ -759,7 +765,7 @@ export default function ResourcesPage() {
                           <Text className="text-emerald-500 text-sm">
                             {t("resources.actionOpen")}
                           </Text>
-                        </Pressable>
+                        </AnimatedChipPressable>
                       ) : (
                         <View className="flex-1" />
                       )}
@@ -789,7 +795,7 @@ export default function ResourcesPage() {
                       style={stackOpportunityActions ? { width: "100%" } : undefined}
                     >
                       {item.externalUrl ? (
-                        <Pressable
+                        <AnimatedChipPressable
                           onPress={() => {
                             void openLink(item.externalUrl ?? "");
                           }}
@@ -799,7 +805,7 @@ export default function ResourcesPage() {
                           <Text className="text-emerald-500 text-sm">
                             {t("resources.actionOpen")}
                           </Text>
-                        </Pressable>
+                        </AnimatedChipPressable>
                       ) : null}
 
                       <Pressable

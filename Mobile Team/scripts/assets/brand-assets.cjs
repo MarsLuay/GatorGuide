@@ -2,7 +2,8 @@
 
 const fs = require('fs/promises');
 const path = require('path');
-const { generateImageAsync, getPngInfo } = require('@expo/image-utils');
+const { getPngInfo } = require('@expo/image-utils');
+const { chromium } = require('playwright');
 
 const projectRoot = path.resolve(__dirname, '..', '..');
 const appConfigPath = path.join(projectRoot, 'app.json');
@@ -11,27 +12,27 @@ const checkOnly = process.argv.includes('--check');
 const generatedAssetSpecs = [
   {
     label: 'App icon',
-    source: 'assets/images/icon.png',
+    source: 'assets/brand/mark-foreground.svg',
     output: 'assets/images/icon.png',
     width: 1024,
     height: 1024,
-    resizeMode: 'cover',
+    resizeMode: 'contain',
     backgroundColor: '#FFFFFF',
     removeTransparency: true,
   },
   {
     label: 'Compatibility icon',
-    source: 'assets/images/icon.png',
+    source: 'assets/brand/mark-foreground.svg',
     output: 'assets/icon.png',
     width: 1024,
     height: 1024,
-    resizeMode: 'cover',
+    resizeMode: 'contain',
     backgroundColor: '#FFFFFF',
     removeTransparency: true,
   },
   {
     label: 'Android adaptive foreground',
-    source: 'assets/images/android-icon-foreground.png',
+    source: 'assets/brand/mark-foreground.svg',
     output: 'assets/images/android-icon-foreground.png',
     width: 1024,
     height: 1024,
@@ -40,17 +41,17 @@ const generatedAssetSpecs = [
   },
   {
     label: 'Android adaptive background',
-    source: 'assets/images/android-icon-background.png',
+    source: 'assets/brand/mark-background.svg',
     output: 'assets/images/android-icon-background.png',
     width: 1024,
     height: 1024,
     resizeMode: 'cover',
-    backgroundColor: '#E6F4FE',
+    backgroundColor: '#FFFFFF',
     removeTransparency: true,
   },
   {
     label: 'Android adaptive monochrome',
-    source: 'assets/images/android-icon-monochrome.png',
+    source: 'assets/brand/mark-monochrome.svg',
     output: 'assets/images/android-icon-monochrome.png',
     width: 1024,
     height: 1024,
@@ -59,17 +60,17 @@ const generatedAssetSpecs = [
   },
   {
     label: 'Web favicon source',
-    source: 'assets/images/icon.png',
+    source: 'assets/brand/mark-foreground.svg',
     output: 'assets/images/favicon.png',
     width: 512,
     height: 512,
-    resizeMode: 'cover',
+    resizeMode: 'contain',
     backgroundColor: '#FFFFFF',
     removeTransparency: true,
   },
   {
     label: 'Splash mark',
-    source: 'assets/images/android-icon-foreground.png',
+    source: 'assets/brand/mark-foreground.svg',
     output: 'assets/images/splash-icon.png',
     width: 1024,
     height: 1024,
@@ -104,34 +105,96 @@ async function readAppConfigAsync() {
   return JSON.parse(raw);
 }
 
-async function generateAssetsAsync() {
-  for (const spec of generatedAssetSpecs) {
-    const source = toProjectPath(spec.source);
-    const output = toProjectPath(spec.output);
-    const { source: buffer } = await generateImageAsync(
-      { projectRoot },
-      {
-        src: source,
-        width: spec.width,
-        height: spec.height,
-        resizeMode: spec.resizeMode,
-        backgroundColor: spec.backgroundColor,
-        removeTransparency: spec.removeTransparency,
-        name: path.basename(output),
-      }
-    );
+function getMimeTypeForAsset(sourcePath) {
+  const extension = path.extname(sourcePath).toLowerCase();
+  if (extension === '.svg') {
+    return 'image/svg+xml';
+  }
+  if (extension === '.png') {
+    return 'image/png';
+  }
+
+  throw new Error(`Unsupported brand source format: ${sourcePath}`);
+}
+
+async function renderAssetAsync(browser, spec) {
+  const source = toProjectPath(spec.source);
+  const output = toProjectPath(spec.output);
+  const sourceBuffer = await fs.readFile(source);
+  const mimeType = getMimeTypeForAsset(source);
+  const dataUrl = `data:${mimeType};base64,${sourceBuffer.toString('base64')}`;
+  const page = await browser.newPage({
+    viewport: { width: spec.width, height: spec.height },
+    deviceScaleFactor: 1,
+  });
+
+  try {
+    const backgroundColor = spec.backgroundColor === 'transparent' ? 'transparent' : spec.backgroundColor;
+    const omitBackground = backgroundColor === 'transparent' && !spec.removeTransparency;
+
+    await page.setContent(`
+      <!doctype html>
+      <html>
+        <head>
+          <style>
+            html, body {
+              margin: 0;
+              width: 100%;
+              height: 100%;
+              overflow: hidden;
+              background: ${backgroundColor};
+            }
+
+            body {
+              display: grid;
+              place-items: center;
+            }
+
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: ${spec.resizeMode};
+              object-position: center;
+              display: block;
+            }
+          </style>
+        </head>
+        <body>
+          <img src="${dataUrl}" alt="" />
+        </body>
+      </html>
+    `);
 
     await fs.mkdir(path.dirname(output), { recursive: true });
-    await fs.writeFile(output, buffer);
-    const png = await getPngInfo(output);
+    await page.screenshot({
+      path: output,
+      omitBackground,
+    });
+  } finally {
+    await page.close();
+  }
+}
 
-    if (png.width !== spec.width || png.height !== spec.height) {
-      throw new Error(
-        `${spec.label} generated at ${png.width}x${png.height}; expected ${spec.width}x${spec.height}.`
-      );
+async function generateAssetsAsync() {
+  const browser = await chromium.launch();
+
+  try {
+    for (const spec of generatedAssetSpecs) {
+      const output = toProjectPath(spec.output);
+      await renderAssetAsync(browser, spec);
+
+      const png = await getPngInfo(output);
+
+      if (png.width !== spec.width || png.height !== spec.height) {
+        throw new Error(
+          `${spec.label} generated at ${png.width}x${png.height}; expected ${spec.width}x${spec.height}.`
+        );
+      }
+
+      console.log(`Generated ${spec.label}: ${spec.output} (${png.width}x${png.height})`);
     }
-
-    console.log(`Generated ${spec.label}: ${spec.output} (${png.width}x${png.height})`);
+  } finally {
+    await browser.close();
   }
 }
 
@@ -222,7 +285,26 @@ async function verifyPlaceholderCleanupAsync() {
   }
 }
 
+async function verifySourceAssetsAsync() {
+  const requiredSources = [...new Set(generatedAssetSpecs.map((spec) => spec.source))];
+  const missing = [];
+
+  for (const relativePath of requiredSources) {
+    try {
+      await fs.access(toProjectPath(relativePath));
+    } catch {
+      missing.push(relativePath);
+    }
+  }
+
+  if (missing.length > 0) {
+    throw new Error(`Missing brand source assets:\n${missing.join('\n')}`);
+  }
+}
+
 async function main() {
+  await verifySourceAssetsAsync();
+
   if (!checkOnly) {
     await generateAssetsAsync();
   }

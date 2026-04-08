@@ -173,6 +173,7 @@ function normalizeDeadlineType(value) {
 function normalizeOpportunityType(value) {
   const parsed = String(value ?? "").trim().toLowerCase();
   if (parsed === "internship") return "internship";
+  if (parsed === "general_deadline") return "general_deadline";
   if (parsed === "college_deadline") return "college_deadline";
   return "scholarship";
 }

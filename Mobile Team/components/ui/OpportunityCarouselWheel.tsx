@@ -3,6 +3,7 @@ import { Pressable, Text, View, useWindowDimensions } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import type { MatchedOpportunity } from "@/services/opportunities/opportunity-matching.service";
 import { useAppTheme } from "@/hooks/use-app-theme";
+import { AnimatedChipPressable, AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
 
 type OpportunityCarouselWheelProps = {
   opportunities: MatchedOpportunity[];
@@ -224,13 +225,13 @@ export function OpportunityCarouselWheel({
           </View>
         </View>
 
-        <Pressable
+        <AnimatedIconPressable
           onPressIn={pauseAutoRotationForInteraction}
           onPress={onViewAll}
-          style={wheelLayout.shouldStackHeader ? { alignSelf: "flex-start" } : undefined}
+          containerStyle={wheelLayout.shouldStackHeader ? { alignSelf: "flex-start" } : undefined}
         >
           <Text className="text-emerald-500 text-sm font-medium">View all</Text>
-        </Pressable>
+        </AnimatedIconPressable>
       </View>
 
       <View
@@ -304,7 +305,7 @@ export function OpportunityCarouselWheel({
           <Text className={`${secondaryTextClass} text-xs text-center mt-1`}>
             Auto-rotating recommended opportunities
           </Text>
-          <Pressable
+          <AnimatedChipPressable
             onPress={() => {
               if (isManuallyPaused) {
                 setIsManuallyPaused(false);
@@ -322,7 +323,7 @@ export function OpportunityCarouselWheel({
             <Text className={`${isDark || isGreen ? "text-white" : "text-emerald-900"} text-sm font-semibold`}>
               {isManuallyPaused ? "Resume wheel" : "Pause wheel"}
             </Text>
-          </Pressable>
+          </AnimatedChipPressable>
           {!isManuallyPaused && isInteractionPaused && resumeCountdownSeconds > 0 ? (
             <Text className={`${secondaryTextClass} text-[11px] text-center mt-2`}>
               Resumes in {resumeCountdownSeconds}s
@@ -367,7 +368,7 @@ export function OpportunityCarouselWheel({
               </View>
             </View>
 
-            <Pressable
+            <AnimatedChipPressable
               onPressIn={pauseAutoRotationForInteraction}
               onPress={() => onOpenOpportunity(leadOpportunity)}
               className="px-4 py-2 rounded-xl bg-emerald-500"
@@ -376,7 +377,7 @@ export function OpportunityCarouselWheel({
               <Text className={`${isDark || isGreen ? "text-white" : "text-emerald-900"} text-sm font-semibold`}>
                 Open
               </Text>
-            </Pressable>
+            </AnimatedChipPressable>
           </View>
         </View>
       ) : null}

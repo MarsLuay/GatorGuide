@@ -1,7 +1,8 @@
 import React from 'react';
-import { Modal, View, Text, Pressable, ScrollView } from 'react-native';
+import { Modal, View, Text, ScrollView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useAppTheme } from '@/hooks/use-app-theme';
+import { AnimatedChipPressable } from '@/components/ui/AnimatedPressables';
 
 const LANGUAGES = [
   { code: 'en', label: 'English' },
@@ -35,7 +36,7 @@ export function LanguageModal({ visible, onClose }: { visible: boolean, onClose:
           <ScrollView style={{ maxHeight: 400 }}>
             <View className="gap-2">
               {LANGUAGES.map((lang) => (
-                <Pressable 
+                <AnimatedChipPressable 
                   key={lang.code} 
                   onPress={() => selectLanguage(lang.code)}
                   className={`py-4 rounded-xl ${i18n.language === lang.code ? "bg-emerald-500/10 border border-emerald-500/50" : isDark ? "bg-neutral-800/50" : isGreen ? "bg-emerald-900/70" : isLight ? "bg-emerald-100" : "bg-gray-100"}`}
@@ -43,13 +44,13 @@ export function LanguageModal({ visible, onClose }: { visible: boolean, onClose:
                   <Text className={`text-center text-base ${i18n.language === lang.code ? "text-emerald-500 font-bold" : isDark ? "text-gray-300" : isGreen ? "text-emerald-100" : isLight ? "text-emerald-700" : "text-gray-700"}`}>
                     {lang.label}
                   </Text>
-                </Pressable>
+                </AnimatedChipPressable>
               ))}
             </View>
           </ScrollView>
-          <Pressable onPress={onClose} className="mt-6 bg-emerald-500 py-4 rounded-2xl active:opacity-80">
+          <AnimatedChipPressable onPress={onClose} containerClassName="mt-6" className="bg-emerald-500 py-4 rounded-2xl">
             <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} text-center font-bold text-base`}>Close</Text>
-          </Pressable>
+          </AnimatedChipPressable>
         </View>
       </View>
     </Modal>
