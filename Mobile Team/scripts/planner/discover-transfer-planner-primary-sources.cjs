@@ -83,13 +83,19 @@ function stripHtml(value) {
 }
 
 function decodeHtmlEntities(value) {
-  return String(value ?? "")
-    .replace(/&amp;/gi, "&")
-    .replace(/&nbsp;/gi, " ")
-    .replace(/&#39;|&apos;/gi, "'")
-    .replace(/&quot;/gi, '"')
-    .replace(/&lt;/gi, "<")
-    .replace(/&gt;/gi, ">");
+  const entityMap = {
+    amp: "&",
+    nbsp: " ",
+    "#39": "'",
+    apos: "'",
+    quot: '"',
+    lt: "<",
+    gt: ">",
+  };
+
+  return String(value ?? "").replace(/&(amp|nbsp|#39|apos|quot|lt|gt);/gi, (match, entity) => {
+    return entityMap[String(entity).toLowerCase()] ?? match;
+  });
 }
 
 function uniqueSorted(values) {
