@@ -52,14 +52,15 @@ class CollegeScorecardScraper:
             "api_key": self.api_key,
             "fields": ",".join(self.fields),
             "per_page": per_page,
-            "page": 0,
         }
 
         # Ivy League IDs for the "Type" logic
         ivy_ids = [166027, 130794, 190150, 186131, 215062, 182285, 217156, 190415]
 
+        current_page = 0
+
         while True:
-            current_page = params["page"]
+            params["page"] = current_page
             print(f"Processing page {current_page}...")
             try:
                 response = requests.get(self.base_url, params=params, timeout=timeout)
@@ -146,7 +147,7 @@ class CollegeScorecardScraper:
                 with open(file_path, "w", encoding="utf-8") as f:
                     json.dump(ordered_results, f, indent=4)
 
-                params["page"] += 1
+                current_page += 1
                 time.sleep(0.5)
 
             except requests.exceptions.RequestException:

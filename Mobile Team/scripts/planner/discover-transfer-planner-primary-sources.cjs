@@ -30,6 +30,7 @@ const DEFAULT_CONCURRENCY = 4;
 const MAX_DISCOVERED_CANDIDATES_PER_OWNER = 6;
 const USER_AGENT = "GatorGuideTransferPlannerPrimarySourceDiscovery/1.0";
 const CAMPUS_IDS = new Set(["uw-seattle", "uw-bothell", "uw-tacoma"]);
+const OFFICIAL_UW_BASE_DOMAINS = ["washington.edu", "uwb.edu", "uw.edu"];
 const STOP_TOKENS = new Set([
   "route",
   "option",
@@ -95,6 +96,13 @@ function uniqueSorted(values) {
   return Array.from(new Set(values.filter(Boolean))).sort((left, right) => left.localeCompare(right));
 }
 
+function hostnameMatchesBaseDomains(hostname, baseDomains) {
+  const normalizedHostname = String(hostname ?? "").toLowerCase();
+  return baseDomains.some(
+    (base) => normalizedHostname === base || normalizedHostname.endsWith(`.${base}`)
+  );
+}
+
 function getBaseDomains(urls) {
   const bases = new Set();
   for (const rawUrl of urls) {
@@ -127,7 +135,15 @@ function isAllowedDiscoveryUrl(url, baseDomains) {
     }
 
     const hostname = parsed.hostname.toLowerCase();
-    return baseDomains.some((base) => hostname === base || hostname.endsWith(`.${base}`));
+    return hostnameMatchesBaseDomains(hostname, baseDomains);
+  } catch {
+    return false;
+  }
+}
+
+function urlMatchesBaseDomains(url, baseDomains) {
+  try {
+    return hostnameMatchesBaseDomains(new URL(url).hostname, baseDomains);
   } catch {
     return false;
   }
@@ -413,7 +429,7 @@ function scoreCandidate(target, candidate) {
     addReason(reasons, "page title fetched successfully");
   }
 
-  if (candidate.url.includes("washington.edu") || candidate.url.includes("uwb.edu") || candidate.url.includes("uw.edu")) {
+  if (urlMatchesBaseDomains(candidate.url, OFFICIAL_UW_BASE_DOMAINS)) {
     score += 1;
     addReason(reasons, "stays on an official UW domain");
   }
