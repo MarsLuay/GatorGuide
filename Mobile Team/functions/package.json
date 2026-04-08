@@ -15,6 +15,9 @@
   },
   "overrides": {
     "node-forge": "1.4.0",
-    "path-to-regexp": "0.1.13"
+    "path-to-regexp": "0.1.13",
+    "teeny-request": {
+      "http-proxy-agent": "7.0.2"
+    }
   }
 }

@@ -17,6 +17,9 @@ on:
       - ".github/workflows/mobile-windows-qa.yml"
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   windows-qa:
     runs-on: windows-latest

@@ -105,7 +105,8 @@ export function AppLanguageProvider({ children }: { children: React.ReactNode })
     // Interpolation (preserve existing behavior)
     if (params) {
       for (const [k, v] of Object.entries(params)) {
-        str = str.replace(new RegExp(`\{${k}\}`, "g"), String(v));
+        const token = `{${k}}`;
+        str = str.split(token).join(String(v));
       }
     }
 

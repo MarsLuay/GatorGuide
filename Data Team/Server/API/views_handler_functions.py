@@ -1,8 +1,12 @@
+import logging
+
 from rest_framework import status
 from rest_framework.response import Response
 
 from .models import User
 from .serializer import UserSerializer
+
+logger = logging.getLogger(__name__)
 
 
 def create_user(serializer: UserSerializer, user_id: str):
@@ -12,9 +16,10 @@ def create_user(serializer: UserSerializer, user_id: str):
     if serializer.is_valid():
         try:
             serializer.save(user_id=user_id)
-        except Exception as exc:
+        except Exception:
+            logger.exception("Failed to create user profile for user_id=%s", user_id)
             return Response(
-                {"errors": "Profile Created Failed", "details": str(exc)},
+                {"errors": "Profile Created Failed"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
         return Response(
@@ -46,9 +51,10 @@ def update_user(user_id: str, data):
             {"errors": "Profile Updated Failed", "details": serializer.errors},
             status=status.HTTP_400_BAD_REQUEST,
         )
-    except Exception as exc:
+    except Exception:
+        logger.exception("Failed to update user profile for user_id=%s", user_id)
         return Response(
-            {"errors": "Update Failed", "details": str(exc)},
+            {"errors": "Update Failed"},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR,
         )
 
@@ -59,8 +65,9 @@ def delete_user(user_id: str):
         if deleted_count == 0:
             return Response({"errors": "User Not Found"}, status=status.HTTP_404_NOT_FOUND)
         return Response({"message": "Profile Deleted Successfully"}, status=status.HTTP_200_OK)
-    except Exception as exc:
+    except Exception:
+        logger.exception("Failed to delete user profile for user_id=%s", user_id)
         return Response(
-            {"errors": "Delete Failed", "details": str(exc)},
+            {"errors": "Delete Failed"},
             status=status.HTTP_400_BAD_REQUEST,
         )

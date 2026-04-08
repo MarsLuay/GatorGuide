@@ -112,14 +112,13 @@ function getBaseDomains(urls) {
 function isAllowedDiscoveryUrl(url, baseDomains) {
   try {
     const parsed = new URL(url);
-    if (!["http:", "https:"].includes(parsed.protocol)) {
+    const protocol = parsed.protocol.toLowerCase();
+    if (!["http:", "https:"].includes(protocol)) {
       return false;
     }
 
     const lower = parsed.href.toLowerCase();
     if (
-      lower.startsWith("mailto:") ||
-      lower.startsWith("javascript:") ||
       lower.includes("/search?") ||
       lower.includes("/wp-login") ||
       lower.includes("/feed")

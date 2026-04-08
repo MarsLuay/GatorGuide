@@ -65,7 +65,7 @@ def parse_args() -> argparse.Namespace:
 
 def make_chunk_id(user_id: str, source: str, index: int) -> str:
     payload = f"{user_id}::{source}::{index}"
-    digest = hashlib.sha1(payload.encode("utf-8")).hexdigest()[:16]
+    digest = hashlib.sha256(payload.encode("utf-8")).hexdigest()[:16]
     return f"{user_id}::{source}::chunk::{index}::{digest}"
 
 

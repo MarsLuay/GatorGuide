@@ -113,20 +113,26 @@ function parseJson(text, fallback = {}) {
 }
 
 function decodeHtmlEntities(value) {
-  return String(value ?? "")
-    .replace(/&amp;/g, "&")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'");
+  const entityMap = {
+    amp: "&",
+    lt: "<",
+    gt: ">",
+    quot: '"',
+    "#39": "'",
+  };
+
+  return String(value ?? "").replace(
+    /&(amp|lt|gt|quot|#39);/g,
+    (match, entity) => entityMap[entity] ?? match
+  );
 }
 
 function stripHtmlToText(html) {
   return decodeHtmlEntities(
     String(html ?? "")
-      .replace(/<script[\s\S]*?<\/script>/gi, " ")
-      .replace(/<style[\s\S]*?<\/style>/gi, " ")
-      .replace(/<noscript[\s\S]*?<\/noscript>/gi, " ")
+      .replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, " ")
+      .replace(/<style\b[^>]*>[\s\S]*?<\/style\s*>/gi, " ")
+      .replace(/<noscript\b[^>]*>[\s\S]*?<\/noscript\s*>/gi, " ")
       .replace(/<[^>]+>/g, " ")
       .replace(/\s+/g, " ")
       .trim()
