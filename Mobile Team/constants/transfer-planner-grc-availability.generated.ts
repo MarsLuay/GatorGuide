@@ -44,6 +44,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -67,6 +76,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -102,6 +120,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -131,6 +158,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -150,6 +186,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -163,6 +203,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -178,6 +222,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -191,6 +239,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -206,6 +258,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -219,6 +275,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -234,6 +294,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -248,6 +312,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -261,6 +329,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -280,6 +352,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -307,10 +388,16 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
       }
     ],
     latestPublishedQuarters: [
-      "spring"
+      "fall"
     ]
   },
   "ANTH& 205": {
@@ -331,11 +418,20 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "fall",
           "winter"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
       "fall",
-      "winter"
+      "winter",
+      "spring"
     ]
   },
   "ANTH& 206": {
@@ -352,6 +448,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -377,6 +482,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -390,6 +499,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -410,6 +523,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "winter"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -426,6 +545,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -439,6 +562,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -458,6 +585,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -492,6 +628,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -518,17 +662,24 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
-      "summer",
       "fall",
       "winter",
       "spring"
     ]
   },
   "AP 104": {
-    status: "published-in-latest-schedule",
+    status: "published-in-recent-history-not-latest",
     years: [
       {
         label: "2024-2025",
@@ -542,11 +693,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "winter"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
-    latestPublishedQuarters: [
-      "winter"
-    ]
+    latestPublishedQuarters: []
   },
   "AP 210": {
     status: "published-in-latest-schedule",
@@ -561,10 +714,17 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "fall",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
-      "fall",
+      "summer",
       "spring"
     ]
   },
@@ -582,6 +742,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -615,6 +784,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -636,6 +813,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "fall",
           "winter",
@@ -669,6 +854,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -695,6 +889,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -716,6 +917,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -751,6 +961,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -774,6 +993,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -809,6 +1037,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -832,6 +1069,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -862,6 +1108,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "fall",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -870,7 +1123,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ART 120": {
-    status: "published-in-latest-schedule",
+    status: "published-in-recent-history-not-latest",
     years: [
       {
         label: "2024-2025",
@@ -883,11 +1136,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
-    latestPublishedQuarters: [
-      "spring"
-    ]
+    latestPublishedQuarters: []
   },
   "ART 130": {
     status: "published-in-latest-schedule",
@@ -900,6 +1155,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer"
         ]
@@ -919,6 +1180,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -934,6 +1199,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer"
         ]
@@ -953,6 +1224,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -968,6 +1243,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "fall"
         ]
@@ -987,6 +1268,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -1000,6 +1285,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -1016,6 +1305,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "fall"
         ]
@@ -1036,6 +1331,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "winter"
         ]
@@ -1060,6 +1361,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -1075,6 +1382,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -1094,6 +1405,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -1129,6 +1449,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -1152,6 +1481,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -1187,6 +1525,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -1210,6 +1557,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -1245,6 +1601,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -1264,6 +1629,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -1277,6 +1646,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -1292,6 +1665,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -1305,6 +1682,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -1320,6 +1701,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -1333,6 +1718,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -1348,6 +1737,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -1362,6 +1755,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -1375,6 +1772,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -1400,6 +1801,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -1418,6 +1828,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -1443,13 +1857,20 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter"
+        ]
       }
     ],
     latestPublishedQuarters: [
       "summer",
       "fall",
-      "winter",
-      "spring"
+      "winter"
     ]
   },
   "BIOL 103": {
@@ -1465,6 +1886,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "fall",
           "spring"
@@ -1496,6 +1924,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -1515,33 +1952,9 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
-  "BIOL 115": {
-    status: "planner-course-no-current-public-source",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
       },
       {
-        label: "2025-2026",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
-  "BIOL 116": {
-    status: "planner-course-no-current-public-source",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -1557,6 +1970,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -1570,6 +1987,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -1585,6 +2006,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -1598,6 +2023,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -1613,6 +2042,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -1627,6 +2060,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -1640,6 +2077,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -1659,6 +2100,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -1690,6 +2140,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "fall",
           "winter"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -1713,10 +2170,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "summer",
           "winter"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
       }
     ],
     latestPublishedQuarters: [
-      "summer",
       "winter"
     ]
   },
@@ -1734,9 +2196,17 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
+      "summer",
       "spring"
     ]
   },
@@ -1759,10 +2229,16 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "fall",
           "winter"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter"
+        ]
       }
     ],
     latestPublishedQuarters: [
-      "summer",
       "fall",
       "winter"
     ]
@@ -1785,9 +2261,19 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
+      "summer",
       "fall",
       "winter",
       "spring"
@@ -1807,6 +2293,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -1842,6 +2337,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -1865,6 +2369,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -1900,6 +2413,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -1929,6 +2451,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -1948,6 +2479,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -1961,6 +2496,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -1976,6 +2515,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -1989,6 +2532,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -2008,6 +2555,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -2043,6 +2599,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -2066,6 +2631,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -2101,6 +2675,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -2124,6 +2707,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -2158,6 +2750,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -2181,9 +2782,17 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "fall"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall"
+        ]
       }
     ],
     latestPublishedQuarters: [
+      "summer",
       "fall"
     ]
   },
@@ -2202,10 +2811,18 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "winter"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
-      "winter"
+      "winter",
+      "spring"
     ]
   },
   "CHEM& 263": {
@@ -2224,10 +2841,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "summer",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
-      "summer",
       "spring"
     ]
   },
@@ -2240,6 +2862,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -2255,6 +2881,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -2269,6 +2899,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -2282,6 +2916,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -2299,6 +2937,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "fall",
           "winter"
@@ -2326,6 +2971,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "fall",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -2345,6 +2997,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "fall",
           "spring"
@@ -2372,6 +3031,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "fall",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -2393,6 +3059,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "winter"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -2408,6 +3080,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -2427,6 +3103,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -2460,11 +3145,17 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "fall",
           "winter"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "winter"
+        ]
       }
     ],
     latestPublishedQuarters: [
       "summer",
-      "fall",
       "winter"
     ]
   },
@@ -2480,6 +3171,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "fall",
           "spring"
@@ -2506,9 +3204,20 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
+      "summer",
+      "fall",
       "winter",
       "spring"
     ]
@@ -2522,6 +3231,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -2540,6 +3253,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "fall"
         ]
@@ -2565,6 +3284,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "summer",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -2581,6 +3307,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -2605,12 +3335,16 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "fall",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
       }
     ],
     latestPublishedQuarters: [
-      "summer",
-      "fall",
-      "spring"
+      "fall"
     ]
   },
   "CMST 265": {
@@ -2626,6 +3360,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "winter",
@@ -2649,6 +3391,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -2662,6 +3408,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -2681,6 +3431,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -2716,6 +3475,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -2739,6 +3507,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -2774,6 +3551,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -2782,20 +3568,6 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter",
       "spring"
     ]
-  },
-  "CRJ 215": {
-    status: "planner-course-no-current-public-source",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
   },
   "CS 120": {
     status: "legacy-track-only-no-current-public-source",
@@ -2806,6 +3578,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -2825,6 +3601,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -2858,9 +3643,19 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
+      "summer",
       "fall",
       "winter",
       "spring"
@@ -2885,10 +3680,17 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
-      "summer",
       "fall",
       "winter",
       "spring"
@@ -2908,6 +3710,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -2923,6 +3731,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -2940,6 +3752,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "winter",
           "spring"
@@ -2967,11 +3786,16 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "fall",
           "winter"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
       }
     ],
     latestPublishedQuarters: [
-      "fall",
-      "winter"
+      "fall"
     ]
   },
   "CS& 141": {
@@ -2983,6 +3807,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -3002,6 +3830,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "fall",
           "winter",
@@ -3034,6 +3870,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -3061,6 +3905,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -3079,6 +3931,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -3092,6 +3948,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -3107,6 +3967,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -3120,6 +3984,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -3135,6 +4003,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -3149,6 +4021,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -3162,6 +4038,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -3181,6 +4061,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -3214,6 +4103,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -3235,6 +4132,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "fall",
           "winter",
@@ -3266,6 +4171,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -3285,6 +4198,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "fall"
         ]
@@ -3308,9 +4227,17 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "winter"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "winter"
+        ]
       }
     ],
     latestPublishedQuarters: [
+      "summer",
       "winter"
     ]
   },
@@ -3325,6 +4252,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "spring"
         ]
@@ -3347,6 +4280,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "fall",
           "winter",
@@ -3378,6 +4319,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -3399,6 +4348,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "fall",
           "winter",
@@ -3430,6 +4387,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -3451,6 +4416,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "fall",
           "winter",
@@ -3483,6 +4456,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -3500,6 +4481,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -3525,6 +4510,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -3544,6 +4538,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -3557,6 +4555,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "winter"
         ]
@@ -3581,6 +4585,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -3601,6 +4611,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "fall"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -3616,6 +4632,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -3641,12 +4661,19 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
       "summer",
       "fall",
-      "winter",
       "spring"
     ]
   },
@@ -3662,6 +4689,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "winter"
         ]
@@ -3685,6 +4718,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "summer"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -3702,6 +4741,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer"
         ]
@@ -3727,6 +4772,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "fall",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -3746,6 +4798,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "fall",
           "winter"
@@ -3774,9 +4833,18 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
+      "fall",
       "winter",
       "spring"
     ]
@@ -3794,6 +4862,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "winter",
           "spring"
@@ -3825,6 +4900,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -3844,6 +4928,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -3857,6 +4945,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -3872,6 +4964,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -3885,6 +4981,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -3904,6 +5004,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -3939,6 +5048,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -3958,6 +5076,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -3975,6 +5097,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -3998,10 +5124,21 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "fall",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
+      "summer",
       "fall",
+      "winter",
       "spring"
     ]
   },
@@ -4019,6 +5156,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -4054,6 +5200,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -4073,12 +5228,16 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
   },
   "EDUC& 150": {
-    status: "published-in-latest-schedule",
+    status: "published-in-recent-history-not-latest",
     years: [
       {
         label: "2024-2025",
@@ -4093,12 +5252,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
-    latestPublishedQuarters: [
-      "winter",
-      "spring"
-    ]
+    latestPublishedQuarters: []
   },
   "EDUC& 204": {
     status: "published-in-latest-schedule",
@@ -4120,10 +5280,17 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
-      "summer",
       "fall",
       "winter",
       "spring"
@@ -4147,6 +5314,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -4164,6 +5339,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -4183,6 +5362,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "fall",
           "winter",
@@ -4214,9 +5401,19 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
+      "summer",
       "fall",
       "winter",
       "spring"
@@ -4231,6 +5428,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -4250,6 +5451,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -4285,6 +5495,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -4308,6 +5527,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -4339,6 +5567,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "fall",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -4357,6 +5592,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "spring"
         ]
@@ -4380,6 +5621,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "winter"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -4398,6 +5645,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "fall"
         ]
@@ -4423,6 +5676,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "fall",
           "winter"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -4439,6 +5699,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "winter"
         ]
@@ -4464,6 +5730,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -4472,7 +5745,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGL 181": {
-    status: "published-in-latest-schedule",
+    status: "published-in-recent-history-not-latest",
     years: [
       {
         label: "2024-2025",
@@ -4483,11 +5756,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "fall"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
-    latestPublishedQuarters: [
-      "fall"
-    ]
+    latestPublishedQuarters: []
   },
   "ENGL 183": {
     status: "published-in-latest-schedule",
@@ -4501,6 +5776,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "winter"
         ]
@@ -4520,6 +5801,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -4533,6 +5818,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -4554,6 +5843,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "summer",
           "fall"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -4571,6 +5867,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -4585,6 +5885,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -4598,6 +5902,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -4620,10 +5928,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "summer",
           "fall"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
       }
     ],
     latestPublishedQuarters: [
-      "summer",
       "fall"
     ]
   },
@@ -4642,9 +5955,17 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
+      "fall",
       "spring"
     ]
   },
@@ -4661,10 +5982,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "summer",
           "winter"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
       }
     ],
     latestPublishedQuarters: [
-      "summer",
       "winter"
     ]
   },
@@ -4677,6 +6003,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -4691,6 +6021,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -4716,6 +6050,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -4735,6 +6078,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -4751,6 +6098,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -4781,6 +6136,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -4800,6 +6162,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "spring"
         ]
@@ -4823,6 +6191,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "fall"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -4839,6 +6213,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -4853,6 +6231,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -4866,6 +6248,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -4885,6 +6271,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -4913,6 +6308,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -4927,6 +6326,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -4940,6 +6343,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -4957,6 +6364,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -4970,6 +6381,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -4985,6 +6400,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -4998,6 +6417,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -5016,6 +6439,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "fall",
           "winter",
@@ -5049,6 +6480,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -5068,6 +6508,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -5083,6 +6527,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "winter"
         ]
@@ -5102,12 +6552,16 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
   },
   "ENGR 250": {
-    status: "published-in-latest-schedule",
+    status: "published-in-recent-history-not-latest",
     years: [
       {
         label: "2024-2025",
@@ -5121,41 +6575,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "summer",
           "winter"
         ]
-      }
-    ],
-    latestPublishedQuarters: [
-      "summer",
-      "winter"
-    ]
-  },
-  "ENGR 271": {
-    status: "published-in-latest-schedule",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: [
-          "summer",
-          "fall",
-          "winter",
-          "spring"
-        ]
       },
       {
-        label: "2025-2026",
-        quarters: [
-          "summer",
-          "fall",
-          "winter",
-          "spring"
-        ]
+        label: "2026-2027",
+        quarters: []
       }
     ],
-    latestPublishedQuarters: [
-      "summer",
-      "fall",
-      "winter",
-      "spring"
-    ]
+    latestPublishedQuarters: []
   },
   "ENGR& 104": {
     status: "published-in-latest-schedule",
@@ -5171,6 +6597,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -5200,6 +6635,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "fall"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -5217,6 +6658,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "spring"
         ]
@@ -5244,6 +6691,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -5266,6 +6721,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "winter"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -5284,6 +6745,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "spring"
         ]
@@ -5309,27 +6776,9 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "fall",
           "spring"
         ]
-      }
-    ],
-    latestPublishedQuarters: [
-      "fall",
-      "spring"
-    ]
-  },
-  "FILM 101": {
-    status: "published-in-latest-schedule",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: [
-          "summer",
-          "fall",
-          "winter",
-          "spring"
-        ]
       },
       {
-        label: "2025-2026",
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -5365,6 +6814,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -5393,9 +6851,19 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
+      "summer",
       "fall",
       "winter",
       "spring"
@@ -5415,6 +6883,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "winter"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -5431,6 +6905,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -5444,6 +6922,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -5463,6 +6945,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -5496,10 +6987,16 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
-      "fall",
       "winter",
       "spring"
     ]
@@ -5516,6 +7013,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "spring"
         ]
@@ -5542,10 +7045,16 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "fall"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
       }
     ],
     latestPublishedQuarters: [
-      "fall"
+      "winter"
     ]
   },
   "FREN 203": {
@@ -5557,6 +7066,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -5572,19 +7085,9 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
-  "GEOG 110": {
-    status: "planner-course-no-current-public-source",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
       },
       {
-        label: "2025-2026",
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -5610,6 +7113,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -5628,6 +7140,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -5653,6 +7169,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -5672,6 +7197,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -5685,6 +7214,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -5700,6 +7233,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -5713,6 +7250,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -5738,11 +7279,18 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
       "summer",
-      "fall",
       "winter",
       "spring"
     ]
@@ -5766,6 +7314,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -5784,6 +7340,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -5797,6 +7357,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -5812,6 +7376,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -5825,6 +7393,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -5840,6 +7412,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -5853,6 +7429,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -5876,9 +7456,18 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
+      "summer",
       "winter",
       "spring"
     ]
@@ -5892,6 +7481,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -5907,6 +7500,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -5920,6 +7517,46 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "GERM 201": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "GERM 203": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -5938,6 +7575,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "fall",
           "winter",
@@ -5967,6 +7612,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -5988,6 +7640,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -6004,6 +7662,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -6017,6 +7679,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -6032,6 +7698,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -6045,6 +7715,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -6060,6 +7734,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -6073,6 +7751,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -6088,6 +7770,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -6102,12 +7788,16 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
   },
   "HIST 120": {
-    status: "published-in-latest-schedule",
+    status: "published-in-recent-history-not-latest",
     years: [
       {
         label: "2024-2025",
@@ -6121,11 +7811,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "winter"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
-    latestPublishedQuarters: [
-      "winter"
-    ]
+    latestPublishedQuarters: []
   },
   "HIST 122": {
     status: "catalog-listed-not-in-latest-schedules",
@@ -6136,6 +7828,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -6160,6 +7856,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -6178,6 +7882,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -6191,6 +7899,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -6206,6 +7918,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -6219,6 +7935,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -6234,6 +7954,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -6248,12 +7972,16 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
   },
   "HIST 231": {
-    status: "published-in-latest-schedule",
+    status: "published-in-recent-history-not-latest",
     years: [
       {
         label: "2024-2025",
@@ -6266,11 +7994,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "fall"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
-    latestPublishedQuarters: [
-      "fall"
-    ]
+    latestPublishedQuarters: []
   },
   "HIST 232": {
     status: "planner-course-no-current-public-source",
@@ -6281,6 +8011,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -6300,6 +8034,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -6316,6 +8056,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -6329,6 +8073,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -6354,10 +8102,17 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
-      "summer",
       "fall",
       "winter",
       "spring"
@@ -6373,6 +8128,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -6387,19 +8146,9 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
-  "HIST 254": {
-    status: "planner-course-no-current-public-source",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
       },
       {
-        label: "2025-2026",
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -6414,6 +8163,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -6433,6 +8186,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -6468,6 +8230,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -6491,6 +8262,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "winter"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -6511,9 +8288,17 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
+      "winter",
       "spring"
     ]
   },
@@ -6526,6 +8311,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -6540,6 +8329,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -6565,12 +8358,19 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
       "summer",
       "fall",
-      "winter",
       "spring"
     ]
   },
@@ -6583,6 +8383,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -6598,6 +8402,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -6611,6 +8419,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -6626,6 +8438,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -6639,6 +8455,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -6654,6 +8474,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -6667,6 +8491,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -6682,6 +8510,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -6695,6 +8527,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -6713,6 +8549,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "fall",
           "winter",
@@ -6745,10 +8589,17 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
-      "summer",
       "fall",
       "winter",
       "spring"
@@ -6769,6 +8620,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -6785,6 +8642,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -6799,6 +8660,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -6812,6 +8677,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -6836,16 +8705,26 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
+      "summer",
       "fall",
       "winter",
       "spring"
     ]
   },
   "JOURN 103": {
-    status: "catalog-listed-not-in-latest-schedules",
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -6854,9 +8733,21 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
-    latestPublishedQuarters: []
+    latestPublishedQuarters: [
+      "fall",
+      "winter",
+      "spring"
+    ]
   },
   "JOURN 107": {
     status: "published-in-latest-schedule",
@@ -6876,9 +8767,19 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
+      "summer",
       "fall",
       "winter",
       "spring"
@@ -6894,6 +8795,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -6907,6 +8812,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -6922,6 +8831,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -6935,6 +8848,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -6950,6 +8867,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -6963,6 +8884,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -6982,10 +8907,22 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "fall"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
-      "fall"
+      "summer",
+      "fall",
+      "winter",
+      "spring"
     ]
   },
   "JOURN 151": {
@@ -6998,12 +8935,16 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
   },
   "JOURN 152": {
-    status: "published-in-latest-schedule",
+    status: "published-in-recent-history-not-latest",
     years: [
       {
         label: "2024-2025",
@@ -7016,11 +8957,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
-    latestPublishedQuarters: [
-      "spring"
-    ]
+    latestPublishedQuarters: []
   },
   "JOURN 153": {
     status: "planner-course-no-current-public-source",
@@ -7031,6 +8974,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -7046,6 +8993,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -7059,6 +9010,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -7074,6 +9029,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -7087,6 +9046,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -7102,6 +9065,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -7115,6 +9082,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -7130,6 +9101,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -7143,6 +9118,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -7158,6 +9137,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -7171,6 +9154,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -7186,6 +9173,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -7199,6 +9190,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -7214,19 +9209,9 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
-  "LIB 180": {
-    status: "planner-course-no-current-public-source",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
       },
       {
-        label: "2025-2026",
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -7241,6 +9226,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -7266,6 +9255,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -7285,6 +9283,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -7303,6 +9305,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "fall",
           "winter",
@@ -7330,6 +9340,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -7365,6 +9384,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -7384,6 +9412,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -7402,6 +9434,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -7437,6 +9478,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -7460,6 +9510,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -7495,6 +9554,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -7523,11 +9591,21 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "fall",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
       "summer",
       "fall",
+      "winter",
       "spring"
     ]
   },
@@ -7545,6 +9623,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -7580,6 +9667,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -7604,6 +9700,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -7617,6 +9717,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -7644,6 +9753,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -7661,6 +9774,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -7675,12 +9792,16 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
   },
   "MATH& 254": {
-    status: "published-in-latest-schedule",
+    status: "published-in-recent-history-not-latest",
     years: [
       {
         label: "2024-2025",
@@ -7699,14 +9820,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
-    latestPublishedQuarters: [
-      "summer",
-      "fall",
-      "winter",
-      "spring"
-    ]
+    latestPublishedQuarters: []
   },
   "MUSC 101": {
     status: "published-in-latest-schedule",
@@ -7719,6 +9839,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer"
         ]
@@ -7742,6 +9868,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -7776,6 +9911,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -7800,10 +9943,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "summer",
           "winter"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
       }
     ],
     latestPublishedQuarters: [
-      "summer",
       "winter"
     ]
   },
@@ -7821,6 +9969,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -7856,6 +10013,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -7885,6 +10051,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -7908,6 +10083,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -7925,6 +10104,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -7944,6 +10127,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -7957,6 +10144,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -7975,6 +10166,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "fall",
           "winter",
@@ -8006,6 +10205,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -8027,6 +10234,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "fall",
           "winter",
@@ -8058,6 +10273,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -8076,6 +10299,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -8090,6 +10317,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -8103,6 +10334,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -8122,6 +10357,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "fall",
           "winter",
@@ -8153,6 +10396,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -8179,9 +10430,19 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
+      "summer",
       "fall",
       "winter",
       "spring"
@@ -8201,6 +10462,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -8219,6 +10484,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -8236,6 +10505,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -8259,6 +10532,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -8277,6 +10558,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -8290,6 +10575,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -8305,6 +10594,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -8319,6 +10612,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -8332,6 +10629,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -8350,6 +10651,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "fall",
           "winter",
@@ -8381,12 +10690,16 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
       }
     ],
     latestPublishedQuarters: [
-      "fall",
-      "winter",
-      "spring"
+      "fall"
     ]
   },
   "MUSC& 122": {
@@ -8404,6 +10717,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "winter"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -8411,7 +10730,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "MUSC& 123": {
-    status: "published-in-recent-history-not-latest",
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -8422,9 +10741,17 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
       }
     ],
-    latestPublishedQuarters: []
+    latestPublishedQuarters: [
+      "spring"
+    ]
   },
   "MUSC& 131": {
     status: "published-in-latest-schedule",
@@ -8444,12 +10771,16 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
       }
     ],
     latestPublishedQuarters: [
-      "fall",
-      "winter",
-      "spring"
+      "fall"
     ]
   },
   "MUSC& 132": {
@@ -8464,6 +10795,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "winter"
         ]
@@ -8487,9 +10824,17 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
+      "winter",
       "spring"
     ]
   },
@@ -8502,6 +10847,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -8517,6 +10866,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -8530,6 +10883,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -8545,6 +10902,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -8559,6 +10920,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -8572,6 +10937,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -8591,6 +10960,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "fall"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -8606,6 +10981,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -8625,6 +11004,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -8641,6 +11026,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -8656,6 +11045,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "fall"
         ]
@@ -8679,6 +11074,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "winter"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -8695,6 +11096,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -8710,6 +11115,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "spring"
         ]
@@ -8734,6 +11145,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "fall"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -8754,9 +11171,17 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
+      "summer",
       "spring"
     ]
   },
@@ -8769,6 +11194,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -8783,6 +11212,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -8803,10 +11236,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "summer",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
-      "summer",
       "spring"
     ]
   },
@@ -8819,6 +11257,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "winter"
         ]
@@ -8842,6 +11286,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -8862,6 +11312,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "winter"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -8877,6 +11333,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -8897,9 +11357,18 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
+      "summer",
       "winter",
       "spring"
     ]
@@ -8915,6 +11384,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "fall"
         ]
@@ -8938,6 +11413,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "winter"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -8954,6 +11435,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -8967,6 +11452,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -8982,6 +11471,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -8995,6 +11488,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -9014,6 +11511,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -9043,10 +11549,18 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "fall"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter"
+        ]
       }
     ],
     latestPublishedQuarters: [
-      "fall"
+      "fall",
+      "winter"
     ]
   },
   "PHIL 102": {
@@ -9063,6 +11577,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "winter",
           "spring"
@@ -9084,6 +11605,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -9098,6 +11623,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -9111,6 +11640,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -9128,10 +11661,18 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "fall"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
-      "fall"
+      "fall",
+      "spring"
     ]
   },
   "PHIL 112": {
@@ -9153,10 +11694,20 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
       "summer",
+      "fall",
       "winter",
       "spring"
     ]
@@ -9170,6 +11721,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -9185,6 +11740,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -9198,6 +11757,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -9213,6 +11776,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -9226,6 +11793,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "spring"
         ]
@@ -9249,6 +11822,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "fall"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -9268,10 +11847,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "summer",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
-      "summer",
       "spring"
     ]
   },
@@ -9285,12 +11869,16 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
   },
   "PHIL 220": {
-    status: "published-in-latest-schedule",
+    status: "published-in-recent-history-not-latest",
     years: [
       {
         label: "2024-2025",
@@ -9301,11 +11889,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "winter"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
-    latestPublishedQuarters: [
-      "winter"
-    ]
+    latestPublishedQuarters: []
   },
   "PHIL 236": {
     status: "catalog-listed-not-in-latest-schedules",
@@ -9317,12 +11907,16 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
   },
   "PHIL 238": {
-    status: "catalog-listed-not-in-latest-schedules",
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -9331,9 +11925,17 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
       }
     ],
-    latestPublishedQuarters: []
+    latestPublishedQuarters: [
+      "fall"
+    ]
   },
   "PHIL 240": {
     status: "published-in-latest-schedule",
@@ -9349,6 +11951,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -9376,9 +11987,17 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "fall"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall"
+        ]
       }
     ],
     latestPublishedQuarters: [
+      "summer",
       "fall"
     ]
   },
@@ -9391,6 +12010,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -9410,6 +12033,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -9445,6 +12077,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -9468,6 +12109,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -9499,6 +12149,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -9518,6 +12175,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "winter",
           "spring"
@@ -9549,6 +12213,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -9570,6 +12243,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "winter",
           "spring"
@@ -9597,6 +12277,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -9614,6 +12301,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -9627,6 +12318,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -9642,6 +12337,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -9655,6 +12354,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -9674,6 +12377,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -9703,6 +12415,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "winter"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -9723,6 +12441,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -9739,6 +12463,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -9753,6 +12481,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -9766,6 +12498,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -9785,6 +12521,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -9818,9 +12563,19 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
+      "summer",
       "fall",
       "winter",
       "spring"
@@ -9844,6 +12599,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -9861,6 +12624,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -9886,6 +12653,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -9905,6 +12681,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -9918,6 +12698,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -9937,6 +12721,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -9972,6 +12765,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -9995,6 +12797,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -10029,9 +12840,19 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
+      "summer",
       "fall",
       "winter",
       "spring"
@@ -10051,6 +12872,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -10080,6 +12910,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "fall"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -10096,6 +12932,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -10110,29 +12950,13 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
-  },
-  "PSYC 240": {
-    status: "published-in-latest-schedule",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: [
-          "spring"
-        ]
-      },
-      {
-        label: "2025-2026",
-        quarters: [
-          "spring"
-        ]
-      }
-    ],
-    latestPublishedQuarters: [
-      "spring"
-    ]
   },
   "PSYC 298": {
     status: "catalog-listed-not-in-latest-schedules",
@@ -10143,6 +12967,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -10157,6 +12985,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -10182,6 +13014,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -10201,6 +13042,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -10219,6 +13064,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -10248,6 +13102,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -10264,6 +13124,28 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PSYCH 250": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -10277,6 +13159,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -10292,6 +13178,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -10305,6 +13195,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -10320,6 +13214,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -10333,6 +13231,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -10351,6 +13253,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "fall",
           "winter",
@@ -10382,11 +13292,17 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
       "fall",
-      "winter",
       "spring"
     ]
   },
@@ -10399,6 +13315,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -10416,6 +13336,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -10429,6 +13353,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -10444,6 +13372,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -10457,6 +13389,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -10476,6 +13412,15 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "summer",
           "fall",
@@ -10508,11 +13453,16 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "fall",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
       }
     ],
     latestPublishedQuarters: [
-      "fall",
-      "spring"
+      "winter"
     ]
   },
   "SPAN 110": {
@@ -10524,6 +13474,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -10539,6 +13493,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
       }
     ],
     latestPublishedQuarters: []
@@ -10552,6 +13510,10 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
@@ -10575,9 +13537,19 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "winter",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
+      "summer",
       "fall",
       "winter",
       "spring"
@@ -10596,6 +13568,14 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "fall",
           "winter",
@@ -10623,6 +13603,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
@@ -10640,6 +13626,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "fall"
         ]
@@ -10661,6 +13653,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: [
           "winter"
         ]
@@ -10687,9 +13685,21 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
       }
     ],
     latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
       "spring"
     ]
   }
@@ -10697,5 +13707,6 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
 
 export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY_SOURCE_URLS = [
   "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2024-2025-Annual-Schedule.pdf",
-  "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+  "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf",
+  "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
 ] as const;

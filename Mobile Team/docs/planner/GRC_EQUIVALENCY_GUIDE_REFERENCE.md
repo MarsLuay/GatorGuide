@@ -5,6 +5,8 @@
 This is the single consolidated planner-facing reference doc for the Green River -> UW transfer and equivalency information the planner uses.
 It now carries the migrated planner-relevant content that used to live in the separate raw markdown reference docs, so the six planner docs can stand on their own without depending on extra markdown files in `docs/reference`.
 
+This doc is a narrative reference for planner work. The runtime source of truth now lives in the generated planner registries refreshed by `npm run planner:refresh` or `npm run planner:full:verify`.
+
 ## What is combined here
 
 - Green River transfer-track and latest published course-plan information.
@@ -23,7 +25,9 @@ It now carries the migrated planner-relevant content that used to live in the se
 ## Migrated Green River transfer-track and latest course-plan reference
 
 
-Checked: April 2, 2026
+Narrative section checked: April 2, 2026
+
+Runtime registries last refreshed through the planner maintenance pipeline: April 8, 2026
 
 ## Scope
 
@@ -350,6 +354,8 @@ These are the places where the latest current public sources still leave gaps:
 | Associate in Science - Transfer Track 1 (`999A`) | One year-2 spring slot did not fully surface in the latest text extract, so I left it marked as unresolved rather than backfilling it from older material. |
 | Green River general-education category rows outside the engineering tracks | `HUMANITIES`, `SOCIAL SCIENCE`, `NATURAL SCIENCE`, and similar broad category slots still need a separate catalog-safe expansion pass if the planner ever wants fully named general-ed suggestions by catalog year. |
 
+These narrative-source gaps do not authorize planner guessing. In the runtime planner, unsupported or insufficiently source-backed outputs should stay broad, remain explicitly source-limited, or stay hidden rather than being hand-filled.
+
 ## Bottom Line
 
 If you want the strict most-recent public Green River planning-sheet version, the rows above still preserve that latest public quarter-grid structure.
@@ -359,6 +365,8 @@ For the engineering-relevant Green River tracks `999B`, `999Q`, `999O`, and `999
 The planner now also stores course-level `2024-2025` and `2025-2026` Green River quarter-availability history for tracked classes that appeared in those annual schedules, so quarter planning no longer has to treat every tracked class as if it runs every term.
 
 The remaining unresolved catalog work is the broader general-education side: named `HUMANITIES`, `SOCIAL SCIENCE`, `NATURAL SCIENCE`, and `ELECTIVE` expansions still need a later catalog-by-catalog pass if the planner ever wants fully named filler suggestions by year.
+
+The runtime planner no longer depends on this narrative file alone. Use the generated planner registries and the campus planner docs for the actual current planner state.
 
 ## Migrated cleaned Green River -> UW equivalency guide
 

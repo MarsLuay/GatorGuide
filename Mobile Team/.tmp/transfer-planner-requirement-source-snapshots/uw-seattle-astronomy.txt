@@ -1,8 +1,8 @@
 Owner: uw-seattle-astronomy
-Source: https://astro.washington.edu/timeline-and-requirements
-Title: Timeline and Requirements | Department of Astronomy | University of Washington
+Source: https://astro.washington.edu/undergraduate-program
+Title: Undergraduate Program | Department of Astronomy | University of Washington
 
-Timeline and Requirements | Department of Astronomy | University of Washington
+Undergraduate Program | Department of Astronomy | University of Washington
 Skip to main content
 Washington
 University of Washington
@@ -87,81 +87,199 @@ MyUW
 You are here
 Home
 Programs & Courses
-Graduate
-Timeline and Requirements
+Undergraduate
+Undergraduate Program
 Overview
-Course Requirements : The graduate curriculum consists of eight core courses (typically completed in the first two years of study) and a number of 3-credit electives. Each core course will typically be offered once every two years. The elective classes are typically offered every three years. A selection of <3 credit courses are also offered focusing on developing professional skills rather than astronomy content.
-MS Requirements : To receive a Master's degree, students must complete seven out of the eight core courses with a >= 2.7 grade, and a GPA of >= 3.0 computed over the best 7 of the completed core courses.
-PhD Requirements : To receive a Ph.D. degree, in addition to satisfying the Master's Degree requirements the student must complete additional three >=3 credit graduate elective classes with a >= 2.7 grade, and pass the Qualifying , General , and Final exams. The electives may include graduate-level courses outside the Astronomy Department that are supportive of the student’s research direction.
-As outlined in the Graduate Mentoring Program Book (pdf) , graduate students are encouraged to regularly meet with the Graduate Program Advisor to discuss degree requirements and planning. We strongly recommend consulting the department’s handbook for the most detailed and up-to-date information on the Ph.D. program structure and requirements. In the case of any conflicting information between the provided handbook and this page, assume the online Mentoring Program handbook is correct.
-Teaching Requirements
-Generally, if you aren’t supported on a fellowship or research grant, you will be given the opportunity to earn a salary by being a T.A . Everyone must serve as a TA for at least three (3) quarters before they get their Ph.D.; typically, grads TA their entire first year to meet this requirement. There are also TA positions available for online-only courses. In addition, some of the night and summer classes have traditionally been taught by upper level grads. Note that being a TA for summer classes only satisfies 1/3 of a quarter TA appointment.
-Additionally, pay raises are associated with obtaining the Master’s (transitioning from “Premaster” to “Intermediate” pay scale level) and becoming a Ph.D. candidate (transitioning from “Intermediate” to “Candidate” pay scale level). More information is provided on the Financial Support page.
-Course Requirements
-Most students take standard classes for their first two years and then concentrate almost exclusively on research classes with faculty in later years, with some exceptions for certificate or dual degree programs.
+Our Bachelor of Science degree provides a strong foundation in physics, mathematics, and advanced astronomy. This comprehensive program prepares students for diverse career paths, including graduate studies, science education, and data-intensive fields.
+Our department's moderate size and collegial atmosphere foster close mentoring relationships between faculty and students. Students engage in numerous outreach and educational activities, from hosting public viewings at our Planetarium , to conducting open houses at the campus Theodor Jacobsen Observatory . Students frequently gain hands-on observational and research experience, including work with telescopes at the Manastash Ridge Observatory , the Apache Point Observatory , and with the Astronomy Undergrad Engineering Group .
+For more information, please do not hesitate to reach out to our advising team .
+Undergraduate Learning Goals
+Understand the principle findings, common application, and current problems within Astronomy as a scientific discipline.
+Be versed in the computational methods and software resources utilized by professional Astronomers.
+Have experience operating modern Astronomical instrumentation and analyzing a range of experimental data.
+Be able to assess, communicate and reflect their understanding of Astronomy and the results of Astrophysical experiments in both oral and written formats.
+Learn in a diverse environment with a variety of individuals, thoughts and ideas.
+Undergraduate Major Admission
+Major Admissions Requirements
+Minimum requirements for consideration for standard admission: PHYS 121, PHYS 122, and PHY 123 (or transfer equivalent; may be presently enrolled in PHYS 123), and either [MATH 124, MATH 125, and MATH 126] or [MATH 134 and MATH 135] (or full transfer equivalent; may be presently enrolled in MATH 126 or MATH 135). Students with greater than 2.0 in most required prerequisites are generally admitted to the major (although meeting the minimum requirements does not guarantee admission).
+Admission is capacity constrained, and is based on a holistic review of the student’s record as follows:
+Academic Performance. This aspect will include a review of overall GPA and content of all courses completed; frequency of incompletes or withdrawals and number of repeated courses; and an academic record that demonstrates interest in science, technology, engineering, and/or mathematics.
+Personal Statement. This statement will consist of a brief (500 – 1000 words) description of the student’s interest and goals in the Astronomy major, and will address strategies for success in the major. In exceptional cases with extenuating circumstances, a personal statement may also include a petition for a waiver of one of the stated minimum requirements in item 1.
+Admissions & Advising
+Admission is twice each year. Application deadlines are the third Friday of Autumn quarter and the third Friday of Spring quarter. Students transferring to the UW in Autumn or Winter quarter may also apply the third Friday of Winter quarter. Please see our Advising page for detailed information about applying to the program, career paths, scholarships, and other student resources.
+Degree Requirements
+The two major career paths in astronomy are professional research (generally requiring a Ph.D.) and scientific and technical support positions at observatories or in private industry. Our program prepares graduates for entrance into a graduate program or an immediate astronomy-related career. The undergraduate program also emphasizes the development of communication skills and the use of computers for data analysis in addition to formal training in astronomy and physics.
+In addition to the Proficiency (Basic Skills) and Areas of inquiry (General Education) requirements of the College of Arts and Sciences, the following curriculum (91 credits) is required for those students who wish to graduate with a major in Astronomy.
+Course
+Topic(s)
 Credits
-Students must register for at least 10 credits each quarter. Typically 6 of these are from formal courses, with additional credits coming from Seminar (575 – 1 credit), in which each student presents a paper of general interest, and Colloquium (576 – 1 credit), in which visiting faculty give lectures to the entire department. The remaining 2 credits may come from other courses of the student’s choice, or from independent research with a faculty member (ASTR 600).
-During the Summer quarter , students should register for 2 credits unless otherwise advised. After completion of the General Exam, students should register for ASTR 800 level dissertation credits.
-Core Curriculum
-The “core” curriculum for graduate students is a series of 8 courses , of which the student needs to complete 7. Students generally complete the required courses during the first two years of study and skip one of the eight core courses at their discretion. A typical sequence of core course is as follows, with the ‘A’ and ‘B’ sequences offered in alternate years. Depending on when a student enters the program, they may take Year ‘A’, with emphasis on stellar astronomy, followed by Year ‘B’, with emphasis on galactic and extragalactic astronomy, or vice versa.
-YEAR A
-YEAR B
-Autumn
-Exoplanets and Planets (558)
-Interstellar Matter (541)
-Winter
-Thermodynamics/Hydrodynamics (507)
-Radiative Transfer/Stellar Atmospheres (519)
-Galactic/Extragalactic (511)
-Spring
-Stellar Interiors/Evolution (531)
-Cosmology (513)
-Summer
-Observing (581) -or during the year?
-In addition to the core courses, there are other courses which the student may elect to take, both in the Astronomy department, and in other departments, such as Nuclear Astrophysics (cross-listed with the Physics Department) and courses in Planetary Astronomy and Observation and Instrumentation. In (rare) cases where core courses are not offered within the first two academic years, 3-credit electives in the Astronomy Department may be substituted; however, the seven core courses must still be completed for the Ph.D.
-Visit Courses for a full listing of graduate courses offered by the Astronomy Department.
-Grading
-Grading in core courses is required to compare student performance to an absolute standard, with a 2.7 grade defined as indicating a “satisfactory performance in the course and evidence of sufficient learning to succeed in subsequent courses in the field.” The grading scale — the mapping of points achieved on homework assignments, projects, or exams to a 0.0-4.0 grade — may vary from course to course. However, a) the instructors must provide a clear explanation of the work needed to achieve a grade of 2.7 or higher, and b) the meaning of 2.7 grade must follow the definition given above.
-Satisfactory Progress
-Coming Soon!
-MS Requirements
-Satisfying Graduate School Master’s degree requirements
-Completing seven required Astronomy core courses with grade >=2.7, and a GPA of >= 3.0 computed over the best 7 of the completed core courses. Students who do not meet the criteria for the Master’s degree during the first two years have the option to retake courses in ensuing years until they pass successfully.
-Completing two academic years engaged in research and coursework
-Submit a Master’s Degree Request with The Graduate School
-PhD Candidacy Requirements
-Completing the Master’s degree requirements
-Passing the Research Qualifying Exam (described here )
-Passing the General Exam
-Research Qualifying Exam
-The Research Qual’s objective is for graduate students to produce a scientific manuscript and present their findings to the Department by the beginning of their fourth year in the Ph.D. program. Students intending to take the Qual in a given academic year should follow the tasks outlined in the Research Qual checklist .
-Qual Committee
-Preparation for the Research Qual should begin at least 3 months before "Qual Day," at which point a student must notify the Qual Committee Chair that they plan to take the Qual. Two (2) months prior to Qual Day, students should send their qual document to their mentoring team, then alter it after receiving feedback. At least 1 month prior to Qual Day, a 5-10 page manuscript must be submitted to the Qual Committee, with a 1-2 page cover letter responding to the major comments of the mentoring team and detailing the alterations needed prior to submission to a scientific journal. If a student receives a passing grade on the written component, they will be scheduled for a 30 minute presentation during Qual Day, with 10 additional minutes for questions. The Qual Committee will provide a passing or failing grade to each student for the presentation.
-General Exam
-Graduate students who intend to take the General Exam in a given academic year must complete the tasks outlined in the General Exam checklist .
-Supervisory Committee
-Students must establish a supervisory committee at least 2 months before the intended General Exam date. The committee consists of a minimum of four members: Chair, Graduate School Representative (GSR), and 2 additional members (one of which must be a member of the graduate faculty). After consulting with your research advisor for the members of this committee, please inform the Graduate Advisor and Graduate Program Coordinator of your committee members.
-Dissertation Proposal
-A 10-page dissertation summary is to be submitted to the Supervisory Committee prior to the General Exam. This document must include the scientific context for your proposed dissertation, a description of the proposed research, and a likely timeline for completion of major milestones.
-PhD Degree Requirements
-Qualifying for Ph.D. Candidacy
-Satisfying Graduate School doctoral degree requirements (GPA/credits/etc).
-Completing three >=3 credit graduate elective classes, achieving >=2.7 grade in each. These may include graduate-level courses outside the Astronomy Department that are supportive of the student’s research direction. In cases where a grad-level class may be too advanced for those with just an astronomy background, one 400-level course can be taken in fields, such as in computer science, if approved by the student’s faculty advisor.
-Completing the Final Exam
-Submitting a thesis (per University guidelines )
-Final Exam & Dissertation
-Ph.D. Candidates must follow the tasks outlined in the Final Exam Dissertation checklist .
-Reading Committee
-At least 4 months prior to the Final Exam, a Candidate should review their Supervisory Committee, and make any necessary changes. Additionally, the student must establish a Reading Committee and should inform the Graduate Advisor and Graduate Program Coordinator of that committee's members. The Reading Committee members will review the Candidate's dissertation draft and, upon approval, return an approval form with their original signatures. While a Ph.D. Candidate is not required to send a copy to Supervisory Committee Members, one may do so with the explicit instruction that they are not required to read the draft or provide comments unless they wish to .
+Prerequisites
+55 credits
+Physics 121
+Mechanics
+5
+Physics 122
+Electromagnetism
+5
+Physics 123
+Waves & Optics
+5
+Physics 224
+Thermal Physics
+3
+Physics 225
+Intro. to Quantum Mechanics I
+3
+Physics 226
+Particles & symmetries
+3
+Physics 227
+Mathematical Physics I
+4
+Physics 321
+Electromagnetism I
+4
+Physics 322
+Electromagnetism II
+4
+Physics 334
+Electric Circuits Lab.
+4
+Mathematics 124 or 134
+Differential Calculus
+5
+Mathematics 125 or 135
+Integral Calculus
+5
+Mathematics 126 or 136
+Multi-variable Calculus
+5
+Mathematics Electives
+6 credits, from:
+Mathematics 207
+Ordinary Differential Equations
+3
+Mathematics 208
+or Applied Mathematics 352
+Linear Algebra
+3
+Mathematics 209
+or Applied Mathematics 353
+Partial Differential Equations & Fourier Analysis
+3
+Mathematics 224
+Advanced Multi-variable Calculus
+3
+Mathematics 326
+Advanced Calculus
+3
+Core Astronomy
+12 credits
+Astronomy 300 or Astronomy 302
+Astronomy Computing or Python for Astronomy
+3
+Astronomy 321 or Astronomy 324
+Solar System or Intro. to Astrostatistics & Machine Learning
+3
+Astronomy 322
+Contents of Our Galaxy
+3
+Astronomy 323
+Extragalactic Astronomy & Cosmology
+3
+Astronomy Electives
+9 credits, from:
+Astronomy 302
+Python for Astronomy
+3
+Astronomy 324
+Intro. to Astrostatistics & Machine Learning
+3
+Astronomy 419
+Exoplanets
+3
+Astronomy 421
+Stars: Observation & Theory
+3
+Astronomy 423
+High Energy Astrophysics
+3
+Astronomy 425
+Cosmology
+3
+Astronomy 427
+Methods of Computational Astrophysics
+3
+Astronomy 480
+Intro. to Astronomical Data Analysis
+5
+Astronomy 481
+Intro. to Astronomical Observation
+5
+Astronomy 482
+Scientific Writing
+2
+Astronomy 497
+Topics in Current Astronomy
+1-3, max 9
+Astronomy 499
+Undergraduate Research (with advisor approval)
+max 15
+Astronomy 5XX
+Astronomy Graduate courses (with instructor permission)
+1-3
+Physics Electives
+6 credits, from:
+Physics 323
+Electromagnetism III
+4
+Physics 324
+Quantum Mechanics I
+4
+Physics 325
+Quantum Mechanics II
+4
+Physics 328
+Statistical Physics
+3
+Physics 331
+Optics Lab.
+3
+Physics 335
+Electric Circuits Lab.
+3
+Physics 421
+Atomic & Molecular Physics
+3
+Physics 422
+Nuclear & Elementary Particle Physics
+3
+Physics 423
+Solid State Physics
+3
+Physics 431 or 432 or 433
+Modern Physics Lab.
+3
+Physics 434
+Application of Computers to Physical Measurement & Data Acquisition
+3
+The minimum grade point to fulfill the above requirements is 2.00 in every course. Note that some of the advanced physics courses required have prerequisites which are not included in the minimum requirements for an astronomy degree. Some engineering courses may be allowed to substitute for some of the physics above (as approved by advisor).
+Departmental Honors Requirements
+ASTR 499 (6 credits)
+3.7 Departmental GPA
+3.5 Cumulative GPA
+Please email astroadvising@uw.edu for more information on how to apply for departmental honors.
+Capstone Option
+In addition to the formal degree requirements, it is strongly recommended that every student gain a knowledge of computer programming . Introduction to Programming for Astronomical Applications (ASTR 300) is highly recommended to be taken prior to astronomy 400 level courses and UNIX knowledge is required for ASTR 480.
+As a capstone sequence of hands-on research and dissemination of results, the following is highly recommended: ASTR 480, followed by either ASTR 481 or ASTR 499 or an REU project, and ending with ASTR 482. Furthermore, ASTR 480 & ASTR 499 are highly recommended if you are planning to apply to graduate school.
+Astronomy graduate admissions are always highly competitive, and often those students with the strongest backgrounds in physics, math, and research experience have the best chances of admission, other considerations being equal. Hence a strong preparation in physics is extremely important for students who plan to enter a graduate program. Most of our students major in physics as well as astronomy, especially since the additional requirements are modest. Also, it is highly beneficial for gaining admission to graduate school to have completed several credits of independent research (ASTR 499) with a faculty member. Approval from the faculty is required. Use the ASTR 499 Form to obtain Faculty approval and submit this form to astroadvising@uw.edu . Once the form is submitted you will be given an add code.
+Visit Courses for a full listing of undergraduate courses offered by the Astronomy Department; a more descriptive list is available in the Astronomy Course Catalog .
 Share
 Programs & Courses
 Undergraduate
+Major in Astronomy
+Pre-Major
 Graduate
-Admissions
-Interdisciplinary Tracks
-Financial Support
-Timeline & Requirements
-Grad FAQs
 Postdoctoral Program
 High School
 Courses

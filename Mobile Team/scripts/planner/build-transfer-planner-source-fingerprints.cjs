@@ -95,7 +95,7 @@ function loadPreviousFingerprints() {
         loaded.TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS ?? [],
     };
   } catch (error) {
-    console.warn(`Could not load previous source fingerprints: ${error.message}`);
+    console.log(`Could not load previous source fingerprints: ${error.message}`);
     return {
       sourceFingerprints: [],
       requirementSourceFingerprints: [],

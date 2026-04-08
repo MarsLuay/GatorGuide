@@ -228,13 +228,16 @@ export type TransferPlannerRequirementDiffClassificationKind =
   | "auto-promoted-guide-sequence-equivalent"
   | "auto-promoted-guide-reference-only-equivalent"
   | "auto-promoted-exact-title-metadata-match"
+  | "auto-promoted-exact-title-alternative-paths"
+  | "auto-promoted-course-family-consensus"
+  | "auto-promoted-choice-set-resolved"
   | "source-backed-guide-sequence-equivalent"
   | "source-backed-guide-reference-only-equivalent"
-  | "source-backed-choice-list-no-single-grc-match"
+  | "source-backed-choice-set-no-public-grc-path"
   | "source-backed-generic-topic-course"
   | "source-backed-exact-title-multiple-grc-matches"
-  | "source-backed-campus-specific-no-clean-grc-match"
-  | "source-backed-clean-title-no-shared-grc-match";
+  | "source-backed-campus-specific-no-public-grc-equivalent"
+  | "source-backed-no-public-grc-equivalent";
 
 export type TransferPlannerRequirementDiffClassificationEntry = {
   id: string;

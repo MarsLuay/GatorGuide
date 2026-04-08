@@ -322,7 +322,7 @@ const CHAIN_RULE_METADATA: Partial<
       },
     ],
     plannerWarnings: [
-      "The planner prefers the current CS 121 -> CS 122 -> CS 123 path for new students. Keep the legacy path only when the student already started on it or advisor review confirms it is the right fit.",
+      "The planner prefers the current CS 121 -> CS 122 -> CS 123 path for new students. Keep the legacy path only when the student already started on it or the published legacy guidance confirms it is the right fit.",
     ],
   },
   "CHEM-GEN": {

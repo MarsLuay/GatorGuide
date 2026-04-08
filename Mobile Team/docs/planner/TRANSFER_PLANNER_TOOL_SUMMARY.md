@@ -1,5 +1,7 @@
 # Transfer Planner Tool Summary
 
+Last updated: April 8, 2026
+
 ## Summary of this doc and what it contains
 
 This doc explains what the Green River -> UW transfer planner currently does, what data shape it uses, and what it should and should not promise to students.
@@ -12,23 +14,33 @@ The maintenance rule is:
 
 - refresh the planner from official sources
 - regenerate the structured outputs
-- rerun verification and Windows QA
+- rerun verification, hardening checks, and Windows QA
 - keep unsupported or unverified majors hidden instead of hand-editing planner facts
 
 The current one-click Windows entrypoints are:
 
 - `npm run planner:windows:maintenance`
+- `npm run planner:full:verify`
 - `scripts\run-planner-maintenance.cmd`
 
 The run summary is written to:
 
 - `.tmp/transfer-planner-maintenance-summary.md`
 
+The current green-state maintenance baseline is:
+
+- hidden student-visible source gaps: `0`
+- primary requirement-source parses: `244/244`
+- Green River catalog ingest rows: `1458`
+- planner-relevant UW catalog rows: `915`
+- generated merged course-metadata rows: `2376`
+- latest full pass: `npm run planner:full:verify`
+
 ## What the planner is
 
 - A Green River College transfer-planning tool for UW Seattle, UW Bothell, and UW Tacoma.
 - A planner that works per row of `source college + target campus + target major`.
-- A planning tool that compares transcript courses against curated Green River equivalents and requirement buckets.
+- A planning tool that compares transcript courses against source-backed Green River equivalents and requirement buckets.
 
 ## What the planner currently uses
 
@@ -52,8 +64,15 @@ The run summary is written to:
   - `scripts/planner/discover-transfer-planner-primary-sources.cjs`
   - `scripts/planner/promote-transfer-planner-primary-sources.cjs`
   - `scripts/planner/build-transfer-planner-primary-source-review-queue.cjs`
+  - `scripts/planner/build-transfer-planner-source-gap-report.cjs`
   - `scripts/planner/parse-transfer-planner-requirement-sources.cjs`
   - `scripts/planner/promote-transfer-planner-requirement-diffs.cjs`
+  - `scripts/planner/build-transfer-planner-source-fingerprints.cjs`
+  - `scripts/planner/parse-transfer-planner-equivalency-guide.cjs`
+  - `scripts/planner/ingest-grc-catalog.cjs`
+  - `scripts/planner/ingest-uw-catalog.cjs`
+  - `scripts/planner/generate-transfer-planner-course-metadata.cjs`
+  - `scripts/planner/verify-transfer-planner-hardening.cjs`
   - `scripts/planner/refresh-transfer-planner-sources.cjs`
   - `scripts/run-planner-refresh.cmd`
   - `scripts/run-planner-refresh-no-downloads.cmd`
@@ -63,17 +82,30 @@ The run summary is written to:
   - `npm run planner:discover-primary-sources`
   - `npm run planner:promote-primary-sources`
   - `npm run planner:build-primary-review-queue`
+  - `npm run planner:build-source-gaps`
   - `npm run planner:parse-requirement-sources`
   - `npm run planner:promote-requirement-diffs`
+  - `npm run planner:build-source-fingerprints`
+  - `npm run planner:parse-equivalency-guide`
+  - `npm run planner:ingest-grc-catalog`
+  - `npm run planner:ingest-uw-catalog`
+  - `npm run planner:build-course-metadata`
   - `npm run planner:refresh`
+  - `npm run planner:verify`
+  - `npm run planner:hardening:verify`
   - `npm run planner:windows:maintenance`
+  - `npm run planner:full:verify`
 
 ## Current migration state
 
 - The layered source-of-truth foundation now exists in code.
+- All current student-visible majors now resolve through the source-backed planner layer, and the hidden source-gap registry is currently empty for the student-facing planner.
+- The current one-pass maintenance run is green end to end, including planner refresh, typecheck, planner tests, hardening verification, and Windows QA.
+- The primary requirement parser is currently succeeding for every tracked student-visible owner (`244/244`).
 - The canonical course registry, equivalency-rule registry, degree-map block registry, major-requirement registry, and planner-policy registry are bootstrapped from the current planner data.
 - The canonical course registry now stores normalized `title`, `creditValue`, `creditLabel`, `prerequisiteAlternativeCourseCodeSets`, `corequisiteAlternativeCourseCodeSets`, and `effectiveYearRanges` fields for the planner-critical seed set.
 - The canonical course registry now also widens Green River title coverage through source-backed schedule-display metadata generated from the current annual schedules.
+- The current generated source-backed metadata coverage includes `1458` Green River catalog courses, `915` planner-relevant UW catalog courses, and `2376` merged generated course-metadata rows.
 - The normalization is still intentionally strongest for planner-critical Green River STEM and support sequences plus a small set of UW anchor courses. The remaining work is expanding source-backed credits, prerequisite/co-requisite structure, and non-abbreviated titles across the long-tail registry without inventing unknown values.
 - The planner now also has a structured major-pathway layer in code, with pathway registry entries and runtime pathway resolution for supported majors.
 - The planner now also has a structured source-manifest registry in code, with one entry per tracked major/pathway/track source link. Each manifest entry now carries:
@@ -86,8 +118,8 @@ The run summary is written to:
 - The planner page, generated campus docs, service-layer Green River availability lookups, and planner-facing maintenance scripts now read source-layer runtime helpers or source bootstrap snapshots instead of reaching straight into the mixed legacy row list.
 - `transfer-planner-data.ts` is no longer part of the operational runtime path. It now acts as a bootstrap-only source for snapshot generation and a temporary type-definition bridge while the structured registries keep expanding.
 - Requirement atoms now carry both a source `phase` and a student-facing `displayPhase`, so checklist bucket overrides live in the structured registry layer instead of a runtime-only rebalance list.
-- The next migration step is shrinking that bootstrap-only role further by moving the remaining non-normalized fields fully onto the layered registries and eventually replacing the temporary bootstrap snapshots with fully source-native structured maintenance files.
-- The next source-refresh step is building parser adapters that read from those manifest entries, so the refresh pipeline can move from `check links + rebuild current outputs` toward `fetch snapshot + parse requirements + diff + promote safe updates`.
+- The next migration step is shrinking the remaining bootstrap-only role further by moving long-tail non-normalized fields onto the structured registries and eventually replacing temporary bootstrap snapshots with fully source-native maintenance inputs.
+- The next hardening step is improving parser depth and transcript-fixture coverage, not reintroducing hand-maintained planner facts.
 - `UW Bothell` is now fully included in the actual planner runtime, not just the Bothell markdown doc: every Bothell major row currently exposes official links, UW degree-map sections, and either an explicit Green River course list or explicit custom guidance.
 - `UW Tacoma` is now fully included in the actual planner runtime, not just the Tacoma markdown doc: every Tacoma major row currently exposes official links, UW degree-map sections, and either an explicit Green River course list or explicit custom guidance.
 
@@ -255,11 +287,15 @@ Running `npm run planner:refresh` now does the highest-value automatic maintenan
 
 - checks every tracked planner source URL already attached to majors, pathways, and tracks
 - discovers and auto-promotes new `high-confidence` primary degree-requirements links into the structured source-manifest override layer
-- rebuilds a campus-grouped source-gap backlog for the remaining medium-confidence and unresolved primary-source candidates
+- rebuilds internal source-gap automation reports for the remaining medium-confidence and unresolved primary-source candidates
 - parses the current primary degree-requirements sources and compares extracted UW course codes against the structured degree-map blocks already in the planner
 - auto-promotes only high-confidence parsed requirement diffs into generated structured requirement-atom overrides when the repo already has strong exact-title consensus for the same UW-to-GRC mapping
 - leaves a requirement-diff classification report in `.tmp/` for the automatically classified and still-non-promoted course codes
+- writes source and parsed-fact fingerprints into `.tmp/`
 - writes a source snapshot plus change summary into `.tmp/`
+- parses the UW Green River equivalency guide into generated structured rules
+- ingests the Green River course catalog
+- ingests planner-relevant UW course catalogs
 - refreshes the local official Green River annual schedule PDFs used by the generators
 - regenerates:
   - source bootstrap
@@ -313,7 +349,7 @@ There is now also a source-gap backlog step for everything that is still not saf
 - writes:
   - `.tmp/transfer-planner-primary-source-review-queue.json`
   - `.tmp/transfer-planner-primary-source-review-queue.md`
-- this becomes the internal source-gap report after the automatic promotion pass, not a student-facing review workflow
+- this becomes an internal source-gap automation report after the automatic promotion pass, not a student-facing review workflow
 
 There is now also a first real requirement-parser layer:
 
@@ -333,7 +369,7 @@ There is now also a first real requirement-parser layer:
   - `.tmp/transfer-planner-requirement-source-parse-report.json`
   - `.tmp/transfer-planner-requirement-source-parse-report.md`
   - `.tmp/transfer-planner-requirement-source-snapshots/`
-- this is the first automatic layer that can actually say “the live source mentions course X but the current structured planner does not”
+- this is the first automatic layer that can actually say "the live source mentions course X but the current structured planner does not"
 
 ## What is still not fully automatic
 

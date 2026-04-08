@@ -1,18 +1,16 @@
 const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
+const {
+  buildPagedGrcCourseDescriptionsUrl,
+  loadGrcPublicMaterials,
+} = require("./grc-public-materials.cjs");
 
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
 const SNAPSHOT_DIR = path.resolve(TMP_DIR, "transfer-planner-catalog-snapshots");
 const OUTPUT_JSON_PATH = path.resolve(TMP_DIR, "transfer-planner-grc-catalog-ingest.json");
 const OUTPUT_MD_PATH = path.resolve(TMP_DIR, "transfer-planner-grc-catalog-ingest.md");
-
-const GRC_CATALOG_YEAR_LABEL = "2025-2026";
-const GRC_COURSE_DESCRIPTIONS_URL =
-  "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624&print=&expand=1";
-const GRC_COURSE_DESCRIPTIONS_SOURCE_URL =
-  "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624";
 
 const ENTITY_MAP = {
   amp: "&",
@@ -54,10 +52,10 @@ function sha256Text(value) {
   return crypto.createHash("sha256").update(value).digest("hex");
 }
 
-function getCatalogSnapshotPath() {
+function getCatalogSnapshotPath(catalogYearLabel) {
   return path.resolve(
     SNAPSHOT_DIR,
-    `grc-course-descriptions-${GRC_CATALOG_YEAR_LABEL}.html`
+    `grc-course-descriptions-${catalogYearLabel}.html`
   );
 }
 
@@ -81,10 +79,10 @@ function readSnapshotFallback(snapshotPath, error) {
     throw error;
   }
 
-  console.warn(
+  console.log(
     `Live Green River catalog fetch failed; using cached snapshot at ${snapshotPath}.`
   );
-  console.warn(`Fetch error: ${error.message}`);
+  console.log(`Fetch error: ${error.message}`);
 
   return {
     html: fs.readFileSync(snapshotPath, "utf8"),
@@ -93,14 +91,16 @@ function readSnapshotFallback(snapshotPath, error) {
   };
 }
 
-async function fetchCatalogHtml(snapshotPath) {
+async function fetchCatalogHtml(courseDescriptionsExpandedUrl, snapshotPath) {
   try {
-    const firstPageHtml = await fetchText(GRC_COURSE_DESCRIPTIONS_URL);
+    const firstPageHtml = await fetchText(courseDescriptionsExpandedUrl);
     const pageNumbers = detectCatalogPageNumbers(firstPageHtml);
     const pageHtmls = [];
     for (const pageNumber of pageNumbers) {
       const html =
-        pageNumber === 1 ? firstPageHtml : await fetchText(buildPagedCourseDescriptionUrl(pageNumber));
+        pageNumber === 1
+          ? firstPageHtml
+          : await fetchText(buildPagedCourseDescriptionUrl(courseDescriptionsExpandedUrl, pageNumber));
       pageHtmls.push({ pageNumber, html });
     }
 
@@ -124,12 +124,8 @@ async function fetchCatalogHtml(snapshotPath) {
   }
 }
 
-function buildPagedCourseDescriptionUrl(pageNumber) {
-  if (pageNumber === 1) {
-    return GRC_COURSE_DESCRIPTIONS_URL;
-  }
-
-  return `https://catalog.greenriver.edu/content.php?catoid=10&navoid=624&filter%5Bitem_type%5D=3&filter%5Bonly_active%5D=1&filter%5B3%5D=1&filter%5Bcpage%5D=${pageNumber}&expand=1&print`;
+function buildPagedCourseDescriptionUrl(courseDescriptionsExpandedUrl, pageNumber) {
+  return buildPagedGrcCourseDescriptionsUrl(courseDescriptionsExpandedUrl, pageNumber);
 }
 
 function detectCatalogPageNumbers(html) {
@@ -172,7 +168,7 @@ function extractCourseDescription(rawBody) {
   return description || null;
 }
 
-function buildCourseEntries(html) {
+function buildCourseEntries(html, catalogYearLabel, courseDescriptionsSourceUrl) {
   const headingPattern = /<h3[^>]*>([\s\S]*?)<\/h3>/gi;
   const headings = [...html.matchAll(headingPattern)];
   const entries = [];
@@ -189,7 +185,7 @@ function buildCourseEntries(html) {
 
     const rawCode = normalizeCourseCode(titleMatch[1]);
     const title = normalizeWhitespace(titleMatch[2]);
-    if (!/^[A-Z0-9 &]+\s+\d{3}(?:\.\d+)?[A-Z]?$/.test(rawCode)) {
+    if (!/^[A-Z0-9 &]+\s+\d{1,3}(?:\.\d+)?[A-Z]?$/.test(rawCode)) {
       continue;
     }
 
@@ -200,7 +196,7 @@ function buildCourseEntries(html) {
     const enrollmentRequirement = extractLabeledSectionText(rawBody, "Enrollment Requirement");
     const corequisiteRequirement = extractLabeledSectionText(rawBody, "Corequisite");
     const description = extractCourseDescription(rawBody);
-    const sourceUrl = `${GRC_COURSE_DESCRIPTIONS_SOURCE_URL}#${rawCode
+    const sourceUrl = `${courseDescriptionsSourceUrl}#${rawCode
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-+|-+$/g, "")}`;
@@ -223,14 +219,14 @@ function buildCourseEntries(html) {
         : [],
       effectiveYearRanges: [
         {
-          startLabel: GRC_CATALOG_YEAR_LABEL,
-          endLabel: GRC_CATALOG_YEAR_LABEL,
+          startLabel: catalogYearLabel,
+          endLabel: catalogYearLabel,
           note: "Parsed from the official Green River online catalog course descriptions.",
         },
       ],
       sourceLinks: [
         {
-          label: `Green River online catalog course descriptions ${GRC_CATALOG_YEAR_LABEL}`,
+          label: `Green River online catalog course descriptions ${catalogYearLabel}`,
           url: sourceUrl,
           note: "Course detail parsed from the official Green River catalog course descriptions page.",
         },
@@ -267,22 +263,34 @@ function writeMarkdown(report) {
 }
 
 async function main() {
+  const grcPublicMaterials = await loadGrcPublicMaterials({
+    forceRefresh: false,
+    allowSnapshotFallback: true,
+  });
+  const { currentCatalog } = grcPublicMaterials;
   fs.mkdirSync(SNAPSHOT_DIR, { recursive: true });
 
-  const snapshotPath = getCatalogSnapshotPath();
-  const catalogHtml = await fetchCatalogHtml(snapshotPath);
+  const snapshotPath = getCatalogSnapshotPath(currentCatalog.label);
+  const catalogHtml = await fetchCatalogHtml(
+    currentCatalog.courseDescriptionsExpandedUrl,
+    snapshotPath
+  );
   const html = catalogHtml.html;
 
-  const entries = buildCourseEntries(html);
+  const entries = buildCourseEntries(
+    html,
+    currentCatalog.label,
+    currentCatalog.courseDescriptionsUrl
+  );
   const report = {
     generatedAt: new Date().toISOString(),
-    sourceUrl: GRC_COURSE_DESCRIPTIONS_SOURCE_URL,
-    expandedSourceUrl: GRC_COURSE_DESCRIPTIONS_URL,
+    sourceUrl: currentCatalog.courseDescriptionsUrl,
+    expandedSourceUrl: currentCatalog.courseDescriptionsExpandedUrl,
     pageCount: catalogHtml.pageCount,
     snapshotPath,
     usedSnapshotFallback: catalogHtml.usedSnapshotFallback,
     snapshotFallbackReason: catalogHtml.snapshotFallbackReason,
-    catalogYearLabel: GRC_CATALOG_YEAR_LABEL,
+    catalogYearLabel: currentCatalog.label,
     sourceFingerprint: sha256Text(html),
     courseCount: entries.length,
     coursesWithCreditLabels: entries.filter((entry) => Boolean(entry.creditLabel)).length,

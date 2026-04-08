@@ -1,8 +1,8 @@
 Owner: uw-tacoma-history
-Source: https://www.tacoma.uw.edu/sias/socs/history
-Title: History | Department of Social Sciences | University of Washington Tacoma
+Source: https://www.tacoma.uw.edu/sias-new/socs-new/labor-and-social-movements-option
+Title: Labor and Social Movements Option | Department of Social Sciences | University of Washington Tacoma
 
-History | Department of Social Sciences | University of Washington Tacoma
+Labor and Social Movements Option | Department of Social Sciences | University of Washington Tacoma
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMVD9WN"
 height="0"
 width="0"
@@ -79,78 +79,38 @@ Advising
 MyUW
 Map
 Tools
-History
-Bachelor of Arts
+Labor and Social Movements Option
 Main Content
-History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
-Admission Requirements
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2022-06/capstone%202.png"
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2022-06/capstone%202.png 1940w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2022-06/capstone%202.png 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2022-06/capstone%202.png 600w"
-sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
-alt="Students Collaborating">
-General History Option
-The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2022-04/Dr%20Baird%27s%20class_1.png"
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2022-04/Dr%20Baird%27s%20class_1.png 1940w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2022-04/Dr%20Baird%27s%20class_1.png 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2022-04/Dr%20Baird%27s%20class_1.png 600w"
-sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
-alt="Students Collaborating">
-Arts, Culture and Society Option
-The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2022-05/students%20in%20econ%20class.jpg"
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2022-05/students%20in%20econ%20class.jpg 1940w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2022-05/students%20in%20econ%20class.jpg 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2022-05/students%20in%20econ%20class.jpg 600w"
-sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
-alt="Students discussing in a classroom setting">
-Global History Option
-The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
 <img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2022-06/DSC_8564%20%282%29.jpg"
 srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2022-06/DSC_8564%20%282%29.jpg 1940w,
 https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2022-06/DSC_8564%20%282%29.jpg 980w,
 https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2022-06/DSC_8564%20%282%29.jpg 600w"
 sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
 alt="conversation at PPE Party">
-Labor and Social Movements Option
+Degree Requirements
 The Labor and Social Movements option is designed to offer students a strong foundation for understanding historical roots and processes that shape political, intellectual, economic and social developments and consequently the conditions of the working class in a global context. This option examines the culture, politics and socioeconomic conditions as they intersect with gender, labor and race in changing contexts of im(migration), famine, disenfranchisement, marginalization, oppression and political disempowerment. Consequently, this option explores and analyzes social movements responding to these conditions such as socialism, protest, community organization, unionism and revolution.
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2022-06/My%20project.jpg"
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2022-06/My%20project.jpg 1940w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2022-06/My%20project.jpg 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2022-06/My%20project.jpg 600w"
-sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
-alt="Picture of professor teaching a class">
-Power, Gender and Identity Option
-The Power, Gender and Identity option offers a strong foundation for understanding the historical roots of intersections between race, gender, ethnicity, class and socioeconomics that have created and continue to transform hierarchical structures of power. This option examines the origins of social stratification with regard to race, gender, ethnicity and class. In consultation with primary sources drawn from divergent cultural, social and natural science documents, this option explores the historical context of marginalization, disenfranchisement, political and economic inequality and disempowerment.
-ADVISOR
-Shelli Veal
-Connect with Advising
-MAJOR COORDINATOR
-Professor Will Burghart
-DEPARTMENT
-Department of Social Sciences (SOCS)
-CAREER OPPORTUNITIES
-Education
-Government Service
-Heritage Tourism
-Journalism
-Museum Curation
-Records Management
-ADMISSION REQUIREMENTS
-A minimum of 45 lower-division credits is required before declaring the major. To declare the History major, students should reach out to the major advisor .
-DEGREE REQUIREMENTS
-For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
-Honors
-Phi Alpha Theta (PAT)
-UW Tacoma is the home of the Alpha Zeta Gamma chapter of Phi Alpha Theta (PAT), the National History Honor Society. Phi Alpha Theta national requirements state that students must have completed 18 quarter hours (12 semester hours) of college-level history courses (including those taken at other institutions) in which they earned a GPA of 3.1 or better, and carry a cumulative GPA of at least a 3.0.
-The Phi Alpha Theta honor society induction ceremony is held Spring Quarter at UW Tacoma. Members wear crimson stoles with their academic regalia at commencement. All UW Tacoma students are welcome at PAT meetings and service projects. For more information, contact your academic advisor or the Phi Alpha Theta faculty advisor, William Burghart .
-Career Options
-As Pierce County and the South Sound region continue to grow, History graduates are finding more opportunities in the fields of education, records management, museum curation, government service, heritage tourism, journalism, and other professions. History also provides an excellent foundation for graduate study in law, education, and many other areas. Visit the American Association for State and Local History and USAJobs.gov to find more opportunities.
-The American Historical Association also has resources for students curious about career opportunities in the field of History. Their database has useful information on where history majors work .
-History Internships
-History students can benefit from internships at Fort Nisqually , the Washington State Historical Society , or the Job Carr Museum . Visit our Internships page to learn more about how to sign up for internships.
+Core Requirements (30 credits)
+THIST 150 World History I
+THIST 151 World History II
+THIST 200 American History I, 1607–1877
+THIST 201 American History II, 1877–present
+To be taken after consultation with an advisor:
+THIST 380 Humanities Research and Writing (taken in junior year—recommended prerequisite: THIST 101)
+THIST 498 History Capstone (2.0 GPA minimum required; taken in your last 1–2 quarters; prerequisite: THIST 380 with a minimum 2.0 GPA)
+30 credits from the list below; 25 credits must be upper-division (300–400) level THIST courses
+TEGL 305 American Indian Movement
+THIST 322 American Labor Since the Civil War
+THIST 336 Black, Labor and Protest Music in Historical Perspective
+THIST 350 Modern Germany Since 1848
+THIST 365 Europe in the Twentieth Century
+THIST 376 Global Diasporas, Borders and Refugees in Visual Culture
+THIST 416 Life and Thought: Martin Luther King, Malcolm X and Angela Davis
+THIST 417 United States History 1945–Present
+THIST 440 Black Labor in America
+THIST 441 Black Freedom Movement in Perspective
+THIST 475 Twentieth-Century Britain
+THIST 478 Europe in the Nineteenth Century
+TPOLS 343 Community and Labor Organizing: A Multicultural Perspective
 Contact
 Department of Social Sciences
 ACADEMICS

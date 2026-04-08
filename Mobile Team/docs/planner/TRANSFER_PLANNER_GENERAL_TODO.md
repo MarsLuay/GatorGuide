@@ -16,19 +16,27 @@ Completed recently:
 
 - The planner now materializes an explicit per-major `grcCourseList` in app data.
 - The planner UI now shows a per-major Green River class list instead of only grouped bank sections.
-- Existing planner tests were updated and are passing again.
-- A one-command planner refresh pipeline now exists to check tracked source URLs, refresh the official Green River annual schedule PDFs, regenerate planner artifacts, and rerun verification.
-- The refresh flow now also auto-promotes high-confidence primary degree pages and leaves a campus-grouped source-gap report for the remaining medium-confidence or unresolved source candidates.
-- There are now one-click Windows launchers in `scripts/` for planner refresh and full planner maintenance runs, with saved logs and one human-readable maintenance summary.
-- The refresh flow now also runs a first-pass requirement parser against current primary degree pages and leaves a parse-diff report showing where live UW sources mention course codes not currently reflected in the structured degree-map layer.
-- The refresh flow now also auto-promotes only high-confidence parsed requirement diffs into generated structured requirement atoms, and leaves a classification report for the remaining non-promoted source-backed course codes.
-- The maintenance launcher now runs the whole Windows flow in one pass:
+- The planner refresh pipeline now rebuilds source checks, primary-source discovery, source-gap reporting, requirement parsing, diff promotion, fingerprints, equivalency rules, catalog ingest outputs, metadata, availability, docs, and tests.
+- The one-pass Windows maintenance launcher now runs:
   - planner refresh
   - verification
+  - hardening checks
   - Playwright Chromium setup
   - Windows screenshot QA
   - Windows interaction QA
-- The current source-gap registry is empty for student-visible majors, and the primary requirement parser is currently succeeding for all tracked visible owners.
+- The current student-visible source-gap registry is empty.
+- The current primary requirement parser is succeeding for all tracked visible owners.
+- Green River availability fallback notes were replaced with generated machine statuses.
+- The planner docs and runtime wording now align on `source-backed or hidden`.
+
+Current green-state baseline:
+
+- hidden source-gap owners: `0`
+- primary requirement parses: `244/244`
+- Green River catalog ingest rows: `1458`
+- planner-relevant UW catalog rows: `915`
+- merged generated course metadata rows: `2376`
+- latest one-pass command: `npm run planner:full:verify`
 
 Still true:
 
@@ -58,19 +66,19 @@ Keep moving the planner toward:
 
 ### Green River Data
 
-- [ ] Add full `2024-2025` and `2025-2026` requirements for the engineering-relevant Green River tracks:
+- [x] Add full `2024-2025` and `2025-2026` requirements for the engineering-relevant Green River tracks:
   - `999B`
   - `999Q`
   - `999O`
   - `999P`
-  this will be used in the backend eventually to see if a previous year would be better for you when it comes to transferring instead of staying on the current year equivlancy and bachelor program. 
-- [ ] Expand every `SELECT COURSE FROM LIST` slot by catalog year instead of leaving it as a placeholder.
-- [ ] have the year they started be ripped from their unofficial transcript, and if one not given, assume they are just starting
-- [ ] Add quarter availability by year for recommended Green River classes:
+- [x] Expand every `SELECT COURSE FROM LIST` slot by catalog year instead of leaving it as a placeholder.
+- [x] Infer the student's likely Green River catalog year from the unofficial transcript when transcript history exists, and fall back to the current start-year path when it does not.
+- [x] Add quarter availability by year for recommended Green River classes from the latest published schedules:
   - fall / winter / spring / summer
   - once-per-year offerings
   - rotating / disappearing offerings
-- [ ] Add prerequisite and co-requisite chains for engineering-support classes such as:
+- [ ] Extend that same availability history as future Green River schedules publish.
+- [ ] Add stronger prerequisite and co-requisite normalization for engineering-support classes such as:
   - `ENGR 140`
   - `ENGR 250`
   - `ENGR& 204`
@@ -83,13 +91,13 @@ Keep moving the planner toward:
 
 ### UW Major Data
 
-- [ ] Add the full bachelor's degree maps for supported majors, not just transfer admission prerequisites.
-- [ ] Mark each requirement clearly as one of:
+- [ ] Keep improving full bachelor's degree-map coverage for supported majors, not just transfer admission prerequisites.
+- [ ] Keep each requirement clearly marked as one of:
   - required before application
   - required before enrollment
   - worth finishing at Green River
   - better saved for UW
-- [ ] Add source-backed rule handling when multiple GRC equivalents exist.
+- [ ] Add richer source-backed rule handling when multiple GRC equivalents exist.
 - [ ] Add grade minimum and sequencing caveats where the technical equivalency is not the strongest planning choice.
 - [ ] Save year-specific department notes or snapshots so planner logic does not depend only on the current live web page.
 
@@ -102,7 +110,8 @@ Keep moving the planner toward:
 
 ## Quarter Planner Backlog
 
-- [ ] Add real quarter-by-quarter Green River offering history for `2024-2025`, `2025-2026`, and later years as they publish.
+- [x] Add real quarter-by-quarter Green River offering history for `2024-2025` and `2025-2026`.
+- [ ] Extend that same quarter-by-quarter offering history as later years publish.
 - [ ] Add typical credit-load guidance for students who work while taking classes.
 - [ ] Tag recommended GRC courses as `core STEM` vs `lighter elective / general-ed`.
 - [ ] Replace generic placeholders with curated substitute buckets for:
@@ -128,12 +137,12 @@ Keep moving the planner toward:
 ## Product And UX Backlog
 
 - [ ] Keep the planner framed as source-backed planning guidance, not an official degree audit.
-- [ ] Add clearer confidence/warning language for majors with only transfer-prep coverage.
+- [ ] Add clearer confidence and warning language for majors with only transfer-prep coverage.
 - [ ] Add stronger campus-specific wording when Bothell or Tacoma recommendations are less complete.
 - [ ] Decide whether the app should surface:
   - readiness to apply
   - best-fit Green River track confidence
-  - stronger “take this next quarter” reasoning
+  - stronger "take this next quarter" reasoning
 - [ ] Add involvement, leadership, and project guidance where it materially helps transfer competitiveness.
 
 ## Technical Backlog
@@ -146,9 +155,9 @@ Keep moving the planner toward:
   - `npm run planner:check-sources`
   - `npm run planner:refresh`
   - writes source-link snapshots into `.tmp/`
-  - now also runs high-confidence primary-source discovery + promotion
-  - now also rebuilds a medium-confidence / unresolved primary-source source-gap report
-  - now also parses current primary degree pages and leaves a source-vs-structured requirement report
+  - runs high-confidence primary-source discovery and promotion
+  - rebuilds source-gap reports
+  - parses current primary degree pages
   - refreshes official Green River schedule PDFs
   - regenerates bootstrap, metadata, availability, and docs
   - reruns typecheck plus planner tests
@@ -162,11 +171,10 @@ Keep moving the planner toward:
   - reruns discovery first
   - auto-promotes only `high-confidence` candidates
   - writes them into a generated override file that the source-manifest registry now honors
-- [x] Add a primary-source source-gap report step:
+- [x] Add internal source-gap reporting:
   - `npm run planner:build-primary-review-queue`
-  - reruns discovery first
-  - groups remaining `medium-confidence` and `no good suggestion yet` owners by campus
-  - writes internal source-gap report files into `.tmp/`
+  - `npm run planner:build-source-gaps`
+  - writes internal source-gap automation files into `.tmp/`
 - [x] Add a first requirement-parser step:
   - `npm run planner:parse-requirement-sources`
   - parses current primary HTML and PDF degree-requirements sources
@@ -176,20 +184,22 @@ Keep moving the planner toward:
 - [x] Add a safe requirement-diff promotion step:
   - `npm run planner:promote-requirement-diffs`
   - reruns requirement parsing first when needed
-  - only auto-promotes `high-confidence` parsed requirement diffs when the current planner already has strong exact-title UW-to-GRC requirement consensus
-  - writes promoted requirement atoms into a generated override file that the structured requirement registry now honors
+  - only auto-promotes high-confidence parsed requirement diffs when the current planner already has strong exact-title UW-to-GRC consensus
+  - writes promoted requirement atoms into a generated override file that the structured requirement registry honors
   - writes a classification report into `.tmp/` for automatically classified and still-non-promoted course codes
+- [x] Add the generated hidden-source-gap registry and hardening verifier so visible majors stay source-backed or hidden in one maintenance pass.
+- [x] Replace Green River availability fallback notes with generated machine statuses.
 - [ ] Add structured major or pathway traits for best-track policy generation:
   - `bestTrackId`
   - `bestTrackSummary`
   - `whyThisTrack`
   - `financialAidNote`
-- [ ] Add source-family importers for live planner maintenance:
+- [ ] Keep improving source-family importers for live planner maintenance:
   - UW HTML requirement-page parsers
   - UW PDF degree-sheet extractors
   - source diff classification so cosmetic page changes do not look like requirement changes
   - source-gap reports for majors that still need more parser/source coverage
-- [ ] Make the source-refresh pipeline consume the structured source-manifest registry directly:
+- [ ] Keep moving the source-refresh pipeline toward direct structured source-manifest consumption:
   - fetch snapshots by manifest entry
   - run the parser implied by `parserType`
   - compare extracted requirement atoms against current structured rows
@@ -201,7 +211,6 @@ Keep moving the planner toward:
   - `startQuarter`
   - repetitive source-coverage notes
 - [ ] Decide whether `bankIds` should remain as a reference/debug layer or eventually be removed after all per-major lists are frozen.
-- [ ] If we want fully hand-authored source data, replace generated `grcCourseList` derivation with explicitly stored arrays for every major row.
 - [ ] Add stronger tests for:
   - generated partial-major course lists
   - course-list deduplication
@@ -213,23 +222,19 @@ Keep moving the planner toward:
 
 If we want the highest-value next pass, do this in order:
 
-1. Finish the remaining Seattle engineering degree-map extractions:
-   - ECE
-   - BSCE
-   - BSENVE
-   - MSE
-   - BSIE
-2. Expand Green River yearly track requirements and every `SELECT COURSE FROM LIST` slot.
-3. Add real quarter availability history for the classes the planner recommends.
-4. Normalize Bothell CompE / ME / CSSE degree data.
-5. Convert Tacoma major course lists into structured planner data.
-6. Validate the transcript parser against a larger unofficial-transcript sample set.
+1. Keep improving parser depth for majors whose public pages still only yield broad note coverage or sparse parsed course-code structure.
+2. Shrink the non-promoted but source-backed classification buckets into cleaner automatic Green River equivalents where the public evidence is strong enough.
+3. Validate the transcript parser against a larger unofficial-transcript sample set.
+4. Extend Green River availability history when newer annual schedules publish.
+5. Keep generated planner docs, launchers, and maintenance reports aligned with the current source-backed-or-hidden contract.
 
 ## Source Docs
 
 Use these docs as the source of truth while closing the backlog:
 
-- [GRC_UW_ENGINEERING_TRANSFER_PLANNER.md](./GRC_UW_ENGINEERING_TRANSFER_PLANNER.md)
-- [COURSE_PLANNER_MAJORS_AND_DEGREE_REQUIREMENTS.md](./COURSE_PLANNER_MAJORS_AND_DEGREE_REQUIREMENTS.md)
-- [UW_ALL_BACHELOR_DEGREES_GRC_TRANSFER_PLANNER_MASTER.md](./UW_ALL_BACHELOR_DEGREES_GRC_TRANSFER_PLANNER_MASTER.md)
-- [GRC_TRANSFER_OUTLINE_GENERATOR_SPEC.md](./GRC_TRANSFER_OUTLINE_GENERATOR_SPEC.md)
+- [TRANSFER_PLANNER_TOOL_SUMMARY.md](./TRANSFER_PLANNER_TOOL_SUMMARY.md)
+- [TRANSFER_PLANNER_SOURCE_VERIFIED_AUTOMATION_PLAN.md](./TRANSFER_PLANNER_SOURCE_VERIFIED_AUTOMATION_PLAN.md)
+- [GRC_EQUIVALENCY_GUIDE_REFERENCE.md](./GRC_EQUIVALENCY_GUIDE_REFERENCE.md)
+- [UWS_DEGREE_COURSES.md](./UWS_DEGREE_COURSES.md)
+- [UWB_DEGREE_COURSES.md](./UWB_DEGREE_COURSES.md)
+- [UWT_DEGREE_COURSES.md](./UWT_DEGREE_COURSES.md)

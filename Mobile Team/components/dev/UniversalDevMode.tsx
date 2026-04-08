@@ -273,7 +273,6 @@ const PRIMARY_TAB_LABELS = [
   { path: "/resources", label: "Resources", primaryTab: "resources" },
   { path: "/profile", label: "Profile", primaryTab: "profile" },
   { path: "/settings", label: "Settings", primaryTab: "settings" },
-  { path: "/roadmap", label: "Roadmap", primaryTab: "home" },
   { path: "/questionnaire", label: "Questionnaire", primaryTab: "home" },
   { path: "/calendar", label: "Deadline Calendar", primaryTab: "resources" },
   { path: "/transfer-planner", label: "Transfer Planner", primaryTab: "resources" },
@@ -294,7 +293,6 @@ const PRIMARY_TAB_LABELS = [
 
 const VISIBLE_PRIMARY_TABS = ["index", "resources", "profile", "settings"] as const;
 const HIDDEN_CHILD_ROUTES = [
-  "roadmap",
   "calendar",
   "transfer-planner",
   "college-search",

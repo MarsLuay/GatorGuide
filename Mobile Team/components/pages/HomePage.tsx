@@ -18,7 +18,7 @@ import {
 import { OpportunityCarouselWheel } from "@/components/ui/OpportunityCarouselWheel";
 import { HomeTaskMarquee, type HomeTaskMarqueeItem } from "@/components/ui/HomeTaskMarquee";
 import { deadlineCalendarService, errorLoggingService, roadmapService } from "@/services";
-import type { DeadlineCalendarEntry, RoadmapTask, UserRoadmapDocument } from "@/services";
+import type { DeadlineCalendarEntry, UserRoadmapDocument } from "@/services";
 import type { MatchedOpportunity } from "@/services/opportunities/opportunity-matching.service";
 type HomeImportantMessage = {
   id: string;
@@ -46,12 +46,6 @@ type DesktopHomeTask = {
   actionLabel: string;
   onPress: () => void;
   tone: "success" | "warning" | "info";
-};
-
-type RoadmapTaskWithSection = RoadmapTask & {
-  sectionId: string;
-  sectionTitle: string;
-  sectionOrder: number;
 };
 
 const TRANSFER_PLANNER_CURRENT_COURSES_FIELD = "transferPlannerCurrentCoursesByPath";
@@ -167,6 +161,14 @@ export default function HomePage() {
     router.push(
       {
         pathname: ROUTES.collegeSearch,
+        params: { returnTo: ROUTES.root },
+      } as never
+    );
+  }, [router]);
+  const openTransferPlanner = useCallback(() => {
+    router.push(
+      {
+        pathname: ROUTES.transferPlanner,
         params: { returnTo: ROUTES.root },
       } as never
     );
@@ -371,31 +373,6 @@ export default function HomePage() {
     };
   }, [desktopRoadmapSeed, isDesktopHome, isHydrated, user?.uid]);
 
-  const desktopPendingRoadmapTasks = useMemo<RoadmapTaskWithSection[]>(() => {
-    if (!desktopRoadmap) return [];
-
-    return Object.values(desktopRoadmap.sections)
-      .flatMap((section) =>
-        section.tasks.map((task) => ({
-          ...task,
-          sectionId: section.id,
-          sectionTitle: section.title,
-          sectionOrder: section.order,
-        }))
-      )
-      .filter((task) => task.status !== "completed")
-      .sort((left, right) => {
-        if (left.sectionOrder !== right.sectionOrder) {
-          return left.sectionOrder - right.sectionOrder;
-        }
-        return left.order - right.order;
-      });
-  }, [desktopRoadmap]);
-
-  const desktopNextRoadmapTask = useMemo(
-    () => desktopPendingRoadmapTasks.find((task) => task.id !== "documents-checklist") ?? null,
-    [desktopPendingRoadmapTasks]
-  );
   const desktopCurrentCourses = useMemo(
     () => desktopRoadmap?.profileSnapshot.currentCourses ?? [],
     [desktopRoadmap?.profileSnapshot.currentCourses]
@@ -497,7 +474,7 @@ export default function HomePage() {
       }
 
       if (item.target.type === "roadmap") {
-        router.push(ROUTES.roadmap);
+        openCalendar();
         return;
       }
 
@@ -521,9 +498,13 @@ export default function HomePage() {
           targetType: item.target.type,
         },
       });
-      router.push(item.target.type === "roadmap" ? ROUTES.roadmap : ROUTES.tabsResources);
+      if (item.target.type === "roadmap") {
+        openCalendar();
+        return;
+      }
+      router.push(ROUTES.tabsResources);
     }
-  }, [router]);
+  }, [openCalendar, router]);
 
   const desktopHomeTasks = useMemo<DesktopHomeTask[]>(() => {
     const tasks: DesktopHomeTask[] = [];
@@ -586,29 +567,6 @@ export default function HomePage() {
       });
     }
 
-    if (desktopNextRoadmapTask) {
-      tasks.push({
-        id: `roadmap-${desktopNextRoadmapTask.id}`,
-        icon:
-          desktopNextRoadmapTask.type === "course"
-            ? "school-outline"
-            : desktopNextRoadmapTask.type === "application"
-              ? "checkmark-done-outline"
-              : desktopNextRoadmapTask.type === "interest"
-                ? "sparkles-outline"
-                : "map-outline",
-        title: desktopNextRoadmapTask.title,
-        body:
-          desktopNextRoadmapTask.description ||
-          t("home.desktopTaskRoadmapNextBody", {
-            section: desktopNextRoadmapTask.sectionTitle.toLowerCase(),
-          }),
-        actionLabel: t("home.desktopTaskOpenRoadmap"),
-        onPress: () => router.push(ROUTES.roadmap),
-        tone: "info",
-      });
-    }
-
     if (hasBlockingSetupTasks && desktopPrimaryOpportunity) {
       tasks.push({
         id: `opportunity-preview-${desktopPrimaryOpportunity.opportunityId}`,
@@ -657,7 +615,6 @@ export default function HomePage() {
 
     return tasks.slice(0, 4);
   }, [
-    desktopNextRoadmapTask,
     desktopPrimaryOpportunity,
     hasCompletedQuestionnaire,
     t,
@@ -1185,7 +1142,7 @@ export default function HomePage() {
                           {t("home.yourNextSteps")}
                         </Text>
                         <Text className={`${secondaryTextClass} text-sm`}>
-                          {t("home.yourNextStepsDescription")}
+                          Pulled from your profile, saved planning data, and recommended opportunities
                         </Text>
                       </View>
                     </View>
@@ -1271,15 +1228,15 @@ export default function HomePage() {
               )}
 
               <AnimatedCardPressable
-                onPress={() => router.push(ROUTES.roadmap)}
+                onPress={openTransferPlanner}
                 className={`w-full rounded-2xl p-4 flex-row items-center ${cardClass} border`}
               >
                 <View className="mr-3 p-2 rounded-xl bg-emerald-500/20">
-                  <Ionicons name="map" size={18} color="#008f4e" />
+                  <Ionicons name="school-outline" size={18} color="#008f4e" />
                 </View>
                 <View className="flex-1">
-                  <Text className={`font-semibold ${textClass}`}>{t("home.viewRoadmap")}</Text>
-                  <Text className={`${secondaryTextClass} text-sm`}>{t("home.trackApplicationJourney")}</Text>
+                  <Text className={`font-semibold ${textClass}`}>{t("resources.transferPlanner")}</Text>
+                  <Text className={`${secondaryTextClass} text-sm`}>{t("resources.transferPlannerDesc")}</Text>
                 </View>
                 <Ionicons name="chevron-forward" size={18} color={placeholderTextColor} />
               </AnimatedCardPressable>
@@ -1524,17 +1481,10 @@ export default function HomePage() {
                           Current courses
                         </Text>
                         <Text className={`${secondaryTextClass} text-sm`}>
-                          Shared from your roadmap and questionnaire data
+                          Shared from your planning data and questionnaire answers
                         </Text>
                       </View>
                     </View>
-
-                    <AnimatedIconPressable
-                      onPress={() => router.push(ROUTES.roadmap)}
-                      style={desktopHeaderShouldStack ? { alignSelf: "flex-start" } : undefined}
-                    >
-                      <Text className="text-emerald-500 text-sm font-medium">Roadmap</Text>
-                    </AnimatedIconPressable>
                   </View>
 
                   {user?.uid && !desktopRoadmap ? (
@@ -1543,7 +1493,7 @@ export default function HomePage() {
                         Loading course plan...
                       </Text>
                       <Text className={`${secondaryTextClass} text-sm`}>
-                        Pulling your latest roadmap snapshot so desktop and mobile stay in sync.
+                        Pulling your latest planning snapshot so desktop and mobile stay in sync.
                       </Text>
                     </View>
                   ) : (
@@ -1580,7 +1530,7 @@ export default function HomePage() {
                               No current courses listed yet
                             </Text>
                             <Text className={`${secondaryTextClass} text-sm`}>
-                              Add course planning details in your questionnaire or roadmap to keep this section filled in.
+                              Add course planning details in your questionnaire or transfer planner to keep this section filled in.
                             </Text>
                           </View>
                         )}
@@ -1634,13 +1584,13 @@ export default function HomePage() {
                         }
                       >
                         <AnimatedChipPressable
-                          onPress={() => router.push(ROUTES.roadmap)}
+                          onPress={openTransferPlanner}
                           className="rounded-xl bg-emerald-500 px-4 py-3 items-center"
                           containerStyle={
                             desktopActionCardsShouldStack ? { width: "100%" } : { flex: 1 }
                           }
                         >
-                          <Text className="text-white font-semibold">Open roadmap</Text>
+                          <Text className="text-white font-semibold">{t("resources.transferPlanner")}</Text>
                         </AnimatedChipPressable>
                         <AnimatedChipPressable
                           onPress={openCalendar}
@@ -1688,16 +1638,16 @@ export default function HomePage() {
                 ) : null}
 
                 <AnimatedCardPressable
-                  onPress={() => router.push(ROUTES.roadmap)}
+                  onPress={openTransferPlanner}
                   className={`rounded-2xl p-4 flex-row items-center ${cardClass} border`}
                   containerStyle={desktopActionCardsShouldStack ? { width: "100%" } : { flex: 1, minWidth: 220 }}
                 >
                   <View className="mr-3 p-2 rounded-xl bg-emerald-500/20">
-                    <Ionicons name="map" size={18} color="#008f4e" />
+                    <Ionicons name="school-outline" size={18} color="#008f4e" />
                   </View>
                   <View className="flex-1">
-                    <Text className={`font-semibold ${textClass}`}>{t("home.viewRoadmap")}</Text>
-                    <Text className={`${secondaryTextClass} text-sm`}>{t("home.trackApplicationJourney")}</Text>
+                    <Text className={`font-semibold ${textClass}`}>{t("resources.transferPlanner")}</Text>
+                    <Text className={`${secondaryTextClass} text-sm`}>{t("resources.transferPlannerDesc")}</Text>
                   </View>
                   <Ionicons name="chevron-forward" size={18} color={placeholderTextColor} />
                 </AnimatedCardPressable>

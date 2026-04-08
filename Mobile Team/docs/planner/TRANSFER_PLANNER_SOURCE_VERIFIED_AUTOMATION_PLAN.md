@@ -1,10 +1,12 @@
 # Transfer Planner Source-Verified Automation Plan
 
-Last updated: April 7, 2026
+Last updated: April 8, 2026
 
 This is the phased implementation plan for turning the Green River College -> UW transfer planner into a source-verified, mostly automated planning system for Running Start and transfer students.
 
 The goal is not a manually maintained hand-reviewed worksheet. The goal is a planner that uses official public sources, archived snapshots, generated structured data, and strict visibility gates.
+
+Most of the phases below are now implemented in the repo. This doc now serves as both the architecture contract and the remaining hardening map for the planner.
 
 ## Product Rule
 
@@ -19,9 +21,9 @@ For majors, the rule is stricter:
 - Do not rely on ongoing human or non-developer review after the system is complete.
 - Use review reports only as build-time automation debt, not as a permanent maintenance workflow.
 
-## Current Starting Point
+## Current State
 
-The current planner already has a strong foundation:
+The current planner already has the full source-backed maintenance loop in place:
 
 - Planner docs in `Mobile Team/docs/planner/`
 - Runtime planner logic in `Mobile Team/services/planning/transfer-planner.service.ts`
@@ -29,18 +31,27 @@ The current planner already has a strong foundation:
 - Transcript parsing in `Mobile Team/services/documents/transcript-pdf.service.ts`
 - Source-layer schemas and registries in `Mobile Team/constants/transfer-planner-source/`
 - A refresh pipeline in `Mobile Team/scripts/planner/`
-- Double-clickable refresh launchers in `Mobile Team/scripts/run-planner-refresh*.cmd`
+- Double-clickable refresh and maintenance launchers in `Mobile Team/scripts/run-planner-*.cmd`
+- One-pass maintenance entrypoints:
+  - `npm run planner:windows:maintenance`
+  - `npm run planner:full:verify`
 
-The missing long-term pieces are:
+Current green-state baseline:
 
-- full GRC and UW catalog ingestion
-- full UW equivalency-guide parsing
-- source-family parser adapters for HTML and PDF major pages
-- date-effective approved transfer rules
-- student-specific evaluation records
-- graph-based sequence planning
-- source coverage gates that hide unverified majors
-- shareable source-backed export/reporting built from source-backed data
+- hidden student-visible source gaps: `0`
+- primary requirement-source parses: `244/244`
+- Green River catalog ingest rows: `1458`
+- planner-relevant UW catalog rows: `915`
+- merged generated course-metadata rows: `2376`
+- maintenance pass: refresh + typecheck + planner tests + hardening verifier + Windows QA
+
+The main remaining hardening work is:
+
+- deeper parser coverage for majors whose public pages still yield broad note coverage
+- continued shrinkage of the non-promoted but source-backed diff buckets
+- more transcript fixtures and transcript-layout coverage
+- future-year GRC schedule and catalog refreshes as new public materials publish
+- shareable export and reporting built from the source-backed student evaluation layer
 
 ## Inspiration Repo Lessons To Keep
 
@@ -397,12 +408,21 @@ Final refresh sequence:
 - run typecheck
 - run planner tests
 
+Companion one-pass maintenance sequence:
+
+- run `npm run planner:refresh`
+- run hardening verification
+- ensure Playwright Chromium is installed
+- run Windows screenshot QA
+- run Windows interaction QA
+
 Acceptance criteria:
 
 - One command rebuilds planner data.
 - Tests fail if visible majors are not source-verified.
 - Internal reports list hidden source gaps.
 - Student-facing data contains only verified planner rows.
+- The one-pass maintenance launcher can complete without requiring human interpretation of partial failures.
 
 ## Long-Term Definition Of Done
 

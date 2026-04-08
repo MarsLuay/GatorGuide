@@ -119,10 +119,17 @@ Notes:
 
 ## Planner Maintenance
 
-For the full planner maintenance pass on Windows, including refresh, verification, Playwright Chromium setup, and Windows QA:
+For the full planner maintenance pass on Windows, including refresh, verification, hardening checks, Playwright Chromium setup, and Windows QA:
 
 ```bash
 npm run planner:windows:maintenance
+npm run planner:full:verify
+```
+
+If you only want to refresh the Green River public-material discovery layer first, including newly published annual schedules and the current catalog source:
+
+```bash
+npm run planner:discover-grc-materials
 ```
 
 Or double-click:
@@ -135,6 +142,18 @@ This launcher writes one human-readable summary to:
 
 ```text
 Mobile Team\.tmp\transfer-planner-maintenance-summary.md
+```
+
+It also writes the planner hardening report that verifies the current source-backed planner contract in one pass:
+
+```text
+Mobile Team\.tmp\transfer-planner-hardening-report.md
+```
+
+The Green River discovery pass also writes the current public-material snapshot used by refresh:
+
+```text
+Mobile Team\.tmp\transfer-planner-grc-public-materials.md
 ```
 
 ## Commit and Push Changes

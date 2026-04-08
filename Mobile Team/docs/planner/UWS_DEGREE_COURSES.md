@@ -281,7 +281,6 @@ American Indian Studies is another custom humanities and social-science transfer
 ##### Links Used
 
 - [UW American Indian Studies undergraduate programs](https://ais.washington.edu/undergraduate-programs)
-- [UW American Indian Studies requirement sheet](https://ais.washington.edu/sites/ais/files/documents/ais_major_requirement_sheet_9.29.21.pdf)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 
 ##### BA in American Indian Studies introductory and content courses
@@ -615,9 +614,6 @@ ACMS is now treated as an option-specific computing-and-math transfer. The key m
 - `PHYS 225`
 - `PHYS 229`
 - `PHYS 298`
-- `BIOL& 211`
-- `BIOL& 212`
-- `BIOL& 213`
 - `CHEM& 161`
 - `CHEM& 162`
 - `CHEM& 163`
@@ -630,9 +626,9 @@ ACMS is now treated as an option-specific computing-and-math transfer. The key m
 - Required before application: MATH 208 -> `MATH 240`. note: Linear algebra is part of the published ACMS admission baseline and should be finished before applying.
 - Required before application: One option-core course for the intended ACMS option -> `MATH 238`, `ECON& 201`, `ECON& 202`, `PHYS& 221`, `PHYS& 222`, `PHYS& 223`. complete at least 1 course from this set. note: The exact option-core class depends on the ACMS option. Confirm it early, because ACMS now admits directly into specific options.
 - Required before enrollment: MATH 207 or AMATH 351 -> `MATH 238`. note: Differential equations is part of the shared ACMS core for students admitted after Spring 2024, so it is good to complete before or during UW enrollment.
-- Required before enrollment: BIOL 180 -> `BIOL& 211`, `BIOL& 212`, `BIOL& 213`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the degree still needs this life-science requirement either way.
-- Required before enrollment: CSE 143 -> `CS 145`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the degree still needs this computing or technical requirement either way.
-- Required before enrollment: MATH 300 -> `CS 202`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the degree still needs this math requirement either way.
+- Required before enrollment: AMATH 301 -> `ENGR 250`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the degree still needs this computing or technical requirement either way.
+- Required before enrollment: CHEM 142 -> `CHEM& 161`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the degree still needs this chemistry requirement either way.
+- Required before enrollment: CHEM 152 -> `CHEM& 162`, `CHEM& 163`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the degree still needs this chemistry requirement either way.
 - GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
 - GRC sequence: `CS 121 -> CS 122 -> CS 123`. Current UW equivalency entries are separate, but planner sequencing at GRC should treat them in this order.
 - GRC sequence: `PHYS& 221 -> PHYS& 222 -> PHYS& 223` for calculus-based physics.
@@ -640,15 +636,14 @@ ACMS is now treated as an option-specific computing-and-math transfer. The key m
 - Source-backed note: ACMS is now option-specific at admission, so the final UW course map depends on both option choice and admit year.
 - Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
 - Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0168:biology:bioland-211-212-213-6-6-6-formerly-biol-201-202-203.
-- Source-backed note: Added the Green River course path BIOL& 211, BIOL& 212, BIOL& 213 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0441:engineering-formerly-general-engineering:engr-250-5.
+- Source-backed note: Added the Green River course path ENGR 250 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: Scientific computing: STAT 302 or AMATH 301 | Tools for Scientific Computing: CSE 163, AMATH 301
+- Source-backed note: Guide-backed rule: uw-grc-guide:0204:chemistry:chemand-161-6-formerly-chem-140.
+- Source-backed note: Added the Green River course path CHEM& 161 because the current planner rows did not expose it yet.
 - Source-backed note: Requirement cue lines: Other Science or Engineering: one of PHYS 122, PHYS 123, CHEM 142, CHEM 152, or BIOL 180
-- Source-backed note: Guide-backed rule: uw-grc-guide:0277:computer-science:cs-145-5-formerly-c-sci-145.
-- Source-backed note: Added the Green River course path CS 145 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Suggested First- and Second-Year College Courses: MATH 124, MATH 125, MATH 126; MATH 207 or AMATH 351; MATH 208; AMATH 352; CSE 123 or CSE 143. | Minimum Course Requirements: CSE 123 or CSE 143; MATH 124, MATH 125, MATH 126, MATH 208 (or MATH 134, MATH 135, MATH 136); additional option credential course requirement specified below | Minimum Course Requirements: CSE 123 or CSE 143; MATH 124, MATH 125, MATH 126, MATH 208 (or MATH 134, MATH 135, MATH 136); additional option credential course requirement specified below
-- Source-backed note: Guide-backed rule: uw-grc-guide:0280:computer-science:cs-202-5.
-- Source-backed note: Added the Green River course path CS 202 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Minimum 2.0 grade in MATH 300. Students apply directly to the Discrete Mathematics and Algorithms option at the time of application to the major. Refer to admission requirements specified above. | Core Courses (10 credits): MATH 300; CSE 373, CSE 417 | Core Courses (40-41 credits): CSE 163; ECON 200, ECON 201, ECON 300; MATH 300, MATH 318, MATH 327, MATH 394/STAT 394; STAT 395/MATH 395; MATH 407; STAT 390 or CFRM 410
+- Source-backed note: Guide-backed rule: uw-grc-guide:0205:chemistry:chemand-162-163-6-6-formerly-chem-150-160.
+- Source-backed note: Added the Green River course path CHEM& 162, CHEM& 163 because the current planner rows did not expose it yet.
 
 
 ### Applied Mathematics
@@ -895,7 +890,6 @@ Aquatic Conservation & Ecology is a science-heavy environment transfer where bio
 - `MATH 238`
 - `MATH 240`
 - `MATH 297`
-- `CMST& 220`
 - `N SCI 100`
 - `PHYS& 114`
 - `PHYS& 115`
@@ -903,54 +897,25 @@ Aquatic Conservation & Ecology is a science-heavy environment transfer where bio
 - `PHYS& 154`
 - `PHYS& 155`
 - `PHYS& 156`
-- `PHYS& 221`
 
 #### Required sequences for specific credits
 
 - Required before application: Two quarters of calculus -> `MATH& 151`, `MATH& 152`, `MATH& 163`. complete at least 2 courses from this set. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`. note: ACE accepts either the Q SCI calculus path or MATH 124 and 125. At Green River, the standard calculus sequence is the clearest route.
 - Required before application: BIOL 180 and BIOL 200 pathway -> `BIOL& 211`, `BIOL& 212`, `BIOL& 213`. note: ACE requires BIOL 180 and 200. The clean Green River route is the full BIOL& 211 / 212 / 213 sequence, which also preserves BIOL 220-style flexibility.
 - Required before application: CHEM 142 or stronger chemistry start -> `CHEM& 161`. note: ACE allows CHEM 120 or the CHEM 142 / 152 path. CHEM& 161 is the cleanest Green River chemistry start.
-- Required before application: OCEAN 200 -> `OCEA& 101`. note: The current official degree page names OCEAN 200 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: ESS 101 -> `N SCI 100`. note: The current official degree page names ESS 101 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
 - Required before enrollment: One programming or data-science course -> `ENGR 250`, `CS 121`, `CS 122`. complete at least 1 course from this set. note: ACE requires one programming or data-science course from options such as CSE 160 or Q SCI 256. These are the clearest current Green River preparation options.
 - Worth finishing at Green River: People-and-environment support -> `ANTH& 210`, `ENV S 204`. complete at least 1 course from this set. note: ACE includes one people-and-environment course, so these are useful Green River supports before transfer.
 - Worth finishing at Green River: Statistics support before quantitative ecology work -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set. note: ACE later uses statistics and data-analysis work, so an early statistics course can make the upper-division transition smoother.
-- Worth finishing at Green River: CHEM 120 -> `CHEM& 121`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
-- Worth finishing at Green River: CHEM 220 -> `CHEM& 131`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
-- Worth finishing at Green River: CHEM 237 -> `CHEM& 261`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
-- Worth finishing at Green River: COM 220 -> `CMST& 220`. note: Useful to complete at Green River when it cleanly matches the published degree page, but the planner keeps this option only when the published source supports it and does not infer internal route timing beyond that source.
-- Worth finishing at Green River: PHYS 114 -> `PHYS& 114`, `PHYS& 154`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
-- Worth finishing at Green River: PHYS 115 -> `PHYS& 115`, `PHYS& 155`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
-- Worth finishing at Green River: PHYS 116 -> `PHYS& 116`, `PHYS& 156`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
 - Both: `BIOL& 211 -> BIOL& 212 -> BIOL& 213`. All three are needed for the full `BIOL 180, 200, 220, 2XX (3)` outcome.
 - Both: `CHEM& 161 -> CHEM& 162 -> CHEM& 163`. Current UW full-credit note: `CHEM& 162 + CHEM& 163` gives `CHEM 152, 162 (5, 5), 1XX (2)`; otherwise each is weaker `CHEM 1XX`.
 - GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
 - Planner flag: ACE still has multiple approved science and electives menus, so confirm the final lower-division science mix if the student is balancing ecology, chemistry, and marine-science interests.
 - Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
 - Source-backed note: Source parse confidence: high.
-- Source-backed note: Exact-title match source: catalog-metadata.
-- Source-backed note: Matched source title: Introduction to Oceanography.
-- Source-backed note: Matched Green River title: Introduction to Oceanography.
-- Source-backed note: Requirement cue lines: OCEAN 210 (4; prereq FISH 250/OCEAN 200) Integrative Oceans
-- Source-backed note: Guide-backed rule: uw-grc-guide:0196:chemistry:chemand-121-5-formerly-chem-101.
-- Source-backed note: Added the Green River course path CHEM& 121 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: CHEM 120 or both CHEM 142, 152 (general chemistry) | CHEM 120, 220 or CHEM 142, 152
-- Source-backed note: Guide-backed rule: uw-grc-guide:0197:chemistry:chemand-131-5-formerly-chem-102.
-- Source-backed note: Added the Green River course path CHEM& 131 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: CHEM 220, OCEAN 295, CHEM 223, or CHEM 237 (organic chemistry)
-- Source-backed note: Guide-backed rule: uw-grc-guide:0218:chemistry:chemand-261-6-formerly-chem-235.
-- Source-backed note: Added the Green River course path CHEM& 261 because the current planner rows did not expose it yet.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0249:communication-studies:cmstand-220-5-formerly-comm-101.
-- Source-backed note: Added the Green River course path CMST& 220 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: 10 credits. CLAS 205 and COM 220 are recommended.
-- Source-backed note: Guide-backed rule: uw-grc-guide:1187:physics:physand-114-154-5-5-formerly-phys-110-150.
-- Source-backed note: Added the Green River course path PHYS& 114, PHYS& 154 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: PHYS 114 (4) or PHYS 121 (5) | OCEAN 285 (3; prereqs Q SCI 292/MATH 125 and PHYS 114/121) Physics Across Oceanography
-- Source-backed note: Guide-backed rule: uw-grc-guide:1188:physics:physand-115-155-5-5-formerly-phys-111-151.
-- Source-backed note: Added the Green River course path PHYS& 115, PHYS& 155 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: PHYS 115 (4) or 122 (5)
-- Source-backed note: Guide-backed rule: uw-grc-guide:1189:physics:physand-116-156-5-5-formerly-phys-112-152.
-- Source-backed note: Added the Green River course path PHYS& 116, PHYS& 156 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: PHYS 116 (4) or 123 (5)
+- Source-backed note: Guide-backed rule: uw-grc-guide:0964:natural-science:n-sci-100-5.
+- Source-backed note: Added the Green River course path N SCI 100 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: ENVIR/ESS 315 (5; prereq ESS 101/105/210/211/212) Environmental Earth Science
 
 
 ### Architectural Design
@@ -966,7 +931,9 @@ Architectural Design is a junior-year admission plan where Green River acts as f
 
 - [UW BA in Architectural Design overview](https://arch.be.uw.edu/programs-and-courses/ba-arch-2/ba-arch-design/)
 - [UW BA in Architectural Design curriculum PDF](https://arch.be.uw.edu/wp-content/uploads/sites/5/2024/03/BA-Arch-Design_2024_.pdf)
+- [UW BA in Architectural Design curriculum PDF](https://arch.be.uw.edu/wp-content/uploads/sites/5/2024/03/BA-Arch-Design_2024_.pdf) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
+- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### BA in Architectural Design admission and prerequisite setup
 
@@ -1112,12 +1079,18 @@ Architectural Design is a junior-year admission plan where Green River acts as f
 
 #### Required sequences for specific credits
 
+- Required before enrollment: MATH 112 -> `MATH& 148`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the degree still needs this math requirement either way.
 - Worth finishing at Green River: Art, design, or visual foundation work -> `ART& 100`, `ART 105`, `ART 106`, `PHOTO 101`, `PHOTO 102`. complete at least 1 course from this set. note: These do not replace UW ARCH 200, 201, 350, 351, or 352, but they are the clearest Green River visual-design foundation while the student prepares for junior-year admission.
 - Worth finishing at Green River: Writing and diversity support -> `ENGL& 101`, `ENGL 128`, `HUMAN 100`, `HUMAN 110`. complete at least 1 course from this set. note: The Architectural Design curriculum still requires writing and diversity credits, so it is useful to keep those visible before transfer.
 - Worth finishing at Green River: Quantitative and science support for structures and building systems -> `MATH& 151`, `MATH& 152`, `PHYS& 221`. complete at least 1 course from this set. note: Not a direct ARCH prerequisite, but quantitative and science support helps before the upper-division structures and systems sequence.
 - GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
 - Planner flag: The required UW ARCH prerequisite set is made of UW architecture courses rather than a clean Green River direct-equivalency sequence.
 - Planner flag: Treat Green River as foundation support only and confirm the exact junior-admission strategy with architecture advising.
+- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
+- Source-backed note: Source parse confidence: high.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0790:mathematics:mathand-148-5-formerly-math-157.
+- Source-backed note: Added the Green River course path MATH& 148 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: Title: UW ARCHITECTURE arch.be.washington.edu Bachelor of Arts in Architectural Design / Pre-professional The Department of Architecture offers a Bachelor of Arts with a major in Architectural Design for students who are interested in the professional practice of architecture. EXPLORING ARCHITECTURE AS A DESIGN MAJOR ADMISSION REQUIREMENTS GENERAL EDUCATION REQUIREMENTS REQUIRED ARCH COURSES DUAL DEGREE WITH CONSTRUCTION MANAGEMENT HONORS UW COLLEGE HONORS DEPARTMENTAL HONORS APPLICATION Students interested in Architectural Design as a major should consider taking appropriate elective courses before their sophomore year. College-level art, graphics, and design courses are good preparation for prerequisite classes ARCH 200, 201: Design and Representation I and II. ARCH 150, 151: Appreciation of Architecture I and II and ARCH 251: World Architecture: Non- Western Cultures can be taken in preparation for the prerequisite 300-level architectural history sequence. Before graduation, students must complete one Diversity (D) course for at least 5 credits (this may also count toward any other requirement) and two Writing (W) and/or additional English composition courses for a total of at least 7 credits (these may also count toward any other requirement, except the 5 credits of English composition). Students should complete some of the W requirement prior to admission to the Architecture program. Students may not use ARCH courses to fulfill general education requirements, except ARCH 150, 151, and 251. Non-UW students may take courses through UW Outreach: www.outreach. washington.edu/nondegree/. Students are admitted to the major at the beginning of their junior year and must complete at least 90 credits by the autumn quarter of admission, including 71 credits of general education requirements and 19 credits of prerequisite ARCH courses. English Composition (ENGL 131 Preferred) ARCH 200: Design and Representation I ARCH 201: Design and Representation II ARCH 350: Architecture of the Ancient World ARCH 351: Arch of Medieval & Early Mod World ARCH 352: History of Modern Architecture Total in Areas of Inquiry Arts & Humanities (A&H) Social Sciences (SSc) Natural Sciences (NSc) (including MATH 112, 124, or Q SCI 291) Additional Areas of Inquiry 5cr 5cr (wi) (au) (wi) (au) (sp) 3cr 66cr 5cr 3cr 3cr 20cr 20cr 20cr 6cr The department offers a 5-year dual BA in Architectural Design / BS in Construction Management with the Department of Construction Management; please see the sheet specific to the dual degree program for more information. This option is only available to students after admission to the major. To earn a College Honors Degree, students already enrolled in the university-wide college honors program must complete both the 47 credits of Interdisciplinary Honors and Departmental Honors requirements. (Diploma reads “With College Honors in Architectural Design”) Students with a minimum 3.3 UW gpa can apply to the Architecture Departmental Honors track. Students must take 9 credits of honors-specific courses and achieve a 3.6 gpa in their Architecture coursework to earn Departmental Honors in Architecture. The adviser will guide students through their options once admitted to the program. (Diploma reads “With Honors in Architectural Design”) Complete applications are due the first day of spring quarter at the UW, for entrance in autumn quarter of junior year. The application includes transcripts, DARS (degree audit report), personal statement, resume, and samples of creative work. January 2024 To apply or for more information: http://arch.be.washington.edu/programs-courses/ba-arch-design | [Page 1] UW ARCHITECTURE arch.be.washington.edu Bachelor of Arts in Architectural Design / Pre-professional The Department of Architecture offers a Bachelor of Arts with a major in Architectural Design for students who are interested in the professional practice of architecture. EXPLORING ARCHITECTURE AS A DESIGN MAJOR ADMISSION REQUIREMENTS GENERAL EDUCATION REQUIREMENTS REQUIRED ARCH COURSES DUAL DEGREE WITH CONSTRUCTION MANAGEMENT HONORS UW COLLEGE HONORS DEPARTMENTAL HONORS APPLICATION Students interested in Architectural Design as a major should consider taking appropriate elective courses before their sophomore year. College-level art, graphics, and design courses are good preparation for prerequisite classes ARCH 200, 201: Design and Representation I and II. ARCH 150, 151: Appreciation of Architecture I and II and ARCH 251: World Architecture: Non- Western Cultures can be taken in preparation for the prerequisite 300-level architectural history sequence. Before graduation, students must complete one Diversity (D) course for at least 5 credits (this may also count toward any other requirement) and two Writing (W) and/or additional English composition courses for a total of at least 7 credits (these may also count toward any other requirement, except the 5 credits of English composition). Students should complete some of the W requirement prior to admission to the Architecture program. Students may not use ARCH courses to fulfill general education requirements, except ARCH 150, 151, and 251. Non-UW students may take courses through UW Outreach: www.outreach. washington.edu/nondegree/. Students are admitted to the major at the beginning of their junior year and must complete at least 90 credits by the autumn quarter of admission, including 71 credits of general education requirements and 19 credits of prerequisite ARCH courses. English Composition (ENGL 131 Preferred) ARCH 200: Design and Representation I ARCH 201: Design and Representation II ARCH 350: Architecture of the Ancient World ARCH 351: Arch of Medieval & Early Mod World ARCH 352: History of Modern Architecture Total in Areas of Inquiry Arts & Humanities (A&H) Social Sciences (SSc) Natural Sciences (NSc) (including MATH 112, 124, or Q SCI 291) Additional Areas of Inquiry 5cr 5cr (wi) (au) (wi) (au) (sp) 3cr 66cr 5cr 3cr 3cr 20cr 20cr 20cr 6cr The department offers a 5-year dual BA in Architectural Design / BS in Construction Management with the Department of Construction Management; please see the sheet specific to the dual degree program for more information. This option is only available to students after admission to the major. To earn a College Honors Degree, students already enrolled in the university-wide college honors program must complete both the 47 credits of Interdisciplinary Honors and Departmental Honors requirements. (Diploma reads “With College Honors in Architectural Design”) Students with a minimum 3.3 UW gpa can apply to the Architecture Departmental Honors track. Students must take 9 credits of honors-specific courses and achieve a 3.6 gpa in their Architecture coursework to earn Departmental Honors in Architecture. The adviser will guide students through their options once admitted to the program. (Diploma reads “With Honors in Architectural Design”) Complete applications are due the first day of spring quarter at the UW, for entrance in autumn quarter of junior year. The application includes transcripts, DARS (degree audit report), personal statement, resume, and samples of creative work. January 2024 To apply or for more information: http://arch.be.washington.edu/programs-courses/ba-arch-design
 
 
 ### Architectural Studies
@@ -1133,7 +1106,9 @@ Architectural Studies is another built-environment junior-admission path where G
 
 - [UW BA in Architectural Studies overview](https://arch.be.uw.edu/programs-and-courses/ba-arch-2/ba-arch/)
 - [UW BA in Architectural Studies curriculum PDF](https://arch.be.uw.edu/wp-content/uploads/sites/5/2024/01/BA-Arch-Studies_20240124.pdf)
+- [UW BA in Architectural Studies curriculum PDF](https://arch.be.uw.edu/wp-content/uploads/sites/5/2024/01/BA-Arch-Studies_20240124.pdf) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
+- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### BA in Architectural Studies admission and prerequisite setup
 
@@ -1282,11 +1257,17 @@ Architectural Studies is another built-environment junior-admission path where G
 
 #### Required sequences for specific credits
 
+- Required before application: MATH 112 -> `MATH& 148`. note: The current official degree page names MATH 112 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
 - Worth finishing at Green River: Art, design, or visual foundation work -> `ART& 100`, `ART 105`, `ART 106`, `PHOTO 101`, `PHOTO 102`. complete at least 1 course from this set. note: These do not replace the UW architecture core, but they are the clearest Green River visual-design foundation before junior-year admission.
 - Worth finishing at Green River: Writing and diversity support -> `ENGL& 101`, `ENGL 128`, `HUMAN 100`, `HUMAN 110`. complete at least 1 course from this set. note: The curriculum still requires writing and diversity credits, so it is useful to keep those visible before transfer.
 - Worth finishing at Green River: Humanities and history support for architecture-adjacent study -> `HIST 101`, `HIST 120`, `HUMAN 142`, `HUMAN 190`. complete at least 1 course from this set. note: Architectural Studies leans more toward history, theory, and concentration work than a pure studio-only path, so humanities support is useful before transfer.
 - GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
 - Planner flag: There is no clean current Green River substitute for the exact UW architecture sequence, so treat Green River as support rather than as a direct core replacement.
+- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
+- Source-backed note: Source parse confidence: high.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0790:mathematics:mathand-148-5-formerly-math-157.
+- Source-backed note: Added the Green River course path MATH& 148 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: Title: UW ARCHITECTURE arch.be.washington.edu Bachelor of Arts In Architectural Studies ADMISSION REQUIREMENTS GENERAL EDUCATION REQUIREMENTS YEAR TWO REQUIRED ARCH COURSES YEAR 3 + 4 REQUIREMENTS The Bachelor of Arts in Architectural Studies is a four-year, undergraduate degree program in which students explore the many factors that shape our built environment. The program provides a liberal studies approach to the study of architecture that covers spatial reasoning, aesthetics, political and economic structures with attention to social justice and equity, socio- cultural influences, urbanism, landscape, construction, building technologies, climate responsiveness and environmental systems. It gives students the opportunity to focus their studies through a sequence of courses that allows concentration in one of three areas: Before graduation, students must also complete two Writing (W) courses for a minimum total of 10 credits, and 5 credits of Diversity (DIV) course(s). These courses may also count toward any other requirement, except the 5-credit English composition requirement. Students should complete some or all of these requirements prior to admission to the Architecture program. DIRECT ADMISSION FOR FRESHMAN Students accepted to the UW who indicate Architectural Studies as the preferred major on the freshman application are considered for direct admission to the Department of Architecture’s BA program. Students must complete prerequisite courses sophomore year. UW freshmen application deadline is November 15. SOPHOMORE-YEAR ADMISSION Sophomore-year admission is open to UW freshmen who will have completed at least 45 credits by the time of admission into the program, including Year Two required courses. The application deadline for sophomore admission is the first day of spring quarter. JUNIOR-YEAR ADMISSION Junior year admission requires the completion of Year Two required courses and a minimum of 90 credits. The application deadline for junior admission is the first day of spring quarter. Admission decisions are based on an applicant’s academic performance and potential, extent and quality of relevant experience, and personal motivation. Completion of Year Two requirements does not guarantee admission. TRANSFER ADMISSION Transfer students may apply for admission to the program at the beginning of the sophomore year or at the beginning of the junior year. Departmental program application deadlines are the same as for Sophomore or Junior year Admission. A separate application is required for UW admission. UW transfer deadline for Fall entry is February 15. English Composition (ENGL 131 Preferred) ARCH 200: Design and Representation I ARCH 332: Making and Materials ARCH 469: Architecture Capstone* ARCH 231: Making and Craft ARCH 361: Architectural Studies Colloquium Area of Concentration selective courses from approved lists (minimum 9cr) ARCH 350: Architecture of the Ancient World ARCH 362: Architecture and Theory* ARCH 351: Arch of Medieval & Early Mod World ARCH 431: Energy and Buildings Additional Area of Consentration selective courses, one from each area of concentration (minumum 9cr) College of Built Environment elective courses (minimum 6cr) Architecture elective courses (minimum 15cr) Upper division elective courses (minimum 23cr) * These courses can count as writing credits with persmission of instructor ARCH 352: History of Modern Architecture ARCH 468: Architecture Capstone Preparation Total in Areas of Inquiry Arts & Humanities (A&H) Social Sciences (SSc) Natural Sciences (NSc) (including MATH 112, 124, or Q SCI 291) Additional Areas of Inquiry 5cr 5cr 5cr 6cr (wi) (sp) (au) (wi) (sp) (au) (au) (au) (sp) (sp) (wi) 3cr 5cr 66cr 5cr 5cr 3 3cr 3cr 3 2 5 5 3cr 3cr 20cr 20cr 20cr 6cr The complete Departmental application for sophomores, juniors, or transfer students applying for Fall Quarter admittance includes transcripts, DARS (degree audit report), a personal statement, writing sample, and resume. Samples of work are optional but recommended. January 2024 To apply or for more information: http://arch.be.washington.edu/programs-courses/ba-arch • History, Theory, and Criticism • Materials and Making • Sustainable Development The Department of Architecture offers a Bachelor of Arts in Architectural Studies for students who are interested in architecture as a cultural, social, and technological field of study. | [Page 1] UW ARCHITECTURE arch.be.washington.edu Bachelor of Arts In Architectural Studies ADMISSION REQUIREMENTS GENERAL EDUCATION REQUIREMENTS YEAR TWO REQUIRED ARCH COURSES YEAR 3 + 4 REQUIREMENTS The Bachelor of Arts in Architectural Studies is a four-year, undergraduate degree program in which students explore the many factors that shape our built environment. The program provides a liberal studies approach to the study of architecture that covers spatial reasoning, aesthetics, political and economic structures with attention to social justice and equity, socio- cultural influences, urbanism, landscape, construction, building technologies, climate responsiveness and environmental systems. It gives students the opportunity to focus their studies through a sequence of courses that allows concentration in one of three areas: Before graduation, students must also complete two Writing (W) courses for a minimum total of 10 credits, and 5 credits of Diversity (DIV) course(s). These courses may also count toward any other requirement, except the 5-credit English composition requirement. Students should complete some or all of these requirements prior to admission to the Architecture program. DIRECT ADMISSION FOR FRESHMAN Students accepted to the UW who indicate Architectural Studies as the preferred major on the freshman application are considered for direct admission to the Department of Architecture’s BA program. Students must complete prerequisite courses sophomore year. UW freshmen application deadline is November 15. SOPHOMORE-YEAR ADMISSION Sophomore-year admission is open to UW freshmen who will have completed at least 45 credits by the time of admission into the program, including Year Two required courses. The application deadline for sophomore admission is the first day of spring quarter. JUNIOR-YEAR ADMISSION Junior year admission requires the completion of Year Two required courses and a minimum of 90 credits. The application deadline for junior admission is the first day of spring quarter. Admission decisions are based on an applicant’s academic performance and potential, extent and quality of relevant experience, and personal motivation. Completion of Year Two requirements does not guarantee admission. TRANSFER ADMISSION Transfer students may apply for admission to the program at the beginning of the sophomore year or at the beginning of the junior year. Departmental program application deadlines are the same as for Sophomore or Junior year Admission. A separate application is required for UW admission. UW transfer deadline for Fall entry is February 15. English Composition (ENGL 131 Preferred) ARCH 200: Design and Representation I ARCH 332: Making and Materials ARCH 469: Architecture Capstone* ARCH 231: Making and Craft ARCH 361: Architectural Studies Colloquium Area of Concentration selective courses from approved lists (minimum 9cr) ARCH 350: Architecture of the Ancient World ARCH 362: Architecture and Theory* ARCH 351: Arch of Medieval & Early Mod World ARCH 431: Energy and Buildings Additional Area of Consentration selective courses, one from each area of concentration (minumum 9cr) College of Built Environment elective courses (minimum 6cr) Architecture elective courses (minimum 15cr) Upper division elective courses (minimum 23cr) * These courses can count as writing credits with persmission of instructor ARCH 352: History of Modern Architecture ARCH 468: Architecture Capstone Preparation Total in Areas of Inquiry Arts & Humanities (A&H) Social Sciences (SSc) Natural Sciences (NSc) (including MATH 112, 124, or Q SCI 291) Additional Areas of Inquiry 5cr 5cr 5cr 6cr (wi) (sp) (au) (wi) (sp) (au) (au) (au) (sp) (sp) (wi) 3cr 5cr 66cr 5cr 5cr 3 3cr 3cr 3 2 5 5 3cr 3cr 20cr 20cr 20cr 6cr The complete Departmental application for sophomores, juniors, or transfer students applying for Fall Quarter admittance includes transcripts, DARS (degree audit report), a personal statement, writing sample, and resume. Samples of work are optional but recommended. January 2024 To apply or for more information: http://arch.be.washington.edu/programs-courses/ba-arch • History, Theory, and Criticism • Materials and Making • Sustainable Development The Department of Architecture offers a Bachelor of Arts in Architectural Studies for students who are interested in architecture as a cultural, social, and technological field of study.
 
 
 ### Art
@@ -1301,8 +1282,10 @@ UW Art is best planned as a concentration-driven studio transfer. Green River is
 ##### Links Used
 
 - [UW General Catalog Art and Art History page](https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html)
+- [UW General Catalog Art and Art History page](https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [UW Art undergraduate program](https://art.washington.edu/art/undergraduate-program)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
+- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### BA in Art shared core requirements
 
@@ -1373,11 +1356,20 @@ UW Art is best planned as a concentration-driven studio transfer. Green River is
 #### Required sequences for specific credits
 
 - Required before application: At least 5 college-level art credits with a 2.5 or higher -> `ART& 100`, `ART 105`, `ART 106`, `ART 107`, `PHOTO 101`. complete at least 1 course from this set. note: UW Art requires at least 5 credits of college-level art with a 2.5 or higher before declaration.
+- Required before application: ART H 202 -> `ART 213`. note: The current official degree page names ART H 202 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: ART H 203 -> `ART 214`. note: The current official degree page names ART H 203 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
 - Worth finishing at Green River: Studio art foundation -> `ART& 100`, `ART 105`, `ART 106`, `ART 107`, `ART 110`, `ART 112`. complete at least 1 course from this set. note: Use lower-division studio work to build the visual-art foundation before the concentration-specific UW upper division.
 - Worth finishing at Green River: Photomedia support if that concentration is in play -> `PHOTO 101`, `PHOTO 102`, `PHOTO 103`. complete at least 1 course from this set. note: These are especially useful when the student may choose the Photomedia concentration.
 - Worth finishing at Green River: Art history and contextual humanities support -> `HUMAN 100`, `HUMAN 190`, `HIST 101`, `HIST 102`. complete at least 1 course from this set. note: UW Art still includes art-history work, so contextual humanities support is worth keeping visible before transfer.
 - Planner flag: The final UW Art finish depends on concentration choice, so do not treat one concentration's upper-division list as universal.
 - Source-backed note: The exact upper-division finish depends on which Art concentration the student chooses.
+- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
+- Source-backed note: Source parse confidence: high.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0095:art:art-213-5.
+- Source-backed note: Added the Green River course path ART 213 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: 10 credits from ART H 200, ART H 201, ART H 202, ART H 203, ART H 204, ART H 206, ART H 209, ART H 212, ART H 214, ART H 220, ART H 233, ART H 270, ART H 272, ART H273, ART H 290
+- Source-backed note: Guide-backed rule: uw-grc-guide:0096:art:art-214-5.
+- Source-backed note: Added the Green River course path ART 214 because the current planner rows did not expose it yet.
 
 
 ### Art History
@@ -1392,9 +1384,11 @@ Art History is a reading- and writing-heavy humanities transfer where Green Rive
 ##### Links Used
 
 - [UW General Catalog Art History requirements](https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html)
+- [UW General Catalog Art History requirements](https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [UW BA in Art History page](https://art.washington.edu/art-history/ba-art-history)
 - [UW Art History admission page](https://art.washington.edu/admission-major-art-history)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
+- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### BA in Art History course structure
 
@@ -1536,9 +1530,18 @@ Art History is a reading- and writing-heavy humanities transfer where Green Rive
 
 #### Required sequences for specific credits
 
+- Required before application: ART H 202 -> `ART 213`. note: The current official degree page names ART H 202 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: ART H 203 -> `ART 214`. note: The current official degree page names ART H 203 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
 - Worth finishing at Green River: Intro art, visual-culture, or humanities support -> `ART& 100`, `ART 105`, `HUMAN 100`, `HUMAN 190`. complete at least 1 course from this set. note: These do not replace UW ART H survey courses, but they are the clearest Green River background for visual and historical study.
 - Worth finishing at Green River: History and writing support -> `HIST 101`, `HIST 102`, `HIST 103`, `ENGL 128`, `ENGL& 244`. complete at least 1 course from this set. note: Art History is reading- and writing-heavy, so history and analytical-writing support is worth finishing before transfer.
 - Planner flag: UW Art History caps the amount of transfer art-history credit that can count toward the major, so treat Green River as support rather than as a full major-core replacement.
+- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
+- Source-backed note: Source parse confidence: high.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0095:art:art-213-5.
+- Source-backed note: Added the Green River course path ART 213 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: 10 credits from ART H 200, ART H 201, ART H 202, ART H 203, ART H 204, ART H 206, ART H 209, ART H 212, ART H 214, ART H 220, ART H 233, ART H 270, ART H 272, ART H273, ART H 290
+- Source-backed note: Guide-backed rule: uw-grc-guide:0096:art:art-214-5.
+- Source-backed note: Added the Green River course path ART 214 because the current planner rows did not expose it yet.
 
 
 ### Asian Languages & Cultures
@@ -1681,10 +1684,8 @@ Asian Studies works best as a concentration-aware language-and-regional-studies 
 ##### Links Used
 
 - [UW Asian Studies major page](https://jsis.washington.edu/programs/undergraduate/asia-studies/)
-- [UW Asian Studies major page](https://jsis.washington.edu/programs/undergraduate/asia-studies/) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [UW Asian Studies admissions page](https://admit.washington.edu/majors/asian-studies/)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
-- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### Asian Studies general concentration baseline
 
@@ -1794,18 +1795,12 @@ Asian Studies works best as a concentration-aware language-and-regional-studies 
 
 - Required before application: Sustained Asian-language sequence heading toward second-year proficiency -> `CHIN& 121`, `CHIN& 122`, `CHIN& 123`, `JAPN& 121`, `JAPN& 122`, `JAPN& 123`. complete at least 3 courses from this set. note: Asian Studies expects language proficiency through the second-year level. Finishing at least one full first-year language sequence before transfer keeps that trajectory realistic.
 - Worth finishing at Green River: Reading and analytical-writing support -> `ENGL& 101`, `ENGL 128`, `ENGL& 244`, `ENGL& 245`. complete at least 1 course from this set. note: The major's research-paper and elective components are writing-heavy, so keeping writing progression visible at Green River is useful.
-- Worth finishing at Green River: HSTAS 265 -> `HIST 250`. note: Useful to complete at Green River when it cleanly matches the published degree page, but the planner keeps this option only when the published source supports it and does not infer internal route timing beyond that source.
 - Worth finishing at Green River: Asian civilization and regional-history foundation -> `HIST 120`, `HIST 135`, `HIST& 136`, `HIST& 137`, `HUMAN 100`. complete at least 1 course from this set. note: These courses do not replace the UW JSIS core, but they provide strong context before upper-division Asia-focused coursework.
 - GRC sequence: `CHIN& 121 -> CHIN& 122 -> CHIN& 123`.
 - GRC sequence: `JAPN& 121 -> JAPN& 122 -> JAPN& 123`.
 - Planner flag: Asian Studies has named regional concentrations, and the exact upper-division finish changes once the student chooses one.
 - Planner flag: Language planning should stay active each year; long language gaps make the UW second-year proficiency requirement harder to complete on time.
 - Source-backed note: Asian Studies has multiple named regional concentrations, so the exact upper-division finish depends on concentration choice.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0680:history:hist-250-5.
-- Source-backed note: Added the Green River course path HIST 250 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Human Rights in Asia (HSTAS 265) | The Viet Nam Wars (HSTAS 265)
 
 
 ### Astronomy
@@ -1954,7 +1949,9 @@ Atmospheric and Climate Science is a multi-option B.S. family where every route 
 
 - [UW Atmospheric and Climate Science undergraduate program](https://atmos.uw.edu/students/undergraduate-program/)
 - [UW General Catalog Atmospheric and Climate Science page](https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html)
+- [UW General Catalog Atmospheric and Climate Science page](https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
+- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### Atmospheric and Climate Science shared admission and core
 
@@ -2087,6 +2084,7 @@ Atmospheric and Climate Science is a multi-option B.S. family where every route 
 - Required before application: English composition -> `ENGL& 101`. note: English composition is part of the shared admission foundation across current Atmospheric and Climate Science options.
 - Required before application: Calculus I, II, and III -> `MATH& 151`, `MATH& 152`, `MATH& 163`. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`. note: Current UW guidance accepts MATH& 163 for MATH 126. Older UW and Green River materials also use the MATH& 153 + MATH& 254 combination, which UW lists as transferring as MATH 126, 224, and 2XX credit when both courses are completed.
 - Required before application: Calculus-based physics sequence -> `PHYS& 221`, `PHYS& 222`, `PHYS& 223`. note: This is the clearest Green River equivalent for the shared PHYS 121/122/123 foundation. UW also accepts alternate physics routes; verify alternates with advising.
+- Required before application: CSE 143 -> `CS 145`. note: The current official degree page names CSE 143 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
 - Worth finishing at Green River: General chemistry sequence for chemistry-heavy planning -> `CHEM& 161`, `CHEM& 162`, `CHEM& 163`. note: Not part of every option's minimum transfer-admission classes, but this sequence is valuable when the student may target the Chemistry option or chemistry-heavy electives.
 - Worth finishing at Green River: Applied math continuation after Calc III -> `MATH& 254`, `MATH 238`, `MATH 240`. complete at least 1 course from this set. note: Extra applied math keeps the Data Science and Meteorology pathways easier to schedule after transfer.
 - Worth finishing at Green River: Programming head start for option flexibility -> `ENGR 250`, `CS 121`, `CS 122`, `CS 123`. complete at least 1 course from this set. note: Programming becomes especially important in the Data Science and Meteorology options, and still helps in the broader atmospheric core.
@@ -2096,6 +2094,11 @@ Atmospheric and Climate Science is a multi-option B.S. family where every route 
 - Planner flag: Atmospheric and Climate Science has four official option finishes, and the final upper-division course map changes by option.
 - Planner flag: ATMOS 301 is offered autumn only, so transfer timing and first-year UW sequencing should be checked early.
 - Source-backed note: Atmospheric and Climate Science has four official option finishes, so the final upper-division UW list depends on option choice.
+- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
+- Source-backed note: Source parse confidence: high.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0277:computer-science:cs-145-5-formerly-c-sci-145.
+- Source-backed note: Added the Green River course path CS 145 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: one of CSE 123, CSE 143, or CSE 163
 
 
 ### Biochemistry
@@ -2109,7 +2112,6 @@ Seattle Biochemistry is a chemistry-and-biology intensive pathway with distinct 
 
 ##### Links Used
 
-- [UW Biochemistry admissions](https://chem.washington.edu/undergraduate-prerequisites-and-admissions-biochemistry)
 - [UW BS in Biochemistry requirements](https://chem.washington.edu/bs-biochemistry)
 - [UW BA in Biochemistry requirements](https://chem.washington.edu/ba-biochemistry)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
@@ -2231,10 +2233,12 @@ BioE needs a custom plan off 999O because the stock chemistry-heavy track is not
 ##### Links Used
 
 - [UW Bioengineering degree requirements](https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/)
+- [UW Bioengineering degree requirements](https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [UW Bioengineering admissions](https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-admissions/)
 - [UW Bioengineering core prerequisites](https://bioe.uw.edu/academic-programs/undergraduate/core-prereqs/)
 - [UW Bioengineering sample schedules](https://bioe.uw.edu/academic-programs/undergraduate/sample-4-year-schedules/)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
+- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### BioE engineering fundamentals
 
@@ -2356,6 +2360,7 @@ BioE needs a custom plan off 999O because the stock chemistry-heavy track is not
 - Required before application: CHEM 223 or CHEM 237 -> `CHEM& 261`
 - Required before application: AMATH 301 programming path -> `ENGR 250`. note: For Green River students, ENGR 250 is the supported BioE programming option because the other official BioE options use BIOEN 217, which is not part of the Green River equivalency guide.
 - Required before application: English composition -> `ENGL& 101`
+- Required before enrollment: MATH 207 -> `MATH 238`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the degree still needs this math requirement either way.
 - Worth finishing at Green River: MATH 208 or AMATH 352 if you can finish it before transfer -> `MATH 240`. note: Matrix algebra is part of the BioE engineering-fundamentals block and the sample plans place it early in the major.
 - Worth finishing at Green River: CS sequence for stronger software or data-science depth -> `CS 121`, `CS 122`, `CS 123`. note: CS courses can still strengthen the student's BioE story, but they do not replace the clean ENGR 250 -> AMATH 301 path for Green River planning.
 - Worth finishing at Green River: Organic chemistry continuation -> `CHEM& 262`. note: A second organic chemistry course is not part of the minimum BioE transfer-admission classes, but it keeps the chemistry sequence closer to the current BioE sample schedules.
@@ -2369,6 +2374,11 @@ BioE needs a custom plan off 999O because the stock chemistry-heavy track is not
 - Planner flag: UW BioE transfer admissions only list BIOL 180, but Green River students usually need BIOL& 211, 212, and 213 to earn the clean BIOL 180 transfer-equivalency outcome.
 - Planner flag: At Green River, ENGR 250 is the cleanest BioE programming route because the other official options depend on BIOEN 217.
 - Source-backed note: Validated against the current BioE admissions, degree-requirements, core-prerequisites, and sample-schedule pages on April 2, 2026.
+- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
+- Source-backed note: Source parse confidence: high.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0813:mathematics:math-238-5.
+- Source-backed note: Added the Green River course path MATH 238 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: MATH 207 or AMATH 351
 
 
 ### Biology
@@ -2382,9 +2392,10 @@ Seattle Biology is now a route family rather than one fixed finish. Green River 
 
 ##### Links Used
 
-- [UW Biology admissions and major requirements](https://www.biology.washington.edu/programs/undergraduate/admissions)
 - [UW General Catalog Biology page](https://www.washington.edu/students/gencat/program/S/Biology-112.html)
+- [UW General Catalog Biology page](https://www.washington.edu/students/gencat/program/S/Biology-112.html) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
+- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### Biology admission and shared lower-division baseline
 
@@ -2463,12 +2474,18 @@ Seattle Biology is now a route family rather than one fixed finish. Green River 
 - `MATH 238`
 - `MATH 240`
 - `MATH 297`
+- `PHYS& 114`
+- `PHYS& 115`
+- `PHYS& 154`
+- `PHYS& 155`
 
 #### Required sequences for specific credits
 
 - Required before application: Full majors-biology sequence -> `BIOL& 211`, `BIOL& 212`, `BIOL& 213`. note: Biology admission expects the BIOL 180/200/220 pathway baseline.
 - Required before application: General chemistry sequence -> `CHEM& 161`, `CHEM& 162`, `CHEM& 163`. note: Biology route planning expects a complete chemistry sequence as part of the shared lower-division science base.
 - Required before application: Quantitative foundation (calculus/statistics equivalent of at least two courses) -> `MATH& 151`, `MATH& 152`, `MATH& 163`. complete at least 2 courses from this set. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`. note: Biology's current route family uses a two-course quantitative baseline across B.A. and B.S. planning.
+- Required before enrollment: CHEM 238 -> `CHEM& 262`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the degree still needs this chemistry requirement either way.
+- Required before enrollment: CHEM 239 -> `CHEM& 263`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the degree still needs this chemistry requirement either way.
 - Worth finishing at Green River: Physics progress for B.S.-option flexibility -> `PHYS& 221`, `PHYS& 222`, `PHYS& 223`. complete at least 2 courses from this set. note: The B.A. route can be lighter, but most B.S. option pathways require physics. Completing two quarters before transfer keeps more options open.
 - Worth finishing at Green River: Statistics support -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set. note: Statistics helps with upper-division biology planning across multiple route options.
 - Both: `BIOL& 211 -> BIOL& 212 -> BIOL& 213`. All three are needed for the full `BIOL 180, 200, 220, 2XX (3)` outcome.
@@ -2477,13 +2494,21 @@ Seattle Biology is now a route family rather than one fixed finish. Green River 
 - Planner flag: Biology now has one B.A. route and multiple B.S. options, so the exact upper-division map should be finalized with advising after route choice.
 - Planner flag: Application review uses performance across supporting science coursework, not just the biology sequence alone.
 - Source-backed note: Biology is no longer one single finish; the exact upper-division map depends on the B.A. route or the chosen B.S. option.
+- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
+- Source-backed note: Source parse confidence: high.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0219:chemistry:chemand-262-6-formerly-chem-236.
+- Source-backed note: Added the Green River course path CHEM& 262 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: CHEM 142, CHEM 152, CHEM 162, CHEM 237, CHEM 238 | CHEM 143, CHEM 153, CHEM 237, CHEM 238 | CHEM 142, CHEM 152, CHEM 162, CHEM 237, CHEM 238, CHEM 239
+- Source-backed note: Guide-backed rule: uw-grc-guide:0220:chemistry:chemand-263-6-formerly-chem-237.
+- Source-backed note: Added the Green River course path CHEM& 263 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: CHEM 142, CHEM 152, CHEM 162, CHEM 237, CHEM 238, CHEM 239 | CHEM 143, CHEM 153, CHEM 237, CHEM 238, CHEM 239 | *CHEM 162 is not required for this degree; however, CHEM 237, CHEM 238, and CHEM 239 are required by many professional programs and graduate schools, and that sequence does require CHEM 162.
 
 
 ### Business Administration
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `999B`.
+Planner coverage: `detailed`. Best Green River base: `999P`.
 Foster Business Administration is an admission-structured lower-division business transfer. Green River planning should complete accounting, economics, calculus, writing, and quantitative support early so the student enters UW ready for the upper-division BABA core and option selection.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -2493,7 +2518,9 @@ Foster Business Administration is an admission-structured lower-division busines
 - [Foster undergraduate curriculum](https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/)
 - [Foster standard admission requirements](https://foster.uw.edu/academics/degree-programs/undergraduate-programs/admissions/standard-admission/)
 - [Foster business majors and areas of study](https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/options/)
+- [Foster business majors and areas of study](https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/options/) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
+- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### BABA lower-division prerequisites and admission setup
 
@@ -2553,6 +2580,7 @@ Foster Business Administration is an admission-structured lower-division busines
 - `MATH 240`
 - `MATH& 254`
 - `MATH 297`
+- `CS& 141`
 
 #### Required sequences for specific credits
 
@@ -2563,12 +2591,18 @@ Foster Business Administration is an admission-structured lower-division busines
 - Required before application: Financial accounting sequence -> `ACCT& 201`, `ACCT& 202`. complete at least 2 courses from this set
 - Required before application: Managerial accounting -> `ACCT& 203`. note: Managerial accounting aligns with ACCTG 225 in the published lower-division core.
 - Worth finishing at Green River: Advanced writing support before Foster upper division -> `ENGL 128`, `ENGL& 244`, `ENGL& 245`. complete at least 1 course from this set. note: Foster uses writing-intensive upper-division coursework, so one additional writing-heavy course can be helpful before transfer.
+- Worth finishing at Green River: MATH 125 -> `MATH& 152`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
 - Worth finishing at Green River: Business and management context support -> `BUS& 101`, `BUS 121`, `BUS& 201`. complete at least 1 course from this set. note: These courses do not replace Foster upper-division core classes, but they can strengthen readiness for business communication and team-based work.
 - Worth finishing at Green River: Quantitative methods head start -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set. note: QMETH 201 is part of the lower-division business core. Statistics support before transfer can reduce first-year UW bottlenecks.
 - GRC sequence: Business / less-calculus-heavy planning commonly uses `MATH& 141 -> MATH& 142` or `MATH 147 -> MATH& 148`. `MATH& 146` and `MATH 256` are standalone quantitative options.
 - Both: `ACCT& 201 + ACCT& 202` are required for the stronger `ACCTG 215 (5), B A 2XX (5)` outcome. `ACCT& 203` then gives `ACCTG 225 (5)`.
 - Planner flag: Foster standard admission also requires the Writing Skills Assessment and cycle-specific deadline planning.
 - Planner flag: The final upper-division finish depends on the student's chosen Foster major or area of study after admission.
+- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
+- Source-backed note: Source parse confidence: high.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0793:mathematics:mathand-152-5-formerly-math-125.
+- Source-backed note: Added the Green River course path MATH& 152 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: Additional calculus courses: MATH 125 & 126, MATH 135 & 136, MATH 307, 308, 309, and MATH 334, 335, 336
 
 
 ### Chemical Engineering
@@ -2583,11 +2617,9 @@ ChemE is a custom spring-start cohort plan. The goal is not a normal autumn engi
 ##### Links Used
 
 - [UW Chemical Engineering curriculum](https://www.cheme.washington.edu/undergraduate_students/curriculum)
-- [UW Chemical Engineering curriculum](https://www.cheme.washington.edu/undergraduate_students/curriculum) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [UW Chemical Engineering admissions](https://www.cheme.washington.edu/undergraduate_students/admission) - Includes the department's Green River sample transfer plan.
 - [UW Chemical Engineering continuation policy](https://www.cheme.washington.edu/undergraduate_students/policies/continue.html)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
-- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 - [Green River sample transfer plans PDF](https://www.greenriver.edu/marketing/media/documents/grad-to-gator/Associate%20Transfer%20Sample%20Ed%20Plans%202024.pdf)
 
 ##### ChemE degree structure
@@ -2684,7 +2716,6 @@ ChemE is a custom spring-start cohort plan. The goal is not a normal autumn engi
 - Required before application: MATH 124, 125, 126 -> `MATH& 151`, `MATH& 152`, `MATH& 163`. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`. note: Current UW guidance accepts MATH& 163 for MATH 126. Older UW and Green River materials also use the MATH& 153 + MATH& 254 combination, which UW lists as transferring as MATH 126, 224, and 2XX credit when both courses are completed.
 - Required before application: PHYS 121 -> `PHYS& 221`
 - Required before application: English composition -> `ENGL& 101`
-- Required before application: MATH 224 -> `MATH& 254`. note: The current official degree page names MATH 224 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
 - Required before enrollment: PHYS 122 before the first UW spring quarter -> `PHYS& 222`. note: This must be done before the first UW spring quarter if the published spring-start ChemE cohort plan is going to work.
 - Required before enrollment: MATH 207 before the first UW spring quarter -> `MATH 238`. note: This must be done before the first UW spring quarter if the published spring-start ChemE cohort plan is going to work.
 - Worth finishing at Green River: Organic chemistry sequence before the first autumn at UW -> `CHEM& 261`, `CHEM& 262`. note: Organic chemistry I and II are part of the published pre-autumn ChemE timing, so the sequence should be finished before the following autumn at UW.
@@ -2699,11 +2730,6 @@ ChemE is a custom spring-start cohort plan. The goal is not a normal autumn engi
 - Planner flag: The ChemE admissions page says up to two bold admission requirements may still be in progress during winter quarter when applying, but students should still aim to finish the full Green River chemistry path as early as possible because of the way CHEM 152 and 162 map.
 - Planner flag: CHEM E 310 and CHEM E 375 are UW continuation requirements taken during the first spring after admission, not Green River transfer-equivalency targets.
 - Source-backed note: Validated against the current ChemE admissions, curriculum, plan-of-study, and continuation pages on April 2, 2026.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0817:mathematics:mathand-254-5-see-also-mathand-153-combined-entry.
-- Source-backed note: Added the Green River course path MATH& 254 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: *Math Electives: MATH 209, MATH 224, IND E 315, MATH/STAT 390, AMATH 353.
 
 
 ### Chemistry
@@ -2717,10 +2743,8 @@ Seattle Chemistry includes B.A., B.S., and ACS-certified B.S. finishes. Green Ri
 
 ##### Links Used
 
-- [UW Chemistry admissions](https://chem.washington.edu/undergraduate-prerequisites-and-admissions-chemistry)
 - [UW BA in Chemistry requirements](https://chem.washington.edu/ba-chemistry)
 - [UW BS in Chemistry requirements](https://chem.washington.edu/bs-chemistry)
-- [UW BS in Chemistry ACS-certified requirements](https://chem.washington.edu/bs-chemistry-acs-certified)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 
 ##### Chemistry admission and degree family
@@ -2947,7 +2971,6 @@ Cinema and Media Studies is a structured 60-credit major with a clear core plus 
 ##### Links Used
 
 - [UW General Catalog Cinema and Media Studies page](http://www.washington.edu/students/gencat/program/S/CinemaandMediaStudies-132.html)
-- [UW Cinema and Media Studies undergraduate programs](https://cinema.washington.edu/undergraduate-programs)
 - [UW Cinema and Media Studies admissions page](https://admit.washington.edu/majors/cinema-media-studies/)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 
@@ -3165,11 +3188,11 @@ Civil uses the same 999Q backbone as Mechanical and A&A, but students need to de
 - `BIOL& 211`
 - `BIOL& 212`
 - `BIOL& 213`
+- `CS& 141`
 - `GEOL& 101`
 - `N SCI 100`
 - `NATRS 100`
 - `NATRS 210`
-- `OCEA& 101`
 
 #### Required sequences for specific credits
 
@@ -3178,8 +3201,10 @@ Civil uses the same 999Q backbone as Mechanical and A&A, but students need to de
 - Required before application: PHYS 121 and PHYS 122 -> `PHYS& 221`, `PHYS& 222`
 - Required before application: A A 210 -> `ENGR& 214`
 - Required before application: English composition -> `ENGL& 101`
-- Required before application: BIOL 180 -> `BIOL& 211`, `BIOL& 212`, `BIOL& 213`. note: The current official degree page names BIOL 180 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Required before application: OCEAN 200 -> `OCEA& 101`. note: The current official degree page names OCEAN 200 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: ESRM 101 -> `NATRS 100`. note: The current official degree page names ESRM 101 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: ESRM 210 -> `NATRS 210`. note: The current official degree page names ESRM 210 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: ESS 101 -> `N SCI 100`. note: The current official degree page names ESS 101 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: ESS 212 -> `GEOL& 101`. note: The current official degree page names ESS 212 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
 - Required before enrollment: One approved computing course -> `ENGR 250`, `CS 121`, `CS 122`, `CS 123`. complete at least 1 course from this set. note: UW Civil accepts several computing paths; these are the cleanest Green River choices.
 - Required before enrollment: CEE 220 -> `ENGR& 225`. note: CEE 220 is part of the published BSCE lower-division foundation, so finishing ENGR& 225 before transfer keeps the first UW autumn cleaner.
 - Required before enrollment: M E 230 -> `ENGR& 215`. note: ME 230 is part of the published BSCE lower-division foundation, so ENGR& 215 is a strong pre-transfer mechanics finish.
@@ -3193,12 +3218,15 @@ Civil uses the same 999Q backbone as Mechanical and A&A, but students need to de
 - Source-backed note: Validated against the current UW CEE transfer timeline page and the posted 2024-25 BSCE degree sheet on April 2, 2026.
 - Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
 - Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0168:biology:bioland-211-212-213-6-6-6-formerly-biol-201-202-203.
-- Source-backed note: Added the Green River course path BIOL& 211, BIOL& 212, BIOL& 213 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0937:natural-resources:natrs-100-5-formerly-fores-100.
+- Source-backed note: Added the Green River course path NATRS 100 because the current planner rows did not expose it yet.
 - Source-backed note: Requirement cue lines: Title: Bachelor of Science in Civil Engineering (BSCE/CIVE) University of Washington Prerequisites & General Elective Coursework Prerequisite Course Key ᐅ Application Requirements - Transfer/Interest Changers must complete by time of application (April 5). ᐅᐅ Enrollment Requirements - Transfer/Interest Changers must complete prior to enrollment in major. ENGRUD Students: Plan to complete all BSCE prerequisite courses (application and enrollment requirements) before starting CEE Core Curriculum (Junior Year). Mathematics (24 credits) ᐅ Calculus w/ Analytic Geo. (Math 124/125/126) 15cr Di ff erential Equations (MATH 207 or AMATH 351) 3cr ᐅ ᐅ Matrix/Linear Algebra (MATH 208 or AMATH 352) 3cr Statistics (INDE 315, QSCI 381, STAT 390 or STAT 290) 3-4cr Sciences (28+ credits) ᐅ General Chemistry 1 (CHEM 142) 5cr General Chemistry 2 (CHEM 152) 5cr (Transfers: CIVE can accept any second chemistry course after CHEM 142) ᐅ Mechanics (PHYS 121) 5cr ᐅ Elect-Mag & Oscillation (PHYS 122) 5cr Waves (PHYS 123) 5cr Basic Science Elective 3-5cr (Choose from: BIOL 180 (5cr), ATMS 101 (5cr), ATMS 211 (5cr, SSc), ATMS 212 (3cr, SSc), ESRM 100 (5cr, SSc), ESRM 101 (5cr, SSc), ESRM 210 (5cr), ESS 101 (5cr, SSc) ESS 106 (3cr, SSc), ESS 201 (3cr), ESS 211 (5cr), ESS 212 (5cr), OCEAN 102 (5cr, SSc), or OCEAN 200 (3cr)) Engineering Fundamentals (16 credits) ᐅ ᐅ Computer Programming 4cr (AMATH 301, CSE 121, 122, 123, 142 or 160) ᐅ Statics (AA 210) 4cr ᐅ ᐅ Mechanics of Materials (CEE 220) 4cr ᐅ ᐅ Dynamics & Kinematics (ME 230) 4cr Written Communication (12 credits) ᐅ English Composition 5cr Additional Composition or Writing 7cr Economics (4-5 credits) CEE Topic Requirement 4-5cr (INDE 250 , ECON 200/201, or ESRM/ECON/ENVIR 235) *ECON/ESRM/ENVIR courses may also be applied to SSc req. Areas of Inquiry (24 credits) Arts and Humanities (A&H) 10cr Social Sciences (SSc) 10cr Additional A&H and/or SSc 4cr Diversity (5 credit minimum) 5cr One course from UW’s approved DIV list. See MyPlan. BSCE Major Coursework The BSCE degree covers six areas of interest: Construction, Environmental, Hydrology, Geotechnical, Structural, and Transportation. The 300-level CEE Core Curriculum provides a foundation in all areas. Technical Electives and Engineering & Science Electives, typically taken in the senior year, allow students to develop depth in their preferred area(s) of interest. Seniors also complete a capstone design course in an area of their choice. Core Curriculum (40 credits) (See sample 4 year plan on page 2 for core curriculum sequencing (Track 1 and Track 2)) Construction Engineering (CEE 307) 5cr GeoSurveying (CEE 317) 5cr Transportation Engineering (CEE 327) 5cr Construction Materials (CEE 337) 5cr Intro to Fluid Mechanics (CEE 347) 5cr Environmental Engineering (CEE 357) 5cr Geotechnical Engineering (CEE 367) 5cr Intro to Structural Design (CEE 377) 5cr Capstone & Professional Practice (7 credits) Capstone Design Course 5cr ● CEE 441, 442, 444, or 445, taken SPR qtr of senior year Professional Practice (CEE 440) 2cr ● CEE 440 is taken in junior year. Technical Electives (TE) (15 credits, 3 areas) ● Technical Electives are CEE 400-level courses that provide students with in-depth knowledge and design experience. ● Area Requirement: Students are required to take at least 3 credits from 3 of the 6 areas. (see BSCE TE list for details) Engineering & Science Electives (E&S) (12 cr.) Choice of additional CEE Technical Elective courses or courses from an approved list. See the BSCE E&S Elective list for complete details. General Electives Additional credits to meet the 180 total required for the BSCE degree. Academic Planning Notes: • Areas of Inquiry courses can also count toward Diversity and Additional Writing. Use MyPlan fi lters to identify courses that satisfy multiple requirements.. • CEE Study Abroad opportunities are a great way to satisfy degree requirements. www.ce.washington.edu ● 201 More Hall, Box 352700, Seattle, WA 98195 ● ceadvice@uw.edu | [Page 1] Bachelor of Science in Civil Engineering (BSCE/CIVE) University of Washington Prerequisites & General Elective Coursework Prerequisite Course Key ᐅ Application Requirements - Transfer/Interest Changers must complete by time of application (April 5). ᐅᐅ Enrollment Requirements - Transfer/Interest Changers must complete prior to enrollment in major. ENGRUD Students: Plan to complete all BSCE prerequisite courses (application and enrollment requirements) before starting CEE Core Curriculum (Junior Year). Mathematics (24 credits) ᐅ Calculus w/ Analytic Geo. (Math 124/125/126) 15cr Di ff erential Equations (MATH 207 or AMATH 351) 3cr ᐅ ᐅ Matrix/Linear Algebra (MATH 208 or AMATH 352) 3cr Statistics (INDE 315, QSCI 381, STAT 390 or STAT 290) 3-4cr Sciences (28+ credits) ᐅ General Chemistry 1 (CHEM 142) 5cr General Chemistry 2 (CHEM 152) 5cr (Transfers: CIVE can accept any second chemistry course after CHEM 142) ᐅ Mechanics (PHYS 121) 5cr ᐅ Elect-Mag & Oscillation (PHYS 122) 5cr Waves (PHYS 123) 5cr Basic Science Elective 3-5cr (Choose from: BIOL 180 (5cr), ATMS 101 (5cr), ATMS 211 (5cr, SSc), ATMS 212 (3cr, SSc), ESRM 100 (5cr, SSc), ESRM 101 (5cr, SSc), ESRM 210 (5cr), ESS 101 (5cr, SSc) ESS 106 (3cr, SSc), ESS 201 (3cr), ESS 211 (5cr), ESS 212 (5cr), OCEAN 102 (5cr, SSc), or OCEAN 200 (3cr)) Engineering Fundamentals (16 credits) ᐅ ᐅ Computer Programming 4cr (AMATH 301, CSE 121, 122, 123, 142 or 160) ᐅ Statics (AA 210) 4cr ᐅ ᐅ Mechanics of Materials (CEE 220) 4cr ᐅ ᐅ Dynamics & Kinematics (ME 230) 4cr Written Communication (12 credits) ᐅ English Composition 5cr Additional Composition or Writing 7cr Economics (4-5 credits) CEE Topic Requirement 4-5cr (INDE 250 , ECON 200/201, or ESRM/ECON/ENVIR 235) *ECON/ESRM/ENVIR courses may also be applied to SSc req. Areas of Inquiry (24 credits) Arts and Humanities (A&H) 10cr Social Sciences (SSc) 10cr Additional A&H and/or SSc 4cr Diversity (5 credit minimum) 5cr One course from UW’s approved DIV list. See MyPlan. BSCE Major Coursework The BSCE degree covers six areas of interest: Construction, Environmental, Hydrology, Geotechnical, Structural, and Transportation. The 300-level CEE Core Curriculum provides a foundation in all areas. Technical Electives and Engineering & Science Electives, typically taken in the senior year, allow students to develop depth in their preferred area(s) of interest. Seniors also complete a capstone design course in an area of their choice. Core Curriculum (40 credits) (See sample 4 year plan on page 2 for core curriculum sequencing (Track 1 and Track 2)) Construction Engineering (CEE 307) 5cr GeoSurveying (CEE 317) 5cr Transportation Engineering (CEE 327) 5cr Construction Materials (CEE 337) 5cr Intro to Fluid Mechanics (CEE 347) 5cr Environmental Engineering (CEE 357) 5cr Geotechnical Engineering (CEE 367) 5cr Intro to Structural Design (CEE 377) 5cr Capstone & Professional Practice (7 credits) Capstone Design Course 5cr ● CEE 441, 442, 444, or 445, taken SPR qtr of senior year Professional Practice (CEE 440) 2cr ● CEE 440 is taken in junior year. Technical Electives (TE) (15 credits, 3 areas) ● Technical Electives are CEE 400-level courses that provide students with in-depth knowledge and design experience. ● Area Requirement: Students are required to take at least 3 credits from 3 of the 6 areas. (see BSCE TE list for details) Engineering & Science Electives (E&S) (12 cr.) Choice of additional CEE Technical Elective courses or courses from an approved list. See the BSCE E&S Elective list for complete details. General Electives Additional credits to meet the 180 total required for the BSCE degree. Academic Planning Notes: • Areas of Inquiry courses can also count toward Diversity and Additional Writing. Use MyPlan fi lters to identify courses that satisfy multiple requirements.. • CEE Study Abroad opportunities are a great way to satisfy degree requirements. www.ce.washington.edu ● 201 More Hall, Box 352700, Seattle, WA 98195 ● ceadvice@uw.edu
-- Source-backed note: Exact-title match source: catalog-metadata.
-- Source-backed note: Matched source title: Introduction to Oceanography.
-- Source-backed note: Matched Green River title: Introduction to Oceanography.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0952:natural-resources:natrs-210-5.
+- Source-backed note: Added the Green River course path NATRS 210 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0964:natural-science:n-sci-100-5.
+- Source-backed note: Added the Green River course path N SCI 100 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0603:geology:geoland-101-5-formerly-geol-101.
+- Source-backed note: Added the Green River course path GEOL& 101 because the current planner rows did not expose it yet.
 
 
 ### Classical Studies
@@ -3213,7 +3241,6 @@ Classical Studies is a flexible classics pathway that still relies on language p
 ##### Links Used
 
 - [UW B.A. in Classical Studies](https://classics.washington.edu/ba-classical-studies)
-- [UW Classics majors overview](https://classics.washington.edu/majors)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 
 ##### B.A. in Classical Studies overall structure
@@ -3352,10 +3379,8 @@ Seattle Classics is language- and text-driven planning where writing, ancient-hi
 
 ##### Links Used
 
-- [UW Classics undergraduate program](https://classics.washington.edu/undergraduate-program)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 - [UW B.A. in Classics](https://classics.washington.edu/ba-classics)
-- [UW Classics majors overview](https://classics.washington.edu/majors)
 
 ##### Classics planning baseline
 
@@ -3484,7 +3509,6 @@ Seattle Communication is now modeled as a communication-theory and media-practic
 
 ##### Links Used
 
-- [UW Communication undergraduate program](https://com.uw.edu/academics/undergraduate/communication-major/)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 - [UW Communication admissions page](https://admit.washington.edu/majors/communication/)
 - [UW General Catalog Communication requirements](https://www.washington.edu/students/gencat/program/S/Communication-1035.html)
@@ -3560,7 +3584,6 @@ Seattle Community, Environment and Planning is now modeled as an interdisciplina
 
 ##### Links Used
 
-- [UW Community, Environment and Planning program](https://urbdp.be.uw.edu/academic-programs/undergraduate/community-environment-and-planning/)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 - [UW Community, Environment and Planning admissions page](https://admit.washington.edu/majors/community-environment-planning/)
 - [UW General Catalog Community, Environment and Planning requirements](https://www.washington.edu/students/gencat/program/S/UrbanDesignandPlanning-50.html)
@@ -3709,7 +3732,6 @@ Seattle CHID is now modeled as an interdisciplinary reading-and-writing transfer
 
 ##### Links Used
 
-- [UW Comparative History of Ideas program](https://chid.washington.edu/undergraduate)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 - [UW Comparative History of Ideas admissions page](https://admit.washington.edu/majors/comparative-history-of-ideas-chid/)
 - [UW General Catalog Comparative History of Ideas requirements](https://www.washington.edu/students/gencat/program/S/ComparativeHistoryofIdeas-202.html)
@@ -3860,7 +3882,6 @@ Seattle Comparative Literature is now modeled as a language-and-literature trans
 
 ##### Links Used
 
-- [UW Comparative Literature program](https://complit.washington.edu/undergraduate)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 - [UW Comparative Literature admissions page](https://admit.washington.edu/majors/comparative-literature/)
 - [UW Comparative Literature major page](https://cinema.washington.edu/ba-comparative-literature)
@@ -3995,10 +4016,11 @@ Seattle Comparative Religion is now modeled as a humanities transfer where writi
 
 ##### Links Used
 
-- [UW Comparative Religion overview](https://religion.washington.edu/undergraduate)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
+- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 - [UW Comparative Religion admissions page](https://admit.washington.edu/majors/comparative-religion/)
 - [UW General Catalog Comparative Religion requirements](https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html)
+- [UW General Catalog Comparative Religion requirements](https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 
 ##### Comparative Religion planning baseline
 
@@ -4138,8 +4160,17 @@ Seattle Comparative Religion is now modeled as a humanities transfer where writi
 
 - Required before application: Humanities and social-thought foundation -> `PHIL& 101`, `HIST 101`, `HIST 103`, `SOC& 101`. complete at least 1 course from this set. note: Comparative Religion coursework relies on historical and philosophical interpretation skills.
 - Required before application: Composition -> `ENGL& 101`, `ENGL 128`. complete at least 1 course from this set
+- Required before application: ECON 200 -> `ECON& 201`. note: The current official degree page names ECON 200 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: ECON 201 -> `ECON& 202`. note: The current official degree page names ECON 201 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
 - Worth finishing at Green River: Language support for religious-text study -> `SPAN& 121`, `FREN& 121`, `GERM& 121`. complete at least 1 course from this set. note: Language study is optional but can strengthen upper-division source-text and comparative work.
 - Source-backed note: Comparative Religion has a fixed introductory core but a track-shaped upper-division finish.
+- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
+- Source-backed note: Source parse confidence: high.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0383:economics:econand-201-5-formerly-econ-201.
+- Source-backed note: Added the Green River course path ECON& 201 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: Suggested First- and Second-Year College Courses: ECON 200, ECON 201. Progress toward two years of French language. Canadian history courses. Courses that develop writing skills. | JSIS 200, JSIS 201, JSIS 202; ECON 200, ECON 201; JSIS A 356, JSIS A 498
+- Source-backed note: Guide-backed rule: uw-grc-guide:0385:economics:econand-202-5-formerly-econ-200.
+- Source-backed note: Added the Green River course path ECON& 202 because the current planner rows did not expose it yet.
 
 
 ### Computational Finance & Risk Management
@@ -4155,8 +4186,10 @@ Seattle CFRM is now modeled as a quantitative transfer where calculus, linear al
 
 - [UW Computational Finance and Risk Management program](https://depts.washington.edu/compfin/)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
+- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 - [UW Computational Finance and Risk Management admissions page](https://admit.washington.edu/majors/computational-finance-risk-management/)
 - [UW General Catalog Computational Finance and Risk Management requirements](https://www.washington.edu/students/gencat/program/S/AppliedMathematics-208.html)
+- [UW General Catalog Computational Finance and Risk Management requirements](https://www.washington.edu/students/gencat/program/S/AppliedMathematics-208.html) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 
 ##### CFRM planning baseline
 
@@ -4214,11 +4247,17 @@ Seattle CFRM is now modeled as a quantitative transfer where calculus, linear al
 - Required before application: Calculus I, II, and III -> `MATH& 151`, `MATH& 152`, `MATH& 163`. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`. note: Current UW guidance accepts MATH& 163 for MATH 126. Older UW and Green River materials also use the MATH& 153 + MATH& 254 combination, which UW lists as transferring as MATH 126, 224, and 2XX credit when both courses are completed.
 - Required before application: Linear algebra -> `MATH 240`
 - Required before application: Programming foundation -> `CS 121`, `CS 122`, `CS 123`. complete at least 1 course from this set. note: Programming readiness supports CFRM computational methods and financial modeling work.
+- Required before enrollment: AMATH 301 -> `ENGR 250`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the degree still needs this computing or technical requirement either way.
 - Worth finishing at Green River: Statistics and probability support -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set. note: Statistics support helps with CFRM probability and risk-analysis coursework.
 - GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
 - GRC sequence: Business / less-calculus-heavy planning commonly uses `MATH& 141 -> MATH& 142` or `MATH 147 -> MATH& 148`. `MATH& 146` and `MATH 256` are standalone quantitative options.
 - GRC sequence: `CS 121 -> CS 122 -> CS 123`. Current UW equivalency entries are separate, but planner sequencing at GRC should treat them in this order.
 - Source-backed note: Treat the standard CFRM B.S. as the default row unless the student is explicitly targeting the Data Science option.
+- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
+- Source-backed note: Source parse confidence: high.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0441:engineering-formerly-general-engineering:engr-250-5.
+- Source-backed note: Added the Green River course path ENGR 250 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: Minimum requirements: Minimum 2.0 grade in each of MATH 124, MATH 125, MATH 126 (or MATH 134, MATH 135, MATH 136). Minimum 2.0 grade in AMATH 301. Successful applicants typically have earned above a minimum 2.50 cumulative GPA in courses listed above with no individual course grade lower than a 2.0. | Minimum requirements: Minimum 2.0 grade in each of MATH 124, MATH 125, MATH 126 (or MATH 134, MATH 135, MATH 136). Minimum 2.0 grade in AMATH 301. Successful applicants typically have earned above a minimum 2.50 cumulative GPA in courses listed above with no individual course grade lower than a 2.0. | Computing : AMATH 301 (4 credits)
 
 
 ### Computer Engineering
@@ -4234,12 +4273,10 @@ Best current stock fit: Green River's 999P pathway plus the full CS sequence. Th
 
 - [Allen School transfer admissions](https://www.cs.washington.edu/academics/undergraduate/admissions/transfers/)
 - [Allen School CompE graduation requirements (PDF)](https://www.cs.washington.edu/wp-content/uploads/2025/02/CompE_degreq_dec24v2.pdf)
-- [Allen School CompE graduation requirements (PDF)](https://www.cs.washington.edu/wp-content/uploads/2025/02/CompE_degreq_dec24v2.pdf) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [Allen School CompE transfer planning worksheet (PDF)](https://www.cs.washington.edu/wp-content/uploads/2024/12/CE_TransferPlanningWorksheet.pdf)
 - [Allen School degree requirements](https://www.cs.washington.edu/academics/undergraduate/degree-requirements/)
 - [Allen School course lists](https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
-- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### Computer Engineering general education and math/science
 
@@ -4340,7 +4377,6 @@ Best current stock fit: Green River's 999P pathway plus the full CS sequence. Th
 - Required before enrollment: MATH 208 -> `MATH 240`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 - Worth finishing at Green River: PHYS 123 if time and aid allow -> `PHYS& 223`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 - Worth finishing at Green River: Circuit analysis head start -> `ENGR& 204`. note: Helpful if the student may pivot toward ECE.
-- Worth finishing at Green River: CSE 143 -> `CS 145`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
 - Worth finishing at Green River: MATH 207 for engineering flexibility -> `MATH 238`. note: Useful if the student is still comparing Allen CompE and ECE.
 - GRC sequence: `CS 121 -> CS 122 -> CS 123`. Current UW equivalency entries are separate, but planner sequencing at GRC should treat them in this order.
 - GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
@@ -4348,11 +4384,6 @@ Best current stock fit: Green River's 999P pathway plus the full CS sequence. Th
 - Both: `CHEM& 161 -> CHEM& 162 -> CHEM& 163`. Current UW full-credit note: `CHEM& 162 + CHEM& 163` gives `CHEM 152, 162 (5, 5), 1XX (2)`; otherwise each is weaker `CHEM 1XX`.
 - Planner flag: Allen is extremely competitive even when prerequisites are finished.
 - Planner flag: Hide the in-progress-prerequisite exception unless public sources verify it.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0277:computer-science:cs-145-5-formerly-c-sci-145.
-- Source-backed note: Added the Green River course path CS 145 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Title: Rev: 1 2 /2024 Computer Engineering Graduation Requirements University of Washington The graduation requirements shown below are subject to change. For more information, see the CSE Undergraduate Website, available at https://www.cs.washington.edu/academics/ugrad/current-students/degree General Education Component Written & Oral Communication (12 credits) (5) ( 7 )  *English Composition  Approved UW Writing or Composition Course Diversity Requirement (5 credits)  UW Diversity Requirement (5) Note: These credits may overlap with other requirements. Areas of Inquiry (30 credits)  Arts & Humanities (10-20)  Social Sciences (10-20) Mathematics & Science Component Mathematics & Natural Sciences (41 credits)  *MATH 124, 125, 126 or 134, 135, 136 (15) Calculus with Analytical Geometry  MATH 208 (waived if 136 taken) (3) Matrix / Linear Algebra  *PHYS 121 Mechanics (or PHYS 141) (5)  PHYS 122 Electromagnetism (or PHYS 142) (5)  10 additional credits from the list of approved (10)  natural science courses for Computer Engineering on the CSE website  3 to 6 additional credits of Math/Science (to (3-6) bring the total to 41) chosen from approved natural science courses for Computer Engineering on the CSE website, as well as STAT 391, 394, MATH 207, 209, 318, 334, 335, 394, AMATH 351, 353. * Denotes prerequisites that must be fully completed before applying to the major. This does not apply to direct- to-major freshmen applicants. Computer Engineering Component Fundamentals (32-33 credits)  *CSE 123 Intro to Computer Programming III (4) OR *CSE 143 Computer Programming II (5)  CSE 311 Foundations of Computing I (4)  CSE 312 Foundations of Computing II (4)  CSE 332 Data Structures and Parallelism (4)  CSE 351 The Hardware/Software Interface (4)  EE 205 Intro to Signal Conditioning (4) or EE 215 Intro to Electrical Engineering  CSE 369 Introduction to Digital Design (3)  CSE/EE 371 Design of Digital Circuits & Systems (5) Core and Electives (40 credits) Select at least 40 additional CE credits, including at least:  One course chosen from: (2-4) CSE 403, CSE/EE 474, CSE 480, or CSE 484  3 additional courses chosen from the (12-15) Computer Engineering Systems Electives list on the CSE website  2 additional courses from the CSE Core (6-10) Courses list on the CSE website  1 course from the the CSE Capstone list (5)  Additional courses from the CSE Electives list (6-15) (which can include additional courses from the CSE Core Courses list ), CSE 121, or CSE 122, to bring total CSE electives to 40 credits (including CSE 121 or CSE 122 if taken). Additional Requirements Additional CSE or Engineering credits to bring the total CSE + Engineering credits (this includes any level in the College of Engineering such as ENGR, HCDE, ECE, etc) to 40 , not including the Fundamentals section above . (This is needed only if courses outside of CSE and Engineering are used to meet the electives requirement above.) Free Electives to bring total credits up to the 180 required for graduation Note: A student’s cumulative GPA must not fall below a 2.0. | [Page 1] Rev: 1 2 /2024 Computer Engineering Graduation Requirements University of Washington The graduation requirements shown below are subject to change. For more information, see the CSE Undergraduate Website, available at https://www.cs.washington.edu/academics/ugrad/current-students/degree General Education Component Written & Oral Communication (12 credits) (5) ( 7 )  *English Composition  Approved UW Writing or Composition Course Diversity Requirement (5 credits)  UW Diversity Requirement (5) Note: These credits may overlap with other requirements. Areas of Inquiry (30 credits)  Arts & Humanities (10-20)  Social Sciences (10-20) Mathematics & Science Component Mathematics & Natural Sciences (41 credits)  *MATH 124, 125, 126 or 134, 135, 136 (15) Calculus with Analytical Geometry  MATH 208 (waived if 136 taken) (3) Matrix / Linear Algebra  *PHYS 121 Mechanics (or PHYS 141) (5)  PHYS 122 Electromagnetism (or PHYS 142) (5)  10 additional credits from the list of approved (10)  natural science courses for Computer Engineering on the CSE website  3 to 6 additional credits of Math/Science (to (3-6) bring the total to 41) chosen from approved natural science courses for Computer Engineering on the CSE website, as well as STAT 391, 394, MATH 207, 209, 318, 334, 335, 394, AMATH 351, 353. * Denotes prerequisites that must be fully completed before applying to the major. This does not apply to direct- to-major freshmen applicants. Computer Engineering Component Fundamentals (32-33 credits)  *CSE 123 Intro to Computer Programming III (4) OR *CSE 143 Computer Programming II (5)  CSE 311 Foundations of Computing I (4)  CSE 312 Foundations of Computing II (4)  CSE 332 Data Structures and Parallelism (4)  CSE 351 The Hardware/Software Interface (4)  EE 205 Intro to Signal Conditioning (4) or EE 215 Intro to Electrical Engineering  CSE 369 Introduction to Digital Design (3)  CSE/EE 371 Design of Digital Circuits & Systems (5) Core and Electives (40 credits) Select at least 40 additional CE credits, including at least:  One course chosen from: (2-4) CSE 403, CSE/EE 474, CSE 480, or CSE 484  3 additional courses chosen from the (12-15) Computer Engineering Systems Electives list on the CSE website  2 additional courses from the CSE Core (6-10) Courses list on the CSE website  1 course from the the CSE Capstone list (5)  Additional courses from the CSE Electives list (6-15) (which can include additional courses from the CSE Core Courses list ), CSE 121, or CSE 122, to bring total CSE electives to 40 credits (including CSE 121 or CSE 122 if taken). Additional Requirements Additional CSE or Engineering credits to bring the total CSE + Engineering credits (this includes any level in the College of Engineering such as ENGR, HCDE, ECE, etc) to 40 , not including the Fundamentals section above . (This is needed only if courses outside of CSE and Engineering are used to meet the electives requirement above.) Free Electives to bring total credits up to the 180 required for graduation Note: A student’s cumulative GPA must not fall below a 2.0.
 
 
 ### Computer Science
@@ -4368,10 +4399,8 @@ Allen School CS uses the same transfer source page as CompE, so the Green River 
 
 - [Allen School transfer admissions](https://www.cs.washington.edu/academics/undergraduate/admissions/transfers/)
 - [Allen School degree requirements](https://www.cs.washington.edu/academics/undergraduate/degree-requirements/)
-- [Allen School degree requirements](https://www.cs.washington.edu/academics/undergraduate/degree-requirements/) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [Allen School course lists](https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
-- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### Computer Science general education and math/science
 
@@ -4434,7 +4463,6 @@ Allen School CS uses the same transfer source page as CompE, so the Green River 
 - `PHYS 225`
 - `PHYS 229`
 - `PHYS 298`
-- `ENGR 271`
 
 #### Required sequences for specific credits
 
@@ -4443,9 +4471,6 @@ Allen School CS uses the same transfer source page as CompE, so the Green River 
 - Required before application: English composition -> `ENGL& 101`
 - Required before application: PHYS 121 -> `PHYS& 221`. note: Allen lists PHYS 121 on the transfer preparation path.
 - Required before enrollment: MATH 208 -> `MATH 240`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Required before enrollment: CSE 143 -> `CS 145`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the degree still needs this computing or technical requirement either way.
-- Required before enrollment: EE 271 -> `ENGR 271`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Required before enrollment: MATH 300 -> `CS 202`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the degree still needs this math requirement either way.
 - Worth finishing at Green River: PHYS 122 if you want stronger technical depth -> `PHYS& 222`. note: Useful extra physics depth at Green River if the student wants a stronger technical base or is still comparing engineering-heavy paths.
 - Worth finishing at Green River: Differential equations for flexibility -> `MATH 238`. note: Useful extra math depth at Green River if the student wants more quantitative flexibility or is still comparing engineering-heavy paths.
 - Worth finishing at Green River: PHYS 123 if the student is also keeping engineering options open -> `PHYS& 223`. note: Only worth pushing when the student is keeping engineering options open or wants extra science depth before UW.
@@ -4454,18 +4479,6 @@ Allen School CS uses the same transfer source page as CompE, so the Green River 
 - GRC sequence: `PHYS& 221 -> PHYS& 222 -> PHYS& 223` for calculus-based physics.
 - Planner flag: This is still a very selective transfer path.
 - Planner flag: Use current Allen advising guidance before telling a student a single path guarantees admission readiness.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0277:computer-science:cs-145-5-formerly-c-sci-145.
-- Source-backed note: Added the Green River course path CS 145 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: CSE 122, CSE 123, or CSE 143
-- Source-backed note: Exact-title match source: catalog-metadata.
-- Source-backed note: Matched source title: Digital Circuits and Systems.
-- Source-backed note: Matched Green River title: Digital Circuits and Systems.
-- Source-backed note: Requirement cue lines: If a student completes EE 271, they can use that to replace CSE 369
-- Source-backed note: Guide-backed rule: uw-grc-guide:0280:computer-science:cs-202-5.
-- Source-backed note: Added the Green River course path CS 202 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Sometimes a student will enter the Allen School with a significant number of MATH and STAT courses completed. If this is the case, you may try petitioning to waive CSE 311 via a substitution from a math course. Generally asking for just MATH 300 or just MATH/STAT 394 is not enough for a substitution. If you have not taken a significant number of MATH or STAT courses that cover this material, then generally you should plan to take CSE 311. A few known exceptions to this outcome follow: | If you have MATH 300 completed, you can take CSE 311 and CSE 332 at the same time. Your Allen School adviser can help you register since you won’t have CSE 311 pre-req credit yet.
 
 
 ### Construction Management
@@ -4479,7 +4492,6 @@ Seattle Construction Management is now modeled as an applied technical transfer 
 
 ##### Links Used
 
-- [UW Construction Management program](https://www.be.washington.edu/academics/construction-management/)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 - [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 - [UW Construction Management admissions page](https://admit.washington.edu/majors/construction-management/)
@@ -4553,7 +4565,6 @@ Seattle Construction Management is now modeled as an applied technical transfer 
 - `ECON& 202`
 - `ECON 298`
 - `ECON 299`
-- `CMST& 220`
 - `N SCI 100`
 
 #### Required sequences for specific credits
@@ -4561,24 +4572,31 @@ Seattle Construction Management is now modeled as an applied technical transfer 
 - Required before application: Math support -> `MATH& 141`, `MATH& 151`, `MATH& 146`. complete at least 1 course from this set
 - Required before application: Technical computing support -> `CS 121`, `ENGR 250`. complete at least 1 course from this set. note: Technical tools and computing support are useful for construction systems and project analysis.
 - Required before application: English composition -> `ENGL& 101`
-- Required before application: ACCTG 215 -> `ACCT& 201`, `ACCT& 202`. note: The current official degree page names ACCTG 215 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Required before application: PHYS 114 -> `PHYS& 114`, `PHYS& 154`. note: The current official degree page names PHYS 114 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Required before application: PHYS 115 -> `PHYS& 115`, `PHYS& 155`. note: The current official degree page names PHYS 115 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: ECON 200 -> `ECON& 201`. note: The current official degree page names ECON 200 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: ESS 101 -> `N SCI 100`. note: The current official degree page names ESS 101 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: MATH 112 -> `MATH& 148`. note: The current official degree page names MATH 112 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: MGMT 200 -> `BUS& 201`. note: The current official degree page names MGMT 200 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: QMETH 201 -> `MATH 256`. note: The current official degree page names QMETH 201 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
 - Worth finishing at Green River: Business/accounting context support -> `ACCT& 201`, `BUS& 101`. complete at least 1 course from this set. note: These courses support cost and project-management context but do not replace UW CM upper-division requirements.
 - GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
 - GRC sequence: `PHYS& 221 -> PHYS& 222 -> PHYS& 223` for calculus-based physics.
 - Source-backed note: Use the standard B.S. in Construction Management as the default planner row unless the student is intentionally pursuing the Architectural Design dual-degree route.
 - Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
 - Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0001:accounting:acctand-201-202-5-5-formerly-b-a-210-220.
-- Source-backed note: Added the Green River course path ACCT& 201, ACCT& 202 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: ACCTG 215 or ACCTG 219 | Business and Management: ACCTG 215 or ACCTG 219; MGMT 200 (counts toward SSc requirement) | Business and Management (9-10 credits): ACCTG 215 or ACCTG 219; MGMT 200 (counts toward SSc requirement)
-- Source-backed note: Guide-backed rule: uw-grc-guide:1187:physics:physand-114-154-5-5-formerly-phys-110-150.
-- Source-backed note: Added the Green River course path PHYS& 114, PHYS& 154 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: PHYS 114 and PHYS 117 (or PHYS 121 or PHYS 141) | Natural Sciences (NSc) (24-25 credits): PHYS 114 and PHYS 117 (or PHYS 121 or PHYS 141), PHYS 115 and 118 (or PHYS 122 or PHYS 142); one of MATH 112, MATH 124, or Q SCI 291; ESS 101; one of QMETH 201, STAT 220, or STAT 311 | Natural Sciences (NSc) (24-25 credits): PHYS 114 and PHYS 117 (or PHYS 121 or PHYS 141), PHYS 115 and 118 (or PHYS 122 or PHYS 142); one of MATH 112, MATH 124, or Q SCI 291; ESS 101; one of QMETH 201, STAT 220, or STAT 311
-- Source-backed note: Guide-backed rule: uw-grc-guide:1188:physics:physand-115-155-5-5-formerly-phys-111-151.
-- Source-backed note: Added the Green River course path PHYS& 115, PHYS& 155 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0383:economics:econand-201-5-formerly-econ-201.
+- Source-backed note: Added the Green River course path ECON& 201 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: ECON 200 | Social Sciences (SSc) (10 credits): ECON 200 and MGMT 200 | Social Sciences (SSc) (10 credits): ECON 200 and MGMT 200
+- Source-backed note: Guide-backed rule: uw-grc-guide:0964:natural-science:n-sci-100-5.
+- Source-backed note: Added the Green River course path N SCI 100 because the current planner rows did not expose it yet.
 - Source-backed note: Requirement cue lines: Natural Sciences (NSc) (24-25 credits): PHYS 114 and PHYS 117 (or PHYS 121 or PHYS 141), PHYS 115 and 118 (or PHYS 122 or PHYS 142); one of MATH 112, MATH 124, or Q SCI 291; ESS 101; one of QMETH 201, STAT 220, or STAT 311 | Natural Sciences (NSc) (24-25 credits): PHYS 114 and PHYS 117 (or PHYS 121 or PHYS 141), PHYS 115 and 118 (or PHYS 122 or PHYS 142); one of MATH 112, MATH 124, or Q SCI 291; ESS 101; one of QMETH 201, STAT 220, or STAT 311
+- Source-backed note: Guide-backed rule: uw-grc-guide:0790:mathematics:mathand-148-5-formerly-math-157.
+- Source-backed note: Added the Green River course path MATH& 148 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: MATH 112 or MATH 124 | MATH 112 or MATH 124 | Natural Sciences (NSc) (24-25 credits): PHYS 114 and PHYS 117 (or PHYS 121 or PHYS 141), PHYS 115 and 118 (or PHYS 122 or PHYS 142); one of MATH 112, MATH 124, or Q SCI 291; ESS 101; one of QMETH 201, STAT 220, or STAT 311
+- Source-backed note: Guide-backed rule: uw-grc-guide:0186:business-management:busand-201-5.
+- Source-backed note: Added the Green River course path BUS& 201 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: Social Sciences (SSc) (10 credits): ECON 200 and MGMT 200 | Business and Management: ACCTG 215 or ACCTG 219; MGMT 200 (counts toward SSc requirement) | Social Sciences (SSc) (10 credits): ECON 200 and MGMT 200
+- Source-backed note: Guide-backed rule: uw-grc-guide:0819:mathematics:math-256-5.
+- Source-backed note: Added the Green River course path MATH 256 because the current planner rows did not expose it yet.
 
 
 ### Dance
@@ -4592,7 +4610,6 @@ Seattle Dance is now modeled as a performance-and-theory transfer where composit
 
 ##### Links Used
 
-- [UW Dance undergraduate program](https://dance.washington.edu/undergraduate-program)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 - [UW Dance admissions page](https://admit.washington.edu/majors/dance/)
 - [UW General Catalog Dance requirements](https://www.washington.edu/students/gencat/program/S/Dance-133.html)
@@ -4650,7 +4667,6 @@ Seattle Danish is now modeled as a language-progression transfer where sustained
 
 ##### Links Used
 
-- [UW Scandinavian Studies undergraduate programs](https://scandinavian.washington.edu/undergraduate)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 - [UW Danish admissions page](https://admit.washington.edu/majors/danish/)
 - [UW B.A. in Danish requirements](https://scandinavian.washington.edu/ba-danish)
@@ -4764,9 +4780,11 @@ Seattle Design is now modeled as a portfolio-forward transfer where visual found
 
 - [UW Design undergraduate program](https://art.washington.edu/design)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
+- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 - [UW Design admissions page](https://admit.washington.edu/majors/design/)
 - [UW Bachelor of Design admissions details](https://art.washington.edu/design/bachelor-design-admissions)
 - [UW General Catalog Design requirements](https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html)
+- [UW General Catalog Design requirements](https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 
 ##### Design planning baseline
 
@@ -4908,8 +4926,17 @@ Seattle Design is now modeled as a portfolio-forward transfer where visual found
 
 - Required before application: Visual art and design foundation -> `ART& 100`, `ART 105`, `ART 106`, `PHOTO 101`. complete at least 1 course from this set. note: These courses support portfolio and visual-foundation readiness for design transfer planning.
 - Required before application: English composition -> `ENGL& 101`
+- Required before application: ART H 202 -> `ART 213`. note: The current official degree page names ART H 202 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: ART H 203 -> `ART 214`. note: The current official degree page names ART H 203 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
 - Worth finishing at Green River: Digital media and communication support -> `CMST 266`, `ART 190`, `PHOTO 102`. complete at least 1 course from this set. note: Digital-communication support can strengthen project presentation and process documentation before transfer.
 - Source-backed note: Design is a family of three separate BDes programs, so the exact course list depends on the option the student wins admission into.
+- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
+- Source-backed note: Source parse confidence: high.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0095:art:art-213-5.
+- Source-backed note: Added the Green River course path ART 213 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: 10 credits from ART H 200, ART H 201, ART H 202, ART H 203, ART H 204, ART H 206, ART H 209, ART H 212, ART H 214, ART H 220, ART H 233, ART H 270, ART H 272, ART H273, ART H 290
+- Source-backed note: Guide-backed rule: uw-grc-guide:0096:art:art-214-5.
+- Source-backed note: Added the Green River course path ART 214 because the current planner rows did not expose it yet.
 
 
 ### Disability Studies
@@ -5027,11 +5054,10 @@ Seattle Drama is now modeled as a performance-and-production transfer where perf
 
 ##### Links Used
 
-- [UW School of Drama undergraduate programs](https://drama.washington.edu/undergraduate-programs)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 - [UW Drama admissions page](https://admit.washington.edu/majors/drama/)
 - [UW General Catalog Drama requirements](https://www.washington.edu/students/gencat/program/S/Drama-134.html)
-- [UW BA in Drama program requirements](https://drama.washington.edu/ba-drama-program-requirements)
+- [UW General Catalog Drama requirements](https://www.washington.edu/students/gencat/program/S/Drama-134.html) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 
 ##### Drama planning baseline
 
@@ -5071,8 +5097,14 @@ Seattle Drama is now modeled as a performance-and-production transfer where perf
 
 - Required before application: Drama and performance foundation -> `DRMA 101`, `DRMA 102`, `CMST& 210`. complete at least 1 course from this set. note: Performance and speaking readiness support Drama audition and transition preparation.
 - Required before application: English composition -> `ENGL& 101`
+- Required before application: DRAMA 201 -> `DRMA 151`. note: The current official degree page names DRAMA 201 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
 - Worth finishing at Green River: Theater, literature, or humanities context -> `HUMAN 100`, `ENGL& 111`, `HIST 103`. complete at least 1 course from this set. note: These courses support script analysis and historical-context coursework in Drama.
 - Source-backed note: Use the general Drama B.A. as the default row unless the student is intentionally targeting the Design or Performance option.
+- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
+- Source-backed note: Source parse confidence: high.
+- Source-backed note: Choice-set supporting UW codes: DRAMA 251.
+- Source-backed note: Choice-set resolution strategies: auto-promoted-guide-direct-equivalent.
+- Source-backed note: Requirement cue lines: DRAMA 201, DRAMA 251, DRAMA 302, DRAMA 371, DRAMA 372, DRAMA 373 (30 credits)
 
 
 ### Early Childhood & Family Studies
@@ -5153,8 +5185,6 @@ Seattle Earth and Space Sciences is now modeled as a geoscience STEM transfer wh
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 - [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 - [UW Earth & Space Sciences admissions page](https://admit.washington.edu/majors/earth-space-sciences/)
-- [UW Earth and Space Sciences B.A. requirements](https://web.geology.washington.edu/education/undergrad/degrees_ba.php)
-- [UW Earth and Space Sciences B.S. requirements](https://web.geology.washington.edu/education/undergrad/degrees_bs.php)
 - [Degree requirements](https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 
 ##### ESS planning baseline
@@ -5262,19 +5292,14 @@ Seattle Earth and Space Sciences is now modeled as a geoscience STEM transfer wh
 - `PHYS 225`
 - `PHYS 229`
 - `PHYS 298`
-- `BIOL& 211`
-- `BIOL& 212`
-- `BIOL& 213`
 
 #### Required sequences for specific credits
 
 - Required before application: Calculus I, II, and III -> `MATH& 151`, `MATH& 152`, `MATH& 163`. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`. note: Current UW guidance accepts MATH& 163 for MATH 126. Older UW and Green River materials also use the MATH& 153 + MATH& 254 combination, which UW lists as transferring as MATH 126, 224, and 2XX credit when both courses are completed.
 - Required before application: General chemistry sequence -> `CHEM& 161`, `CHEM& 162`, `CHEM& 163`. note: General chemistry supports core earth and space science preparation.
 - Required before application: Physics support -> `PHYS& 221`, `PHYS& 222`, `PHYS& 114`. complete at least 1 course from this set. note: Physics readiness supports quantitative geoscience and space-science coursework.
-- Required before application: BIOL 180 -> `BIOL& 211`, `BIOL& 212`, `BIOL& 213`. note: The current official degree page names BIOL 180 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Required before application: PHYS 114 -> `PHYS& 114`, `PHYS& 154`. note: The current official degree page names PHYS 114 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Required before application: PHYS 115 -> `PHYS& 115`, `PHYS& 155`. note: The current official degree page names PHYS 115 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Required before application: PHYS 116 -> `PHYS& 116`, `PHYS& 156`. note: The current official degree page names PHYS 116 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: ESS 202 -> `GEOL 206`. note: The current official degree page names ESS 202 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: PHYS 123 -> `PHYS& 223`. note: The current official degree page names PHYS 123 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
 - Worth finishing at Green River: Earth-science context -> `GEOL& 101`, `GEOL& 115`, `GEOL& 121`. complete at least 1 course from this set. note: Earth-science context can ease transition into upper-division ESS field and systems courses.
 - GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
 - GRC sequence: `PHYS& 221 -> PHYS& 222 -> PHYS& 223` for calculus-based physics.
@@ -5282,17 +5307,11 @@ Seattle Earth and Space Sciences is now modeled as a geoscience STEM transfer wh
 - Source-backed note: Use the B.A. as the broad default path unless the student has clearly chosen a B.S. option in Geology, Biology, Geoscience, or Physics.
 - Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
 - Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0168:biology:bioland-211-212-213-6-6-6-formerly-biol-201-202-203.
-- Source-backed note: Added the Green River course path BIOL& 211, BIOL& 212, BIOL& 213 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Supporting Science (24-25 credits): CHEM 152, CHEM 162; either both BIOL 180 and BIOL 200 or BIOL 240; and one of BIOL 220 or BIOL 240, PHYS 115/PHYS 118, PHYS 122, MATH 126 or ESS 310, STAT 290, STAT 311 or STAT 390.
-- Source-backed note: Guide-backed rule: uw-grc-guide:1187:physics:physand-114-154-5-5-formerly-phys-110-150.
-- Source-backed note: Added the Green River course path PHYS& 114, PHYS& 154 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Suggested First- and Second-Year College Courses: Q SCI 291, Q SCI 292 or MATH 124, MATH 125; PHYS 114/PHYS 117 or PHYS 121; CHEM 142. | Basic Supporting Science (20 credits): CHEM 142; Q SCI 291, Q SCI 292 or MATH 124, MATH 125; PHYS 114/PHYS 117 or PHYS 121. | Suggested First- and Second-Year Courses: MATH 124, MATH 125, and MATH 126 or ESS 310; PHYS 121, PHYS 122, PHYS 123 or PHYS 114/PHYS 117, PHYS 115/PHYS 118, PHYS 116/PHYS 119; CHEM 142.
-- Source-backed note: Guide-backed rule: uw-grc-guide:1188:physics:physand-115-155-5-5-formerly-phys-111-151.
-- Source-backed note: Added the Green River course path PHYS& 115, PHYS& 155 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Suggested First- and Second-Year Courses: MATH 124, MATH 125, and MATH 126 or ESS 310; PHYS 121, PHYS 122, PHYS 123 or PHYS 114/PHYS 117, PHYS 115/PHYS 118, PHYS 116/PHYS 119; CHEM 142. | Supporting Science (24-25 credits): CHEM 152, CHEM 162; either both BIOL 180 and BIOL 200 or BIOL 240; and one of BIOL 220 or BIOL 240, PHYS 115/PHYS 118, PHYS 122, MATH 126 or ESS 310, STAT 290, STAT 311 or STAT 390. | Suggested First- and Second-Year Courses: MATH 124, MATH 125, and MATH 126 or ESS 310; PHYS 121, PHYS 122, PHYS 123 or PHYS 114/PHYS 117, PHYS 115/PHYS 118, PHYS 116/PHYS 119; CHEM 142.
-- Source-backed note: Guide-backed rule: uw-grc-guide:1189:physics:physand-116-156-5-5-formerly-phys-112-152.
-- Source-backed note: Added the Green River course path PHYS& 116, PHYS& 156 because the current planner rows did not expose it yet.
+- Source-backed note: Choice-set supporting UW codes: ESS 203.
+- Source-backed note: Choice-set resolution strategies: auto-promoted-guide-direct-equivalent.
+- Source-backed note: Requirement cue lines: ESS Geoscience 200-level Core (3-5 credits): One of ESS 201, ESS 202, ESS 203, ESS 204, ESS 205, or ESS 230
+- Source-backed note: Guide-backed rule: uw-grc-guide:1198:physics:physand-223-5-formerly-phys-203.
+- Source-backed note: Added the Green River course path PHYS& 223 because the current planner rows did not expose it yet.
 - Source-backed note: Requirement cue lines: Suggested First- and Second-Year Courses: MATH 124, MATH 125, and MATH 126 or ESS 310; PHYS 121, PHYS 122, PHYS 123 or PHYS 114/PHYS 117, PHYS 115/PHYS 118, PHYS 116/PHYS 119; CHEM 142. | Suggested First- and Second-Year Courses: MATH 124, MATH 125, and MATH 126 or ESS 310; PHYS 121, PHYS 122, PHYS 123 or PHYS 114/PHYS 117, PHYS 115/PHYS 118, PHYS 116/PHYS 119; CHEM 142. | Supporting Science (16-20 credits): MATH 126 or ESS 310; PHYS 115/PHYS 118 or PHYS 122; and two from the following: PHYS 116/PHYS 119 or PHYS 123, CHEM 152, either AMATH 351 or MATH 307, MATH 308, and either STAT 290, STAT 311, or STAT 390
 
 
@@ -5307,12 +5326,10 @@ Seattle Economics is now modeled as a quantitative social-science transfer where
 
 ##### Links Used
 
-- [UW Economics undergraduate program](https://econ.washington.edu/undergraduate)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
+- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 - [UW Economics admissions page](https://admit.washington.edu/majors/economics/)
-- [UW Economics BA requirements](https://econ.washington.edu/bachelor-arts)
-- [UW Economics BS requirements](https://econ.washington.edu/bachelor-science)
-- [UW Choosing Your Economics Degree guide](https://econ.washington.edu/choosing-your-economics-degree)
+- [Degree requirements](https://www.washington.edu/students/gencat/program/S/Economics-135.html) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 
 ##### Economics planning baseline
 
@@ -5364,10 +5381,27 @@ Seattle Economics is now modeled as a quantitative social-science transfer where
 - Required before application: Microeconomics -> `ECON& 201`
 - Required before application: Macroeconomics -> `ECON& 202`
 - Required before application: Writing support -> `ENGL& 101`, `ENGL 128`. complete at least 1 course from this set
+- Required before enrollment: GEOG 258 -> `GIS 100`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
+- Required before enrollment: MATH 125 -> `MATH& 152`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the degree still needs this math requirement either way.
+- Required before enrollment: MATH 126 -> `MATH& 163`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the degree still needs this math requirement either way.
+- Required before enrollment: MATH 208 -> `MATH 240`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the degree still needs this math requirement either way.
 - Worth finishing at Green River: Statistics support -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set. note: Statistics support helps prepare for econometrics and quantitative economics coursework.
 - GRC sequence: Business / less-calculus-heavy planning commonly uses `MATH& 141 -> MATH& 142` or `MATH 147 -> MATH& 148`. `MATH& 146` and `MATH 256` are standalone quantitative options.
 - GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
 - Source-backed note: Use the B.A. as the default economics row unless the student clearly wants the B.S. and has the full calculus-plus-statistics preparation.
+- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
+- Source-backed note: Source parse confidence: high.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0577:geographic-information-systems:gis-100-8.
+- Source-backed note: Added the Green River course path GIS 100 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: One course from SOC 225, INFO 351, GEOG 258
+- Source-backed note: Guide-backed rule: uw-grc-guide:0793:mathematics:mathand-152-5-formerly-math-125.
+- Source-backed note: Added the Green River course path MATH& 152 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: Suggested First- and Second-Year College Courses: ECON 200, ECON 201, and MATH 120, MATH 124 and STAT 311. Additional calculus preparation during the first year is strongly recommended as MATH 125 and MATH 126 are required for admission. Courses that develop strong analytical and quantitative-reasoning skills. | Minimum 45 quarter credits completed, including ECON 200, ECON 201; one of STAT 311, STAT 341, or STAT 390; MATH 124, MATH 125, MATH 126 (or MATH 134, MATH 135, MATH 136) | MATH 124, MATH 125, MATH 126 (or MATH 134, MATH 135, MATH 136)
+- Source-backed note: Guide-backed rule: uw-grc-guide:0798:mathematics:mathand-163-5.
+- Source-backed note: Added the Green River course path MATH& 163 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0815:mathematics:math-240-5.
+- Source-backed note: Added the Green River course path MATH 240 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: MATH 208 or AMATH 352
 
 
 ### Education Studies
@@ -5384,7 +5418,6 @@ Seattle Education Studies is now modeled as a social-and-educational-analysis tr
 - [UW Education Studies program](https://education.uw.edu/programs/undergraduate/education-studies)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 - [UW Education Studies admissions page](https://admit.washington.edu/majors/education-studies/)
-- [UW Education Studies program page](https://education.washington.edu/academics/program/ba-education-studies-0)
 
 ##### Education Studies planning baseline
 
@@ -5639,7 +5672,6 @@ ECE is another strong 999P match. The path works especially well when the studen
 
 - [UW ECE degree requirements](https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/)
 - [UW ECE degree requirements](https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/) - Auto-promoted from the parsed primary degree page on April 8, 2026.
-- [UW ECE admission requirements](https://www.ece.washington.edu/academics/bachelor-of-science/bs-admissions-requirements/)
 - [UW ECE pathways](https://www.ece.uw.edu/academics/bachelor-of-science/bsece/pathways/)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 - [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
@@ -5734,7 +5766,6 @@ ECE is another strong 999P match. The path works especially well when the studen
 - `CHEM 296`
 - `CHEM 299`
 - `BIOL 111`
-- `BIOL& 100`
 - `BIOL& 211`
 - `BIOL& 212`
 - `BIOL& 213`
@@ -5745,9 +5776,8 @@ ECE is another strong 999P match. The path works especially well when the studen
 - Required before application: CSE 122 or CSE 123 -> `CS 121`, `CS 122`, `CS 123`. complete at least 2 courses from this set. note: Completing the full three-course sequence is the safest Green River option.
 - Required before application: PHYS 121 and PHYS 122 -> `PHYS& 221`, `PHYS& 222`
 - Required before application: English composition -> `ENGL& 101`
-- Required before application: BIOL 161 -> `BIOL 111`. note: The current official degree page names BIOL 161 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Required before application: BIOL 220 -> `BIOL& 211`, `BIOL& 212`, `BIOL& 213`. note: The current official degree page names BIOL 220 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Required before application: CSE 143 -> `CS 145`. note: The current official degree page names CSE 143 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: CHEM 152 -> `CHEM& 162`, `CHEM& 163`. note: The current official degree page names CHEM 152 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: CHEM 220 -> `CHEM& 131`. note: The current official degree page names CHEM 220 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
 - Required before enrollment: MATH 207 or AMATH 351 -> `MATH 238`. note: ECE counts differential equations or AMATH 351 in the math-and-science block, so finishing it before transfer makes the first UW year cleaner.
 - Required before enrollment: Two additional science / math depth options -> `CHEM& 161`, `PHYS& 223`, `MATH 240`, `MATH& 254`. complete at least 2 courses from this set. note: ECE accepts several second-tier science and math options; these Green River classes are the cleanest substitutes.
 - Worth finishing at Green River: Circuit analysis head start -> `ENGR& 204`. note: Not a formal ECE admission requirement, but it is the cleanest Green River circuit head start for the EE 215 / EE 201 sequence.
@@ -5762,15 +5792,11 @@ ECE is another strong 999P match. The path works especially well when the studen
 - Source-backed note: Validated against the current UW ECE admissions, degree-requirements, and pathways pages on April 2, 2026.
 - Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
 - Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0145:biology:biol-111-5-see-also-biol-111-combined-entry.
-- Source-backed note: Added the Green River course path BIOL 111 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Any BIOL class except for BIOL 100: Introductory Biology , BIOL 161: Advanced Placement (AP) in General Biology 1 , BIOL 162: Advanced Placement (AP) in General Biology 2
-- Source-backed note: Guide-backed rule: uw-grc-guide:0168:biology:bioland-211-212-213-6-6-6-formerly-biol-201-202-203.
-- Source-backed note: Added the Green River course path BIOL& 211, BIOL& 212, BIOL& 213 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Two courses from BIOL 130 , BIOL 220 , CHEM 142 (or CHEM 143 or CHEM 145 ), MATH 224 , PHYS 123 (or PHYS 143 )
-- Source-backed note: Guide-backed rule: uw-grc-guide:0277:computer-science:cs-145-5-formerly-c-sci-145.
-- Source-backed note: Added the Green River course path CS 145 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Either CSE 123: Intro to Computer Programming III or CSE 143: Computer Programming II | Either CSE 123: Intro to Computer Programming III or CSE 143: Computer Programming II
+- Source-backed note: Guide-backed rule: uw-grc-guide:0205:chemistry:chemand-162-163-6-6-formerly-chem-150-160.
+- Source-backed note: Added the Green River course path CHEM& 162, CHEM& 163 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: CHEM 152: General Chemistry , CHEM 153: Accelerated General Chemistry , CHEM 155: Honors General Chemistry , CHEM 220: Principles of Chemistry II
+- Source-backed note: Guide-backed rule: uw-grc-guide:0197:chemistry:chemand-131-5-formerly-chem-102.
+- Source-backed note: Added the Green River course path CHEM& 131 because the current planner rows did not expose it yet.
 
 
 ### English - Creative Writing
@@ -5784,11 +5810,8 @@ Seattle English Creative Writing is now modeled as a writing-sequence transfer w
 
 ##### Links Used
 
-- [UW English Creative Writing program](https://english.washington.edu/creative-writing)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 - [UW English Creative Writing admissions page](https://admit.washington.edu/majors/english-creative-writing/)
-- [UW English major Creative Writing option requirements](https://english.washington.edu/english-major-creative-writing-option)
-- [UW Creative Writing option application details](https://english.washington.edu/how-apply-undergraduate-creative-writing-option)
 - [UW English LLC option requirements](https://english.washington.edu/english-language-literature-and-culture-option)
 
 ##### English Creative Writing planning baseline
@@ -5861,10 +5884,8 @@ Seattle English LLC is now modeled as a language-and-literature transfer where c
 
 ##### Links Used
 
-- [UW English Language, Literature and Culture program](https://english.washington.edu/language-literature-and-culture)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 - [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
-- [UW English LLC admissions page](https://admit.washington.edu/majors/english-language-literature-culture/)
 - [UW English LLC option requirements](https://english.washington.edu/english-language-literature-and-culture-option)
 - [UW English LLC option requirements](https://english.washington.edu/english-language-literature-and-culture-option) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 
@@ -5924,13 +5945,33 @@ Seattle English LLC is now modeled as a language-and-literature transfer where c
 
 - Required before application: Composition and analytical writing sequence -> `ENGL& 101`, `ENGL 126`, `ENGL 127`, `ENGL 128`. complete at least 1 course from this set. note: LLC planning requires strong writing and rhetorical analysis readiness.
 - Required before application: Literature foundation -> `ENGL& 111`, `ENGL& 112`, `ENGL& 113`. complete at least 1 course from this set. note: Literature survey support prepares students for upper-division English analysis.
-- Required before application: ENGL 250 -> `ENGL& 244`, `ENGL& 245`. note: The current official degree page names ENGL 250 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: ENGL 200 -> `ENGL 120`. note: The current official degree page names ENGL 200 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: ENGL 207 -> `ENGL 181`. note: The current official degree page names ENGL 207 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: ENGL 210 -> `ENGL& 254`. note: The current official degree page names ENGL 210 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: ENGL 211 -> `ENGL& 255`. note: The current official degree page names ENGL 211 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: ENGL 213 -> `ENGL& 256`. note: The current official degree page names ENGL 213 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: ENGL 225 -> `ENGL& 220`. note: The current official degree page names ENGL 225 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
 - UW full-credit combo: `ENGL& 244 + ENGL& 245` together yield `ENGL 250 (5)` plus additional `2XX` credit.
 - Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
 - Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0515:english:england-244-245-5-5-formerly-engl-221-222.
-- Source-backed note: Added the Green River course path ENGL& 244, ENGL& 245 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: ENGL 250: American Literature
+- Source-backed note: Guide-backed rule: uw-grc-guide:0462:english:engl-120-5.
+- Source-backed note: Added the Green River course path ENGL 120 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: ENGL 200: Reading Literary Forms
+- Source-backed note: Guide-backed rule: uw-grc-guide:0489:english:engl-181-5.
+- Source-backed note: Added the Green River course path ENGL 181 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: ENGL 207: Introduction to Cultural Studies (GML) | ENGL 207: Introduction to Cultural Studies (P&D)
+- Source-backed note: Guide-backed rule: uw-grc-guide:0524:english:england-254-5-formerly-engl-265.
+- Source-backed note: Added the Green River course path ENGL& 254 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: ENGL 210 Medieval and Early Modern Literature, 400 to 1600
+- Source-backed note: Guide-backed rule: uw-grc-guide:0525:english:england-255-5-formerly-engl-266.
+- Source-backed note: Added the Green River course path ENGL& 255 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: ENGL 211 Literature, 1500-1800
+- Source-backed note: Guide-backed rule: uw-grc-guide:0526:english:england-256-5-formerly-engl-267.
+- Source-backed note: Added the Green River course path ENGL& 256 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: ENGL 213: Modern and Postmodern Literature
+- Source-backed note: Guide-backed rule: uw-grc-guide:0503:english:england-220-5-formerly-engl-240.
+- Source-backed note: Added the Green River course path ENGL& 220 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: ENGL 225 Shakespeare
 
 
 ### Environmental Design & Sustainability
@@ -6139,19 +6180,15 @@ Current Green River -> UW planning reference for Environmental Design & Sustaina
 
 #### Required sequences for specific credits
 
-- Required before enrollment: ESS 301 -> `GEOL& 208`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Required before enrollment: ESS 305 -> `GEOL 200`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
+- Required before enrollment: ESS 101 -> `N SCI 100`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 - GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
 - Planner flag: This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves.
 - Source-backed note: supplemental source-backed prep only; combine design/art foundations with environment and STEM support
 - Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
 - Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0619:geology:geoland-208-5-formerly-geol-208.
-- Source-backed note: Added the Green River course path GEOL& 208 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Natural Sciences (NSc) (20 credits): one course (usually ESS 101, or equivalent) shown as the prerequisite for either ESS 315/ENVIR 313 or ESS 301; additional NSc credits to total 20 credits | Geology (5 credits): one of ESS 301, ESS 305, or ESS 315/ENVIR 313
-- Source-backed note: Guide-backed rule: uw-grc-guide:0616:geology:geol-200-5.
-- Source-backed note: Added the Green River course path GEOL 200 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Geology (5 credits): one of ESS 301, ESS 305, or ESS 315/ENVIR 313
+- Source-backed note: Guide-backed rule: uw-grc-guide:0964:natural-science:n-sci-100-5.
+- Source-backed note: Added the Green River course path N SCI 100 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: Natural Sciences (NSc) (20 credits): one course (usually ESS 101, or equivalent) shown as the prerequisite for either ESS 315/ENVIR 313 or ESS 301; additional NSc credits to total 20 credits
 
 
 ### Environmental Engineering
@@ -6165,13 +6202,13 @@ Environmental Engineering is a custom hybrid because it wants biology and thermo
 
 ##### Links Used
 
-- [UW Environmental Engineering transfer application timeline](https://www.ce.washington.edu/future/undergrad/environmental/transfer)
 - [UW Environmental Engineering degree sheet](https://www.ce.washington.edu/sites/default/files/pdfs/current/undergrad/uw-cee-bsenve-degree-sheet.pdf)
 - [UW Environmental Engineering degree sheet](https://www.ce.washington.edu/sites/default/files/pdfs/current/undergrad/uw-cee-bsenve-degree-sheet.pdf) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [UW Environmental Engineering prerequisites](https://www.ce.washington.edu/future/undergrad/environmental/prereq)
 - [UW Environmental Engineering degree page](https://www.ce.washington.edu/current/undergrad/environmental)
 - [UW Environmental Engineering major coursework](https://www.ce.washington.edu/current/undergrad/environmental/major-coursework)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
+- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### BSENVE lower-division foundation
 
@@ -6310,6 +6347,8 @@ Environmental Engineering is a custom hybrid because it wants biology and thermo
 - `IDS 102`
 - `IDS 103`
 - `OCEA& 101`
+- `CS 123`
+- `CS& 141`
 - `NUTR& 101`
 
 #### Required sequences for specific credits
@@ -6319,7 +6358,10 @@ Environmental Engineering is a custom hybrid because it wants biology and thermo
 - Required before application: PHYS 121 and PHYS 122 -> `PHYS& 221`, `PHYS& 222`
 - Required before application: A A 210 -> `ENGR& 214`
 - Required before application: English composition -> `ENGL& 101`
-- Required before application: OCEAN 200 -> `OCEA& 101`. note: The current official degree page names OCEAN 200 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: ESRM 101 -> `NATRS 100`. note: The current official degree page names ESRM 101 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: ESRM 210 -> `NATRS 210`. note: The current official degree page names ESRM 210 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: ESS 212 -> `GEOL& 101`. note: The current official degree page names ESS 212 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: NUTR 200 -> `NUTR& 101`. note: The current official degree page names NUTR 200 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
 - Required before enrollment: MATH 207 or AMATH 351 -> `MATH 238`. note: Differential equations or AMATH 351 is part of the math-and-science preparation and is best finished before the upper-division engineering sequence.
 - Required before enrollment: BIOL 180 pathway -> `BIOL& 211`, `BIOL& 212`, `BIOL& 213`. note: Current UW Green River equivalencies award the clean BIOL 180 / 200 / 220 sequence only when BIOL& 211, 212, and 213 are all completed.
 - Required before enrollment: One approved computing course -> `ENGR 250`, `CS 121`, `CS 122`. complete at least 1 course from this set. note: Environmental Engineering expects one approved computing course. ENGR 250 is the cleanest current Green River match, while CS 121 or 122 still work when the student wants a programming-heavy route.
@@ -6337,10 +6379,15 @@ Environmental Engineering is a custom hybrid because it wants biology and thermo
 - Source-backed note: Validated against the current BSENVE transfer page, AUT25 degree sheet, and major-coursework pages on April 2, 2026.
 - Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
 - Source-backed note: Source parse confidence: high.
-- Source-backed note: Exact-title match source: catalog-metadata.
-- Source-backed note: Matched source title: Introduction to Oceanography.
-- Source-backed note: Matched Green River title: Introduction to Oceanography.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0937:natural-resources:natrs-100-5-formerly-fores-100.
+- Source-backed note: Added the Green River course path NATRS 100 because the current planner rows did not expose it yet.
 - Source-backed note: Requirement cue lines: Title: Bachelor of Science in Environmental Engineering (BSENVE/ENVE) University of Washington Prerequisites & General Electives Coursework Prerequisite Course Key ᐅ Application Requirements - Transfer/Interest Changers must complete by time of application (April 5). ᐅᐅ Enrollment Requirements - Transfer/Interest Changers must complete prior to enrollment in major. ENGRUD Students: Plan to complete all CEE prerequisite courses (application and enrollment requirements) before starting CEE Core Curriculum (Junior Year). Mathematics (24-25 credits) ᐅ Calculus w/ Analytic Geo. (Math 124/125/126) 15cr ᐅ ᐅ Di ff erential Equations (AMATH 351 or MATH 207) 3cr Matrix/Linear Algebra (AMATH 352 or MATH 208) 3cr Statistics (INDE 315, Q SCI 381, STAT 390 or STAT 290) 3-4cr Sciences (35 credits) ᐅ ᐅ Biology (BIOL 180) 5cr ᐅ General Chemistry 1 (CHEM 142) 5cr ᐅ General Chemistry 2 (CHEM 152) 5cr ( Chem must include stoichiometry, equilibrium, and kinetics. Transfer students may need to take the 3 course series to cover these topics.) ᐅ Mechanics (PHYS 121) 5cr ᐅᐅ Elect-Mag & Oscillation (PHYS 122) 5cr Earth science elective 3-5cr (Choose from: ATMS 101 (5cr), ATMS 211 (5cr, SSc), ATMS 212 (5cr, SSc), ESRM 100 (5cr, SSc), ESRM 101 (5cr, SSc), ESRM 210 (5cr), ESS 106 (3cr, SSc), ESS 201 (3cr), ESS 211 (5cr), ESS 212 (5cr), NUTR 200 (4cr), OCEAN 102 (5cr, SSc), or OCEAN 200 (3cr)) Engineering Fundamentals (12 credits) ᐅ ᐅ Computer Programming 4cr (AMATH 301, CSE 121, 122, 123, 142 or 160) ᐅ Statics (AA 210) 4cr Thermodynamics (AA 260, ME 323, or PHYS 224) 4cr Written Communication (12 credits) ᐅ English Composition 5cr Additional Composition or Writing 7cr Economics (4-5 credits) CEE Topic Requirement 4-5cr (INDE 250 , ECON 200/201, or ESRM/ECON/ENVIR 235) *ECON/ESRM/ENVIR courses may also be applied to SSc req. Areas of Inquiry (24 credits) Arts & Humanities (A&H) 10cr Social Sciences (SSc) 10cr Additional A&H and/or SSc 4cr Diversity (5 credit minimum) 5cr One course from UW’s approved DIV list. See MyPlan. BSENVE Major Coursework The BSENVE degree encompasses extensive coursework, labs, and project experiences centered on microbiology, chemistry, and sustainability. Its particular focus is on water and air quality, water/wastewater treatment, hydrology, and hydrodynamics. BSENVE students gain a deep understanding of the interactions among natural and human systems and develop innovative solutions to address environmental challenges. Core Curriculum (30 credits) (See sample 4 year plan on second page for core curriculum sequencing.) Intro to Fluid Mechanics (CEE 347) 5cr Hydrology & Env. Fluid Mechanics (CEE 348) 4cr Case Studies in Env. Engineering (CEE 349) 3cr Mass & Energy Balances in Env. Engr. (CEE 350) 4cr Intro to Microbial Principles in Env. Engr. (CEE 352) 5cr Intro to Chemical Principles in Env. Engr. (CEE 354) 5cr Quant. & Concept.Tools for Sustainability (CEE 356) 4cr Capstone and Professional Practice (7 credits) Capstone Design Course 5cr ● CEE 444 or 445, taken SPR qtr of senior year Professional Practice (CEE 440) 2cr ● CEE 440 taken in junior year. Technical Electives (TE) (15 credits) ● Technical Electives are CEE 400-level courses that provide students with in-depth knowledge and design experience. ● See BSENVE Technical Electives list for details. Engineering & Science Electives (E&S) (13 cr.) ● BSENVE students are required to complete 13 credits of Engineering and Science Elective coursework. See the BSENVE E&S Elective list for complete details. General Electives Additional credits to meet the 180 total required for the BSENVE degree. Academic Planning Notes: • Areas of Inquiry courses can also count toward Diversity and Additional Writing. Use MyPlan fi lters to identify courses that satisfy multiple requirements. • CEE Study Abroad opportunities are a great way to satisfy degree requirements. B SENVE Degree Sheet (as of AUT24) Updated 2/2025 | [Page 1] Bachelor of Science in Environmental Engineering (BSENVE/ENVE) University of Washington Prerequisites & General Electives Coursework Prerequisite Course Key ᐅ Application Requirements - Transfer/Interest Changers must complete by time of application (April 5). ᐅᐅ Enrollment Requirements - Transfer/Interest Changers must complete prior to enrollment in major. ENGRUD Students: Plan to complete all CEE prerequisite courses (application and enrollment requirements) before starting CEE Core Curriculum (Junior Year). Mathematics (24-25 credits) ᐅ Calculus w/ Analytic Geo. (Math 124/125/126) 15cr ᐅ ᐅ Di ff erential Equations (AMATH 351 or MATH 207) 3cr Matrix/Linear Algebra (AMATH 352 or MATH 208) 3cr Statistics (INDE 315, Q SCI 381, STAT 390 or STAT 290) 3-4cr Sciences (35 credits) ᐅ ᐅ Biology (BIOL 180) 5cr ᐅ General Chemistry 1 (CHEM 142) 5cr ᐅ General Chemistry 2 (CHEM 152) 5cr ( Chem must include stoichiometry, equilibrium, and kinetics. Transfer students may need to take the 3 course series to cover these topics.) ᐅ Mechanics (PHYS 121) 5cr ᐅᐅ Elect-Mag & Oscillation (PHYS 122) 5cr Earth science elective 3-5cr (Choose from: ATMS 101 (5cr), ATMS 211 (5cr, SSc), ATMS 212 (5cr, SSc), ESRM 100 (5cr, SSc), ESRM 101 (5cr, SSc), ESRM 210 (5cr), ESS 106 (3cr, SSc), ESS 201 (3cr), ESS 211 (5cr), ESS 212 (5cr), NUTR 200 (4cr), OCEAN 102 (5cr, SSc), or OCEAN 200 (3cr)) Engineering Fundamentals (12 credits) ᐅ ᐅ Computer Programming 4cr (AMATH 301, CSE 121, 122, 123, 142 or 160) ᐅ Statics (AA 210) 4cr Thermodynamics (AA 260, ME 323, or PHYS 224) 4cr Written Communication (12 credits) ᐅ English Composition 5cr Additional Composition or Writing 7cr Economics (4-5 credits) CEE Topic Requirement 4-5cr (INDE 250 , ECON 200/201, or ESRM/ECON/ENVIR 235) *ECON/ESRM/ENVIR courses may also be applied to SSc req. Areas of Inquiry (24 credits) Arts & Humanities (A&H) 10cr Social Sciences (SSc) 10cr Additional A&H and/or SSc 4cr Diversity (5 credit minimum) 5cr One course from UW’s approved DIV list. See MyPlan. BSENVE Major Coursework The BSENVE degree encompasses extensive coursework, labs, and project experiences centered on microbiology, chemistry, and sustainability. Its particular focus is on water and air quality, water/wastewater treatment, hydrology, and hydrodynamics. BSENVE students gain a deep understanding of the interactions among natural and human systems and develop innovative solutions to address environmental challenges. Core Curriculum (30 credits) (See sample 4 year plan on second page for core curriculum sequencing.) Intro to Fluid Mechanics (CEE 347) 5cr Hydrology & Env. Fluid Mechanics (CEE 348) 4cr Case Studies in Env. Engineering (CEE 349) 3cr Mass & Energy Balances in Env. Engr. (CEE 350) 4cr Intro to Microbial Principles in Env. Engr. (CEE 352) 5cr Intro to Chemical Principles in Env. Engr. (CEE 354) 5cr Quant. & Concept.Tools for Sustainability (CEE 356) 4cr Capstone and Professional Practice (7 credits) Capstone Design Course 5cr ● CEE 444 or 445, taken SPR qtr of senior year Professional Practice (CEE 440) 2cr ● CEE 440 taken in junior year. Technical Electives (TE) (15 credits) ● Technical Electives are CEE 400-level courses that provide students with in-depth knowledge and design experience. ● See BSENVE Technical Electives list for details. Engineering & Science Electives (E&S) (13 cr.) ● BSENVE students are required to complete 13 credits of Engineering and Science Elective coursework. See the BSENVE E&S Elective list for complete details. General Electives Additional credits to meet the 180 total required for the BSENVE degree. Academic Planning Notes: • Areas of Inquiry courses can also count toward Diversity and Additional Writing. Use MyPlan fi lters to identify courses that satisfy multiple requirements. • CEE Study Abroad opportunities are a great way to satisfy degree requirements. B SENVE Degree Sheet (as of AUT24) Updated 2/2025
+- Source-backed note: Guide-backed rule: uw-grc-guide:0952:natural-resources:natrs-210-5.
+- Source-backed note: Added the Green River course path NATRS 210 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0603:geology:geoland-101-5-formerly-geol-101.
+- Source-backed note: Added the Green River course path GEOL& 101 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0972:nutrition:nutrand-101-5.
+- Source-backed note: Added the Green River course path NUTR& 101 because the current planner rows did not expose it yet.
 
 
 ### Environmental Public Health
@@ -6480,9 +6527,11 @@ Current Green River -> UW planning reference for Environmental Public Health. Us
 
 #### Required sequences for specific credits
 
-- Required before application: BIOL 180 -> `BIOL& 211`, `BIOL& 212`, `BIOL& 213`. note: The current official degree page names BIOL 180 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Required before application: MICROM 301 -> `BIOL& 260`. note: The current official degree page names MICROM 301 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Required before application: PHYS 114 -> `PHYS& 114`, `PHYS& 154`. note: The current official degree page names PHYS 114 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: CHEM 142 -> `CHEM& 161`. note: The current official degree page names CHEM 142 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: CHEM 220 -> `CHEM& 131`. note: The current official degree page names CHEM 220 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: CHEM 237 -> `CHEM& 261`. note: The current official degree page names CHEM 237 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: MATH 111 -> `MATH 147`. note: The current official degree page names MATH 111 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: STAT 220 -> `MATH& 146`. note: The current official degree page names STAT 220 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
 - Both: `BIOL& 211 -> BIOL& 212 -> BIOL& 213`. All three are needed for the full `BIOL 180, 200, 220, 2XX (3)` outcome.
 - Both: `CHEM& 161 -> CHEM& 162 -> CHEM& 163`. Current UW full-credit note: `CHEM& 162 + CHEM& 163` gives `CHEM 152, 162 (5, 5), 1XX (2)`; otherwise each is weaker `CHEM 1XX`.
 - GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
@@ -6490,15 +6539,21 @@ Current Green River -> UW planning reference for Environmental Public Health. Us
 - Source-backed note: supportive pre-health prep only
 - Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
 - Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0168:biology:bioland-211-212-213-6-6-6-formerly-biol-201-202-203.
-- Source-backed note: Added the Green River course path BIOL& 211, BIOL& 212, BIOL& 213 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: BIOL 180, 200, 220 (15 credits)
-- Source-backed note: Guide-backed rule: uw-grc-guide:0171:biology:bioland-260-5-formerly-biol-210.
-- Source-backed note: Added the Green River course path BIOL& 260 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: MICROM 301 (3) General Microbiology (AUT and SPR)
-- Source-backed note: Guide-backed rule: uw-grc-guide:1187:physics:physand-114-154-5-5-formerly-phys-110-150.
-- Source-backed note: Added the Green River course path PHYS& 114, PHYS& 154 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: MATH 111, MATH 120, or department approved math course (5 credits). This course is a graduation requirement, but we recommend that students complete the math requirement before they register for the other supporting science courses. The recommended preparation for PHYS 114 is a previous algebra course covering concepts such as trigonometry and exponential functions. The recommended preparation for CHEM 142 is a good working knowledge of algebra. | PHYS 114/117 (5 credits)
+- Source-backed note: Guide-backed rule: uw-grc-guide:0204:chemistry:chemand-161-6-formerly-chem-140.
+- Source-backed note: Added the Green River course path CHEM& 161 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: MATH 111, MATH 120, or department approved math course (5 credits). This course is a graduation requirement, but we recommend that students complete the math requirement before they register for the other supporting science courses. The recommended preparation for PHYS 114 is a previous algebra course covering concepts such as trigonometry and exponential functions. The recommended preparation for CHEM 142 is a good working knowledge of algebra. | CHEM 142, 152, CHEM 220 (15 credits) | CHEM 142, 152, CHEM 223, 224, 241 (21 credits)
+- Source-backed note: Guide-backed rule: uw-grc-guide:0197:chemistry:chemand-131-5-formerly-chem-102.
+- Source-backed note: Added the Green River course path CHEM& 131 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: CHEM 142, 152, CHEM 220 (15 credits)
+- Source-backed note: Guide-backed rule: uw-grc-guide:0218:chemistry:chemand-261-6-formerly-chem-235.
+- Source-backed note: Added the Green River course path CHEM& 261 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: CHEM 142, 152, 162, CHEM 237, 238, 241 (26 credits)
+- Source-backed note: Guide-backed rule: uw-grc-guide:0789:mathematics:math-147-5-formerly-math-156.
+- Source-backed note: Added the Green River course path MATH 147 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: MATH 111, MATH 120, or department approved math course (5 credits). This course is a graduation requirement, but we recommend that students complete the math requirement before they register for the other supporting science courses. The recommended preparation for PHYS 114 is a previous algebra course covering concepts such as trigonometry and exponential functions. The recommended preparation for CHEM 142 is a good working knowledge of algebra.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0788:mathematics:mathand-146-5.
+- Source-backed note: Added the Green River course path MATH& 146 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: BIOST 310 (Recommended), STAT 220, STAT 311, or Q SCI 381, or department approved statistics course (4-5 credits)
 
 
 ### Environmental Science & Terrestrial Resource Management
@@ -6641,9 +6696,7 @@ Current Green River -> UW planning reference for Environmental Science & Terrest
 - `MATH 256`
 - `MATH 297`
 - `BIOL 111`
-- `CMST& 210`
 - `CMST& 220`
-- `ECON& 201`
 - `ECON& 202`
 - `ENGL& 101`
 - `ENGR& 224`
@@ -6654,14 +6707,21 @@ Current Green River -> UW planning reference for Environmental Science & Terrest
 
 #### Required sequences for specific credits
 
-- Required before application: AA 260 -> `ENGR& 224`. note: The current official degree page names AA 260 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Required before application: BIOL 161 -> `BIOL 111`. note: The current official degree page names BIOL 161 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Required before application: BIOL 180 -> `BIOL& 211`, `BIOL& 212`, `BIOL& 213`. note: The current official degree page names BIOL 180 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Required before application: ESRM 250 -> `GIS 202`. note: The current official degree page names ESRM 250 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Required before application: ESRM 323 -> `NATRS 293`. note: The current official degree page names ESRM 323 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Required before application: ESRM 368 -> `NATRS 180`, `NATRS 292`. note: The current official degree page names ESRM 368 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Required before application: ESRM 381 -> `FORES 197`. note: The current official degree page names ESRM 381 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Required before application: ESRM 430 -> `FORES 182`. note: The current official degree page names ESRM 430 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: CHEM 120 -> `CHEM& 121`. note: The current official degree page names CHEM 120 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: CHEM 142 -> `CHEM& 161`. note: The current official degree page names CHEM 142 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: CHEM 152 -> `CHEM& 162`, `CHEM& 163`. note: The current official degree page names CHEM 152 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: CHEM 220 -> `CHEM& 131`. note: The current official degree page names CHEM 220 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: CHEM 237 -> `CHEM& 261`. note: The current official degree page names CHEM 237 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: ECON 201 -> `ECON& 202`. note: The current official degree page names ECON 201 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: ENGL 131 -> `ENGL& 101`. note: The current official degree page names ENGL 131 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: ESS 212 -> `GEOL& 101`. note: The current official degree page names ESS 212 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: MATH 124 -> `MATH& 151`. note: The current official degree page names MATH 124 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: MATH 125 -> `MATH& 152`. note: The current official degree page names MATH 125 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: MATH 126 -> `MATH& 163`. note: The current official degree page names MATH 126 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: MATH 207 -> `MATH 238`. note: The current official degree page names MATH 207 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: MATH 208 -> `MATH 240`. note: The current official degree page names MATH 208 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: PHYS 121 -> `PHYS& 221`. note: The current official degree page names PHYS 121 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: PHYS 122 -> `PHYS& 222`. note: The current official degree page names PHYS 122 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
 - UW full-credit combo: `NATRS 180 + NATRS 292` has a special combined ESRM-major rule on the UW guide.
 - Both: `BIOL& 211 -> BIOL& 212 -> BIOL& 213`. All three are needed for the full `BIOL 180, 200, 220, 2XX (3)` outcome.
 - Both: `CHEM& 161 -> CHEM& 162 -> CHEM& 163`. Current UW full-credit note: `CHEM& 162 + CHEM& 163` gives `CHEM 152, 162 (5, 5), 1XX (2)`; otherwise each is weaker `CHEM 1XX`.
@@ -6670,37 +6730,54 @@ Current Green River -> UW planning reference for Environmental Science & Terrest
 - Source-backed note: Confirm the student's intended ESRM option before treating the upper-division UW course map as final.
 - Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
 - Source-backed note: Source parse confidence: high.
-- Source-backed note: Exact-title match source: catalog-metadata.
-- Source-backed note: Matched source title: Thermodynamics.
-- Source-backed note: Matched Green River title: Thermodynamics.
-- Source-backed note: Requirement cue lines: Suggested First- and Second-Year School Courses: CHEM 142, CHEM 152, CHEM 162 (or CHEM 143, CHEM 153; or CHEM 145, CHEM 155, CHEM 165); CHEM 223 or CHEM 237 or CHEM 257; ENGL 131 (or other 5-credit English composition course); AA 260; MATH 124, MATH 125, MATH 126, MATH 207, MATH 208 (or MATH 134, MATH 135, MATH 136); PHYS 121, PHYS 122 (or PHYS 141, PHYS 142)
-- Source-backed note: Guide-backed rule: uw-grc-guide:0145:biology:biol-111-5-see-also-biol-111-combined-entry.
-- Source-backed note: Added the Green River course path BIOL 111 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Minimum course requirements: one of Q SCI 291, MATH 124, or MATH 134; one of Q SCI 292, MATH 125, or MATH 135; one of CHEM 120, CHEM 142, CHEM 143, or CHEM 145; one of CHEM 220, CHEM 152, CHEM 153, CHEM 155, or OCEAN 295; either BIOL 180 or both BIOL 161 and BIOL 162; 5 credits of English composition. | BIOL 161 and BIOL 162 | BIOL 161 and BIOL 162
-- Source-backed note: Guide-backed rule: uw-grc-guide:0168:biology:bioland-211-212-213-6-6-6-formerly-biol-201-202-203.
-- Source-backed note: Added the Green River course path BIOL& 211, BIOL& 212, BIOL& 213 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Suggested First- and Second-Year School Courses: ENGL 131 (or other 5-credit English composition course); BIOL 180, BIOL 200, BIOL 220; one of CHEM 120, CHEM 142, CHEM 143 or CHEM 145; one of CHEM 220, CHEM 152, CHEM 153, CHEM 155 or OCEAN 295; one of Q SCI 291, MATH 124, or MATH 134; one of Q SCI 292, MATH 125, or MATH 135; 5 credits English Composition. | Minimum course requirements: one of Q SCI 291, MATH 124, or MATH 134; one of Q SCI 292, MATH 125, or MATH 135; one of CHEM 120, CHEM 142, CHEM 143, or CHEM 145; one of CHEM 220, CHEM 152, CHEM 153, CHEM 155, or OCEAN 295; either BIOL 180 or both BIOL 161 and BIOL 162; 5 credits of English composition. | BIOL 180, BIOL 200; either BIOL 220 or FISH 270/MARBIO 270/OCEAN 270
-- Source-backed note: Guide-backed rule: uw-grc-guide:0582:geographic-information-systems:gis-202-5.
-- Source-backed note: Added the Green River course path GIS 202 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Core Courses (22 credits): ESRM 200, ESRM 201, ESRM 250, ESRM 300/SBSE 300, ESRM 304. | Core Courses (22 credits): ESRM 200, ESRM 201, ESRM 250, ESRM 300/SBSE 300, ESRM 304 | Core Courses (22 credits): ESRM 200, ESRM 201, ESRM 250, ESRM 300/SBSE 300, ESRM 304
-- Source-backed note: Guide-backed rule: uw-grc-guide:0959:natural-resources:natrs-293-5-formerly-fores-293.
-- Source-backed note: Added the Green River course path NATRS 293 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Natural Resource and Environmental Management Courses (29 credits): ESRM 323, ESRM 331/BIOL 331, ESRM 350; ESRM 381, ESRM 400, ESRM 426, ESRM 470 | Sustainable Forest Management Courses (39-40 credits): ESRM 323, ESRM 331/BIOL 331, ESRM 368, ESRM 400, either ESRM 426 or FISH 447/ESRM 447, ESRM 428, ESRM 430, SBSE 461/ESRM 461, ESRM 470
-- Source-backed note: Guide-backed rule: uw-grc-guide:0942:natural-resources:natrs-180-natrs-292-5-5.
-- Source-backed note: Added the Green River course path NATRS 180, NATRS 292 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Sustainable Forest Management Courses (39-40 credits): ESRM 323, ESRM 331/BIOL 331, ESRM 368, ESRM 400, either ESRM 426 or FISH 447/ESRM 447, ESRM 428, ESRM 430, SBSE 461/ESRM 461, ESRM 470
-- Source-backed note: Guide-backed rule: uw-grc-guide:0554:forest-resources:fores-197-3.
-- Source-backed note: Added the Green River course path FORES 197 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Natural Resource and Environmental Management Courses (29 credits): ESRM 323, ESRM 331/BIOL 331, ESRM 350; ESRM 381, ESRM 400, ESRM 426, ESRM 470
-- Source-backed note: Guide-backed rule: uw-grc-guide:0549:forest-resources:fores-182-5.
-- Source-backed note: Added the Green River course path FORES 182 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0196:chemistry:chemand-121-5-formerly-chem-101.
+- Source-backed note: Added the Green River course path CHEM& 121 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: Suggested First- and Second-Year School Courses: ENGL 131 (or other 5-credit English composition course); BIOL 180, BIOL 200, BIOL 220; one of CHEM 120, CHEM 142, CHEM 143 or CHEM 145; one of CHEM 220, CHEM 152, CHEM 153, CHEM 155 or OCEAN 295; one of Q SCI 291, MATH 124, or MATH 134; one of Q SCI 292, MATH 125, or MATH 135; 5 credits English Composition. | Minimum course requirements: one of Q SCI 291, MATH 124, or MATH 134; one of Q SCI 292, MATH 125, or MATH 135; one of CHEM 120, CHEM 142, CHEM 143, or CHEM 145; one of CHEM 220, CHEM 152, CHEM 153, CHEM 155, or OCEAN 295; either BIOL 180 or both BIOL 161 and BIOL 162; 5 credits of English composition. | CHEM 120; either CHEM 220 or OCEAN 295
+- Source-backed note: Guide-backed rule: uw-grc-guide:0204:chemistry:chemand-161-6-formerly-chem-140.
+- Source-backed note: Added the Green River course path CHEM& 161 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: Suggested First- and Second-Year School Courses: ENGL 131 (or other 5-credit English composition course); BIOL 180, BIOL 200, BIOL 220; one of CHEM 120, CHEM 142, CHEM 143 or CHEM 145; one of CHEM 220, CHEM 152, CHEM 153, CHEM 155 or OCEAN 295; one of Q SCI 291, MATH 124, or MATH 134; one of Q SCI 292, MATH 125, or MATH 135; 5 credits English Composition. | Minimum course requirements: one of Q SCI 291, MATH 124, or MATH 134; one of Q SCI 292, MATH 125, or MATH 135; one of CHEM 120, CHEM 142, CHEM 143, or CHEM 145; one of CHEM 220, CHEM 152, CHEM 153, CHEM 155, or OCEAN 295; either BIOL 180 or both BIOL 161 and BIOL 162; 5 credits of English composition. | CHEM 142; either CHEM 152 or OCEAN 295
+- Source-backed note: Guide-backed rule: uw-grc-guide:0205:chemistry:chemand-162-163-6-6-formerly-chem-150-160.
+- Source-backed note: Added the Green River course path CHEM& 162, CHEM& 163 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0197:chemistry:chemand-131-5-formerly-chem-102.
+- Source-backed note: Added the Green River course path CHEM& 131 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0218:chemistry:chemand-261-6-formerly-chem-235.
+- Source-backed note: Added the Green River course path CHEM& 261 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: Suggested First- and Second-Year School Courses: CHEM 142, CHEM 152, CHEM 162 (or CHEM 143, CHEM 153; or CHEM 145, CHEM 155, CHEM 165); CHEM 223 or CHEM 237 or CHEM 257; ENGL 131 (or other 5-credit English composition course); AA 260; MATH 124, MATH 125, MATH 126, MATH 207, MATH 208 (or MATH 134, MATH 135, MATH 136); PHYS 121, PHYS 122 (or PHYS 141, PHYS 142) | CHEM 142, CHEM 152, CHEM 162 (or CHEM 143, CHEM 153; or CHEM 145, CHEM 155, CHEM 165), CHEM 237 (or CHEM 223 or CHEM 257)
+- Source-backed note: Guide-backed rule: uw-grc-guide:0385:economics:econand-202-5-formerly-econ-200.
+- Source-backed note: Added the Green River course path ECON& 202 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: Economics (5 credits): one of ECON 200, ECON 201, ESRM 235/ENVIR 235/ECON 235, or FISH 230/ECON 230 | Economics (5 credits): one of ECON 200, ECON 201, ESRM 235/ENVIR 235/ECON 235, or FISH 230/ECON 230 | Economics (5 credits): one of ECON 200, ECON 201, ESRM 235/ENVIR 235/ECON 235, or FISH230/ECON 230
+- Source-backed note: Guide-backed rule: uw-grc-guide:0446:english:england-101-5-formerly-engl-110.
+- Source-backed note: Added the Green River course path ENGL& 101 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: Suggested First- and Second-Year School Courses: ENGL 131 (or other 5-credit English composition course); BIOL 180, BIOL 200, BIOL 220; one of CHEM 120, CHEM 142, CHEM 143 or CHEM 145; one of CHEM 220, CHEM 152, CHEM 153, CHEM 155 or OCEAN 295; one of Q SCI 291, MATH 124, or MATH 134; one of Q SCI 292, MATH 125, or MATH 135; 5 credits English Composition. | English Composition (C): one 5 credit course from the University list with a minimum 2.0 grade (ENGL 131 preferred) | English Composition (C): one 5 credit course from the University list with a minimum 2.0 grade (ENGL 131 preferred)
+- Source-backed note: Guide-backed rule: uw-grc-guide:0603:geology:geoland-101-5-formerly-geol-101.
+- Source-backed note: Added the Green River course path GEOL& 101 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: Earth Systems (3-5 credits): one of ATMOS 211, ESRM 210, ESS 201, ESS 212, or ESS 230/OCEAN 230 | Earth Systems (3-5 credits): one of ATMOS 211, ESRM 210, ESS 201, ESS 212, or ESS 230/OCEAN 230 | Earth Systems (3-5 credits): one of ATMOS 211, ESRM 210, ESS 201, ESS 212, or ESS 230/OCEAN 230
+- Source-backed note: Guide-backed rule: uw-grc-guide:0792:mathematics:mathand-151-5-formerly-math-124.
+- Source-backed note: Added the Green River course path MATH& 151 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: Suggested First- and Second-Year School Courses: ENGL 131 (or other 5-credit English composition course); BIOL 180, BIOL 200, BIOL 220; one of CHEM 120, CHEM 142, CHEM 143 or CHEM 145; one of CHEM 220, CHEM 152, CHEM 153, CHEM 155 or OCEAN 295; one of Q SCI 291, MATH 124, or MATH 134; one of Q SCI 292, MATH 125, or MATH 135; 5 credits English Composition. | Minimum course requirements: one of Q SCI 291, MATH 124, or MATH 134; one of Q SCI 292, MATH 125, or MATH 135; one of CHEM 120, CHEM 142, CHEM 143, or CHEM 145; one of CHEM 220, CHEM 152, CHEM 153, CHEM 155, or OCEAN 295; either BIOL 180 or both BIOL 161 and BIOL 162; 5 credits of English composition. | Calculus (10 credits): one of Q SCI 291, MATH 124, or MATH 134; one of Q SCI 292, MATH 125, or MATH 135
+- Source-backed note: Guide-backed rule: uw-grc-guide:0793:mathematics:mathand-152-5-formerly-math-125.
+- Source-backed note: Added the Green River course path MATH& 152 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0798:mathematics:mathand-163-5.
+- Source-backed note: Added the Green River course path MATH& 163 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: Suggested First- and Second-Year School Courses: CHEM 142, CHEM 152, CHEM 162 (or CHEM 143, CHEM 153; or CHEM 145, CHEM 155, CHEM 165); CHEM 223 or CHEM 237 or CHEM 257; ENGL 131 (or other 5-credit English composition course); AA 260; MATH 124, MATH 125, MATH 126, MATH 207, MATH 208 (or MATH 134, MATH 135, MATH 136); PHYS 121, PHYS 122 (or PHYS 141, PHYS 142) | Minimum Course Requirements: CHEM 142, CHEM 152, CHEM 162 (or CHEM 143, CHEM 153; or CHEM 145, CHEM 155, CHEM 165); MATH 124, MATH 125, MATH 126 (or MATH 134, MATH 135, MATH 136); PHYS 121 (or PHYS 141); 5 credits of English composition. | MATH 124, MATH 125, MATH 126, MATH 207 (or AMATH 351), MATH 208 (or AMATH 352)
+- Source-backed note: Guide-backed rule: uw-grc-guide:0813:mathematics:math-238-5.
+- Source-backed note: Added the Green River course path MATH 238 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: Suggested First- and Second-Year School Courses: CHEM 142, CHEM 152, CHEM 162 (or CHEM 143, CHEM 153; or CHEM 145, CHEM 155, CHEM 165); CHEM 223 or CHEM 237 or CHEM 257; ENGL 131 (or other 5-credit English composition course); AA 260; MATH 124, MATH 125, MATH 126, MATH 207, MATH 208 (or MATH 134, MATH 135, MATH 136); PHYS 121, PHYS 122 (or PHYS 141, PHYS 142) | MATH 124, MATH 125, MATH 126, MATH 207 (or AMATH 351), MATH 208 (or AMATH 352)
+- Source-backed note: Guide-backed rule: uw-grc-guide:0815:mathematics:math-240-5.
+- Source-backed note: Added the Green River course path MATH 240 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:1196:physics:physand-221-5-formerly-phys-201.
+- Source-backed note: Added the Green River course path PHYS& 221 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: Suggested First- and Second-Year School Courses: CHEM 142, CHEM 152, CHEM 162 (or CHEM 143, CHEM 153; or CHEM 145, CHEM 155, CHEM 165); CHEM 223 or CHEM 237 or CHEM 257; ENGL 131 (or other 5-credit English composition course); AA 260; MATH 124, MATH 125, MATH 126, MATH 207, MATH 208 (or MATH 134, MATH 135, MATH 136); PHYS 121, PHYS 122 (or PHYS 141, PHYS 142) | Minimum Course Requirements: CHEM 142, CHEM 152, CHEM 162 (or CHEM 143, CHEM 153; or CHEM 145, CHEM 155, CHEM 165); MATH 124, MATH 125, MATH 126 (or MATH 134, MATH 135, MATH 136); PHYS 121 (or PHYS 141); 5 credits of English composition. | PHYS 121, PHYS 122 (or PHYS 141, PHYS 142)
+- Source-backed note: Guide-backed rule: uw-grc-guide:1197:physics:physand-222-5-formerly-phys-202.
+- Source-backed note: Added the Green River course path PHYS& 222 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: Suggested First- and Second-Year School Courses: CHEM 142, CHEM 152, CHEM 162 (or CHEM 143, CHEM 153; or CHEM 145, CHEM 155, CHEM 165); CHEM 223 or CHEM 237 or CHEM 257; ENGL 131 (or other 5-credit English composition course); AA 260; MATH 124, MATH 125, MATH 126, MATH 207, MATH 208 (or MATH 134, MATH 135, MATH 136); PHYS 121, PHYS 122 (or PHYS 141, PHYS 142) | PHYS 121, PHYS 122 (or PHYS 141, PHYS 142)
 
 
 ### Environmental Studies
 
 #### Summary
 
-Planner coverage: `partial`. Best Green River base: `999O`.
+Planner coverage: `partial`. Best Green River base: `custom`.
 Current Green River -> UW planning reference for Environmental Studies. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -6890,9 +6967,6 @@ Current Green River -> UW planning reference for Environmental Studies. Use the 
 - `ENGL& 256`
 - `ENGL 257`
 - `ENGL 299`
-- `BIOL& 211`
-- `BIOL& 212`
-- `BIOL& 213`
 - `CHEM& 121`
 - `ECON& 201`
 - `GIS 100`
@@ -6902,23 +6976,31 @@ Current Green River -> UW planning reference for Environmental Studies. Use the 
 
 #### Required sequences for specific credits
 
-- Required before application: BIOL 180 -> `BIOL& 211`, `BIOL& 212`, `BIOL& 213`. note: The current official degree page names BIOL 180 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Required before application: GEOG 360 -> `GIS 150`, `GIS 160`. note: The current official degree page names GEOG 360 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Required before application: OCEAN 200 -> `OCEA& 101`. note: The current official degree page names OCEAN 200 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: CHEM 120 -> `CHEM& 121`. note: The current official degree page names CHEM 120 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: ECON 200 -> `ECON& 201`. note: The current official degree page names ECON 200 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: ESRM 250 -> `GIS 202`. note: The current official degree page names ESRM 250 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: ESS 212 -> `GEOL& 101`. note: The current official degree page names ESS 212 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: GEOG 258 -> `GIS 100`. note: The current official degree page names GEOG 258 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: STAT 220 -> `MATH& 146`. note: The current official degree page names STAT 220 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
 - Planner flag: This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves.
 - Source-backed note: supportive prep only
 - Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
 - Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0168:biology:bioland-211-212-213-6-6-6-formerly-biol-201-202-203.
-- Source-backed note: Added the Green River course path BIOL& 211, BIOL& 212, BIOL& 213 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Biological Systems (3-5 credits): one course from BIOL 180, BIOL 315, ENVIR 240, ENVIR 280, ESRM 350, ESRM 362/ENVIR 362, ESRM 458, ESRM 473, FHL 275, FISH 200, FISH 250/OCEAN 250/BIOL 250, FISH 323
-- Source-backed note: Guide-backed rule: uw-grc-guide:0578:geographic-information-systems:gis-150-160-8-5.
-- Source-backed note: Added the Green River course path GIS 150, GIS 160 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Analytical Methods (3-5 credits): one course from ARCHY 208, ENVIR 310, ESRM 250, ESRM 304, ESS 420, GEOG 258, GEOG 326, GEOG 360, OCEAN 452/FISH 452, Q SCI 381, STAT 220, STAT 221/CS&SS 221/SOC 221
-- Source-backed note: Exact-title match source: catalog-metadata.
-- Source-backed note: Matched source title: Introduction to Oceanography.
-- Source-backed note: Matched Green River title: Introduction to Oceanography.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0196:chemistry:chemand-121-5-formerly-chem-101.
+- Source-backed note: Added the Green River course path CHEM& 121 because the current planner rows did not expose it yet.
 - Source-backed note: Requirement cue lines: Earth Systems Literacy (3-5 credits): one course from ATM S 211, ATM S 350, CHEM 120, ENVIR 240, ENVIR 280, ESS 201, ESS 212, ESS 315/ENVIR 313, GEOG 205, OCEAN 200, OCEAN 450
+- Source-backed note: Guide-backed rule: uw-grc-guide:0383:economics:econand-201-5-formerly-econ-201.
+- Source-backed note: Added the Green River course path ECON& 201 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: Economics/Business (3-5 credits): one course from CM 335, ECON 200, ENVIR 439, ESRM 235/ENVIR 235/ECON 235, ESRM 320, ESRM 321, ESRM 403, ESRM 461, ESRM 465, FISH 230/ECON 230, JSIS B 352
+- Source-backed note: Guide-backed rule: uw-grc-guide:0582:geographic-information-systems:gis-202-5.
+- Source-backed note: Added the Green River course path GIS 202 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: Analytical Methods (3-5 credits): one course from ARCHY 208, ENVIR 310, ESRM 250, ESRM 304, ESS 420, GEOG 258, GEOG 326, GEOG 360, OCEAN 452/FISH 452, Q SCI 381, STAT 220, STAT 221/CS&SS 221/SOC 221
+- Source-backed note: Guide-backed rule: uw-grc-guide:0603:geology:geoland-101-5-formerly-geol-101.
+- Source-backed note: Added the Green River course path GEOL& 101 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0577:geographic-information-systems:gis-100-8.
+- Source-backed note: Added the Green River course path GIS 100 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0788:mathematics:mathand-146-5.
+- Source-backed note: Added the Green River course path MATH& 146 because the current planner rows did not expose it yet.
 
 
 ### Ethnomusicology, B.A.
@@ -6934,7 +7016,6 @@ Current Green River -> UW planning reference for Ethnomusicology, B.A.. Use the 
 
 - [UW Ethnomusicology admissions page](https://admit.washington.edu/majors/ethnomusicology-b-a/)
 - [UW General Catalog Ethnomusicology requirements](https://www.washington.edu/students/gencat/program/S/Music-217.html)
-- [UW School of Music BA in Ethnomusicology overview](https://music.washington.edu/ba-ethnomusicology)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 
 ##### Ethnomusicology admission baseline
@@ -7083,7 +7164,7 @@ Current Green River -> UW planning reference for Ethnomusicology, B.A.. Use the 
 - Worth finishing at Green River: MUSC 107 -> `MUSC 107`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
 - Worth finishing at Green River: MUSC 108 -> `MUSC 108`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
 - Planner flag: This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves.
-- Source-backed note: supplemental source-backed prep only; strong music prep exists
+- Source-backed note: supplemental source-backed prep only with strong music prep exists
 
 
 ### European Studies
@@ -7211,8 +7292,9 @@ Current Green River -> UW planning reference for European Studies. Use the attac
 - `SPAN& 222`
 - `SPAN& 223`
 - `SPAN 299`
-- `ECON& 201`
-- `ECON& 202`
+- `ART 214`
+- `FREN 203`
+- `GERM 203`
 
 #### Required sequences for specific credits
 
@@ -7481,92 +7563,21 @@ Current Green River -> UW planning reference for Food Systems, Nutrition, & Heal
 - `IDS 103`
 - `OCEA& 101`
 - `BIOL 111`
-- `CMST& 220`
-- `CS 145`
-- `CS& 141`
 - `ECON& 201`
-- `ECON& 202`
 - `MATH 256`
-- `MATH& 146`
-- `N SCI 100`
-- `SOC& 101`
 
 #### Required sequences for specific credits
 
-- Worth finishing at Green River: BIOL 118 -> `BIOL& 241`, `BIOL& 242`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
-- Worth finishing at Green River: BIOL 161 -> `BIOL 111`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
-- Worth finishing at Green River: BIOL 180 -> `BIOL& 211`, `BIOL& 212`, `BIOL& 213`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
-- Worth finishing at Green River: CHEM 120 -> `CHEM& 121`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
-- Worth finishing at Green River: COM 220 -> `CMST& 220`. note: Useful to complete at Green River when it cleanly matches the published degree page, but the planner keeps this option only when the published source supports it and does not infer internal route timing beyond that source.
-- Worth finishing at Green River: CSE 142 -> `CS& 141`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
-- Worth finishing at Green River: CSE 143 -> `CS 145`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
-- Worth finishing at Green River: ECON 200 -> `ECON& 201`. note: Useful to complete at Green River when it cleanly matches the published degree page, but the planner keeps this option only when the published source supports it and does not infer internal route timing beyond that source.
-- Worth finishing at Green River: ECON 201 -> `ECON& 202`. note: Useful to complete at Green River when it cleanly matches the published degree page, but the planner keeps this option only when the published source supports it and does not infer internal route timing beyond that source.
-- Worth finishing at Green River: ESRM 210 -> `NATRS 210`. note: Useful to complete at Green River when it cleanly matches the published degree page, but the planner keeps this option only when the published source supports it and does not infer internal route timing beyond that source.
-- Worth finishing at Green River: ESS 101 -> `N SCI 100`. note: Useful to complete at Green River when it cleanly matches the published degree page, but the planner keeps this option only when the published source supports it and does not infer internal route timing beyond that source.
-- Worth finishing at Green River: GEOG 123 -> `GEOG 123`. note: Useful to complete at Green River when it cleanly matches the published degree page, but the planner keeps this option only when the published source supports it and does not infer internal route timing beyond that source.
-- Worth finishing at Green River: NUTR 200 -> `NUTR& 101`. note: Useful to complete at Green River when it cleanly matches the published degree page, but the planner keeps this option only when the published source supports it and does not infer internal route timing beyond that source.
-- Worth finishing at Green River: OCEAN 101 -> `OCEA& 101`. note: Useful to complete at Green River when it cleanly matches the published degree page, but the planner keeps this option only when the published source supports it and does not infer internal route timing beyond that source.
-- Worth finishing at Green River: QMETH 201 -> `MATH 256`. note: Useful to complete at Green River when it cleanly matches the published degree page, but the planner keeps this option only when the published source supports it and does not infer internal route timing beyond that source.
-- Worth finishing at Green River: SOC 110 -> `SOC& 101`. note: Useful to complete at Green River when it cleanly matches the published degree page, but the planner keeps this option only when the published source supports it and does not infer internal route timing beyond that source.
-- Worth finishing at Green River: STAT 220 -> `MATH& 146`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
+- Required before application: CHEM 142 -> `CHEM& 161`. note: The current official degree page names CHEM 142 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
 - Both: `BIOL& 211 -> BIOL& 212 -> BIOL& 213`. All three are needed for the full `BIOL 180, 200, 220, 2XX (3)` outcome.
 - Both: `CHEM& 161 -> CHEM& 162 -> CHEM& 163`. Current UW full-credit note: `CHEM& 162 + CHEM& 163` gives `CHEM 152, 162 (5, 5), 1XX (2)`; otherwise each is weaker `CHEM 1XX`.
 - Planner flag: This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves.
 - Source-backed note: supportive prep only
 - Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
 - Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0169:biology:bioland-241-242-5-5-formerly-ap-205-206.
-- Source-backed note: Added the Green River course path BIOL& 241, BIOL& 242 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: BIOL 118
-- Source-backed note: Guide-backed rule: uw-grc-guide:0145:biology:biol-111-5-see-also-biol-111-combined-entry.
-- Source-backed note: Added the Green River course path BIOL 111 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: BIOL 161/162
-- Source-backed note: Guide-backed rule: uw-grc-guide:0168:biology:bioland-211-212-213-6-6-6-formerly-biol-201-202-203.
-- Source-backed note: Added the Green River course path BIOL& 211, BIOL& 212, BIOL& 213 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: BIOL 180
-- Source-backed note: Guide-backed rule: uw-grc-guide:0196:chemistry:chemand-121-5-formerly-chem-101.
-- Source-backed note: Added the Green River course path CHEM& 121 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: CHEM 120
-- Source-backed note: Guide-backed rule: uw-grc-guide:0249:communication-studies:cmstand-220-5-formerly-comm-101.
-- Source-backed note: Added the Green River course path CMST& 220 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: COM 220
-- Source-backed note: Guide-backed rule: uw-grc-guide:0271:computer-science:csand-141-5-formerly-c-sci-144.
-- Source-backed note: Added the Green River course path CS& 141 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: CSE 142
-- Source-backed note: Guide-backed rule: uw-grc-guide:0277:computer-science:cs-145-5-formerly-c-sci-145.
-- Source-backed note: Added the Green River course path CS 145 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: CSE 143
-- Source-backed note: Guide-backed rule: uw-grc-guide:0383:economics:econand-201-5-formerly-econ-201.
-- Source-backed note: Added the Green River course path ECON& 201 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: ECON 200
-- Source-backed note: Guide-backed rule: uw-grc-guide:0385:economics:econand-202-5-formerly-econ-200.
-- Source-backed note: Added the Green River course path ECON& 202 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: ECON 201
-- Source-backed note: Guide-backed rule: uw-grc-guide:0952:natural-resources:natrs-210-5.
-- Source-backed note: Added the Green River course path NATRS 210 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: ESRM 210
-- Source-backed note: Guide-backed rule: uw-grc-guide:0964:natural-science:n-sci-100-5.
-- Source-backed note: Added the Green River course path N SCI 100 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: ESS 101
-- Source-backed note: Guide-backed rule: uw-grc-guide:0591:geography:geog-123-5.
-- Source-backed note: Added the Green River course path GEOG 123 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: GEOG 123
-- Source-backed note: Guide-backed rule: uw-grc-guide:0972:nutrition:nutrand-101-5.
-- Source-backed note: Added the Green River course path NUTR& 101 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: NUTR 200
-- Source-backed note: Guide-backed rule: uw-grc-guide:1000:oceanography:oceaand-101-5-formerly-ocean-101.
-- Source-backed note: Added the Green River course path OCEA& 101 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: OCEAN 101
-- Source-backed note: Guide-backed rule: uw-grc-guide:0819:mathematics:math-256-5.
-- Source-backed note: Added the Green River course path MATH 256 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: QMETH 201
-- Source-backed note: Guide-backed rule: uw-grc-guide:1268:sociology:socand-101-5-formerly-soc-110.
-- Source-backed note: Added the Green River course path SOC& 101 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: SOC 110
-- Source-backed note: Guide-backed rule: uw-grc-guide:0788:mathematics:mathand-146-5.
-- Source-backed note: Added the Green River course path MATH& 146 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: STAT 220
+- Source-backed note: Guide-backed rule: uw-grc-guide:0204:chemistry:chemand-161-6-formerly-chem-140.
+- Source-backed note: Added the Green River course path CHEM& 161 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: CHEM 142
 
 
 ### French
@@ -7581,11 +7592,7 @@ Current Green River -> UW planning reference for French. Use the attached Green 
 ##### Links Used
 
 - [UW French admissions page](https://admit.washington.edu/majors/french/)
-- [UW French undergraduate studies overview](https://frenchitalian.washington.edu/undergraduate-studies-french)
-- [UW French major requirements](https://frenchitalian.washington.edu/major-french-studies)
-- [UW French major requirements](https://frenchitalian.washington.edu/major-french-studies) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
-- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### French admission baseline
 
@@ -7654,15 +7661,15 @@ Current Green River -> UW planning reference for French. Use the attached Green 
 
 #### Required sequences for specific credits
 
-- Worth finishing at Green River: FRENCH 203 -> `FREN 203`. note: Useful to complete at Green River when it cleanly matches the published degree page, but the planner keeps this option only when the published source supports it and does not infer internal route timing beyond that source.
+- Worth finishing at Green River: FRCH& 121 -> `FRCH& 121`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: FRCH& 122 -> `FRCH& 122`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: FRCH& 123 -> `FRCH& 123`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: FRCH& 221 -> `FRCH& 221`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: ENGL 103 -> `ENGL 103`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: ENGL 109 -> `ENGL 109`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
 - GRC sequence: `FRCH& 121 -> FRCH& 122 -> FRCH& 123 -> FRCH& 221`.
 - Planner flag: This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves.
 - Source-backed note: direct current French transfer support
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0575:french:fren-203-5.
-- Source-backed note: Added the Green River course path FREN 203 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: FRENCH 203, FRENCH 301, FRENCH 302, FRENCH 303 (20 credits) | Electives: 15 credits above FRENCH 203 from the following approved list of electives: FRENCH, 210, FRENCH 211, FRENCH 212, FRENCH 214, FRENCH 222, FRENCH 223, FRENCH 224, FRENCH 225, FRENCH 226, FRENCH 228, FRENCH 229, FRENCH 240, FRENCH 250, FRENCH 313, FRENCH 314, FRENCH 315, FRENCH 320, FRENCH 376, FRENCH 378, FRENCH 379, FRENCH 404, FRENCH 406, FRENCH 415, FRENCH 416, FRENCH 419, FRENCH 420, FRENCH 431, FRENCH 435, FRENCH 441, FRENCH 445, FRENCH 447, FRENCH, 448, FRENCH 450, FRENCH 455, FRENCH 457, FRENCH 458, FRENCH 470, FRENCH 472, FRENCH 474, FRENCH 499 | FRENCH 203 required for FRENCH 301 or FRENCH 302
 
 
 ### Gender, Women & Sexuality Studies
@@ -7860,8 +7867,6 @@ Current Green River -> UW planning reference for Geography. Use the attached Gre
 ##### Links Used
 
 - [UW Geography admissions page](https://admit.washington.edu/majors/geography/)
-- [UW Geography B.A. requirements](https://geography.washington.edu/ba-geography)
-- [UW Geography data science option requirements](https://geography.washington.edu/ba-geography-data-science-option)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 - [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 - [Degree requirements](https://www.washington.edu/students/gencat/program/S/Geography-188.html) - Auto-promoted from the parsed primary degree page on April 8, 2026.
@@ -7984,25 +7989,43 @@ Current Green River -> UW planning reference for Geography. Use the attached Gre
 - `MATH& 254`
 - `MATH 256`
 - `MATH 297`
-- `CS 121`
 - `CS 122`
 - `CS 123`
 - `CS 145`
 - `CS& 141`
-- `GIS 100`
 - `GIS 150`
 - `GIS 160`
 
 #### Required sequences for specific credits
 
-- Required before application: GEOG 360 -> `GIS 150`, `GIS 160`. note: The current official degree page names GEOG 360 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: CSE 122 -> `CS 122`. note: The current official degree page names CSE 122 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: CSE 123 -> `CS 123`. note: The current official degree page names CSE 123 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: CSE 142 -> `CS& 141`. note: The current official degree page names CSE 142 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: CSE 143 -> `CS 145`. note: The current official degree page names CSE 143 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: GEOG 123 -> `GEOG 123`. note: The current official degree page names GEOG 123 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: QMETH 201 -> `MATH 256`. note: The current official degree page names QMETH 201 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: STAT 220 -> `MATH& 146`. note: The current official degree page names STAT 220 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
 - Planner flag: This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves.
 - Source-backed note: Confirm whether the student is aiming for the standard Geography B.A. or the Data Science Option before treating the exact upper-division map as final.
 - Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
 - Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0578:geographic-information-systems:gis-150-160-8-5.
-- Source-backed note: Added the Green River course path GIS 150, GIS 160 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: GEOG 360
+- Source-backed note: Guide-backed rule: uw-grc-guide:0267:computer-science:cs-122-5.
+- Source-backed note: Added the Green River course path CS 122 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: Programming: two courses from CSE 121, CSE 122, CSE 123, CSE 142, CSE 143, CSE 160, CSE 163, or INFO 370
+- Source-backed note: Guide-backed rule: uw-grc-guide:0268:computer-science:cs-123-5.
+- Source-backed note: Added the Green River course path CS 123 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0271:computer-science:csand-141-5-formerly-c-sci-144.
+- Source-backed note: Added the Green River course path CS& 141 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0277:computer-science:cs-145-5-formerly-c-sci-145.
+- Source-backed note: Added the Green River course path CS 145 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0591:geography:geog-123-5.
+- Source-backed note: Added the Green River course path GEOG 123 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: Globalization, Health, and Development: How does globalization shape life and death around the planet? How can development initiatives address global health disparities? Providing geographical answers to such questions, this track traces the extraordinarily uneven effects of global trade, global finance, and market-led development on food systems, health, and the geography of impoverishment. By putting global health challenges in a global socio-economic context, the track simultaneously highlights how social movements and social organizing can make a difference, including differences in formal policies affecting human well-being directly as well as innovations in the ethics of care. Courses in the track provide frequent opportunities for service learning as part of the goal of helping students engage with real world challenges. All classes also approach these themes through a geographical lens: charting global-local relations and the links between nature, society, and political-economy in particular places. This geographical approach in turn enables us to explore how nutrition, health, and development are intertwined with other processes ranging from the personal experiences of migrant farm workers, to urban and regional redevelopment, to global financial reforms. Specific questions that frame our classes include: What are the links between life and debt (GEOG 123)? How have sixty years of development increased in-country inequality (GEOG 230)? How do global disease etiologies reflect other global interconnections (GEOG 280)? How does agricultural modernization relate to hunger (GEOG 371)? And what are the implications for food security, health security, and developmental security when they are re-framed in terms of geopolitics and the global security challenges of international relations (GEOG 375)?
+- Source-backed note: Guide-backed rule: uw-grc-guide:0819:mathematics:math-256-5.
+- Source-backed note: Added the Green River course path MATH 256 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: One from GEOG 317, GEOG 326, GEOG 426, STAT 220, STAT 221, STAT 290, STAT 311, STAT 390, Q SCI 381, or QMETH 201
+- Source-backed note: Guide-backed rule: uw-grc-guide:0788:mathematics:mathand-146-5.
+- Source-backed note: Added the Green River course path MATH& 146 because the current planner rows did not expose it yet.
 
 
 ### German
@@ -8017,7 +8040,9 @@ Current Green River -> UW planning reference for German. Use the attached Green 
 ##### Links Used
 
 - [UW German Studies degree requirements](https://german.washington.edu/german-studies)
+- [UW German Studies requirements](https://german.washington.edu/german-studies) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
+- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### German Studies language foundation
 
@@ -8081,18 +8106,19 @@ Current Green River -> UW planning reference for German. Use the attached Green 
 - `ENGL& 256`
 - `ENGL 257`
 - `ENGL 299`
+- `GERM 201`
+- `GERM 203`
 
 #### Required sequences for specific credits
 
-- Worth finishing at Green River: GERM& 121 -> `GERM& 121`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: GERM& 122 -> `GERM& 122`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: GERM& 123 -> `GERM& 123`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: ENGL 103 -> `ENGL 103`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: ENGL 109 -> `ENGL 109`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: ENGL& 112 -> `ENGL& 112`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: GERMAN 101 -> `GERM& 121`. note: Useful to complete at Green River when it cleanly matches the published degree page, but the planner keeps this option only when the published source supports it and does not infer internal route timing beyond that source.
 - GRC sequence: `GERM& 121 -> GERM& 122 -> GERM& 123`.
 - Planner flag: This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves.
 - Source-backed note: direct current German transfer support
+- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
+- Source-backed note: Source parse confidence: high.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0627:german:germand-121-5-formerly-germ-101.
+- Source-backed note: Added the Green River course path GERM& 121 because the current planner rows did not expose it yet.
 
 
 ### Global Literary Studies
@@ -8481,7 +8507,6 @@ Current Green River -> UW planning reference for History. Use the attached Green
 ##### Links Used
 
 - [UW History major requirements](https://history.washington.edu/major)
-- [UW History undergraduate programs overview](https://history.washington.edu/undergraduate-programs)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 
 ##### History admission baseline
@@ -8800,18 +8825,18 @@ Current Green River -> UW planning reference for History & Philosophy of Science
 
 #### Required sequences for specific credits
 
-- Required before application: PHIL 120 -> `PHIL& 120`. note: The current official degree page names PHIL 120 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: PHIL 115 -> `PHIL 115`. note: The current official degree page names PHIL 115 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
 - GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
 - GRC sequence: `PHYS& 221 -> PHYS& 222 -> PHYS& 223` for calculus-based physics.
 - Both: `CHEM& 161 -> CHEM& 162 -> CHEM& 163`. Current UW full-credit note: `CHEM& 162 + CHEM& 163` gives `CHEM 152, 162 (5, 5), 1XX (2)`; otherwise each is weaker `CHEM 1XX`.
 - Both: `BIOL& 211 -> BIOL& 212 -> BIOL& 213`. All three are needed for the full `BIOL 180, 200, 220, 2XX (3)` outcome.
 - Planner flag: This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves.
-- Source-backed note: supplemental source-backed prep only; strong lower-division prep exists
+- Source-backed note: supplemental source-backed prep only with strong lower-division prep exists
 - Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
 - Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:1013:philosophy:philand-120-5-formerly-philand-106.
-- Source-backed note: Added the Green River course path PHIL& 120 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Suggested First- and Second-Year College Courses: PHIL 120, PHIL 160. Courses that develop writing skills. Introductory science courses and mathematics courses through calculus. | HSTCMP 311, HSTCMP 312; PHIL 160 or PHIL 460; PHIL 120, each with a minimum 2.0 grade | Core Courses (25 credits): HSTCMP 311, HSTCMP 312, HSTCMP 390; PHIL 160 or PHIL 460; PHIL 120. Minimum 2.0 grade in each course and overall minimum 2.50 GPA.
+- Source-backed note: Guide-backed rule: uw-grc-guide:1012:philosophy:phil-115-5.
+- Source-backed note: Added the Green River course path PHIL 115 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: One course from PHIL 115, PHIL 120, or an upper-division course in logic | One from PHIL 115, PHIL 120, or upper-division course in logic (5 credits) | PHIL 115 or PHIL 120, or an upper-division course in logic
 
 
 ### Human Centered Design & Engineering
@@ -8826,13 +8851,11 @@ HCDE is a structured custom path, not a stock engineering track. It mixes calcul
 ##### Links Used
 
 - [UW HCDE degree requirements](https://www.hcde.washington.edu/bs/requirements/2024)
-- [UW HCDE degree requirements](https://www.hcde.washington.edu/bs/requirements/2024) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [UW HCDE admissions](https://www.hcde.washington.edu/bs/admissions/)
 - [UW HCDE engineering fundamentals list](https://www.hcde.washington.edu/bs/requirements/2024/engineering-fundamentals)
 - [UW HCDE natural sciences course lists](https://www.hcde.washington.edu/bs/requirements/2024/natural-sciences)
 - [UW HCDE course schedule](https://www.hcde.washington.edu/bs/schedule)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
-- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### HCDE degree structure
 
@@ -9016,7 +9039,6 @@ HCDE is a structured custom path, not a stock engineering track. It mixes calcul
 - Worth finishing at Green River: A A 210 engineering-fundamentals head start -> `ENGR& 214`. note: The current HCDE engineering-fundamentals list includes A A 210.
 - Worth finishing at Green River: CEE 220 engineering-fundamentals head start -> `ENGR& 225`. note: The current HCDE engineering-fundamentals list includes CEE 220.
 - Worth finishing at Green River: Extra science depth if it strengthens the student's HCDE story -> `PHYS& 223`, `BIOL& 211`, `BIOL& 212`, `BIOL& 213`. complete at least 1 course from this set. note: Only push extra science after the application-safe bundle is already covered and the added course still helps the student's backup-major options.
-- Worth finishing at Green River: CSE 142 -> `CS& 141`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
 - GRC sequence: `CS 121 -> CS 122 -> CS 123`. Current UW equivalency entries are separate, but planner sequencing at GRC should treat them in this order.
 - GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
 - GRC sequence: `PHYS& 221 -> PHYS& 222 -> PHYS& 223` for calculus-based physics.
@@ -9026,11 +9048,6 @@ HCDE is a structured custom path, not a stock engineering track. It mixes calcul
 - Planner flag: This is a custom plan, not a one-track engineering template.
 - Source-backed note: Validated against the current HCDE admissions, 2024+ degree-requirements, and schedule pages on April 2, 2026.
 - Source-backed note: Autumn 2026-and-later applicants can no longer use MATH 120, PHYS 114-116 or PHYS 117-119 labs, or PSYCH 202 toward HCDE admissions or major requirements.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0271:computer-science:csand-141-5-formerly-c-sci-144.
-- Source-backed note: Added the Green River course path CS& 141 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: CSE 142 : Computer Programming I (4)
 
 
 ### Individualized Studies
@@ -9090,6 +9107,7 @@ ISE is a 999Q fit, but the cleanest plan explicitly adds programming and linear 
 - [UW Industrial & Systems Engineering admissions](https://ise.washington.edu/admissions/BSIE/req_procedure)
 - [UW Industrial & Systems Engineering student resources](https://ise.washington.edu/students/BSIE)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
+- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### BSIE lower-division foundation
 
@@ -9197,7 +9215,9 @@ ISE is a 999Q fit, but the cleanest plan explicitly adds programming and linear 
 - Required before application: PHYS 121 and PHYS 122 -> `PHYS& 221`, `PHYS& 222`
 - Required before application: A A 210 -> `ENGR& 214`
 - Required before application: English composition -> `ENGL& 101`
-- Required before application: AA 260 -> `ENGR& 224`. note: The current official degree page names AA 260 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: CSE 142 -> `CS& 141`. note: The current official degree page names CSE 142 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: CSE 143 -> `CS 145`. note: The current official degree page names CSE 143 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: MSE 170 -> `ENGR 140`. note: The current official degree page names MSE 170 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
 - Required before enrollment: CHEM 152 -> `CHEM& 162`, `CHEM& 163`. note: The BSIE lower-division science block still includes the second chemistry step, and CHEM& 162 plus 163 is the cleanest Green River substitute.
 - Required before enrollment: PHYS 123 -> `PHYS& 223`. note: PHYS 123 is part of the published BSIE physical-science block, so it is worth finishing before transfer when possible.
 - Required before enrollment: CEE 220 or M E 230 -> `ENGR& 225`, `ENGR& 215`. complete at least 1 course from this set. note: The BSIE planning sheet allows the general engineering block to include CEE 220 or ME 230. Use whichever Green River mechanics course fits the student's path first.
@@ -9212,10 +9232,13 @@ ISE is a 999Q fit, but the cleanest plan explicitly adds programming and linear 
 - Source-backed note: Validated against the current BSIE admissions page, published graduation-requirements PDF, and posted sample schedule on April 2, 2026.
 - Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
 - Source-backed note: Source parse confidence: high.
-- Source-backed note: Exact-title match source: catalog-metadata.
-- Source-backed note: Matched source title: Thermodynamics.
-- Source-backed note: Matched Green River title: Thermodynamics.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0271:computer-science:csand-141-5-formerly-c-sci-144.
+- Source-backed note: Added the Green River course path CS& 141 because the current planner rows did not expose it yet.
 - Source-backed note: Requirement cue lines: Title: Revised 6/6/16 Bachelor of Science in Industrial Engineering Graduation Requirements Mathematics...........................................………………………….........[24 credits] Industrial Engineering Required Core Courses...…………….......[24 credits]  MATH 124 (or 127)* [5cr] Calculus with Analytic Geometry I  MATH 125 (or 128)* [5cr] Calculus with Analytic Geometry II IND E 316 [4cr] Design of Experiments & Regression Analysis [pr: IND E 315]  MATH 126 (or 129)* [5cr] Calculus with Analytic Geometry III IND E 337* [4cr] Intro to Manufacturing Systems MATH 307 [3cr] Intro to Differential Equations [pr: MATH 125] IND E 410 [4cr] Linear & Network Programming [pr: either MATH 136 or MATH 308, CSE 142] MATH 308 [3cr] Linear Algebra with Applications [pr: MATH 126] IND E 411 [4cr] Stochastic Models & Decision Analysis [pr: IND E 315, IND E 410] IND E 315 [3cr] Prob. & Statistics for Engineers [pr: MATH 307] IND E 494 [4cr] Design in the Manufacturing Firm [pr: IND E 337, senior standing] *The sequence of MATH 127, 128, 129 may be taken in lieu of 124, 125, 126. IND E 495 [4cr] Industrial Engineering Design [pr: IND E 494] Physical Sciences...................................……………………...…….....[25 credits] Technical Electives.............................…………...…..……..[minimum 37 credits]  CHEM 142 [5cr] General Chemistry with lab  CHEM 152 [5cr] General Chemistry with lab [pr: CHEM 142] Complete a minimum of 37 credits, including AT LEAST one course from  PHYS 121* [5cr] Mechanics with lab [pr: MATH 124] EACH of the following 5 categories.  PHYS 122* [5cr] Electro/ Oscillatory with lab [pr: MATH 125]  PHYS 123* [5cr] Waves with lab [ pr: MATH 126] A. Operations Research: *The accompanying lab sections to PHYS 121, 122, 123 must be completed IND E 412 [4cr] Integer and Dynamic Programming [pr: IND E 411] Written and Oral Communications.......……………………..…….......[12 credits] IND E 424 [4cr] Simulation [pr: IND E 337 &411; 411 may be taken concurrently]  ENGL COMP [5cr] University English Composition requirement B. Statistics: ENGR 231 [3cr] Intro to Technical Writing [pr: ENGL COMP] IND E 321 [4cr] Statistical Quality Control [pr: IND E 315] IND E 337 [4cr] Intro to Manufacturing Systems IND E 426 [4cr] Reliability Engineering & System Safety [pr: IND E 315] C. Production/Operations: Visual, Literary & Performing Arts/Individuals & Society & Diversity IND E 430 [4cr] Manufacturing Scheduling& Inventory [pr: IND E 337 &410; both of which may be taken concurrently] [VLPA/I&S]...............................................……………………..……......[30 credits] IND E 439 [4cr] Plant Layout & Material Handling [pr: IND E 410; which may be taken concurrently] Minimum 10 credits in VLPA required. D. Design: Minimum 10 credits in I&S required. Minimum 3 credits of Diversity required. IND E 351 [4cr] Human Factors in Design IND E 455 [4cr] User Interface Design E. General Engineering: General Engineering/Computing Courses……………………………[28 credits] AA 260 [4cr] Thermodynamics [pr: CHEM 142, MATH 126, PHYS 121] CSE 142 [4cr] Computer Programming for Engineers CSE 143 [5cr] Computer Programming for Engineers II [pr: CSE 142] MSE 170 [4cr] Fund of Material Science [pr: CHEM 152]  AA 210 [4cr] Engineering Statics [pr: MATH 126, PHYS 121] Additional technical elective courses may also be chosen from the approved EE 215 [4cr] Fund. of Electrical Engineering [pr: PHYS 122, MATH 126] Undergraduate Technical Elective List. Refer any questions to the ISE Advisor.  CEE 220 [4cr] Intro to Mechanics of Material [pr: AA 210] ME 230 [4cr] Kinematics & Dynamics [pr: AA 210] IND E 250 [4cr] Fund. of Engineering Economy Total credits required for Graduation………………………………180 credits (includes 4 credits free elective)  -- Upper Division Admission Requirement Early Admission Requirements : [pr] -- Prerequisite course(s) ~AUTUMN quarter only * -- Fulfill both writing and ISE core requirements ~Must be enrolled at UW w/ at least 15cr earned at UW ~Must complete: MATH 124, 125, 126 or equiv; 10 cr of Physical Science requirements; 5 cr ENGL COMP | [Page 1] Revised 6/6/16 Bachelor of Science in Industrial Engineering Graduation Requirements Mathematics...........................................………………………….........[24 credits] Industrial Engineering Required Core Courses...…………….......[24 credits]  MATH 124 (or 127)* [5cr] Calculus with Analytic Geometry I  MATH 125 (or 128)* [5cr] Calculus with Analytic Geometry II IND E 316 [4cr] Design of Experiments & Regression Analysis [pr: IND E 315]  MATH 126 (or 129)* [5cr] Calculus with Analytic Geometry III IND E 337* [4cr] Intro to Manufacturing Systems MATH 307 [3cr] Intro to Differential Equations [pr: MATH 125] IND E 410 [4cr] Linear & Network Programming [pr: either MATH 136 or MATH 308, CSE 142] MATH 308 [3cr] Linear Algebra with Applications [pr: MATH 126] IND E 411 [4cr] Stochastic Models & Decision Analysis [pr: IND E 315, IND E 410] IND E 315 [3cr] Prob. & Statistics for Engineers [pr: MATH 307] IND E 494 [4cr] Design in the Manufacturing Firm [pr: IND E 337, senior standing] *The sequence of MATH 127, 128, 129 may be taken in lieu of 124, 125, 126. IND E 495 [4cr] Industrial Engineering Design [pr: IND E 494] Physical Sciences...................................……………………...…….....[25 credits] Technical Electives.............................…………...…..……..[minimum 37 credits]  CHEM 142 [5cr] General Chemistry with lab  CHEM 152 [5cr] General Chemistry with lab [pr: CHEM 142] Complete a minimum of 37 credits, including AT LEAST one course from  PHYS 121* [5cr] Mechanics with lab [pr: MATH 124] EACH of the following 5 categories.  PHYS 122* [5cr] Electro/ Oscillatory with lab [pr: MATH 125]  PHYS 123* [5cr] Waves with lab [ pr: MATH 126] A. Operations Research: *The accompanying lab sections to PHYS 121, 122, 123 must be completed IND E 412 [4cr] Integer and Dynamic Programming [pr: IND E 411] Written and Oral Communications.......……………………..…….......[12 credits] IND E 424 [4cr] Simulation [pr: IND E 337 &411; 411 may be taken concurrently]  ENGL COMP [5cr] University English Composition requirement B. Statistics: ENGR 231 [3cr] Intro to Technical Writing [pr: ENGL COMP] IND E 321 [4cr] Statistical Quality Control [pr: IND E 315] IND E 337 [4cr] Intro to Manufacturing Systems IND E 426 [4cr] Reliability Engineering & System Safety [pr: IND E 315] C. Production/Operations: Visual, Literary & Performing Arts/Individuals & Society & Diversity IND E 430 [4cr] Manufacturing Scheduling& Inventory [pr: IND E 337 &410; both of which may be taken concurrently] [VLPA/I&S]...............................................……………………..……......[30 credits] IND E 439 [4cr] Plant Layout & Material Handling [pr: IND E 410; which may be taken concurrently] Minimum 10 credits in VLPA required. D. Design: Minimum 10 credits in I&S required. Minimum 3 credits of Diversity required. IND E 351 [4cr] Human Factors in Design IND E 455 [4cr] User Interface Design E. General Engineering: General Engineering/Computing Courses……………………………[28 credits] AA 260 [4cr] Thermodynamics [pr: CHEM 142, MATH 126, PHYS 121] CSE 142 [4cr] Computer Programming for Engineers CSE 143 [5cr] Computer Programming for Engineers II [pr: CSE 142] MSE 170 [4cr] Fund of Material Science [pr: CHEM 152]  AA 210 [4cr] Engineering Statics [pr: MATH 126, PHYS 121] Additional technical elective courses may also be chosen from the approved EE 215 [4cr] Fund. of Electrical Engineering [pr: PHYS 122, MATH 126] Undergraduate Technical Elective List. Refer any questions to the ISE Advisor.  CEE 220 [4cr] Intro to Mechanics of Material [pr: AA 210] ME 230 [4cr] Kinematics & Dynamics [pr: AA 210] IND E 250 [4cr] Fund. of Engineering Economy Total credits required for Graduation………………………………180 credits (includes 4 credits free elective)  -- Upper Division Admission Requirement Early Admission Requirements : [pr] -- Prerequisite course(s) ~AUTUMN quarter only * -- Fulfill both writing and ISE core requirements ~Must be enrolled at UW w/ at least 15cr earned at UW ~Must complete: MATH 124, 125, 126 or equiv; 10 cr of Physical Science requirements; 5 cr ENGL COMP
+- Source-backed note: Guide-backed rule: uw-grc-guide:0277:computer-science:cs-145-5-formerly-c-sci-145.
+- Source-backed note: Added the Green River course path CS 145 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0421:engineering-formerly-general-engineering:engr-140-5-formerly-g-e-140.
+- Source-backed note: Added the Green River course path ENGR 140 because the current planner rows did not expose it yet.
 
 
 ### Informatics
@@ -9230,11 +9253,9 @@ Current Green River -> UW planning reference for Informatics. Use the attached G
 ##### Links Used
 
 - [UW Informatics curriculum](https://ischool.uw.edu/academics/informatics/curriculum)
-- [UW Informatics curriculum](https://ischool.uw.edu/academics/informatics/curriculum) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [UW Informatics prerequisites](https://ischool.uw.edu/programs/informatics/admissions/prerequisites)
 - [UW Informatics capstone details](https://ischool.uw.edu/programs/informatics/curriculum/capstone)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
-- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### Informatics admission requirements
 
@@ -9341,19 +9362,16 @@ Current Green River -> UW planning reference for Informatics. Use the attached G
 
 #### Required sequences for specific credits
 
-- Required before application: CSE 123 -> `CS 123`. note: The current official degree page names CSE 123 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Required before application: CSE 143 -> `CS 145`. note: The current official degree page names CSE 143 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Worth finishing at Green River: MATH& 151 -> `MATH& 151`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: MATH& 152 -> `MATH& 152`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: CS 121 -> `CS 121`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: MATH& 163 -> `MATH& 163`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: MATH& 254 -> `MATH& 254`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: CS 122 -> `CS 122`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
 - GRC sequence: `CS 121 -> CS 122 -> CS 123`. Current UW equivalency entries are separate, but planner sequencing at GRC should treat them in this order.
 - GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
 - Planner flag: This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves.
 - Source-backed note: supportive prep only; Informatics has no single GRC MRP track
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0268:computer-science:cs-123-5.
-- Source-backed note: Added the Green River course path CS 123 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: one course from CSE 123: Introduction to Computer Programming III, CSE 143: Computer Programming II, or CSE 163: Intermediate Data Programming
-- Source-backed note: Guide-backed rule: uw-grc-guide:0277:computer-science:cs-145-5-formerly-c-sci-145.
-- Source-backed note: Added the Green River course path CS 145 because the current planner rows did not expose it yet.
 
 
 ### International Studies
@@ -9368,9 +9386,11 @@ Current Green River -> UW planning reference for International Studies. Use the 
 ##### Links Used
 
 - [UW General Catalog International Studies overview](https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html)
+- [UW General Catalog International Studies overview](https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [UW Jackson School undergraduate programs overview](https://jsis.washington.edu/programs/undergraduate/)
 - [UW Jackson School capstone courses](https://jsis.washington.edu/programs/undergraduate/international-studies/capstonecourses/)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
+- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### International Studies admission baseline
 
@@ -9521,12 +9541,8 @@ Current Green River -> UW planning reference for International Studies. Use the 
 
 #### Required sequences for specific credits
 
-- Worth finishing at Green River: ENGL 103 -> `ENGL 103`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: ENGL 109 -> `ENGL 109`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: ENGL& 112 -> `ENGL& 112`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: ENGL& 113 -> `ENGL& 113`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: ENGL& 114 -> `ENGL& 114`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: ENGL 115 -> `ENGL 115`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Required before application: ECON 200 -> `ECON& 201`. note: The current official degree page names ECON 200 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: ECON 201 -> `ECON& 202`. note: The current official degree page names ECON 201 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
 - GRC sequence: `CHIN& 121 -> CHIN& 122 -> CHIN& 123`.
 - GRC sequence: `FRCH& 121 -> FRCH& 122 -> FRCH& 123 -> FRCH& 221`.
 - GRC sequence: `GERM& 121 -> GERM& 122 -> GERM& 123`.
@@ -9534,6 +9550,13 @@ Current Green River -> UW planning reference for International Studies. Use the 
 - GRC sequence: `SPAN& 121 -> SPAN& 122 -> SPAN& 123 -> SPAN& 221 -> SPAN& 222 -> SPAN& 223`.
 - Planner flag: This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves.
 - Source-backed note: Confirm the student's regional or thematic International Studies concentration before treating the exact UW course map as final.
+- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
+- Source-backed note: Source parse confidence: high.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0383:economics:econand-201-5-formerly-econ-201.
+- Source-backed note: Added the Green River course path ECON& 201 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: Suggested First- and Second-Year College Courses: ECON 200, ECON 201. Progress toward two years of French language. Canadian history courses. Courses that develop writing skills. | JSIS 200, JSIS 201, JSIS 202; ECON 200, ECON 201; JSIS A 356, JSIS A 498
+- Source-backed note: Guide-backed rule: uw-grc-guide:0385:economics:econand-202-5-formerly-econ-200.
+- Source-backed note: Added the Green River course path ECON& 202 because the current planner rows did not expose it yet.
 
 
 ### Italian
@@ -9766,7 +9789,6 @@ Current Green River -> UW planning reference for Jazz Studies, B.M.. Use the att
 ##### Links Used
 
 - [UW Jazz Studies Bachelor of Music requirements](https://music.washington.edu/bachelor-music-jazz-studies)
-- [UW Bachelor of Music overview](https://music.washington.edu/bachelor-music)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 
 ##### Jazz Studies, B.M. admission and graduation baseline
@@ -10121,10 +10143,8 @@ Current Green River -> UW planning reference for Landscape Architecture. Use the
 ##### Links Used
 
 - [UW General Catalog Landscape Architecture requirements](https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html)
-- [UW General Catalog Landscape Architecture requirements](https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [UW Landscape Architecture undergraduate admissions](https://larch.be.uw.edu/admissions/undergraduate/)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
-- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### Landscape Architecture admission baseline
 
@@ -10305,23 +10325,15 @@ Current Green River -> UW planning reference for Landscape Architecture. Use the
 
 #### Required sequences for specific credits
 
-- Required before enrollment: ESS 101 -> `N SCI 100`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Required before enrollment: ESS 301 -> `GEOL& 208`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Required before enrollment: ESS 305 -> `GEOL 200`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
+- Worth finishing at Green River: MATH& 151 -> `MATH& 151`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: MATH& 152 -> `MATH& 152`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: MATH& 163 -> `MATH& 163`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: MATH& 254 -> `MATH& 254`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: MATH 238 -> `MATH 238`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: MATH 240 -> `MATH 240`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
 - GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
 - Planner flag: This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves.
 - Source-backed note: supplemental source-backed prep only
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0964:natural-science:n-sci-100-5.
-- Source-backed note: Added the Green River course path N SCI 100 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Natural Sciences (NSc) (20 credits): one course (usually ESS 101, or equivalent) shown as the prerequisite for either ESS 315/ENVIR 313 or ESS 301; additional NSc credits to total 20 credits
-- Source-backed note: Guide-backed rule: uw-grc-guide:0619:geology:geoland-208-5-formerly-geol-208.
-- Source-backed note: Added the Green River course path GEOL& 208 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Natural Sciences (NSc) (20 credits): one course (usually ESS 101, or equivalent) shown as the prerequisite for either ESS 315/ENVIR 313 or ESS 301; additional NSc credits to total 20 credits | Geology (5 credits): one of ESS 301, ESS 305, or ESS 315/ENVIR 313
-- Source-backed note: Guide-backed rule: uw-grc-guide:0616:geology:geol-200-5.
-- Source-backed note: Added the Green River course path GEOL 200 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Geology (5 credits): one of ESS 301, ESS 305, or ESS 315/ENVIR 313
 
 
 ### Latin
@@ -10477,10 +10489,8 @@ Current Green River -> UW planning reference for Latin American & Caribbean Stud
 ##### Links Used
 
 - [UW Latin American and Caribbean Studies major requirements](https://jsis.washington.edu/programs/undergraduate/latin-america-and-caribbean-studies/)
-- [UW Latin American and Caribbean Studies major requirements](https://jsis.washington.edu/programs/undergraduate/latin-america-and-caribbean-studies/) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [UW Jackson School undergraduate programs overview](https://jsis.washington.edu/programs/undergraduate/)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
-- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### Latin American and Caribbean Studies major overview
 
@@ -10587,15 +10597,15 @@ Current Green River -> UW planning reference for Latin American & Caribbean Stud
 
 #### Required sequences for specific credits
 
-- Worth finishing at Green River: HSTLAC 185 -> `HIST 233`. note: Useful to complete at Green River when it cleanly matches the published degree page, but the planner keeps this option only when the published source supports it and does not infer internal route timing beyond that source.
+- Worth finishing at Green River: SPAN 110 -> `SPAN 110`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: SPAN& 121 -> `SPAN& 121`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: SPAN& 122 -> `SPAN& 122`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: SPAN& 123 -> `SPAN& 123`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: SPAN 194 -> `SPAN 194`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: SPAN& 221 -> `SPAN& 221`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
 - GRC sequence: `SPAN& 121 -> SPAN& 122 -> SPAN& 123 -> SPAN& 221 -> SPAN& 222 -> SPAN& 223`.
 - Planner flag: This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves.
-- Source-backed note: supplemental source-backed prep only; strong Spanish support
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0673:history:hist-233-5.
-- Source-backed note: Added the Green River course path HIST 233 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: HSTLAC 185 Race, Gender, And Class In Latin America And The Caribbean DIV, SSc 5 | HSTLAC 185
+- Source-backed note: supplemental source-backed prep only with strong Spanish support
 
 
 ### Law, Societies & Justice
@@ -10610,9 +10620,7 @@ Current Green River -> UW planning reference for Law, Societies & Justice. Use t
 ##### Links Used
 
 - [UW LSJ Gold Curriculum requirements](https://lsj.washington.edu/lsj-gold-curriculum-requirements)
-- [UW LSJ Gold Curriculum requirements](https://lsj.washington.edu/lsj-gold-curriculum-requirements) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
-- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### LSJ Gold Curriculum overview
 
@@ -10724,18 +10732,17 @@ Current Green River -> UW planning reference for Law, Societies & Justice. Use t
 - `ENGL& 256`
 - `ENGL 257`
 - `ENGL 299`
-- `CRJ 215`
 
 #### Required sequences for specific credits
 
-- Required before application: SOC 371 -> `CRJ 215`. note: The current official degree page names SOC 371 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Worth finishing at Green River: ENGL 103 -> `ENGL 103`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: ENGL 109 -> `ENGL 109`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: ENGL& 112 -> `ENGL& 112`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: ENGL& 113 -> `ENGL& 113`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: ENGL& 114 -> `ENGL& 114`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: ENGL 115 -> `ENGL 115`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
 - Planner flag: This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves.
 - Source-backed note: direct support through CJ/POLS/SOC plus philosophy
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0295:criminal-justice:crj-215-5.
-- Source-backed note: Added the Green River course path CRJ 215 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: SOC 371 Criminology (5) OR SOC 472 Juvenile Delinquency (5)
 
 
 ### Linguistics
@@ -10750,8 +10757,6 @@ Current Green River -> UW planning reference for Linguistics. Use the attached G
 ##### Links Used
 
 - [UW Linguistics B.A. requirements](https://linguistics.washington.edu/ba-linguistics)
-- [UW Linguistics undergraduate language requirement](https://linguistics.washington.edu/undergraduate-language-requirement)
-- [UW Linguistics undergraduate programs and admissions](https://linguistics.washington.edu/undergraduate-programs)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 
 ##### Linguistics admission baseline
@@ -10889,11 +10894,9 @@ Current Green River -> UW planning reference for Marine Biology. Use the attache
 ##### Links Used
 
 - [UW Marine Biology major requirements](https://marinebiology.uw.edu/students/marine-biology-major/major-requirements/)
-- [UW Marine Biology major requirements](https://marinebiology.uw.edu/students/marine-biology-major/major-requirements/) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [UW Marine Biology approved elective list](https://marinebiology.uw.edu/students/marine-biology-major/electives/)
 - [UW Marine Biology integrative field experience](https://marinebiology.uw.edu/students/marine-biology-major/integrative-field-experience/)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
-- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### Marine Biology science and math foundation
 
@@ -11032,61 +11035,25 @@ Current Green River -> UW planning reference for Marine Biology. Use the attache
 
 #### Required sequences for specific credits
 
-- Required before application: CHEM 142 -> `CHEM& 161`. note: The current official degree page names CHEM 142 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Required before application: PHYS 121 -> `PHYS& 221`. note: The current official degree page names PHYS 121 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Worth finishing at Green River: BIOL 180 -> `BIOL& 211`, `BIOL& 212`, `BIOL& 213`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
-- Worth finishing at Green River: CHEM 120 -> `CHEM& 121`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
-- Worth finishing at Green River: CHEM 220 -> `CHEM& 131`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
-- Worth finishing at Green River: CHEM 237 -> `CHEM& 261`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
-- Worth finishing at Green River: MATH 124 -> `MATH& 151`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
-- Worth finishing at Green River: MATH 125 -> `MATH& 152`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
-- Worth finishing at Green River: PHYS 114 -> `PHYS& 114`, `PHYS& 154`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
-- Worth finishing at Green River: PHYS 115 -> `PHYS& 115`, `PHYS& 155`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
+- Worth finishing at Green River: MATH& 151 -> `MATH& 151`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: CHEM& 161 -> `CHEM& 161`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: CHEM& 140 -> `CHEM& 140`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: MATH& 152 -> `MATH& 152`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: CHEM& 162 -> `CHEM& 162`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: MATH& 163 -> `MATH& 163`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
 - Both: `BIOL& 211 -> BIOL& 212 -> BIOL& 213`. All three are needed for the full `BIOL 180, 200, 220, 2XX (3)` outcome.
 - Both: `CHEM& 161 -> CHEM& 162 -> CHEM& 163`. Current UW full-credit note: `CHEM& 162 + CHEM& 163` gives `CHEM 152, 162 (5, 5), 1XX (2)`; otherwise each is weaker `CHEM 1XX`.
 - GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
 - GRC sequence: `PHYS& 221 -> PHYS& 222 -> PHYS& 223` for calculus-based physics.
 - Planner flag: This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves.
 - Source-backed note: strongest prep is science-heavy AST track
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0204:chemistry:chemand-161-6-formerly-chem-140.
-- Source-backed note: Added the Green River course path CHEM& 161 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: CHEM 142 | CHEM 142 | * CHEM 143, 153 and 145, 155 are pre-approved substitutes for CHEM 142 and 152.
-- Source-backed note: Guide-backed rule: uw-grc-guide:1196:physics:physand-221-5-formerly-phys-201.
-- Source-backed note: Added the Green River course path PHYS& 221 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: PHYS 121 | PHYS 114 or PHYS 121 (choose one)
-- Source-backed note: Guide-backed rule: uw-grc-guide:0168:biology:bioland-211-212-213-6-6-6-formerly-biol-201-202-203.
-- Source-backed note: Added the Green River course path BIOL& 211, BIOL& 212, BIOL& 213 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: BIOL 180
-- Source-backed note: Guide-backed rule: uw-grc-guide:0196:chemistry:chemand-121-5-formerly-chem-101.
-- Source-backed note: Added the Green River course path CHEM& 121 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: CHEM 120 | CHEM 120
-- Source-backed note: Guide-backed rule: uw-grc-guide:0197:chemistry:chemand-131-5-formerly-chem-102.
-- Source-backed note: Added the Green River course path CHEM& 131 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: CHEM 220
-- Source-backed note: Guide-backed rule: uw-grc-guide:0218:chemistry:chemand-261-6-formerly-chem-235.
-- Source-backed note: Added the Green River course path CHEM& 261 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: ⁺ CHEM 237 pre-approved to substitute for CHEM 223
-- Source-backed note: Guide-backed rule: uw-grc-guide:0792:mathematics:mathand-151-5-formerly-math-124.
-- Source-backed note: Added the Green River course path MATH& 151 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: MATH 124
-- Source-backed note: Guide-backed rule: uw-grc-guide:0793:mathematics:mathand-152-5-formerly-math-125.
-- Source-backed note: Added the Green River course path MATH& 152 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: MATH 125
-- Source-backed note: Guide-backed rule: uw-grc-guide:1187:physics:physand-114-154-5-5-formerly-phys-110-150.
-- Source-backed note: Added the Green River course path PHYS& 114, PHYS& 154 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: PHYS 114 | PHYS 114 or PHYS 121 (choose one)
-- Source-backed note: Guide-backed rule: uw-grc-guide:1188:physics:physand-115-155-5-5-formerly-phys-111-151.
-- Source-backed note: Added the Green River course path PHYS& 115, PHYS& 155 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: PHYS 115
 
 
 ### Materials Science & Engineering
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `999O`.
+Planner coverage: `detailed`. Best Green River base: `999Q`.
 MSE starts from 999Q, but ENGR 140 plus programming and chemistry depth are what make the plan truly major-ready instead of just generally engineering-ready.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -11094,11 +11061,9 @@ MSE starts from 999Q, but ENGR 140 plus programming and chemistry depth are what
 ##### Links Used
 
 - [UW Materials Science degree requirements](https://mse.washington.edu/current/undergrad/courses)
-- [UW Materials Science degree requirements](https://mse.washington.edu/current/undergrad/courses) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [UW Materials Science & Engineering admissions](https://mse.washington.edu/admission/undergraduate)
 - [UW MSE junior-start plan of study](https://mse.washington.edu/files/current/undergrad/docs/MSE-sample-sched.pdf)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
-- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### MSE degree totals
 
@@ -11179,12 +11144,8 @@ MSE starts from 999Q, but ENGR 140 plus programming and chemistry depth are what
 - `CHEM& 263`
 - `CHEM 296`
 - `CHEM 299`
-- `BIOL& 211`
-- `BIOL& 212`
-- `BIOL& 213`
 - `CS 123`
 - `CS 145`
-- `CS& 141`
 
 #### Required sequences for specific credits
 
@@ -11202,41 +11163,11 @@ MSE starts from 999Q, but ENGR 140 plus programming and chemistry depth are what
 - Worth finishing at Green River: CEE 220 encouraged -> `ENGR& 225`. note: CEE 220 is one of the named MSE engineering-fundamentals courses, so ENGR& 225 is still a strong pre-transfer add.
 - Worth finishing at Green River: AA 260 engineering-fundamentals elective -> `ENGR& 224`. note: Thermodynamics is one of the explicit engineering-fundamentals elective options on the current MSE degree page.
 - Worth finishing at Green River: PHYS 123 encouraged -> `PHYS& 223`. note: PHYS 123 sits in the published MSE natural-science block, so it is worth finishing before transfer when possible.
-- Worth finishing at Green River: BIOL 180 -> `BIOL& 211`, `BIOL& 212`, `BIOL& 213`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
-- Worth finishing at Green River: CHEM 237 -> `CHEM& 261`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
-- Worth finishing at Green River: CHEM 238 -> `CHEM& 262`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
-- Worth finishing at Green River: CSE 123 -> `CS 123`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
-- Worth finishing at Green River: CSE 142 -> `CS& 141`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
-- Worth finishing at Green River: CSE 143 -> `CS 145`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
-- Worth finishing at Green River: PHYS 225 -> `PHYS 225`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
 - GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
 - GRC sequence: `PHYS& 221 -> PHYS& 222 -> PHYS& 223` for calculus-based physics.
 - Both: `CHEM& 161 -> CHEM& 162 -> CHEM& 163`. Current UW full-credit note: `CHEM& 162 + CHEM& 163` gives `CHEM 152, 162 (5, 5), 1XX (2)`; otherwise each is weaker `CHEM 1XX`.
 - Planner flag: Do not let students assume the standard mechanics-heavy engineering plan automatically covers the materials-specific prep.
 - Source-backed note: Validated against the current MSE undergraduate admissions page, current graduation-requirements PDF, and junior-start sample schedule on April 2, 2026.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0168:biology:bioland-211-212-213-6-6-6-formerly-biol-201-202-203.
-- Source-backed note: Added the Green River course path BIOL& 211, BIOL& 212, BIOL& 213 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: BIOL 180
-- Source-backed note: Guide-backed rule: uw-grc-guide:0218:chemistry:chemand-261-6-formerly-chem-235.
-- Source-backed note: Added the Green River course path CHEM& 261 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: CHEM 237
-- Source-backed note: Guide-backed rule: uw-grc-guide:0219:chemistry:chemand-262-6-formerly-chem-236.
-- Source-backed note: Added the Green River course path CHEM& 262 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: CHEM 238
-- Source-backed note: Guide-backed rule: uw-grc-guide:0268:computer-science:cs-123-5.
-- Source-backed note: Added the Green River course path CS 123 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: CSE 123
-- Source-backed note: Guide-backed rule: uw-grc-guide:0271:computer-science:csand-141-5-formerly-c-sci-144.
-- Source-backed note: Added the Green River course path CS& 141 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: AMATH 301 or CSE 142 or CSE 122
-- Source-backed note: Guide-backed rule: uw-grc-guide:0277:computer-science:cs-145-5-formerly-c-sci-145.
-- Source-backed note: Added the Green River course path CS 145 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: CSE 143
-- Source-backed note: Guide-backed rule: uw-grc-guide:1199:physics:phys-225-3-formerly-phys-221.
-- Source-backed note: Added the Green River course path PHYS 225 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: PHYS 225
 
 
 ### Mathematics
@@ -11250,9 +11181,7 @@ Seattle Mathematics is now modeled as a shared lower-division math transfer wher
 
 ##### Links Used
 
-- [UW Mathematics undergraduate major requirements overview](https://math.washington.edu/undergraduate-major-requirements)
 - [UW B.A. Mathematics standard requirements](https://math.washington.edu/ba-mathematics-standard-major-requirements-0)
-- [UW B.S. Mathematics requirements](https://math.washington.edu/bs-mathematics-major-requirements-0)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 
 ##### Mathematics major options and planner baseline
@@ -11354,9 +11283,7 @@ Mechanical Engineering is a strong 999Q fit. The main planning move is making su
 
 - [UW Mechanical Engineering admissions](https://www.me.washington.edu/bsme/admissions)
 - [UW Mechanical Engineering degree requirements](https://www.me.washington.edu/students/ug/requirements)
-- [UW Mechanical Engineering degree requirements](https://www.me.washington.edu/students/ug/requirements) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
-- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### BSME lower-division foundation
 
@@ -11443,13 +11370,10 @@ Mechanical Engineering is a strong 999Q fit. The main planning move is making su
 - Required before application: PHYS 121 and PHYS 122 -> `PHYS& 221`, `PHYS& 222`
 - Required before application: CHEM 142 -> `CHEM& 161`
 - Required before application: A A 210 -> `ENGR& 214`
-- Required before application: MATH 224 -> `MATH& 254`. note: The current official degree page names MATH 224 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
 - Required before enrollment: CHEM 152 -> `CHEM& 162`, `CHEM& 163`. note: The current equivalency guide treats the GRC CHEM& 162 + 163 pair as UW's later chemistry sequence.
 - Required before enrollment: CEE 220 -> `ENGR& 225`. note: CEE 220 is part of the published BSME engineering-fundamentals block, so finishing ENGR& 225 before transfer keeps the first UW year cleaner.
 - Required before enrollment: M E 230 -> `ENGR& 215`. note: ME 230 is part of the published BSME engineering-fundamentals block, so ENGR& 215 is a high-value pre-transfer class.
 - Required before enrollment: PHYS 123 -> `PHYS& 223`. note: The full BSME physics block includes PHYS 123, so finishing the third calculus-based physics course before transfer is worth it when possible.
-- Required before enrollment: AMATH 301 -> `ENGR 250`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the degree still needs this computing or technical requirement either way.
-- Required before enrollment: MSE 170 -> `ENGR 140`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 - Worth finishing at Green River: MATH 207 strongly encouraged -> `MATH 238`. note: Differential equations is part of the published BSME math block. Not the first admission screen, but good to complete before or during UW enrollment.
 - Worth finishing at Green River: MATH 208 strongly encouraged -> `MATH 240`. note: Linear algebra is part of the published BSME math block. Not the first admission screen, but good to complete before or during UW enrollment.
 - GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
@@ -11457,17 +11381,6 @@ Mechanical Engineering is a strong 999Q fit. The main planning move is making su
 - Both: `CHEM& 161 -> CHEM& 162 -> CHEM& 163`. Current UW full-credit note: `CHEM& 162 + CHEM& 163` gives `CHEM 152, 162 (5, 5), 1XX (2)`; otherwise each is weaker `CHEM 1XX`.
 - Planner flag: Older Green River sample plans may still show MATH& 153 where the current equivalency guide now points students toward MATH& 163 for a clean MATH 126 match.
 - Planner flag: Students who stop after CHEM& 162 may be underprepared for the stronger ME launch.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0817:mathematics:mathand-254-5-see-also-mathand-153-combined-entry.
-- Source-backed note: Added the Green River course path MATH& 254 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: MATH 209 (or MATH 309) or MATH 224 (or MATH 324)‡ or AMATH 353 | ‡ As of autumn 2021, MATH 307, MATH 308, MATH 309, and MATH 324 are renumbered as MATH 207, MATH 208, MATH 209, and MATH 224, respectively. Students can apply either the 200- or 300-level number for each course toward their degree requirements.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0441:engineering-formerly-general-engineering:engr-250-5.
-- Source-backed note: Added the Green River course path ENGR 250 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: AMATH 301
-- Source-backed note: Guide-backed rule: uw-grc-guide:0421:engineering-formerly-general-engineering:engr-140-5-formerly-g-e-140.
-- Source-backed note: Added the Green River course path ENGR 140 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: MSE 170
 
 
 ### Medical Laboratory Science
@@ -11676,16 +11589,17 @@ Current Green River -> UW planning reference for Microbiology. Use the attached 
 - `MATH 256`
 - `MATH 297`
 - `PHYS& 114`
+- `PHYS& 115`
 - `PHYS& 154`
+- `PHYS& 155`
 - `PHYS& 221`
+- `PHYS& 222`
 
 #### Required sequences for specific credits
 
-- Required before application: BIOL 180 -> `BIOL& 211`, `BIOL& 212`, `BIOL& 213`. note: The current official degree page names BIOL 180 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Required before application: CHEM 142 -> `CHEM& 161`. note: The current official degree page names CHEM 142 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Required before application: CHEM 152 -> `CHEM& 162`, `CHEM& 163`. note: The current official degree page names CHEM 152 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Required before application: CHEM 237 -> `CHEM& 261`. note: The current official degree page names CHEM 237 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Required before application: PHYS 114 -> `PHYS& 114`, `PHYS& 154`. note: The current official degree page names PHYS 114 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: MATH 124 -> `MATH& 151`. note: The current official degree page names MATH 124 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: PHYS 121 -> `PHYS& 221`. note: The current official degree page names PHYS 121 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: STAT 220 -> `MATH& 146`. note: The current official degree page names STAT 220 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
 - Both: `BIOL& 211 -> BIOL& 212 -> BIOL& 213`. All three are needed for the full `BIOL 180, 200, 220, 2XX (3)` outcome.
 - Both: `CHEM& 161 -> CHEM& 162 -> CHEM& 163`. Current UW full-credit note: `CHEM& 162 + CHEM& 163` gives `CHEM 152, 162 (5, 5), 1XX (2)`; otherwise each is weaker `CHEM 1XX`.
 - Both: `CHEM& 261 -> CHEM& 262 -> CHEM& 263`. Current UW full-credit notes: `261 + 262` strengthens the outcome, and `261 + 262 + 263` yields the full `CHEM 237, 238, 239, 241, 242` package.
@@ -11693,18 +11607,13 @@ Current Green River -> UW planning reference for Microbiology. Use the attached 
 - Source-backed note: use BIOL& 260 plus major biology/chemistry sequence
 - Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
 - Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0168:biology:bioland-211-212-213-6-6-6-formerly-biol-201-202-203.
-- Source-backed note: Added the Green River course path BIOL& 211, BIOL& 212, BIOL& 213 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Title: MICROBIOLOGY Bachelor of Science 1 Microbiology is the study of the smallest living organisms (bacteria, algae, fungi, and protozoa) and viruses. Because of their simplicity and rapid growth rates, microorganisms are readily amenable to study in the laboratory. Because their cellular processes closely resemble those of higher organisms, they are ideally suited for fundamental studies of biological structure, physiology, metabolism, genetics and development. The Microbiology department at the University of Washington works mainly in cutting edge research in Bacteriology and Virology. The B.S. in Microbiology is complemented by the College of Arts and Sciences general educational requirements such as English Composition, Writing, Foreign Language, Quantitative & Symbolic Reasoning, Arts &Humanities, Social Science and Natural Science courses which provide a comprehensive liberal arts degree. Most students are admitted to the major at the beginning of their junior year. For Admission, students must complete the following requirements: 1. A minimum of 75 credits applicable to graduation 2. A minimum cumulative GPA of 2.0 overall 3. A minimum cumulative GPA of 2.5 in prerequisite CHEM and BIOL courses listed in items 4-6 below. 4. Completion of BIOL 180, BIOL 200 (minimum grade 2.3), AND BIOL 220. 5. Completion of one of the following chemistry series: a. CHEM 142, CHEM 152, CHEM 162 b. CHEM 143, CHEM 153 c. CHEM 145, CHEM 155, CHEM 165 6. Completion of either CHEM 223, CHEM 237, or CHEM 335 All students are strongly encouraged to meet with the Microbiology Adviser before declaring and at least quarterly after acceptance to go over academic progress, academic goals, and department policies. Counseling Services Coordinator Josey Overfield Office: Health Sciences Building HSB E-421 Phone: 206-543-2572 Email: microadv@uw.edu Grade Requirements: 1. All courses taken to fulfill requirements must be taken for a letter (numerical) grade unless the course is offered credit/no credit. 2. Students must maintain a cumulative GPA of 2.25 in all classes that count towards the Microbiology Major. 3. A minimum grade of 1.8 must be achieved in all required and elective courses (see below) for them to be used toward degree requirements for graduation. Progress/Dismissal Policy: A student is placed on departmental academic probation for one quarter, if the student's cumulative GPA in classes that count towards the Microbiology Major falls below 2.25. If at the end of the quarter the GPA has not improved to at least 2.25, the student is dropped from the major. Students who experience extraordinary circumstances may petition for one or more additional probationary quarters by contacting the academic adviser. | [Page 1] MICROBIOLOGY Bachelor of Science 1 Microbiology is the study of the smallest living organisms (bacteria, algae, fungi, and protozoa) and viruses. Because of their simplicity and rapid growth rates, microorganisms are readily amenable to study in the laboratory. Because their cellular processes closely resemble those of higher organisms, they are ideally suited for fundamental studies of biological structure, physiology, metabolism, genetics and development. The Microbiology department at the University of Washington works mainly in cutting edge research in Bacteriology and Virology. The B.S. in Microbiology is complemented by the College of Arts and Sciences general educational requirements such as English Composition, Writing, Foreign Language, Quantitative & Symbolic Reasoning, Arts &Humanities, Social Science and Natural Science courses which provide a comprehensive liberal arts degree. Most students are admitted to the major at the beginning of their junior year. For Admission, students must complete the following requirements: 1. A minimum of 75 credits applicable to graduation 2. A minimum cumulative GPA of 2.0 overall 3. A minimum cumulative GPA of 2.5 in prerequisite CHEM and BIOL courses listed in items 4-6 below. 4. Completion of BIOL 180, BIOL 200 (minimum grade 2.3), AND BIOL 220. 5. Completion of one of the following chemistry series: a. CHEM 142, CHEM 152, CHEM 162 b. CHEM 143, CHEM 153 c. CHEM 145, CHEM 155, CHEM 165 6. Completion of either CHEM 223, CHEM 237, or CHEM 335 All students are strongly encouraged to meet with the Microbiology Adviser before declaring and at least quarterly after acceptance to go over academic progress, academic goals, and department policies. Counseling Services Coordinator Josey Overfield Office: Health Sciences Building HSB E-421 Phone: 206-543-2572 Email: microadv@uw.edu Grade Requirements: 1. All courses taken to fulfill requirements must be taken for a letter (numerical) grade unless the course is offered credit/no credit. 2. Students must maintain a cumulative GPA of 2.25 in all classes that count towards the Microbiology Major. 3. A minimum grade of 1.8 must be achieved in all required and elective courses (see below) for them to be used toward degree requirements for graduation. Progress/Dismissal Policy: A student is placed on departmental academic probation for one quarter, if the student's cumulative GPA in classes that count towards the Microbiology Major falls below 2.25. If at the end of the quarter the GPA has not improved to at least 2.25, the student is dropped from the major. Students who experience extraordinary circumstances may petition for one or more additional probationary quarters by contacting the academic adviser.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0204:chemistry:chemand-161-6-formerly-chem-140.
-- Source-backed note: Added the Green River course path CHEM& 161 because the current planner rows did not expose it yet.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0205:chemistry:chemand-162-163-6-6-formerly-chem-150-160.
-- Source-backed note: Added the Green River course path CHEM& 162, CHEM& 163 because the current planner rows did not expose it yet.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0218:chemistry:chemand-261-6-formerly-chem-235.
-- Source-backed note: Added the Green River course path CHEM& 261 because the current planner rows did not expose it yet.
-- Source-backed note: Guide-backed rule: uw-grc-guide:1187:physics:physand-114-154-5-5-formerly-phys-110-150.
-- Source-backed note: Added the Green River course path PHYS& 114, PHYS& 154 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0792:mathematics:mathand-151-5-formerly-math-124.
+- Source-backed note: Added the Green River course path MATH& 151 because the current planner rows did not expose it yet.
 - Source-backed note: Requirement cue lines: [Page 2] MICROBIOLOGY Bachelor of Science 2 Supporting Requirements (in addition to the prerequisite Biology and Chemistry Courses listed above): MATHEMATICS – Choose One Option: 1. MATH 124 (5) Calculus with Analytic Geometry I 2. MATH 134 (5) Accelerated [Honors] Calculus 3. Q SCI 291 (5) Analysis for Biologists I Please note that calculus series is strongly recommended for students pursuing graduate work: MATH 124 (5), 125 (5), 126 (5) -OR- QSCI 291 (5), 292 (5), 381 (5) STATISTICS – Choose One Option: 1. BIOST 310 (4) Biostatistics for the Health Sciences 2. Q SCI 381 (5) Introduction to Probability and Statistics 3. STAT 220 (5) Principles of Statistical Reasoning 4. STAT 311 (5) Elements of Statistical Methods Freshman Year: Typically, students will complete Inorganic Chemistry and Math requirements along with other general education requirements. Sophomore Year: Students should complete the Introductory Biology and Organic Chemistry requirements and continue general education courses. Junior and Senior Years: Students will typically start Microbiology core and distribution courses, start Physics or Biochemistry, participate in research, and finish any remaining general education, graduate, or professional school requirements. Please see the department website for the following: • Departmental Honors (https://microbiology.washington.edu/undergrad/honors-program) • Department Awards and Scholarships (https://microbiology.washington.edu/undergrad/awards) • Faculty Research Areas (https://microbiology.washington.edu/research/research-areas) PHYSICS – Choose One Option: 1. PHYS 114 (4), 115 (4) General Physics I & II 2. PHYS 121 (5), 122 (5) Mechanics, Electromagnetism 3. PHYS 141 (5), 142 (5) Honors Mechanics, Electromagnetism BIOCHEMISTRY - Choose One Option: 1. BIOC 405 (3), 406 (3) Intro to Biochemistry I & II 2. BIOC 440 (4), 441 (4), 442 (4) Biochemistry I, II, III Please note that CHEM 224, 238, and 239 may be needed, depending on which BIOC series you wish to pursue and your goals for post graduate work.
+- Source-backed note: Guide-backed rule: uw-grc-guide:1196:physics:physand-221-5-formerly-phys-201.
+- Source-backed note: Added the Green River course path PHYS& 221 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0788:mathematics:mathand-146-5.
+- Source-backed note: Added the Green River course path MATH& 146 because the current planner rows did not expose it yet.
 
 
 ### Middle Eastern Languages & Cultures
@@ -11863,7 +11772,6 @@ Current Green River -> UW planning reference for Music Composition, B.M.. Use th
 ##### Links Used
 
 - [UW Bachelor of Music - Composition](https://music.washington.edu/bachelor-music-composition)
-- [UW Bachelor of Music overview](https://music.washington.edu/bachelor-music)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 
 ##### Music Composition, B.M. admission and degree baseline
@@ -11954,8 +11862,6 @@ Current Green River -> UW planning reference for Music Education, B.M.. Use the 
 ##### Links Used
 
 - [UW Bachelor of Music - Music Education, Instrumental Emphasis](https://music.washington.edu/bachelor-music-music-education-instrumental-emphasis)
-- [UW Bachelor of Music - Music Education, Vocal Emphasis](https://music.washington.edu/bachelor-music-music-education-vocal-emphasis)
-- [UW Bachelor of Music overview](https://music.washington.edu/bachelor-music)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 
 ##### Music Education, B.M. admission and certification baseline
@@ -12116,11 +12022,7 @@ Current Green River -> UW planning reference for Music, B.A.. Use the attached G
 
 ##### Links Used
 
-- [UW Bachelor of Arts in Music overview](https://music.washington.edu/bachelor-arts)
 - [UW Bachelor of Arts - Music, Instrumental Option](https://music.washington.edu/bachelor-arts-music-instrumental-option)
-- [UW Bachelor of Arts - Music, Voice Option](https://music.washington.edu/bachelor-arts-music-voice-option)
-- [UW Bachelor of Arts - Music, Music History Option](https://music.washington.edu/bachelor-arts-music-music-history-option)
-- [UW Bachelor of Arts - Music, Music Theory Option](https://music.washington.edu/bachelor-arts-music-music-theory-option)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 
 ##### Music, B.A. general degree framework
@@ -12212,8 +12114,10 @@ Current Green River -> UW planning reference for Neuroscience. Use the attached 
 - [UW Undergraduate Neuroscience overview](https://sites.uw.edu/neusci/)
 - [UW Undergraduate Neuroscience admissions](https://sites.uw.edu/neusci/admissions/)
 - [UW Undergraduate Neuroscience degree requirements](https://sites.uw.edu/neusci/about/degree-requirements/)
+- [UW Undergraduate Neuroscience degree requirements](https://sites.uw.edu/neusci/about/degree-requirements/) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [UW Undergraduate Neuroscience course list](https://sites.uw.edu/neusci/about/courses/)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
+- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### Neuroscience admission baseline
 
@@ -12333,18 +12237,23 @@ Current Green River -> UW planning reference for Neuroscience. Use the attached 
 
 #### Required sequences for specific credits
 
-- Worth finishing at Green River: MATH& 151 -> `MATH& 151`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: CHEM& 161 -> `CHEM& 161`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: CHEM& 140 -> `CHEM& 140`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: MATH& 152 -> `MATH& 152`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: CHEM& 162 -> `CHEM& 162`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: MATH& 163 -> `MATH& 163`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Required before application: CHEM 142 -> `CHEM& 161`. note: The current official degree page names CHEM 142 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Worth finishing at Green River: MATH 124 -> `MATH& 151`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
+- Worth finishing at Green River: MATH 125 -> `MATH& 152`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
 - Both: `BIOL& 211 -> BIOL& 212 -> BIOL& 213`. All three are needed for the full `BIOL 180, 200, 220, 2XX (3)` outcome.
 - Both: `CHEM& 161 -> CHEM& 162 -> CHEM& 163`. Current UW full-credit note: `CHEM& 162 + CHEM& 163` gives `CHEM 152, 162 (5, 5), 1XX (2)`; otherwise each is weaker `CHEM 1XX`.
 - GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
 - GRC sequence: `PHYS& 221 -> PHYS& 222 -> PHYS& 223` for calculus-based physics.
 - Planner flag: This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves.
 - Source-backed note: supportive pre-major prep
+- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
+- Source-backed note: Source parse confidence: high.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0204:chemistry:chemand-161-6-formerly-chem-140.
+- Source-backed note: Added the Green River course path CHEM& 161 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0792:mathematics:mathand-151-5-formerly-math-124.
+- Source-backed note: Added the Green River course path MATH& 151 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0793:mathematics:mathand-152-5-formerly-math-125.
+- Source-backed note: Added the Green River course path MATH& 152 because the current planner rows did not expose it yet.
 
 
 ### Norwegian
@@ -12650,6 +12559,8 @@ Current Green River -> UW planning reference for Oceanography. Use the attached 
 - [UW Bachelor Degrees in Oceanography](https://www.ocean.washington.edu/story/Bachelor_Degrees_in_Oceanography)
 - [UW Oceanography basic math and science courses](https://www.ocean.washington.edu/story/Basic_Math_and_Science_Courses)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
+- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
+- [BA in Oceanography checklist](https://www.ocean.washington.edu/file/Bachelor_of_Arts_in_Oceanography_Checklist) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 
 ##### Oceanography shared science and math foundation
 
@@ -12765,20 +12676,33 @@ Current Green River -> UW planning reference for Oceanography. Use the attached 
 - `PHYS 225`
 - `PHYS 229`
 - `PHYS 298`
+- `BIOL& 211`
+- `BIOL& 212`
+- `BIOL& 213`
+- `N SCI 100`
 
 #### Required sequences for specific credits
 
-- Worth finishing at Green River: MATH& 151 -> `MATH& 151`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: CHEM& 161 -> `CHEM& 161`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: CHEM& 140 -> `CHEM& 140`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: MATH& 152 -> `MATH& 152`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: CHEM& 162 -> `CHEM& 162`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: MATH& 163 -> `MATH& 163`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Required before application: CHEM 142 -> `CHEM& 161`. note: The current official degree page names CHEM 142 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Worth finishing at Green River: MATH 124 -> `MATH& 151`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
+- Worth finishing at Green River: MATH 125 -> `MATH& 152`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
+- Worth finishing at Green River: MATH 126 -> `MATH& 163`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
 - GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
 - GRC sequence: `PHYS& 221 -> PHYS& 222 -> PHYS& 223` for calculus-based physics.
 - Both: `CHEM& 161 -> CHEM& 162 -> CHEM& 163`. Current UW full-credit note: `CHEM& 162 + CHEM& 163` gives `CHEM 152, 162 (5, 5), 1XX (2)`; otherwise each is weaker `CHEM 1XX`.
 - Planner flag: This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves.
 - Source-backed note: Confirm whether the student is aiming for the B.A. or B.S. in Oceanography before treating the exact 400-level course map as final.
+- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
+- Source-backed note: Source parse confidence: high.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0204:chemistry:chemand-161-6-formerly-chem-140.
+- Source-backed note: Added the Green River course path CHEM& 161 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: Title: Checklist8 Revised 8/23/19 B.A. in Oceanography Worksheet NAME STUDENT # DATE _____________ OPTION FACULTY MENTOR GRADUATION DATE ________ DATE ENTERED OCEAN DATE ENTERED UW TRANSFER CREDITS ______________ EMAIL_______________________ UNDERTOW_______________ OCEAN 100_____________ W RITING Requirement Completed English Composition (5 credits minimum) Credits  Additional writing Courses (W or composition, 10 credits minimum) Credits  OCEAN W-220 3 Elective: Elective: Q UANTITATIVE /S YMBOLIC R EASONING Requirement Completed Math or Quantitative Science Credits  MATH 124 5 MATH 125 or Q SCI 292 5 *MATH 126 (optional) 5 * Recommended for Physical Oceanography or Marine Geology and Geophysics Students N ATURAL W ORLD REQUIRED COURSES (NON-OCEANOGRAPHY) Requirement Completed Chemistry Credits  Biology Credits  Physics Credits  Geology Credits  *CHEM 142 5 BIOL 180 AND 5 PHYS 121 5 *ESS 210 5 *CHEM 152 5 BIOL 200 5 OCEAN 285/286 3/2 OR OR OR ESS 211 5 CHEM 120 5 *OCEAN 270 5 PHYS 121 5 AND *BIOL 220 5 *PHYS 122 5 *Preferred ESS 101 is approved for transfer students OCEAN 295 5 *Recommended for Biological Oceanography Students *PHYS 123 5 *Recommended for Chemical Oceanography Students AND OCEAN 285 3 * Recommended for Physical Oceanography and Marine Geology and Geophysics Students I NDIVIDUALS & S OCIETIES (FORMERLY S OCIAL S CIENCES) Requirement Completed 20 Credits Minimum Credits  PROFICIENCY AREAS OF KNOWLEDGE | [Page 1] Checklist8 Revised 8/23/19 B.A. in Oceanography Worksheet NAME STUDENT # DATE _____________ OPTION FACULTY MENTOR GRADUATION DATE ________ DATE ENTERED OCEAN DATE ENTERED UW TRANSFER CREDITS ______________ EMAIL_______________________ UNDERTOW_______________ OCEAN 100_____________ W RITING Requirement Completed English Composition (5 credits minimum) Credits  Additional writing Courses (W or composition, 10 credits minimum) Credits  OCEAN W-220 3 Elective: Elective: Q UANTITATIVE /S YMBOLIC R EASONING Requirement Completed Math or Quantitative Science Credits  MATH 124 5 MATH 125 or Q SCI 292 5 *MATH 126 (optional) 5 * Recommended for Physical Oceanography or Marine Geology and Geophysics Students N ATURAL W ORLD REQUIRED COURSES (NON-OCEANOGRAPHY) Requirement Completed Chemistry Credits  Biology Credits  Physics Credits  Geology Credits  *CHEM 142 5 BIOL 180 AND 5 PHYS 121 5 *ESS 210 5 *CHEM 152 5 BIOL 200 5 OCEAN 285/286 3/2 OR OR OR ESS 211 5 CHEM 120 5 *OCEAN 270 5 PHYS 121 5 AND *BIOL 220 5 *PHYS 122 5 *Preferred ESS 101 is approved for transfer students OCEAN 295 5 *Recommended for Biological Oceanography Students *PHYS 123 5 *Recommended for Chemical Oceanography Students AND OCEAN 285 3 * Recommended for Physical Oceanography and Marine Geology and Geophysics Students I NDIVIDUALS & S OCIETIES (FORMERLY S OCIAL S CIENCES) Requirement Completed 20 Credits Minimum Credits  PROFICIENCY AREAS OF KNOWLEDGE
+- Source-backed note: Guide-backed rule: uw-grc-guide:0792:mathematics:mathand-151-5-formerly-math-124.
+- Source-backed note: Added the Green River course path MATH& 151 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0793:mathematics:mathand-152-5-formerly-math-125.
+- Source-backed note: Added the Green River course path MATH& 152 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0798:mathematics:mathand-163-5.
+- Source-backed note: Added the Green River course path MATH& 163 because the current planner rows did not expose it yet.
 
 
 ### Orchestral Instruments, B.M.
@@ -12793,7 +12717,6 @@ Current Green River -> UW planning reference for Orchestral Instruments, B.M.. U
 ##### Links Used
 
 - [UW Bachelor of Music - Orchestral Instruments](https://music.washington.edu/bachelor-music-orchestral-instruments)
-- [UW Bachelor of Music overview](https://music.washington.edu/bachelor-music)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 
 ##### Orchestral Instruments, B.M. degree baseline
@@ -12882,7 +12805,6 @@ Current Green River -> UW planning reference for Organ, B.M.. Use the attached G
 ##### Links Used
 
 - [UW Bachelor of Music - Organ](https://music.washington.edu/bachelor-music-organ)
-- [UW Bachelor of Music overview](https://music.washington.edu/bachelor-music)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 
 ##### Organ, B.M. degree baseline
@@ -12972,7 +12894,6 @@ Current Green River -> UW planning reference for Percussion Performance, B.M.. U
 ##### Links Used
 
 - [UW Bachelor of Music - Percussion Performance](https://music.washington.edu/bachelor-music-percussion-performance)
-- [UW Bachelor of Music overview](https://music.washington.edu/bachelor-music)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 
 ##### Percussion Performance, B.M. degree baseline
@@ -13061,9 +12982,7 @@ Current Green River -> UW planning reference for Philosophy. Use the attached Gr
 ##### Links Used
 
 - [UW General Catalog Philosophy requirements](https://www.washington.edu/students/gencat/program/S/Philosophy-221.html)
-- [UW General Catalog Philosophy requirements](https://www.washington.edu/students/gencat/program/S/Philosophy-221.html) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
-- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### Philosophy admission baseline
 
@@ -13150,18 +13069,14 @@ Current Green River -> UW planning reference for Philosophy. Use the attached Gr
 
 #### Required sequences for specific credits
 
-- Required before application: PHIL 115 -> `PHIL 115`. note: The current official degree page names PHIL 115 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Required before application: PHIL 120 -> `PHIL& 120`. note: The current official degree page names PHIL 120 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Worth finishing at Green River: ENGL 103 -> `ENGL 103`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: ENGL 109 -> `ENGL 109`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: ENGL& 112 -> `ENGL& 112`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: ENGL& 113 -> `ENGL& 113`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: ENGL& 114 -> `ENGL& 114`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: ENGL 115 -> `ENGL 115`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
 - Planner flag: This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves.
 - Source-backed note: Confirm whether the student is aiming for the standard Philosophy B.A. or the Ethics option before treating the exact upper-division list as final.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:1012:philosophy:phil-115-5.
-- Source-backed note: Added the Green River course path PHIL 115 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: One course from PHIL 115, PHIL 120, or an upper-division course in logic | One from PHIL 115, PHIL 120, or upper-division course in logic (5 credits) | PHIL 115 or PHIL 120, or an upper-division course in logic
-- Source-backed note: Guide-backed rule: uw-grc-guide:1013:philosophy:philand-120-5-formerly-philand-106.
-- Source-backed note: Added the Green River course path PHIL& 120 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Suggested First- and Second-Year College Courses: PHIL 120, PHIL 160. Courses that develop writing skills. Introductory science courses and mathematics courses through calculus. | HSTCMP 311, HSTCMP 312; PHIL 160 or PHIL 460; PHIL 120, each with a minimum 2.0 grade | Core Courses (25 credits): HSTCMP 311, HSTCMP 312, HSTCMP 390; PHIL 160 or PHIL 460; PHIL 120. Minimum 2.0 grade in each course and overall minimum 2.50 GPA.
 
 
 ### Physics
@@ -13175,9 +13090,10 @@ Current Green River -> UW planning reference for Physics. Use the attached Green
 
 ##### Links Used
 
-- [UW Bachelor of Science in Physics overview](https://phys.washington.edu/bachelor-science-physics)
 - [UW Physics B.S. degree requirements](https://phys.washington.edu/physics-bs-degree-requirements)
+- [Physics B.S. Degree Requirements](https://phys.washington.edu/physics-bs-degree-requirements) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
+- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### Physics shared B.S. common requirements
 
@@ -13244,20 +13160,23 @@ Current Green River -> UW planning reference for Physics. Use the attached Green
 - `CHEM& 263`
 - `CHEM 296`
 - `CHEM 299`
+- `BIOL& 211`
+- `BIOL& 212`
+- `BIOL& 213`
+- `ENGR 250`
 
 #### Required sequences for specific credits
 
-- Worth finishing at Green River: MATH& 151 -> `MATH& 151`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: CHEM& 161 -> `CHEM& 161`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: CHEM& 140 -> `CHEM& 140`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: MATH& 152 -> `MATH& 152`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: CHEM& 162 -> `CHEM& 162`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: MATH& 163 -> `MATH& 163`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Required before enrollment: CHEM 142 -> `CHEM& 161`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the degree still needs this chemistry requirement either way.
 - GRC sequence: `PHYS& 221 -> PHYS& 222 -> PHYS& 223` for calculus-based physics.
 - GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
 - Both: `CHEM& 161 -> CHEM& 162 -> CHEM& 163`. Current UW full-credit note: `CHEM& 162 + CHEM& 163` gives `CHEM 152, 162 (5, 5), 1XX (2)`; otherwise each is weaker `CHEM 1XX`.
 - Planner flag: This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves.
 - Source-backed note: Confirm whether the student is aiming for the Comprehensive, Applied, or Teaching Physics track before treating the exact upper-division plan as final.
+- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
+- Source-backed note: Source parse confidence: high.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0204:chemistry:chemand-161-6-formerly-chem-140.
+- Source-backed note: Added the Green River course path CHEM& 161 because the current planner rows did not expose it yet.
 
 
 ### Piano, B.M.
@@ -13272,7 +13191,6 @@ Current Green River -> UW planning reference for Piano, B.M.. Use the attached G
 ##### Links Used
 
 - [UW Bachelor of Music - Piano](https://music.washington.edu/bachelor-music-piano)
-- [UW Bachelor of Music overview](https://music.washington.edu/bachelor-music)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 
 ##### Piano, B.M. degree baseline
@@ -13361,8 +13279,9 @@ Current Green River -> UW planning reference for Political Science. Use the atta
 ##### Links Used
 
 - [UW Political Science major declaration and requirements](https://www.polisci.washington.edu/political-science-major-declaration-and-requirements)
-- [UW Political Science undergraduate programs overview](https://www.polisci.washington.edu/undergraduate-programs)
+- [UW Political Science major declaration and requirements](https://www.polisci.washington.edu/political-science-major-declaration-and-requirements) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
+- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### Political Science admission baseline
 
@@ -13471,14 +13390,23 @@ Current Green River -> UW planning reference for Political Science. Use the atta
 
 #### Required sequences for specific credits
 
-- Worth finishing at Green River: POLS& 101 -> `POLS& 101`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: POLS 194 -> `POLS 194`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: POLS& 200 -> `POLS& 200`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: POLS& 202 -> `POLS& 202`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: POLS& 203 -> `POLS& 203`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: POLS& 204 -> `POLS& 204`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Required before application: POL S 101 -> `POLS& 101`. note: The current official degree page names POL S 101 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: POL S 202 -> `POLS& 202`. note: The current official degree page names POL S 202 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: POL S 203 -> `POLS& 203`. note: The current official degree page names POL S 203 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: POL S 204 -> `POLS& 204`. note: The current official degree page names POL S 204 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
 - Planner flag: This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves.
 - Source-backed note: direct subject coverage through current POLS sequence
+- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
+- Source-backed note: Source parse confidence: high.
+- Source-backed note: Guide-backed rule: uw-grc-guide:1204:political-science:polsand-101-5-formerly-p-sci-100.
+- Source-backed note: Added the Green River course path POLS& 101 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: Three political science introductory courses chosen from POL S 101, 201, 202, 203, 204 or approved equivalent. Students may submit the Political Science Major Declaration Request Form when they have completed at least two introductory courses and are enrolled in and attending the third course. If more than one course is in progress, consult with a Political Science adviser about when you are eligible to submit the major declaration request.
+- Source-backed note: Guide-backed rule: uw-grc-guide:1212:political-science:polsand-202-5-formerly-p-sci-202.
+- Source-backed note: Added the Green River course path POLS& 202 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:1214:political-science:polsand-203-5-formerly-p-sci-203.
+- Source-backed note: Added the Green River course path POLS& 203 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:1216:political-science:polsand-204-5-formerly-p-sci-201.
+- Source-backed note: Added the Green River course path POLS& 204 because the current planner rows did not expose it yet.
 
 
 ### Psychology
@@ -13493,10 +13421,12 @@ Current Green River -> UW planning reference for Psychology. Use the attached Gr
 ##### Links Used
 
 - [UW Psychology graduation requirements](https://psych.uw.edu/undergraduate/prospective-students/graduation-requirements)
+- [UW Psychology graduation requirements](https://psych.uw.edu/undergraduate/prospective-students/graduation-requirements) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [UW Psychology admissions](https://psych.uw.edu/undergraduate/prospective-students/admissions)
 - [UW Psychology transfer-student guide](https://psych.uw.edu/undergraduate/prospective-students/transferring-to-uw)
 - [UW Psychology BA vs BS guidance](https://psych.uw.edu/undergraduate/prospective-students/choosing-a-degree)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
+- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### Psychology admission baseline
 
@@ -13571,17 +13501,27 @@ Current Green River -> UW planning reference for Psychology. Use the attached Gr
 - `BIOL& 242`
 - `BIOL& 260`
 - `BIOL 298`
+- `BIOL 111`
+- `MATH 147`
+- `MATH& 142`
+- `MATH& 148`
+- `MATH& 151`
+- `PHIL& 120`
+- `PSYCH 210`
+- `PSYCH 250`
 
 #### Required sequences for specific credits
 
-- Worth finishing at Green River: BIOL& 260 -> `BIOL& 260`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: BIOL& 211 -> `BIOL& 211`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: BIOL& 212 -> `BIOL& 212`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: BIOL& 213 -> `BIOL& 213`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: BIOL& 100 -> `BIOL& 100`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: BIOL 103 -> `BIOL 103`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Worth finishing at Green River: BIOL 180 -> `BIOL& 211`, `BIOL& 212`, `BIOL& 213`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
+- Worth finishing at Green River: MATH 124 -> `MATH& 151`. note: Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.
 - Planner flag: This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves.
 - Source-backed note: Confirm whether the student is aiming for the B.A. or the research-oriented B.S. before treating the exact upper-division plan as final.
+- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
+- Source-backed note: Source parse confidence: high.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0168:biology:bioland-211-212-213-6-6-6-formerly-biol-201-202-203.
+- Source-backed note: Added the Green River course path BIOL& 211, BIOL& 212, BIOL& 213 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0792:mathematics:mathand-151-5-formerly-math-124.
+- Source-backed note: Added the Green River course path MATH& 151 because the current planner rows did not expose it yet.
 
 
 ### Public Health - Global Health
@@ -13718,9 +13658,9 @@ Current Green River -> UW planning reference for Public Health - Global Health. 
 
 #### Required sequences for specific credits
 
-- Required before application: BIOL 118 -> `BIOL& 241`, `BIOL& 242`. note: The current official degree page names BIOL 118 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Required before application: BIOL 180 -> `BIOL& 211`, `BIOL& 212`, `BIOL& 213`. note: The current official degree page names BIOL 180 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Required before application: MICROM 301 -> `BIOL& 260`. note: The current official degree page names MICROM 301 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: CHEM 120 -> `CHEM& 121`. note: The current official degree page names CHEM 120 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: CHEM 142 -> `CHEM& 161`. note: The current official degree page names CHEM 142 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: ENV H 111 -> `NUTR& 101`. note: The current official degree page names ENV H 111 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
 - Both: `BIOL& 211 -> BIOL& 212 -> BIOL& 213`. All three are needed for the full `BIOL 180, 200, 220, 2XX (3)` outcome.
 - Both: `CHEM& 161 -> CHEM& 162 -> CHEM& 163`. Current UW full-credit note: `CHEM& 162 + CHEM& 163` gives `CHEM 152, 162 (5, 5), 1XX (2)`; otherwise each is weaker `CHEM 1XX`.
 - GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
@@ -13728,13 +13668,14 @@ Current Green River -> UW planning reference for Public Health - Global Health. 
 - Source-backed note: Confirm BA versus BS and the student's intended option before treating the exact PH-GH upper-division elective bundle as final.
 - Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
 - Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0169:biology:bioland-241-242-5-5-formerly-ap-205-206.
-- Source-backed note: Added the Green River course path BIOL& 241, BIOL& 242 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0196:chemistry:chemand-121-5-formerly-chem-101.
+- Source-backed note: Added the Green River course path CHEM& 121 because the current planner rows did not expose it yet.
 - Source-backed note: Requirement cue lines: [Page 2] PUBLIC HEALTH - GLOBAL HEALTH MAJOR REQUIREMENTS Bachelor of Arts (BA) [116 cr] BA: Option in Global Health BA: Option in Health Education & Promotion Bachelor of Science (BS) [138 cr] BS: Option in Global Health BS: Option Nutritional Sciences Any intro PH course G H 101 HSERV 100 Any intro PH course G H 101 NUTR 200 PH-GH Foundations, Core, and Portfolio INTEGRATED CORE: SEQUENCE [ 20 cr ] --- SPH 380, 381, 480, 481 PUBLIC HEALTH FOUNDATION [ 8 cr ] --- BIOST 310, EPI 320 STRUCTURAL RACISM [ 5 cr ] --- SPH 389 PUBLIC HEALTH SERVICE LEARNING [ 6 cr ] --- SPH 391 [3 cr] & SPH 392 [3 cr] or SPH 396 [6 cr] SOCIAL & BEHAVIORAL SCIENCES BREADTH [ 15 cr ] Up to 5 credits per course in at least three departments from AAS, AES, AFRAM, AIS, ANTH, CHSTU, GEOG, POL S, PSYCH, or SOC NATURAL SCIENCE [ 10 cr ] One 5-credit course in BIOL and CHEM Select BIOL: BIOL 118, 180 or MICROM 301/302 Select CHEM: CHEM 120, 142, 145 PUBLIC HEALTH PORTFOLIO [ 3 cr ] --- SPH 493 2 year-long sequences of intro science from: BIOL 180, 200, 220 [15 cr] + CHEM 142, 152, 162 [15 cr] + Organic Chemistry or Biochemistry [10 cr] [ 20 credits total ] At least 9 cr from: NUTR 310 [4], 405 [3], 406 [3] , 411 [3], 420 [3], 466 (3) To complete 20 cr: NUTR 302 [5], + 400 [1 cr; max 2 times] 412 [3], 465 [3] 20 credits from courses identified to address competency areas in health economics, health promotion, and social justice. [20 credits total ] 300-400 level courses to build competency areas in public health. 20 credits from courses identified to address competency areas in environment & global health, health systems & approaches to health, determinants of health, and regional & area studies. [ 20 credits total ] G H 305 [3], 401 [3], 402 [3] + 300 & 400 level G H Prefix courses [6 cr] + 300 & 400 level courses [5 cr] [ 20 credits total ] HSERV 100 [3] + HSERV 204 [3] + 14 credits from courses identified to address competency areas in health economics, health promotion, and social justice. [ 20 credits total ] HSERV 343 [5], 344 [5], 345 [5], SPH 495 [5] Public Health Internship 2 year-long sequences of intro science from: BIOL 180, 200, 220 [15 cr] + CHEM 142, 152, 162 [15 cr] + 10 additonal credits [ 20 credits total ] 300-400 level courses to build competency areas in public health. 2 year-long sequences of intro science from: BIOL 180, 200, 220 [15 cr] + CHEM 142, 152, 162 [15 cr] + 10 additonal credits [ 20 credits total ] G H 305 [3], 401 [3], 402 [3] + 300 & 400 level G H Prefix courses [6 cr] + 300 & 400 level courses [5 cr] SPECIFIC REQUIRED INTRO COURSE ELECTIVES * SELECTIVES * * See website or adviser for additional info
-- Source-backed note: Guide-backed rule: uw-grc-guide:0168:biology:bioland-211-212-213-6-6-6-formerly-biol-201-202-203.
-- Source-backed note: Added the Green River course path BIOL& 211, BIOL& 212, BIOL& 213 because the current planner rows did not expose it yet.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0171:biology:bioland-260-5-formerly-biol-210.
-- Source-backed note: Added the Green River course path BIOL& 260 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0204:chemistry:chemand-161-6-formerly-chem-140.
+- Source-backed note: Added the Green River course path CHEM& 161 because the current planner rows did not expose it yet.
+- Source-backed note: Choice-set supporting UW codes: NUTR 200.
+- Source-backed note: Choice-set resolution strategies: auto-promoted-guide-direct-equivalent.
+- Source-backed note: Requirement cue lines: Title: PUBLIC HEALTH - GLOBAL HEALTH MAJOR Public Health-Global Health (PH-GH) is a school-wide liberal education major , leading to a Bachelor of Arts or Bachelor of Science, which uses public health questions, concepts and tools to help students develop competencies in assessment & measurement, communication, environment, ethics & social justice, natural science, population health, policy & politics, and social science with particular emphasis on collaboration and critical thinking across these domains. Graduates move on to a range of career and education options in public health, health professions, health sciences, and law, as well as business, economics, education, and social and behavioral sciences. Admission to this major is capacity-constrained and offered twice a year for autumn and winter quarters. Applications are evaluated with a holistic approach; considering overall academic record, grades in relevant coursework selection of and preparation for the BA or BS, ability to make satisfactory progress towards degree, and potential contributions to the diversity of the cohort. Upper Divison Admission Complete the following by the deadline to be considered: 1. Min. 60 college credits 2. Min. 2.5 Cumulative GPA 3. Min. grade of 2.0 in 5 credits of English composition 4. Min. grade of 2.5 in one intro public health course from the following: ENV H 111, EPI 201, EPI 220, G H 101, HSERV 100, NUTR 200, PHG 200 or one 5-credit course from AAS, AES, AFRAM, AIS, ANTH, CHSTU, GEOG, POL S, PSYCH, SOC 5. For BA path students, min. grade of 2.5 in one natural science. Refer to back. 6. For BS path students, min. average grade of 2.5 in at least two courses of the same year-long sequence of biology or chemistry. Refer to PH-GH prerequisites website for alternative sequences. Bachelors of Arts (BA): PH-GH Provides flexibility to serve students with interest in a wide array of exploration in public health, emphasizing sociocultural aspects. Bachelors of Science (BS): PH-GH Provides flexibility to serve students with interest in a wide array of exploration in public health, emphasizing the natural sciences. CONTACT Hans Rosling Center for Population Health phgh@uw.edu | 206-221-4561 https://sph.washington.edu/phgh/advising ADMISSION Degree options are available for students in the major who seek more directed discipline competencies. > Global Health (BA Option; BS Option) Focuses on major challenges and opportunities in global health, discussing determinants of global health and justice-based approaches to promoting health of vulnerable peoples worldwide. > Health Education & Promotion (BA Option) Explores the development of strategies to improve health knowledge, attitudes, skills and behaviors. Aligns with competencies required for the Certified Health Education Specialist (CHES) credential examination. > Nutritional Sciences (BS Option) Prepares students for potential graduate studies in nutritional sciences, including programs that lead to a Registered Dietitian credential. In addition to major requirements outlined on the back page, students complete general education requirements for the School of Public Health. Satisfactory grades earned during Extraordinary Circumstances Quarters count toward admissions and degree requirements. Students who enter the major through upper division admission apply when they are graduating within the next 2 years. AUT 2024 Degree Requirements Effective AUT 2024 (Purple Curriculum) DEGREE REQUIREMENTS PH-GH PATHWAYS PATHWAY OPTIONS SCAN TO APPLY
 
 
 ### Public Service & Policy
@@ -13750,7 +13691,9 @@ Current Green River -> UW planning reference for Public Service & Policy. Use th
 
 - [UW Public Service and Policy major overview](https://evans.uw.edu/undergraduate-programs/public-service-and-policy-major/)
 - [UW Public Service and Policy major requirements](https://evans.uw.edu/undergraduate-programs/public-service-and-policy-major/major-requirements/)
+- [UW Public Service and Policy major requirements](https://evans.uw.edu/undergraduate-programs/public-service-and-policy-major/major-requirements/) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
+- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### Public Service & Policy declaration baseline
 
@@ -13874,15 +13817,19 @@ Current Green River -> UW planning reference for Public Service & Policy. Use th
 
 #### Required sequences for specific credits
 
-- Worth finishing at Green River: ECON 100 -> `ECON 100`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: ECON 101 -> `ECON 101`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: ECON 194 -> `ECON 194`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: ECON& 201 -> `ECON& 201`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: ECON& 202 -> `ECON& 202`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
-- Worth finishing at Green River: ECON 298 -> `ECON 298`. note: Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.
+- Required before application: QMETH 201 -> `MATH 256`. note: The current official degree page names QMETH 201 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: STAT 220 -> `MATH& 146`. note: The current official degree page names STAT 220 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
 - GRC sequence: Business / less-calculus-heavy planning commonly uses `MATH& 141 -> MATH& 142` or `MATH 147 -> MATH& 148`. `MATH& 146` and `MATH 256` are standalone quantitative options.
 - Planner flag: This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves.
 - Source-backed note: supportive policy/econ prep
+- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
+- Source-backed note: Source parse confidence: high.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0819:mathematics:math-256-5.
+- Source-backed note: Added the Green River course path MATH 256 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: QMETH 201 Intro to Statistical Methods (4)
+- Source-backed note: Guide-backed rule: uw-grc-guide:0788:mathematics:mathand-146-5.
+- Source-backed note: Added the Green River course path MATH& 146 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: STAT 220 Statistical Reasoning (5)
 
 
 ### Real Estate
@@ -14007,7 +13954,6 @@ Current Green River -> UW planning reference for Scandinavian Area Studies. Use 
 ##### Links Used
 
 - [UW Scandinavian Area Studies requirements](https://scandinavian.washington.edu/ba-scandinavian-area-studies)
-- [UW Scandinavian Studies undergraduate programs overview](https://scandinavian.washington.edu/undergraduate-programs)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 
 ##### Scandinavian Area Studies language and credit baseline
@@ -14132,9 +14078,6 @@ Current Green River -> UW planning reference for Slavic Languages & Literatures.
 
 ##### Links Used
 
-- [UW Slavic Languages & Literatures undergraduate programs overview](https://slavic.washington.edu/undergraduate-programs)
-- [UW Eastern European Languages, Literature, and Culture requirements](https://slavic.washington.edu/ba-eastern-european-languages-literature-and-culture)
-- [UW Russian Language, Literature, and Culture requirements](https://slavic.washington.edu/ba-russian-language-literature-and-culture)
 - [UW Slavic Languages & Literatures undergraduate policies](https://slavic.washington.edu/undergraduate-policies)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 
@@ -14402,8 +14345,6 @@ Current Green River -> UW planning reference for Sociology. Use the attached Gre
 
 - [UW General Catalog Sociology requirements](https://www.washington.edu/students/gencat/program/S/Sociology-293.html)
 - [UW General Catalog Sociology requirements](https://www.washington.edu/students/gencat/program/S/Sociology-293.html) - Auto-promoted from the parsed primary degree page on April 8, 2026.
-- [UW Sociology declaration requirements](https://soc.washington.edu/declare-sociology-major)
-- [UW Sociology current majors overview](https://soc.washington.edu/current-majors)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 - [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
@@ -14484,18 +14425,17 @@ Current Green River -> UW planning reference for Sociology. Use the attached Gre
 - `EDUC& 205`
 - `EDUC 240`
 - `EDUC 245`
-- `MATH& 146`
 
 #### Required sequences for specific credits
 
-- Required before application: STAT 220 -> `MATH& 146`. note: The current official degree page names STAT 220 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: SOC 110 -> `SOC& 101`. note: The current official degree page names SOC 110 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
 - Planner flag: This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves.
 - Source-backed note: direct sociology coverage through current SOC sequence
 - Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
 - Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0788:mathematics:mathand-146-5.
-- Source-backed note: Added the Green River course path MATH& 146 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: one of STAT 220, STAT 221/SOC 221/CS&SS 221, or STAT 290 (5 credits)
+- Source-backed note: Guide-backed rule: uw-grc-guide:1268:sociology:socand-101-5-formerly-soc-110.
+- Source-backed note: Added the Green River course path SOC& 101 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: Suggested First- and Second-Year College Courses: SOC 110, or any 200-level sociology courses. General coursework developing critical thinking, writing, and analytical skills.
 
 
 ### South Asian Languages & Cultures
@@ -14631,7 +14571,6 @@ Current Green River -> UW planning reference for Spanish. Use the attached Green
 
 ##### Links Used
 
-- [UW admission to the Spanish major](https://spanport.washington.edu/admission-spanish-major)
 - [UW Spanish major requirements](https://spanport.washington.edu/spanish-major-requirements)
 - [UW Spanish major requirements](https://spanport.washington.edu/spanish-major-requirements) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
@@ -14866,18 +14805,18 @@ Current Green River -> UW planning reference for Speech & Hearing Sciences. Use 
 
 #### Required sequences for specific credits
 
-- Required before enrollment: BIOL 118 -> `BIOL& 241`, `BIOL& 242`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the degree still needs this life-science requirement either way.
-- Required before enrollment: BIOL 180 -> `BIOL& 211`, `BIOL& 212`, `BIOL& 213`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the degree still needs this life-science requirement either way.
+- Required before enrollment: CHEM 220 -> `CHEM& 131`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the degree still needs this chemistry requirement either way.
+- Required before enrollment: STAT 220 -> `MATH& 146`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the degree still needs this math requirement either way.
 - Both: `BIOL& 241 -> BIOL& 242`. Both are needed for `BIOL 118`, `BIOL 119`, and `NURS 301` credit.
 - Planner flag: This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves.
 - Source-backed note: supportive prep only; no direct GRC SHS sequence
 - Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
 - Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0169:biology:bioland-241-242-5-5-formerly-ap-205-206.
-- Source-backed note: Added the Green River course path BIOL& 241, BIOL& 242 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0197:chemistry:chemand-131-5-formerly-chem-102.
+- Source-backed note: Added the Green River course path CHEM& 131 because the current planner rows did not expose it yet.
 - Source-backed note: Requirement cue lines: Suggested First and Second-Year College Courses: Social/behavioral science: anthropology, public health, psychology, or sociology. Biological science: BIOL 118 or BIOL 180. Physics or chemistry: PHYS 107, PHYS 110, or CHEM 110, CHEM 220. Statistics: STAT 220 or EDPSY 490. Linguistics: LING 200 or LING 400.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0168:biology:bioland-211-212-213-6-6-6-formerly-biol-201-202-203.
-- Source-backed note: Added the Green River course path BIOL& 211, BIOL& 212, BIOL& 213 because the current planner rows did not expose it yet.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0788:mathematics:mathand-146-5.
+- Source-backed note: Added the Green River course path MATH& 146 because the current planner rows did not expose it yet.
 
 
 ### Statistics
@@ -14893,10 +14832,8 @@ Seattle Statistics is now modeled as a track-based quantitative transfer where t
 
 - [UW Statistics major overview](https://stat.uw.edu/statistics-major)
 - [UW Statistics B.S. major requirements](https://stat.uw.edu/academics/undergraduate/statistics-bs/major)
-- [UW Statistics B.S. major requirements](https://stat.uw.edu/academics/undergraduate/statistics-bs/major) - Auto-promoted from the parsed primary degree page on April 8, 2026.
 - [UW Statistics B.S. track structure](https://stat.uw.edu/academics/undergraduate/statistics-bs/statistics-bs-tracks)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
-- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### Statistics B.S. core requirements
 
@@ -14965,7 +14902,6 @@ Seattle Statistics is now modeled as a track-based quantitative transfer where t
 - Required before application: MATH 208 -> `MATH 240`
 - Required before application: MATH 224 -> `MATH& 254`
 - Required before application: CSE 123 or equivalent strongest programming finish -> `CS 123`
-- Required before application: MATH 300 -> `CS 202`. note: The current official degree page names MATH 300 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
 - Worth finishing at Green River: Statistics support before STAT 302 -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set. note: These do not replace Seattle's own STAT 302 core, but they make the probability and methods launch cleaner before transfer.
 - Worth finishing at Green River: Interdisciplinary support for applied or data-facing track options -> `ACCT& 201`, `ACCT& 202`, `ACCT& 203`, `BUS 258`, `ECON& 201`, `ECON& 202`. complete at least 1 course from this set. note: These are especially useful when the student may choose Applied Statistics or wants a stronger outside sequence before the Seattle elective stage.
 - Worth finishing at Green River: Extra computing support for the Data Science route -> `CS 121`, `CS 122`, `ENGR 250`. complete at least 1 course from this set. note: These do not replace the shared Statistics programming requirement, but they make the data-heavy track much cleaner.
@@ -14976,11 +14912,6 @@ Seattle Statistics is now modeled as a track-based quantitative transfer where t
 - Planner flag: This row uses the shared Statistics B.S. core as the common transfer baseline and lets the dropdown narrow the track-specific Green River emphasis.
 - Source-backed note: Lifted from the current UW Statistics overview, major-requirements, track-structure pages, and Green River equivalency guide on April 2, 2026.
 - Source-backed note: The Statistics department now expects students to choose their Mathematical Statistics, Applied Statistics, or Data Science track before graduation, so the exact final course list depends on that track choice.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0280:computer-science:cs-202-5.
-- Source-backed note: Added the Green River course path CS 202 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: One of the following three-course sequences: (a) MATH 300, MATH 327 and MATH 424, (b) MATH/STAT 395, MATH/STAT 491, and either MATH/STAT 492 or MATH/STAT 493. | MATH 300 Introduction to Mathematical Reasoning
 
 
 ### Sustainable Bioresource Systems Engineering
@@ -15129,15 +15060,15 @@ Current Green River -> UW planning reference for Sustainable Bioresource Systems
 - `IDS 103`
 - `OCEA& 101`
 - `CS 121`
+- `CS 122`
+- `CS 123`
+- `CS& 141`
 - `ECON& 201`
 - `ECON& 202`
 
 #### Required sequences for specific credits
 
-- Required before application: AMATH 301 -> `ENGR 250`. note: The current official degree page names AMATH 301 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Required before application: ECON 200 -> `ECON& 201`. note: The current official degree page names ECON 200 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Required before application: ECON 201 -> `ECON& 202`. note: The current official degree page names ECON 201 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
-- Required before application: ESRM 399 -> `NATRS 294`. note: The current official degree page names ESRM 399 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
+- Required before application: CSE 121 -> `CS 121`. note: The current official degree page names CSE 121 in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.
 - GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
 - GRC sequence: `PHYS& 221 -> PHYS& 222 -> PHYS& 223` for calculus-based physics.
 - Both: `CHEM& 161 -> CHEM& 162 -> CHEM& 163`. Current UW full-credit note: `CHEM& 162 + CHEM& 163` gives `CHEM 152, 162 (5, 5), 1XX (2)`; otherwise each is weaker `CHEM 1XX`.
@@ -15146,18 +15077,9 @@ Current Green River -> UW planning reference for Sustainable Bioresource Systems
 - Source-backed note: supportive prep only
 - Source-backed note: Auto-promoted source-backed Green River coverage gap on April 8, 2026.
 - Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0441:engineering-formerly-general-engineering:engr-250-5.
-- Source-backed note: Added the Green River course path ENGR 250 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: AMATH 301: Beginning Scientific Computing (4 credits)
-- Source-backed note: Guide-backed rule: uw-grc-guide:0383:economics:econand-201-5-formerly-econ-201.
-- Source-backed note: Added the Green River course path ECON& 201 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: ECON 200: Introduction to Microeconomics (5 credits)
-- Source-backed note: Guide-backed rule: uw-grc-guide:0385:economics:econand-202-5-formerly-econ-200.
-- Source-backed note: Added the Green River course path ECON& 202 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: ECON 201: Introduction to Macroeconomics (5 Credits)
-- Source-backed note: Guide-backed rule: uw-grc-guide:0960:natural-resources:natrs-294-14-formerly-fores-294.
-- Source-backed note: Added the Green River course path NATRS 294 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Using ESRM 399 B section credits for your Internship
+- Source-backed note: Guide-backed rule: uw-grc-guide:0266:computer-science:cs-121-5.
+- Source-backed note: Added the Green River course path CS 121 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: CSE 121/122/123/142/143: Introduction to Computer Programming (various versions) (4 credits)
 
 
 ### Swedish
@@ -15293,7 +15215,6 @@ Current Green River -> UW planning reference for Voice, B.M.. Use the attached G
 ##### Links Used
 
 - [UW Bachelor of Music - Voice](https://music.washington.edu/bachelor-music-voice)
-- [UW Bachelor of Music overview](https://music.washington.edu/bachelor-music)
 - [UW Green River equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 
 ##### Voice, B.M. degree baseline

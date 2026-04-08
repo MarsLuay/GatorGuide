@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const pdfjs = require("pdfjs-dist/legacy/build/pdf.mjs");
+const { loadGrcPublicMaterials } = require("./grc-public-materials.cjs");
 
 const OUTPUT_PATH = path.resolve(
   __dirname,
@@ -24,21 +25,6 @@ const UW_CATALOG_INGEST_PATH = path.resolve(
   ".tmp",
   "transfer-planner-uw-catalog-ingest.json"
 );
-
-const SCHEDULES = [
-  {
-    label: "2024-2025",
-    pdfPath: path.resolve(__dirname, "..", "..", ".tmp", "2024-2025-Annual-Schedule.pdf"),
-    sourceUrl:
-      "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2024-2025-Annual-Schedule.pdf",
-  },
-  {
-    label: "2025-2026",
-    pdfPath: path.resolve(__dirname, "..", "..", ".tmp", "2025-2026-Annual-Schedule.pdf"),
-    sourceUrl:
-      "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf",
-  },
-];
 
 const HEADING_STOP_WORDS = new Set([
   "Course",
@@ -202,7 +188,7 @@ function buildRangesFromLabels(labels) {
 
 function readCatalogIngestEntries(filePath, label) {
   if (!fs.existsSync(filePath)) {
-    console.warn(`Skipping ${label}; missing ${filePath}`);
+    console.log(`Skipping ${label}; missing ${filePath}`);
     return [];
   }
 
@@ -357,8 +343,17 @@ function buildScheduleEntries(courseMap) {
 }
 
 async function main() {
+  const grcPublicMaterials = await loadGrcPublicMaterials({
+    forceRefresh: false,
+    allowSnapshotFallback: true,
+  });
+  const schedules = grcPublicMaterials.annualSchedules.map((entry) => ({
+    label: entry.label,
+    pdfPath: entry.outputPath,
+    sourceUrl: entry.url,
+  }));
   const courseMap = new Map();
-  for (const schedule of SCHEDULES) {
+  for (const schedule of schedules) {
     await parseSchedule(schedule, courseMap);
   }
 

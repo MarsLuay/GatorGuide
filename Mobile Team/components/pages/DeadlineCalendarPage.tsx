@@ -199,7 +199,7 @@ function getPrimaryActionLabel(
   t: (key: string, params?: Record<string, string | number>) => string
 ) {
   if (item.target.type === "college") return t("deadlineCalendar.actionOpenCollege");
-  if (item.target.type === "roadmap") return t("deadlineCalendar.actionOpenRoadmap");
+  if (item.target.type === "roadmap") return "Tracked here";
   if (item.target.type === "resources") return t("deadlineCalendar.actionViewOpportunity");
   return t("deadlineCalendar.actionOpenLink");
 }
@@ -401,10 +401,7 @@ export default function DeadlineCalendarPage() {
         return;
       }
 
-      if (item.target.type === "roadmap") {
-        router.push(ROUTES.roadmap);
-        return;
-      }
+      if (item.target.type === "roadmap") return;
 
       if (item.target.type === "resources") {
         router.push(ROUTES.tabsResources);

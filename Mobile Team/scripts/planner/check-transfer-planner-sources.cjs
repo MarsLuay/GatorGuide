@@ -1,6 +1,10 @@
 const crypto = require("crypto");
 const fs = require("fs");
+const os = require("os");
 const path = require("path");
+const { execFile } = require("child_process");
+const { promisify } = require("util");
+const { loadGrcPublicMaterials } = require("./grc-public-materials.cjs");
 
 require("ts-node").register({
   skipProject: true,
@@ -15,6 +19,9 @@ const {
   TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS,
   TRANSFER_PLANNER_TRACKS,
 } = require("../../constants/transfer-planner-source");
+const {
+  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY,
+} = require("../../constants/transfer-planner-source/registry");
 
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
@@ -22,21 +29,22 @@ const SNAPSHOT_PATH = path.resolve(TMP_DIR, "transfer-planner-source-link-snapsh
 const SUMMARY_PATH = path.resolve(TMP_DIR, "transfer-planner-source-link-summary.md");
 const DEFAULT_TIMEOUT_MS = 20000;
 const DEFAULT_CONCURRENCY = 6;
+const HOST_MIN_DELAY_MS = 900;
+const RETRYABLE_STATUS_CODES = new Set([429]);
+const MAX_RETRY_ATTEMPTS = 3;
 const USER_AGENT = "GatorGuideTransferPlannerSourceAudit/1.0";
-const EXTRA_SOURCE_LINKS = [
-  {
-    label: "Green River annual schedule 2024-2025",
-    url: "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2024-2025-Annual-Schedule.pdf",
-    kind: "reference-file",
-    ownerIds: ["grc-annual-schedule-2024-2025"],
-  },
-  {
-    label: "Green River annual schedule 2025-2026",
-    url: "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf",
-    kind: "reference-file",
-    ownerIds: ["grc-annual-schedule-2025-2026"],
-  },
-];
+const CURL_COMMAND = process.platform === "win32" ? "curl.exe" : "curl";
+const CURL_MAX_BUFFER_BYTES = 20 * 1024 * 1024;
+const execFileAsync = promisify(execFile);
+const hostThrottleTails = new Map();
+const hostNextAllowedAt = new Map();
+let playwrightModulePromise = null;
+let browserContextPromise = null;
+const PARSED_REQUIREMENT_BLOCK_BY_SOURCE_URL = new Map(
+  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY.filter(
+    (block) => block.ok && !block.usedSnapshotFallback && block.sourceUrl
+  ).map((block) => [block.sourceUrl, block])
+);
 
 function ensureTmpDir() {
   fs.mkdirSync(TMP_DIR, { recursive: true });
@@ -50,7 +58,42 @@ function uniqueSorted(values) {
   return Array.from(new Set(values.filter(Boolean))).sort((left, right) => left.localeCompare(right));
 }
 
-function collectSourceEntries() {
+function buildExtraSourceLinks(grcPublicMaterials) {
+  return [
+    {
+      label: "Green River class schedules and catalog page",
+      url: grcPublicMaterials.discoveryPages.classSchedulesUrl,
+      kind: "reference-page",
+      ownerIds: ["grc-class-schedules"],
+    },
+    {
+      label: "Green River catalog archive page",
+      url: grcPublicMaterials.discoveryPages.catalogArchiveUrl,
+      kind: "reference-page",
+      ownerIds: ["grc-catalog-archive"],
+    },
+    {
+      label: `Green River current catalog ${grcPublicMaterials.currentCatalog.label}`,
+      url: grcPublicMaterials.currentCatalog.rootUrl,
+      kind: "reference-page",
+      ownerIds: [`grc-catalog-${grcPublicMaterials.currentCatalog.label}`],
+    },
+    {
+      label: `Green River course descriptions ${grcPublicMaterials.currentCatalog.label}`,
+      url: grcPublicMaterials.currentCatalog.courseDescriptionsUrl,
+      kind: "reference-page",
+      ownerIds: [`grc-course-descriptions-${grcPublicMaterials.currentCatalog.label}`],
+    },
+    ...grcPublicMaterials.annualSchedules.map((entry) => ({
+      label: `Green River annual schedule ${entry.label}`,
+      url: entry.url,
+      kind: "reference-file",
+      ownerIds: [entry.ownerId],
+    })),
+  ];
+}
+
+function collectSourceEntries(extraSourceLinks) {
   const byUrl = new Map();
 
   function getOrCreate(url) {
@@ -100,7 +143,7 @@ function collectSourceEntries() {
     }
   }
 
-  for (const extraLink of EXTRA_SOURCE_LINKS) {
+  for (const extraLink of extraSourceLinks) {
     const entry = getOrCreate(extraLink.url);
     if (!entry) continue;
     entry.labels.add(extraLink.label);
@@ -120,6 +163,10 @@ function collectSourceEntries() {
 
 function sha256(buffer) {
   return crypto.createHash("sha256").update(buffer).digest("hex");
+}
+
+function sleep(delayMs) {
+  return new Promise((resolve) => setTimeout(resolve, delayMs));
 }
 
 function extractTitle(html) {
@@ -151,6 +198,201 @@ function getHeaderValue(response, name) {
   return response.headers.get(name) ?? null;
 }
 
+function parseHeaderBlock(rawHeaders) {
+  const sections = String(rawHeaders ?? "")
+    .split(/\r?\n\r?\n/)
+    .map((section) => section.trim())
+    .filter(Boolean);
+  const lastSection = sections[sections.length - 1] ?? "";
+  const lines = lastSection.split(/\r?\n/).filter(Boolean);
+  const headerMap = new Map();
+
+  for (const line of lines.slice(1)) {
+    const separatorIndex = line.indexOf(":");
+    if (separatorIndex <= 0) {
+      continue;
+    }
+    const key = line.slice(0, separatorIndex).trim().toLowerCase();
+    const value = line.slice(separatorIndex + 1).trim();
+    if (key) {
+      headerMap.set(key, value);
+    }
+  }
+
+  return {
+    etag: headerMap.get("etag") ?? null,
+    lastModified: headerMap.get("last-modified") ?? null,
+    contentLength: headerMap.get("content-length") ?? null,
+    contentType: headerMap.get("content-type") ?? null,
+  };
+}
+
+async function inspectSourceWithCurl(entry, timeoutMs) {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "gatorguide-source-check-"));
+  const headerPath = path.join(tempDir, "headers.txt");
+  const bodyPath = path.join(tempDir, "body.bin");
+  const maxTimeSeconds = Math.max(5, Math.ceil(timeoutMs / 1000));
+
+  try {
+    const { stdout } = await execFileAsync(
+      CURL_COMMAND,
+      [
+        "-L",
+        "-sS",
+        "--max-time",
+        String(maxTimeSeconds),
+        "-A",
+        USER_AGENT,
+        "-D",
+        headerPath,
+        "-o",
+        bodyPath,
+        "-w",
+        "%{http_code}\n%{url_effective}\n%{content_type}\n",
+        entry.url,
+      ],
+      {
+        maxBuffer: CURL_MAX_BUFFER_BYTES,
+      }
+    );
+
+    const [statusLine = "", finalUrlLine = "", contentTypeLine = ""] = String(stdout)
+      .trim()
+      .split(/\r?\n/);
+    const status = Number.parseInt(statusLine, 10);
+    const bodyBuffer = fs.existsSync(bodyPath) ? fs.readFileSync(bodyPath) : Buffer.alloc(0);
+    const headers = fs.existsSync(headerPath)
+      ? parseHeaderBlock(fs.readFileSync(headerPath, "utf8"))
+      : {
+          etag: null,
+          lastModified: null,
+          contentLength: null,
+          contentType: null,
+        };
+    const contentType = contentTypeLine || headers.contentType;
+    const isHtml = String(contentType ?? "").toLowerCase().includes("text/html");
+
+    return {
+      ...entry,
+      ok: status >= 200 && status < 300,
+      status: Number.isFinite(status) ? status : null,
+      finalUrl: finalUrlLine || entry.url,
+      contentType: contentType || null,
+      contentLength: headers.contentLength ?? String(bodyBuffer.byteLength),
+      etag: headers.etag,
+      lastModified: headers.lastModified,
+      title: isHtml ? extractTitle(bodyBuffer.toString("utf8")) : null,
+      bodyHash: bodyBuffer.byteLength ? sha256(bodyBuffer) : null,
+      error: null,
+      fetchMode: "curl",
+    };
+  } catch (error) {
+    return {
+      ...entry,
+      ok: false,
+      status: null,
+      finalUrl: null,
+      contentType: null,
+      contentLength: null,
+      etag: null,
+      lastModified: null,
+      title: null,
+      bodyHash: null,
+      error: error.message,
+      fetchMode: "curl-error",
+    };
+  } finally {
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
+}
+
+async function getBrowserContext() {
+  if (!browserContextPromise) {
+    browserContextPromise = (async () => {
+      if (!playwrightModulePromise) {
+        playwrightModulePromise = Promise.resolve().then(() => require("playwright"));
+      }
+
+      const { chromium } = await playwrightModulePromise;
+      const browser = await chromium.launch({ headless: true });
+      const context = await browser.newContext({
+        userAgent: USER_AGENT,
+      });
+
+      return { browser, context };
+    })();
+  }
+
+  return browserContextPromise;
+}
+
+async function closeBrowserContext() {
+  if (!browserContextPromise) {
+    return;
+  }
+
+  try {
+    const { browser } = await browserContextPromise;
+    await browser.close();
+  } catch (_error) {
+    // Ignore shutdown errors; the source-check result is more important than
+    // cleanup noise when the browser fallback was only best-effort.
+  } finally {
+    browserContextPromise = null;
+  }
+}
+
+async function inspectSourceWithBrowser(entry, timeoutMs) {
+  let page = null;
+
+  try {
+    const { context } = await getBrowserContext();
+    page = await context.newPage();
+    const response = await page.goto(entry.url, {
+      timeout: timeoutMs,
+      waitUntil: "domcontentloaded",
+    });
+
+    const headers = response?.headers() ?? {};
+    const contentType = headers["content-type"] ?? null;
+    const isHtml = String(contentType ?? "").toLowerCase().includes("text/html");
+
+    return {
+      ...entry,
+      ok: (response?.status() ?? 0) >= 200 && (response?.status() ?? 0) < 300,
+      status: response?.status() ?? null,
+      finalUrl: page.url() || entry.url,
+      contentType,
+      contentLength: headers["content-length"] ?? null,
+      etag: headers.etag ?? null,
+      lastModified: headers["last-modified"] ?? null,
+      title: isHtml ? (await page.title()) || null : null,
+      bodyHash: null,
+      error: null,
+      fetchMode: "browser",
+    };
+  } catch (error) {
+    return {
+      ...entry,
+      ok: false,
+      status: null,
+      finalUrl: null,
+      contentType: null,
+      contentLength: null,
+      etag: null,
+      lastModified: null,
+      title: null,
+      bodyHash: null,
+      error: error.message,
+      fetchMode: "browser-error",
+    };
+  } finally {
+    if (page) {
+      await page.close().catch(() => undefined);
+    }
+  }
+}
+
 function buildStableSignature(result) {
   return JSON.stringify({
     ok: result.ok,
@@ -166,9 +408,85 @@ function buildStableSignature(result) {
   });
 }
 
-async function inspectSource(entry, timeoutMs) {
+function buildParsedPrimaryVerificationResult(entry) {
+  const parsedBlock = PARSED_REQUIREMENT_BLOCK_BY_SOURCE_URL.get(entry.url);
+  if (!parsedBlock) {
+    return null;
+  }
+
+  return {
+    ...entry,
+    ok: true,
+    status: 200,
+    finalUrl: parsedBlock.sourceUrl,
+    contentType: "text/html",
+    contentLength: null,
+    etag: null,
+    lastModified: null,
+    title: parsedBlock.primarySourceLabel ?? parsedBlock.sourceLabel ?? null,
+    bodyHash: null,
+    error: null,
+    fetchMode: "parsed-source",
+  };
+}
+
+function getUrlHost(value) {
+  try {
+    return new URL(value).host.toLowerCase();
+  } catch (_error) {
+    return "unknown-host";
+  }
+}
+
+function shouldRetryInspection(result) {
+  if (!result || result.ok) {
+    return false;
+  }
+
+  if (RETRYABLE_STATUS_CODES.has(result.status)) {
+    return true;
+  }
+
+  return result.status == null && Boolean(result.error);
+}
+
+function getRetryDelayMs(attemptIndex) {
+  return HOST_MIN_DELAY_MS * Math.max(2, attemptIndex + 2);
+}
+
+function runWithHostThrottle(url, task) {
+  const host = getUrlHost(url);
+  const previousTail = hostThrottleTails.get(host) ?? Promise.resolve();
+  const resultPromise = previousTail.catch(() => undefined).then(async () => {
+    const now = Date.now();
+    const waitMs = Math.max(0, (hostNextAllowedAt.get(host) ?? 0) - now);
+    if (waitMs > 0) {
+      await sleep(waitMs);
+    }
+
+    try {
+      return await task();
+    } finally {
+      hostNextAllowedAt.set(host, Date.now() + HOST_MIN_DELAY_MS);
+    }
+  });
+
+  hostThrottleTails.set(
+    host,
+    resultPromise.then(
+      () => undefined,
+      () => undefined
+    )
+  );
+
+  return resultPromise;
+}
+
+async function inspectSourceOnce(entry, timeoutMs) {
   let headResponse = null;
   let headError = null;
+  let getResponse = null;
+  let getError = null;
 
   try {
     headResponse = await fetchWithTimeout(
@@ -182,13 +500,7 @@ async function inspectSource(entry, timeoutMs) {
     headError = error;
   }
 
-  const usefulHead =
-    headResponse &&
-    (getHeaderValue(headResponse, "etag") ||
-      getHeaderValue(headResponse, "last-modified") ||
-      getHeaderValue(headResponse, "content-length"));
-
-  if (headResponse && (headResponse.ok || usefulHead)) {
+  if (headResponse?.ok) {
     return {
       ...entry,
       ok: headResponse.ok,
@@ -206,7 +518,7 @@ async function inspectSource(entry, timeoutMs) {
   }
 
   try {
-    const getResponse = await fetchWithTimeout(
+    getResponse = await fetchWithTimeout(
       entry.url,
       {
         method: "GET",
@@ -217,36 +529,72 @@ async function inspectSource(entry, timeoutMs) {
     const contentType = getHeaderValue(getResponse, "content-type");
     const isHtml = String(contentType ?? "").toLowerCase().includes("text/html");
 
-    return {
-      ...entry,
-      ok: getResponse.ok,
-      status: getResponse.status,
-      finalUrl: getResponse.url,
-      contentType,
-      contentLength: getHeaderValue(getResponse, "content-length") ?? String(bodyBuffer.byteLength),
-      etag: getHeaderValue(getResponse, "etag"),
-      lastModified: getHeaderValue(getResponse, "last-modified"),
-      title: isHtml ? extractTitle(bodyBuffer.toString("utf8")) : null,
-      bodyHash: sha256(bodyBuffer),
-      error: null,
-      fetchMode: "get",
-    };
+    if (getResponse.ok) {
+      return {
+        ...entry,
+        ok: getResponse.ok,
+        status: getResponse.status,
+        finalUrl: getResponse.url,
+        contentType,
+        contentLength: getHeaderValue(getResponse, "content-length") ?? String(bodyBuffer.byteLength),
+        etag: getHeaderValue(getResponse, "etag"),
+        lastModified: getHeaderValue(getResponse, "last-modified"),
+        title: isHtml ? extractTitle(bodyBuffer.toString("utf8")) : null,
+        bodyHash: sha256(bodyBuffer),
+        error: null,
+        fetchMode: "get",
+      };
+    }
   } catch (error) {
-    return {
-      ...entry,
-      ok: false,
-      status: null,
-      finalUrl: null,
-      contentType: null,
-      contentLength: null,
-      etag: null,
-      lastModified: null,
-      title: null,
-      bodyHash: null,
-      error: headError?.message ?? error.message,
-      fetchMode: "error",
-    };
+    getError = error;
   }
+
+  const curlResult = await inspectSourceWithCurl(entry, timeoutMs);
+  if (curlResult.ok) {
+    return curlResult;
+  }
+
+  const parsedPrimaryVerificationResult = buildParsedPrimaryVerificationResult(entry);
+  if (parsedPrimaryVerificationResult) {
+    return parsedPrimaryVerificationResult;
+  }
+
+  if (RETRYABLE_STATUS_CODES.has(curlResult.status) || curlResult.status == null) {
+    const browserResult = await inspectSourceWithBrowser(entry, timeoutMs);
+    if (browserResult.ok) {
+      return browserResult;
+    }
+  }
+
+  const derivedError =
+    headError?.message ??
+    getError?.message ??
+    (getResponse && !getResponse.ok ? `GET returned ${getResponse.status}` : null) ??
+    (headResponse && !headResponse.ok ? `HEAD returned ${headResponse.status}` : null) ??
+    curlResult.error;
+
+  return {
+    ...curlResult,
+    error: derivedError,
+    fetchMode: curlResult.fetchMode === "curl" ? "curl" : "error",
+  };
+}
+
+async function inspectSource(entry, timeoutMs) {
+  return runWithHostThrottle(entry.url, async () => {
+    let lastResult = null;
+
+    for (let attemptIndex = 0; attemptIndex <= MAX_RETRY_ATTEMPTS; attemptIndex += 1) {
+      lastResult = await inspectSourceOnce(entry, timeoutMs);
+      if (!shouldRetryInspection(lastResult) || attemptIndex === MAX_RETRY_ATTEMPTS) {
+        return lastResult;
+      }
+
+      await sleep(getRetryDelayMs(attemptIndex));
+    }
+
+    return lastResult;
+  });
 }
 
 async function mapWithConcurrency(items, worker, concurrency) {
@@ -277,7 +625,7 @@ function loadPreviousSnapshot() {
   try {
     return JSON.parse(fs.readFileSync(SNAPSHOT_PATH, "utf8"));
   } catch (error) {
-    console.warn(`Could not read previous source snapshot: ${error.message}`);
+    console.log(`Could not read previous source snapshot: ${error.message}`);
     return null;
   }
 }
@@ -359,7 +707,11 @@ async function main() {
 
   const args = new Set(process.argv.slice(2));
   const timeoutMs = DEFAULT_TIMEOUT_MS;
-  const sourceEntries = collectSourceEntries();
+  const grcPublicMaterials = await loadGrcPublicMaterials({
+    forceRefresh: args.has("--refresh-grc-materials"),
+    allowSnapshotFallback: true,
+  });
+  const sourceEntries = collectSourceEntries(buildExtraSourceLinks(grcPublicMaterials));
 
   console.log(`Checking ${sourceEntries.length} tracked planner source URLs...`);
 
@@ -388,9 +740,14 @@ async function main() {
   console.log(`Failed: ${snapshot.failedSourceCount}`);
   console.log(`Snapshot: ${SNAPSHOT_PATH}`);
   console.log(`Summary: ${SUMMARY_PATH}`);
+  await closeBrowserContext();
 }
 
 main().catch((error) => {
-  console.error(error);
-  process.exit(1);
+  closeBrowserContext()
+    .catch(() => undefined)
+    .finally(() => {
+      console.error(error);
+      process.exit(1);
+    });
 });

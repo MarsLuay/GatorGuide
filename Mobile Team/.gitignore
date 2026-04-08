@@ -8,6 +8,8 @@ expo-env.d.ts
 !.env.example
 .tools/
 .tmp/planner-refresh-logs/
+.tmp/transfer-planner-hardening-report.json
+.tmp/transfer-planner-hardening-report.md
 .tmp/transfer-planner-maintenance-summary.md
 .tmp/transfer-planner-high-suggestion-audit.txt
 firebase-debug.log

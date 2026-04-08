@@ -1,5 +1,5 @@
 Owner: uw-tacoma-economics-and-policy-analysis
-Source: https://www.tacoma.uw.edu/sias-new/socs-new/economics-and-policy-analysis-epa
+Source: https://www.tacoma.uw.edu/sias/socs/economics-and-policy-analysis-epa
 Title: Economics and Policy Analysis (EPA) | Department of Social Sciences | University of Washington Tacoma
 
 Economics and Policy Analysis (EPA) | Department of Social Sciences | University of Washington Tacoma

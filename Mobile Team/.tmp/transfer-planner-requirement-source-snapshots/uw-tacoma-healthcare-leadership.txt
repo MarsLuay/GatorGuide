@@ -1,8 +1,8 @@
 Owner: uw-tacoma-healthcare-leadership
-Source: https://www.tacoma.uw.edu/nursing/declare-healthcare-leadership-major
-Title: Declare Healthcare Leadership Major | School of Nursing & Healthcare Leadership | University of Washington Tacoma
+Source: https://www.tacoma.uw.edu/nursing/healthcare-leadership-sample-program-plan
+Title: Healthcare Leadership Sample Program Plan | School of Nursing & Healthcare Leadership | University of Washington Tacoma
 
-Declare Healthcare Leadership Major | School of Nursing & Healthcare Leadership | University of Washington Tacoma
+Healthcare Leadership Sample Program Plan | School of Nursing & Healthcare Leadership | University of Washington Tacoma
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMVD9WN"
 height="0"
 width="0"
@@ -81,34 +81,113 @@ Contact Us
 MyUW
 Map
 Tools
-Declare Healthcare Leadership Major
+Healthcare Leadership Sample Program Plan
 Main Content
-Major prerequisites
-Students interested in declaring Healthcare Leadership as their major must meet the following requirements prior to enrolling:
-Must be admitted to UW Tacoma
-A cumulative GPA of at least 2.0 on a 4.0 scale in all college course work
-A minimum 60 quarter credits completed
-5 credits of English composition (10 additional writing-intensive credits completed via required Healthcare Leadership course work)
-Currently licensed Washington State healthcare providers must provide proof of unrestricted license status (does not apply to non-licensed applicants)
-Agreement to adhere to the Essential Behaviors for Admission, Continuation and Graduation and Social Networking Policy.
-Application Steps
-TRANSFER STUDENT
-Apply to UW-Tacoma as a Transfer Student .
-Be admitted to UW Tacoma
-Meet with our academic advisor to declare/change your major. Students admitted to UW Tacoma can declare anytime.
-Begin BAHCL program autumn quarter.
-CURRENT UW TACOMA STUDENT
-Meet with our academic advisor to declare/change your major at anytime.
-Begin BAHCL program autumn quarter.
-Returning students and international students should contact the academic advisor: Adrianna Plavetsky, amp93@uw.edu , for more information.
-The University of Washington is committed to providing equal access to its programs and activities and protecting individuals from discrimination and harassment based on their race, color, or national origin, including shared ancestry. No person shall be excluded from participation in, or denied the benefits of, or be subjected to discrimination under programs and activities that the university sponsors or promotes, including in admission and employment.
-Adrianna Plavetsky
-Academic Advisor
-Email Adrianna
-More about Healthcare Leadership
-Healthcare Leadership Overview
-Healthcare Leadership Academic Information
-Healthcare Leadership Scholarships
+The following is a standard curriculum plan for Bachelor of Arts in Healthcare Leadership students. This plan ensures a timely graduation. Any modification could delay graduation. Students should contact tnursing@uw.edu before modifying the standard curriculum plan.
+THLEAD course descriptions are available at: https://www.washington.edu/students/crscatt/thlead.html
+T HLTH course descriptions are available at: https://www.washington.edu/students/crscatt/thlth.html
+Autumn
+Course Title
+Credits
+In-Person Meeting Dates
+Time
+T HLTH 440
+Business of Healthcare
+5
+Mondays
+1:00-3:30P
+THLEAD 350
+Critical Analysis and Writing
+5
+Mondays & Wednesdays
+3:40-5:40P
+THLEAD 360
+Healthcare Leadership Strategies
+5
+Mondays
+6:30-9:00P
+Winter
+T HLTH 310
+Health, Illness & Society
+5
+Monday & Wednesdays
+1:30-3:30P
+THLEAD 403
+Intro to Research in Healthcare
+5
+Mondays
+3:45-6:15P
+THLEAD 460
+Personnel Management in Healthcare
+5
+Mondays
+6:30-9:00P
+Spring
+T HLTH 320
+Promoting Health Through Soc Mktg
+5
+Monday & Wednesdays
+1:30-3:30P
+THLEAD 380
+HC Budgetary Analysis & Fin Decision Mkg
+5
+Monday & Wednesdays
+3:40-5:40P
+T ELEC 1
+UWT Elective Course
+5
+TBD
+TBD
+Autumn
+THLEAD 405
+Health Informatics I
+5
+Mondays
+3:45-6:15P
+THLEAD 420
+HC Accreditation & Legal Issues
+5
+Mondays
+6:30-9:00P
+T ELEC 2
+UWT Elective Course
+5
+TBD
+TBD
+Winter
+THLEAD 406
+Health Informatics II
+5
+Mondays
+1:00-3:30P
+T ELEC 3
+UWT Elective Course
+5
+TBD
+TBD
+T ELEC 4
+UWT Elective Course
+5
+TBD
+TBD
+Spring
+THLEAD 480
+Healthcare Leadership Fieldwork
+5
+Mondays
+3:45-6:15P
+T ELEC 5
+UWT Elective Course
+5
+TBD
+TBD
+T ELEC 6
+UWT Elective Course
+5
+TBD
+TBD
+Total Credits
+90
 Contact
 School of Nursing & Healthcare Leadership
 tnursing@uw.edu

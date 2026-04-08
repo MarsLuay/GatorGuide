@@ -106,7 +106,7 @@ function loadExistingOverrides() {
     const loaded = require(OUTPUT_PATH);
     return loaded.TRANSFER_PLANNER_PROMOTED_PRIMARY_SOURCE_OVERRIDES ?? [];
   } catch (error) {
-    console.warn(`Could not load existing promoted primary overrides: ${error.message}`);
+    console.log(`Could not load existing promoted primary overrides: ${error.message}`);
     return [];
   }
 }

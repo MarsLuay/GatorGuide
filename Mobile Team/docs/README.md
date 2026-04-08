@@ -75,4 +75,6 @@ For transfer-planner work:
 - The campus planner docs are generated from the planner source layer. Refresh them from the maintenance pipeline instead of hand-editing them.
 - The current one-click planner maintenance entrypoints are:
   - `npm run planner:windows:maintenance`
+  - `npm run planner:full:verify`
   - `scripts\run-planner-maintenance.cmd`
+- The same maintenance pass now emits `.tmp/transfer-planner-hardening-report.md`, which is the single artifact that checks source gaps, parser failures, diff classification cleanup, machine-readable availability statuses, and source-backed-or-hidden wording.

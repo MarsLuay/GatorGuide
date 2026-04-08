@@ -1,217 +1,94 @@
 # Transfer Planner Source Link Summary
 
-Generated: 2026-04-08T14:05:30.094Z
+Generated: 2026-04-08T20:26:34.929Z
 
-- Total tracked source URLs: 437
-- Reachable: 283
-- Failed: 154
-- Added since previous snapshot: 1
-- Changed since previous snapshot: 69
+- Total tracked source URLs: 375
+- Reachable: 375
+- Failed: 0
+- Added since previous snapshot: 2
+- Changed since previous snapshot: 72
 - Removed since previous snapshot: 0
 
 ## Changed URLs
 
+- https://acms.washington.edu/admissions
+  - owners: uw-seattle-applied-and-computational-mathematical-sciences
+- https://acms.washington.edu/program-requirements-and-information
+  - owners: uw-seattle-applied-and-computational-mathematical-sciences
 - https://admissions.uwb.edu/register/mpw-aes
   - owners: uw-bothell-american-and-ethnic-studies
 - https://admissions.uwb.edu/register/mpw-CLA
   - owners: uw-bothell-culture-literature-and-the-arts
 - https://admissions.uwb.edu/register/mpw-compe
   - owners: uw-bothell-computer-engineering
+- https://admissions.uwb.edu/register/mpw-crs
+  - owners: uw-bothell-conservation-and-restoration-science
 - https://admissions.uwb.edu/register/mpw-DataVis-BA
   - owners: uw-bothell-data-visualization-ba
-- https://admissions.uwb.edu/register/mpw-EE
-  - owners: uw-bothell-electrical-engineering
+- https://admissions.uwb.edu/register/mpw-DataVis-BS
+  - owners: uw-bothell-data-visualization-bs
 - https://admissions.uwb.edu/register/mpw-hs
   - owners: uw-bothell-health-studies
 - https://admissions.uwb.edu/register/mpw-me
   - owners: uw-bothell-mechanical-engineering
 - https://admissions.uwb.edu/register/mpw-psy
   - owners: uw-bothell-psychology
-- https://chem.washington.edu/ba-biochemistry
-  - owners: uw-seattle-biochemistry, uw-seattle-biochemistry::ba-route, uw-seattle-biochemistry::bs-route
+- https://asian.washington.edu/ba-korean
+  - owners: uw-seattle-korean
+- https://asian.washington.edu/ba-south-asian-languages-and-cultures
+  - owners: uw-seattle-south-asian-languages-and-cultures
 - https://chem.washington.edu/bs-chemistry
   - owners: uw-seattle-chemistry, uw-seattle-chemistry::acs-certified-bs-route, uw-seattle-chemistry::ba-route, uw-seattle-chemistry::bs-route
-- https://com.uw.edu/academics/undergraduate/communication-major/
-  - owners: uw-seattle-communication
+- https://classics.washington.edu/ba-classics
+  - owners: uw-seattle-classics
+- https://classics.washington.edu/ba-greek
+  - owners: uw-seattle-greek
+- https://classics.washington.edu/ba-latin
+  - owners: uw-seattle-latin
+- https://disabilitystudies.washington.edu/
+  - owners: uw-seattle-disability-studies
 - https://dlmp.uw.edu/education/mls-apply
   - owners: uw-seattle-medical-laboratory-science
 - https://dlmp.uw.edu/education/mls-requirements
   - owners: uw-seattle-medical-laboratory-science
 - https://dlmp.uw.edu/education/mls-undergrad
   - owners: uw-seattle-medical-laboratory-science
+- https://english.washington.edu/english-language-literature-and-culture-option
+  - owners: uw-seattle-english-creative-writing, uw-seattle-english-language-literature-and-culture
+- https://frenchitalian.washington.edu/major-italian-studies
+  - owners: uw-seattle-italian
 - https://ischool.uw.edu/academics/informatics/curriculum
   - owners: uw-seattle-informatics
 - https://ischool.uw.edu/programs/informatics/admissions/prerequisites
   - owners: uw-seattle-informatics
 - https://ischool.uw.edu/programs/informatics/curriculum/capstone
   - owners: uw-seattle-informatics
-- https://www.tacoma.uw.edu/nursing/declare-healthcare-leadership-major
-  - owners: uw-tacoma-healthcare-leadership
-- https://www.tacoma.uw.edu/set/programs/undergrad/civil
-  - owners: uw-tacoma-civil-engineering
-- https://www.tacoma.uw.edu/set/programs/undergrad/css/ba
-  - owners: uw-tacoma-computer-science-and-systems-ba, uw-tacoma-computer-science-and-systems-bs
-- https://www.tacoma.uw.edu/set/programs/undergrad/css/bs
-  - owners: uw-tacoma-computer-science-and-systems-ba, uw-tacoma-computer-science-and-systems-bs
-- https://www.tacoma.uw.edu/set/programs/undergrad/ee
-  - owners: uw-tacoma-electrical-engineering
-- https://www.tacoma.uw.edu/set/programs/undergrad/it
-  - owners: uw-tacoma-information-technology
-- https://www.tacoma.uw.edu/set/programs/undergrad/me
-  - owners: uw-tacoma-mechanical-engineering
+- https://sphsc.washington.edu/admissions-prerequisites
+  - owners: uw-seattle-speech-and-hearing-sciences
+- https://sphsc.washington.edu/undergraduate-major
+  - owners: uw-seattle-speech-and-hearing-sciences
+- https://sphsc.washington.edu/uw-transfer-students-faq
+  - owners: uw-seattle-speech-and-hearing-sciences
 - https://www.tacoma.uw.edu/sias
   - owners: uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed
-- https://www.tacoma.uw.edu/sias-new/socs-new/economics-and-policy-analysis-epa
-  - owners: uw-tacoma-economics-and-policy-analysis
-- https://www.tacoma.uw.edu/sias-new/socs-new/ethnic-gender-and-labor-studies
-  - owners: uw-tacoma-ethnic-gender-and-labor-studies, uw-tacoma-ethnic-gender-and-labor-studies::ethnic-studies-option, uw-tacoma-ethnic-gender-and-labor-studies::gender-studies-option, uw-tacoma-ethnic-gender-and-labor-studies::labor-studies-option
-- https://www.tacoma.uw.edu/sias-new/socs-new/ethnic-studies-option
-  - owners: uw-tacoma-ethnic-gender-and-labor-studies, uw-tacoma-ethnic-gender-and-labor-studies::ethnic-studies-option, uw-tacoma-ethnic-gender-and-labor-studies::gender-studies-option, uw-tacoma-ethnic-gender-and-labor-studies::labor-studies-option
-- https://www.tacoma.uw.edu/sias-new/socs-new/individually-designed-concentration
-  - owners: uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed
-- https://www.tacoma.uw.edu/sias-new/socs-new/interdisciplinary-arts-and-sciences
-  - owners: uw-tacoma-interdisciplinary-arts-and-sciences
-- https://www.tacoma.uw.edu/sias-new/socs-new/labor-and-social-movements-option
-  - owners: uw-tacoma-history
-- https://www.tacoma.uw.edu/sias/cac/arts-media-culture
-  - owners: uw-tacoma-arts-media-culture, uw-tacoma-arts-media-culture::american-cultures-track, uw-tacoma-arts-media-culture::comparative-arts-track, uw-tacoma-arts-media-culture::film-media-track, uw-tacoma-arts-media-culture::literature-track, uw-tacoma-arts-media-culture::visual-performing-arts-track
-- https://www.tacoma.uw.edu/sias/cac/communication
-  - owners: uw-tacoma-communications, uw-tacoma-communications::professional-track, uw-tacoma-communications::research-track
-- https://www.tacoma.uw.edu/sias/cac/communication-degree-requirements
-  - owners: uw-tacoma-communications, uw-tacoma-communications::professional-track, uw-tacoma-communications::research-track
-- https://www.tacoma.uw.edu/sias/cac/creative-writing-track
-  - owners: uw-tacoma-writing-studies, uw-tacoma-writing-studies::creative-writing-track, uw-tacoma-writing-studies::rhetoric-social-change-track, uw-tacoma-writing-studies::technical-communication-track
-- https://www.tacoma.uw.edu/sias/cac/how-apply-faqs
-  - owners: uw-tacoma-communications, uw-tacoma-communications::professional-track, uw-tacoma-communications::research-track
-- https://www.tacoma.uw.edu/sias/cac/rhetoric-writing-and-social-change-track
-  - owners: uw-tacoma-writing-studies, uw-tacoma-writing-studies::creative-writing-track, uw-tacoma-writing-studies::rhetoric-social-change-track, uw-tacoma-writing-studies::technical-communication-track
-- https://www.tacoma.uw.edu/sias/cac/spanish-language-and-cultures
-  - owners: uw-tacoma-spanish-language-and-cultures
-- https://www.tacoma.uw.edu/sias/cac/technical-communication-track
-  - owners: uw-tacoma-writing-studies, uw-tacoma-writing-studies::creative-writing-track, uw-tacoma-writing-studies::rhetoric-social-change-track, uw-tacoma-writing-studies::technical-communication-track
-- https://www.tacoma.uw.edu/sias/cac/writing-studies
-  - owners: uw-tacoma-writing-studies, uw-tacoma-writing-studies::creative-writing-track, uw-tacoma-writing-studies::rhetoric-social-change-track, uw-tacoma-writing-studies::technical-communication-track
-
-## Failed URLs
-
-- https://admit.washington.edu/majors/english-language-literature-culture/
-  - owners: uw-seattle-english-language-literature-and-culture
-  - error: unknown error
-- https://ais.washington.edu/sites/ais/files/documents/ais_major_requirement_sheet_9.29.21.pdf
-  - owners: uw-seattle-american-indian-studies
-  - error: unknown error
-- https://chem.washington.edu/bs-biochemistry
-  - owners: uw-seattle-biochemistry, uw-seattle-biochemistry::ba-route, uw-seattle-biochemistry::bs-route
-  - error: unknown error
-- https://chem.washington.edu/bs-chemistry
-  - owners: uw-seattle-chemistry, uw-seattle-chemistry::acs-certified-bs-route, uw-seattle-chemistry::ba-route, uw-seattle-chemistry::bs-route
-  - error: unknown error
-- https://chem.washington.edu/bs-chemistry-acs-certified
-  - owners: uw-seattle-chemistry, uw-seattle-chemistry::acs-certified-bs-route, uw-seattle-chemistry::ba-route, uw-seattle-chemistry::bs-route
-  - error: unknown error
-- https://chem.washington.edu/undergraduate-prerequisites-and-admissions-biochemistry
-  - owners: uw-seattle-biochemistry, uw-seattle-biochemistry::ba-route, uw-seattle-biochemistry::bs-route
-  - error: unknown error
-- https://chem.washington.edu/undergraduate-prerequisites-and-admissions-chemistry
-  - owners: uw-seattle-chemistry, uw-seattle-chemistry::acs-certified-bs-route, uw-seattle-chemistry::ba-route, uw-seattle-chemistry::bs-route
-  - error: unknown error
-- https://chid.washington.edu/undergraduate
-  - owners: uw-seattle-comparative-history-of-ideas
-  - error: unknown error
-- https://cinema.washington.edu/ba-comparative-literature
-  - owners: uw-seattle-comparative-literature
-  - error: unknown error
-- https://cinema.washington.edu/undergraduate-programs
-  - owners: uw-seattle-cinema-and-media-studies
-  - error: unknown error
-- https://classics.washington.edu/ba-classical-studies
-  - owners: uw-seattle-classical-studies
-  - error: unknown error
-- https://classics.washington.edu/ba-classics
-  - owners: uw-seattle-classics
-  - error: unknown error
-- https://classics.washington.edu/ba-greek
-  - owners: uw-seattle-greek
-  - error: unknown error
-- https://classics.washington.edu/ba-latin
-  - owners: uw-seattle-latin
-  - error: unknown error
-- https://classics.washington.edu/majors
-  - owners: uw-seattle-classical-studies, uw-seattle-classics
-  - error: unknown error
-- https://classics.washington.edu/undergraduate-program
-  - owners: uw-seattle-classics
-  - error: unknown error
-- https://com.uw.edu/academics/undergraduate/communication-major/
-  - owners: uw-seattle-communication
-  - error: unknown error
-- https://complit.washington.edu/undergraduate
-  - owners: uw-seattle-comparative-literature
-  - error: unknown error
-- https://dance.washington.edu/undergraduate-program
-  - owners: uw-seattle-dance
-  - error: unknown error
-- https://drama.washington.edu/ba-drama-program-requirements
-  - owners: uw-seattle-drama
-  - error: unknown error
-- https://drama.washington.edu/undergraduate-programs
-  - owners: uw-seattle-drama
-  - error: unknown error
-- https://econ.washington.edu/bachelor-arts
-  - owners: uw-seattle-economics, uw-seattle-economics::ba-route, uw-seattle-economics::bs-route
-  - error: unknown error
-- https://econ.washington.edu/bachelor-science
-  - owners: uw-seattle-economics, uw-seattle-economics::ba-route, uw-seattle-economics::bs-route
-  - error: unknown error
-- https://econ.washington.edu/choosing-your-economics-degree
-  - owners: uw-seattle-economics, uw-seattle-economics::ba-route, uw-seattle-economics::bs-route
-  - error: unknown error
-- https://econ.washington.edu/undergraduate
-  - owners: uw-seattle-economics, uw-seattle-economics::ba-route, uw-seattle-economics::bs-route
-  - error: unknown error
-- https://education.washington.edu/academics/program/ba-education-studies-0
-  - owners: uw-seattle-education-studies
-  - error: unknown error
-- https://english.washington.edu/creative-writing
-  - owners: uw-seattle-english-creative-writing
-  - error: unknown error
-- https://english.washington.edu/english-language-literature-and-culture-option
-  - owners: uw-seattle-english-creative-writing, uw-seattle-english-language-literature-and-culture
-  - error: unknown error
-- https://english.washington.edu/english-major-creative-writing-option
-  - owners: uw-seattle-english-creative-writing
-  - error: unknown error
-- https://english.washington.edu/how-apply-undergraduate-creative-writing-option
-  - owners: uw-seattle-english-creative-writing
-  - error: unknown error
-- https://english.washington.edu/language-literature-and-culture
-  - owners: uw-seattle-english-language-literature-and-culture
-  - error: unknown error
-- https://frenchitalian.washington.edu/major-french-studies
-  - owners: uw-seattle-french
-  - error: unknown error
-- https://frenchitalian.washington.edu/major-italian-studies
-  - owners: uw-seattle-italian
-  - error: unknown error
-- https://frenchitalian.washington.edu/undergraduate-studies-french
-  - owners: uw-seattle-french
-  - error: unknown error
-- https://geography.washington.edu/ba-geography
-  - owners: uw-seattle-geography, uw-seattle-geography::data-science-option, uw-seattle-geography::standard-ba-route
-  - error: unknown error
-- https://geography.washington.edu/ba-geography-data-science-option
-  - owners: uw-seattle-geography, uw-seattle-geography::data-science-option, uw-seattle-geography::standard-ba-route
-  - error: unknown error
-- https://german.washington.edu/german-studies
-  - owners: uw-seattle-german
-  - error: unknown error
-- https://history.washington.edu/major
-  - owners: uw-seattle-history
-  - error: unknown error
-- https://history.washington.edu/undergraduate-programs
-  - owners: uw-seattle-history
-  - error: unknown error
-- https://jsis.washington.edu/programs/undergraduate/
-  - owners: uw-seattle-international-studies, uw-seattle-jewish-studies, uw-seattle-latin-american-and-caribbean-studies
-  - error: fetch failed
+- https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration
+  - owners: uw-bothell-business-administration
+- https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses
+  - owners: uw-bothell-business-administration, uw-bothell-business-administration-accounting, uw-bothell-business-administration-finance, uw-bothell-business-administration-leadership-and-strategic-innovation, uw-bothell-business-administration-marketing, uw-bothell-business-administration-supply-chain-management
+- https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum
+  - owners: uw-bothell-business-administration
+- https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership
+  - owners: uw-bothell-business-administration-leadership-and-strategic-innovation
+- https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing
+  - owners: uw-bothell-business-administration-marketing
+- https://www.uwb.edu/business/undergraduate/bachelor-of-economics/curriculum
+  - owners: uw-bothell-economics
+- https://www.uwb.edu/business/undergraduate/bachelor-of-economics/prerequisites
+  - owners: uw-bothell-economics
+- https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/admissions
+  - owners: uw-bothell-developmental-and-youth-studies
+- https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements
+  - owners: uw-bothell-developmental-and-youth-studies
+- https://www.uwb.edu/education/undergraduate/elementary-education
+  - owners: uw-bothell-educational-studies-elementary-education
 

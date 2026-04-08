@@ -31,7 +31,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_CAMPUSES: TransferPlannerCampus[] = [
   {
     "id": "uw-bothell",
     "title": "UW Bothell",
-    "summary": "Planning-start dataset. The app can point students to the strongest Green River base track and official Bothell worksheets, but advisor review is still needed for final degree planning.",
+    "summary": "Planning-start dataset. The app can point students to the strongest Green River base track and official Bothell worksheets, but unsupported degree-planning details stay hidden until public sources can verify them.",
     "coverageNote": "Bothell support is useful for track selection and source links, but it is not a final audit yet.",
     "officialLinks": [
       {
@@ -1679,10 +1679,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "url": "https://ais.washington.edu/undergraduate-programs"
       },
       {
-        "label": "UW American Indian Studies requirement sheet",
-        "url": "https://ais.washington.edu/sites/ais/files/documents/ais_major_requirement_sheet_9.29.21.pdf"
-      },
-      {
         "label": "UW Green River equivalency guide",
         "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/"
       }
@@ -1724,7 +1720,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "title": "American Indian Studies concentration and elective structure",
         "items": [
           "The requirement sheet then adds 25 concentration credits with at least 1 course in each of the 3 concentration areas: Governance, Environment and Health, and Culture and History.",
-          "After those concentration credits, students complete 10 more credits of general electives from additional AIS courses or adviser-approved related courses."
+          "After those concentration credits, students complete 10 more credits of general electives from additional AIS courses or source-backed related courses."
         ]
       },
       {
@@ -2183,7 +2179,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
           "The program-requirements page also keeps older option pages such as Biological and Life Sciences, Engineering and Physical Sciences, and Social and Behavioral Sciences available for students who were admitted before Spring 2024.",
           "That means the exact upper-division course list depends on both the student's declared ACMS option and when they entered the program."
         ],
-        "note": "Use adviser review before treating any one ACMS option as the final four-year finish, because the current option menu differs for students admitted before and after Spring 2024."
+        "note": "Keep ACMS option-specific finishes hidden until public sources verify them, because the current option menu differs for students admitted before and after Spring 2024."
       }
     ],
     "manualReviewNotes": [
@@ -3735,7 +3731,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "items": [
           "The elective block adds 10 credits in literature, culture, or linguistics from the department's approved elective list.",
           "It also adds 30 more credits of language, literature, culture, and linguistics coursework, which may combine language study and disciplinary AL&L courses as long as the major's other rules are satisfied.",
-          "Up to 10 of those 30 credits may come from a unit outside Asian Languages and Literature with adviser approval."
+          "Up to 10 of those 30 credits may come from a unit outside Asian Languages and Literature under the published approval rules."
         ]
       }
     ],
@@ -4787,10 +4783,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     ],
     "officialLinks": [
       {
-        "label": "UW Biochemistry admissions",
-        "url": "https://chem.washington.edu/undergraduate-prerequisites-and-admissions-biochemistry"
-      },
-      {
         "label": "UW BS in Biochemistry requirements",
         "url": "https://chem.washington.edu/bs-biochemistry"
       },
@@ -5045,7 +5037,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "BioE now expects a combination of biology and computing decisions that need explicit planning.",
       "At Green River, ENGR 250 is the supported programming option because the other official BioE options depend on BIOEN 217, which is not part of the Green River equivalency guide."
     ],
-    "financialAidNote": "BioE students should stay anchored to the chemistry-heavy Green River path, then layer in the full biology sequence and ENGR 250 inside advisor-approved slots whenever possible.",
+    "financialAidNote": "BioE students should stay anchored to the chemistry-heavy Green River path, then layer in the full biology sequence and ENGR 250 inside source-backed slots whenever possible.",
     "applicationChecklist": [
       {
         "id": "calc123",
@@ -5403,10 +5395,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "Create one biology-focused project with a clear question, methods, and short evidence-based findings."
     ],
     "officialLinks": [
-      {
-        "label": "UW Biology admissions and major requirements",
-        "url": "https://www.biology.washington.edu/programs/undergraduate/admissions"
-      },
       {
         "label": "UW General Catalog Biology page",
         "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html"
@@ -6197,20 +6185,12 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     ],
     "officialLinks": [
       {
-        "label": "UW Chemistry admissions",
-        "url": "https://chem.washington.edu/undergraduate-prerequisites-and-admissions-chemistry"
-      },
-      {
         "label": "UW BA in Chemistry requirements",
         "url": "https://chem.washington.edu/ba-chemistry"
       },
       {
         "label": "UW BS in Chemistry requirements",
         "url": "https://chem.washington.edu/bs-chemistry"
-      },
-      {
-        "label": "UW BS in Chemistry ACS-certified requirements",
-        "url": "https://chem.washington.edu/bs-chemistry-acs-certified"
       },
       {
         "label": "UW Green River equivalency guide",
@@ -6745,10 +6725,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "url": "http://www.washington.edu/students/gencat/program/S/CinemaandMediaStudies-132.html"
       },
       {
-        "label": "UW Cinema and Media Studies undergraduate programs",
-        "url": "https://cinema.washington.edu/undergraduate-programs"
-      },
-      {
         "label": "UW Cinema and Media Studies admissions page",
         "url": "https://admit.washington.edu/majors/cinema-media-studies/"
       },
@@ -7233,10 +7209,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "url": "https://classics.washington.edu/ba-classical-studies"
       },
       {
-        "label": "UW Classics majors overview",
-        "url": "https://classics.washington.edu/majors"
-      },
-      {
         "label": "UW Green River equivalency guide",
         "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/"
       }
@@ -7439,20 +7411,12 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "projectIdeas": [],
     "officialLinks": [
       {
-        "label": "UW Classics undergraduate program",
-        "url": "https://classics.washington.edu/undergraduate-program"
-      },
-      {
         "label": "UW Green River equivalency guide",
         "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/"
       },
       {
         "label": "UW B.A. in Classics",
         "url": "https://classics.washington.edu/ba-classics"
-      },
-      {
-        "label": "UW Classics majors overview",
-        "url": "https://classics.washington.edu/majors"
       }
     ],
     "id": "uw-seattle-classics",
@@ -7636,10 +7600,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "projectIdeas": [],
     "officialLinks": [
       {
-        "label": "UW Communication undergraduate program",
-        "url": "https://com.uw.edu/academics/undergraduate/communication-major/"
-      },
-      {
         "label": "UW Green River equivalency guide",
         "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/"
       },
@@ -7777,10 +7737,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "projectIdeas": [],
     "officialLinks": [
       {
-        "label": "UW Community, Environment and Planning program",
-        "url": "https://urbdp.be.uw.edu/academic-programs/undergraduate/community-environment-and-planning/"
-      },
-      {
         "label": "UW Green River equivalency guide",
         "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/"
       },
@@ -7826,7 +7782,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     ],
     "chainIds": [],
     "manualReviewNotes": [
-      "Use the fixed CEP seminar, practicum, internship, and capstone sequence as the stable core; the methods and digital-skills courses are individualized with adviser approval."
+      "Use the fixed CEP seminar, practicum, internship, and capstone sequence as the stable core; the methods and digital-skills courses are individualized under the published approval rules."
     ],
     "pathways": [],
     "sourceType": "detailed",
@@ -7984,10 +7940,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "involvementIdeas": [],
     "projectIdeas": [],
     "officialLinks": [
-      {
-        "label": "UW Comparative History of Ideas program",
-        "url": "https://chid.washington.edu/undergraduate"
-      },
       {
         "label": "UW Green River equivalency guide",
         "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/"
@@ -8211,10 +8163,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "projectIdeas": [],
     "officialLinks": [
       {
-        "label": "UW Comparative Literature program",
-        "url": "https://complit.washington.edu/undergraduate"
-      },
-      {
         "label": "UW Green River equivalency guide",
         "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/"
       },
@@ -8420,10 +8368,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "involvementIdeas": [],
     "projectIdeas": [],
     "officialLinks": [
-      {
-        "label": "UW Comparative Religion overview",
-        "url": "https://religion.washington.edu/undergraduate"
-      },
       {
         "label": "UW Green River equivalency guide",
         "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/"
@@ -8869,7 +8813,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     ],
     "advisorFlags": [
       "Allen is extremely competitive even when prerequisites are finished.",
-      "Use advisor review if a student plans to submit with one in-progress prerequisite exception."
+      "Hide the in-progress-prerequisite exception unless public sources verify it."
     ],
     "involvementIdeas": [
       "Push MESA first, then a project-heavy club where the student can show real technical work.",
@@ -9287,10 +9231,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "projectIdeas": [],
     "officialLinks": [
       {
-        "label": "UW Construction Management program",
-        "url": "https://www.be.washington.edu/academics/construction-management/"
-      },
-      {
         "label": "UW Green River equivalency guide",
         "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/"
       },
@@ -9450,10 +9390,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "projectIdeas": [],
     "officialLinks": [
       {
-        "label": "UW Dance undergraduate program",
-        "url": "https://dance.washington.edu/undergraduate-program"
-      },
-      {
         "label": "UW Green River equivalency guide",
         "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/"
       },
@@ -9573,10 +9509,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "projectIdeas": [],
     "officialLinks": [
       {
-        "label": "UW Scandinavian Studies undergraduate programs",
-        "url": "https://scandinavian.washington.edu/undergraduate"
-      },
-      {
         "label": "UW Green River equivalency guide",
         "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/"
       },
@@ -9619,7 +9551,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "ENGL"
     ],
     "chainIds": [],
-    "plannerNote": "support-only; no current Danish language bank at GRC",
+    "plannerNote": "supplemental source-backed prep only; no current Danish language bank at GRC",
     "manualReviewNotes": [
       "Danish is especially sequence-sensitive because the department says DANISH 101 is fall-only and the full language buildout typically spans eight quarters."
     ],
@@ -9801,7 +9733,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "ENGL"
     ],
     "chainIds": [],
-    "plannerNote": "support-only; no current direct UW Design-equivalent GRC sequence",
+    "plannerNote": "supplemental source-backed prep only; no current direct UW Design-equivalent GRC sequence",
     "manualReviewNotes": [
       "Design is a family of three separate BDes programs, so the exact course list depends on the option the student wins admission into."
     ],
@@ -10139,10 +10071,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "projectIdeas": [],
     "officialLinks": [
       {
-        "label": "UW School of Drama undergraduate programs",
-        "url": "https://drama.washington.edu/undergraduate-programs"
-      },
-      {
         "label": "UW Green River equivalency guide",
         "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/"
       },
@@ -10153,10 +10081,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "label": "UW General Catalog Drama requirements",
         "url": "https://www.washington.edu/students/gencat/program/S/Drama-134.html"
-      },
-      {
-        "label": "UW BA in Drama program requirements",
-        "url": "https://drama.washington.edu/ba-drama-program-requirements"
       }
     ],
     "id": "uw-seattle-drama",
@@ -10420,14 +10344,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "label": "UW Earth & Space Sciences admissions page",
         "url": "https://admit.washington.edu/majors/earth-space-sciences/"
-      },
-      {
-        "label": "UW Earth and Space Sciences B.A. requirements",
-        "url": "https://web.geology.washington.edu/education/undergrad/degrees_ba.php"
-      },
-      {
-        "label": "UW Earth and Space Sciences B.S. requirements",
-        "url": "https://web.geology.washington.edu/education/undergrad/degrees_bs.php"
       }
     ],
     "id": "uw-seattle-earth-and-space-sciences",
@@ -10699,28 +10615,12 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "projectIdeas": [],
     "officialLinks": [
       {
-        "label": "UW Economics undergraduate program",
-        "url": "https://econ.washington.edu/undergraduate"
-      },
-      {
         "label": "UW Green River equivalency guide",
         "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/"
       },
       {
         "label": "UW Economics admissions page",
         "url": "https://admit.washington.edu/majors/economics/"
-      },
-      {
-        "label": "UW Economics BA requirements",
-        "url": "https://econ.washington.edu/bachelor-arts"
-      },
-      {
-        "label": "UW Economics BS requirements",
-        "url": "https://econ.washington.edu/bachelor-science"
-      },
-      {
-        "label": "UW Choosing Your Economics Degree guide",
-        "url": "https://econ.washington.edu/choosing-your-economics-degree"
       }
     ],
     "id": "uw-seattle-economics",
@@ -10915,10 +10815,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "label": "UW Education Studies admissions page",
         "url": "https://admit.washington.edu/majors/education-studies/"
-      },
-      {
-        "label": "UW Education Studies program page",
-        "url": "https://education.washington.edu/academics/program/ba-education-studies-0"
       }
     ],
     "id": "uw-seattle-education-studies",
@@ -11364,7 +11260,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     ],
     "advisorFlags": [
       "ECE allows multiple science / math combinations after the core prerequisite set.",
-      "Use advisor review if the student wants the lightest possible science mix versus the strongest long-term engineering prep."
+      "Show the strongest source-backed science mix; lighter alternatives stay hidden until public sources verify them."
     ],
     "involvementIdeas": [
       "Push one hardware, robotics, or systems project plus MESA or leadership.",
@@ -11379,10 +11275,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "label": "UW ECE degree requirements",
         "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/"
-      },
-      {
-        "label": "UW ECE admission requirements",
-        "url": "https://www.ece.washington.edu/academics/bachelor-of-science/bs-admissions-requirements/"
       },
       {
         "label": "UW ECE pathways",
@@ -11548,24 +11440,12 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "projectIdeas": [],
     "officialLinks": [
       {
-        "label": "UW English Creative Writing program",
-        "url": "https://english.washington.edu/creative-writing"
-      },
-      {
         "label": "UW Green River equivalency guide",
         "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/"
       },
       {
         "label": "UW English Creative Writing admissions page",
         "url": "https://admit.washington.edu/majors/english-creative-writing/"
-      },
-      {
-        "label": "UW English major Creative Writing option requirements",
-        "url": "https://english.washington.edu/english-major-creative-writing-option"
-      },
-      {
-        "label": "UW Creative Writing option application details",
-        "url": "https://english.washington.edu/how-apply-undergraduate-creative-writing-option"
       },
       {
         "label": "UW English LLC option requirements",
@@ -11687,16 +11567,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "projectIdeas": [],
     "officialLinks": [
       {
-        "label": "UW English Language, Literature and Culture program",
-        "url": "https://english.washington.edu/language-literature-and-culture"
-      },
-      {
         "label": "UW Green River equivalency guide",
         "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/"
-      },
-      {
-        "label": "UW English LLC admissions page",
-        "url": "https://admit.washington.edu/majors/english-language-literature-culture/"
       },
       {
         "label": "UW English LLC option requirements",
@@ -11789,7 +11661,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Environmental Design & Sustainability",
     "shortTitle": "Environmental Design & Sustainability",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Environmental Design & Sustainability. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Environmental Design & Sustainability. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": "999B",
@@ -11803,7 +11675,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -11822,7 +11694,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       }
     ],
     "manualReviewNotes": [
-      "support-only; combine design/art foundations with environment and STEM support"
+      "supplemental source-backed prep only; combine design/art foundations with environment and STEM support"
     ],
     "family": "Life, Physical, And Environmental Sciences",
     "bankIds": [
@@ -11835,7 +11707,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "chainIds": [
       "MATH-STEM"
     ],
-    "plannerNote": "support-only; combine design/art foundations with environment and STEM support",
+    "plannerNote": "supplemental source-backed prep only; combine design/art foundations with environment and STEM support",
     "sourceType": "master-generated",
     "degreeMapSections": [
       {
@@ -12050,7 +11922,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "It still needs the core engineering backbone.",
       "But it also wants biology and thermodynamics in the same plan, which forces a custom hybrid."
     ],
-    "financialAidNote": "Advisor review matters here because the best Green River base depends on whether the student needs chemistry-heavy or mechanics-heavy momentum first.",
+    "financialAidNote": "This source-backed planner row stays broad because the best Green River base depends on whether the student needs chemistry-heavy or mechanics-heavy momentum first.",
     "applicationChecklist": [
       {
         "id": "calc123",
@@ -12186,7 +12058,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     ],
     "advisorFlags": [
       "Treat this as a hybrid plan, not a one-click stock MRP.",
-      "Use advisor review whenever the student is choosing between 999O and 999Q as the starting base."
+      "Keep this planner row broad whenever the student is choosing between 999O and 999Q as the starting base."
     ],
     "involvementIdeas": [
       "Push projects that connect engineering with environmental, community, or sustainability outcomes."
@@ -12197,10 +12069,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "Use a community-impact framing to make the project easier to explain in applications."
     ],
     "officialLinks": [
-      {
-        "label": "UW Environmental Engineering transfer application timeline",
-        "url": "https://www.ce.washington.edu/future/undergrad/environmental/transfer"
-      },
       {
         "label": "UW Environmental Engineering degree sheet",
         "url": "https://www.ce.washington.edu/sites/default/files/pdfs/current/undergrad/uw-cee-bsenve-degree-sheet.pdf"
@@ -12396,7 +12264,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Environmental Public Health",
     "shortTitle": "Environmental Public Health",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Environmental Public Health. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Environmental Public Health. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": "999O",
@@ -12410,7 +12278,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -12473,7 +12341,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
           "The degree also requires 15 credits from the department's approved elective list.",
           "ENV H 482 is the required internship course and the department describes it as a 400-hour internship inside the major core."
         ],
-        "note": "The Winter 2026 update changed the selective minimum and added ENV H 312 for newer cohorts, so adviser review is still important when a student is following an older catalog year."
+        "note": "The Winter 2026 update changed the selective minimum and added ENV H 312 for newer cohorts, so older catalog-year differences should stay hidden until public sources verify them."
       }
     ],
     "pathways": [],
@@ -12580,7 +12448,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Environmental Science & Terrestrial Resource Management",
     "shortTitle": "Environmental Science & Terrestrial Resource Management",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Environmental Science & Terrestrial Resource Management. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Environmental Science & Terrestrial Resource Management. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": "999O",
@@ -12594,7 +12462,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -12771,7 +12639,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Environmental Studies",
     "shortTitle": "Environmental Studies",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Environmental Studies. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Environmental Studies. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -12785,7 +12653,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -13018,7 +12886,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Ethnomusicology, B.A.",
     "shortTitle": "Ethnomusicology, B.A.",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Ethnomusicology, B.A.. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Ethnomusicology, B.A.. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -13032,7 +12900,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -13046,16 +12914,12 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "url": "https://www.washington.edu/students/gencat/program/S/Music-217.html"
       },
       {
-        "label": "UW School of Music BA in Ethnomusicology overview",
-        "url": "https://music.washington.edu/ba-ethnomusicology"
-      },
-      {
         "label": "UW Green River equivalency guide",
         "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/"
       }
     ],
     "manualReviewNotes": [
-      "support-only but strong music prep exists"
+      "supplemental source-backed prep only with strong music prep exists"
     ],
     "family": "Arts, Humanities, Languages, And Design Majors",
     "bankIds": [
@@ -13064,7 +12928,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "ENGL"
     ],
     "chainIds": [],
-    "plannerNote": "support-only but strong music prep exists",
+    "plannerNote": "supplemental source-backed prep only with strong music prep exists",
     "sourceType": "master-generated",
     "degreeMapSections": [
       {
@@ -13221,7 +13085,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "European Studies",
     "shortTitle": "European Studies",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for European Studies. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for European Studies. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -13235,7 +13099,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -13258,7 +13122,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       }
     ],
     "manualReviewNotes": [
-      "support-only"
+      "supplemental source-backed prep only"
     ],
     "family": "Arts, Humanities, Languages, And Design Majors",
     "bankIds": [
@@ -13273,7 +13137,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "LANG-GER",
       "LANG-SP"
     ],
-    "plannerNote": "support-only",
+    "plannerNote": "supplemental source-backed prep only",
     "sourceType": "master-generated",
     "degreeMapSections": [
       {
@@ -13403,7 +13267,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Finnish",
     "shortTitle": "Finnish",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Finnish. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Finnish. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -13417,7 +13281,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -13436,7 +13300,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       }
     ],
     "manualReviewNotes": [
-      "support-only; no current Finnish language bank at GRC"
+      "supplemental source-backed prep only; no current Finnish language bank at GRC"
     ],
     "family": "Arts, Humanities, Languages, And Design Majors",
     "bankIds": [
@@ -13444,7 +13308,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "ENGL"
     ],
     "chainIds": [],
-    "plannerNote": "support-only; no current Finnish language bank at GRC",
+    "plannerNote": "supplemental source-backed prep only; no current Finnish language bank at GRC",
     "sourceType": "master-generated",
     "degreeMapSections": [
       {
@@ -13557,7 +13421,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Food Systems, Nutrition, & Health",
     "shortTitle": "Food Systems, Nutrition, & Health",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Food Systems, Nutrition, & Health. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Food Systems, Nutrition, & Health. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": "999O",
@@ -13571,7 +13435,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -13741,7 +13605,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "French",
     "shortTitle": "French",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for French. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for French. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -13755,7 +13619,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -13763,14 +13627,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "label": "UW French admissions page",
         "url": "https://admit.washington.edu/majors/french/"
-      },
-      {
-        "label": "UW French undergraduate studies overview",
-        "url": "https://frenchitalian.washington.edu/undergraduate-studies-french"
-      },
-      {
-        "label": "UW French major requirements",
-        "url": "https://frenchitalian.washington.edu/major-french-studies"
       },
       {
         "label": "UW Green River equivalency guide",
@@ -13872,7 +13728,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Gender, Women & Sexuality Studies",
     "shortTitle": "Gender, Women & Sexuality Studies",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Gender, Women & Sexuality Studies. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Gender, Women & Sexuality Studies. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -13886,7 +13742,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -14092,7 +13948,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Geography",
     "shortTitle": "Geography",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Geography. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Geography. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": "999B",
@@ -14106,7 +13962,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -14114,14 +13970,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "label": "UW Geography admissions page",
         "url": "https://admit.washington.edu/majors/geography/"
-      },
-      {
-        "label": "UW Geography B.A. requirements",
-        "url": "https://geography.washington.edu/ba-geography"
-      },
-      {
-        "label": "UW Geography data science option requirements",
-        "url": "https://geography.washington.edu/ba-geography-data-science-option"
       },
       {
         "label": "UW Green River equivalency guide",
@@ -14350,7 +14198,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "German",
     "shortTitle": "German",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for German. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for German. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -14364,7 +14212,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -14472,7 +14320,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Global Literary Studies",
     "shortTitle": "Global Literary Studies",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Global Literary Studies. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Global Literary Studies. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -14486,7 +14334,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -14501,7 +14349,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       }
     ],
     "manualReviewNotes": [
-      "support-only"
+      "supplemental source-backed prep only"
     ],
     "family": "Arts, Humanities, Languages, And Design Majors",
     "bankIds": [
@@ -14518,7 +14366,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "LANG-JP",
       "LANG-SP"
     ],
-    "plannerNote": "support-only",
+    "plannerNote": "supplemental source-backed prep only",
     "sourceType": "master-generated",
     "degreeMapSections": [
       {
@@ -14652,7 +14500,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Greek",
     "shortTitle": "Greek",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Greek. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Greek. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -14666,7 +14514,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -14681,7 +14529,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       }
     ],
     "manualReviewNotes": [
-      "support-only; no current Greek language bank at GRC"
+      "supplemental source-backed prep only; no current Greek language bank at GRC"
     ],
     "family": "Arts, Humanities, Languages, And Design Majors",
     "bankIds": [
@@ -14690,7 +14538,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "ENGL"
     ],
     "chainIds": [],
-    "plannerNote": "support-only; no current Greek language bank at GRC",
+    "plannerNote": "supplemental source-backed prep only; no current Greek language bank at GRC",
     "sourceType": "master-generated",
     "degreeMapSections": [
       {
@@ -14825,7 +14673,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Guitar, B.M.",
     "shortTitle": "Guitar, B.M.",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Guitar, B.M.. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Guitar, B.M.. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -14839,7 +14687,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -14944,7 +14792,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "History",
     "shortTitle": "History",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for History. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for History. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -14958,7 +14806,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -14966,10 +14814,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "label": "UW History major requirements",
         "url": "https://history.washington.edu/major"
-      },
-      {
-        "label": "UW History undergraduate programs overview",
-        "url": "https://history.washington.edu/undergraduate-programs"
       },
       {
         "label": "UW Green River equivalency guide",
@@ -15102,7 +14946,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "History & Philosophy of Science",
     "shortTitle": "History & Philosophy of Science",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for History & Philosophy of Science. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for History & Philosophy of Science. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": "999O",
@@ -15116,7 +14960,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -15131,7 +14975,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       }
     ],
     "manualReviewNotes": [
-      "support-only but strong lower-division prep exists"
+      "supplemental source-backed prep only with strong lower-division prep exists"
     ],
     "family": "Arts, Humanities, Languages, And Design Majors",
     "bankIds": [
@@ -15149,7 +14993,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "CHEM-GEN",
       "BIO-MAJORS"
     ],
-    "plannerNote": "support-only but strong lower-division prep exists",
+    "plannerNote": "supplemental source-backed prep only with strong lower-division prep exists",
     "sourceType": "master-generated",
     "degreeMapSections": [
       {
@@ -15369,7 +15213,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "The Autumn 2024+ HCDE curriculum makes the post-admission structure much clearer than the old catch-all template.",
       "Green River students still benefit from staying as close as possible to a valid STEM pathway, but the final plan needs a custom balance between admissions readiness, portfolio strength, and backup-major flexibility."
     ],
-    "financialAidNote": "Keep the student inside the closest valid Green River STEM path possible, avoid spending aid on HCDE-removed prerequisites like algebra-based physics, and use advisor review to place statistics, science, and optional engineering-fundamentals courses intentionally.",
+    "financialAidNote": "Keep the student inside the closest valid Green River STEM path possible, avoid spending aid on HCDE-removed prerequisites like algebra-based physics, and use the source-backed plan to place statistics, science, and optional engineering-fundamentals courses intentionally.",
     "plannerNote": "Structured admissions-first HCDE baseline with explicit calculus, programming, statistics, and science sequencing before UW core progression.",
     "applicationChecklist": [
       {
@@ -15748,7 +15592,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Individualized Studies",
     "shortTitle": "Individualized Studies",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Individualized Studies. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Individualized Studies. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -15762,7 +15606,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -15815,7 +15659,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         ]
       }
     ],
-    "grcCourseListGuidance": "Custom Green River course set required. This is a student-designed Seattle major, so the planner should not pretend there is one universal GRC equivalent course list. Build the Green River plan around the student's approved theme, intended departments, and adviser-reviewed transfer strategy.",
+    "grcCourseListGuidance": "Custom Green River course set required. This is a student-designed Seattle major, so the planner should not pretend there is one universal GRC equivalent course list. Build the Green River plan around the student's approved theme, intended departments, and source-backed transfer strategy.",
     "pathways": [],
     "grcCourseList": []
   },
@@ -16111,7 +15955,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Informatics",
     "shortTitle": "Informatics",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Informatics. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Informatics. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": "999P",
@@ -16125,7 +15969,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -16284,7 +16128,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "International Studies",
     "shortTitle": "International Studies",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for International Studies. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for International Studies. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -16298,7 +16142,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -16506,7 +16350,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Italian",
     "shortTitle": "Italian",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Italian. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Italian. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -16520,7 +16364,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -16548,7 +16392,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "LANG-FR",
       "LANG-SP"
     ],
-    "plannerNote": "support-only; no current Italian language bank at GRC",
+    "plannerNote": "supplemental source-backed prep only; no current Italian language bank at GRC",
     "sourceType": "master-generated",
     "degreeMapSections": [
       {
@@ -16665,7 +16509,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Japanese",
     "shortTitle": "Japanese",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Japanese. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Japanese. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -16679,7 +16523,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -16787,7 +16631,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Jazz Studies, B.M.",
     "shortTitle": "Jazz Studies, B.M.",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Jazz Studies, B.M.. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Jazz Studies, B.M.. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -16801,7 +16645,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -16809,10 +16653,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "label": "UW Jazz Studies Bachelor of Music requirements",
         "url": "https://music.washington.edu/bachelor-music-jazz-studies"
-      },
-      {
-        "label": "UW Bachelor of Music overview",
-        "url": "https://music.washington.edu/bachelor-music"
       },
       {
         "label": "UW Green River equivalency guide",
@@ -16912,7 +16752,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Jewish Studies",
     "shortTitle": "Jewish Studies",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Jewish Studies. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Jewish Studies. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -16926,7 +16766,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -16945,7 +16785,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       }
     ],
     "manualReviewNotes": [
-      "support-only"
+      "supplemental source-backed prep only"
     ],
     "family": "Arts, Humanities, Languages, And Design Majors",
     "bankIds": [
@@ -16954,7 +16794,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "ENGL"
     ],
     "chainIds": [],
-    "plannerNote": "support-only",
+    "plannerNote": "supplemental source-backed prep only",
     "sourceType": "master-generated",
     "degreeMapSections": [
       {
@@ -17090,7 +16930,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Korean",
     "shortTitle": "Korean",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Korean. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Korean. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -17104,7 +16944,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -17119,7 +16959,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       }
     ],
     "manualReviewNotes": [
-      "support-only; no current Korean language bank at GRC"
+      "supplemental source-backed prep only; no current Korean language bank at GRC"
     ],
     "family": "Arts, Humanities, Languages, And Design Majors",
     "bankIds": [
@@ -17127,7 +16967,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "ENGL"
     ],
     "chainIds": [],
-    "plannerNote": "support-only; no current Korean language bank at GRC",
+    "plannerNote": "supplemental source-backed prep only; no current Korean language bank at GRC",
     "sourceType": "master-generated",
     "degreeMapSections": [
       {
@@ -17241,7 +17081,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Landscape Architecture",
     "shortTitle": "Landscape Architecture",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Landscape Architecture. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Landscape Architecture. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": "999B",
@@ -17255,7 +17095,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -17274,7 +17114,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       }
     ],
     "manualReviewNotes": [
-      "support-only"
+      "supplemental source-backed prep only"
     ],
     "family": "Arts, Humanities, Languages, And Design Majors",
     "bankIds": [
@@ -17286,7 +17126,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "chainIds": [
       "MATH-STEM"
     ],
-    "plannerNote": "support-only",
+    "plannerNote": "supplemental source-backed prep only",
     "sourceType": "master-generated",
     "degreeMapSections": [
       {
@@ -17482,7 +17322,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Latin",
     "shortTitle": "Latin",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Latin. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Latin. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -17496,7 +17336,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -17511,7 +17351,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       }
     ],
     "manualReviewNotes": [
-      "support-only; no current Latin language bank at GRC"
+      "supplemental source-backed prep only; no current Latin language bank at GRC"
     ],
     "family": "Arts, Humanities, Languages, And Design Majors",
     "bankIds": [
@@ -17520,7 +17360,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "ENGL"
     ],
     "chainIds": [],
-    "plannerNote": "support-only; no current Latin language bank at GRC",
+    "plannerNote": "supplemental source-backed prep only; no current Latin language bank at GRC",
     "sourceType": "master-generated",
     "degreeMapSections": [
       {
@@ -17655,7 +17495,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Latin American & Caribbean Studies",
     "shortTitle": "Latin American & Caribbean Studies",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Latin American & Caribbean Studies. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Latin American & Caribbean Studies. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -17669,7 +17509,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -17688,7 +17528,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       }
     ],
     "manualReviewNotes": [
-      "support-only with strong Spanish support"
+      "supplemental source-backed prep only with strong Spanish support"
     ],
     "family": "Arts, Humanities, Languages, And Design Majors",
     "bankIds": [
@@ -17699,7 +17539,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "chainIds": [
       "LANG-SP"
     ],
-    "plannerNote": "support-only with strong Spanish support",
+    "plannerNote": "supplemental source-backed prep only with strong Spanish support",
     "sourceType": "master-generated",
     "degreeMapSections": [
       {
@@ -17822,7 +17662,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Law, Societies & Justice",
     "shortTitle": "Law, Societies & Justice",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Law, Societies & Justice. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Law, Societies & Justice. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -17836,7 +17676,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -17991,7 +17831,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Linguistics",
     "shortTitle": "Linguistics",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Linguistics. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Linguistics. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -18005,7 +17845,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -18015,20 +17855,12 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "url": "https://linguistics.washington.edu/ba-linguistics"
       },
       {
-        "label": "UW Linguistics undergraduate language requirement",
-        "url": "https://linguistics.washington.edu/undergraduate-language-requirement"
-      },
-      {
-        "label": "UW Linguistics undergraduate programs and admissions",
-        "url": "https://linguistics.washington.edu/undergraduate-programs"
-      },
-      {
         "label": "UW Green River equivalency guide",
         "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/"
       }
     ],
     "manualReviewNotes": [
-      "support-only"
+      "supplemental source-backed prep only"
     ],
     "family": "Arts, Humanities, Languages, And Design Majors",
     "bankIds": [
@@ -18047,7 +17879,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "LANG-JP",
       "LANG-SP"
     ],
-    "plannerNote": "support-only",
+    "plannerNote": "supplemental source-backed prep only",
     "sourceType": "master-generated",
     "degreeMapSections": [
       {
@@ -18173,7 +18005,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Marine Biology",
     "shortTitle": "Marine Biology",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Marine Biology. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Marine Biology. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": "999O",
@@ -18187,7 +18019,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -18759,16 +18591,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     ],
     "officialLinks": [
       {
-        "label": "UW Mathematics undergraduate major requirements overview",
-        "url": "https://math.washington.edu/undergraduate-major-requirements"
-      },
-      {
         "label": "UW B.A. Mathematics standard requirements",
         "url": "https://math.washington.edu/ba-mathematics-standard-major-requirements-0"
-      },
-      {
-        "label": "UW B.S. Mathematics requirements",
-        "url": "https://math.washington.edu/bs-mathematics-major-requirements-0"
       },
       {
         "label": "UW Green River equivalency guide",
@@ -18808,9 +18632,9 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "title": "Continuation, residency, and outside-course notes",
         "items": [
           "Both the B.A. and B.S. pages require at least a 2.0 numerical grade in all courses used toward the major and at least 18 graded MATH credits at the 300-level or higher taken in residence at UW Seattle.",
-          "The B.S. page also allows up to 2 non-MATH electives from one outside department such as AMATH, CSE, ECON, EE, PHYS, or PHIL, subject to adviser approval and department continuation rules."
+          "The B.S. page also allows up to 2 non-MATH electives from one outside department such as AMATH, CSE, ECON, EE, PHYS, or PHIL, subject to the published approval rules and department continuation rules."
         ],
-        "note": "This planner row is best used to get students to the shared Seattle math foundation; adviser review is still needed to lock the exact B.A. versus B.S. finish."
+        "note": "This planner row is best used to get students to the shared Seattle math foundation; the exact B.A. versus B.S. finish should stay hidden until public sources verify it."
       }
     ],
     "manualReviewNotes": [
@@ -19131,7 +18955,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Medical Laboratory Science",
     "shortTitle": "Medical Laboratory Science",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Medical Laboratory Science. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Medical Laboratory Science. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": "999O",
@@ -19145,7 +18969,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -19286,7 +19110,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Microbiology",
     "shortTitle": "Microbiology",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Microbiology. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Microbiology. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": "999O",
@@ -19300,7 +19124,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -19429,7 +19253,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Middle Eastern Languages & Cultures",
     "shortTitle": "Middle Eastern Languages & Cultures",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Middle Eastern Languages & Cultures. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Middle Eastern Languages & Cultures. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -19443,7 +19267,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -19471,7 +19295,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "PHIL"
     ],
     "chainIds": [],
-    "plannerNote": "support-only; no current Middle Eastern language bank at GRC",
+    "plannerNote": "supplemental source-backed prep only; no current Middle Eastern language bank at GRC",
     "sourceType": "master-generated",
     "degreeMapSections": [
       {
@@ -19608,7 +19432,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Music Composition, B.M.",
     "shortTitle": "Music Composition, B.M.",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Music Composition, B.M.. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Music Composition, B.M.. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -19622,7 +19446,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -19630,10 +19454,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "label": "UW Bachelor of Music - Composition",
         "url": "https://music.washington.edu/bachelor-music-composition"
-      },
-      {
-        "label": "UW Bachelor of Music overview",
-        "url": "https://music.washington.edu/bachelor-music"
       },
       {
         "label": "UW Green River equivalency guide",
@@ -19732,7 +19552,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Music Education, B.M.",
     "shortTitle": "Music Education, B.M.",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Music Education, B.M.. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Music Education, B.M.. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -19746,7 +19566,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -19754,14 +19574,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "label": "UW Bachelor of Music - Music Education, Instrumental Emphasis",
         "url": "https://music.washington.edu/bachelor-music-music-education-instrumental-emphasis"
-      },
-      {
-        "label": "UW Bachelor of Music - Music Education, Vocal Emphasis",
-        "url": "https://music.washington.edu/bachelor-music-music-education-vocal-emphasis"
-      },
-      {
-        "label": "UW Bachelor of Music overview",
-        "url": "https://music.washington.edu/bachelor-music"
       },
       {
         "label": "UW Green River equivalency guide",
@@ -19778,7 +19590,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "COMM"
     ],
     "chainIds": [],
-    "plannerNote": "support-only with strong music foundation",
+    "plannerNote": "supplemental source-backed prep only with strong music foundation",
     "sourceType": "master-generated",
     "degreeMapSections": [
       {
@@ -19933,7 +19745,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Music, B.A.",
     "shortTitle": "Music, B.A.",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Music, B.A.. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Music, B.A.. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -19947,30 +19759,14 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
     "officialLinks": [
       {
-        "label": "UW Bachelor of Arts in Music overview",
-        "url": "https://music.washington.edu/bachelor-arts"
-      },
-      {
         "label": "UW Bachelor of Arts - Music, Instrumental Option",
         "url": "https://music.washington.edu/bachelor-arts-music-instrumental-option"
-      },
-      {
-        "label": "UW Bachelor of Arts - Music, Voice Option",
-        "url": "https://music.washington.edu/bachelor-arts-music-voice-option"
-      },
-      {
-        "label": "UW Bachelor of Arts - Music, Music History Option",
-        "url": "https://music.washington.edu/bachelor-arts-music-music-history-option"
-      },
-      {
-        "label": "UW Bachelor of Arts - Music, Music Theory Option",
-        "url": "https://music.washington.edu/bachelor-arts-music-music-theory-option"
       },
       {
         "label": "UW Green River equivalency guide",
@@ -20068,7 +19864,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Neuroscience",
     "shortTitle": "Neuroscience",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Neuroscience. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Neuroscience. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": "999O",
@@ -20082,7 +19878,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -20261,7 +20057,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Norwegian",
     "shortTitle": "Norwegian",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Norwegian. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Norwegian. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -20275,7 +20071,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -20290,7 +20086,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       }
     ],
     "manualReviewNotes": [
-      "support-only; no current Norwegian language bank at GRC"
+      "supplemental source-backed prep only; no current Norwegian language bank at GRC"
     ],
     "family": "Arts, Humanities, Languages, And Design Majors",
     "bankIds": [
@@ -20298,7 +20094,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "ENGL"
     ],
     "chainIds": [],
-    "plannerNote": "support-only; no current Norwegian language bank at GRC",
+    "plannerNote": "supplemental source-backed prep only; no current Norwegian language bank at GRC",
     "sourceType": "master-generated",
     "degreeMapSections": [
       {
@@ -20412,7 +20208,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Nursing",
     "shortTitle": "Nursing",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Nursing. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Nursing. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": "999O",
@@ -20426,7 +20222,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -20624,7 +20420,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Oceanography",
     "shortTitle": "Oceanography",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Oceanography. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Oceanography. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": "999B",
@@ -20638,7 +20434,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -20701,7 +20497,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "items": [
           "The B.S. diverges at the 400 level by requiring a year-long senior thesis plus upper-division special-topics coursework that provides both breadth and depth.",
           "The B.A. does not require the senior thesis and instead uses a more flexible senior-year structure so students can tailor the upper-division work toward other sciences, humanities, or post-graduate interests.",
-          "The School maintains separate B.A. and B.S. checklists and transfer-compressed course plans, so adviser review is still important before locking the final upper-division sequence."
+          "The School maintains separate B.A. and B.S. checklists and transfer-compressed course plans, so upper-division sequencing differences should stay hidden until public sources verify them."
         ]
       }
     ],
@@ -20810,7 +20606,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Orchestral Instruments, B.M.",
     "shortTitle": "Orchestral Instruments, B.M.",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Orchestral Instruments, B.M.. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Orchestral Instruments, B.M.. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -20824,7 +20620,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -20832,10 +20628,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "label": "UW Bachelor of Music - Orchestral Instruments",
         "url": "https://music.washington.edu/bachelor-music-orchestral-instruments"
-      },
-      {
-        "label": "UW Bachelor of Music overview",
-        "url": "https://music.washington.edu/bachelor-music"
       },
       {
         "label": "UW Green River equivalency guide",
@@ -20932,7 +20724,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Organ, B.M.",
     "shortTitle": "Organ, B.M.",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Organ, B.M.. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Organ, B.M.. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -20946,7 +20738,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -20954,10 +20746,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "label": "UW Bachelor of Music - Organ",
         "url": "https://music.washington.edu/bachelor-music-organ"
-      },
-      {
-        "label": "UW Bachelor of Music overview",
-        "url": "https://music.washington.edu/bachelor-music"
       },
       {
         "label": "UW Green River equivalency guide",
@@ -21055,7 +20843,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Percussion Performance, B.M.",
     "shortTitle": "Percussion Performance, B.M.",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Percussion Performance, B.M.. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Percussion Performance, B.M.. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -21069,7 +20857,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -21077,10 +20865,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "label": "UW Bachelor of Music - Percussion Performance",
         "url": "https://music.washington.edu/bachelor-music-percussion-performance"
-      },
-      {
-        "label": "UW Bachelor of Music overview",
-        "url": "https://music.washington.edu/bachelor-music"
       },
       {
         "label": "UW Green River equivalency guide",
@@ -21177,7 +20961,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Philosophy",
     "shortTitle": "Philosophy",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Philosophy. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Philosophy. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -21191,7 +20975,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -21317,7 +21101,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Physics",
     "shortTitle": "Physics",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Physics. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Physics. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": "999B",
@@ -21331,15 +21115,11 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
     "officialLinks": [
-      {
-        "label": "UW Bachelor of Science in Physics overview",
-        "url": "https://phys.washington.edu/bachelor-science-physics"
-      },
       {
         "label": "UW Physics B.S. degree requirements",
         "url": "https://phys.washington.edu/physics-bs-degree-requirements"
@@ -21449,7 +21229,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Piano, B.M.",
     "shortTitle": "Piano, B.M.",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Piano, B.M.. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Piano, B.M.. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -21463,7 +21243,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -21471,10 +21251,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "label": "UW Bachelor of Music - Piano",
         "url": "https://music.washington.edu/bachelor-music-piano"
-      },
-      {
-        "label": "UW Bachelor of Music overview",
-        "url": "https://music.washington.edu/bachelor-music"
       },
       {
         "label": "UW Green River equivalency guide",
@@ -21571,7 +21347,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Political Science",
     "shortTitle": "Political Science",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Political Science. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Political Science. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -21585,7 +21361,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -21593,10 +21369,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "label": "UW Political Science major declaration and requirements",
         "url": "https://www.polisci.washington.edu/political-science-major-declaration-and-requirements"
-      },
-      {
-        "label": "UW Political Science undergraduate programs overview",
-        "url": "https://www.polisci.washington.edu/undergraduate-programs"
       },
       {
         "label": "UW Green River equivalency guide",
@@ -21738,7 +21510,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Psychology",
     "shortTitle": "Psychology",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Psychology. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Psychology. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -21752,7 +21524,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -21946,7 +21718,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Public Health - Global Health",
     "shortTitle": "Public Health - Global Health",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Public Health - Global Health. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Public Health - Global Health. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": "999O",
@@ -21960,7 +21732,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -22270,7 +22042,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Public Service & Policy",
     "shortTitle": "Public Service & Policy",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Public Service & Policy. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Public Service & Policy. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -22284,7 +22056,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -22453,7 +22225,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Real Estate",
     "shortTitle": "Real Estate",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Real Estate. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Real Estate. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": "999B",
@@ -22467,7 +22239,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -22596,7 +22368,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Scandinavian Area Studies",
     "shortTitle": "Scandinavian Area Studies",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Scandinavian Area Studies. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Scandinavian Area Studies. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -22610,7 +22382,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -22620,16 +22392,12 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "url": "https://scandinavian.washington.edu/ba-scandinavian-area-studies"
       },
       {
-        "label": "UW Scandinavian Studies undergraduate programs overview",
-        "url": "https://scandinavian.washington.edu/undergraduate-programs"
-      },
-      {
         "label": "UW Green River equivalency guide",
         "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/"
       }
     ],
     "manualReviewNotes": [
-      "support-only; no current Scandinavian language bank at GRC"
+      "supplemental source-backed prep only; no current Scandinavian language bank at GRC"
     ],
     "family": "Arts, Humanities, Languages, And Design Majors",
     "bankIds": [
@@ -22640,7 +22408,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "chainIds": [
       "LANG-GER"
     ],
-    "plannerNote": "support-only; no current Scandinavian language bank at GRC",
+    "plannerNote": "supplemental source-backed prep only; no current Scandinavian language bank at GRC",
     "sourceType": "master-generated",
     "degreeMapSections": [
       {
@@ -22758,7 +22526,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Slavic Languages & Literatures",
     "shortTitle": "Slavic Languages & Literatures",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Slavic Languages & Literatures. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Slavic Languages & Literatures. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -22772,23 +22540,11 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
     "officialLinks": [
-      {
-        "label": "UW Slavic Languages & Literatures undergraduate programs overview",
-        "url": "https://slavic.washington.edu/undergraduate-programs"
-      },
-      {
-        "label": "UW Eastern European Languages, Literature, and Culture requirements",
-        "url": "https://slavic.washington.edu/ba-eastern-european-languages-literature-and-culture"
-      },
-      {
-        "label": "UW Russian Language, Literature, and Culture requirements",
-        "url": "https://slavic.washington.edu/ba-russian-language-literature-and-culture"
-      },
       {
         "label": "UW Slavic Languages & Literatures undergraduate policies",
         "url": "https://slavic.washington.edu/undergraduate-policies"
@@ -22807,7 +22563,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "ENGL"
     ],
     "chainIds": [],
-    "plannerNote": "support-only; no current Russian/Slavic language bank at GRC",
+    "plannerNote": "supplemental source-backed prep only; no current Russian/Slavic language bank at GRC",
     "sourceType": "master-generated",
     "degreeMapSections": [
       {
@@ -22923,7 +22679,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Social Welfare",
     "shortTitle": "Social Welfare",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Social Welfare. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Social Welfare. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -22937,7 +22693,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -23107,7 +22863,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Sociology",
     "shortTitle": "Sociology",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Sociology. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Sociology. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -23121,7 +22877,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -23129,14 +22885,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "label": "UW General Catalog Sociology requirements",
         "url": "https://www.washington.edu/students/gencat/program/S/Sociology-293.html"
-      },
-      {
-        "label": "UW Sociology declaration requirements",
-        "url": "https://soc.washington.edu/declare-sociology-major"
-      },
-      {
-        "label": "UW Sociology current majors overview",
-        "url": "https://soc.washington.edu/current-majors"
       },
       {
         "label": "UW Green River equivalency guide",
@@ -23250,7 +22998,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "South Asian Languages & Cultures",
     "shortTitle": "South Asian Languages & Cultures",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for South Asian Languages & Cultures. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for South Asian Languages & Cultures. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -23264,7 +23012,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -23279,7 +23027,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       }
     ],
     "manualReviewNotes": [
-      "support-only; no current South Asian language bank at GRC"
+      "supplemental source-backed prep only; no current South Asian language bank at GRC"
     ],
     "family": "Arts, Humanities, Languages, And Design Majors",
     "bankIds": [
@@ -23287,7 +23035,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "ENGL"
     ],
     "chainIds": [],
-    "plannerNote": "support-only; no current South Asian language bank at GRC",
+    "plannerNote": "supplemental source-backed prep only; no current South Asian language bank at GRC",
     "sourceType": "master-generated",
     "degreeMapSections": [
       {
@@ -23403,7 +23151,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Spanish",
     "shortTitle": "Spanish",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Spanish. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Spanish. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -23417,15 +23165,11 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
     "officialLinks": [
-      {
-        "label": "UW admission to the Spanish major",
-        "url": "https://spanport.washington.edu/admission-spanish-major"
-      },
       {
         "label": "UW Spanish major requirements",
         "url": "https://spanport.washington.edu/spanish-major-requirements"
@@ -23536,7 +23280,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Speech & Hearing Sciences",
     "shortTitle": "Speech & Hearing Sciences",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Speech & Hearing Sciences. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Speech & Hearing Sciences. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -23550,7 +23294,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -24039,7 +23783,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Sustainable Bioresource Systems Engineering",
     "shortTitle": "Sustainable Bioresource Systems Engineering",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Sustainable Bioresource Systems Engineering. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Sustainable Bioresource Systems Engineering. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": "999Q",
@@ -24053,7 +23797,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -24240,7 +23984,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Swedish",
     "shortTitle": "Swedish",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Swedish. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Swedish. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -24254,7 +23998,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -24269,7 +24013,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       }
     ],
     "manualReviewNotes": [
-      "support-only; no current Swedish language bank at GRC"
+      "supplemental source-backed prep only; no current Swedish language bank at GRC"
     ],
     "family": "Arts, Humanities, Languages, And Design Majors",
     "bankIds": [
@@ -24277,7 +24021,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "ENGL"
     ],
     "chainIds": [],
-    "plannerNote": "support-only; no current Swedish language bank at GRC",
+    "plannerNote": "supplemental source-backed prep only; no current Swedish language bank at GRC",
     "sourceType": "master-generated",
     "degreeMapSections": [
       {
@@ -24392,7 +24136,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Voice, B.M.",
     "shortTitle": "Voice, B.M.",
     "coverage": "partial",
-    "summary": "Current Green River -> UW planning reference for Voice, B.M.. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline before final advisor review.",
+    "summary": "Current Green River -> UW planning reference for Voice, B.M.. Use the attached Green River class list and prerequisite/full-credit notes below as the baseline as the current source-backed baseline.",
     "applicationWindow": "Check the official program transfer page",
     "startQuarter": "Varies by major",
     "bestTrackId": null,
@@ -24406,7 +24150,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "This planner row comes from the current master equivalency coverage and still needs program-by-program advisor confirmation for final admission strategy."
+      "This planner row comes from the current master equivalency coverage and still needs a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves."
     ],
     "involvementIdeas": [],
     "projectIdeas": [],
@@ -24414,10 +24158,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "label": "UW Bachelor of Music - Voice",
         "url": "https://music.washington.edu/bachelor-music-voice"
-      },
-      {
-        "label": "UW Bachelor of Music overview",
-        "url": "https://music.washington.edu/bachelor-music"
       },
       {
         "label": "UW Green River equivalency guide",
@@ -26262,7 +26002,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "id": "uwb-marketing-electives",
         "title": "Marketing electives, capstone, and credit structure",
         "items": [
-          "The option adds 15 credits of marketing electives, while the concentration adds 10 credits of marketing electives from the approved list including BBUS 421, 426, 427, 429, 431, 464, approved BBUS 490 topics, and adviser-approved consulting or research work.",
+          "The option adds 15 credits of marketing electives, while the concentration adds 10 credits of marketing electives from the approved list including BBUS 421, 426, 427, 429, 431, 464, approved BBUS 490 topics, and source-backed consulting or research work.",
           "The option carries 20 credits of upper-division general electives, while the concentration carries 30 general-elective credits.",
           "Both pathways finish with the shared capstones BBUS 470 and BBUS 480 and total 90 Bothell credits."
         ]
@@ -26836,7 +26576,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "stayAtGrcChecklist": [],
     "advisorFlags": [
       "This row is specifically the Bothell Chemistry B.S. general option, not the separate Biochemistry option.",
-      "The department strongly recommends planning the physical-chemistry sequence with adviser input because the B.S. chemistry finish is more tightly sequenced than the B.A."
+      "The department strongly recommends planning the physical-chemistry sequence with the published sequence because the B.S. chemistry finish is more tightly sequenced than the B.A."
     ],
     "involvementIdeas": [
       "Use one lab, tutoring, supplemental instruction, research, or science-outreach role to show chemistry readiness beyond the transcript."
@@ -27226,7 +26966,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "coverage": "detailed",
     "summary": "Bothell CompE is now modeled as a programming, calculus, and calculus-based-physics transfer path built from the current curriculum page, degree map, and admissions notes.",
     "applicationWindow": "Use the current UW Bothell major planning worksheet and admissions deadlines.",
-    "startQuarter": "Advisor review needed",
+    "startQuarter": "source-backed planning needed",
     "bestTrackId": "999P",
     "bestTrackSummary": "999P is the strongest Bothell CompE launchpad because it preserves the programming, calculus, and engineering depth that the admissions and curriculum pages emphasize.",
     "whyThisTrack": [
@@ -27460,14 +27200,14 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "coverage": "detailed",
     "summary": "Bothell CSSE is now modeled from the public degree map and worksheet, with the planner centered on writing, early calculus, and programming through the CSS 143-equivalent level.",
     "applicationWindow": "Use the current UW Bothell major planning worksheet and admissions deadlines.",
-    "startQuarter": "Advisor review needed",
+    "startQuarter": "source-backed planning needed",
     "bestTrackId": "999P",
     "bestTrackSummary": "999P is still the strongest Bothell CSSE start because it keeps the Green River programming path deeper than the minimum public degree-map classes.",
     "whyThisTrack": [
       "It keeps Green River programming depth strong while still fitting a clean STEM transfer story.",
       "It preserves room for students who may still compare Bothell CSSE with Seattle Allen or Tacoma computing paths."
     ],
-    "financialAidNote": "Keep the student on a programming-heavy STEM path, then use advisor review to decide whether the student should stop at the public minimum or finish the stronger CS 123 / Calc III path.",
+    "financialAidNote": "Keep the student on a programming-heavy STEM path, then use the published path guidance to decide whether the student should stop at the public minimum or finish the stronger CS 123 / Calc III path.",
     "applicationChecklist": [
       {
         "id": "bothell-csse-engl101",
@@ -31111,7 +30851,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     ],
     "advisorFlags": [
       "IMD is permanently suspended and no longer accepts applications, so this row should be treated as archival guidance only.",
-      "Any current student still finishing IMD should rely on adviser-approved archived materials rather than assuming the old public plan still runs unchanged."
+      "Any current student still finishing IMD should rely on source-backed archived materials rather than assuming the old public plan still runs unchanged."
     ],
     "involvementIdeas": [
       "Use one design, media, web, storytelling, or portfolio activity to show fit if the student is still tied to the archived IMD path."
@@ -31120,10 +30860,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "Build one interface, media, or digital-storytelling portfolio piece with a short explanation of the audience, design choices, and technical implementation."
     ],
     "officialLinks": [
-      {
-        "label": "UW Bothell Interactive Media Design status page",
-        "url": "https://www.uwb.edu/stem/undergraduate/majors/interactive-media-design"
-      },
       {
         "label": "UW Bothell archived IMD planning worksheet",
         "url": "https://www.uwb.edu/premajor/wp-content/uploads/sites/26/2023/07/fillable-imd.pdf"
@@ -31189,7 +30925,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       }
     ],
     "manualReviewNotes": [
-      "This is an archival row only. Because IMD no longer accepts new applicants, any current student still finishing the degree should use adviser-approved archived materials rather than assume the old public plan still runs unchanged."
+      "This is an archival row only. Because IMD no longer accepts new applicants, any current student still finishing the degree should use source-backed archived materials rather than assume the old public plan still runs unchanged."
     ],
     "pathways": [],
     "sourceType": "detailed",
@@ -31944,7 +31680,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     ],
     "advisorFlags": [
       "MTV is no longer accepting new students and changed into Data Visualization, so this row should be treated as a continuing-students-only legacy path.",
-      "Any current student still finishing MTV should rely on adviser-approved legacy guidance rather than assuming the old public plan still runs unchanged."
+      "Any current student still finishing MTV should rely on source-backed legacy guidance rather than assuming the old public plan still runs unchanged."
     ],
     "involvementIdeas": [
       "Use one visualization, design, media, or quantitative-storytelling activity to support the legacy MTV profile."
@@ -31967,7 +31703,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Mathematical Thinking & Visualization (BA)",
     "shortTitle": "MTV",
     "summary": "Bothell Mathematical Thinking & Visualization is now a legacy continuing-student row because the major shifted into Data Visualization. For students still attached to MTV, the Green River plan should cover calculus, statistics, light programming, and visual-design support before the archived Bothell finish.",
-    "applicationWindow": "Legacy / continuing-student row only. Use adviser-approved archived guidance.",
+    "applicationWindow": "Legacy / continuing-student row only. Use source-backed archived guidance.",
     "startQuarter": "Legacy only",
     "bestTrackId": "999P",
     "bestTrackSummary": "999P is the closest Green River base path for this degree. Use it as the backbone, then apply the major-specific Green River class list and chain notes below.",
@@ -32281,7 +32017,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "coverage": "detailed",
     "summary": "Bothell Mechanical is now modeled from the public curriculum PDF, with the Green River plan centered on calculus, full physics, chemistry, and the mechanics backbone.",
     "applicationWindow": "Use the current UW Bothell major planning worksheet and admissions deadlines.",
-    "startQuarter": "Advisor review needed",
+    "startQuarter": "source-backed planning needed",
     "bestTrackId": "999Q",
     "bestTrackSummary": "999Q is the best Bothell Mechanical base because it preserves the same mechanics-heavy engineering spine that the public curriculum uses.",
     "whyThisTrack": [
@@ -32419,14 +32155,14 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "title": "Mechanical Engineering electives and finish",
         "items": [
           "Students also complete 16 credits of Mechanical Engineering electives from the published list, which currently includes BME 345, 431, 432, 433, 435, 440, 446, 450, 460, 483, selected BME 493 topics, and limited BME 498 or 499 use.",
-          "The curriculum page notes that elective offerings can change by year and that UW Seattle engineering courses only count with adviser approval."
+          "The curriculum page notes that elective offerings can change by year and that UW Seattle engineering courses only count under the published approval rules."
         ]
       }
     ],
     "manualReviewNotes": [
       "Validated against the current UW Bothell admissions page, curriculum page, AY24-25 curriculum PDF, and active major planning worksheet on April 2, 2026.",
       "Use the worksheet year that matches the student's intended entry term.",
-      "The public curriculum PDF is now reflected in planner data, but advisor review is still smart before freezing the final term order."
+      "The public curriculum PDF is now reflected in planner data, but unsupported term-order details stay hidden until public sources can verify them."
     ],
     "family": "STEM, Computing, And Quantitative Majors",
     "bankIds": [
@@ -33043,7 +32779,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "BIO-ANAT",
       "CHEM-GEN"
     ],
-    "plannerNote": "for licensed RN students, planner should treat this as support-only",
+    "plannerNote": "for licensed RN students, planner should treat this as supplemental source-backed prep only",
     "degreeMapSections": [
       {
         "id": "uwb-rn-bsn-admission",
@@ -33873,7 +33609,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "title": "Science, Technology & Society required structure",
         "items": [
           "For students using the current Autumn 2024+ degree, STS is a 70-credit major with 10 credits of composition, BISSTS 307, BISSTS 355, BES 301, one methods course from BIS 312 or BIS 340, 25 credits of STS coursework, 5 credits of approaches-to-data coursework, and 20 additional IAS credits.",
-          "The public page explicitly notes that students who entered before Autumn 2024 follow older requirements and should use adviser review."
+          "The public page explicitly notes that students who entered before Autumn 2024 follow older requirements, so older cohorts stay hidden until public-source coverage expands."
         ]
       },
       {
@@ -34064,7 +33800,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     ],
     "advisorFlags": [
       "SEHB is no longer accepting new students and should be treated as a continuing-students-only legacy row.",
-      "Because SEHB is a legacy category-based finish, the final course mix should stay aligned with adviser-approved completion guidance."
+      "Because SEHB is a legacy category-based finish, the final course mix should stay aligned with source-backed completion guidance."
     ],
     "involvementIdeas": [
       "Use one ethics, psychology, sociology, community, or public-service activity to support the legacy SEHB profile."
@@ -34087,7 +33823,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "title": "Society, Ethics & Human Behavior (BA)",
     "shortTitle": "SEHB",
     "summary": "Bothell Society, Ethics and Human Behavior is now a continuing-students-only legacy row. The honest Green River plan is writing plus psychology, sociology, philosophy, and reasoning support before the archived SEHB finish.",
-    "applicationWindow": "Legacy / continuing-student row only. Use adviser-approved guidance.",
+    "applicationWindow": "Legacy / continuing-student row only. Use source-backed guidance.",
     "startQuarter": "Legacy only",
     "bestTrackId": null,
     "bestTrackSummary": "Use the Green River class list and prerequisite/full-credit notes below to build a custom transfer path for this degree.",
@@ -34127,7 +33863,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "title": "Society, Ethics & Human Behavior course categories and completion notes",
         "items": [
           "The current public page still publishes the legacy SEB Core list, the methods list, and the broader SEB course buckets instead of one fixed upper-division sequence.",
-          "Because SEHB is a continuing-students-only row, any final degree plan should stay aligned with adviser-approved legacy completion guidance rather than assuming new-student policies still apply."
+          "Because SEHB is a continuing-students-only row, any final degree plan should stay aligned with source-backed legacy completion guidance rather than assuming new-student policies still apply."
         ]
       }
     ],
@@ -35163,7 +34899,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "coverage": "detailed",
     "summary": "Tacoma Biomedical Sciences is now modeled as a sequence-heavy science transfer where the full biology, chemistry, organic chemistry, calculus, and first-physics preparation are explicit in the planner instead of buried inside a broad science bank.",
     "applicationWindow": "Use current UW Tacoma Biomedical Sciences declaration guidance after completing the lower-division preparation block.",
-    "startQuarter": "Advisor review needed",
+    "startQuarter": "source-backed planning needed",
     "bestTrackId": "999O",
     "bestTrackSummary": "999O is the strongest Tacoma Biomedical Sciences launchpad because it already supports the chemistry-heavy and biology-heavy lower-division preparation the major expects.",
     "whyThisTrack": [
@@ -35415,7 +35151,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "coverage": "detailed",
     "summary": "Tacoma Civil is now modeled as a competitive engineering transfer where calculus, full physics, chemistry, mechanics, and a real programming course are explicit before the specialization-heavy upper-division civil curriculum begins.",
     "applicationWindow": "Use current UW Tacoma transfer planning and program guidance.",
-    "startQuarter": "Advisor review needed",
+    "startQuarter": "source-backed planning needed",
     "bestTrackId": "999P",
     "bestTrackSummary": "999P is the clearest Tacoma Civil base because it keeps the calculus, physics, mechanics, and programming-adjacent engineering spine visible for the full admission block.",
     "whyThisTrack": [
@@ -35717,10 +35453,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "url": "https://www.tacoma.uw.edu/sias/cac/communication"
       },
       {
-        "label": "UW Tacoma Communication degree requirements",
-        "url": "https://www.tacoma.uw.edu/sias/cac/communication-degree-requirements"
-      },
-      {
         "label": "UW Tacoma Communication how-to-apply FAQs",
         "url": "https://www.tacoma.uw.edu/sias/cac/how-apply-faqs"
       }
@@ -35884,7 +35616,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "coverage": "detailed",
     "summary": "Tacoma CompE is now modeled from the public SET catalog structure, with prerequisites anchored on calculus, differential equations, physics, programming, and circuit preparation.",
     "applicationWindow": "Use current UW Tacoma transfer planning and program guidance.",
-    "startQuarter": "Advisor review needed",
+    "startQuarter": "source-backed planning needed",
     "bestTrackId": "999P",
     "bestTrackSummary": "999P is still the safest Tacoma CompE anchor because it keeps the math, physics, and programming depth aligned while adding the circuit prerequisite intentionally.",
     "whyThisTrack": [
@@ -35980,7 +35712,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     ],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "Tacoma's public catalog is detailed enough for a structured planner row, but year-specific advisor review is still recommended."
+      "Tacoma's public catalog is detailed enough for a structured planner row, but year-specific differences should stay hidden until public sources verify them."
     ],
     "involvementIdeas": [
       "Build one strong technical project while confirming Tacoma details."
@@ -36645,10 +36377,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     ],
     "officialLinks": [
       {
-        "label": "UW Tacoma Criminal Justice admissions",
-        "url": "https://www.tacoma.uw.edu/swcj/admissions"
-      },
-      {
         "label": "UW Tacoma Criminal Justice curriculum",
         "url": "https://www.tacoma.uw.edu/swcj/criminal-justice-campus-curriculum"
       },
@@ -36748,7 +36476,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "It fits a policy-analysis transfer story better than a generic social-science plan with no economics backbone.",
       "It preserves room for the broader public-policy and social-science support classes that help the Tacoma upper-division EPA finish make sense."
     ],
-    "financialAidNote": "Stay on 999B and lock in micro and macro early, then use advisor review for the remaining philosophy, writing, and quantitative pieces instead of guessing one universal Green River substitute where Tacoma publishes a broader lower-division category.",
+    "financialAidNote": "Stay on 999B and lock in micro and macro early, then keep the remaining philosophy, writing, and quantitative pieces instead of guessing one universal Green River substitute where Tacoma publishes a broader lower-division category.",
     "applicationChecklist": [
       {
         "id": "uwt-epa-micro",
@@ -36807,10 +36535,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "label": "UW Tacoma Economics and Policy Analysis overview",
         "url": "https://www.tacoma.uw.edu/sias-new/socs-new/economics-and-policy-analysis-epa"
-      },
-      {
-        "label": "UW Tacoma Economics and Policy Analysis major requirements",
-        "url": "https://www.tacoma.uw.edu/sias/pppa/economics-and-policy-analysis-major-requirements"
       },
       {
         "label": "UW Tacoma transfer planning",
@@ -36936,7 +36660,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "coverage": "detailed",
     "summary": "Tacoma Education is now modeled as a cohort-style teacher-preparation transfer where psychology and writing are explicit early and the endorsement-driven upper-division sequence is treated as planned cohort work, not a loose elective finish.",
     "applicationWindow": "Apply to UW Tacoma, then follow the current School of Education application steps and cohort timing.",
-    "startQuarter": "Advisor review needed",
+    "startQuarter": "source-backed planning needed",
     "bestTrackId": null,
     "bestTrackSummary": "There is no single stock Green River transfer track that cleanly matches Tacoma Education. The safest plan is a custom teacher-preparation path built around psychology, English composition, and lower-division education-support coursework.",
     "whyThisTrack": [
@@ -37007,10 +36731,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "label": "UW Tacoma B.A. in Education overview",
         "url": "https://www.tacoma.uw.edu/soe/bachelor-arts-education"
-      },
-      {
-        "label": "UW Tacoma School of Education application information",
-        "url": "https://www.tacoma.uw.edu/soe/application-information"
       },
       {
         "label": "UW Tacoma transfer planning",
@@ -37097,7 +36817,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "coverage": "detailed",
     "summary": "Tacoma EE is now modeled from the public SET catalog structure, with the planner centered on calculus, differential equations, physics, programming, and the TCES 215 / EE 215 circuit foundation.",
     "applicationWindow": "Use current UW Tacoma transfer planning and program guidance.",
-    "startQuarter": "Advisor review needed",
+    "startQuarter": "source-backed planning needed",
     "bestTrackId": "999P",
     "bestTrackSummary": "999P is the strongest Tacoma EE base because it keeps programming, math, and physics intact while making the circuit prerequisite explicit.",
     "whyThisTrack": [
@@ -37194,7 +36914,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     ],
     "stayAtGrcChecklist": [],
     "advisorFlags": [
-      "Tacoma's public catalog is detailed enough for a stronger planner row, but year-specific advisor review is still recommended."
+      "Tacoma's public catalog is detailed enough for a stronger planner row, but year-specific differences should stay hidden until public sources verify them."
     ],
     "involvementIdeas": [
       "Pair MESA with a hardware or systems project."
@@ -38335,10 +38055,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     ],
     "officialLinks": [
       {
-        "label": "UW Tacoma Healthcare Leadership overview",
-        "url": "https://www.tacoma.uw.edu/sias/healthcare-leadership"
-      },
-      {
         "label": "UW Tacoma transfer planning",
         "url": "https://www.tacoma.uw.edu/admissions/planning-your-transfer"
       },
@@ -38694,7 +38410,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "coverage": "detailed",
     "summary": "Tacoma Information Technology is now modeled as an applied computing transfer where the planner makes the real calculus, lab-science, programming, and follow-on math requirements explicit before the upper-division networking, systems, and cybersecurity core begins.",
     "applicationWindow": "Use current UW Tacoma transfer planning and program guidance.",
-    "startQuarter": "Advisor review needed",
+    "startQuarter": "source-backed planning needed",
     "bestTrackId": "999P",
     "bestTrackSummary": "999P is the strongest Tacoma IT base because it keeps programming and STEM depth visible while still leaving room for the extra lab-science and follow-on math the Tacoma IT finish expects.",
     "whyThisTrack": [
@@ -38971,10 +38687,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     ],
     "officialLinks": [
       {
-        "label": "UW Tacoma Interdisciplinary Arts and Sciences overview",
-        "url": "https://www.tacoma.uw.edu/sias/interdisciplinary-arts-and-sciences"
-      },
-      {
         "label": "UW Tacoma transfer planning",
         "url": "https://www.tacoma.uw.edu/admissions/planning-your-transfer"
       },
@@ -39074,17 +38786,13 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "label": "UW Tacoma transfer planning",
         "url": "https://www.tacoma.uw.edu/admissions/planning-your-transfer"
-      },
-      {
-        "label": "UW Tacoma individually-designed concentration overview",
-        "url": "https://www.tacoma.uw.edu/sias-new/socs-new/individually-designed-concentration"
       }
     ],
     "id": "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed",
     "campusId": "uw-tacoma",
     "title": "Interdisciplinary Arts and Sciences: Individually-designed (BA)",
     "shortTitle": "IAS Individually-designed",
-    "summary": "Tacoma Individually-designed IAS is now modeled as a proposal-driven transfer where students build a custom interdisciplinary plan with advisor approval instead of following a fixed preset option.",
+    "summary": "Tacoma Individually-designed IAS is now modeled as a proposal-driven transfer where students build a custom interdisciplinary plan under the published approval rules instead of following a fixed preset option.",
     "applicationWindow": "Apply to UW Tacoma and follow current SIAS guidance for individually-designed concentration planning.",
     "startQuarter": "Autumn, winter, or spring",
     "bestTrackId": null,
@@ -39099,7 +38807,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "id": "uwt-iasid-overall",
         "title": "Individually-designed IAS structure",
         "items": [
-          "This path centers on an advisor-approved custom concentration rather than a preset major option.",
+          "This path centers on an source-backed custom concentration rather than a preset major option.",
           "Green River coursework should be selected to support proposal coherence and upper-division planning readiness."
         ]
       }
@@ -39116,7 +38824,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "This row is inherently proposal-based, so there is never one universal exact course sheet in the same sense as a fixed departmental major."
     ],
     "pathways": [],
-    "grcCourseListGuidance": "Custom Green River course set required. This Tacoma row is proposal-based, so the planner should keep the Green River list fully custom and tied to the student's approved concentration, faculty sponsor, and SIAS adviser review.",
+    "grcCourseListGuidance": "Custom Green River course set required. This Tacoma row is proposal-based, so the planner should keep the Green River list fully custom and tied to the student's approved concentration, faculty sponsor, and the published SIAS proposal process.",
     "sourceType": "detailed",
     "grcCourseList": [
       "ENGL& 101",
@@ -39187,7 +38895,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
           "ENGL& 244",
           "ENGL& 245"
         ],
-        "note": "Tacoma Law and Policy includes TWRT 211 in the shared structure, so stronger writing at Green River still helps even when the exact one-to-one substitution stays under advisor review.",
+        "note": "Tacoma Law and Policy includes TWRT 211 in the shared structure, so stronger writing at Green River still helps even when the exact one-to-one substitution stays hidden until public sources verify the substitution.",
         "minCompletedCount": 1
       }
     ],
@@ -39540,7 +39248,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "coverage": "detailed",
     "summary": "Tacoma Mechanical is now modeled from the public SET catalog structure, with the planner centered on full calculus, differential equations, linear algebra, physics, and the Green River mechanics sequence.",
     "applicationWindow": "Use current UW Tacoma transfer planning and program guidance.",
-    "startQuarter": "Advisor review needed",
+    "startQuarter": "source-backed planning needed",
     "bestTrackId": "999Q",
     "bestTrackSummary": "999Q is the clearest Tacoma Mechanical base because it already carries the same mechanics-heavy structure the public catalog expects.",
     "whyThisTrack": [
@@ -40064,20 +39772,12 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     ],
     "officialLinks": [
       {
-        "label": "UW Tacoma Politics, Philosophy and Economics overview",
-        "url": "https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics"
-      },
-      {
         "label": "UW Tacoma transfer planning",
         "url": "https://www.tacoma.uw.edu/admissions/planning-your-transfer"
       },
       {
         "label": "UW Tacoma PP&E overview",
         "url": "https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-ppe"
-      },
-      {
-        "label": "UW Tacoma PP&E major requirements",
-        "url": "https://www.tacoma.uw.edu/sias/pppa/politics-philosophy-and-economics-ppe"
       }
     ],
     "id": "uw-tacoma-politics-philosophy-and-economics",
@@ -40672,10 +40372,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     ],
     "officialLinks": [
       {
-        "label": "UW Tacoma Spanish Language and Cultures overview",
-        "url": "https://www.tacoma.uw.edu/sias/sam/spanish-language-and-cultures"
-      },
-      {
         "label": "UW Tacoma transfer planning",
         "url": "https://www.tacoma.uw.edu/admissions/planning-your-transfer"
       },
@@ -40718,7 +40414,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     ],
     "plannerNote": "direct Spanish support",
     "manualReviewNotes": [
-      "Spanish has a clear published structure, but heritage-speaker substitution and study-abroad or experiential-credit details still deserve advisor review when building the exact final list."
+      "Spanish has a clear published structure, but heritage-speaker substitution and study-abroad or experiential-credit details should stay hidden unless public sources verify the exact final list."
     ],
     "pathways": [],
     "sourceType": "detailed",
@@ -41032,7 +40728,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "coverage": "detailed",
     "summary": "Tacoma Urban Design is now modeled as a design-and-GIS-forward transfer where the planner keeps the minimum admission classes, GIS encouragement, and admit-year split visible instead of flattening the new and legacy plans together.",
     "applicationWindow": "Apply to UW Tacoma and complete the current Urban Design application and advising steps.",
-    "startQuarter": "Advisor review needed",
+    "startQuarter": "source-backed planning needed",
     "bestTrackId": "999P",
     "bestTrackSummary": "999P is the strongest current Urban Design base because it keeps quantitative/GIS-friendly preparation visible while still leaving room for art, design, and urban-systems support.",
     "whyThisTrack": [
@@ -41564,10 +41260,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "Assemble a writing portfolio with analytical, professional, and audience-focused samples."
     ],
     "officialLinks": [
-      {
-        "label": "UW Tacoma Writing Studies overview",
-        "url": "https://www.tacoma.uw.edu/sias/sam/writing-studies"
-      },
       {
         "label": "UW Tacoma transfer planning",
         "url": "https://www.tacoma.uw.edu/admissions/planning-your-transfer"

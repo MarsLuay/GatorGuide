@@ -106,8 +106,8 @@ function readSnapshotFallback(snapshotPath, error, label) {
     throw error;
   }
 
-  console.warn(`Live ${label} fetch failed; using cached snapshot at ${snapshotPath}.`);
-  console.warn(`Fetch error: ${error.message}`);
+  console.log(`Live ${label} fetch failed; using cached snapshot at ${snapshotPath}.`);
+  console.log(`Fetch error: ${error.message}`);
 
   return {
     html: fs.readFileSync(snapshotPath, "utf8"),

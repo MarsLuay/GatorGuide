@@ -1,8 +1,8 @@
 Owner: uw-bothell-business-administration
-Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum
-Title: Curriculum - School of Business
+Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration
+Title: Bachelor of Business Administration - School of Business
 
-Curriculum - School of Business
+Bachelor of Business Administration - School of Business
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
 height="0" width="0" style="display:none;visibility:hidden">
 Skip To Content
@@ -244,46 +244,66 @@ Events
 Give
 School of Business
 &#124;
-Bachelor of Business Administration
+Undergraduate Programs
 School of Business
 &#124;
 Undergraduate Programs
 &#124;
 Bachelor of Business Administration
-&#124;
-Curriculum
-Curriculum
-Choices for your major
-Business students may specialize in one of four options or choose from one of eight concentrations and a self-directed concentration.
+Bachelor of Business Administration
+Build the skills to lead in a changing world
+Prepare to lead, innovate, and create impact in today&#8217;s dynamic business world. In the School of Business at the University of Washington Bothell, the Bachelor of Arts in Business Administration prepares you to think strategically, act ethically, and drive results in any industry. Through small classes, close mentorship, and connections to the Puget Sound business community, you will gain the confidence, knowledge, and experience to launch a meaningful career.
+Why Choose Business at UW Bothell
+Small classes, big impact. Learn in a collaborative environment where faculty know you by name.
+Career-ready skills. Build expertise in leadership, analytics, strategy, and communication that employers seek.
+Connections that matter. Access internships, networking, and mentorship across greater Seattle&#8217;s dynamic business community.
+Support every step. Benefit from advising, faculty mentorship, and resources designed to help you succeed.
+The Power of a UW Degree
+Carry the distinction of a University of Washington degree, respected worldwide for excellence and opportunity.
+What to Expect
+Our curriculum and approach blends business fundamentals with practical, applied learning. You will:
+Develop analytical and decision-making skills
+Build leadership and innovation capacity
+Develop a strategic mindset and global business perspective
+Gain tangible skills through projects, internships, and case studies
+Strengthen your ability to communicate and collaborate
+Career Outcomes
+Graduates are prepared for diverse opportunities in private, public, and nonprofit sectors. Roles include:
+Technology manager, data analyst, or digital transformation specialist
+Accountant, auditor, or financial analyst
+Marketing manager, brand strategist, or sales lead
+Business consultant, project manager, or entrepreneur
+Many graduates also continue into advanced study, including the UW Bothell MBA.
+Areas of Study
+Customize your degree with one of four Options or seven Concentrations, or design your own pathway.
 Options
+Specialized study that appears on your transcript.
 Accounting
-The two-year Accounting Option prepares students for careers in private, government, and non-profit and public accounting. Graduates can serve as internal auditors, managerial accountants, tax examiners, budget analysts or government auditors. After completing this option, students are eligible to take the Certified Management Accounting (CMA) exam. If you want to be a Certified Public Accountant (CPA), a minimum of 225 quarter hours or five years of college is required. Learn more about the Accounting option .
-Leadership & Strategic Innovation (LSI)
-The Leadership and Strategic Innovation (LSI) option will engage students in a rigorous study of leadership, strategy, and innovation. You will graduate ready to lead teams, manage innovation and inspire employees. LSI graduates can go on to become project leads, managers, consultants, business development leads, HR analysts, market analysts, sales managers, entrepreneurs and much more. Learn more about the Leadership & Strategic Innovation (LSI) option .
-Marketing
-Learn to develop and implement coordinated marketing programs to successfully manage a company&#8217;s relationship with its target customers in order to meet its strategic goals in a competitive environment. Graduates go on to work in brand management, sales, marketing research and consulting, and entrepreneurial ventures. Learn more about the Marketing option .
-Marketing can also be taken as a concentration .
-Supply Chain Management
-Prepares students for careers in operations, logistics, purchasing and distribution. Students learn about the production, shipment and distribution of products, understanding sales, inventory and other crucial aspects of businesses. Learn more about the Supply Chain Management option .
-Concentrations
-Entrepreneurship
-The Entrepreneurship Concentration provides highly motivated students with the knowledge and practice needed to start and manage new businesses. Four exciting courses integrate research based conceptual models and tools with hands-on practical experience in the form of historical and live cases, idea competition and live business plan competitions. Learn more about the Entrepreneurship concentration .
 Finance
-Learn how firms make financial decisions and how these decisions affect individual organizations and society as a whole. You&#8217;ll learn how firms acquire and allocate funds, how financial markets operate, and the role these markets play in economic welfare. The study of finance includes the use of models to develop analytical approaches to problems. Graduates take positions in financial institutions such as commercial and investments banks, finance departments of major corporations, or consulting firms. Learn more about the Finance concentration .
-Management
-Examine the many management challenges facing modern business organizations and how to use the tools needed to deal with a complex and rapidly changing environment. Areas of study include entrepreneurship, leadership and decision making, conflict resolution, human resources, and managing employees. Graduates often pursue careers in consulting or as leaders in the private or public sector. Learn more about the Management concentration .
-Management Information Systems (MIS)
-Learn the technical and business skills required to solve business problems in technology-based environments. You&#8217;ll learn to conduct structured and informal analyses to design and improve applications and systems, from e-commerce storefronts to enterprise applications. MIS students complete courses in both Business and Computing Software Systems (CSS). Learn more about the MIS concentration .
+Leadership and Strategic Innovation
 Marketing
-Learn to develop and implement coordinated marketing programs to successfully manage a company&#8217;s relationship with its target customers in order to meet its strategic goals in a competitive environment. Graduates go on to work in brand management, sales, marketing research and consulting, and entrepreneurial ventures. Learn more about the Marketing concentration .
+Supply Chain Management
+Concentrations
+Targeted study plus a wealth of electives.
+Entrepreneurship
+Finance
+Management
+Management Information Systems (MIS)
+Marketing
 Retail Management
-The Retail Management concentration provides students with a solid foundation of theory important to the retail management discipline. Specifically, students will acquire an interdisciplinary knowledge of merchandise acquisition, strategic retail promotion, retail operations and supply chain management. They will also gain an understanding of cutting edge uses of technology in retail management and gain the mindset necessary to find and apply new applications for technologies in the retail context as these new technologies emerge. Students will have the opportunity to apply their learning through real world class projects, and gain experience and exposure to the retail industry through strategic partnerships with important retailers in the area. Engagement with this key industry through the Retail Management Concentration provides numerous opportunities for students and helps to prepare them to become leaders in the retail industry. Learn more about the Retail Management concentration .
-Technology & Innovation Management (TIM)
-TIM helps students understand the nature of innovation, the relationship between strategic leadership and innovation, and how organizations use technology and new product development processes to successfully manage change. After graduation, students apply their knowledge in industries such as engineering, computing, telecommunications and biotechnology. Learn more about the TIM concentration .
+Technology and Innovation Management (TIM)
 Self-Directed
-The Self-Directed Concentration allows students to create their own interdisciplinary concentration. The new Concentration combines four upper-division (i.e., 300-400-level) courses from two (or more) academic areas into a new area of study that does not already exist in the School of Business or UW Bothell. A Self-Directed Concentration may be a good choice for students creating their own career niche or wavering between two existing concentrations/options. The Self-Directed Concentration is NOT meant to allow students to pick and choose a handful of classes without developing a clear goal. Students interested in the Self-Directed Concentration should make an appointment with their Academic Advisor to find out about the declaration and approval process.
-Apply today
-Learn more about admissions requirements as well as how to apply .
+Explore all Areas of Study
+Admissions Snapshot
+Applicants are evaluated on GPA, prerequisite performance, and a personal statement.
+Completion of prerequisite coursework is required before starting.
+Transfer students begin at the junior level.
+First-year students may directly enter this program .
+See full Admissions Requirements
+Take the Next Step
+Apply Now
+Visit our Campus
+Explore the School of Business
 In this section
 About
 Expand Navigation
@@ -371,7 +391,16 @@ Dean’s Advisory Board
 Mentorship EDGE Mentors
 Events
 Give
+Related Links
+Directions & Maps
 Contact Us
+School of Business
+ugbiz@uw.edu
+425.352.5394
+Box 358533
+18807 Beardslee Blvd, Suite 210
+Bothell, WA 98011
+Beardslee Building (UWBB)
 University of Washington Bothell Homepage
 Bothell, Washington View our location on Google maps.
 Contact us by phone at:

@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-04-08T14:05:30.094Z",
-  "totalSources": 437,
-  "reachableSourceCount": 283,
-  "failedSourceCount": 154,
+  "generatedAt": "2026-04-08T20:26:34.929Z",
+  "totalSources": 375,
+  "reachableSourceCount": 375,
+  "failedSourceCount": 0,
   "sources": [
     {
       "url": "http://www.washington.edu/students/gencat/program/S/CinemaandMediaStudies-132.html",
@@ -42,9 +42,9 @@
       "status": 200,
       "finalUrl": "https://acms.washington.edu/admissions",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "33391",
-      "etag": "\"1775656602\"",
-      "lastModified": "Wed, 08 Apr 2026 13:56:42 GMT",
+      "contentLength": "33400",
+      "etag": "\"1775679709\"",
+      "lastModified": "Wed, 08 Apr 2026 20:21:49 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -65,9 +65,9 @@
       "status": 200,
       "finalUrl": "https://acms.washington.edu/program-requirements-and-information",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "32597",
-      "etag": "\"1775656602\"",
-      "lastModified": "Wed, 08 Apr 2026 13:56:42 GMT",
+      "contentLength": "32606",
+      "etag": "\"1775679711\"",
+      "lastModified": "Wed, 08 Apr 2026 20:21:51 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -134,7 +134,7 @@
       "status": 200,
       "finalUrl": "https://admissions.uwb.edu/register/mpw-compe",
       "contentType": "text/html; charset=utf-8",
-      "contentLength": "16257",
+      "contentLength": "16255",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -157,7 +157,7 @@
       "status": 200,
       "finalUrl": "https://admissions.uwb.edu/register/mpw-crs",
       "contentType": "text/html; charset=utf-8",
-      "contentLength": "15105",
+      "contentLength": "15103",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -204,7 +204,7 @@
       "status": 200,
       "finalUrl": "https://admissions.uwb.edu/register/mpw-DataVis-BA",
       "contentType": "text/html; charset=utf-8",
-      "contentLength": "15845",
+      "contentLength": "15838",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -250,7 +250,7 @@
       "status": 200,
       "finalUrl": "https://admissions.uwb.edu/register/mpw-EE",
       "contentType": "text/html; charset=utf-8",
-      "contentLength": "15832",
+      "contentLength": "15829",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -273,7 +273,7 @@
       "status": 200,
       "finalUrl": "https://admissions.uwb.edu/register/mpw-hs",
       "contentType": "text/html; charset=utf-8",
-      "contentLength": "16065",
+      "contentLength": "16062",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -296,7 +296,7 @@
       "status": 200,
       "finalUrl": "https://admissions.uwb.edu/register/mpw-me",
       "contentType": "text/html; charset=utf-8",
-      "contentLength": "16568",
+      "contentLength": "16570",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -319,7 +319,7 @@
       "status": 200,
       "finalUrl": "https://admissions.uwb.edu/register/mpw-psy",
       "contentType": "text/html; charset=utf-8",
-      "contentLength": "15926",
+      "contentLength": "15928",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -384,12 +384,8 @@
         "pathway"
       ],
       "ownerIds": [
-        "uw-bothell-data-visualization-ba",
-        "uw-bothell-data-visualization-bs",
-        "uw-bothell-earth-system-science",
         "uw-bothell-educational-studies-elementary-education",
-        "uw-bothell-electrical-engineering",
-        "uw-bothell-mechanical-engineering",
+        "uw-bothell-law-economics-and-public-policy",
         "uw-seattle-aeronautics-astronautics",
         "uw-seattle-american-ethnic-studies",
         "uw-seattle-american-indian-studies",
@@ -535,9 +531,7 @@
         "uw-seattle-voice-b-m",
         "uw-tacoma-computer-engineering",
         "uw-tacoma-education",
-        "uw-tacoma-electrical-engineering",
-        "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed",
-        "uw-tacoma-mechanical-engineering"
+        "uw-tacoma-electrical-engineering"
       ],
       "ok": true,
       "status": 200,
@@ -1041,29 +1035,6 @@
       "fetchMode": "head"
     },
     {
-      "url": "https://admit.washington.edu/majors/english-language-literature-culture/",
-      "labels": [
-        "UW English LLC admissions page"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-english-language-literature-and-culture"
-      ],
-      "ok": false,
-      "status": 404,
-      "finalUrl": "https://admit.washington.edu/majors/english-language-literature-culture/",
-      "contentType": "text/html; charset=UTF-8",
-      "contentLength": "43770",
-      "etag": null,
-      "lastModified": null,
-      "title": "Page not found &#8211; Office of Admissions",
-      "bodyHash": "6b54f36114154f69694062d650825ed42c2758c552d88f8b35837b0d6f32a95c",
-      "error": null,
-      "fetchMode": "get"
-    },
-    {
       "url": "https://admit.washington.edu/majors/environmental-health/",
       "labels": [
         "UW Environmental Public Health admissions page"
@@ -1335,31 +1306,8 @@
       "finalUrl": "https://aes.washington.edu/ba-american-ethnic-studies",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "51310",
-      "etag": "\"1775656239\"",
-      "lastModified": "Wed, 08 Apr 2026 13:50:39 GMT",
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://ais.washington.edu/sites/ais/files/documents/ais_major_requirement_sheet_9.29.21.pdf",
-      "labels": [
-        "UW American Indian Studies requirement sheet"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-american-indian-studies"
-      ],
-      "ok": false,
-      "status": 404,
-      "finalUrl": "https://ais.washington.edu/sites/ais/files/documents/ais_major_requirement_sheet_9.29.21.pdf",
-      "contentType": "text/html; charset=UTF-8",
-      "contentLength": "36505",
-      "etag": "\"1775656604\"",
-      "lastModified": "Wed, 08 Apr 2026 13:56:44 GMT",
+      "etag": "\"1775679039\"",
+      "lastModified": "Wed, 08 Apr 2026 20:10:39 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1381,8 +1329,8 @@
       "finalUrl": "https://ais.washington.edu/undergraduate-programs",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "46679",
-      "etag": "\"1775656604\"",
-      "lastModified": "Wed, 08 Apr 2026 13:56:44 GMT",
+      "etag": "\"1775678321\"",
+      "lastModified": "Wed, 08 Apr 2026 19:58:41 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1404,8 +1352,8 @@
       "finalUrl": "https://amath.washington.edu/undergraduate-major-applied-mathematics",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "47894",
-      "etag": "\"1775654833\"",
-      "lastModified": "Wed, 08 Apr 2026 13:27:13 GMT",
+      "etag": "\"1775679040\"",
+      "lastModified": "Wed, 08 Apr 2026 20:10:40 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1519,8 +1467,8 @@
       "finalUrl": "https://art.washington.edu/admission-major-art-history",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "44878",
-      "etag": "\"1775656605\"",
-      "lastModified": "Wed, 08 Apr 2026 13:56:45 GMT",
+      "etag": "\"1775679042\"",
+      "lastModified": "Wed, 08 Apr 2026 20:10:42 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1542,8 +1490,8 @@
       "finalUrl": "https://art.washington.edu/art-history/ba-art-history",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "46593",
-      "etag": "\"1775656605\"",
-      "lastModified": "Wed, 08 Apr 2026 13:56:45 GMT",
+      "etag": "\"1775679044\"",
+      "lastModified": "Wed, 08 Apr 2026 20:10:44 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1565,8 +1513,8 @@
       "finalUrl": "https://art.washington.edu/undergraduate-program",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "45042",
-      "etag": "\"1775656605\"",
-      "lastModified": "Wed, 08 Apr 2026 13:56:45 GMT",
+      "etag": "\"1775678790\"",
+      "lastModified": "Wed, 08 Apr 2026 20:06:30 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1588,8 +1536,8 @@
       "finalUrl": "https://art.washington.edu/division-design",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "92357",
-      "etag": "\"1775653893\"",
-      "lastModified": "Wed, 08 Apr 2026 13:11:33 GMT",
+      "etag": "\"1775678497\"",
+      "lastModified": "Wed, 08 Apr 2026 20:01:37 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1611,8 +1559,8 @@
       "finalUrl": "https://art.washington.edu/design/bachelor-design-admissions",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "47944",
-      "etag": "\"1775656605\"",
-      "lastModified": "Wed, 08 Apr 2026 13:56:45 GMT",
+      "etag": "\"1775679048\"",
+      "lastModified": "Wed, 08 Apr 2026 20:10:48 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1634,8 +1582,8 @@
       "finalUrl": "https://asian.washington.edu/admissions-incoming-freshmen-current-students",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "52100",
-      "etag": "\"1775656605\"",
-      "lastModified": "Wed, 08 Apr 2026 13:56:45 GMT",
+      "etag": "\"1775677166\"",
+      "lastModified": "Wed, 08 Apr 2026 19:39:26 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1657,8 +1605,8 @@
       "finalUrl": "https://asian.washington.edu/ba-asian-languages-cultures",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "55164",
-      "etag": "\"1775656605\"",
-      "lastModified": "Wed, 08 Apr 2026 13:56:45 GMT",
+      "etag": "\"1775679045\"",
+      "lastModified": "Wed, 08 Apr 2026 20:10:45 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1680,8 +1628,8 @@
       "finalUrl": "https://asian.washington.edu/ba-chinese",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "52263",
-      "etag": "\"1775655318\"",
-      "lastModified": "Wed, 08 Apr 2026 13:35:18 GMT",
+      "etag": "\"1775679047\"",
+      "lastModified": "Wed, 08 Apr 2026 20:10:47 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1703,8 +1651,8 @@
       "finalUrl": "https://asian.washington.edu/ba-japanese",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "54266",
-      "etag": "\"1775654226\"",
-      "lastModified": "Wed, 08 Apr 2026 13:17:06 GMT",
+      "etag": "\"1775678527\"",
+      "lastModified": "Wed, 08 Apr 2026 20:02:07 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1726,8 +1674,8 @@
       "finalUrl": "https://asian.washington.edu/ba-korean",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "50980",
-      "etag": "\"1775656420\"",
-      "lastModified": "Wed, 08 Apr 2026 13:53:40 GMT",
+      "etag": "\"1775679385\"",
+      "lastModified": "Wed, 08 Apr 2026 20:16:25 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1749,8 +1697,8 @@
       "finalUrl": "https://asian.washington.edu/ba-south-asian-languages-and-cultures",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "55538",
-      "etag": "\"1775656606\"",
-      "lastModified": "Wed, 08 Apr 2026 13:56:46 GMT",
+      "etag": "\"1775679417\"",
+      "lastModified": "Wed, 08 Apr 2026 20:16:57 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1772,8 +1720,8 @@
       "finalUrl": "https://astro.washington.edu/advising",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "45918",
-      "etag": "\"1775656606\"",
-      "lastModified": "Wed, 08 Apr 2026 13:56:46 GMT",
+      "etag": "\"1775679036\"",
+      "lastModified": "Wed, 08 Apr 2026 20:10:36 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1795,8 +1743,8 @@
       "finalUrl": "https://astro.washington.edu/undergraduate-program",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "53730",
-      "etag": "\"1775656606\"",
-      "lastModified": "Wed, 08 Apr 2026 13:56:46 GMT",
+      "etag": "\"1775679048\"",
+      "lastModified": "Wed, 08 Apr 2026 20:10:48 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1923,6 +1871,52 @@
       "fetchMode": "head"
     },
     {
+      "url": "https://catalog.greenriver.edu/",
+      "labels": [
+        "Green River current catalog 2025-2026"
+      ],
+      "kinds": [
+        "reference-page"
+      ],
+      "ownerIds": [
+        "grc-catalog-2025-2026"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://catalog.greenriver.edu/",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": null,
+      "etag": null,
+      "lastModified": "Wed, 08 Apr 2026 19:29:22 GMT",
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head"
+    },
+    {
+      "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624",
+      "labels": [
+        "Green River course descriptions 2025-2026"
+      ],
+      "kinds": [
+        "reference-page"
+      ],
+      "ownerIds": [
+        "grc-course-descriptions-2025-2026"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": null,
+      "etag": null,
+      "lastModified": "Wed, 08 Apr 2026 19:29:22 GMT",
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head"
+    },
+    {
       "url": "https://chem.washington.edu/ba-biochemistry",
       "labels": [
         "UW BA in Biochemistry requirements"
@@ -1941,8 +1935,8 @@
       "finalUrl": "https://chem.washington.edu/ba-biochemistry",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "83650",
-      "etag": "\"1775656651\"",
-      "lastModified": "Wed, 08 Apr 2026 13:57:31 GMT",
+      "etag": "\"1775679051\"",
+      "lastModified": "Wed, 08 Apr 2026 20:10:51 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1968,8 +1962,8 @@
       "finalUrl": "https://chem.washington.edu/ba-chemistry",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "68999",
-      "etag": "\"1775656141\"",
-      "lastModified": "Wed, 08 Apr 2026 13:49:01 GMT",
+      "etag": "\"1775679052\"",
+      "lastModified": "Wed, 08 Apr 2026 20:10:52 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1989,13 +1983,13 @@
         "uw-seattle-biochemistry::ba-route",
         "uw-seattle-biochemistry::bs-route"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://chem.washington.edu/bs-biochemistry",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "86082",
+      "etag": "\"1775678895\"",
+      "lastModified": "Wed, 08 Apr 2026 20:08:15 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -2016,116 +2010,36 @@
         "uw-seattle-chemistry::ba-route",
         "uw-seattle-chemistry::bs-route"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://chem.washington.edu/bs-chemistry",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
+      "contentType": "text/html",
+      "contentLength": null,
       "etag": null,
       "lastModified": null,
-      "title": null,
+      "title": "UW BS in Chemistry requirements",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head"
+      "fetchMode": "parsed-source"
     },
     {
-      "url": "https://chem.washington.edu/bs-chemistry-acs-certified",
+      "url": "https://chem.washington.edu/sites/chem/files/documents/undergrad/babioccheck2017_001.pdf",
       "labels": [
-        "UW BS in Chemistry ACS-certified requirements"
-      ],
-      "kinds": [
-        "major",
-        "pathway"
-      ],
-      "ownerIds": [
-        "uw-seattle-chemistry",
-        "uw-seattle-chemistry::acs-certified-bs-route",
-        "uw-seattle-chemistry::ba-route",
-        "uw-seattle-chemistry::bs-route"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://chem.washington.edu/bs-chemistry-acs-certified",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://chem.washington.edu/undergraduate-prerequisites-and-admissions-biochemistry",
-      "labels": [
-        "UW Biochemistry admissions"
-      ],
-      "kinds": [
-        "major",
-        "pathway"
-      ],
-      "ownerIds": [
-        "uw-seattle-biochemistry",
-        "uw-seattle-biochemistry::ba-route",
-        "uw-seattle-biochemistry::bs-route"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://chem.washington.edu/undergraduate-prerequisites-and-admissions-biochemistry",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://chem.washington.edu/undergraduate-prerequisites-and-admissions-chemistry",
-      "labels": [
-        "UW Chemistry admissions"
-      ],
-      "kinds": [
-        "major",
-        "pathway"
-      ],
-      "ownerIds": [
-        "uw-seattle-chemistry",
-        "uw-seattle-chemistry::acs-certified-bs-route",
-        "uw-seattle-chemistry::ba-route",
-        "uw-seattle-chemistry::bs-route"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://chem.washington.edu/undergraduate-prerequisites-and-admissions-chemistry",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://chid.washington.edu/undergraduate",
-      "labels": [
-        "UW Comparative History of Ideas program"
+        "BA Biochemistry Checklist (PDF)"
       ],
       "kinds": [
         "major"
       ],
       "ownerIds": [
-        "uw-seattle-comparative-history-of-ideas"
+        "uw-seattle-biochemistry"
       ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://chid.washington.edu/undergraduate",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://chem.washington.edu/sites/chem/files/documents/undergrad/babioccheck2017_001.pdf",
+      "contentType": "application/pdf",
+      "contentLength": null,
+      "etag": "W/\"65f85c06-9de5\"",
+      "lastModified": "Mon, 18 Mar 2024 15:21:42 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -2142,36 +2056,13 @@
       "ownerIds": [
         "uw-seattle-comparative-literature"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://cinema.washington.edu/ba-comparative-literature",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://cinema.washington.edu/undergraduate-programs",
-      "labels": [
-        "UW Cinema and Media Studies undergraduate programs"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-cinema-and-media-studies"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://cinema.washington.edu/undergraduate-programs",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "45842",
+      "etag": "\"1775679052\"",
+      "lastModified": "Wed, 08 Apr 2026 20:10:52 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -2188,13 +2079,13 @@
       "ownerIds": [
         "uw-seattle-classical-studies"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://classics.washington.edu/ba-classical-studies",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "46329",
+      "etag": "\"1775677601\"",
+      "lastModified": "Wed, 08 Apr 2026 19:46:41 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -2211,17 +2102,17 @@
       "ownerIds": [
         "uw-seattle-classics"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://classics.washington.edu/ba-classics",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
+      "contentType": "text/html",
+      "contentLength": null,
       "etag": null,
       "lastModified": null,
-      "title": null,
+      "title": "UW B.A. in Classics",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head"
+      "fetchMode": "parsed-source"
     },
     {
       "url": "https://classics.washington.edu/ba-greek",
@@ -2234,17 +2125,17 @@
       "ownerIds": [
         "uw-seattle-greek"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://classics.washington.edu/ba-greek",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
+      "contentType": "text/html",
+      "contentLength": null,
       "etag": null,
       "lastModified": null,
-      "title": null,
+      "title": "UW Greek degree requirements",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head"
+      "fetchMode": "parsed-source"
     },
     {
       "url": "https://classics.washington.edu/ba-latin",
@@ -2257,133 +2148,17 @@
       "ownerIds": [
         "uw-seattle-latin"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://classics.washington.edu/ba-latin",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
+      "contentType": "text/html",
+      "contentLength": null,
       "etag": null,
       "lastModified": null,
-      "title": null,
+      "title": "UW Latin degree requirements",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://classics.washington.edu/majors",
-      "labels": [
-        "UW Classics majors overview"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-classical-studies",
-        "uw-seattle-classics"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://classics.washington.edu/majors",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://classics.washington.edu/undergraduate-program",
-      "labels": [
-        "UW Classics undergraduate program"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-classics"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://classics.washington.edu/undergraduate-program",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://com.uw.edu/academics/undergraduate/communication-major/",
-      "labels": [
-        "UW Communication undergraduate program"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-communication"
-      ],
-      "ok": false,
-      "status": 404,
-      "finalUrl": "https://com.uw.edu/academics/undergraduate/communication-major/",
-      "contentType": "text/html; charset=UTF-8",
-      "contentLength": "93810",
-      "etag": null,
-      "lastModified": null,
-      "title": "Page not found - Department of Communication",
-      "bodyHash": "1c44af3b9fc7014bcf2d22a5d8e0f9ddebf7d5d0ec9725478a7a41266dfaef3f",
-      "error": null,
-      "fetchMode": "get"
-    },
-    {
-      "url": "https://complit.washington.edu/undergraduate",
-      "labels": [
-        "UW Comparative Literature program"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-comparative-literature"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://cinema.washington.edu/undergraduate",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://dance.washington.edu/undergraduate-program",
-      "labels": [
-        "UW Dance undergraduate program"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-dance"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://dance.washington.edu/undergraduate-program",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
+      "fetchMode": "parsed-source"
     },
     {
       "url": "https://depts.washington.edu/compfin/",
@@ -2424,8 +2199,8 @@
       "finalUrl": "https://disabilitystudies.washington.edu/",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "37484",
-      "etag": "\"1775656607\"",
-      "lastModified": "Wed, 08 Apr 2026 13:56:47 GMT",
+      "etag": "\"1775679612\"",
+      "lastModified": "Wed, 08 Apr 2026 20:20:12 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -2447,8 +2222,8 @@
       "finalUrl": "https://disabilitystudies.washington.edu/DS_major",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "35851",
-      "etag": "\"1775656607\"",
-      "lastModified": "Wed, 08 Apr 2026 13:56:47 GMT",
+      "etag": "\"1775679058\"",
+      "lastModified": "Wed, 08 Apr 2026 20:10:58 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -2471,7 +2246,7 @@
       "contentType": "text/html; charset=UTF-8",
       "contentLength": null,
       "etag": null,
-      "lastModified": "Wed, 08 Apr 2026 14:01:59 GMT",
+      "lastModified": "Wed, 08 Apr 2026 20:22:38 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -2494,7 +2269,7 @@
       "contentType": "text/html; charset=UTF-8",
       "contentLength": null,
       "etag": null,
-      "lastModified": "Wed, 08 Apr 2026 14:01:59 GMT",
+      "lastModified": "Wed, 08 Apr 2026 20:22:39 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -2517,157 +2292,7 @@
       "contentType": "text/html; charset=UTF-8",
       "contentLength": null,
       "etag": null,
-      "lastModified": "Wed, 08 Apr 2026 14:01:59 GMT",
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://drama.washington.edu/ba-drama-program-requirements",
-      "labels": [
-        "UW BA in Drama program requirements"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-drama"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://drama.washington.edu/ba-drama-program-requirements",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://drama.washington.edu/undergraduate-programs",
-      "labels": [
-        "UW School of Drama undergraduate programs"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-drama"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://drama.washington.edu/undergraduate-programs",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://econ.washington.edu/bachelor-arts",
-      "labels": [
-        "UW Economics BA requirements"
-      ],
-      "kinds": [
-        "major",
-        "pathway"
-      ],
-      "ownerIds": [
-        "uw-seattle-economics",
-        "uw-seattle-economics::ba-route",
-        "uw-seattle-economics::bs-route"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://econ.washington.edu/bachelor-arts",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://econ.washington.edu/bachelor-science",
-      "labels": [
-        "UW Economics BS requirements"
-      ],
-      "kinds": [
-        "major",
-        "pathway"
-      ],
-      "ownerIds": [
-        "uw-seattle-economics",
-        "uw-seattle-economics::ba-route",
-        "uw-seattle-economics::bs-route"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://econ.washington.edu/bachelor-science",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://econ.washington.edu/choosing-your-economics-degree",
-      "labels": [
-        "UW Choosing Your Economics Degree guide"
-      ],
-      "kinds": [
-        "major",
-        "pathway"
-      ],
-      "ownerIds": [
-        "uw-seattle-economics",
-        "uw-seattle-economics::ba-route",
-        "uw-seattle-economics::bs-route"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://econ.washington.edu/choosing-your-economics-degree",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://econ.washington.edu/undergraduate",
-      "labels": [
-        "UW Economics undergraduate program"
-      ],
-      "kinds": [
-        "major",
-        "pathway"
-      ],
-      "ownerIds": [
-        "uw-seattle-economics",
-        "uw-seattle-economics::ba-route",
-        "uw-seattle-economics::bs-route"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://econ.washington.edu/undergraduate",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
+      "lastModified": "Wed, 08 Apr 2026 20:22:41 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -2743,29 +2368,6 @@
       "fetchMode": "head"
     },
     {
-      "url": "https://education.washington.edu/academics/program/ba-education-studies-0",
-      "labels": [
-        "UW Education Studies program page"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-education-studies"
-      ],
-      "ok": false,
-      "status": 403,
-      "finalUrl": "https://education.washington.edu/academics/program/ba-education-studies-0",
-      "contentType": "text/html; charset=UTF-8",
-      "contentLength": "34936",
-      "etag": null,
-      "lastModified": null,
-      "title": "Access denied | UW College of Education",
-      "bodyHash": "92d55e4d06aefd90bd3495080b701d02759c816fbdce08b68ec59d6666cfb5d4",
-      "error": null,
-      "fetchMode": "get"
-    },
-    {
       "url": "https://education.washington.edu/academics/program/early-childhood-family-studies",
       "labels": [
         "UW Early Childhood & Family Studies program page"
@@ -2812,29 +2414,6 @@
       "fetchMode": "head"
     },
     {
-      "url": "https://english.washington.edu/creative-writing",
-      "labels": [
-        "UW English Creative Writing program"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-english-creative-writing"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://english.washington.edu/creative-writing",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
       "url": "https://english.washington.edu/english-language-literature-and-culture-option",
       "labels": [
         "UW English LLC option requirements"
@@ -2846,86 +2425,17 @@
         "uw-seattle-english-creative-writing",
         "uw-seattle-english-language-literature-and-culture"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://english.washington.edu/english-language-literature-and-culture-option",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
+      "contentType": "text/html",
+      "contentLength": null,
       "etag": null,
       "lastModified": null,
-      "title": null,
+      "title": "UW English LLC option requirements",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://english.washington.edu/english-major-creative-writing-option",
-      "labels": [
-        "UW English major Creative Writing option requirements"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-english-creative-writing"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://english.washington.edu/english-major-creative-writing-option",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://english.washington.edu/how-apply-undergraduate-creative-writing-option",
-      "labels": [
-        "UW Creative Writing option application details"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-english-creative-writing"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://english.washington.edu/how-apply-undergraduate-creative-writing-option",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://english.washington.edu/language-literature-and-culture",
-      "labels": [
-        "UW English Language, Literature and Culture program"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-english-language-literature-and-culture"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://english.washington.edu/language-literature-and-culture",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
+      "fetchMode": "parsed-source"
     },
     {
       "url": "https://envstudies.uw.edu/students/major-in-environmental-studies/course-planning/",
@@ -3207,29 +2717,6 @@
       "fetchMode": "head"
     },
     {
-      "url": "https://frenchitalian.washington.edu/major-french-studies",
-      "labels": [
-        "UW French major requirements"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-french"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://frenchitalian.washington.edu/major-french-studies",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
       "url": "https://frenchitalian.washington.edu/major-italian-studies",
       "labels": [
         "UW Italian Studies major status page"
@@ -3240,97 +2727,23 @@
       "ownerIds": [
         "uw-seattle-italian"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://frenchitalian.washington.edu/major-italian-studies",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
+      "contentType": "text/html",
+      "contentLength": null,
       "etag": null,
       "lastModified": null,
-      "title": null,
+      "title": "UW Italian Studies major status page",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://frenchitalian.washington.edu/undergraduate-studies-french",
-      "labels": [
-        "UW French undergraduate studies overview"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-french"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://frenchitalian.washington.edu/undergraduate-studies-french",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://geography.washington.edu/ba-geography",
-      "labels": [
-        "UW Geography B.A. requirements"
-      ],
-      "kinds": [
-        "major",
-        "pathway"
-      ],
-      "ownerIds": [
-        "uw-seattle-geography",
-        "uw-seattle-geography::data-science-option",
-        "uw-seattle-geography::standard-ba-route"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://geography.washington.edu/ba-geography",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://geography.washington.edu/ba-geography-data-science-option",
-      "labels": [
-        "UW Geography data science option requirements"
-      ],
-      "kinds": [
-        "major",
-        "pathway"
-      ],
-      "ownerIds": [
-        "uw-seattle-geography",
-        "uw-seattle-geography::data-science-option",
-        "uw-seattle-geography::standard-ba-route"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://geography.washington.edu/ba-geography-data-science-option",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
+      "fetchMode": "parsed-source"
     },
     {
       "url": "https://german.washington.edu/german-studies",
       "labels": [
-        "UW German Studies degree requirements"
+        "UW German Studies degree requirements",
+        "UW German Studies requirements"
       ],
       "kinds": [
         "major"
@@ -3338,17 +2751,17 @@
       "ownerIds": [
         "uw-seattle-german"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://german.washington.edu/german-studies",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
+      "contentType": "text/html",
+      "contentLength": null,
       "etag": null,
       "lastModified": null,
-      "title": null,
+      "title": "UW German Studies requirements",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head"
+      "fetchMode": "parsed-source"
     },
     {
       "url": "https://hasc.washington.edu/sites/default/files/2023-09/Comparative%20Literature%20Major%20Guide.pdf",
@@ -3384,40 +2797,17 @@
       "ownerIds": [
         "uw-seattle-history"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://history.washington.edu/major",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
+      "contentType": "text/html",
+      "contentLength": null,
       "etag": null,
       "lastModified": null,
-      "title": null,
+      "title": "UW History major requirements",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://history.washington.edu/undergraduate-programs",
-      "labels": [
-        "UW History undergraduate programs overview"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-history"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://history.washington.edu/undergraduate-programs",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
+      "fetchMode": "parsed-source"
     },
     {
       "url": "https://ischool.uw.edu/academics/informatics/curriculum",
@@ -3434,9 +2824,9 @@
       "status": 200,
       "finalUrl": "https://ischool.uw.edu/programs/informatics/curriculum",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "62809",
-      "etag": "\"1775656920\"",
-      "lastModified": "Wed, 08 Apr 2026 14:02:00 GMT",
+      "contentLength": "62777",
+      "etag": "\"1775679762\"",
+      "lastModified": "Wed, 08 Apr 2026 20:22:42 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -3457,9 +2847,9 @@
       "status": 200,
       "finalUrl": "https://ischool.uw.edu/programs/informatics/admissions/prerequisites",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "63948",
-      "etag": "\"1775656920\"",
-      "lastModified": "Wed, 08 Apr 2026 14:02:00 GMT",
+      "contentLength": "63916",
+      "etag": "\"1775679763\"",
+      "lastModified": "Wed, 08 Apr 2026 20:22:43 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -3480,9 +2870,9 @@
       "status": 200,
       "finalUrl": "https://ischool.uw.edu/programs/informatics/curriculum/capstone",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "61669",
-      "etag": "\"1775656920\"",
-      "lastModified": "Wed, 08 Apr 2026 14:02:00 GMT",
+      "contentLength": "61637",
+      "etag": "\"1775679766\"",
+      "lastModified": "Wed, 08 Apr 2026 20:22:46 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -3570,17 +2960,17 @@
         "uw-seattle-jewish-studies",
         "uw-seattle-latin-american-and-caribbean-studies"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://jsis.washington.edu/programs/undergraduate/",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "65709",
       "etag": null,
       "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "title": "Undergraduate Programs - The Henry M. Jackson School of International Studies",
+      "bodyHash": "651cd77309711e6e7a94d42d62ec1669ab386268add9a442130de4f294ad26d9",
+      "error": null,
+      "fetchMode": "curl"
     },
     {
       "url": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
@@ -3593,17 +2983,17 @@
       "ownerIds": [
         "uw-seattle-asian-studies"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "88234",
       "etag": null,
       "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "title": "Asian Studies - Major - The Henry M. Jackson School of International Studies",
+      "bodyHash": "71d23d9285d61e8b57a929c11e1e32793f84ed3161b9b2fd4184a7638bc29a42",
+      "error": null,
+      "fetchMode": "curl"
     },
     {
       "url": "https://jsis.washington.edu/programs/undergraduate/european-studies/",
@@ -3616,17 +3006,17 @@
       "ownerIds": [
         "uw-seattle-european-studies"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://jsis.washington.edu/programs/undergraduate/european-studies/",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "104830",
       "etag": null,
       "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "title": "European Studies - Major - The Henry M. Jackson School of International Studies",
+      "bodyHash": "22aeb09bedce7645f08cc3420ddb063b9d7b615c7a25dc29ba2f0d68ebdd523b",
+      "error": null,
+      "fetchMode": "curl"
     },
     {
       "url": "https://jsis.washington.edu/programs/undergraduate/international-studies/capstonecourses/",
@@ -3639,17 +3029,17 @@
       "ownerIds": [
         "uw-seattle-international-studies"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://jsis.washington.edu/programs/undergraduate/international-studies/capstonecourses/",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "79620",
       "etag": null,
       "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "title": "Capstone Courses: 2025-26 Academic Year - The Henry M. Jackson School of International Studies",
+      "bodyHash": "fe94b13a09d7dc91709bef90b1e9036dace3ffba5dbd868e37743cf67dc13ef1",
+      "error": null,
+      "fetchMode": "curl"
     },
     {
       "url": "https://jsis.washington.edu/programs/undergraduate/jewish-studies/",
@@ -3662,17 +3052,17 @@
       "ownerIds": [
         "uw-seattle-jewish-studies"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://jsis.washington.edu/programs/undergraduate/jewish-studies/",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "89048",
       "etag": null,
       "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "title": "Jewish Studies - Major - The Henry M. Jackson School of International Studies",
+      "bodyHash": "a9c5d572e214c2568d706aa0dc0c4d53d329200be52cf639215a11971b3edd9b",
+      "error": null,
+      "fetchMode": "curl"
     },
     {
       "url": "https://jsis.washington.edu/programs/undergraduate/latin-america-and-caribbean-studies/",
@@ -3685,17 +3075,17 @@
       "ownerIds": [
         "uw-seattle-latin-american-and-caribbean-studies"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://jsis.washington.edu/programs/undergraduate/latin-america-and-caribbean-studies/",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "112831",
       "etag": null,
       "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "title": "Latin American and Caribbean Studies - Major - The Henry M. Jackson School of International Studies",
+      "bodyHash": "3f234289911f5a6fdd26f87cc9c8c947b59546833bdb894b6a63a5294c8e654e",
+      "error": null,
+      "fetchMode": "curl"
     },
     {
       "url": "https://larch.be.uw.edu/admissions/undergraduate/",
@@ -3731,63 +3121,17 @@
       "ownerIds": [
         "uw-seattle-linguistics"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://linguistics.washington.edu/ba-linguistics",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
+      "contentType": "text/html",
+      "contentLength": null,
       "etag": null,
       "lastModified": null,
-      "title": null,
+      "title": "UW Linguistics B.A. requirements",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://linguistics.washington.edu/undergraduate-language-requirement",
-      "labels": [
-        "UW Linguistics undergraduate language requirement"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-linguistics"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://linguistics.washington.edu/undergraduate-language-requirement",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://linguistics.washington.edu/undergraduate-programs",
-      "labels": [
-        "UW Linguistics undergraduate programs and admissions"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-linguistics"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://linguistics.washington.edu/undergraduate-programs",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
+      "fetchMode": "parsed-source"
     },
     {
       "url": "https://lsj.washington.edu/lsj-gold-curriculum-requirements",
@@ -3800,17 +3144,17 @@
       "ownerIds": [
         "uw-seattle-law-societies-and-justice"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://lsj.washington.edu/lsj-gold-curriculum-requirements",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
+      "contentType": "text/html",
+      "contentLength": null,
       "etag": null,
       "lastModified": null,
-      "title": null,
+      "title": "UW Law, Societies and Justice curriculum requirements",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head"
+      "fetchMode": "parsed-source"
     },
     {
       "url": "https://marinebiology.uw.edu/students/marine-biology-major/electives/",
@@ -3892,63 +3236,17 @@
       "ownerIds": [
         "uw-seattle-mathematics"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://math.washington.edu/ba-mathematics-standard-major-requirements-0",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
+      "contentType": "text/html",
+      "contentLength": null,
       "etag": null,
       "lastModified": null,
-      "title": null,
+      "title": "UW B.A. Mathematics standard requirements",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://math.washington.edu/bs-mathematics-major-requirements-0",
-      "labels": [
-        "UW B.S. Mathematics requirements"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-mathematics"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://math.washington.edu/bs-mathematics-major-requirements-0",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://math.washington.edu/undergraduate-major-requirements",
-      "labels": [
-        "UW Mathematics undergraduate major requirements overview"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-mathematics"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://math.washington.edu/undergraduate-major-requirements",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
+      "fetchMode": "parsed-source"
     },
     {
       "url": "https://microbiology.washington.edu/sites/default/files/2025-10/Microbiology_Degree_UPDATED%20SPR%202025.pdf",
@@ -4112,52 +3410,6 @@
       "fetchMode": "head"
     },
     {
-      "url": "https://music.washington.edu/ba-ethnomusicology",
-      "labels": [
-        "UW School of Music BA in Ethnomusicology overview"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-ethnomusicology-b-a"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://music.washington.edu/ba-ethnomusicology",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://music.washington.edu/bachelor-arts",
-      "labels": [
-        "UW Bachelor of Arts in Music overview"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-music-b-a"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://music.washington.edu/bachelor-arts",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
       "url": "https://music.washington.edu/bachelor-arts-music-instrumental-option",
       "labels": [
         "UW Bachelor of Arts - Music, Instrumental Option"
@@ -4168,116 +3420,17 @@
       "ownerIds": [
         "uw-seattle-music-b-a"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://music.washington.edu/bachelor-arts-music-instrumental-option",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
+      "contentType": "text/html",
+      "contentLength": null,
       "etag": null,
       "lastModified": null,
-      "title": null,
+      "title": "UW Bachelor of Arts - Music, Instrumental Option",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://music.washington.edu/bachelor-arts-music-music-history-option",
-      "labels": [
-        "UW Bachelor of Arts - Music, Music History Option"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-music-b-a"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://music.washington.edu/bachelor-arts-music-music-history-option",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://music.washington.edu/bachelor-arts-music-music-theory-option",
-      "labels": [
-        "UW Bachelor of Arts - Music, Music Theory Option"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-music-b-a"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://music.washington.edu/bachelor-arts-music-music-theory-option",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://music.washington.edu/bachelor-arts-music-voice-option",
-      "labels": [
-        "UW Bachelor of Arts - Music, Voice Option"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-music-b-a"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://music.washington.edu/bachelor-arts-music-voice-option",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://music.washington.edu/bachelor-music",
-      "labels": [
-        "UW Bachelor of Music overview"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-jazz-studies-b-m",
-        "uw-seattle-music-composition-b-m",
-        "uw-seattle-music-education-b-m",
-        "uw-seattle-orchestral-instruments-b-m",
-        "uw-seattle-organ-b-m",
-        "uw-seattle-percussion-performance-b-m",
-        "uw-seattle-piano-b-m",
-        "uw-seattle-voice-b-m"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://music.washington.edu/bachelor-music",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
+      "fetchMode": "parsed-source"
     },
     {
       "url": "https://music.washington.edu/bachelor-music-composition",
@@ -4290,17 +3443,17 @@
       "ownerIds": [
         "uw-seattle-music-composition-b-m"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://music.washington.edu/bachelor-music-composition",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
+      "contentType": "text/html",
+      "contentLength": null,
       "etag": null,
       "lastModified": null,
-      "title": null,
+      "title": "UW Bachelor of Music - Composition",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head"
+      "fetchMode": "parsed-source"
     },
     {
       "url": "https://music.washington.edu/bachelor-music-guitar",
@@ -4313,17 +3466,17 @@
       "ownerIds": [
         "uw-seattle-guitar-b-m"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://music.washington.edu/bachelor-music-guitar",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
+      "contentType": "text/html",
+      "contentLength": null,
       "etag": null,
       "lastModified": null,
-      "title": null,
+      "title": "UW Guitar Bachelor of Music requirements",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head"
+      "fetchMode": "parsed-source"
     },
     {
       "url": "https://music.washington.edu/bachelor-music-jazz-studies",
@@ -4336,17 +3489,17 @@
       "ownerIds": [
         "uw-seattle-jazz-studies-b-m"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://music.washington.edu/bachelor-music-jazz-studies",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
+      "contentType": "text/html",
+      "contentLength": null,
       "etag": null,
       "lastModified": null,
-      "title": null,
+      "title": "UW Jazz Studies Bachelor of Music requirements",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head"
+      "fetchMode": "parsed-source"
     },
     {
       "url": "https://music.washington.edu/bachelor-music-music-education-instrumental-emphasis",
@@ -4359,40 +3512,17 @@
       "ownerIds": [
         "uw-seattle-music-education-b-m"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://music.washington.edu/bachelor-music-music-education-instrumental-emphasis",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
+      "contentType": "text/html",
+      "contentLength": null,
       "etag": null,
       "lastModified": null,
-      "title": null,
+      "title": "UW Bachelor of Music - Music Education, Instrumental Emphasis",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://music.washington.edu/bachelor-music-music-education-vocal-emphasis",
-      "labels": [
-        "UW Bachelor of Music - Music Education, Vocal Emphasis"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-music-education-b-m"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://music.washington.edu/bachelor-music-music-education-vocal-emphasis",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
+      "fetchMode": "parsed-source"
     },
     {
       "url": "https://music.washington.edu/bachelor-music-orchestral-instruments",
@@ -4405,17 +3535,17 @@
       "ownerIds": [
         "uw-seattle-orchestral-instruments-b-m"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://music.washington.edu/bachelor-music-orchestral-instruments",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
+      "contentType": "text/html",
+      "contentLength": null,
       "etag": null,
       "lastModified": null,
-      "title": null,
+      "title": "UW Bachelor of Music - Orchestral Instruments",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head"
+      "fetchMode": "parsed-source"
     },
     {
       "url": "https://music.washington.edu/bachelor-music-organ",
@@ -4428,17 +3558,17 @@
       "ownerIds": [
         "uw-seattle-organ-b-m"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://music.washington.edu/bachelor-music-organ",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
+      "contentType": "text/html",
+      "contentLength": null,
       "etag": null,
       "lastModified": null,
-      "title": null,
+      "title": "UW Bachelor of Music - Organ",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head"
+      "fetchMode": "parsed-source"
     },
     {
       "url": "https://music.washington.edu/bachelor-music-percussion-performance",
@@ -4451,17 +3581,17 @@
       "ownerIds": [
         "uw-seattle-percussion-performance-b-m"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://music.washington.edu/bachelor-music-percussion-performance",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
+      "contentType": "text/html",
+      "contentLength": null,
       "etag": null,
       "lastModified": null,
-      "title": null,
+      "title": "UW Bachelor of Music - Percussion Performance",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head"
+      "fetchMode": "parsed-source"
     },
     {
       "url": "https://music.washington.edu/bachelor-music-piano",
@@ -4474,17 +3604,17 @@
       "ownerIds": [
         "uw-seattle-piano-b-m"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://music.washington.edu/bachelor-music-piano",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
+      "contentType": "text/html",
+      "contentLength": null,
       "etag": null,
       "lastModified": null,
-      "title": null,
+      "title": "UW Bachelor of Music - Piano",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head"
+      "fetchMode": "parsed-source"
     },
     {
       "url": "https://music.washington.edu/bachelor-music-voice",
@@ -4497,17 +3627,17 @@
       "ownerIds": [
         "uw-seattle-voice-b-m"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://music.washington.edu/bachelor-music-voice",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
+      "contentType": "text/html",
+      "contentLength": null,
       "etag": null,
       "lastModified": null,
-      "title": null,
+      "title": "UW Bachelor of Music - Voice",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head"
+      "fetchMode": "parsed-source"
     },
     {
       "url": "https://nursing.uw.edu/academics/bsn/",
@@ -4556,31 +3686,9 @@
       "fetchMode": "head"
     },
     {
-      "url": "https://phys.washington.edu/bachelor-science-physics",
-      "labels": [
-        "UW Bachelor of Science in Physics overview"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-physics"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://phys.washington.edu/bachelor-science-physics",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
       "url": "https://phys.washington.edu/physics-bs-degree-requirements",
       "labels": [
+        "Physics B.S. Degree Requirements",
         "UW Physics B.S. degree requirements"
       ],
       "kinds": [
@@ -4589,17 +3697,17 @@
       "ownerIds": [
         "uw-seattle-physics"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://phys.washington.edu/physics-bs-degree-requirements",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
+      "contentType": "text/html",
+      "contentLength": null,
       "etag": null,
       "lastModified": null,
-      "title": null,
+      "title": "Physics B.S. Degree Requirements",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head"
+      "fetchMode": "parsed-source"
     },
     {
       "url": "https://psych.uw.edu/undergraduate/prospective-students/admissions",
@@ -4706,29 +3814,6 @@
       "fetchMode": "head"
     },
     {
-      "url": "https://religion.washington.edu/undergraduate",
-      "labels": [
-        "UW Comparative Religion overview"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-comparative-religion"
-      ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
-    },
-    {
       "url": "https://scandinavian.washington.edu/ba-danish",
       "labels": [
         "UW B.A. in Danish requirements"
@@ -4739,17 +3824,17 @@
       "ownerIds": [
         "uw-seattle-danish"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://scandinavian.washington.edu/ba-danish",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
+      "contentType": "text/html",
+      "contentLength": null,
       "etag": null,
       "lastModified": null,
-      "title": null,
+      "title": "UW B.A. in Danish requirements",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head"
+      "fetchMode": "parsed-source"
     },
     {
       "url": "https://scandinavian.washington.edu/ba-finnish",
@@ -4762,17 +3847,17 @@
       "ownerIds": [
         "uw-seattle-finnish"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://scandinavian.washington.edu/ba-finnish",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
+      "contentType": "text/html",
+      "contentLength": null,
       "etag": null,
       "lastModified": null,
-      "title": null,
+      "title": "website",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head"
+      "fetchMode": "parsed-source"
     },
     {
       "url": "https://scandinavian.washington.edu/ba-norwegian",
@@ -4785,17 +3870,17 @@
       "ownerIds": [
         "uw-seattle-norwegian"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://scandinavian.washington.edu/ba-norwegian",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
+      "contentType": "text/html",
+      "contentLength": null,
       "etag": null,
       "lastModified": null,
-      "title": null,
+      "title": "UW Norwegian degree requirements",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head"
+      "fetchMode": "parsed-source"
     },
     {
       "url": "https://scandinavian.washington.edu/ba-scandinavian-area-studies",
@@ -4808,17 +3893,17 @@
       "ownerIds": [
         "uw-seattle-scandinavian-area-studies"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://scandinavian.washington.edu/ba-scandinavian-area-studies",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
+      "contentType": "text/html",
+      "contentLength": null,
       "etag": null,
       "lastModified": null,
-      "title": null,
+      "title": "UW Scandinavian Area Studies requirements",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head"
+      "fetchMode": "parsed-source"
     },
     {
       "url": "https://scandinavian.washington.edu/ba-swedish",
@@ -4831,63 +3916,17 @@
       "ownerIds": [
         "uw-seattle-swedish"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://scandinavian.washington.edu/ba-swedish",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
+      "contentType": "text/html",
+      "contentLength": null,
       "etag": null,
       "lastModified": null,
-      "title": null,
+      "title": "UW Swedish requirements",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://scandinavian.washington.edu/undergraduate",
-      "labels": [
-        "UW Scandinavian Studies undergraduate programs"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-danish"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://scandinavian.washington.edu/undergraduate",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://scandinavian.washington.edu/undergraduate-programs",
-      "labels": [
-        "UW Scandinavian Studies undergraduate programs overview"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-scandinavian-area-studies"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://scandinavian.washington.edu/undergraduate-programs",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
+      "fetchMode": "parsed-source"
     },
     {
       "url": "https://sefs.uw.edu/admissions/undergraduate-admissions/sbse-admission/",
@@ -5051,29 +4090,6 @@
       "fetchMode": "head"
     },
     {
-      "url": "https://slavic.washington.edu/ba-eastern-european-languages-literature-and-culture",
-      "labels": [
-        "UW Eastern European Languages, Literature, and Culture requirements"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-slavic-languages-and-literatures"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://slavic.washington.edu/ba-eastern-european-languages-literature-and-culture",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
       "url": "https://slavic.washington.edu/ba-global-literary-studies-glits",
       "labels": [
         "UW Global Literary Studies degree requirements"
@@ -5084,40 +4100,17 @@
       "ownerIds": [
         "uw-seattle-global-literary-studies"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://slavic.washington.edu/ba-global-literary-studies-glits",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
+      "contentType": "text/html",
+      "contentLength": null,
       "etag": null,
       "lastModified": null,
-      "title": null,
+      "title": "UW Global Literary Studies requirements",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://slavic.washington.edu/ba-russian-language-literature-and-culture",
-      "labels": [
-        "UW Russian Language, Literature, and Culture requirements"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-slavic-languages-and-literatures"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://slavic.washington.edu/ba-russian-language-literature-and-culture",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
+      "fetchMode": "parsed-source"
     },
     {
       "url": "https://slavic.washington.edu/undergraduate-policies",
@@ -5130,86 +4123,17 @@
       "ownerIds": [
         "uw-seattle-slavic-languages-and-literatures"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://slavic.washington.edu/undergraduate-policies",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
+      "contentType": "text/html",
+      "contentLength": null,
       "etag": null,
       "lastModified": null,
-      "title": null,
+      "title": "UW Slavic Languages & Literatures undergraduate policies",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://slavic.washington.edu/undergraduate-programs",
-      "labels": [
-        "UW Slavic Languages & Literatures undergraduate programs overview"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-slavic-languages-and-literatures"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://slavic.washington.edu/undergraduate-programs",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://soc.washington.edu/current-majors",
-      "labels": [
-        "UW Sociology current majors overview"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-sociology"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://soc.washington.edu/current-majors",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://soc.washington.edu/declare-sociology-major",
-      "labels": [
-        "UW Sociology declaration requirements"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-sociology"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://soc.washington.edu/declare-sociology-major",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
+      "fetchMode": "parsed-source"
     },
     {
       "url": "https://socialwork.uw.edu/academics/basw/",
@@ -5281,29 +4205,6 @@
       "fetchMode": "head"
     },
     {
-      "url": "https://spanport.washington.edu/admission-spanish-major",
-      "labels": [
-        "UW admission to the Spanish major"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-spanish"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://spanport.washington.edu/admission-spanish-major",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
       "url": "https://spanport.washington.edu/spanish-major-requirements",
       "labels": [
         "UW Spanish major requirements"
@@ -5314,17 +4215,17 @@
       "ownerIds": [
         "uw-seattle-spanish"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://spanport.washington.edu/spanish-major-requirements",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
+      "contentType": "text/html",
+      "contentLength": null,
       "etag": null,
       "lastModified": null,
-      "title": null,
+      "title": "UW Spanish major requirements",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head"
+      "fetchMode": "parsed-source"
     },
     {
       "url": "https://sph.washington.edu/phgh",
@@ -5347,8 +4248,8 @@
       "finalUrl": "https://sph.washington.edu/phgh",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": null,
-      "etag": "\"1775604056-gzip\"",
-      "lastModified": "Tue, 07 Apr 2026 23:20:56 GMT",
+      "etag": "\"1775672747-gzip\"",
+      "lastModified": "Wed, 08 Apr 2026 18:25:47 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5375,8 +4276,8 @@
       "finalUrl": "https://sph.washington.edu/phgh/application/prerequisites",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": null,
-      "etag": "\"1775603588-gzip\"",
-      "lastModified": "Tue, 07 Apr 2026 23:13:08 GMT",
+      "etag": "\"1775672748-gzip\"",
+      "lastModified": "Wed, 08 Apr 2026 18:25:48 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5403,8 +4304,8 @@
       "finalUrl": "https://sph.washington.edu/phgh/requirements/options",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": null,
-      "etag": "\"1775615074-gzip\"",
-      "lastModified": "Wed, 08 Apr 2026 02:24:34 GMT",
+      "etag": "\"1775672749-gzip\"",
+      "lastModified": "Wed, 08 Apr 2026 18:25:49 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5449,17 +4350,17 @@
       "ownerIds": [
         "uw-seattle-speech-and-hearing-sciences"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://sphsc.washington.edu/admissions-prerequisites",
+      "contentType": "text/html; charset=utf-8",
+      "contentLength": "72318",
       "etag": null,
       "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "title": "Admissions Prerequisites | Speech &amp; Hearing Sciences",
+      "bodyHash": "0a252ab295fe8c942749db2fb8bf9c45d3cf444345744e3f4c37dfcd1784a229",
+      "error": null,
+      "fetchMode": "curl"
     },
     {
       "url": "https://sphsc.washington.edu/undergraduate-major",
@@ -5472,17 +4373,17 @@
       "ownerIds": [
         "uw-seattle-speech-and-hearing-sciences"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://sphsc.washington.edu/undergraduate-major",
+      "contentType": "text/html; charset=utf-8",
+      "contentLength": "72671",
       "etag": null,
       "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "title": "Undergraduate Major | Speech &amp; Hearing Sciences",
+      "bodyHash": "455157944574e9ad38aca22b137af549e428138593f07e223d3f4fd84d5bb9c0",
+      "error": null,
+      "fetchMode": "curl"
     },
     {
       "url": "https://sphsc.washington.edu/uw-transfer-students-faq",
@@ -5495,17 +4396,17 @@
       "ownerIds": [
         "uw-seattle-speech-and-hearing-sciences"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://sphsc.washington.edu/uw-transfer-students-faq",
+      "contentType": "text/html; charset=utf-8",
+      "contentLength": "81834",
       "etag": null,
       "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "title": "UW Transfer Students FAQ | Speech &amp; Hearing Sciences",
+      "bodyHash": "2b1fd18dc66bddcca03a3b5154c24348d4e8ffc274dbc2e6cd704d2f5fdee9f6",
+      "error": null,
+      "fetchMode": "curl"
     },
     {
       "url": "https://stat.uw.edu/academics/undergraduate/statistics-bs/major",
@@ -5522,17 +4423,17 @@
         "uw-seattle-statistics::data-science-track",
         "uw-seattle-statistics::mathematical-statistics-track"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://stat.uw.edu/academics/undergraduate/statistics-bs/major",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "48262",
+      "etag": "\"1775669077\"",
+      "lastModified": "Wed, 08 Apr 2026 17:24:37 GMT",
+      "title": "Major Requirements | University of Washington Department of Statistics",
+      "bodyHash": "d0f96111a2ec67b24b2520b0a483c3e77ad655f101fd48e43c021baeb50d0214",
+      "error": null,
+      "fetchMode": "curl"
     },
     {
       "url": "https://stat.uw.edu/academics/undergraduate/statistics-bs/statistics-bs-tracks",
@@ -5549,17 +4450,17 @@
         "uw-seattle-statistics::data-science-track",
         "uw-seattle-statistics::mathematical-statistics-track"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://stat.uw.edu/academics/undergraduate/statistics-bs/statistics-bs-tracks",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "38262",
+      "etag": "\"1775669649\"",
+      "lastModified": "Wed, 08 Apr 2026 17:34:09 GMT",
+      "title": "Statistics B.S. tracks | University of Washington Department of Statistics",
+      "bodyHash": "661bb670e9fe278b2f3ecec16c2b89ce7ce9be976fe1ebf98ed98148898b8541",
+      "error": null,
+      "fetchMode": "curl"
     },
     {
       "url": "https://stat.uw.edu/statistics-major",
@@ -5576,17 +4477,17 @@
         "uw-seattle-statistics::data-science-track",
         "uw-seattle-statistics::mathematical-statistics-track"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://stat.uw.edu/statistics-major",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "32228",
+      "etag": "\"1775642474\"",
+      "lastModified": "Wed, 08 Apr 2026 10:01:14 GMT",
+      "title": "Statistics Major | University of Washington Department of Statistics",
+      "bodyHash": "03bfa7d04fc35e603d17e7b04853829cf44c1cae86ff62a2853b5d3882b6de96",
+      "error": null,
+      "fetchMode": "curl"
     },
     {
       "url": "https://students.nursing.uw.edu/academics/program-of-study/curriculum/",
@@ -5603,7 +4504,7 @@
       "status": 200,
       "finalUrl": "https://students.nursing.uw.edu/academics/program-of-study/curriculum/",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "22838",
+      "contentLength": "22839",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -5633,81 +4534,6 @@
       "bodyHash": null,
       "error": null,
       "fetchMode": "head"
-    },
-    {
-      "url": "https://urbdp.be.uw.edu/academic-programs/undergraduate/community-environment-and-planning/",
-      "labels": [
-        "UW Community, Environment and Planning program"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-community-environment-and-planning"
-      ],
-      "ok": false,
-      "status": 404,
-      "finalUrl": "https://urbdp.be.uw.edu/academic-programs/undergraduate/community-environment-and-planning/",
-      "contentType": "text/html; charset=UTF-8",
-      "contentLength": "53760",
-      "etag": null,
-      "lastModified": null,
-      "title": "Page not found - Urban Design and Planning",
-      "bodyHash": "c9a733925e9124428190fcfceaf2a6d3f68ab5903a013257eecab1def4e2e86c",
-      "error": null,
-      "fetchMode": "get"
-    },
-    {
-      "url": "https://web.geology.washington.edu/education/undergrad/degrees_ba.php",
-      "labels": [
-        "UW Earth and Space Sciences B.A. requirements"
-      ],
-      "kinds": [
-        "major",
-        "pathway"
-      ],
-      "ownerIds": [
-        "uw-seattle-earth-and-space-sciences",
-        "uw-seattle-earth-and-space-sciences::ba-route",
-        "uw-seattle-earth-and-space-sciences::bs-option-family"
-      ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
-    },
-    {
-      "url": "https://web.geology.washington.edu/education/undergrad/degrees_bs.php",
-      "labels": [
-        "UW Earth and Space Sciences B.S. requirements"
-      ],
-      "kinds": [
-        "major",
-        "pathway"
-      ],
-      "ownerIds": [
-        "uw-seattle-earth-and-space-sciences",
-        "uw-seattle-earth-and-space-sciences::ba-route",
-        "uw-seattle-earth-and-space-sciences::bs-option-family"
-      ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
     },
     {
       "url": "https://www.aa.washington.edu/admissions/undergrad/overview",
@@ -5748,55 +4574,6 @@
       "finalUrl": "https://www.aa.washington.edu/students/academics/bsaae",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": null,
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://www.be.washington.edu/academics/construction-management/",
-      "labels": [
-        "UW Construction Management program"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-construction-management"
-      ],
-      "ok": false,
-      "status": 404,
-      "finalUrl": "https://be.uw.edu/academics/construction-management/",
-      "contentType": "text/html; charset=UTF-8",
-      "contentLength": "58009",
-      "etag": null,
-      "lastModified": null,
-      "title": "Page not found - UW College of Built Environments",
-      "bodyHash": "eb1de50e6472b30c3c04def394fc00f76756a30ad566c828aebeda81502facd1",
-      "error": null,
-      "fetchMode": "get"
-    },
-    {
-      "url": "https://www.biology.washington.edu/programs/undergraduate/admissions",
-      "labels": [
-        "UW Biology admissions and major requirements"
-      ],
-      "kinds": [
-        "major",
-        "pathway"
-      ],
-      "ownerIds": [
-        "uw-seattle-biology",
-        "uw-seattle-biology::ba-general-biology",
-        "uw-seattle-biology::bs-option-family"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://biology.washington.edu/programs/undergraduate/admissions",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -5918,29 +4695,6 @@
       "bodyHash": null,
       "error": null,
       "fetchMode": "head"
-    },
-    {
-      "url": "https://www.ce.washington.edu/future/undergrad/environmental/transfer",
-      "labels": [
-        "UW Environmental Engineering transfer application timeline"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-environmental-engineering"
-      ],
-      "ok": false,
-      "status": 404,
-      "finalUrl": "https://www.ce.washington.edu/future/undergrad/environmental/transfer",
-      "contentType": "text/html; charset=UTF-8",
-      "contentLength": "36261",
-      "etag": null,
-      "lastModified": null,
-      "title": "Page not found | UW Department of Civil &amp; Environmental Engineering",
-      "bodyHash": "d134e8af0a75752b6189d35ea2e3ad93432d1070b36a3d856185c9a6b352ea66",
-      "error": null,
-      "fetchMode": "get"
     },
     {
       "url": "https://www.ce.washington.edu/future/undergrad/prereq",
@@ -6214,8 +4968,8 @@
       "finalUrl": "https://www.deohs.washington.edu/degree-requirements",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": null,
-      "etag": "\"1775656614\"",
-      "lastModified": "Wed, 08 Apr 2026 13:56:54 GMT",
+      "etag": "\"1775679092\"",
+      "lastModified": "Wed, 08 Apr 2026 20:11:32 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6268,29 +5022,6 @@
       "fetchMode": "head"
     },
     {
-      "url": "https://www.ece.washington.edu/academics/bachelor-of-science/bs-admissions-requirements/",
-      "labels": [
-        "UW ECE admission requirements"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-electrical-computer-engineering"
-      ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
-    },
-    {
       "url": "https://www.greenriver.edu/marketing/media/documents/grad-to-gator/Associate%20Transfer%20Sample%20Ed%20Plans%202024.pdf",
       "labels": [
         "Green River Associate Transfer Sample Ed Plans 2024",
@@ -6336,6 +5067,52 @@
       "ok": true,
       "status": 200,
       "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/university-and-college-transfer/index.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head"
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/class-schedules-catalog/catalog-archive.html",
+      "labels": [
+        "Green River catalog archive page"
+      ],
+      "kinds": [
+        "reference-page"
+      ],
+      "ownerIds": [
+        "grc-catalog-archive"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/class-schedules-catalog/catalog-archive.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head"
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/class-schedules-catalog/index.html",
+      "labels": [
+        "Green River class schedules and catalog page"
+      ],
+      "kinds": [
+        "reference-page"
+      ],
+      "ownerIds": [
+        "grc-class-schedules"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/class-schedules-catalog/index.html",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "0",
       "etag": null,
@@ -6398,6 +5175,29 @@
       "contentLength": "2226342",
       "etag": "\"dde46cef32b9db1:0\"",
       "lastModified": "Tue, 29 Apr 2025 18:17:15 GMT",
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head"
+    },
+    {
+      "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf",
+      "labels": [
+        "Green River annual schedule 2026-2027"
+      ],
+      "kinds": [
+        "reference-file"
+      ],
+      "ownerIds": [
+        "grc-annual-schedule-2026-2027"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf",
+      "contentType": "application/pdf",
+      "contentLength": "1766664",
+      "etag": "\"547ba710c9c6dc1:0\"",
+      "lastModified": "Tue, 07 Apr 2026 19:59:38 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6565,6 +5365,29 @@
       "fetchMode": "head"
     },
     {
+      "url": "https://www.ocean.washington.edu/file/Bachelor_of_Arts_in_Oceanography_Checklist",
+      "labels": [
+        "BA in Oceanography checklist"
+      ],
+      "kinds": [
+        "major"
+      ],
+      "ownerIds": [
+        "uw-seattle-oceanography"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.ocean.washington.edu/file/Bachelor_of_Arts_in_Oceanography_Checklist",
+      "contentType": "text/html;charset=UTF-8",
+      "contentLength": null,
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head"
+    },
+    {
       "url": "https://www.ocean.washington.edu/story/Bachelor_Degrees_in_Oceanography",
       "labels": [
         "UW Bachelor Degrees in Oceanography"
@@ -6644,36 +5467,13 @@
       "ownerIds": [
         "uw-seattle-political-science"
       ],
-      "ok": false,
-      "status": 429,
+      "ok": true,
+      "status": 200,
       "finalUrl": "https://www.polisci.washington.edu/political-science-major-declaration-and-requirements",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://www.polisci.washington.edu/undergraduate-programs",
-      "labels": [
-        "UW Political Science undergraduate programs overview"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-political-science"
-      ],
-      "ok": false,
-      "status": 429,
-      "finalUrl": "https://www.polisci.washington.edu/undergraduate-programs",
-      "contentType": "text/html; charset=utf-8",
-      "contentLength": "276",
-      "etag": null,
-      "lastModified": null,
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "65246",
+      "etag": "\"1775677036\"",
+      "lastModified": "Wed, 08 Apr 2026 19:37:16 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6711,8 +5511,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/admissions/course-equivalency-guide",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "45134",
-      "etag": "\"1775630571\"",
-      "lastModified": "Wed, 08 Apr 2026 06:42:51 GMT",
+      "etag": "\"1775669210\"",
+      "lastModified": "Wed, 08 Apr 2026 17:26:50 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6780,8 +5580,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "59706",
-      "etag": "\"1775630313\"",
-      "lastModified": "Wed, 08 Apr 2026 06:38:33 GMT",
+      "etag": "\"1775669134\"",
+      "lastModified": "Wed, 08 Apr 2026 17:25:34 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6809,8 +5609,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/business/baba-admissions",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "66910",
-      "etag": "\"1775629403\"",
-      "lastModified": "Wed, 08 Apr 2026 06:23:23 GMT",
+      "etag": "\"1775669267\"",
+      "lastModified": "Wed, 08 Apr 2026 17:27:47 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6838,8 +5638,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/business/design-courses-baba",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "88501",
-      "etag": "\"1775630571\"",
-      "lastModified": "Wed, 08 Apr 2026 06:42:51 GMT",
+      "etag": "\"1775669862\"",
+      "lastModified": "Wed, 08 Apr 2026 17:37:42 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6861,8 +5661,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/nursing",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "61029",
-      "etag": "\"1775630234\"",
-      "lastModified": "Wed, 08 Apr 2026 06:37:14 GMT",
+      "etag": "\"1775669215\"",
+      "lastModified": "Wed, 08 Apr 2026 17:26:55 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6884,8 +5684,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/nursing/bachelor-science-nursing-rn-bsn",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "49801",
-      "etag": "\"1775630571\"",
-      "lastModified": "Wed, 08 Apr 2026 06:42:51 GMT",
+      "etag": "\"1775668856\"",
+      "lastModified": "Wed, 08 Apr 2026 17:20:56 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6902,17 +5702,17 @@
       "ownerIds": [
         "uw-tacoma-healthcare-leadership"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/nursing/declare-healthcare-leadership-major",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "43813",
+      "etag": "\"1775669037\"",
+      "lastModified": "Wed, 08 Apr 2026 17:23:57 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/nursing/healthcare-leadership-sample-program-plan",
@@ -6930,8 +5730,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/nursing/healthcare-leadership-sample-program-plan",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "46972",
-      "etag": "\"1775630571\"",
-      "lastModified": "Wed, 08 Apr 2026 06:42:51 GMT",
+      "etag": "\"1775669473\"",
+      "lastModified": "Wed, 08 Apr 2026 17:31:13 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6953,8 +5753,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/nursing/rn-bsn-application-overview",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "53123",
-      "etag": "\"1775628354\"",
-      "lastModified": "Wed, 08 Apr 2026 06:05:54 GMT",
+      "etag": "\"1775669246\"",
+      "lastModified": "Wed, 08 Apr 2026 17:27:26 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6976,8 +5776,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/nursing/rn-bsn-sample-program-plans",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "49869",
-      "etag": "\"1775630571\"",
-      "lastModified": "Wed, 08 Apr 2026 06:42:51 GMT",
+      "etag": "\"1775669060\"",
+      "lastModified": "Wed, 08 Apr 2026 17:24:20 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7005,8 +5805,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/registrar/graduation-requirements",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "48646",
-      "etag": "\"1775630572\"",
-      "lastModified": "Wed, 08 Apr 2026 06:42:52 GMT",
+      "etag": "\"1775668981\"",
+      "lastModified": "Wed, 08 Apr 2026 17:23:01 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7028,8 +5828,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/set/programs/undergrad/cengr",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "110440",
-      "etag": "\"1775628321\"",
-      "lastModified": "Wed, 08 Apr 2026 06:05:21 GMT",
+      "etag": "\"1775670391\"",
+      "lastModified": "Wed, 08 Apr 2026 17:46:31 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7046,17 +5846,17 @@
       "ownerIds": [
         "uw-tacoma-civil-engineering"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/set/programs/undergrad/civil",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "104703",
+      "etag": "\"1775669000\"",
+      "lastModified": "Wed, 08 Apr 2026 17:23:20 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
@@ -7070,17 +5870,17 @@
         "uw-tacoma-computer-science-and-systems-ba",
         "uw-tacoma-computer-science-and-systems-bs"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "84775",
+      "etag": "\"1775668919\"",
+      "lastModified": "Wed, 08 Apr 2026 17:21:59 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
@@ -7094,17 +5894,17 @@
         "uw-tacoma-computer-science-and-systems-ba",
         "uw-tacoma-computer-science-and-systems-bs"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "107367",
+      "etag": "\"1775669009\"",
+      "lastModified": "Wed, 08 Apr 2026 17:23:29 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/set/programs/undergrad/ee",
@@ -7117,17 +5917,17 @@
       "ownerIds": [
         "uw-tacoma-electrical-engineering"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/set/programs/undergrad/ee",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "104957",
+      "etag": "\"1775668942\"",
+      "lastModified": "Wed, 08 Apr 2026 17:22:22 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/set/programs/undergrad/it",
@@ -7140,17 +5940,17 @@
       "ownerIds": [
         "uw-tacoma-information-technology"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/set/programs/undergrad/it",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "104685",
+      "etag": "\"1775668795\"",
+      "lastModified": "Wed, 08 Apr 2026 17:19:55 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/set/programs/undergrad/me",
@@ -7163,17 +5963,17 @@
       "ownerIds": [
         "uw-tacoma-mechanical-engineering"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/set/programs/undergrad/me",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "104389",
+      "etag": "\"1775669084\"",
+      "lastModified": "Wed, 08 Apr 2026 17:24:44 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/sias",
@@ -7186,17 +5986,17 @@
       "ownerIds": [
         "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/sias",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "94666",
+      "etag": "\"1775679818\"",
+      "lastModified": "Wed, 08 Apr 2026 20:23:38 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/sias-new/socs-new/economics-and-policy-analysis-epa",
@@ -7209,17 +6009,17 @@
       "ownerIds": [
         "uw-tacoma-economics-and-policy-analysis"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/sias/socs/economics-and-policy-analysis-epa",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "54676",
+      "etag": "\"1775669020\"",
+      "lastModified": "Wed, 08 Apr 2026 17:23:40 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/sias-new/socs-new/ethnic-gender-and-labor-studies",
@@ -7236,17 +6036,17 @@
         "uw-tacoma-ethnic-gender-and-labor-studies::gender-studies-option",
         "uw-tacoma-ethnic-gender-and-labor-studies::labor-studies-option"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/sias/socs/ethnic-gender-and-labor-studies",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "50794",
+      "etag": "\"1775669029\"",
+      "lastModified": "Wed, 08 Apr 2026 17:23:49 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/sias-new/socs-new/ethnic-studies-option",
@@ -7263,40 +6063,17 @@
         "uw-tacoma-ethnic-gender-and-labor-studies::gender-studies-option",
         "uw-tacoma-ethnic-gender-and-labor-studies::labor-studies-option"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/sias/socs/ethnic-studies-option",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "67563",
+      "etag": "\"1775669030\"",
+      "lastModified": "Wed, 08 Apr 2026 17:23:50 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
-    },
-    {
-      "url": "https://www.tacoma.uw.edu/sias-new/socs-new/individually-designed-concentration",
-      "labels": [
-        "UW Tacoma individually-designed concentration overview"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed"
-      ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/sias-new/socs-new/interdisciplinary-arts-and-sciences",
@@ -7309,17 +6086,17 @@
       "ownerIds": [
         "uw-tacoma-interdisciplinary-arts-and-sciences"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/sias/socs/interdisciplinary-arts-and-sciences",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "72201",
+      "etag": "\"1775669041\"",
+      "lastModified": "Wed, 08 Apr 2026 17:24:01 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/sias-new/socs-new/labor-and-social-movements-option",
@@ -7332,17 +6109,17 @@
       "ownerIds": [
         "uw-tacoma-history"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/sias/socs/labor-and-social-movements-option",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "51629",
+      "etag": "\"1775669927\"",
+      "lastModified": "Wed, 08 Apr 2026 17:38:47 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/sias/cac/arts-media-culture",
@@ -7361,17 +6138,17 @@
         "uw-tacoma-arts-media-culture::literature-track",
         "uw-tacoma-arts-media-culture::visual-performing-arts-track"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/sias/cac/arts-media-culture",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "56469",
+      "etag": "\"1775668972\"",
+      "lastModified": "Wed, 08 Apr 2026 17:22:52 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/sias/cac/communication",
@@ -7387,43 +6164,17 @@
         "uw-tacoma-communications::professional-track",
         "uw-tacoma-communications::research-track"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/sias/cac/communication",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "52683",
+      "etag": "\"1775669001\"",
+      "lastModified": "Wed, 08 Apr 2026 17:23:21 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
-    },
-    {
-      "url": "https://www.tacoma.uw.edu/sias/cac/communication-degree-requirements",
-      "labels": [
-        "UW Tacoma Communication degree requirements"
-      ],
-      "kinds": [
-        "major",
-        "pathway"
-      ],
-      "ownerIds": [
-        "uw-tacoma-communications",
-        "uw-tacoma-communications::professional-track",
-        "uw-tacoma-communications::research-track"
-      ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/sias/cac/creative-writing-track",
@@ -7440,17 +6191,17 @@
         "uw-tacoma-writing-studies::rhetoric-social-change-track",
         "uw-tacoma-writing-studies::technical-communication-track"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/sias/cac/creative-writing-track",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "58387",
+      "etag": "\"1775669091\"",
+      "lastModified": "Wed, 08 Apr 2026 17:24:51 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/sias/cac/how-apply-faqs",
@@ -7466,17 +6217,17 @@
         "uw-tacoma-communications::professional-track",
         "uw-tacoma-communications::research-track"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/sias/cac/communication-how-apply-faqs",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "56582",
+      "etag": "\"1775670408\"",
+      "lastModified": "Wed, 08 Apr 2026 17:46:48 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/sias/cac/rhetoric-writing-and-social-change-track",
@@ -7493,17 +6244,17 @@
         "uw-tacoma-writing-studies::rhetoric-social-change-track",
         "uw-tacoma-writing-studies::technical-communication-track"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/sias/cac/rhetoric-writing-and-social-change-track",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "60448",
+      "etag": "\"1775669092\"",
+      "lastModified": "Wed, 08 Apr 2026 17:24:52 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/sias/cac/spanish-language-and-cultures",
@@ -7516,17 +6267,17 @@
       "ownerIds": [
         "uw-tacoma-spanish-language-and-cultures"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/sias/cac/spanish-language-and-cultures",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "55089",
+      "etag": "\"1775669072\"",
+      "lastModified": "Wed, 08 Apr 2026 17:24:32 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/sias/cac/technical-communication-track",
@@ -7543,17 +6294,17 @@
         "uw-tacoma-writing-studies::rhetoric-social-change-track",
         "uw-tacoma-writing-studies::technical-communication-track"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/sias/cac/technical-communication-track",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "56656",
+      "etag": "\"1775669093\"",
+      "lastModified": "Wed, 08 Apr 2026 17:24:53 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/sias/cac/writing-studies",
@@ -7570,109 +6321,17 @@
         "uw-tacoma-writing-studies::rhetoric-social-change-track",
         "uw-tacoma-writing-studies::technical-communication-track"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/sias/cac/writing-studies",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "53018",
+      "etag": "\"1775669042\"",
+      "lastModified": "Wed, 08 Apr 2026 17:24:02 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
-    },
-    {
-      "url": "https://www.tacoma.uw.edu/sias/healthcare-leadership",
-      "labels": [
-        "UW Tacoma Healthcare Leadership overview"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-tacoma-healthcare-leadership"
-      ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
-    },
-    {
-      "url": "https://www.tacoma.uw.edu/sias/interdisciplinary-arts-and-sciences",
-      "labels": [
-        "UW Tacoma Interdisciplinary Arts and Sciences overview"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-tacoma-interdisciplinary-arts-and-sciences"
-      ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
-    },
-    {
-      "url": "https://www.tacoma.uw.edu/sias/pppa/economics-and-policy-analysis-major-requirements",
-      "labels": [
-        "UW Tacoma Economics and Policy Analysis major requirements"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-tacoma-economics-and-policy-analysis"
-      ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
-    },
-    {
-      "url": "https://www.tacoma.uw.edu/sias/pppa/politics-philosophy-and-economics-ppe",
-      "labels": [
-        "UW Tacoma PP&E major requirements"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-tacoma-politics-philosophy-and-economics"
-      ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/sias/sam/biomedical-sciences",
@@ -7685,17 +6344,17 @@
       "ownerIds": [
         "uw-tacoma-biomedical-sciences"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/sias/sam/biomedical-sciences",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "69836",
+      "etag": "\"1775668987\"",
+      "lastModified": "Wed, 08 Apr 2026 17:23:07 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/sias/sam/biomedical-sciences-transfer-credits",
@@ -7708,17 +6367,17 @@
       "ownerIds": [
         "uw-tacoma-biomedical-sciences"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/sias/sam/biomedical-sciences-transfer-credits",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "57827",
+      "etag": "\"1775670414\"",
+      "lastModified": "Wed, 08 Apr 2026 17:46:54 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/sias/sam/environmental-science",
@@ -7736,8 +6395,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-science",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "105291",
-      "etag": "\"1775657034\"",
-      "lastModified": "Wed, 08 Apr 2026 14:03:54 GMT",
+      "etag": "\"1775668925\"",
+      "lastModified": "Wed, 08 Apr 2026 17:22:05 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7759,17 +6418,17 @@
         "uw-tacoma-environmental-sustainability::environmental-communication-option",
         "uw-tacoma-environmental-sustainability::policy-law-option"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "68480",
+      "etag": "\"1775668922\"",
+      "lastModified": "Wed, 08 Apr 2026 17:22:02 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/sias/sam/mathematics",
@@ -7782,67 +6441,17 @@
       "ownerIds": [
         "uw-tacoma-mathematics"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/sias/sam/mathematics",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "68344",
+      "etag": "\"1775669051\"",
+      "lastModified": "Wed, 08 Apr 2026 17:24:11 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
-    },
-    {
-      "url": "https://www.tacoma.uw.edu/sias/sam/spanish-language-and-cultures",
-      "labels": [
-        "UW Tacoma Spanish Language and Cultures overview"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-tacoma-spanish-language-and-cultures"
-      ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
-    },
-    {
-      "url": "https://www.tacoma.uw.edu/sias/sam/writing-studies",
-      "labels": [
-        "UW Tacoma Writing Studies overview"
-      ],
-      "kinds": [
-        "major",
-        "pathway"
-      ],
-      "ownerIds": [
-        "uw-tacoma-writing-studies",
-        "uw-tacoma-writing-studies::creative-writing-track",
-        "uw-tacoma-writing-studies::rhetoric-social-change-track",
-        "uw-tacoma-writing-studies::technical-communication-track"
-      ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/sias/socs/ethnic-gender-and-labor-studies",
@@ -7859,17 +6468,17 @@
         "uw-tacoma-ethnic-gender-and-labor-studies::gender-studies-option",
         "uw-tacoma-ethnic-gender-and-labor-studies::labor-studies-option"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/sias/socs/ethnic-gender-and-labor-studies",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "50794",
+      "etag": "\"1775669029\"",
+      "lastModified": "Wed, 08 Apr 2026 17:23:49 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/sias/socs/history",
@@ -7882,17 +6491,17 @@
       "ownerIds": [
         "uw-tacoma-history"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/sias/socs/history",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "58590",
+      "etag": "\"1775669038\"",
+      "lastModified": "Wed, 08 Apr 2026 17:23:58 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/sias/socs/law-and-policy",
@@ -7905,40 +6514,17 @@
       "ownerIds": [
         "uw-tacoma-law-and-policy"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/sias/socs/law-and-policy",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "65044",
+      "etag": "\"1775669374\"",
+      "lastModified": "Wed, 08 Apr 2026 17:29:34 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
-    },
-    {
-      "url": "https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics",
-      "labels": [
-        "UW Tacoma Politics, Philosophy and Economics overview"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-tacoma-politics-philosophy-and-economics"
-      ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-ppe",
@@ -7951,17 +6537,17 @@
       "ownerIds": [
         "uw-tacoma-politics-philosophy-and-economics"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-ppe",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "50475",
+      "etag": "\"1775669066\"",
+      "lastModified": "Wed, 08 Apr 2026 17:24:26 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/sias/socs/psychology",
@@ -7974,40 +6560,17 @@
       "ownerIds": [
         "uw-tacoma-psychology"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/sias/socs/psychology",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "63279",
+      "etag": "\"1775669067\"",
+      "lastModified": "Wed, 08 Apr 2026 17:24:27 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
-    },
-    {
-      "url": "https://www.tacoma.uw.edu/soe/application-information",
-      "labels": [
-        "UW Tacoma School of Education application information"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-tacoma-education"
-      ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/soe/bachelor-arts-education",
@@ -8020,40 +6583,17 @@
       "ownerIds": [
         "uw-tacoma-education"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/soe/bachelor-arts-education",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "76345",
+      "etag": "\"1775669021\"",
+      "lastModified": "Wed, 08 Apr 2026 17:23:41 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
-    },
-    {
-      "url": "https://www.tacoma.uw.edu/swcj/admissions",
-      "labels": [
-        "UW Tacoma Criminal Justice admissions"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-tacoma-criminal-justice"
-      ],
-      "ok": false,
-      "status": 404,
-      "finalUrl": "https://www.tacoma.uw.edu/swcj/admissions",
-      "contentType": "text/html; charset=UTF-8",
-      "contentLength": "24470",
-      "etag": "\"1775657097\"",
-      "lastModified": "Wed, 08 Apr 2026 14:04:57 GMT",
-      "title": "Page not found | University of Washington Tacoma",
-      "bodyHash": "738b86f93cd48196634cfa057b0834e3db69da3868f9321074d9f20ade2a87a9",
       "error": null,
-      "fetchMode": "get"
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/swcj/basw-admission-requirements-and-how-apply",
@@ -8066,17 +6606,17 @@
       "ownerIds": [
         "uw-tacoma-social-welfare"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/swcj/basw-admission-requirements-and-how-apply",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "93676",
+      "etag": "\"1775670424\"",
+      "lastModified": "Wed, 08 Apr 2026 17:47:04 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/swcj/basw-application",
@@ -8089,17 +6629,17 @@
       "ownerIds": [
         "uw-tacoma-social-welfare"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/swcj/basw-application",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "100493",
       "etag": null,
       "lastModified": null,
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
@@ -8112,17 +6652,17 @@
       "ownerIds": [
         "uw-tacoma-social-welfare"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "92250",
+      "etag": "\"1775669071\"",
+      "lastModified": "Wed, 08 Apr 2026 17:24:31 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/swcj/criminal-justice",
@@ -8135,17 +6675,17 @@
       "ownerIds": [
         "uw-tacoma-criminal-justice"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/swcj/criminal-justice",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "76729",
+      "etag": "\"1775670428\"",
+      "lastModified": "Wed, 08 Apr 2026 17:47:08 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/swcj/criminal-justice-campus-curriculum",
@@ -8158,17 +6698,17 @@
       "ownerIds": [
         "uw-tacoma-criminal-justice"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/swcj/criminal-justice-campus-curriculum",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "99754",
+      "etag": "\"1775669010\"",
+      "lastModified": "Wed, 08 Apr 2026 17:23:30 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
@@ -8184,17 +6724,17 @@
         "uw-tacoma-sustainable-urban-development::community-engagement-option",
         "uw-tacoma-sustainable-urban-development::gis-option"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "84945",
+      "etag": "\"1775669084\"",
+      "lastModified": "Wed, 08 Apr 2026 17:24:44 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
@@ -8210,17 +6750,17 @@
         "uw-tacoma-urban-studies::community-engagement-option",
         "uw-tacoma-urban-studies::gis-option"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "87686",
+      "etag": "\"1775669088\"",
+      "lastModified": "Wed, 08 Apr 2026 17:24:48 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.tacoma.uw.edu/urban-studies/bs-urban-design",
@@ -8233,17 +6773,17 @@
       "ownerIds": [
         "uw-tacoma-urban-design"
       ],
-      "ok": false,
-      "status": null,
-      "finalUrl": null,
-      "contentType": null,
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/urban-studies/bs-urban-design",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "88412",
+      "etag": "\"1775669087\"",
+      "lastModified": "Wed, 08 Apr 2026 17:24:47 GMT",
       "title": null,
       "bodyHash": null,
-      "error": "fetch failed",
-      "fetchMode": "error"
+      "error": null,
+      "fetchMode": "head"
     },
     {
       "url": "https://www.uwb.edu/admissions/apply/major-planning-worksheets",
@@ -8260,7 +6800,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/admissions/apply/major-planning-worksheets",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "55099",
+      "contentLength": "55098",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8283,7 +6823,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "58225",
+      "contentLength": "58224",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8306,7 +6846,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "57951",
+      "contentLength": "57952",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8334,7 +6874,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "58456",
+      "contentLength": "58453",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8362,7 +6902,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "56266",
+      "contentLength": "56267",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8385,7 +6925,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "57555",
+      "contentLength": "57554",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8408,7 +6948,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "58647",
+      "contentLength": "58650",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8431,7 +6971,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "56138",
+      "contentLength": "56137",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8477,7 +7017,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "30095",
+      "contentLength": "57078",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8500,7 +7040,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "57057",
+      "contentLength": "57056",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8523,7 +7063,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/curriculum",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "55560",
+      "contentLength": "55559",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8546,7 +7086,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/prerequisites",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "55619",
+      "contentLength": "55621",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8618,7 +7158,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/admissions",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "57297",
+      "contentLength": "57298",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8687,7 +7227,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/education/undergraduate/elementary-education/admissions",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "58173",
+      "contentLength": "58174",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8756,7 +7296,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/american-ethnic-studies",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "66060",
+      "contentLength": "66061",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8779,7 +7319,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/conservation-restoration-science",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "66449",
+      "contentLength": "66447",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8802,7 +7342,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/culture-literature-arts",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "65499",
+      "contentLength": "65498",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8849,7 +7389,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/earth-system-science",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "69472",
+      "contentLength": "69473",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8872,7 +7412,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/environmental-studies",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "64132",
+      "contentLength": "64133",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8918,7 +7458,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/global-studies",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "64302",
+      "contentLength": "64303",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8941,7 +7481,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/interdisciplinary-arts",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "63979",
+      "contentLength": "63981",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8987,7 +7527,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/mathematical-thinking-visualization",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "63120",
+      "contentLength": "63119",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -9033,7 +7573,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/psychology",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "68246",
+      "contentLength": "68245",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -9056,7 +7596,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/science-technology-society",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "67449",
+      "contentLength": "67448",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -9079,7 +7619,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/society-ethics-human-behavior",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "61865",
+      "contentLength": "61866",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -9102,7 +7642,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/nhs/undergraduate/health-studies/admissions",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "56684",
+      "contentLength": "56685",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -9125,7 +7665,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/nhs/undergraduate/health-studies/overview",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "57178",
+      "contentLength": "57179",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -9171,7 +7711,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/nhs/undergraduate/rn-bsn/becomearn",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "61046",
+      "contentLength": "61045",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -9194,7 +7734,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/nhs/undergraduate/rn-bsn/how-to-apply",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "57426",
+      "contentLength": "57427",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -9218,7 +7758,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "67361",
+      "contentLength": "67360",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -9306,7 +7846,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "52965",
+      "contentLength": "52966",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -9329,7 +7869,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/applied-computing/admissions",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "67009",
+      "contentLength": "67010",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -9352,7 +7892,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/applied-computing/curriculum",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "68349",
+      "contentLength": "68348",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -9375,7 +7915,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/biology/admissions",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "64841",
+      "contentLength": "37879",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -9398,7 +7938,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "67550",
+      "contentLength": "67549",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -9421,7 +7961,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscompe/admissions",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "65956",
+      "contentLength": "65955",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -9444,7 +7984,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscompe/curriculum",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "65270",
+      "contentLength": "65271",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -9468,7 +8008,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/admissions",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "66700",
+      "contentLength": "66699",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -9492,7 +8032,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "68800",
+      "contentLength": "68803",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -9590,7 +8130,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/electrical/admissions",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "65827",
+      "contentLength": "65828",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -9614,29 +8154,6 @@
       "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/electrical/curriculum",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "64356",
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://www.uwb.edu/stem/undergraduate/majors/interactive-media-design",
-      "labels": [
-        "UW Bothell Interactive Media Design status page"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-bothell-interactive-media-design"
-      ],
-      "ok": false,
-      "status": 404,
-      "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/interactive-media-design",
-      "contentType": "text/html; charset=UTF-8",
-      "contentLength": "53377",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -9705,7 +8222,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/mechanical/admissions",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "65792",
+      "contentLength": "65789",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -9728,7 +8245,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/mechanical/curriculum",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "65590",
+      "contentLength": "65591",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -9752,7 +8269,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/physics/admissions",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "64349",
+      "contentLength": "64351",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -9776,7 +8293,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "64249",
+      "contentLength": "64248",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -10196,11 +8713,9 @@
         "Degree requirements"
       ],
       "kinds": [
-        "major",
         "pathway"
       ],
       "ownerIds": [
-        "uw-seattle-economics",
         "uw-seattle-economics::ba-route",
         "uw-seattle-economics::bs-route"
       ],
@@ -10210,6 +8725,29 @@
       "contentType": "text/html",
       "contentLength": "51933",
       "etag": "\"cadd-64ee36dff4f5a\"",
+      "lastModified": "Tue, 07 Apr 2026 19:02:50 GMT",
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head"
+    },
+    {
+      "url": "https://www.washington.edu/students/gencat/program/S/FrenchandItalianStudies-1102.html",
+      "labels": [
+        "Degree requirements"
+      ],
+      "kinds": [
+        "major"
+      ],
+      "ownerIds": [
+        "uw-seattle-french"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.washington.edu/students/gencat/program/S/FrenchandItalianStudies-1102.html",
+      "contentType": "text/html",
+      "contentLength": "38341",
+      "etag": "\"95c5-64ee36dfe64f9\"",
       "lastModified": "Tue, 07 Apr 2026 19:02:50 GMT",
       "title": null,
       "bodyHash": null,
@@ -10568,29 +9106,6 @@
       "contentType": "text/html",
       "contentLength": "158280",
       "etag": "\"26a48-64ee36dffc48a\"",
-      "lastModified": "Tue, 07 Apr 2026 19:02:50 GMT",
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head"
-    },
-    {
-      "url": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
-      "labels": [
-        "UW General Catalog Interdisciplinary Arts and Sciences individually designed major"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed"
-      ],
-      "ok": true,
-      "status": 200,
-      "finalUrl": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
-      "contentType": "text/html",
-      "contentLength": "143194",
-      "etag": "\"22f5a-64ee36dff766a\"",
       "lastModified": "Tue, 07 Apr 2026 19:02:50 GMT",
       "title": null,
       "bodyHash": null,

@@ -1,24 +1,12 @@
 const fs = require("fs");
 const path = require("path");
 const { spawnSync } = require("child_process");
+const { loadGrcPublicMaterials } = require("./grc-public-materials.cjs");
 
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
 const TS_NODE_COMPILER_OPTIONS = JSON.stringify({ module: "CommonJS" });
 const NPX_BIN = process.platform === "win32" ? "npx.cmd" : "npx";
-const SCHEDULE_DOWNLOADS = [
-  {
-    label: "Green River annual schedule 2024-2025",
-    url: "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2024-2025-Annual-Schedule.pdf",
-    outputPath: path.resolve(TMP_DIR, "2024-2025-Annual-Schedule.pdf"),
-  },
-  {
-    label: "Green River annual schedule 2025-2026",
-    url: "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf",
-    outputPath: path.resolve(TMP_DIR, "2025-2026-Annual-Schedule.pdf"),
-  },
-];
-
 function hasArg(flag) {
   return process.argv.slice(2).includes(flag);
 }
@@ -72,6 +60,10 @@ function runTsNode(scriptPath) {
   );
 }
 
+function sleep(delayMs) {
+  return new Promise((resolve) => setTimeout(resolve, delayMs));
+}
+
 function runVerification() {
   runStep("Run TypeScript typecheck", () => runCommand(NPX_BIN, ["tsc", "--noEmit"]));
   runStep("Run transfer planner tests", () =>
@@ -96,18 +88,47 @@ async function downloadFile(url, outputPath) {
   fs.writeFileSync(outputPath, buffer);
 }
 
-async function refreshScheduleDownloads(forceRefresh) {
+async function downloadFileWithRetry(url, outputPath, attempts = 3) {
+  let lastError = null;
+
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      await downloadFile(url, outputPath);
+      return;
+    } catch (error) {
+      lastError = error;
+      if (attempt < attempts) {
+        await sleep(800 * attempt);
+      }
+    }
+  }
+
+  throw lastError;
+}
+
+async function refreshScheduleDownloads(scheduleDownloads, forceRefresh) {
   fs.mkdirSync(TMP_DIR, { recursive: true });
 
-  for (const download of SCHEDULE_DOWNLOADS) {
+  for (const download of scheduleDownloads) {
     if (!forceRefresh && fs.existsSync(download.outputPath)) {
       console.log(`Keeping existing ${download.label}: ${download.outputPath}`);
       continue;
     }
 
     console.log(`Downloading ${download.label}...`);
-    await downloadFile(download.url, download.outputPath);
-    console.log(`Saved ${download.outputPath}`);
+    try {
+      await downloadFileWithRetry(download.url, download.outputPath);
+      console.log(`Saved ${download.outputPath}`);
+    } catch (error) {
+      if (fs.existsSync(download.outputPath)) {
+        console.log(
+          `Download failed for ${download.label}; keeping existing cached file ${download.outputPath}.`
+        );
+        console.log(`Download error: ${error.message}`);
+        continue;
+      }
+      throw error;
+    }
   }
 }
 
@@ -128,6 +149,18 @@ async function main() {
     console.log("Transfer planner verification complete.");
     return;
   }
+
+  const grcPublicMaterials = await runAsyncStep("Discover Green River public materials", () =>
+    loadGrcPublicMaterials({
+      forceRefresh: true,
+      allowSnapshotFallback: true,
+    })
+  );
+  const scheduleDownloads = grcPublicMaterials.annualSchedules.map((entry) => ({
+    label: `Green River annual schedule ${entry.label}`,
+    url: entry.url,
+    outputPath: entry.outputPath,
+  }));
 
   if (!skipSourceCheck) {
     runStep("Check official source links", () =>
@@ -168,7 +201,7 @@ async function main() {
 
   if (!skipDownloads) {
     await runAsyncStep("Snapshot Green River annual schedules", () =>
-      refreshScheduleDownloads(forceRefreshDownloads)
+      refreshScheduleDownloads(scheduleDownloads, forceRefreshDownloads)
     );
   }
 

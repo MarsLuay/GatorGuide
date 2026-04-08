@@ -431,12 +431,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -1133,12 +1142,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -1172,12 +1190,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -1211,12 +1238,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -1279,12 +1315,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -1318,12 +1363,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -1834,12 +1888,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -2009,12 +2072,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -2232,12 +2304,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -2427,12 +2508,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -2466,12 +2556,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -2545,6 +2644,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -2555,6 +2659,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -2667,6 +2775,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -2677,6 +2790,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -2745,12 +2862,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -2792,6 +2918,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -2802,6 +2933,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -2835,12 +2970,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -2874,6 +3018,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -2884,6 +3033,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -2921,6 +3074,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -2931,6 +3089,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -3064,6 +3226,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -3074,6 +3241,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -3103,12 +3274,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -3143,6 +3323,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -3153,6 +3338,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -3571,6 +3760,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -3581,6 +3775,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -3619,6 +3817,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -3629,6 +3832,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -3667,6 +3874,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -3677,6 +3889,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -3715,6 +3931,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -3725,6 +3946,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -3763,6 +3988,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -3773,6 +4003,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -3811,6 +4045,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -3821,6 +4060,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -3990,12 +4233,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -4034,6 +4286,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -4044,6 +4301,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -4082,6 +4343,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -4092,6 +4358,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -4129,6 +4399,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -4139,6 +4414,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -4176,6 +4455,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -4186,6 +4470,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -4223,6 +4511,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -4233,6 +4526,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -4270,6 +4567,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -4280,6 +4582,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -4317,6 +4623,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -4327,6 +4638,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -4364,6 +4679,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -4374,6 +4694,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -4411,6 +4735,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -4421,6 +4750,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -4458,6 +4791,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -4468,6 +4806,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -4505,6 +4847,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -4515,6 +4862,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -4553,6 +4904,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -4563,6 +4919,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -4601,6 +4961,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -4611,6 +4976,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -4649,6 +5018,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -4659,6 +5033,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -4697,6 +5075,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -4707,6 +5090,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -4745,6 +5132,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -4755,6 +5147,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -4889,12 +5285,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -4929,6 +5334,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -4939,6 +5349,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -4968,12 +5382,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -5008,6 +5431,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -5018,6 +5446,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -5047,12 +5479,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -5087,6 +5528,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -5097,6 +5543,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -5206,6 +5656,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -5216,6 +5671,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -5253,6 +5712,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -5263,6 +5727,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -5300,6 +5768,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -5310,6 +5783,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -5377,12 +5854,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -5495,12 +5981,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -5765,6 +6260,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -5775,6 +6275,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -5804,12 +6308,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -5876,6 +6389,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -5886,6 +6404,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -6166,6 +6688,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -6176,6 +6703,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -6213,6 +6744,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -6223,6 +6759,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -6441,12 +6981,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -6743,12 +7292,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -6797,6 +7355,146 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
     ],
     "notes": [
       "Schedule-display title from the official Green River annual schedules. Some longer course names may reflect printed schedule abbreviations rather than full catalog wording.",
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "BASIC 32",
+    "title": "Adult Basic Education Level 2",
+    "creditLabel": "1-15",
+    "catalogDescription": "Provides instruction in basic reading, writing, critical thinking, and math to help students acquire fundamental academic, career and adult life skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Instructor consent and appropriate CASAS score.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#basic-32",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "BASIC 33",
+    "title": "Adult Basic Education Level 3",
+    "creditLabel": "1-15",
+    "catalogDescription": "Provides instruction in basic reading, writing, critical thinking, and math to help students acquire fundamental academic, career and adult life skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Instructor consent and appropriate CASAS score.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#basic-33",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "BASIC 34",
+    "title": "Adult Basic Education Level 4",
+    "creditLabel": "1-15",
+    "catalogDescription": "Provides instruction in basic reading, writing, critical thinking, and math to help students acquire fundamental academic, career and adult life skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Instructor consent and appropriate CASAS score.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#basic-34",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "BASIC 75",
+    "title": "Basic High School Equivalency Test Preparation",
+    "creditLabel": "1-15",
+    "catalogDescription": "Helps students master the skills in writing, critical thinking, social studies, science, reading and mathematics to pass the high school equivalency test. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Instructor consent and appropriate CASAS score.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#basic-75",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "BASIC 76",
+    "title": "Advanced High School Equivalency Test Preparation",
+    "creditLabel": "1-15",
+    "catalogDescription": "Helps students master the skills in writing, critical thinking, social studies, science, reading and mathematics to pass the high school equivalency test. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Instructor consent and appropriate CASAS score.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#basic-76",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
   },
@@ -6857,6 +7555,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -6867,6 +7570,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -7132,6 +7839,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -7142,6 +7854,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -7180,6 +7896,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -7190,6 +7911,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -7223,12 +7948,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -7480,6 +8214,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -7490,6 +8229,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -7523,12 +8266,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -7562,12 +8314,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -7684,6 +8445,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -7694,6 +8460,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -7732,6 +8502,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -7742,6 +8517,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -7780,6 +8559,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -7790,6 +8574,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -7828,6 +8616,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -7838,6 +8631,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -8290,12 +9087,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -8568,6 +9374,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -8578,6 +9389,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -8616,6 +9431,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -8626,6 +9446,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -8664,6 +9488,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -8674,6 +9503,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -8712,6 +9545,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -8722,6 +9560,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -8756,6 +9598,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -8768,6 +9615,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
       },
       {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
+      },
+      {
         "label": "Green River online catalog course descriptions 2025-2026",
         "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#btac-101",
         "note": "Course detail parsed from the official Green River catalog course descriptions page."
@@ -8777,7 +9628,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
       "Schedule-display title from the official Green River annual schedules. Some longer course names may reflect printed schedule abbreviations rather than full catalog wording.",
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
-  },
+  }
+];
+
+const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
   {
     "schoolId": "grc",
     "code": "BTAC 102",
@@ -8804,6 +9658,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -8814,6 +9673,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -8852,6 +9715,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -8862,6 +9730,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -8948,10 +9820,7 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
     "notes": [
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
-  }
-];
-
-const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
+  },
   {
     "schoolId": "grc",
     "code": "BTAC 107",
@@ -8969,12 +9838,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -9081,6 +9959,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -9091,6 +9974,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -9120,12 +10007,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -9352,12 +10248,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -9430,12 +10335,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -9508,12 +10422,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -9953,12 +10876,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -9988,12 +10920,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -10023,12 +10964,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -10058,12 +11008,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -10147,12 +11106,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -10186,12 +11154,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -10329,6 +11306,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -10339,6 +11321,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -10376,6 +11362,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -10386,6 +11377,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -10534,12 +11529,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -10702,12 +11706,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -10737,12 +11750,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -10772,12 +11794,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -10904,6 +11935,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -10914,6 +11950,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -11364,12 +12404,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -11399,12 +12448,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -11434,12 +12492,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -11451,7 +12518,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
       "Schedule-display title from the official Green River annual schedules. Some longer course names may reflect printed schedule abbreviations rather than full catalog wording.",
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
-  },
+  }
+];
+
+const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
   {
     "schoolId": "grc",
     "code": "BUS 164",
@@ -11473,12 +12543,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -11508,12 +12587,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -11543,12 +12631,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -11616,10 +12713,7 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
     "notes": [
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
-  }
-];
-
-const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
+  },
   {
     "schoolId": "grc",
     "code": "BUS 181",
@@ -11641,12 +12735,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -11676,12 +12779,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -11711,12 +12823,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -11746,12 +12867,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -12000,6 +13130,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -12010,6 +13145,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -12116,6 +13255,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -12126,6 +13270,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -12354,12 +13502,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -12549,12 +13706,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -12588,12 +13754,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -12632,6 +13807,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -12642,6 +13822,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -12680,6 +13864,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -12690,6 +13879,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -13472,6 +14665,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -13482,6 +14680,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -13520,6 +14722,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -13530,6 +14737,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -13568,6 +14779,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -13578,6 +14794,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -13616,6 +14836,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -13626,6 +14851,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -13664,6 +14893,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -13674,6 +14908,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -13712,6 +14950,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -13722,6 +14965,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -14013,12 +15260,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -14048,12 +15304,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -14379,7 +15644,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
       "Schedule-display title from the official Green River annual schedules. Some longer course names may reflect printed schedule abbreviations rather than full catalog wording.",
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
-  },
+  }
+];
+
+const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
   {
     "schoolId": "grc",
     "code": "CJ 294",
@@ -14460,12 +15728,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -14499,12 +15776,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -14555,10 +15841,7 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
       "Schedule-display title from the official Green River annual schedules. Some longer course names may reflect printed schedule abbreviations rather than full catalog wording.",
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
-  }
-];
-
-const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
+  },
   {
     "schoolId": "grc",
     "code": "CJ& 110",
@@ -14693,12 +15976,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -14728,12 +16020,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -14792,12 +16093,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -14976,12 +16286,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -15014,12 +16333,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -15131,12 +16459,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -15272,6 +16609,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -15282,6 +16624,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -15364,6 +16710,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -15374,6 +16725,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -15412,6 +16767,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -15422,6 +16782,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -15460,6 +16824,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -15470,6 +16839,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -15508,6 +16881,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -15520,6 +16898,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
       },
       {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
+      },
+      {
         "label": "Green River online catalog course descriptions 2025-2026",
         "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#cmst-240",
         "note": "Course detail parsed from the official Green River catalog course descriptions page."
@@ -15528,6 +16910,27 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "notes": [
       "Schedule-display title from the official Green River annual schedules. Some longer course names may reflect printed schedule abbreviations rather than full catalog wording.",
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "COLL 110",
+    "title": "9:00A",
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
+      }
+    ],
+    "notes": [
+      "Schedule-display title from the official Green River annual schedules. Some longer course names may reflect printed schedule abbreviations rather than full catalog wording."
     ]
   },
   {
@@ -15547,12 +16950,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -17615,7 +19027,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
       "Schedule-display title from the official Green River annual schedules. Some longer course names may reflect printed schedule abbreviations rather than full catalog wording.",
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
-  },
+  }
+];
+
+const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
   {
     "schoolId": "grc",
     "code": "CS 108",
@@ -17729,6 +19144,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -17739,6 +19159,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -17772,12 +19196,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -17867,10 +19300,7 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
       "Schedule-display title from the official Green River annual schedules. Some longer course names may reflect printed schedule abbreviations rather than full catalog wording.",
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
-  }
-];
-
-const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
+  },
   {
     "schoolId": "grc",
     "code": "CS 170",
@@ -17975,6 +19405,30 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
     ],
     "notes": [
       "Schedule-display title from the official Green River annual schedules. Some longer course names may reflect printed schedule abbreviations rather than full catalog wording.",
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "D 1",
+    "title": "Diversity",
+    "creditLabel": "1 course",
+    "catalogDescription": "Diversity Course List",
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#d-1",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
   },
@@ -18164,12 +19618,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -18766,12 +20229,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -19129,12 +20601,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -20071,12 +21552,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -20106,12 +21596,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -20145,12 +21644,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -20215,12 +21723,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -20250,12 +21767,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -20324,12 +21850,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -20481,7 +22016,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
       "Schedule-display title from the official Green River annual schedules. Some longer course names may reflect printed schedule abbreviations rather than full catalog wording.",
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
-  },
+  }
+];
+
+const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
   {
     "schoolId": "grc",
     "code": "ECON 100",
@@ -20503,12 +22041,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -20570,12 +22117,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -20614,6 +22170,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -20624,6 +22185,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -20717,10 +22282,7 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
     "notes": [
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
-  }
-];
-
-const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
+  },
   {
     "schoolId": "grc",
     "code": "EDUC 210",
@@ -20934,12 +22496,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -20969,12 +22540,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -21154,6 +22734,1760 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
   },
   {
     "schoolId": "grc",
+    "code": "ELL 1",
+    "title": "ELL Community-Based Level 1",
+    "creditLabel": "1-12",
+    "catalogDescription": "Credits: 1-12 Beginning level community-based English class for ELL students. Students study reading, writing, speaking and listening. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 8 , 9 ; placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-1",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 10",
+    "title": "English Language Learning Level 1",
+    "creditLabel": "1-15",
+    "catalogDescription": "Credits: 1-15 Beginning level of ELL. Students prepare for academic or work readiness with contextualized study of content. Students work on all language skills and technology skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 8 or 9 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-10",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 16",
+    "title": "ELL Summer Institute Conversation Level 1",
+    "creditLabel": "1-5",
+    "catalogDescription": "Credits: 1-5 Provides beginning ELL students with conversation and pronunciation language practice. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-16",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 17",
+    "title": "ELL Technology Support Level 1",
+    "creditLabel": "1-5",
+    "catalogDescription": "Credits: 1-5 Provides ELL 1 , 8 , 9 , 10 students with opportunities to learn, improve, and use English through technology. Students will discover new ways to enhance their language-learning skills, which will add to their overall success in other ELL classes and beyond. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement test and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-17",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 2",
+    "title": "ELL Community-Based Level 2",
+    "creditLabel": "1-12",
+    "catalogDescription": "Credits: 1-12 High-beginning level community-based English class for ELL students. Students study reading, writing, speaking and listening. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 1 or 10 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-2",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 20",
+    "title": "English Language Learning Level 2",
+    "creditLabel": "1-15",
+    "catalogDescription": "Credits: 1-15 High-beginning level of ELL. Students prepare for academic or work readiness with contextualized study of content. Students work on all language skills plus information literacy, tech skills, and project-based learning. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 1 or 10 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-20",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 21",
+    "title": "English Language Learning Intensive Writing L2",
+    "creditLabel": "1-15",
+    "catalogDescription": "Credits: 1-15 High-beginning level of ELL for students who are permanent residents of Washington state. Students prepare for academic or work readiness with contextualized study of content. Students work on all language skills with an emphasis on reading and writing. Students will also work on information literacy skills, tech skills and project based learning. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement test and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-21",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 22",
+    "title": "ELL Summer Institute Conversation Level 2",
+    "creditValue": 5,
+    "creditLabel": "5",
+    "catalogDescription": "Credits: 5 Provides high-beginning ELL students with conversation and pronunciation language practice. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 1 or 10 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-22",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 23",
+    "title": "ELL Summer Institute Writing Level 2",
+    "creditValue": 5,
+    "creditLabel": "5",
+    "catalogDescription": "Credits: 5 High-beginning ELL students who want to focus on their fluency and accuracy in writing through project-based learning. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 1 or 10 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-23",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 24",
+    "title": "ELL Conversation Support Level 2",
+    "creditLabel": "1-5",
+    "catalogDescription": "Credits: 1-5 Provides high-beginning ELL students with language practice opportunities. Students become active participants in conversations and improve their ability to manage conversations. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 1 or 10 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-24",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 26",
+    "title": "ELL Writing Support Level 2",
+    "creditLabel": "1-5",
+    "catalogDescription": "Credits: 1-5 For current students in ELL 2 , 20 , 21 , 28 who want to improve their writing skills, and especially for students who have stronger speaking/listening skills than reading/writing skills for their level. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 1 or 10 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-26",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 27",
+    "title": "ELL Technology Support Level 2",
+    "creditLabel": "1-5",
+    "catalogDescription": "Credits: 1-5 Provides ELL 2 , 20 , 21 and 28 students with opportunities to learn, improve, and use English through technology. Students will discover new ways to enhance their language-learning skills, which will add to their overall success in other ELL classes and beyond. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 1 , 8 , 9 or 10 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-27",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 28",
+    "title": "English Language Learning Pathways to Work L2",
+    "creditLabel": "1-15",
+    "catalogDescription": "Credits: 1-15 Provides an introduction for students interested in entering the workforce or participating in an I-BEST. Gives students the necessary information to research a career or choose an I-BEST program. Teaches the students study skills, employability skills, and improves reading, writing, listening, and speaking skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 1 , 10 ; placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-28",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 29",
+    "title": "ELL Summer Institute Cmty Exploration Level 2",
+    "creditValue": 2,
+    "creditLabel": "2",
+    "catalogDescription": "Credits: 2 This is a multi-level class offered every summer quarter. Students will explore and become familiar with their community through field trips, volunteer experiences, and other hands-on project based learning. Students will use and strengthen their communicative language skills through authentic English immersion. Students will have the opportunity to explore the campus at large and off-campus sites. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 1 or 10 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-29",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 3",
+    "title": "ELL Community-Based Level 3",
+    "creditLabel": "1-12",
+    "catalogDescription": "Credits: 1-12 Low Intermediate level community-based English class for ELL students. Students study reading, writing, speaking and listening. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 2 , 20 , 21 or 28 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-3",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 30",
+    "title": "English Language Learning Level 3",
+    "creditLabel": "1-15",
+    "catalogDescription": "Credits: 1-15 Low-intermediate level of ELL. Students prepare for academic or work readiness with contextualized study of content. Students work on all language skills plus information literacy, tech skills, and project-based learning. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 2 , 20 , 21 or 28 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-30",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 31",
+    "title": "English Language Learning Intensive Writing L3",
+    "creditLabel": "1-15",
+    "catalogDescription": "Credits: 1-15 Low-intermediate level of ELL for students who are permanent residents of Washington state. Students prepare for academic or work readiness with contextualized study of content. Students work on all language skills with an emphasis on reading and writing. Students will also work on information literacy, tech skills, and project-based learning. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 20 , 21 , 22 or 28 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-31",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 32",
+    "title": "ELL Summer Institute Conversation Level 3",
+    "creditValue": 5,
+    "creditLabel": "5",
+    "catalogDescription": "Credits: 5 Provides low-intermediate ELL students with conversation and pronunciation practice. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 20 , 21 , 22 or 28 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-32",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 33",
+    "title": "ELL Summer Institute Writing Level 3",
+    "creditValue": 5,
+    "creditLabel": "5",
+    "catalogDescription": "Credits: 5 Low-intermediate ELL students who want to focus on their fluency and accuracy in writing through project-based learning. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 2 , 20 , 21 , 22 or 28 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-33",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 34",
+    "title": "ELL Conversation Support Level 3",
+    "creditLabel": "1-5",
+    "catalogDescription": "Credits: 1-5 Provides low-intermediate ELL students with language practice opportunities to share ideas, opinions and experiences. Students become active participants in conversations and improve their ability to manage conversations. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 2 , 20 , 21 or 28 ; placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-34",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 36",
+    "title": "ELL Writing Support Level 3",
+    "creditLabel": "1-5",
+    "catalogDescription": "Credits: 1-5 For current students in ELL 3 , 30 , 31 or 38 who want to improve their writing skills, and especially for students who have stronger speaking/listening skills than reading/writing skills for their level. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 20 , 21 or 28 ; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-36",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 37",
+    "title": "ELL Technology Support Level 3",
+    "creditLabel": "1-5",
+    "catalogDescription": "Credits: 1-5 Provides ELL 3 , 30 , 38 students with opportunities to learn, improve, and use English through technology. Students will discover new ways to enhance their language-learning skills, which will add to their overall success in other ELL classes and beyond. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 2 , 20 , 21 or 28 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-37",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 38",
+    "title": "English Language Learning Pathways to Work L3",
+    "creditLabel": "1-15",
+    "catalogDescription": "Credits: 1-15 Provides an introduction for students interested in entering the workforce or participating in an I-BEST. Gives students the necessary information to research a career or choose an I-BEST program. Teaches the students study skills, employability skills, and improves reading, writing, listening, and speaking skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 2 , 20 , 21 , 22 , 28 ; placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-38",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 39",
+    "title": "ELL Summer Institute Cmty Exploration Level 3",
+    "creditValue": 2,
+    "creditLabel": "2",
+    "catalogDescription": "Credits: 2 This is a multi-level class offered every summer quarter. Students will explore and become familiar with their community through field trips, volunteer experiences, and other hands-on project based learning. Students will use and strengthen their communicative language skills through authentic English immersion. Students will have the opportunity to explore the campus at large and off-campus sites. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 2 , 20 , 21 , 22 or 28 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-39",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 40",
+    "title": "English Language Learning Level 4",
+    "creditLabel": "1-15",
+    "catalogDescription": "Credits: 1-15 Intermediate level of ELL. Students prepare for academic or work readiness with contextualized study of content. Students work on all language skills plus information literacy, tech skills, and project-based learning. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 3 , 30 , 31 or 38 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-40",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 41",
+    "title": "English Language Learning Intensive Writing L4",
+    "creditLabel": "1-15",
+    "catalogDescription": "Credits: 1-15 Intermediate level of ELL for students who are permanent residents of Washington state. This class is intended for students who have much stronger speaking/listening skills than reading/writing skills for their level. It is for students who want to improve their writing skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 3 , 30 , 31 or 38 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-41",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 42",
+    "title": "ELL Summer Institute Conversation Level 4",
+    "creditValue": 5,
+    "creditLabel": "5",
+    "catalogDescription": "Credits: 5 Provides intermediate ELL students with conversation and pronunciation language practice. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 3 , 30 , 31 or 38 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-42",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 43",
+    "title": "ELL Summer Institute Writing Level 4",
+    "creditValue": 5,
+    "creditLabel": "5",
+    "catalogDescription": "Credits: 5 Intermediate ELL students who want to focus on their fluency and accuracy in writing through project-based learning. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 3 , 30 , 31 or 38 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-43",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 44",
+    "title": "ELL Conversation Support Level 4",
+    "creditLabel": "1-10",
+    "catalogDescription": "Credits: 1-10 Provides additional support for current students in ELL 40 and 48 who need to improve their conversational skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 3 , 30 , 31 or 38 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-44",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 45",
+    "title": "ELL Pronunciation Support Level 4",
+    "creditLabel": "1-5",
+    "catalogDescription": "Credits: 1-5 Provides additional support for current students in ELL 40 who need to improve their pronunciation skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 3 , 30 , 31 or 38 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-45",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 46",
+    "title": "ELL Writing Support Level 4",
+    "creditLabel": "1-5",
+    "catalogDescription": "Credits: 1-5 For current students in ELL 40 who want to improve their writing skills, and especially for students who have stronger speaking/listening skills than reading/writing skills for their level. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 3 , 30 , 31 , 38 ; placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-46",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 47",
+    "title": "ELL Technology Support Level 4",
+    "creditLabel": "1-5",
+    "catalogDescription": "Credits: 1-5 Provides ELL 40 , 41 and 48 students with opportunities to learn, improve, and use English through technology. Students will discover new ways to enhance their language-learning skills, which will add to their overall success in other ELL classes and beyond. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 3 , 30 , 31 or 38 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-47",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 48",
+    "title": "English Language Learning Pathways to Work L4",
+    "creditLabel": "1-15",
+    "catalogDescription": "Credits: 1-15 Provides an introduction for students interested in participating in an I-BEST. Allows students to learn about each I-BEST program and its' requirements. Gives students the necessary information to choose a program, while teaching the students study skills, employability skills, and improve their English in reading, writing, listening, and speaking. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 3 , 30 , 31 or 38 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-48",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 49",
+    "title": "ELL Summer Institute Cmty Exploration Level 4",
+    "creditValue": 2,
+    "creditLabel": "2",
+    "catalogDescription": "Credits: 2 This is a multi-level class offered every summer quarter. Students will explore and become familiar with their community through field trips, volunteer experiences, and other hands-on project based learning. Students will use and strengthen their communicative language skills through authentic English immersion. Students will have the opportunity to explore the campus at large and off-campus sites. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 3 , 30 , 31 or 38 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-49",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 50",
+    "title": "English Language Learning Level 5",
+    "creditLabel": "1-15",
+    "catalogDescription": "Credits: 1-15 High-Intermediate level of ELL. Students prepare for academic or work readiness with contextualized study of content. Students work on all language skills plus information literacy, tech skills, and project based learning. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 40 , 41 or 48 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-50",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 52",
+    "title": "ELL Summer Institute Conversation Level 5",
+    "creditValue": 5,
+    "creditLabel": "5",
+    "catalogDescription": "Credits: 5 Provides high-intermediate ELL students with conversation and pronunciation language practice. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 40 , 41 or 48 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-52",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 53",
+    "title": "ELL Summer Institute Writing Level 5",
+    "creditValue": 5,
+    "creditLabel": "5",
+    "catalogDescription": "Credits: 5 High-intermediate ELL students who want to focus on their fluency and accuracy in writing through project-based learning. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 40 , 41 or 48 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-53",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 54",
+    "title": "ELL Conversation Support Level 5",
+    "creditLabel": "1-5",
+    "catalogDescription": "Credits: 1-5 Provides additional conversation support for current students in ELL 50 who need to improve their conversational skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 40 , 41 or 48 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-54",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 55",
+    "title": "ELL Pronunciation Support Level 5",
+    "creditLabel": "1-5",
+    "catalogDescription": "Credits: 1-5 Provides additional support for current students in ELL 50 who need to improve their pronunciation skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 40 , 41 or 48 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-55",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 56",
+    "title": "ELL Writing Support Level 5",
+    "creditLabel": "1-5",
+    "catalogDescription": "Credits: 1-5 For current students in ELL 50 who want to improve their writing skills, and especially for students who have stronger speaking/listening skills than reading/writing skills for their level. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 40 , 41 or 48 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-56",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 57",
+    "title": "ELL Technology Support Level 5",
+    "creditLabel": "1-5",
+    "catalogDescription": "Credits: 1-5 Provides ELL 50 students with opportunities to learn, improve, and use English through technology. Students will discover new ways to enhance their language-learning skills, which will add to their overall success in other ELL classes and beyond. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 40 , 41 or 48 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-57",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 59",
+    "title": "ELL Summer Institute Cmty Exploration Level 5",
+    "creditValue": 2,
+    "creditLabel": "2",
+    "catalogDescription": "Credits: 2 This is a multi-level class offered every summer quarter. Students will explore and become familiar with their community through field trips, volunteer experiences, and other hands-on project based learning. Students will use and strengthen their communicative language skills through authentic English immersion. Students will have the opportunity to explore the campus at large and off-campus sites. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 40 , 41 or 48 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-59",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 6",
+    "title": "English Language Learning Intro to Literacy",
+    "creditLabel": "1-15",
+    "catalogDescription": "Credits: 1-15 Introduction to literacy level English class for ELL students. Students study print awareness, reading, writing, speaking and listening.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement test and instructor's permission.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-6",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 60",
+    "title": "English Language Learning Level 6",
+    "creditLabel": "1-15",
+    "catalogDescription": "Credits: 1-15 Advanced level of ELL. Students prepare for academic or work readiness with contextualized study of content. Students work on all language skills plus information literacy, tech skills, and project based learning. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 50 ; placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-60",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 62",
+    "title": "ELL Summer Institute Conversation Level 6",
+    "creditValue": 5,
+    "creditLabel": "5",
+    "catalogDescription": "Credits: 5 Provides advanced ELL students with conversation and pronunciation language practice. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 50 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-62",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 63",
+    "title": "ELL Summer Institute Writing Level 6",
+    "creditValue": 5,
+    "creditLabel": "5",
+    "catalogDescription": "Credits: 5 Advanced ELL students who want to focus on their fluency and accuracy in writing through project-based learning. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 50 ; placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-63",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 64",
+    "title": "ELL Conversation Support Level 6",
+    "creditLabel": "1-5",
+    "catalogDescription": "Credits: 1-5 Provides additional conversation support for current students in ELL 60 who need to improve their conversational skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 50 ; placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-64",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 65",
+    "title": "ELL Pronunciation Support Level 6",
+    "creditLabel": "1-5",
+    "catalogDescription": "Credits: 1-5 Provides additional support for current students in ELL 60 who need to improve their pronunciation skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 50 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-65",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 66",
+    "title": "ELL Writing Support Level 6",
+    "creditLabel": "1-5",
+    "catalogDescription": "Credits: 1-5 For current students in ELL 60 who want to improve their writing skills, and especially for students who have stronger speaking/listening skills than reading/writing skills for their level. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 50 ; placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-66",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 67",
+    "title": "ELL Technology Support Level 6",
+    "creditLabel": "1-5",
+    "catalogDescription": "Credits: 1-5 Provides ELL 60 students with opportunities to learn, improve, and use English through technology. Students will discover new ways to enhance their language-learning skills, which will add to their overall success in other ELL classes and beyond. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 50 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-67",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 69",
+    "title": "ELL Summer Institute Cmty Exploration Level 6",
+    "creditValue": 2,
+    "creditLabel": "2",
+    "catalogDescription": "Credits: 2 This is a multi-level class offered every summer quarter. Students will explore and become familiar with their community through field trips, volunteer experiences, and other hands-on project based learning. Students will use and strengthen their communicative language skills through authentic English immersion. Students will have the opportunity to explore the campus at large and off-campus sites. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 50 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-69",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 7",
+    "title": "ELL Reading Support for Literacy Level",
+    "creditLabel": "1-10",
+    "catalogDescription": "Credits: 1-10 This is a reading class for literacy level ELL students. Students will learn basic reading skills including letter sound recognition, basic vocabulary, fluency and comprehension.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement test and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-7",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 71",
+    "title": "Reading Support for Level 1",
+    "creditLabel": "1-5",
+    "catalogDescription": "Credits: 1-5 Reading class for beginning ELL students. Students will improve their basic reading skills including letter sound recognition, basic vocabulary, fluency and comprehension. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement test and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-71",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 72",
+    "title": "Reading Support for Level 2",
+    "creditLabel": "1-5",
+    "catalogDescription": "Reading class for high-beginning ELL students. Students will improve their basic reading skills including letter sound recognition, basic vocabulary, fluency and comprehension. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 8 , 9 or 10 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-72",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 76",
+    "title": "ELL Summer Institute Conversation Literacy Level",
+    "creditLabel": "1-10",
+    "catalogDescription": "Credits: 1-10 Provides literacy level ELL students with conversation and pronunciation language practice.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement test and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-76",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 8",
+    "title": "ELL Community-Based Literacy Level",
+    "creditLabel": "1-12",
+    "catalogDescription": "Credits: 1-12 Literacy level community-based English class for ELL students. Students study reading, writing, speaking and listening. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement test and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-8",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 82",
+    "title": "English for Women's Health Level 2",
+    "creditLabel": "1-5",
+    "catalogDescription": "Credits: 1-5 Provides high-beginning ELL students with opportunity to practice and improve speaking, listening, reading and writing skills in the context of women's health. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 1 or 10 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-82",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 83",
+    "title": "English for Women's Health Level 3",
+    "creditLabel": "1-5",
+    "catalogDescription": "Credits: 1-5 Provides low-intermediate ELL students with opportunity to practice and improve speaking, listening, reading and writing skills in the context of women's health. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 2 , 20 , 21 or 28 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-83",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 84",
+    "title": "English for Women's Health Level 4",
+    "creditLabel": "1-5",
+    "catalogDescription": "Provides intermediate ELL with opportunity to practice and improve speaking, listening, reading and writing skills in the context of women's health. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 3 , 30 , 31 or 38 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-84",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  }
+];
+
+const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
+  {
+    "schoolId": "grc",
+    "code": "ELL 85",
+    "title": "English For Women's Health Level 5",
+    "creditLabel": "1-5",
+    "catalogDescription": "Provides high-intermediate ELL students with opportunity to practice and improve speaking, listening, reading and writing skills in the context of women's health. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 40 or 41 or 48 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-85",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 86",
+    "title": "English for Women's Health Level 6",
+    "creditLabel": "1-5",
+    "catalogDescription": "Provides high level ELL with opportunity to practice and improve speaking, listening, reading and writing skills in the context of women's health. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 50 ; and placement test; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-86",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ELL 9",
+    "title": "ELL Literacy Level",
+    "creditLabel": "1-15",
+    "catalogDescription": "Credits: 1-15 Literacy level English class for ELL students. Students study reading, writing, speaking and listening. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement test and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ell-9",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
     "code": "ENGL 105",
     "title": "Grammar and Usage",
     "creditValue": 5,
@@ -21324,6 +24658,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -21334,6 +24673,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -21372,6 +24715,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -21382,6 +24730,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -21415,12 +24767,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -21459,6 +24820,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -21469,6 +24835,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -21960,12 +25330,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -22296,12 +25675,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -22311,6 +25699,89 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
     ],
     "notes": [
       "Schedule-display title from the official Green River annual schedules. Some longer course names may reflect printed schedule abbreviations rather than full catalog wording.",
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ENGL 90",
+    "title": "Spelling Improvement",
+    "creditValue": 3,
+    "creditLabel": "3",
+    "catalogDescription": "For students who want to increase their proficiency in spelling. Students learn to apply basic spelling rules to sound out words that are spelled phonetically, and to memorize commonly misspelled words that are not spelled entirely by sound. Includes lecture, discussion, class exercises, homework review, and testing in each concept-based unit.",
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#engl-90",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ENGL 97",
+    "title": "English Express: Integrating Reading and Writing",
+    "creditValue": 10,
+    "creditLabel": "10",
+    "catalogDescription": "Credits: 10 An accelerated course that enables students to more rapidly progress to college English. Focuses on integrated reading and writing and takes a process approach to issues central to college literacy and writing including information literacy, critical thinking, summary, analysis, synthesis and evaluation. Students will also learn college success strategies such as goal setting, academic and career planning, college resource utilization, financial literacy, time management, and persistence strategies.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Appropriate placement score.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#engl-97",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "ENGL 99",
+    "title": "Introductory Composition",
+    "creditValue": 5,
+    "creditLabel": "5",
+    "catalogDescription": "Credits: 5 Intensive writing course designed to prepare students for ENGL& 101 . Focuses on college-level composition skills (composition and revision processes) and college-level reading analysis. Presents a general review of the rules of English grammar and spelling.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ENGL 97 with a grade of 2.0 or higher; or appropriate English/reading placement; or instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#engl-99",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
   },
@@ -22340,6 +25811,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -22350,6 +25826,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -22383,12 +25863,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -22631,6 +26120,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -22641,6 +26135,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -22670,12 +26168,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -22918,12 +26425,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -23075,6 +26591,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -23085,6 +26606,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -23405,12 +26930,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -23444,12 +26978,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -23483,12 +27026,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -23518,12 +27070,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -23553,12 +27114,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -23609,10 +27179,7 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
       "Schedule-display title from the official Green River annual schedules. Some longer course names may reflect printed schedule abbreviations rather than full catalog wording.",
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
-  }
-];
-
-const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
+  },
   {
     "schoolId": "grc",
     "code": "FILM 151",
@@ -23692,12 +27259,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -23834,7 +27410,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
     "notes": [
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
-  },
+  }
+];
+
+const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
   {
     "schoolId": "grc",
     "code": "FLT 231",
@@ -24091,6 +27670,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -24101,6 +27685,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -24319,12 +27907,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -24391,6 +27988,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -24401,6 +28003,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -24577,12 +28183,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -25270,6 +28885,81 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
   },
   {
     "schoolId": "grc",
+    "code": "H 1",
+    "title": "Humanities/Fine Arts/English",
+    "creditValue": 5,
+    "creditLabel": "5",
+    "catalogDescription": "Humanities/Fine Arts/English Distribution",
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#h-1",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "H 2",
+    "title": "Humanities/Fine Arts/English",
+    "creditValue": 5,
+    "creditLabel": "5",
+    "catalogDescription": "Humanities/Fine Arts/English Distribution",
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#h-2",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "H 3",
+    "title": "Humanities/Fine Arts/English",
+    "creditValue": 5,
+    "creditLabel": "5",
+    "catalogDescription": "Humanities/Fine Arts/English Distribution",
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#h-3",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
     "code": "H SCI 110",
     "title": "Exploring Healthcare Careers",
     "creditValue": 3,
@@ -25385,12 +29075,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -25424,12 +29123,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -25596,6 +29304,56 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
   },
   {
     "schoolId": "grc",
+    "code": "HIST 21",
+    "title": "U.S. History 1",
+    "creditValue": 5,
+    "creditLabel": "5",
+    "catalogDescription": "Covers U.S. history from pre-Colombian times through Reconstruction. Explores topics in political, economic, social, intellectual, cultural, diplomatic and military history.",
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#hist-21",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "HIST 22",
+    "title": "U.S. History 2",
+    "creditValue": 5,
+    "creditLabel": "5",
+    "catalogDescription": "Covers U.S. History from Reconstruction to contemporary times. Explores topics in political, economic, social, intellectual, cultural, diplomatic and military history.",
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#hist-22",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
     "code": "HIST 228",
     "title": "Latinos in the United States",
     "creditValue": 5,
@@ -25752,6 +29510,31 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
       {
         "label": "Green River online catalog course descriptions 2025-2026",
         "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#hist-237",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "HIST 24",
+    "title": "Pacific Northwest and Washington State History",
+    "creditValue": 5,
+    "creditLabel": "5",
+    "catalogDescription": "Examines the emergence of the modern Pacific Northwest beginning with the earliest geological creation of the region and continuing with Native American habitation, contact with Euro-Americans, the development of trade and early settlement, the development of an industrial economy, the cycle of 20th century wars and depression, and the post-World War II emergence of the Pacific Northwest.",
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#hist-24",
         "note": "Course detail parsed from the official Green River catalog course descriptions page."
       }
     ],
@@ -25965,12 +29748,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -26004,12 +29796,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -26188,10 +29989,7 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
     "notes": [
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
-  }
-];
-
-const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
+  },
   {
     "schoolId": "grc",
     "code": "HL ED 190",
@@ -26239,6 +30037,65 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
       {
         "label": "Green River online catalog course descriptions 2025-2026",
         "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#hl-ed-198",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  }
+];
+
+const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
+  {
+    "schoolId": "grc",
+    "code": "HSC 25",
+    "title": "Civics and Government",
+    "creditLabel": "3-5",
+    "catalogDescription": "Introduces students to the American political system; its core values and principles as set forth in foundational documents, as well as its origins, institutions and operations. Includes brief treatments of political parties, historic development of American politics, civil liberties, plus taxes and budgets. Introduces students to the rights and responsibilities of citizenship and of democratic civic involvement.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Eligible for ENGL 97 ; or TS 75 ; or instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#hsc-25",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "HSC 97",
+    "title": "High School Completion World Languages PLA",
+    "creditLabel": "5-20",
+    "catalogDescription": "Credits: 5-20 This course awards prior learning credit for high school World Languages based on student's ability to demonstrate competency via assessment. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#hsc-97",
         "note": "Course detail parsed from the official Green River catalog course descriptions page."
       }
     ],
@@ -26296,12 +30153,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -26350,6 +30216,1038 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
     ],
     "notes": [
       "Schedule-display title from the official Green River annual schedules. Some longer course names may reflect printed schedule abbreviations rather than full catalog wording.",
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 2",
+    "title": "Introduction to Careers for ELL 2",
+    "creditLabel": "3-15",
+    "catalogDescription": "Provides an introduction for students interested in participating in an IBEST. Allows students to learn about each IBEST program and its' requirements. Gives students the necessary information to choose a program, while teaching the students study skills, employability skills, and improve their English in reading, writing, listening, and speaking. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 10 or appropriate CASAS score; or instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-2",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 3",
+    "title": "Introduction to Careers for ELL 3",
+    "creditLabel": "3-15",
+    "catalogDescription": "Provides an introduction for ELL level 3 students interested in participating in an IBEST. Allows students to learn about each IBEST program and its requirements. Gives students the necessary information to choose a program, while teaching the students study skills, employability skills, and improve their English in reading, writing, listening, and speaking. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 20 or appropriate CASAS score; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-3",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 32",
+    "title": "Early Childhood Education Success for ELL 5",
+    "creditLabel": "3-10",
+    "catalogDescription": "A transitional studies course taught in the IBEST option for ECE where students receive additional instruction needed to succeed in the program and find employment. Students research and prepare presentations, utilize critical thinking strategies and study skills, effectively read course materials, comprehend skills demonstrations and participate in workplace discussions, and increase job search skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement based on assessment measure; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-32",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 33",
+    "title": "Early Childhood Education Success for ELL 6",
+    "creditLabel": "3-10",
+    "catalogDescription": "A transitional studies course taught in the IBEST option for ECE where students receive additional instruction needed to succeed in the program and find employment. Students research and prepare presentations, utilize critical thinking strategies and study skills, effectively read course materials, comprehend skills demonstrations and participate in workplace discussions, and increase job search skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement based on assessment measure; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-33",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 35",
+    "title": "Early Childhood Education Success for TS 3",
+    "creditLabel": "3-10",
+    "catalogDescription": "A transitional studies course taught in the IBEST option for ECE where students receive additional instruction needed to succeed in the program and find employment. Students research and prepare presentations, utilize critical thinking strategies and study skills, effectively read course materials, comprehend skills demonstrations and participate in workplace discussions, and increase job search skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement based on assessment measure; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-35",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 36",
+    "title": "Early Childhood Education Success for TS 4",
+    "creditLabel": "3-10",
+    "catalogDescription": "A transitional studies course taught in the IBEST option for ECE where students receive additional instruction needed to succeed in the program and find employment. Students research and prepare presentations, utilize critical thinking strategies and study skills, effectively read course materials, comprehend skills demonstrations and participate in workplace discussions, and increase job search skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement based on assessment measure; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-36",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 37",
+    "title": "Early Childhood Education Success for TS 5",
+    "creditLabel": "3-10",
+    "catalogDescription": "A transitional studies course taught in the IBEST option for ECE where students receive additional instruction needed to succeed in the program and find employment. Students research and prepare presentations, utilize critical thinking strategies and study skills, effectively read course materials, comprehend skills demonstrations and participate in workplace discussions, and increase job search skills.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement based on assessment measure; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-37",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 38",
+    "title": "Early Childhood Education Success for TS 6",
+    "creditLabel": "3-10",
+    "catalogDescription": "A transitional studies course taught in the IBEST option for ECE where students receive additional instruction needed to succeed in the program and find employment. Students research and prepare presentations, utilize critical thinking strategies and study skills, effectively read course materials, comprehend skills demonstrations and participate in workplace discussions, and increase job search skills.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement based on assessment measure; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-38",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 4",
+    "title": "Introduction to Careers for ELL 4",
+    "creditLabel": "3-15",
+    "catalogDescription": "Provides an introduction for ELL Level 4 students interested in participating in an IBEST. Allows students to learn about each IBEST program and its requirements. Gives students the necessary information to choose a program, while teaching the students study skills, employability skills, and improve their English in reading, writing, listening, and speaking. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: ELL 20 or appropriate CASAS score; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-4",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 43",
+    "title": "BTAC Success for ELL 6",
+    "creditLabel": "3-10",
+    "catalogDescription": "A transitional studies course taught in the IBEST option for BTAC where students receive additional instruction needed to succeed in the program and find employment. Students research and prepare presentations, utilize critical thinking strategies and study skills, effectively read course materials, comprehend skills demonstrations and participate in workplace discussions, and increase job search skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement based on assessment measure; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-43",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 46",
+    "title": "BTAC Success for TS 4",
+    "creditLabel": "3-10",
+    "catalogDescription": "A transitional studies course taught in the IBEST option for BTAC where students receive additional instruction needed to succeed in the program and find employment. Students research and prepare presentations, utilize critical thinking strategies and study skills, effectively read course materials, comprehend skills demonstrations and participate in workplace discussions, and increase job search skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement based on assessment measure; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-46",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 47",
+    "title": "BTAC Success for TS 5",
+    "creditLabel": "3-10",
+    "catalogDescription": "A transitional studies course taught in the IBEST option for BTAC where students receive additional instruction needed to succeed in the program and find employment. Students research and prepare presentations, utilize critical thinking strategies and study skills, effectively read course materials, comprehend skills demonstrations and participate in workplace discussions, and increase job search skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement based on assessment measure; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-47",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 48",
+    "title": "BTAC Success for TS 6",
+    "creditLabel": "3-10",
+    "catalogDescription": "A transitional studies course taught in the IBEST option for BTAC where students receive additional instruction needed to succeed in the program and find employment. Students research and prepare presentations, utilize critical thinking strategies and study skills, effectively read course materials, comprehend skills demonstrations and participate in workplace discussions, and increase job search skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement based on assessment measure; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-48",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 51",
+    "title": "Student Success in the Trades for ELL 4",
+    "creditLabel": "3-10",
+    "catalogDescription": "A transitional studies course taught in the I-BEST program for students in the trades programs. Students receive additional instruction needed to succeed in the program and find employment. Students research and prepare safety presentations, utilize critical thinking strategies and study skills, effectively read course materials, comprehend skill demonstrations and participate in workplace discussions, apply math skills, and increase job search skills.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-51",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 52",
+    "title": "Student Success in the Trades for ELL 5",
+    "creditLabel": "3-10",
+    "catalogDescription": "A transitional studies course taught in the I-BEST program for students in the trades programs. Students receive additional instruction needed to succeed in the program and find employment. Students research and prepare safety presentations, utilize critical thinking strategies and study skills, effectively read course materials, comprehend skill demonstrations and participate in workplace discussions, apply math skills, and increase job search skills.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-52",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 53",
+    "title": "Student Success in the Trades for ELL 6",
+    "creditLabel": "3-10",
+    "catalogDescription": "A transitional studies course taught in the I-BEST program for students in the trades programs. Students receive additional instruction needed to succeed in the program and find employment. Students research and prepare safety presentations, utilize critical thinking strategies and study skills, effectively read course materials, comprehend skill demonstrations and participate in workplace discussions, apply math skills, and increase job search skills.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-53",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 54",
+    "title": "Student Success in the Trades for TS 2",
+    "creditLabel": "3-10",
+    "catalogDescription": "A transitional studies course taught in the I-BEST program for students in the trades programs. Students receive additional instruction needed to succeed in the program and find employment. Students research and prepare safety presentations, utilize critical thinking strategies and study skills, effectively read course materials, comprehend skill demonstrations and participate in workplace discussions, apply math skills, and increase job search skills.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-54",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 55",
+    "title": "Student Success in the Trades for TS 3",
+    "creditLabel": "3-10",
+    "catalogDescription": "A transitional studies course taught in the I-BEST program for students in the trades programs. Students receive additional instruction needed to succeed in the program and find employment. Students research and prepare safety presentations, utilize critical thinking strategies and study skills, effectively read course materials, comprehend skill demonstrations and participate in workplace discussions, apply math skills, and increase job search skills.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-55",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 56",
+    "title": "Student Success in the Trades for TS 4",
+    "creditLabel": "3-10",
+    "catalogDescription": "A transitional studies course taught in the I-BEST program for students in the trades programs. Students receive additional instruction needed to succeed in the program and find employment. Students research and prepare safety presentations, utilize critical thinking strategies and study skills, effectively read course materials, comprehend skill demonstrations and participate in workplace discussions, apply math skills, and increase job search skills.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-56",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 57",
+    "title": "Student Success in the Trades for TS 5",
+    "creditLabel": "3-10",
+    "catalogDescription": "A transitional studies course taught in the I-BEST program for students in the trades programs. Students receive additional instruction needed to succeed in the program and find employment. Students research and prepare safety presentations, utilize critical thinking strategies and study skills, effectively read course materials, comprehend skill demonstrations and participate in workplace discussions, apply math skills, and increase job search skills.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-57",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 58",
+    "title": "Student Success in the Trades for TS 6",
+    "creditLabel": "3-10",
+    "catalogDescription": "A transitional studies course taught in the I-BEST program for students in the trades programs. Students receive additional instruction needed to succeed in the program and find employment. Students research and prepare safety presentations, utilize critical thinking strategies and study skills, effectively read course materials, comprehend skill demonstrations and participate in workplace discussions, apply math skills, and increase job search skills.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-58",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 63",
+    "title": "Nursing Assistant Success for ELL 6",
+    "creditLabel": "3-10",
+    "catalogDescription": "A transitional studies course taught in the IBEST option for NA where students receive additional instruction needed to succeed in the program and find employment. Students research and prepare presentations, utilize critical thinking strategies and study skills, effectively read course materials, comprehend skills demonstrations and participate in workplace discussions, and increase job search skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement based on assessment measure; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-63",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 66",
+    "title": "Nursing Assistant Success for TS 4",
+    "creditLabel": "3-10",
+    "catalogDescription": "A transitional studies course taught in the IBEST option for NA where students receive additional instruction needed to succeed in the program and find employment. Students research and prepare presentations, utilize critical thinking strategies and study skills, effectively read course materials, comprehend skills demonstrations and participate in workplace discussions, and increase job search skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement based on assessment measure; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-66",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 67",
+    "title": "Nursing Assistant Success for TS 5",
+    "creditLabel": "3-10",
+    "catalogDescription": "A transitional studies course taught in the IBEST option for NA where students receive additional instruction needed to succeed in the program and find employment. Students research and prepare presentations, utilize critical thinking strategies and study skills, effectively read course materials, comprehend skills demonstrations and participate in workplace discussions, and increase job search skills.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement based on assessment measure; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-67",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 68",
+    "title": "Nursing Assistant Success for TS 6",
+    "creditLabel": "3-10",
+    "catalogDescription": "A transitional studies course taught in the IBEST option for NA where students receive additional instruction needed to succeed in the program and find employment. Students research and prepare presentations, utilize critical thinking strategies and study skills, effectively read course materials, comprehend skills demonstrations and participate in workplace discussions, and increase job search skills.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement based on assessment measure; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-68",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 73",
+    "title": "Medical Assistant Phlebotomy Success for ELL 6",
+    "creditLabel": "2-5",
+    "catalogDescription": "A transitional studies course taught in the IBEST option for Medical Assistant Phlebotomy where students receive additional instruction needed to succeed in the program and find employment. Students utilize critical thinking strategies and study skills, increase vocabulary, use basic mathematical skills as needed for phlebotomy, effectively read course materials, comprehend skills demonstrations, participate in workplace discussions, and increase job search skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement based on assessment measure and instructor's permission.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-73",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 74",
+    "title": "Medical Assistant Phlebotomy Success for TS 4",
+    "creditLabel": "2-5",
+    "catalogDescription": "A transitional studies course taught in the IBEST option for Medical Assistant Phlebotomy where students receive additional instruction needed to succeed in the program and find employment. Students utilize critical thinking strategies and study skills, increase vocabulary, use basic mathematical skills as needed for phlebotomy, effectively read course materials, comprehend skills demonstrations, participate in workplace discussions, and increase job search skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement based on assessment measure and instructor's permission.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-74",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 75",
+    "title": "Medical Assistant Phlebotomy Success for TS 5",
+    "creditLabel": "2-5",
+    "catalogDescription": "A transitional studies course taught in the IBEST option for Medical Assistant Phlebotomy where students receive additional instruction needed to succeed in the program and find employment. Students utilize critical thinking strategies and study skills, increase vocabulary, use basic mathematical skills as needed for phlebotomy, effectively read course materials, comprehend skills demonstrations, participate in workplace discussions, and increase job search skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement based on assessment measure and instructor's permission.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-75",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 76",
+    "title": "Medical Assistant Phlebotomy Success for TS 6",
+    "creditLabel": "2-5",
+    "catalogDescription": "A transitional studies course taught in the IBEST option for Medical Assistant Phlebotomy where students receive additional instruction needed to succeed in the program and find employment. Students utilize critical thinking strategies and study skills, increase vocabulary, use basic mathematical skills as needed for phlebotomy, effectively read course materials, comprehend skills demonstrations, participate in workplace discussions, and increase job search skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement based on assessment measure and instructor's permission.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-76",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 83",
+    "title": "Cardiac Monitor Technician Success for ELL 6",
+    "creditLabel": "2-5",
+    "catalogDescription": "A transitional studies course taught in the IBEST option for Cardiac Monitor Technician where students receive additional instruction needed to succeed in the program and find employment. Students utilize critical thinking strategies and study skills, increase vocabulary, use basic mathematical skills as needed for cardiac monitoring skills, effectively read course materials, comprehend skills demonstrations, participate in workplace discussions, and increase job search skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement based on assessment measure and instructor's permission",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-83",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 84",
+    "title": "Cardiac Monitor Technician Success for TS 4",
+    "creditLabel": "2-5",
+    "catalogDescription": "A transitional studies course taught in the IBEST option for Cardiac Monitor Technician where students receive additional instruction needed to succeed in the program and find employment. Students utilize critical thinking strategies and study skills, increase vocabulary, use basic mathematical skills as needed for cardiac monitoring skills, effectively read course materials, comprehend skills demonstrations, participate in workplace discussions, and increase job search skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement based on assessment measure and instructor's permission.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-84",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 85",
+    "title": "Cardiac Monitor Technician Success for TS 5",
+    "creditLabel": "2-5",
+    "catalogDescription": "A transitional studies course taught in the IBEST option for Cardiac Monitor Technician where students receive additional instruction needed to succeed in the program and find employment. Students utilize critical thinking strategies and study skills, increase vocabulary, use basic mathematical skills as needed for cardiac monitoring skills, effectively read course materials, comprehend skills demonstrations, participate in workplace discussions, and increase job search skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement based on assessment measure and instructor's permission.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-85",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 86",
+    "title": "Cardiac Monitor Technician Success for TS 6",
+    "creditLabel": "2-5",
+    "catalogDescription": "A transitional studies course taught in the IBEST option for Cardiac Monitor Technician where students receive additional instruction needed to succeed in the program and find employment. Students utilize critical thinking strategies and study skills, increase vocabulary, use basic mathematical skills as needed for cardiac monitoring skills, effectively read course materials, comprehend skills demonstrations, participate in workplace discussions, and increase job search skills. This is a pass/no credit course.",
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-86",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 93",
+    "title": "Practical Nursing Success for ELL 6",
+    "creditLabel": "3-5",
+    "catalogDescription": "Credits: 3-5 A transitional studies course taught in the IBEST option for Practical Nursing where students receive additional instruction needed to succeed in the program and find employment. Students research and prepare presentations, utilize critical thinking strategies and study skills, effectively read course materials, comprehend skills demonstrations, participate in workplace discussions, and increase job search skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement based on assessment measure and instructor's permission.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-93",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 94",
+    "title": "Practical Nursing Success for TS 4",
+    "creditLabel": "3-5",
+    "catalogDescription": "Credits: 3-5 A transitional studies course taught in the IBEST option for Practical Nursing where students receive additional instruction needed to succeed in the program and find employment. Students research and prepare presentations, utilize critical thinking strategies and study skills, effectively read course materials, comprehend skills demonstrations, participate in workplace discussions, and increase job search skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement based on assessment measure and instructor's permission.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-94",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 95",
+    "title": "Practical Nursing Success for TS 5",
+    "creditLabel": "3-5",
+    "catalogDescription": "Credits: 3-5 A transitional studies course taught in the IBEST option for Practical Nursing where students receive additional instruction needed to succeed in the program and find employment. Students research and prepare presentations, utilize critical thinking strategies and study skills, effectively read course materials, comprehend skills demonstrations, participate in workplace discussions, and increase job search skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement based on assessment measure and instructor's permission.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-95",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "IBEST 96",
+    "title": "Practical Nursing Success for TS 6",
+    "creditLabel": "3-5",
+    "catalogDescription": "Credits: 3-5 A transitional studies course taught in the IBEST option for Practical Nursing where students receive additional instruction needed to succeed in the program and find employment. Students research and prepare presentations, utilize critical thinking strategies and study skills, effectively read course materials, comprehend skills demonstrations, participate in workplace discussions, and increase job search skills. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Placement based on assessment measure and instructor's permission.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ibest-96",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
   },
@@ -26409,6 +31307,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -26419,6 +31322,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -26590,12 +31497,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -26799,12 +31715,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -26839,6 +31764,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -26849,6 +31779,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -26883,6 +31817,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -26893,6 +31832,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -26952,6 +31895,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -26962,6 +31910,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -26991,12 +31943,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -27031,6 +31992,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -27041,6 +32007,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -27078,6 +32048,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -27088,6 +32063,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -27157,6 +32136,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -27167,6 +32151,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -27205,6 +32193,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -27215,6 +32208,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -27292,6 +32289,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -27302,6 +32304,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -27340,6 +32346,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -27350,6 +32361,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -27383,12 +32398,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -27418,12 +32442,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -27462,6 +32495,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -27472,6 +32510,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -27510,6 +32552,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -27520,6 +32567,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -27558,6 +32609,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -27568,6 +32624,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -27601,12 +32661,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -27635,9 +32704,18 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
+      },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
         "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#it-365",
@@ -27645,6 +32723,7 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
       }
     ],
     "notes": [
+      "Schedule-display title from the official Green River annual schedules. Some longer course names may reflect printed schedule abbreviations rather than full catalog wording.",
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
   },
@@ -27669,12 +32748,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -27708,12 +32796,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -27747,12 +32844,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -27786,12 +32892,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -27803,7 +32918,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
       "Schedule-display title from the official Green River annual schedules. Some longer course names may reflect printed schedule abbreviations rather than full catalog wording.",
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
-  },
+  }
+];
+
+const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
   {
     "schoolId": "grc",
     "code": "IT 470",
@@ -27873,12 +32991,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -28214,6 +33341,27 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
   },
   {
     "schoolId": "grc",
+    "code": "JOURN 100",
+    "title": "Foundations of Journalism",
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
+      }
+    ],
+    "notes": [
+      "Schedule-display title from the official Green River annual schedules. Some longer course names may reflect printed schedule abbreviations rather than full catalog wording."
+    ]
+  },
+  {
+    "schoolId": "grc",
     "code": "JOURN 101",
     "title": "Multimedia Journalism",
     "creditValue": 5,
@@ -28229,12 +33377,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -28373,12 +33530,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -28408,12 +33574,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -28587,12 +33762,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -28657,12 +33841,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -28692,12 +33885,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -28727,12 +33929,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -28994,12 +34205,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -29033,12 +34253,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -29079,10 +34308,7 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
     "notes": [
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
-  }
-];
-
-const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
+  },
   {
     "schoolId": "grc",
     "code": "LAS 195",
@@ -29279,12 +34505,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -29385,12 +34620,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -29424,12 +34668,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -29500,6 +34753,205 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
   },
   {
     "schoolId": "grc",
+    "code": "MATH 30",
+    "title": "Support Course for MATH& 107",
+    "creditValue": 2,
+    "creditLabel": "2",
+    "catalogDescription": "Support course for MATH& 107 that covers pre-college topics needed in MATH& 107 - Math in Society . The course must be taken concurrently with MATH& 107 . Study of fractions, percents, exponents, roots, functions, formulas, linear equations, and study skills strategies. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: MATH 72 or TS/TS-OD 57 with a 2.5 or higher, or appropriate math placement; and concurrent enrollment in MATH& 107 . Recommended: READ 104 , ENGL 97",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#math-30",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "MATH 31",
+    "title": "Support Course for MATH& 141",
+    "creditValue": 2,
+    "creditLabel": "2",
+    "catalogDescription": "Credits: 2 Support course for MATH& 141 that covers pre-college topics needed in MATH& 141 - PreCalculus I . The course must be taken concurrently with MATH& 141 . Study of factoring, exponents, complex fractions, graphing, linear equations, linear inequalities, quadratic equations, literal equations, graphing calculator, and study skills strategies. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: MATH 97 with a grade of 2.0 or higher, or appropriate math placement; and concurrent enrollment in MATH& 141 . Recommended: READ 104 , ENGL 97",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#math-31",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "MATH 36",
+    "title": "Support Course for MATH& 146",
+    "creditValue": 2,
+    "creditLabel": "2",
+    "catalogDescription": "Support course for MATH& 146 that covers pre-college topics needed in MATH& 146 - Introduction to Statistics . The course must be taken concurrently with MATH& 146 . Study of linear graphing, rounding, scientific notation, exponents, order of operations, linear equation solving, square roots, and linear inequalities. The course emphasizes problem-solving techniques, critical thinking, and study skills to prepare students for statistical analysis. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: MATH 72 or TS/TS-OD 57 with a grade of 2.5 or higher, or appropriate math placement; and concurrent enrollment in MATH& 146 . Recommended: READ 104 , ENGL 97",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#math-36",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "MATH 39",
+    "title": "Support Course for MATH 109",
+    "creditValue": 2,
+    "creditLabel": "2",
+    "catalogDescription": "Support course for MATH 109 that covers pre-college topics needed in MATH 109 - Mathematical Models in Gaming . The course must be taken concurrently with MATH 109 . Study of functions, formulas, fractions, percents, exponents, roots, linear equations, and study skills strategies. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: MATH 72 or TS/TS-OD 57 with a 2.5 or higher, or appropriate math placement; and concurrent enrollment in MATH 109 . Recommended: READ 104 , ENGL 97",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#math-39",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "MATH 70",
+    "title": "Pre-Algebra",
+    "creditValue": 5,
+    "creditLabel": "5",
+    "catalogDescription": "Study of problem solving, geometry and measurement, exponents, fractions, percents, and signed numbers. Includes introductory work with polynomials and basic descriptive statistics.",
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#math-70",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "MATH 72",
+    "title": "Elementary Algebra",
+    "creditValue": 5,
+    "creditLabel": "5",
+    "catalogDescription": "Study of graphing, solving linear equations and inequalities, unit analysis, ratios, rates, proportions, solving systems of equations, Pythagorean Theorem, and applications. Course requires a graphing calculator.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: MATH 70 or TS/TS-OD 56 with a grade of 2.5 or higher; or appropriate math placement.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#math-72",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "MATH 97",
+    "title": "Intermediate Algebra",
+    "creditValue": 5,
+    "creditLabel": "5",
+    "catalogDescription": "Study of the definition of a function; graphs and solutions of quadratic, rational, radical, and literal equations; complex numbers; radical expressions; variation; and applications. Graphing calculator required.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: MATH 72 or TS/TS-OD 57 with a grade of 2.5 or higher; or appropriate math placement.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#math-97",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
     "code": "MATH& 107",
     "title": "Math in Society",
     "creditValue": 5,
@@ -29519,12 +34971,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -29621,6 +35082,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -29631,6 +35097,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -29669,6 +35139,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -29679,6 +35154,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -29712,12 +35191,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -29751,12 +35239,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -29795,6 +35292,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -29805,6 +35307,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -29843,6 +35349,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -29853,6 +35364,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -29886,12 +35401,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -29954,6 +35478,111 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
   },
   {
     "schoolId": "grc",
+    "code": "MATH& 264",
+    "title": "ARR",
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
+      }
+    ],
+    "notes": [
+      "Schedule-display title from the official Green River annual schedules. Some longer course names may reflect printed schedule abbreviations rather than full catalog wording."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "MATHM 70",
+    "title": "Pre-Algebra-Resource Module",
+    "creditLabel": "1-2",
+    "catalogDescription": "Uses self-paced, individual computer mediated learning to supplement concepts learned in MATH 70 . Recommended for students who want extra work in MATH 70 and for those who need to work on specific skills to prepare for MATH 70 . Students use software to learn standard concepts from MATH 70 . Students investigate Math Learning Center resources such as videos, computers, supplementary books, and/or drop-in tutoring to work on concepts learned in MATH 70 . A minimum of 22 hours of work must be completed to receive one credit, 44 hours for two credits. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: A student cannot be enrolled in more than one math modules class (MATHM 70, MATHM 72, MATHM 97) at the same time.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#mathm-70",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "MATHM 72",
+    "title": "Elementary Algebra-Resource Module",
+    "creditLabel": "1-2",
+    "catalogDescription": "Uses self-paced, individual computer mediated learning to supplement concepts learned in MATH 72 . Recommended for students who want extra work in MATH 72 and for those who need to work on specific skills to prepare for MATH 72 . Students use software to learn standard concepts from MATH 72 . Students investigate Math Learning Center resources such as videos, computers, supplementary books, and/or drop-in tutoring to work on concepts learned in MATH 72 . A minimum of 22 hours of work must be completed to receive one credit, 44 hours for two credits. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: A student cannot be enrolled in more than one math modules class (MATHM 70, MATHM 72, MATHM 97) at the same time.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#mathm-72",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "MATHM 97",
+    "title": "Intermediate Algebra-Resource Module",
+    "creditLabel": "1-2",
+    "catalogDescription": "Credits: 1-2 Uses self-paced, individual computer mediated learning to supplement concepts learned in MATH 97 . Recommended for students who want extra work in MATH 97 and for those who need to work on specific skills to prepare for MATH 97 . Students use software to learn standard concepts from MATH 97 . Students investigate Math Learning Center resources such as videos, computers, supplementary books, and/or drop-in tutoring to work on concepts learned in MATH 97 . A minimum of 22 hours of work must be completed to receive one credit, 44 hours for two credits. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: A student cannot be enrolled in more than one math modules class (MATHM 70, MATHM 72, MATHM 97) at the same time.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#mathm-97",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
     "code": "MFG 101",
     "title": "Introduction to Machining and Manufacturing",
     "creditLabel": "1-13",
@@ -29977,6 +35606,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -29987,6 +35621,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -30024,6 +35662,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -30034,6 +35677,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -30071,6 +35718,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -30081,6 +35733,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -30118,6 +35774,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -30128,6 +35789,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -30165,6 +35830,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -30175,6 +35845,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -30212,6 +35886,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -30222,6 +35901,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -30311,7 +35994,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
       "Schedule-display title from the official Green River annual schedules. Some longer course names may reflect printed schedule abbreviations rather than full catalog wording.",
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
-  },
+  }
+];
+
+const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
   {
     "schoolId": "grc",
     "code": "MFG 109",
@@ -30818,6 +36504,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -30828,6 +36519,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -30890,12 +36585,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -30973,6 +36677,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -30983,6 +36692,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -31128,6 +36841,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -31138,6 +36856,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -31176,6 +36898,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -31186,6 +36913,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -31258,12 +36989,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -31453,12 +37193,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -31491,12 +37240,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -31529,12 +37287,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -31567,12 +37334,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -31605,12 +37381,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -31643,12 +37428,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -31681,12 +37475,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -31716,12 +37519,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -31751,12 +37563,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -31786,12 +37607,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -31891,12 +37721,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -31930,12 +37769,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -31969,12 +37817,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -32066,10 +37923,7 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
     "notes": [
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
-  }
-];
-
-const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
+  },
   {
     "schoolId": "grc",
     "code": "MUSC 124",
@@ -33108,7 +38962,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "notes": [
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
-  },
+  }
+];
+
+const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
   {
     "schoolId": "grc",
     "code": "MUSC 299",
@@ -33385,6 +39242,81 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     ],
     "notes": [
       "Schedule-display title from the official Green River annual schedules. Some longer course names may reflect printed schedule abbreviations rather than full catalog wording.",
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "N 1",
+    "title": "Natural Science List A (Lab)",
+    "creditValue": 5,
+    "creditLabel": "5",
+    "catalogDescription": "Natural Science Distribution",
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#n-1",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "N 2",
+    "title": "Natural Science List A",
+    "creditValue": 5,
+    "creditLabel": "5",
+    "catalogDescription": "Natural Science Distribution",
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#n-2",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "N 3",
+    "title": "Natural Science List A or List B",
+    "creditValue": 5,
+    "creditLabel": "5",
+    "catalogDescription": "Natural Science Distribution",
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#n-3",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
   },
@@ -34186,6 +40118,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -34196,6 +40133,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -34234,6 +40175,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -34244,6 +40190,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -34282,6 +40232,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -34292,6 +40247,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -34330,6 +40289,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -34340,6 +40304,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -34932,10 +40900,7 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "notes": [
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
-  }
-];
-
-const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
+  },
   {
     "schoolId": "grc",
     "code": "NATRS 402",
@@ -35331,6 +41296,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -35341,6 +41311,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -35379,6 +41353,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -35389,6 +41368,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -35538,12 +41521,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -35984,7 +41976,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
       "Schedule-display title from the official Green River annual schedules. Some longer course names may reflect printed schedule abbreviations rather than full catalog wording.",
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
-  },
+  }
+];
+
+const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
   {
     "schoolId": "grc",
     "code": "OTA 124",
@@ -36587,12 +42582,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -36626,12 +42630,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -36743,12 +42756,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -36782,12 +42804,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -37055,12 +43086,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -37138,6 +43178,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -37148,6 +43193,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -37688,10 +43737,7 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "notes": [
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
-  }
-];
-
-const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
+  },
   {
     "schoolId": "grc",
     "code": "P E 147",
@@ -38478,12 +44524,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -38495,7 +44550,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
       "Schedule-display title from the official Green River annual schedules. Some longer course names may reflect printed schedule abbreviations rather than full catalog wording.",
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
-  },
+  }
+];
+
+const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
   {
     "schoolId": "grc",
     "code": "PHIL 112",
@@ -38517,12 +44575,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -38866,12 +44933,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -38978,6 +45054,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -38988,6 +45069,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -39021,12 +45106,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -39060,12 +45154,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -39120,12 +45223,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -39160,6 +45272,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -39170,6 +45287,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -39233,6 +45354,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -39243,6 +45369,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -39355,6 +45485,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -39365,6 +45500,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -39770,6 +45909,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -39780,6 +45924,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -39896,6 +46044,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -39906,6 +46059,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -40127,6 +46284,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -40137,6 +46299,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -40175,6 +46341,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -40185,6 +46356,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -40223,6 +46398,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -40233,6 +46413,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -40266,12 +46450,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -40304,12 +46497,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -40438,10 +46640,7 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
       "Schedule-display title from the official Green River annual schedules. Some longer course names may reflect printed schedule abbreviations rather than full catalog wording.",
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
-  }
-];
-
-const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
+  },
   {
     "schoolId": "grc",
     "code": "PNURSE 122",
@@ -40463,12 +46662,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -40502,12 +46710,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -40546,6 +46763,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -40556,6 +46778,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -40594,6 +46820,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -40604,6 +46835,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -40642,6 +46877,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -40652,6 +46892,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -40808,12 +47052,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -40982,12 +47235,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -41021,12 +47283,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -41099,12 +47370,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -41138,12 +47418,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -41177,12 +47466,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -41447,12 +47745,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -41464,7 +47771,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
       "Schedule-display title from the official Green River annual schedules. Some longer course names may reflect printed schedule abbreviations rather than full catalog wording.",
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
-  },
+  }
+];
+
+const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_16: unknown[] = [
   {
     "schoolId": "grc",
     "code": "PSYC& 180",
@@ -41515,12 +47825,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -43015,12 +49334,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -43209,6 +49537,81 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
   },
   {
     "schoolId": "grc",
+    "code": "S 1",
+    "title": "Social Science",
+    "creditValue": 5,
+    "creditLabel": "5",
+    "catalogDescription": "Social Science Distribution Page: 1 &lt;- Back 10 &#8230; 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 Contract All Courses | Print this Page Facebook this Page (opens a new window) Tweet this Page (opens a new window) All catalogs &#169; 2026 Green River College. Powered by Modern Campus Catalog™ . Course Descriptions - Green River College (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-107975519-3', 'auto'); ga('send', 'pageview'); Javascript is currently not supported, or is disabled by this browser. Please enable Javascript for full functionality. var gatewayFeatureSearchBar = true; var gatewayFeatureToolbarText = false; var gatewayFeatureBackToTopText = false; document.getElementById(\"gateway-styles-nojs\").parentNode.removeChild(document.getElementById(\"gateway-styles-nojs\")); Skip to Content jQuery(document).ready( function($) { if ($('#gateway-page').length) { $(' &#65279; ').appendTo('body'); $(window).scroll(function() { if ($(this).scrollTop() >= 50) { $('#return-to-top').fadeIn(200); } else { $('#return-to-top').fadeOut(200); } }); $('#return-to-top').click(function() { $('body,html').animate({ scrollTop : 0 }, 500); }); }}); Academic Catalog © 2018 GREEN RIVER COLLEGE, ALL RIGHTS RESERVED | Privacy | Accessibility & Disclaimers | Consumer Information | Careers 2025-2026 Catalog Green River College Apr 08, 2026 2025-2026 Catalog Select a Catalog 2025-2026 Catalog 2024-2025 Catalog [ARCHIVED CATALOG] 2023-2024 Catalog [ARCHIVED CATALOG] 2022-2023 Catalog [ARCHIVED CATALOG] 2021-2022 Catalog [ARCHIVED CATALOG] 2020-2021 Catalog [ARCHIVED CATALOG] 2019-2020 Catalog [ARCHIVED CATALOG] 2017-2019 Catalog Addendum [ARCHIVED CATALOG] Global Search Catalog Search Choose Search Location function reloadLocations() { var locations_in_use = 1; var chosen_locations_div = document.getElementById('chosen_locations_div'); var category = document.getElementById('location').value; if((category === '1' || category === '3' || category === '33') && (locations_in_use !== 0)){ chosen_locations_div.classList.remove(\"disabled\"); } else { chosen_locations_div.classList.add(\"disabled\"); } }; Select an option Courses Programs Hierarchy Items Other Content Entire Catalog Search Keyword Field Whole Word/Phrase Advanced Search Catalog Navigation Catalog Home Disclaimers Academic Calendar Welcome Getting Started Student Resources Academic Information Graduation Information Programs of Study Programs A to Z Curriculum Maps University Transfer Professional and Technical Other Learning Options Course Descriptions Career and Program Explorer College Policies Important Phone Numbers Faculty and Administration Glossary Campus Map Catalog Archive Career and Program Explorer My Portfolio HELP 2025-2026 Catalog Course Descriptions Contract All Courses | Print this Page Facebook this Page (opens a new window) Tweet this Page (opens a new window) This section includes a brief description of each credit class offered on a regular basis at Green River College. Classes are arranged in alphabetical order according to the college department that offers the class. Each listing includes a course number (prefix & code/number), course title, number of credits awarded, prerequisite, course outcomes, and academic transfer distributions are also designated where applicable. Common course numbers are identified by an “&” symbol at the end of the department abbreviation. Course numbers 100-299 are designated for Green River College programs and courses that transfer to senior institutions (transfer is sometimes limited). The 100 series is ordinarily for first-year students and the 200 series for second-year students, but this distinction varies because of differing requirements at other colleges and universities. The 300 and 400 level series are for third- and fourth-year students. The courses 0-99 are pre-college level courses, are designed to ease your transition to college and start on a pathway to a degree. Consult the “ Programs of Study ” section of this catalog and your faculty advisor for specific information about each class and about which classes will meet your requirements. Course Filter Filter this list of courses using course prefix, course code, keywords or any combination. Prefix: Code or Number: Type Keyword or Phrase: Choose Course Prefix All prefixes&#8230; 2 A SIM ACCT ACOMP AMES ANTH AP ARAB ART ASTR ATECH AVIA BASIC BIOL BNURSE BTAC BUS CARDIO CARP CHEM CHIN CJ CMST COOP CRC CS D DANCE DRMA ECED ECON EDUC ELL ELL-O ENGL ENGR ENV S ERTECH FILM FLT FRCH GEOG GEOL GERM H H SCI HEALTH HIST HL ED HSC HUMAN IBEST IBEST-OD INDUS INFO INPNUR INRNUR IT JAPN JOURN LAS MATH MATHM MFG MGMT MNURS MTX MUSC N N SCI NATRS NCLEX NRS A NUTR OCEA OTA P E PHIL PHLEB PHOTO PHYS PLA PNURSE POLS PSYC PTA READ RFPNUR RFRNUR S S SCI SDEV SOC SPAN ST SK TS TS-OD WELD WST WTECH WWT Choose Course Number Choose Course Type All types&#8230; Accounting American Ethnic Studies Anthropology Anatomy and Physiology Arabic Art Astronomy Automotive Technology Aviation Aviation - Flight Aviation - Simulation Basic Education Biology Business Management Business Technologies & Administrative Careers Cardiac Monitor Carpentry Technology Chemistry Chinese Communication Studies Computation Court Reporting and Captioning Computer Science Cooperative Education Criminal Justice Dance Drama Early Childhood Education Economics Education Emergency Room and Patient Care Technician Engineering English English Language Learning English Language Learning-Online Environmental Science Film French Geography Geology German Health Health Education Health Science High School Completion History Humanities Integrated Basic Education and Skills Training Integrated Basic Education and Skills Training-Open Doors Industrial Education Information Literacy Information Technology Japanese Journalism Latin American Studies Machining and Manufacturing Technology Mechatronics Technician Management Mathematics Music Natural Resources Natural Science Nursing Nursing, BSN Nursing Assistant Nutrition Occupational Therapy Assistant Oceanography Philosophy Phlebotomy Photography Physical Education Physical Therapist Assistant Physics Political Science Practical Nursing Prior Learning Assessment Psychology Reading Social Science Sociology Software Development Spanish Study Skills Transitional Studies Transitional Studies-Open Doors Wastewater Technology Water Supply Technology Water Technology Welding Distribution List Choose Keyword Find whole word or phrase only. Distribution List",
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#s-1",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "S 2",
+    "title": "Social Science",
+    "creditValue": 5,
+    "creditLabel": "5",
+    "catalogDescription": "Social Science Distribution",
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#s-2",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "S 3",
+    "title": "Social Science",
+    "creditValue": 5,
+    "creditLabel": "5",
+    "catalogDescription": "Social Science Distribution Page: 1 &lt;- Back 10 &#8230; 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 Contract All Courses | Print this Page Facebook this Page (opens a new window) Tweet this Page (opens a new window) All catalogs &#169; 2026 Green River College. Powered by Modern Campus Catalog™ .",
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#s-3",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
     "code": "S SCI 100",
     "title": "Truth, Lies and Social Statistics",
     "creditValue": 5,
@@ -43348,10 +49751,7 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "notes": [
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
-  }
-];
-
-const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
+  },
   {
     "schoolId": "grc",
     "code": "S SCI 194",
@@ -43433,6 +49833,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -43443,6 +49848,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -43550,12 +49959,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -44257,7 +50675,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
     "notes": [
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
-  },
+  }
+];
+
+const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_17: unknown[] = [
   {
     "schoolId": "grc",
     "code": "SOC 214",
@@ -44547,12 +50968,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -44614,12 +51044,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -44904,12 +51343,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -45000,12 +51448,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -45322,6 +51779,959 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
   },
   {
     "schoolId": "grc",
+    "code": "TS 1",
+    "title": "HS21+ Prior Learning Assessment",
+    "creditValue": 1,
+    "creditLabel": "1",
+    "catalogDescription": "Allows students to earn high school-level credit for prior experience or learning on an individual basis. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-1",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 20",
+    "title": "Transitional Studies Academic Orientation and Planning",
+    "creditLabel": "1-8",
+    "catalogDescription": "Credits: 1-8 In this class, you'll make connections with classmates, teachers, and staff. You'll explore available resources and prepare to transition to college programs. Building on your own strengths and support systems, we will develop academic and career goals, personal wellness strategies, and college readiness skills. Find yourself at Green River! This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-20",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 24",
+    "title": "HS 21+-Pacific NW & Washington State History",
+    "creditLabel": "3-5",
+    "catalogDescription": "Examines the emergence of the modern Pacific Northwest beginning with the earliest geological creation of the region and continuing with Native American habitation, contact with Euro-Americans, the development of trade and early settlement, the development of an industrial economy, the cycle of 20th century wars and depression, and the post-World War II emergence of the Pacific Northwest. Students who successfully complete this course will earn High school 21+ credits in Washington State History.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Appropriate placement and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-24",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 25",
+    "title": "HS+21-Civics and Government",
+    "creditLabel": "3-5",
+    "catalogDescription": "Introduces students to the American political system; its core values and principles as set forth in foundational documents, as well as its origins, institutions and operations. Includes brief treatments of political parties, historic development of American politics, civil liberties, plus taxes and budgets. Introduces students to the rights and responsibilities of citizenship and of democratic civic involvement. Students who successfully complete this course earn High School 21+ credits in Civics and Government.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Appropriate placement and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-25",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 52",
+    "title": "Adult Basic Math Support",
+    "creditLabel": "1-10",
+    "catalogDescription": "A fully integrated support course for TS 53 for Transitional Studies students. Helps students succeed in TS 53 by providing additional coaching in critical thinking skills, time management, and study skills. Provides enhanced instruction in computer literacy, testing literacy, math language skills, college and career math readiness, integrating on-campus resources for additional support. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Appropriate placement; concurrent enrollment in TS 53 ; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-52",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 53",
+    "title": "Adult Basic Math",
+    "creditLabel": "1-5",
+    "catalogDescription": "Students learn to easily select and apply the knowledge, skills, and strategies to independently accomplish well-defined and structured math tasks in a range of comfortable and familiar settings using whole numbers, decimals, and percents. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Appropriate placement and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-53",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 54",
+    "title": "Transitional Studies Math Review Support",
+    "creditLabel": "1-10",
+    "catalogDescription": "Credits: 1-10 A fully integrated support course for TS 55 for Transitional Studies students. Helps students succeed in TS 55 by providing additional coaching in critical thinking skills, time management, and study skills. Provides enhanced instruction in computer literacy, testing literacy, math language skills, college and career math readiness, integrating on-campus resources for additional support. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Appropriate placement; concurrent enrollment in TS 55 ; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-54",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 55",
+    "title": "Transitional Studies Math Review",
+    "creditLabel": "5-10",
+    "catalogDescription": "Credits: 5-10 Students review basic operations of arithmetic including whole numbers, fractions, decimals, percents, ratios, proportions, place value, roots, and basic concepts related to measurements and geometry. Methods include use of hands-on manipulatives. Study skills incorporate into the curriculum.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Appropriate placement and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-55",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 56",
+    "title": "TS Problem Solving for Math HS Equivalency I",
+    "creditLabel": "5-10",
+    "catalogDescription": "Study of problem solving, geometry and measurement, exponents and signed numbers. Includes introductory work with polynomials, simple equations, basic descriptive statistics, and graphing.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: TS 55 or appropriate placement; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-56",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 57",
+    "title": "TS Problem Solving for Math HS Equivalency 2",
+    "creditLabel": "5-8",
+    "catalogDescription": "Study of properties and terminology of real numbers, absolute value, simplifying algebraic expressions, integer exponents, graphing and solving linear equations and inequalities, unit analysis, ratios, rates, and proportions, solving systems of equations, factoring and performing operations on polynomial expressions, Pythagorean Theorem, functions, and applications. Course requires a graphing calculator.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: TS 56 with a grade of 2.5 or higher; or appropriate placement; or high school transcript evaluation; and instructor consent. Recommended: Eligible for READ 104 .",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-57",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 58",
+    "title": "TS Math High School Equivalency 1 Support",
+    "creditLabel": "1-10",
+    "catalogDescription": "A fully integrated support course for TS 56 for Transitional Studies students. Helps students succeed in TS 56 by providing additional coaching in critical thinking skills, time management, and study skills. Provides enhanced instruction in computer literacy, testing literacy, math language skills, college and career math readiness, integrating on-campus resources for additional support. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Appropriate placement; and concurrent enrollment in TS 56 ; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-58",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 59",
+    "title": "TS Math High School Equivalency 2 Support",
+    "creditLabel": "1-10",
+    "catalogDescription": "A fully integrated support course for TS 57 for Transitional Studies students. Helps students succeed in TS 57 by providing additional coaching in critical thinking skills, time management, and study skills. Provides enhanced instruction in computer literacy, testing literacy, math language skills, college and career math readiness, integrating on-campus resources for additional support. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Appropriate placement; and concurrent enrollment in TS 57 ; and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-59",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 62",
+    "title": "Language Arts in Social Studies Level 2",
+    "creditLabel": "5-10",
+    "catalogDescription": "Introduces Level 2 students to the basic principles of civics and government, US history, economics, geography, or current world problems. Students practice critical reading skills in the context of social studies-related texts. Students demonstrate analysis and understanding of social studies readings and concepts through the writing process.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Appropriate placement and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-62",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 63",
+    "title": "Language Arts in Social Studies Level 3",
+    "creditLabel": "5-10",
+    "catalogDescription": "Introduces Level 3 students to the basic principles of civics and government, US history, economics, geography, or current world problems. Students practice critical reading skills in the context of social studies-related texts. Students demonstrate analysis and understanding of social studies readings and concepts through the writing process.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Appropriate placement and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-63",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 64",
+    "title": "Language Arts in Social Studies Level 4",
+    "creditLabel": "5-10",
+    "catalogDescription": "Introduces Level 4 students to the basic principles of civics and government, US history, economics, geography, or current world problems. Students practice critical reading skills in the context of social studies-related texts. Students demonstrate analysis and understanding of social studies readings and concepts through the writing process. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Appropriate placement and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-64",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 65",
+    "title": "Language Arts in Social Studies Level 5",
+    "creditLabel": "5-10",
+    "catalogDescription": "Introduces Level 5 students to the basic principles of civics and government, US history, economics, geography, or current world problems. Students practice critical reading skills in the context of social studies-related texts. Students demonstrate analysis and understanding of social studies readings and concepts through the writing process. Students who successfully complete this course earn 21 high school credits in social studies.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Appropriate placement and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-65",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 66",
+    "title": "Language Arts in Social Studies Level 6",
+    "creditLabel": "5-10",
+    "catalogDescription": "Introduces Level 6 students to the basic principles of civics and government, US history, economics, geography, or current world problems. Students practice critical reading skills in the context of social studies-related texts. Students demonstrate analysis and understanding of social studies readings and concepts through the writing process. Students who successfully complete this course earn 21 high school credits in social studies.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Appropriate placement and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-66",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 72",
+    "title": "Language Arts and Literature Level 2",
+    "creditLabel": "5-10",
+    "catalogDescription": "Introduces Level 2 students to the basic principles of the mechanics of writing and strategies to develop and organize complex ideas in writing. Students practice critical reading skills and demonstrate understanding of a variety of texts, including fiction, nonfiction, and informational through the writing process.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Appropriate placement and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-72",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 73",
+    "title": "Language Arts and Literature Level 3",
+    "creditLabel": "5-10",
+    "catalogDescription": "Introduces Level 3 students to the basic principles of the mechanics of writing and strategies to develop and organize complex ideas in writing. Students practice critical reading skills and demonstrate understanding of a variety of texts, including fiction, nonfiction, and informational through the writing process.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Appropriate placement and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-73",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 74",
+    "title": "Language Arts and Literature Level 4",
+    "creditLabel": "5-10",
+    "catalogDescription": "Introduces Level 4 students to the basic principles of the mechanics of writing and strategies to develop and organize complex ideas in writing. Students practice critical reading skills and demonstrate understanding of a variety of texts, including fiction, nonfiction, and informational through the writing process. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Appropriate placement and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-74",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 75",
+    "title": "Language Arts and Literature Level 5",
+    "creditLabel": "5-10",
+    "catalogDescription": "Introduces Level 5 students to the basic principles of the mechanics of writing and strategies to develop and organize complex ideas in writing. Students practice critical reading skills and demonstrate understanding of a variety of texts, including fiction, nonfiction, and informational through the writing process. Students who successfully complete this course earn 21 high school credits in English.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Appropriate placement and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-75",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 76",
+    "title": "Language Arts and Literature Level 6-1",
+    "creditLabel": "5-10",
+    "catalogDescription": "Introduces Level 6 students to the basic principles of the mechanics of writing and strategies to develop and organize complex ideas in writing. Students practice critical reading skills and demonstrate understanding of a variety of texts, including fiction, nonfiction, and informational through the writing process. Students who successfully complete this course earn High School 21+ credits in English.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Appropriate placement and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-76",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 77",
+    "title": "Language Arts and Literature Level 6-2",
+    "creditLabel": "5-10",
+    "catalogDescription": "Introduces Level 6 students to take an additional course studying the basic principles of the mechanics of writing and strategies to develop and organize complex ideas in writing. Students practice critical reading skills and demonstrate understanding of a variety of texts, including fiction, nonfiction, and informational through the writing process. Students who successfully complete this course earn High School 21+ credits in English.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Appropriate placement and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-77",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 82",
+    "title": "Language Arts in Physical Science Level 2",
+    "creditLabel": "5-10",
+    "catalogDescription": "Introduces Level 2 students to the basic principles of science through reading and writing. Also introduces students to the history and nature of science. Students explore the fundamental concepts of physics, chemistry, astronomy and earth science.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Appropriate placement and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-82",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 83",
+    "title": "Language Arts in Physical Science Level 3",
+    "creditLabel": "5-10",
+    "catalogDescription": "Introduces Level 3 students to the basic principles of science through reading and writing. Also introduces students to the history and nature of science. Students explore the fundamental concepts of physics, chemistry, astronomy and earth science.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Appropriate placement and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-83",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 84",
+    "title": "Language Arts in Physical Science Level 4",
+    "creditLabel": "5-10",
+    "catalogDescription": "Introduces Level 4 students to the basic principles of science through reading and writing. Also introduces students to the history and nature of science. Students explore the fundamental concepts of physics, chemistry, astronomy and earth science. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Appropriate placement and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-84",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 85",
+    "title": "Language Arts in Science Level 5",
+    "creditLabel": "5-10",
+    "catalogDescription": "Introduces Level 5 students to the basic principles of science through reading and writing. Also introduces students to the history and nature of science. Students explore the fundamental concepts of life, physics, chemistry, astronomy or earth science. Students who successfully complete this course earn High School 21+ credits in science OR lab science.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Appropriate placement and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-85",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 86",
+    "title": "Language Arts in Science Level 6",
+    "creditLabel": "5-10",
+    "catalogDescription": "Introduces Level 6 students to the basic principles of science through reading and writing. Also introduces students to the history and nature of science. Students explore the fundamental concepts of life, physics, chemistry, astronomy or earth science. Students who successfully complete this course earn High School 21+ credits in science OR lab science.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Appropriate placement and instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-86",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 92",
+    "title": "HS21+ Prior Learning Assessment-Health & Fitness",
+    "creditLabel": "1-20",
+    "catalogDescription": "Credits: 1-20 Allows students to earn high school-level credit for prior experience or learning on an individual basis. Involves documentation of the skill or training in health & fitness, accompanied by a reflection, written by the student/applicant, that describes the importance of this skill and why it should be considered for high school credit. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-92",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 93",
+    "title": "HS21+ Prior Learning Assessment-Art",
+    "creditLabel": "1-20",
+    "catalogDescription": "Credits: 1-20 Allows students to earn high school-level credit for prior experience or learning on an individual basis. Involves documentation of the skill or training in art, including student-created art samples accompanied by artist statements or a research paper on other artists' work. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-93",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 94",
+    "title": "HS21+ Prior Learning Assessment-Occupational Ed",
+    "creditLabel": "1-20",
+    "catalogDescription": "Credits: 1-20 Allows students to earn high school-level credit for prior experience or learning on an individual basis. Involves documentation of the skill or training in occupational education, accompanied by a reflection, written by the student/applicant, that describes the importance of this skill and why it should be considered for high school credit. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-94",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 95",
+    "title": "HS 21+ Prior Learning Assessment 1",
+    "creditLabel": "5-20",
+    "catalogDescription": "Credits: 5-20 Allows students to earn high school-level credit for prior experience or learning on an individual basis. Involves documentation of the skill or training in question, including but not limited to health and fitness, occupational education and fine arts, accompanied by a 2-page (750 word) reflection, written by the student/applicant, that describes the importance of this skill and why it should be considered for high school credit. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-95",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 96",
+    "title": "HS 21+ Prior Learning Assessment 2",
+    "creditLabel": "5-20",
+    "catalogDescription": "Credits: 5-20 Allows students to earn high school-level credit for prior experience or learning on an individual basis. Involves documentation of the skill or training in question, including but not limited to health and fitness, occupational education and fine arts, accompanied by a 2-page (750 word) reflection, written by the student/applicant, that describes the importance of this skill and why it should be considered for high school credit. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-96",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
+    "code": "TS 97",
+    "title": "Transitional Studies World Languages PLA",
+    "creditLabel": "5-20",
+    "catalogDescription": "This course awards prior learning credit for high school World Languages based on student's ability to demonstrate competency via assessment. This is a pass/no credit course.",
+    "prerequisiteNotes": [
+      "Official Green River enrollment requirement text: Instructor consent.",
+      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "2025-2026",
+        "endLabel": "2025-2026",
+        "note": "Parsed from the official Green River online catalog course descriptions."
+      }
+    ],
+    "sourceLinks": [
+      {
+        "label": "Green River online catalog course descriptions 2025-2026",
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#ts-97",
+        "note": "Course detail parsed from the official Green River catalog course descriptions page."
+      }
+    ],
+    "notes": [
+      "Source-backed Green River catalog metadata parsed from the official online course descriptions."
+    ]
+  },
+  {
+    "schoolId": "grc",
     "code": "WELD 103",
     "title": "Special Welding",
     "creditValue": 3,
@@ -45346,6 +52756,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -45356,6 +52771,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -45384,9 +52803,18 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
+      },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
         "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624#weld-107",
@@ -45394,6 +52822,7 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
       }
     ],
     "notes": [
+      "Schedule-display title from the official Green River annual schedules. Some longer course names may reflect printed schedule abbreviations rather than full catalog wording.",
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
   },
@@ -45422,6 +52851,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -45432,6 +52866,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -45469,6 +52907,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -45479,6 +52922,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -45516,6 +52963,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -45526,6 +52978,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -45647,6 +53103,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -45657,6 +53118,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -45694,6 +53159,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -45704,6 +53174,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -45741,6 +53215,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
         "startLabel": "2025-2026",
         "endLabel": "2025-2026",
         "note": "Parsed from the official Green River online catalog course descriptions."
+      },
+      {
+        "startLabel": "2026-2027",
+        "endLabel": "2026-2027",
+        "note": "Observed in the official Green River annual schedule for this academic year."
       }
     ],
     "sourceLinks": [
@@ -45751,6 +53230,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
       {
         "label": "Green River annual schedule 2025-2026",
         "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
+      },
+      {
+        "label": "Green River annual schedule 2026-2027",
+        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf"
       },
       {
         "label": "Green River online catalog course descriptions 2025-2026",
@@ -45847,7 +53330,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
     "notes": [
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
-  },
+  }
+];
+
+const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_18: unknown[] = [
   {
     "schoolId": "grc",
     "code": "WST 183",
@@ -46099,10 +53585,7 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
     "notes": [
       "Source-backed Green River catalog metadata parsed from the official online course descriptions."
     ]
-  }
-];
-
-const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_16: unknown[] = [
+  },
   {
     "schoolId": "grc",
     "code": "WTECH 184",
@@ -47939,7 +55422,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_16: unknown[] = [
     "notes": [
       "Source-backed UW Bothell catalog metadata parsed from the official UW course descriptions."
     ]
-  },
+  }
+];
+
+const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_19: unknown[] = [
   {
     "schoolId": "uw-bothell",
     "code": "BES 316",
@@ -48166,10 +55652,7 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_16: unknown[] = [
     "notes": [
       "Source-backed UW Bothell catalog metadata parsed from the official UW course descriptions."
     ]
-  }
-];
-
-const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_17: unknown[] = [
+  },
   {
     "schoolId": "uw-bothell",
     "code": "BIS 215",
@@ -49963,7 +57446,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_17: unknown[] = [
     "notes": [
       "Source-backed UW Bothell catalog metadata parsed from the official UW course descriptions."
     ]
-  },
+  }
+];
+
+const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_20: unknown[] = [
   {
     "schoolId": "uw-bothell",
     "code": "STMATH 126",
@@ -50200,10 +57686,7 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_17: unknown[] = [
     "notes": [
       "Source-backed UW Bothell catalog metadata parsed from the official UW course descriptions."
     ]
-  }
-];
-
-const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_18: unknown[] = [
+  },
   {
     "schoolId": "uw-bothell",
     "code": "STMATH 424",
@@ -52106,7 +59589,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_18: unknown[] = [
     "notes": [
       "Source-backed UW Seattle catalog metadata parsed from the official UW course descriptions."
     ]
-  },
+  }
+];
+
+const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_21: unknown[] = [
   {
     "schoolId": "uw-seattle",
     "code": "ART 240",
@@ -52332,10 +59818,7 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_18: unknown[] = [
     "notes": [
       "Source-backed UW Seattle catalog metadata parsed from the official UW course descriptions."
     ]
-  }
-];
-
-const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_19: unknown[] = [
+  },
   {
     "schoolId": "uw-seattle",
     "code": "ART 390",
@@ -54258,7 +61741,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_19: unknown[] = [
     "notes": [
       "Source-backed UW Seattle catalog metadata parsed from the official UW course descriptions."
     ]
-  },
+  }
+];
+
+const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_22: unknown[] = [
   {
     "schoolId": "uw-seattle",
     "code": "CEE 480",
@@ -54508,10 +61994,7 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_19: unknown[] = [
     "notes": [
       "Source-backed UW Seattle catalog metadata parsed from the official UW course descriptions."
     ]
-  }
-];
-
-const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_20: unknown[] = [
+  },
   {
     "schoolId": "uw-seattle",
     "code": "CHEM 223",
@@ -56370,7 +63853,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_20: unknown[] = [
     "notes": [
       "Source-backed UW Seattle catalog metadata parsed from the official UW course descriptions."
     ]
-  },
+  }
+];
+
+const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_23: unknown[] = [
   {
     "schoolId": "uw-seattle",
     "code": "EE 449",
@@ -56618,10 +64104,7 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_20: unknown[] = [
     "notes": [
       "Source-backed UW Seattle catalog metadata parsed from the official UW course descriptions."
     ]
-  }
-];
-
-const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_21: unknown[] = [
+  },
   {
     "schoolId": "uw-seattle",
     "code": "ENGR 490",
@@ -58420,7 +65903,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_21: unknown[] = [
     "notes": [
       "Source-backed UW Seattle catalog metadata parsed from the official UW course descriptions."
     ]
-  },
+  }
+];
+
+const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_24: unknown[] = [
   {
     "schoolId": "uw-seattle",
     "code": "GREEK 300",
@@ -58651,10 +66137,7 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_21: unknown[] = [
     "notes": [
       "Source-backed UW Seattle catalog metadata parsed from the official UW course descriptions."
     ]
-  }
-];
-
-const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_22: unknown[] = [
+  },
   {
     "schoolId": "uw-seattle",
     "code": "GWSS 499",
@@ -60480,7 +67963,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_22: unknown[] = [
     "notes": [
       "Source-backed UW Seattle catalog metadata parsed from the official UW course descriptions."
     ]
-  },
+  }
+];
+
+const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_25: unknown[] = [
   {
     "schoolId": "uw-seattle",
     "code": "MATH 334",
@@ -60715,10 +68201,7 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_22: unknown[] = [
     "notes": [
       "Source-backed UW Seattle catalog metadata parsed from the official UW course descriptions."
     ]
-  }
-];
-
-const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_23: unknown[] = [
+  },
   {
     "schoolId": "uw-seattle",
     "code": "ME 355",
@@ -62559,7 +70042,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_23: unknown[] = [
     "notes": [
       "Source-backed UW Seattle catalog metadata parsed from the official UW course descriptions."
     ]
-  },
+  }
+];
+
+const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_26: unknown[] = [
   {
     "schoolId": "uw-seattle",
     "code": "MUSIC 303",
@@ -62796,10 +70282,7 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_23: unknown[] = [
     "notes": [
       "Source-backed UW Seattle catalog metadata parsed from the official UW course descriptions."
     ]
-  }
-];
-
-const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_24: unknown[] = [
+  },
   {
     "schoolId": "uw-seattle",
     "code": "MUSIC 400",
@@ -64648,7 +72131,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_24: unknown[] = [
     "notes": [
       "Source-backed UW Seattle catalog metadata parsed from the official UW course descriptions."
     ]
-  },
+  }
+];
+
+const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_27: unknown[] = [
   {
     "schoolId": "uw-seattle",
     "code": "OCEAN 330",
@@ -64888,10 +72374,7 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_24: unknown[] = [
     "notes": [
       "Source-backed UW Seattle catalog metadata parsed from the official UW course descriptions."
     ]
-  }
-];
-
-const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_25: unknown[] = [
+  },
   {
     "schoolId": "uw-seattle",
     "code": "PHIL 160",
@@ -66761,7 +74244,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_25: unknown[] = [
     "notes": [
       "Source-backed UW Seattle catalog metadata parsed from the official UW course descriptions."
     ]
-  },
+  }
+];
+
+const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_28: unknown[] = [
   {
     "schoolId": "uw-seattle",
     "code": "STAT 391",
@@ -67023,10 +74509,7 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_25: unknown[] = [
     "notes": [
       "Source-backed UW Seattle catalog metadata parsed from the official UW course descriptions."
     ]
-  }
-];
-
-const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_26: unknown[] = [
+  },
   {
     "schoolId": "uw-seattle",
     "code": "STAT 534",
@@ -68814,7 +76297,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_26: unknown[] = [
     "notes": [
       "Source-backed UW Tacoma catalog metadata parsed from the official UW course descriptions."
     ]
-  },
+  }
+];
+
+const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_29: unknown[] = [
   {
     "schoolId": "uw-tacoma",
     "code": "THIST 151",
@@ -69041,10 +76527,7 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_26: unknown[] = [
     "notes": [
       "Source-backed UW Tacoma catalog metadata parsed from the official UW course descriptions."
     ]
-  }
-];
-
-const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_27: unknown[] = [
+  },
   {
     "schoolId": "uw-tacoma",
     "code": "TLIT 101",
@@ -70330,7 +77813,9 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_RAW: unknown[] = ([] as unknown
   TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_24,
   TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_25,
   TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_26,
-  TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_27
+  TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_27,
+  TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_28,
+  TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_29
 );
 
 export const TRANSFER_PLANNER_GENERATED_COURSE_METADATA = TRANSFER_PLANNER_GENERATED_COURSE_METADATA_RAW as TransferPlannerNormalizedCourseMetadataEntry[];

@@ -1,8 +1,8 @@
 Owner: uw-seattle-business-administration
-Source: https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/
-Title: Curriculum | Foster School of Business
+Source: https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/options/
+Title: Majors | Foster School of Business
 
-Curriculum | Foster School of Business
+Majors | Foster School of Business
 Skip to main content
 How to Apply
 Give to Foster
@@ -76,75 +76,178 @@ Academic Programs
 Degree Programs
 Undergraduate Programs
 Curriculum
-Curriculum
-Students in the undergraduate program in the Foster School of Business work towards a Bachelor of Arts in Business Administration (BABA). Foster’s undergraduate curriculum balances business classes with those from outside disciplines, resulting in an overall educational experience of depth and quality.
-JUMP TO:
 Majors
-Certificates and Special Programs
-Minors and More opportunities
-Required Courses
-Below is information about the credit requirements for the Bachelor of Arts in Business Administration (BABA) degree from the Foster School. Meet with an academic adviser in the Undergraduate Program Office to clarify your educational and career goals and make long-range plans to achieve them once you have been accepted to the Foster School.
-Lower Division Courses
-Lower Division Core Course
-Credits
-ACCTG 215 (Financial Accounting)
-5
-ACCTG 225 (Managerial Accounting)
-5
-MGMT 200 (Introduction to Law)
-5
-QMETH 201 (Statistical Methods)
-4
-In addition to the Lower Division Business Courses, you must complete four non-business prerequisite courses:
-Course
-Credits
-MATH 112, MATH 124, MATH 125, MATH 126, MATH 134 or Q SCI 291 (Calculus)
-5
-ECON 200 (Microeconomics)
-5
-ECON 201 (Macroeconomics)
-5
-English Composition
-5
-37 CREDITS: UPPER DIVISION CORE
-Course
-Credits
-IS 300 (Introduction to Information Systems)
-5
-OPMGT 301 (Principles Of Operations Management)
-4
-MKTG 301 (Marketing Concepts)
-4
-FIN 350 (Business Finance)
-4
-MGMT 300 (Leadership & Organizational Behavior)
-4
-IBUS 300 (Global Business Perspectives)
-4
-MGMT 320 (Business, Government & Society)
-4
-B ECON 300 (Managerial Economics)
-4
-MGMT 430 (Strategic Management Capstone)
-4
-TOTAL
-37
-All nine Upper Division Business Core Courses are required, of which six, including MGMT 430, must be completed at UW-Seattle.
-16 CREDITS (MINIMUM): UPPER DIVISION ELECTIVES
-Elective credits can come from Business Majors or Special Program requirements
-ADDITIONAL REQUIREMENTS
-All business students need to complete:
-59 credits (minimum) of General Education Requirements (Areas of Knowledge).
-13 credits (minimum) of college-level composition and approved writing courses. Some may count toward the non-business requirement. Four of the twelve credits typically are BCMU 301 (Business Communications)
-180 credits (minimum) to graduate with a BABA degree.
-Residency Requirements
-All business students need to complete:
-9 Upper Division Business Core courses, of which 6 (including MGMT 430) must be completed at the UW-Seattle.
-53 upper division business credits, of which 40 must be completed at the UW-Seattle.
-Accounting students must complete:
-8 Upper Division Accounting Core courses, of which 5 must be completed at the UW-Seattle.
-All UW students must complete:
-45 of the final 60 credits in matriculated status in-residence at the UW-Seattle. Exceptions may be available for UW affiliated study abroad programs.
+Majors
+While completing the Bachelor of Arts in Business Administration (BABA) course of study, students can either:
+Design their own area of study and choose from a variety of upper division business electives.
+or&#8230;
+Specialize in one of our predetermined courses of study. Eight majors are available: Accounting, Accounting for Business Professionals, Entrepreneurship, Finance, Human Resources Management, Information Systems, Marketing, and Operations &#038; Supply Chain Management. Applicants may select one major while applying to the undergraduate program.
+Business Majors
+Accounting
+What is accounting?
+Foster’s accounting curriculum utilizes research, interpersonal communication, and problem solving to enable students to think critically about financial transactions and the implications for an entire financial management system.
+What are the careers I can pursue with an Accounting Major?
+Certified Public Accountant serving clients with their financial and tax needs.
+Financial Analyst or Accountant for local public & private companies , such as Microsoft, Amazon, Starbucks, REI, Boeing, and Zillow,
+Consultant with Fortune 500 or international organizations specializing in areas such as Mergers and Acquisitions, Taxation, Auditing, Risk Management
+Forensic Auditor investigating fraud & financial mismanagement for governmental agencies like the FBI
+Non-Profit Accounting for charities and not-for-profit organizations
+Which of the two Accounting-related majors should I choose?
+The Accounting Major is ideal if you want a career in public, corporate, or nonprofit accounting or tax, and/or want a deep knowledge of financial reporting. In the Accounting Major, you learn how to understand, explain, and record business transactions, and you gain critical thinking and analytical skills to interpret and analyze financial information, develop tax strategy, and make information-driven decisions. Using case-based learning and data analytics, this eight-course major equips students to adapt to an ever-changing environment.
+The Accounting for Business Professionals Major is ideal if you want a narrower, focused accounting skillset to support a career in another business area. This major is designed with flexibility for students to select the accounting classes that fit best with their unique career goals and is often paired with another major like Finance or Information Systems. Students take one required accounting course, and then choose four more accounting courses (or three accounting courses and one of a set of approved finance courses).
+Graduate programs in Accounting
+The Foster school has two separate Master of Accounting degrees: the Master of Professional Accounting (MPAcc) and the Master of Science in Taxation (MST). For students interested in our Masters’ programs or CPA certification, the Department of Accounting highly recommends that they pursue the Accounting Major rather than the Accounting for Business Professionals Major, as it will better prepare students to succeed in these specialized, rigorous programs and pass the CPA exam. However, students wishing to major in Accounting for Business Professionals and pursue one of these graduate degrees should reach out to the program office .
+Students are eligible to apply to the MPAcc and MST programs during their senior year once fall quarter grades are posted. The GMAT is not required for Foster School Accounting students. These master’s degrees also satisfy the 225-quarter credit educational requirement to sit for the CPA exam in the State of Washington.
+Learn more about the MPAcc and MST programs .
+For more information about becoming a licensed certified public accountant (CPA), visit: Washington State Board of Accountancy .
+Accounting resources
+Video Introduction to Accounting Major at Foster
+Foster’s Accounting Department
+Beta Alpha Psi (BAP)
+Association of Latino Professionals for America (ALPFA)
+National Association of Black Accountants (NABA)
+Explore careers in accounting
+Master of Professional Accounting
+Master of Science in Taxation
+Entrepreneurship
+What is entrepreneurship?
+Entrepreneurship focuses on entrepreneurial strategy, finance, management, and marketing. Students will create business proposals, draft financial and marketing plans, and execute ideas through business clubs, case competitions, and real-world practice–ultimately transforming a vision of business ownership into a step-by-step achievable process.
+What kind of jobs can I get with the entrepreneurship major?
+Entrepreneurial-minded students can go in many directions with their career. Sample job functions include:
+Entrepreneurship in New Ventures (startups)
+Entrepreneurship in Large Organizations
+Private Equity Financing
+Social entrepreneurship
+We recommend finding a mentor, exploring different types of companies and on-campus resources like Start-Up Hall, Foster student club Startup UW, and connecting with the Buerk Center for Entrepreneurship.
+Buerk Center for Entrepreneurship
+The Buerk Center for Entrepreneurship is open to all students, regardless of major, who have an interest in creating new ventures or working in a startup environment. To learn about the programs, clubs, competitions, and extracurricular activities supported by the Buerk Center, attend a Buerk Center Open House (held during the first month of every quarter), or drop by the center any time.
+For more information, contact:
+The Buerk Center at [email&#160;protected] or 206.616.0734.
+Follow the Buerk Center on social media:
+@UWBuerk | Facebook
+Entrepreneurship resources
+Buerk Center programs for Undergrads
+Startup UW
+Startup Hall
+Explore careers in entrepreneurship
+Entrepreneurship Minor
+Finance
+What is finance?
+Foster’s finance curriculum covers four interrelated areas: Corporate Finance, Investments, Financial Markets, and International Finance. Through case studies and critical analysis, students utilize business economic theory, and financial management tools to understand capital markets, investigate problems, and make key managerial decisions.
+What kind of jobs can I get with the finance major?
+Sample job titles include:
+Financial Analyst
+Business Associate
+Investment Banking Analyst
+Financial Advisor
+Finance roles can be competitive. It is important for students to network with finance professionals to get a better understanding of what it takes to be successful at a specific company. Additionally, Foster Career Services recommends that students take the free Foster Excel Certificate, as Microsoft Excel skills are crucial for success in an internship or job in finance.
+Quantitative Finance
+Students interested in highly quantitative finance careers or considering graduate programs in Economics or Finance should consider completing additional coursework in mathematics, economics, and statistics.
+Suggested coursework will not substitute for required major coursework.
+Additional calculus courses: MATH 125 & 126, MATH 135 & 136, MATH 307, 308, 309, and MATH 334, 335, 336
+Take advanced Statistics: STAT 340, 341, and 342
+Computer programming: CSE 142
+Financial Economic courses: ECON 422, 423, 424, and 426
+Major Complementary Electives: ECON 422, 431, 435, 450
+Finance resources
+Association of Latino Professionals in Finance and Accounting (ALPFA)
+Foster Finance Association
+National Association of Black Accountants (NABA)
+Explore careers in finance
+Foster’s Department of Finance and Business Economics
+Human Resources Management
+What is human resources management (HR)?
+Human Resources Management draws on the study and practice of psychology, sociology, and organizational behavior to thoughtfully examine human performance within organizations. Students gain skills in recruiting and retaining talented people, understanding corporate responsibility and ethics, and building effective negotiation and decision-making practices.
+What kind of jobs can I get with the human resources management major?
+Sample HR job functions:
+Recruitment
+Training
+Compensation
+Benefits strategy/execution
+It is important that students network with HR professionals to learn about the field and job opportunities. Consider joining SHRM (Society for Human Resource Management) to network and learn about career opportunities.
+Professional in Human Resources Certification (PHR)
+The PHR certification focuses on the technical and operational aspects of HR practices. The PHR exam is divided into six parts: business management and strategy, workforce planning and employment, human resource development, compensation and benefits, employee and labor relations, and risk management. Typical candidates with a bachelor’s degree have two to four years of professional work experience in all HR disciplines before taking the exam.
+For more information, visit Foster’s Management and Organization website or email [email&#160;protected]
+Human Resources Management resources
+Society for Human Resource Management (SHRM)
+Foster’s Department of Management and Organization
+Explore careers in HR
+Information Systems
+What is Information Systems (IS)?
+Information Systems provides students with coursework emphasizing technical tools to design, develop, and manage information technologies. With a focus on computer programming and database management, students learn to interact and interface with various business applications and assess which program or information technology meets the organization’s needs.
+What kinds of jobs can I get with the Information Systems major?
+IS students have a range of career major including:
+Working for a technology company
+Supporting IT functions within an organization
+IT advisory/consulting
+While not required, we recommend having working knowledge of popular databases, systems, or programming language when interviewing for employment in this field.
+Master of Science in Information Systems (MSIS)
+The Master of Science in Information Systems (MSIS) program is a four-quarter, work-compatible degree that trains
+future business leaders to effectively use information technology to solve business problems and take advantage of new opportunities (and learn more about how MSIS is bridging the gap between business and technology.)
+The full-time program holds classes on two weeknights and some Saturdays. The GMAT or GRE requirement is waived for applicants who have graduated with an IS major from the Foster School in the last three years.
+For more information, visit the MSIS website or email [email&#160;protected]
+Information Systems resources
+Business Information Technology Society (BITS)
+National Association of Black Accountants (NABA)
+Foster’s Department of Information Systems and Operations Management
+Explore careers in IS
+Marketing
+What is marketing?
+Set of methods and frameworks to help measure, optimize, and automate marketing decisions such as advertising, branding, digital/mobile marketing, product development, retailing, and social media management. The frameworks have both qualitative and quantitative components and are built on concepts from economics, data science, psychology, and statistics.
+What kind of jobs can I get with the marketing major?
+Roles in this industry vary widely. Sample job functions include:
+Advertising and Communications Specialist
+Business Analyst
+Content Specialist
+Data Scientist for Consumer/Product Teams
+Digital Marketer
+Marketing Analytics Consultant
+Product Marketing Specialist
+Sales Rep
+Social Media Strategist
+Consultant
+Marketing Specializations
+The Foster School Marketing department has two specializations available to complete: Marketing Analytics and Product Marketing. These can be completed within the Marketing major. Each specialization requires the completion of three courses listed below,
+Marketing Analytics:
+The Marketing Analytics Specialization trains students how to use cutting edge analytics to better direct a wide variety of marketing decisions. Learn more.
+MKTG 462 Customer Analytics
+MKTG 464 Analytics for Marketing Decisions
+MKTG 466 Digital Marketing
+MKTG 468/415 Pricing Strategy Analytics
+Product Marketing:
+These courses will help future product marketing managers bring the customer’s voice into the company to guide product and brand strategy and to effectively deliver on that strategy. Learn more.
+MKTG 450 Consumer Behavior
+MKTG 460 Consumer Insights
+MKTG 454 Strategic Product Management
+MKTG 456 Advertising
+The courses can be taken in any order as they are not strict prerequisites for each other. Students can also complete just one or two of the courses within a specialization if that topic is of interest.
+While these specializations will not be shown on your transcript, Foster will be promoting them internally and externally so you can easily inform recruiters and potential employers about your expertise in these areas.
+Marketing resources
+Foster’s Department of Marketing and International Business
+Professional Sales Program
+Explore careers in marketing
+Operations & Supply Chain Management
+What is Operations & Supply Chain Management (OSCM)?
+Operations and Supply Chain Management covers design, planning, control, and improvement of manufacturing and service operations. Curriculum highlights include operations research, programming, and analysis of production and inventory models in the US and abroad.
+What kind of jobs can I get with the OSCM major?
+Typical roles include:
+Logistics planner
+Sourcing/buyer
+Demand planner
+Logistics analyst
+In addition to securing an internship, students should conduct informational interviews with professionals to understand the role of OSCM functions within an organization. Consider joining the Operations Supply Chain Management Club to meet professionals and learn more about career paths.
+Master of Supply Chain Management (MSCM)
+The Master of Supply Chain Management (MSCM) program is a four-quarter, work compatible degree that provides future business leaders with the technical and managerial skills needed to oversee the flow of goods. Students learn to effectively analyze data and build decision models. MSCM is a well-rounded and flexible experience focusing in supply chain, business management and industry.
+The full-time program holds classes on Monday and Wednesday evenings and five to six Saturdays per quarter, giving students flexibility to work full time. The GMAT or GRE requirement is waived for applicants with a recent bachelor’s degree from the Foster School of Business in the OSCM major.
+For more information, visit the MSCM website or email [email&#160;protected]
+OSCM resources
+Operations Supply Chain Management Club (OSCM)
+Foster’s Department of Information Systems and Operations Management
+Explore careers in operations and supply chain management
+Benefits of declaring a major
+Declaring a major gives students priority to register for upper division business electives in the declared major during period I registration. Students can declare more than one major if it fits within the UW Satisfactory Progress rules. Foster students may declare a major once they are in progress of the final Lower Division Business Core classes (ACCTG 225, MGMT 200 and/or QMETH 201).
+What is the difference between a general Business Administration Major and the discipline specific business majors?
+The Foster School offers one general major (Bachelor of Arts in Business Administration) and eight discipline-specific business majors (such as Accounting, Marketing, etc.) Different majors have different required courses and electives, and the declared major will be added to the student’s academic record (transcript).
 Michael G. Foster School of Business
 Box 353200
 University of Washington
@@ -170,4 +273,3 @@ Medium
 Accessibility
 Privacy
 Terms
-[/raw] [raw]

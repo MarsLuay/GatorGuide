@@ -10,7 +10,6 @@ export const ROUTES = {
   profile: "/profile" as const,
   profileSetup: "/profile-setup" as const,
   questionnaire: "/questionnaire" as const,
-  roadmap: "/roadmap" as const,
   calendar: "/calendar" as Href,
   opportunityAdmin: "/opportunity-admin" as const,
   transferPlanner: "/transfer-planner" as const,

@@ -26,6 +26,7 @@ $stepResults = [ordered]@{
   "Planner refresh" = "pending"
   "Playwright Chromium" = if ($SkipWindowsQa -or $SkipChromiumInstall) { "skipped" } else { "pending" }
   "Windows QA" = if ($SkipWindowsQa) { "skipped" } else { "pending" }
+  "Planner hardening checks" = "pending"
 }
 
 function Write-Section {
@@ -141,9 +142,11 @@ function Write-Summary {
     "",
     "- Planner maintenance summary: $summaryPath",
     "- Planner log: $logPath",
+    "- Green River public-material discovery: $(Join-Path $tmpDir 'transfer-planner-grc-public-materials.md')",
     "- Planner source-gap report: $(Join-Path $tmpDir 'transfer-planner-source-gaps.md')",
     "- Planner requirement parse report: $(Join-Path $tmpDir 'transfer-planner-requirement-source-parse-report.md')",
     "- Planner diff classification report: $(Join-Path $tmpDir 'transfer-planner-requirement-diff-promotion-report.md')",
+    "- Planner hardening report: $(Join-Path $tmpDir 'transfer-planner-hardening-report.md')",
     "- QA web export: $qaWebPath",
     "- QA output root: $qaResultsRoot",
     ""
@@ -185,6 +188,9 @@ try {
     Invoke-LoggedCommand -FilePath "npm.cmd" -Arguments @("run", "qa:windows:ci") -Description "Run Windows QA smoke suite"
     $stepResults["Windows QA"] = "passed"
   }
+
+  Invoke-LoggedCommand -FilePath "node" -Arguments @("scripts/planner/verify-transfer-planner-hardening.cjs") -Description "Run planner hardening checks"
+  $stepResults["Planner hardening checks"] = "passed"
 
   Write-Summary -Outcome "passed" -FailureMessage ""
 

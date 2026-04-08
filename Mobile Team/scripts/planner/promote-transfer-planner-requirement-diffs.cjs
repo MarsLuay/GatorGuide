@@ -49,8 +49,23 @@ const OUTPUT_MD_PATH = path.resolve(
   TMP_DIR,
   "transfer-planner-requirement-diff-promotion-report.md"
 );
-const COURSE_CODE_PATTERN = /\b[A-Z]{2,8}\s*\d{3}[A-Z]?\b/g;
+const COURSE_CODE_PATTERN = /\b[A-Z&]{1,8}(?:\s+[A-Z&]{1,8}){0,2}\s+\d{3}[A-Z]?\b/g;
 const EMBEDDED_COURSE_CODE_PATTERN = /\b(?:[A-Z]{1,3}\s+)?[A-Z]{2,8}\s*\d{3}[A-Z]?\b/g;
+const COURSE_CODE_LEADING_STOPWORDS = new Set([
+  "AND",
+  "BOTH",
+  "EITHER",
+  "FOR",
+  "FROM",
+  "OF",
+  "ONE",
+  "OR",
+  "THE",
+  "THREE",
+  "TO",
+  "TWO",
+  "WITH",
+]);
 const CAMPUS_ORDER = ["uw-seattle", "uw-bothell", "uw-tacoma"];
 const BEFORE_APPLICATION_PATTERN =
   /\b(admission|admissions|application|prereq|prerequisite|min(?:imum)? course requirements?|minimum requirements?|before entry|declaration requirement)\b/i;
@@ -134,10 +149,27 @@ function getOwnerScopeKey(planId, pathwayId) {
   return `${String(planId)}::${String(pathwayId ?? "")}`;
 }
 
+function sanitizeExtractedCourseCode(value) {
+  let normalized = normalizeCourseCode(value);
+  let parts = normalized.split(" ");
+
+  while (parts.length >= 3 && COURSE_CODE_LEADING_STOPWORDS.has(parts[0])) {
+    const candidate = parts.slice(1).join(" ");
+    if (!/^[A-Z&]{1,8}(?:\s+[A-Z&]{1,8}){0,2}\s+\d{3}[A-Z]?$/.test(candidate)) {
+      break;
+    }
+
+    normalized = candidate;
+    parts = normalized.split(" ");
+  }
+
+  return normalized;
+}
+
 function extractCourseCodes(value) {
   return uniqueSorted(
     [...String(value ?? "").toUpperCase().matchAll(COURSE_CODE_PATTERN)].map((match) =>
-      normalizeCourseCode(match[0])
+      sanitizeExtractedCourseCode(match[0])
     )
   );
 }
@@ -159,7 +191,7 @@ function getCatalogNumber(uwCourseCode) {
 
 function getCourseCodeParts(uwCourseCode) {
   const normalized = normalizeCourseCode(uwCourseCode);
-  const match = normalized.match(/^([A-Z&]+)\s+(\d{3}[A-Z]?)$/);
+  const match = normalized.match(/^([A-Z&]+(?:\s+[A-Z&]+){0,2})\s+(\d{3}[A-Z]?)$/);
   if (!match) {
     return null;
   }
@@ -168,6 +200,45 @@ function getCourseCodeParts(uwCourseCode) {
     subjectCode: match[1],
     catalogNumber: match[2],
   };
+}
+
+function normalizeCourseFamilySubject(subjectCode) {
+  const normalized = normalizeCourseCode(subjectCode);
+  switch (normalized) {
+    case "PHYS":
+    case "TPHYS":
+    case "T PHYS":
+    case "B PHYS":
+    case "BPHYS":
+      return "PHYS";
+    case "MATH":
+    case "TMATH":
+    case "T MATH":
+    case "STMATH":
+    case "B MATH":
+    case "BMATH":
+      return "MATH";
+    case "CHEM":
+    case "B CHEM":
+    case "BCHEM":
+      return "CHEM";
+    case "BIOL":
+    case "BIO A":
+    case "B BIO":
+    case "BBIO":
+      return "BIOL";
+    default:
+      return normalized;
+  }
+}
+
+function buildCourseFamilyKey(uwCourseCode) {
+  const parts = getCourseCodeParts(uwCourseCode);
+  if (!parts) {
+    return null;
+  }
+
+  return `${normalizeCourseFamilySubject(parts.subjectCode)} ${parts.catalogNumber}`;
 }
 
 function isTransferRelevantUwCourseCode(uwCourseCode, consensus) {
@@ -198,6 +269,7 @@ function buildMappingKey(entry) {
 function buildConsensusIndex() {
   const ownersByScope = new Map();
   const consensusByCourse = new Map();
+  const consensusByCourseFamily = new Map();
   const promotedOverrideIds = new Set(
     (TRANSFER_PLANNER_PROMOTED_REQUIREMENT_ATOM_OVERRIDES ?? []).map((entry) => entry.id)
   );
@@ -248,6 +320,39 @@ function buildConsensusIndex() {
     );
     entryForCourse.mappings.set(mappingKey, mappingEntry);
     consensusByCourse.set(exactCourseCode, entryForCourse);
+
+    const courseFamilyKey = buildCourseFamilyKey(exactCourseCode);
+    if (courseFamilyKey) {
+      const familyEntryForCourse =
+        consensusByCourseFamily.get(courseFamilyKey) ??
+        {
+          totalSamples: 0,
+          mappings: new Map(),
+          supportingCourseCodes: new Set(),
+        };
+      familyEntryForCourse.totalSamples += 1;
+      familyEntryForCourse.supportingCourseCodes.add(exactCourseCode);
+
+      const familyMappingEntry =
+        familyEntryForCourse.mappings.get(mappingKey) ??
+        {
+          mappingKey,
+          grcCourseCodes: [...atom.grcCourseCodes].map((code) => normalizeCourseCode(code)).sort(),
+          alternativeCourseCodeSets: (atom.alternativeCourseCodeSets ?? []).map((group) =>
+            group.map((code) => normalizeCourseCode(code)).sort()
+          ),
+          sampleCount: 0,
+          phases: new Map(),
+        };
+
+      familyMappingEntry.sampleCount += 1;
+      familyMappingEntry.phases.set(
+        atom.displayPhase,
+        (familyMappingEntry.phases.get(atom.displayPhase) ?? 0) + 1
+      );
+      familyEntryForCourse.mappings.set(mappingKey, familyMappingEntry);
+      consensusByCourseFamily.set(courseFamilyKey, familyEntryForCourse);
+    }
   }
 
   const summarizedConsensus = new Map();
@@ -294,9 +399,55 @@ function buildConsensusIndex() {
     });
   }
 
+  const summarizedCourseFamilyConsensus = new Map();
+  for (const [courseFamilyKey, entry] of consensusByCourseFamily.entries()) {
+    const sortedMappings = [...entry.mappings.values()].sort((left, right) => {
+      if (right.sampleCount !== left.sampleCount) {
+        return right.sampleCount - left.sampleCount;
+      }
+      return left.mappingKey.localeCompare(right.mappingKey);
+    });
+
+    const topMapping = sortedMappings[0];
+    const topPhase = [...(topMapping?.phases.entries() ?? [])].sort((left, right) => {
+      if (right[1] !== left[1]) {
+        return right[1] - left[1];
+      }
+      return left[0].localeCompare(right[0]);
+    })[0];
+
+    const mappingRatio = topMapping ? topMapping.sampleCount / entry.totalSamples : 0;
+    const phaseRatio =
+      topPhase && topMapping ? topPhase[1] / topMapping.sampleCount : 0;
+    const mappingConfidence =
+      topMapping && topMapping.sampleCount >= 2 && mappingRatio >= 0.8 ? "high" : "medium";
+    const phaseConfidence =
+      topPhase && topPhase[1] >= 2 && phaseRatio >= 0.8
+        ? "high"
+        : topPhase
+          ? "medium"
+          : "low";
+
+    summarizedCourseFamilyConsensus.set(courseFamilyKey, {
+      courseFamilyKey,
+      totalSamples: entry.totalSamples,
+      mappingSampleCount: topMapping?.sampleCount ?? 0,
+      mappingRatio,
+      mappingConfidence,
+      grcCourseCodes: topMapping?.grcCourseCodes ?? [],
+      alternativeCourseCodeSets: topMapping?.alternativeCourseCodeSets ?? [],
+      phase: topPhase?.[0] ?? "stay-at-grc",
+      phaseSampleCount: topPhase?.[1] ?? 0,
+      phaseRatio,
+      phaseConfidence,
+      supportingCourseCodes: [...entry.supportingCourseCodes].sort(),
+    });
+  }
+
   return {
     ownersByScope,
     summarizedConsensus,
+    summarizedCourseFamilyConsensus,
   };
 }
 
@@ -393,6 +544,20 @@ function addCoveredCourseSets(coveredCodes, sourceCourseSets) {
       coveredCodes.add(normalizeCourseCode(code));
     }
   }
+}
+
+function sortSourceCourseSets(sourceCourseSets) {
+  return normalizeSourceCourseSets(sourceCourseSets).sort((left, right) => {
+    if (left.length !== right.length) {
+      return left.length - right.length;
+    }
+
+    return left.join(" ").localeCompare(right.join(" "));
+  });
+}
+
+function buildSourceCourseSetsKey(sourceCourseSets) {
+  return JSON.stringify(sortSourceCourseSets(sourceCourseSets));
 }
 
 function getRuleStatusScore(rule) {
@@ -807,6 +972,12 @@ function buildClassificationNote(classificationKind, uwCourseCode, promoted = fa
       return `Auto-promoted because ${uwCourseCode} only appears in the official guide through a combined-entry rule, and the planner was missing that source-backed Green River course path.`;
     case "auto-promoted-exact-title-metadata-match":
       return `Auto-promoted because ${uwCourseCode} has a single clean exact-title match in the current Green River course catalog metadata.`;
+    case "auto-promoted-exact-title-alternative-paths":
+      return `Auto-promoted because ${uwCourseCode} has multiple clean exact-title Green River matches, and the planner now exposes all of those published paths instead of dropping the requirement.`;
+    case "auto-promoted-course-family-consensus":
+      return `Auto-promoted because ${uwCourseCode} matches a stable lower-division UW course family that already maps cleanly to the same Green River path elsewhere in the planner.`;
+    case "auto-promoted-choice-set-resolved":
+      return `Auto-promoted because the published UW requirement line groups ${uwCourseCode} with other source-backed options that already resolve to real Green River prep paths.`;
     case "source-backed-guide-sequence-equivalent":
       return promoted
         ? `Auto-promoted because the official UW Green River equivalency guide maps ${uwCourseCode} through a sequence or multi-course Green River equivalency and the planner was missing that GRC path.`
@@ -815,17 +986,17 @@ function buildClassificationNote(classificationKind, uwCourseCode, promoted = fa
       return promoted
         ? `Auto-promoted because ${uwCourseCode} only appears in the guide through a reference-only combined-entry row and the planner was missing that source-backed GRC path.`
         : `Classified automatically because ${uwCourseCode} only appears in the guide through a reference-only combined-entry row, so it should not auto-create a standalone planner requirement atom.`;
-    case "source-backed-choice-list-no-single-grc-match":
-      return `Classified automatically because the official degree page treats ${uwCourseCode} as part of an alternate or choice-based requirement set, so the planner should not invent a single Green River course path.`;
+    case "source-backed-choice-set-no-public-grc-path":
+      return `Classified automatically because ${uwCourseCode} only appears in published alternate or choice-based requirement lines that still do not expose a public Green River prep path.`;
     case "source-backed-generic-topic-course":
       return `Classified automatically because ${uwCourseCode} is a generic topics, seminar, or independent-study style course without a stable single-course Green River prep match.`;
     case "source-backed-exact-title-multiple-grc-matches":
       return `Classified automatically because ${uwCourseCode} has multiple exact-title Green River catalog matches, so the planner avoids picking one automatically.`;
-    case "source-backed-campus-specific-no-clean-grc-match":
-      return `Classified automatically because ${uwCourseCode} is a source-backed campus-specific lower-division UW course without a single clean Green River catalog match.`;
-    case "source-backed-clean-title-no-shared-grc-match":
+    case "source-backed-campus-specific-no-public-grc-equivalent":
+      return `Classified automatically because ${uwCourseCode} is a source-backed campus-specific lower-division UW course, but no public Green River equivalent is currently provable.`;
+    case "source-backed-no-public-grc-equivalent":
     default:
-      return `Classified automatically because ${uwCourseCode} has a clean source-backed title, but the current Green River catalog does not expose a single exact match that is safe to auto-promote.`;
+      return `Classified automatically because ${uwCourseCode} is source-backed, but the current public Green River sources do not prove an equivalent planner path.`;
   }
 }
 
@@ -951,8 +1122,8 @@ function buildReportMarkdown(report) {
     `- Auto-promoted requirement overrides: ${report.promotedCount}`,
     `- Automatically classified parsed diffs: ${report.classifiedCount}`,
     `- Non-promoted classified source-backed course codes: ${report.nonPromotedClassificationCount}`,
-    `- Legacy review-needed candidates: ${report.reviewCandidateCount}`,
-    `- Legacy unmapped source-only course codes: ${report.unmappedCount}`,
+    `- Historical unresolved review-needed bucket count: ${report.reviewCandidateCount}`,
+    `- Historical unresolved unmapped bucket count: ${report.unmappedCount}`,
     "",
     "This report is the follow-up step after parsing primary requirement sources. Every source-backed UW course coverage gap is now assigned an automatic machine classification. Clean Green River mappings are auto-promoted into generated planner requirement atoms; the rest stay source-backed but non-promoted.",
     "",
@@ -1076,7 +1247,8 @@ function buildClassificationEntry({
 }
 
 function buildPromotionReport(parseReport) {
-  const { ownersByScope, summarizedConsensus } = buildConsensusIndex();
+  const { ownersByScope, summarizedConsensus, summarizedCourseFamilyConsensus } =
+    buildConsensusIndex();
   const requirementCoverageByScope = buildRequirementCoverageIndex();
   const guideMappingsByTargetCourse = buildGuideMappingIndex();
   const courseMetadataIndex = buildCourseMetadataIndex();
@@ -1084,6 +1256,171 @@ function buildPromotionReport(parseReport) {
   const humanDate = formatHumanDate(generatedAt);
   const promotedEntries = [];
   const classifiedEntries = [];
+  const titleMatchCandidateCache = new Map();
+  const resolvedSourceCourseSetsCache = new Map();
+
+  function getTitleMatchCandidateCached(owner, uwCourseCode) {
+    const cacheKey = `${owner.ownerId}::${owner.pathwayId ?? ""}::${uwCourseCode}`;
+    if (!titleMatchCandidateCache.has(cacheKey)) {
+      titleMatchCandidateCache.set(
+        cacheKey,
+        buildTitleMatchCandidate(owner, uwCourseCode, courseMetadataIndex)
+      );
+    }
+
+    return titleMatchCandidateCache.get(cacheKey);
+  }
+
+  function resolveSourceCourseSetsForCourse(owner, uwCourseCode) {
+    const cacheKey = `${owner.ownerId}::${owner.pathwayId ?? ""}::${uwCourseCode}`;
+    if (resolvedSourceCourseSetsCache.has(cacheKey)) {
+      return resolvedSourceCourseSetsCache.get(cacheKey);
+    }
+
+    const consensus = summarizedConsensus.get(uwCourseCode);
+    const guideMapping = guideMappingsByTargetCourse.get(uwCourseCode);
+    if (guideMapping?.topRule) {
+      const resolved = {
+        sourceCourseSets: sortSourceCourseSets(guideMapping.topRule.sourceCourseSets),
+        sourceKind: guideMapping.classificationKind,
+        mappingConfidence: "high",
+      };
+      resolvedSourceCourseSetsCache.set(cacheKey, resolved);
+      return resolved;
+    }
+
+    if (consensus?.grcCourseCodes?.length && isTransferRelevantUwCourseCode(uwCourseCode, consensus)) {
+      const resolved = {
+        sourceCourseSets: sortSourceCourseSets([
+          consensus.grcCourseCodes,
+          ...(consensus.alternativeCourseCodeSets ?? []),
+        ]),
+        sourceKind:
+          consensus.mappingConfidence === "high"
+            ? "auto-promoted-exact-consensus"
+            : "auto-promoted-single-sample-consensus",
+        mappingConfidence: consensus.mappingConfidence,
+      };
+      resolvedSourceCourseSetsCache.set(cacheKey, resolved);
+      return resolved;
+    }
+
+    const titleMatchCandidate = getTitleMatchCandidateCached(owner, uwCourseCode);
+    const exactTitleMatches = titleMatchCandidate.exactTitleMatch?.matches ?? [];
+    if (titleMatchCandidate.exactTitleMatch && exactTitleMatches.length > 0) {
+      const resolved = {
+        sourceCourseSets: sortSourceCourseSets(exactTitleMatches.map((match) => [match.code])),
+        sourceKind:
+          exactTitleMatches.length === 1
+            ? "auto-promoted-exact-title-metadata-match"
+            : "auto-promoted-exact-title-alternative-paths",
+        mappingConfidence: "medium",
+      };
+      resolvedSourceCourseSetsCache.set(cacheKey, resolved);
+      return resolved;
+    }
+
+    const courseFamilyKey = buildCourseFamilyKey(uwCourseCode);
+    const courseFamilyConsensus = courseFamilyKey
+      ? summarizedCourseFamilyConsensus.get(courseFamilyKey)
+      : null;
+    if (
+      courseFamilyConsensus?.grcCourseCodes?.length &&
+      courseFamilyConsensus.mappingConfidence === "high"
+    ) {
+      const resolved = {
+        sourceCourseSets: sortSourceCourseSets([
+          courseFamilyConsensus.grcCourseCodes,
+          ...(courseFamilyConsensus.alternativeCourseCodeSets ?? []),
+        ]),
+        sourceKind: "auto-promoted-course-family-consensus",
+        mappingConfidence: courseFamilyConsensus.mappingConfidence,
+      };
+      resolvedSourceCourseSetsCache.set(cacheKey, resolved);
+      return resolved;
+    }
+
+    resolvedSourceCourseSetsCache.set(cacheKey, null);
+    return null;
+  }
+
+  function resolveChoiceSetSourceCourseSets(owner, uwCourseCode) {
+    const normalizedTargetCode = normalizeCourseCode(uwCourseCode);
+    let bestResolution = null;
+
+    for (const line of getRelevantOwnerCourseLines(owner, uwCourseCode)) {
+      const lineCourseCodes = extractCourseCodes(line);
+      if (
+        lineCourseCodes.length < 2 ||
+        !lineCourseCodes.includes(normalizedTargetCode) ||
+        !isChoiceLikeTitle(line)
+      ) {
+        continue;
+      }
+
+      const groupMap = new Map();
+      const supportingCourseCodes = new Set();
+      const resolutionKinds = new Set();
+
+      for (const lineCourseCode of lineCourseCodes) {
+        const resolved = resolveSourceCourseSetsForCourse(owner, lineCourseCode);
+        if (!resolved?.sourceCourseSets?.length) {
+          continue;
+        }
+
+        supportingCourseCodes.add(lineCourseCode);
+        resolutionKinds.add(resolved.sourceKind);
+
+        for (const sourceCourseSet of resolved.sourceCourseSets) {
+          const normalizedGroup = uniqueSorted(
+            sourceCourseSet.map((code) => normalizeCourseCode(code))
+          );
+          if (!normalizedGroup.length) {
+            continue;
+          }
+
+          const groupKey = normalizedGroup.join(" || ");
+          const groupEntry = groupMap.get(groupKey) ?? {
+            group: normalizedGroup,
+            supportingCourseCodes: new Set(),
+          };
+          groupEntry.supportingCourseCodes.add(lineCourseCode);
+          groupMap.set(groupKey, groupEntry);
+        }
+      }
+
+      if (!groupMap.size) {
+        continue;
+      }
+
+      const resolution = {
+        sourceCourseSets: sortSourceCourseSets(
+          [...groupMap.values()].map((entry) => entry.group)
+        ),
+        supportingCourseCodes: [...supportingCourseCodes].sort(),
+        resolutionKinds: [...resolutionKinds].sort(),
+        supportingLines: [line],
+      };
+
+      if (
+        !bestResolution ||
+        resolution.supportingCourseCodes.length > bestResolution.supportingCourseCodes.length ||
+        (
+          resolution.supportingCourseCodes.length === bestResolution.supportingCourseCodes.length &&
+          resolution.sourceCourseSets.length > bestResolution.sourceCourseSets.length
+        ) ||
+        (
+          resolution.supportingCourseCodes.length === bestResolution.supportingCourseCodes.length &&
+          resolution.sourceCourseSets.length === bestResolution.sourceCourseSets.length &&
+          line.length < bestResolution.supportingLines[0].length
+        )
+      ) {
+        bestResolution = resolution;
+      }
+    }
+
+    return bestResolution;
+  }
 
   for (const owner of parseReport.owners ?? []) {
     if (!owner.ok || !owner.planId || !owner.campusId || owner.campusId === "grc") {
@@ -1387,11 +1724,11 @@ function buildPromotionReport(parseReport) {
         continue;
       }
 
-      const titleMatchCandidate = buildTitleMatchCandidate(
-        owner,
-        uwCourseCode,
-        courseMetadataIndex
-      );
+      const titleMatchCandidate = getTitleMatchCandidateCached(owner, uwCourseCode);
+      const courseFamilyKey = buildCourseFamilyKey(uwCourseCode);
+      const courseFamilyConsensus = courseFamilyKey
+        ? summarizedCourseFamilyConsensus.get(courseFamilyKey)
+        : null;
       const exactTitleMatches = titleMatchCandidate.exactTitleMatch?.matches ?? [];
       const exactTitleCoverageSatisfied =
         exactTitleMatches.length === 0
@@ -1481,13 +1818,296 @@ function buildPromotionReport(parseReport) {
         continue;
       }
 
+      if (
+        titleMatchCandidate.exactTitleMatch &&
+        exactTitleMatches.length > 1 &&
+        !exactTitleCoverageSatisfied &&
+        owner.parseConfidence !== "low" &&
+        fallbackPhaseInference.phaseConfidence !== "low"
+      ) {
+        const exactTitleSourceCourseSets = sortSourceCourseSets(
+          exactTitleMatches.map((match) => [match.code])
+        );
+        const [primarySourceSet = [], ...alternativeSourceSets] = exactTitleSourceCourseSets;
+        const rationale = [
+          `Parsed from the current primary degree page with ${owner.parseConfidence} source-parse confidence.`,
+          `${uwCourseCode} has multiple clean exact-title Green River matches for ${titleMatchCandidate.exactTitleMatch.title}.`,
+          `The planner now exposes each published Green River alternative path instead of dropping that source-backed requirement row.`,
+        ].join(" ");
+        const candidate = {
+          ownerId: owner.ownerId,
+          planId: owner.planId,
+          pathwayId: owner.pathwayId ?? null,
+          campusId: owner.campusId,
+          majorTitle: owner.ownerTitle,
+          id: `${owner.planId}${owner.pathwayId ? `:pathway:${owner.pathwayId}` : ""}:${fallbackPhaseInference.phase}:auto-${uwCourseCode
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-+|-+$/g, "")}`,
+          title: uwCourseCode,
+          grcCourseCodes: [...primarySourceSet],
+          alternativeCourseCodeSets: alternativeSourceSets.map((group) => [...group]),
+          phase: fallbackPhaseInference.phase,
+          displayPhase: fallbackPhaseInference.phase,
+          note: buildGeneratedNote(fallbackPhaseInference.phase, uwCourseCode),
+          sourceLinks: [
+            {
+              label: owner.sourceLabel || "Primary degree requirements source",
+              url: owner.sourceUrl,
+              note: `Auto-promoted from the parsed primary degree page on ${humanDate}.`,
+            },
+          ],
+          validationNotes: [
+            `Auto-promoted source-backed Green River coverage gap on ${humanDate}.`,
+            `Source parse confidence: ${owner.parseConfidence}.`,
+            `Exact-title match source: ${titleMatchCandidate.exactTitleMatch.source}.`,
+            `Matched source title: ${titleMatchCandidate.exactTitleMatch.title}.`,
+            `Published Green River alternatives: ${exactTitleSourceCourseSets
+              .map((group) => group.join(" + "))
+              .join(" | ")}.`,
+            ...(fallbackPhaseInference.matchedLines.length
+              ? [
+                  `Requirement cue lines: ${fallbackPhaseInference.matchedLines
+                    .slice(0, 3)
+                    .join(" | ")}`,
+                ]
+              : []),
+          ],
+          sourceUwCourseCode: uwCourseCode,
+          mappingConfidence: "medium",
+          phaseConfidence: fallbackPhaseInference.phaseConfidence,
+          promotedOn: generatedAt.slice(0, 10),
+          rationale,
+        };
+
+        promotedEntries.push(candidate);
+        classifiedEntries.push(
+          buildClassificationEntry({
+            owner,
+            sourceUwCourseCode: uwCourseCode,
+            classificationKind: "auto-promoted-exact-title-alternative-paths",
+            promotedRequirementAtomOverrideId: candidate.id,
+            displayPhase: fallbackPhaseInference.phase,
+            mappingConfidence: "medium",
+            phaseConfidence: fallbackPhaseInference.phaseConfidence,
+            grcCourseCodes: candidate.grcCourseCodes,
+            alternativeCourseCodeSets: candidate.alternativeCourseCodeSets,
+            note: buildClassificationNote(
+              "auto-promoted-exact-title-alternative-paths",
+              uwCourseCode
+            ),
+            rationale,
+            validationNotes: candidate.validationNotes,
+          })
+        );
+        addCoveredCourseSets(coveredGrcCourseCodes, [
+          candidate.grcCourseCodes,
+          ...candidate.alternativeCourseCodeSets,
+        ]);
+        continue;
+      }
+
+      const familyConsensusSourceCourseSets =
+        courseFamilyConsensus?.grcCourseCodes?.length
+          ? normalizeSourceCourseSets([
+              courseFamilyConsensus.grcCourseCodes,
+              ...(courseFamilyConsensus.alternativeCourseCodeSets ?? []),
+            ])
+          : [];
+      const familyConsensusCoverageSatisfied = isRequirementCoverageSatisfied(
+        coveredGrcCourseCodes,
+        familyConsensusSourceCourseSets
+      );
+
+      if (familyConsensusSourceCourseSets.length && familyConsensusCoverageSatisfied) {
+        continue;
+      }
+
+      if (
+        courseFamilyConsensus?.grcCourseCodes?.length &&
+        !familyConsensusCoverageSatisfied &&
+        owner.parseConfidence === "high" &&
+        courseFamilyConsensus.mappingConfidence === "high" &&
+        fallbackPhaseInference.phaseConfidence !== "low"
+      ) {
+        const rationale = [
+          `Parsed from the current primary degree page with ${owner.parseConfidence} source-parse confidence.`,
+          `${uwCourseCode} falls under the existing ${courseFamilyConsensus.courseFamilyKey} lower-division UW course family, which already maps consistently to ${courseFamilyConsensus.grcCourseCodes.join(", ")} across ${courseFamilyConsensus.mappingSampleCount}/${courseFamilyConsensus.totalSamples} planner samples.`,
+          `Supporting UW course codes: ${courseFamilyConsensus.supportingCourseCodes.join(", ")}.`,
+          `The current planner rows were still missing that stable Green River course path for this major.`,
+        ].join(" ");
+        const candidate = {
+          ownerId: owner.ownerId,
+          planId: owner.planId,
+          pathwayId: owner.pathwayId ?? null,
+          campusId: owner.campusId,
+          majorTitle: owner.ownerTitle,
+          id: `${owner.planId}${owner.pathwayId ? `:pathway:${owner.pathwayId}` : ""}:${fallbackPhaseInference.phase}:auto-${uwCourseCode
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-+|-+$/g, "")}`,
+          title: uwCourseCode,
+          grcCourseCodes: [...courseFamilyConsensus.grcCourseCodes],
+          alternativeCourseCodeSets: (courseFamilyConsensus.alternativeCourseCodeSets ?? []).map(
+            (group) => [...group]
+          ),
+          phase: fallbackPhaseInference.phase,
+          displayPhase: fallbackPhaseInference.phase,
+          note: buildGeneratedNote(fallbackPhaseInference.phase, uwCourseCode),
+          sourceLinks: [
+            {
+              label: owner.sourceLabel || "Primary degree requirements source",
+              url: owner.sourceUrl,
+              note: `Auto-promoted from the parsed primary degree page on ${humanDate}.`,
+            },
+          ],
+          validationNotes: [
+            `Auto-promoted source-backed Green River coverage gap on ${humanDate}.`,
+            `Source parse confidence: ${owner.parseConfidence}.`,
+            `Course-family consensus: ${courseFamilyConsensus.mappingSampleCount}/${courseFamilyConsensus.totalSamples} samples for ${courseFamilyConsensus.courseFamilyKey}.`,
+            `Supporting UW course codes: ${courseFamilyConsensus.supportingCourseCodes.join(", ")}.`,
+            `Added the Green River course path ${courseFamilyConsensus.grcCourseCodes.join(", ")} because the current planner rows did not expose it yet.`,
+            ...(fallbackPhaseInference.matchedLines.length
+              ? [
+                  `Requirement cue lines: ${fallbackPhaseInference.matchedLines
+                    .slice(0, 3)
+                    .join(" | ")}`,
+                ]
+              : []),
+          ],
+          sourceUwCourseCode: uwCourseCode,
+          mappingConfidence: courseFamilyConsensus.mappingConfidence,
+          phaseConfidence: fallbackPhaseInference.phaseConfidence,
+          promotedOn: generatedAt.slice(0, 10),
+          rationale,
+        };
+
+        promotedEntries.push(candidate);
+        classifiedEntries.push(
+          buildClassificationEntry({
+            owner,
+            sourceUwCourseCode: uwCourseCode,
+            classificationKind: "auto-promoted-course-family-consensus",
+            promotedRequirementAtomOverrideId: candidate.id,
+            displayPhase: fallbackPhaseInference.phase,
+            mappingConfidence: courseFamilyConsensus.mappingConfidence,
+            phaseConfidence: fallbackPhaseInference.phaseConfidence,
+            grcCourseCodes: candidate.grcCourseCodes,
+            alternativeCourseCodeSets: candidate.alternativeCourseCodeSets,
+            note: buildClassificationNote("auto-promoted-course-family-consensus", uwCourseCode),
+            rationale,
+            validationNotes: candidate.validationNotes,
+          })
+        );
+        addCoveredCourseSets(coveredGrcCourseCodes, [
+          candidate.grcCourseCodes,
+          ...candidate.alternativeCourseCodeSets,
+        ]);
+        continue;
+      }
+
+      const choiceSetResolution = resolveChoiceSetSourceCourseSets(owner, uwCourseCode);
+      const choiceSetCoverageSatisfied = choiceSetResolution
+        ? isRequirementCoverageSatisfied(
+            coveredGrcCourseCodes,
+            choiceSetResolution.sourceCourseSets
+          )
+        : false;
+
+      if (choiceSetResolution?.sourceCourseSets?.length && choiceSetCoverageSatisfied) {
+        continue;
+      }
+
+      if (
+        choiceSetResolution?.sourceCourseSets?.length &&
+        !choiceSetCoverageSatisfied &&
+        owner.parseConfidence !== "low" &&
+        fallbackPhaseInference.phaseConfidence !== "low"
+      ) {
+        const [primarySourceSet = [], ...alternativeSourceSets] =
+          choiceSetResolution.sourceCourseSets;
+        const rationale = [
+          `Parsed from the current primary degree page with ${owner.parseConfidence} source-parse confidence.`,
+          `${uwCourseCode} only appeared in alternate or choice-based requirement lines, so the planner resolved the published Green River prep paths from the same source-backed choice set.`,
+          `Supporting UW choice-set codes: ${choiceSetResolution.supportingCourseCodes.join(", ")}.`,
+          `Published Green River options now exposed: ${choiceSetResolution.sourceCourseSets
+            .map((group) => group.join(" + "))
+            .join(" | ")}.`,
+        ].join(" ");
+        const candidate = {
+          ownerId: owner.ownerId,
+          planId: owner.planId,
+          pathwayId: owner.pathwayId ?? null,
+          campusId: owner.campusId,
+          majorTitle: owner.ownerTitle,
+          id: `${owner.planId}${owner.pathwayId ? `:pathway:${owner.pathwayId}` : ""}:${fallbackPhaseInference.phase}:auto-${uwCourseCode
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-+|-+$/g, "")}`,
+          title: uwCourseCode,
+          grcCourseCodes: [...primarySourceSet],
+          alternativeCourseCodeSets: alternativeSourceSets.map((group) => [...group]),
+          phase: fallbackPhaseInference.phase,
+          displayPhase: fallbackPhaseInference.phase,
+          note: buildGeneratedNote(fallbackPhaseInference.phase, uwCourseCode),
+          sourceLinks: [
+            {
+              label: owner.sourceLabel || "Primary degree requirements source",
+              url: owner.sourceUrl,
+              note: `Auto-promoted from the parsed primary degree page on ${humanDate}.`,
+            },
+          ],
+          validationNotes: [
+            `Auto-promoted source-backed Green River coverage gap on ${humanDate}.`,
+            `Source parse confidence: ${owner.parseConfidence}.`,
+            `Choice-set supporting UW codes: ${choiceSetResolution.supportingCourseCodes.join(", ")}.`,
+            `Choice-set resolution strategies: ${choiceSetResolution.resolutionKinds.join(", ")}.`,
+            ...(choiceSetResolution.supportingLines.length
+              ? [
+                  `Requirement cue lines: ${choiceSetResolution.supportingLines
+                    .slice(0, 3)
+                    .join(" | ")}`,
+                ]
+              : []),
+          ],
+          sourceUwCourseCode: uwCourseCode,
+          mappingConfidence: "medium",
+          phaseConfidence: fallbackPhaseInference.phaseConfidence,
+          promotedOn: generatedAt.slice(0, 10),
+          rationale,
+        };
+
+        promotedEntries.push(candidate);
+        classifiedEntries.push(
+          buildClassificationEntry({
+            owner,
+            sourceUwCourseCode: uwCourseCode,
+            classificationKind: "auto-promoted-choice-set-resolved",
+            promotedRequirementAtomOverrideId: candidate.id,
+            displayPhase: fallbackPhaseInference.phase,
+            mappingConfidence: "medium",
+            phaseConfidence: fallbackPhaseInference.phaseConfidence,
+            grcCourseCodes: candidate.grcCourseCodes,
+            alternativeCourseCodeSets: candidate.alternativeCourseCodeSets,
+            note: buildClassificationNote("auto-promoted-choice-set-resolved", uwCourseCode),
+            rationale,
+            validationNotes: candidate.validationNotes,
+          })
+        );
+        addCoveredCourseSets(coveredGrcCourseCodes, [
+          candidate.grcCourseCodes,
+          ...candidate.alternativeCourseCodeSets,
+        ]);
+        continue;
+      }
+
       if (exactTitleCoverageSatisfied) {
         continue;
       }
 
-      let fallbackClassificationKind = "source-backed-clean-title-no-shared-grc-match";
+      let fallbackClassificationKind = "source-backed-no-public-grc-equivalent";
       let fallbackClassificationRationale =
-        "The source-backed UW course title is clean enough to inspect automatically, but the current Green River catalog does not expose a single exact-title match that is safe to auto-promote.";
+        "The source-backed UW requirement is real, but the current public Green River sources do not prove a planner-ready equivalent path.";
       let fallbackAlternativeCourseCodeSets = [];
 
       if (
@@ -1504,13 +2124,13 @@ function buildPromotionReport(parseReport) {
         fallbackClassificationRationale =
           "The source-backed UW requirement row resolves to a generic topics, seminar, or independent-study style title, so the planner keeps it classified but non-promoted.";
       } else if (titleMatchCandidate.hasChoiceLikeTitle) {
-        fallbackClassificationKind = "source-backed-choice-list-no-single-grc-match";
+        fallbackClassificationKind = "source-backed-choice-set-no-public-grc-path";
         fallbackClassificationRationale =
-          "The source-backed UW requirement row is an alternate, choice-list, or recommended-course set, so the planner does not collapse it into a single Green River course.";
+          "The source-backed UW requirement row is an alternate or choice-based set, but the published Green River sources still do not prove a planner-ready path from that set.";
       } else if (isCampusSpecificUwCourseCode(uwCourseCode)) {
-        fallbackClassificationKind = "source-backed-campus-specific-no-clean-grc-match";
+        fallbackClassificationKind = "source-backed-campus-specific-no-public-grc-equivalent";
         fallbackClassificationRationale =
-          "The source-backed UW course uses a campus-specific lower-division code and the current Green River catalog does not expose a single exact-title match that is safe to auto-promote.";
+          "The source-backed UW course uses a campus-specific lower-division code, but the current public Green River sources do not prove a matching planner path.";
       }
 
       classifiedEntries.push(

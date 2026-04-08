@@ -1,8 +1,8 @@
 Owner: uw-tacoma-law-and-policy
-Source: https://www.tacoma.uw.edu/sias/socs/law-and-policy-degree-requirements-prior-summer-2024
-Title: Law and Policy Degree requirements prior to Summer 2024 | Department of Social Sciences | University of Washington Tacoma
+Source: https://www.tacoma.uw.edu/sias/socs/law-and-policy
+Title: Law and Policy | Department of Social Sciences | University of Washington Tacoma
 
-Law and Policy Degree requirements prior to Summer 2024 | Department of Social Sciences | University of Washington Tacoma
+Law and Policy | Department of Social Sciences | University of Washington Tacoma
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMVD9WN"
 height="0"
 width="0"
@@ -79,88 +79,138 @@ Advising
 MyUW
 Map
 Tools
-Law and Policy Degree requirements prior to Summer 2024
+Law and Policy
+Bachelor of Arts
 Main Content
-Law and Policy Core Courses (35 credits)
-Two law courses:
-TLAW I; At least one of these courses must be:
+The interdisciplinary nature of the Law and Policy major invites students to engage with a variety of different perspectives on the social and legal problems facing societies on local, state, national and global levels. Students in this major develop a deep appreciation for the complex relationships between law, society, culture and politics.
+Admission Requirements
+Transfer Equivalencies
+Foundations (20 credits)
+Take one of the following (LAW I) :
 TLAW 150 Introduction to the American Legal System
 TLAW 215 Introduction to International Organizations
-TLAW II; One of these courses may be:
-TLAW 363 Law in Society
-TLAW 367 Comparative Law and Courts
-Two politics courses:
-TPOLS 202 American Politics
-TPOLS 203 International Relations
-TPOLS 204 Comparative Politics
-TPOLS 382 State Government
-One practical reasoning course:
+Take one of the following (METHODS):
 TPHIL 250 Practical Reasoning
 TPHIL 251 Data and Discourse
-One ethical and philosophical reasoning course:
-TECON 210 Ethics and Economics
-TPHIL 240 Introduction to Ethics
-TPHIL 361 Ethics in Society
-One writing course:
-TWRT 211 Argument and Research in Writing
-Law and Policy Elective courses (25 credits)
-Each of the courses selected from the lists below must be in addition to those chosen to fulfill core requirements.
-LAW AND LEGAL SYSTEMS IN POLICY MAKING (15 CREDITS)
-TCOM 454 Communications Law
-TCRIM 395 American Criminal Courts
-TLAW 320 Constitutional Law: Institutional Powers and Constraints
-TLAW 339 Washington Environmental Law
-TLAW 348 Gender and Law
-TLAW 361 Constitutional Law: Rights and Liberties
+Take both:
 TLAW 363 Law in Society
-TLAW 367 Comparative Law and Courts
-TLAW 422 International Humanitarian Law
-TLAW 423 International Law
-TLAW 424 The Politics and Law of International Human Rights
-TLAW 438 Environmental Law
-TLAW 452 Race, Ethnicity, and Law
-TLAW 465 Law and Public Policy in the United States
-TPOLS 355 Reproductive Rights, Law, and Justice
-THEORY AND PRACTICE IN LAW AND POLICY (10 CREDITS)
-TCOM 465 Contemporary Free Speech Issues
+TWRT 211 Argument and Research in Writing
+Policy and Politics (5 credits)
 TCOM 481 Communication Regulation and Policy
-TCRIM437 Abolitionism and Revolutionary Criminology
-TECON 316 Current Issues in US Public Policy
-TECON 321 Economics of Education
-TECON 350 Law and Economics
-TECON 360 Poverty in Developing Countries
-TECON 370 Economics and Social Mobility
+TECON 316 Current Issues in U.S. Public Policy
+TECON 410 Economics of Public Policy
 TECON 418 Urban Problems and Policies
 TECON 421 Environmental Policy
 TECON 450 Labor Economics and Policy
 TECON 470 Economics of Health and Health Policy
 TESC 345 Pollution and Public Policy
-TFILM 444 Crime Narratives and Society
-TLIT 433 N ative American Literature and Federal Indian Law
-TPHIL 414 Philosophy of Law
-TPHIL 453 Political Theory of Human Rights
+TLAW 465 Law and Public Policy in the United States
+TPOLS 202 Introduction to American Politics
+TPOLS 204 Introduction to Comparative Politics
+TPOLS 260 American Political Theory
 TPOLS 322 War and Politics
 TPOLS 323 The Practice of War
-TPOLS 324 War, Activism, and Ethic s
-TPOLS 325 Issues in Local Government
+TPOLS 324 War, Activism, and Ethics
+TPOLS 340 Middle East Politics
+TPOLS 317 The Politics of Race and Ethnicity in the United States
+TPOLS 343 Community and Labor Organizing
+TPOLS 355 Reproductive Politics, Law, and Justice
+Law and Social Inequality (5 credits)
+TLAW 345 Violence and the Law
+TLAW 348 Gender and Law
+TLAW 452 Race, Ethnicity and Law
+TLIT 433 Native American Literature and Federal Indian Law
+TPOLS 317 The Politics of Race and Ethnicity in the United States
+TPOLS 343 Community and Labor Organizing
+TPOLS 355 Reproductive Politics, Law and Justice
+TSOC 465 Asian and Asian American Laborers in the United States: Citizenship, Immigrant Rights and the Welfare State
+Law in a Global Context (5 credits)
+TLAW 215 Introduction to International Organizations
+TLAW 367 Comparative Law and Courts
+TLAW 422 International Humanitarian Law
+TLAW 423 International Law
+TLAW 424 The Politics and Law of International Human Rights
+TPOLS 203 Introduction to International Relations
+TPOLS 204 Comparative Politics
+TPOLS 230 International Human Rights
+TPOLS 323 The Practice of War
+TPOLS 324 War, Activism, and Ethics
+TPOLS 360 Genocide
+TPOLS 371 The Politics of Security
+TPOLS 451 Human Rights and the Use of Force
+Electives (25 credits)
+Each of the courses selected from the list below must be in addition to those chosen to fulfill core requirements.
+TCOM 454 Communications Law
+TCOM 465 Contemporary Free Speech Issues
+TCOM 481 Communication Regulation and Policy
+TCRIM 395 American Criminal Courts
+TCRIM 437 Abolitionism and Revolutionary Criminology
+TECON 316 Current Issues in U.S. Public Policy
+TECON 321 Economics of Education
+TECON 350 Law and Economics
+TECON 410 Economics of Public Policy
+TECON 418 Urban Problems and Policies
+TECON 450 Labor Economics and Policy
+TECON 470 Economics of Health and Health Policy
+TLAW 320 Constitutional Law: Institutional Powers and Constraints
+TLAW 339 Washington Environmental Law
+TLAW 345 Violence and the Law
+TLAW 348 Gender and Law
+TLAW 361 Constitutional Law: Rights and Liberties
+TLAW 367 Comparative Law and Courts
+TLAW 422 International Humanitarian Law
+TLAW 423 International Law
+TLAW 424 The Politics and Law of International Human Rights
+TLAW 438 Environmental Law
+TLAW 452 Race, Ethnicity and Law
+TLAW 465 Law and Public Policy in the United States
+TLAW 486: Field Work in Law and Policy
+TLIT 433 Native American Literature and Federal Indian Law
+TPHIL 314 Philosophy of Crime and Punishment
+TPHIL 361 Ethics in Society
+TPHIL 414 Philosophy of Law
+TPOLS 322 War and Politics
+TPOLS 323 The Practice of War
+TPOLS 324 War, Activism and Ethics
 TPOLS 340 Middle East Politics
 TPOLS 341 Conflict and Cooperation in the Middle East
 TPOLS 343 Community and Labor Organizing
 TPOLS 350 Politics and Film in the Middle East
 TPOLS 353 U.S. Congress
+TPOLS 355 Reproductive Politics, Law and Justice
 TPOLS 360 Genocide
+TPOLS 371 The Politics of Security
+TPOLS 382 State Government
 TPOLS 400 The American Presidency
 TPOLS 451 Human Rights and the Use of Force
-TPOLS/TSOCWF 425 Comparative Social Policy
-TSOC 335 Social Class and Inequality
-TSOCWF 300 Historical Approaches to Social Welfare
-TURB 312 Race and Poverty in Urban America
-TURB 316 Cities and Citizenship
-Capstone requirement (5 credits)
-Toward the end of their studies, all Law and Policy students engage in a capstone class. You must complete the below seminar for your final five (5) credits in this major. This course will be your culminating work for your major and illustrate that you have met the student learning objectives.
-TPOLS 480 Politics, Philosophy and Public Affairs Seminar
-Toward the end of their studies, all Law and Policy students engage in a capstone class. As a Law and Policy student, you also have the option of graduating with honors, which requires a second capstone class. This route is especially recommended for students expecting to enter graduate school.
-Law and Policy Honors Declaration Form
+TSOC 465 Asian and Asian American Laborers in the United States: Citizenship, Immigrant Rights and the Welfare State
+Capstone (5 credits)
+TPOLS 480 Politics: Philosophy and Public Affairs Seminar
+TPOLS 496 Politics, Philosophy and Public Affairs Internship
+TPOLS 497 Political Internship in State Government
+TLAW 496 Law and Policy Internship
+ADVISOR
+Shelli Veal
+Connect with Advising
+MAJOR COORDINATOR
+Professor Emily Thuma
+DEPARTMENT
+Department of Social Sciences (SOCS)
+CAREER OPPORTUNITIES
+Community and Labor Organizing
+Education
+Government
+Human Rights Work
+Law
+Non-governmental Organizations (NGOs)
+Policy Development
+Post-graduate Studies
+ADMISSION REQUIREMENTS
+A minimum of 45 lower-division credits is required before declaring the major. To declare the Law and Policy major, students should reach out to the major advisor .
+DEGREE REQUIREMENTS
+For a BA in Law and Policy, students must complete 65 major credits, which must include 45 credits of upper-division (300–400 level courses) with a minimum 2.0 GPA in courses applied to the major, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+Honors
+Law and Policy Degree requirements prior to Summer 2024
 Contact
 Department of Social Sciences
 ACADEMICS
