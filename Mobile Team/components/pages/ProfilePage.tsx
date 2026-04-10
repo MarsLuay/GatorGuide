@@ -117,7 +117,6 @@ export default function ProfilePage() {
     major: "",
     gender: "",
     gpa: "",
-    resume: "",
     transcript: "",
     residencyType: "",
     englishProficiency: "",
@@ -129,10 +128,12 @@ export default function ProfilePage() {
   const [confettiCooldown, setConfettiCooldown] = useState(false);
   const [showGuestProfile, setShowGuestProfile] = useState(false);
   const [uploadedDocumentMeta, setUploadedDocumentMeta] = useState<
-    Partial<Record<"resume" | "transcript", UploadedDocumentMeta>>
+    Partial<Record<"transcript", UploadedDocumentMeta>>
   >({});
-  const [activeDocumentAnalysis, setActiveDocumentAnalysis] = useState<"resume" | "transcript" | null>(null);
-  const [documentReviews, setDocumentReviews] = useState<Partial<Record<"resume" | "transcript", DocumentExtractionReview>>>({});
+  const [activeDocumentAnalysis, setActiveDocumentAnalysis] = useState<"transcript" | null>(null);
+  const [documentReviews, setDocumentReviews] = useState<
+    Partial<Record<"transcript", DocumentExtractionReview>>
+  >({});
 
   useEffect(() => {
     if (!user?.isGuest) return;
@@ -152,17 +153,11 @@ export default function ProfilePage() {
     void (async () => {
       try {
         const { storageService } = await import("@/services/storage/storage.service");
-        const [resumeDocument, transcriptDocument] = await Promise.all([
-          storageService.getResume(user.uid),
-          storageService.getTranscript(user.uid),
-        ]);
+        const transcriptDocument = await storageService.getTranscript(user.uid);
 
         if (cancelled) return;
 
         setUploadedDocumentMeta({
-          ...(resumeDocument
-            ? { resume: { name: resumeDocument.name, url: resumeDocument.url } }
-            : {}),
           ...(transcriptDocument
             ? { transcript: { name: transcriptDocument.name, url: transcriptDocument.url } }
             : {}),
@@ -177,7 +172,7 @@ export default function ProfilePage() {
     return () => {
       cancelled = true;
     };
-  }, [user?.uid, user?.resume, user?.transcript]);
+  }, [user?.uid, user?.transcript]);
   const handleExportData = async () => {
     if (!isHydrated) return;
 
@@ -298,14 +293,13 @@ export default function ProfilePage() {
       major: user?.major ?? "",
       gender: user?.gender ?? "",
       gpa: user?.gpa ?? "",
-      resume: user?.resume ?? "",
       transcript: user?.transcript ?? "",
       residencyType: user?.residencyType ?? "",
       englishProficiency: user?.englishProficiency ?? "",
       englishTestType: user?.englishTestType ?? "",
       englishTestValue: user?.englishTestValue ?? "",
     });
-  }, [isHydrated, user?.name, user?.state, user?.major, user?.gender, user?.gpa, user?.resume, user?.transcript, user?.residencyType, user?.englishProficiency, user?.englishTestType, user?.englishTestValue]);
+  }, [isHydrated, user?.name, user?.state, user?.major, user?.gender, user?.gpa, user?.transcript, user?.residencyType, user?.englishProficiency, user?.englishTestType, user?.englishTestValue]);
 
   const textClass = isDark ? "text-white" : isGreen ? "text-white" : isLight ? "text-emerald-900" : "text-gray-900";
   const secondaryTextClass = isDark ? "text-gray-400" : isGreen ? "text-emerald-100" : isLight ? "text-emerald-700" : "text-gray-600";
@@ -365,14 +359,14 @@ export default function ProfilePage() {
     return text.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
   };
 
-  const fileDisplayName = (documentType: "resume" | "transcript", path: string | undefined) =>
+  const transcriptDisplayName = (path: string | undefined) =>
     getReadableDocumentFileName({
       name:
-        uploadedDocumentMeta[documentType]?.url === String(path ?? "")
-          ? uploadedDocumentMeta[documentType]?.name
+        uploadedDocumentMeta.transcript?.url === String(path ?? "")
+          ? uploadedDocumentMeta.transcript?.name
           : null,
       url: path,
-      fallbackName: documentType === "transcript" ? "unofficial-transcript.pdf" : "uploaded-file",
+      fallbackName: "unofficial-transcript.pdf",
     });
   const questionnaireAnsweredCount = useMemo(
     () =>
@@ -383,15 +377,8 @@ export default function ProfilePage() {
     [state.questionnaireAnswers]
   );
   const questionnaireCompletionLabel = `${questionnaireAnsweredCount}/${PROFILE_QUESTIONNAIRE_FIELD_IDS.length}`;
-  const uploadedDocumentCount = [editData.resume, editData.transcript].filter((value) => value.trim().length > 0).length;
-  const documentCompletionLabel = `${uploadedDocumentCount}/2`;
   const currentMajor = capitalizeWords(editData.major || user?.major || "") || t("profile.undecided");
   const currentGpa = editData.gpa || user?.gpa || t("general.notSpecified");
-  const hasDocumentReviewCards = (["resume", "transcript"] as const).some((documentType) => !!documentReviews[documentType]);
-  const shouldPrioritizeGuestProfileSpace =
-    useDesktopFitLayout && !!user?.isGuest && !activeDocumentAnalysis && !hasDocumentReviewCards;
-  const desktopProfileCardFlex = shouldPrioritizeGuestProfileSpace ? 1.28 : 1.1;
-  const desktopDocumentsCardFlex = shouldPrioritizeGuestProfileSpace ? 0.78 : 0.95;
   const residencyLabels: Record<string, string> = {
     inState: t("profile.residencyInState"),
     outOfState: t("profile.residencyOutOfState"),
@@ -435,7 +422,6 @@ export default function ProfilePage() {
         major: editData.major,
         gender: editData.gender,
         gpa: editData.gpa,
-        resume: editData.resume,
         transcript: editData.transcript,
         residencyType: editData.residencyType,
         englishProficiency: editData.englishProficiency,
@@ -478,16 +464,18 @@ export default function ProfilePage() {
     }
   };
 
-  const analyzeUploadedDocument = async (
-    documentType: "resume" | "transcript",
-    asset: { uri: string; name?: string | null; mimeType?: string | null; size?: number | null }
-  ) => {
-    setActiveDocumentAnalysis(documentType);
+  const analyzeUploadedDocument = async (asset: {
+    uri: string;
+    name?: string | null;
+    mimeType?: string | null;
+    size?: number | null;
+  }) => {
+    setActiveDocumentAnalysis("transcript");
     try {
       const review = await documentReaderService.extractDocumentReview({
-        documentType,
+        documentType: "transcript",
         fileUri: asset.uri,
-        fileName: asset.name || asset.uri.split("/").pop() || `${documentType}.pdf`,
+        fileName: asset.name || asset.uri.split("/").pop() || "transcript.pdf",
         mimeType: asset.mimeType,
         size: asset.size,
         currentProfile: {
@@ -496,7 +484,7 @@ export default function ProfilePage() {
         },
         questionnaireAnswers: state.questionnaireAnswers,
       });
-      setDocumentReviews((prev) => ({ ...prev, [documentType]: review }));
+      setDocumentReviews({ transcript: review });
     } catch (error) {
       Alert.alert(
         t("profile.documentReaderUnavailableTitle"),
@@ -507,16 +495,12 @@ export default function ProfilePage() {
     }
   };
 
-  const dismissDocumentReview = (documentType: "resume" | "transcript") => {
-    setDocumentReviews((prev) => {
-      const next = { ...prev };
-      delete next[documentType];
-      return next;
-    });
+  const dismissDocumentReview = () => {
+    setDocumentReviews({});
   };
 
-  const applyDocumentReview = async (documentType: "resume" | "transcript") => {
-    const review = documentReviews[documentType];
+  const applyDocumentReview = async () => {
+    const review = documentReviews.transcript;
     if (!review || !user?.uid) return;
 
     try {
@@ -549,56 +533,12 @@ export default function ProfilePage() {
         }
       }
 
-      dismissDocumentReview(documentType);
+      dismissDocumentReview();
       Alert.alert(t("profile.documentReaderAppliedTitle"), t("profile.documentReaderAppliedMessage"));
     } catch (error) {
       void errorLoggingService.captureException(error, {
         category: "upload",
         operation: "apply-document-review",
-        severity: "error",
-        handled: true,
-        source: "profile-page",
-        screen: "profile",
-        route: ROUTES.profile,
-      });
-      Alert.alert(t("general.error"), t("profile.prepareDataError"));
-    }
-  };
-
-  const handlePickResume = async () => {
-    if (!user?.uid || !isHydrated) return;
-    try {
-      const result = await DocumentPicker.getDocumentAsync({
-        type: [
-          "application/pdf",
-          "application/msword",
-          "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          "text/plain",
-          "image/png",
-          "image/jpeg",
-          "image/webp",
-        ],
-        copyToCacheDirectory: true,
-      });
-      if (result.canceled || !result.assets?.[0]?.uri) return;
-      const asset = result.assets[0];
-      const { storageService } = await import("@/services/storage/storage.service");
-      const uploaded = await storageService.uploadResume(user.uid, asset.uri, {
-        fileName: asset.name,
-        mimeType: asset.mimeType,
-        sizeBytes: asset.size,
-      });
-      await updateUser({ resume: uploaded.url });
-      setEditData((p) => ({ ...p, resume: uploaded.url }));
-      setUploadedDocumentMeta((current) => ({
-        ...current,
-        resume: { name: uploaded.name, url: uploaded.url },
-      }));
-      await analyzeUploadedDocument("resume", asset);
-    } catch (err) {
-      void errorLoggingService.captureException(err, {
-        category: "upload",
-        operation: "pick-resume",
         severity: "error",
         handled: true,
         source: "profile-page",
@@ -638,7 +578,7 @@ export default function ProfilePage() {
         ...current,
         transcript: { name: uploaded.name, url: uploaded.url },
       }));
-      await analyzeUploadedDocument("transcript", asset);
+      await analyzeUploadedDocument(asset);
     } catch (err) {
       void errorLoggingService.captureException(err, {
         category: "upload",
@@ -1041,26 +981,10 @@ export default function ProfilePage() {
         noTopSpacing={noTopSpacing}
         type="upload"
         icon="upload-file"
-        label={t("profile.resume")}
-        value={fileDisplayName("resume", user?.resume)}
-        isEditing={isEditing}
-        editValue={fileDisplayName("resume", editData.resume)}
-        onPress={handlePickResume}
-        uploadText={t("profile.uploadResume")}
-        emptyText={t("profile.notUploaded")}
-        inputBgClass={inputBgClass}
-        textClass={textClass}
-        secondaryTextClass={secondaryTextClass}
-        borderClass={borderClass}
-      />
-
-      <ProfileField
-        type="upload"
-        icon="upload-file"
         label={t("profile.transcript")}
-        value={fileDisplayName("transcript", user?.transcript)}
+        value={transcriptDisplayName(user?.transcript)}
         isEditing={isEditing}
-        editValue={fileDisplayName("transcript", editData.transcript)}
+        editValue={transcriptDisplayName(editData.transcript)}
         onPress={handlePickTranscript}
         uploadText={t("profile.uploadTranscript")}
         emptyText={t("profile.notUploaded")}
@@ -1079,85 +1003,41 @@ export default function ProfilePage() {
         />
       ) : null}
 
-      {(["resume", "transcript"] as const).map((documentType) => {
-        const review = documentReviews[documentType];
-        if (!review) return null;
-
-        return (
-          <View key={`review-${documentType}`} className="mt-4">
-            <DocumentExtractionReviewCard
-              title={t("profile.documentReaderReviewTitle")}
-              subtitle={t("profile.documentReaderReviewSubtitle")}
-              fileName={review.fileName}
-              confidenceText={
-                typeof review.confidence === "number"
-                  ? t("profile.documentReaderConfidence", { confidence: review.confidence })
-                  : null
-              }
-              emptyStateText={t("profile.documentReaderNoFields")}
-              applyLabel={t("profile.documentReaderApply")}
-              dismissLabel={t("profile.documentReaderDismiss")}
-              currentValueLabel={t("profile.documentReaderCurrent")}
-              suggestedValueLabel={t("profile.documentReaderSuggested")}
-              confidenceLabel={t("profile.documentReaderConfidenceShort")}
-              cardBgClass={cardBgClass}
-              textClass={textClass}
-              secondaryTextClass={secondaryTextClass}
-              items={review.items.map((item) => ({
-                ...item,
-                label: t(item.labelKey),
-              }))}
-              uncertainties={review.uncertainties}
-              onApply={() => {
-                applyDocumentReview(documentType).catch(() => {});
-              }}
-              onDismiss={() => dismissDocumentReview(documentType)}
-            />
-          </View>
-        );
-      })}
-    </>
-  );
-
-  const renderDocumentsCard = ({
-    className = "",
-    style,
-    useInternalScroll = false,
-  }: {
-    className?: string;
-    style?: object;
-    useInternalScroll?: boolean;
-  } = {}) => (
-    <View className={`${cardBgClass} border rounded-2xl p-6 ${className}`.trim()} style={style}>
-      <View className="flex-row items-center justify-between gap-3">
-        <View className="flex-row items-center flex-1 min-w-0">
-          <MaterialIcons name="upload-file" size={20} color="#008f4e" />
-          <Text className={`text-lg ${textClass} ml-3 font-semibold`} numberOfLines={1}>
-            {t("general.uploadFile")}
-          </Text>
-        </View>
-
-        <View className="bg-emerald-500/10 rounded-full px-3 py-1">
-          <Text className="text-emerald-500 text-xs font-semibold">{documentCompletionLabel}</Text>
-        </View>
-      </View>
-
-      {useInternalScroll ? (
-        <ScrollView
-          nestedScrollEnabled
-          keyboardShouldPersistTaps="handled"
-          className="mt-4"
-          style={{ flex: 1, minHeight: 0 }}
-          contentContainerStyle={{ paddingBottom: 6 }}
-        >
-          {renderDocumentFields({ noDivider: true, noTopSpacing: true })}
-        </ScrollView>
-      ) : (
+      {documentReviews.transcript ? (
         <View className="mt-4">
-          {renderDocumentFields({ noDivider: true, noTopSpacing: true })}
+          <DocumentExtractionReviewCard
+            title={t("profile.documentReaderReviewTitle")}
+            subtitle={t("profile.documentReaderReviewSubtitle")}
+            fileName={documentReviews.transcript.fileName}
+            confidenceText={
+              typeof documentReviews.transcript.confidence === "number"
+                ? t("profile.documentReaderConfidence", {
+                    confidence: documentReviews.transcript.confidence,
+                  })
+                : null
+            }
+            emptyStateText={t("profile.documentReaderNoFields")}
+            applyLabel={t("profile.documentReaderApply")}
+            dismissLabel={t("profile.documentReaderDismiss")}
+            currentValueLabel={t("profile.documentReaderCurrent")}
+            suggestedValueLabel={t("profile.documentReaderSuggested")}
+            confidenceLabel={t("profile.documentReaderConfidenceShort")}
+            cardBgClass={cardBgClass}
+            textClass={textClass}
+            secondaryTextClass={secondaryTextClass}
+            items={documentReviews.transcript.items.map((item) => ({
+              ...item,
+              label: t(item.labelKey),
+            }))}
+            uncertainties={documentReviews.transcript.uncertainties}
+            onApply={() => {
+              applyDocumentReview().catch(() => {});
+            }}
+            onDismiss={dismissDocumentReview}
+          />
         </View>
-      )}
-    </View>
+      ) : null}
+    </>
   );
 
   const renderMetadataCards = ({
@@ -1420,7 +1300,7 @@ export default function ProfilePage() {
                 <View style={{ flex: 1, minWidth: 0, gap: desktopPanelGap }}>
                   <View
                     className={`${cardBgClass} border rounded-2xl overflow-hidden`}
-                    style={{ flex: desktopProfileCardFlex, minHeight: 0 }}
+                    style={{ flex: 1, minHeight: 0 }}
                   >
                     {renderProfileHero()}
                     <ScrollView
@@ -1430,13 +1310,9 @@ export default function ProfilePage() {
                       contentContainerStyle={{ paddingHorizontal: 24, paddingVertical: 24, paddingBottom: 28 }}
                     >
                       {renderProfileFields()}
+                      {renderDocumentFields()}
                     </ScrollView>
                   </View>
-
-                  {renderDocumentsCard({
-                    style: { flex: desktopDocumentsCardFlex, minHeight: 0 },
-                    useInternalScroll: true,
-                  })}
                 </View>
 
                 <View
@@ -1555,10 +1431,9 @@ export default function ProfilePage() {
                     {renderProfileHero()}
                     <View className="px-6 py-6">
                       {renderProfileFields()}
+                      {renderDocumentFields()}
                     </View>
                   </View>
-
-                  {renderDocumentsCard()}
                 </View>
 
                 <View className="min-w-0 gap-4" style={{ width: sidebarWidth, flexShrink: 0 }}>

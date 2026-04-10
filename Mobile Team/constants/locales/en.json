@@ -37,8 +37,8 @@
     "green": "Green Mode"
   },
   "roadmap": {
-    "title": "Transfer Roadmap",
-    "loading_msg": "Loading your personal roadmap...",
+    "title": "Transfer Plan",
+    "loading_msg": "Loading your personal plan...",
     "plan_for": "{{major}} Plan for {{name}}",
     "progress_label": "{{progress}}% Complete",
     "ai_advisor": {
@@ -111,14 +111,14 @@
     "gpa_label": "GPA (0.0 - 4.0)",
     "sat_label": "SAT Score",
     "act_label": "ACT Score",
-    "resume_label": "Resume",
-    "upload_resume": "Upload Resume",
+    "resume_label": "Documents",
+    "upload_resume": "Upload Document",
     "not_uploaded": "Not Uploaded",
     "undecided": "Undecided"
   },
   "setup": {
     "title": "Set Up Your Profile",
-    "subtitle": "Tell us about yourself so we can customize your personalized transfer roadmap.",
+    "subtitle": "Tell us about yourself so we can customize your personalized transfer plan.",
     "major": "Intended Major",
     "major_placeholder": "What do you want to study?",
     "gpa": "Current GPA",
@@ -127,7 +127,7 @@
     "sat_placeholder": "Optional",
     "act": "ACT Score",
     "act_placeholder": "Optional",
-    "resume": "Your Resume (Optional)",
+    "resume": "Your Documents (Optional)",
     "transcript": "Your Transcript (Optional)",
     "transcript_label": "Transcript"
   },

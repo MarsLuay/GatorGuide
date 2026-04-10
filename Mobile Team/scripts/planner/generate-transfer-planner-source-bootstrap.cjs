@@ -1,3 +1,4 @@
+/* global __dirname */
 const fs = require("fs");
 const path = require("path");
 
@@ -13,8 +14,10 @@ require("ts-node").register({
 const {
   TRANSFER_PLANNER_ALL_MAJOR_PLANS,
   TRANSFER_PLANNER_CAMPUSES,
-  TRANSFER_PLANNER_TRACKS,
 } = require("../../constants/transfer-planner-data");
+const {
+  TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS,
+} = require("../../constants/transfer-planner-source/grc-associate-tracks.generated");
 const {
   TRANSFER_PLANNER_PROMOTED_PRIMARY_SOURCE_OVERRIDES,
 } = require("../../constants/transfer-planner-source/source-manifest-primary-overrides.generated");
@@ -92,9 +95,7 @@ const DISABLED_UNVERIFIED_OFFICIAL_LINK_URLS = new Set([
   "https://scandinavian.washington.edu/ba-swedish",
   "https://scandinavian.washington.edu/undergraduate",
   "https://scandinavian.washington.edu/undergraduate-programs",
-  "https://slavic.washington.edu/ba-eastern-european-languages-literature-and-culture",
   "https://slavic.washington.edu/ba-global-literary-studies-glits",
-  "https://slavic.washington.edu/ba-russian-language-literature-and-culture",
   "https://slavic.washington.edu/undergraduate-policies",
   "https://slavic.washington.edu/undergraduate-programs",
   "https://soc.washington.edu/current-majors",
@@ -324,7 +325,7 @@ import type {
   TransferPlannerCampus,
   TransferPlannerMajorPlan,
   TransferPlannerTrack,
-} from "../transfer-planner-data";
+} from "../transfer-planner-types";
 
 ${serializeExport(
   "TRANSFER_PLANNER_BOOTSTRAP_CAMPUSES",
@@ -334,7 +335,7 @@ ${serializeExport(
 ${serializeExport(
   "TRANSFER_PLANNER_BOOTSTRAP_TRACKS",
   "TransferPlannerTrack[]",
-  TRANSFER_PLANNER_TRACKS
+  TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS
 )}
 ${serializeExport(
   "TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS",

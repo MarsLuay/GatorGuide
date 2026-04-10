@@ -2,205 +2,556 @@ Owner: uw-tacoma-arts-media-culture
 Source: https://www.tacoma.uw.edu/sias/cac/arts-media-culture
 Title: Arts, Media & Culture | Culture, Arts & Communication | University of Washington Tacoma
 
-Arts, Media & Culture | Culture, Arts & Communication | University of Washington Tacoma
-<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMVD9WN"
-height="0"
-width="0"
-style="display:none;
-visibility:hidden">
-Skip to main content
-Apply
-Canvas
-Map
-Calendar
-Library
-Directory
-MyUW
-more_vert
-more_vert
-Close Search
-<img
-src="/sites/default/files/sites/uwtd8main/W.svg"
-alt="Block W - Link to UW Tacoma homepage"/>
-<img class="mobile-hide desktop-show"
-src="/sites/default/files/sites/uwtd8main/wordmark-full.svg"
-alt="University of Washington Tacoma"/>
-<img class="mobile-show desktop-hide"
-src="/sites/default/files/sites/uwtd8main/Wordmark-Tacoma.svg"
-alt="University of Washington Tacoma"/>
-Tools
-25Live
-Canvas
-Directory
-IT Help
-Library
-Map
-MyUW
-Office365
-Panopto
-Scout
-UW Gmail
-Workday
-Zoom
-Search
+[Supplemental official source] AMERICAN CULTURES TRACK
+[Supplemental official source] COMPARATIVE ARTS TRACK
+[Supplemental official source] FILM AND MEDIA TRACK
+[Supplemental official source] graduation requirements
+[Supplemental official source] LITERATURE TRACK
+[Supplemental official source] Supplemental official track and option pages
+[Supplemental official source] UWT general education
+[Supplemental official source] VISUAL AND PERFORMING ARTS TRACK
+**Creative Writing Courses
+*For students admitted to the University prior to autumn quarter 2023, the DIV requirement is a minimum of 3 credits.
+&copy; 2026 University of Washington Tacoma
 <a
-href=" https://www.tacoma.uw.edu/sias ">School of Interdisciplinary Arts & Sciences
-Culture, Arts & Communication
-Culture, Arts & Communication
-Majors
-expand_more
-Arts, Media & Culture
-Communication
-add
-Faculty
-FAQs
-Get Involved
-Post Graduation
-Internships
-Spanish Language and Cultures
-Writing Studies
-Minors
-expand_more
-American Popular Cultures Minor
-Asian Studies Minor
-Latino Studies Minor
-Spanish Language and Cultures Minor
-Technical Communication Minor
-CAC Resources
-expand_more
-CAC Directory
-Open Public Meetings
-Contact
-Advising
-MyUW
-Map
-Tools
-Breadcrumb
-<a href="https://www.tacoma.uw.edu/"
-class="breadcrumb--home-icon uwt-icon" title="UW Tacoma Homepage"
->Home
+<a href="/registrar"
 <a href="/sias"
->School of Interdisciplinary Arts & Sciences
 <a href="/sias/cac"
->Culture, Arts & Communication
-Arts, Media & Culture
-Arts, Media & Culture
-Bachelor of Arts
-Main Content
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2025-03/tlthappiestsong016_0.jpg"
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2025-03/tlthappiestsong016_0.jpg 1940w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2025-03/tlthappiestsong016_0.jpg 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2025-03/tlthappiestsong016_0.jpg 600w"
-sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
-alt="Group of students singing">
-The AMC major focuses on how the fields of art and media operate within culture and how they transform it by studying formal, aesthetic and socio-cultural ways of understanding literature, visual art, film, music and other media. An Arts, Media & Culture degree prepares students for a range of careers including publishing, the arts, media, museum work, public relations and public history. It is also for those students pursuing a broad cultural literacy, as well as for those planning to continue their education in advanced study in performing and visual arts or the humanities.
-Arts, Media & Culture majors have five tracks to choose from:
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2025-03/sias-lit-sample.jpg"
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2025-03/sias-lit-sample.jpg 1940w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2025-03/sias-lit-sample.jpg 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2025-03/sias-lit-sample.jpg 600w"
-sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
-alt="College student reading in library">
-LITERATURE TRACK
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2025-03/sias-film-sample.jpg"
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2025-03/sias-film-sample.jpg 1940w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2025-03/sias-film-sample.jpg 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2025-03/sias-film-sample.jpg 600w"
-sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
-alt="Suwanchote brothers, alumni filmmakers">
-FILM AND MEDIA TRACK
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2025-03/sias-performing-sample.jpg"
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2025-03/sias-performing-sample.jpg 1940w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2025-03/sias-performing-sample.jpg 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2025-03/sias-performing-sample.jpg 600w"
-sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
-alt="Water play from 2017">
-VISUAL AND PERFORMING ARTS TRACK
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2023-03/IMG_9160_0.jpg"
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2023-03/IMG_9160_0.jpg 1940w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2023-03/IMG_9160_0.jpg 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2023-03/IMG_9160_0.jpg 600w"
-sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
-alt="A professor talking to college students outside in the grass">
-COMPARATIVE ARTS TRACK
+<a href="https://instagram.com/uwtacoma"
+<a href="https://www.facebook.com/uwtacoma"
+<a href="https://www.linkedin.com/school/university-of-washington-tacoma"
+<a href="https://www.tacoma.uw.edu/"
+<a href="https://www.tiktok.com/@uwtacoma"
+<a href="https://www.youtube.com/channel/UC5yP5pgHK5hPnPwfxMykQFw"
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMVD9WN"
+<img
+<img class="mobile-hide desktop-show"
+<img class="mobile-show desktop-hide"
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2020-10/hendrixw.jpg"
 <img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2023-03/IMG_5664_0.jpg"
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2023-03/IMG_5664_0.jpg 1940w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2023-03/IMG_5664_0.jpg 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2023-03/IMG_5664_0.jpg 600w"
-sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
-alt="AMC students in an art gallery with a large bronze sculpted head in the foreground">
-AMERICAN CULTURES TRACK
-ADVISORS
-Brian Burhenn
-Connect with Advising
-MAJOR COORDINATOR
-Professor Andrea Modarres
-DEPARTMENT
-Culture, Arts & Communication (CAC)
-CAREER OPPORTUNITIES
-Media Research
-Post-graduate Studies
-Print and Television writing
-Print and Video editing
-Reporting
-ADMISSION REQUIREMENTS
-At least 45 lower-division credits
-DEGREE REQUIREMENTS
-For a BA in Arts, Media & Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
-ALUMNI SPOTLIGHT
-Nuk Suwanchote (BA '17)
-Nut Suwanchote (BA '18)
-Inspired by their immigrant parents, filmmakers and SIAS alumni Nuk and Nut Suwanchote are aiming to change the conversation on Asian culture. READ MORE
-Contact
-Culture, Arts & Communication
-ACADEMICS
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2023-03/IMG_9160_0.jpg"
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2025-03/sias-film-sample.jpg"
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2025-03/sias-lit-sample.jpg"
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2025-03/sias-performing-sample.jpg"
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2025-03/tlthappiestsong016_0.jpg"
+<span
+>
+>Culture, Arts & Communication
+>Home
+>Office of the Registrar
+>School of Interdisciplinary Arts & Sciences
+15
+1900 Commerce Street, Tacoma, WA 98402-3100
+253-692-4414
+253-692-4450
+253-692-4913
+25Live
+40 additional credits
+5
+5 credits Foundation (5 credits)
+A minimum of 180 college credits must be completed (with more required in some programs) and include academic credits in the following areas:
+A student must satisfy the requirements for the degree at the time the degree is to be awarded. For questions, please contact the Graduate School or your advisor.
+A student would not need to submit a petition if some of the transferable credits earned at another school are considered elective credits and would not be used towards fulfilling any degree requirements. For example, if a student has completed 185 credits, of which the last 20 credits were taken at another college or university, and at least 5 of those 20 credits include elective credits, the 5 credits would not be used towards meeting any degree requirements and the student would not need to fill out a petition.
+ABOUT UW TACOMA
 Academic advising
 Academic calendar
-Canvas
-Library
-Schools and programs
-Study Abroad
-Teaching and Learning Center
+Academic Programs
+ACADEMICS
+Accessibility |
+Acknowledgement
+add
+Additional History options:
+Administration
+ADMISSION REQUIREMENTS
+Admissions
+Advising
+ADVISORS
+alt="A professor talking to college students outside in the grass">
+alt="AMC students in an art gallery with a large bronze sculpted head in the foreground">
+alt="Block W - Link to UW Tacoma homepage"/>
+alt="College student reading in library">
+alt="Group of students singing">
+alt="Hendrix the Husky at the W">
+alt="Suwanchote brothers, alumni filmmakers">
+alt="University of Washington Tacoma"/>
+alt="Water play from 2017">
+ALUMNI SPOTLIGHT
+American Cultures Track
+AMERICAN CULTURES TRACK
+American Cultures Track | Culture, Arts & Communication | University of Washington Tacoma
+American Popular Cultures Minor
+Apply
+Areas of Inquiry (AoI)
+aria-label="University of Washington Tacoma Homepage">
+Arts and Humanities (A&H) Formerly known as Visual, Literary, and Performing Arts (VLPA)
+Arts and Humanities (A&H): 20 credits
+Arts, Media & Culture
+Arts, Media & Culture | Culture, Arts & Communication | University of Washington Tacoma
+Arts, Media & Culture majors have five tracks to choose from:
+Arts, Media and Culture
+As part of the degree requirements, students must complete approximately 85 credits of general education coursework:
+Asian Studies Minor
+At least 45 lower-division credits
+Bachelor of Arts
+Basic Skill
+Biomedical Sciences
+Bothell
+Breadcrumb
+Brian Burhenn
+CAC Directory
+CAC Resources
+Calendar
 CAMPUS
 Campus Safety
-Equity & Inclusion
-Financial Aid
-Housing
-Information Technology
-Student Life
-University YMCA Student Center
-ABOUT UW TACOMA
-Administration
-Admissions
-Institutional Research
-Jobs
-Parking & transportation
-Research
-UWNetID login
-<a href="https://www.tacoma.uw.edu/"
-aria-label="University of Washington Tacoma Homepage">
-<a href="https://www.facebook.com/uwtacoma"
-title="Follow UW Tacoma on Facebook">
-<a href="https://instagram.com/uwtacoma"
-title="Follow UW Tacoma on Instagram">
-<a href="https://www.tiktok.com/@uwtacoma"
-title="Follow UW Tacoma on TikTok">
-<a href="https://www.youtube.com/channel/UC5yP5pgHK5hPnPwfxMykQFw"
-title="Follow UW Tacoma on Youtube">
-<a href="https://www.linkedin.com/school/university-of-washington-tacoma"
-title="Follow UW Tacoma on Linkedin">
-Puyallup Tribe of Indians
-Tribal Sponsor of UW Tacoma
-Learn More >
-Land
-Acknowledgement
->
-UW Seattle | UW
-Bothell
-&copy; 2026 University of Washington Tacoma
-1900 Commerce Street, Tacoma, WA 98402-3100
+Canvas
+CAREER OPPORTUNITIES
+class="breadcrumb--home-icon uwt-icon" title="UW Tacoma Homepage"
+class="uwt-icon uwt-icon-per-site-facebook">
+class="uwt-icon uwt-icon-per-site-instagram">
+Close Search
+Communication
+Comparative Arts Track
+COMPARATIVE ARTS TRACK
+Connect with Advising
+Contact
 Contact us |
-Terms of Use |
+Contact your academic advisor if you have questions about how your coursework fulfills these requirements.
+Courses in TARTS, TAMST, TFILM, TLIT, TWRT; select courses from other subject areas may count
+Courses in TBIOL, TCHEM, TESC, TMATH, TPHYS, TCSS; select courses from other subject areas may count
+Courses in TEGL, THIST, TLAWPL, TPPE, TPSYCH, TSOC; select courses from other subject areas may count
+Courses in this list set the study of arts and media in broad cultural or social contexts.
+Courses such as Macroeconomics, Microeconomics, General Chemistry, Statistics, and others may fulfill this requirement
+Courses that focus on sociocultural, political, and economic diversity of human experience
+Credit from external sources (AP/IB credit, transfer coursework, by exam, Armed Forces Training School, etc.)
+Cross-campus courses taken at UW (Seattle) & UW Bothell
+Culture (List B; must be 25 credits not taken as part of another requirement for the major) (25 credits)
+Culture (List B) (5 credits)
+Culture Arts & Communication
+Culture, Arts & Communication
+Culture, Arts & Communication (CAC)
+Current Students
+DEGREE REQUIREMENTS
+DEPARTMENT
+Designated courses study diversity in the United States with focus on the sociocultural, political and economic diversity of human experience and help students develop an understanding of the complexities of living in increasingly diverse and interconnected societies.
+Details
+Directory
+Diversity (DIV)
+Diversity (DIV): 5 credits
+Economics and Policy Analysis (EPA)
+English Composition (C): 5 credits
+Environmental Science
+Environmental Sustainability
+Equity & Inclusion
+Ethnic, Gender and Labor Studies
+Exceptions to the rule regarding majors may be granted at the discretion of the department. If major requirements other than the current ones are being used, a note to that effect must be made on the degree application.
+expand_more
+Faculty
+Faculty & Staff
+FAQs
+Fax Number
+Film and Media (List F) (25 credits)
+Film and Media Track
+FILM AND MEDIA TRACK
+Film and Media Track | Culture, Arts & Communication | University of Washington Tacoma
+Final Year Residency Requirement
+Financial Aid
+For a BA in Arts, Media & Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+Formerly known as Areas of Knowledge (AoK)
+Formerly known as Quantitative/Symbolic Reasoning (QSR)
+Forms
+Foundation (5 credits)
+General Education Requirements
+Get Involved
+Global Studies Concentration
+Graduating Under Earlier Catalogs
+Graduating with Honors
+Graduation Requirements
+Graduation Requirements | Office of the Registrar | University of Washington Tacoma
+Graduation Requirements for a Master&#039;s Degree
+Graduation Requirements for a Masters Degree
+height="0"
+History
+History (List A: one survey class and one non-survey history class) (10 credits)
+History (One class from List A and one of the following: THIST 220, 221, 320, 340, 349 or TLAX 333) (10 credits)
+Housing
+href=" https://www.tacoma.uw.edu/sias ">School of Interdisciplinary Arts & Sciences
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2020-10/hendrixw.jpg 600w"
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2023-03/IMG_5664_0.jpg 600w"
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2023-03/IMG_9160_0.jpg 600w"
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2025-03/sias-film-sample.jpg 600w"
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2025-03/sias-lit-sample.jpg 600w"
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2025-03/sias-performing-sample.jpg 600w"
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2025-03/tlthappiestsong016_0.jpg 600w"
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2020-10/hendrixw.jpg 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2023-03/IMG_5664_0.jpg 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2023-03/IMG_9160_0.jpg 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2025-03/sias-film-sample.jpg 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2025-03/sias-lit-sample.jpg 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2025-03/sias-performing-sample.jpg 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2025-03/tlthappiestsong016_0.jpg 980w,
+iashelp@uw.edu
+If the student is requesting to waive a university requirement, the petition will be submitted to their academic advisor for review by the Faculty Assembly's Academic Policy and Curriculum Committee. Once a determination has been made the student is contacted.
+In order to graduate with a bachelor's degree, a student must meet minimum general educational and basic skills requirements, in addition to completing the requirements of their academic program. General Education requirements are outlined in this website. Additional requirements for specific degree requirements are found online on the degree program's webpages, or within the Degree Programs webpage of the General Catalog.
+Information Technology
+Inspired by their immigrant parents, filmmakers and SIAS alumni Nuk and Nut Suwanchote are aiming to change the conversation on Asian culture. READ MORE
+Institutional Research
+Interdisciplinary Arts and Sciences
+Internships
+INTERPRETATION
+Interpretation (List C) (5 credits)
+Interpretation (One of TAMST 120, 210, 220, or 250) (5 credits)
+IT Help
+Jobs
+Land
+Latino Studies Minor
+Law and Policy
+Learn More >
+Library
+List A History
+LIST B: CULTURE
+LIST C: INTERPRETATION
+LIST D: PRACTICE / STUDIO COURSES
+LIST E: LITERATURE
+LIST F: FILM AND MEDIA
+LIST G: VISUAL AND PERFORMING ARTS
+Lists E, F or G (10 credits)
+Literature (List E) or Visual and Performing Arts (List G) (5 credits)
+Literature Track
+LITERATURE TRACK
+Main Content
+MAJOR COORDINATOR
+Majors
+Map
+Master’s Degree Requirements
+Mathematics
+Mattress Factory, room 251
+Media Research
+Minimum GPA
+minimum of 5 credits
+Minors
+more_vert
+Most students who transfer from another college have already completed many of these requirements. Any requirements that aren't complete when a transfer student is admitted to UW Tacoma become part of the student's degree program.
+Must include 5 credits of English Composition (C) with a minimum grade of 2.0 and 10 credits of Writing (W) courses
+MyUW
+Natural Sciences (NSc) Formerly known as Natural World (NW)
+Natural Sciences (NSc): 20 credits
+News & Communications
+Nuk Suwanchote (BA '17)
+Number of Credits
+Nut Suwanchote (BA '18)
+Office Hours:
+Office Location
+Office of the Registrar
+Office365
+On this page:
+One course may be part of the major requirements for students in majors such as Communication, History (all tracks), PP&E (all tracks), Law & Policy, Psychology, and Writing Studies
+Open Public Meetings
+Panopto
+Parking & transportation
+Petitioning to seek an exception to the residency requirement
+Politics, Philosophy and Economics (PP&E)
+Post Graduation
+Post-graduate Studies
+Practice/Studio (List D) (5 credits)
+Print and Television writing
+Print and Video editing
 Privacy |
-Accessibility |
+Professor Andrea Modarres
+Psychology
+Puyallup Tribe of Indians
+Reasoning (RSN)
+Reasoning (RSN): 5 credits
+Registration Resources
+reguwt@uw.edu
+Reporting
+Research
+Resources
 Rules Docket
+School of Interdisciplinary Arts & Sciences
+Schools and programs
+Sciences and Mathematics
+Scout
+Search
+SIAS Directory
+SIAS Scholarships
+SIAS Student Advisory Council
+sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
+Skip to main content
+Social Sciences
+Social Sciences (SSc) Formerly known as Individuals and Society (I&S)
+Social Sciences (SSc): 20 credits
+Some courses may fulfill more than one general education category at the same time. For example, a course might be a Writing course and also an Arts and Humanities (A&H). Courses that are both A&H and Social Science (SSc) can only fulfill one general education area.
+Spanish Language and Cultures
+Spanish Language and Cultures Minor
+src="/sites/default/files/sites/uwtd8main/W.svg"
+src="/sites/default/files/sites/uwtd8main/wordmark-full.svg"
+src="/sites/default/files/sites/uwtd8main/Wordmark-Tacoma.svg"
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2020-10/hendrixw.jpg 1940w,
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2023-03/IMG_5664_0.jpg 1940w,
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2023-03/IMG_9160_0.jpg 1940w,
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2025-03/sias-film-sample.jpg 1940w,
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2025-03/sias-lit-sample.jpg 1940w,
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2025-03/sias-performing-sample.jpg 1940w,
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2025-03/tlthappiestsong016_0.jpg 1940w,
+Student Affairs resources are available to all currently enrolled students regardless of race, sex or other identity.
+Student Life
+Students
+Students are required to complete 45 of their final 60 credits as matriculated students in residence at UW Tacoma, which means that no more than a maximum of 15 of the final 60 credits may be non-resident credit. If a student takes more than 15 of the final 60 credits out of residence, the extra credits need not be counted against the limit of 15 if credits from the courses are not needed in any way to meet degree requirements. Some degree programs may have stricter residency requirements, please check with your advisor. Fully online degree programs are exempt from this requirement.
+Students may be eligible to receive Baccalaureate honors (summa cum laude, magna cum laude, cum laude) or Faculty honors. More information about eligibility and requirements for each designation may be found on the Honors Requirements webpage.
+Study Abroad
+style="display:none;
+Survey options:
+TAMST 101 American Art, Place and Space
+TAMST 120 Mythic America
+TAMST 210 American Cultures and Perspectives: Class, Ethnicity, Gender and Race
+TAMST 220 Introduction to Popular Culture
+TAMST 250 Science Fiction in American Culture
+TAMST 260 Introduction to Queer Studies
+TAMST 350 American Food Studies
+TAMST 410 Studies in U.S. Popular Culture
+TAMST 420 Drugs and U.S. Culture
+TAMST 430 Queer Performances
+TAMST 450 Monstrous Imagination
+TANTH 354 History of the Concept of Culture
+TARTS 150 Introduction to Theatre
+TARTS 151 Fundamentals of Acting
+TARTS 160 Introduction to Musical Theatre
+TARTS 200 Studio Foundation I: Contemporary Art Strategies
+TARTS 203 Body Image and Art
+TARTS 225 Musical History of Tacoma
+TARTS 240 Landscape in Contemporary Art
+TARTS 251 Intermediate Acting: Scene Study
+TARTS 252 Introduction to Stage Directing
+TARTS 266 The Artist as Visionary
+TARTS 280 3-D Art and Contemporary Approaches to Sculpture
+TARTS 281 Art and Culture in India
+TARTS 282 Art and Culture in China
+TARTS 283 Art and Culture in Japan
+TARTS 284 Art and Culture in the Pacific
+TARTS 311 History of Rock ‘n’ Roll
+TARTS 315 Music and Crisis
+TARTS 320 Improvisational Theater and Performance in Everyday Life
+TARTS 335 History of Photography
+TARTS 336 Glass Arts
+TARTS 360 Women Artists from the Renaissance to the Present
+TARTS 364 Feminist Drama
+TARTS 367 Ideas Through Objects: A Conceptual Approach to Art
+TARTS 368 Human Figure in Contemporary Art
+TARTS 371 Theatre History: Ancient Drama
+TARTS 372 Theatre History: World Drama through French Neoclassicism
+TARTS 373 Theatre History: Modern Drama
+TARTS 386 Contemporary Art and Studio Drawing
+TARTS 390 Site Specificity in Art
+TARTS 391 Reconstructing Self in Art
+TARTS 393 Urban Walking as Creative Practice
+TARTS 395 Community Arts Practice
+TARTS 402 Eco-Art: Art in Response to Environmental Crisis
+TARTS 404 Art in a Time of War
+TARTS 405 Cultural Identity and Art
+TARTS 406 Labor, Globalization and Art
+TARTS 407 Art and the Public
+TARTS 410 Community and Public Arts
+TARTS 480 Contemporary Arts and Society (1945–Present)
+TCOM 201 Media and Society
+TCOM 221 Artificial Intelligence: Media, Culture and Power
+TCOM 230 Globalization and Media
+TCOM 247 Television Studies
+TCOM 250 Media Activism
+TCOM 254 Communication History
+TCOM 257 Ethical Issues in Mass Communications
+TCOM 258 Children and Television
+TCOM 310 Contemporary Environmental Issues and the Media
+TCOM 340 Global TV: Format, Genre and Reception
+TCOM 343 Global Music Video
+TCOM 347 Television Criticism and Application
+TCOM 348 Nonfiction Writing for Television **
+TCOM 349 News Writing **
+TCOM 351 Video Production
+TCOM 380 Political Economy of the Media
+TCOM 430 Global Networks, Local Identities
+TCOM 440 Advertising and Consumer Culture
+TCOM 444 Gender, Ethnicity, Class and the Media
+TCOM 454 Communications Law
+TCOM 461 Media and Identity in Asia
+TCOM 470 Documentary Production and Critique
+TCOM 471 Advanced Video Production **
+TCOM 480 Critical Media Industry Studies
+TCOM 481 Communication Regulations and Policy
+TCOM 486 Feature Writing for Print and Media **
+Teaching and Learning Center
+Technical Communication Minor
+TEGL 112 Introduction to Indigenous Studies
+TEGL 201 Introduction to Indigenous Philosophy
+TEGL 271 American Indians in Film
+TEGL 310 Intersectional Feminisms
+TEGL 340 Intersections: Race, Gender and Sexuality in a Global Perspective
+TEGL 380 Gender and Sexuality across Culture and Historical Contexts
+TEGL 419 African American Culture and Consciousness
+Terms of Use |
+TFILM 201 Film Studies
+TFILM 201 Introduction to Film Studies
+TFILM 220 Film and the Art
+TFILM 220 Film and the Arts
+TFILM 350 Screenwriting
+TFILM 350 Screenwriting **
+TFILM 377 Spanish Film
+TFILM 380 Hollywood Cinema I: Classical Hollywood Cinema 1930–1959
+TFILM 381 Hollywood Cinema II: Post-Classical Hollywood Cinema 1960–2000
+TFILM 381 Hollywood Cinema II: Post–Classical Hollywood Cinema 1960–2000
+TFILM 386 Silent Cinema
+TFILM 387 World Film 1927–1959
+TFILM 388 World Film 1960–2000
+TFILM 434 Disability in Film
+TFILM 436 Feminist Perspectives in Film and Literature
+TFILM 438 Gender, Sexuality and Film
+TFILM 444 Crime Narratives and Society
+TFILM 450 Advanced Screenwriting: Writing the Feature
+TFILM 483 Film Directors
+TFILM 485 Media Genres
+TFILM 487 Cinema, Time, and Memory
+TFILM 489 Screendance
+TFILM 499 Special Topics in Film
+The AMC major focuses on how the fields of art and media operate within culture and how they transform it by studying formal, aesthetic and socio-cultural ways of understanding literature, visual art, film, music and other media. An Arts, Media & Culture degree prepares students for a range of careers including publishing, the arts, media, museum work, public relations and public history. It is also for those students pursuing a broad cultural literacy, as well as for those planning to continue their education in advanced study in performing and visual arts or the humanities.
+The decision of the Academic Policy and Curriculum committee is final. An exception from a university graduation requirement becomes void at the end of two calendar years from the date the exemption was granted if all degree requirements have not been completed by that date.
+The following are considered non-resident credit:
+The student must present a minimum cumulative 2.00 GPA for all coursework taken in residence at the University of Washington Tacoma. The graduation grade point average is computed when the student has completed all work for the degree and includes only credits earned while in residence at the university. Residence credits are UW credits earned through the campus granting the degree.
+The student needs to submit a graduation petition two quarters in advance to their academic advisor. Petitions requesting approval of 16-25 non-resident credits will be reviewed by the department awarding the degree. Petitions requesting more than 25 credits will be reviewed by the Academic Policy & Curriculum Committee. The student will be notified by mail and UW email of the decision by the Office of the Registrar.
+This list includes courses that provide language and concepts for the critical study of texts and objects. Courses taken in this list cannot be double-counted to satisfy other requirements.
+THIST 150 World History I: Prehistory–1500
+THIST 151 World History II: 1500–Present
+THIST 200 American History I, 1607–1877
+THIST 201 American History II 1877–present
+THIST 220 African American History 1619–1865
+THIST 221 African American History 1865–1945
+THIST 222 African American History 1945–Present
+THIST 260 World Empires
+THIST 333 Early American Music, Art, Literature and Theater
+THIST 341 African American History
+THIST 356 History of Christianity
+THIST 365 Europe in the Twentieth Century
+THIST 375 British Empire
+THIST 377 Art of the Americas
+THIST 378 American Architecture
+THIST 379 Modern Architecture
+THIST 430 Introduction to Public History
+THIST 462 History of Vietnam
+THIST 463 Premodern Japan
+THIST 464 Modern China
+THIST 465 Modern Japan
+THIST 466 Modern Korea
+THIST 470 The Material World: Art and Artifacts
+THIST 474 Imperial China
+THIST 475 Twentieth-Century Britain
+THIST 478 Revolution, Industrialization and Modernity in European Art (1780–1900)
+THIST 478 Revolution, Industrialization and Modernity in European Culture (1780–1900)
+THIST 479 Modern European Culture
+THIST 487 Technology in the Modern World
+THIST 495 The Metropolis
+title="Follow UW Tacoma on Facebook">
+title="Follow UW Tacoma on Instagram">
+title="Follow UW Tacoma on Linkedin">
+title="Follow UW Tacoma on TikTok">
+title="Follow UW Tacoma on Youtube">
+TLAX 225 Latinx/a/o Cultural Expressions
+TLAX 238 Latinos in the United States
+TLAX 250 Latinos/as in the Media
+TLAX 267 Introduction to Chicano/a Literature
+TLAX 277 Latin American Literature
+TLAX 333 U.S. Latino Histories
+TLAX 355 Migration and Transnational Family in Latino Literature and Film
+TLAX 376 Latin American Film
+TLAX 380 Latinx Sexualities
+TLAX 400 Afro-Hispanic Culture
+TLAX 441 Mexican Cinema and Society
+TLAX 462 Women in Latin America
+TLAX 465 Latin American Visual Arts
+TLAX 476 Latin American Women Writers
+TLIT 101 Understanding Literature
+TLIT 210 Studies in American Literature
+TLIT 220 Literature and the Arts
+TLIT 220 Literature and the Arts OR
+TLIT 230 Multi-Ethnic American Literature
+TLIT 237 Introduction to Literature and Environment
+TLIT 240 Studies in English Literature
+TLIT 251 Ancient Literature of Western Civilization
+TLIT 252 Medieval Literature of Western Civilization
+TLIT 253 Modern Literature of Western Civilization
+TLIT 305 American Literary Movements, Genres and Historical Periods
+TLIT 306 Studies in Selected American Writers
+TLIT 311 Themes in American Literature
+TLIT 313 American Poetry
+TLIT 320 African American Literature from Slavery to the Present
+TLIT 324 African American Women's Literature
+TLIT 332 Asian American Literature
+TLIT 335 Middle Eastern American Literature
+TLIT 343 Shakespeare
+TLIT 351 Ancient Greek Tragedy
+TLIT 352 Medieval Quests
+TLIT 371 The World Stage
+TLIT 388 Cross Cultural Studies in Contemporary Women's Literature
+TLIT 390 Varieties of Literary Criticism
+TLIT 391 Science Fiction Literature
+TLIT 406 Children's and Young Adult Literature
+TLIT 425 Literature of the Harlem Renaissance
+TLIT 431 Contemporary Native American Women's Literature
+TLIT 432 American Indian Literature
+TLIT 433 Native American Literature and Federal Indian Law
+TLIT 458 Modern Novel
+TLIT 476 American Women's Literature: Nineteenth and Twentieth Century Texts
+To ensure a determination is made in time for graduation, petitions should be submitted at least two quarters before the student's graduation date to allow time for committee review and student registration.
+To include a minimum of 10 credits in each of the three areas of study:
+To request a waiver of program/major requirements a student must submit a petition to their academic program. Students should confer with their advisor before completing the petition. Review is done by the academic program faculty committee or director/dean, as procedures specific to each academic program dictate.
+Tools
+Total Credits Required to Graduate
+TPHIL 350 Contemporary Search for Meaning
+TPHIL 355 The Modern Mind
+TPHIL 358 History of Philosophy: Medieval and Modern
+TPHIL 360 History of Philosophy: Modern and Contemporary
+TPHIL 361 Ethics and Society
+TPHIL 362 The Beautiful and the Good: Philosophy’s Quest for Value
+TPHIL 367 Utopias
+TPHIL 451 The Enlightenment
+TPHIL 466 Philosophy of the Future
+TPOLS 251 Cultural Studies
+TPOLS 350 Politics and Film in the Middle East
+TRELIG 210 Modern Theories of Religion
+TRELIG 350 Philosophy, Religion and the Environment
+TRELIG 365 Hinduism and Buddhism
+TRELIG 366 Islam
+Tribal Sponsor of UW Tacoma
+TSPAN 351 Introduction to Hispanic Literary Studies (in Spanish)
+TWOMN 251 Popular Culture and Gender
+TWOMN 345 Women and Work in the United States
+TWRT 200 Introduction to Creative Writing **
+TWRT 270 Introduction to Writing Poetry **
+TWRT 280 Introduction to Creative Writing: Fiction **
+TWRT 287 Writing Creative Non-Fiction **
+TWRT 330 Written and Visual Rhetoric
+TWRT 333 Writing through Comics **
+TWRT 333 Writing Through Comics **
+TWRT 340 Asian American Rhetorics, Literacies and Activism
+TWRT 360 Playwriting **
+TWRT 372 Writing Eco-Poetry **
+TWRT 382 Writing Popular Fiction **
+TWRT 384 Writing Historical Fiction **
+TWRT 388 Writing for Social Change **
+TWRT 470 Advanced Poetry Writing **
+TWRT 480 Advanced Fiction Writing **
+University Graduation Requirements for the Baccalaureate Degree
+University Requirements for a Baccalaureate Degree
+University YMCA Student Center
+UW Gmail
+UW Seattle | UW
+UWNetID login
+Various / Click Here
+visibility:hidden">
+Visual and Performing Arts Track
+VISUAL AND PERFORMING ARTS TRACK
+Waiver of Degree Requirements
+width="0"
+With School or Program approval, a student may choose to graduate under the current catalog or the catalog in effect at the time they entered the program from which they are to graduate. University policy on use of earlier graduation requirements provides that if fewer than ten years have elapsed since a student's admission into the major program, they may choose to graduate under the requirements in effect at the time of admission, or under any subsequent requirements. If more than ten years have elapsed since admission to the major, the major program has the option of requiring the student to complete the current major requirements.
+Workday
+Writing (W)
+Writing (W): 10 credits
+Writing Studies
+Zoom

@@ -2,590 +2,504 @@ Owner: uw-seattle-materials-science-engineering
 Source: https://mse.washington.edu/current/undergrad/courses
 Title: B.S. degree requirements | UW Materials Science and Engineering
 
-B.S. degree requirements | UW Materials Science and Engineering
-Skip to main content
-<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDDQSLD"
-height="0" width="0" style="display:none;visibility:hidden">
-MyUW
-Calendar
-Directories
-Libraries
-UW Medicine
-Maps
-UW Today
-Helpful Links
+--> Danny Ayala Robles
+[Supplemental official source] Nanoscience & Molecular Engineering Option Requirements
+*
+* ENTRE 370
+* ENTRE 440
+* The University-required 7 additional writing credits will be met by taking MSE core courses.
+*NME 220 must be taken in the spring of the sophomore or junior year.
+&copy; 2026 UW Materials Science and Engineering | UW College of Engineering | Seattle, WA
+‡ As of autumn 2021, MATH 307, MATH 308, MATH 309, and MATH 324 are renumbered as MATH 207, MATH 208, MATH 209, and MATH 224, respectively. Students can apply either the 200- or 300-level number for each course toward their degree requirements.
+<a class="toggler hide-menu-arrow nav-link collapsed uw-links-wrapper uwlinks-button-toggle" aria-owns="uwlinks"
+<a class="toggler hide-menu-arrow search nav-link collapsed" data-bs-toggle="modal" data-bs-target="#search-modal"
+<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
+<a class="toggler nav-link collapsed" data-toggle="collapse" data-target="#main-menu-links"
 <a href="https://www.washington.edu/itconnect/forstudents.html"
-tabindex="-1">Computing/IT
-ISC/Workday
-Husky Card
-UW Bothell
-UW Tacoma
-UW Facebook
-UW Twitter
-<nav aria-label="Audience links, search, and quick links"
-class="d-none d-sm-flex justify-content-end desktop-section position-absolute">
-Faculty
-MyMSE
-Scheduler
 <button aria-label="Open search" aria-haspopup="true" aria-owns="search-modal" aria-controls="search-modal"
-class="px-1 search d-flex align-self-center align-items-center" data-bs-toggle="modal"
-data-bs-target="#search-modal">
-<button class="uw-links-wrapper mr-n2 uwlinks-button-toggle" role="button" aria-label="Show UW quick links" aria-owns="uwlinks"
-aria-controls="uwlinks" aria-haspopup="true">
-UW Links
 <button class="menu-toggler d-sm-none collapsed" type="button" data-toggle="collapse" data-target="#main-menu"
-aria-controls="toggleMainMenu" aria-expanded="false" aria-label="Toggle Main Menu">
-Menu
-Search
-Main menu
-About us
-<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
-data-toggle="collapse" data-target="#main-menu-1"
-aria-controls="toggle_main-menu-1" aria-expanded="false"
-aria-label="Toggle main-menu-1" href="#main-menu-1">
-About us
-What is Materials Science and Engineering?
-Mission, facts and stats
+<button class="uw-links-wrapper mr-n2 uwlinks-button-toggle" role="button" aria-label="Show UW quick links" aria-owns="uwlinks"
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDDQSLD"
+<nav aria-label="Audience links, search, and quick links"
+1
+1-10
+1-2
+10
+12
+12 credits of written and oral communication
+15
+15 credits of technical elective courses
+2
+2025 UW MSE Capstone Design Symposium
+206-685-4922
+24
+24 credits are required for graduation in these three areas of inquiry .
+24 credits in Arts and Humanities (A&H), Social Sciences (SSc), and Diversity (DIV).
+24 credits in mathematics
+24 credits of engineering fundamentals
+24 credits of engineering fundamentals coursework.
+24 credits required of mathematics coursework.
+3
+3-4
+3-5
+3, 3
+3, 3, 3
+302B Roberts Hall
+31
+31 credits of natural sciences coursework
+31 credits required of Natural Sciences coursework. Note: Elective courses chosen in this category cannot also satisfy course requirements in another degree category.
+4
+4, 4
+5
+5 credits of Diversity required; meet requirement by choosing an A&H/SSc course that is also a DIV course
+51
+51 credits in core MSE courses
+51 credits in core MSE courses.
+7 credits in written and oral communication.
+8 Credits of Engineering Fundamentals Electives selected from the following list:
+A A | BIOEN | CHEM E | CEE | CSE | E E | IND E | M E
 A culture of inclusion & belonging
-Facilities & labs
+A MATH 352
+A MATH 353
+A MATH 383
+A MATH 401
+A MATH 403
+A maximum of 9 credits in 400-level courses in the following departments will satisfy the technical electives requirement. 500-level courses (except seminar) in these departments will also satisfy this requirement, but the MSE undergraduate adviser will need to update your degree audit manually.
+A minimum of 6 credits in MSE 400-level courses listed below are required. MSE 500-level courses (except seminar) will also satisfy the minimum of 6 credits in MSE technical electives.
+A&H
+AA 210
+AA 260
 ABET Accreditation
-Visit MSE
-Contact us
-Employment
-People
-<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
-data-toggle="collapse" data-target="#main-menu-2"
-aria-controls="toggle_main-menu-2" aria-expanded="false"
-aria-label="Toggle main-menu-2" href="#main-menu-2">
-People
-MSE directories
-Core faculty
-Faculty honors
+About us
+Accessibility
+Additional A&H or SSc
+Additional Links
+Additive Manufacturing: Materials, Processes, and Applications
 Adjuncts, Affiliates, Emeriti, Lecturers
-Staff
-Research
-<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
-data-toggle="collapse" data-target="#main-menu-3"
+Admitted graduate students
+Advanced Linear Algebra Tools and Applications
+Advanced Multivariable Calculus I
+Advanced Technical Communication in the Engineering Workplace (4 credits)
+Alumni
+AMATH 301 or CSE 142 or CSE 122
+Application of Computers to Physical Measurement
+Applied Linear Algebra & Numerical Analysis
+Approved Composition Course
+Approved UW A&H courses
+Approved UW A&H or SSc courses
+Approved UW SSc courses
+aria-controls="toggle_main-menu-1" aria-expanded="false"
+aria-controls="toggle_main-menu-2" aria-expanded="false"
 aria-controls="toggle_main-menu-3" aria-expanded="false"
+aria-controls="toggle_main-menu-4" aria-expanded="false"
+aria-controls="toggle_main-menu-5" aria-expanded="false"
+aria-controls="toggle_main-menu-6" aria-expanded="false"
+aria-controls="toggle_main-menu-7" aria-expanded="false"
+aria-controls="toggleMainMenu" aria-expanded="false" aria-label="Toggle Main Menu">
+aria-controls="toggleMainMenuLinks" aria-expanded="false" aria-label="Toggle Main Menu Links"
+aria-controls="toggleMainMenuSearch" aria-expanded="false" aria-label="Toggle Main Menu Search" href="#">
+aria-controls="uwlinks" aria-haspopup="true">
+aria-controls="uwlinks" aria-label="Show UW links">
+aria-label="Toggle main-menu-1" href="#main-menu-1">
+aria-label="Toggle main-menu-2" href="#main-menu-2">
 aria-label="Toggle main-menu-3" href="#main-menu-3">
+aria-label="Toggle main-menu-4" href="#main-menu-4">
+aria-label="Toggle main-menu-5" href="#main-menu-5">
+aria-label="Toggle main-menu-6" href="#main-menu-6">
+aria-label="Toggle main-menu-7" href="#main-menu-7">
+Arts and Humanities (A&H), Social Sciences (SSc), and Diversity (DIV)
+askmse@uw.edu
+B.S. degree requirements
+B.S. degree requirements | UW Materials Science and Engineering
+B.S. with nanoscience option
+Bachelor of Science degree information
+Be Boundless
+Beginning Scientific Computing or Computer Programming I or Introduction to Computer Programming II
+Big Data for Materials Science
+BIOC 405, 406
+BIOEN 215
+BIOEN 423
+BIOEN 492/CHEM E 458
+BIOEN/CHEM E 490
+BIOEN/CHEM E 491
+BIOL 180
+BIOL 200
+Biological Frameworks for Engineers (3 Credits)
+Biomaterials and Nanomaterials in Tissue Engineering
+Biomaterials/Nanomaterials in Tissue Engineering
+BSE 201
+Business Plan Practicum
+Calculus with Analytic Geometry I, II, III
+Calendar
+Careers and internships
+CEE 220
+Certificate program students
+Certificate programs
+CHEM 142, 152 (or CHEM 143, 153)(or CHEM 145, 155)
+CHEM 162 or CHEM 153 or CHEM 155
+CHEM 165
+CHEM 223
+CHEM 224
+CHEM 237
+CHEM 238
+CHEM 312
+CHEM 317
+CHEM 335
+CHEM 336
+CHEM 452
+CHEM 455
+CHEM 455, 456, or 457
+CHEM 456
+CHEM E 341
+CHEM E 355
+CHEM E 523
+class="d-none d-sm-flex justify-content-end desktop-section position-absolute">
+class="px-1 search d-flex align-self-center align-items-center" data-bs-toggle="modal"
+College of Engineering University of Washington logo
+Community
+Composite Materials in Manufacturing
+Composites Engineering, Production, and Maintenance
+Computer Programming II (4 Credits)
+Computer Programming III (4 Credits)
+Concentration areas
+Connect with us:
+Contact MSE Undergraduate Advising
+Contact us
+Contact Us
+Controlled-Release Systems (offered W)
+Core faculty
+Corrosion and Wear of Materials
+Course #
+Course Name
+Credits
+Crystallography and Structure
+CSE 123
+CSE 143
+CSE 160
+CSE 164
+CSE 180
+Current students
+Data Programming (4 Credits)
+Data Science and Materials Informatics
+data-bs-target="#search-modal">
+data-toggle="collapse" data-target="#main-menu-1"
+data-toggle="collapse" data-target="#main-menu-2"
+data-toggle="collapse" data-target="#main-menu-3"
+data-toggle="collapse" data-target="#main-menu-4"
+data-toggle="collapse" data-target="#main-menu-5"
+data-toggle="collapse" data-target="#main-menu-6"
+data-toggle="collapse" data-target="#main-menu-7"
+Design in Materials Engineering I
+Design in Materials Engineering II
+Design in Materials Engineering III
+Directories
+Diversity
+Earning a Minor in MSE
+EE 215
+EE 485
+Electric Circuits Laboratory
+Electromagnetism
+Electronic and Optoelectronic Polymers
+Electronic and Optoelectronic Polymers (offered A and Sp) (Prereq. CHEM 455)
+Electronic Properties of Materials
+Elementary Mathematical Physics
+Employment
+Energy and Environment
+Energy Materials, Devices, and Systems
+Engineering Discovery Days
+Engineering Economy (4 credits)
+Engineering Exploration (1 Credit)[Open to DTC students only]
+Engineering Fundamentals requirements
+Engineering Internship (can count a maximum of 4 cr. towards degree)
+Engineering Leadership (2 credits)
+Engineering Materials for Biomedical Applications (offered A)
+Engineering Statics
+English Composition
+ENGR 101
+ENGR 321
+ENGR 333
+ENGR 490
+ENVIR 480
+Expand All / Collapse All
+Facilities & labs
+Facilities and labs
+Faculty
+Faculty honors
+Failure Analysis and Durability of Materials
+Functional Properties of Materials I
+Functional Properties of Materials II
+Functional Properties of Materials II (offered W)
+Fundamentals of Electrical Engineering (4 Credits)
+Fundamentals of Integrated Circuit Technology
+Fundamentals of Integrated Circuit Technology (offered various quarters)
+Fundamentals of Materials Science
+Future Students
+General Chemistry
+Give
+GIVE
+Graduation
+Graduation requirements
+Graduation requirements summary
+height="0" width="0" style="display:none;visibility:hidden">
+Helpful Links
+Honors General Chemistry
+Honors Organic Chemistry
+href="#main-menu-links">Additional Links
+Husky Card
+IND E 250
+IND E 315
+Inorganic Chemistry
+Inorganic Chemistry (note: students who have completed CHEM 165 can have this course waived. See Advisor.)
+Inorganic Chemistry Lab
+Integrated Undergraduate Lab I (W course)
+Integrated Undergraduate Lab II (W course)
+Integrated Undergraduate Lab III (W course)
+Intermediate Data Programming (4 Credits)
+International students
+Internship Class (maximum of 4 credits allowed towards degree)
+Intro to Composite Materials
+Intro to Composite Materials (offered A)
+Intro to Visualization & Computer-Aided Design (4 credits)
+Introduction to Biochemistry
+Introduction to Bioengineering Problem Solving (3 Credits)
+Introduction to Continuous Math Modeling
+Introduction to Data Science (4 Credits)
+Introduction to Differential Equations (acceptable substitute AMATH 351)
+Introduction to Entrepreneurship
+Introduction to Materials Science and Engineering
+Introduction to Mechanics of Materials
+Introduction to Molecular and Nanoscale Principles
+Introduction to Molecular and Nanoscale Principles (NOT eligible elective for NME option students) (4 credits)
+Introduction to Optoelectronic Materials
+Introduction to Optoelectronic Materials (Offered A)
+Introduction to Phototonics (offering vary per year)
+Introduction to Polymer Science and Engineering
+Introduction to Polymer Science and Engineering (offered A)
+Introduction to Pulp, Paper, and Bioproducts (3 Credits)
+Introduction to Quantum Mechanics
+Introduction to Synthetic Biology (offered A) (Prereq MATH 207 or MATH 307 and MATH 208 or MATH 308)
+Introductory Biology
+ISC/Workday
+Junior Year:
+Junior-Start Plan of Study : For UW and Transfer students starting in MSE in Autumn quarter junior year, and ENGRUD students starting in the major after Autumn of sophomore year.
+Kinematics and Dynamics (4 credits)
+Kinetics and Microstructural Evolution
+Learn about our ABET Accreditation
+Libraries
+Linear Analysis
+Log in
+Magnetism, Magnetic Materials, and Related Technologies
+Main menu
+Maps
+Master's program admission
+Master's program students
+Material and Device Modeling
+Materials Camp - High School
+Materials Characterization
+Materials In Manufacturing
+Materials Processing I
+Materials Processing II
+MATH 124, 125, 126
+MATH 207 (or MATH 307)‡
+MATH 208 (or MATH 308)‡
+MATH 209 (or MATH 309)‡
+MATH 224 (or MATH 324)‡
+MATH 318‡
+Mathematics requirements
+Matrix Algebra with Applications
+ME 123
+ME 230
+ME 410
+Mechanical Behavior of Materials I
+Mechanical Behavior of Materials II
+Mechanical Behavior of Materials II (offered Sp)
+Mechanics
+Menu
+Methods for Partial Differential Equations
+Mission, facts and stats
+MOLENG 520/CHEM 597
+MOLENG 535
+MSE 170
+MSE 310
+MSE 311
+MSE 312
+MSE 313
+MSE 321
+MSE 322
+MSE 331
+MSE 333
+MSE 342
+MSE 351
+MSE 352
+MSE 362
+MSE 399
+MSE 431
+MSE 442
+MSE 450
+MSE 452
+MSE 462
+MSE 463
+MSE 466
+MSE 471
+MSE 473
+MSE 474
+MSE 475
+MSE 476
+MSE 477
+MSE 478
+MSE 479
+MSE 481
+MSE 482
+MSE 483
+MSE 484
+MSE 484/CHEM 484
+MSE 486
+MSE 486/ EE 486
+MSE 487
+MSE 488
+MSE 489
+MSE 490
+MSE 493
+MSE 494
+MSE 495
+MSE 498
+MSE 498- selected ones
+MSE 499
+MSE 502
+MSE 520
+MSE 560
+MSE annual awards
+MSE Capstone
+MSE course descriptions
+MSE directories
+MSE event calendar
+MSE Graduation Celebration
+MSE honors program
+MSE Research & Industry Showcase
+MSE Special Topics (Only as announced by Advisor)
+MSE students, in order to graduate with a bachelor's degree, complete:
+MyMSE
+MyUW
+Nanocomposite Materials
+Nanodevices: Design and Manufacture (Offered A) (open to non ME majors during Period 2 registration)
+Nanomedicine
+Nanoscience & Molecular Engineering Option
+Nanoscience & Molecular Engineering Option | UW Materials Science and Engineering
+Nanoscience and Molecular Engineering (NME) Option
+Natural Science requirements
+News
+News & events
+NME 220
+NME 220*
+NME 498
+NME core (4 credits)
+NME electives (15 credits required)
+NME Option admission
+NME Option requirements
+NME Option students complete all MSE degree requirements below, except the 15 credit Technical Elective requirement. In place of the 15 credit Technical Elective require, NME Option students complete a 19 credit NME Core and Elective Requirement, which is detailed at Nanoscience & Molecular Engineering Option Requirements .
+Noncrystalline State
+Noncrystalline State (offered Sp) [not offered recently]
+Note that MSE core courses are only offered once a year and are designed to be taken in sequence.
+Office mail: Box 352120
+One (1) Math Elective:
+Organic Chemistry
+Organic Chemistry – Short Program
+Organic Electronic and Photonic Materials/Polymers (offered W)
+Other technical electives
+Partial Differential Equations and Waves
+PDFs of graduation requirements and a sample 4-year course schedule are available for students:
+People
+Ph.D. program admission
+Ph.D. program students
+PHYS 121/141
+PHYS 122/142
+PHYS 123/143
+PHYS 224
+PHYS 225
+PHYS 227
+PHYS 228
+PHYS 321
+PHYS 324, 325
+PHYS 334, 335
+PHYS 434
+PHYS 441
+Physical Chemistry
+Physical Chemistry for Biochemists I
+Plans of study for MSE students
+PLEASE NOTE: Quarter offerings listed are from the UW Catalog and are subject to change (might not be offered, might be offered in a different quarter)
+Primary undergraduate contact for admission, recruiting, student progress, schedule and curriculum advising, graduation, registration, and university services.
+Privacy
+Probability and Statistics for Engineers (counts in this category OR in the Engineering Fundamentals elective category, NOT both)
+Probability and Statistics for Engineers (counts in this category OR in the Math elective category, NOT both) (3 credits)
+Probability and Statistics in Engineering &Science
+Quantum Mechanics
+Required MSE core courses
 Research
 Research areas
 Research centers
-Facilities and labs
-News & events
-<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
-data-toggle="collapse" data-target="#main-menu-4"
-aria-controls="toggle_main-menu-4" aria-expanded="false"
-aria-label="Toggle main-menu-4" href="#main-menu-4">
-News & events
-News
-MSE event calendar
-MSE Research & Industry Showcase
-2025 UW MSE Capstone Design Symposium
 Roberts Hall Review Newsletter
-MSE annual awards
-MSE Graduation Celebration
-Future Students
-<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
-data-toggle="collapse" data-target="#main-menu-5"
-aria-controls="toggle_main-menu-5" aria-expanded="false"
-aria-label="Toggle main-menu-5" href="#main-menu-5">
-Future Students
-Why UW MSE?
-Undergraduate admission
-Master's program admission
-Ph.D. program admission
-Certificate programs
-Tuition and financial aid
-Admitted graduate students
-Current students
-<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
-data-toggle="collapse" data-target="#main-menu-6"
-aria-controls="toggle_main-menu-6" aria-expanded="false"
-aria-label="Toggle main-menu-6" href="#main-menu-6">
-Current students
-Undergraduate program
-Master's program students
-Ph.D. program students
-Certificate program students
-MSE course descriptions
-Student clubs and organizations
-Careers and internships
-International students
-Community
-<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
-data-toggle="collapse" data-target="#main-menu-7"
-aria-controls="toggle_main-menu-7" aria-expanded="false"
-aria-label="Toggle main-menu-7" href="#main-menu-7">
-Community
-Alumni
-Materials Camp - High School
-Engineering Discovery Days
-<a class="toggler nav-link collapsed" data-toggle="collapse" data-target="#main-menu-links"
-aria-controls="toggleMainMenuLinks" aria-expanded="false" aria-label="Toggle Main Menu Links"
-href="#main-menu-links">Additional Links
-Additional Links
-Faculty
-MyMSE
-Scheduler
-<a class="toggler hide-menu-arrow search nav-link collapsed" data-bs-toggle="modal" data-bs-target="#search-modal"
-aria-controls="toggleMainMenuSearch" aria-expanded="false" aria-label="Toggle Main Menu Search" href="#">
-Search
-Give
-<a class="toggler hide-menu-arrow nav-link collapsed uw-links-wrapper uwlinks-button-toggle" aria-owns="uwlinks"
-aria-controls="uwlinks" aria-label="Show UW links">
-UW Links
-GIVE
-Faculty
-MyMSE
-Scheduler
-Future Students
-Future Students
-Undergraduate admission
-Bachelor of Science degree information
-B.S. degree requirements
-B.S. degree requirements
-Graduation requirements summary
-MSE students, in order to graduate with a bachelor's degree, complete:
-24 credits in mathematics
-31 credits of natural sciences coursework
-24 credits of engineering fundamentals
-51 credits in core MSE courses
-15 credits of technical elective courses
-12 credits of written and oral communication
-24 credits in Arts and Humanities (A&H), Social Sciences (SSc), and Diversity (DIV).
-Plans of study for MSE students
-PDFs of graduation requirements and a sample 4-year course schedule are available for students:
-Sophomore-Start Plan of Study : For ENGRUD students starting in MSE in Autumn quarter sophomore year.
-Junior-Start Plan of Study : For UW and Transfer students starting in MSE in Autumn quarter junior year, and ENGRUD students starting in the major after Autumn of sophomore year.
-Nanoscience and Molecular Engineering (NME) Option
-NME Option students complete all MSE degree requirements below, except the 15 credit Technical Elective requirement. In place of the 15 credit Technical Elective require, NME Option students complete a 19 credit NME Core and Elective Requirement, which is detailed at Nanoscience & Molecular Engineering Option Requirements .
-Concentration areas
-The MSE degree offers a large number of course elective options. For advice on choosing pertinent electives to support your interests, please check out MSE Concentration Areas .
-Graduation requirements
-Expand All / Collapse All
-Mathematics requirements
-24 credits required of mathematics coursework.
-Course #
-Course Name
-Credits
-MATH 124, 125, 126
-Calculus with Analytic Geometry I, II, III
-15
-MATH 207 (or MATH 307)‡
-Introduction to Differential Equations (acceptable substitute AMATH 351)
-3
-MATH 208 (or MATH 308)‡
-Matrix Algebra with Applications
-3
-One (1) Math Elective:
-IND E 315
-Probability and Statistics for Engineers (counts in this category OR in the Engineering Fundamentals elective category, NOT both)
-3
-MATH 209 (or MATH 309)‡
-Linear Analysis
-3
-MATH 224 (or MATH 324)‡
-Advanced Multivariable Calculus I
-3
-MATH 318‡
-Advanced Linear Algebra Tools and Applications
-3
-STAT 390
-Probability and Statistics in Engineering &Science
-4
-TOTAL
-24
-‡ As of autumn 2021, MATH 307, MATH 308, MATH 309, and MATH 324 are renumbered as MATH 207, MATH 208, MATH 209, and MATH 224, respectively. Students can apply either the 200- or 300-level number for each course toward their degree requirements.
-Natural Science requirements
-31 credits required of Natural Sciences coursework. Note: Elective courses chosen in this category cannot also satisfy course requirements in another degree category.
-Course #
-Course Name
-Credits
-TOTAL
-31
-CHEM 142, 152 (or CHEM 143, 153)(or CHEM 145, 155)
-General Chemistry
-10
-PHYS 121/141
-Mechanics
-5
-PHYS 122/142
-Electromagnetism
-5
-PHYS 123/143
-Waves
-5
-Two Science Electives:
-BIOL 180
-Introductory Biology
-5
-BIOL 200
-Introductory Biology
-5
-CHEM 162 or CHEM 153 or CHEM 155
-General Chemistry
-5
-CHEM 165
-Honors General Chemistry
-5
-CHEM 223
-Organic Chemistry – Short Program
-4
-CHEM 224
-Organic Chemistry – Short Program
-4
-CHEM 237
-Organic Chemistry
-4
-CHEM 238
-Organic Chemistry
-4
-CHEM 312
-Inorganic Chemistry (note: students who have completed CHEM 165 can have this course waived. See Advisor.)
-3
-CHEM 317
-Inorganic Chemistry Lab
-4
-CHEM 335
-Honors Organic Chemistry
-4
-CHEM 336
-Honors Organic Chemistry
-4
-CHEM 452
-Physical Chemistry for Biochemists I
-3
-CHEM 455
-Physical Chemistry
-3
-CHEM 456
-Physical Chemistry
-3
-PHYS 224
-Thermal Physics
-3
-PHYS 225
-Introduction to Quantum Mechanics
-3
-PHYS 227
-Elementary Mathematical Physics
-4
-PHYS 228
-Elementary Mathematical Physics
-4
-Written and Oral Communication requirements
-7 credits in written and oral communication.
-Course #
-Course Name
-Credits
-TOTAL
-12
-English Composition
-Approved Composition Course
-5
-*
-* The University-required 7 additional writing credits will be met by taking MSE core courses.
-4
-Arts and Humanities (A&H), Social Sciences (SSc), and Diversity (DIV)
-24 credits are required for graduation in these three areas of inquiry .
-Course #
-Course Name
-Credits
-TOTAL
-24
-A&H
-Approved UW A&H courses
-10
-SSc
-Approved UW SSc courses
-10
-Additional A&H or SSc
-Approved UW A&H or SSc courses
-4
-Diversity
-5 credits of Diversity required; meet requirement by choosing an A&H/SSc course that is also a DIV course
-Engineering Fundamentals requirements
-24 credits of engineering fundamentals coursework.
-Course #
-Course Name
-Credits
-TOTAL
-24
-MSE 170
-Fundamentals of Materials Science
-4
-AMATH 301 or CSE 142 or CSE 122
-Beginning Scientific Computing or Computer Programming I or Introduction to Computer Programming II
-4
-AA 210
-Engineering Statics
-4
-CEE 220
-Introduction to Mechanics of Materials
-4
-8 Credits of Engineering Fundamentals Electives selected from the following list:
-AA 260
-Thermodynamics (4 Credits)
-BIOEN 215
-Introduction to Bioengineering Problem Solving (3 Credits)
-BSE 201
-Introduction to Pulp, Paper, and Bioproducts (3 Credits)
-CHEM E 355
-Biological Frameworks for Engineers (3 Credits)
-CSE 123
-Computer Programming III (4 Credits)
-CSE 143
-Computer Programming II (4 Credits)
-CSE 160
-Data Programming (4 Credits)
-CSE 164
-Intermediate Data Programming (4 Credits)
-CSE 180
-Introduction to Data Science (4 Credits)
-EE 215
-Fundamentals of Electrical Engineering (4 Credits)
-ENGR 101
-Engineering Exploration (1 Credit)[Open to DTC students only]
-ENGR 333
-Advanced Technical Communication in the Engineering Workplace (4 credits)
-ENGR 490
-Engineering Leadership (2 credits)
-IND E 250
-Engineering Economy (4 credits)
-IND E 315
-Probability and Statistics for Engineers (counts in this category OR in the Math elective category, NOT both) (3 credits)
-ME 123
-Intro to Visualization & Computer-Aided Design (4 credits)
-ME 230
-Kinematics and Dynamics (4 credits)
-NME 220
-Introduction to Molecular and Nanoscale Principles (NOT eligible elective for NME option students) (4 credits)
-Required MSE core courses
-51 credits in core MSE courses.
-Note that MSE core courses are only offered once a year and are designed to be taken in sequence.
-Course #
-Course Name
-Credits
-TOTAL
-51
-Sophomore OR Junior Year:
-MSE 311
-Integrated Undergraduate Lab I (W course)
-3
-MSE 312
-Integrated Undergraduate Lab II (W course)
-3
-MSE 313
-Integrated Undergraduate Lab III (W course)
-3
-Junior Year:
-MSE 321
-Thermodynamics and Phase Equilibrium
-4
-MSE 331
-Crystallography and Structure
-3
-MSE 399
-Undergraduate Research Seminar
-1
-MSE 310
-Introduction to Materials Science and Engineering
-3
-MSE 322
-Kinetics and Microstructural Evolution
-4
-MSE 342
-Materials Processing I
-3
-MSE 351
-Electronic Properties of Materials
-3
-MSE 333
-Materials Characterization
-3
-MSE 352
-Functional Properties of Materials I
-3
-MSE 362
-Mechanical Behavior of Materials I
-3
-Senior Year:
-MSE 442
-Materials Processing II
-3
-MSE 493
-Design in Materials Engineering I
-1
-MSE 494
-Design in Materials Engineering II
-2
-MSE 431
-Failure Analysis and Durability of Materials
-3
-MSE 495
-Design in Materials Engineering III
-3
-Technical electives: 15 credits total
-A minimum of 6 credits in MSE 400-level courses listed below are required. MSE 500-level courses (except seminar) will also satisfy the minimum of 6 credits in MSE technical electives.
-Course #
-Course Name
-Credits
-MSE 450
-Magnetism, Magnetic Materials, and Related Technologies
-3
-MSE 452
-Functional Properties of Materials II
-3
-MSE 462
-Mechanical Behavior of Materials II
-3
-MSE 463
-Corrosion and Wear of Materials
-3
-MSE 466
-Energy Materials, Devices, and Systems
-3
-MSE 471
-Introduction to Polymer Science and Engineering
-3
-MSE 473
-Noncrystalline State
-3
-MSE 474
-Nanocomposite Materials
-3
-MSE 475
-Intro to Composite Materials
-3
-MSE 476
-Introduction to Optoelectronic Materials
-3
-MSE 477
-Data Science and Materials Informatics
-3
-MSE 478
-Material and Device Modeling
-3
-MSE 479
-Big Data for Materials Science
-3
-MSE 481
-Science and Technology of Nanostructures
-3
-MSE 482
-Biomaterials/Nanomaterials in Tissue Engineering
-3
-MSE 483
-Nanomedicine
-3
-MSE 484
-Electronic and Optoelectronic Polymers
-3
-MSE 486
-Fundamentals of Integrated Circuit Technology
-3
-MSE 487
-Composites Engineering, Production, and Maintenance
-3
-MSE 488
-Materials In Manufacturing
-3
-MSE 489
-Additive Manufacturing: Materials, Processes, and Applications
-3
-MSE 490
-Composite Materials in Manufacturing
-3
-MSE 498
-Special Topics
-3-4
-MSE 499
-Senior Project
-3-5
-Other technical electives
-A maximum of 9 credits in 400-level courses in the following departments will satisfy the technical electives requirement. 500-level courses (except seminar) in these departments will also satisfy this requirement, but the MSE undergraduate adviser will need to update your degree audit manually.
-A A | BIOEN | CHEM E | CEE | CSE | E E | IND E | M E
-The courses listed below have been approved to satisfy the maximum of 9 credits of technical electives outside of MSE. If you would like to have any other course satisfy this requirement, you must fill out a Course Substitution Petition Form for review by the MSE Undergraduate Committee.
-Course #
-Course Name
-Credits
-A MATH 352
-Applied Linear Algebra & Numerical Analysis
-3
-A MATH 353
-Partial Differential Equations and Waves
-3
-A MATH 383
-Introduction to Continuous Math Modeling
-3
-A MATH 401
-Vector Calculus and Complex Variables
-3
-A MATH 403
-Methods for Partial Differential Equations
-3
-BIOC 405, 406
-Introduction to Biochemistry
-3, 3
-CHEM 312
-Inorganic Chemistry
-3
-CHEM 455, 456, or 457
-Physical Chemistry
-3, 3, 3
-CHEM E 341
-Energy and Environment
-3
-ENGR 321
-Engineering Internship (can count a maximum of 4 cr. towards degree)
-1-2
-ENVIR 480
-Sustainability Studio
-5
-PHYS 321
-Electromagnetism
-4
-PHYS 324, 325
-Quantum Mechanics
-4, 4
-PHYS 334, 335
-Electric Circuits Laboratory
-3, 3
-PHYS 434
-Application of Computers to Physical Measurement
-3
-PHYS 441
-Quantum Mechanics
-4
-* ENTRE 370
-Introduction to Entrepreneurship
-4
-* ENTRE 440
-Business Plan Practicum
-2
-Undergraduate admission
-Bachelor of Science degree information
-Earning a Minor in MSE
-Contact MSE Undergraduate Advising
---> Danny Ayala Robles
-Undergraduate Adviser
-302B Roberts Hall
-206-685-4922
-askmse@uw.edu
-Office mail: Box 352120
-Primary undergraduate contact for admission, recruiting, student progress, schedule and curriculum advising, graduation, registration, and university services.
 Schedule an appointment
-UW College of Engineering
-College of Engineering University of Washington logo
-Be Boundless
-Connect with us:
-Accessibility
-UW Home
-Contact Us
-MyMSE
-Log in
-Privacy
+Scheduler
+Science and Technology of Nanostructures
+Science and Technology of Nanostructures (offered W) [Not offered recently]
+Search
+Selected NME Special Topics
+Seminar in Chemical Engineering
+Seminar in Clean Energy (offered AWSp)
+Seminar in Materials Science & Engineering
+Seminar in Molecular Engineering
+Senior Project
+Senior Year:
+Skip to main content
+Sol-Gel Processing (Offered A, Odd years)
+Sophomore OR Junior Year:
+Sophomore-Start Plan of Study : For ENGRUD students starting in MSE in Autumn quarter sophomore year.
+Special Topics
+SSc
+Staff
+STAT 390
+Student clubs and organizations
+Student feedback and grievances
+Students admitted by direct admission or early admission can declare the option after they complete NME 220. To declare the option, students need to complete a Change of Major form with the academic adviser. Students applying for upper admission or junior standing in the MSE degree program should declare their desire to complete the option when they apply to MSE.
+Students complete all MSE degree requirements except the 15 credit Technical Elective requirement. In place of the 15 credit Technical Elective requirement, NME Option students complete the 19 credit NME Core and Elective Requirements below.
+Students who complete the MSE NME requirements, will graduate with a Bachelor of Science in Materials Science and Engineering (Nanoscience & Molecular Engineering Option) .
+Study abroad
+Surface Analysis (offered Sp)
+Sustainability Studio
+tabindex="-1">Computing/IT
+Technical electives: 15 credits total
 Terms
-Learn about our ABET Accreditation
-&copy; 2026 UW Materials Science and Engineering | UW College of Engineering | Seattle, WA
+The courses listed below have been approved to satisfy the maximum of 9 credits of technical electives outside of MSE. If you would like to have any other course satisfy this requirement, you must fill out a Course Substitution Petition Form for review by the MSE Undergraduate Committee.
+The degree option introduces students to nanoscale principles in molecular engineering, provides hands-on experience and stresses the interdisciplinary aspects of this field.
+The MSE degree offers a large number of course elective options. For advice on choosing pertinent electives to support your interests, please check out MSE Concentration Areas .
+The Nanoscience and Molecular Engineering (NME) Option offers a discipline-tailored curriculum in Nanoscience and Molecular Engineering to a variety of majors in departments of the College of Engineering and the College of Arts and Sciences.
+Thermal Physics
+Thermodynamics (4 Credits)
+Thermodynamics and Phase Equilibrium
+TOTAL
+Tuition and financial aid
+Tuition and scholarships
+Two Science Electives:
+Undergraduate admission
+Undergraduate Adviser
+Undergraduate advising
+Undergraduate labs and shops
+Undergraduate program
+Undergraduate research
+Undergraduate Research Seminar
+Undergraduate student continuation policy
+UW Bothell
+UW College of Engineering
+UW Facebook
+UW Home
+UW Links
+UW Medicine
+UW Tacoma
+UW Today
+UW Twitter
+Vector Calculus and Complex Variables
+Visit MSE
+Waves
+What is Materials Science and Engineering?
+Why UW MSE?
+Written and Oral Communication requirements

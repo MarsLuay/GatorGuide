@@ -845,20 +845,6 @@ export default function ResourcesPage() {
         }}
       >
         <View className={panelClass} style={{ width: "100%" }}>
-          <View className="flex-row items-start mb-4">
-            <View className="w-11 h-11 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">
-              <Ionicons name="search-outline" size={18} color="#008f4e" />
-            </View>
-            <View className="flex-1">
-              <Text className={`${textClass} text-lg font-semibold`}>
-                {t("resources.searchPanelTitle")}
-              </Text>
-              <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                {t("resources.searchPanelBody")}
-              </Text>
-            </View>
-          </View>
-
           <View className="relative">
             <View className="absolute left-4 top-4 z-10">
               <Ionicons name="search" size={20} color={placeholderTextColor} />

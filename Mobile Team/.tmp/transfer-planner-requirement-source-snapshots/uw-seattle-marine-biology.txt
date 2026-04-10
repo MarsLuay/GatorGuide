@@ -2,426 +2,590 @@ Owner: uw-seattle-marine-biology
 Source: https://marinebiology.uw.edu/students/marine-biology-major/major-requirements/
 Title: Major Requirements | Marine Biology
 
-Major Requirements | Marine Biology
-<meta name="description" content="Bachelor of Science with a Major in Marine Biology Degree Requirements
-Use the following tables to plan for a Major in Marine Biology*. Current, as well as prospective UW students are invited to use the MyPlan online academic planning tool to create a full academic plan over quarters and years. In addition to the tables below, students can also download or print the following requirements worksheet:
-Marine Biology Major Requirements Worksheet
-Sample Schedules & Academic Planning
-The worksheet and tables are good for broad academic planning, but course offerings vary by quarter and year. ">
-<meta property="og:description" content="Bachelor of Science with a Major in Marine Biology Degree Requirements
-Use the following tables to plan for a Major in Marine Biology*. Current, as well as prospective UW students are invited to use the MyPlan online academic planning tool to create a full academic plan over quarters and years. In addition to the tables below, students can also download or print the following requirements worksheet:
-Marine Biology Major Requirements Worksheet
-Sample Schedules & Academic Planning
-The worksheet and tables are good for broad academic planning, but course offerings vary by quarter and year. "/>
-<meta property="twitter:description" content="Bachelor of Science with a Major in Marine Biology Degree Requirements
-Use the following tables to plan for a Major in Marine Biology*. Current, as well as prospective UW students are invited to use the MyPlan online academic planning tool to create a full academic plan over quarters and years. In addition to the tables below, students can also download or print the following requirements worksheet:
-Marine Biology Major Requirements Worksheet
-Sample Schedules & Academic Planning
-The worksheet and tables are good for broad academic planning, but course offerings vary by quarter and year. "/>
-<!--
 -->
-Skip to main content Skip to footer unit links
-Marine Biology
-Marine Biology
-Search
-About
-About
-A Shared Program
-Contact Us
-Giving
-Administration & Staff
-Work With Us
-Students
-Students
-Marine Biology Major
-Major Requirements
-Major Electives
-Integrative Field Experience
-Academic Planning
-Marine Biology Minor
-Minor Requirements
-Prospective Students
-Transfer Admissions
-Advising
-Quarterly Course Offerings
-Career Paths
-Scholarships
-Faculty & Research
-Faculty & Research
-Faculty &#038; Instructors
-Core Research Areas
-Undergraduate Research
-Marine Biology Seminar
-Marine Biology Seminar – Winter 2025
-Field Experiences
-Field Experiences
-Friday Harbor Laboratories
-Research Vessels
-Scientific Diving
-Study Abroad and Other Field Stations
-Community
-Community
-Alumni
-Student Organizations
-Meet Our Students
-Graduation
-Opportunities for K-12 Students
-Events Calendar
-News
-News
-UW Home
-College Home
-Directories
-Maps
-Search
-Make a Gift
-Marine Biology
-<svg id="college_black_logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-width="215px" height="12px" class="college-name" alt="UW College of the Environment" viewBox="33 379.4 677.4 34.6" style="enable-background:new 33 379.4 677.4 34.6;"
-xml:space="preserve">
-College of the Environment
-<svg version="1.1" id="university_logo_black" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-width="215px" height="14px" class="uw-name" viewBox="-70 381.4 469.1 31.6" style="enable-background:new -70 381.4 469.1 31.6;"
-xml:space="preserve" alt="University of Washington">
-University of Washington
-About
-A Shared Program
-Contact Us
-Giving
-Administration & Staff
-Work With Us
-Students
-Marine Biology Major
-Major Requirements
-Major Electives
-Integrative Field Experience
-Academic Planning
-Marine Biology Minor
-Minor Requirements
-Prospective Students
-Transfer Admissions
-Advising
-Quarterly Course Offerings
-Career Paths
-Scholarships
-Faculty & Research
-Faculty &#038; Instructors
-Core Research Areas
-Undergraduate Research
-Marine Biology Seminar
-Marine Biology Seminar – Winter 2025
-Field Experiences
-Friday Harbor Laboratories
-Research Vessels
-Scientific Diving
-Study Abroad and Other Field Stations
-Community
-Alumni
-Student Organizations
-Meet Our Students
-Graduation
-Opportunities for K-12 Students
-Events Calendar
-News
-Follow Us >
-Facebook
-Bluesky
-Instagram
-<svg height="15px" width="16px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-viewBox="0 0 461.001 461.001" xml:space="preserve" style="margin-top:4px">
-YouTube
-Major Requirements
-<!--
--->
-Bachelor of Science with a Major in Marine Biology Degree Requirements
-Use the following tables to plan for a Major in Marine Biology*. Current, as well as prospective UW students are invited to use the MyPlan online academic planning tool to create a full academic plan over quarters and years. In addition to the tables below, students can also download or print the following requirements worksheet:
-Marine Biology Major Requirements Worksheet
-Sample Schedules & Academic Planning
-The worksheet and tables are good for broad academic planning, but course offerings vary by quarter and year. To view the detailed quarterly list of courses relevant to our program, please visit the Marine Biology Courses page.
-Detailed List of Marine Biology Courses by Quarter
-General Education requirements
-Students are required to complete the general education requirements of the College of the Environment. Some of the credits applied to these requirements may also fulfill major requirements.
-College of the Environment General Education Requirements
-In addition to the general education requirements, a UW student earning any Bachelor&#8217;s degree must meet the following University requirements:
-Earn a total minimum of 180 quarter credits
-A minimum of 45 credits taken as a matriculated University of Washington student ( a minimum of 45 of your final 60 credits must be taken at the UW )
-A minimum cumulative GPA of 2.0
-Foundation Courses in Science and Mathematics
-Chemistry
-Choose one of the following sequences (10-15 cr.):
-Course number
-Title
-Credits
-Offered
-1.
-CHEM 120
-Principles of Chemistry I
-5
-A
-OCEAN 295
-Chemistry of Marine Organic Carbon
-5
-W, Sp
-2.
-CHEM 120
-Principles of Chemistry I
-5
-A
-CHEM 220
-Principles of Chemistry II
-5
-W
-3.*
-CHEM 142
-General Chemistry I
-5
-A, W, Sp, Su
-CHEM 152
-General Chemistry II
-5
-A, W, Sp, Su
-OCEAN 295
-Chemistry of Marine Organic Carbon
-5
-W, Sp
-4.*⁺
-CHEM 142
-General Chemistry I
-5
-A, W, Sp, Su
-CHEM 152
-General Chemistry II
-5
-A, W, Sp, Su
-CHEM 223
-Organic Chemistry &#8211; Short Program
-4
-A, Su
+"/>
+">
+(Approved by individual offering; see website for details)
+(optional) FHL 490: Marine Sciences Seminar (1 credit, Other marine biology elective)
+[Supplemental official source] Academic Planning
+[Supplemental official source] Integrative Field Experience
+[Supplemental official source] Major Electives
+[Supplemental official source] Major Requirements (pre-Fall 2021)
+[Supplemental official source] Marine Biology Elective List
+[Supplemental official source] Marine Biology Major
 * CHEM 143, 153 and 145, 155 are pre-approved substitutes for CHEM 142 and 152.
+* If you were a student enrolled prior to the Fall 2021 semester, click here to view the previous major requirements.
+* Independent research can be registered for any quarter, but requires an individual learning contract
+&#109;&#97;&#114;&#98;&#105;&#111;l&#64;&#117;w.ed&#117;
+&#109;a&#114;b&#105;o&#108;&#64;&#117;&#119;&#46;ed&#117;
+&#109;arbiol&#64;uw.&#101;&#100;u
+&copy; 2026 University of Washington |
 ⁺ CHEM 237 pre-approved to substitute for CHEM 223
-Biology
-Three courses (15 cr.):
-Course number
-Title
-Credits
-Offered
-BIOL 180
-Introductory Biology I
-5
-A, W, Sp, Su
-BIOL 200
-Introductory Biology II
-5
-A, W, Sp, Su
-and one of:
-FISH/OCEAN/MARBIO 270
-Aquatic Ecophysiology
-5
-W
-BIOL 220
-Introductory Biology III
-5
-A, W, Sp, Su
-Statistics
-Choose one (5 cr.):
-Course number
-Title
-Credits
-Offered
-Q SCI 381
-Introduction to Probability and Statistics
-5
-A, W, Sp, Su
-STAT 311
-Elements of Statistical Methods
-5
-A, W, Sp, Su
-Math
-Choose one of the following sequences (10 cr.):
-Course number
-Title
-Credits
-Offered
+<!--
+<meta name="description" content="Bachelor of Science with a Major in Marine Biology Degree Requirements
+<meta name="description" content="Bachelor of Science with a Major in Marine Biology Degree Requirements (Autumn 2018 &#8211; Spring 2021)
+<meta name="description" content="Marine Biology Major Approved Elective List
+<meta name="description" content="The Integrative Field Experience (IFE) is the culminating requirement of the Marine Biology Major, and all marine biology majors study in the field away from the UW Seattle campus.
+<meta name="description" content="Whether students are just beginning their college journey or transferring from another institution, planning coursework is an important step toward earning a Marine Biology degree. Below are sample academic plans designed to help students visualize potential pathways through the major. These are reference guides only—individual plans may vary based on prior coursework, placement, and personal interests.
+<meta property="og:description" content="Bachelor of Science with a Major in Marine Biology Degree Requirements
+<meta property="og:description" content="Bachelor of Science with a Major in Marine Biology Degree Requirements (Autumn 2018 &#8211; Spring 2021)
+<meta property="og:description" content="Marine Biology Major Approved Elective List
+<meta property="og:description" content="The Integrative Field Experience (IFE) is the culminating requirement of the Marine Biology Major, and all marine biology majors study in the field away from the UW Seattle campus.
+<meta property="og:description" content="Whether students are just beginning their college journey or transferring from another institution, planning coursework is an important step toward earning a Marine Biology degree. Below are sample academic plans designed to help students visualize potential pathways through the major. These are reference guides only—individual plans may vary based on prior coursework, placement, and personal interests.
+<meta property="twitter:description" content="Bachelor of Science with a Major in Marine Biology Degree Requirements
+<meta property="twitter:description" content="Bachelor of Science with a Major in Marine Biology Degree Requirements (Autumn 2018 &#8211; Spring 2021)
+<meta property="twitter:description" content="Marine Biology Major Approved Elective List
+<meta property="twitter:description" content="The Integrative Field Experience (IFE) is the culminating requirement of the Marine Biology Major, and all marine biology majors study in the field away from the UW Seattle campus.
+<meta property="twitter:description" content="Whether students are just beginning their college journey or transferring from another institution, planning coursework is an important step toward earning a Marine Biology degree. Below are sample academic plans designed to help students visualize potential pathways through the major. These are reference guides only—individual plans may vary based on prior coursework, placement, and personal interests.
+<svg height="14px" width="13px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+<svg height="15px" width="16px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+<svg id="college_black_logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<svg version="1.1" id="university_logo_black" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<svg version="1.1" id="university_logo_white" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+| (206) 543-7426
+1
+1-15
 1.
-Q SCI 291
-Calculus for Natural Systems I: Derivatives
-5
-A, W, Sp
-Q SCI 292
-Calculus for Natural Systems II: Integrals
-5
-W, Sp
+1122 NE Boat Street, Seattle, WA 98195-5020
+15
+2
+2 Year Plan - All Foundation STEM Done but Stats
 2.
-MATH 124
-Calculus with Analytic Geometry I
-5
-A, W, Sp, Su
-MATH 125
-Calculus with Analytic Geometry II
-5
-A, W, Sp, Su
-Physics
-Choose one of the following sequences (8-10 cr.):
-Course number
-Title
-Credits
-Offered
-1.
-PHYS 114
-General Physics I
-4
-A, W, Sp, Su
-PHYS 115
-General Physics II
-4
-A, W, Sp, Su
-2.
-PHYS 121
-Mechanics
-5
-A, W, Sp, Su
-PHYS 122
-Electromagnetism
-5
-A, W, Sp, Su
-3.
-PHYS 114 or PHYS 121 (choose one)
-General Physics I / Mechanics
-4/5
-A, W, Sp, Su
-OCEAN 285 & OCEAN 286
-Physics Across Oceanography: Fluid Mechanics and Waves (with lab)
-5
-A
-Introduction to the Marine Environment
-Introductory Marine Science
-Choose one (5 cr.):
-Course number
-Title
-Credits
-Offered
-FISH/OCEAN/BIOL 250
-Marine Biology
-5
-A
-OCEAN 200 & 201
-Introduction to Oceanography , Introduction to Oceanography Lab
-3, 2
-Sp
-Integrative Oceans
-One course (4 cr.):
-OCEAN 210
-Integrative Oceans
-4
-A, Sp
-Communication
-choose one (3-5 cr.):
-Course number
-Title
-Credits
-Offered
-MARBIO 305
-Scientific Writing in Marine Biology
+2026 MARBIO 488 Info Session Recording
+2026 MARBIO 488 Info Session Slides
 3
+3 courses must be taken at the 400 level
+3 Year Plan - All Gen Eds Done but need Major Requirements
+3-5
+3, 2
+3.
+3.*
+3/5
+4
+4 Year Plan
+4 Year Plan - Pre-Vet or Pre-Med
+4.
+4.*⁺
+4/5
+5
+6
+9
+A
+A minimum cumulative GPA of 2.0
+A minimum of 45 credits taken as a matriculated University of Washington student ( a minimum of 45 of your final 60 credits must be taken at the UW )
+A Shared Program
+A, Sp
+A, Su
 A, W, Sp
-Note: FHL 333: Science Writing for Diverse Audiences is still an approved course alternative to MARBIO 305 to fulfil the Communication requirement, but the course is currently not offered at Friday Harbor Labs.
-Marine Biology Core
-Three courses (15 cr.):
-Course number
-Title
-Credits
-Offered
-FISH 323
-Conservation and Management of Aquatic Resources
-5
-W
-MARBIO/FISH/OCEAN 370
-Marine Evolutionary Biology
-5
-Sp
-OCEAN 330
-Marine Biogeochemical Cycles
-5
-Sp
-Electives
-Students develop content knowledge and skills through a large selection of courses offered at the upper-division level through the School of Aquatic & Fishery Sciences, the School of Oceanography, the Department of Biology, and the Friday Harbor Laboratories. Students complete electives from the department&#8217;s approved list to meet the following requirements:
-Elective credit requirements
-Minimum of 25 credits total from the department&#8217;s approved list
-Category requirements
-Biodiversity (1 course minimum)
-Ecology and Ecosystems (1 course minimum)
-Organismal Processes (1 course minimum)
+A, W, Sp, Su
+About
+Academic Planning
+Academic Planning | Marine Biology
+Academic programs can also include additional unique courses and credits which can be applied to other Marine Biology Major requirements .
 Additional elective courses to bring total credits to 25
 Additional requirements
-Minimum of 3 courses at the 400-level
-Minimum of 2 courses taken with lab sections
-No more than 6 credits total of independent research or internship
-Marine Biology Elective List
-Integrative Field Experience
-Culminating requirement of the major, which has all students spending at least three weeks in the field away from the Seattle Campus. Most options involve studying in residence at Friday Harbor Labs , the UW&#8217;s marine field station on San Juan Island. See the page below for details on the requirement and eligible courses.
-Integrative Field Experience requirement
-Minimum 6 credits from the approved list
-Marine Biology Integrative Field Experience
-* If you were a student enrolled prior to the Fall 2021 semester, click here to view the previous major requirements.
+Administration & Staff
+Advanced electives are selected from courses offered by the School of Aquatic and Fishery Sciences, the School of Oceanography and Friday Harbor Laboratories
+Advanced Marine Biogeochemical Processes
+Advanced Special Topics in Oceanography
+Advanced Topics in Ecology and Biomechanics
+Advising
+All Integrative Field Experience courses require a Friday Harbor Labs application. Application dates vary, but the applications typically open about two academic quarters ahead.
+All students complete an integrative field experience (research or field course) at Friday Harbor Labs or at a similar site
+All students complete an integrative field experience at Friday Harbor Labs or similar site. Choose one from the following list. For research courses of more than 6 credits (MARBIO 479, FHL 492 or OCEAN 492), students may apply up to an additional 6 credits towards the other major electives requirement
+Alumni
+Amount: “Awards typically range between $1,000 to $3,000 for summer , and $500 – $2,000 for S pring , and or Autumn quarters, although students with outstanding need are sometimes provided with more.”
+Amount: Up to $1,500 for 5 &#8211; 6 credit research courses (FHL 470) and $3,000 for 15 credit research courses (FHL 472)
+Analysis for Biologists I
+Analysis for Biologists II
+and one of:
+Applied Marine Animal Physiology
+Apply to take a course at Friday Harbor Labs
+Approved apprenticeships include:
+Aquatic and Fishery Sciences
+Aquatic Animals Research Experience
+Aquatic Ecophysiology
+Aquatic Invasion Ecology
+Arctic Marine Vertibrate Ecology
+At least one course minimum from Biodiversity, Ecology and Ecosystems, and Organismal Processes
+Atmospheric and Climate Science
+Autumn
+Autumn 2026: Students will be required to arrive at FHL on Tuesday, 9/8/2026 and stay at the labs full time through the afternoon of Friday, 9/25/2026.
+Autumn Marine Studies
+Autumn Marine Studies (16 credits): Full-term fall quarter program (approximately 10 weeks) where students earn major elective credits in addition to the integrative field experience requirement. Students select from a limited menu of courses to build a minimum full-time (12 or more credits) schedule:
+Bachelor of Science with a Major in Marine Biology Degree Requirements
+Bachelor of Science with a Major in Marine Biology Degree Requirements (Autumn 2018 &#8211; Spring 2021)
 Back to Top
-<!--
--->
-Students
-Marine Biology Major
+Be Boundless
+Behavioral Ecology of Marine Invertebrates
+BIOC 405
+BIOC 406
+Biodiversity
+Biodiversity (1 course minimum)
+BIOL 180
+BIOL 200
+BIOL 220
+BIOL 220/MARBIO 270
+BIOL 423
+BIOL 434
+Biology
+Biology of Fishes
+Biology: BIOL 180, BIOL 200 and one of: FISH/MARBIO/OCEAN 270 or BIOL 220
+Bluesky
+Calculus for Natural Systems I: Derivatives
+Calculus for Natural Systems II: Integrals
+Calculus with Analytic Geometry I
+Calculus with Analytic Geometry II
+Career Paths
+Categories
+Category requirements
+Center for Quantitative Science
+CHEM 120
+CHEM 142
+CHEM 142/120
+CHEM 152
+CHEM 152/OCEAN 295
+CHEM 162
+CHEM 220
+CHEM 223
+CHEM 237
+CHEM 238
+CHEM 239
+CHEM 241
+CHEM 242
+Chemistry
+Chemistry of Marine Organic Carbon
+choose one (3-5 cr.):
+Choose one (5 cr.):
+Choose one of the following sequences (10 cr.):
+Choose one of the following sequences (10-15 cr.):
+Choose one of the following sequences (8-10 cr.):
+Climate Impacts Group
+Climatic Extremes
+College Home
+College of the Environment
+College of the Environment General Education Requirements
+Communication
+Communications: MARBIO 305
+Community
+Comparative Anatomy & Physiology of Marine Organisms
+Completion of, or progress towards the following Marine Biology Major requirements :
+Conservation and Management of Aquatic Resources
+Conservation Genetics
+Contact Us
+Conversations in Marine Biology
+Cooperative Institute for Climate,
+Core Research Areas
+Core: at least one of FISH 323, OCEAN 330 or MARBIO/FISH/OCEAN 370
+Course Explorer
+Course Fees
+Course No.
+Course number
+Courses are grouped by academic programs , which vary depending on quarter
+Courses highlighted in blue are potentially required for admission to Medical or Veterinary School but are not required for the Marine Biology major. Be sure to review the admissions website for the graduate programs you are considering to confirm specific prerequisites.
+Courses highlighted in yellow and with the FHL prefix take place in residence at Friday Harbor Labs , UW’s marine field station located on San Juan Island. Learn more about incorporating a quarter at FHL into your academic plan .
+Courses highlighted in yellow and with the FHL prefix take place in residence at Friday Harbor Labs, UW’s marine field station located on San Juan Island. "/>
+Courses highlighted in yellow and with the FHL prefix take place in residence at Friday Harbor Labs, UW’s marine field station located on San Juan Island. ">
+Cr
+Cr.
+Credits
+Culminating requirement of the major, which has all students spending at least three weeks in the field away from the Seattle Campus. Most options involve studying in residence at Friday Harbor Labs , the UW&#8217;s marine field station on San Juan Island. See the page below for details on the requirement and eligible courses.
+Current Topics in Marine Biology
+Deadline: apply through the Friday Harbor Labs Financial Aid application. Note: this is separate from the non-FHL Mary Gates scholarships .
+Deadline: varies by quarter offered
+Description: Additional financial aid from FHL to support students enrolled in summer, fall or spring courses. Note that MARBIO 488 students are not eligible for FHL Financial Aid.
+Description: Students attending an FHL fall or spring quarter and enrolled in either FHL 470 or FHL 472 can apply for funding from the Mary Gates Endowment (MGE).
+Designed for students entering college without prior credit and who place into General Chemistry and Calculus I. This plan includes foundational STEM coursework, general education requirements, and marine science-specific classes spread across four years.
+Detailed List of Marine Biology Courses by Quarter
+Directories
+Dive into our offered courses and see what you&#8217;ll be learning
+Early Fall
+Earn a total minimum of 180 quarter credits
+Earth and Space Sciences
+EarthLab
+Ecology & Ecosystems
+Ecology and Conservation of Marine Birds and Mammals
+Ecology and Ecosystems (1 course minimum)
+Elective credit requirements
+Electives
+Electromagnetism
+Elements of Statistical Methods
+Engaging with a field course involves additional financial costs (in the form of transportation, room and board fees) and opportunity costs (time away from a job or other commitments). There are additional sources of funding and scholarships which can help you enroll in the Integrative Field Experience that matches your academic and professional goals. Costs vary depending on the course and time spent in the field. Please see the list of eligible courses below for course and program costs.
+Environmental and Forest Sciences
+Events Calendar
+Evolutionary Ecology of Marine Mammals
+Explore the full degree requirements, and explore the program&#8217;s list of approved electives.
+Facebook
+Faculty & Research
+Faculty &#038; Instructors
+FHL / BIOL 430
+FHL / BIOL 432
+FHL 333
+FHL 375
+FHL 375: Marine Mammals of the Salish Sea (5 credits, Biodiversity elective)
+FHL 403
+FHL 403: Novel Marine Ecosystems (5 credits, either Integrative field experience or Ecology and ecosystems elective)
+FHL 420
+FHL 420: Marine Ecology of the Salish Sea (5 credits, either Integrative field experience or Ecology and ecosystems elective)
+FHL 432 | Summer A 2026 Marine Invertebrate Zoology
+FHL 432: Marine Invertebrate Zoology (9 credits): Comparative morphology and biology of marine invertebrates with emphasis on field and laboratory studies. Representatives of all major and most minor phyla are collected, observed live, and studied in detail. (Offered every year)
+FHL 440 / BIOL 445
+FHL 440/BIOL 445: Marine Botany (5 credits, Biodiversity elective)
+FHL 446
+FHL 450
+FHL 460
+FHL 467: Behavioral Ecology of Marine Invertebrates (5 credits, either Integrative field experience or Ecology and ecosystems elective)
+FHL 467*
+FHL 468
+FHL 468 A | Summer A 2026 Marine Conservation Ecology
+FHL 468 B | Summer B 2026 Marine Subtidal Ecology
+FHL 468: Advanced Topics in Ecology and Biomechanics (9 credits) : Special topics course listing where courses vary by offered section. Topics can focus on various aspects of ecology and biomechanics of marine organisms, such as experimental ecology, ocean acidification, deep sea biodiversity, or biomechanics.
+FHL 470
+FHL 470: Research in Marine Biology (6 credits , Integrative field experience or Other marine biology elective)
+FHL 470: Research in Marine Biology (6 credits, Integrative field experience )
+FHL 471
+FHL 471: Comparative Anatomy and Physiology of Marine Organisms (5 credits, Organismal processes elective)
+FHL 472
+FHL 472: Pelagic Ecosystem Function of the San Juan Archipelago
+FHL 480
+FHL 480: Professional Portfolio in Marine Science (5 credits, Other marine biology elective)
+FHL 490
+FHL 490: Marine Sciences Seminar (1 credit, Other marine biology elective)
+FHL 492
+FHL 492: Ecology and Conservation of Marine Birds and Mammals (9 credits) : An intensive, field-based course that offers motivated students the opportunity to learn about these ecologically and culturally important marine animals and the conservation problems they face.(Offered every other year in &#8216;odd years&#8217; only)
+FHL 495
+FHL Academic Programs
+FHL Financial Aid
+FHL hosts students from around the world for summer courses. Therefore, there is higher competition for summer placement compared to full-term autumn or spring options. Marine Biology majors can apply for summer FHL courses, but are not prioritized over other applicants for summer quarter.
+FHL Info Session Recordings Autumn Marine Studies (AMS)
+FHL Info Session Recordings Research Apprenticeship (PEF)
+FHL Mary Gates Endowment Scholarship
+FHL/BIOL 430: Marine Zoology (5 credits, Biodiversity elective)
+Field Experiences
+Financial Aid and Scholarships
+FISH / BIOL 311
+FISH / BIOL 340
+FISH 310
+FISH 312
+FISH 323
+FISH 406
+FISH 423
+FISH 427
+FISH 437
+FISH 444
+FISH 450
+FISH 460
+FISH 464
+FISH 470
+FISH 497
+FISH/ENVIR/BIOL 478
+FISH/OCEAN/BIOL 250
+FISH/OCEAN/MARBIO 270
+FISH/OCEAN/MARBIO 370
+Fisheries Ecology
+Fisheries Oceanography
+Follow Us >
+For the most current information on course offerings, major requirements, and elective options, students should visit the following pages:
+Foundation Courses in Science and Mathematics
+Friday Harbor Apprenticeship
+Friday Harbor Laboratories
+Friday Harbor Labs Financial Aid application
+Friday Harbor Labs Research Apprenticeship
+Gen Ed
+General Chemistry I
+General Chemistry II
+General Chemistry III
+General Education requirements
+General Elective
+General Elective (FIG)
+General Physics I
+General Physics I / Mechanics
+General Physics I/Mechanics
+General Physics II
+Genetics and Molecular Ecology
+Giving
+Global Ocean &#8211; Human Culture
+Graduation
+How to Apply for Integrative Field Experience Courses
+Ideal for students who have completed general education requirements in the Arts & Humanities (A&H) and Social Sciences (SSc), but still need to complete foundational math and science courses along with marine biology coursework.
+IFE: MARBIO 488
+In addition to the general education requirements, a UW student earning any Bachelor&#8217;s degree must meet the following University requirements:
+Info Sessions:
+Instagram
+Integrative Field Experience
+Integrative Field Experience | Marine Biology
+Integrative Field Experience requirement
+Integrative Oceans
+Integrative Oceans: OCEAN 210
+Intro Marine Sciences: FISH/OCEAN/BIOL 250 or OCEAN 200 and OCEAN 201
+Introduction to Oceanography , Introduction to Oceanography Lab
+Introduction to Oceanography, Introduction to Oceanography Lab
+Introduction to Probability and Statistics
+Introduction to Quantitative Ecology
+Introduction to the Marine Environment
+Introductory Biology
+Introductory Biology I
+Introductory Biology II
+Introductory Biology III
+Introductory Marine Science
+Invertebrate Zoology
+It is strongly recommended that students meet with an academic advisor to create a customized plan. "/>
+It is strongly recommended that students meet with an academic advisor to create a customized plan. ">
+It is strongly recommended that students meet with an academic advisor to create a customized plan. Advisors can help interpret degree requirements, evaluate transfer credits, and align schedules with academic and career goals.
+Jobs
+Lab
+Lab; Only if not applied to &#8216;integrative field experience&#8217; requirement
+Lab; Only if not applied to &#8216;integrative field experience&#8217; requirement; * New course number in development
+Lab; registration restricted to Biology majors period 1
+Learn more
+Learning Goals
+m&#97;&#114;&#98;&#105;&#111;l&#64;&#117;&#119;&#46;&#101;&#100;&#117;
+m&#97;r&#98;&#105;&#111;&#108;&#64;u&#119;.&#101;d&#117;
+ma&#114;&#98;i&#111;l&#64;uw&#46;&#101;du
+ma&#114;b&#105;ol&#64;&#117;&#119;&#46;e&#100;u
+Major Electives
+Major Electives | Marine Biology
 Major Requirements
 Major Requirements (pre-Fall 2021)
-Major Electives
-Integrative Field Experience
-Academic Planning
-Marine Biology Minor
-Prospective Students
-Advising
-Quarterly Course Offerings
-Career Paths
-Scholarships
-Course Explorer
-Dive into our offered courses and see what you&#8217;ll be learning
-Learn more
-Student Spotlights
-Read stories and interviews featuring our Marine Biology undergrads
-Learn more
-Marine Biology
-1122 NE Boat Street, Seattle, WA 98195-5020
-&#109;a&#114;&#98;&#105;ol&#64;&#117;&#119;.ed&#117;
-| (206) 543-7426
-Search
-Facebook
-Bluesky
-Instagram
-<svg height="14px" width="13px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-viewBox="0 0 461.001 461.001" xml:space="preserve" style="margin-top:4px">
-YouTube
-Aquatic and Fishery Sciences
-Atmospheric and Climate Science
-Center for Quantitative Science
-Climate Impacts Group
-Cooperative Institute for Climate,
-Ocean, and Ecosystem Studies
-EarthLab
-Earth and Space Sciences
-Environmental and Forest Sciences
-Friday Harbor Laboratories
+Major Requirements (pre-Fall 2021) | Marine Biology
+Major Requirements | Marine Biology
+Make a Gift
+Maps
+MARBIO / BIOL 433
+MARBIO 270/BIOL 220
+MARBIO 301
+MARBIO 302
+MARBIO 305
+MARBIO 370
+MARBIO 479
+MARBIO 479*
+MARBIO 488
+MARBIO 488: Marine Biology in the Field (6 credits): Standard, campus-based course offered annually in the fall with a mandatory field component covered in the three weeks prior to the start of fall quarter (exact dates vary by year) at Friday Harbor Labs. The FHL field component consists of short research training modules focused on intertidal ecology, trophic ecology, and oceanography followed by independent research projects conducted in small groups. The on-campus portion focuses on analysis, presentation, and communication of research project results.
+MARBIO/FISH/OCEAN 370
 Marine and Environmental Affairs
+Marine Biogeochemical Cycles
 Marine Biology
+Marine Biology (lab section only)
+Marine Biology Core
+Marine Biology Course Fee Policy
+Marine Biology Elective List
+Marine Biology Electives
+Marine Biology in the Field
+Marine Biology Integrative Field Experience
+Marine Biology involves the study of life processes of organisms inhabiting saltwater environments – from genetics and evolution to physiological traits and ecosystem functioning. Our students study the marine aspects of biodiversity, organismal processes, and ecology and ecosystems, and explore the conservation and management responses to ocean change. Graduates are well prepared for careers and graduate programs related to marine biology, biology, ecology, resource management, environmental consulting or environmental education in a range of settings.
+Marine Biology Major
+Marine Biology Major | Marine Biology
+Marine Biology Major Approved Elective List
+Marine Biology Major Learning Goals
+Marine Biology Major Requirements Marine Biology Electives
+Marine Biology Major Requirements Worksheet
+Marine Biology Major Summary
+Marine Biology majors can receive preferential admissions to spring, early fall and autumn academic programs based on progress in major requirements as well as time to graduate. Marine Biology majors can apply to summer quarter academic programs, but are not granted preferential admissions due to increased competition for limited seats. Preferential admission is granted for Marine Biology majors based on the following criteria:
+Marine Biology Minor
+Marine Biology Seminar
+Marine Biology Seminar – Winter 2025
+Marine Botany
+Marine Botany: Diversity and Ecology
+Marine Ecological Processes
+Marine Ecology
+Marine Ecology of the Salish Sea
+Marine Evolutionary Biology
+Marine Invertebrate Diversity
+Marine Invertebrate Zoology
+Marine Mammals of the Salish Sea
+Marine Pollution
+Marine Sciences Seminar
+Marine Zoology
+Mary Gates Endowment (MGE) Scholarships for FHL Courses
+Math
+MATH 124
+MATH 125
+Maximum of 6 credits total of independent research
+MB Elective
+MB Elective (MARBIO 301)
+Mechanics
+Meet Our Students
+Microbes in a Changing Ocean
+Minimum 6 credits from the approved list
+Minimum of 2 courses taken with lab sections
+Minimum of 25 credits total from the department&#8217;s approved list
+Minimum of 3 courses at the 400-level
+Minor Requirements
+Most eligible courses involve living full-time at the UW’s marine field station Friday Harbor Labs (FHL).
+must enroll in MARBIO 301 in same quarter
+My UW
+Nearshore Ecology Research Experience
+News
+No more than 6 credits total of independent research or internship
+Not offered in teh 2026/27 academic year
+Not offered in the 2026/27 academic year
+Note: FHL 333: Science Writing for Diverse Audiences is still an approved course alternative to MARBIO 305 to fulfil the Communication requirement, but the course is currently not offered at Friday Harbor Labs.
+Notes
+Novel Marine Ecosystems
+OCEAN 200 & 201
+OCEAN 210
+OCEAN 285 & OCEAN 286
+OCEAN 295
+OCEAN 295/CHEM 220
+OCEAN 330
+OCEAN 402
+OCEAN 403
+OCEAN 409
+OCEAN 411
+OCEAN 411*
+OCEAN 431
+OCEAN 431*
+OCEAN 432
+OCEAN 450
+OCEAN 480
+OCEAN 492
+OCEAN 497
+Ocean, and Ecosystem Studies
 Oceanography
+Offered
+One course (4 cr.):
+Only if not applied to &#8216; integrative field experience &#8216; requirement
+Only offered through autumn study abroad in the 2026/27 academic year
+Opportunities for K-12 Students
+Organic Chemistry &#8211; Short Program
+Organismal Processes
+Organismal Processes (1 course minimum)
+Other Electives
+Other Marine Biology Major electives
+Parasite Ecology
+PHYS 114
+PHYS 114 or PHYS 121 (choose one)
+PHYS 115
+PHYS 116
+PHYS 117
+PHYS 118
+PHYS 119
+PHYS 121
+PHYS 122
+Physics
+Physics Across Oceanography: Fluid Mechanics and Waves (with lab)
+Policies
+Preferential admissions
+Principles of Chemistry I
+Principles of Chemistry II
+Privacy
+Professional Portfolio in Marine Science
 Program on Climate Change
 Program on the Environment
+Prospective Students
+Q SCI / FISH 454
+Q SCI / FISH 458
+Q SCI 291
+Q SCI 291/MATH 124
+Q SCI 292
+Q SCI 292/MATH 125
+Q SCI 381
+Quantitative Conservation and Management
+Quarterly Course Offerings
 Quaternary Research Center
-UW Botanic Gardens
-Washington Sea Grant
-<svg version="1.1" id="university_logo_white" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-width="252.993px" height="17.033px" viewBox="0 0 252.993 17.033" enable-background="new 0 0 252.993 17.033"
-xml:space="preserve">
-University of Washington
-Be Boundless
-&copy; 2026 University of Washington |
+Read stories and interviews featuring our Marine Biology undergrads
+Recording of Information Session for 2026 Spring
+registration restricted to Biology majors period 1
+Requirements
+Requirements of the Marine Biology Major are structured around the following learning goals. They ensure our graduates develop critical content knowledge and skills for the field of marine biology.
+Requirements:
+Requires learning contract
+Research
+Research Apprenticeship: Friday Harbor Labs Apprenticeship (15 credits): Full-term fall quarter courses where students engage in advanced undergraduate research in a small cohort of students. Topics vary by section and year, and eligible apprenticeships are approved on a section basis. Approved apprenticeships complete the six-credit integrative field experience requirement, with the nine other credits applied to ‘other marine biology electives’.
+Research in Marine Biology
+Research Vessels
+Salmonid Behavior and Life History
+Sample Schedules & Academic Planning
+Scholarships
+Science Writing for Diverse Audiences
+Scientific Diving
+Scientific Writing in Marine Biology
+Search
+See notes
+Skip to main content Skip to footer unit links
+Southern Ocean: Climate and Ecosystems
+Sp
+Sp, A
+Special Topics
+Special topics are approved by individual offering; see courses page for approved sections by quarter
+Special Topics in Aquatic and Fishery Sciences
+Special Topics in Biological Oceanography
+Special Topics in Marine Geology and Geophysics
+Special Topics in Natural Science
+Special topics section planned for Autumn 2026
+Special topics section planned for Winter 2027
+Special Topics: Ocean Change Biology
+Special Topics: Sounds in the Ocean
+Spring
+Spring Marine Studies
+Spring Marine Studies Program (15-16 credits) : Full-term spring quarter program (approximately 10 weeks) where students earn major elective credits in addition to the integrative field experience requirement. Students select from a limited menu of courses to build a minimum full-time (12 or more credits) schedule:
 Staff login
-Jobs
-My UW
-Privacy
+STAT 311
+Statistics
+Statistics: Q SCI 381 or STAT 311
+Student Organizations
+Student Spotlights
+Students
+Students are required to complete the general education requirements of the College of the Environment. Some of the credits applied to these requirements may also fulfill major requirements.
+Students can choose to meet the &#8216;missing credit&#8217; for the IFE requirement with the FHL 490 seminar or with other marine biology electives taken at any time (Seattle campus or FHL).
+Students develop content knowledge and skills through a large selection of courses offered at the upper-division level through the School of Aquatic & Fishery Sciences, the School of Oceanography, the Department of Biology, and the Friday Harbor Laboratories. Students complete electives from the department&#8217;s approved list to meet the following requirements:
+Students earn a Bachelor of Science (BS) degree with a Major in Marine Biology
+Students select from a list of eligible courses which give hands-on experience with changes in the marine environment at a variety of scales (over time and space) and systems (physical and biological). "/>
+Students select from a list of eligible courses which give hands-on experience with changes in the marine environment at a variety of scales (over time and space) and systems (physical and biological). ">
+Students select from a list of eligible courses which give hands-on experience with changes in the marine environment at a variety of scales (over time and space) and systems (physical and biological). These advanced courses build on the foundational knowledge developed across the three core areas of the major (biodiversity, ecology and ecosystems and organismal processes) and develop skills in fieldwork techniques, data analysis and science communication.
+Students take core subjects related to Marine Ecology, Marine Physiology, Marine Evolutionary Biology, and Conservation and Management
+Study Abroad and Other Field Stations
+Su
+Sub-requirements (courses can fulfill multiple sub-requirements at the same time)
+Summer
+Summer 2026 Options
+Summer courses at FHL are offered as individual 9-credit &#8216;half-term&#8217; (summer A or summer B) courses of approximately 5 weeks. Students can only enroll in one class per half term. They can enroll in A and B term, but have to be separately admitted to individual courses. Approved IFE sections complete the six-credit integrative field experience requirement, with the remaining three credits applied to the ‘other marine biology elective’ requirement. Summer offerings vary by year: see the list below for upcoming approved courses.
+Tailored for transfer students or those who have already completed most foundational STEM courses. This plan focuses on upper-division marine biology courses and remaining degree requirements.
 Terms
+The following is the department&#8217;s list of approved upper-division courses which can be applied to the electives requirement of the Marine Biology Major . Please note that not all of these courses are approved for the Marine Biology Minor .
+The following is the department&#8217;s list of approved upper-division courses which can be applied to the electives requirement of the Marine Biology Major. Please note that not all of these courses are approved for the Marine Biology Minor.
+The Integrative Field Experience (IFE) is the culminating requirement of the Marine Biology Major, and all marine biology majors study in the field away from the UW Seattle campus.
+The worksheet and tables are good for broad academic planning, but course offerings vary by quarter and year. "/>
+The worksheet and tables are good for broad academic planning, but course offerings vary by quarter and year. ">
+The worksheet and tables are good for broad academic planning, but course offerings vary by quarter and year. To view the detailed quarterly list of courses relevant to our program, please visit the Marine Biology Courses page.
+This page archives requirements of the Marine Biology Degree only for students who declared the major between autumn quarter, 2018 and spring quarter 2021. Students following these requirements may talk with the Marine Biology Adviser to follow the updated requirements .
+This page archives requirements of the Marine Biology Degree only for students who declared the major between autumn quarter, 2018 and spring quarter 2021. Students following these requirements may talk with the Marine Biology Adviser to follow the updated requirements.
+Three courses (15 cr.):
+Time spent away from campus varies by program, ranging from a minimum of three weeks to a full academic quarter .
+Time to graduate
+Title
+Topics in Sustainable Fisheries
+Topics vary by section and year, and FHL 468 is not automatically apprvoed for IFE; eligible offerings are approved on an annual basis.
+Transfer Admissions
+Tropical Marine Biology
+Two courses (10 cr.):
+Two courses (9 cr.):
+Undergraduate Research
+University of Washington
+updated April 2026
+Use the following tables to plan for a Major in Marine Biology*. Current, as well as prospective UW students are invited to use the MyPlan online academic planning tool to create a full academic plan over quarters and years. In addition to the tables below, students can also download or print the following requirements worksheet:
+UW Botanic Gardens
+UW Home
+UW Marine Biology attempts to provide immersive learning experiences in and out of the classroom that provide students with the opportunity to learn and practice skills in the context of content and concept learning, as well as to apply that learning to real world situations. In pursuit of those goals, UW Marine Biology defrays these expenses, and may charge course fees where appropriate. Please see the full document for details on how course fees are used to support these costs as well as how to request a refund when you drop a course.
+Var.
+Variable
+viewBox="0 0 461.001 461.001" xml:space="preserve" style="margin-top:4px">
+Visit Prepare: Pre-Health at the UW for more information on course planning for graduate health programs.
+W
+W, odd years
+W, Sp
+Washington Sea Grant
+Whether students are just beginning their college journey or transferring from another institution, planning coursework is an important step toward earning a Marine Biology degree. Below are sample academic plans designed to help students visualize potential pathways through the major. These are reference guides only —individual plans may vary based on prior coursework, placement, and personal interests.
+width="215px" height="12px" class="college-name" alt="UW College of the Environment" viewBox="33 379.4 677.4 34.6" style="enable-background:new 33 379.4 677.4 34.6;"
+width="215px" height="14px" class="uw-name" viewBox="-70 381.4 469.1 31.6" style="enable-background:new -70 381.4 469.1 31.6;"
+width="252.993px" height="17.033px" viewBox="0 0 252.993 17.033" enable-background="new 0 0 252.993 17.033"
+Winter
+Work With Us
+xml:space="preserve" alt="University of Washington">
+xml:space="preserve">
+Year 1
+Year 2
+Year 3
+Year 4
+YouTube
+Zoology Botany (Zoo-Bot) Program (16-17 credits) : Full-term spring quarter program (approximately 10 weeks) where students earn major elective credits in addition to the integrative field experience requirement. All students enroll in the same three courses with an optional 1 credit seminar:

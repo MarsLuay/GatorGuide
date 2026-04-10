@@ -20,7 +20,7 @@ import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 
 type TourTargetId =
   | "searchField"
-  | "roadmapCard"
+  | "planningCard"
   | "searchButton"
   | "homeTab"
   | "resourcesTab"
@@ -98,10 +98,10 @@ export default function OnboardingPage() {
         spotlightSize: 56,
       },
       {
-        id: "roadmap",
-        title: "Roadmap",
-        description: "Use Roadmap to track transfer tasks, deadlines, and your progress in one place.",
-        target: "roadmapCard",
+        id: "planning",
+        title: "Planning Card",
+        description: "Use this card to keep your transfer tasks, deadlines, and next steps together.",
+        target: "planningCard",
         spotlightSize: 62,
       },
       {
@@ -175,7 +175,7 @@ export default function OnboardingPage() {
   const canvasMetrics = useMemo(() => {
     const previewPadding = isWideLayout ? 26 : isTablet ? 22 : 16;
     const searchSectionHeight = isWideLayout ? 156 : isTablet ? 146 : 132;
-    const roadmapSectionHeight = isWideLayout ? 132 : isTablet ? 122 : 110;
+    const planningSectionHeight = isWideLayout ? 132 : isTablet ? 122 : 110;
     const sectionGap = isWideLayout ? 22 : 18;
     const searchInnerPadding = isWideLayout ? 18 : isTablet ? 16 : 14;
     const searchFieldHeight = isWideLayout ? 54 : isTablet ? 50 : 46;
@@ -185,7 +185,7 @@ export default function OnboardingPage() {
     const searchFieldLeft = previewPadding + searchInnerPadding;
     const searchFieldWidth = Math.max(220, innerWidth - searchInnerPadding * 2);
     const searchFieldTop = previewPadding + searchInnerPadding;
-    const roadmapTop = previewPadding + searchSectionHeight + sectionGap;
+    const planningTop = previewPadding + searchSectionHeight + sectionGap;
     const tabBarHeight = tabBarMinHeight;
     const tabBarTop = canvasHeight - tabBarHeight;
     const tabCenterY = tabBarTop + tabBarHeight / 2;
@@ -196,9 +196,9 @@ export default function OnboardingPage() {
         y: searchFieldTop + searchFieldHeight / 2,
         size: step.spotlightSize,
       },
-      roadmapCard: {
+      planningCard: {
         x: canvasWidth / 2,
-        y: roadmapTop + roadmapSectionHeight / 2,
+        y: planningTop + planningSectionHeight / 2,
         size: step.spotlightSize,
       },
       searchButton: {
@@ -232,12 +232,12 @@ export default function OnboardingPage() {
       previewPadding,
       previewRadius,
       searchSectionHeight,
-      roadmapSectionHeight,
+      planningSectionHeight,
       sectionGap,
       searchInnerPadding,
       searchFieldHeight,
       searchButtonWidth,
-      roadmapTop,
+      planningTop,
       tabBarHeight,
       tabBarTop,
       targets,
@@ -485,8 +485,8 @@ export default function OnboardingPage() {
                         position: "absolute",
                         left: canvasMetrics.previewPadding,
                         right: canvasMetrics.previewPadding,
-                        top: canvasMetrics.roadmapTop,
-                        height: canvasMetrics.roadmapSectionHeight,
+                        top: canvasMetrics.planningTop,
+                        height: canvasMetrics.planningSectionHeight,
                         borderRadius: 22,
                         borderColor: "rgba(52, 211, 153, 0.38)",
                         paddingHorizontal: isWideLayout ? 18 : 16,
@@ -499,7 +499,7 @@ export default function OnboardingPage() {
                           <Ionicons name="map" size={18} color="#008f4e" />
                         </View>
                         <View className="flex-1">
-                          <Text className={`${textClass} font-semibold`}>View your roadmap</Text>
+                          <Text className={`${textClass} font-semibold`}>View your plan</Text>
                           <Text className={`${secondaryTextClass} text-sm`} style={{ lineHeight: 20 }}>
                             Track transfer goals and next steps.
                           </Text>

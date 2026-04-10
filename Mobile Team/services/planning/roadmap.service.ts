@@ -501,10 +501,10 @@ function buildTaskListsFromSeed(seed: RoadmapSeedInput, createdAt: string) {
   if (major) {
     documentTasks.push(
       createTask({
-        id: "resume-tailor",
+        id: "application-materials",
         type: "milestone",
-        title: "Refine your resume",
-        description: `Tailor your resume for ${major} transfer applications and internships.`,
+        title: "Organize your application materials",
+        description: `Gather the documents and notes you want ready for ${major} transfer applications and internships.`,
         order: 1,
         createdAt,
         metadata: { major },

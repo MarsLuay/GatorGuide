@@ -27,13 +27,12 @@ import {
   getTransferPlannerPrimaryDegreeRequirementsSource,
   getTransferPlannerGrcCourseList,
   getTransferPlannerGrcCourseListGuidance,
-  getTransferPlannerStudentVisibleMajorsForCampus,
-  getTransferPlannerStudentVisiblePathwaysForPlan,
+  getTransferPlannerStudentRuntimeMajorsForCampus,
+  getTransferPlannerStudentRuntimePathwaysForPlan,
   getTransferPlannerTrack,
-  resolveTransferPlannerMajorPlan,
+  resolveTransferPlannerStudentRuntimeMajorPlan,
   TRANSFER_PLANNER_CAMPUSES,
   type TransferPlannerCampusId,
-  type TransferPlannerMajorPlan,
   type TransferPlannerMajorPathway,
   type TransferPlannerResolvedMajorPlan,
   type TransferPlannerStudentCourseEvaluation,
@@ -368,6 +367,11 @@ async function openExternalLink(url: string) {
   }
 }
 
+function getAutoTrackSummaryText(trackSummary: string) {
+  const normalized = String(trackSummary ?? "").trim();
+  return normalized || "No automatic Green River associate-path match is available for this major yet.";
+}
+
 function normalizeSelectorSearchValue(value: string) {
   return String(value ?? "")
     .toLowerCase()
@@ -544,6 +548,8 @@ function TranscriptSummaryCard({
   transcriptDocument,
   isAnalyzing,
   errorMessage,
+  studentEvaluationReport,
+  studentCourseEvaluations,
   plan,
   pathwayOptions,
   selectedPathwayLabel,
@@ -574,6 +580,8 @@ function TranscriptSummaryCard({
   transcriptDocument: TranscriptDocument | null;
   isAnalyzing: boolean;
   errorMessage: string | null;
+  studentEvaluationReport: TransferPlannerStudentEvaluationReport | null;
+  studentCourseEvaluations: TransferPlannerStudentCourseEvaluation[];
   plan: TransferPlannerResolvedMajorPlan;
   pathwayOptions: TransferPlannerMajorPathway[];
   selectedPathwayLabel: string | null;
@@ -602,6 +610,8 @@ function TranscriptSummaryCard({
   borderClass: string;
 }) {
   const [isPathwaySelectorOpen, setIsPathwaySelectorOpen] = useState(false);
+  const visibleTrackSummary = getAutoTrackSummaryText(trackSummary);
+  const visibleFinancialAidNote = String(financialAidNote ?? "").trim();
 
   if (!transcriptDocument) {
     return (
@@ -708,8 +718,10 @@ function TranscriptSummaryCard({
           <Text className={`${textClass} font-semibold`}>
             {trackCode ? `${trackCode} | ${trackTitle}` : trackTitle}
           </Text>
-          <Text className={`${secondaryTextClass} text-sm mt-2`}>{trackSummary}</Text>
-          <Text className={`${secondaryTextClass} text-sm mt-3`}>{financialAidNote}</Text>
+          <Text className={`${secondaryTextClass} text-sm mt-2`}>{visibleTrackSummary}</Text>
+          {visibleFinancialAidNote ? (
+            <Text className={`${secondaryTextClass} text-sm mt-3`}>{visibleFinancialAidNote}</Text>
+          ) : null}
         </View>
       </View>
 
@@ -739,9 +751,14 @@ function TranscriptSummaryCard({
         </View>
       </View>
 
-      <AnimatedIconPressable onPress={onUpload} className="self-start" containerStyle={{ marginTop: 12 }}>
-        <Text className="text-emerald-500 text-sm font-medium">Update transcript</Text>
-      </AnimatedIconPressable>
+      <View className="mt-3 flex-row items-center gap-4">
+        <AnimatedIconPressable onPress={onUpload} className="self-start">
+          <Text className="text-emerald-500 text-sm font-medium">Update transcript</Text>
+        </AnimatedIconPressable>
+        <AnimatedIconPressable onPress={onOpenTranscriptLink} className="self-start">
+          <Text className="text-emerald-500 text-sm font-medium">Transcript</Text>
+        </AnimatedIconPressable>
+      </View>
 
       {isAnalyzing ? (
         <View className="flex-row items-center mt-4">
@@ -839,8 +856,10 @@ function TranscriptSummaryCard({
           <Text className={`${textClass} font-semibold`}>
             {trackCode ? `${trackCode} | ${trackTitle}` : trackTitle}
           </Text>
-          <Text className={`${secondaryTextClass} text-sm mt-2`}>{trackSummary}</Text>
-          <Text className={`${secondaryTextClass} text-sm mt-3`}>{financialAidNote}</Text>
+          <Text className={`${secondaryTextClass} text-sm mt-2`}>{visibleTrackSummary}</Text>
+          {visibleFinancialAidNote ? (
+            <Text className={`${secondaryTextClass} text-sm mt-3`}>{visibleFinancialAidNote}</Text>
+          ) : null}
         </View>
       </View>
 
@@ -853,6 +872,18 @@ function TranscriptSummaryCard({
         secondaryTextClass={secondaryTextClass}
         borderClass={borderClass}
       />
+
+      {studentEvaluationReport && completedCourses.length ? (
+        <TranscriptEvaluationReportCard
+          report={studentEvaluationReport}
+          evaluations={studentCourseEvaluations}
+          textClass={textClass}
+          secondaryTextClass={secondaryTextClass}
+          cardClass={cardClass}
+          borderClass={borderClass}
+          embedded
+        />
+      ) : null}
 
     </View>
   );
@@ -1095,6 +1126,7 @@ function TranscriptEvaluationReportCard({
   secondaryTextClass,
   cardClass,
   borderClass,
+  embedded = false,
 }: {
   report: TransferPlannerStudentEvaluationReport;
   evaluations: TransferPlannerStudentCourseEvaluation[];
@@ -1102,114 +1134,124 @@ function TranscriptEvaluationReportCard({
   secondaryTextClass: string;
   cardClass: string;
   borderClass: string;
+  embedded?: boolean;
 }) {
   const studentFacingEvaluations = evaluations.filter((entry) => entry.studentFacing);
-  const highlightedEvaluations = studentFacingEvaluations.slice(0, 8);
-  const hiddenCount = Math.max(studentFacingEvaluations.length - highlightedEvaluations.length, 0);
   const activeBuckets = report.buckets.filter((bucket) => bucket.count > 0);
+  const [isEvaluationOpen, setIsEvaluationOpen] = useState(false);
 
   if (!report.completedCourseCount) {
     return null;
   }
 
-  return (
-    <View className={`${cardClass} border rounded-[28px] p-5`}>
-      <View className="flex-row items-start justify-between gap-3">
-        <View className="flex-1 min-w-0">
-          <Text className={`${textClass} text-lg font-semibold`}>Transcript evaluation</Text>
-          <Text className={`${secondaryTextClass} text-sm mt-1`}>
-            Source-backed summary for completed classes in {report.majorTitle}. These buckets come from approved equivalency rules, not custom guessing.
-          </Text>
-        </View>
-        <View className="px-3 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/10">
-          <Text className="text-emerald-500 text-xs font-semibold">
-            {report.officialRuleIds.length} rule{report.officialRuleIds.length === 1 ? "" : "s"}
-          </Text>
-        </View>
-      </View>
+  const containerClass = embedded
+    ? `border ${borderClass} rounded-2xl px-4 py-4 mt-4`
+    : `${cardClass} border rounded-[28px] p-5`;
 
-      <View className="flex-row flex-wrap gap-2 mt-4">
-        {activeBuckets.map((bucket) => (
-          <View key={bucket.id} className={`border ${borderClass} rounded-2xl px-3 py-2`}>
-            <Text className={`${textClass} text-xs font-semibold`}>{bucket.label}</Text>
-            <Text className={`${secondaryTextClass} text-xs mt-1`}>
-              {bucket.count} course{bucket.count === 1 ? "" : "s"}
+  return (
+    <View className={containerClass}>
+      <AnimatedCardPressable
+        onPress={() => setIsEvaluationOpen((currentValue) => !currentValue)}
+        accessibilityRole="button"
+        accessibilityState={{ expanded: isEvaluationOpen }}
+      >
+        <View className="flex-row items-start justify-between gap-3">
+          <View className="flex-1 min-w-0">
+            <Text className={`${textClass} text-lg font-semibold`}>Transcript evaluation</Text>
+            <Text className={`${secondaryTextClass} text-sm mt-1`}>
+              Source-backed summary for completed classes in {report.majorTitle}. These buckets come from approved equivalency rules, not custom guessing.
             </Text>
           </View>
-        ))}
-      </View>
-
-      <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-4`}>
-        <Text className={`${textClass} font-semibold`}>Source-backed summary</Text>
-        <View className="gap-2 mt-3">
-          {report.reportSummaryLines.map((line) => (
-            <View key={line} className="flex-row items-start gap-2">
-              <Text className={`${secondaryTextClass} text-sm`}>{"-"}</Text>
-              <Text className={`${secondaryTextClass} text-sm flex-1`}>{line}</Text>
+          <View className="flex-row items-center gap-2">
+            <View className="px-3 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/10">
+              <Text className="text-emerald-500 text-xs font-semibold">
+                {report.officialRuleIds.length} rule{report.officialRuleIds.length === 1 ? "" : "s"}
+              </Text>
             </View>
-          ))}
+            <Ionicons
+              name={isEvaluationOpen ? "chevron-up" : "chevron-down"}
+              size={20}
+              color="#9CA3AF"
+            />
+          </View>
         </View>
-        <Text className={`${secondaryTextClass} text-xs mt-3`}>
-          {`${report.sourceLinkCount} official source link${report.sourceLinkCount === 1 ? "" : "s"} attached to the evaluated rules.`}
-        </Text>
-      </View>
+      </AnimatedCardPressable>
 
-      {highlightedEvaluations.length ? (
-        <View className="gap-3 mt-4">
-          {highlightedEvaluations.map((evaluation) => (
-            <View
-              key={evaluation.id}
-              className={`border ${borderClass} rounded-2xl px-4 py-4`}
-            >
-              <View className="flex-row items-start justify-between gap-3">
-                <View className="flex-1 min-w-0">
-                  <Text className={`${textClass} font-semibold`}>{evaluation.courseCode}</Text>
-                  <Text className={`${secondaryTextClass} text-xs mt-1`} numberOfLines={2}>
-                    {evaluation.targetOutcome ?? "No source-backed UW target outcome for this selected major."}
-                  </Text>
-                </View>
-                <View className={`px-3 py-1 rounded-full border ${getEvaluationOutcomeBadgeClass(evaluation.outcome)}`}>
-                  <Text
-                    className={`text-xs font-semibold ${getEvaluationOutcomeTextClass(
-                      evaluation.outcome,
-                      textClass
-                    )}`}
-                  >
-                    {getEvaluationOutcomeBadgeLabel(evaluation.outcome)}
-                  </Text>
-                </View>
+      {isEvaluationOpen ? (
+        <>
+          <View className="flex-row flex-wrap gap-2 mt-4">
+            {activeBuckets.map((bucket) => (
+              <View key={bucket.id} className={`border ${borderClass} rounded-2xl px-3 py-2`}>
+                <Text className={`${textClass} text-xs font-semibold`}>{bucket.label}</Text>
+                <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                  {bucket.count} course{bucket.count === 1 ? "" : "s"}
+                </Text>
               </View>
+            ))}
+          </View>
 
-              {evaluation.missingSourceCourseCodes.length ? (
-                <Text className={`${secondaryTextClass} text-xs mt-2`}>
-                  Missing for strongest sequence: {evaluation.missingSourceCourseCodes.join(", ")}
-                </Text>
-              ) : null}
-              {evaluation.approvedRuleId ? (
-                <Text className={`${secondaryTextClass} text-xs mt-2`}>
-                  Rule: {evaluation.approvedRuleId}
-                </Text>
-              ) : null}
+          <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-4`}>
+            <Text className={`${textClass} font-semibold`}>Source-backed summary</Text>
+            <View className="gap-2 mt-3">
+              {report.reportSummaryLines.map((line) => (
+                <View key={line} className="flex-row items-start gap-2">
+                  <Text className={`${secondaryTextClass} text-sm`}>{"-"}</Text>
+                  <Text className={`${secondaryTextClass} text-sm flex-1`}>{line}</Text>
+                </View>
+              ))}
             </View>
-          ))}
-
-          {hiddenCount ? (
-            <Text className={`${secondaryTextClass} text-xs`}>
-              Plus {hiddenCount} more evaluated completed course{hiddenCount === 1 ? "" : "s"}.
+            <Text className={`${secondaryTextClass} text-xs mt-3`}>
+              {`${report.sourceLinkCount} official source link${report.sourceLinkCount === 1 ? "" : "s"} attached to the evaluated rules.`}
             </Text>
-          ) : null}
-        </View>
-      ) : null}
+          </View>
 
-      {report.hiddenEvaluationCount ? (
-        <View className="mt-4 px-4 py-3 rounded-2xl bg-amber-500/10 border border-amber-500/20">
-          <Text className="text-amber-500 text-sm font-semibold">
-            Hidden source-gap evaluation
-          </Text>
-          <Text className={`${secondaryTextClass} text-xs mt-1`}>
-            {report.hiddenEvaluationCount} course evaluation{report.hiddenEvaluationCount === 1 ? "" : "s"} stayed internal because this planner path is not source-verified for students.
-          </Text>
-        </View>
+          {studentFacingEvaluations.length ? (
+            <View className="gap-3 mt-4">
+              {studentFacingEvaluations.map((evaluation) => (
+                <View
+                  key={evaluation.id}
+                  className={`border ${borderClass} rounded-2xl px-4 py-4`}
+                >
+                  <View className="flex-row items-start justify-between gap-3">
+                    <View className="flex-1 min-w-0">
+                      <Text className={`${textClass} font-semibold`}>{evaluation.courseCode}</Text>
+                      <Text className={`${secondaryTextClass} text-xs mt-1`} numberOfLines={2}>
+                        {evaluation.targetOutcome ?? "No source-backed UW target outcome for this selected major."}
+                      </Text>
+                    </View>
+                    <View className={`px-3 py-1 rounded-full border ${getEvaluationOutcomeBadgeClass(evaluation.outcome)}`}>
+                      <Text
+                        className={`text-xs font-semibold ${getEvaluationOutcomeTextClass(
+                          evaluation.outcome,
+                          textClass
+                        )}`}
+                      >
+                        {getEvaluationOutcomeBadgeLabel(evaluation.outcome)}
+                      </Text>
+                    </View>
+                  </View>
+
+                  {evaluation.missingSourceCourseCodes.length ? (
+                    <Text className={`${secondaryTextClass} text-xs mt-2`}>
+                      Missing for strongest sequence: {evaluation.missingSourceCourseCodes.join(", ")}
+                    </Text>
+                  ) : null}
+                </View>
+              ))}
+            </View>
+          ) : null}
+
+          {report.hiddenEvaluationCount ? (
+            <View className="mt-4 px-4 py-3 rounded-2xl bg-amber-500/10 border border-amber-500/20">
+              <Text className="text-amber-500 text-sm font-semibold">
+                Hidden source-gap evaluation
+              </Text>
+              <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                {report.hiddenEvaluationCount} course evaluation{report.hiddenEvaluationCount === 1 ? "" : "s"} stayed internal because this planner path is not source-verified for students.
+              </Text>
+            </View>
+          ) : null}
+        </>
       ) : null}
     </View>
   );
@@ -1264,9 +1306,7 @@ function MajorSpecificsSection({
               Major Specifics
             </Text>
             <Text className={`${secondaryTextClass} text-sm mt-1`}>
-              {plan.sourceType === "detailed"
-                ? "Open this dropdown for the major-specific Green River class list and UW degree details tied to your selected major."
-                : "Open this dropdown for the major-specific Green River planning guidance and the extra notes attached to this major."}
+              Open this dropdown for the source-backed Green River class list and UW degree sources tied to your selected major.
             </Text>
           </View>
           <Ionicons
@@ -1406,13 +1446,13 @@ export default function TransferPlannerPage() {
   const [selectedCampusId, setSelectedCampusId] =
     useState<TransferPlannerCampusId>("uw-seattle");
   const [selectedMajorId, setSelectedMajorId] = useState<string>(
-    getTransferPlannerStudentVisibleMajorsForCampus("uw-seattle")[0]?.id ?? ""
+    getTransferPlannerStudentRuntimeMajorsForCampus("uw-seattle")[0]?.id ?? ""
   );
   const [openSelector, setOpenSelector] = useState<"campus" | "major" | null>(null);
   const [transcriptDocument, setTranscriptDocument] = useState<TranscriptDocument | null>(null);
   const [isAnalyzingTranscript, setIsAnalyzingTranscript] = useState(false);
   const [transcriptError, setTranscriptError] = useState<string | null>(null);
-  const [onlyUwEssentialClasses, setOnlyUwEssentialClasses] = useState(true);
+  const [onlyUwEssentialClasses, setOnlyUwEssentialClasses] = useState(false);
 
   const transcriptAnalysisAttemptsRef = useRef<Set<string>>(new Set());
 
@@ -1468,7 +1508,7 @@ export default function TransferPlannerPage() {
     [selectedCampusId]
   );
   const campusMajors = useMemo(
-    () => getTransferPlannerStudentVisibleMajorsForCampus(selectedCampusId),
+    () => getTransferPlannerStudentRuntimeMajorsForCampus(selectedCampusId),
     [selectedCampusId]
   );
   const selectedBasePlan = useMemo(
@@ -1483,7 +1523,7 @@ export default function TransferPlannerPage() {
     [state.questionnaireAnswers]
   );
   const pathwayOptions = useMemo(
-    () => getTransferPlannerStudentVisiblePathwaysForPlan(selectedBasePlan),
+    () => getTransferPlannerStudentRuntimePathwaysForPlan(selectedBasePlan),
     [selectedBasePlan]
   );
   const selectedPathwayId = useMemo(() => {
@@ -1495,7 +1535,7 @@ export default function TransferPlannerPage() {
     return pathwayOptions[0]?.id ?? null;
   }, [pathwayOptions, selectedBasePlan, selectedPathwayByPlan]);
   const plan = useMemo(
-    () => resolveTransferPlannerMajorPlan(selectedBasePlan, selectedPathwayId),
+    () => resolveTransferPlannerStudentRuntimeMajorPlan(selectedBasePlan, selectedPathwayId),
     [selectedBasePlan, selectedPathwayId]
   );
   const track = useMemo(() => getTransferPlannerTrack(plan?.bestTrackId ?? null), [plan]);
@@ -2060,6 +2100,8 @@ export default function TransferPlannerPage() {
             transcriptDocument={transcriptDocument}
             isAnalyzing={isAnalyzingTranscript || needsTranscriptReparse}
             errorMessage={transcriptError}
+            studentEvaluationReport={studentEvaluationReport}
+            studentCourseEvaluations={studentCourseEvaluations}
             plan={plan}
             pathwayOptions={pathwayOptions}
             selectedPathwayLabel={plan.selectedPathwayLabel}
@@ -2113,17 +2155,6 @@ export default function TransferPlannerPage() {
 
           {hasStructuredPlannerData ? (
             <>
-              {studentEvaluationReport && completedCourses.length ? (
-                <TranscriptEvaluationReportCard
-                  report={studentEvaluationReport}
-                  evaluations={studentCourseEvaluations}
-                  textClass={textClass}
-                  secondaryTextClass={secondaryTextClass}
-                  cardClass={cardBgClass}
-                  borderClass={borderClass}
-                />
-              ) : null}
-
               <SuggestedScheduleCard
                 quarters={suggestedQuarterPlan}
                 degreeTitle={

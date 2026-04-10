@@ -199,7 +199,7 @@ function getPrimaryActionLabel(
   t: (key: string, params?: Record<string, string | number>) => string
 ) {
   if (item.target.type === "college") return t("deadlineCalendar.actionOpenCollege");
-  if (item.target.type === "roadmap") return "Tracked here";
+  if (item.target.type === "roadmap") return "Shown here";
   if (item.target.type === "resources") return t("deadlineCalendar.actionViewOpportunity");
   return t("deadlineCalendar.actionOpenLink");
 }

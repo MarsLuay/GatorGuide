@@ -52,10 +52,10 @@ export type DeadlineCalendarGroup = {
 };
 
 const ROADMAP_SECTION_LABELS: Record<RoadmapSectionId, string> = {
-  documents: "Roadmap documents",
-  courses: "Roadmap courses",
-  applications: "Roadmap applications",
-  interests: "Roadmap interests",
+  documents: "Planning documents",
+  courses: "Planning courses",
+  applications: "Planning applications",
+  interests: "Planning interests",
 };
 
 function toDate(value: unknown): Date | null {
@@ -127,7 +127,7 @@ class DeadlineCalendarService {
           subtitle: ROADMAP_SECTION_LABELS[section.id],
           description: task.description,
           kind: "roadmap_task",
-          sourceLabel: "Roadmap",
+          sourceLabel: "Planner",
           isDone: task.status === "completed",
           target: buildRoadmapTarget(section.id, task.id),
         });

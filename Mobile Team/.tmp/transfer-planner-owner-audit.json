@@ -1,0 +1,3681 @@
+{
+  "generatedAt": "2026-04-10T19:23:59.012Z",
+  "totalOwners": 244,
+  "ownersWithErrorsCount": 0,
+  "ownersWithWarningsCount": 1,
+  "ownersWithSourceOnlyUwCourseCodesCount": 242,
+  "totalSourceOnlyUwCourseCodes": 10891,
+  "issueCounts": {
+    "error": 0,
+    "warning": 1
+  },
+  "owners": [
+    {
+      "ownerId": "uw-bothell-american-and-ethnic-studies",
+      "ownerKey": "uw-bothell-american-and-ethnic-studies::",
+      "planId": "uw-bothell-american-and-ethnic-studies",
+      "pathwayId": null,
+      "title": "American & Ethnic Studies (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/majors/american-ethnic-studies",
+      "sourceOnlyUwCourseCodeCount": 32,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-applied-computing",
+      "ownerKey": "uw-bothell-applied-computing::",
+      "planId": "uw-bothell-applied-computing",
+      "pathwayId": null,
+      "title": "Applied Computing (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/applied-computing/curriculum",
+      "sourceOnlyUwCourseCodeCount": 120,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-biology",
+      "ownerKey": "uw-bothell-biology::",
+      "planId": "uw-bothell-biology",
+      "pathwayId": null,
+      "title": "Biology (BS)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum",
+      "sourceOnlyUwCourseCodeCount": 138,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-business-administration",
+      "ownerKey": "uw-bothell-business-administration::",
+      "planId": "uw-bothell-business-administration",
+      "pathwayId": null,
+      "title": "Business Administration (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum",
+      "sourceOnlyUwCourseCodeCount": 65,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-business-administration-accounting",
+      "ownerKey": "uw-bothell-business-administration-accounting::",
+      "planId": "uw-bothell-business-administration-accounting",
+      "pathwayId": null,
+      "title": "Business Administration: Accounting (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
+      "sourceOnlyUwCourseCodeCount": 52,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-business-administration-finance",
+      "ownerKey": "uw-bothell-business-administration-finance::",
+      "planId": "uw-bothell-business-administration-finance",
+      "pathwayId": null,
+      "title": "Business Administration: Finance (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option",
+      "sourceOnlyUwCourseCodeCount": 63,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-business-administration-leadership-and-strategic-innovation",
+      "ownerKey": "uw-bothell-business-administration-leadership-and-strategic-innovation::",
+      "planId": "uw-bothell-business-administration-leadership-and-strategic-innovation",
+      "pathwayId": null,
+      "title": "Business Administration: Leadership & Strategic Innovation (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
+      "sourceOnlyUwCourseCodeCount": 47,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-business-administration-marketing",
+      "ownerKey": "uw-bothell-business-administration-marketing::",
+      "planId": "uw-bothell-business-administration-marketing",
+      "pathwayId": null,
+      "title": "Business Administration: Marketing (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing",
+      "sourceOnlyUwCourseCodeCount": 70,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-business-administration-supply-chain-management",
+      "ownerKey": "uw-bothell-business-administration-supply-chain-management::",
+      "planId": "uw-bothell-business-administration-supply-chain-management",
+      "pathwayId": null,
+      "title": "Business Administration: Supply Chain Management (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain",
+      "sourceOnlyUwCourseCodeCount": 45,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-chemistry-ba",
+      "ownerKey": "uw-bothell-chemistry-ba::",
+      "planId": "uw-bothell-chemistry-ba",
+      "pathwayId": null,
+      "title": "Chemistry (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
+      "sourceOnlyUwCourseCodeCount": 142,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-chemistry-biochemistry",
+      "ownerKey": "uw-bothell-chemistry-biochemistry::",
+      "planId": "uw-bothell-chemistry-biochemistry",
+      "pathwayId": null,
+      "title": "Chemistry: Biochemistry (BS)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
+      "sourceOnlyUwCourseCodeCount": 138,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-chemistry-bs",
+      "ownerKey": "uw-bothell-chemistry-bs::",
+      "planId": "uw-bothell-chemistry-bs",
+      "pathwayId": null,
+      "title": "Chemistry (BS)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
+      "sourceOnlyUwCourseCodeCount": 140,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-computer-engineering",
+      "ownerKey": "uw-bothell-computer-engineering::",
+      "planId": "uw-bothell-computer-engineering",
+      "pathwayId": null,
+      "title": "Computer Engineering",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscompe/curriculum",
+      "sourceOnlyUwCourseCodeCount": 14,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-conservation-and-restoration-science",
+      "ownerKey": "uw-bothell-conservation-and-restoration-science::",
+      "planId": "uw-bothell-conservation-and-restoration-science",
+      "pathwayId": null,
+      "title": "Conservation & Restoration Science (BS)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/majors/conservation-restoration-science",
+      "sourceOnlyUwCourseCodeCount": 42,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-csse",
+      "ownerKey": "uw-bothell-csse::",
+      "planId": "uw-bothell-csse",
+      "pathwayId": null,
+      "title": "Computer Science & Software Engineering",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
+      "sourceOnlyUwCourseCodeCount": 26,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-csse-information-assurance-and-cybersecurity",
+      "ownerKey": "uw-bothell-csse-information-assurance-and-cybersecurity::",
+      "planId": "uw-bothell-csse-information-assurance-and-cybersecurity",
+      "pathwayId": null,
+      "title": "Computer Science & Software Engineering: Information Assurance & Cybersecurity (BS)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
+      "sourceOnlyUwCourseCodeCount": 81,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-culture-literature-and-the-arts",
+      "ownerKey": "uw-bothell-culture-literature-and-the-arts::",
+      "planId": "uw-bothell-culture-literature-and-the-arts",
+      "pathwayId": null,
+      "title": "Culture, Literature & the Arts (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/majors/culture-literature-arts",
+      "sourceOnlyUwCourseCodeCount": 33,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-data-visualization-ba",
+      "ownerKey": "uw-bothell-data-visualization-ba::",
+      "planId": "uw-bothell-data-visualization-ba",
+      "pathwayId": null,
+      "title": "Data Visualization (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/majors/data-visualization",
+      "sourceOnlyUwCourseCodeCount": 48,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-data-visualization-bs",
+      "ownerKey": "uw-bothell-data-visualization-bs::",
+      "planId": "uw-bothell-data-visualization-bs",
+      "pathwayId": null,
+      "title": "Data Visualization (BS)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/majors/data-visualization",
+      "sourceOnlyUwCourseCodeCount": 48,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-developmental-and-youth-studies",
+      "ownerKey": "uw-bothell-developmental-and-youth-studies::",
+      "planId": "uw-bothell-developmental-and-youth-studies",
+      "pathwayId": null,
+      "title": "Developmental and Youth Studies (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
+      "sourceOnlyUwCourseCodeCount": 70,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-earth-system-science",
+      "ownerKey": "uw-bothell-earth-system-science::",
+      "planId": "uw-bothell-earth-system-science",
+      "pathwayId": null,
+      "title": "Earth System Science (BS)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/majors/earth-system-science",
+      "sourceOnlyUwCourseCodeCount": 61,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-economics",
+      "ownerKey": "uw-bothell-economics::",
+      "planId": "uw-bothell-economics",
+      "pathwayId": null,
+      "title": "Economics (BS)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/curriculum",
+      "sourceOnlyUwCourseCodeCount": 82,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-educational-studies-elementary-education",
+      "ownerKey": "uw-bothell-educational-studies-elementary-education::",
+      "planId": "uw-bothell-educational-studies-elementary-education",
+      "pathwayId": null,
+      "title": "Educational Studies: Elementary Education (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/education/undergraduate/elementary-education/degree-requirements",
+      "sourceOnlyUwCourseCodeCount": 92,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-electrical-engineering",
+      "ownerKey": "uw-bothell-electrical-engineering::",
+      "planId": "uw-bothell-electrical-engineering",
+      "pathwayId": null,
+      "title": "Electrical Engineering (BS)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/electrical/curriculum",
+      "sourceOnlyUwCourseCodeCount": 141,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-environmental-studies",
+      "ownerKey": "uw-bothell-environmental-studies::",
+      "planId": "uw-bothell-environmental-studies",
+      "pathwayId": null,
+      "title": "Environmental Studies (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/majors/environmental-studies",
+      "sourceOnlyUwCourseCodeCount": 29,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-gender-women-and-sexuality-studies",
+      "ownerKey": "uw-bothell-gender-women-and-sexuality-studies::",
+      "planId": "uw-bothell-gender-women-and-sexuality-studies",
+      "pathwayId": null,
+      "title": "Gender, Women, & Sexuality Studies (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/majors/gender-women-sexuality",
+      "sourceOnlyUwCourseCodeCount": 20,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-global-studies",
+      "ownerKey": "uw-bothell-global-studies::",
+      "planId": "uw-bothell-global-studies",
+      "pathwayId": null,
+      "title": "Global Studies (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/majors/global-studies",
+      "sourceOnlyUwCourseCodeCount": 30,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-health-studies",
+      "ownerKey": "uw-bothell-health-studies::",
+      "planId": "uw-bothell-health-studies",
+      "pathwayId": null,
+      "title": "Health Studies (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/nhs/undergraduate/health-studies/overview",
+      "sourceOnlyUwCourseCodeCount": 20,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-interactive-media-design",
+      "ownerKey": "uw-bothell-interactive-media-design::",
+      "planId": "uw-bothell-interactive-media-design",
+      "pathwayId": null,
+      "title": "Interactive Media Design (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/catalog/wp-content/uploads/sites/44/2023/07/catalog17-18-in-final.pdf",
+      "sourceOnlyUwCourseCodeCount": 1,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-interdisciplinary-arts",
+      "ownerKey": "uw-bothell-interdisciplinary-arts::",
+      "planId": "uw-bothell-interdisciplinary-arts",
+      "pathwayId": null,
+      "title": "Interdisciplinary Arts (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/majors/interdisciplinary-arts",
+      "sourceOnlyUwCourseCodeCount": 35,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-interdisciplinary-studies-individualized-study",
+      "ownerKey": "uw-bothell-interdisciplinary-studies-individualized-study::",
+      "planId": "uw-bothell-interdisciplinary-studies-individualized-study",
+      "pathwayId": null,
+      "title": "Interdisciplinary Studies: Individualized Study (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/catalog/wp-content/uploads/sites/44/2024/09/2023-2024-General-Catalog_a11y.pdf",
+      "sourceOnlyUwCourseCodeCount": 26,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-law-economics-and-public-policy",
+      "ownerKey": "uw-bothell-law-economics-and-public-policy::",
+      "planId": "uw-bothell-law-economics-and-public-policy",
+      "pathwayId": null,
+      "title": "Law, Economics & Public Policy (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/majors/law-economics-public-policy",
+      "sourceOnlyUwCourseCodeCount": 46,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-mathematical-thinking-and-visualization",
+      "ownerKey": "uw-bothell-mathematical-thinking-and-visualization::",
+      "planId": "uw-bothell-mathematical-thinking-and-visualization",
+      "pathwayId": null,
+      "title": "Mathematical Thinking & Visualization (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/majors/mathematical-thinking-visualization",
+      "sourceOnlyUwCourseCodeCount": 27,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-mathematics",
+      "ownerKey": "uw-bothell-mathematics::",
+      "planId": "uw-bothell-mathematics",
+      "pathwayId": null,
+      "title": "Mathematics (BS)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/mathematics/curriculum",
+      "sourceOnlyUwCourseCodeCount": 145,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-mechanical-engineering",
+      "ownerKey": "uw-bothell-mechanical-engineering::",
+      "planId": "uw-bothell-mechanical-engineering",
+      "pathwayId": null,
+      "title": "Mechanical Engineering",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/stem/wp-content/uploads/sites/31/2025/01/B-ME-Curriculum-AY24_25.pdf",
+      "sourceOnlyUwCourseCodeCount": 40,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-media-and-communications-studies",
+      "ownerKey": "uw-bothell-media-and-communications-studies::",
+      "planId": "uw-bothell-media-and-communications-studies",
+      "pathwayId": null,
+      "title": "Media & Communications Studies (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/majors/media-communication",
+      "sourceOnlyUwCourseCodeCount": 39,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-nursing-first-year-rn-to-bsn",
+      "ownerKey": "uw-bothell-nursing-first-year-rn-to-bsn::",
+      "planId": "uw-bothell-nursing-first-year-rn-to-bsn",
+      "pathwayId": null,
+      "title": "Nursing (BS), First Year RN to BSN (Direct Entry)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/catalog/wp-content/uploads/sites/44/2024/09/2023-2024-General-Catalog_a11y.pdf",
+      "sourceOnlyUwCourseCodeCount": 23,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-nursing-rn-to-bsn",
+      "ownerKey": "uw-bothell-nursing-rn-to-bsn::",
+      "planId": "uw-bothell-nursing-rn-to-bsn",
+      "pathwayId": null,
+      "title": "Nursing (BS), RN to BSN",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/catalog/wp-content/uploads/sites/44/2024/09/2023-2024-General-Catalog_a11y.pdf",
+      "sourceOnlyUwCourseCodeCount": 23,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-physics-ba",
+      "ownerKey": "uw-bothell-physics-ba::",
+      "planId": "uw-bothell-physics-ba",
+      "pathwayId": null,
+      "title": "Physics (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
+      "sourceOnlyUwCourseCodeCount": 145,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-physics-bs",
+      "ownerKey": "uw-bothell-physics-bs::",
+      "planId": "uw-bothell-physics-bs",
+      "pathwayId": null,
+      "title": "Physics (BS)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
+      "sourceOnlyUwCourseCodeCount": 145,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-psychology",
+      "ownerKey": "uw-bothell-psychology::",
+      "planId": "uw-bothell-psychology",
+      "pathwayId": null,
+      "title": "Psychology (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/majors/psychology",
+      "sourceOnlyUwCourseCodeCount": 58,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-science-technology-and-society",
+      "ownerKey": "uw-bothell-science-technology-and-society::",
+      "planId": "uw-bothell-science-technology-and-society",
+      "pathwayId": null,
+      "title": "Science, Technology & Society (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/majors/science-technology-society",
+      "sourceOnlyUwCourseCodeCount": 33,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-society-ethics-and-human-behavior",
+      "ownerKey": "uw-bothell-society-ethics-and-human-behavior::",
+      "planId": "uw-bothell-society-ethics-and-human-behavior",
+      "pathwayId": null,
+      "title": "Society, Ethics & Human Behavior (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/majors/society-ethics-human-behavior",
+      "sourceOnlyUwCourseCodeCount": 42,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-aeronautics-astronautics",
+      "ownerKey": "uw-seattle-aeronautics-astronautics::",
+      "planId": "uw-seattle-aeronautics-astronautics",
+      "pathwayId": null,
+      "title": "Aeronautics & Astronautics",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.aa.washington.edu/students/academics/bsaae",
+      "sourceOnlyUwCourseCodeCount": 13,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-american-ethnic-studies",
+      "ownerKey": "uw-seattle-american-ethnic-studies::",
+      "planId": "uw-seattle-american-ethnic-studies",
+      "pathwayId": null,
+      "title": "American Ethnic Studies",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://aes.washington.edu/ba-american-ethnic-studies",
+      "sourceOnlyUwCourseCodeCount": 61,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-american-indian-studies",
+      "ownerKey": "uw-seattle-american-indian-studies::",
+      "planId": "uw-seattle-american-indian-studies",
+      "pathwayId": null,
+      "title": "American Indian Studies",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://ais.washington.edu/ba-american-indian-studies",
+      "sourceOnlyUwCourseCodeCount": 20,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-anthropology",
+      "ownerKey": "uw-seattle-anthropology::",
+      "planId": "uw-seattle-anthropology",
+      "pathwayId": null,
+      "title": "Anthropology",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
+      "sourceOnlyUwCourseCodeCount": 36,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-applied-and-computational-mathematical-sciences",
+      "ownerKey": "uw-seattle-applied-and-computational-mathematical-sciences::",
+      "planId": "uw-seattle-applied-and-computational-mathematical-sciences",
+      "pathwayId": null,
+      "title": "Applied & Computational Mathematical Sciences (ACMS)",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/AppliedandComputationalMathSciences-994.html",
+      "sourceOnlyUwCourseCodeCount": 16,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-applied-mathematics",
+      "ownerKey": "uw-seattle-applied-mathematics::",
+      "planId": "uw-seattle-applied-mathematics",
+      "pathwayId": null,
+      "title": "Applied Mathematics",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://amath.washington.edu/undergraduate-major-applied-mathematics",
+      "sourceOnlyUwCourseCodeCount": 25,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-aquatic-conservation-and-ecology",
+      "ownerKey": "uw-seattle-aquatic-conservation-and-ecology::",
+      "planId": "uw-seattle-aquatic-conservation-and-ecology",
+      "pathwayId": null,
+      "title": "Aquatic Conservation & Ecology",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://fish.uw.edu/students/undergraduate-program/bachelor-of-science/major-requirements/",
+      "sourceOnlyUwCourseCodeCount": 8,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-architectural-design",
+      "ownerKey": "uw-seattle-architectural-design::",
+      "planId": "uw-seattle-architectural-design",
+      "pathwayId": null,
+      "title": "Architectural Design",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://arch.be.uw.edu/wp-content/uploads/sites/5/2024/03/BA-Arch-Design_2024_.pdf",
+      "sourceOnlyUwCourseCodeCount": 7,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-architectural-studies",
+      "ownerKey": "uw-seattle-architectural-studies::",
+      "planId": "uw-seattle-architectural-studies",
+      "pathwayId": null,
+      "title": "Architectural Studies",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://arch.be.uw.edu/wp-content/uploads/sites/5/2024/01/BA-Arch-Studies_20240124.pdf",
+      "sourceOnlyUwCourseCodeCount": 4,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-art",
+      "ownerKey": "uw-seattle-art::",
+      "planId": "uw-seattle-art",
+      "pathwayId": null,
+      "title": "Art",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html",
+      "sourceOnlyUwCourseCodeCount": 100,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-art-history",
+      "ownerKey": "uw-seattle-art-history::",
+      "planId": "uw-seattle-art-history",
+      "pathwayId": null,
+      "title": "Art History",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html",
+      "sourceOnlyUwCourseCodeCount": 118,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-asian-languages-and-cultures",
+      "ownerKey": "uw-seattle-asian-languages-and-cultures::",
+      "planId": "uw-seattle-asian-languages-and-cultures",
+      "pathwayId": null,
+      "title": "Asian Languages & Cultures",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://asian.washington.edu/ba-asian-languages-cultures",
+      "sourceOnlyUwCourseCodeCount": 12,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-asian-studies",
+      "ownerKey": "uw-seattle-asian-studies::",
+      "planId": "uw-seattle-asian-studies",
+      "pathwayId": null,
+      "title": "Asian Studies",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
+      "sourceOnlyUwCourseCodeCount": 30,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-astronomy",
+      "ownerKey": "uw-seattle-astronomy::",
+      "planId": "uw-seattle-astronomy",
+      "pathwayId": null,
+      "title": "Astronomy",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://astro.washington.edu/timeline-and-requirements",
+      "sourceOnlyUwCourseCodeCount": 8,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-atmospheric-and-climate-science",
+      "ownerKey": "uw-seattle-atmospheric-and-climate-science::",
+      "planId": "uw-seattle-atmospheric-and-climate-science",
+      "pathwayId": null,
+      "title": "Atmospheric and Climate Science",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html",
+      "sourceOnlyUwCourseCodeCount": 19,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-atmospheric-and-climate-science:pathway:chemistry-option",
+      "ownerKey": "uw-seattle-atmospheric-and-climate-science::chemistry-option",
+      "planId": "uw-seattle-atmospheric-and-climate-science",
+      "pathwayId": "chemistry-option",
+      "title": "Atmospheric and Climate Science - Chemistry option",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html",
+      "sourceOnlyUwCourseCodeCount": 28,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-atmospheric-and-climate-science:pathway:climate-option",
+      "ownerKey": "uw-seattle-atmospheric-and-climate-science::climate-option",
+      "planId": "uw-seattle-atmospheric-and-climate-science",
+      "pathwayId": "climate-option",
+      "title": "Atmospheric and Climate Science - Climate option",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html",
+      "sourceOnlyUwCourseCodeCount": 24,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-atmospheric-and-climate-science:pathway:data-science-option",
+      "ownerKey": "uw-seattle-atmospheric-and-climate-science::data-science-option",
+      "planId": "uw-seattle-atmospheric-and-climate-science",
+      "pathwayId": "data-science-option",
+      "title": "Atmospheric and Climate Science - Data Science option",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html",
+      "sourceOnlyUwCourseCodeCount": 34,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-atmospheric-and-climate-science:pathway:meteorology-option",
+      "ownerKey": "uw-seattle-atmospheric-and-climate-science::meteorology-option",
+      "planId": "uw-seattle-atmospheric-and-climate-science",
+      "pathwayId": "meteorology-option",
+      "title": "Atmospheric and Climate Science - Meteorology option",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html",
+      "sourceOnlyUwCourseCodeCount": 31,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-biochemistry",
+      "ownerKey": "uw-seattle-biochemistry::",
+      "planId": "uw-seattle-biochemistry",
+      "pathwayId": null,
+      "title": "Biochemistry",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://chem.washington.edu/sites/chem/files/documents/undergrad/babioccheck2017_001.pdf",
+      "sourceOnlyUwCourseCodeCount": 62,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-biochemistry:pathway:ba-route",
+      "ownerKey": "uw-seattle-biochemistry::ba-route",
+      "planId": "uw-seattle-biochemistry",
+      "pathwayId": "ba-route",
+      "title": "Biochemistry - B.A. route",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://chem.washington.edu/ba-biochemistry",
+      "sourceOnlyUwCourseCodeCount": 93,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-biochemistry:pathway:bs-route",
+      "ownerKey": "uw-seattle-biochemistry::bs-route",
+      "planId": "uw-seattle-biochemistry",
+      "pathwayId": "bs-route",
+      "title": "Biochemistry - B.S. route",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://chem.washington.edu/bs-biochemistry",
+      "sourceOnlyUwCourseCodeCount": 93,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-bioengineering",
+      "ownerKey": "uw-seattle-bioengineering::",
+      "planId": "uw-seattle-bioengineering",
+      "pathwayId": null,
+      "title": "Bioengineering",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
+      "sourceOnlyUwCourseCodeCount": 37,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-biology",
+      "ownerKey": "uw-seattle-biology::",
+      "planId": "uw-seattle-biology",
+      "pathwayId": null,
+      "title": "Biology",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
+      "sourceOnlyUwCourseCodeCount": 45,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-biology:pathway:ba-general-biology",
+      "ownerKey": "uw-seattle-biology::ba-general-biology",
+      "planId": "uw-seattle-biology",
+      "pathwayId": "ba-general-biology",
+      "title": "Biology - B.A. general biology",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
+      "sourceOnlyUwCourseCodeCount": 45,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-biology:pathway:bs-option-family",
+      "ownerKey": "uw-seattle-biology::bs-option-family",
+      "planId": "uw-seattle-biology",
+      "pathwayId": "bs-option-family",
+      "title": "Biology - B.S. option family",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
+      "sourceOnlyUwCourseCodeCount": 38,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-business-administration",
+      "ownerKey": "uw-seattle-business-administration::",
+      "planId": "uw-seattle-business-administration",
+      "pathwayId": null,
+      "title": "Business Administration",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/",
+      "sourceOnlyUwCourseCodeCount": 53,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-chemical-engineering",
+      "ownerKey": "uw-seattle-chemical-engineering::",
+      "planId": "uw-seattle-chemical-engineering",
+      "pathwayId": null,
+      "title": "Chemical Engineering",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.cheme.washington.edu/undergraduate_students/curriculum",
+      "sourceOnlyUwCourseCodeCount": 109,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-chemistry",
+      "ownerKey": "uw-seattle-chemistry::",
+      "planId": "uw-seattle-chemistry",
+      "pathwayId": null,
+      "title": "Chemistry",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://chem.washington.edu/sites/chem/files/documents/undergrad/bachemcheck2017_001.pdf",
+      "sourceOnlyUwCourseCodeCount": 93,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-chemistry:pathway:acs-certified-bs-route",
+      "ownerKey": "uw-seattle-chemistry::acs-certified-bs-route",
+      "planId": "uw-seattle-chemistry",
+      "pathwayId": "acs-certified-bs-route",
+      "title": "Chemistry - ACS-certified B.S. route",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf",
+      "sourceOnlyUwCourseCodeCount": 8,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-chemistry:pathway:ba-route",
+      "ownerKey": "uw-seattle-chemistry::ba-route",
+      "planId": "uw-seattle-chemistry",
+      "pathwayId": "ba-route",
+      "title": "Chemistry - B.A. route",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://chem.washington.edu/ba-chemistry",
+      "sourceOnlyUwCourseCodeCount": 93,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-chemistry:pathway:bs-route",
+      "ownerKey": "uw-seattle-chemistry::bs-route",
+      "planId": "uw-seattle-chemistry",
+      "pathwayId": "bs-route",
+      "title": "Chemistry - B.S. route",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://chem.washington.edu/bs-chemistry",
+      "sourceOnlyUwCourseCodeCount": 94,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-chinese",
+      "ownerKey": "uw-seattle-chinese::",
+      "planId": "uw-seattle-chinese",
+      "pathwayId": null,
+      "title": "Chinese",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://asian.washington.edu/ba-chinese",
+      "sourceOnlyUwCourseCodeCount": 26,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-cinema-and-media-studies",
+      "ownerKey": "uw-seattle-cinema-and-media-studies::",
+      "planId": "uw-seattle-cinema-and-media-studies",
+      "pathwayId": null,
+      "title": "Cinema & Media Studies",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "http://www.washington.edu/students/gencat/program/S/CinemaandMediaStudies-132.html",
+      "sourceOnlyUwCourseCodeCount": 23,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-civil-engineering",
+      "ownerKey": "uw-seattle-civil-engineering::",
+      "planId": "uw-seattle-civil-engineering",
+      "pathwayId": null,
+      "title": "Civil Engineering",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.ce.washington.edu/sites/default/files/pdfs/current/undergrad/uw-cee-bsce-degree-sheet.pdf",
+      "sourceOnlyUwCourseCodeCount": 36,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-classical-studies",
+      "ownerKey": "uw-seattle-classical-studies::",
+      "planId": "uw-seattle-classical-studies",
+      "pathwayId": null,
+      "title": "Classical Studies",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://classics.washington.edu/ba-classical-studies",
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-classics",
+      "ownerKey": "uw-seattle-classics::",
+      "planId": "uw-seattle-classics",
+      "pathwayId": null,
+      "title": "Classics",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://classics.washington.edu/ba-classics",
+      "sourceOnlyUwCourseCodeCount": 12,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-communication",
+      "ownerKey": "uw-seattle-communication::",
+      "planId": "uw-seattle-communication",
+      "pathwayId": null,
+      "title": "Communication",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Communication-1035.html",
+      "sourceOnlyUwCourseCodeCount": 27,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-community-environment-and-planning",
+      "ownerKey": "uw-seattle-community-environment-and-planning::",
+      "planId": "uw-seattle-community-environment-and-planning",
+      "pathwayId": null,
+      "title": "Community, Environment & Planning",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/UrbanDesignandPlanning-50.html",
+      "sourceOnlyUwCourseCodeCount": 34,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-comparative-history-of-ideas",
+      "ownerKey": "uw-seattle-comparative-history-of-ideas::",
+      "planId": "uw-seattle-comparative-history-of-ideas",
+      "pathwayId": null,
+      "title": "Comparative History of Ideas",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/ComparativeHistoryofIdeas-202.html",
+      "sourceOnlyUwCourseCodeCount": 5,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-comparative-literature",
+      "ownerKey": "uw-seattle-comparative-literature::",
+      "planId": "uw-seattle-comparative-literature",
+      "pathwayId": null,
+      "title": "Comparative Literature",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://cinema.washington.edu/ba-comparative-literature",
+      "sourceOnlyUwCourseCodeCount": 16,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-comparative-religion",
+      "ownerKey": "uw-seattle-comparative-religion::",
+      "planId": "uw-seattle-comparative-religion",
+      "pathwayId": null,
+      "title": "Comparative Religion",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
+      "sourceOnlyUwCourseCodeCount": 68,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-computational-finance-and-risk-management",
+      "ownerKey": "uw-seattle-computational-finance-and-risk-management::",
+      "planId": "uw-seattle-computational-finance-and-risk-management",
+      "pathwayId": null,
+      "title": "Computational Finance & Risk Management",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/AppliedMathematics-208.html",
+      "sourceOnlyUwCourseCodeCount": 75,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-computer-engineering",
+      "ownerKey": "uw-seattle-computer-engineering::",
+      "planId": "uw-seattle-computer-engineering",
+      "pathwayId": null,
+      "title": "Computer Engineering",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.cs.washington.edu/wp-content/uploads/2025/02/CompE_degreq_dec24v2.pdf",
+      "sourceOnlyUwCourseCodeCount": 233,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-computer-science",
+      "ownerKey": "uw-seattle-computer-science::",
+      "planId": "uw-seattle-computer-science",
+      "pathwayId": null,
+      "title": "Computer Science",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/",
+      "sourceOnlyUwCourseCodeCount": 187,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-construction-management",
+      "ownerKey": "uw-seattle-construction-management::",
+      "planId": "uw-seattle-construction-management",
+      "pathwayId": null,
+      "title": "Construction Management",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/ConstructionManagement-52.html",
+      "sourceOnlyUwCourseCodeCount": 74,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-dance",
+      "ownerKey": "uw-seattle-dance::",
+      "planId": "uw-seattle-dance",
+      "pathwayId": null,
+      "title": "Dance",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Dance-133.html",
+      "sourceOnlyUwCourseCodeCount": 16,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-danish",
+      "ownerKey": "uw-seattle-danish::",
+      "planId": "uw-seattle-danish",
+      "pathwayId": null,
+      "title": "Danish",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://scandinavian.washington.edu/ba-danish",
+      "sourceOnlyUwCourseCodeCount": 18,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-design",
+      "ownerKey": "uw-seattle-design::",
+      "planId": "uw-seattle-design",
+      "pathwayId": null,
+      "title": "Design",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html",
+      "sourceOnlyUwCourseCodeCount": 42,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-disability-studies",
+      "ownerKey": "uw-seattle-disability-studies::",
+      "planId": "uw-seattle-disability-studies",
+      "pathwayId": null,
+      "title": "Disability Studies",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://disabilitystudies.washington.edu/DS_major",
+      "sourceOnlyUwCourseCodeCount": 11,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-drama",
+      "ownerKey": "uw-seattle-drama::",
+      "planId": "uw-seattle-drama",
+      "pathwayId": null,
+      "title": "Drama",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Drama-134.html",
+      "sourceOnlyUwCourseCodeCount": 71,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-early-childhood-and-family-studies",
+      "ownerKey": "uw-seattle-early-childhood-and-family-studies::",
+      "planId": "uw-seattle-early-childhood-and-family-studies",
+      "pathwayId": null,
+      "title": "Early Childhood & Family Studies",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://education.uw.edu/academics/undergraduate",
+      "sourceOnlyUwCourseCodeCount": 49,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-earth-and-space-sciences",
+      "ownerKey": "uw-seattle-earth-and-space-sciences::",
+      "planId": "uw-seattle-earth-and-space-sciences",
+      "pathwayId": null,
+      "title": "Earth & Space Sciences",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html",
+      "sourceOnlyUwCourseCodeCount": 67,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-earth-and-space-sciences:pathway:ba-route",
+      "ownerKey": "uw-seattle-earth-and-space-sciences::ba-route",
+      "planId": "uw-seattle-earth-and-space-sciences",
+      "pathwayId": "ba-route",
+      "title": "Earth & Space Sciences - B.A. route",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html",
+      "sourceOnlyUwCourseCodeCount": 66,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-earth-and-space-sciences:pathway:bs-option-family",
+      "ownerKey": "uw-seattle-earth-and-space-sciences::bs-option-family",
+      "planId": "uw-seattle-earth-and-space-sciences",
+      "pathwayId": "bs-option-family",
+      "title": "Earth & Space Sciences - B.S. option family",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html",
+      "sourceOnlyUwCourseCodeCount": 63,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-economics",
+      "ownerKey": "uw-seattle-economics::",
+      "planId": "uw-seattle-economics",
+      "pathwayId": null,
+      "title": "Economics",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
+      "sourceOnlyUwCourseCodeCount": 71,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-economics:pathway:ba-route",
+      "ownerKey": "uw-seattle-economics::ba-route",
+      "planId": "uw-seattle-economics",
+      "pathwayId": "ba-route",
+      "title": "Economics - B.A. route",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
+      "sourceOnlyUwCourseCodeCount": 66,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-economics:pathway:bs-route",
+      "ownerKey": "uw-seattle-economics::bs-route",
+      "planId": "uw-seattle-economics",
+      "pathwayId": "bs-route",
+      "title": "Economics - B.S. route",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
+      "sourceOnlyUwCourseCodeCount": 66,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-education-communities-and-organizations",
+      "ownerKey": "uw-seattle-education-communities-and-organizations::",
+      "planId": "uw-seattle-education-communities-and-organizations",
+      "pathwayId": null,
+      "title": "Education, Communities & Organizations",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://education.washington.edu/sites/default/files/programs/undergrad/eco/ECO%20Degree%20Requirement%20Checklist%2011.14.24.pdf",
+      "sourceOnlyUwCourseCodeCount": 13,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-education-studies",
+      "ownerKey": "uw-seattle-education-studies::",
+      "planId": "uw-seattle-education-studies",
+      "pathwayId": null,
+      "title": "Education Studies",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
+      "sourceOnlyUwCourseCodeCount": 168,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-electrical-computer-engineering",
+      "ownerKey": "uw-seattle-electrical-computer-engineering::",
+      "planId": "uw-seattle-electrical-computer-engineering",
+      "pathwayId": null,
+      "title": "Electrical & Computer Engineering",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
+      "sourceOnlyUwCourseCodeCount": 54,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-english-creative-writing",
+      "ownerKey": "uw-seattle-english-creative-writing::",
+      "planId": "uw-seattle-english-creative-writing",
+      "pathwayId": null,
+      "title": "English - Creative Writing",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/English-136.html",
+      "sourceOnlyUwCourseCodeCount": 17,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-english-language-literature-and-culture",
+      "ownerKey": "uw-seattle-english-language-literature-and-culture::",
+      "planId": "uw-seattle-english-language-literature-and-culture",
+      "pathwayId": null,
+      "title": "English - Language, Literature & Culture",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://english.washington.edu/english-language-literature-and-culture-option",
+      "sourceOnlyUwCourseCodeCount": 63,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-environmental-design-and-sustainability",
+      "ownerKey": "uw-seattle-environmental-design-and-sustainability::",
+      "planId": "uw-seattle-environmental-design-and-sustainability",
+      "pathwayId": null,
+      "title": "Environmental Design & Sustainability",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html",
+      "sourceOnlyUwCourseCodeCount": 58,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-environmental-engineering",
+      "ownerKey": "uw-seattle-environmental-engineering::",
+      "planId": "uw-seattle-environmental-engineering",
+      "pathwayId": null,
+      "title": "Environmental Engineering",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.ce.washington.edu/sites/default/files/pdfs/current/undergrad/uw-cee-bsenve-degree-sheet.pdf",
+      "sourceOnlyUwCourseCodeCount": 29,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-environmental-public-health",
+      "ownerKey": "uw-seattle-environmental-public-health::",
+      "planId": "uw-seattle-environmental-public-health",
+      "pathwayId": null,
+      "title": "Environmental Public Health",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.deohs.washington.edu/degree-requirements",
+      "sourceOnlyUwCourseCodeCount": 36,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-environmental-science-and-terrestrial-resource-management",
+      "ownerKey": "uw-seattle-environmental-science-and-terrestrial-resource-management::",
+      "planId": "uw-seattle-environmental-science-and-terrestrial-resource-management",
+      "pathwayId": null,
+      "title": "Environmental Science & Terrestrial Resource Management",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/academic/sefs.html",
+      "sourceOnlyUwCourseCodeCount": 47,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-environmental-studies",
+      "ownerKey": "uw-seattle-environmental-studies::",
+      "planId": "uw-seattle-environmental-studies",
+      "pathwayId": null,
+      "title": "Environmental Studies",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/ProgramontheEnvironment-1070.html",
+      "sourceOnlyUwCourseCodeCount": 115,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-ethnomusicology-b-a",
+      "ownerKey": "uw-seattle-ethnomusicology-b-a::",
+      "planId": "uw-seattle-ethnomusicology-b-a",
+      "pathwayId": null,
+      "title": "Ethnomusicology, B.A.",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Music-217.html",
+      "sourceOnlyUwCourseCodeCount": 33,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-european-studies",
+      "ownerKey": "uw-seattle-european-studies::",
+      "planId": "uw-seattle-european-studies",
+      "pathwayId": null,
+      "title": "European Studies",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
+      "sourceOnlyUwCourseCodeCount": 4,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-finnish",
+      "ownerKey": "uw-seattle-finnish::",
+      "planId": "uw-seattle-finnish",
+      "pathwayId": null,
+      "title": "Finnish",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://scandinavian.washington.edu/ba-finnish",
+      "sourceOnlyUwCourseCodeCount": 7,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-food-systems-nutrition-and-health",
+      "ownerKey": "uw-seattle-food-systems-nutrition-and-health::",
+      "planId": "uw-seattle-food-systems-nutrition-and-health",
+      "pathwayId": null,
+      "title": "Food Systems, Nutrition, & Health",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://foodsystems.uw.edu/undergraduate/foodsystems/requirements/",
+      "sourceOnlyUwCourseCodeCount": 90,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-french",
+      "ownerKey": "uw-seattle-french::",
+      "planId": "uw-seattle-french",
+      "pathwayId": null,
+      "title": "French",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/FrenchandItalianStudies-1102.html",
+      "sourceOnlyUwCourseCodeCount": 23,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-gender-women-and-sexuality-studies",
+      "ownerKey": "uw-seattle-gender-women-and-sexuality-studies::",
+      "planId": "uw-seattle-gender-women-and-sexuality-studies",
+      "pathwayId": null,
+      "title": "Gender, Women & Sexuality Studies",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Gender%2CWomen%2CandSexualityStudies-298.html",
+      "sourceOnlyUwCourseCodeCount": 10,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-geography",
+      "ownerKey": "uw-seattle-geography::",
+      "planId": "uw-seattle-geography",
+      "pathwayId": null,
+      "title": "Geography",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Geography-188.html",
+      "sourceOnlyUwCourseCodeCount": 40,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-geography:pathway:data-science-option",
+      "ownerKey": "uw-seattle-geography::data-science-option",
+      "planId": "uw-seattle-geography",
+      "pathwayId": "data-science-option",
+      "title": "Geography - Data Science option",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Geography-188.html",
+      "sourceOnlyUwCourseCodeCount": 40,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-geography:pathway:standard-ba-route",
+      "ownerKey": "uw-seattle-geography::standard-ba-route",
+      "planId": "uw-seattle-geography",
+      "pathwayId": "standard-ba-route",
+      "title": "Geography - Standard B.A. route",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Geography-188.html",
+      "sourceOnlyUwCourseCodeCount": 41,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-german",
+      "ownerKey": "uw-seattle-german::",
+      "planId": "uw-seattle-german",
+      "pathwayId": null,
+      "title": "German",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://german.washington.edu/german-studies",
+      "sourceOnlyUwCourseCodeCount": 28,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-global-literary-studies",
+      "ownerKey": "uw-seattle-global-literary-studies::",
+      "planId": "uw-seattle-global-literary-studies",
+      "pathwayId": null,
+      "title": "Global Literary Studies",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://slavic.washington.edu/ba-global-literary-studies-glits",
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-greek",
+      "ownerKey": "uw-seattle-greek::",
+      "planId": "uw-seattle-greek",
+      "pathwayId": null,
+      "title": "Greek",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://classics.washington.edu/ba-greek",
+      "sourceOnlyUwCourseCodeCount": 8,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-guitar-b-m",
+      "ownerKey": "uw-seattle-guitar-b-m::",
+      "planId": "uw-seattle-guitar-b-m",
+      "pathwayId": null,
+      "title": "Guitar, B.M.",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://music.washington.edu/bachelor-music-guitar",
+      "sourceOnlyUwCourseCodeCount": 83,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-history",
+      "ownerKey": "uw-seattle-history::",
+      "planId": "uw-seattle-history",
+      "pathwayId": null,
+      "title": "History",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://history.washington.edu/major",
+      "sourceOnlyUwCourseCodeCount": 222,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-history-and-philosophy-of-science",
+      "ownerKey": "uw-seattle-history-and-philosophy-of-science::",
+      "planId": "uw-seattle-history-and-philosophy-of-science",
+      "pathwayId": null,
+      "title": "History & Philosophy of Science",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Philosophy-221.html",
+      "sourceOnlyUwCourseCodeCount": 34,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-human-centered-design-engineering",
+      "ownerKey": "uw-seattle-human-centered-design-engineering::",
+      "planId": "uw-seattle-human-centered-design-engineering",
+      "pathwayId": null,
+      "title": "Human Centered Design & Engineering",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.hcde.washington.edu/bs/requirements/2024",
+      "sourceOnlyUwCourseCodeCount": 75,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-individualized-studies",
+      "ownerKey": "uw-seattle-individualized-studies::",
+      "planId": "uw-seattle-individualized-studies",
+      "pathwayId": null,
+      "title": "Individualized Studies",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/GeneralStudies-185.html",
+      "sourceOnlyUwCourseCodeCount": 11,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-industrial-systems-engineering",
+      "ownerKey": "uw-seattle-industrial-systems-engineering::",
+      "planId": "uw-seattle-industrial-systems-engineering",
+      "pathwayId": null,
+      "title": "Industrial & Systems Engineering",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://ise.washington.edu/files/BSIE%20Graduation%20Requirements.pdf",
+      "sourceOnlyUwCourseCodeCount": 27,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-informatics",
+      "ownerKey": "uw-seattle-informatics::",
+      "planId": "uw-seattle-informatics",
+      "pathwayId": null,
+      "title": "Informatics",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://ischool.uw.edu/academics/informatics/curriculum",
+      "sourceOnlyUwCourseCodeCount": 9,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-international-studies",
+      "ownerKey": "uw-seattle-international-studies::",
+      "planId": "uw-seattle-international-studies",
+      "pathwayId": null,
+      "title": "International Studies",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
+      "sourceOnlyUwCourseCodeCount": 66,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-italian",
+      "ownerKey": "uw-seattle-italian::",
+      "planId": "uw-seattle-italian",
+      "pathwayId": null,
+      "title": "Italian",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://frenchitalian.washington.edu/major-italian-studies",
+      "sourceOnlyUwCourseCodeCount": 29,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-japanese",
+      "ownerKey": "uw-seattle-japanese::",
+      "planId": "uw-seattle-japanese",
+      "pathwayId": null,
+      "title": "Japanese",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://asian.washington.edu/ba-japanese",
+      "sourceOnlyUwCourseCodeCount": 56,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-jazz-studies-b-m",
+      "ownerKey": "uw-seattle-jazz-studies-b-m::",
+      "planId": "uw-seattle-jazz-studies-b-m",
+      "pathwayId": null,
+      "title": "Jazz Studies, B.M.",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://music.washington.edu/bachelor-music-jazz-studies",
+      "sourceOnlyUwCourseCodeCount": 77,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-jewish-studies",
+      "ownerKey": "uw-seattle-jewish-studies::",
+      "planId": "uw-seattle-jewish-studies",
+      "pathwayId": null,
+      "title": "Jewish Studies",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/jewish-studies/",
+      "sourceOnlyUwCourseCodeCount": 17,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-korean",
+      "ownerKey": "uw-seattle-korean::",
+      "planId": "uw-seattle-korean",
+      "pathwayId": null,
+      "title": "Korean",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://asian.washington.edu/ba-korean",
+      "sourceOnlyUwCourseCodeCount": 28,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-landscape-architecture",
+      "ownerKey": "uw-seattle-landscape-architecture::",
+      "planId": "uw-seattle-landscape-architecture",
+      "pathwayId": null,
+      "title": "Landscape Architecture",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html",
+      "sourceOnlyUwCourseCodeCount": 53,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-latin",
+      "ownerKey": "uw-seattle-latin::",
+      "planId": "uw-seattle-latin",
+      "pathwayId": null,
+      "title": "Latin",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://classics.washington.edu/ba-latin",
+      "sourceOnlyUwCourseCodeCount": 8,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-latin-american-and-caribbean-studies",
+      "ownerKey": "uw-seattle-latin-american-and-caribbean-studies::",
+      "planId": "uw-seattle-latin-american-and-caribbean-studies",
+      "pathwayId": null,
+      "title": "Latin American & Caribbean Studies",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/latin-america-and-caribbean-studies/",
+      "sourceOnlyUwCourseCodeCount": 19,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-law-societies-and-justice",
+      "ownerKey": "uw-seattle-law-societies-and-justice::",
+      "planId": "uw-seattle-law-societies-and-justice",
+      "pathwayId": null,
+      "title": "Law, Societies & Justice",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://lsj.washington.edu/lsj-gold-curriculum-requirements",
+      "sourceOnlyUwCourseCodeCount": 76,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-linguistics",
+      "ownerKey": "uw-seattle-linguistics::",
+      "planId": "uw-seattle-linguistics",
+      "pathwayId": null,
+      "title": "Linguistics",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://linguistics.washington.edu/ba-linguistics",
+      "sourceOnlyUwCourseCodeCount": 8,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-marine-biology",
+      "ownerKey": "uw-seattle-marine-biology::",
+      "planId": "uw-seattle-marine-biology",
+      "pathwayId": null,
+      "title": "Marine Biology",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://marinebiology.uw.edu/students/marine-biology-major/major-requirements/",
+      "sourceOnlyUwCourseCodeCount": 27,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-materials-science-engineering",
+      "ownerKey": "uw-seattle-materials-science-engineering::",
+      "planId": "uw-seattle-materials-science-engineering",
+      "pathwayId": null,
+      "title": "Materials Science & Engineering",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://mse.washington.edu/current/undergrad/courses",
+      "sourceOnlyUwCourseCodeCount": 50,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-mathematics",
+      "ownerKey": "uw-seattle-mathematics::",
+      "planId": "uw-seattle-mathematics",
+      "pathwayId": null,
+      "title": "Mathematics",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://math.washington.edu/ba-mathematics-standard-major-requirements-0",
+      "sourceOnlyUwCourseCodeCount": 26,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-mechanical-engineering",
+      "ownerKey": "uw-seattle-mechanical-engineering::",
+      "planId": "uw-seattle-mechanical-engineering",
+      "pathwayId": null,
+      "title": "Mechanical Engineering",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.me.washington.edu/students/ug/requirements",
+      "sourceOnlyUwCourseCodeCount": 19,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-medical-laboratory-science",
+      "ownerKey": "uw-seattle-medical-laboratory-science::",
+      "planId": "uw-seattle-medical-laboratory-science",
+      "pathwayId": null,
+      "title": "Medical Laboratory Science",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://dlmp.uw.edu/education/mls-requirements",
+      "sourceOnlyUwCourseCodeCount": 2,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-microbiology",
+      "ownerKey": "uw-seattle-microbiology::",
+      "planId": "uw-seattle-microbiology",
+      "pathwayId": null,
+      "title": "Microbiology",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://microbiology.washington.edu/sites/default/files/2025-10/Microbiology_Degree_UPDATED%20SPR%202025.pdf",
+      "sourceOnlyUwCourseCodeCount": 29,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-middle-eastern-languages-and-cultures",
+      "ownerKey": "uw-seattle-middle-eastern-languages-and-cultures::",
+      "planId": "uw-seattle-middle-eastern-languages-and-cultures",
+      "pathwayId": null,
+      "title": "Middle Eastern Languages & Cultures",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/MiddleEasternLanguagesandCultures-123.html",
+      "sourceOnlyUwCourseCodeCount": 29,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-music-b-a",
+      "ownerKey": "uw-seattle-music-b-a::",
+      "planId": "uw-seattle-music-b-a",
+      "pathwayId": null,
+      "title": "Music, B.A.",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://music.washington.edu/bachelor-arts-music-instrumental-option",
+      "sourceOnlyUwCourseCodeCount": 31,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-music-composition-b-m",
+      "ownerKey": "uw-seattle-music-composition-b-m::",
+      "planId": "uw-seattle-music-composition-b-m",
+      "pathwayId": null,
+      "title": "Music Composition, B.M.",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://music.washington.edu/bachelor-music-composition",
+      "sourceOnlyUwCourseCodeCount": 79,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-music-education-b-m",
+      "ownerKey": "uw-seattle-music-education-b-m::",
+      "planId": "uw-seattle-music-education-b-m",
+      "pathwayId": null,
+      "title": "Music Education, B.M.",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://music.washington.edu/bachelor-music-music-education-instrumental-emphasis",
+      "sourceOnlyUwCourseCodeCount": 61,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-neuroscience",
+      "ownerKey": "uw-seattle-neuroscience::",
+      "planId": "uw-seattle-neuroscience",
+      "pathwayId": null,
+      "title": "Neuroscience",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://sites.uw.edu/neusci/about/degree-requirements/",
+      "sourceOnlyUwCourseCodeCount": 21,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-norwegian",
+      "ownerKey": "uw-seattle-norwegian::",
+      "planId": "uw-seattle-norwegian",
+      "pathwayId": null,
+      "title": "Norwegian",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://scandinavian.washington.edu/ba-norwegian",
+      "sourceOnlyUwCourseCodeCount": 4,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-nursing",
+      "ownerKey": "uw-seattle-nursing::",
+      "planId": "uw-seattle-nursing",
+      "pathwayId": null,
+      "title": "Nursing",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://students.nursing.uw.edu/wp-content/uploads/2025/09/BSN-2025-Curriuculum-Grid.pdf",
+      "sourceOnlyUwCourseCodeCount": 6,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-oceanography",
+      "ownerKey": "uw-seattle-oceanography::",
+      "planId": "uw-seattle-oceanography",
+      "pathwayId": null,
+      "title": "Oceanography",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.ocean.washington.edu/file/Bachelor_of_Arts_in_Oceanography_Checklist",
+      "sourceOnlyUwCourseCodeCount": 1,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-orchestral-instruments-b-m",
+      "ownerKey": "uw-seattle-orchestral-instruments-b-m::",
+      "planId": "uw-seattle-orchestral-instruments-b-m",
+      "pathwayId": null,
+      "title": "Orchestral Instruments, B.M.",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://music.washington.edu/bachelor-music-orchestral-instruments",
+      "sourceOnlyUwCourseCodeCount": 86,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-organ-b-m",
+      "ownerKey": "uw-seattle-organ-b-m::",
+      "planId": "uw-seattle-organ-b-m",
+      "pathwayId": null,
+      "title": "Organ, B.M.",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://music.washington.edu/bachelor-music-organ",
+      "sourceOnlyUwCourseCodeCount": 87,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-percussion-performance-b-m",
+      "ownerKey": "uw-seattle-percussion-performance-b-m::",
+      "planId": "uw-seattle-percussion-performance-b-m",
+      "pathwayId": null,
+      "title": "Percussion Performance, B.M.",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://music.washington.edu/bachelor-music-percussion-performance",
+      "sourceOnlyUwCourseCodeCount": 57,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-philosophy",
+      "ownerKey": "uw-seattle-philosophy::",
+      "planId": "uw-seattle-philosophy",
+      "pathwayId": null,
+      "title": "Philosophy",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Philosophy-221.html",
+      "sourceOnlyUwCourseCodeCount": 71,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-physics",
+      "ownerKey": "uw-seattle-physics::",
+      "planId": "uw-seattle-physics",
+      "pathwayId": null,
+      "title": "Physics",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://phys.washington.edu/physics-bs-degree-requirements",
+      "sourceOnlyUwCourseCodeCount": 20,
+      "issueCounts": {
+        "error": 0,
+        "warning": 1
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "used-snapshot-fallback",
+          "message": "Requirement source parsing used a cached snapshot fallback.",
+          "details": "HTTP 429 Too Many Requests"
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-seattle-piano-b-m",
+      "ownerKey": "uw-seattle-piano-b-m::",
+      "planId": "uw-seattle-piano-b-m",
+      "pathwayId": null,
+      "title": "Piano, B.M.",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://music.washington.edu/bachelor-music-piano",
+      "sourceOnlyUwCourseCodeCount": 90,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-political-science",
+      "ownerKey": "uw-seattle-political-science::",
+      "planId": "uw-seattle-political-science",
+      "pathwayId": null,
+      "title": "Political Science",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.polisci.washington.edu/political-science-major-declaration-and-requirements",
+      "sourceOnlyUwCourseCodeCount": 11,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-psychology",
+      "ownerKey": "uw-seattle-psychology::",
+      "planId": "uw-seattle-psychology",
+      "pathwayId": null,
+      "title": "Psychology",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://psych.uw.edu/undergraduate/prospective-students/graduation-requirements",
+      "sourceOnlyUwCourseCodeCount": 35,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-psychology:pathway:ba-route",
+      "ownerKey": "uw-seattle-psychology::ba-route",
+      "planId": "uw-seattle-psychology",
+      "pathwayId": "ba-route",
+      "title": "Psychology - B.A. route",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://psych.uw.edu/undergraduate/prospective-students/graduation-requirements",
+      "sourceOnlyUwCourseCodeCount": 37,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-psychology:pathway:bs-route",
+      "ownerKey": "uw-seattle-psychology::bs-route",
+      "planId": "uw-seattle-psychology",
+      "pathwayId": "bs-route",
+      "title": "Psychology - B.S. route",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://psych.uw.edu/undergraduate/prospective-students/graduation-requirements",
+      "sourceOnlyUwCourseCodeCount": 37,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-public-health-global-health",
+      "ownerKey": "uw-seattle-public-health-global-health::",
+      "planId": "uw-seattle-public-health-global-health",
+      "pathwayId": null,
+      "title": "Public Health - Global Health",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://sph.washington.edu/sites/default/files/2024-09/Public-Health-Global-Health-Major-OnePager-Purple-Curriculum-AUT2024.pdf",
+      "sourceOnlyUwCourseCodeCount": 39,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-public-health-global-health:pathway:ba-global-health-option",
+      "ownerKey": "uw-seattle-public-health-global-health::ba-global-health-option",
+      "planId": "uw-seattle-public-health-global-health",
+      "pathwayId": "ba-global-health-option",
+      "title": "Public Health - Global Health - B.A. Global Health option",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://sph.washington.edu/sites/default/files/2024-09/Public-Health-Global-Health-Major-OnePager-Purple-Curriculum-AUT2024.pdf",
+      "sourceOnlyUwCourseCodeCount": 46,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-public-health-global-health:pathway:ba-health-education-promotion-option",
+      "ownerKey": "uw-seattle-public-health-global-health::ba-health-education-promotion-option",
+      "planId": "uw-seattle-public-health-global-health",
+      "pathwayId": "ba-health-education-promotion-option",
+      "title": "Public Health - Global Health - B.A. Health Education and Promotion option",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://sph.washington.edu/sites/default/files/2024-09/Public-Health-Global-Health-Major-OnePager-Purple-Curriculum-AUT2024.pdf",
+      "sourceOnlyUwCourseCodeCount": 46,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-public-health-global-health:pathway:bs-global-health-option",
+      "ownerKey": "uw-seattle-public-health-global-health::bs-global-health-option",
+      "planId": "uw-seattle-public-health-global-health",
+      "pathwayId": "bs-global-health-option",
+      "title": "Public Health - Global Health - B.S. Global Health option",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://sph.washington.edu/sites/default/files/2024-09/Public-Health-Global-Health-Major-OnePager-Purple-Curriculum-AUT2024.pdf",
+      "sourceOnlyUwCourseCodeCount": 46,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-public-health-global-health:pathway:bs-nutritional-sciences-option",
+      "ownerKey": "uw-seattle-public-health-global-health::bs-nutritional-sciences-option",
+      "planId": "uw-seattle-public-health-global-health",
+      "pathwayId": "bs-nutritional-sciences-option",
+      "title": "Public Health - Global Health - B.S. Nutritional Sciences option",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://sph.washington.edu/sites/default/files/2024-09/Public-Health-Global-Health-Major-OnePager-Purple-Curriculum-AUT2024.pdf",
+      "sourceOnlyUwCourseCodeCount": 46,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-public-service-and-policy",
+      "ownerKey": "uw-seattle-public-service-and-policy::",
+      "planId": "uw-seattle-public-service-and-policy",
+      "pathwayId": null,
+      "title": "Public Service & Policy",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://evans.uw.edu/undergraduate-programs/public-service-and-policy-major/major-requirements/",
+      "sourceOnlyUwCourseCodeCount": 31,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-real-estate",
+      "ownerKey": "uw-seattle-real-estate::",
+      "planId": "uw-seattle-real-estate",
+      "pathwayId": null,
+      "title": "Real Estate",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/RealEstate-54.html",
+      "sourceOnlyUwCourseCodeCount": 19,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-scandinavian-area-studies",
+      "ownerKey": "uw-seattle-scandinavian-area-studies::",
+      "planId": "uw-seattle-scandinavian-area-studies",
+      "pathwayId": null,
+      "title": "Scandinavian Area Studies",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://scandinavian.washington.edu/ba-scandinavian-area-studies",
+      "sourceOnlyUwCourseCodeCount": 5,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-slavic-languages-and-literatures",
+      "ownerKey": "uw-seattle-slavic-languages-and-literatures::",
+      "planId": "uw-seattle-slavic-languages-and-literatures",
+      "pathwayId": null,
+      "title": "Slavic Languages & Literatures",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://slavic.washington.edu/undergraduate-policies",
+      "sourceOnlyUwCourseCodeCount": 27,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-social-welfare",
+      "ownerKey": "uw-seattle-social-welfare::",
+      "planId": "uw-seattle-social-welfare",
+      "pathwayId": null,
+      "title": "Social Welfare",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/SocialWork-779.html",
+      "sourceOnlyUwCourseCodeCount": 36,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-sociology",
+      "ownerKey": "uw-seattle-sociology::",
+      "planId": "uw-seattle-sociology",
+      "pathwayId": null,
+      "title": "Sociology",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Sociology-293.html",
+      "sourceOnlyUwCourseCodeCount": 9,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-south-asian-languages-and-cultures",
+      "ownerKey": "uw-seattle-south-asian-languages-and-cultures::",
+      "planId": "uw-seattle-south-asian-languages-and-cultures",
+      "pathwayId": null,
+      "title": "South Asian Languages & Cultures",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://asian.washington.edu/ba-south-asian-languages-and-cultures",
+      "sourceOnlyUwCourseCodeCount": 72,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-spanish",
+      "ownerKey": "uw-seattle-spanish::",
+      "planId": "uw-seattle-spanish",
+      "pathwayId": null,
+      "title": "Spanish",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://spanport.washington.edu/spanish-major-requirements",
+      "sourceOnlyUwCourseCodeCount": 5,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-speech-and-hearing-sciences",
+      "ownerKey": "uw-seattle-speech-and-hearing-sciences::",
+      "planId": "uw-seattle-speech-and-hearing-sciences",
+      "pathwayId": null,
+      "title": "Speech & Hearing Sciences",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/SpeechandHearingSciences-296.html",
+      "sourceOnlyUwCourseCodeCount": 54,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-statistics",
+      "ownerKey": "uw-seattle-statistics::",
+      "planId": "uw-seattle-statistics",
+      "pathwayId": null,
+      "title": "Statistics",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://stat.uw.edu/academics/undergraduate/statistics-bs/major",
+      "sourceOnlyUwCourseCodeCount": 59,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-statistics:pathway:applied-statistics-track",
+      "ownerKey": "uw-seattle-statistics::applied-statistics-track",
+      "planId": "uw-seattle-statistics",
+      "pathwayId": "applied-statistics-track",
+      "title": "Statistics - Applied Statistics track",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://stat.uw.edu/academics/undergraduate/statistics-bs/major",
+      "sourceOnlyUwCourseCodeCount": 46,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-statistics:pathway:data-science-track",
+      "ownerKey": "uw-seattle-statistics::data-science-track",
+      "planId": "uw-seattle-statistics",
+      "pathwayId": "data-science-track",
+      "title": "Statistics - Data Science track",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://stat.uw.edu/academics/undergraduate/statistics-bs/major",
+      "sourceOnlyUwCourseCodeCount": 46,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-statistics:pathway:mathematical-statistics-track",
+      "ownerKey": "uw-seattle-statistics::mathematical-statistics-track",
+      "planId": "uw-seattle-statistics",
+      "pathwayId": "mathematical-statistics-track",
+      "title": "Statistics - Mathematical Statistics track",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://stat.uw.edu/academics/undergraduate/statistics-bs/major",
+      "sourceOnlyUwCourseCodeCount": 46,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-sustainable-bioresource-systems-engineering",
+      "ownerKey": "uw-seattle-sustainable-bioresource-systems-engineering::",
+      "planId": "uw-seattle-sustainable-bioresource-systems-engineering",
+      "pathwayId": null,
+      "title": "Sustainable Bioresource Systems Engineering",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://sefs.uw.edu/students/undergraduate/sbse-major/requirements/",
+      "sourceOnlyUwCourseCodeCount": 52,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-swedish",
+      "ownerKey": "uw-seattle-swedish::",
+      "planId": "uw-seattle-swedish",
+      "pathwayId": null,
+      "title": "Swedish",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://scandinavian.washington.edu/ba-swedish",
+      "sourceOnlyUwCourseCodeCount": 13,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-voice-b-m",
+      "ownerKey": "uw-seattle-voice-b-m::",
+      "planId": "uw-seattle-voice-b-m",
+      "pathwayId": null,
+      "title": "Voice, B.M.",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://music.washington.edu/bachelor-music-voice",
+      "sourceOnlyUwCourseCodeCount": 73,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-arts-media-culture",
+      "ownerKey": "uw-tacoma-arts-media-culture::",
+      "planId": "uw-tacoma-arts-media-culture",
+      "pathwayId": null,
+      "title": "Arts, Media and Culture (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/cac/arts-media-culture",
+      "sourceOnlyUwCourseCodeCount": 39,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-arts-media-culture:pathway:american-cultures-track",
+      "ownerKey": "uw-tacoma-arts-media-culture::american-cultures-track",
+      "planId": "uw-tacoma-arts-media-culture",
+      "pathwayId": "american-cultures-track",
+      "title": "Arts, Media and Culture (BA) - American Cultures track",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/cac/american-cultures-track",
+      "sourceOnlyUwCourseCodeCount": 45,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-arts-media-culture:pathway:comparative-arts-track",
+      "ownerKey": "uw-tacoma-arts-media-culture::comparative-arts-track",
+      "planId": "uw-tacoma-arts-media-culture",
+      "pathwayId": "comparative-arts-track",
+      "title": "Arts, Media and Culture (BA) - Comparative Arts track",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/cac/comparative-arts-track",
+      "sourceOnlyUwCourseCodeCount": 44,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-arts-media-culture:pathway:film-media-track",
+      "ownerKey": "uw-tacoma-arts-media-culture::film-media-track",
+      "planId": "uw-tacoma-arts-media-culture",
+      "pathwayId": "film-media-track",
+      "title": "Arts, Media and Culture (BA) - Film and Media track",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/cac/film-and-media-track",
+      "sourceOnlyUwCourseCodeCount": 40,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-arts-media-culture:pathway:literature-track",
+      "ownerKey": "uw-tacoma-arts-media-culture::literature-track",
+      "planId": "uw-tacoma-arts-media-culture",
+      "pathwayId": "literature-track",
+      "title": "Arts, Media and Culture (BA) - Literature track",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/cac/literature-track",
+      "sourceOnlyUwCourseCodeCount": 42,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-arts-media-culture:pathway:visual-performing-arts-track",
+      "ownerKey": "uw-tacoma-arts-media-culture::visual-performing-arts-track",
+      "planId": "uw-tacoma-arts-media-culture",
+      "pathwayId": "visual-performing-arts-track",
+      "title": "Arts, Media and Culture (BA) - Visual and Performing Arts track",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/cac/visual-and-performing-arts-track",
+      "sourceOnlyUwCourseCodeCount": 38,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-bachelor-of-arts-in-business-administration",
+      "ownerKey": "uw-tacoma-bachelor-of-arts-in-business-administration::",
+      "planId": "uw-tacoma-bachelor-of-arts-in-business-administration",
+      "pathwayId": null,
+      "title": "Bachelor of Arts in Business Administration (BABA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/registrar/graduation-requirements",
+      "sourceOnlyUwCourseCodeCount": 17,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-bachelor-of-arts-in-business-administration:pathway:accounting-option",
+      "ownerKey": "uw-tacoma-bachelor-of-arts-in-business-administration::accounting-option",
+      "planId": "uw-tacoma-bachelor-of-arts-in-business-administration",
+      "pathwayId": "accounting-option",
+      "title": "Bachelor of Arts in Business Administration (BABA) - Accounting option",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/registrar/graduation-requirements",
+      "sourceOnlyUwCourseCodeCount": 19,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-bachelor-of-arts-in-business-administration:pathway:finance-option",
+      "ownerKey": "uw-tacoma-bachelor-of-arts-in-business-administration::finance-option",
+      "planId": "uw-tacoma-bachelor-of-arts-in-business-administration",
+      "pathwayId": "finance-option",
+      "title": "Bachelor of Arts in Business Administration (BABA) - Finance option",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/registrar/graduation-requirements",
+      "sourceOnlyUwCourseCodeCount": 20,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-bachelor-of-arts-in-business-administration:pathway:general-business-option",
+      "ownerKey": "uw-tacoma-bachelor-of-arts-in-business-administration::general-business-option",
+      "planId": "uw-tacoma-bachelor-of-arts-in-business-administration",
+      "pathwayId": "general-business-option",
+      "title": "Bachelor of Arts in Business Administration (BABA) - General Business option",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/registrar/graduation-requirements",
+      "sourceOnlyUwCourseCodeCount": 20,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-bachelor-of-arts-in-business-administration:pathway:management-option",
+      "ownerKey": "uw-tacoma-bachelor-of-arts-in-business-administration::management-option",
+      "planId": "uw-tacoma-bachelor-of-arts-in-business-administration",
+      "pathwayId": "management-option",
+      "title": "Bachelor of Arts in Business Administration (BABA) - Management option",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/registrar/graduation-requirements",
+      "sourceOnlyUwCourseCodeCount": 20,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-bachelor-of-arts-in-business-administration:pathway:marketing-option",
+      "ownerKey": "uw-tacoma-bachelor-of-arts-in-business-administration::marketing-option",
+      "planId": "uw-tacoma-bachelor-of-arts-in-business-administration",
+      "pathwayId": "marketing-option",
+      "title": "Bachelor of Arts in Business Administration (BABA) - Marketing option",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/registrar/graduation-requirements",
+      "sourceOnlyUwCourseCodeCount": 19,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-biomedical-sciences",
+      "ownerKey": "uw-tacoma-biomedical-sciences::",
+      "planId": "uw-tacoma-biomedical-sciences",
+      "pathwayId": null,
+      "title": "Biomedical Sciences (BS)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/sam/biomedical-sciences",
+      "sourceOnlyUwCourseCodeCount": 33,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-civil-engineering",
+      "ownerKey": "uw-tacoma-civil-engineering::",
+      "planId": "uw-tacoma-civil-engineering",
+      "pathwayId": null,
+      "title": "Civil Engineering (BSCE)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/set/programs/undergrad/civil",
+      "sourceOnlyUwCourseCodeCount": 20,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-communications",
+      "ownerKey": "uw-tacoma-communications::",
+      "planId": "uw-tacoma-communications",
+      "pathwayId": null,
+      "title": "Communications (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/cac/communication",
+      "sourceOnlyUwCourseCodeCount": 1,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-communications:pathway:professional-track",
+      "ownerKey": "uw-tacoma-communications::professional-track",
+      "planId": "uw-tacoma-communications",
+      "pathwayId": "professional-track",
+      "title": "Communications (BA) - Professional track",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/cac/professional-track",
+      "sourceOnlyUwCourseCodeCount": 17,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-communications:pathway:research-track",
+      "ownerKey": "uw-tacoma-communications::research-track",
+      "planId": "uw-tacoma-communications",
+      "pathwayId": "research-track",
+      "title": "Communications (BA) - Research track",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/cac/research-track",
+      "sourceOnlyUwCourseCodeCount": 10,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-computer-engineering",
+      "ownerKey": "uw-tacoma-computer-engineering::",
+      "planId": "uw-tacoma-computer-engineering",
+      "pathwayId": null,
+      "title": "Computer Engineering",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html",
+      "sourceOnlyUwCourseCodeCount": 120,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-computer-science-and-systems-ba",
+      "ownerKey": "uw-tacoma-computer-science-and-systems-ba::",
+      "planId": "uw-tacoma-computer-science-and-systems-ba",
+      "pathwayId": null,
+      "title": "Computer Science and Systems (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
+      "sourceOnlyUwCourseCodeCount": 31,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-computer-science-and-systems-bs",
+      "ownerKey": "uw-tacoma-computer-science-and-systems-bs::",
+      "planId": "uw-tacoma-computer-science-and-systems-bs",
+      "pathwayId": null,
+      "title": "Computer Science and Systems (BS)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
+      "sourceOnlyUwCourseCodeCount": 30,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-criminal-justice",
+      "ownerKey": "uw-tacoma-criminal-justice::",
+      "planId": "uw-tacoma-criminal-justice",
+      "pathwayId": null,
+      "title": "Criminal Justice (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/swcj/criminal-justice-campus-curriculum",
+      "sourceOnlyUwCourseCodeCount": 61,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-economics-and-policy-analysis",
+      "ownerKey": "uw-tacoma-economics-and-policy-analysis::",
+      "planId": "uw-tacoma-economics-and-policy-analysis",
+      "pathwayId": null,
+      "title": "Economics and Policy Analysis (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/socs/economics-and-policy-analysis-epa",
+      "sourceOnlyUwCourseCodeCount": 6,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-education",
+      "ownerKey": "uw-tacoma-education::",
+      "planId": "uw-tacoma-education",
+      "pathwayId": null,
+      "title": "Education (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/soe/bachelor-arts-education",
+      "sourceOnlyUwCourseCodeCount": 46,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-electrical-engineering",
+      "ownerKey": "uw-tacoma-electrical-engineering::",
+      "planId": "uw-tacoma-electrical-engineering",
+      "pathwayId": null,
+      "title": "Electrical Engineering",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html",
+      "sourceOnlyUwCourseCodeCount": 124,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-environmental-science",
+      "ownerKey": "uw-tacoma-environmental-science::",
+      "planId": "uw-tacoma-environmental-science",
+      "pathwayId": null,
+      "title": "Environmental Science (BS)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-science",
+      "sourceOnlyUwCourseCodeCount": 5,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-environmental-sustainability",
+      "ownerKey": "uw-tacoma-environmental-sustainability::",
+      "planId": "uw-tacoma-environmental-sustainability",
+      "pathwayId": null,
+      "title": "Environmental Sustainability (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
+      "sourceOnlyUwCourseCodeCount": 24,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-environmental-sustainability:pathway:business-nonprofit-leadership-option",
+      "ownerKey": "uw-tacoma-environmental-sustainability::business-nonprofit-leadership-option",
+      "planId": "uw-tacoma-environmental-sustainability",
+      "pathwayId": "business-nonprofit-leadership-option",
+      "title": "Environmental Sustainability (BA) - Business and Non-Profit Leadership option",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
+      "sourceOnlyUwCourseCodeCount": 15,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-environmental-sustainability:pathway:education-option",
+      "ownerKey": "uw-tacoma-environmental-sustainability::education-option",
+      "planId": "uw-tacoma-environmental-sustainability",
+      "pathwayId": "education-option",
+      "title": "Environmental Sustainability (BA) - Education option",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/sam/pre-environmental-education-option",
+      "sourceOnlyUwCourseCodeCount": 30,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-environmental-sustainability:pathway:environmental-communication-option",
+      "ownerKey": "uw-tacoma-environmental-sustainability::environmental-communication-option",
+      "planId": "uw-tacoma-environmental-sustainability",
+      "pathwayId": "environmental-communication-option",
+      "title": "Environmental Sustainability (BA) - Environmental Communication option",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-communication-option",
+      "sourceOnlyUwCourseCodeCount": 30,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-environmental-sustainability:pathway:policy-law-option",
+      "ownerKey": "uw-tacoma-environmental-sustainability::policy-law-option",
+      "planId": "uw-tacoma-environmental-sustainability",
+      "pathwayId": "policy-law-option",
+      "title": "Environmental Sustainability (BA) - Policy and Law option",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-policy-and-law-option",
+      "sourceOnlyUwCourseCodeCount": 30,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-ethnic-gender-and-labor-studies",
+      "ownerKey": "uw-tacoma-ethnic-gender-and-labor-studies::",
+      "planId": "uw-tacoma-ethnic-gender-and-labor-studies",
+      "pathwayId": null,
+      "title": "Ethnic, Gender and Labor Studies (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias-new/socs-new/ethnic-gender-and-labor-studies",
+      "sourceOnlyUwCourseCodeCount": 17,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-ethnic-gender-and-labor-studies:pathway:ethnic-studies-option",
+      "ownerKey": "uw-tacoma-ethnic-gender-and-labor-studies::ethnic-studies-option",
+      "planId": "uw-tacoma-ethnic-gender-and-labor-studies",
+      "pathwayId": "ethnic-studies-option",
+      "title": "Ethnic, Gender and Labor Studies (BA) - Ethnic Studies option",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias-new/socs-new/ethnic-studies-option",
+      "sourceOnlyUwCourseCodeCount": 16,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-ethnic-gender-and-labor-studies:pathway:gender-studies-option",
+      "ownerKey": "uw-tacoma-ethnic-gender-and-labor-studies::gender-studies-option",
+      "planId": "uw-tacoma-ethnic-gender-and-labor-studies",
+      "pathwayId": "gender-studies-option",
+      "title": "Ethnic, Gender and Labor Studies (BA) - Gender Studies option",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias-new/socs-new/ethnic-gender-and-labor-studies",
+      "sourceOnlyUwCourseCodeCount": 20,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-ethnic-gender-and-labor-studies:pathway:labor-studies-option",
+      "ownerKey": "uw-tacoma-ethnic-gender-and-labor-studies::labor-studies-option",
+      "planId": "uw-tacoma-ethnic-gender-and-labor-studies",
+      "pathwayId": "labor-studies-option",
+      "title": "Ethnic, Gender and Labor Studies (BA) - Labor Studies option",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias-new/socs-new/ethnic-gender-and-labor-studies",
+      "sourceOnlyUwCourseCodeCount": 20,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-healthcare-leadership",
+      "ownerKey": "uw-tacoma-healthcare-leadership::",
+      "planId": "uw-tacoma-healthcare-leadership",
+      "pathwayId": null,
+      "title": "Healthcare Leadership (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/nursing/declare-healthcare-leadership-major",
+      "sourceOnlyUwCourseCodeCount": 7,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-history",
+      "ownerKey": "uw-tacoma-history::",
+      "planId": "uw-tacoma-history",
+      "pathwayId": null,
+      "title": "History (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/socs/history",
+      "sourceOnlyUwCourseCodeCount": 2,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-information-technology",
+      "ownerKey": "uw-tacoma-information-technology::",
+      "planId": "uw-tacoma-information-technology",
+      "pathwayId": null,
+      "title": "Information Technology (BS)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/set/programs/undergrad/it",
+      "sourceOnlyUwCourseCodeCount": 21,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-interdisciplinary-arts-and-sciences",
+      "ownerKey": "uw-tacoma-interdisciplinary-arts-and-sciences::",
+      "planId": "uw-tacoma-interdisciplinary-arts-and-sciences",
+      "pathwayId": null,
+      "title": "Interdisciplinary Arts and Sciences (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias-new/socs-new/interdisciplinary-arts-and-sciences",
+      "sourceOnlyUwCourseCodeCount": 31,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed",
+      "ownerKey": "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed::",
+      "planId": "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed",
+      "pathwayId": null,
+      "title": "Interdisciplinary Arts and Sciences: Individually-designed (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
+      "sourceOnlyUwCourseCodeCount": 9,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-law-and-policy",
+      "ownerKey": "uw-tacoma-law-and-policy::",
+      "planId": "uw-tacoma-law-and-policy",
+      "pathwayId": null,
+      "title": "Law and Policy (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/socs/law-and-policy-degree-requirements-prior-summer-2024",
+      "sourceOnlyUwCourseCodeCount": 26,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-mathematics",
+      "ownerKey": "uw-tacoma-mathematics::",
+      "planId": "uw-tacoma-mathematics",
+      "pathwayId": null,
+      "title": "Mathematics (BS)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/sam/mathematics",
+      "sourceOnlyUwCourseCodeCount": 39,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-mechanical-engineering",
+      "ownerKey": "uw-tacoma-mechanical-engineering::",
+      "planId": "uw-tacoma-mechanical-engineering",
+      "pathwayId": null,
+      "title": "Mechanical Engineering",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html",
+      "sourceOnlyUwCourseCodeCount": 25,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-nursing",
+      "ownerKey": "uw-tacoma-nursing::",
+      "planId": "uw-tacoma-nursing",
+      "pathwayId": null,
+      "title": "Nursing (BSN)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/nursing/rn-bsn-sample-program-plans",
+      "sourceOnlyUwCourseCodeCount": 6,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-politics-philosophy-and-economics",
+      "ownerKey": "uw-tacoma-politics-philosophy-and-economics::",
+      "planId": "uw-tacoma-politics-philosophy-and-economics",
+      "pathwayId": null,
+      "title": "Politics, Philosophy and Economics (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-ppe",
+      "sourceOnlyUwCourseCodeCount": 11,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-psychology",
+      "ownerKey": "uw-tacoma-psychology::",
+      "planId": "uw-tacoma-psychology",
+      "pathwayId": null,
+      "title": "Psychology (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/socs/psychology",
+      "sourceOnlyUwCourseCodeCount": 38,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-social-welfare",
+      "ownerKey": "uw-tacoma-social-welfare::",
+      "planId": "uw-tacoma-social-welfare",
+      "pathwayId": null,
+      "title": "Social Welfare (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
+      "sourceOnlyUwCourseCodeCount": 3,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-spanish-language-and-cultures",
+      "ownerKey": "uw-tacoma-spanish-language-and-cultures::",
+      "planId": "uw-tacoma-spanish-language-and-cultures",
+      "pathwayId": null,
+      "title": "Spanish Language and Cultures (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/cac/spanish-language-and-cultures",
+      "sourceOnlyUwCourseCodeCount": 20,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-sustainable-urban-development",
+      "ownerKey": "uw-tacoma-sustainable-urban-development::",
+      "planId": "uw-tacoma-sustainable-urban-development",
+      "pathwayId": null,
+      "title": "Sustainable Urban Development (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+      "sourceOnlyUwCourseCodeCount": 31,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-sustainable-urban-development:pathway:community-engagement-option",
+      "ownerKey": "uw-tacoma-sustainable-urban-development::community-engagement-option",
+      "planId": "uw-tacoma-sustainable-urban-development",
+      "pathwayId": "community-engagement-option",
+      "title": "Sustainable Urban Development (BA) - Community Engagement option",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+      "sourceOnlyUwCourseCodeCount": 43,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
+      "ownerKey": "uw-tacoma-sustainable-urban-development::gis-option",
+      "planId": "uw-tacoma-sustainable-urban-development",
+      "pathwayId": "gis-option",
+      "title": "Sustainable Urban Development (BA) - GIS option",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+      "sourceOnlyUwCourseCodeCount": 43,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-urban-design",
+      "ownerKey": "uw-tacoma-urban-design::",
+      "planId": "uw-tacoma-urban-design",
+      "pathwayId": null,
+      "title": "Urban Design (BS)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/urban-studies/bs-urban-design",
+      "sourceOnlyUwCourseCodeCount": 27,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-urban-studies",
+      "ownerKey": "uw-tacoma-urban-studies::",
+      "planId": "uw-tacoma-urban-studies",
+      "pathwayId": null,
+      "title": "Urban Studies (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
+      "sourceOnlyUwCourseCodeCount": 50,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-urban-studies:pathway:community-engagement-option",
+      "ownerKey": "uw-tacoma-urban-studies::community-engagement-option",
+      "planId": "uw-tacoma-urban-studies",
+      "pathwayId": "community-engagement-option",
+      "title": "Urban Studies (BA) - Community Engagement option",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
+      "sourceOnlyUwCourseCodeCount": 49,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-urban-studies:pathway:gis-option",
+      "ownerKey": "uw-tacoma-urban-studies::gis-option",
+      "planId": "uw-tacoma-urban-studies",
+      "pathwayId": "gis-option",
+      "title": "Urban Studies (BA) - GIS option",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
+      "sourceOnlyUwCourseCodeCount": 50,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-writing-studies",
+      "ownerKey": "uw-tacoma-writing-studies::",
+      "planId": "uw-tacoma-writing-studies",
+      "pathwayId": null,
+      "title": "Writing Studies (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/cac/writing-studies",
+      "sourceOnlyUwCourseCodeCount": 33,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-writing-studies:pathway:creative-writing-track",
+      "ownerKey": "uw-tacoma-writing-studies::creative-writing-track",
+      "planId": "uw-tacoma-writing-studies",
+      "pathwayId": "creative-writing-track",
+      "title": "Writing Studies (BA) - Creative Writing track",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/cac/creative-writing-track",
+      "sourceOnlyUwCourseCodeCount": 38,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-writing-studies:pathway:rhetoric-social-change-track",
+      "ownerKey": "uw-tacoma-writing-studies::rhetoric-social-change-track",
+      "planId": "uw-tacoma-writing-studies",
+      "pathwayId": "rhetoric-social-change-track",
+      "title": "Writing Studies (BA) - Rhetoric, Writing and Social Change track",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/cac/rhetoric-writing-and-social-change-track",
+      "sourceOnlyUwCourseCodeCount": 39,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-writing-studies:pathway:technical-communication-track",
+      "ownerKey": "uw-tacoma-writing-studies::technical-communication-track",
+      "planId": "uw-tacoma-writing-studies",
+      "pathwayId": "technical-communication-track",
+      "title": "Writing Studies (BA) - Technical Communication track",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/cac/technical-communication-track",
+      "sourceOnlyUwCourseCodeCount": 31,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    }
+  ]
+}

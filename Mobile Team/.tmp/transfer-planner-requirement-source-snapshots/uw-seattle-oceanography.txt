@@ -1,6 +1,139 @@
 Owner: uw-seattle-oceanography
 Source: https://www.ocean.washington.edu/file/Bachelor_of_Arts_in_Oceanography_Checklist
-Title: Checklist8 Revised 8/23/19 B.A. in Oceanography Worksheet NAME STUDENT # DATE _____________ OPTION FACULTY MENTOR GRADUATION DATE ________ DATE ENTERED OCEAN DATE ENTERED UW TRANSFER CREDITS ______________ EMAIL_______________________ UNDERTOW_______________ OCEAN 100_____________ W RITING Requirement Completed English Composition (5 credits minimum) Credits  Additional writing Courses (W or composition, 10 credits minimum) Credits  OCEAN W-220 3 Elective: Elective: Q UANTITATIVE /S YMBOLIC R EASONING Requirement Completed Math or Quantitative Science Credits  MATH 124 5 MATH 125 or Q SCI 292 5 *MATH 126 (optional) 5 * Recommended for Physical Oceanography or Marine Geology and Geophysics Students N ATURAL W ORLD REQUIRED COURSES (NON-OCEANOGRAPHY) Requirement Completed Chemistry Credits  Biology Credits  Physics Credits  Geology Credits  *CHEM 142 5 BIOL 180 AND 5 PHYS 121 5 *ESS 210 5 *CHEM 152 5 BIOL 200 5 OCEAN 285/286 3/2 OR OR OR ESS 211 5 CHEM 120 5 *OCEAN 270 5 PHYS 121 5 AND *BIOL 220 5 *PHYS 122 5 *Preferred ESS 101 is approved for transfer students OCEAN 295 5 *Recommended for Biological Oceanography Students *PHYS 123 5 *Recommended for Chemical Oceanography Students AND OCEAN 285 3 * Recommended for Physical Oceanography and Marine Geology and Geophysics Students I NDIVIDUALS & S OCIETIES (FORMERLY S OCIAL S CIENCES) Requirement Completed 20 Credits Minimum Credits  PROFICIENCY AREAS OF KNOWLEDGE
+Title: Bachelor of Arts in Oceanography Checklist
 
-[Page 1] Checklist8 Revised 8/23/19 B.A. in Oceanography Worksheet NAME STUDENT # DATE _____________ OPTION FACULTY MENTOR GRADUATION DATE ________ DATE ENTERED OCEAN DATE ENTERED UW TRANSFER CREDITS ______________ EMAIL_______________________ UNDERTOW_______________ OCEAN 100_____________ W RITING Requirement Completed English Composition (5 credits minimum) Credits  Additional writing Courses (W or composition, 10 credits minimum) Credits  OCEAN W-220 3 Elective: Elective: Q UANTITATIVE /S YMBOLIC R EASONING Requirement Completed Math or Quantitative Science Credits  MATH 124 5 MATH 125 or Q SCI 292 5 *MATH 126 (optional) 5 * Recommended for Physical Oceanography or Marine Geology and Geophysics Students N ATURAL W ORLD REQUIRED COURSES (NON-OCEANOGRAPHY) Requirement Completed Chemistry Credits  Biology Credits  Physics Credits  Geology Credits  *CHEM 142 5 BIOL 180 AND 5 PHYS 121 5 *ESS 210 5 *CHEM 152 5 BIOL 200 5 OCEAN 285/286 3/2 OR OR OR ESS 211 5 CHEM 120 5 *OCEAN 270 5 PHYS 121 5 AND *BIOL 220 5 *PHYS 122 5 *Preferred ESS 101 is approved for transfer students OCEAN 295 5 *Recommended for Biological Oceanography Students *PHYS 123 5 *Recommended for Chemical Oceanography Students AND OCEAN 285 3 * Recommended for Physical Oceanography and Marine Geology and Geophysics Students I NDIVIDUALS & S OCIETIES (FORMERLY S OCIAL S CIENCES) Requirement Completed 20 Credits Minimum Credits  PROFICIENCY AREAS OF KNOWLEDGE
-[Page 2] Checklist8 Revised 8/23/19 D iversity (can be combined with I&S or VLPA Requirement Completed 3 Credits Minimum Credits  V ISUAL , L ITERARY , AND P ERFORMING A RTS (FORMERLY HUMANITIES ) Requirement Completed 10 Credits Minimum Credits  Requirement Completed 44 Credits Credits  OCEAN 200 Introduction to Oceanography (pre-A or Sp) 3 OCEAN 201 Introduction to Oceanography Lab (Sp) 2 OCEAN 210 Integrative Oceans (A or W) 4 OCEAN 215 Methods of Oceanographic Data Analysis (A) 4 OCEAN W-220 Introduction to Field Oceanography (Sp) 3 OCEAN 310 Marine Geology and Geochemistry (A) 5 OCEAN 320 Coastal Oceanography (W) 5 OCEAN 330 Marine Biogeochemical Cycles (Sp) 5 OCEAN 351 Foundations of Ocean Sensors (W) 3 OCEAN 3XX-4XX (300-400 level Ocean course of your choice) 10 UNIVERSITY REQUIREMENTS CHECKOFF LIST: At least 45 credits taken at UW Requirement Completed Senior residency (last 45 credits taken at UW) Requirement Completed Minimum 180 credits Requirement Completed (Note: OCEAN W-220, and W-443-445 are listed twice on this worksheet, once under “Additional Writing” and also under “Oceanography Courses.” Do not count hours twice towards meeting the 180 credit minimum.) OCEANOGRAPHY COURSES
+[Supplemental official source] Bachelor Degrees in Oceanography
+[Supplemental official source] Bachelor of Arts in Oceanography
+<a href="http://cicoes.uw.edu/"
+<a href="http://fish.uw.edu/" target="_blank"
+<a href="http://sefs.uw.edu/" target="_blank"
+<a href="http://wsg.washington.edu/" target="_blank"
+<a href="http://www.ess.washington.edu/" target="_blank"
+<a href="http://www.waspacegrant.org/" target="_blank"
+<a href="https://botanicgardens.uw.edu/" target="_blank"
+<a href="https://qrc.uw.edu/" target="_blank"
+<a href="https://quantitative.uw.edu/" target="_blank"
+<a href="https://smea.uw.edu/" target="_blank"
+<img
+>
+1
+1503 NE Boat Street · Box 357940 · Seattle, WA 98195-7940
+2
+2025-2026 Senior Thesis Blog from Guam
+3
+4
+5
+About
+About Get Involved Facilities Administration Services Code of Conduct Diversity, Equity, and Inclusion Directions & Address School History
+alt="College of the Environment"
+Alumni with a BA in Oceanography can look forward to jobs such as an education specialist, outreach and education director or marine science programs coordinator.
+Apr 14 2026
+Apr 15 2026
+Apr 21 2026
+Apr 22 2026
+Apr 28 2026
+At the 200 level, students take a sequence of foundational oceanography courses ( Ocean 200/201 and Ocean 210 ), learn introductory python programming and basic statistics in Ocean 215 , and experience field methods in Ocean 220 .
+At the 300 level, majors complete a full year course sequence in ocean science from the interaction of the seafloor and water column ( Ocean 310 ), to coastal oceanography ( Ocean 320 ), to global biogeochemical cycles ( Ocean 330 ). Majors also learn the fundamentals of how ocean sensors work (and build their own!) in Ocean 351 .
+At the 400-level the BS and BA requirements differ.
+Atmospheric Sciences
+BA in Oceanography checklist
+Bachelor Degrees in Oceanography
+Bachelor of Arts in Oceanography
+Bachelor of Arts in Oceanography Checklist
+Bio Seminar 4/14/26
+Bio Seminar 4/21/26
+Bio Seminar 4/28/26
+BS in Oceanography checklist
+class="buddylink">Aquatic and Fishery Sciences
+class="buddylink">Center for Quantitative Science
+class="buddylink">Cooperative Institute for Climate, Ocean, & Ecosystem Studies
+class="buddylink">Earth and Space Sciences
+class="buddylink">Environmental and Forest Sciences
+class="buddylink">Marine and Environmental Affairs
+class="buddylink">Quaternary Research Center
+class="buddylink">UW Botanic Gardens
+class="buddylink">Washington NASA Space Grant
+class="buddylink">Washington Sea Grant
+class="footer-logo-image udub footerfullicon"
+class="footerlink">oceanadmin@uw.edu
+class="footerlink">thomassd@uw.edu
+Climate Impacts Group
+Close
+Compressed two-year + Fall Qtr course plan for transfer students with limited basic science/math preparation
+Compressed two-year course plan for transfer students , and those discovering oceanography after their first 2 years at UW
+Copyright © 2026 University of Washington
+COURSE PLANNING
+CRESST Cruise
+Current Opportunities for Students
+Degree requirements for Bachelor Degrees in Oceanography
+Download
+Due to our generous donors, Oceanography can offer a broad spectrum of scholarship support
+EarthLab
+Education
+Education Courses Graduate Education Undergraduate Education Student Support Resources
+Emily Hammermeister Interview
+Facility Maps
+For the BA degree there is no requirement to complete the senior thesis, and with fewer and more flexible upper division elective requirements students have the flexibility to tailor their upper division work to complement their work in other fields, or their plans for post-graduate work or study.
+For the BS degree , at the 400 level, majors complete a year-long senior thesis and take a selection of upper division special topics courses that provide both breadth and depth.
+Frankie Pavia Named Sloan Fellow
+Friday Harbor Laboratories
+General Questions: <a href="mailto:oceanadmin@uw.edu?subject=I%20have%20a%20Question"
+Latest News
+Make a Gift
+Marine Biology
+Menu
+MENU
+Most popular
+MyOcean
+MyOcean Intranet
+News & Events
+News & Events Events Banse Early Career Scientist Seminar Faculty Meetings Director's Choice Congratulations Oceanography Awards Ocean Currents Archive
+Oceanography
+Oceanography Department Seminar 4/22/26
+Oceanography is an interdisciplinary science that starts with a strong foundation in biology, chemistry, physics, math and geology. The UW School of Oceanography offers both BA and BS degrees, and both degrees have similar requirements at the 200- and 300-level:
+Oceanography majors and related minors
+Oceanography Minor
+OOI-RCA
+Opportunities within Oceanography and beyond UW
+People
+People Faculty Post Docs Graduate Students Staff Alumni In Memoriam
+PhD Defense:&#160;Scott Martin 4/22/26
+PO Seminar 4/15/26
+Privacy | Terms
+Program on Climate Change
+Program on the Environment
+Prospective Graduate Students
+Related Files
+Related Topics
+Requirements for the Minor in Oceanography
+Research
+Research Physical Oceanography Biological Oceanography Marine Geology and Geophysics Chemical Oceanography
+Resources
+Resources Onboarding Affiliate and Adjunct Faculty Payments Mentoring Conflict Resolution Resources Promotion Record Assembly Statement
+RV Rachel Carson
+RV Thomas G Thompson
+Sample four-year course plan for a life sciences oriented STEM student
+Sample four-year course plan for a physical sciences oriented STEM student
+search
+Size: 110 kb
+sizes="(max-width: 479px) 94vw, (max-width: 767px) 366px, (max-width: 991px) 354px, 366px"
+src="/images/uw-coe-logo.png"
+srcset="/images/uw-coe-logo.png 500w, /images/uw-coe-logo.png 800w, /images/uw-coe-logo.png 962w"
+Students apply the knowledge they get from their Oceanography courses in a wide variety of research and experiential learning settings. Explore related stories below to sample this range of experiences.
+Suquamish, Tulalip and Muckleshoot nations.
+Technical Issues: <a href="mailto:thomassd@uw.edu"
+The Bachelor of Arts degree in Oceanography shares the common foundational science and core courses with the Bachelor of Science degree, but there is no requirement to complete the senior thesis, and with fewer and more flexible upper division elective requirements. Students can use this flexibility to tailor their upper division work to complement their work in other fields, or their plans for post-graduate work or study.
+the land which touches the shared waters of all tribes and bands within the
+The University of Washington acknowledges the Coast Salish peoples of this land,
+This is the course requirement checklist for a BA in Oceanography.
+Thompson Location
+Type: PDF
+Undergraduate Degrees
+Undergraduate Scholarships
+Undergraduate Student Experiences
+University of Washington launches the Paros Geohazards Center
+Upcoming Events
+UW Home
+Vessels
+Vessels R/V Welander R/V Rachel Carson R/V Thomas G Thompson Cruise Planning Crew Marine Operations Contacts Ships' News
+width="366"

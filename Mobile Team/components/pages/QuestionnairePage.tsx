@@ -252,7 +252,20 @@ export default function QuestionnairePage() {
   const borderClass = isDark ? "border-gray-800" : isGreen ? "border-emerald-700" : isLight ? "border-emerald-300" : "border-gray-200";
   const progressBgClass = isDark ? "bg-gray-800" : isGreen ? "bg-emerald-800" : "bg-emerald-200";
   const placeholderColor = isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280";
-  const idleOptionClass = isDark || isGreen ? "bg-emerald-900/60 border-emerald-800" : isLight ? "bg-white border-emerald-200" : "bg-white border-gray-200";
+  const idleOptionClass = isDark
+    ? "bg-gray-800 border-gray-700"
+    : isGreen
+      ? "bg-emerald-900/60 border-emerald-800"
+      : isLight
+        ? "bg-white border-emerald-200"
+        : "bg-white border-gray-200";
+  const selectedOptionClass = isDark
+    ? "bg-gray-700 border-gray-500"
+    : isGreen
+      ? "bg-emerald-800 border-emerald-500"
+      : "bg-emerald-500/10 border-emerald-500";
+  const selectedOptionTextClass = isDark || isGreen ? "text-white" : "text-emerald-500";
+  const selectedOptionIconColor = isDark || isGreen ? "#F9FAFB" : "#008f4e";
   const sidebarItemClass = isDark
     ? "bg-gray-900/75 border-gray-800"
     : isGreen
@@ -260,6 +273,13 @@ export default function QuestionnairePage() {
       : isLight
         ? "bg-white/95 border-emerald-200"
         : "bg-white/95 border-gray-200";
+  const activeSidebarItemClass = isDark
+    ? "bg-gray-800 border-gray-600"
+    : isGreen
+      ? "bg-emerald-800 border-emerald-500"
+      : "bg-emerald-500/10 border-emerald-500";
+  const activeSidebarTextClass = isDark || isGreen ? "text-white" : "text-emerald-500";
+  const activeSidebarIconColor = isDark || isGreen ? "#F9FAFB" : "#10b981";
 
   useEffect(() => {
     questionnaireScrollRef.current?.scrollTo({ y: 0, animated: false });
@@ -299,6 +319,26 @@ export default function QuestionnairePage() {
 
   const handleAnswer = (id: string, value: string) => setAnswers((p) => ({ ...p, [id]: value }));
 
+  const persistQuestionnaireDraft = async () => {
+    const normalized = normalizeQuestionnaireAnswers(answers, language);
+    await setQuestionnaireAnswers(normalized);
+    return normalized;
+  };
+
+  const handleJumpToSection = async (sectionStartIndex: number) => {
+    if (isActionLocked) return;
+
+    setIsActionLocked(true);
+
+    try {
+      await persistQuestionnaireDraft();
+      setCurrentStep(Math.max(0, Math.min(sectionStartIndex, questions.length - 1)));
+      questionnaireScrollRef.current?.scrollTo({ y: 0, animated: false });
+    } finally {
+      setIsActionLocked(false);
+    }
+  };
+
   const handleNext = async () => {
     if (isActionLocked) return;
 
@@ -311,10 +351,7 @@ export default function QuestionnairePage() {
     setIsActionLocked(true);
 
     try {
-      // Normalize localized values before persisting/sharing with backend services.
-      const normalized = normalizeQuestionnaireAnswers(answers, language);
-      await setQuestionnaireAnswers(normalized);
-
+      const normalized = await persistQuestionnaireDraft();
       await collegeService.saveQuestionnaireResult(normalized); 
     } catch (error) {
       void errorLoggingService.captureException(error, {
@@ -339,12 +376,27 @@ export default function QuestionnairePage() {
     setCurrentStep((s) => Math.max(s - 1, 0));
   };
 
-  const handleBack = () => {
+  const handleExitQuestionnaire = async () => {
     if (isActionLocked) return;
-    if (currentStep > 0) {
-      handlePreviousQuestion();
-      return;
+
+    setIsActionLocked(true);
+
+    try {
+      await persistQuestionnaireDraft();
+    } catch (error) {
+      void errorLoggingService.captureException(error, {
+        category: "firestore",
+        operation: "leave-questionnaire-page",
+        severity: "warn",
+        handled: true,
+        source: "questionnaire-page",
+        screen: "questionnaire",
+        route: ROUTES.questionnaire,
+      });
+    } finally {
+      setIsActionLocked(false);
     }
+
     router.back();
   };
 
@@ -354,8 +406,7 @@ export default function QuestionnairePage() {
     setIsActionLocked(true);
 
     try {
-      const normalized = normalizeQuestionnaireAnswers(answers, language);
-      await setQuestionnaireAnswers(normalized);
+      const normalized = await persistQuestionnaireDraft();
       await collegeService.saveQuestionnaireResult(normalized);
     } catch (error) {
       void errorLoggingService.captureException(error, {
@@ -423,19 +474,25 @@ export default function QuestionnairePage() {
                         isActive && currentQuestion.type !== "section" ? currentQuestion.question : null;
 
                       return (
-                        <View
+                        <AnimatedChipPressable
                           key={section.id}
+                          onPress={() => {
+                            void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                            void handleJumpToSection(section.startIndex);
+                          }}
                           className={`rounded-2xl border px-4 py-4 ${
-                            isActive ? "bg-emerald-500/10 border-emerald-500" : sidebarItemClass
+                            isActive ? activeSidebarItemClass : sidebarItemClass
                           }`}
+                          containerStyle={{ width: "100%" }}
+                          disabled={isActionLocked}
                         >
                           <View className="flex-row items-start justify-between">
                             <View style={{ flex: 1, minWidth: 0, paddingRight: 12 }}>
-                              <Text className={isActive ? "text-emerald-500 text-xs font-semibold" : `text-xs font-semibold ${secondaryTextClass}`}>
+                              <Text className={isActive ? `${activeSidebarTextClass} text-xs font-semibold` : `text-xs font-semibold ${secondaryTextClass}`}>
                                 {String(index + 1).padStart(2, "0")}
                               </Text>
                               <Text
-                                className={`${isActive ? "text-emerald-500" : textClass} mt-2 font-semibold`}
+                                className={`${isActive ? activeSidebarTextClass : textClass} mt-2 font-semibold`}
                                 style={{ fontSize: 15, lineHeight: 22 }}
                               >
                                 {section.title}
@@ -450,10 +507,10 @@ export default function QuestionnairePage() {
                             <MaterialIcons
                               name={isComplete ? "check-circle" : isActive ? "radio-button-checked" : "radio-button-unchecked"}
                               size={18}
-                              color={isComplete || isActive ? "#10b981" : placeholderColor}
+                              color={isComplete ? "#10b981" : isActive ? activeSidebarIconColor : placeholderColor}
                             />
                           </View>
-                        </View>
+                        </AnimatedChipPressable>
                       );
                     })}
                   </View>
@@ -467,7 +524,7 @@ export default function QuestionnairePage() {
                   <AnimatedIconPressable
                     onPress={() => {
                       void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                      handleBack();
+                      void handleExitQuestionnaire();
                     }}
                     className={`h-11 w-11 mr-4 items-center justify-center rounded-2xl border ${inputBgClass}`}
                     disabled={isActionLocked}
@@ -611,17 +668,17 @@ export default function QuestionnairePage() {
                               );
                             }}
                             className={`rounded-2xl border px-4 py-4 ${
-                              isSelected ? "bg-emerald-500/10 border-emerald-500" : idleOptionClass
+                              isSelected ? selectedOptionClass : idleOptionClass
                             }`}
                             containerStyle={{ width: "100%" }}
                           >
                             <View className="flex-row items-start justify-between">
                               <View style={{ flex: 1, minWidth: 0, paddingRight: 12 }}>
-                                <Text className={isSelected ? "text-emerald-500" : textClass} style={optionTextStyle}>
+                                <Text className={isSelected ? selectedOptionTextClass : textClass} style={optionTextStyle}>
                                   {option.label}
                                 </Text>
                               </View>
-                              {isSelected ? <MaterialIcons name="check-circle" size={20} color="#008f4e" /> : null}
+                              {isSelected ? <MaterialIcons name="check-circle" size={20} color={selectedOptionIconColor} /> : null}
                             </View>
                           </AnimatedChipPressable>
                         );
@@ -646,10 +703,10 @@ export default function QuestionnairePage() {
                                   handleAnswer(currentQuestion.id, buildStateLocationPreference(stateOption));
                                 }}
                                 className={`px-3 py-2 rounded-xl border ${
-                                  isSelected ? "bg-emerald-500/10 border-emerald-500" : borderClass
+                                  isSelected ? selectedOptionClass : borderClass
                                 }`}
                               >
-                                <Text className={isSelected ? "text-emerald-500 font-semibold" : textClass}>
+                                <Text className={`${isSelected ? selectedOptionTextClass : textClass} font-semibold`}>
                                   {stateOption}
                                 </Text>
                               </AnimatedChipPressable>
@@ -677,17 +734,17 @@ export default function QuestionnairePage() {
                                   handleAnswer(currentQuestion.id, buildRegionLocationPreference(option.key));
                                 }}
                                 className={`rounded-2xl border px-4 py-3 ${
-                                  isSelected ? "bg-emerald-500/10 border-emerald-500" : borderClass
+                                  isSelected ? selectedOptionClass : borderClass
                                 }`}
                                 containerStyle={{ width: "100%" }}
                               >
                                 <View className="flex-row items-start justify-between">
                                   <View style={{ flex: 1, minWidth: 0, paddingRight: 12 }}>
-                                    <Text className={isSelected ? "text-emerald-500 font-semibold" : textClass} style={optionTextStyle}>
+                                    <Text className={`${isSelected ? selectedOptionTextClass : textClass} font-semibold`} style={optionTextStyle}>
                                       {option.label}
                                     </Text>
                                   </View>
-                                  {isSelected ? <MaterialIcons name="check-circle" size={18} color="#008f4e" /> : null}
+                                  {isSelected ? <MaterialIcons name="check-circle" size={18} color={selectedOptionIconColor} /> : null}
                                 </View>
                               </AnimatedChipPressable>
                             );
@@ -724,17 +781,17 @@ export default function QuestionnairePage() {
                             handleAnswer(currentQuestion.id, option);
                           }}
                           className={`rounded-2xl border px-4 py-4 ${
-                            isSelected ? "bg-emerald-500/10 border-emerald-500" : idleOptionClass
+                            isSelected ? selectedOptionClass : idleOptionClass
                           }`}
                           containerStyle={{ width: "100%" }}
                         >
                           <View className="flex-row items-start justify-between">
                             <View style={{ flex: 1, minWidth: 0, paddingRight: 12 }}>
-                              <Text className={isSelected ? "text-emerald-500" : textClass} style={optionTextStyle}>
+                              <Text className={isSelected ? selectedOptionTextClass : textClass} style={optionTextStyle}>
                                 {option}
                               </Text>
                             </View>
-                            {isSelected ? <MaterialIcons name="check-circle" size={20} color="#008f4e" /> : null}
+                            {isSelected ? <MaterialIcons name="check-circle" size={20} color={selectedOptionIconColor} /> : null}
                           </View>
                         </AnimatedChipPressable>
                       );

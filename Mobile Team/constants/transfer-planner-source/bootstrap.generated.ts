@@ -5,7 +5,7 @@ import type {
   TransferPlannerCampus,
   TransferPlannerMajorPlan,
   TransferPlannerTrack,
-} from "../transfer-planner-data";
+} from "../transfer-planner-types";
 
 export const TRANSFER_PLANNER_BOOTSTRAP_CAMPUSES: TransferPlannerCampus[] = [
   {
@@ -274,651 +274,87 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     ]
   },
   {
-    "id": "999Q",
-    "code": "999Q",
-    "title": "AST2 / MRP Civil and Mechanical Engineering",
-    "summary": "The strongest stock Green River path for UW Seattle aeronautics, civil, industrial, materials, and mechanical planning.",
-    "bestFor": [
-      "aeronautics",
-      "civil engineering",
-      "industrial engineering",
-      "materials science",
-      "mechanical engineering"
-    ],
-    "terms": [
-      {
-        "label": "Year 1 Fall",
-        "courses": [
-          "ENGL& 101",
-          "MATH& 151",
-          "ENGR 100"
-        ]
-      },
-      {
-        "label": "Year 1 Winter",
-        "courses": [
-          "CHEM& 161",
-          "MATH& 152",
-          "ENGR 106"
-        ]
-      },
-      {
-        "label": "Year 1 Spring",
-        "courses": [
-          "CHEM& 162",
-          "MATH& 163",
-          "Humanities"
-        ]
-      },
-      {
-        "label": "Year 2 Fall",
-        "courses": [
-          "PHYS& 221",
-          "MATH& 254",
-          "ENGR& 214"
-        ]
-      },
-      {
-        "label": "Year 2 Winter",
-        "courses": [
-          "PHYS& 222",
-          "MATH 238",
-          "ENGR& 215"
-        ]
-      },
-      {
-        "label": "Year 2 Spring",
-        "courses": [
-          "PHYS& 223",
-          "MATH 240",
-          "Social Science"
-        ]
-      },
-      {
-        "label": "Year 3 Fall",
-        "courses": [
-          "ENGR& 225",
-          "Planner slot: ENGR& 224 or ENGR 250 or CS 121"
-        ]
-      },
-      {
-        "label": "Year 3 Winter",
-        "courses": [
-          "Humanities or Social Science",
-          "Planner slot: CHEM& 163 or ENGR 140 or MATH 240"
-        ]
-      }
-    ],
-    "notes": [
-      "Use the elective slots intentionally for add-ons like ENGR& 224, ENGR 250, or programming.",
-      "This track is especially good when you want to maximize financial-aid-safe engineering credits at Green River.",
-      "Older sample plans may still show MATH& 153 before MATH& 254. The current direct UW MATH 126 path uses MATH& 163 instead.",
-      "The catalog-year reference below preserves the latest public 2024 sample-plan layout and then resolves each SELECT COURSE FROM LIST slot into planner-owned options that stayed active in the 2024-2025 and 2025-2026 annual schedules."
-    ],
-    "officialLinks": [
-      {
-        "label": "Green River transfer-degree index",
-        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/university-and-college-transfer/index.html"
-      },
-      {
-        "label": "Green River Associate Transfer Sample Ed Plans 2024",
-        "url": "https://www.greenriver.edu/marketing/media/documents/grad-to-gator/Associate%20Transfer%20Sample%20Ed%20Plans%202024.pdf"
-      },
-      {
-        "label": "Green River 2024-2025 Annual Schedule",
-        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2024-2025-Annual-Schedule.pdf"
-      },
-      {
-        "label": "Green River 2025-2026 Annual Schedule",
-        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
-      }
-    ],
-    "catalogYears": [
-      {
-        "label": "2024-2025",
-        "sourceSummary": "Latest public 2024 sample-plan PDF plus the 2024-2025 annual schedule.",
-        "terms": [
-          {
-            "label": "Year 1 Fall",
-            "courses": [
-              "ENGL& 101",
-              "MATH& 151",
-              "ENGR 100"
-            ]
-          },
-          {
-            "label": "Year 1 Winter",
-            "courses": [
-              "CHEM& 161",
-              "MATH& 152",
-              "ENGR 106"
-            ]
-          },
-          {
-            "label": "Year 1 Spring",
-            "courses": [
-              "CHEM& 162",
-              "MATH& 153",
-              "HUMANITIES"
-            ]
-          },
-          {
-            "label": "Year 2 Fall",
-            "courses": [
-              "PHYS& 221",
-              "MATH& 254",
-              "ENGR& 214",
-              "CS 120 or ENGR 120"
-            ]
-          },
-          {
-            "label": "Year 2 Winter",
-            "courses": [
-              "PHYS& 222",
-              "MATH 238",
-              "ENGR& 215"
-            ]
-          },
-          {
-            "label": "Year 2 Spring",
-            "courses": [
-              "PHYS& 223",
-              "MATH 240",
-              "SOCIAL SCIENCE"
-            ]
-          },
-          {
-            "label": "Year 3 Fall",
-            "courses": [
-              "ENGR& 225",
-              "SELECT COURSE FROM LIST"
-            ]
-          },
-          {
-            "label": "Year 3 Winter",
-            "courses": [
-              "HUMANITIES or SOCIAL SCIENCE",
-              "SELECT COURSE FROM LIST"
-            ]
-          }
-        ],
-        "slotExpansions": [
-          {
-            "termLabel": "Year 3 Fall",
-            "slotLabel": "SELECT COURSE FROM LIST",
-            "recommendedCourses": [
-              "ENGR& 224",
-              "ENGR 250",
-              "CS 121"
-            ],
-            "note": "Use ENGR& 224 for thermodynamics-heavy paths like A&A, MSE, and some ME variants, ENGR 250 for scientific computing, and CS 121 when the destination major needs a stronger programming launch."
-          },
-          {
-            "termLabel": "Year 3 Winter",
-            "slotLabel": "SELECT COURSE FROM LIST",
-            "recommendedCourses": [
-              "CHEM& 163",
-              "ENGR 140",
-              "MATH 240"
-            ],
-            "note": "Use CHEM& 163 for chemistry-sensitive ME or MSE planning, ENGR 140 for MSE 170 preparation, and MATH 240 when linear algebra is the stronger competitive add-on."
-          }
-        ],
-        "notes": [
-          "The 2024-2025 annual schedule still lists ENGR& 224, ENGR 140, ENGR 250, MATH 240, and CS 121 as active courses, so these are the strongest current replacements for the open slots."
-        ]
-      },
-      {
-        "label": "2025-2026",
-        "sourceSummary": "Same latest public 2024 sample-plan PDF, cross-checked against the 2025-2026 annual schedule because a newer public consolidated track PDF was not available.",
-        "terms": [
-          {
-            "label": "Year 1 Fall",
-            "courses": [
-              "ENGL& 101",
-              "MATH& 151",
-              "ENGR 100"
-            ]
-          },
-          {
-            "label": "Year 1 Winter",
-            "courses": [
-              "CHEM& 161",
-              "MATH& 152",
-              "ENGR 106"
-            ]
-          },
-          {
-            "label": "Year 1 Spring",
-            "courses": [
-              "CHEM& 162",
-              "MATH& 153",
-              "HUMANITIES"
-            ]
-          },
-          {
-            "label": "Year 2 Fall",
-            "courses": [
-              "PHYS& 221",
-              "MATH& 254",
-              "ENGR& 214",
-              "CS 120 or ENGR 120"
-            ]
-          },
-          {
-            "label": "Year 2 Winter",
-            "courses": [
-              "PHYS& 222",
-              "MATH 238",
-              "ENGR& 215"
-            ]
-          },
-          {
-            "label": "Year 2 Spring",
-            "courses": [
-              "PHYS& 223",
-              "MATH 240",
-              "SOCIAL SCIENCE"
-            ]
-          },
-          {
-            "label": "Year 3 Fall",
-            "courses": [
-              "ENGR& 225",
-              "SELECT COURSE FROM LIST"
-            ]
-          },
-          {
-            "label": "Year 3 Winter",
-            "courses": [
-              "HUMANITIES or SOCIAL SCIENCE",
-              "SELECT COURSE FROM LIST"
-            ]
-          }
-        ],
-        "slotExpansions": [
-          {
-            "termLabel": "Year 3 Fall",
-            "slotLabel": "SELECT COURSE FROM LIST",
-            "recommendedCourses": [
-              "ENGR& 224",
-              "ENGR 250",
-              "CS 121"
-            ],
-            "note": "The same thermodynamics, computing, and programming trio still fits the open slot best in 2025-2026."
-          },
-          {
-            "termLabel": "Year 3 Winter",
-            "slotLabel": "SELECT COURSE FROM LIST",
-            "recommendedCourses": [
-              "CHEM& 163",
-              "ENGR 140",
-              "MATH 240"
-            ],
-            "note": "The same chemistry, materials, and linear-algebra choices still cover the most common current UW follow-on requirements in 2025-2026."
-          }
-        ],
-        "notes": [
-          "The 2025-2026 annual schedule still carries ENGR& 224, ENGR 140, ENGR 250, MATH 240, and CS 121, so the planner keeps the same current slot expansion."
-        ]
-      }
-    ]
-  },
-  {
-    "id": "999P",
-    "code": "999P",
-    "title": "AST2 / MRP Computer and Electrical Engineering",
-    "summary": "The cleanest stock Green River path for UW Seattle Computer Engineering and Electrical & Computer Engineering.",
-    "bestFor": [
-      "computer engineering",
-      "electrical engineering",
-      "ece",
-      "computing"
-    ],
-    "terms": [
-      {
-        "label": "Year 1 Fall",
-        "courses": [
-          "ENGL& 101",
-          "MATH& 151",
-          "ENGR 100"
-        ]
-      },
-      {
-        "label": "Year 1 Winter",
-        "courses": [
-          "CHEM& 161",
-          "MATH& 152",
-          "Humanities"
-        ]
-      },
-      {
-        "label": "Year 1 Spring",
-        "courses": [
-          "CS 121",
-          "MATH& 163",
-          "Social Science",
-          "ENGR 106"
-        ]
-      },
-      {
-        "label": "Year 2 Fall",
-        "courses": [
-          "PHYS& 221",
-          "MATH& 254 if you are finishing the older Calc III path",
-          "CS 122"
-        ]
-      },
-      {
-        "label": "Year 2 Winter",
-        "courses": [
-          "PHYS& 222",
-          "MATH 238",
-          "CS 123"
-        ]
-      },
-      {
-        "label": "Year 2 Spring",
-        "courses": [
-          "PHYS& 223",
-          "ENGR& 204",
-          "Humanities or Social Science"
-        ]
-      },
-      {
-        "label": "Year 3 Fall",
-        "courses": [
-          "Planner slot: MATH 240 or ENGR 250",
-          "Planner slot: ENGR& 225 or CHEM& 261"
-        ]
-      }
-    ],
-    "notes": [
-      "This is the best stock fit when the destination major needs the full CS 121 / 122 / 123 sequence.",
-      "It also keeps physics, higher math, and circuit preparation aligned with UW engineering expectations.",
-      "Current UW guidance maps MATH& 163 cleanly to UW MATH 126. Older planning materials may still show the alternative MATH& 153 + MATH& 254 route.",
-      "The catalog-year reference below preserves the latest public 2024 sample-plan layout and resolves the open year-3 slot into the current planner-owned add-on choices that stayed active in the 2024-2025 and 2025-2026 annual schedules."
-    ],
-    "officialLinks": [
-      {
-        "label": "Green River transfer-degree index",
-        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/university-and-college-transfer/index.html"
-      },
-      {
-        "label": "Green River Associate Transfer Sample Ed Plans 2024",
-        "url": "https://www.greenriver.edu/marketing/media/documents/grad-to-gator/Associate%20Transfer%20Sample%20Ed%20Plans%202024.pdf"
-      },
-      {
-        "label": "Green River 2024-2025 Annual Schedule",
-        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2024-2025-Annual-Schedule.pdf"
-      },
-      {
-        "label": "Green River 2025-2026 Annual Schedule",
-        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
-      }
-    ],
-    "catalogYears": [
-      {
-        "label": "2024-2025",
-        "sourceSummary": "Latest public 2024 sample-plan PDF plus the 2024-2025 annual schedule.",
-        "terms": [
-          {
-            "label": "Year 1 Fall",
-            "courses": [
-              "ENGL& 101",
-              "MATH& 151",
-              "ENGR 100",
-              "ENGR 106"
-            ]
-          },
-          {
-            "label": "Year 1 Winter",
-            "courses": [
-              "CHEM& 161",
-              "MATH& 152",
-              "HUMANITIES"
-            ]
-          },
-          {
-            "label": "Year 1 Spring",
-            "courses": [
-              "CS 120",
-              "MATH& 153",
-              "SOCIAL SCIENCE"
-            ]
-          },
-          {
-            "label": "Year 2 Fall",
-            "courses": [
-              "PHYS& 221",
-              "MATH& 254",
-              "CS& 131 or CS& 141"
-            ]
-          },
-          {
-            "label": "Year 2 Winter",
-            "courses": [
-              "PHYS& 222",
-              "MATH 238",
-              "CS 132 or CS 145"
-            ]
-          },
-          {
-            "label": "Year 2 Spring",
-            "courses": [
-              "PHYS& 223",
-              "ENGR& 204",
-              "HUMANITIES or SOCIAL SCIENCE"
-            ]
-          },
-          {
-            "label": "Year 3 Fall",
-            "courses": [
-              "SELECT COURSE FROM LIST",
-              "SELECT COURSE FROM LIST"
-            ]
-          }
-        ],
-        "slotExpansions": [
-          {
-            "termLabel": "Year 3 Fall",
-            "slotLabel": "SELECT COURSE FROM LIST (slot 1)",
-            "recommendedCourses": [
-              "MATH 240",
-              "ENGR 250"
-            ],
-            "note": "Use MATH 240 first when the destination program wants linear algebra; use ENGR 250 when scientific computing is the stronger add-on."
-          },
-          {
-            "termLabel": "Year 3 Fall",
-            "slotLabel": "SELECT COURSE FROM LIST (slot 2)",
-            "recommendedCourses": [
-              "ENGR& 225",
-              "CHEM& 261"
-            ],
-            "note": "Use ENGR& 225 when mechanics depth still helps the destination engineering path, and CHEM& 261 when chemistry depth is the more useful support course."
-          }
-        ],
-        "notes": [
-          "The 2024-2025 annual schedule still lists MATH 240, ENGR 250, ENGR& 225, and CHEM& 261 as active current courses."
-        ]
-      },
-      {
-        "label": "2025-2026",
-        "sourceSummary": "Same latest public 2024 sample-plan PDF, cross-checked against the 2025-2026 annual schedule because a newer public consolidated track PDF was not available.",
-        "terms": [
-          {
-            "label": "Year 1 Fall",
-            "courses": [
-              "ENGL& 101",
-              "MATH& 151",
-              "ENGR 100",
-              "ENGR 106"
-            ]
-          },
-          {
-            "label": "Year 1 Winter",
-            "courses": [
-              "CHEM& 161",
-              "MATH& 152",
-              "HUMANITIES"
-            ]
-          },
-          {
-            "label": "Year 1 Spring",
-            "courses": [
-              "CS 120",
-              "MATH& 153",
-              "SOCIAL SCIENCE"
-            ]
-          },
-          {
-            "label": "Year 2 Fall",
-            "courses": [
-              "PHYS& 221",
-              "MATH& 254",
-              "CS& 131 or CS& 141"
-            ]
-          },
-          {
-            "label": "Year 2 Winter",
-            "courses": [
-              "PHYS& 222",
-              "MATH 238",
-              "CS 132 or CS 145"
-            ]
-          },
-          {
-            "label": "Year 2 Spring",
-            "courses": [
-              "PHYS& 223",
-              "ENGR& 204",
-              "HUMANITIES or SOCIAL SCIENCE"
-            ]
-          },
-          {
-            "label": "Year 3 Fall",
-            "courses": [
-              "SELECT COURSE FROM LIST",
-              "SELECT COURSE FROM LIST"
-            ]
-          }
-        ],
-        "slotExpansions": [
-          {
-            "termLabel": "Year 3 Fall",
-            "slotLabel": "SELECT COURSE FROM LIST (slot 1)",
-            "recommendedCourses": [
-              "MATH 240",
-              "ENGR 250"
-            ],
-            "note": "The same linear-algebra versus scientific-computing choice is still the cleanest first add-on slot in 2025-2026."
-          },
-          {
-            "termLabel": "Year 3 Fall",
-            "slotLabel": "SELECT COURSE FROM LIST (slot 2)",
-            "recommendedCourses": [
-              "ENGR& 225",
-              "CHEM& 261"
-            ],
-            "note": "The same mechanics versus chemistry support choice still fits best in 2025-2026."
-          }
-        ],
-        "notes": [
-          "The 2025-2026 annual schedule still carries MATH 240, ENGR 250, ENGR& 225, and CHEM& 261."
-        ]
-      }
-    ]
-  },
-  {
     "id": "999O",
     "code": "999O",
     "title": "AST2 / MRP Bioengineering and Chemical Engineering",
-    "summary": "Useful as the chemistry-heavy starting point for Bioengineering and Chemical Engineering, but neither Seattle major should rely on this track alone without custom add-ons.",
+    "summary": "Official Green River associate degree - transfer track 2 curriculum map for Transfer Track 2-Bioengineering and Chemical Engineering. Generated automatically from the current public program-map page and catalog API.",
     "bestFor": [
-      "bioengineering",
-      "chemical engineering"
+      "Transfer Track 2-Bioengineering and Chemical Engineering"
     ],
     "terms": [
       {
-        "label": "Year 1 Fall",
+        "label": "Quarter 0",
         "courses": [
+          "CHEM& 140",
+          "PHYS& 114",
+          "MATH& 141",
+          "MATH& 142"
+        ]
+      },
+      {
+        "label": "Quarter 1 (18 credits)",
+        "courses": [
+          "CHEM& 161",
           "ENGL& 101",
-          "MATH& 151",
-          "CHEM& 161 or CHEM& 140 if required"
-        ]
-      },
-      {
-        "label": "Year 1 Winter",
-        "courses": [
           "ENGR 100",
-          "MATH& 152",
+          "MATH& 151"
+        ]
+      },
+      {
+        "label": "Quarter 2 (14 credits)",
+        "courses": [
           "CHEM& 162",
-          "Humanities or Social Science"
+          "ENGR 106",
+          "MATH& 152"
         ]
       },
       {
-        "label": "Year 1 Spring",
+        "label": "Quarter 3 (16 credits)",
         "courses": [
+          "CHEM& 163",
           "MATH& 163",
-          "CHEM& 163"
+          "2 C - Humanities/Fine Arts/English or Social Science"
         ]
       },
       {
-        "label": "Year 2 Fall",
+        "label": "Quarter 4 (15 credits)",
         "courses": [
-          "PHYS& 221",
           "MATH& 254",
+          "PHYS& 221",
+          "2 C - Humanities/Fine Arts/English or Social Science"
+        ]
+      },
+      {
+        "label": "Quarter 5 (16 credits)",
+        "courses": [
+          "MATH 238",
+          "PHYS& 222",
+          "BIOL& 211",
           "CHEM& 261"
         ]
       },
       {
-        "label": "Year 2 Winter",
+        "label": "Quarter 6 (15 credits)",
         "courses": [
-          "PHYS& 222",
-          "MATH 238",
-          "BIOL& 260 or CHEM& 262"
-        ]
-      },
-      {
-        "label": "Year 2 Spring",
-        "courses": [
+          "MATH 240",
           "PHYS& 223",
-          "Humanities or Social Science",
-          "Planner slot: CHEM& 262 or BIOL& 211 or ENGR 250"
+          "2 C - Humanities/Fine Arts/English or Social Science"
         ]
       },
       {
-        "label": "Year 3 Fall",
+        "label": "Transferability of Credits",
         "courses": [
-          "Planner slot: CHEM& 263 or BIOL& 212 or MATH 240",
-          "Planner slot: BIOL& 213 or ENGR 250"
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
         ]
       }
     ],
     "notes": [
-      "BioE now needs biology plus programming decisions beyond the stock PDF path.",
-      "ChemE has spring-start timing, so term planning should be treated separately from a normal autumn engineering transfer.",
-      "Older sample plans may still show MATH& 153 before MATH& 254. The current direct UW MATH 126 path uses MATH& 163 instead.",
-      "The catalog-year reference below preserves the latest public 2024 sample-plan layout and resolves each SELECT COURSE FROM LIST slot into the current BioE / ChemE add-ons that stayed active in the 2024-2025 and 2025-2026 annual schedules."
-    ],
-    "officialLinks": [
-      {
-        "label": "Green River transfer-degree index",
-        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/university-and-college-transfer/index.html"
-      },
-      {
-        "label": "Green River Associate Transfer Sample Ed Plans 2024",
-        "url": "https://www.greenriver.edu/marketing/media/documents/grad-to-gator/Associate%20Transfer%20Sample%20Ed%20Plans%202024.pdf"
-      },
-      {
-        "label": "Green River 2024-2025 Annual Schedule",
-        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2024-2025-Annual-Schedule.pdf"
-      },
-      {
-        "label": "Green River 2025-2026 Annual Schedule",
-        "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf"
-      }
+      "Program type: Associate Degree - Transfer Track 2.",
+      "Degree: Associate in Science Degree.",
+      "Published duration: 107 Credits.",
+      "CHEM& 140 is only required if no prior chemistry experience. PHYS& 114 is only required if no prior physics experience.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
     ],
     "catalogYears": [
       {
@@ -1112,6 +548,8192 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "The 2025-2026 annual schedule still carries CHEM& 262, CHEM& 263, BIOL& 211, BIOL& 212, BIOL& 213, ENGR 250, and MATH 240."
         ]
       }
+    ],
+    "officialLinks": [
+      {
+        "label": "Transfer Track 2-Bioengineering and Chemical Engineering curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/engineering/associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering.html"
+      }
+    ]
+  },
+  {
+    "id": "999P",
+    "code": "999P",
+    "title": "AST2 / MRP Computer and Electrical Engineering",
+    "summary": "Official Green River associate degree - transfer track 2 curriculum map for Transfer Track 2/MRP-Computer and Electrical Engineering. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Transfer Track 2/MRP-Computer and Electrical Engineering"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 0",
+        "courses": [
+          "CHEM& 140",
+          "PHYS& 114",
+          "MATH& 141",
+          "MATH& 142"
+        ]
+      },
+      {
+        "label": "Fall 1 (18 credits)",
+        "courses": [
+          "CHEM& 161",
+          "ENGL& 101",
+          "ENGR 100",
+          "MATH& 151"
+        ]
+      },
+      {
+        "label": "Winter 1 (16 credits)",
+        "courses": [
+          "MATH& 152",
+          "2 C - Humanities/Fine Arts/English or Social Science",
+          "CS 121",
+          "CS& 131"
+        ]
+      },
+      {
+        "label": "Spring 1 (15 credits)",
+        "courses": [
+          "MATH& 163",
+          "CS 122",
+          "CS 132",
+          "ENGR 271"
+        ]
+      },
+      {
+        "label": "Summer",
+        "courses": [
+          "H 1 - Humanities/Fine Arts/English",
+          "S 1 - Social Science"
+        ]
+      },
+      {
+        "label": "Fall 2 (15 credits)",
+        "courses": [
+          "MATH& 254",
+          "PHYS& 221",
+          "CS 123",
+          "2 C - Humanities/Fine Arts/English or Social Science"
+        ]
+      },
+      {
+        "label": "Winter 2 (15 credits)",
+        "courses": [
+          "ENGL& 235",
+          "MATH 238",
+          "PHYS& 222"
+        ]
+      },
+      {
+        "label": "Spring 2 (15 credits)",
+        "courses": [
+          "MATH 240",
+          "ENGR& 204",
+          "PHYS& 223"
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate Degree - Transfer Track 2.",
+      "Degree: Associate in Science Degree.",
+      "Published duration: 90 credits.",
+      "CHEM& 140 is only required if no prior chemistry experience. PHYS& 114 is only required if no prior physics experience.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "catalogYears": [
+      {
+        "label": "2024-2025",
+        "sourceSummary": "Latest public 2024 sample-plan PDF plus the 2024-2025 annual schedule.",
+        "terms": [
+          {
+            "label": "Year 1 Fall",
+            "courses": [
+              "ENGL& 101",
+              "MATH& 151",
+              "ENGR 100",
+              "ENGR 106"
+            ]
+          },
+          {
+            "label": "Year 1 Winter",
+            "courses": [
+              "CHEM& 161",
+              "MATH& 152",
+              "HUMANITIES"
+            ]
+          },
+          {
+            "label": "Year 1 Spring",
+            "courses": [
+              "CS 120",
+              "MATH& 153",
+              "SOCIAL SCIENCE"
+            ]
+          },
+          {
+            "label": "Year 2 Fall",
+            "courses": [
+              "PHYS& 221",
+              "MATH& 254",
+              "CS& 131 or CS& 141"
+            ]
+          },
+          {
+            "label": "Year 2 Winter",
+            "courses": [
+              "PHYS& 222",
+              "MATH 238",
+              "CS 132 or CS 145"
+            ]
+          },
+          {
+            "label": "Year 2 Spring",
+            "courses": [
+              "PHYS& 223",
+              "ENGR& 204",
+              "HUMANITIES or SOCIAL SCIENCE"
+            ]
+          },
+          {
+            "label": "Year 3 Fall",
+            "courses": [
+              "SELECT COURSE FROM LIST",
+              "SELECT COURSE FROM LIST"
+            ]
+          }
+        ],
+        "slotExpansions": [
+          {
+            "termLabel": "Year 3 Fall",
+            "slotLabel": "SELECT COURSE FROM LIST (slot 1)",
+            "recommendedCourses": [
+              "MATH 240",
+              "ENGR 250"
+            ],
+            "note": "Use MATH 240 first when the destination program wants linear algebra; use ENGR 250 when scientific computing is the stronger add-on."
+          },
+          {
+            "termLabel": "Year 3 Fall",
+            "slotLabel": "SELECT COURSE FROM LIST (slot 2)",
+            "recommendedCourses": [
+              "ENGR& 225",
+              "CHEM& 261"
+            ],
+            "note": "Use ENGR& 225 when mechanics depth still helps the destination engineering path, and CHEM& 261 when chemistry depth is the more useful support course."
+          }
+        ],
+        "notes": [
+          "The 2024-2025 annual schedule still lists MATH 240, ENGR 250, ENGR& 225, and CHEM& 261 as active current courses."
+        ]
+      },
+      {
+        "label": "2025-2026",
+        "sourceSummary": "Same latest public 2024 sample-plan PDF, cross-checked against the 2025-2026 annual schedule because a newer public consolidated track PDF was not available.",
+        "terms": [
+          {
+            "label": "Year 1 Fall",
+            "courses": [
+              "ENGL& 101",
+              "MATH& 151",
+              "ENGR 100",
+              "ENGR 106"
+            ]
+          },
+          {
+            "label": "Year 1 Winter",
+            "courses": [
+              "CHEM& 161",
+              "MATH& 152",
+              "HUMANITIES"
+            ]
+          },
+          {
+            "label": "Year 1 Spring",
+            "courses": [
+              "CS 120",
+              "MATH& 153",
+              "SOCIAL SCIENCE"
+            ]
+          },
+          {
+            "label": "Year 2 Fall",
+            "courses": [
+              "PHYS& 221",
+              "MATH& 254",
+              "CS& 131 or CS& 141"
+            ]
+          },
+          {
+            "label": "Year 2 Winter",
+            "courses": [
+              "PHYS& 222",
+              "MATH 238",
+              "CS 132 or CS 145"
+            ]
+          },
+          {
+            "label": "Year 2 Spring",
+            "courses": [
+              "PHYS& 223",
+              "ENGR& 204",
+              "HUMANITIES or SOCIAL SCIENCE"
+            ]
+          },
+          {
+            "label": "Year 3 Fall",
+            "courses": [
+              "SELECT COURSE FROM LIST",
+              "SELECT COURSE FROM LIST"
+            ]
+          }
+        ],
+        "slotExpansions": [
+          {
+            "termLabel": "Year 3 Fall",
+            "slotLabel": "SELECT COURSE FROM LIST (slot 1)",
+            "recommendedCourses": [
+              "MATH 240",
+              "ENGR 250"
+            ],
+            "note": "The same linear-algebra versus scientific-computing choice is still the cleanest first add-on slot in 2025-2026."
+          },
+          {
+            "termLabel": "Year 3 Fall",
+            "slotLabel": "SELECT COURSE FROM LIST (slot 2)",
+            "recommendedCourses": [
+              "ENGR& 225",
+              "CHEM& 261"
+            ],
+            "note": "The same mechanics versus chemistry support choice still fits best in 2025-2026."
+          }
+        ],
+        "notes": [
+          "The 2025-2026 annual schedule still carries MATH 240, ENGR 250, ENGR& 225, and CHEM& 261."
+        ]
+      }
+    ],
+    "officialLinks": [
+      {
+        "label": "Transfer Track 2/MRP-Computer and Electrical Engineering curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/engineering/associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering.html"
+      }
+    ]
+  },
+  {
+    "id": "999Q",
+    "code": "999Q",
+    "title": "AST2 / MRP Civil and Mechanical Engineering",
+    "summary": "Official Green River associate degree - transfer track 2 curriculum map for Transfer Track 2/MRP-Civil and Mechanical Engineering. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Transfer Track 2/MRP-Civil and Mechanical Engineering"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 0",
+        "courses": [
+          "CHEM& 140",
+          "PHYS& 114",
+          "MATH& 141",
+          "MATH& 142"
+        ]
+      },
+      {
+        "label": "Fall 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "ENGR 100",
+          "ENGR 106",
+          "MATH& 151"
+        ]
+      },
+      {
+        "label": "Winter 1 (16 credits)",
+        "courses": [
+          "CHEM& 161",
+          "MATH& 152",
+          "PHYS& 221"
+        ]
+      },
+      {
+        "label": "Spring 1 (15 credits)",
+        "courses": [
+          "CHEM& 162",
+          "MATH& 163",
+          "PHYS& 222"
+        ]
+      },
+      {
+        "label": "Summer 1 (10 credits)",
+        "courses": [
+          "H 1 - Humanities/Fine Arts/English",
+          "S 1 - Social Science"
+        ]
+      },
+      {
+        "label": "Fall 2 (15 credits)",
+        "courses": [
+          "ENGR& 214",
+          "MATH& 254",
+          "PHYS& 223"
+        ]
+      },
+      {
+        "label": "Winter 2 (15 credits)",
+        "courses": [
+          "MATH 238",
+          "ENGR& 215",
+          "ENGR 250",
+          "or other from section D (see below)"
+        ]
+      },
+      {
+        "label": "Spring 2 (15 credits)",
+        "courses": [
+          "MATH 240",
+          "ENGR& 225",
+          "ENGR& 224",
+          "or other section D course (see below)"
+        ]
+      },
+      {
+        "label": "Summer 2 (5 credits)",
+        "courses": [
+          "2 C - Humanities/Fine Arts/English or Social Science"
+        ]
+      },
+      {
+        "label": "Section D",
+        "courses": [
+          "CS 121",
+          "CS 122",
+          "CS& 131",
+          "ENGL 128",
+          "ENGL& 235",
+          "ENGR& 104",
+          "ENGR& 114",
+          "ENGR 140",
+          "ENGR& 204",
+          "ENGR& 224",
+          "ENGR 250"
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate Degree - Transfer Track 2.",
+      "Degree: Associate in Science Degree.",
+      "Published duration: 90 credits.",
+      "CHEM& 140 is only required if no prior chemistry experience. PHYS& 114 is only required if no prior physics experience.",
+      "10 credits of Humanities/Fine Arts/English Distribution or Social Science Distribution courses.",
+      "Select 2 courses from the following after consultation with a Science/Engineering advisor:",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "catalogYears": [
+      {
+        "label": "2024-2025",
+        "sourceSummary": "Latest public 2024 sample-plan PDF plus the 2024-2025 annual schedule.",
+        "terms": [
+          {
+            "label": "Year 1 Fall",
+            "courses": [
+              "ENGL& 101",
+              "MATH& 151",
+              "ENGR 100"
+            ]
+          },
+          {
+            "label": "Year 1 Winter",
+            "courses": [
+              "CHEM& 161",
+              "MATH& 152",
+              "ENGR 106"
+            ]
+          },
+          {
+            "label": "Year 1 Spring",
+            "courses": [
+              "CHEM& 162",
+              "MATH& 153",
+              "HUMANITIES"
+            ]
+          },
+          {
+            "label": "Year 2 Fall",
+            "courses": [
+              "PHYS& 221",
+              "MATH& 254",
+              "ENGR& 214",
+              "CS 120 or ENGR 120"
+            ]
+          },
+          {
+            "label": "Year 2 Winter",
+            "courses": [
+              "PHYS& 222",
+              "MATH 238",
+              "ENGR& 215"
+            ]
+          },
+          {
+            "label": "Year 2 Spring",
+            "courses": [
+              "PHYS& 223",
+              "MATH 240",
+              "SOCIAL SCIENCE"
+            ]
+          },
+          {
+            "label": "Year 3 Fall",
+            "courses": [
+              "ENGR& 225",
+              "SELECT COURSE FROM LIST"
+            ]
+          },
+          {
+            "label": "Year 3 Winter",
+            "courses": [
+              "HUMANITIES or SOCIAL SCIENCE",
+              "SELECT COURSE FROM LIST"
+            ]
+          }
+        ],
+        "slotExpansions": [
+          {
+            "termLabel": "Year 3 Fall",
+            "slotLabel": "SELECT COURSE FROM LIST",
+            "recommendedCourses": [
+              "ENGR& 224",
+              "ENGR 250",
+              "CS 121"
+            ],
+            "note": "Use ENGR& 224 for thermodynamics-heavy paths like A&A, MSE, and some ME variants, ENGR 250 for scientific computing, and CS 121 when the destination major needs a stronger programming launch."
+          },
+          {
+            "termLabel": "Year 3 Winter",
+            "slotLabel": "SELECT COURSE FROM LIST",
+            "recommendedCourses": [
+              "CHEM& 163",
+              "ENGR 140",
+              "MATH 240"
+            ],
+            "note": "Use CHEM& 163 for chemistry-sensitive ME or MSE planning, ENGR 140 for MSE 170 preparation, and MATH 240 when linear algebra is the stronger competitive add-on."
+          }
+        ],
+        "notes": [
+          "The 2024-2025 annual schedule still lists ENGR& 224, ENGR 140, ENGR 250, MATH 240, and CS 121 as active courses, so these are the strongest current replacements for the open slots."
+        ]
+      },
+      {
+        "label": "2025-2026",
+        "sourceSummary": "Same latest public 2024 sample-plan PDF, cross-checked against the 2025-2026 annual schedule because a newer public consolidated track PDF was not available.",
+        "terms": [
+          {
+            "label": "Year 1 Fall",
+            "courses": [
+              "ENGL& 101",
+              "MATH& 151",
+              "ENGR 100"
+            ]
+          },
+          {
+            "label": "Year 1 Winter",
+            "courses": [
+              "CHEM& 161",
+              "MATH& 152",
+              "ENGR 106"
+            ]
+          },
+          {
+            "label": "Year 1 Spring",
+            "courses": [
+              "CHEM& 162",
+              "MATH& 153",
+              "HUMANITIES"
+            ]
+          },
+          {
+            "label": "Year 2 Fall",
+            "courses": [
+              "PHYS& 221",
+              "MATH& 254",
+              "ENGR& 214",
+              "CS 120 or ENGR 120"
+            ]
+          },
+          {
+            "label": "Year 2 Winter",
+            "courses": [
+              "PHYS& 222",
+              "MATH 238",
+              "ENGR& 215"
+            ]
+          },
+          {
+            "label": "Year 2 Spring",
+            "courses": [
+              "PHYS& 223",
+              "MATH 240",
+              "SOCIAL SCIENCE"
+            ]
+          },
+          {
+            "label": "Year 3 Fall",
+            "courses": [
+              "ENGR& 225",
+              "SELECT COURSE FROM LIST"
+            ]
+          },
+          {
+            "label": "Year 3 Winter",
+            "courses": [
+              "HUMANITIES or SOCIAL SCIENCE",
+              "SELECT COURSE FROM LIST"
+            ]
+          }
+        ],
+        "slotExpansions": [
+          {
+            "termLabel": "Year 3 Fall",
+            "slotLabel": "SELECT COURSE FROM LIST",
+            "recommendedCourses": [
+              "ENGR& 224",
+              "ENGR 250",
+              "CS 121"
+            ],
+            "note": "The same thermodynamics, computing, and programming trio still fits the open slot best in 2025-2026."
+          },
+          {
+            "termLabel": "Year 3 Winter",
+            "slotLabel": "SELECT COURSE FROM LIST",
+            "recommendedCourses": [
+              "CHEM& 163",
+              "ENGR 140",
+              "MATH 240"
+            ],
+            "note": "The same chemistry, materials, and linear-algebra choices still cover the most common current UW follow-on requirements in 2025-2026."
+          }
+        ],
+        "notes": [
+          "The 2025-2026 annual schedule still carries ENGR& 224, ENGR 140, ENGR 250, MATH 240, and CS 121, so the planner keeps the same current slot expansion."
+        ]
+      }
+    ],
+    "officialLinks": [
+      {
+        "label": "Transfer Track 2/MRP-Civil and Mechanical Engineering curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/engineering/associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-business-entrepreneurship-accounting-aaa",
+    "code": "AAA",
+    "title": "Accounting",
+    "summary": "Official Green River curriculum map for Accounting, AAA. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Accounting"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ACCT 110",
+          "BTAC 100",
+          "BUS& 101"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ACCT 111",
+          "BTAC 110",
+          "BTAC 162"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "ACCT 113",
+          "BTAC 163",
+          "ENGL& 101"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "ACCT 212",
+          "POLS& 200",
+          "CMST& 101",
+          "CMST& 210",
+          "CMST& 220",
+          "CMST& 230",
+          "CMST& 240",
+          "Select one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "ACCT& 203",
+          "ACCT 215",
+          "ACCT 221"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "ACCT 218",
+          "ACCT 260",
+          "COOP 171",
+          "ECON 100",
+          "ECON& 201",
+          "ECON& 202",
+          "PHIL& 115",
+          "PHIL& 120",
+          "Select 5 credits from the list below Any ACCT course not included above Any BTAC course not included above Any BUS/BUS& course not included above Any MATH course"
+        ]
+      }
+    ],
+    "notes": [
+      "Degree: Associate in Applied Arts (AAA).",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Accounting, AAA curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/accounting/aaa.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-business-entrepreneurship-administrative-assistant-aaa",
+    "code": "AAA",
+    "title": "Administrative Assistant",
+    "summary": "Official Green River associates degree curriculum map for Administrative Assistant, AAA. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Administrative Assistant"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "BTAC 100",
+          "BTAC 101",
+          "BTAC 110",
+          "or BTAC elective-any BTAC course not required in the degree"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "BTAC 102",
+          "BTAC 132",
+          "BTAC 150"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "BTAC 112",
+          "BTAC 130",
+          "BTAC 140"
+        ]
+      },
+      {
+        "label": "Quarter 4 -Summer (10 credits)",
+        "courses": [
+          "BTAC 103",
+          "BTAC 162"
+        ]
+      },
+      {
+        "label": "Quarter 5 (11 credits)",
+        "courses": [
+          "ACCT 110",
+          "BTAC 214",
+          "COOP 171"
+        ]
+      },
+      {
+        "label": "Quarter 6 (13 credits)",
+        "courses": [
+          "BTAC 177",
+          "BTAC 266",
+          "See elective list below",
+          "- Minimum 3 credits"
+        ]
+      },
+      {
+        "label": "Quarter 7 (15 credits)",
+        "courses": [
+          "ACCT 212",
+          "BTAC 250",
+          "CMST& 210",
+          "CMST& 220",
+          "CMST& 230",
+          "Select one of the following:"
+        ]
+      },
+      {
+        "label": "Electives",
+        "courses": [
+          "ACCT& 201",
+          "BTAC 101",
+          "BTAC 107",
+          "BTAC 111",
+          "BTAC 115",
+          "BTAC 147",
+          "BTAC 148",
+          "BTAC 149",
+          "BTAC 151",
+          "BTAC 152",
+          "BTAC 153",
+          "BTAC 154",
+          "BTAC 155",
+          "BTAC 163",
+          "BTAC 164",
+          "BTAC 165",
+          "BTAC 166",
+          "BTAC 167",
+          "BTAC 175",
+          "BTAC 178",
+          "BTAC 179",
+          "BTAC 184",
+          "BTAC 185",
+          "BTAC 187",
+          "BTAC 188",
+          "BTAC 189",
+          "BTAC 191",
+          "BTAC 192",
+          "BTAC 193",
+          "BTAC 194",
+          "BTAC 195",
+          "BTAC 216",
+          "BTAC 255",
+          "BUS& 101",
+          "BUS 164",
+          "BUS 166",
+          "ENGL 105",
+          "PSYC& 100",
+          "SOC& 101"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associates Degree.",
+      "Degree: Associate in Applied Arts.",
+      "Published duration: 90 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Administrative Assistant, AAA curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/administrative-assistant/aaa.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-business-entrepreneurship-business-ab-dta-mrp",
+    "code": "AB-DTA/MRP",
+    "title": "Associate in Business",
+    "summary": "Official Green River transfer associate curriculum map for Associate in Business, AB-DTA/MRP. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Associate in Business"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "MATH 147",
+          "BUS& 101"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "MATH& 148",
+          "POLS& 200",
+          "ENGL 126",
+          "ENGL 127",
+          "ENGL 128",
+          "ENGL& 235",
+          "Select one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "BUS& 201",
+          "MATH 256",
+          "H 1 - Humanities/Fine Arts/English"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "ACCT& 201",
+          "ECON& 202",
+          "N 1 - Natural Science List A (Lab)"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "ACCT& 202",
+          "ECON& 201",
+          "H 2 - Humanities/Fine Arts/English"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "ACCT& 203",
+          "H 3 - Humanities/Fine Arts/English",
+          "N 3 - Natural Science List A or List B"
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Transfer Associate.",
+      "Degree: Associate in Business DTA/MRP.",
+      "Published duration: Minimum of 90 credits.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Associate in Business, AB-DTA/MRP curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/business/ab-dta-mrp.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-business-entrepreneurship-business-applications-specialist-aaa",
+    "code": "AAA",
+    "title": "Business Applications Specialist",
+    "summary": "Official Green River associates degree curriculum map for Business Applications Specialist, AAA. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Business Applications Specialist"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "BTAC 100",
+          "BTAC 110",
+          "BTAC 101",
+          "BTAC 102"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "BTAC 132",
+          "BTAC 150",
+          "BTAC 184",
+          "BTAC 185"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "BTAC 112",
+          "BTAC 140",
+          "BTAC 162"
+        ]
+      },
+      {
+        "label": "Quarter 4 (10 credits)",
+        "courses": [
+          "BTAC 163",
+          "CMST& 210",
+          "CMST& 220",
+          "CMST& 230",
+          "Select one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "BTAC 130",
+          "BTAC 214",
+          "BTAC 255"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "BTAC 266",
+          "BTAC 184",
+          "BTAC 185",
+          "Any BTAC course not currently required in the degree Credits: 1+"
+        ]
+      },
+      {
+        "label": "Quarter 7 (credits vary)",
+        "courses": [
+          "BTAC 216",
+          "BTAC 250",
+          "ACCT 110",
+          "ACCT& 201",
+          "ACCT 212",
+          "BTAC 101",
+          "BTAC 102",
+          "BTAC 103",
+          "BTAC 107",
+          "BTAC 108",
+          "BTAC 111",
+          "BTAC 151",
+          "BTAC 152",
+          "BTAC 153",
+          "BTAC 163",
+          "BTAC 175",
+          "BTAC 177",
+          "BTAC 178",
+          "BTAC 179",
+          "BTAC 191",
+          "BTAC 192",
+          "BTAC 193",
+          "BTAC 217",
+          "BTAC 255",
+          "BUS& 101",
+          "BUS 164",
+          "BUS 166",
+          "COOP 171",
+          "PSYC& 100",
+          "SOC& 101",
+          "Select from the following list of courses to reach 90 credits"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associates Degree.",
+      "Degree: Associate in Applied Arts.",
+      "Published duration: 90 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Business Applications Specialist, AAA curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/business-applications-specialist/aaa.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-business-entrepreneurship-business-management-aaa",
+    "code": "AAA",
+    "title": "Business Management",
+    "summary": "Official Green River curriculum map for Business Management, AAA. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Business Management"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "BUS 166",
+          "BTAC 100",
+          "BTAC 162"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "BUS& 101",
+          "BTAC 110",
+          "CMST& 101",
+          "CMST 117",
+          "CMST& 210",
+          "CMST& 220",
+          "MATH& 107",
+          "Select one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "BUS 103",
+          "BUS 121",
+          "ACCT 110",
+          "ACCT& 201"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "BUS 173",
+          "BUS 181",
+          "BUS 159",
+          "BUS 257"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "BUS 258",
+          "BUS 202",
+          "BUS 164",
+          "ENGL 126",
+          "ENGL 127",
+          "ENGL 128",
+          "ENGL& 235",
+          "Program Elective: Recommended one of the following:",
+          "(offered summer/winter)",
+          "(offered fall/spring)"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "N 1 - Natural Science List A (Lab)",
+          "MATH& 146",
+          "ACCT 215",
+          "SDEV 101",
+          "Program Electives (see complete list below) Recommended:"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits) > Program Electives",
+        "courses": [
+          "JOURN 152",
+          "MATH& 146",
+          "MATH 256",
+          "N 1 - Natural Science List A (Lab)",
+          "PHIL 102",
+          "PHIL 111",
+          "PHIL 112",
+          "PHIL& 115",
+          "PHIL 206",
+          "PHIL 243",
+          "POLS& 200",
+          "ACCT-any course BUS-any course BTAC-any course CMST-any course CS-any course ECON-any course ENGL-any course IT-any course",
+          "SDEV-any course"
+        ]
+      }
+    ],
+    "notes": [
+      "Degree: Associate of Applied Arts.",
+      "Published duration: 90-95 credits.",
+      "Students wishing to obtain an additional specialized certificate should seek advising assistance.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Business Management, AAA curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/business-management/aaa.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-education-law-social-science-american-ethnic-studies-aa-dta-emphasis-american-ethnic-studies",
+    "code": "AA-DTA",
+    "title": "Associate in Arts-DTA with Emphasis in American Ethnic Studies",
+    "summary": "Official Green River curriculum map for Associate in Arts-DTA with Emphasis in American Ethnic Studies. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Associate in Arts-DTA with Emphasis in American Ethnic Studies"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "AMES 100",
+          "MATH& 107"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ENGL 127",
+          "H 1 - Humanities/Fine Arts/English",
+          "N 1 - Natural Science List A (Lab)",
+          "If you haven't taken a language class in high school and are interested in transferring to University of Washington, consider a year of foreign language required for transfer."
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "H 2 - Humanities/Fine Arts/English",
+          "N 2 - Natural Science List A",
+          "S 1 - Social Science",
+          "avoid AMES courses to meet the distribution requirement"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "H 3 - Humanities/Fine Arts/English",
+          "N 3 - Natural Science List A or List B",
+          "S 2 - Social Science",
+          "avoid AMES courses to meet the distribution requirement"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "AMES 103",
+          "Additional credits from any distribution Humanities/Fine Arts/English Distribution , Natural Science Distribution or Social Science Distribution Electives All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity."
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "Additional credits-Recommended to take additional American Ethnic Studies courses . Electives All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity."
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Degree: Associate in Arts, Direct Transfer Agreement (DTA).",
+      "Additional credits-Recommended to take additional American Ethnic Studies courses . Electives All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Associate in Arts-DTA with Emphasis in American Ethnic Studies curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/american-ethnic-studies/aa-dta-emphasis-american-ethnic-studies.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-education-law-social-science-anthropology-aa-dta-emphasis-anthropology",
+    "code": "AA-DTA",
+    "title": "Anthropology",
+    "summary": "Official Green River associate degree – transfer curriculum map for Anthropology, AA-DTA. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Anthropology"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "ANTH& 100",
+          "MATH& 107",
+          "or higher, depending on placement"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ENGL 127",
+          "H 1 - Humanities/Fine Arts/English",
+          "N 1 - Natural Science List A (Lab)",
+          "Recommend: Foreign Language, may be required by university.",
+          "BIOL& 100"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "H 2 - Humanities/Fine Arts/English",
+          "S 1 - Social Science",
+          "N 2 - Natural Science List A",
+          "ART 212",
+          "ART 213",
+          "MUSC 102",
+          "MUSC 103",
+          "MUSC 104",
+          "MUSC& 105",
+          "MUSC 107",
+          "AMES 100",
+          "AMES 103"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "N 3 - Natural Science List A or List B",
+          "S 2 - Social Science",
+          "5 credits from Humanities/Fine Arts/English Distribution , Social Science Distribution or Natural Science Distribution",
+          "ANTH& 205"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "ANTH& 206",
+          "H 3 - Humanities/Fine Arts/English",
+          "5 credits from Humanities/Fine Arts/English Distribution , Social Science Distribution or Natural Science Distribution"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "Electives All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity."
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate Degree – Transfer.",
+      "Degree: Associate Degree - Direct Transfer Agreement.",
+      "Published duration: 90 credits.",
+      "Electives All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Anthropology, AA-DTA curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/anthropology/aa-dta-emphasis-anthropology.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-education-law-social-science-court-reporting-captioning-realtime-transcription-aaa",
+    "code": "AAA",
+    "title": "Realtime Transcription",
+    "summary": "Official Green River associate degree curriculum map for Realtime Transcription, AAA. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Realtime Transcription"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (13 credits)",
+        "courses": [
+          "ENGL 105",
+          "CRC 101"
+        ]
+      },
+      {
+        "label": "Quarter 2 (11 credits)",
+        "courses": [
+          "BTAC 109",
+          "CRC 102"
+        ]
+      },
+      {
+        "label": "Quarter 3 (13 credits)",
+        "courses": [
+          "INFO 110",
+          "CRC 103"
+        ]
+      },
+      {
+        "label": "Quarter 4 (13 credits)",
+        "courses": [
+          "BTAC 125",
+          "CRC 111",
+          "CRC 112"
+        ]
+      },
+      {
+        "label": "Quarter 5 (17 credits)",
+        "courses": [
+          "ENGL& 101",
+          "CRC 121",
+          "CRC 122",
+          "CRC 150"
+        ]
+      },
+      {
+        "label": "Quarter 6 (17 credits)",
+        "courses": [
+          "BTAC 110",
+          "CRC 131",
+          "CRC 132",
+          "CRC 133"
+        ]
+      },
+      {
+        "label": "Quarter 7 (18 credits)",
+        "courses": [
+          "CRC 141",
+          "CRC 142",
+          "CRC 143",
+          "CRC 151",
+          "CRC 260"
+        ]
+      },
+      {
+        "label": "Quarter 8 (17 credits)",
+        "courses": [
+          "CRC 211",
+          "CRC 212",
+          "CRC 213",
+          "CMST& 101",
+          "CMST 117",
+          "CMST& 210",
+          "CMST& 220",
+          "CMST& 230",
+          "CMST& 240",
+          "Select one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 9 (21 credits)",
+        "courses": [
+          "CRC 144",
+          "CRC 221",
+          "CRC 222",
+          "CRC 223",
+          "CRC 250"
+        ]
+      },
+      {
+        "label": "Quarter 10 (9 credits)",
+        "courses": [
+          "CRC 214",
+          "CRC 251"
+        ]
+      },
+      {
+        "label": "Quarter 11 (4 credits)",
+        "courses": [
+          "CRC 224"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate Degree.",
+      "Degree: Associate of Applied Arts Degree.",
+      "Published duration: ---.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Realtime Transcription, AAA curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/court-reporting-captioning/realtime-transcription-aaa.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-education-law-social-science-criminal-justice-aas-t",
+    "code": "AAS-T",
+    "title": "Criminal Justice",
+    "summary": "Official Green River associate degree - transfer curriculum map for Criminal Justice, AAS-T. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Criminal Justice"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "CJ& 101",
+          "MATH& 107",
+          "OR any college-level MATH class"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "CMST& 230",
+          "CJ& 105",
+          "CJ elective, see list of choices below"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "CJ 205",
+          "H 1 - Humanities/Fine Arts/English",
+          "N 1 - Natural Science List A (Lab)"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "CJ& 110",
+          "CJ 200",
+          "CJ 236"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "CJ& 112",
+          "N 3 - Natural Science List A or List B",
+          "ENGL 126",
+          "ENGL 127",
+          "ENGL 128",
+          "ENGL& 235",
+          "Select one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "CJ& 106",
+          "CJ 220",
+          "CJ elective, see list of choices below"
+        ]
+      },
+      {
+        "label": "CJ Electives",
+        "courses": [
+          "AMES 103",
+          "BTAC 100",
+          "PHOTO 101",
+          "PHOTO 102",
+          "PHOTO 111",
+          "PHOTO 112",
+          "POLS& 101",
+          "POLS& 202",
+          "PSYC& 100",
+          "PSYC& 200",
+          "SOC 215",
+          "SOC 252",
+          "SOC 260",
+          "SOC 271",
+          "Any criminal justice CJ/CJ& course",
+          "Any world language course (ARAB, CHIN, FRCH, GERM, JAPN, SPAN etc)"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate Degree - Transfer.",
+      "Degree: Associate in Applied Science - Transfer.",
+      "Published duration: 90 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Criminal Justice, AAS-T curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/criminal-justice/aas-t.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-education-law-social-science-criminal-justice-forensic-technology-aas-t",
+    "code": "AAS-T",
+    "title": "Forensic",
+    "summary": "Official Green River associate degree - transfer curriculum map for Forensic, AAS-T. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Forensic"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "MATH& 107",
+          "CJ& 101"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "CMST& 230",
+          "CJ& 240",
+          "CJ Elective"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "BIOL& 160",
+          "CJ 115",
+          "CJ Elective"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "BIOL& 241",
+          "CJ& 110",
+          "CJ 200"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "PHOTO 111",
+          "ENGL 126",
+          "ENGL 127",
+          "ENGL 128",
+          "ENGL& 235",
+          "CJ Elective",
+          "Select one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "BIOL& 242",
+          "CJ 205",
+          "CJ 220"
+        ]
+      },
+      {
+        "label": "CJ Electives",
+        "courses": [
+          "AMES 103",
+          "ANTH& 100",
+          "ANTH& 205",
+          "ANTH& 236",
+          "BIOL& 100",
+          "BIOL& 211",
+          "BTAC 140",
+          "BTAC 250",
+          "CHEM& 110",
+          "CHEM& 121",
+          "CHEM& 140",
+          "PHOTO 101",
+          "PHOTO 102",
+          "PHOTO 112",
+          "PHOTO 113",
+          "PSYC& 100",
+          "PSYC& 220",
+          "PSYC 240",
+          "Any criminal justice (CJ/CJ&) course (not already required in degree)",
+          "Any physics (PHYS/PHYS&) course"
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate Degree - Transfer.",
+      "Degree: Associate in Applied Science - Transfer.",
+      "Published duration: 90 credits.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Forensic, AAS-T curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/criminal-justice/forensic-technology-aas-t.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-education-law-social-science-early-childhood-education-early-childhood-education-aas",
+    "code": "AAS",
+    "title": "Early Childhood Education",
+    "summary": "Official Green River associate degree curriculum map for Early Childhood Education, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Early Childhood Education"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (12 credits)",
+        "courses": [
+          "ECED& 105",
+          "ECED& 107",
+          "ECED& 120"
+        ]
+      },
+      {
+        "label": "Quarter 2 (16 credits)",
+        "courses": [
+          "ENGL& 101",
+          "EDUC& 115",
+          "EDUC& 130",
+          "EDUC& 150"
+        ]
+      },
+      {
+        "label": "Quarter 3 (16 credits)",
+        "courses": [
+          "ECED& 170",
+          "ECED 214",
+          "ECED& 160",
+          "CMST& 101",
+          "CMST& 210",
+          "CMST& 220",
+          "CMST& 230",
+          "CMST& 240",
+          "Select one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 4 (14 credits)",
+        "courses": [
+          "BTAC 110",
+          "ECED 175",
+          "ECED& 180",
+          "ECED 141",
+          "MATH& 107",
+          "MATH& 131",
+          "MATH& 132"
+        ]
+      },
+      {
+        "label": "Quarter 5 (16 credits)",
+        "courses": [
+          "ECED 155",
+          "ECED& 190",
+          "ECED 215",
+          "EDUC& 204"
+        ]
+      },
+      {
+        "label": "Quarter 6 (16 credits)",
+        "courses": [
+          "ECED 165",
+          "ECED 250",
+          "EDUC& 240",
+          "EDUC 245"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate Degree.",
+      "Degree: Associate of Applied Science.",
+      "Published duration: 90 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Early Childhood Education, AAS curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/early-childhood-education/early-childhood-education-aas.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-education-law-social-science-early-childhood-education-early-childhood-education-diversity-studies-aas-t",
+    "code": "AAS-T",
+    "title": "Early Childhood Education and Diversity Studies",
+    "summary": "Official Green River associate - transfer curriculum map for Early Childhood Education and Diversity Studies, AAS-T. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Early Childhood Education and Diversity Studies"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ECED& 105",
+          "ECED& 107",
+          "ECED& 120",
+          "EDUC& 130"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "EDUC& 115",
+          "ECED& 160",
+          "ENGL& 101"
+        ]
+      },
+      {
+        "label": "Quarter 3 (14 credits)",
+        "courses": [
+          "EDUC& 150",
+          "ECED& 170",
+          "ECED& 190",
+          "Any course in Humanities/Fine Arts/English Distribution , Social Science Distribution , or Natural Science Distribution categories."
+        ]
+      },
+      {
+        "label": "Quarter 4 (14 credits)",
+        "courses": [
+          "ECED 141",
+          "ECED& 180",
+          "EDUC 245",
+          "MATH& 107",
+          "MATH& 131",
+          "MATH& 132"
+        ]
+      },
+      {
+        "label": "Quarter 5 (16 credits)",
+        "courses": [
+          "EDUC& 204",
+          "ECED 214",
+          "Any course in Humanities/Fine Arts/English Distribution , Social Science Distribution , or Natural Science Distribution categories. Credits: 5 Any ECED or EDUC course not included in core, minimum 3 credits."
+        ]
+      },
+      {
+        "label": "Quarter 6 (16 credits)",
+        "courses": [
+          "EDUC& 240",
+          "ECED 250",
+          "Any course in Humanities/Fine Arts/English Distribution , Social Science Distribution , or Natural Science Distribution categories. Credits: 5 Any ECED or EDUC course not included in core, mimimum 3 credits."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate - Transfer.",
+      "Degree: Associate of Applied Science - Transfer.",
+      "Published duration: 2 years.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Early Childhood Education and Diversity Studies, AAS-T curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/early-childhood-education/early-childhood-education-diversity-studies-aas-t.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-education-law-social-science-early-childhood-education-paraeducator-aas-t",
+    "code": "AAS-T",
+    "title": "Early Childhood Education Paraeducator",
+    "summary": "Official Green River associate - transfer curriculum map for Early Childhood Education Paraeducator, AAS-T. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Early Childhood Education Paraeducator"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (13 credits)",
+        "courses": [
+          "EDUC& 130",
+          "EDUC& 205",
+          "ENGL& 101"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "EDUC& 115",
+          "ENGL 126",
+          "ENGL 127",
+          "ENGL 128",
+          "MATH& 107",
+          "MATH 108",
+          "MATH& 141",
+          "MATH& 146",
+          "MATH 147",
+          "MATH& 148",
+          "MATH& 131",
+          "MATH& 132",
+          "Choose one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 3 (13 credits)",
+        "courses": [
+          "EDUC& 240",
+          "EDUC 245",
+          "CMST& 210",
+          "CMST& 220",
+          "CMST& 230",
+          "CMST& 240",
+          "Choose one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 4 (16 credits)",
+        "courses": [
+          "ECED 112",
+          "ECED 141",
+          "PSYC& 100",
+          "N 3 - Natural Science List A or List B"
+        ]
+      },
+      {
+        "label": "Quarter 5 (18 credits)",
+        "courses": [
+          "ECED 142",
+          "EDUC& 204",
+          "S 2 - Social Science",
+          "seperate area from Psychology"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "EDUC 210",
+          "H 1 - Humanities/Fine Arts/English",
+          "N 3 - Natural Science List A or List B"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate - Transfer.",
+      "Degree: Associate of Applied Science - Transfer.",
+      "Published duration: 90 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Early Childhood Education Paraeducator, AAS-T curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/early-childhood-education/paraeducator-aas-t.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-education-law-social-science-geography-aa-dta-with-emphasis-geography",
+    "code": "AA-DTA",
+    "title": "Associate in Arts-DTA with Emphasis in Geography",
+    "summary": "Official Green River curriculum map for Associate in Arts-DTA with Emphasis in Geography. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Associate in Arts-DTA with Emphasis in Geography"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "GEOG& 100",
+          "MATH& 107",
+          "or higher depending on placement"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ENGL 127",
+          "N 1 - Natural Science List A (Lab)",
+          "H 1 - Humanities/Fine Arts/English",
+          "Foreign Language may be required by university."
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "GEOG& 200",
+          "N 2 - Natural Science List A",
+          "S 1 - Social Science",
+          "any course except GEOG from the distribution"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "H 2 - Humanities/Fine Arts/English",
+          "N 3 - Natural Science List A or List B",
+          "Transferrable Elective any course from a distribution"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "H 3 - Humanities/Fine Arts/English",
+          "Transferrable Elective Electives All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity."
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "S 2 - Social Science",
+          "any course except GEOG from the distribution"
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Degree: Associate in Arts degree, Direct Transfer Agreement (DTA).",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Associate in Arts-DTA with Emphasis in Geography curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/geography/aa-dta-with-emphasis-geography.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-education-law-social-science-history-aa-dta-with-emphasis-history",
+    "code": "AA-DTA",
+    "title": "Associate in Arts-DTA with Emphasis in History",
+    "summary": "Official Green River associate curriculum map for Associate in Arts-DTA with Emphasis in History. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Associate in Arts-DTA with Emphasis in History"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "MATH& 107",
+          "HIST& 126",
+          "HIST& 128",
+          "HIST& 136",
+          "HIST& 137",
+          "or other college level Math Choose one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ENGL 127",
+          "H 1 - Humanities/Fine Arts/English",
+          "N 1 - Natural Science List A (Lab)",
+          "A full year of language is required for UW."
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "N 2 - Natural Science List A",
+          "S 1 - Social Science",
+          "HIST& 127",
+          "HIST& 126",
+          "HIST& 128",
+          "HIST& 136",
+          "HIST& 137",
+          "ANTH& 106",
+          "ANTH& 206"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "N 3 - Natural Science List A or List B",
+          "H 2 - Humanities/Fine Arts/English",
+          "HIST& 126",
+          "HIST& 128",
+          "HIST& 136",
+          "HIST& 137",
+          "CMST& 101",
+          "CMST& 220"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "H 3 - Humanities/Fine Arts/English",
+          "S 2 - Social Science",
+          "ART 212",
+          "ART 213",
+          "MUSC 102",
+          "MUSC 103",
+          "MUSC 104",
+          "MUSC& 105",
+          "MUSC 107",
+          "AMES 100",
+          "AMES 103",
+          "PSYC& 100",
+          "Foreign Language or elective"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "HIST& 215",
+          "HIST& 220",
+          "HIST 228",
+          "HIST 233",
+          "HIST& 214"
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate in Arts - Direct Transfer Agreement.",
+      "Published duration: 90 credits.",
+      "Electives All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity. HIST& 214 - Pacific Northwest History is required by law for all teachers in Washington state. History courses that meet diversity requirement",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Associate in Arts-DTA with Emphasis in History curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/history/aa-dta-with-emphasis-history.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-education-law-social-science-legal-administrative-assistant-aaa",
+    "code": "AAA",
+    "title": "Legal Administrative Assistant",
+    "summary": "Official Green River associate curriculum map for Legal Administrative Assistant, AAA. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Legal Administrative Assistant"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1- Fall (15 credits)",
+        "courses": [
+          "BTAC 100",
+          "BTAC 101",
+          "BTAC 110",
+          "BTAC 102"
+        ]
+      },
+      {
+        "label": "Quarter 2 - Winter (15 credits)",
+        "courses": [
+          "BTAC 102",
+          "BTAC 132",
+          "BTAC 150"
+        ]
+      },
+      {
+        "label": "Quarter 3 - Spring (13 credits)",
+        "courses": [
+          "BTAC 109",
+          "BTAC 112",
+          "BTAC 255",
+          "BTAC 140"
+        ]
+      },
+      {
+        "label": "Quarter 4 - Summer (15 credits)",
+        "courses": [
+          "BTAC 103",
+          "BTAC 162",
+          "POLS& 200"
+        ]
+      },
+      {
+        "label": "Quarter 5 - Fall (11 credits)",
+        "courses": [
+          "BTAC 130",
+          "BTAC 220",
+          "COOP 171"
+        ]
+      },
+      {
+        "label": "Quarter 6 - Winter (13 credits)",
+        "courses": [
+          "BTAC 177",
+          "BTAC 235",
+          "BTAC 266",
+          "-minimum 3 credits"
+        ]
+      },
+      {
+        "label": "Quarter 7 - Spring (15 credits)",
+        "courses": [
+          "BTAC 250",
+          "BUS 166",
+          "BUS& 201",
+          "CMST& 210",
+          "CMST& 220",
+          "CMST& 230",
+          "One of the following:"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate in Applied Arts.",
+      "Published duration: 90 credits.",
+      "Students may test out of BTAC 101 into BTAC 102.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Legal Administrative Assistant, AAA curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/legal-administrative-assistant/aaa.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-education-law-social-science-political-science-aa-dta-with-emphasis-political-science",
+    "code": "AA-DTA",
+    "title": "Associate in Arts-DTA with Emphasis in Political Science",
+    "summary": "Official Green River associate curriculum map for Associate in Arts-DTA with Emphasis in Political Science. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Associate in Arts-DTA with Emphasis in Political Science"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "POLS& 101",
+          "MATH& 107",
+          "MATH& 141"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ENGL 127",
+          "H 1 - Humanities/Fine Arts/English",
+          "N 1 - Natural Science List A (Lab)",
+          "Recommend: Check with university for foreign language requirement"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "H 2 - Humanities/Fine Arts/English",
+          "S 1 - Social Science",
+          "N 2 - Natural Science List A",
+          "CMST& 101",
+          "CMST& 220",
+          "SOC& 101",
+          "GEOG 201",
+          "HIST& 126",
+          "HIST& 127",
+          "HIST& 128",
+          "HIST& 136",
+          "HIST& 137",
+          "PSYC& 100"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "POLS& 201",
+          "H 3 - Humanities/Fine Arts/English",
+          "N 3 - Natural Science List A or List B"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "POLS& 202",
+          "S 2 - Social Science",
+          "AMES 100",
+          "AMES 103"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "POLS& 203"
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate in Arts - Direct Transfer Agreement.",
+      "Published duration: 90 credits.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Associate in Arts-DTA with Emphasis in Political Science curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/political-science/aa-dta-with-emphasis-political-science.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-education-law-social-science-psychology-aa-dta-with-concentration-psychology",
+    "code": "AA-DTA",
+    "title": "Associate in Arts-DTA with Concentration in Psychology",
+    "summary": "Official Green River associate curriculum map for Associate in Arts-DTA with Concentration in Psychology. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Associate in Arts-DTA with Concentration in Psychology"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "PSYC& 100"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ENGL 127",
+          "H 1 - Humanities/Fine Arts/English",
+          "MATH& 107",
+          "MATH& 141",
+          "or higher depending on placement"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "H 2 - Humanities/Fine Arts/English",
+          "N 1 - Natural Science List A (Lab)",
+          "Psychology course from list below",
+          "Consider course from Diversity Course List ."
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "S 1 - Social Science",
+          "N 2 - Natural Science List A",
+          "Consider courses from the Diversity Course List (any subject other than psychology)"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "H 3 - Humanities/Fine Arts/English",
+          "N 3 - Natural Science List A or List B",
+          "Psychology course from list below"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "S 2 - Social Science",
+          "(any subject other than psychology)",
+          "Psychology course from list below Elective All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity."
+        ]
+      },
+      {
+        "label": "Psychology course list",
+        "courses": [
+          "PSYC& 200",
+          "PSYC 201",
+          "PSYC 209",
+          "PSYC& 220",
+          "PSYC 225",
+          "PSYC 240"
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate in Arts - Direct Transfer Agreement.",
+      "Published duration: 90 credits.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Associate in Arts-DTA with Concentration in Psychology curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/psychology/aa-dta-with-concentration-psychology.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-education-law-social-science-sociology-aa-dta-with-emphasis-sociology",
+    "code": "AA-DTA",
+    "title": "Associate in Arts-DTA with Emphasis in Sociology",
+    "summary": "Official Green River associate curriculum map for Associate in Arts-DTA with Emphasis in Sociology. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Associate in Arts-DTA with Emphasis in Sociology"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "SOC& 101",
+          "Transferrable Elective s from any distribution Humanities/Fine Arts/English Distribution , Natural Science Distribution or Social Science Distribution"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ENGL 127",
+          "MATH& 146",
+          "N 1 - Natural Science List A (Lab)"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "SOC& 201",
+          "H 1 - Humanities/Fine Arts/English",
+          "N 2 - Natural Science List A",
+          "If you haven't taken a language class in high school and are interested in transferring to University of Washington, consider a year of foreign language required for transfer."
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "H 2 - Humanities/Fine Arts/English",
+          "N 3 - Natural Science List A or List B",
+          "S 1 - Social Science",
+          "any subject other than sociology"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "H 3 - Humanities/Fine Arts/English",
+          "S 2 - Social Science",
+          "avoid sociology and make sure you are also taking a class from the Diversity Course List",
+          "Additional credits from any distribution Humanities/Fine Arts/English Distribution , Natural Science Distribution or Social Science Distribution"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "Additional credits-Recommended to take additional Sociology courses . Electives All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity."
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate in Arts - Direct Transfer Agreement.",
+      "Published duration: 90 credits.",
+      "Additional credits-Recommended to take additional Sociology courses . Electives All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Associate in Arts-DTA with Emphasis in Sociology curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/sociology/aa-dta-with-emphasis-sociology.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-fine-arts-humanities-arts-aa-dta-concentration-art-history",
+    "code": "AA-DTA",
+    "title": "Associate in Arts-DTA with Concentration in Art History",
+    "summary": "Official Green River associate - transfer curriculum map for Associate in Arts-DTA with Concentration in Art History. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Associate in Arts-DTA with Concentration in Art History"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ART 212",
+          "ENGL& 101",
+          "S 1 - Social Science"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ART 213",
+          "H 1 - Humanities/Fine Arts/English",
+          "MATH& 107",
+          "PHIL& 120",
+          "Not ART or PHOTO (if PHOTO taken as concentration elective)"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "ART 214",
+          "S 2 - Social Science",
+          "N 1 - Natural Science List A (Lab)"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "ENGL 126",
+          "N 2 - Natural Science List A",
+          "Concentration elective see list below"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "ART 240",
+          "ART 241",
+          "N 3 - Natural Science List A or List B",
+          "(typically offered fall quarter)"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "S 3 - Social Science",
+          "Concentration elective see list below H 2 - Humanities/Fine Arts/English (if PHOTO not taken as concentration elective) or Electives All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity."
+        ]
+      },
+      {
+        "label": "Concentration Electives",
+        "courses": [
+          "ART 105",
+          "ART 109",
+          "ART 111",
+          "ART 114",
+          "PHOTO 101",
+          "PHOTO 111"
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate - Transfer.",
+      "Degree: Associate in Arts - Direct Transfer Agreement.",
+      "Published duration: Min 130 credits.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Associate in Arts-DTA with Concentration in Art History curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/arts/aa-dta-concentration-art-history.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-fine-arts-humanities-arts-aa-dta-concentration-creative-expression",
+    "code": "AA-DTA",
+    "title": "Associate in Arts-DTA with Concentration in Creative Expression",
+    "summary": "Official Green River associate - transfer curriculum map for Associate in Arts-DTA with Concentration in Creative Expression. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Associate in Arts-DTA with Concentration in Creative Expression"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "MATH& 107",
+          "ART 105",
+          "ART 109",
+          "ART 111",
+          "ART 114",
+          "ART 119",
+          "DANCE 101",
+          "DRMA 111",
+          "DRMA 151",
+          "JOURN 107",
+          "MUSC 108",
+          "MUSC 118",
+          "MUSC 137",
+          "MUSC 140",
+          "PHOTO 101",
+          "PHOTO 111",
+          "Course from List A"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ENGL 126",
+          "N 1 - Natural Science List A (Lab)",
+          "H 1 - Humanities/Fine Arts/English",
+          "Can not be the same subject used from List A."
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "N 2 - Natural Science List A",
+          "S 1 - Social Science",
+          "Course from List B"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "S 2 - Social Science",
+          "Course from List B Electives All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity."
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "H 2 - Humanities/Fine Arts/English",
+          "N 3 - Natural Science List A or List B",
+          "Course from List B"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "S 3 - Social Science"
+        ]
+      },
+      {
+        "label": "List B",
+        "courses": [
+          "ART 105",
+          "ART 106",
+          "ART 107",
+          "ART 109",
+          "ART 110",
+          "ART 111",
+          "ART 112",
+          "ART 113",
+          "ART 114",
+          "ART 115",
+          "ART 119",
+          "ART 120",
+          "ART 130",
+          "ART 135",
+          "ART 139",
+          "ART 140",
+          "ART 219",
+          "ART 251",
+          "ART 252",
+          "ART 253",
+          "ART 255",
+          "ART 256",
+          "ART 257",
+          "DANCE 101",
+          "DANCE 102",
+          "DANCE 103",
+          "DANCE 204",
+          "DRMA 111",
+          "DRMA 151",
+          "DRMA 152",
+          "DRMA 153",
+          "DRMA 154",
+          "DRMA 157",
+          "DRMA 158",
+          "MUSC 108",
+          "MUSC 109",
+          "MUSC 110",
+          "MUSC 118",
+          "MUSC 119",
+          "MUSC 120",
+          "MUSC 124",
+          "MUSC 125",
+          "MUSC 137",
+          "MUSC 138",
+          "MUSC 139",
+          "MUSC 140",
+          "MUSC 141",
+          "MUSC 142",
+          "MUSC 218",
+          "MUSC 219",
+          "MUSC 220",
+          "PHOTO 101",
+          "PHOTO 102",
+          "PHOTO 103",
+          "PHOTO 111",
+          "PHOTO 112",
+          "PHOTO 113"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate - Transfer.",
+      "Degree: Associate in Arts - Direct Transfer Agreement.",
+      "Published duration: Min 130 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Associate in Arts-DTA with Concentration in Creative Expression curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/arts/aa-dta-concentration-creative-expression.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-fine-arts-humanities-arts-afa-concentration-ceramics",
+    "code": "Associate",
+    "title": "Associate in Fine Arts, with Concentration in Ceramics",
+    "summary": "Official Green River associate curriculum map for Associate in Fine Arts, with Concentration in Ceramics. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Associate in Fine Arts, with Concentration in Ceramics"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "S 1 - Social Science",
+          "ART 212",
+          "ART 240"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ART 114",
+          "MATH& 107",
+          "PHIL& 120",
+          "ART 105",
+          "ART 109",
+          "PHOTO 101",
+          "PHOTO 111",
+          "Choose one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "ART 115",
+          "S 2 - Social Science",
+          "N 1 - Natural Science List A (Lab)"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "ART 251",
+          "N 2 - Natural Science List A",
+          "ART 119",
+          "ART 105",
+          "ART 180",
+          "Choose one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "ART 252",
+          "N 3 - Natural Science List A or List B",
+          "H 1 - Humanities/Fine Arts/English",
+          "not ART or PHOTO (if PHOTO selected already)"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "ART 253",
+          "ENGL 126",
+          "S 3 - Social Science",
+          "ART 240"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate in Fine Arts.",
+      "Published duration: Min 130 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Associate in Fine Arts, with Concentration in Ceramics curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/arts/afa-concentration-ceramics.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-fine-arts-humanities-arts-afa-concentration-design",
+    "code": "Associate",
+    "title": "Associate in Fine Arts, with Concentration in Design",
+    "summary": "Official Green River associate curriculum map for Associate in Fine Arts, with Concentration in Design. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Associate in Fine Arts, with Concentration in Design"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ART 109",
+          "ART 240",
+          "MATH& 107",
+          "PHIL& 120"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "ART 114",
+          "S 1 - Social Science"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "ART 105",
+          "N 1 - Natural Science List A (Lab)",
+          "S 2 - Social Science"
+        ]
+      },
+      {
+        "label": "Quarter 4 (18 credits)",
+        "courses": [
+          "ART 119",
+          "ART 140",
+          "ART 180",
+          "N 2 - Natural Science List A"
+        ]
+      },
+      {
+        "label": "Quarter 5 (20 credits)",
+        "courses": [
+          "ART 110",
+          "ART 212",
+          "N 3 - Natural Science List A or List B",
+          "PHOTO 101",
+          "PHOTO 111"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "ART 120",
+          "S 3 - Social Science",
+          "ART 219",
+          "ART 199"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate in Fine Arts.",
+      "Published duration: Min 130 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Associate in Fine Arts, with Concentration in Design curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/arts/afa-concentration-design.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-fine-arts-humanities-arts-afa-concentration-photography",
+    "code": "Associate",
+    "title": "Associate in Fine Arts, with Concentration in Photography",
+    "summary": "Official Green River associate curriculum map for Associate in Fine Arts, with Concentration in Photography. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Associate in Fine Arts, with Concentration in Photography"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "MATH& 107",
+          "PHOTO 101",
+          "PHOTO 111",
+          "or higher, depends on placement"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ENGL 126",
+          "H 1 - Humanities/Fine Arts/English",
+          "N 1 - Natural Science List A (Lab)",
+          "(not ART or PHOTO)"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "S 1 - Social Science",
+          "N 2 - Natural Science List A",
+          "PHOTO 102",
+          "PHOTO 112"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "ART 180",
+          "S 2 - Social Science",
+          "PHOTO 101",
+          "PHOTO 111",
+          "(whichever not taken previously)"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "S 3 - Social Science",
+          "N 3 - Natural Science List A or List B",
+          "PHOTO 103",
+          "PHOTO 113"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "ART 123"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate in Fine Arts.",
+      "Published duration: Min 130 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Associate in Fine Arts, with Concentration in Photography curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/arts/afa-concentration-photography.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-fine-arts-humanities-arts-afa-concentration-studio-art",
+    "code": "Associate",
+    "title": "Associate in Fine Arts, with Concentration in Studio Art",
+    "summary": "Official Green River associate curriculum map for Associate in Fine Arts, with Concentration in Studio Art. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Associate in Fine Arts, with Concentration in Studio Art"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ART 105",
+          "ENGL& 101",
+          "S 1 - Social Science"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ART 106",
+          "ART 111",
+          "H 1 - Humanities/Fine Arts/English",
+          "MATH& 107",
+          "PHIL& 120",
+          "(anything but ART and PHOTO)"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "S 2 - Social Science",
+          "N 1 - Natural Science List A (Lab)",
+          "ART 106",
+          "ART 107",
+          "ART 111",
+          "ART 119",
+          "ART 255",
+          "ART 256",
+          "ART 257",
+          "Choose one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "ART 180",
+          "N 2 - Natural Science List A",
+          "PHOTO 101",
+          "PHOTO 111"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "ART 240",
+          "N 3 - Natural Science List A or List B"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "S 3 - Social Science",
+          "ART 106",
+          "ART 107",
+          "ART 111",
+          "ART 119",
+          "ART 255",
+          "ART 256",
+          "ART 257"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate in Fine Arts.",
+      "Published duration: Min 130 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Associate in Fine Arts, with Concentration in Studio Art curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/arts/afa-concentration-studio-art.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-fine-arts-humanities-arts-associate-fine-arts",
+    "code": "AFA",
+    "title": "Associate in Fine Arts",
+    "summary": "Official Green River associate curriculum map for Associate in Fine Arts, AFA. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Associate in Fine Arts"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "MATH& 107",
+          "PHIL& 120",
+          "ART 212",
+          "ART 213",
+          "ART 214",
+          "ART 240",
+          "ART 241",
+          "Select one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ENGL 126",
+          "S 1 - Social Science",
+          "PHOTO 101",
+          "PHOTO 111",
+          "Recommend: a Diversity course"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "N 1 - Natural Science List A (Lab)",
+          "S 2 - Social Science",
+          "List A course (see below)"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "H 1 - Humanities/Fine Arts/English",
+          "N 2 - Natural Science List A",
+          "Select a subject other than ART and PHOTO.",
+          "List A course (see below)"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "N 3 - Natural Science List A or List B",
+          "S 3 - Social Science",
+          "List A course (see below)"
+        ]
+      },
+      {
+        "label": "List A",
+        "courses": [
+          "ART 105",
+          "ART 109",
+          "ART 114",
+          "ART 119"
+        ]
+      },
+      {
+        "label": "List B",
+        "courses": [
+          "ART 106",
+          "ART 107",
+          "ART 111",
+          "ART 115",
+          "ART 120",
+          "ART 123",
+          "ART 130",
+          "ART 135",
+          "ART 139",
+          "ART 140",
+          "ART 177",
+          "ART 178",
+          "ART 179",
+          "ART 180",
+          "ART 199",
+          "ART 219",
+          "ART 251",
+          "ART 252",
+          "ART 253",
+          "ART 255",
+          "ART 256",
+          "ART 257",
+          "ART 275",
+          "ART 276",
+          "ART 277",
+          "ART 294",
+          "ART 297",
+          "PHOTO 102",
+          "PHOTO 103",
+          "PHOTO 112",
+          "PHOTO 113",
+          "PHOTO 197"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate in Fine Arts, AFA.",
+      "Published duration: Minimum 103 credits.",
+      "23 credits should be chosen from the list below.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Associate in Fine Arts, AFA curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/arts/associate-fine-arts.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-fine-arts-humanities-asian-studies-aa-dta-concentration-asian-studies",
+    "code": "AA-DTA",
+    "title": "Associate in Arts-DTA with Concentration in Asian Studies",
+    "summary": "Official Green River associate - transfer curriculum map for Associate in Arts-DTA with Concentration in Asian Studies. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Associate in Arts-DTA with Concentration in Asian Studies"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "JAPN& 121",
+          "MATH& 107"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ENGL 126",
+          "JAPN& 122",
+          "N 1 - Natural Science List A (Lab)"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "JAPN& 123",
+          "N 2 - Natural Science List A",
+          "Concentration elective see list below"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "JAPN& 221",
+          "N 3 - Natural Science List A or List B",
+          "HIST 231"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "JAPN& 222",
+          "H 1 - Humanities/Fine Arts/English",
+          "S 2 - Social Science",
+          "not JAPN or repeat of subject from concentration electives",
+          "no repeat of subject from concentration electives"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "JAPN& 223",
+          "S 1 - Social Science",
+          "no repeat of subject from concentration electives"
+        ]
+      },
+      {
+        "label": "Concentration Electives",
+        "courses": [
+          "CHIN& 121",
+          "CHIN& 122",
+          "CHIN& 123",
+          "CHIN 146",
+          "ENGL 251",
+          "FILM 151",
+          "JAPN 142",
+          "MUSC 137",
+          "MUSC 138",
+          "MUSC 139",
+          "PHIL 220",
+          "AMES 230",
+          "(offered spring)",
+          "(offered fall/winter/spring)",
+          "(offerred fall)",
+          "(offered winter)"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate - Transfer.",
+      "Degree: Associate in Arts - Direct Transfer Agreement.",
+      "Published duration: 90 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Associate in Arts-DTA with Concentration in Asian Studies curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/asian-studies/aa-dta-concentration-asian-studies.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-fine-arts-humanities-black-studies-aa-dta-concentration-black-studies",
+    "code": "AA-DTA",
+    "title": "AA-DTA with Concentration in Black Studies",
+    "summary": "Official Green River associate - transfer curriculum map for AA-DTA with Concentration in Black Studies. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "AA-DTA with Concentration in Black Studies"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "MATH& 107",
+          "MUSC 107"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ENGL 163",
+          "N 1 - Natural Science List A (Lab)",
+          "Transferable elective Courses in Humanities/Fine Arts/English Distribution , Social Science Distribution , or Natural Science Distribution categories or Generally transferable courses."
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "HIST& 220",
+          "N 2 - Natural Science List A",
+          "H 1 - Humanities/Fine Arts/English",
+          "Check with your intended university for foreign language requirement"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "ENGL 248",
+          "N 3 - Natural Science List A or List B",
+          "Transferable elective Courses in Humanities/Fine Arts/English Distribution , Social Science Distribution , or Natural Science Distribution categories or Generally transferable courses."
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "ENGL 127",
+          "S 1 - Social Science",
+          "AMES 100",
+          "AMES 103",
+          "AMES 105",
+          "AMES 214",
+          "ANTH& 206",
+          "HIST 228",
+          "HIST 230",
+          "HIST& 128",
+          "HIST& 215",
+          "POLS& 204",
+          "SCI 160",
+          "SOC 214",
+          "SOC 220",
+          "Transferable elective Courses in Humanities/Fine Arts/English Distribution , Social Science Distribution , or Natural Science Distribution categories or Generally transferable courses."
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "S 2 - Social Science",
+          "PSYC& 100",
+          "HIST& 214"
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate - Transfer.",
+      "Degree: Associate in Arts - Direct Transfer Agreement.",
+      "Published duration: ---.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "AA-DTA with Concentration in Black Studies curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/black-studies/aa-dta-concentration-black-studies.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-fine-arts-humanities-communication-studies-aa-dta-concentration-communication-studies",
+    "code": "AA-DTA",
+    "title": "AA-DTA with Concentration in Communication Studies",
+    "summary": "Official Green River associate - transfer curriculum map for AA-DTA with Concentration in Communication Studies. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "AA-DTA with Concentration in Communication Studies"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "CMST& 220",
+          "MATH& 107",
+          "or higher, depends on placement."
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ENGL 126",
+          "N 1 - Natural Science List A (Lab)",
+          "CMST& 210",
+          "CMST& 230"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "H 1 - Humanities/Fine Arts/English",
+          "N 2 - Natural Science List A",
+          "any course from distribution except CMST",
+          "Course from List A (see below)"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "N 3 - Natural Science List A or List B",
+          "S 1 - Social Science",
+          "Course from List A (see below)"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "H 2 - Humanities/Fine Arts/English",
+          "S 2 - Social Science",
+          "any course from distribution except CMST"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "S 3 - Social Science"
+        ]
+      },
+      {
+        "label": "List A",
+        "courses": [
+          "CMST& 210",
+          "CMST 212",
+          "CMST 213",
+          "CMST 215",
+          "CMST& 230",
+          "CMST& 240",
+          "CMST 245",
+          "CMST 265",
+          "CMST 266"
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate - Transfer.",
+      "Degree: Associate in Arts - Direct Transfer Agreement.",
+      "Published duration: 90 Credits.",
+      "Select a minimum of 10 additional credits from the following courses:",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "AA-DTA with Concentration in Communication Studies curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/communication-studies/aa-dta-concentration-communication-studies.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-fine-arts-humanities-diversity-studies-aa-dta-concentration-diversity-studies",
+    "code": "AA-DTA",
+    "title": "AA-DTA with Concentration in Diversity Studies",
+    "summary": "Official Green River associate - transfer curriculum map for AA-DTA with Concentration in Diversity Studies. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "AA-DTA with Concentration in Diversity Studies"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "MATH& 107",
+          "AMES 100",
+          "ENGL 247",
+          "PHIL 238",
+          "Or higher depending on placement. Select one of the following required classes: (not all classes offered every quarter)",
+          "(meets social science requirement)",
+          "(meets humanities/fine arts/English requirement)"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ENGL 127",
+          "N 1 - Natural Science List A (Lab)",
+          "H 1 - Humanities/Fine Arts/English",
+          "See courses in lists below."
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "N 2 - Natural Science List A",
+          "S 1 - Social Science",
+          "See courses in list below: Electives Credits: 5 All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity."
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "N 3 - Natural Science List A or List B",
+          "S 2 - Social Science",
+          "H 2 - Humanities/Fine Arts/English",
+          "See courses in list below."
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "15 credits of Courses in Humanities/Fine Arts/English Distribution , Social Science Distribution , or Natural Science Distribution categories."
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "H 3 - Humanities/Fine Arts/English"
+        ]
+      },
+      {
+        "label": "Diversity - English list",
+        "courses": [
+          "ENGL 160",
+          "ENGL 161",
+          "ENGL 162",
+          "ENGL 163",
+          "ENGL 165",
+          "ENGL 168",
+          "ENGL 247",
+          "ENGL 248",
+          "ENGL 249",
+          "ENGL 250",
+          "ENGL 251",
+          "ENGL 252",
+          "ENGL& 256"
+        ]
+      },
+      {
+        "label": "Diversity - Fine Arts list",
+        "courses": [
+          "ART 240",
+          "ART 241",
+          "MUSC 102",
+          "MUSC 103",
+          "MUSC 107",
+          "MUSC 137",
+          "MUSC 138",
+          "MUSC 139"
+        ]
+      },
+      {
+        "label": "Diversity - Humanities list",
+        "courses": [
+          "CMST& 240",
+          "CMST 265",
+          "FILM 121",
+          "FILM 151",
+          "FILM 162",
+          "FILM 191",
+          "FRCH 193",
+          "LAS 190",
+          "LAS 191",
+          "LAS 193",
+          "LAS 195",
+          "LAS 200",
+          "LAS 201",
+          "PHIL 206",
+          "PHIL 216",
+          "PHIL 210",
+          "PHIL 220",
+          "PHIL 238",
+          "SPAN& 221",
+          "SPAN& 222",
+          "SPAN& 223",
+          "SPAN 290",
+          "SPAN 291",
+          "SPAN 292"
+        ]
+      },
+      {
+        "label": "Diversity - Social Science list",
+        "courses": [
+          "AMES 100",
+          "AMES 103",
+          "AMES 105",
+          "AMES 150",
+          "AMES 230",
+          "ANTH& 106",
+          "ANTH& 206",
+          "ANTH& 210",
+          "GEOG& 200",
+          "HIST& 215",
+          "HIST& 220",
+          "HIST 228",
+          "HIST 233",
+          "POLS& 204",
+          "SCI 160",
+          "SOC 205",
+          "SOC 214",
+          "SOC 220"
+        ]
+      },
+      {
+        "label": "Diversity - Electives",
+        "courses": [
+          "CJ 220",
+          "CS 109",
+          "EDUC& 240"
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate - Transfer.",
+      "Degree: Associate in Arts - Direct Transfer Agreement.",
+      "Published duration: 90 credits.",
+      "15 credits of Courses in Humanities/Fine Arts/English Distribution , Social Science Distribution , or Natural Science Distribution categories.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "AA-DTA with Concentration in Diversity Studies curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/diversity-studies/aa-dta-concentration-diversity-studies.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-fine-arts-humanities-english-aa-dta-emphasis-creative-writing",
+    "code": "AA-DTA",
+    "title": "Associate in Arts-DTA with Emphasis in Creative Writing",
+    "summary": "Official Green River associate - transfer curriculum map for Associate in Arts-DTA with Emphasis in Creative Writing. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Associate in Arts-DTA with Emphasis in Creative Writing"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "ENGL& 236",
+          "MATH& 107",
+          "or higher, depends on placement."
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ENGL 126",
+          "ENGL& 235",
+          "H 1 - Humanities/Fine Arts/English",
+          "N 1 - Natural Science List A (Lab)",
+          "Recommend: Studying a language other than English strengthens your grasp of mechanics and vocabulary. It can also help build toward a career in publishing and editing work in translation (a growing and in-demand field). Most graduate English programs have a foreign language requirement as well, so completing coursework as a undergraduate can help you test out of these requirements. Foreign languages you can find here are Chinese , Japanese , Arabic , Spanish , French , and German .",
+          "We don't have specific recommendations for Natural Science. We encourage students to consult with their advisors to determine the appropriate choices in this distribution."
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "ENGL& 237",
+          "H 2 - Humanities/Fine Arts/English",
+          "JOURN 101",
+          "JOURN 107",
+          "JOURN 150",
+          "N 2 - Natural Science List A",
+          "Recommend: Journalism classes augment your skillset as a writer and enable you to repurpose your skills for a variety of media and outlets.",
+          "(only offered spring quarter)"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "N 3 - Natural Science List A or List B",
+          "S 1 - Social Science",
+          "AMES 100",
+          "AMES 103",
+          "AMES 105",
+          "SOC 214",
+          "SOC 220",
+          "DRMA& 101",
+          "CMST 215",
+          "MUSC& 105",
+          "Recommend: We don't have specific courses to recommend in this distribution, but we recommend courses that will expose students to new perspectives and experiences, many of which can also fulfill the Diversity Course Requirement. Some of the classes that could compliment work in creative writing include:"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "S 2 - Social Science",
+          "ENGL& 112",
+          "ENGL& 113",
+          "ENGL& 114",
+          "ENGL 115"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "S 3 - Social Science",
+          "ENGL& 112",
+          "ENGL& 113",
+          "ENGL& 114",
+          "ENGL 115",
+          "ART 105",
+          "ART 109",
+          "ART 120",
+          "Generally Transferable Courses (see below) :"
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate - Transfer.",
+      "Degree: Associate in Arts - Direct Transfer Agreement.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Associate in Arts-DTA with Emphasis in Creative Writing curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/english/aa-dta-emphasis-creative-writing.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-fine-arts-humanities-english-aa-dta-emphasis-english-literature",
+    "code": "AA-DTA",
+    "title": "Associate in Arts-DTA with Emphasis in English Literature",
+    "summary": "Official Green River associate - transfer curriculum map for Associate in Arts-DTA with Emphasis in English Literature. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Associate in Arts-DTA with Emphasis in English Literature"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "MATH& 107",
+          "S 1 - Social Science",
+          "depends on placement",
+          "See recommended courses for Social Science requirement at bottom of page."
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ENGL 126",
+          "H 1 - Humanities/Fine Arts/English",
+          "N 1 - Natural Science List A (Lab)",
+          "See list of recommendations below."
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "S 1 - Social Science",
+          "N 2 - Natural Science List A",
+          "English List (see below)",
+          "See recommended courses for Social Science requirement at bottom of page."
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "N 3 - Natural Science List A or List B",
+          "English List (see below) Electives All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity."
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "H 2 - Humanities/Fine Arts/English",
+          "See list of recommendations below.",
+          "English List (see below) Elective All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity."
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "S 3 - Social Science",
+          "English List (see below) Elective",
+          "See recommended courses for Social Science requirement at bottom of page."
+        ]
+      },
+      {
+        "label": "English List",
+        "courses": [
+          "ENGL& 112",
+          "ENGL& 113",
+          "ENGL& 114",
+          "ENGL 115",
+          "ENGL 180",
+          "ENGL 190",
+          "ENGL 161",
+          "ENGL 163",
+          "ENGL 164",
+          "ENGL 165",
+          "ENGL 181",
+          "ENGL 183",
+          "ENGL& 220",
+          "ENGL 168",
+          "ENGL 185",
+          "ENGL& 226",
+          "ENGL& 227",
+          "ENGL& 228",
+          "ENGL& 244",
+          "ENGL& 245",
+          "ENGL& 246",
+          "ENGL& 255",
+          "ENGL& 256",
+          "ENGL 264",
+          "ENGL 160",
+          "ENGL 162",
+          "ENGL 247",
+          "ENGL 248",
+          "ENGL 249",
+          "ENGL 250",
+          "ENGL 251",
+          "ENGL 252",
+          "Literature courses themed around literary genres:",
+          "Literature courses themed around film and cultural studies:",
+          "Literature courses themed around place and/or time:",
+          "Literature courses themed around identity (these all meet the diversity course requirement):"
+        ]
+      },
+      {
+        "label": "Humanities/Fine Arts Recommendations",
+        "courses": [
+          "ART& 100",
+          "ART 212",
+          "ART 213",
+          "ART 214",
+          "ART 240",
+          "CMST 215",
+          "CMST 245",
+          "CMST 265",
+          "CMST 266",
+          "DRMA& 101",
+          "DRMA 102",
+          "DRMA 103",
+          "FILM 101",
+          "FILM 120",
+          "FILM 121",
+          "FILM 122",
+          "MUSC 102",
+          "MUSC 103",
+          "MUSC 104",
+          "MUSC& 105",
+          "MUSC 107",
+          "MUSC 170"
+        ]
+      },
+      {
+        "label": "Social Science Recommendations:",
+        "courses": [
+          "HIST& 214",
+          "HIST& 215",
+          "POLS& 201",
+          "POLS& 204",
+          "PSYC& 200",
+          "PSYC 201",
+          "PSYC 209",
+          "PSYC& 220",
+          "PSYC 240",
+          "SCI 160",
+          "SOC& 201",
+          "SOC 214",
+          "SOC 215",
+          "SOC 252",
+          "SOC 271"
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate - Transfer.",
+      "Degree: Associate in Arts - Direct Transfer Agreement.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Associate in Arts-DTA with Emphasis in English Literature curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/english/aa-dta-emphasis-english-literature.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-fine-arts-humanities-english-aa-dta-emphasis-professional-technical-communication",
+    "code": "AA-DTA",
+    "title": "AA-DTA with Emphasis in Professional & Technical Communication",
+    "summary": "Official Green River associate - transfer curriculum map for AA-DTA with Emphasis in Professional & Technical Communication. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "AA-DTA with Emphasis in Professional & Technical Communication"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "MATH& 107",
+          "PHIL& 120"
+        ]
+      },
+      {
+        "label": "Quarter 2 (12 credits)",
+        "courses": [
+          "INFO 110",
+          "H 1 - Humanities/Fine Arts/English",
+          "S 1 - Social Science",
+          "CMST& 101",
+          "AMES 100"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "ENGL& 235",
+          "H 2 - Humanities/Fine Arts/English",
+          "N 2 - Natural Science List A",
+          "GEOL 106"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "H 3 - Humanities/Fine Arts/English",
+          "S 2 - Social Science",
+          "PHIL 112",
+          "ANTH& 206",
+          "Transferable Elective 5 cr Courses in Humanities/Fine Arts/English Distribution , Social Science Distribution , or Natural Science Distribution categories."
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "S 3 - Social Science",
+          "N 1 - Natural Science List A (Lab)",
+          "ASTR& 101",
+          "BIOL 103",
+          "Transferable Elective 5 cr Courses in Humanities/Fine Arts/English Distribution , Social Science Distribution , or Natural Science Distribution categories."
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "N 3 - Natural Science List A or List B",
+          "Transferable Elective 5 cr Courses in Humanities/Fine Arts/English Distribution , Social Science Distribution , or Natural Science Distribution categories. Electives 8 credits"
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate - Transfer.",
+      "Degree: Associate in Arts - Direct Transfer Agreement.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "AA-DTA with Emphasis in Professional & Technical Communication curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/english/aa-dta-emphasis-professional-technical-communication.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-fine-arts-humanities-film-studies-aa-dta-concentration-film-studies",
+    "code": "AA-DTA",
+    "title": "AA-DTA with Concentration in Film Studies",
+    "summary": "Official Green River associate - transfer curriculum map for AA-DTA with Concentration in Film Studies. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "AA-DTA with Concentration in Film Studies"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "HIST 120",
+          "MATH& 107"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "CMST 266",
+          "N 1 - Natural Science List A (Lab)",
+          "S 1 - Social Science",
+          "not HIST"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "FILM 101",
+          "ENGL 126",
+          "N 2 - Natural Science List A"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "FILM 120",
+          "N 3 - Natural Science List A or List B",
+          "S 2 - Social Science",
+          "not HIST"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "FILM 121",
+          "ENGL 164",
+          "ENGL 264",
+          "Additional credits from any distribution Humanities/Fine Arts/English Distribution , Natural Science Distribution or Social Science Distribution"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "FILM 122",
+          "Additional credits-Recommended to take additional FILM courses . Electives All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity."
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate - Transfer.",
+      "Degree: Associate in Arts - Direct Transfer Agreement.",
+      "Published duration: 90 credits.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "AA-DTA with Concentration in Film Studies curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/film-studies/aa-dta-concentration-film-studies.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-fine-arts-humanities-gender-studies-aa-dta-concentration-gender-studies",
+    "code": "AA-DTA",
+    "title": "Associate in Arts-DTA with Concentration in Gender Studies",
+    "summary": "Official Green River associate - transfer curriculum map for Associate in Arts-DTA with Concentration in Gender Studies. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Associate in Arts-DTA with Concentration in Gender Studies"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "MATH& 107",
+          "HUMAN 160",
+          "SCI 160",
+          "or higher, depending on placement Choose one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ENGL 127",
+          "N 1 - Natural Science List A (Lab)",
+          "H 1 - Humanities/Fine Arts/English",
+          "BIOL& 100",
+          "BIOL& 160",
+          "See list of courses recommended below."
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "N 2 - Natural Science List A",
+          "H 2 - Humanities/Fine Arts/English",
+          "S 1 - Social Science",
+          "Select what interests you.",
+          "See recommended list of courses below."
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "H 3 - Humanities/Fine Arts/English",
+          "N 3 - Natural Science List A or List B",
+          "In addition to list of recommendations below, check with transfer institution to see if foreign language is required.",
+          "General Education courses can consist of either Humanities/Fine Arts/English or Social Science recommendations below."
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "S 2 - Social Science",
+          "See recommended list of courses below."
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "S 3 - Social Science",
+          "See recommended list of courses below."
+        ]
+      },
+      {
+        "label": "Humanities/Fine Arts/English Recommendations",
+        "courses": [
+          "ART 240",
+          "CMST 214",
+          "ENGL 160",
+          "ENGL 162",
+          "FILM 162",
+          "LAS 200",
+          "PHIL 206",
+          "PHIL 216",
+          "(Diversity course)"
+        ]
+      },
+      {
+        "label": "Social Science Recommendations",
+        "courses": [
+          "ANTH 220",
+          "HIST& 215",
+          "PSYC& 180",
+          "SOC 220",
+          "(Diversity course)"
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate - Transfer.",
+      "Degree: Associate in Arts - Direct Transfer Agreement.",
+      "Published duration: 90 credits.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Associate in Arts-DTA with Concentration in Gender Studies curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/gender-studies/aa-dta-concentration-gender-studies.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-fine-arts-humanities-global-hispanic-studies-aa-dta-concentration-global-studies-hispanic-studies",
+    "code": "AA-DTA",
+    "title": "AA-DTA with concentration in Global Studies and Hispanic Studies",
+    "summary": "Official Green River associate - transfer curriculum map for AA-DTA with concentration in Global Studies and Hispanic Studies. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "AA-DTA with concentration in Global Studies and Hispanic Studies"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "SPAN& 121",
+          "MATH& 107"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "PHIL& 115",
+          "SPAN& 122",
+          "N 1 - Natural Science List A (Lab)"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "N 2 - Natural Science List A",
+          "SPAN& 123",
+          "ENGL 126",
+          "ENGL 127",
+          "ENGL 128",
+          "Choose one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "SPAN& 221",
+          "ENGL 249",
+          "N 3 - Natural Science List A or List B"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "SPAN& 222",
+          "HIST 233",
+          "S 1 - Social Science",
+          "not HIST or ANTH"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "SPAN& 223",
+          "ANTH& 206",
+          "CMST 117"
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate - Transfer.",
+      "Degree: Associate in Arts - Direct Transfer Agreement.",
+      "Published duration: 90 credits.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "AA-DTA with concentration in Global Studies and Hispanic Studies curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/global-hispanic-studies/aa-dta-concentration-global-studies-hispanic-studies.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-fine-arts-humanities-global-studies-aa-dta-concentration-global-studies",
+    "code": "AA-DTA",
+    "title": "AA-DTA with Concentration in Global Studies",
+    "summary": "Official Green River associate - transfer curriculum map for AA-DTA with Concentration in Global Studies. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "AA-DTA with Concentration in Global Studies"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "MATH& 107",
+          "or other college level Math course",
+          "Foreign Language (see list below)"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "PHIL& 115",
+          "N 1 - Natural Science List A (Lab)",
+          "Foreign Language (see below)"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "N 2 - Natural Science List A",
+          "ENGL 126",
+          "ENGL 127",
+          "ENGL 128",
+          "Select one of the following:",
+          "Foreign Language (see below)"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "N 3 - Natural Science List A or List B",
+          "Concentration Elective (see list below)",
+          "Foreign Language or elective"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "S 1 - Social Science",
+          "Foreign Language or Elective",
+          "Concentration Elective (see list below)"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "Foreign Language or Elective Concentration Elective Elective All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity."
+        ]
+      },
+      {
+        "label": "Foreign Language",
+        "courses": [
+          "ARAB 121",
+          "ARAB 122",
+          "ARAB 123",
+          "CHIN& 121",
+          "CHIN& 122",
+          "CHIN& 123",
+          "FRCH& 121",
+          "FRCH& 122",
+          "FRCH& 123",
+          "FRCH& 221",
+          "FRCH& 222",
+          "FRCH& 223",
+          "GERM& 121",
+          "GERM& 122",
+          "GERM& 123",
+          "GERM& 221",
+          "GERM& 222",
+          "GERM& 223",
+          "JAPN& 121",
+          "JAPN& 122",
+          "JAPN& 123",
+          "JAPN& 221",
+          "JAPN& 222",
+          "JAPN& 223",
+          "SPAN& 121",
+          "SPAN& 122",
+          "SPAN& 123",
+          "SPAN& 221",
+          "SPAN& 222",
+          "SPAN& 223"
+        ]
+      },
+      {
+        "label": "Concentration Electives",
+        "courses": [
+          "CMST 117",
+          "ENGL& 256",
+          "GERM 128",
+          "HUMAN 133",
+          "JAPN 142",
+          "LAS 190",
+          "LAS 200",
+          "PHIL 210",
+          "PHIL 216",
+          "PHIL 220",
+          "PHIL 243",
+          "SPAN 272",
+          "SPAN 290",
+          "SPAN 291",
+          "SPAN 292",
+          "ANTH 108",
+          "ANTH& 206",
+          "HIST 230",
+          "POLS& 204",
+          "POLS 225",
+          "PSYC 240"
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate - Transfer.",
+      "Degree: Associate in Arts - Direct Transfer Agreement.",
+      "Published duration: 90 credits.",
+      "Foreign Language or Elective Concentration Elective Elective All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "AA-DTA with Concentration in Global Studies curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/global-studies/aa-dta-concentration-global-studies.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-fine-arts-humanities-hispanic-studies-aa-dta-concentration-hispanic-studies",
+    "code": "AA-DTA",
+    "title": "AA-DTA with Concentration in Hispanic Studies",
+    "summary": "Official Green River associate - transfer curriculum map for AA-DTA with Concentration in Hispanic Studies. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "AA-DTA with Concentration in Hispanic Studies"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "SPAN& 121",
+          "ENGL& 101",
+          "MATH& 107",
+          "or other college level Math course"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "SPAN& 122",
+          "N 1 - Natural Science List A (Lab)",
+          "Concentration Elective (see below)"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "SPAN& 123",
+          "N 2 - Natural Science List A",
+          "ENGL 126",
+          "ENGL 127",
+          "ENGL 128",
+          "Select one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "SPAN& 221",
+          "N 3 - Natural Science List A or List B",
+          "Concentration Elective (see below)"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "SPAN& 222",
+          "HIST 233",
+          "S 1 - Social Science",
+          "not history"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "SPAN& 223",
+          "Concentration Elective Elective All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity."
+        ]
+      },
+      {
+        "label": "Concentration Electives",
+        "courses": [
+          "ENGL 249",
+          "HIST 228",
+          "LAS 190",
+          "LAS 191",
+          "FILM 191",
+          "LAS 200",
+          "LAS 201",
+          "SPAN 272",
+          "SPAN 290",
+          "SPAN 291",
+          "SPAN 292"
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate - Transfer.",
+      "Degree: Associate in Arts - Direct Transfer Agreement.",
+      "Published duration: 90 credits.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "AA-DTA with Concentration in Hispanic Studies curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/hispanic-studies/aa-dta-concentration-hispanic-studies.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-fine-arts-humanities-journalism-aa-dta-concentration-digital-broadcast-media",
+    "code": "AA-DTA",
+    "title": "AA-DTA with Concentration in Digital & Broadcast Media",
+    "summary": "Official Green River associate - transfer curriculum map for AA-DTA with Concentration in Digital & Broadcast Media. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "AA-DTA with Concentration in Digital & Broadcast Media"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "CMST& 102",
+          "MATH& 107",
+          "or higher, depends on placement."
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "CMST& 240",
+          "JOURN 101",
+          "S 1 - Social Science"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "JOURN 108",
+          "N 1 - Natural Science List A (Lab)",
+          "S 2 - Social Science"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "JOURN 150",
+          "ENGL 126",
+          "N 2 - Natural Science List A"
+        ]
+      },
+      {
+        "label": "Quarter 5 (17 credits)",
+        "courses": [
+          "JOURN 165",
+          "N 3 - Natural Science List A or List B",
+          "S 3 - Social Science",
+          "JOURN 103",
+          "JOURN 107",
+          "JOURN 115",
+          "JOURN 116",
+          "JOURN 125",
+          "JOURN 140",
+          "JOURN 157",
+          "Choose an elective:"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "ART 123",
+          "JOURN 103",
+          "JOURN 107",
+          "JOURN 115",
+          "JOURN 116",
+          "JOURN 125",
+          "JOURN 140",
+          "JOURN 157"
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate - Transfer.",
+      "Degree: Associate in Arts - Direct Transfer Agreement.",
+      "Published duration: 90 credits.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "AA-DTA with Concentration in Digital & Broadcast Media curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/journalism/aa-dta-concentration-digital-broadcast-media.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-fine-arts-humanities-music-aa-dta-concentration-music",
+    "code": "AA-DTA",
+    "title": "AA-DTA with Concentration in Music",
+    "summary": "Official Green River associate - transfer curriculum map for AA-DTA with Concentration in Music. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "AA-DTA with Concentration in Music"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "MATH& 107",
+          "MUSC 101",
+          "MUSC 104",
+          "MUSC& 105",
+          "MUSC 108",
+          "MUSC 118",
+          "MUSC& 121",
+          "MUSC& 131",
+          "MUSC 137",
+          "MUSC 140",
+          "or other college-level math depending on placement Choose 5 credits from the following beginning-level classes in Music which lead to further study. Students will have the chance to focus on a particular area: performance, music theory, and/or music history.:"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ENGL 126",
+          "H 1 - Humanities/Fine Arts/English",
+          "N 1 - Natural Science List A (Lab)",
+          "Choose from any course but Music"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "S 1 - Social Science",
+          "N 2 - Natural Science List A",
+          "Courses from List B (see below)"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "S 2 - Social Science",
+          "Course from List B (see below) Credits: 5 Electives Credits: 5 All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity."
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "H 2 - Humanities/Fine Arts/English",
+          "N 3 - Natural Science List A or List B",
+          "Course from List B (see below)",
+          "Choose any course but Music"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "S 3 - Social Science"
+        ]
+      },
+      {
+        "label": "List B",
+        "courses": [
+          "MUSC 102",
+          "MUSC 103",
+          "MUSC 107",
+          "MUSC 109",
+          "MUSC 110",
+          "MUSC 119",
+          "MUSC 120",
+          "MUSC& 122",
+          "MUSC& 123",
+          "MUSC 124",
+          "MUSC 125",
+          "MUSC 127",
+          "MUSC 128",
+          "MUSC 129",
+          "MUSC& 132",
+          "MUSC& 133",
+          "MUSC 138",
+          "MUSC 139",
+          "MUSC 141",
+          "MUSC 142",
+          "MUSC 150",
+          "MUSC 151",
+          "MUSC 152",
+          "MUSC 218",
+          "MUSC 219",
+          "MUSC 220",
+          "MUSC 227",
+          "MUSC 228",
+          "MUSC 229",
+          "MUSC 250",
+          "MUSC 251",
+          "MUSC 252",
+          "MUSC 298",
+          "MUSC 299"
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate - Transfer.",
+      "Degree: Associate in Arts - Direct Transfer Agreement.",
+      "Published duration: 90 credits.",
+      "Courses not used in first quarter may be applied to List B.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "AA-DTA with Concentration in Music curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/music/aa-dta-concentration-music.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-fine-arts-humanities-philosophy-aa-dta-concentration-philosophy",
+    "code": "AA-DTA",
+    "title": "AA-DTA with Concentration in Philosophy",
+    "summary": "Official Green River associate - transfer curriculum map for AA-DTA with Concentration in Philosophy. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "AA-DTA with Concentration in Philosophy"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "PHIL& 120",
+          "List B course (see below)"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ENGL 126",
+          "H 1 - Humanities/Fine Arts/English",
+          "N 1 - Natural Science List A (Lab)"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "PHIL& 115",
+          "N 2 - Natural Science List A",
+          "S 1 - Social Science"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "PHIL 220",
+          "S 2 - Social Science",
+          "N 3 - Natural Science List A or List B"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "PHIL 108",
+          "H 2 - Humanities/Fine Arts/English"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "S 3 - Social Science",
+          "2 courses from List B (below)"
+        ]
+      },
+      {
+        "label": "List B",
+        "courses": [
+          "PHIL& 101",
+          "PHIL 102",
+          "PHIL 103",
+          "PHIL 105",
+          "PHIL 108",
+          "PHIL 110",
+          "PHIL 111",
+          "PHIL 112",
+          "PHIL 160",
+          "PHIL 200",
+          "PHIL 206",
+          "PHIL 210",
+          "PHIL 216",
+          "PHIL 220",
+          "PHIL 236",
+          "PHIL 238",
+          "PHIL 240",
+          "PHIL 243",
+          "PHIL 244"
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate - Transfer.",
+      "Degree: Associate in Arts - Direct Transfer Agreement.",
+      "Published duration: 90 credits.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "AA-DTA with Concentration in Philosophy curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/philosophy/aa-dta-concentration-philosophy.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-fine-arts-humanities-theatre-arts-aa-dta-concentration-theatre-arts",
+    "code": "AA-DTA",
+    "title": "AA-DTA with Concentration in Theatre Arts",
+    "summary": "Official Green River associate - transfer curriculum map for AA-DTA with Concentration in Theatre Arts. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "AA-DTA with Concentration in Theatre Arts"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "MATH& 107",
+          "DRMA& 101",
+          "DRMA 111",
+          "DRMA 151",
+          "DRMA 154",
+          "DANCE 101",
+          "or higher depending on placement",
+          "Select one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ENGL 126",
+          "H 1 - Humanities/Fine Arts/English",
+          "N 1 - Natural Science List A (Lab)",
+          "select classes outside of drama and dance"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "N 2 - Natural Science List A",
+          "S 1 - Social Science",
+          "DRMA& 101",
+          "DRMA 111",
+          "DRMA 151",
+          "DRMA 154",
+          "DANCE 101",
+          "Select one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "N 3 - Natural Science List A or List B",
+          "S 2 - Social Science",
+          "DRMA& 101",
+          "DRMA 111",
+          "DRMA 151",
+          "DRMA 154",
+          "DANCE 101",
+          "Select one of the following:",
+          "make sure to include a class from the Diversity Course List"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "H 2 - Humanities/Fine Arts/English",
+          "Course from list below Electives All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity."
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "S 3 - Social Science"
+        ]
+      },
+      {
+        "label": "List B",
+        "courses": [
+          "DRMA 102",
+          "DRMA 103",
+          "DRMA 112",
+          "DRMA 113",
+          "DRMA 152",
+          "DRMA 153",
+          "DRMA 155",
+          "DRMA 156",
+          "DRMA 157",
+          "DRMA 158",
+          "DRMA 211",
+          "DRMA 212",
+          "DRMA 213",
+          "DRMA 298",
+          "DANCE 102",
+          "DANCE 103",
+          "DANCE 204"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate - Transfer.",
+      "Degree: Associate in Arts - Direct Transfer Agreement.",
+      "Published duration: 90 credits.",
+      "Choose at least 5 credits, but it is recommended that elective courses also come from this list.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "AA-DTA with Concentration in Theatre Arts curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/theatre-arts/aa-dta-concentration-theatre-arts.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-healthcare-wellness-medical-office-administration-aaa-emphasis-front-office",
+    "code": "AAA",
+    "title": "Medical Office Administration, AAA with emphasis in Front Office",
+    "summary": "Official Green River associate curriculum map for Medical Office Administration, AAA with emphasis in Front Office. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Medical Office Administration, AAA with emphasis in Front Office"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "BTAC 100",
+          "BTAC 101",
+          "BTAC 142"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "BTAC 102",
+          "BTAC 110",
+          "BTAC 125"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "BTAC 112",
+          "BTAC 245",
+          "AP 100"
+        ]
+      },
+      {
+        "label": "Quarter 4 (13 credits)",
+        "courses": [
+          "BTAC 127",
+          "BTAC 162",
+          "BUS 166"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "BTAC 145",
+          "BTAC 248",
+          "BTAC 130"
+        ]
+      },
+      {
+        "label": "Quarter 6 (16 credits)",
+        "courses": [
+          "BTAC 132",
+          "BTAC 146",
+          "BTAC 266",
+          "COOP 171"
+        ]
+      },
+      {
+        "label": "Quarter 7 (10 credits)",
+        "courses": [
+          "BTAC 126",
+          "BTAC 177",
+          "CMST& 210",
+          "CMST& 220"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate in Applied Arts.",
+      "Published duration: 90 Credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Medical Office Administration, AAA with emphasis in Front Office curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/medical-office-administration/aaa-emphasis-front-office.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-healthcare-wellness-medical-office-administration-aaa-emphasis-medical-coding-reimbursement",
+    "code": "AAA",
+    "title": "Medical Office Administration, AAA with emphasis in Medical Coding and Reimbursement",
+    "summary": "Official Green River associate curriculum map for Medical Office Administration, AAA with emphasis in Medical Coding and Reimbursement. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Medical Office Administration, AAA with emphasis in Medical Coding and Reimbursement"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "BTAC 100",
+          "BTAC 101",
+          "BTAC 142"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "BTAC 102",
+          "BTAC 110",
+          "BTAC 125"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "AP 100",
+          "BTAC 112",
+          "BTAC 245"
+        ]
+      },
+      {
+        "label": "Quarter 4 (13 credits)",
+        "courses": [
+          "BTAC 127",
+          "BTAC 162",
+          "BUS 166"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "BTAC 130",
+          "BTAC 145",
+          "BTAC 248"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "BTAC 146",
+          "BTAC 257",
+          "CMST& 210",
+          "CMST& 220"
+        ]
+      },
+      {
+        "label": "Quarter 7 (12 credits)",
+        "courses": [
+          "BTAC 126",
+          "BTAC 180",
+          "BTAC 258"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate in Applied Arts.",
+      "Published duration: 90 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Medical Office Administration, AAA with emphasis in Medical Coding and Reimbursement curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/medical-office-administration/aaa-emphasis-medical-coding-reimbursement.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-healthcare-wellness-nursing-associate-in-pre-nursing-apren-dta-mrp",
+    "code": "AA-DTA",
+    "title": "Associate in Pre-Nursing",
+    "summary": "Official Green River associate - transfer curriculum map for Associate in Pre-Nursing, APreN-DTA/MRP. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Associate in Pre-Nursing"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "MATH& 146",
+          "PSYC& 100"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "BIOL& 160",
+          "CMST& 220",
+          "PSYC& 200"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "BIOL& 241",
+          "CHEM& 121",
+          "NUTR& 101"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "BIOL& 242",
+          "CHEM& 131",
+          "H 1 - Humanities/Fine Arts/English",
+          "Any course in Humanities/Fine Arts/English Distribution with the exception of CMST/CMST&. No more than 5 credits in foreign language at the 100-level. No more than 5 credits in performance/skills courses."
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "BIOL& 260",
+          "MATH 147",
+          "ENGL 127",
+          "ENGL 128",
+          "Select one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "H 2 - Humanities/Fine Arts/English",
+          "AMES 100",
+          "AMES 103",
+          "AMES 105",
+          "AMES 150",
+          "AMES 214",
+          "ANTH& 106",
+          "ANTH& 206",
+          "ANTH& 210",
+          "CJ 220",
+          "HIST& 128",
+          "HIST& 215",
+          "HIST 228",
+          "POLS& 204",
+          "SOC& 101",
+          "SOC& 201",
+          "SOC 205",
+          "SOC 214",
+          "SOC 220",
+          "Any course in Humanities/Fine Arts/English Distribution with the exception of CMST/CMST&. No more than 5 credits in foreign language at the 100-level. No more than 5 credits in performance/skills courses. Select one of the following:",
+          "Additional credits from any distribution area Humanities/Fine Arts/English Distribution , Natural Science Distribution , Social Science Distribution ."
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate - Transfer.",
+      "Degree: Associate in Arts - Direct Transfer Agreement.",
+      "Published duration: 90 credits.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Associate in Pre-Nursing, APreN-DTA/MRP curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/associate-in-pre-nursing-apren-dta-mrp.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-healthcare-wellness-nursing-medical-assistant-certified-practical-nursing",
+    "code": "Associate",
+    "title": "Medical Assistant-Certified (MA-C) to Practical Nursing (PN)",
+    "summary": "Official Green River associate page for Medical Assistant-Certified (MA-C) to Practical Nursing (PN). The current public page does not expose a structured curriculum-map feed, so this track is generated from the published page metadata only.",
+    "bestFor": [
+      "Medical Assistant-Certified (MA-C) to Practical Nursing (PN)"
+    ],
+    "terms": [
+      {
+        "label": "Published requirements",
+        "courses": [
+          "Published requirements only; no structured course grid is available yet."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate in Applied Science.",
+      "Published duration: 90 credits.",
+      "Generated automatically from the public Green River program-map page because no structured curriculum-map connector is published for this page yet."
+    ],
+    "officialLinks": [
+      {
+        "label": "Medical Assistant-Certified (MA-C) to Practical Nursing (PN) program map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/medical-assistant-certified-practical-nursing.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-healthcare-wellness-nursing-practical-nursing-aas",
+    "code": "AAS",
+    "title": "Practical Nursing",
+    "summary": "Official Green River associate curriculum map for Practical Nursing, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Practical Nursing"
+    ],
+    "terms": [
+      {
+        "label": "Entry Requirements",
+        "courses": [
+          "ENGL& 101",
+          "MATH& 146",
+          "MATH 256",
+          "PSYC& 100",
+          "PSYC& 200",
+          "NUTR& 101",
+          "BIOL& 241",
+          "BIOL& 242",
+          "BIOL& 211",
+          "BIOL& 160",
+          "CMST& 101",
+          "CMST& 210",
+          "CMST& 220",
+          "CMST& 230",
+          "CMST& 240",
+          "One of the following:"
+        ]
+      },
+      {
+        "label": "Fall Quarter",
+        "courses": [
+          "PNURSE 102",
+          "PNURSE 103",
+          "PNURSE 104",
+          "PNURSE 105",
+          "PNURSE 107"
+        ]
+      },
+      {
+        "label": "Winter Quarter",
+        "courses": [
+          "PNURSE 112",
+          "PNURSE 113",
+          "PNURSE 114",
+          "PNURSE 115",
+          "PNURSE 117"
+        ]
+      },
+      {
+        "label": "Spring Quarter",
+        "courses": [
+          "PNURSE 122",
+          "PNURSE 123",
+          "PNURSE 125",
+          "PNURSE 126",
+          "PNURSE 127"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate in Applied Science.",
+      "Published duration: 90 credits.",
+      "Apply to the program- Application Instructions A minimum grade of 2.5 or higher is required in each nursing and supporting course, an overall GPA of 3.0 is required.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Practical Nursing, AAS curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/practical-nursing-aas.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-healthcare-wellness-nursing-practical-nursing-aas-part-time-hybrid",
+    "code": "AAS",
+    "title": "Practical Nursing, AAS Part-time (Hybrid)",
+    "summary": "Official Green River associate curriculum map for Practical Nursing, AAS Part-time (Hybrid). Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Practical Nursing, AAS Part-time (Hybrid)"
+    ],
+    "terms": [
+      {
+        "label": "Entry Requirements",
+        "courses": [
+          "ENGL& 101",
+          "MATH& 146",
+          "MATH 256",
+          "PSYC& 100",
+          "PSYC& 200",
+          "NUTR& 101",
+          "BIOL& 160",
+          "BIOL& 211",
+          "BIOL& 241",
+          "BIOL& 242",
+          "CMST& 101",
+          "CMST& 210",
+          "CMST& 220",
+          "CMST& 230",
+          "CMST& 240",
+          "One of the following:"
+        ]
+      },
+      {
+        "label": "Spring 1 (9 credits)",
+        "courses": [
+          "PNURSE 102",
+          "PNURSE 103"
+        ]
+      },
+      {
+        "label": "Summer 1 (6 credits)",
+        "courses": [
+          "PNURSE 104",
+          "PNURSE 105",
+          "PNURSE 107"
+        ]
+      },
+      {
+        "label": "Fall (7 credits)",
+        "courses": [
+          "PNURSE 112",
+          "PNURSE 113"
+        ]
+      },
+      {
+        "label": "Winter (8 credits)",
+        "courses": [
+          "PNURSE 114",
+          "PNURSE 115",
+          "PNURSE 117"
+        ]
+      },
+      {
+        "label": "Spring 2 (8 credits)",
+        "courses": [
+          "PNURSE 122",
+          "PNURSE 123"
+        ]
+      },
+      {
+        "label": "Summer 2 (7 credits)",
+        "courses": [
+          "PNURSE 125",
+          "PNURSE 126",
+          "PNURSE 127"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate in Applied Science.",
+      "Published duration: 90 credits.",
+      "Apply to the program- Application Instructions A minimum grade of 2.5 or higher is required in each nursing and supporting course, an overall GPA of 3.0 is required.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Practical Nursing, AAS Part-time (Hybrid) curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/practical-nursing-aas-part-time-hybrid.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-healthcare-wellness-nursing-practical-nursing-aas-part-time-online",
+    "code": "AAS",
+    "title": "Practical Nursing, AAS Part-time (Online)",
+    "summary": "Official Green River associate curriculum map for Practical Nursing, AAS Part-time (Online). Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Practical Nursing, AAS Part-time (Online)"
+    ],
+    "terms": [
+      {
+        "label": "Entry Requirements",
+        "courses": [
+          "ENGL& 101",
+          "MATH& 146",
+          "MATH 256",
+          "PSYC& 100",
+          "PSYC& 200",
+          "NUTR& 101",
+          "BIOL& 160",
+          "BIOL& 211",
+          "BIOL& 241",
+          "BIOL& 242",
+          "CMST& 101",
+          "CMST& 210",
+          "CMST& 220",
+          "CMST& 230",
+          "CMST& 240",
+          "One of the following:"
+        ]
+      },
+      {
+        "label": "Summer 1 (9 credits)",
+        "courses": [
+          "PNURSE 102",
+          "PNURSE 103"
+        ]
+      },
+      {
+        "label": "Fall 1 (6 credits)",
+        "courses": [
+          "PNURSE 104",
+          "PNURSE 105",
+          "PNURSE 107"
+        ]
+      },
+      {
+        "label": "Winter 1 (7 credits)",
+        "courses": [
+          "PNURSE 112",
+          "PNURSE 113"
+        ]
+      },
+      {
+        "label": "Spring 1 (8 credits)",
+        "courses": [
+          "PNURSE 114",
+          "PNURSE 115",
+          "PNURSE 117"
+        ]
+      },
+      {
+        "label": "Summer 2 (8 credits)",
+        "courses": [
+          "PNURSE 122",
+          "PNURSE 123"
+        ]
+      },
+      {
+        "label": "Fall 2 (7 credits)",
+        "courses": [
+          "PNURSE 125",
+          "PNURSE 126",
+          "PNURSE 127"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate in Applied Science.",
+      "Published duration: 90 credits.",
+      "Apply to the program- Application Instructions The following prerequisite requirements with a 2.5 grade or higher.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Practical Nursing, AAS Part-time (Online) curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/practical-nursing-aas-part-time-online.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-healthcare-wellness-occupational-therapy-assistant-aas",
+    "code": "AAS",
+    "title": "Occupational Therapy Assistant",
+    "summary": "Official Green River associate curriculum map for Occupational Therapy Assistant, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Occupational Therapy Assistant"
+    ],
+    "terms": [
+      {
+        "label": "Entry Requirements",
+        "courses": [
+          "AP 103",
+          "BIOL& 175",
+          "BIOL& 241",
+          "MATH 70 - Pre-Algebra",
+          "ENGL& 101",
+          "or higher ( math courses )",
+          "Select one of the following- must be taken prior to the start of the program :",
+          "The following can be taken with OTA classes at anytime:"
+        ]
+      },
+      {
+        "label": "Fall 1",
+        "courses": [
+          "OTA 100",
+          "OTA 101",
+          "OTA 102",
+          "OTA 103",
+          "OTA 111",
+          "OTA 112"
+        ]
+      },
+      {
+        "label": "Winter 1",
+        "courses": [
+          "OTA 120",
+          "OTA 121",
+          "OTA 122",
+          "OTA 123",
+          "OTA 124"
+        ]
+      },
+      {
+        "label": "Spring 1",
+        "courses": [
+          "OTA 126",
+          "OTA 127",
+          "OTA 128",
+          "OTA 130",
+          "OTA 131",
+          "OTA 132",
+          "OTA 133",
+          "OTA 134"
+        ]
+      },
+      {
+        "label": "Fall 2",
+        "courses": [
+          "OTA 200",
+          "OTA 201",
+          "OTA 202",
+          "OTA 210",
+          "OTA 211",
+          "OTA 212",
+          "OTA 213"
+        ]
+      },
+      {
+        "label": "Winter 2",
+        "courses": [
+          "OTA 220",
+          "OTA 221",
+          "OTA 222",
+          "OTA 223",
+          "OTA 224",
+          "OTA 225",
+          "OTA 228"
+        ]
+      },
+      {
+        "label": "Spring 2",
+        "courses": [
+          "OTA 240",
+          "OTA 245"
+        ]
+      },
+      {
+        "label": "Summer",
+        "courses": [
+          "OTA 241",
+          "OTA 246"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate in Applied Science.",
+      "Published duration: 105 credits.",
+      "Apply to the program",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Occupational Therapy Assistant, AAS curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/occupational-therapy-assistant/aas.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-healthcare-wellness-occupational-therapy-assistant-aas-hybrid",
+    "code": "AAS",
+    "title": "Occupational Therapy Assistant, AAS Hybrid",
+    "summary": "Official Green River associate curriculum map for Occupational Therapy Assistant, AAS Hybrid. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Occupational Therapy Assistant, AAS Hybrid"
+    ],
+    "terms": [
+      {
+        "label": "Entry Requirements",
+        "courses": [
+          "AP 103",
+          "BIOL& 175",
+          "BIOL& 241",
+          "MATH 70 - Pre-Algebra",
+          "ENGL& 101",
+          "Select one of the following- must be taken prior to the start of the program :",
+          "The following can be taken with OTA classes at anytime:",
+          "or higher (math courses)"
+        ]
+      },
+      {
+        "label": "Spring 1 (12 credits)",
+        "courses": [
+          "OTA 100",
+          "OTA 102",
+          "OTA 103",
+          "OTA 111",
+          "OTA 112"
+        ]
+      },
+      {
+        "label": "Summer 1 (8 credits)",
+        "courses": [
+          "OTA 101",
+          "OTA 122",
+          "OTA 123"
+        ]
+      },
+      {
+        "label": "Fall 1 (10 credits)",
+        "courses": [
+          "OTA 120",
+          "OTA 121",
+          "OTA 131",
+          "OTA 132"
+        ]
+      },
+      {
+        "label": "Winter 1 (11 credits)",
+        "courses": [
+          "OTA 124",
+          "OTA 126",
+          "OTA 127",
+          "OTA 128",
+          "OTA 130",
+          "OTA 133",
+          "OTA 134"
+        ]
+      },
+      {
+        "label": "Spring 2 (8 credits)",
+        "courses": [
+          "OTA 200",
+          "OTA 201",
+          "OTA 202",
+          "OTA 212",
+          "OTA 213"
+        ]
+      },
+      {
+        "label": "Summer 2 (8 credits)",
+        "courses": [
+          "OTA 210",
+          "OTA 211",
+          "OTA 220",
+          "OTA 221"
+        ]
+      },
+      {
+        "label": "Fall 2 (9 credits)",
+        "courses": [
+          "OTA 222",
+          "OTA 223",
+          "OTA 224",
+          "OTA 225",
+          "OTA 228"
+        ]
+      },
+      {
+        "label": "Winter 2 (12 credits)",
+        "courses": [
+          "OTA 240",
+          "OTA 245"
+        ]
+      },
+      {
+        "label": "Spring 3 (12 credits)",
+        "courses": [
+          "OTA 241",
+          "OTA 246"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate in Applied Science.",
+      "Published duration: 105 credits.",
+      "Apply to the program",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Occupational Therapy Assistant, AAS Hybrid curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/occupational-therapy-assistant/aas-hybrid.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-healthcare-wellness-physical-therapist-assistant-aas",
+    "code": "AAS",
+    "title": "Physical Therapist Assistant",
+    "summary": "Official Green River associate curriculum map for Physical Therapist Assistant, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Physical Therapist Assistant"
+    ],
+    "terms": [
+      {
+        "label": "Entry Requirements",
+        "courses": [
+          "AP 103",
+          "AP 104",
+          "BIOL& 241",
+          "BIOL& 242",
+          "ENGL& 101",
+          "Any 5 credit communication studies course ( CMST/CMST& ) Any 5 credits of college-level Math",
+          "The following can be taken with PTA classes at anytime"
+        ]
+      },
+      {
+        "label": "Fall 1",
+        "courses": [
+          "PTA 101",
+          "PTA 104",
+          "PTA 105",
+          "PTA 130",
+          "PTA 164"
+        ]
+      },
+      {
+        "label": "Winter 1",
+        "courses": [
+          "PTA 102",
+          "PTA 110",
+          "PTA 114",
+          "PTA 115",
+          "PTA 131",
+          "PTA 163"
+        ]
+      },
+      {
+        "label": "Spring 1",
+        "courses": [
+          "PTA 106",
+          "PTA 107",
+          "PTA 111",
+          "PTA 151",
+          "PTA 161",
+          "PTA 166"
+        ]
+      },
+      {
+        "label": "Fall 2",
+        "courses": [
+          "PTA 205",
+          "PTA 210",
+          "PTA 212",
+          "PTA 251",
+          "PTA 260",
+          "PTA 262",
+          "PTA 278"
+        ]
+      },
+      {
+        "label": "Winter 2",
+        "courses": [
+          "PTA 201",
+          "PTA 211",
+          "PTA 213",
+          "PTA 220",
+          "PTA 221",
+          "PTA 261",
+          "PTA 263"
+        ]
+      },
+      {
+        "label": "Spring 2",
+        "courses": [
+          "PTA 252",
+          "PTA 279",
+          "PTA 280"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate in Applied Science.",
+      "Published duration: 107 credits.",
+      "Apply to the program Complete one of the following 10 credit Human Anatomy and Physiology options:",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Physical Therapist Assistant, AAS curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/physical-therapist-assistant/aas.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-stem-biology-associate-in-biology-dta-mrp",
+    "code": "AA-DTA",
+    "title": "Associate in Biology, DTA/MRP",
+    "summary": "Official Green River curriculum map for Associate in Biology, DTA/MRP. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Associate in Biology, DTA/MRP"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (16 credits)",
+        "courses": [
+          "CHEM& 161",
+          "ENGL& 101",
+          "MATH& 141"
+        ]
+      },
+      {
+        "label": "Quarter 2 (16 credits)",
+        "courses": [
+          "CHEM& 162",
+          "ENGL 128",
+          "MATH& 142"
+        ]
+      },
+      {
+        "label": "Quarter 3 (16 credits)",
+        "courses": [
+          "CHEM& 163",
+          "MATH& 151",
+          "H 1 - Humanities/Fine Arts/English"
+        ]
+      },
+      {
+        "label": "Quarter 4 (16 credits)",
+        "courses": [
+          "BIOL& 211",
+          "H 2 - Humanities/Fine Arts/English",
+          "S 1 - Social Science",
+          "The biology department recommends students take other classes (EG: Humanities, and Social Sciences) that they find interesting and relevant to their goals and curiosities. Biology's foundation is interdisciplinary, and the field thrives upon a diversity of perspectives, experiences, and expertise."
+        ]
+      },
+      {
+        "label": "Quarter 5 (16 credits)",
+        "courses": [
+          "BIOL& 212",
+          "H 3 - Humanities/Fine Arts/English",
+          "S 2 - Social Science",
+          "(only offered winter and summer quarters)"
+        ]
+      },
+      {
+        "label": "Quarter 6 (16 credits)",
+        "courses": [
+          "BIOL& 213",
+          "S 3 - Social Science",
+          "(only offered spring quarter)"
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Degree: Associate in Biology, Direct Transfer Agreement, Major Related Program.",
+      "Published duration: 90 credits.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Associate in Biology, DTA/MRP curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/biology/associate-in-biology-dta-mrp.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-stem-biology-associate-in-science-transfer-track-1-biology",
+    "code": "AST-1",
+    "title": "Associate in Science Transfer Track 1 Biology",
+    "summary": "Official Green River curriculum map for Associate in Science Transfer Track 1 Biology. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Associate in Science Transfer Track 1 Biology"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (16 credits)",
+        "courses": [
+          "CHEM& 161",
+          "ENGL& 101",
+          "MATH& 151"
+        ]
+      },
+      {
+        "label": "Quarter 2 (16 credits)",
+        "courses": [
+          "CHEM& 162",
+          "MATH& 152",
+          "ENGL 126",
+          "ENGL 127",
+          "ENGL 128",
+          "Choose one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 3 (16 credits)",
+        "courses": [
+          "CHEM& 163",
+          "H 1 - Humanities/Fine Arts/English",
+          "MATH& 163",
+          "MATH 256"
+        ]
+      },
+      {
+        "label": "Quarter 4 (16 credits)",
+        "courses": [
+          "BIOL& 211",
+          "S 1 - Social Science",
+          "N 3 - Natural Science List A or List B",
+          "Seek consultation with science advisor for additional Natural Sciences"
+        ]
+      },
+      {
+        "label": "Quarter 5 (16 credits)",
+        "courses": [
+          "BIOL& 212",
+          "N 3 - Natural Science List A or List B"
+        ]
+      },
+      {
+        "label": "Quarter 6 (11 credits)",
+        "courses": [
+          "BIOL& 213"
+        ]
+      }
+    ],
+    "notes": [
+      "Degree: Associate in Science, Transfer Track.",
+      "Published duration: 90 Credits.",
+      "Seek consultation with science advisor for 5 additional credits of Natural Sciences N 3 - Natural Science List A or List B Credits: 5",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Associate in Science Transfer Track 1 Biology curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/biology/associate-in-science-transfer-track-1-biology.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-stem-chemistry-associate-in-science-transfer-track-1-chemistry",
+    "code": "AST-1",
+    "title": "Associate in Science Transfer Track 1 - Chemistry",
+    "summary": "Official Green River curriculum map for Associate in Science Transfer Track 1 - Chemistry. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Associate in Science Transfer Track 1 - Chemistry"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 0",
+        "courses": [
+          "CHEM& 140",
+          "MATH& 141",
+          "MATH& 142"
+        ]
+      },
+      {
+        "label": "Quarter 1 (16 credits)",
+        "courses": [
+          "CHEM& 161",
+          "ENGL& 101",
+          "MATH& 151"
+        ]
+      },
+      {
+        "label": "Quarter 2 (16 credits)",
+        "courses": [
+          "CHEM& 162",
+          "MATH& 152"
+        ]
+      },
+      {
+        "label": "Quarter 3 (16 credits)",
+        "courses": [
+          "CHEM& 163",
+          "MATH& 163"
+        ]
+      },
+      {
+        "label": "Quarter 4 (16 credits)",
+        "courses": [
+          "CHEM& 261",
+          "PHYS& 221",
+          "MATH 240",
+          "or elective Electives can be any course numbered 100 or higher, with the exception of Basic Skills and no more than 3 credits Physical Education may be taken as electives."
+        ]
+      },
+      {
+        "label": "Quarter 5 (16 credits)",
+        "courses": [
+          "CHEM& 262",
+          "ENGL 128",
+          "PHYS& 222"
+        ]
+      },
+      {
+        "label": "Quarter 6 (16 credits)",
+        "courses": [
+          "CHEM& 263",
+          "PHYS& 223"
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Degree: Associate in Science, Transfer Track.",
+      "Published duration: 90 Credits.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Associate in Science Transfer Track 1 - Chemistry curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/chemistry/associate-in-science-transfer-track-1-chemistry.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-stem-computer-science-associate-in-computer-science-acs-dta-mrp",
+    "code": "ACS-DTA/MRP",
+    "title": "Associate in Computer Science",
+    "summary": "Official Green River associate curriculum map for Associate in Computer Science, ACS-DTA/MRP. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Associate in Computer Science"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 0",
+        "courses": [
+          "PHYS& 114",
+          "MATH& 141",
+          "MATH& 142"
+        ]
+      },
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "MATH& 151"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ENGL& 235",
+          "MATH& 152"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "CS 121",
+          "MATH& 163",
+          "CMST& 220",
+          "PSYC& 100",
+          "AMES 100",
+          "ANTH& 206"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "CS 122",
+          "PHYS& 221"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "CS 123",
+          "PHYS& 222",
+          "MATH& 254",
+          "CS 109",
+          "CS& 131",
+          "CS 132",
+          "CS 202",
+          "Select one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "Humanities/Fine Arts/English Distribution or Social Science Distribution Credits / Units: 5 Humanities/Fine Arts/English Distribution or Social Science Distribution Credits / Units: 5 One other elective of your choice See quarter 5 list for suggested options."
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate in Computer Science - Transfer.",
+      "Published duration: 90 credits.",
+      "PHYS& 114 only required if no prior physic experience. Classes to become Calculus ready.",
+      "Humanities/Fine Arts/English Distribution or Social Science Distribution Credits / Units: 5 Humanities/Fine Arts/English Distribution or Social Science Distribution Credits / Units: 5 One other elective of your choice See quarter 5 list for suggested options.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Associate in Computer Science, ACS-DTA/MRP curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/computer-science/associate-in-computer-science-acs-dta-mrp.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-stem-cybersecurity-networking-cybersecurity-and-networking-aas-t",
+    "code": "AAS-T",
+    "title": "Cybersecurity and Networking",
+    "summary": "Official Green River associate - transfer curriculum map for Cybersecurity and Networking, AAS-T. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Cybersecurity and Networking"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "IT 102",
+          "CS 108",
+          "CS 109",
+          "IT 114",
+          "IT 131",
+          "Choose one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 2 (17 credits)",
+        "courses": [
+          "IT 160",
+          "IT 210",
+          "MATH 108",
+          "MATH& 107"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "IT 224",
+          "IT 245",
+          "ENGL& 101"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "IT 135",
+          "IT 201",
+          "ENGL& 235",
+          "ENGL 126",
+          "ENGL 127",
+          "ENGL 128",
+          "Choose one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "IT 190",
+          "IT 214",
+          "CMST& 240",
+          "D 1 - Diversity"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "IT 244",
+          "IT 295"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate - Transfer.",
+      "Degree: Associate in Applied Science.",
+      "Published duration: 93 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Cybersecurity and Networking, AAS-T curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/cybersecurity-and-networking-aas-t.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-stem-data-analytics-software-development-aas-t-business-management-track",
+    "code": "AAS-T",
+    "title": "Data Analytics and Software Development, AAS-T Business Management Track",
+    "summary": "Official Green River associate - transfer curriculum map for Data Analytics and Software Development, AAS-T Business Management Track. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Data Analytics and Software Development, AAS-T Business Management Track"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "SDEV 101",
+          "MATH 147"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "MATH 256",
+          "CS 108",
+          "CS 109"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "SDEV 121",
+          "SDEV 201",
+          "ENGL 126",
+          "ENGL 127",
+          "ENGL 128",
+          "ENGL& 235",
+          "IT 201"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "SDEV 106",
+          "BUS& 101",
+          "CMST& 101",
+          "CMST& 210",
+          "CMST& 220",
+          "CMST& 230",
+          "CMST& 240",
+          "Choose one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "SDEV 117",
+          "ACCT& 201",
+          "BUS 121"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "SDEV 280",
+          "N 1 - Natural Science List A (Lab)",
+          "BUS 258"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate - Transfer.",
+      "Degree: Associate in Applied Science.",
+      "Published duration: 90 Credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Data Analytics and Software Development, AAS-T Business Management Track curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/data-analytics-software-development/aas-t-business-management-track.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-stem-data-analytics-software-development-aas-t-software-development-track",
+    "code": "AAS-T",
+    "title": "Data Analytics and Software Development, AAS-T Software Development Track",
+    "summary": "Official Green River associate - transfer curriculum map for Data Analytics and Software Development, AAS-T Software Development Track. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Data Analytics and Software Development, AAS-T Software Development Track"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "SDEV 101",
+          "MATH& 141"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "MATH& 146",
+          "CS 108",
+          "CS 109"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "SDEV 121",
+          "SDEV 201",
+          "ENGL 126",
+          "ENGL 127",
+          "ENGL 128",
+          "ENGL& 235",
+          "IT 201"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "SDEV 106",
+          "CS 121",
+          "CMST& 101",
+          "CMST& 210",
+          "CMST& 220",
+          "CMST& 230",
+          "CMST& 240",
+          "Choose one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "SDEV 117",
+          "CS 122"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "CS 123",
+          "SDEV 280",
+          "N 1 - Natural Science List A (Lab)"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate - Transfer.",
+      "Degree: Associate in Applied Science.",
+      "Published duration: 90 Credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Data Analytics and Software Development, AAS-T Software Development Track curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/data-analytics-software-development/aas-t-software-development-track.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-stem-mathematics-math-curriculum-map-aa-dta-math-emphasis",
+    "code": "AA-DTA",
+    "title": "Math Education",
+    "summary": "Official Green River associate degree - transfer curriculum map for Math Education, AM-DTA (Mathematics). Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Math Education"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "MATH& 151",
+          "ENGL& 101",
+          "S 1 - Social Science",
+          "Suggested: When choosing a Social Science classes consider a course from the Diversity Course List . Discuss specific course requirements with an advisor. Students are responsible for checking specific major requirement of the transfer institutions."
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "MATH& 152",
+          "H 1 - Humanities/Fine Arts/English",
+          "H 2 - Humanities/Fine Arts/English",
+          "CMST& 210",
+          "CMST& 220",
+          "CMST& 230",
+          "CMST& 240",
+          "CMST 245",
+          "PHIL& 115",
+          "Suggested: For pure math majors, French or German language is sometimes a school requirement. These languages may also be needed to read research from other countries."
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "ENGL 128",
+          "ENGL& 235",
+          "MATH& 163",
+          "(for pure math majors)",
+          "(for applied math majors)",
+          "Computer Science (CS) or Engineering (ENGR)"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "MATH& 254",
+          "PHYS& 221",
+          "H 3 - Humanities/Fine Arts/English",
+          "ART 105",
+          "ART 119",
+          "MUSC 101",
+          "MUSC& 105",
+          "For best transferability take all the classes in the series at the same college."
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "MATH 238",
+          "PHYS& 222",
+          "S 2 - Social Science",
+          "SOC& 201"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "MATH 240",
+          "PHYS& 223",
+          "S 3 - Social Science",
+          "BUS& 101"
+        ]
+      },
+      {
+        "label": "Notes:",
+        "courses": [
+          "MATH& 153",
+          "MATH 126",
+          "MATH& 254",
+          "MATH 238",
+          "MATH 240",
+          "MATH 147",
+          "MATH& 148"
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate Degree - Transfer.",
+      "Degree: Associate Degree - Direct Transfer Agreement.",
+      "Published duration: 90 credits.",
+      "If transferring to UW, you will need to take both MATH& 153 and 254 in order to earn credit for UW's MATH 126. MATH& 254 must be taken either before, or simultaneously with, MATH 238. MATH 240 can be taken at any time after MATH& 153. If you are planning on majoring in math, take the regular calculus series, rather than the business calculus series (that is, don't take MATH 147/MATH& 148). If you are considering a minor, you might want to think about programming, engineering, physics, data analysis, or statistics (take elective classes that align with the minor that suits your interests)",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Math Education, AM-DTA (Mathematics) curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/mathematics/math-curriculum-map-AA-DTA-math-emphasis.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-stem-mathematics-math-curriculum-map-aa-dta-statistics",
+    "code": "AA-DTA",
+    "title": "Math Education",
+    "summary": "Official Green River associate degree - transfer curriculum map for Math Education, AM-DTA (Statistics). Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Math Education"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "MATH 256",
+          "H 1 - Humanities/Fine Arts/English",
+          "CMST& 210",
+          "CMST& 220",
+          "CMST& 230",
+          "CMST& 240"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "CS 121",
+          "MATH& 151",
+          "H 2 - Humanities/Fine Arts/English",
+          "Recommended: Something that could be useful in the workplace, such as Spanish or Japanese (depends on region in which you're thinking about working)."
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "CS 122",
+          "MATH& 152",
+          "ENGL 128",
+          "ENGL& 235"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "MATH& 163",
+          "S 1 - Social Science",
+          "N 1 - Natural Science List A (Lab)",
+          "SOC& 201",
+          "ECON& 201",
+          "ECON& 202",
+          "BIOL& 160",
+          "CHEM& 121"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "MATH& 254",
+          "S 2 - Social Science",
+          "N 2 - Natural Science List A",
+          "Recommend: Something from the Diversity Course List"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "MATH 240",
+          "H 3 - Humanities/Fine Arts/English",
+          "S 3 - Social Science",
+          "PHIL 112",
+          "PHIL 240",
+          "Recommend: A business or political science course-lots of statistics opportunities in these fields."
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate Degree - Transfer.",
+      "Degree: Associate Degree - Direct Transfer Agreement.",
+      "Published duration: 90 credits.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Math Education, AM-DTA (Statistics) curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/mathematics/math-curriculum-map-AA-DTA-statistics.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-stem-mathematics-math-curriculum-map-am-dta-mrp",
+    "code": "AA-DTA",
+    "title": "Math Education",
+    "summary": "Official Green River associate degree - transfer curriculum map for Math Education, AM-DTA/MRP. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Math Education"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "MATH& 151",
+          "ENGL& 101",
+          "H 1 - Humanities/Fine Arts/English",
+          "DRMA 154"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "MATH& 152",
+          "PSYC& 100",
+          "ENGL 126",
+          "ENGL 127",
+          "ENGL 128",
+          "Select one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "MATH& 163",
+          "EDUC& 205",
+          "MATH& 131"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "MATH& 254",
+          "N 1 - Natural Science List A (Lab)",
+          "PHYS& 114",
+          "PHYS& 221",
+          "CHEM& 121",
+          "CHEM& 161",
+          "MATH& 132"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "MATH 240",
+          "AMES 100",
+          "ANTH& 206",
+          "N 3 - Natural Science List A or List B",
+          "Any class from Natural Science List A or B that isn't already being used to fulfill one of the other requirements. We recommend whatever you find interesting. You can also continue the lab class sequence you used to fulfill the lab requirement above, if you want to.",
+          "These will meet both a Social Science requirement and Diversity."
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "CMST& 220",
+          "H 2 - Humanities/Fine Arts/English",
+          "S 1 - Social Science",
+          "HIST& 137",
+          "HIST& 214",
+          "SOC 205",
+          "SOC 214",
+          "SOC 220",
+          "SOC 240",
+          "SOC 245",
+          "SOC 252",
+          "SOC 271"
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate Degree - Transfer.",
+      "Degree: Associate Degree - Direct Transfer Agreement.",
+      "Published duration: 90 credits.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Math Education, AM-DTA/MRP curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/mathematics/math-curriculum-map--am-dta-mrp.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-stem-physics-associate-in-science-transfer-track-2-physics",
+    "code": "AST-2",
+    "title": "Associate in Science Transfer Track 2-Physics",
+    "summary": "Official Green River associate curriculum map for Associate in Science Transfer Track 2-Physics. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Associate in Science Transfer Track 2-Physics"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 0",
+        "courses": [
+          "MATH& 141",
+          "MATH& 142",
+          "CHEM& 140",
+          "only required if no prior chemistry experience",
+          "MATH& 151"
+        ]
+      },
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "PHYS& 114",
+          "MATH& 151"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "MATH& 152",
+          "PHYS& 221"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "MATH& 163",
+          "PHYS& 222",
+          "Natural Science Distribution electives Consult with transfer university for program requirements and work with advisor"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "MATH& 254",
+          "PHYS& 223",
+          "Natural Science Distribution electives Consult with transfer university for program requirements and work with advisor"
+        ]
+      },
+      {
+        "label": "Quarter 5 (16 credits)",
+        "courses": [
+          "MATH 238",
+          "CHEM& 140",
+          "CHEM& 161"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15-16 credits)",
+        "courses": [
+          "MATH 240",
+          "CHEM& 161",
+          "CHEM& 140"
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate in Science - Transfer.",
+      "Published duration: 90 Credits.",
+      "Depending on math placement the following courses may be required to be ready for MATH& 151",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Associate in Science Transfer Track 2-Physics curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/physics/associate-in-science-transfer-track-2-physics.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-automotive-technology-aas",
+    "code": "AAS",
+    "title": "Automotive Technology",
+    "summary": "Official Green River associate curriculum map for Automotive Technology, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Automotive Technology"
+    ],
+    "terms": [
+      {
+        "label": "General Education",
+        "courses": [
+          "ENGL& 101",
+          "ENGL 109",
+          "CMST 105",
+          "CMST 117",
+          "CMST& 220",
+          "CMST& 230",
+          "CMST& 240",
+          "MATH 70 - Pre-Algebra",
+          "BUS 166",
+          "CMST 106",
+          "CMST& 210",
+          "Select one of the following:",
+          "or eligible for MATH 72 - Elementary Algebra Select one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 1 (17 credits)",
+        "courses": [
+          "ATECH 110",
+          "ATECH 111",
+          "ATECH 150"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ATECH 112",
+          "ATECH 151"
+        ]
+      },
+      {
+        "label": "Quarter 3 (17 credits)",
+        "courses": [
+          "ATECH 116",
+          "ATECH 117",
+          "ATECH 152",
+          "INDUS 111"
+        ]
+      },
+      {
+        "label": "Quarter 4 (13 credits)",
+        "courses": [
+          "ATECH 114",
+          "ATECH 115",
+          "ATECH 153"
+        ]
+      },
+      {
+        "label": "Quarter 5 (12 credits)",
+        "courses": [
+          "ATECH 113",
+          "ATECH 118",
+          "ATECH 154"
+        ]
+      },
+      {
+        "label": "Quarter 6 (12 credits)",
+        "courses": [
+          "ATECH 119",
+          "ATECH 177"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate of Applied Science Degree.",
+      "Published duration: 96-103 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Automotive Technology, AAS curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/automotive-technology/aas.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-aviation-technology-aas-air-traffic-control-track",
+    "code": "AAS",
+    "title": "Aviation Technology, AAS-Air Traffic Control Track",
+    "summary": "Official Green River associate curriculum map for Aviation Technology, AAS-Air Traffic Control Track. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Aviation Technology, AAS-Air Traffic Control Track"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "AVIA 103",
+          "AVIA 111",
+          "AVIA 123"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "AVIA 107",
+          "AVIA 110",
+          "AVIA 160"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "AVIA 190",
+          "AVIA 216",
+          "ENGL& 101"
+        ]
+      },
+      {
+        "label": "Quarter 4 (16 credits)",
+        "courses": [
+          "AVIA 212",
+          "AVIA 267",
+          "AVIA 281",
+          "SIM 101",
+          "SIM 111"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "AVIA 275",
+          "AVIA 282",
+          "MATH& 107"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "AVIA 211",
+          "AVIA 286",
+          "N 1 - Natural Science List A (Lab)"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate of Applied Science.",
+      "Published duration: 91 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Aviation Technology, AAS-Air Traffic Control Track curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/aviation-technology/aas-air-traffic-control-track.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-aviation-technology-aas-airline-dispatch-track",
+    "code": "AAS",
+    "title": "Aviation Technology, AAS-Airline Dispatch Track",
+    "summary": "Official Green River associate curriculum map for Aviation Technology, AAS-Airline Dispatch Track. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Aviation Technology, AAS-Airline Dispatch Track"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "AVIA 103",
+          "AVIA 111",
+          "AVIA 123"
+        ]
+      },
+      {
+        "label": "Quarter 2 (16 credits)",
+        "courses": [
+          "SIM 101",
+          "SIM 111",
+          "AVIA 107",
+          "AVIA 110",
+          "AVIA 160"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "AVIA 216",
+          "AVIA 112",
+          "AVIA 190"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "AVIA 212",
+          "AVIA 267",
+          "AVIA 270"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "AVIA 211",
+          "AVIA 275",
+          "MATH& 107"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "AVIA 276",
+          "ENGL& 101",
+          "N 1 - Natural Science List A (Lab)"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate of Applied Science.",
+      "Published duration: 91 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Aviation Technology, AAS-Airline Dispatch Track curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/aviation-technology/aas-airline-dispatch-track.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-aviation-technology-aas-aviation-management-track",
+    "code": "AAS",
+    "title": "Aviation Technology, AAS-Aviation Management Track",
+    "summary": "Official Green River associate curriculum map for Aviation Technology, AAS-Aviation Management Track. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Aviation Technology, AAS-Aviation Management Track"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "AVIA 103",
+          "AVIA 111",
+          "AVIA 123"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "AVIA 107",
+          "AVIA 110",
+          "AVIA 160"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "AVIA 190",
+          "AVIA 216",
+          "ENGL& 101"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "AVIA 212",
+          "AVIA 267",
+          "AVIA 270"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "AVIA 210",
+          "AVIA 217",
+          "AVIA 275"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "AVIA 177",
+          "AVIA 276",
+          "N 1 - Natural Science List A (Lab)",
+          "MATH& 107",
+          "-minimum 5 credits"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate of Applied Science.",
+      "Published duration: 90 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Aviation Technology, AAS-Aviation Management Track curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/aviation-technology/aas-aviation-management-track.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-aviation-technology-aas-commercial-pilot-track",
+    "code": "AAS",
+    "title": "Aviation Technology, AAS-Commercial Pilot Track",
+    "summary": "Official Green River associate curriculum map for Aviation Technology, AAS-Commercial Pilot Track. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Aviation Technology, AAS-Commercial Pilot Track"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "AVIA 103",
+          "AVIA 111",
+          "AVIA 123"
+        ]
+      },
+      {
+        "label": "Quarter 2 (16 credits)",
+        "courses": [
+          "SIM 111",
+          "AVIA 107",
+          "AVIA 110",
+          "AVIA 160"
+        ]
+      },
+      {
+        "label": "Quarter 3 (17 credits)",
+        "courses": [
+          "SIM 216",
+          "AVIA 216",
+          "AVIA 190",
+          "AVIA 112"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "AVIA 212",
+          "AVIA 267",
+          "AVIA 270"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "AVIA 218",
+          "AVIA 275",
+          "MATH& 107"
+        ]
+      },
+      {
+        "label": "Quarter 6 (16 credits)",
+        "courses": [
+          "SIM 218",
+          "AVIA 211",
+          "ENGL& 101",
+          "N 1 - Natural Science List A (Lab)"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate of Applied Science.",
+      "Published duration: 97 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Aviation Technology, AAS-Commercial Pilot Track curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/aviation-technology/aas-commercial-pilot-track.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-aviation-technology-unmanned-aerial-systems-aas",
+    "code": "AAS",
+    "title": "Unmanned Aerial Systems, AAS Curriclum Map",
+    "summary": "Official Green River associate curriculum map for Unmanned Aerial Systems, AAS Curriclum Map. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Unmanned Aerial Systems, AAS Curriclum Map"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (17 credits)",
+        "courses": [
+          "SIM 107",
+          "AVIA 107",
+          "AVIA 111",
+          "AVIA 123"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "AVIA 211",
+          "AVIA 270",
+          "IT 131"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "IT 135",
+          "PHOTO 111",
+          "MATH& 107"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "PHOTO 112",
+          "SDEV 101"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "AVIA 212",
+          "SDEV 106",
+          "N 1 - Natural Science List A (Lab)"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "ART 123",
+          "CS 108",
+          "CMST& 210",
+          "CMST& 220",
+          "CMST& 230",
+          "CMST& 240",
+          "Select one of the following:"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate of Applied Science.",
+      "Published duration: 92 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Unmanned Aerial Systems, AAS Curriclum Map curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/aviation-technology/unmanned-aerial-systems-aas.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-carpentry-technology-residential-and-light-commercial-aas-curriculm-map",
+    "code": "AAS",
+    "title": "Residential and Light Commercial",
+    "summary": "Official Green River associate curriculum map for Residential and Light Commercial, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Residential and Light Commercial"
+    ],
+    "terms": [
+      {
+        "label": "Fall Quarter",
+        "courses": [
+          "CARP 113",
+          "CARP 161"
+        ]
+      },
+      {
+        "label": "Winter Quarter",
+        "courses": [
+          "CARP 114",
+          "CARP 167",
+          "INDUS 101"
+        ]
+      },
+      {
+        "label": "Spring Quarter",
+        "courses": [
+          "CARP 115",
+          "CARP 163",
+          "CARP 168"
+        ]
+      },
+      {
+        "label": "Summer Quarter",
+        "courses": [
+          "CARP 162",
+          "INDUS 108"
+        ]
+      },
+      {
+        "label": "Fall Quarter",
+        "courses": [
+          "CARP 164",
+          "ENGL 109"
+        ]
+      },
+      {
+        "label": "Winter Quarter",
+        "courses": [
+          "CARP 171",
+          "MATH 70 - Pre-Algebra",
+          "CMST 105",
+          "CMST 106",
+          "(if needed)"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate of Applied Science.",
+      "Published duration: 90-97 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Residential and Light Commercial, AAS curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/carpentry-technology/residential-and-light-commercial-aas-curriculm-map.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-machining-manufacturing-technology-aas",
+    "code": "AAS",
+    "title": "Machining and Manufacturing Technology",
+    "summary": "Official Green River associate curriculum map for Machining and Manufacturing Technology, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Machining and Manufacturing Technology"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "MFG 101",
+          "MFG 115"
+        ]
+      },
+      {
+        "label": "Quarter 2 (19 credits)",
+        "courses": [
+          "MFG 102",
+          "CMST 105",
+          "CMST 106"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "MFG 103",
+          "MFG 162"
+        ]
+      },
+      {
+        "label": "Quarter 4 (18 credits)",
+        "courses": [
+          "MFG 104",
+          "ENGL& 101",
+          "ENGL 109",
+          "MFG 107"
+        ]
+      },
+      {
+        "label": "Quarter 5 (16 credits)",
+        "courses": [
+          "INDUS 111",
+          "MFG 105",
+          "MFG 108"
+        ]
+      },
+      {
+        "label": "Quarter 6 (13-18 credits)",
+        "courses": [
+          "MFG 106",
+          "MATH 70 - Pre-Algebra",
+          "or Eligible for MATH 72 - Elementary Algebra",
+          "MFG 109"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate of Applied Science.",
+      "Published duration: 96-107 Credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Machining and Manufacturing Technology, AAS curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/machining-manufacturing-technology/aas.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-mechatronics-technician-aas",
+    "code": "AAS",
+    "title": "Mechatronics Technician",
+    "summary": "Official Green River curriculum map for Mechatronics Technician, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Mechatronics Technician"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (13 credits)",
+        "courses": [
+          "MTX 100"
+        ]
+      },
+      {
+        "label": "Quarter 2 (13 credits)",
+        "courses": [
+          "MTX 110"
+        ]
+      },
+      {
+        "label": "Quarter 3 (16 credits)",
+        "courses": [
+          "MTX 120",
+          "INDUS 111"
+        ]
+      },
+      {
+        "label": "Summer (18 credits)",
+        "courses": [
+          "MFG 101",
+          "MATH 72 - Elementary Algebra"
+        ]
+      },
+      {
+        "label": "Quarter 5 (16 credits)",
+        "courses": [
+          "MTX 130",
+          "CMST 105",
+          "CMST 106"
+        ]
+      },
+      {
+        "label": "Quarter 6 (18 credits)",
+        "courses": [
+          "MTX 140",
+          "ENGL 109"
+        ]
+      },
+      {
+        "label": "Quarter 7 (13 credits)",
+        "courses": [
+          "MTX 150"
+        ]
+      }
+    ],
+    "notes": [
+      "Degree: Associate in Applied Science.",
+      "Published duration: 94 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Mechatronics Technician, AAS curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/mechatronics-technician/aas.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-natural-resources-aas-t",
+    "code": "AAS-T",
+    "title": "Natural Resources",
+    "summary": "Official Green River associate - transfer curriculum map for Natural Resources, AAS-T. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Natural Resources"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "NATRS 100",
+          "MATH& 141",
+          "or higher, depending on placement"
+        ]
+      },
+      {
+        "label": "Quarter 2 (16 credits)",
+        "courses": [
+          "BIOL 110",
+          "CMST& 220",
+          "NATRS 180"
+        ]
+      },
+      {
+        "label": "Quarter 3 (18 credits)",
+        "courses": [
+          "ENGL 128",
+          "NATRS 182",
+          "NATRS 184"
+        ]
+      },
+      {
+        "label": "Quarter 4 (18 credits)",
+        "courses": [
+          "CMST& 230",
+          "NATRS 172",
+          "NATRS 183",
+          "H 1 - Humanities/Fine Arts/English",
+          "(not CMST or PHIL)"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "GEOL& 101",
+          "BUS 202",
+          "ECON& 201",
+          "ECON& 202",
+          "GEOG 120",
+          "SOC& 101",
+          "Choose one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 6 (14 credits)",
+        "courses": [
+          "NATRS 210",
+          "GEOL& 208",
+          "PHIL& 115"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate - Transfer.",
+      "Degree: Associate of Applied Science.",
+      "Published duration: ---.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Natural Resources, AAS-T curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/natural-resources/aas-t.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-natural-resources-forestry-aas",
+    "code": "AAS",
+    "title": "Natural Resources-Forestry",
+    "summary": "Official Green River associate curriculum map for Natural Resources-Forestry, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Natural Resources-Forestry"
+    ],
+    "terms": [
+      {
+        "label": "Entry Requirements",
+        "courses": [
+          "ENGL& 101",
+          "CMST& 220",
+          "MATH 72 - Elementary Algebra or higher Apply to program Attend Program Immersion Event"
+        ]
+      },
+      {
+        "label": "Quarter 1 (16 credits)",
+        "courses": [
+          "NATRS 100",
+          "NATRS 114",
+          "NATRS 172",
+          "NATRS 183",
+          "NATRS 290"
+        ]
+      },
+      {
+        "label": "Quarter 2 (16 credits)",
+        "courses": [
+          "NATRS 180",
+          "NATRS 192",
+          "NATRS 293"
+        ]
+      },
+      {
+        "label": "Quarter 3 (18 credits)",
+        "courses": [
+          "NATRS 182",
+          "NATRS 184",
+          "ENGL 128"
+        ]
+      },
+      {
+        "label": "Summer 1 (14 credits)",
+        "courses": [
+          "NATRS 277",
+          "NATRS 278",
+          "NATRS 279",
+          "NATRS 280"
+        ]
+      },
+      {
+        "label": "Quarter 4 (12 credits)",
+        "courses": [
+          "NATRS 205",
+          "NATRS 292"
+        ]
+      },
+      {
+        "label": "Quarter 5 (12 credits)",
+        "courses": [
+          "NATRS 270",
+          "NATRS 284"
+        ]
+      },
+      {
+        "label": "Quarter 6 (13 credits)",
+        "courses": [
+          "NATRS 161",
+          "NATRS 210",
+          "NATRS 286"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate of Applied Science.",
+      "Published duration: 111 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Natural Resources-Forestry, AAS curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/natural-resources/forestry-aas.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-natural-resources-geographic-information-systems-aas",
+    "code": "AAS",
+    "title": "Geographic Information Systems",
+    "summary": "Official Green River associate curriculum map for Geographic Information Systems, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Geographic Information Systems"
+    ],
+    "terms": [
+      {
+        "label": "Entry Requirements",
+        "courses": [
+          "ENGL& 101",
+          "CMST& 220",
+          "MATH 72 - Elementary Algebra or higher Apply to program Attend program immersion event"
+        ]
+      },
+      {
+        "label": "Quarter 1 (16 credits)",
+        "courses": [
+          "NATRS 100",
+          "NATRS 114",
+          "NATRS 172",
+          "NATRS 183",
+          "NATRS 290"
+        ]
+      },
+      {
+        "label": "Quarter 2 (16 credits)",
+        "courses": [
+          "NATRS 180",
+          "NATRS 192",
+          "NATRS 293"
+        ]
+      },
+      {
+        "label": "Quarter 3 (18 credits)",
+        "courses": [
+          "NATRS 182",
+          "NATRS 184",
+          "ENGL 128"
+        ]
+      },
+      {
+        "label": "Summer 1 (14 credits)",
+        "courses": [
+          "NATRS 277",
+          "NATRS 278",
+          "NATRS 279",
+          "NATRS 280"
+        ]
+      },
+      {
+        "label": "Quarter 4 (12 credits)",
+        "courses": [
+          "NATRS 205",
+          "NATRS 292"
+        ]
+      },
+      {
+        "label": "Quarter 5 (17 credits)",
+        "courses": [
+          "NATRS 270",
+          "NATRS 284",
+          "NATRS 286"
+        ]
+      },
+      {
+        "label": "Quarter 6 (18 credits)",
+        "courses": [
+          "NATRS 161",
+          "NATRS 210",
+          "NATRS 262",
+          "NATRS 263"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate of Applied Science.",
+      "Published duration: 119 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Geographic Information Systems, AAS curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/natural-resources/geographic-information-systems-aas.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-natural-resources-park-management-aas",
+    "code": "AAS",
+    "title": "Natural Resources-Park Management",
+    "summary": "Official Green River associate curriculum map for Natural Resources-Park Management, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Natural Resources-Park Management"
+    ],
+    "terms": [
+      {
+        "label": "Entry Requirements",
+        "courses": [
+          "ENGL& 101",
+          "CMST& 220",
+          "MATH 72 - Elementary Algebra or higher Apply to program Attend program immersion event"
+        ]
+      },
+      {
+        "label": "Quarter 1 (16 credits)",
+        "courses": [
+          "NATRS 100",
+          "NATRS 114",
+          "NATRS 172",
+          "NATRS 183",
+          "NATRS 290"
+        ]
+      },
+      {
+        "label": "Quarter 2 (16 credits)",
+        "courses": [
+          "NATRS 180",
+          "NATRS 192",
+          "NATRS 293"
+        ]
+      },
+      {
+        "label": "Quarter 3 (18 credits)",
+        "courses": [
+          "NATRS 182",
+          "NATRS 184",
+          "ENGL 128"
+        ]
+      },
+      {
+        "label": "Summer 1 (14 credits)",
+        "courses": [
+          "NATRS 277",
+          "NATRS 278",
+          "NATRS 279",
+          "NATRS 280",
+          "NATRS 123",
+          "In Odd years the following is an option:"
+        ]
+      },
+      {
+        "label": "Quarter 4 (12 credits)",
+        "courses": [
+          "NATRS 205",
+          "NATRS 292"
+        ]
+      },
+      {
+        "label": "Quarter 5 (12 credits)",
+        "courses": [
+          "NATRS 270",
+          "NATRS 284"
+        ]
+      },
+      {
+        "label": "Quarter 6 (13 credits)",
+        "courses": [
+          "NATRS 161",
+          "NATRS 210",
+          "NATRS 286"
+        ]
+      },
+      {
+        "label": "Summer 2",
+        "courses": [
+          "NATRS 277",
+          "NATRS 278",
+          "NATRS 279",
+          "NATRS 280",
+          "NATRS 123",
+          "GEOL& 101",
+          "SOC& 101",
+          "In odd years the following is an option:"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate of Applied Science.",
+      "Published duration: 121-123 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Natural Resources-Park Management, AAS curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/natural-resources/park-management-aas.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-natural-resources-water-quality-aas",
+    "code": "AAS",
+    "title": "Natural Resources-Water Quality",
+    "summary": "Official Green River associate curriculum map for Natural Resources-Water Quality, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Natural Resources-Water Quality"
+    ],
+    "terms": [
+      {
+        "label": "Entry Requirements",
+        "courses": [
+          "ENGL& 101",
+          "CMST& 220",
+          "MATH 72 - Elementary Algebra or higher Apply to program Attend program immersion event"
+        ]
+      },
+      {
+        "label": "Quarter 1 (16 credits)",
+        "courses": [
+          "NATRS 100",
+          "NATRS 114",
+          "NATRS 172",
+          "NATRS 183",
+          "NATRS 290"
+        ]
+      },
+      {
+        "label": "Quarter 2 (16 credits)",
+        "courses": [
+          "NATRS 180",
+          "NATRS 192",
+          "NATRS 293"
+        ]
+      },
+      {
+        "label": "Quarter 3 (23 credits)",
+        "courses": [
+          "NATRS 182",
+          "NATRS 184",
+          "NATRS 271",
+          "ENGL 128"
+        ]
+      },
+      {
+        "label": "Summer 1 (14 credits)",
+        "courses": [
+          "NATRS 277",
+          "NATRS 278",
+          "NATRS 279",
+          "NATRS 280",
+          "NATRS 123",
+          "In odd years the following is an option:"
+        ]
+      },
+      {
+        "label": "Quarter 4 (17 credits)",
+        "courses": [
+          "NATRS 205",
+          "NATRS 272",
+          "NATRS 292"
+        ]
+      },
+      {
+        "label": "Quarter 5 (12 credits)",
+        "courses": [
+          "NATRS 270",
+          "NATRS 284"
+        ]
+      },
+      {
+        "label": "Quarter 6 (13 credits)",
+        "courses": [
+          "NATRS 161",
+          "NATRS 210",
+          "NATRS 286"
+        ]
+      },
+      {
+        "label": "Summer 2",
+        "courses": [
+          "NATRS 277",
+          "NATRS 278",
+          "NATRS 279",
+          "NATRS 280",
+          "NATRS 123",
+          "GEOL& 101",
+          "SOC& 101",
+          "In odd years the following is an option:"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate of Applied Science.",
+      "Published duration: 121-123 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Natural Resources-Water Quality, AAS curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/natural-resources/water-quality-aas.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-natural-resources-wildland-fire-aas",
+    "code": "AAS",
+    "title": "Natural Resources-Wildland Fire",
+    "summary": "Official Green River associate curriculum map for Natural Resources-Wildland Fire, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Natural Resources-Wildland Fire"
+    ],
+    "terms": [
+      {
+        "label": "Entry Requirements",
+        "courses": [
+          "ENGL& 101",
+          "CMST& 220",
+          "MATH 72 - Elementary Algebra or higher Apply to program Attend program immersion event"
+        ]
+      },
+      {
+        "label": "Quarter 1 (16 credits)",
+        "courses": [
+          "NATRS 100",
+          "NATRS 114",
+          "NATRS 172",
+          "NATRS 183",
+          "NATRS 290"
+        ]
+      },
+      {
+        "label": "Quarter 2 (16 credits)",
+        "courses": [
+          "NATRS 130",
+          "NATRS 180",
+          "NATRS 192",
+          "NATRS 293"
+        ]
+      },
+      {
+        "label": "Quarter 3 (18 credits)",
+        "courses": [
+          "NATRS 182",
+          "NATRS 184",
+          "ENGL 128"
+        ]
+      },
+      {
+        "label": "Summer 1 (14 credits)",
+        "courses": [
+          "NATRS 277",
+          "NATRS 278",
+          "NATRS 279",
+          "NATRS 280"
+        ]
+      },
+      {
+        "label": "Quarter 4 (12 credits)",
+        "courses": [
+          "NATRS 205",
+          "NATRS 292"
+        ]
+      },
+      {
+        "label": "Quarter 5 (12 credits)",
+        "courses": [
+          "NATRS 270",
+          "NATRS 284"
+        ]
+      },
+      {
+        "label": "Quarter 6 (13 credits)",
+        "courses": [
+          "NATRS 161",
+          "NATRS 210",
+          "NATRS 286"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate of Applied Science.",
+      "Published duration: 116 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Natural Resources-Wildland Fire, AAS curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/natural-resources/wildland-fire-aas.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-water-wastewater-technology-wastewater-technology-aas",
+    "code": "AAS",
+    "title": "Wastewater Technology",
+    "summary": "Official Green River associate curriculum map for Wastewater Technology, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Wastewater Technology"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "MATH& 141",
+          "ENGL& 101",
+          "BTAC 100",
+          "BTAC 112",
+          "BTAC 118",
+          "BTAC 150",
+          "BTAC 184"
+        ]
+      },
+      {
+        "label": "Quarter 2 (16 credits)",
+        "courses": [
+          "CHEM& 161",
+          "ENGL 128",
+          "CMST& 210",
+          "CMST& 220",
+          "CMST& 230"
+        ]
+      },
+      {
+        "label": "Quarter 3 (16 credits)",
+        "courses": [
+          "BIOL& 100",
+          "BUS 166",
+          "CHEM& 162"
+        ]
+      },
+      {
+        "label": "Quarter 4 (12 credits)",
+        "courses": [
+          "WTECH 181",
+          "WTECH 182",
+          "WTECH 183",
+          "WWT 180"
+        ]
+      },
+      {
+        "label": "Quarter 5 (6 credits)",
+        "courses": [
+          "WTECH 184",
+          "WWT 185"
+        ]
+      },
+      {
+        "label": "Quarter 6 (12 credits)",
+        "courses": [
+          "WTECH 187",
+          "WTECH 188",
+          "WTECH 191",
+          "WWT 186"
+        ]
+      },
+      {
+        "label": "Quarter 7 (13 credits)",
+        "courses": [
+          "WWT 177",
+          "WWT 188"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate in Applied Science.",
+      "Published duration: 90 Creduts.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Wastewater Technology, AAS curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/water-wastewater-technology/wastewater-technology-aas.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-water-wastewater-technology-water-supply-technology-aas",
+    "code": "AAS",
+    "title": "Water Supply Technology",
+    "summary": "Official Green River associate curriculum map for Water Supply Technology, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Water Supply Technology"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "MATH& 141",
+          "ENGL& 101",
+          "BTAC 100",
+          "BTAC 112",
+          "BTAC 118",
+          "BTAC 150",
+          "BTAC 184"
+        ]
+      },
+      {
+        "label": "Quarter 2 (16 credits)",
+        "courses": [
+          "CHEM& 161",
+          "ENGL 128",
+          "CMST& 210",
+          "CMST& 220",
+          "CMST& 230"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "BIOL& 100",
+          "BUS 166",
+          "CHEM& 162"
+        ]
+      },
+      {
+        "label": "Quarter 4 (13 credits)",
+        "courses": [
+          "WST 180",
+          "WST 183",
+          "WTECH 181",
+          "WTECH 182",
+          "WTECH 183"
+        ]
+      },
+      {
+        "label": "Quarter 5 (8 credits)",
+        "courses": [
+          "WST 184",
+          "WST 185",
+          "WTECH 184"
+        ]
+      },
+      {
+        "label": "Quarter 6 (12 credits)",
+        "courses": [
+          "WST 186",
+          "WTECH 187",
+          "WTECH 188",
+          "WTECH 191"
+        ]
+      },
+      {
+        "label": "Quarter 7 (10 credits)",
+        "courses": [
+          "WST 177",
+          "WST 188"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate in Applied Science.",
+      "Published duration: 90 Credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Water Supply Technology, AAS curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/water-wastewater-technology/water-supply-technology-aas.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-welding-technology-welding-technology-aas",
+    "code": "AAS",
+    "title": "Welding Technology",
+    "summary": "Official Green River associate curriculum map for Welding Technology, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Welding Technology"
+    ],
+    "terms": [
+      {
+        "label": "General Education",
+        "courses": [
+          "CMST 105",
+          "CMST 106",
+          "MATH 70 - Pre-Algebra",
+          "ENGL& 101",
+          "ENGL 109",
+          "or eligible for MATH 72 - Elementary Algebra"
+        ]
+      },
+      {
+        "label": "Quarter 1",
+        "courses": [
+          "WELD 141"
+        ]
+      },
+      {
+        "label": "Quarter 2",
+        "courses": [
+          "WELD 142"
+        ]
+      },
+      {
+        "label": "Quarter 3",
+        "courses": [
+          "WELD 107",
+          "WELD 143"
+        ]
+      },
+      {
+        "label": "Quarter 4",
+        "courses": [
+          "WELD 194"
+        ]
+      },
+      {
+        "label": "Quarter 5",
+        "courses": [
+          "WELD 195",
+          "MFG 162"
+        ]
+      },
+      {
+        "label": "Quarter 6",
+        "courses": [
+          "WELD 196"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate in Applied Science.",
+      "Published duration: 94 Credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Welding Technology, AAS curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/welding-technology/welding-technology-aas.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-undecided-associate-in-arts-dta",
+    "code": "AA-DTA",
+    "title": "Associate in Arts-DTA",
+    "summary": "Official Green River associate curriculum map for Associate in Arts-DTA. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Associate in Arts-DTA"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (12 credits)",
+        "courses": [
+          "ENGL& 101",
+          "SK 110",
+          "MATH& 107",
+          "MATH 108",
+          "MATH 109",
+          "MATH& 141",
+          "MATH& 142",
+          "MATH& 146",
+          "MATH 147",
+          "MATH& 148",
+          "MATH& 151",
+          "MATH& 152",
+          "MATH& 163",
+          "MATH& 131",
+          "MATH& 132",
+          "MATH 238",
+          "MATH 240",
+          "MATH& 254",
+          "MATH 256",
+          "PHIL& 120",
+          "Select one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "N 1 - Natural Science List A (Lab)",
+          "S 1 - Social Science",
+          "ENGL 126",
+          "ENGL 127",
+          "ENGL 128",
+          "ENGL& 235",
+          "Select one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "H 1 - Humanities/Fine Arts/English",
+          "N 2 - Natural Science List A",
+          "Additional Credits Courses in Humanities/Fine Arts/English Distribution , Social Science Distribution , or Natural Science Distribution categories. There is no restriction on the number of required disciplines. A minimum of one course from the Diversity Course list must be taken to satisfy the diversity course requirement. In most cases, a course also satisfies other distribution areas. or Generally Transferable Courses (see below)"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "N 3 - Natural Science List A or List B",
+          "S 2 - Social Science",
+          "Additional Credits Courses in Humanities/Fine Arts/English Distribution , Social Science Distribution , or Natural Science Distribution categories. There is no restriction on the number of required disciplines. or Generally Transferable Courses (see below)"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "H 2 - Humanities/Fine Arts/English",
+          "S 3 - Social Science",
+          "Additional Credits Courses in Humanities/Fine Arts/English Distribution , Social Science Distribution , or Natural Science Distribution categories. There is no restriction on the number of required disciplines. or Generally Transferable Courses (see below)"
+        ]
+      },
+      {
+        "label": "Quarter 6 (18 credits)",
+        "courses": [
+          "H 3 - Humanities/Fine Arts/English Credits: 5 Electives Credits: 13 All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity."
+        ]
+      },
+      {
+        "label": "Generally Transferable Courses",
+        "courses": [
+          "ACCT& 201",
+          "ACCT& 202",
+          "ACCT& 203",
+          "CS 121",
+          "CS 122",
+          "CS 123",
+          "ECED& 105",
+          "EDUC& 115",
+          "EDUC& 204",
+          "EDUC& 205",
+          "EDUC 210",
+          "NATRS 100"
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate in Arts.",
+      "Published duration: 2 years.",
+      "H 3 - Humanities/Fine Arts/English Credits: 5 Electives Credits: 13 All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Associate in Arts-DTA curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/undecided/associate-in-arts-dta.html"
+      }
     ]
   }
 ];
@@ -1238,7 +8860,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "grcCourses": [
           "ENGR& 224"
         ],
-        "note": "AA 260 is part of the published BSAAE engineering-fundamentals block, so ENGR& 224 is good to complete before or during UW enrollment because it is needed in the degree."
+        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
       },
       {
         "id": "amath301",
@@ -8781,14 +16403,21 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "title": "MATH 207 for engineering flexibility",
         "grcCourses": [
           "MATH 238"
-        ],
-        "note": "Useful if the student is still comparing Allen CompE and ECE."
+        ]
       },
       {
         "id": "math208",
         "title": "MATH 208",
         "grcCourses": [
           "MATH 240"
+        ],
+        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
+      },
+      {
+        "id": "engr204",
+        "title": "EE 215",
+        "grcCourses": [
+          "ENGR& 204"
         ],
         "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
       }
@@ -8801,14 +16430,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
           "PHYS& 223"
         ],
         "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
-      },
-      {
-        "id": "engr204",
-        "title": "Circuit analysis head start",
-        "grcCourses": [
-          "ENGR& 204"
-        ],
-        "note": "Helpful if the student may pivot toward ECE."
       }
     ],
     "advisorFlags": [
@@ -8911,8 +16532,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "PHYS& 222",
       "MATH 238",
       "MATH 240",
-      "PHYS& 223",
       "ENGR& 204",
+      "PHYS& 223",
       "CS& 131",
       "CS 132",
       "CS& 141",
@@ -11238,17 +18859,17 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         ],
         "note": "ECE accepts several second-tier science and math options; these Green River classes are the cleanest substitutes.",
         "minCompletedCount": 2
-      }
-    ],
-    "stayAtGrcChecklist": [
+      },
       {
         "id": "engr204",
-        "title": "Circuit analysis head start",
+        "title": "EE 215",
         "grcCourses": [
           "ENGR& 204"
         ],
-        "note": "Not a formal ECE admission requirement, but it is the cleanest Green River circuit head start for the EE 215 / EE 201 sequence."
-      },
+        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
+      }
+    ],
+    "stayAtGrcChecklist": [
       {
         "id": "phys123",
         "title": "PHYS 123 if possible before transfer",
@@ -16370,6 +23991,10 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "projectIdeas": [],
     "officialLinks": [
       {
+        "label": "UW Italian Studies degree requirements",
+        "url": "https://www.washington.edu/students/gencat/program/S/FrenchandItalianStudies-1102.html#program-UG-ITAL-MAJOR"
+      },
+      {
         "label": "UW Italian Studies major status page",
         "url": "https://frenchitalian.washington.edu/major-italian-studies"
       },
@@ -20077,6 +27702,10 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "projectIdeas": [],
     "officialLinks": [
       {
+        "label": "UW Norwegian catalog degree requirements",
+        "url": "https://www.washington.edu/students/gencat/program/S/ScandinavianStudies-281.html#program-UG-NORW-MAJOR"
+      },
+      {
         "label": "UW Norwegian degree requirements",
         "url": "https://scandinavian.washington.edu/ba-norwegian"
       },
@@ -22062,6 +29691,10 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "projectIdeas": [],
     "officialLinks": [
       {
+        "label": "UW Public Service and Policy degree requirements",
+        "url": "https://www.washington.edu/students/gencat/program/S/PublicPolicyandGovernance-770.html#program-UG-PSP-MAJOR"
+      },
+      {
         "label": "UW Public Service and Policy major overview",
         "url": "https://evans.uw.edu/undergraduate-programs/public-service-and-policy-major/"
       },
@@ -22545,6 +30178,14 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "involvementIdeas": [],
     "projectIdeas": [],
     "officialLinks": [
+      {
+        "label": "UW Eastern European Languages, Literature, and Culture requirements",
+        "url": "https://slavic.washington.edu/ba-eastern-european-languages-literature-and-culture"
+      },
+      {
+        "label": "UW Russian Language, Literature, and Culture requirements",
+        "url": "https://slavic.washington.edu/ba-russian-language-literature-and-culture"
+      },
       {
         "label": "UW Slavic Languages & Literatures undergraduate policies",
         "url": "https://slavic.washington.edu/undergraduate-policies"
@@ -26569,7 +34210,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
           "MATH& 146",
           "MATH 256"
         ],
-        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the B.S. general option still needs one advanced math course either way.",
+        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.",
         "minCompletedCount": 1
       }
     ],
@@ -26763,7 +34404,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
           "BIOL& 212",
           "BIOL& 213"
         ],
-        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Biochemistry option still needs biology through the BBIO 180 and 200 level either way.",
+        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.",
         "minCompletedCount": 2
       },
       {
@@ -26797,7 +34438,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
           "MATH& 146",
           "MATH 256"
         ],
-        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Biochemistry option still needs one advanced math course either way.",
+        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.",
         "minCompletedCount": 1
       }
     ],
@@ -27031,11 +34672,11 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       },
       {
         "id": "bothell-compe-circuits",
-        "title": "Circuit preparation",
+        "title": "B EE 215",
         "grcCourses": [
           "ENGR& 204"
         ],
-        "note": "Not part of the public minimum admission classes, but ENGR& 204 is the cleanest Green River circuit head start for the Bothell CompE core."
+        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
       }
     ],
     "stayAtGrcChecklist": [],
@@ -27264,7 +34905,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
           "MATH& 146",
           "MATH 256"
         ],
-        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the shared CSSE degree still needs one statistics course either way.",
+        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.",
         "minCompletedCount": 1
       },
       {
@@ -28974,7 +36615,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "grcCourses": [
           "MATH& 151"
         ],
-        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the ESS degree still uses calculus in the introductory science block either way."
+        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
       },
       {
         "id": "uwb-ess-stats",
@@ -28983,7 +36624,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
           "MATH& 146",
           "MATH 256"
         ],
-        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the ESS degree still uses statistics in the introductory science block either way.",
+        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.",
         "minCompletedCount": 1
       },
       {
@@ -28992,7 +36633,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "grcCourses": [
           "CHEM& 161"
         ],
-        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the ESS degree still uses introductory chemistry either way."
+        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
       },
       {
         "id": "uwb-ess-physics",
@@ -29001,7 +36642,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
           "PHYS& 114",
           "PHYS& 221"
         ],
-        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the ESS degree still uses introductory physics either way.",
+        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.",
         "minCompletedCount": 1
       }
     ],
@@ -29603,11 +37244,11 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       },
       {
         "id": "uwb-ee-circuits",
-        "title": "Circuit preparation",
+        "title": "B EE 215",
         "grcCourses": [
           "ENGR& 204"
         ],
-        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it is the clearest Green River head start for the Bothell EE core."
+        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
       }
     ],
     "stayAtGrcChecklist": [
@@ -31849,7 +39490,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "MATH& 254"
           ]
         ],
-        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Bothell Mathematics core still needs the full calculus spine either way."
+        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
       },
       {
         "id": "uwb-math-diffeq",
@@ -31857,7 +39498,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "grcCourses": [
           "MATH& 254"
         ],
-        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Bothell Mathematics core still needs differential equations either way."
+        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
       },
       {
         "id": "uwb-math-multivariable",
@@ -31865,7 +39506,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "grcCourses": [
           "MATH 238"
         ],
-        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Bothell Mathematics core still needs multivariable calculus either way."
+        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
       },
       {
         "id": "uwb-math-linear",
@@ -31873,7 +39514,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "grcCourses": [
           "MATH 240"
         ],
-        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Bothell Mathematics core still needs matrix algebra either way."
+        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
       },
       {
         "id": "uwb-math-programming",
@@ -31881,7 +39522,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "grcCourses": [
           "CS 121"
         ],
-        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Bothell Mathematics core still includes an introductory programming path."
+        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
       }
     ],
     "stayAtGrcChecklist": [],
@@ -32973,7 +40614,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "grcCourses": [
           "MATH& 163"
         ],
-        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Physics B.A. still needs the next calculus course either way."
+        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
       },
       {
         "id": "uwb-physics-ba-multivariable",
@@ -32981,7 +40622,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "grcCourses": [
           "MATH 238"
         ],
-        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Physics B.A. still needs STMATH 207 either way."
+        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
       },
       {
         "id": "uwb-physics-ba-chem",
@@ -32991,7 +40632,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
           "CHEM& 162",
           "CHEM& 163"
         ],
-        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Physics B.A. still needs BCHEM 143/144 preparation either way."
+        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
       }
     ],
     "stayAtGrcChecklist": [],
@@ -33162,7 +40803,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "grcCourses": [
           "MATH& 163"
         ],
-        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Physics B.S. still needs the next calculus course either way."
+        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
       },
       {
         "id": "uwb-physics-bs-diffeq",
@@ -33170,7 +40811,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "grcCourses": [
           "MATH& 254"
         ],
-        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Physics B.S. still needs STMATH 224 either way."
+        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
       },
       {
         "id": "uwb-physics-bs-multivariable",
@@ -33178,7 +40819,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "grcCourses": [
           "MATH 238"
         ],
-        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Physics B.S. still needs STMATH 207 either way."
+        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
       },
       {
         "id": "uwb-physics-bs-linear",
@@ -33186,7 +40827,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "grcCourses": [
           "MATH 240"
         ],
-        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Physics B.S. still needs STMATH 208 either way."
+        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
       },
       {
         "id": "uwb-physics-bs-programming",
@@ -33194,7 +40835,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "grcCourses": [
           "CS 121"
         ],
-        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Physics B.S. still includes a programming course either way."
+        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
       }
     ],
     "stayAtGrcChecklist": [],
@@ -35699,7 +43340,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "grcCourses": [
           "MATH 240"
         ],
-        "note": "Tacoma CompE adds TMATH 208 after the initial prerequisite stack, so MATH 240 is good to complete before or during UW enrollment because it's needed to finish the degree."
+        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
       },
       {
         "id": "tacoma-compe-cs123",
@@ -36909,7 +44550,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "grcCourses": [
           "MATH 240"
         ],
-        "note": "Tacoma EE adds TMATH 208 after the initial prerequisite stack, so MATH 240 is good to complete before or during UW enrollment because it's needed to finish the degree."
+        "note": "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
       }
     ],
     "stayAtGrcChecklist": [],

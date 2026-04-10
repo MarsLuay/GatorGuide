@@ -2,149 +2,106 @@ Owner: uw-seattle-environmental-public-health
 Source: https://www.deohs.washington.edu/degree-requirements
 Title: Degree Requirements | Environmental & Occupational Health Sciences
 
-Degree Requirements | Environmental & Occupational Health Sciences
-Skip to main content
-University of Washington
-Environmental & Occupational Health Sciences
-School of Public Health
-<form action="/search"
-method="get"
-id="searchform">
-<label for="edit-keys"
-class="visually-hidden">Search
-<input class="form-search form-control"
-data-drupal-selector="edit-keys"
-id="edit-keys" maxlength="128"
-name="keys" placeholder="Search"
-size="15" title="Enter the term you want to search for"
-type="search"
-value=""
+(choose one chemistry sequence)
+(for students who entered the major before Winter 2026: CHOOSE A MINIMUM OF 4 OF THE FOLLOWING COURSES)
+[Supplemental official source] Applying to the major
+[Supplemental official source] applying to the major page
+[Supplemental official source] Undergraduate Program
 />
+© 2025 Department of Environmental and Occupational Health Sciences | School of Public Health | University of Washington
 <button class="button js-form-submit form-submit btn-primary btn"
-name=""
-type="submit"
-value="Search"
-aria-label="Search Site">
+<form action="/search"
+<input class="form-search form-control"
+<label for="edit-keys"
 <svg enable-background="new 0 0 100.8 100.8"
-version="1.1" viewbox="0 0 100.8 100.8"
-xml:space="preserve">
+1. Personal statement: A personal statement is required; however, it is not used to determine admission to the major. Instead, it serves as an advising tool to help us learn about your goals and interests in Environmental Public Health. Your statement should be approximately 500 words, and should address the following questions:
+15 Credits from approved elective list . Run a degree audit or contact an adviser to view the full list.
+2. Unofficial UW transcript: Current students may access unofficial transcripts through the Grades and Transcripts section found on the Academics block on MyUW . Select the Academics block at the bottom of the page. Next, select Unofficial Transcript under the Grades and Transcripts section. Select Printer-Friendly Version on the Unofficial Transcript page. It will create a PDF file of your unofficial transcript, which you can save and then upload into the application form.
+3. Prerequisites and satisfactory progress: In the application you will be asked whether you are applying for early or upper division admission, and you will need to list out the prerequisites that you've already completed. You will also need to indicate how many quarters and credits you have completed. If you have any questions about early versus upper division admission, or prerequisites, please contact an advisor .
+30-90 credits / fewer than 6 quarters completed at time of application
+90 or more credits / 6 or more quarters completed at time of application
+a designated STEM discipline
 About DEOHS
-Faculty Directory
-Regular Faculty
-Affiliate Faculty
-Emeritus Faculty
-Clinical Faculty
 Adjunct Faculty
-Our Mission, Vision & Values
-Serving Washington State
-History
 Advisory Committee
-DEOHS Faculty Positions and Fellowships
-Contact Us
-Directions
-Prospective Students
-Undergraduate Program
-Degree requirements
+Affiliate Faculty
+Alumni
+Alumni and Employers
+Alumni profiles
+Amalawa Aiwekhoe,
+and Undergraduate Program Coordinator
+Application Dates
 Applying to the major
-Transfer
-Career pathways
-Funded Research for UW Undergraduates
-Environmental Public Health Minor
-Graduate Program
-How to Apply
-Graduate degree finder
-Master of Science Applied
-Master of Science Thesis
-Master of Public Health
-PhD in Environmental Health Sciences
-MPH, Occupational and Environmental Medicine
 Areas of Emphasis
-Environmental Public Health
-Environmental Toxicology
-Climate Change and Health
-Infectious Diseases
-Occupational Hygiene/ Exposure Science
-One Health
-Graduate Certificates
-Concurrent Degrees
-Course Information
-Tuition & Funding Opportunities
+aria-label="Search Site">
+As a transfer student, you can declare the Bachelors of Science in Environmental Public Health major after you are admitted to the UW. Please consult the Environmental Public Health Transfer page for more information.
+Autumn 2026: Jun 13 - Aug 21
+Bachelor of Science in Environmental Public Health
+Bachelor of Science in Environmental Public Health | Environmental & Occupational Health Sciences
+Be admitted to the major by meeting minimum requirements .
+BIOL 180, 200, 220 (15 credits)
+BIOL 180, 200, 220 (15) Introductory Biology with labs
+Biology
+BIOST 310 (Recommended), STAT 220, STAT 311, or Q SCI 381, or department approved statistics course (4-5 credits)
 Biostatistics, Epidemiologic, and Bioinformatic Training in Environmental Health
-Environmental Pathology/Toxicology Training Program
-Northwest Center for Occupational Health and Safety
-Supporting Undergraduate Research Experiences in Environmental Health (SURE-EH)
+BS, Environmental Health ('22) and current MS student
+Calendar
+Career pathways
+Career ready
 Career Services
-Internship 101
-Job Search Survival Skills
-Job Openings In the Field
-Student and Alumni profiles
-Contact an Adviser
-Research
+Careers
+CHEM 142, 152 Chemistry series
+CHEM 142, 152, 162, CHEM 237, 238, 241 (26 credits)
+CHEM 142, 152, 162, CHEM 237, 238, 241 General and Organic Chemistry
+CHEM 142, 152, CHEM 220 (15 credits)
+CHEM 142, 152, CHEM 220 OR
+CHEM 142, 152, CHEM 223, 224, 241 (21 credits)
+CHEM 142, 152, CHEM 223, 224, 241 OR
+Chemistry
+class="visually-hidden">Search
 Clean Air
 Clean Water
-Safe Food
-Safe Workplaces
-Sustainable Communities
-Funded Projects
-Student Research
-Alumni and Employers
-Alumni
-Alumni profiles
-Job Openings in the Field
-Employers
-Services
+Climate Change and Health
+Clinical Faculty
+Combine your STEM skills with an Environmental Public Health degree to make an impact on population health, community health and the environment.
+Complete a 400-hour internship that prepares you for a career in environmental public health science practice or research.
+complete all early admission prerequisites above plus:
+completing a 400-hour internship
+Concurrent Degrees
+Connect with an adviser now via Zoom or phone.
+Connect with us
+Contact an adviser
+Contact an Adviser
+Contact an adviser Declare the major Read about student internships
+Contact Us
+Contact Us / Intranet / Privacy / Terms
 Continuing Education
-Field Research and Consultation Group
-Environmental Health Laboratory
-Occupational & Environmental Medicine
-Pediatric Environmental Health Specialty Unit
-News and Events
-Our Blog
-DEOHS Newsroom
-Calendar
-Environmental Health Seminar
-Giving
-Search
+Course Information
+Cumulative GPA of 2.5
+Cumulative GPA of 3.0
+data-drupal-selector="edit-keys"
+Declare the major
+Declaring the Major
+Degree requirements
 Degree Requirements
-Upon completion of the B.S. in Environmental Public Health, all graduates will be able to demonstrate the competencies detailed on the B.S. in EH Degree Competencies document (PDF).
-The following is a list of courses required for the completion of the Bachelor of Science in Environmental Public Health. All courses must be completed with a minimum grade of 2.0. Prospective students should consult the applying to the major page for information on the admission process. In addition to the School of Public Health’s general education requirements , students complete the courses listed below.
-Supporting Science
-Math
-One of the following courses :
-MATH 111, MATH 120, or department approved math course (5 credits). This course is a graduation requirement, but we recommend that students complete the math requirement before they register for the other supporting science courses. The recommended preparation for PHYS 114 is a previous algebra course covering concepts such as trigonometry and exponential functions. The recommended preparation for CHEM 142 is a good working knowledge of algebra.
-Biology
-BIOL 180, 200, 220 (15 credits)
-Physics
-PHYS 114/117 (5 credits)
-Chemistry
-One of the following general and organic chemistry sequences :
-CHEM 142, 152, CHEM 220 (15 credits)
-CHEM 142, 152, CHEM 223, 224, 241 (21 credits)
-CHEM 142, 152, 162, CHEM 237, 238, 241 (26 credits)
-Statistics
-One of the following courses :
-BIOST 310 (Recommended), STAT 220, STAT 311, or Q SCI 381, or department approved statistics course (4-5 credits)
-Environmental Public Health Core, complete all courses
+Degree Requirements | Environmental & Occupational Health Sciences
+DEOHS Faculty Positions and Fellowships
+DEOHS Newsroom
+Directions
+Early Admission Prerequisites
+Emeritus Faculty
+Employers
+ENGL 131 or equivalent English composition
+ENV H 306 (3) Health and Sustainability
 ENV H 311 (3) Introduction to Environmental Health (AUT and SPR)
 ENV H 312 (3) Introduction to Occupational Health and Safety (WIN) required for students who declare the major beginning WIN26.
 ENV H 320 (5) Introduction to Technical Communication in Environmental Health (WIN)
 ENV H 405 (4) Toxic Chemicals & Human Health (SPR)
-ENV H 432 (5) Chemical Sampling and Analysis (SPR)
-ENV H 433 (5) Microbiological Sampling and Analysis (WIN)
-ENV H 472 (3) Environmental Risk and Society (AUT)
-ENV H 473 (4) Environmental Health Policy and Practice (WIN)
-ENV H 480 (1) Undergraduate Seminar (AUT)
-ENV H 482 (2-15) Environmental Health Internship (400 hour required internship)
-EPI 320 (4) Introduction to Epidemiology (AUT and SPR)
-MICROM 301 (3) General Microbiology (AUT and SPR)
-MICROM 302 (2) General Microbiology Lab (AUT and SPR)
-Environmental Public Health Selectives , choose a minimum of 3 of the following courses. Syllabi for all classes below are on the courses page .
-(for students who entered the major before Winter 2026: CHOOSE A MINIMUM OF 4 OF THE FOLLOWING COURSES)
-ENV H 306 (3) Health and Sustainability
 ENV H 406 (3) Disasters and Public Health
 ENV H 409 (3) Microbiome and Environmental Health
 ENV H 417 (3) Case Studies in Children's Environmental Health Disparities (also fulfills Diversity Requirement)
-G H 418/ENV H 418 (3) Understanding and Managing the Health Risks of Climate Change
+ENV H 432 (5) Chemical Sampling and Analysis (SPR)
+ENV H 433 (5) Microbiological Sampling and Analysis (WIN)
 ENV H 439 (3) One Health: Human and Animal Health in a Changing Environment
 ENV H 440 (3) Water, Wastewater and Health
 ENV H 441 (3) Food Protection
@@ -160,29 +117,146 @@ ENV H 453 (3) Industrial Hygiene
 ENV H 460 (3) Occupational Safety Management
 ENV H 462 (3) Technical Aspects of Occupational Safety
 ENV H 465 (3) Geographic Information Systems (GIS) in Public Health
+ENV H 472 (3) Environmental Risk and Society (AUT)
+ENV H 473 (4) Environmental Health Policy and Practice (WIN)
 ENV H 475 (3) Environmental Justice and Public Health
 ENV H 478 (3) Remote Sensing for Environmental Health
 ENV H 479 (3) Climate Change and Public Health Practice
+ENV H 480 (1) Undergraduate Seminar (AUT)
+ENV H 482 (2-15) Environmental Health Internship (400 hour required internship)
 ENV H 538 (2) Public Health & the Built Environment (need instructor permission)
+Environmental
+Environmental & Occupational Health Sciences
+Environmental Health in Media (ENV H 205)
+Environmental health is
+Environmental Health Laboratory
+Environmental Health Seminar
+Environmental Pathology/Toxicology Training Program
+Environmental Public Health
+Environmental Public Health Core, complete all courses
 Environmental Public Health Electives
-15 Credits from approved elective list . Run a degree audit or contact an adviser to view the full list.
-Online advising available
-Connect with an adviser now via Zoom or phone.
-Make an appointment
-Main menu
-Undergraduate Program
-Degree requirements
-Applying to the major
-Transfer
-Career pathways
-Funded Research for UW Undergraduates
 Environmental Public Health Minor
+Environmental Public Health Selectives , choose a minimum of 3 of the following courses. Syllabi for all classes below are on the courses page .
+Environmental Toxicology
+EPI 320 (4) Introduction to Epidemiology (AUT and SPR)
+Every single DEOHS class I've taken, I don’t think there’s one that I haven’t used at least once on the job. With this degree, you really feel like you can do anything.
+Explore environmental factors that affect human health through popular films, including Contagion , WALL-E and Dark Waters .
+Exploring Environment & Health Connections (ENV H 111)
+Faculty Directory
+Feel welcomed and valued in a department that works to attract students and faculty from diverse backgrounds and perspectives.
+Field Research and Consultation Group
+Follow us
+Funded Projects
+Funded Research for UW Undergraduates
+G H 418/ENV H 418 (3) Understanding and Managing the Health Risks of Climate Change
+Get ready for a graduate program, medical school or a health care career.
+Giving
+Graduate Certificates
+Graduate degree finder
+Graduate job-ready after
 Graduate Program
-Course Information
-Tuition & Funding Opportunities
-Career Services
+health = Healthier communities
+History
+How does our environment impact our health? Learn about environmental justice, worker safety, chemical hazards, disasters and climate change, and more.
+How to Apply
+How to Declare the Major
+How will completing this degree help you to achieve your professional and academic goals?
+id="edit-keys" maxlength="128"
+id="searchform">
+In the UW Department of Environmental & Occupational Health Sciences (DEOHS), you can:
+Infectious Diseases
+Information on this page reflects our updated requirements and degree name as of Fall 2023. If you are currently in the undergraduate program and have questions, please reach out to an adviser.
+Internship 101
+Introduction to Environmental Health (ENV H 311)
+Job Openings in the Field
+Job Openings In the Field
+Job Search Survival Skills
+Learn how air pollution, contaminants in food and water and other hazards can be controlled or prevented to improve health in communities and workplaces.
+Main menu
+Make an appointment
+Master of Public Health
+Master of Science Applied
+Master of Science Thesis
+Math
+MATH 111, MATH 120, or department approved math course (5 credits). This course is a graduation requirement, but we recommend that students complete the math requirement before they register for the other supporting science courses. The recommended preparation for PHYS 114 is a previous algebra course covering concepts such as trigonometry and exponential functions. The recommended preparation for CHEM 142 is a good working knowledge of algebra.
+Math Preparation: Students do not have to complete the math graduation requirement before applying to the major. However, we recommend that students complete a math course before they register for the other supporting science courses. The recommended preparation for PHYS 114 is a previous algebra course covering concepts such as trigonometry and exponential functions. The recommended preparation for CHEM 142 is a good working knowledge of algebra.
+method="get"
+MICROM 301 (3) General Microbiology (AUT and SPR)
+MICROM 302 (2) General Microbiology Lab (AUT and SPR)
+Minimum Admission Requirements
+MPH, Occupational and Environmental Medicine
+name=""
+name="keys" placeholder="Search"
+News and Events
+Northwest Center for Occupational Health and Safety
+Notification: Applications are reviewed as they are submitted. Applicants who meet the minimum prerequisites and can complete the degree within the UW's maximum time frame will be notified within 10 business days and asked to come in for an advising appointment to formally declare the major.
+Occupational & Environmental Medicine
+Occupational Hygiene/ Exposure Science
+On-demand Information Session
+One Health
+One of the following courses :
+One of the following general and organic chemistry sequences :
+Online advising available
+online application form
+Our Blog
+Our BS in Environmental Public Health is an applied science program within the top-ranked UW School of Public Health. You will graduate job-ready with practical work experience, opening doors to careers with highly competitive salaries.
+Our BS in Environmental Public Health offers the best of both worlds: a hands-on STEM degree with a public health focus that lets you make a lasting impact on human health and the environment.
+Our Mission, Vision & Values
+Our program is one of only 29 undergraduate programs accredited by the National Environmental Health & Protection Accreditation Council (EHAC).
+Pediatric Environmental Health Specialty Unit
+PhD in Environmental Health Sciences
+PHYS 114/117 (5 credits)
+Physics
+Prospective Students
+public health degree
+Public health impact
+Regular Faculty
+Research
+Safe Food
+Safe Workplaces
+School of Public Health
+Search
+Services
+Serving Washington State
+Sign up
+size="15" title="Enter the term you want to search for"
+Skip to main content
+Spring 2026: Dec 13 - Mar 20 OPEN
+Statistics
+STEM + Environmental public
+STEM degree
 Student and Alumni profiles
-Contact an Adviser
-Connect with us
-Contact Us / Intranet / Privacy / Terms
-© 2025 Department of Environmental and Occupational Health Sciences | School of Public Health | University of Washington
+Student Research
+Students may have prerequisites courses in progress at the time of application. Students who have questions about the major or the admission process are encouraged to meet with an adviser .
+Students with 30-90 credits, and/or fewer than 6 quarters completed at the time of application will apply under early admission. Students with more than 90 credits and/or 6 quarters or more completed will apply under upper division requirements. Applicants must have a 2.0 in each of the prerequisites courses. Early admission applicants must have a cumulative GPA of 3.0. Upper division applicants must have a cumulative GPA of 2.5.
+Summer 2026: Mar 21 - Jun 12
+Supporting Science
+Supporting Undergraduate Research Experiences in Environmental Health (SURE-EH)
+Sustainable Communities
+Tania Busch Isaksen,
+Teaching Professor
+The annual mean wage for environmental health specialists in Washington is $86,500. Our team of academic advisers, career counselors and faculty supports you through our structured internship program, career planning and preparing for graduate programs or medical school.
+The application consists of three components which you should prepare before you access the online application form
+The BS in Environmental Public Health is a "minimum requirements" major, which means that all students who meet the minimum requirements listed below, and who can complete the degree within the UW's maximum time frame , are admitted. Students can request to declare the major at any time by submitting an online declaration form.
+The following is a list of courses required for the completion of the Bachelor of Science in Environmental Public Health. All courses must be completed with a minimum grade of 2.0. Prospective students should consult the applying to the major page for information on the admission process. In addition to the School of Public Health’s general education requirements , students complete the courses listed below.
+Transfer
+Transfer Student Information
+Tuition & Funding Opportunities
+type="search"
+type="submit"
+Undergraduate Program
+University of Washington
+Upon completion of the B.S. in Environmental Public Health, all graduates will be able to demonstrate the competencies detailed on the B.S. in EH Degree Competencies document (PDF).
+Upper Division Admission Prerequisites
+value=""
+value="Search"
+version="1.1" viewbox="0 0 100.8 100.8"
+Video: Career panel with Environmental Health alumni Career pathways in Environmental Health
+We are unique within the UW School of Public Health as the only undergraduate program with a STEM-designated degree. Environmental Public Health is designated as a Science, Technology, Engineering and Math (STEM) discipline by the US Department of Homeland Security.
+We review applications as they are submitted, and students should hear back from us within 10 business days. The application deadline for entry to the following quarter is the Friday of finals week. The upcoming application windows for entry to the following quarters are:
+What is Environmental Public Health? Try one of our intro courses
+Why do you want to be an Environmental Public Health major?
+Winter 2027: Aug 22 - Dec 18
+Work directly with our faculty on their research into the health effects of wildfire smoke, worker safety, environmental justice and more.
+Worked as a Boeing occupational health and safety specialist
+xml:space="preserve">

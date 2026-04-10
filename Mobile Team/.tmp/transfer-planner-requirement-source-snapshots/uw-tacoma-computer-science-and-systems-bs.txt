@@ -2,241 +2,401 @@ Owner: uw-tacoma-computer-science-and-systems-bs
 Source: https://www.tacoma.uw.edu/set/programs/undergrad/css/bs
 Title: B.S. in Computer Science & Systems | Engineering & Technology | University of Washington Tacoma
 
-B.S. in Computer Science & Systems | Engineering & Technology | University of Washington Tacoma
+-
+[Supplemental official source] Bachelor of Arts in CSS page.
+**UW Tacoma students are encouraged to complete lab sciences from the following: TBIOL 110, TCHEM 105, TCHEM 131, TGEOS 117, TPHYS 121, and TPHYS 122. We do accept lab based science courses other than these options.
+*All pre-requisite courses must be completed in the last seven years
+*All pre-requisite courses must be completed within the last seven years
+*Astronomy courses do not meet the lab-based science requirement.
+&copy; 2026 University of Washington Tacoma
+<a href="/set"
+<a href="/set/programs"
+<a href="/set/programs/undergrad"
+<a href="/set/programs/undergrad/css"
+<a href="https://instagram.com/uwtacoma"
+<a href="https://www.facebook.com/uwtacoma"
+<a href="https://www.linkedin.com/school/university-of-washington-tacoma"
+<a href="https://www.tacoma.uw.edu/"
+<a href="https://www.tiktok.com/@uwtacoma"
+<a href="https://www.youtube.com/channel/UC5yP5pgHK5hPnPwfxMykQFw"
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMVD9WN"
-height="0"
-width="0"
-style="display:none;
-visibility:hidden">
-Skip to main content
-Apply
-Canvas
-Map
-Calendar
-Library
-Directory
-MyUW
-more_vert
-more_vert
-Close Search
 <img
-src="/sites/default/files/sites/uwtd8main/W.svg"
-alt="Block W - Link to UW Tacoma homepage"/>
 <img class="mobile-hide desktop-show"
-src="/sites/default/files/sites/uwtd8main/wordmark-full.svg"
-alt="University of Washington Tacoma"/>
 <img class="mobile-show desktop-hide"
-src="/sites/default/files/sites/uwtd8main/Wordmark-Tacoma.svg"
-alt="University of Washington Tacoma"/>
-Tools
-25Live
-Canvas
-Directory
-IT Help
-Library
-Map
-MyUW
-Office365
-Panopto
-Scout
-UW Gmail
-Workday
-Zoom
-Search
-School of
-Engineering & Technology
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2021-07/abet-computing-accred-logo.png"
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2024-11/pexels-pixabay-270404.jpg"
 <span
-class="path2">
-Make a Gift
-Engineering & Technology
+>
+>Computer Science and Systems
+>Engineering & Technology
+>Home
+>SET Academic Programs
+>Undergraduate Programs
+10 credits of graded TCSS 499 research on one project under the supervision of a CSS faculty member. (The faculty advisor must be a full-time CSS faculty member. If you are working on a research project in another unit or with a part-time faculty, you must have a full-time CSS faculty member approve the project and sign off on the thesis and presentation. In the rare instance that your original advisor is not able to work with you through completion of the project, another faculty member within the same research area can become your advisor.)
+135
+143
+146
+155
+156
+159
+162
+166
+167
+17
+1900 Commerce Street, Tacoma, WA 98402-3100
+192
+2
+20
+2015-2016
+2016-2017
+2017-2018
+2018-2019
+2019-2020
+2020-2021
+2021-2022
+2022-2023
+2023-2024
+2023-2024 TCSS Electives
+2024-2025
+2025-2026
+22
+23
+253-692-5860
+25Live
+269
+29
+319
+328
+338
+361
+369
+371
+384
+388
+394
+4
+402
+5 credits from the following approved design electives: TCSS 437, 445, 450, 452, 460, 461, 465, or 491
+6
+7
+8
+A final approved copy, with all required signatures, must be emailed to the CSS Chairs ( Wes Llyod and Wei Cheng ). In order to ensure the honors designation will be marked on your diploma, thesis submission is due no later than the last day of finals during the quarter in which you plan to graduate. Earlier submissions are encouraged.
+A lab-based science course*
 About SET
-expand_more
-Message from the Dean
-Mission, Vision, Values and Goals
-Diversity, Equity and Inclusion at SET
-SET Faculty Directory
-SET Staff Directory
-SET Advisory Board
-Programs
-expand_more
-Undergraduate Majors
+ABOUT UW TACOMA
+Academic advising
+Academic calendar
+Academic Policies
+Academic Support
+ACADEMICS
+Accessibility |
+Acknowledgement
 add
+Additional Details
+Additional Required Courses
+Administration
+Admission
+Admission Information
+Admission requirements
+Admission Requirements
+Admission to the CSS major is competitive. Please review the following prerequisites and application process carefully.
+Admission to the major is competitive. Please review the following prerequisites and application process carefully.
+Admissions
+Advising
+Advising Events
+Algorithm design and analysis (TCSS 343)
+All courses within the major must be completed with a minimum grade of 2.0 (including TCSS 142 and 143). If you don't earn a 2.0 or higher, you can repeat a course once. Please refer to our Undergraduate Resources page for more information.
+All prerequisites must be completed before advancing to the next academic level. All courses within the major must be completed with a minimum grade of 2.0 (including TCSS 142 and 143) . Courses may only be repeated once. Advanced concentration courses build upon knowledge gained in the core courses.
+All prerequisites must be completed before you can advance to the next academic level; advanced concentration courses build upon knowledge gained in the core courses.
+alt="ABET Computing Accreditation Commission logo">
+alt="Black Background with Coding Text Overlay Screengrab">
+alt="Block W - Link to UW Tacoma homepage"/>
+alt="University of Washington Tacoma"/>
+An additional 10 credits of 300- or 400-level TCSS electives, and
+An additional 10 credits of 400-level TCSS electives.
+An additional lab-based science course* OR an additional 300 or 400-level math course, except TMATH 310
+Analyze a complex computing problem and to apply principles of computing and other relevant disciplines to identify solutions.
+Annual Dean&#039;s Awards
+Any lab-based science** (except Astronomy)
+Applicants are evaluated on the following criteria:
+Application Details
+Application for the honors designation occurs when you file an application for graduation. As stated above, please notify the SET undergraduate advisors as soon as you decide to pursue honors, and double check that honors is included on your graduation application. Your approved thesis must be submitted and all honors requirements must be fulfilled in order for you to graduate with CSS program honors.
+Application opens: January 28, 2026
+Applied communication skills to effectively promote ideas, goals, or products.
+Apply
+Apply computer science theory and software development fundamentals to produce computing-based solutions.
+apply now!
+Apply now!
+Apply Now!
+apply to ba css today!
+apply to bs css today!
+aria-label="University of Washington Tacoma Homepage">
+Autumn 2026 applications are OPEN NOW!
+B.A. Degrees Awarded
+B.A. in Computer Science & Systems
+B.A. in Computer Science & Systems | Engineering & Technology | University of Washington Tacoma
+B.A. majors build a portfolio of all your coursework related to computing.
+B.A. majors must minor in a field that is not computer science , which will encourage interdisciplinary thinking and problem solving.
+B.S. Degrees Awarded
+B.S. in Computer Science & Systems
+B.S. in Computer Science & Systems | Engineering & Technology | University of Washington Tacoma
+B.S. majors have 4 additional class requirements .
+Bachelor of Arts Option
+Bachelors of Science or Arts?
+Before starting the application, make sure you're ready to apply:
+Being a first-generation student can be arduous and lonely, as can outdoor adventures. But for Madeline Zent (B.S. Computer Science, '21) , navigation is a collaborative process. Madeline founded the Outdoor Adventures club with the goal of creating unique outdoor opportunities for both first generation students and members of the BIPOC community. While at the School of Engineering & Technology, Madeline also restarted the Women in Computer Science club and served as UW Tacoma’s STEM Youth Outreach Coordinator.
+Bothell
+Breadcrumb
+Calculus 1
+Calculus 2
+Calculus I (TMATH 124 or equivalent)
+Calendar
+CAMPUS
+Campus Safety
+Canvas
+Center for Brazilian Studies
+Center for Data Science
+Certificate & Professional Programs
+Check out SET Research for information on faculty research areas and ongoing projects. You are welcome to contact faculty directly to express your interest in a project.
+Check that you have the programming skills necessary for the major. Take our Java Self-Assessment Test .
 Civil Engineering
+class="breadcrumb--home-icon uwt-icon" title="UW Tacoma Homepage"
+class="path2">
+class="uwt-icon uwt-icon-per-site-facebook">
+class="uwt-icon uwt-icon-per-site-instagram">
+class="uwt-icon uwt-icon-per-site-twitter">
+class="uwt-icon uwt-icon-per-site-youtube">
+Close Search
+Communicate effectively in a variety of professional contexts.
+Community & Educational Partnerships
+Complete the following as part of your CSS senior elective requirements:
+Completion of all prerequisite courses
+Completion of at least 45 college-level credits
+Computer architecture and operating systems (TCSS 372, 422)
 Computer Engineering
 Computer Science & Systems
+Computer Science & Systems degree
+Computer Science Core Courses
+Computers, ethics, and society (TCSS 325)
+Connect Now!
+Consult the CSS Schedule Planning Grid to complete all required courses.
+Contact
+Contact us |
+Core Courses
+Courses
+CP133
+CSS Electives Course Descriptions
+CSS Electives: complete 20 additional credits of 300-level or 400-level courses chosen from the Computer Science & Systems program (excluding TCSS 390); see extended course descriptions for more information on individual CSS Elective courses.
+CSS Honors
+CSS honors students write a culminating thesis that clearly demonstrates original and creative thinking, as judged by a faculty advisor and the CSS Program Chair. The thesis should reflect independent work done under the supervision of a faculty member.
+CSS is a capacity-constrained major, which means we normally have more applicants than space in the program. Competitive applicants typically have grades of 3.0 and higher in prerequisite math, science, and computer science courses, as well as a strong cumulative GPA.
+Curriculum Details
+Curriculum Information
+Data Science Certificate
+Data structures (TCSS 342)
+Demarco Best II SET ‘21 Economics Minor Contract Associate Software Developer at Alaska Airlines
+Demonstrates original and creative thinking, as judged by the faculty advisor and CSS Program Chair (or chair’s designee).
+Design, implement, and evaluate a computing-based solution to meet a given set of computing requirements in the context of the program’s discipline.
+Develop and practice skills as an independent and critical thinker
+Develop your ability to understand, analyze, and synthesize scholarly work
+Developed a product or process by applying knowledge of mathematics, computing, systems and development tools.
+Differences
+Directory
+Discrete mathematics foundation (TCSS 321)
+Diversity, Equity and Inclusion at SET
+Download the B.A. in CSS Planning Grid
+Download the B.A. in CSS Planning Grid (2022)
+Download the bscss planning grid
+Educational Objectives
+Electives: Complete 15 credits of general electives of your choice.
 Electrical Engineering
-Information Technology
-Mechanical Engineering
-SET Direct
-Minor in Applied Computing
+Email or meet with an undergraduate advisor to discuss your research interests and to identify potential project matches.
+Email or talk with faculty teaching courses you particularly enjoy. Even if they don't have a project you could work on, they will be familiar with other faculty research and can point you in the right direction.
+Email or talk with the CSS program chairs, Tom Capaul and Wei Cheng .
+email us
+Email us
+Employment Opportunities
+End of Quarter Colloquia
+Engineering & Technology
+Engineering Fellowships
+Engineering Week
+Enrollment
+Enrollment and Graduation Data
+Equity & Inclusion
+Events
+expand_more
+External Advisory Board
+Faculty & Research
+Final deadline: August 31, 2026
+Financial Aid
+Find a Research Project
+Finding a Research Project
+Flexible and Customized Real-World Computer Science & Systems Applications
+For these 25 elective credits, students must complete:
+Foundational Courses
+Freshman Direct Admission Program
+Function effectively as a member or leader of a team engaged in activities appropriate to the program’s discipline.
+Fundamentals of programming and software development principles (TCSS 305, 360)
+Give an oral presentation, arranged by you and your faculty advisor, on the honors project. Attendees must include your faculty advisor, the CSS Program Chair (or chair’s designee), and at least five additional people (e.g., other students, faculty).
+GPA Requirements
+Grades in prerequisite courses -- individually and cumulatively
+Graduate Admission
+Graduate Certificate in Software Development Engineering
+Graduate Fellowships and Funding
 Graduate Programs
-add
+Graduate Resources
+Have a question that isn't answered on this page? Send us an email to UWtech@uw.edu .
+Have questions?
+Have Questions?
+Have questions? Schedule an appointment with one of our Academic Advisors!
+height="0"
+High achieving B.S. students may complete advanced coursework and an in-depth research project as preparation for graduate school or to further strengthen their educational experience for industry.
+Housing
+How to Apply
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2021-07/abet-computing-accred-logo.png 600w"
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2024-11/pexels-pixabay-270404.jpg 600w"
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2021-07/abet-computing-accred-logo.png 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2024-11/pexels-pixabay-270404.jpg 980w,
+Ice axe in hand, Madeline Zent broke new ground in computer science and on the slopes
+If you are not admitted to UWT, you cannot be admitted to a SET major , but you may hold off on accepting your offer of admission to UWT until you have your program admissions decision.
+If you meet all of the CSS honors requirements, you will graduate "with Honors in Computer Science and Systems" from the University of Washington. Talk with a SET academic advisor as soon as you decide to pursue honors. Your CSS honors requirements will need to be coded into your DARS and included with your graduation application.
+Improve your written and oral communication skills
+Includes a cover page with approval signatures by your faculty advisor and the CSS program Chair.
+Industry Capstone Program
+Industry partner internships at software development design and implementation companies provide work experience, which complements the curriculum and can serve as an on-ramp to the high-tech workforce.
+Information Technology
+Institutional Research
+Internships & Careers
+Internships for Credit
+Introduction to Programming (Java) (TCSS 142 or equivalent)
+Introduction to Programming (TCSS 142 or equivalent)
+IT Help
+Jobs
+Jordan Holland SET ‘20 Technical communications Minor Contracting with Revature
+Kailey Cozart SET ‘20 Math Minor: Hosting Technician at Light House Law Group
+Keep an eye on this page for more info!
+Keep an eye out for email announcements on available undergrad research positions.
+Land
+Learn More >
+Learn more about B.S. in CSS
+Learn more about the application requirements and curriculum for the B.A program on the Bachelor of Arts in CSS page.
+Library
+M-F 8:00a-4:00p
 M.S. in Computer Science & Systems
 M.S. in Electrical & Computer Engineering
 M.S. in Information Technology
-Master of Cybersecurity & Leadership
-Ph.D. in Computer Science & Systems
-Certificate & Professional Programs
-add
-Data Science Certificate
-Graduate Certificate in Software Development Engineering
-Industry Capstone Program
-Engineering Fellowships
-Admission
-expand_more
-Undergraduate Admission
-Graduate Admission
-Freshman Direct Admission Program
-Advising
-expand_more
-Advising Events
-Tuition & Aid
-expand_more
-SET Scholarships
-Graduate Fellowships and Funding
-Vicky L. Carwein and William B. Andrews Endowment for Graduate Programs
-Student Resources
-expand_more
-Student Success
-add
-Find a Research Project
-Internships for Credit
-Resumes and Job Searching
-Undergraduate Resources
-Graduate Resources
-Academic Support
-Student Organizations
-Academic Policies
-add
-Student Concerns
-Technology Labs
-Student Employee Resources
-Newly Admitted Students
-Faculty & Research
-expand_more
-MySET Faculty and Staff Resources
-Research and Technology Labs
-Center for Data Science
-Center for Brazilian Studies
-Community & Educational Partnerships
-Visiting Appointments
-Events
-expand_more
-Advising Events
-Annual Dean&#039;s Awards
-Engineering Week
-Women in Data Science (WiDS) Tacoma @ UW Tacoma
-End of Quarter Colloquia
-Research Showcase
-Open Public Meetings
-MyUW
-Map
-Tools
-Breadcrumb
-<a href="https://www.tacoma.uw.edu/"
-class="breadcrumb--home-icon uwt-icon" title="UW Tacoma Homepage"
->Home
-<a href="/set"
->Engineering & Technology
-<a href="/set/programs"
->SET Academic Programs
-<a href="/set/programs/undergrad"
->Undergraduate Programs
-<a href="/set/programs/undergrad/css"
->Computer Science and Systems
-B.S. in Computer Science & Systems
-B.S. in Computer Science & Systems
+Machine organization (TCSS 372)
+Made decisions related to work that demonstrate understanding of the importance of being an ethical computing professional.
+Made positive contributions to community and society by applying skills and abilities learned during undergraduate program in computing.
 Main Content
+Maintain and graduate with a minimum departmental GPA of 3.6 (starting with CSS 321 and 305).
+Make a Gift
+Map
+Master of Cybersecurity & Leadership
+Mechanical Engineering
+Message from the Dean
+Minor in Applied Computing
+Mission, Vision, Values and Goals
 Modern Computing for Advanced Study and Collaboration
-The Computer Science and Systems (CSS) program provides a broad approach to computer science and software design. The CSS curriculum focuses on computer science theory, but with an equal emphasis on software application design methods relevant to the needs of local and regional industry. Students will acquire essential knowledge of object-oriented programming, algorithms and principles of abstraction, data structures, discrete structures, architecture, operating systems, software design and complex ethical and societal computing issues.
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2024-11/pexels-pixabay-270404.jpg"
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2024-11/pexels-pixabay-270404.jpg 1940w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2024-11/pexels-pixabay-270404.jpg 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2024-11/pexels-pixabay-270404.jpg 600w"
-sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
-alt="Black Background with Coding Text Overlay Screengrab">
-Quick Facts
-Autumn 2026 applications are OPEN NOW!
-Application opens: January 28, 2026
-Final deadline: August 31, 2026
-Students notified: Rolling decisions until final deadline
-Keep an eye on this page for more info!
-apply now!
-What our Graduates Do
-SET students pursue internships and careers at companies like Boeing, Intel, Tacoma Power, Blue Origin, T-Mobile, and the Naval Undersea Warfare Center in Bremerton. Possible careers include:
-Project Manager
-Software Engineer
-Systems Analyst
-Video Game Designer
-Web Developer
-Bachelor of Arts Option
-The Bachelor of Arts in Computer Science & Systems blends a solid foundation in computer science with a minor in another discipline.
-Learn more about the application requirements and curriculum for the B.A program on the Bachelor of Arts in CSS page.
-The Intrepid Among Us
-Ice axe in hand, Madeline Zent broke new ground in computer science and on the slopes
-Being a first-generation student can be arduous and lonely, as can outdoor adventures. But for Madeline Zent (B.S. Computer Science, '21) , navigation is a collaborative process. Madeline founded the Outdoor Adventures club with the goal of creating unique outdoor opportunities for both first generation students and members of the BIPOC community. While at the School of Engineering & Technology, Madeline also restarted the Women in Computer Science club and served as UW Tacoma’s STEM Youth Outreach Coordinator.
-Read Madeline&#039;s story
-Have questions? Schedule an appointment with one of our Academic Advisors!
-Schedule an advising appointment
-How to Apply
-Application Details
-Admission Requirements
-Transfer Admission
-Selection Criteria
-Ready to Apply?
-Admission Requirements
-Admission to the CSS major is competitive. Please review the following prerequisites and application process carefully.
-Want to check your programming skills? Take our Java Self-Assessment Test .
-Prerequisites
-To qualify for admission, you must first be admitted to UWT and have completed the following prerequisites*:
-Calculus 1
-Calculus 2
-Any lab-based science** (except Astronomy)
-Introduction to Programming (TCSS 142 or equivalent)
+More information on TCSS 497, 498, and 499 (Internships, Directed Readings, Undergraduate Research), including required forms and documentation, can be found on our Undergraduate Resources page.
+more_vert
+MySET Faculty and Staff Resources
+MyUW
+Need Advising?
+Need help planning your prerequisite courses? Not sure if your courses directly transfer to UWT? Connect with our Prospective Student Advisor, Noelle Wilson , for guidance!
+Need help planning your prerequisite courses? Not sure if your courses directly transfer to UWT? Connect with our Prospective Student Advisor, Noelle Wilson, for guidance!
+Newly Admitted Students
+No more than 10 credits of TCSS 497, TCSS 498, and TCSS 499 may be used to satisfy the elective requirement.
+Note: the B.A. in CSS requires the completion of a minor in another discipline (students with a previous bachelor's degree can use this in place of the minor requirement).
+Notes
+Notes for transfer students:
+Object-Oriented Programming (Java) (TCSS 143 or equivalent)
 Object-Oriented Programming (TCSS 143 or equivalent)
-*All pre-requisite courses must be completed within the last seven years
-**UW Tacoma students are encouraged to complete lab sciences from the following: TBIOL 110, TCHEM 105, TCHEM 131, TGEOS 117, TPHYS 121, and TPHYS 122. We do accept lab based science courses other than these options.
-GPA Requirements
+Objectives, as defined by accreditation agencies, are the abilities, skills, and accomplishments expected of graduates within a few years of graduation. Programs are expected to assess their graduates' accomplishments to determine if the objectives have been achieved. Since the objectives are typically fairly broad, it is not expected that every graduate will achieve every objective.
+Office Hours:
+Office Location
+Office365
+Open Public Meetings
+Opportunities to take 400-level CSS electives, including internship (TCSS 497), directed readings (TCSS 498) and directed research (TCSS 499).
+Our alumni have graduated and gone on to pursue fulfilling careers in many different fields. Visit their employer's websites:
+Overall previous academic performance, consistency in grades, repeats and grade trends are all considered
+Panopto
+Parking & transportation
+Participated effectively as a member of a development team and undertaken leadership roles when appropriate.
+Ph.D. in Computer Science & Systems
+Practice the work of scholars
+Prerequisites
+Privacy |
+Program Mission
+Programming language concepts (TCSS 380)
+Programs
+Project Manager
+Puyallup Tribe of Indians
+Quick Facts
+Read Madeline&#039;s story
+Ready to Apply?
+Recent CSS Honors Theses
+Recognize professional responsibilities and make informed judgments in computing practice based on legal and ethical principles.
+Reflects work done independently under the supervision of a faculty member.
 Required cumulative prerequisite GPA of at least 2.5, with a minimum grade of 2.0 in each individual prerequisite course.
 Required minimum cumulative GPA of 2.0 in all college coursework.
-Transfer Admission
-Notes for transfer students:
-You may need one additional approved lab-based science course (Chemistry I -TCHEM 142 or Biology I - TBIOL 120) to meet the total number of lab science credits required (18 minimum) for graduation.
-UW Seattle and UW Bothell students seeking to transfer to UW Tacoma also need to have a transfer application on file to be considered for admission.
-If you are not admitted to UWT, you cannot be admitted to a SET major , but you may hold off on accepting your offer of admission to UWT until you have your program admissions decision.
-Transfer students at Washington State community colleges are encouraged to pursue the Associate in Science - Transfer Track 2 to meet the admission requirements. Use the UW Course Equivalency Guide to determine the equivalent prerequisites at your school.
-Selection Criteria
-CSS is a capacity-constrained major, which means we normally have more applicants than space in the program. Competitive applicants typically have grades of 3.0 and higher in prerequisite math, science, and computer science courses, as well as a strong cumulative GPA.
-Applicants are evaluated on the following criteria:
-Completion of all prerequisite courses
-Grades in prerequisite courses -- individually and cumulatively
-Overall previous academic performance, consistency in grades, repeats and grade trends are all considered
-Completion of at least 45 college-level credits
-Ready to Apply?
-Before starting the application, make sure you're ready to apply:
-You've been admitted to UW Tacoma and met the requirements to apply to the major (previous tab).
-You have completed at least 45 college-level credits.
-You completed the prerequisite courses listed in the Admission Requirements tab.
-You've earned a minimum grade of 2.0 in each prerequisite course and maintain a minimum cumulative prerequisite GPA of 2.5.
-Check that you have the programming skills necessary for the major. Take our Java Self-Assessment Test .
-apply to bs css today!
-Ready to Apply?
-Visit the SET application page and submit your application today!
-Apply now!
-Have Questions?
-Have a question that isn't answered on this page? Send us an email to UWtech@uw.edu .
-Email us
-Curriculum Details
-Curriculum Details
-Courses
+Required Minor: Meet the requirements of your selected minor.
+Required to take at least one 400-level project course.
+Research
+Research and Internship Opportunities
+Research and Technology Labs
+Research Showcase
+Resumes and Job Searching
+Rules Docket
+Schedule an advising appointment
+schedule an appointment
 Schedule Planning
+Schedule Planning - Prior to Autumn 2022
+Schedule Planning - Starting Autumn 2022
+School of
+Schools and programs
+Scout
+Search
+See also:
+See the CSS Electives Course Descriptions page for more information on CSS electives.
+Selection Criteria
 Senior Electives
-Academic Support
-CSS Honors
-Courses
-All prerequisites must be completed before advancing to the next academic level. All courses within the major must be completed with a minimum grade of 2.0 (including TCSS 142 and 143) . Courses may only be repeated once. Advanced concentration courses build upon knowledge gained in the core courses.
-Consult the CSS Schedule Planning Grid to complete all required courses.
-Computer Science Core Courses
+Senior-level students can explore their areas of interest, complemented by the expertise of the faculty and industry, through research, directed reading, and internship opportunities.
+SET Advisory Board
+SET Direct
+SET Faculty Directory
+SET Scholarships
+SET Staff Directory
+SET students pursue internships and careers at companies like Boeing, Intel, Tacoma Power, Blue Origin, T-Mobile, and the Naval Undersea Warfare Center in Bremerton. Possible careers include:
+Similarities
+sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
+Skip to main content
+Software Engineer
+src="/sites/default/files/sites/uwtd8main/W.svg"
+src="/sites/default/files/sites/uwtd8main/wordmark-full.svg"
+src="/sites/default/files/sites/uwtd8main/Wordmark-Tacoma.svg"
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2021-07/abet-computing-accred-logo.png 1940w,
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2024-11/pexels-pixabay-270404.jpg 1940w,
+Statistics (TMATH 110 or equivalent)
+Student Concerns
+Student Employee Resources
+Student Life
+Student Organizations
+Student Outcomes
+Student Resources
+Student Success
+Students must complete 25 additional graded credits of 300-level or 400-level courses chosen from the Computer Science & Systems program (excluding TCSS 390).
+Students notified: Rolling decisions until final deadline
+Students Notified: Rolling decisions until final deadline
+Study Abroad
+style="display:none;
+Submit a CSS Honors thesis that meets the following criteria:
+Systems Analyst
+Taken graduate courses or continuing education classes to improve skills and abilities.
+TCSS 101 Computer Science Principles or TCSS 141 Programming for All
+TCSS 101 or TCSS 141 (or other introductory CS/programming course)
+TCSS 142 Programming Principles
+TCSS 143 Fundamentals of Object-Oriented Programming Theory and Application
 TCSS 305 Programming Practicum
 TCSS 321 Discrete Structures I
 TCSS 325 Computers, Ethics, and Society
@@ -246,217 +406,72 @@ TCSS 360 Software Development and Quality Assurance Techniques
 TCSS 371 Machine Organization
 TCSS 372 Computer Architecture
 TCSS 380 Fundamentals of Programming Language Concepts
+TCSS 390 Undergraduate Seminar in Computer Science & Systems is a workshop style course to help you solve problems and develop a deeper understanding of CSS material. The course, overseen by a faculty member and a student mentor includes lectures and problem sessions in mathematics, programming, problem solving, and CSS applications.
 TCSS 422 Computer Operating Systems
-Additional Required Courses
+TCSS 440 (Formal Models in Computer Science) or another 5 credit senior elective (400-level only) in the research area of your Honors Thesis, as determined by you and your faculty advisor. Your faculty advisor must approve the course you take to meet this requirement.
+TCSS 496 Portfolio Based Learning
+Teaching and Learning Center
+Technology Labs
+Terms of Use |
+The B.A. in CSS schedule planning grid shows a sample pathway to complete the Bachelor of Arts degree in Computer Science & Systems degree. Work with your advisor to make sure you are completing required courses for the program and electives for your area of interest.
+The B.S. in Computer Science & Systems is accredited by the Computing Accreditation Commission of ABET, https://www.abet.org . The BS in Computer Science & Systems is for the student who wants to become an expert in the methods and programming languages needed to design software systems. It offers a solid core in computer science principles along with a host of intensive project work in specific sub-disciplines of the field. See the B.S. CSS Schedule Planning Grid for classes required.
+The Bachelor of Arts in Computer Science & Systems (CSS) offers a solid foundation in computer science alongside a minor in another discipline, allowing students to customize their education. This program is ideal for students who want flexibility in their coursework and seek to apply computing skills in fields such as health, science, medicine, or business. It provides an opportunity to combine computing with other areas, like Math, Communications, or Data Analytics. Students will build a portfolio of work for prospective employers, gain valuable communication skills, and work closely with faculty mentors to prepare for internships and careers in the rapidly growing tech industry.
+The Bachelor of Arts in Computer Science & Systems blends a solid foundation in computer science with a minor in another discipline.
+The Computer Science and Systems (CSS) program provides a broad approach to computer science and software design. The CSS curriculum focuses on computer science theory, but with an equal emphasis on software application design methods relevant to the needs of local and regional industry. Students will acquire essential knowledge of object-oriented programming, algorithms and principles of abstraction, data structures, discrete structures, architecture, operating systems, software design and complex ethical and societal computing issues.
+The Computing Accreditation Commission (CAC) has defined a set of educational outcomes that all graduates of computer science programs must meet. CSS students must demonstrate the following attributes and abilities by the time of graduation:
+The CSS program has set six objectives for its BS and BA graduates. The career path a graduate take will affect the accomplishments they achieve but within the first few years after graduation they should have accomplished some of the following:
+The CSS Schedule Planning Grid (PDF) shows a sample pathway to complete the B.S. in Computer Science & Systems degree. Work with your advisor to make sure you are completing required courses for the program and electives for your area of interest.
+The Intrepid Among Us
+The Learning and Research Commons (LARC) is the hub of support for all members of our campus community for teaching, learning, conducting research, and using technology to support all of these endeavors.
+The mission of the Computer Science and Systems (CSS) program is to offer high-quality undergraduate and graduate education to meet the needs of a diverse population of citizens and employers in Washington, especially in the South Puget Sound region.
+The Teaching and Learning Center (TLC) at UW Tacoma provides academic support in math, science, statistics and writing to all UWT students.
+There are many ways for SET students to learn about undergraduate research opportunities:
+This also provides a narrative of your skills that will not only help you identify what you know and how you can apply it, but also as a way to explain to a prospective employer who you are and what you can do.
+This synthesizes the computer science knowledge you learned with the knowledge you learned in your minor.
+title="Follow UW Tacoma on Facebook">
+title="Follow UW Tacoma on Instagram">
+title="Follow UW Tacoma on Linkedin">
+title="Follow UW Tacoma on TikTok">
+title="Follow UW Tacoma on Youtube">
 TMATH 126 Calculus with Analytic Geometry III
 TMATH 208 Matrix Algebra with Applications
 TMATH 390: Probability and Statistics in Engineering and Science
-A lab-based science course*
-An additional lab-based science course* OR an additional 300 or 400-level math course, except TMATH 310
-*Astronomy courses do not meet the lab-based science requirement.
-Schedule Planning
-The CSS Schedule Planning Grid (PDF) shows a sample pathway to complete the B.S. in Computer Science & Systems degree. Work with your advisor to make sure you are completing required courses for the program and electives for your area of interest.
-Download the bscss planning grid
-Senior Electives
-Students must complete 25 additional graded credits of 300-level or 400-level courses chosen from the Computer Science & Systems program (excluding TCSS 390).
-For these 25 elective credits, students must complete:
-5 credits from the following approved design electives: TCSS 437, 445, 450, 452, 460, 461, 465, or 491
-An additional 10 credits of 300- or 400-level TCSS electives, and
-An additional 10 credits of 400-level TCSS electives.
-CSS Electives Course Descriptions
-2023-2024 TCSS Electives
-Notes
-No more than 10 credits of TCSS 497, TCSS 498, and TCSS 499 may be used to satisfy the elective requirement.
-You may also take up to 5 credits of a 400-level SET course (TEE, TCES, TINFO, TINST) and/or 5 credits of a 500-level TCSS course to count towards the elective requirement (categories 2 and 3 above).
-See the CSS Electives Course Descriptions page for more information on CSS electives.
-More information on TCSS 497, 498, and 499 (Internships, Directed Readings, Undergraduate Research), including required forms and documentation, can be found on our Undergraduate Resources page.
-Academic Support
-TCSS 390 Undergraduate Seminar in Computer Science & Systems is a workshop style course to help you solve problems and develop a deeper understanding of CSS material. The course, overseen by a faculty member and a student mentor includes lectures and problem sessions in mathematics, programming, problem solving, and CSS applications.
-See also:
-The Teaching and Learning Center (TLC) at UW Tacoma provides academic support in math, science, statistics and writing to all UWT students.
-The Learning and Research Commons (LARC) is the hub of support for all members of our campus community for teaching, learning, conducting research, and using technology to support all of these endeavors.
-CSS Honors
-High achieving B.S. students may complete advanced coursework and an in-depth research project as preparation for graduate school or to further strengthen their educational experience for industry.
-Develop your ability to understand, analyze, and synthesize scholarly work
-Practice the work of scholars
-Develop and practice skills as an independent and critical thinker
-Improve your written and oral communication skills
-CSS honors students write a culminating thesis that clearly demonstrates original and creative thinking, as judged by a faculty advisor and the CSS Program Chair. The thesis should reflect independent work done under the supervision of a faculty member.
-If you meet all of the CSS honors requirements, you will graduate "with Honors in Computer Science and Systems" from the University of Washington. Talk with a SET academic advisor as soon as you decide to pursue honors. Your CSS honors requirements will need to be coded into your DARS and included with your graduation application.
-Recent CSS Honors Theses
-To qualify for CSS honors, you must meet all of the following requirements — in addition to completing all degree requirements for the B.S. in CSS:
-Maintain and graduate with a minimum departmental GPA of 3.6 (starting with CSS 321 and 305).
-Complete the following as part of your CSS senior elective requirements:
-Maintain and graduate with a minimum departmental GPA of 3.6 (starting with CSS 321 and 305).
-Complete the following as part of your CSS senior elective requirements:
-10 credits of graded TCSS 499 research on one project under the supervision of a CSS faculty member. (The faculty advisor must be a full-time CSS faculty member. If you are working on a research project in another unit or with a part-time faculty, you must have a full-time CSS faculty member approve the project and sign off on the thesis and presentation. In the rare instance that your original advisor is not able to work with you through completion of the project, another faculty member within the same research area can become your advisor.)
-TCSS 440 (Formal Models in Computer Science) or another 5 credit senior elective (400-level only) in the research area of your Honors Thesis, as determined by you and your faculty advisor. Your faculty advisor must approve the course you take to meet this requirement.
-Give an oral presentation, arranged by you and your faculty advisor, on the honors project. Attendees must include your faculty advisor, the CSS Program Chair (or chair’s designee), and at least five additional people (e.g., other students, faculty).
-Submit a CSS Honors thesis that meets the following criteria:
-Well-written, clearly presented document, typically 4000 – 6000 words, that follows CSS Honors Thesis Guidelines .
-Demonstrates original and creative thinking, as judged by the faculty advisor and CSS Program Chair (or chair’s designee).
-Reflects work done independently under the supervision of a faculty member.
-Includes a cover page with approval signatures by your faculty advisor and the CSS program Chair.
-A final approved copy, with all required signatures, must be emailed to the CSS Chairs ( Wes Llyod and Wei Cheng ). In order to ensure the honors designation will be marked on your diploma, thesis submission is due no later than the last day of finals during the quarter in which you plan to graduate. Earlier submissions are encouraged.
-Application for the honors designation occurs when you file an application for graduation. As stated above, please notify the SET undergraduate advisors as soon as you decide to pursue honors, and double check that honors is included on your graduation application. Your approved thesis must be submitted and all honors requirements must be fulfilled in order for you to graduate with CSS program honors.
-Finding a Research Project
-There are many ways for SET students to learn about undergraduate research opportunities:
-Check out SET Research for information on faculty research areas and ongoing projects. You are welcome to contact faculty directly to express your interest in a project.
-Email or meet with an undergraduate advisor to discuss your research interests and to identify potential project matches.
-Keep an eye out for email announcements on available undergrad research positions.
-Email or talk with faculty teaching courses you particularly enjoy. Even if they don't have a project you could work on, they will be familiar with other faculty research and can point you in the right direction.
-Email or talk with the CSS program chairs, Tom Capaul and Wei Cheng .
-Ready to Apply?
-Visit the SET application page and submit your application today!
-Apply Now!
-Have questions?
-Have a question that isn't answered on this page? Send us an email to UWtech@uw.edu .
-email us
-Need Advising?
-Need help planning your prerequisite courses? Not sure if your courses directly transfer to UWT? Connect with our Prospective Student Advisor, Noelle Wilson, for guidance!
-schedule an appointment
-Additional Details
-The B.S. in Computer Science & Systems is accredited by the Computing Accreditation Commission of ABET, https://www.abet.org . The BS in Computer Science & Systems is for the student who wants to become an expert in the methods and programming languages needed to design software systems. It offers a solid core in computer science principles along with a host of intensive project work in specific sub-disciplines of the field. See the B.S. CSS Schedule Planning Grid for classes required.
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2021-07/abet-computing-accred-logo.png"
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2021-07/abet-computing-accred-logo.png 1940w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2021-07/abet-computing-accred-logo.png 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2021-07/abet-computing-accred-logo.png 600w"
-sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
-alt="ABET Computing Accreditation Commission logo">
-Program Mission
-The mission of the Computer Science and Systems (CSS) program is to offer high-quality undergraduate and graduate education to meet the needs of a diverse population of citizens and employers in Washington, especially in the South Puget Sound region.
-Educational Objectives
-Objectives, as defined by accreditation agencies, are the abilities, skills, and accomplishments expected of graduates within a few years of graduation. Programs are expected to assess their graduates' accomplishments to determine if the objectives have been achieved. Since the objectives are typically fairly broad, it is not expected that every graduate will achieve every objective.
-The CSS program has set six objectives for its BS and BA graduates. The career path a graduate take will affect the accomplishments they achieve but within the first few years after graduation they should have accomplished some of the following:
-Developed a product or process by applying knowledge of mathematics, computing, systems and development tools.
-Participated effectively as a member of a development team and undertaken leadership roles when appropriate.
-Taken graduate courses or continuing education classes to improve skills and abilities.
-Made positive contributions to community and society by applying skills and abilities learned during undergraduate program in computing.
-Made decisions related to work that demonstrate understanding of the importance of being an ethical computing professional.
-Applied communication skills to effectively promote ideas, goals, or products.
-Student Outcomes
-The Computing Accreditation Commission (CAC) has defined a set of educational outcomes that all graduates of computer science programs must meet. CSS students must demonstrate the following attributes and abilities by the time of graduation:
-Analyze a complex computing problem and to apply principles of computing and other relevant disciplines to identify solutions.
-Design, implement, and evaluate a computing-based solution to meet a given set of computing requirements in the context of the program’s discipline.
-Communicate effectively in a variety of professional contexts.
-Recognize professional responsibilities and make informed judgments in computing practice based on legal and ethical principles.
-Function effectively as a member or leader of a team engaged in activities appropriate to the program’s discipline.
-Apply computer science theory and software development fundamentals to produce computing-based solutions.
-Enrollment and Graduation Data
-Year
-Enrollment
-B.S. Degrees Awarded
-B.A. Degrees Awarded
-2025-2026
-338
--
--
-2024-2025
-388
-159
-22
-2023-2024
-384
-135
-29
-2022-2023
-269
-146
-23
-2021-2022
-361
-156
-20
-2020-2021
-371
-166
-17
-2019-2020
-319
-143
-8
-2018-2019
-328
-162
-4
-2017-2018
-369
-192
-2
-2016-2017
-402
-167
-6
-2015-2016
-394
-155
-7
-External Advisory Board
 To be provided
-Contact
-Engineering & Technology
-uwtech@uw.edu
-253-692-5860
-Office Hours:
-M-F 8:00a-4:00p
-Office Location
-CP133
-<span
-class="uwt-icon uwt-icon-per-site-facebook">
-<span
-class="uwt-icon uwt-icon-per-site-twitter">
-<span
-class="uwt-icon uwt-icon-per-site-instagram">
-<span
-class="uwt-icon uwt-icon-per-site-youtube">
-ACADEMICS
-Academic advising
-Academic calendar
-Canvas
-Library
-Schools and programs
-Study Abroad
-Teaching and Learning Center
-CAMPUS
-Campus Safety
-Equity & Inclusion
-Financial Aid
-Housing
-Information Technology
-Student Life
-University YMCA Student Center
-ABOUT UW TACOMA
-Administration
-Admissions
-Institutional Research
-Jobs
-Parking & transportation
-Research
-UWNetID login
-<a href="https://www.tacoma.uw.edu/"
-aria-label="University of Washington Tacoma Homepage">
-<a href="https://www.facebook.com/uwtacoma"
-title="Follow UW Tacoma on Facebook">
-<a href="https://instagram.com/uwtacoma"
-title="Follow UW Tacoma on Instagram">
-<a href="https://www.tiktok.com/@uwtacoma"
-title="Follow UW Tacoma on TikTok">
-<a href="https://www.youtube.com/channel/UC5yP5pgHK5hPnPwfxMykQFw"
-title="Follow UW Tacoma on Youtube">
-<a href="https://www.linkedin.com/school/university-of-washington-tacoma"
-title="Follow UW Tacoma on Linkedin">
-Puyallup Tribe of Indians
+To qualify for admission, you must first be admitted to UWT and have completed the following prerequisites*:
+To qualify for CSS honors, you must meet all of the following requirements — in addition to completing all degree requirements for the B.S. in CSS:
+Tools
+Transfer Admission
+Transfer students at Washington State community colleges are encouraged to pursue the Associate in Science - Transfer Track 2 to meet the admission requirements. Use the UW Course Equivalency Guide to determine the equivalent prerequisites at your school.
 Tribal Sponsor of UW Tacoma
-Learn More >
-Land
-Acknowledgement
->
+Tuition & Aid
+Undergraduate Admission
+Undergraduate Majors
+Undergraduate research, under the supervision of a CSS faculty member, allows students to explore research in preparation for graduate school or to strengthen their educational experience for industry.
+Undergraduate Resources
+University YMCA Student Center
+UW Gmail
 UW Seattle | UW
-Bothell
-&copy; 2026 University of Washington Tacoma
-1900 Commerce Street, Tacoma, WA 98402-3100
-Contact us |
-Terms of Use |
-Privacy |
-Accessibility |
-Rules Docket
+UW Seattle and UW Bothell students seeking to transfer to UW Tacoma also need to have a transfer application on file to be considered for admission.
+UWNetID login
+uwtech@uw.edu
+Vicky L. Carwein and William B. Andrews Endowment for Graduate Programs
+Video Game Designer
+visibility:hidden">
+Visit the SET application page and submit your application today!
+Visiting Appointments
+Want to check your programming skills? Take our Java Self-Assessment Test .
+Web Developer
+Well-written, clearly presented document, typically 4000 – 6000 words, that follows CSS Honors Thesis Guidelines .
+What our Graduates Do
+width="0"
+Women in Data Science (WiDS) Tacoma @ UW Tacoma
+Workday
+Year
+You completed the prerequisite courses listed in the Admission Requirements tab.
+You have completed at least 45 college-level credits.
+You may also take up to 5 credits of a 400-level SET course (TEE, TCES, TINFO, TINST) and/or 5 credits of a 500-level TCSS course to count towards the elective requirement (categories 2 and 3 above).
+You may need one additional approved lab-based science course (Chemistry I -TCHEM 142 or Biology I - TBIOL 120) to meet the total number of lab science credits required (18 minimum) for graduation.
+You've been admitted to UW Tacoma and met the requirements to apply to the major (previous tab).
+You've earned a minimum grade of 2.0 in each prerequisite course and maintain a minimum cumulative prerequisite GPA of 2.5
+You've earned a minimum grade of 2.0 in each prerequisite course and maintain a minimum cumulative prerequisite GPA of 2.5.
+Zoom

@@ -6,7 +6,9 @@ expo-env.d.ts
 .env
 .env.*
 !.env.example
-.tools/
+.tools/*
+!.tools/windows-qa.mjs
+!.tools/windows-interactions.mjs
 .tmp/planner-refresh-logs/
 .tmp/transfer-planner-hardening-report.json
 .tmp/transfer-planner-hardening-report.md

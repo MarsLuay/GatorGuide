@@ -1,6 +1,6 @@
 # Transfer Planner General TODO
 
-Last updated: April 8, 2026
+Last updated: April 10, 2026
 
 This is the single backlog doc for the remaining Green River -> UW transfer-planner work inside Mobile.
 
@@ -104,6 +104,74 @@ Keep moving the planner toward:
 ## Per-Major Backlog
 
 - [x] Seattle, Bothell, and Tacoma student-visible majors now resolve through source-backed planner rows instead of a mixed partial-major surface.
+- [ ] Reduce the current English Creative Writing-style automation gap:
+  - `34` majors are a strict match for the English Creative Writing pattern: all of their parsed source-backed gaps currently land in `source-backed-choice-set-no-public-grc-path`, and none of those gaps auto-promote.
+  - Exact current `planId`s in that strict bucket:
+    - `uw-seattle-anthropology`
+    - `uw-seattle-applied-and-computational-mathematical-sciences`
+    - `uw-seattle-applied-mathematics`
+    - `uw-seattle-cinema-and-media-studies`
+    - `uw-seattle-classics`
+    - `uw-seattle-communication`
+    - `uw-seattle-community-environment-and-planning`
+    - `uw-seattle-dance`
+    - `uw-seattle-design`
+    - `uw-seattle-disability-studies`
+    - `uw-seattle-drama`
+    - `uw-seattle-education-communities-and-organizations`
+    - `uw-seattle-education-studies`
+    - `uw-seattle-english-creative-writing`
+    - `uw-seattle-european-studies`
+    - `uw-seattle-finnish`
+    - `uw-seattle-french`
+    - `uw-seattle-greek`
+    - `uw-seattle-individualized-studies`
+    - `uw-seattle-informatics`
+    - `uw-seattle-latin`
+    - `uw-seattle-linguistics`
+    - `uw-seattle-middle-eastern-languages-and-cultures`
+    - `uw-seattle-nursing`
+    - `uw-seattle-philosophy`
+    - `uw-seattle-real-estate`
+    - `uw-seattle-social-welfare`
+    - `uw-seattle-sociology`
+    - `uw-seattle-speech-and-hearing-sciences`
+    - `uw-seattle-swedish`
+    - `uw-tacoma-civil-engineering`
+    - `uw-tacoma-computer-science-and-systems-bs`
+    - `uw-tacoma-history`
+    - `uw-tacoma-spanish-language-and-cultures`
+  - `0` majors currently manifest that same gap in the student runtime: the generic `Custom source-backed Green River prep` fallback no longer appears in current runtime plans.
+  - The former empty-runtime bucket is now handled automatically with either `UW prep target: ...` rows or `Source-backed UW prep guidance`.
+  - Exact `planId`s addressed in the last empty-runtime cleanup pass:
+    - `uw-seattle-american-indian-studies`
+    - `uw-seattle-asian-languages-and-cultures`
+    - `uw-seattle-asian-studies`
+    - `uw-seattle-chinese`
+    - `uw-seattle-classical-studies`
+    - `uw-seattle-comparative-history-of-ideas`
+    - `uw-seattle-danish`
+    - `uw-seattle-ethnomusicology-b-a`
+    - `uw-seattle-gender-women-and-sexuality-studies`
+    - `uw-seattle-global-literary-studies`
+    - `uw-seattle-japanese`
+    - `uw-seattle-jewish-studies`
+    - `uw-seattle-korean`
+    - `uw-seattle-norwegian`
+    - `uw-seattle-oceanography`
+    - `uw-seattle-scandinavian-area-studies`
+    - `uw-seattle-slavic-languages-and-literatures`
+    - `uw-seattle-south-asian-languages-and-cultures`
+    - `uw-bothell-developmental-and-youth-studies`
+    - `uw-bothell-educational-studies-elementary-education`
+    - `uw-bothell-health-studies`
+    - `uw-bothell-interactive-media-design`
+    - `uw-bothell-interdisciplinary-studies-individualized-study`
+    - `uw-bothell-nursing-first-year-rn-to-bsn`
+    - `uw-bothell-nursing-rn-to-bsn`
+    - `uw-tacoma-healthcare-leadership`
+    - `uw-tacoma-information-technology`
+    - `uw-tacoma-nursing`
 - [ ] Keep promoting source-backed course cues into structured requirement atoms where the public source is clear enough to support automatic promotion.
 - [ ] Keep reducing broad note coverage for majors whose public degree pages now expose cleaner course-level structure.
 - [ ] Keep source-backed pathway variants aligned when an official department page changes route wording or internal option names.

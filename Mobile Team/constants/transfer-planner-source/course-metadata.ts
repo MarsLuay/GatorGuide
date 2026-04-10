@@ -128,8 +128,8 @@ const TRANSFER_PLANNER_MANUAL_COURSE_METADATA: TransferPlannerNormalizedCourseMe
     prerequisiteNotes: ["Planner-normalized prerequisite supports either the current Calc III path or the older Calc III plus Calc IV path."],
   }),
   grcCourseMetadata("MATH 240", "Linear Algebra", 5, {
-    prerequisiteCourseCodes: ["MATH 238"],
-    prerequisiteNotes: ["Planner-normalized sequential prerequisite from the engineering math continuation used across multiple UW pathways."],
+    prerequisiteAlternativeCourseCodeSets: [["MATH& 163"], ["MATH& 153", "MATH& 254"]],
+    prerequisiteNotes: ["Planner-normalized prerequisite supports the Calc III path used by the current Green River math flowchart, while preserving the older planner-supported calculus route."],
   }),
   grcCourseMetadata("MATH& 146", "Introduction to Statistics", 5),
   grcCourseMetadata("MATH 256", "Statistics", 5),

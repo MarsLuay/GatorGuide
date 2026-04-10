@@ -2,833 +2,676 @@ Owner: uw-bothell-applied-computing
 Source: https://www.uwb.edu/stem/undergraduate/majors/applied-computing/curriculum
 Title: Applied Computing Curriculum - School of Science, Technology, Engineering & Mathematics
 
-Applied Computing Curriculum - School of Science, Technology, Engineering & Mathematics
+[Supplemental official source] Core Courses
+[Supplemental official source] Culminating Experience
+[Supplemental official source] Curriculum
+* Admission prerequisite courses . Please visit our admissions page for more information.
+* B PHYS 121 Mechanics (5)
+* B WRIT 134 Composition (5) (or both B WRIT 132 (5) and 133 (5) or ENGL 131 Composition: Exposition (5))
+* CSS 432 Computer Networking
+* INFO 314: Computer Networks and Distributed Applications
+* STMATH 124 Calculus I (5)
+* STMATH 125 Calculus II (5)
+* T INFO 250 Foundations of Information Networking
+* The above information regarding CSSSKL 511 and 594 applies to students who began their program in Autumn 2025 or after. For students who began before this date, CSSSKL 511 and 594 are either required or waived based on your results from the Writing Skills Assessment that you completed at the start of your program.
+&#124;
+&copy; 2026 University of Washington Bothell
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
-height="0" width="0" style="display:none;visibility:hidden">
-Skip To Content
-Current site
-All UW Bothell
-Search keywords
-Search
-Open mobile menu
-Quick Links
-School of Science, Technology, Engineering & Mathematics
-Close mobile menu
-School of Science, Technology, Engineering & Mathematics
-Search keywords
-Current site
-All UW Bothell
+10 credits at 100-level or higher
+10 credits at 200-level or higher
+10 credits at 300-level or higher in any subject area
+10 credits at 400-level
+15 credits at 300-level or higher
+300-400 Level Electives (15 credits / usually 3 courses)
+425.352.5000
+425.352.5490
+425.352.5491
+5 credits at 300-level or higher
+A forthcoming process to evaluate students’ knowledge of the skills covered in CSSKL 511: Technical Writing (1 cr) will allow students to waive this course if proficiency is determined. Students who do not demonstrate this proficiency via past coursework will be required to take the course. All students will be required to take CSSSKL 594: Scientific Writing for Thesis/Project (2 cr), and there is no waiver available for this course.
+A minor offered by a different UW campus
+A second undergraduate major or a minor offered by UW Bothell
 About
-Expand Navigation
-STEM Advisory Board
-Departments
-Expand Navigation
-Biological Sciences
-Computing &#038; Software Systems
-Engineering &#038; Mathematics
-Physical Sciences
-Awards & Endowments
-Undergraduate
-Expand Navigation
-Admissions
-Majors
-Expand Navigation
-Applied Computing
-Expand Navigation
-Admissions
-Curriculum
-Capstone
-Student Forms &#038; Resources
-Careers
-Biology
-Expand Navigation
-Admissions
-Curriculum
-Investigative Biology
-Student Forms &#038; Resources
-Research &#038; Internships
-Student Organizations
-Friday Harbor Laboratories
-Chemistry
-Expand Navigation
-Admissions
-Curriculum
-Student Forms &#038; Resources
-Research
-Computer Engineering
-Expand Navigation
-Admissions
-Curriculum
-Capstone
-Student Forms &#038; Resources
-Computer Science & Software Engineering
-Expand Navigation
-Admissions
-Curriculum
-Capstone
-Student Forms &#038; Resources
-Earth System Science
-Electrical Engineering
-Expand Navigation
-Admissions
-Curriculum
-Capstone
-Student Forms &#038; Resources
-Mathematics
-Expand Navigation
-Admissions
-Curriculum
-Student Forms &#038; Resources
-Mechanical Engineering
-Expand Navigation
-Admissions
-Curriculum
-Student Forms &#038; Resources
-Student Organizations
-Physics
-Expand Navigation
-Admissions
-Curriculum
-Student Forms &#038; Resources
-Research
-Student Organizations
-Minors
-Expand Navigation
+Accessibility
 Actuarial Science
-Biology
-Chemistry
-Computer Science &#038; Software Engineering (CSSE)
-Cybersecurity
-Data Science
-Information Technology (IT)
-Marine Biology
-Mathematics
-Neuroscience
-Physics
-STEM Symposium Event
-Undergraduate Policies & Procedures
-Resources
-Expand Navigation
-CSS Registration
-Getting Started with Computer Science
-Graduate
-Expand Navigation
+Additional courses and graduation policies
+Additional courses: As needed to fulfill the University General Education Requirements
+Additional Writing (W) &#8211; 10 credits
+Additional Writing (W) &#8211; 5 credits
 Admissions
-Master of Science in Cybersecurity Engineering
-Expand Navigation
-Excellence in Cybersecurity Education
-Admissions
-How to Apply
-Tuition
-Curriculum
-Expand Navigation
-Core Courses
-Elective Courses
-Culminating Experience
 Advising
-Careers
-Master of Science in Computer Science & Software Engineering
-Expand Navigation
-Admissions
-How to Apply
-Tuition
-Curriculum
-Expand Navigation
-Core Courses
-Elective Courses
-Project or Thesis
-Advising
-Careers
-Master of Science in Electrical & Computer Engineering
-Expand Navigation
-Admissions
-How to Apply
-Tuition
-Curriculum
-Research
-Expand Navigation
-Computer Engineering
-Power &#038; Energy
-Signal Processing
-Biomedical Systems and Devices
-Microelectronics and Devices
-Wireless, RF/Microwave, and Telecommunications
-Advising
-Careers
-Graduate Certificate in Software Design & Development
-Expand Navigation
-Admissions
-Prerequisites guide
-Tuition
-Curriculum
-Careers
-Frequently Asked Questions
-Graduate Certificate in Electrical & Computer Engineering Foundations
-Expand Navigation
-Admissions
-Prerequisites guide
-Tuition
-Curriculum
-Careers
-Frequently Asked Questions
-Career Resources
-Thesis/Project Final Defense Schedule
-Expand Navigation
-Previous Quarters
-Faculty
-Expand Navigation
-Department of Biological Sciences Faculty
-Department of Computing & Software Systems Faculty
-Department of Engineering & Mathematics Faculty
-Department of Physical Sciences Faculty
-Promotion & Tenure Guidelines
-Expand Navigation
-Associate Professor with Tenure
-Full Professor
-Teaching Track Faculty
-Promotion and Tenure Public Statement
-Teaching Effectiveness Public Statement
-Staff
-Industry partners
-Expand Navigation
-Capstones
-Events
-News
-Research &#038; labs
-Expand Navigation
-Center for Biotechnology Innovation & Training
-National Center of Academic Excellence in Cybersecurity
-Department of Physical Sciences Research
-Expand Navigation
-Faculty Research Projects
-Mechanical Engineering Research
-Expand Navigation
-Biomedical
-Materials
-Ocean Engineering
-Safety and Security Studies and Modeling in Fluids
-Laboratories
-Expand Navigation
-EE Open lab schedule
-CSS Labs
-Friday Harbor Laboratories
-Research Experiences for Undergraduates
-Expand Navigation
-Mathematics
-Physics
-Heritage University REU
-Give
-UW Bothell Home
-Quick Links
-MyUW
-Canvas
-Directory
-Library
-Workday Login
-Give
-Apply As Undergraduate
-More Links
-Time Schedule
-Information Technology
-Commuter Services
-Facilities
-Human Resources
-Campus Safety
+After admission into the general CSSE major, you can contact the advising office at cssadv@uw.edu to switch into the IAC option. Please include your name and student ID number.
+All Applied Computing students must take a minimum of 25 credits (usually 5 courses) to complete this requirement. Credits earned beyond the minimum of 25 can count towards Upper Level General Electives (below) as long as they are 300-level or higher.
+All Biology students must complete at least one biology-related research project.
+All CSS electives must be 200-level or higher, and they may not be courses that are already required for your degree. Of the 25 credits:
+All prerequisite courses and major requirements require a minimum grade of 2.0 or higher .
+All students must take a one-credit CSS 599: Faculty Research Seminar. The seminar gives students the opportunity to interact and learn about current research conducted by the CSS faculty. It is recommended students take this course in their first quarter, so that they are made familiar with current research early in their academic career. The course is 1 credit, and the class typically meets one hour per week.
+All students who enter the BSEE program in autumn 2012 or after must complete these requirements to earn their degree. Learn more about the EE admissions process. Students need to complete each course with a minimum grade of 2.0.
+All UW Bothell
+All UW students must complete a common set of general education requirements . As a Biology major, you will have already completed the Natural Science (NSc) and Reasoning (R) requirements by taking chemistry and biology classes, but make sure to plan for completion of the following:
+All UW students must complete a common set of general education requirements . As a Computer Engineering major, you will be on track for completing the English Composition (C), some Additional Writing (W), Natural Science (NSc) , and Reasoning (R) , but make sure to plan for completion of the following:
+All UW students must complete a common set of general education requirements . As an Applied Computing major, you will already have completed the English Composition (C) , Additional Writing (W) , Natural Science (NSc) , and Reasoning (R) requirements by taking your prerequisite and core courses, but make sure to plan for completion of the following:
+Almost always also fulfills A&H or SSc
 Alumni
-About
-STEM Advisory Board
-Departments
-Awards & Endowments
-Undergraduate
-Admissions
-Majors
-Minors
-STEM Symposium Event
-Undergraduate Policies & Procedures
-Resources
-Graduate
-Admissions
-Master of Science in Cybersecurity Engineering
-Master of Science in Computer Science & Software Engineering
-Master of Science in Electrical & Computer Engineering
-Graduate Certificate in Software Design & Development
-Graduate Certificate in Electrical & Computer Engineering Foundations
-Career Resources
-Thesis/Project Final Defense Schedule
-Faculty
-Department of Biological Sciences Faculty
-Department of Computing & Software Systems Faculty
-Department of Engineering & Mathematics Faculty
-Department of Physical Sciences Faculty
-Promotion & Tenure Guidelines
-Staff
-Industry partners
-Capstones
-Events
-News
-Research &#038; labs
-Center for Biotechnology Innovation & Training
-National Center of Academic Excellence in Cybersecurity
-Department of Physical Sciences Research
-Mechanical Engineering Research
-Laboratories
-CSS Labs
-Friday Harbor Laboratories
-Research Experiences for Undergraduates
-Give
-Close mobile menu
-In this section
-About
-Expand Navigation
-STEM Advisory Board
-Departments
-Expand Navigation
-Biological Sciences
-Computing &#038; Software Systems
-Engineering &#038; Mathematics
-Physical Sciences
-Awards & Endowments
-Undergraduate
-Expand Navigation
-Admissions
-Majors
-Expand Navigation
+An approved custom cluster of interrelated courses in a non-computing discipline, totaling at least 25 credits
+Analysis & Problem Solving
+Analyze the relationship between mathematical and/or scientific foundations and actual practice
+Analyze, decompose, and model systems
+Any ONE of the following courses to be selected:
+Application Programming
 Applied Computing
-Expand Navigation
-Admissions
-Curriculum
-Capstone
-Student Forms &#038; Resources
-Careers
-Biology
-Expand Navigation
-Admissions
-Curriculum
-Investigative Biology
-Student Forms &#038; Resources
-Research &#038; Internships
-Student Organizations
-Friday Harbor Laboratories
-Chemistry
-Expand Navigation
-Admissions
-Curriculum
-Student Forms &#038; Resources
-Research
-Computer Engineering
-Expand Navigation
-Admissions
-Curriculum
-Capstone
-Student Forms &#038; Resources
-Computer Science & Software Engineering
-Expand Navigation
-Admissions
-Curriculum
-Capstone
-Student Forms &#038; Resources
-Earth System Science
-Electrical Engineering
-Expand Navigation
-Admissions
-Curriculum
-Capstone
-Student Forms &#038; Resources
-Mathematics
-Expand Navigation
-Admissions
-Curriculum
-Student Forms &#038; Resources
-Mechanical Engineering
-Expand Navigation
-Admissions
-Curriculum
-Student Forms &#038; Resources
-Student Organizations
-Physics
-Expand Navigation
-Admissions
-Curriculum
-Student Forms &#038; Resources
-Research
-Student Organizations
-Minors
-Expand Navigation
-Actuarial Science
-Biology
-Chemistry
-Computer Science &#038; Software Engineering (CSSE)
-Cybersecurity
-Data Science
-Information Technology (IT)
-Marine Biology
-Mathematics
-Neuroscience
-Physics
-STEM Symposium Event
-Undergraduate Policies & Procedures
-Resources
-Expand Navigation
-CSS Registration
-Getting Started with Computer Science
-Graduate
-Expand Navigation
-Admissions
-Master of Science in Cybersecurity Engineering
-Expand Navigation
-Excellence in Cybersecurity Education
-Admissions
-How to Apply
-Tuition
-Curriculum
-Expand Navigation
-Core Courses
-Elective Courses
-Culminating Experience
-Advising
-Careers
-Master of Science in Computer Science & Software Engineering
-Expand Navigation
-Admissions
-How to Apply
-Tuition
-Curriculum
-Expand Navigation
-Core Courses
-Elective Courses
-Project or Thesis
-Advising
-Careers
-Master of Science in Electrical & Computer Engineering
-Expand Navigation
-Admissions
-How to Apply
-Tuition
-Curriculum
-Research
-Expand Navigation
-Computer Engineering
-Power &#038; Energy
-Signal Processing
-Biomedical Systems and Devices
-Microelectronics and Devices
-Wireless, RF/Microwave, and Telecommunications
-Advising
-Careers
-Graduate Certificate in Software Design & Development
-Expand Navigation
-Admissions
-Prerequisites guide
-Tuition
-Curriculum
-Careers
-Frequently Asked Questions
-Graduate Certificate in Electrical & Computer Engineering Foundations
-Expand Navigation
-Admissions
-Prerequisites guide
-Tuition
-Curriculum
-Careers
-Frequently Asked Questions
-Career Resources
-Thesis/Project Final Defense Schedule
-Expand Navigation
-Previous Quarters
-Faculty
-Expand Navigation
-Department of Biological Sciences Faculty
-Department of Computing & Software Systems Faculty
-Department of Engineering & Mathematics Faculty
-Department of Physical Sciences Faculty
-Promotion & Tenure Guidelines
-Expand Navigation
+Applied Computing Curriculum
+Applied Computing Curriculum - School of Science, Technology, Engineering & Mathematics
+Applied Computing is a multidisciplinary major that integrates expertise in computer technology (your CSS courses) with another area of expertise called your &#8220;Second Discipline.&#8221; Together, these areas of expertise will become the focal point for your CSS 496 capstone course at the end of the program.
+Apply As Undergraduate
+Apply effective oral/written communication skills and team member skills in designing software systems
+Approved Independent Study in Chemistry (B CHEM 498) (1–5 credits, maximum 10)
+Approved Undergraduate Research in Chemistry (B CHEM 499) (1–5 credits, maximum 10)
+Arts & Humanities (A&H) &#8211; 15 credits
+Arts & Humanities (A&H) &#8211; 15 credits (cannot overlap with SSc)
+Assess software engineering concepts and processes
 Associate Professor with Tenure
-Full Professor
-Teaching Track Faculty
-Promotion and Tenure Public Statement
-Teaching Effectiveness Public Statement
-Staff
-Industry partners
-Expand Navigation
-Capstones
-Events
-News
-Research &#038; labs
-Expand Navigation
-Center for Biotechnology Innovation & Training
-National Center of Academic Excellence in Cybersecurity
-Department of Physical Sciences Research
-Expand Navigation
-Faculty Research Projects
-Mechanical Engineering Research
-Expand Navigation
+At least 15 credits must be 400-level
+At least 5 elective credits must be 400-level
+Awards & Endowments
+B BIO 180 Introductory Biology I
+B BIO 200 Introductory Biology II
+B BUS 300: Organizational Behavior, Ethics, and Inclusivity (if taking the Business Administration minor as second discipline of study)
+B CHEM 143+144 General Chemistry I/Lab (6) (or CHEM 142 (5))
+B CHEM 237 Organic Chemistry I (4 credits)
+B CHEM 238/241 Organic Chemistry II w/ Lab (4+3 credits)
+B CHEM 239/242 Organic Chemistry III w/ Lab (4+3 credits)
+B CHEM 494 Special Topics in Biochemistry (3 credits, maximum 12)
+B CHEM 497 Apprenticeship in Chemistry Education (1–3 credits, maximum 6)
+B EE 200 Electric Circuits Lab (2)
+B EE 215 Fundamentals of Electrical Engineering (4)
+B EE 233 Circuit Theory (4)
+B EE 235 Continuous Time Linear Systems (5)
+B EE 271 Digital Circuits and Systems (5)
+B EE 331 Devices and Circuits I (5)
+B EE 332 Devices and Circuits II (5)
+B EE 341 Discrete Time Linear Systems (5)
+B EE 361 Applied Electromagnetics (5)
+B EE 381 Introduction to Electric Power Generation (5)
+B EE 417 Digital Communication (5)
+B EE 425 Microprocessor System Design (5)
+B EE 427 Introduction to Digital System Design Using Hardware Description Languages (5)
+B EE 433 Electronic Circuit Design (5)
+B EE 436 Biomedical Instrumentation I (5)
+B EE 437 Biomedical Instrumentation II (5)
+B EE 440 Electronic Test and Measurement (5)
+B EE 442 Digital Signal Processing (5)
+B EE 445 Fundamentals of Digital Image Processing (5)
+B EE 447 Introduction to Control Systems (5)
+B EE 450 Introduction to Power Electronics (5)
+B EE 451 Introduction to MEMS (5)
+B EE 454 Introduction to RF and Microwave Engineering (5)
+B EE 455 Introduction to Electrical Machines and Drives (5)
+B EE 457 Electrical/Power Electronic System in Renewable Energy (5)
+B EE 477 Power System Fundamentals (5)
+B EE 478 Power System Analysis (5)
+B EE 482 Semiconductor Devices (5)
+B EE 484 Sensors and Sensor Systems (5)
+B EE 486 Fundamentals of Integrated Circuit Technology (5)
+B EE 490 Special Topics in Electrical Engineering (1-5, max. 10)
+B EE 498 Independent Study in Electrical Engineering (2-5, max. 10)
+B EE 499 Undergraduate Research in Electrical Engineering (2-5, max. 10)
+B ENGR 494 Engineering Design and Innovation (3)
+B ENGR 495 Capstone Project in Engineering I (3)
+B ENGR 496 Capstone Project in Engineering II (4)
+B PHYS 114/117 General Physics w/ Lab (4+1 credits)
+B PHYS 115/118 General Physics w/ Lab (4+1 credits)
+B PHYS 116/119 General Physics w/ Lab (4+1 credits)
+B PHYS 121 Mechanics (5 credits)
+B PHYS 122 Electromagnetism and Oscillatory Motion (5 credits)
+B PHYS 122 Electromagnetism and Oscillatory Motion (5)
+B PHYS 123 Waves (5 credits)
+B PHYS 123 Waves (5)
+B WRIT 135 Research Writing (5) or ENGL 141 The Research Paper (5)
+B.S. in Chemistry (biochemistry option)
+BBIO 231 (Genes, Genomes, and Heredity) ; also fulfills SSc
+BBIO 233 (Cancer: Biology, Risk, and Treatment)
+BBIO 285 (Seminar in Biology) ; also fulfills SSc
+BBIO 293/393 (Special Topics in Biology)
+BBIO 310 (Brain & Behavior) ; no longer counts for the Neuroscience minor. If you are taking the Neuroscience minor, take BBIO 320 instead.
+BBIO 310 (Brain and Behavior)
+BBIO 320 (Behavioral Neuroscience) ; cannot count for both Biology major and Neuroscience minor
+BBIO 330 (Marine Biology)
+BBIO 335 (Salmon and Society)
+BBIO 335 (Salmon and Society) ; also fulfills SSc
+BBIO 340 (Computational Biology)
+BBIO 351 (Anatomy and Physiology I + lab)
+BBIO 351: Anatomy and Physiology I + Lab
+BBIO 352 (Anatomy and Physiology II + lab)
+BBIO 352: Anatomy and Physiology II + Lab
+BBIO 355 (Behavioral Endocrinology)
+BBIO 360: Introduction to Genetics
+BBIO 370 (Microbiology I)
+BBIO 370: Microbiology I + lab
+BBIO 372 (Stem Cells)
+BBIO 372: Stem Cells
+BBIO 380 (Cell Biology)
+BBIO 380: Cell Biology
+BBIO 383 (Bioinformatics)
+BBIO 385 (Animal Behavior)
+BBIO 390 (Diseases and Disorders of the Nervous System)
+BBIO 394 (Special Topics in Neuroscience)
+BBIO 460 (Developmental Biology)
+BBIO 466: Evolution
+BBIO 470 (Microbiology II)
+BBIO 470: Microbiology II — BBIO 370 is the normal prerequisite, so this will not often be used for the Cell Biology requirement except in rare cases.
+BBIO 471 (Plant Ecology)
+BBIO 471: Plant Ecology + Lab
+BBIO 480 (Neurobiology) ; cannot count for both Biology major and Neuroscience minor
+BBIO 485 (Senior Seminar in Biology)
+BBIO 495 (Investigative Biology)
+BBIO 498 (Independent Study in Biology)
+BBIO 499 (Undergraduate Research in Biology)
+BBIO/BCHEM 364 (Biochemistry I)
+BBIO/BCHEM 365 (Biochemistry II)
+BBIO/BCHEM 366 (Biochemistry Lab) ; only 3 credits
+BBIO/BCHEM 375 (Molecular Biology)
+BBUS 215: Introduction to Business Statistics
+BCHEM 143+144: General Chemistry I + Lab (6 credits)
+BEE 215: Fundamentals of EE (5 credits)
+BEE 233: Circuit Theory (5 credits)
+BEE 235: Continuous Time Linear Systems (5 credits)
+BEE 271: Digital Circuits & Systems (5 credits)
+BEE 331: Devices & Circuits I (5 credits)
+BENGR 494 (3 credits)
+BENGR 495 (3 credits)
+BENGR 496 (3 credits)
+BES 312 (Ecology)
+BES 312: Ecology
+BES 316 (Ecological Methods)
+BES 330 (Limnology)
+BES 362 (Restoration Ecology)
+BES 397/497 (Special Topics in Environmental Science)
+BES 485 (Conservation Biology)
+BHLTH/BMATH 215: Health Statistics
+Biological Sciences
+Biology
+Biology (BBIO)
+Biology & Society
+Biology Curriculum
+Biology Curriculum - School of Science, Technology, Engineering & Mathematics
+Biology series
+Biology-related courses that are not included on the core or elective requirements lists are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you want to use as an elective, you can submit a petition to request for the course to count.
 Biomedical
-Materials
-Ocean Engineering
-Safety and Security Studies and Modeling in Fluids
-Laboratories
-Expand Navigation
-EE Open lab schedule
-CSS Labs
-Friday Harbor Laboratories
-Research Experiences for Undergraduates
-Expand Navigation
-Mathematics
-Physics
-Heritage University REU
-Give
-School of Science, Technology, Engineering & Mathematics
-&#124;
-Applied Computing
-School of Science, Technology, Engineering & Mathematics
-&#124;
-Undergraduate
-&#124;
-Majors
-&#124;
-Applied Computing
-&#124;
-Applied Computing Curriculum
-Applied Computing Curriculum
-This page contains information on the curriculum of the Bachelor of Arts in Applied Computing .
-Course descriptions
-Entry prerequisites
-General education courses
-Core courses
-Second discipline of study
-Elective courses
-Petitions
-Learning goals
-Course descriptions
-Follow the links below for descriptions of each course. Courses taught by the Computing & Software Systems department include the following course prefixes:
+Biomedical Systems and Devices
+BIS 215: Understanding Statistics
+BIS 241 (Nature in the Northwest)
+BIS 243 (Intro to Environmental Issues) ; also fulfills SSc
+BIS 293/393/493 (Special Topics)
+BIS 306 (Marine Diversity and Conservation)
+BIS 307 (Environmental Justice) ; also fulfills SSc
+BIS 342 (Geographic Information Systems)
+BIS 356 (Ethics and Environment) ; also fulfills SSc
+BIS 369 (Indigenous Psychology and Health) ; also fulfills DIV
+BIS 380 (Bioethics) ; also fulfills SSc
+BIS 391 (Environmental History of Pacific Northwest Bioregion) ; also fulfills SSc
+BIS 405 (Environmental Education)
+BIS 408 (Critical Physical Geography) ; also fulfills DIV
+BIS 459 (Conservation and Sustainable Development) ; also fulfills SSc
+BISSTS 307 (Science, Technology, and Society) ; also fulfills SSc
+BISSTS 397/497 (Topics in Science, Technology, and Society) ; also fulfills SSc
+BMATH 144: Calculus for Life and Social Sciences
+Both BPHYS 114+117 and BPHYS 115+118: General Physics I and II + Labs
+Both BPHYS 121 and BPHYS 122: Calculus-based Physics I and II + Labs
+Both courses (one would count as a CSS Elective instead)
+Bothell, Washington View our location on Google maps.
+Business Case Justification: Justifies project expenditures, equipment and other resources in terms of business costs, benefits and risks.
+Business management course
+BWRIT 135 (Research Writing) or similar recommended
+Calculus (choose one course)
+Campus Safety
+Cannot overlap with A&H
+Cannot overlap with SSc
+Canvas
+Capstone
+Capstones
+Career Resources
+Careers
+Cell Biology (choose one course)
+Center for Biotechnology Innovation & Training
+Chemistry
+Chemistry (BCHEM)
+Choose one of the following three-course series options:
+Choose three additional courses (15 credits) from the following list; a combined maximum of 10 credits of B EE 490, B EE 498, and B EE 499 may be counted toward the 15 credit requirement.
+Choose your pathway
+Close mobile menu
+Collaboration & Team Building: Collaborates effectively with others to achieve a common objective, creates an environment that fosters and sustains successful teamwork.
+Collaborative Programming Techniques: Uses methods and tools that support cooperative software development among users in different locations.
+College Level English Composition and Writing (15-20 credits)
+Commuter Services
+Complete five additional credits of approved 300- or 400-level courses offered by the School of STEM.
+Computer Engineering
+Computer Engineering Capstone (10 credits)
+Computer Engineering Capstone (BCE)
+Computer Engineering Curriculum
+Computer Engineering Curriculum - School of Science, Technology, Engineering & Mathematics
+Computer Engineering-related courses that are not included on the core or elective requirements lists are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you wish to use as an elective, you may submit a petition to request for the course to count.
+Computer Science (30 credits)
+Computer Science & Software Engineering
+Computer Science &#038; Software Engineering (CSSE)
+Computing &#038; Software Systems
 Computing and Software Systems (CSS)
 Computing and Software Systems Skills (CSSSKL)
-Entry prerequisites
-Visit the admissions page for information on prerequisite coursework.
-Not sure about how to approach programming? Visit our Getting Started with Computer Programming page.
-General education courses
-All UW students must complete a common set of general education requirements . As an Applied Computing major, you will already have completed the English Composition (C) , Additional Writing (W) , Natural Science (NSc) , and Reasoning (R) requirements by taking your prerequisite and core courses, but make sure to plan for completion of the following:
-Diversity (DIV) &#8211; 5 credits (almost always also fulfills A&H or SSc)
-Arts & Humanities (A&H) &#8211; 15 credits (cannot overlap with SSc)
-Social Sciences (SSc) &#8211; 15 credits (cannot overlap with A&H)
-In general, these general education courses can overlap with the Second Discipline and Elective courses for your major.
-Core courses
-Applied Computing is a multidisciplinary major that integrates expertise in computer technology (your CSS courses) with another area of expertise called your &#8220;Second Discipline.&#8221; Together, these areas of expertise will become the focal point for your CSS 496 capstone course at the end of the program.
-CSS courses
-Statistics course
-CSS 301: Technical Writing
-Data Structures and Algorithms course
-CSS 340: Applied Algorithmics; or
-CSS 342: Advanced Data Structures, Algorithms, and Discrete Mathematics I; or
-Both courses (one would count as a CSS Elective instead)
-Business management course
-CSS 350: Management for Computing Professionals; or
-B BUS 300: Organizational Behavior, Ethics, and Inclusivity (if taking the Business Administration minor as second discipline of study)
-CSS 360: Software Engineering
-CSS 421: Hardware and Operating Systems
-CSS 496: Applied Computing Capstone
-Read more about the Capstone requirement
-Second discipline of study courses
-All Applied Computing students must take a minimum of 25 credits (usually 5 courses) to complete this requirement. Credits earned beyond the minimum of 25 can count towards Upper Level General Electives (below) as long as they are 300-level or higher.
-Options for your second discipline include:
-A second undergraduate major or a minor offered by UW Bothell
-UW Bothell majors and minors
-A minor offered by a different UW campus
-UW Seattle minors
-UW Tacoma minors
-An approved custom cluster of interrelated courses in a non-computing discipline, totaling at least 25 credits
-15 credits at 300-level or higher
-10 credits at 100-level or higher
-Second discipline contract
-To ensure you have a well-formed plan for your major, you must declare your Second Discipline to the Applied Computing program by submitting this contract within your first year in the major:
-Submit your Second Discipline contract
-Elective courses
-When considering options for their elective and secondary discipline courses, Applied Computing students should reflect on the type of work that they are interested in pursuing after graduation.
-CSS Electives (25 credits): Cannot overlap with other degree requirements
-10 credits at 400-level
-Consider CSS 495: Applied Computing Internship to get credit for a technical job related to your area of focus
-5 credits at 300-level or higher
-10 credits at 200-level or higher
-Maximum of 15 total credits of CSS 397/495/498/499 (Variable Credit Courses)
-Maximum of 10 total credits of CSS 290/390/490 (Special Topics Courses)
-Upper Level General Electives (10 credits): Cannot overlap with other degree requirements
-10 credits at 300-level or higher in any subject area
-Petitions
+Computing-related courses that are not included on the core or elective requirements lists are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you wish to use as an elective, you may submit a petition to request for the course to count.
 Computing-related courses that are not listed above are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you want to use as an elective, you can submit a petition to request for the course to count.
-Submit an applied computing petition
-Learning goals
-The learning objectives for the Bachelor of Arts in Applied Computing and the Bachelor of Science in Computer Science & Software Engineering are described in terms of competencies achieved by students within the CSS programs.
-The Foundation Level includes very broad competencies that are found in every CSS core course. The Technical Level is a set of broadly important competencies specific to the software engineering and computer science professions, to be developed in every undergraduate CSS education, across the set of required core courses. Competencies specific to the interests and needs of the individual student are achieved in the CSS advanced elective courses.
-Foundation Level
-Analysis & Problem Solving
-Information Gathering: Effectively searches out and organizes pertinent information before making decisions or taking actions.
-Efficiency: Identifies ways to solve problems or complete tasks smoothly and effectively; choose the optimum solution form and set of alternative possibilities.
-Systemic Thinking: Follows a well-ordered and logical approach to analyzing problems, organizing work, and searching for solutions.
-Thoroughness: Ensures that work is done correctly, completely, on time and to the highest standards.
+Conduct a risk assessment for an information asset or system, and develop and characterize appropriate strategies for addressing residual risk
+Consider CSS 495: Applied Computing Internship to get credit for a technical job related to your area of focus
+Contact
+Contact Us
+Contact us by phone at:
+Core courses
+Core Courses
+Core Courses - School of Science, Technology, Engineering & Mathematics
+Core Courses (55 credits)
+Core requirements
+Course
+Course descriptions
+Courses cannot apply to more than one requirement for the Biology major, meaning the same course cannot count towards both the core and elective requirements.
 Creativity: Challenges existing assumptions, proposes novel alternative ways to framing or solving a problem, pushes the boundaries of knowledge.
-Learning by Doing: Demonstrates the ability to learn continuously, capitalize on mistakes, exploit new knowledge, increase productivity over time.
-Interpersonal Skills
-Collaboration & Team Building: Collaborates effectively with others to achieve a common objective, creates an environment that fosters and sustains successful teamwork.
-Leadership: Champions new ideas, persuades and influences, breaks logjams, and promotes momentum toward solving problems.
-Writing & Speaking: Expresses ideas correctly and convincingly in reports, memos and other forms of written communication
-Managing Change & Uncertainty: Adapts to changing circumstances, deals positively with uncertainties and contingencies, manages crises effectively.
-Management Skills
-Project Management: Plans, monitors, and controls projects; ensures efficient utilization of resources; keeps projects on schedule and within budgeted resource allocation.
-Project Administration: Administers and maintains projects, using appropriate monitoring tools and complying with relevant standards and reporting requirements.
-Risk Management: Foresees and takes action pro-actively in anticipation of future problems and opportunities.
-User Orientation: Gains understanding of users needs by immersing self in users environment; carefully studies user&#8217;s requirements; puts self in users shoes.
-Technical Level
-General Business, Social & Technical
-Business Case Justification: Justifies project expenditures, equipment and other resources in terms of business costs, benefits and risks.
-Technology Evaluation and Selection: Evaluates and selects software and hardware appropriate to the application, architecture and resource constraints; maintains awareness and understanding of emerging technology.
-Process Reengineering: Performs business requirement analysis, using appropriate tools and methodologies to maximize organizational performance.
-Mathematical Principles and Techniques: Understands theory and application of numerical, statistical, set theory, and other mathematical techniques in the context of applications and systems programming.
-General Software Systems: Has general understanding of the principles and applications of software development and design; understands the relationship between software development and other functions in the business organization.
-Social Implications of Science & Technology: Understands the interaction between science and technology and the broader social, political, and organizational environment; critically assesses ethical implications of computing technology.
-Technical Writing: Designs and writes effective guidelines, standards, procedures, processes, applications, using appropriate methods, tools and delivery options.
-Application Programming
-Requirements Definition and Analysis: Elicits and clearly defines user\&#8217;s needs, assessing potential solutions against benefits and risks; uses appropriate tools for analyzing requirements and creating appropriate data and work flow models.
-Software Development Life Cycle: Understands and effectively manages the process of developing designing, testing, and delivering a software application.
-Functional Design: Identifies system platform, components, inputs, interface requirements, and dependencies which ensure that the system will achieve its objectives.
-Testing: Plans, executes, and validates results of unit, systems, and acceptance testing to ensure conformity to user\&#8217;s requirements.
-Implementation: Plans and executes smooth integration of an application into the computing environment.
-Programming: Comprehends and applies principles of programming; effectively translates design specifications into appropriate software components.
-Collaborative Programming Techniques: Uses methods and tools that support cooperative software development among users in different locations.
-Quality Assurance: Employs appropriate quality assurance standards and procedures to ensure delivery of bug-free applications that meet user\&#8217;s needs.
-Infrastructure/Operations
-Technology Integration: Integrates various technologies, systems, applications, database and components across multiple platforms.
-Hardware Architecture: Understands hardware components, architecture, and interrelationship among hardware, software, and operating systems.
-Performance Measurements & Tuning: Uses appropriate performance metrics to monitor, optimize and troubleshoot system performance.
-Operating Systems: Understands operating systems fundamentals including: file systems, process, and memory management.
-System Administration: Understands appropriate procedures and techniques for management and administrating a network, data center, or other computer system; manages changes to the computing environment.
-Technical Training and Support: Provides user support through analysis and problem solving to facilitate installation, implementation, maintenance, education, and documentation of computer hardware and software systems.
-In this section
-About
-Expand Navigation
-STEM Advisory Board
-Departments
-Expand Navigation
-Biological Sciences
-Computing &#038; Software Systems
-Engineering &#038; Mathematics
-Physical Sciences
-Awards & Endowments
-Undergraduate
-Expand Navigation
-Admissions
-Majors
-Expand Navigation
-Applied Computing
-Expand Navigation
-Admissions
-Curriculum
-Capstone
-Student Forms &#038; Resources
-Careers
-Biology
-Expand Navigation
-Admissions
-Curriculum
-Investigative Biology
-Student Forms &#038; Resources
-Research &#038; Internships
-Student Organizations
-Friday Harbor Laboratories
-Chemistry
-Expand Navigation
-Admissions
-Curriculum
-Student Forms &#038; Resources
-Research
-Computer Engineering
-Expand Navigation
-Admissions
-Curriculum
-Capstone
-Student Forms &#038; Resources
-Computer Science & Software Engineering
-Expand Navigation
-Admissions
-Curriculum
-Capstone
-Student Forms &#038; Resources
-Earth System Science
-Electrical Engineering
-Expand Navigation
-Admissions
-Curriculum
-Capstone
-Student Forms &#038; Resources
-Mathematics
-Expand Navigation
-Admissions
-Curriculum
-Student Forms &#038; Resources
-Mechanical Engineering
-Expand Navigation
-Admissions
-Curriculum
-Student Forms &#038; Resources
-Student Organizations
-Physics
-Expand Navigation
-Admissions
-Curriculum
-Student Forms &#038; Resources
-Research
-Student Organizations
-Minors
-Expand Navigation
-Actuarial Science
-Biology
-Chemistry
-Computer Science &#038; Software Engineering (CSSE)
-Cybersecurity
-Data Science
-Information Technology (IT)
-Marine Biology
-Mathematics
-Neuroscience
-Physics
-STEM Symposium Event
-Undergraduate Policies & Procedures
-Resources
-Expand Navigation
+CSS 132 Computer Programming for Engineers I (5; C++) or CSS 142 Computer Programming I (5; Java)
+CSS 133 Computer Programming for Engineers II (5; C++) or CSS 143 Computer Programming II (5; Java)
+CSS 301 Technical Writing for Computing Professionals (5)
+CSS 301: Technical Writing
+CSS 301: Technical Writing (5 credits)
+CSS 310: Information Assurance and Cybersecurity
+CSS 337 Secure Systems
+CSS 340: Applied Algorithmics; or
+CSS 342: Advanced Data Structures, Algorithms, and Discrete Mathematics I (5 credits)
+CSS 342: Advanced Data Structures, Algorithms, and Discrete Mathematics I; or
+CSS 343: Advanced Data Structures, Algorithms, and Discrete Mathematics II (5 credits)
+CSS 350: Management for Computing Professionals; or
+CSS 350: Management Principles for Computing Professionals
+CSS 360: Software Engineering
+CSS 360: Software Engineering (5 credits)
+CSS 370: Analysis and Design
+CSS 411 Computer Technology and Public Policy
+CSS 415 Emerging Topics in Information Assurance and Cybersecurity (topics vary)
+CSS 421: Hardware and Operating Systems
+CSS 422: Hardware and Computer Organization
+CSS 427 Introduction to Embedded Systems (5)
+CSS 427: Intro to Embedded Systems (5 credits)
+CSS 430: Operating Systems
+CSS 430: Operating Systems (5 credits)
+CSS 496: Applied Computing Capstone
+CSS 497: Capstone
+CSS 517 Information Assurance and Cybersecurity (5)
+CSS 518: Human Factors in Cybersecurity
+CSS 527: Cryptography and Information Assurance
+CSS 533: Distributed Programming
+CSS 534: Parallel Programming in Grid & Cloud
+CSS 535: High Performance Computing
+CSS 537 Network and System Security (5)
+CSS 538: Security in Emerging Wireless and Mobile Networks
+CSS 539: Cybersecurity in Emerging Environments
+CSS 551: Advanced 3D Computer Graphics
+CSS 553: Software Architecture
+CSS 555: Evaluating Software Design
+CSS 565: Research Methods in Software Development
+CSS 566: Software Management
+CSS 572: Evidence-Based Design
+CSS 577 Secure Software Development (5)
+CSS 577: Secure Software Development
+CSS 587: Advanced Topics in Computer Vision
+CSS 599: Faculty Research Seminar (1)
+CSS 599: Faculty Research Seminar (1cr)
+CSS courses
+CSS Electives (25 credits / usually 5 courses)
+CSS Electives (25 credits): Cannot overlap with other degree requirements
+CSS Labs
 CSS Registration
-Getting Started with Computer Science
-Graduate
-Expand Navigation
-Admissions
-Master of Science in Cybersecurity Engineering
-Expand Navigation
-Excellence in Cybersecurity Education
-Admissions
-How to Apply
-Tuition
-Curriculum
-Expand Navigation
-Core Courses
-Elective Courses
+CSSKL 594: Scientific Writing for Thesis/Project (2 cr) : Students are advised to take CSSKL 594 in their final quarter of study, when the writing of the final thesis or capstone report is taking place, or when advised by your capstone chair otherwise. Course goals include helping students draft and edit thesis or capstone reports.
+CSSKL 594: Scientific Writing for Thesis/Project (2 cr) : Students are advised to take CSSKL 594 in their final quarter of study, when the writing of the final thesis or capstone report is taking place, or when advised by your capstone chair otherwise. Course goals include helping students draft and edit thesis or capstone reports. Cybersecurity students not completing a final thesis or capstone project will need to take this course when taking the Culminating Course or Culminating Internship which will fulfill their Culminating Experience requirement.
+CSSSKL 511: Technical Writing (1 cr) : Students are advised to take CSSSKL 511 when enrolled in the Winter or Spring quarter of their first year in the program.
 Culminating Experience
-Advising
-Careers
-Master of Science in Computer Science & Software Engineering
-Expand Navigation
-Admissions
-How to Apply
-Tuition
+Culminating Experience - School of Science, Technology, Engineering & Mathematics
+Current site
 Curriculum
-Expand Navigation
-Core Courses
-Elective Courses
-Project or Thesis
-Advising
-Careers
-Master of Science in Electrical & Computer Engineering
-Expand Navigation
-Admissions
-How to Apply
-Tuition
-Curriculum
-Research
-Expand Navigation
-Computer Engineering
-Power &#038; Energy
-Signal Processing
-Biomedical Systems and Devices
-Microelectronics and Devices
-Wireless, RF/Microwave, and Telecommunications
-Advising
-Careers
-Graduate Certificate in Software Design & Development
-Expand Navigation
-Admissions
-Prerequisites guide
-Tuition
-Curriculum
-Careers
-Frequently Asked Questions
-Graduate Certificate in Electrical & Computer Engineering Foundations
-Expand Navigation
-Admissions
-Prerequisites guide
-Tuition
-Curriculum
-Careers
-Frequently Asked Questions
-Career Resources
-Thesis/Project Final Defense Schedule
-Expand Navigation
-Previous Quarters
-Faculty
-Expand Navigation
+Cybersecurity
+Cybersecurity Core Knowledge
+Data Science
+Data Structures and Algorithms course
+Declaring the IAC option
 Department of Biological Sciences Faculty
 Department of Computing & Software Systems Faculty
 Department of Engineering & Mathematics Faculty
 Department of Physical Sciences Faculty
-Promotion & Tenure Guidelines
-Expand Navigation
-Associate Professor with Tenure
-Full Professor
-Teaching Track Faculty
-Promotion and Tenure Public Statement
-Teaching Effectiveness Public Statement
-Staff
-Industry partners
-Expand Navigation
-Capstones
-Events
-News
-Research &#038; labs
-Expand Navigation
-Center for Biotechnology Innovation & Training
-National Center of Academic Excellence in Cybersecurity
 Department of Physical Sciences Research
-Expand Navigation
-Faculty Research Projects
-Mechanical Engineering Research
-Expand Navigation
-Biomedical
-Materials
-Ocean Engineering
-Safety and Security Studies and Modeling in Fluids
-Laboratories
-Expand Navigation
+Departments
+Describe methods of scientific inquiry
+Design and implement the security practices of an organization that are informed by the understanding and interpretation of key laws, regulations, standards, and best practices
+Design Core
+Design, assess, build, and maintain secure systems and software
+Development Core
+Directory
+Discuss existing software designs and implementations that apply the theory
+Diversity (DIV) &#8211; 5 credits
+Diversity (DIV) &#8211; 5 credits (almost always also fulfills A&H or SSc; was only 3 credits prior to autumn 2023)
+Diversity (DIV) &#8211; 5 credits (almost always also fulfills A&H or SSc)
+Download the EE prerequisite flowchart and EE degree checklist for a more visual version of these requirements and what order to take them in.
+Earth System Science
+Ecology (choose one course)
 EE Open lab schedule
-CSS Labs
-Friday Harbor Laboratories
-Research Experiences for Undergraduates
+Efficiency: Identifies ways to solve problems or complete tasks smoothly and effectively; choose the optimum solution form and set of alternative possibilities.
+Elective courses
+Elective Courses
+Elective courses must have either the CSS or BEE prefix
+Elective requirements
+Electrical Engineering
+Electrical Engineering (30 credits)
+Electrical Engineering (BEE)
+Electrical Engineering Curriculum
+Electrical Engineering Curriculum - School of Science, Technology, Engineering & Mathematics
+Electrical Engineering Electives (15 credits)
+Engineering &#038; Mathematics
+English Composition (C) &#8211; 5 credits
+Entry prerequisites
+Environmental Science (BES)
+Evaluate the role of cybersecurity policies, procedures, standards, and guidelines within an organizational context, and design and implement one or more such solutions
+Events
+Evolution
+Excellence in Cybersecurity Education
 Expand Navigation
-Mathematics
-Physics
-Heritage University REU
+Facilities
+Faculty
+Faculty Research Projects
+Faculty Research Seminar
+Follow the links below for descriptions of each course. Courses taught by the Computing & Software Systems department include the following course prefixes:
+Follow the links below for descriptions of each course. The biology major can use courses from several different disciplines:
+Follow the links below to read about the content covered in each course:
+For a more visual version of the information on this page, download the Computer Engineering degree checklist .
+Foundation Level
+Foundational Courses (65-66 credits)
+Foundations Core
+Frequently Asked Questions
+Friday Harbor Laboratories
+Full Professor
+Functional Design: Identifies system platform, components, inputs, interface requirements, and dependencies which ensure that the system will achieve its objectives.
+General Business, Social & Technical
+General education courses
+General education requirements
+General Software Systems: Has general understanding of the principles and applications of software development and design; understands the relationship between software development and other functions in the business organization.
+Genetics
+Getting Started with Computer Science
 Give
-Contact Us
-School of STEM Student Success
-stemsuccess@uw.edu
-University of Washington Bothell Homepage
-Bothell, Washington View our location on Google maps.
-Contact us by phone at:
-425.352.5000
-Contact
-Visitors
-Maps & directions
+Graduate
+Graduate Certificate in Electrical & Computer Engineering Foundations
+Graduate Certificate in Software Design & Development
+Graduate Programs
+Graduate-level competency on technical and scientific writing is a critical area of knowledge for students in any master’s degree.
+Graduate-level Technical & Scientific Writing
+Hardware Architecture: Understands hardware components, architecture, and interrelationship among hardware, software, and operating systems.
+height="0" width="0" style="display:none;visibility:hidden">
+Heritage University REU
+How to Apply
+Human Resources
+IAC-option students take the same core courses as those of the general CSSE major, but replace the 25 credits of &#8220;CSS Electives&#8221; with the courses below:
+Identify, model, prioritize, and defend against threats to systems
+Implement applications using design languages or representations
+Implementation: Plans and executes smooth integration of an application into the computing environment.
+In addition to the cybersecurity core courses, all students must take a one credit faculty seminar, and a forthcoming process to evaluate students’ knowledge of the skills covered in CSSKL 511: Technical Writing (1 cr) will allow students to waive this course if proficiency is determined. Students who do not demonstrate this proficiency via past coursework will be required to take the course. All students will be required to take CSSSKL 594: Scientific Writing for Thesis/Project (2 cr), and there is no waiver available for this course.
+In addition to these core areas of study, all students must take a one credit faculty seminar, and a forthcoming process to evaluate students’ knowledge of the skills covered in CSSKL 511: Technical Writing (1 cr) will allow students to waive this course if proficiency is determined. Students who do not demonstrate this proficiency via past coursework will be required to take the course. All students will be required to take CSSSKL 594: Scientific Writing for Thesis/Project (2 cr), and there is no waiver available for this course.
+In general, these general education courses can overlap with the Second Discipline and Elective courses for your major.
+In this section
+Industry partners
+INFO 312: Enterprise Risk Management
+INFO 415: Emerging Topics in Information Assurance and Cybersecurity (topics vary)
+Information Assurance and Cybersecurity (IAC) is a Computer Science & Software Engineering pathway that covers the creation and management of safe and secure systems. All organizations—large or small, public or private—rely on secure systems for individual and organizational privacy and security. The IAC option prepares students to create, deploy, and manage systems that ensure the security of any organization.
+Information Assurance and Cybersecurity (IAC) option
+Information Gathering: Effectively searches out and organizes pertinent information before making decisions or taking actions.
+Information Technology
+Information Technology (IT)
+Infrastructure/Operations
+Interdisciplinary Studies (BIS)
+Internship
+Interpersonal Skills
+Investigative Biology
 Jobs
-Accessibility
+Laboratories
+Leadership: Champions new ideas, persuades and influences, breaks logjams, and promotes momentum toward solving problems.
+Learning by Doing: Demonstrates the ability to learn continuously, capitalize on mistakes, exploit new knowledge, increase productivity over time.
+Learning goals
+Learning outcomes
+Learning Outcomes
+Library
+List of Biology & Society Courses
+List of category &#039;A&#039; courses (Biodiversity / Ecology / Evolution)
+List of category &#039;B&#039; courses (Cellular / Molecular Biology)
+List of category &#039;C&#039; courses (Physiology / Neurobiology)
+Major requirements
+Majors
+Management Skills
+Managing Change & Uncertainty: Adapts to changing circumstances, deals positively with uncertainties and contingencies, manages crises effectively.
+Many Biology and Society courses can also fulfill general education credit .
+Maps & directions
+Marine Biology
+Master of Science in Computer Science & Software Engineering
+Master of Science in Cybersecurity Engineering
+Master of Science in Electrical & Computer Engineering
+Materials
+Math and Chemistry (26 credits)
+MATH& 146: Introduction to Statistics from Washington Community Colleges
+Mathematical Principles and Techniques: Understands theory and application of numerical, statistical, set theory, and other mathematical techniques in the context of applications and systems programming.
+Mathematics
+Maximum of 10 credits of BBIO 499 may apply to the Biology Electives requirement
+Maximum of 10 total credits of CSS 290/390/490 (Special Topics Courses)
+Maximum of 15 total credits of CSS 397/495/498/499 (Variable Credit Courses)
+Maximum of 5 credits combined can be CSS or BEE &#8220;Special Topics&#8221; courses
+Maximum of 5 credits combined can be CSS or BEE Independent Study (498) or Undergrad Research (499)
+May be additional CSS electives or electives from other subject areas
+May transfer a maximum of 15 credits of EE coursework from other institutions, including other UW campuses. Exceptions to this policy must be petitioned.
+Mechanical Engineering
+Mechanical Engineering Research
+Microelectronics and Devices
+Minimum 15 credits (3 courses) of elective coursework from the lists below. Only one networking class (CSS 432, INFO 314, or T INFO 250; marked with an asterisk * ) may be taken.
+Minimum 2.0 grade for any course applied to the major.
+Minimum 2.0 grade is required in each one of the above chemistry courses.
+Minimum of 5 additional credits (usually 1 course) of 200-level or higher CSS Elective coursework in any topic.
+Minors
+Miscellaneous Electives
+More Links
+Must complete a minimum of 180 credits, including admission prerequisites, with a minimum 2.0 cumulative GPA.
+Must earn a 2.0 or higher in each course used for the Core Courses, EE Electives, Foundational Courses, and English Composition and Writing requirements.
+Must earn a grade of 0.7 or higher in each course used for UW general education requirements .
+MyUW
+National Center of Academic Excellence in Cybersecurity
+Neuroscience
+News
+Not sure about how to approach programming? Visit our Getting Started with Computer Programming page.
+Note on Physics III: The third course in the above two series is BPHYS 116+119 (General Physics III + Lab) or BPHYS 123 (Calculus-based Physics III + Lab) . These are not required for your Biology degree, but may be needed to apply to some graduate programs.
+Note on sequencing: We suggest taking BBIO 351 before BBIO 352, but it is not a prerequisite. You can take just one course, or both courses in either order.
+Note on transfers: Many community college Microbiology courses are not accepted. Check our Admissions page for more information.
+Note on transfers: Many community college Physiology courses are not accepted. Check our Admissions page for more information.
+Note: BCE 495 and BCE 496 no longer offered; BENGR 495 and BENGR 496 will satisfy those requirements.
+Ocean Engineering
+One of either BEE 425: Microprocessor System Design (5 credits) or CSS 422: Hardware and Computer Organization (5 credits)
+Only 3 credits prior if admitted prior to autumn 2023
+Open mobile menu
+Operating Systems: Understands operating systems fundamentals including: file systems, process, and memory management.
+Option 1
+Option 2
+Options for your second discipline include:
+Organic Chemistry series
+Performance Measurements & Tuning: Uses appropriate performance metrics to monitor, optimize and troubleshoot system performance.
+Petition
+Petitions
+Physical Sciences
+Physics
+Physics (BPHYS)
+Physics I and II (choose one series)
+Physics series
+Physiology (choose one course)
+Plan EARLY: Start planning for this requirement at least 6 months in advance.
+Please reach out to the Biology advisor if you have completed and transferred in this course but it is not yet applying to the statistics requirement on your degree audit.
+Power &#038; Energy
+Prerequisites guide
+Present and defend research
+Previous Quarters
 Privacy
+Process Reengineering: Performs business requirement analysis, using appropriate tools and methodologies to maximize organizational performance.
+Programming: Comprehends and applies principles of programming; effectively translates design specifications into appropriate software components.
+Project
+Project Administration: Administers and maintains projects, using appropriate monitoring tools and complying with relevant standards and reporting requirements.
+Project Management: Plans, monitors, and controls projects; ensures efficient utilization of resources; keeps projects on schedule and within budgeted resource allocation.
+Project or Thesis
+Promotion & Tenure Guidelines
+Promotion and Tenure Public Statement
+Quality Assurance: Employs appropriate quality assurance standards and procedures to ensure delivery of bug-free applications that meet user\&#8217;s needs.
+Quick Links
+Read more about the Capstone requirement
+Read more about the Culminating course process
+Read more about the Culminating internship process
+Read more about the project process
+Read more about the thesis process
+Relate theoretical concepts to practical knowledge
+Requirements
+Requirements Definition and Analysis: Elicits and clearly defines user\&#8217;s needs, assessing potential solutions against benefits and risks; uses appropriate tools for analyzing requirements and creating appropriate data and work flow models.
+Research
+Research &#038; Internships
+Research &#038; labs
+Research Experiences for Undergraduates
+Research, design, and implement software solutions using contemporary tools and platforms
+Resources
+Risk Management: Foresees and takes action pro-actively in anticipation of future problems and opportunities.
 Rules Docket
-Terms
+Safety and Security Studies and Modeling in Fluids
+School of Science, Technology, Engineering & Mathematics
+School of STEM Student Success
+Science & Technology Mathematics (STMATH)
+Science and Technology Mathematics (STMATH)
+Science, Technology, and Society (BISSTS)
+Search
+Search keywords
 Seattle Campus
+Second discipline contract
+Second discipline of study
+Second discipline of study courses
+Signal Processing
+Skip To Content
+Social Implications of Science & Technology: Understands the interaction between science and technology and the broader social, political, and organizational environment; critically assesses ethical implications of computing technology.
+Social Sciences (SSc) &#8211; 15 credits
+Social Sciences (SSc) &#8211; 15 credits (cannot overlap with A&H)
+Software Development Life Cycle: Understands and effectively manages the process of developing designing, testing, and delivering a software application.
+Some transfer courses never count for Biology major requirements. Visit our Admissions page for information on transfer coursework.
+Special topics and seminar courses are often appropriate for this requirement, but topics vary. Double check with the Biology advisor to make sure these will count:
+Staff
+STAT 220: Statistical Reasoning
+Statistics (choose one course)
+Statistics course
+STEM Advisory Board
+STEM Symposium Event
+stemgrad@uw.edu
+stemsuccess@uw.edu
+STMATH 124: Calculus I
+STMATH 126 Calculus III (5)
+STMATH 207 Differential Equations (5)
+STMATH 207 Introduction to Differential Equations (5 credits)
+STMATH 207: Introduction to Differential Equations (5 credits)
+STMATH 208 Matrix Algebra (5)
+STMATH 208 Matrix Algebra with Applications (5 credits)
+STMATH 208: Matrix Algebra with Applications (5 credits)
+STMATH 224 Multivariable Calculus (5 credits)
+STMATH 224 Multivariable Calculus (5)
+STMATH 224: Multivariable Calculus (5 credits)
+STMATH 341 Introduction to Statistical Inference (5 credits)
+STMATH 341: Statistical Inference
+STMATH 390 Probability and Statistics in Engineering (5)
+STMATH 390: Probability & Statistics in Engineering (5 credits)
+Student Forms &#038; Resources
+Student Organizations
+Students can choose any 300- or 400-level course listed in the School of STEM time schedule as an elective. If the course is from UW Seattle or is outside of a STEM major, students must submit a to the department using the Chemistry Major or Minor Requirement Petition form.
+Students choose one of four Culminating Experience pathways depending on which will best allow them to reach their academic and professional goals: project, thesis, coursework, or internship. Students must complete all 15 credits of core coursework and 15 credits of electives by the time they begin their 10 credit Culminating Experience.
+Students choose one of three 5-credit culminating cybersecurity courses (CSS 538 in autumn, CSS 518 in winter, or CSS 539 in spring) to apply and advance learnings from their core and elective coursework. A deliverable (such as a comprehensive report) will be produced by the student at the end of the quarter. To complete the coursework option, students take one additional 5-credit elective, bringing their elective total for the degree to 25.
+Students complete a 10-credit project (CSS 595) which involves working under the guidance of a faculty committee to apply knowledge obtained from the program’s curriculum to build connections between academic concepts and the application of those concepts into real-world context. Students present and defend their work at the end of the program and produce a comprehensive report of their findings.
+Students complete a 10-credit thesis (CSS 700) which involves working under the guidance of a faculty committee to apply knowledge obtained from the program’s curriculum to conduct research and produce a scholarly written document aimed at an academic audience as a contribution to an existing body of knowledge. Students present and defend the culmination of their work at the end of the master&#8217;s program.
+Students may choose one of the following to meet the Design core requirement:
+Students may choose one of the following to meet the Development core requirement:
+Students may choose one of the following to meet the Foundations core requirement:
+Students pursuing the project or thesis Culminating Experience will present their research to their faculty committee. Check out recent titles and abstracts in the final defense schedule to learn more about the latest master&#8217;s student research.
+Students who secure and finish a cybersecurity-related internship will complete 5 credits of CSS 601 Internship where they work with a faculty sponsor to set learning goals and demonstrate their ability to apply their learnings from the curriculum in a professional and practical setting. To complete the internship Culminating Experience option, students take one additional 5-credit elective, bringing their elective total for the degree to 25.
+Submit a biology major / minor petition
+Submit a computer engineering petition
+Submit a CSSE major / minor petition
+Submit an applied computing petition
+Submit your Second Discipline contract
+Synthesize and apply theories and techniques in a professional setting
+Synthesize new solutions
+System Administration: Understands appropriate procedures and techniques for management and administrating a network, data center, or other computer system; manages changes to the computing environment.
+Systemic Thinking: Follows a well-ordered and logical approach to analyzing problems, organizing work, and searching for solutions.
+T INFO 441 Network Security
+T INFO 442 Computer Security
+T INFO 443 Digital Forensics
 Tacoma Campus
+Teaching Effectiveness Public Statement
+Teaching Track Faculty
+Technical Level
+Technical Training and Support: Provides user support through analysis and problem solving to facilitate installation, implementation, maintenance, education, and documentation of computer hardware and software systems.
+Technical Writing: Designs and writes effective guidelines, standards, procedures, processes, applications, using appropriate methods, tools and delivery options.
+Technology Evaluation and Selection: Evaluates and selects software and hardware appropriate to the application, architecture and resource constraints; maintains awareness and understanding of emerging technology.
+Technology Integration: Integrates various technologies, systems, applications, database and components across multiple platforms.
+Terms
+Testing: Plans, executes, and validates results of unit, systems, and acceptance testing to ensure conformity to user\&#8217;s requirements.
+The Bachelor of Science in Chemistry (biochemistry option) focuses on Biology and Biochemistry courses. It has a higher amount of core required courses and fewer electives.
+The Computer Engineering curriculum is ABET accredited and students need to complete major requirements and meet learning objectives and outcomes .
+The core curriculum creates a baseline of knowledge for students to operate within the world of cybersecurity. Core classes balance the needs of security engineers to apply secure development concepts coupled with theoretical computer science; all within a framework of ethical best practices.
+The core requirements cover three course areas in: Development, Design, and Foundations. In the core curriculum there are different courses under each core area so students can tailor their path through the program to meet their educational objectives. Students in the program are required to take one five-credit course from each core area.
+The Culminating Experience requirement of the Master of Science in Cybersecurity Engineering degree allows students to use what they have learned in their core and elective coursework to demonstrate critical understanding and the ability to both expand upon and apply what they have learned in various ways.
+The Design core teaches students essential concepts in software engineering and process including skills in analysis, problem decomposition, and solution modeling through developing applications using design languages. Design courses also teach students to use effective oral and written communication skills, team member skills, and working in a team environment in designing software systems.
+The Development core teaches students essential concepts and skills in building software solutions based on contemporary tools and platforms. Through extensive hands-on assignments, these courses also cover best practices in practical implementation.
+The Electrical Engineering curriculum is ABET accredited and students need to complete major requirements and meet learning objectives and outcomes .
+The Foundation Level includes very broad competencies that are found in every CSS core course. The Technical Level is a set of broadly important competencies specific to the software engineering and computer science professions, to be developed in every undergraduate CSS education, across the set of required core courses. Competencies specific to the interests and needs of the individual student are achieved in the CSS advanced elective courses.
+The learning objectives for the Bachelor of Arts in Applied Computing and the Bachelor of Science in Computer Science & Software Engineering are described in terms of competencies achieved by students within the CSS programs.
+The purpose of the Foundations core is to emphasize the methods of scientific inquiry and emphasize theoretical and conceptual knowledge as it relates to practical/how-to-knowledge. The Foundations core also covers ethical issues that arise in computing and software systems. Courses in the Foundations core provide students with the opportunities to solve problems that emphasize the ability to synthesize and apply theories and techniques in a professional setting. Specifically, students will be solving problems that address the relationship between mathematical and/or scientific foundations and actual practice.
+The remaining 5 elective credits must be 300-level or higher
+These courses can be taken before or after entry into the major.
+These courses can count as a Biology Elective, but usually do not count towards the &#8220;two out of three categories&#8221; requirement from above:
+These courses may overlap with your General Education requirements (A&H, SSc, DIV, etc.), above, as long as they are 300-level or higher.
+Thesis
+Thesis/Project Final Defense Schedule
+This option also requires a lot of time-consuming lab work , so we recommend working proactively with your academic adviser when planning your academic schedule.
+This page contains information on the curriculum of the Bachelor of Arts in Applied Computing .
+This tri-campus pathway allows students to select from an approved list of courses offered from all three UW campuses: Bothell, Seattle, and Tacoma. The electives at each campus emphasize the strengths found in the programs offered there, and course topics include information assurance policy, secure coding, and networking and systems security.
+Thoroughness: Ensures that work is done correctly, completely, on time and to the highest standards.
+Time Schedule
+To ensure you have a well-formed plan for your major, you must declare your Second Discipline to the Applied Computing program by submitting this contract within your first year in the major:
+To graduate with a Bachelor of Science in Electrical Engineering (BSEE), students:
+Tuition
+Undergraduate
+Undergraduate Policies & Procedures
+Understand and assess ethical issues in computing and software systems
+Understand ethical issues surrounding cybersecurity, and design and deploy solutions in an ethically sound manner
+Understand theoretical underpinnings of a software application area
+University of Washington Bothell Homepage
+Up to 10 credits combined of CSS 290, 390, or 490 (Special Topics)
+Up to 10 credits combined of CSS 397 (Internship), 498 (Independent Study), or 499 (Undergraduate Research)
+Up to 10 credits may be 200-level
+Upper division biology electives
+Upper division STEM electives
+Upper Level General Electives (10 credits): Cannot overlap with other degree requirements
+User Orientation: Gains understanding of users needs by immersing self in users environment; carefully studies user&#8217;s requirements; puts self in users shoes.
+UW Bothell Facebook
+UW Bothell Home
+UW Bothell IAC electives
 UW Bothell Instagram
 UW Bothell Linkedin
-UW Bothell Facebook
+UW Bothell majors and minors
 UW Bothell Twitter
 UW Bothell Youtube
-&copy; 2026 University of Washington Bothell
-UW Bothell Instagram
-UW Bothell Linkedin
-UW Bothell Facebook
-UW Bothell Twitter
-UW Bothell Youtube
+UW Seattle IAC electives
+UW Seattle minors
+UW Tacoma IAC electives
+UW Tacoma minors
+Visit our Admissions page for information on prerequisite coursework.
+Visit the admissions page for information on prerequisite coursework.
+Visit the Investigative Biology page for information on the requirement, how to find research, and step-by-step instructions for making sure that your project fulfills the requirement.
+Visitors
+When considering options for their elective and secondary discipline courses, Applied Computing students should reflect on the type of work that they are interested in pursuing after graduation.
+Wireless, RF/Microwave, and Telecommunications
+Workday Login
+Writing & Speaking: Expresses ideas correctly and convincingly in reports, memos and other forms of written communication
+You must complete 20 credits (usually four courses) of upper division (300-level or higher) biology elective coursework. You must choose your electives from at least two out of three of the following categories. Click the category titles to see lists of approved courses.
+You must complete one (1) course for this requirement. This is flexible – if you find a course that seems related to both Biology and Society then you can submit a petition to request for it to count.
+You must complete ten (10) credits (usually two courses) of &#8220;CSS&#8221; or &#8220;BEE&#8221; elective coursework. Of these 10 credits:

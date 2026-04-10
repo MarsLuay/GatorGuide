@@ -1,145 +1,18 @@
 import {
   TRANSFER_PLANNER_MASTER_BANK_LIBRARY,
-  TRANSFER_PLANNER_MASTER_CHAIN_LIBRARY,
   TRANSFER_PLANNER_MASTER_MAJOR_ROWS,
-  type TransferPlannerMasterBank,
-  type TransferPlannerMasterChain,
   type TransferPlannerMasterMajorRow,
 } from "./transfer-planner-master-generated";
-import {
-  TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY,
-  type TransferPlannerGrcCourseAvailabilityEntry,
-  type TransferPlannerGrcCourseAvailabilityQuarter,
-} from "./transfer-planner-grc-availability.generated";
-
-export type TransferPlannerCampusId = "uw-seattle" | "uw-bothell" | "uw-tacoma";
-export type TransferPlannerCoverage = "detailed" | "partial";
-export type TransferPlannerSourceType = "detailed" | "master-generated";
-
-export type TransferPlannerLink = {
-  label: string;
-  url: string;
-  note?: string;
-};
-
-export type TransferPlannerChecklistItem = {
-  id: string;
-  title: string;
-  grcCourses: string[];
-  alternatives?: string[][];
-  note?: string;
-  minCompletedCount?: number;
-};
-
-export type TransferPlannerDegreeMapSection = {
-  id: string;
-  title: string;
-  items: string[];
-  note?: string;
-};
-
-export type TransferPlannerMajorPathway = {
-  id: string;
-  label: string;
-  summary: string;
-  applicationChecklist?: TransferPlannerChecklistItem[];
-  beforeEnrollmentChecklist?: TransferPlannerChecklistItem[];
-  stayAtGrcChecklist?: TransferPlannerChecklistItem[];
-  advisorFlags?: string[];
-  officialLinks?: TransferPlannerLink[];
-  degreeMapSections?: TransferPlannerDegreeMapSection[];
-  manualReviewNotes?: string[];
-  grcCourseList?: string[];
-  grcCourseListGuidance?: string;
-  plannerNote?: string;
-  bestTrackId?: string | null;
-  bestTrackSummary?: string;
-  whyThisTrack?: string[];
-  financialAidNote?: string;
-};
-
-export type TransferPlannerTrackTerm = {
-  label: string;
-  courses: string[];
-};
-
-export type TransferPlannerTrackSlotExpansion = {
-  termLabel: string;
-  slotLabel: string;
-  recommendedCourses: string[];
-  note?: string;
-};
-
-export type TransferPlannerTrackCatalogYear = {
-  label: string;
-  sourceSummary: string;
-  terms: TransferPlannerTrackTerm[];
-  slotExpansions?: TransferPlannerTrackSlotExpansion[];
-  notes?: string[];
-};
-
-export type TransferPlannerTrack = {
-  id: string;
-  code: string;
-  title: string;
-  summary: string;
-  bestFor: string[];
-  terms: TransferPlannerTrackTerm[];
-  notes: string[];
-  officialLinks?: TransferPlannerLink[];
-  catalogYears?: TransferPlannerTrackCatalogYear[];
-};
-
-export type TransferPlannerCourseAvailability =
-  TransferPlannerGrcCourseAvailabilityEntry & {
-    courseCode: string;
-  };
-
-export type TransferPlannerCampus = {
-  id: TransferPlannerCampusId;
-  title: string;
-  summary: string;
-  coverageNote: string;
-  officialLinks: TransferPlannerLink[];
-};
-
-export type TransferPlannerMajorPlan = {
-  id: string;
-  campusId: TransferPlannerCampusId;
-  title: string;
-  shortTitle: string;
-  coverage: TransferPlannerCoverage;
-  summary: string;
-  applicationWindow: string;
-  startQuarter: string;
-  bestTrackId: string | null;
-  bestTrackSummary: string;
-  whyThisTrack: string[];
-  financialAidNote: string;
-  applicationChecklist: TransferPlannerChecklistItem[];
-  beforeEnrollmentChecklist: TransferPlannerChecklistItem[];
-  stayAtGrcChecklist: TransferPlannerChecklistItem[];
-  advisorFlags: string[];
-  involvementIdeas: string[];
-  projectIdeas: string[];
-  officialLinks: TransferPlannerLink[];
-  degreeMapSections?: TransferPlannerDegreeMapSection[];
-  manualReviewNotes?: string[];
-  family?: string;
-  grcCourseList?: string[];
-  grcCourseListGuidance?: string;
-  bankIds?: string[];
-  chainIds?: string[];
-  plannerNote?: string;
-  sourceType?: TransferPlannerSourceType;
-  pathways?: TransferPlannerMajorPathway[];
-};
-
-export type TransferPlannerResolvedMajorPlan = TransferPlannerMajorPlan & {
-  selectedPathwayId: string | null;
-  selectedPathwayLabel: string | null;
-  selectedPathwaySummary: string | null;
-};
+import type {
+  TransferPlannerCampus,
+  TransferPlannerCampusId,
+  TransferPlannerChecklistItem,
+  TransferPlannerDegreeMapSection,
+  TransferPlannerLink,
+  TransferPlannerMajorPathway,
+  TransferPlannerMajorPlan,
+  TransferPlannerTrack,
+} from "./transfer-planner-types";
 
 const STEM_CALCULUS_CURRENT_SEQUENCE = ["MATH& 151", "MATH& 152", "MATH& 163"];
 const STEM_CALCULUS_OLDER_SEQUENCE = ["MATH& 151", "MATH& 152", "MATH& 153", "MATH& 254"];
@@ -148,28 +21,8 @@ const FULL_ORGANIC_CHEMISTRY_SEQUENCE = ["CHEM& 261", "CHEM& 262", "CHEM& 263"];
 const FULL_BIOLOGY_MAJORS_SEQUENCE = ["BIOL& 211", "BIOL& 212", "BIOL& 213"];
 const STEM_CALCULUS_ALTERNATIVE_NOTE =
   "Current UW guidance accepts MATH& 163 for MATH 126. Older UW and Green River materials also use the MATH& 153 + MATH& 254 combination, which UW lists as transferring as MATH 126, 224, and 2XX credit when both courses are completed.";
-const REFERENCE_COURSE_CODE_PATTERN = /\b[A-Z]{2,6}&?\s*\d{3}(?:\.\d+)?[A-Z]?\b/g;
-const QUARTER_AVAILABILITY_LABELS: Record<
-  TransferPlannerGrcCourseAvailabilityQuarter,
-  string
-> = {
-  summer: "Summer",
-  fall: "Fall",
-  winter: "Winter",
-  spring: "Spring",
-};
-
-function extractReferenceCourseCodes(value: string) {
-  return uniqueReferenceCourseLabels(
-    (String(value ?? "").toUpperCase().match(REFERENCE_COURSE_CODE_PATTERN) ?? []).map((match) =>
-      match.replace(/\s+/g, " ").trim()
-    )
-  );
-}
-
-function formatAvailabilityQuarterList(quarters: TransferPlannerGrcCourseAvailabilityQuarter[]) {
-  return quarters.map((quarter) => QUARTER_AVAILABILITY_LABELS[quarter]).join(", ");
-}
+const REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE =
+  "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.";
 
 const item = (
   id: string,
@@ -217,6 +70,12 @@ const itemAny = (
   grcCourses: string[],
   note?: string
 ): TransferPlannerChecklistItem => itemCount(id, title, grcCourses, 1, note);
+
+const itemNeededForDegreeEitherWay = (
+  id: string,
+  title: string,
+  grcCourses: string[]
+): TransferPlannerChecklistItem => item(id, title, grcCourses, REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE);
 
 const itemCountWithAlternatives = (
   id: string,
@@ -1043,29 +902,6 @@ export const TRANSFER_PLANNER_TRACKS: TransferPlannerTrack[] = [
   },
 ];
 
-export const TRANSFER_PLANNER_INVOLVEMENT_LINKS: TransferPlannerLink[] = [
-  {
-    label: "Green River MESA",
-    url: "https://www.greenriver.edu/students/academics/areas-of-interest/stem-and-health-sciences/mesa.html",
-    note: "Best first stop for STEM community, mentoring, tutoring, and transfer-strengthening involvement.",
-  },
-  {
-    label: "Green River clubs and organizations",
-    url: "https://www.greenriver.edu/students/get-involved/clubs-and-organizations/",
-    note: "Good for leadership roles, club projects, and application-strengthening involvement.",
-  },
-  {
-    label: "Green River student leadership",
-    url: "https://www.greenriver.edu/students/get-involved/student-leadership/index.html",
-    note: "Use this if the student wants formal leadership experience on top of coursework.",
-  },
-  {
-    label: "Green River engineering program overview",
-    url: "https://www.greenriver.edu/students/academics/degrees-programs/engineering.html",
-    note: "Helpful for confirming the public-facing Green River engineering track structure.",
-  },
-];
-
 const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan[] = [
   {
     id: "uw-seattle-computer-engineering",
@@ -1096,13 +932,14 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
     ],
     beforeEnrollmentChecklist: [
       item("phys122", "PHYS 122", ["PHYS& 222"], "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."),
-      item("math207", "MATH 207 for engineering flexibility", ["MATH 238"], "Useful if the student is still comparing Allen CompE and ECE."),
+      item("math207", "MATH 207 for engineering flexibility", ["MATH 238"]),
       item(
         "math208",
         "MATH 208",
         ["MATH 240"],
         "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
       ),
+      itemNeededForDegreeEitherWay("engr204", "EE 215", ["ENGR& 204"]),
     ],
     stayAtGrcChecklist: [
       item(
@@ -1111,7 +948,6 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
         ["PHYS& 223"],
         "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
       ),
-      item("engr204", "Circuit analysis head start", ["ENGR& 204"], "Helpful if the student may pivot toward ECE."),
     ],
     advisorFlags: [
       "Allen is extremely competitive even when prerequisites are finished.",
@@ -1315,14 +1151,9 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
         "CSE 122 can satisfy the minimum admission classes, but the full CS 123 finish is the strongest Green River programming launch for ECE."
       ),
       itemCount("science-two", "Two additional science / math depth options", ["CHEM& 161", "PHYS& 223", "MATH 240", "MATH& 254"], 2, "ECE accepts several second-tier science and math options; these Green River classes are the cleanest substitutes."),
+      itemNeededForDegreeEitherWay("engr204", "EE 215", ["ENGR& 204"]),
     ],
     stayAtGrcChecklist: [
-      item(
-        "engr204",
-        "Circuit analysis head start",
-        ["ENGR& 204"],
-        "Not a formal ECE admission requirement, but it is the cleanest Green River circuit head start for the EE 215 / EE 201 sequence."
-      ),
       item(
         "phys123",
         "PHYS 123 if possible before transfer",
@@ -1698,7 +1529,7 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
         "aa260",
         "A A 260",
         ["ENGR& 224"],
-        "AA 260 is part of the published BSAAE engineering-fundamentals block, so ENGR& 224 is good to complete before or during UW enrollment because it is needed in the degree."
+        REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE
       ),
       item(
         "amath301",
@@ -3036,9 +2867,9 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
       ),
       item(
         "bothell-compe-circuits",
-        "Circuit preparation",
+        "B EE 215",
         ["ENGR& 204"],
-        "Not part of the public minimum admission classes, but ENGR& 204 is the cleanest Green River circuit head start for the Bothell CompE core."
+        REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE
       ),
     ],
     stayAtGrcChecklist: [],
@@ -3188,7 +3019,7 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
         "bothell-csse-stats",
         "Statistics for the shared CSSE core",
         ["MATH& 146", "MATH 256"],
-        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the shared CSSE degree still needs one statistics course either way."
+        REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE
       ),
       item(
         "bothell-csse-calc3",
@@ -3762,7 +3593,7 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
         "uwb-chem-bs-advanced-math",
         "One advanced math course for the B.S. core",
         ["MATH& 254", "MATH 238", "MATH 240", "MATH& 146", "MATH 256"],
-        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the B.S. general option still needs one advanced math course either way."
+        REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE
       ),
     ],
     stayAtGrcChecklist: [],
@@ -3808,7 +3639,7 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
         "Biology through the first two majors-biology courses",
         FULL_BIOLOGY_MAJORS_SEQUENCE,
         2,
-        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Biochemistry option still needs biology through the BBIO 180 and 200 level either way."
+        REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE
       ),
       itemCountWithAlternatives(
         "uwb-biochem-physics",
@@ -3822,7 +3653,7 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
         "uwb-biochem-advanced-math",
         "One advanced math course for the Biochemistry option",
         ["MATH& 254", "MATH 238", "MATH 240", "MATH& 146", "MATH 256"],
-        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Biochemistry option still needs one advanced math course either way."
+        REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE
       ),
     ],
     stayAtGrcChecklist: [],
@@ -4275,25 +4106,25 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
         "uwb-ess-calc",
         "Calculus I",
         ["MATH& 151"],
-        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the ESS degree still uses calculus in the introductory science block either way."
+        REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE
       ),
       itemAny(
         "uwb-ess-stats",
         "Statistics",
         ["MATH& 146", "MATH 256"],
-        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the ESS degree still uses statistics in the introductory science block either way."
+        REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE
       ),
       item(
         "uwb-ess-chem",
         "Introductory chemistry start",
         ["CHEM& 161"],
-        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the ESS degree still uses introductory chemistry either way."
+        REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE
       ),
       itemAny(
         "uwb-ess-physics",
         "Introductory physics start",
         ["PHYS& 114", "PHYS& 221"],
-        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the ESS degree still uses introductory physics either way."
+        REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE
       ),
     ],
     stayAtGrcChecklist: [
@@ -4490,9 +4321,9 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
       ),
       item(
         "uwb-ee-circuits",
-        "Circuit preparation",
+        "B EE 215",
         ["ENGR& 204"],
-        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it is the clearest Green River head start for the Bothell EE core."
+        REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE
       ),
     ],
     stayAtGrcChecklist: [
@@ -5075,31 +4906,31 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
       itemStemCalcSequence(
         "uwb-math-calc123",
         "Calculus I, II, and III",
-        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Bothell Mathematics core still needs the full calculus spine either way."
+        REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE
       ),
       item(
         "uwb-math-diffeq",
         "Differential equations",
         ["MATH& 254"],
-        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Bothell Mathematics core still needs differential equations either way."
+        REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE
       ),
       item(
         "uwb-math-multivariable",
         "Multivariable calculus",
         ["MATH 238"],
-        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Bothell Mathematics core still needs multivariable calculus either way."
+        REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE
       ),
       item(
         "uwb-math-linear",
         "Matrix algebra / linear algebra",
         ["MATH 240"],
-        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Bothell Mathematics core still needs matrix algebra either way."
+        REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE
       ),
       item(
         "uwb-math-programming",
         "Introductory programming",
         ["CS 121"],
-        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Bothell Mathematics core still includes an introductory programming path."
+        REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE
       ),
     ],
     stayAtGrcChecklist: [],
@@ -5261,19 +5092,19 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
         "uwb-physics-ba-calc3",
         "Calculus III",
         ["MATH& 163"],
-        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Physics B.A. still needs the next calculus course either way."
+        REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE
       ),
       item(
         "uwb-physics-ba-multivariable",
         "Multivariable calculus",
         ["MATH 238"],
-        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Physics B.A. still needs STMATH 207 either way."
+        REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE
       ),
       item(
         "uwb-physics-ba-chem",
         "General chemistry preparation",
         FULL_GENERAL_CHEMISTRY_SEQUENCE,
-        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Physics B.A. still needs BCHEM 143/144 preparation either way."
+        REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE
       ),
     ],
     stayAtGrcChecklist: [],
@@ -5312,31 +5143,31 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
         "uwb-physics-bs-calc3",
         "Calculus III",
         ["MATH& 163"],
-        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Physics B.S. still needs the next calculus course either way."
+        REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE
       ),
       item(
         "uwb-physics-bs-diffeq",
         "Differential equations",
         ["MATH& 254"],
-        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Physics B.S. still needs STMATH 224 either way."
+        REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE
       ),
       item(
         "uwb-physics-bs-multivariable",
         "Multivariable calculus",
         ["MATH 238"],
-        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Physics B.S. still needs STMATH 207 either way."
+        REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE
       ),
       item(
         "uwb-physics-bs-linear",
         "Linear algebra / matrix algebra",
         ["MATH 240"],
-        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Physics B.S. still needs STMATH 208 either way."
+        REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE
       ),
       item(
         "uwb-physics-bs-programming",
         "Introductory programming",
         ["CS 121"],
-        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the Physics B.S. still includes a programming course either way."
+        REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE
       ),
     ],
     stayAtGrcChecklist: [],
@@ -5570,7 +5401,7 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
         "tacoma-compe-math208",
         "TMATH 208",
         ["MATH 240"],
-        "Tacoma CompE adds TMATH 208 after the initial prerequisite stack, so MATH 240 is good to complete before or during UW enrollment because it's needed to finish the degree."
+        REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE
       ),
       item(
         "tacoma-compe-cs123",
@@ -5655,7 +5486,7 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
         "tacoma-ee-math208",
         "TMATH 208",
         ["MATH 240"],
-        "Tacoma EE adds TMATH 208 after the initial prerequisite stack, so MATH 240 is good to complete before or during UW enrollment because it's needed to finish the degree."
+        REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE
       ),
     ],
     stayAtGrcChecklist: [],
@@ -10723,62 +10554,6 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
   }),
 ];
 
-export type TransferPlannerReferenceBank = TransferPlannerMasterBank;
-export type TransferPlannerReferenceChain = TransferPlannerMasterChain;
-
-const TRANSFER_PLANNER_BANK_LABELS: Record<string, string> = {
-  WRIT: "Writing and composition",
-  MATH: "Mathematics",
-  CS: "Computer science and programming",
-  ENGR: "Engineering",
-  PHYS: "Physics",
-  CHEM: "Chemistry",
-  BIO: "Biology and anatomy",
-  EARTH: "Earth, environment, and geoscience",
-  BUS: "Business and economics",
-  AAMES: "American ethnic studies, anthropology, and social science",
-  COMM: "Communication, journalism, and film",
-  ENGL: "English and literature",
-  HIST: "History and humanities",
-  PHIL: "Philosophy",
-  PSYED: "Psychology, education, and ECED",
-  ART: "Art and photography",
-  PERF: "Dance and drama",
-  MUSIC: "Music",
-  "LANG-CHIN": "Chinese",
-  "LANG-FR": "French",
-  "LANG-GER": "German",
-  "LANG-JP": "Japanese",
-  "LANG-SP": "Spanish",
-  HEALTH: "Health and rehabilitation",
-  POLSOC: "Political science, criminal justice, and sociology",
-};
-
-const TRANSFER_PLANNER_CHAIN_LABELS: Record<string, string> = {
-  "WRIT-SEQ": "Writing sequence",
-  "MATH-STEM": "STEM calculus sequence",
-  "MATH-BUS": "Business and applied math options",
-  "CS-NEW": "Modern CS sequence",
-  "CS-LEGACY": "Legacy CS sequence",
-  "PHYS-CALC": "Calculus-based physics sequence",
-  "PHYS-ALG": "Algebra-based physics sequence",
-  "CHEM-GEN": "General chemistry sequence",
-  "CHEM-ORG": "Organic chemistry sequence",
-  "BIO-MAJORS": "Biology majors sequence",
-  "BIO-ANAT": "Anatomy and physiology sequence",
-  "ACCT-COMBO": "Accounting full-credit combo",
-  "ASTR-COMBO": "Astronomy full-credit combo",
-  "HIST-US": "US history full-credit combo",
-  "ENGL-250": "English 250 full-credit combo",
-  "COMM-266": "CMST 266 credit rule",
-  "LANG-CHIN": "Chinese language sequence",
-  "LANG-FR": "French language sequence",
-  "LANG-GER": "German language sequence",
-  "LANG-JP": "Japanese language sequence",
-  "LANG-SP": "Spanish language sequence",
-  "NATRS-COMBO": "Natural resources ESRM combo",
-};
-
 const TRANSFER_PLANNER_MASTER_TITLE_ALIASES: Record<string, string> = {
   "uw-seattle-industrial-systems-engineering": "Industrial Engineering",
 };
@@ -13300,6 +13075,10 @@ const GENERATED_PLAN_DOC_OVERRIDES: Record<
   [buildPlannerLookupKey("uw-seattle", "Italian")]: {
     officialLinks: [
       {
+        label: "UW Italian Studies degree requirements",
+        url: "https://www.washington.edu/students/gencat/program/S/FrenchandItalianStudies-1102.html#program-UG-ITAL-MAJOR",
+      },
+      {
         label: "UW Italian Studies major status page",
         url: "https://frenchitalian.washington.edu/major-italian-studies",
       },
@@ -13902,6 +13681,10 @@ const GENERATED_PLAN_DOC_OVERRIDES: Record<
   [buildPlannerLookupKey("uw-seattle", "Norwegian")]: {
     officialLinks: [
       {
+        label: "UW Norwegian catalog degree requirements",
+        url: "https://www.washington.edu/students/gencat/program/S/ScandinavianStudies-281.html#program-UG-NORW-MAJOR",
+      },
+      {
         label: "UW Norwegian degree requirements",
         url: "https://scandinavian.washington.edu/ba-norwegian",
       },
@@ -14455,6 +14238,10 @@ const GENERATED_PLAN_DOC_OVERRIDES: Record<
   },
   [buildPlannerLookupKey("uw-seattle", "Public Service & Policy")]: {
     officialLinks: [
+      {
+        label: "UW Public Service and Policy degree requirements",
+        url: "https://www.washington.edu/students/gencat/program/S/PublicPolicyandGovernance-770.html#program-UG-PSP-MAJOR",
+      },
       {
         label: "UW Public Service and Policy major overview",
         url: "https://evans.uw.edu/undergraduate-programs/public-service-and-policy-major/",
@@ -17934,10 +17721,6 @@ const MASTER_BANK_BY_ID = new Map(
   TRANSFER_PLANNER_MASTER_BANK_LIBRARY.map((bank) => [bank.id, bank] as const)
 );
 
-const MASTER_CHAIN_BY_ID = new Map(
-  TRANSFER_PLANNER_MASTER_CHAIN_LIBRARY.map((chain) => [chain.id, chain] as const)
-);
-
 function normalizePlannerLookupValue(value: string) {
   return String(value ?? "")
     .toLowerCase()
@@ -18087,98 +17870,6 @@ function materializePlannerPathway(pathway: TransferPlannerMajorPathway): Transf
 
 function materializePlanPathways(plan: TransferPlannerMajorPlan) {
   return (plan.pathways ?? []).map(materializePlannerPathway);
-}
-
-function mergePlannerPathwayWithPlan(
-  plan: TransferPlannerMajorPlan,
-  pathway: TransferPlannerMajorPathway
-): TransferPlannerResolvedMajorPlan {
-  const mergedPlan = materializePlanReferenceCourses({
-    ...plan,
-    applicationChecklist: pathway.applicationChecklist ?? plan.applicationChecklist,
-    beforeEnrollmentChecklist:
-      pathway.beforeEnrollmentChecklist ?? plan.beforeEnrollmentChecklist,
-    stayAtGrcChecklist: pathway.stayAtGrcChecklist ?? plan.stayAtGrcChecklist,
-    advisorFlags: uniquePlannerStrings([...(plan.advisorFlags ?? []), ...(pathway.advisorFlags ?? [])]),
-    officialLinks: uniquePlannerLinks([...(plan.officialLinks ?? []), ...(pathway.officialLinks ?? [])]),
-    degreeMapSections: pathway.degreeMapSections ?? plan.degreeMapSections,
-    manualReviewNotes: uniquePlannerStrings([
-      ...(plan.manualReviewNotes ?? []),
-      ...(pathway.manualReviewNotes ?? []),
-    ]),
-    grcCourseListGuidance:
-      pathway.grcCourseListGuidance ?? plan.grcCourseListGuidance,
-    grcCourseList:
-      pathway.grcCourseList && pathway.grcCourseList.length
-        ? pathway.grcCourseList
-        : plan.grcCourseList,
-    plannerNote: pathway.plannerNote ?? plan.plannerNote,
-    bestTrackId:
-      pathway.bestTrackId === undefined ? plan.bestTrackId : pathway.bestTrackId,
-    bestTrackSummary: pathway.bestTrackSummary ?? plan.bestTrackSummary,
-    whyThisTrack: pathway.whyThisTrack?.length
-      ? pathway.whyThisTrack
-      : plan.whyThisTrack,
-    financialAidNote: pathway.financialAidNote ?? plan.financialAidNote,
-  });
-
-  return {
-    ...mergedPlan,
-    pathways: materializePlanPathways(plan),
-    selectedPathwayId: pathway.id,
-    selectedPathwayLabel: pathway.label,
-    selectedPathwaySummary: pathway.summary,
-  };
-}
-
-export function getTransferPlannerPathwaysForPlan(
-  plan: TransferPlannerMajorPlan | null | undefined
-) {
-  if (!plan?.pathways?.length) return [] as TransferPlannerMajorPathway[];
-  return materializePlanPathways(plan);
-}
-
-export function resolveTransferPlannerMajorPlan(
-  plan: TransferPlannerMajorPlan | null | undefined,
-  pathwayId: string | null | undefined
-) {
-  if (!plan) return null as TransferPlannerResolvedMajorPlan | null;
-
-  const pathways = materializePlanPathways(plan);
-  if (!pathways.length) {
-    return {
-      ...materializePlanReferenceCourses(plan),
-      pathways: [],
-      selectedPathwayId: null,
-      selectedPathwayLabel: null,
-      selectedPathwaySummary: null,
-    };
-  }
-
-  const selectedPathway =
-    pathways.find((entry) => entry.id === pathwayId) ?? pathways[0] ?? null;
-
-  if (!selectedPathway) {
-    return {
-      ...materializePlanReferenceCourses(plan),
-      pathways,
-      selectedPathwayId: null,
-      selectedPathwayLabel: null,
-      selectedPathwaySummary: null,
-    };
-  }
-
-  return mergePlannerPathwayWithPlan(plan, selectedPathway);
-}
-
-function getResolvedChecklistReferenceCourses(plan: TransferPlannerResolvedMajorPlan) {
-  return uniqueReferenceCourseLabels(
-    [
-      ...plan.applicationChecklist,
-      ...plan.beforeEnrollmentChecklist,
-      ...plan.stayAtGrcChecklist,
-    ].flatMap((item) => [item.grcCourses, ...(item.alternatives ?? [])].flat())
-  );
 }
 
 function getBankReferenceCourses(bankIds: string[] | undefined) {
@@ -18336,7 +18027,7 @@ function buildGeneratedMajorPlan(row: TransferPlannerMasterMajorRow): TransferPl
   });
 }
 
-export const TRANSFER_PLANNER_MAJOR_PLANS = TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS.map(
+const TRANSFER_PLANNER_MAJOR_PLANS = TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS.map(
   mergeDetailedPlanWithMaster
 );
 
@@ -18362,151 +18053,3 @@ export const TRANSFER_PLANNER_ALL_MAJOR_PLANS: TransferPlannerMajorPlan[] = [
   if (campusDelta !== 0) return campusDelta;
   return left.title.localeCompare(right.title);
 });
-
-export function getTransferPlannerTrack(trackId: string | null) {
-  if (!trackId) return null;
-  return TRANSFER_PLANNER_TRACKS.find((track) => track.id === trackId) ?? null;
-}
-
-export function getTransferPlannerGrcCourseList(
-  plan: TransferPlannerMajorPlan | null | undefined
-) {
-  if (!plan) return [] as string[];
-
-  return uniqueReferenceCourseLabels(
-    plan.grcCourseList ?? [
-      ...getChecklistReferenceCourses(plan),
-      ...getBankReferenceCourses(plan.bankIds),
-    ]
-  );
-}
-
-function formatAvailabilitySourceWindow(
-  availability: Pick<TransferPlannerGrcCourseAvailabilityEntry, "years">
-) {
-  const labels = availability.years.map((year) => year.label).filter(Boolean);
-  if (!labels.length) return "the latest published Green River annual schedules";
-  if (labels.length === 1) return `the latest published ${labels[0]} Green River annual schedule`;
-  if (labels.length === 2) {
-    return `the latest published ${labels[0]} and ${labels[1]} Green River annual schedules`;
-  }
-  return `the latest published Green River annual schedules (${labels.join(", ")})`;
-}
-
-function formatAvailabilityStatusSummary(
-  availability: Pick<
-    TransferPlannerGrcCourseAvailabilityEntry,
-    "status" | "years" | "latestPublishedQuarters"
-  >
-) {
-  const yearSummaries = availability.years
-    .filter((year) => year.quarters.length > 0)
-    .map((year) => `${year.label}: ${formatAvailabilityQuarterList(year.quarters)}`);
-  const sourceWindow = formatAvailabilitySourceWindow(availability);
-  const latestPublishedYearLabel = availability.years[availability.years.length - 1]?.label ?? null;
-
-  if (availability.status === "published-in-latest-schedule") {
-    return yearSummaries.length
-      ? `Recent GRC annual schedule history: ${yearSummaries.join("; ")}.`
-      : null;
-  }
-
-  if (availability.status === "published-in-recent-history-not-latest") {
-    if (yearSummaries.length) {
-      const latestSuffix = latestPublishedYearLabel
-        ? ` Not published in the latest ${latestPublishedYearLabel} annual schedule.`
-        : ` Not published in ${sourceWindow}.`;
-      return `Recent GRC annual schedule history: ${yearSummaries.join("; ")}.${latestSuffix}`;
-    }
-    return `Found in recent Green River annual schedule history, but not in ${sourceWindow}.`;
-  }
-
-  if (availability.status === "catalog-listed-not-in-latest-schedules") {
-    return `Listed in the current Green River catalog, but not found in ${sourceWindow}.`;
-  }
-
-  if (availability.status === "legacy-track-only-no-current-public-source") {
-    return `Referenced only by legacy Green River track history and not found in the current Green River catalog or ${sourceWindow}.`;
-  }
-
-  return `Still referenced by the planner, but not found in the current Green River catalog or ${sourceWindow}.`;
-}
-
-export function getTransferPlannerGrcCourseListGuidance(
-  plan: TransferPlannerMajorPlan | null | undefined
-) {
-  const guidance = String(plan?.grcCourseListGuidance ?? "").trim();
-  return guidance || null;
-}
-
-export function getTransferPlannerGrcCourseAvailability(
-  courseLabel: string | null | undefined
-): TransferPlannerCourseAvailability | null {
-  const availabilityMap = TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY as Record<
-    string,
-    TransferPlannerGrcCourseAvailabilityEntry
-  >;
-
-  for (const code of extractReferenceCourseCodes(String(courseLabel ?? ""))) {
-    const entry = availabilityMap[code];
-    if (!entry) continue;
-
-    return {
-      courseCode: code,
-      status: entry.status,
-      years: entry.years.map((year: TransferPlannerGrcCourseAvailabilityEntry["years"][number]) => ({
-        label: year.label,
-        quarters: [...year.quarters],
-      })),
-      latestPublishedQuarters: [...entry.latestPublishedQuarters],
-    };
-  }
-
-  return null;
-}
-
-export function getTransferPlannerGrcCourseLatestPublishedQuarters(
-  courseLabel: string | null | undefined
-) {
-  return getTransferPlannerGrcCourseAvailability(courseLabel)?.latestPublishedQuarters ?? null;
-}
-
-export function getTransferPlannerGrcCourseAvailabilitySummary(
-  courseLabel: string | null | undefined
-) {
-  const availability = getTransferPlannerGrcCourseAvailability(courseLabel);
-  if (!availability) return null;
-  return formatAvailabilityStatusSummary(availability);
-}
-
-export function getTransferPlannerMajorsForCampus(campusId: TransferPlannerCampusId) {
-  return TRANSFER_PLANNER_ALL_MAJOR_PLANS.filter((plan) => plan.campusId === campusId);
-}
-
-export function getTransferPlannerBankLabel(bankId: string) {
-  return TRANSFER_PLANNER_BANK_LABELS[bankId] ?? bankId;
-}
-
-export function getTransferPlannerChainLabel(chainId: string) {
-  return TRANSFER_PLANNER_CHAIN_LABELS[chainId] ?? chainId;
-}
-
-export function getTransferPlannerBanksForPlan(
-  plan: TransferPlannerMajorPlan | null | undefined
-) {
-  if (!plan?.bankIds?.length) return [] as TransferPlannerReferenceBank[];
-
-  return plan.bankIds
-    .map((bankId) => MASTER_BANK_BY_ID.get(bankId) ?? null)
-    .filter((bank): bank is TransferPlannerReferenceBank => !!bank);
-}
-
-export function getTransferPlannerChainsForPlan(
-  plan: TransferPlannerMajorPlan | null | undefined
-) {
-  if (!plan?.chainIds?.length) return [] as TransferPlannerReferenceChain[];
-
-  return plan.chainIds
-    .map((chainId) => MASTER_CHAIN_BY_ID.get(chainId) ?? null)
-    .filter((chain): chain is TransferPlannerReferenceChain => !!chain);
-}

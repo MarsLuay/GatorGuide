@@ -2,274 +2,520 @@ Owner: uw-seattle-business-administration
 Source: https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/options/
 Title: Majors | Foster School of Business
 
-Majors | Foster School of Business
-Skip to main content
-How to Apply
-Give to Foster
-Alumni
-Contact Us
-Search
-Enter search text:
-MENU CLOSE
-Apply Contact Alumni Give CLOSE
-Enter search text:
+[Supplemental official source] Certificates and Special Programs
+[Supplemental official source] Curriculum
+[Supplemental official source] Foster undergraduate curriculum
+[Supplemental official source] Learn more.
+[Supplemental official source] Majors
+[Supplemental official source] Minors
+* Note: RE 250 is worth 3 credits. If you choose to take ACCTG 219 for your accounting requirement, selecting this course as your elective will leave you short of the 27-credit minimum, and you will need to take an additional elective to meet the requirement. The 27 credit minimum cannot be waived.
+* Online application opens on the 5th of the month ahead of each deadline. (ex. April 5 ahead of April 25 spring quarter deadline).
+* Please consult the appropriate department for all courses outside of Foster School of Business (ECON, RE, IND E)
+**Note: ENTRE 457 Entrepreneurial Finance is NOT available for minor students
+*CSE 490 (1-4) (depending on topic/check with ENTRE minor advisor for approval)
+*CSE 589/ENTRE 532 (4)
+*EE 496 (2)
+*EE 496 (4)
+*EE 497 (4)
+*IND E 496A (3)
+*No more than 4 credits worth of ENTRE-related coursework outside of Foster will be accepted towards the ENTRE minor
+*Required accounting courses, ECON 200 Microeconomics, and Entre 370 Intro to Entrepreneurship are available each quarter during the academic year.
+© 2026 Foster School of Business , University of Washington | Seattle, WA
+09:00-10:20
+2 Weeks Before First Day of the Quarter
+29-31 credits (6-7 courses) depending on the track you choose. Track one is 31 credits for students who choose to take ACCTG 215: Financial Accounting and ACCTG 225: Managerial Accounting as their Accounting prerequisite. Track two is 29 credits for students who choose to only take ACCTG 219: Essentials of Accounting as their Accounting prerequisite.
+37 CREDITS: UPPER DIVISION CORE
+4
+5
+A common theme throughout the specialization is the use of real data and the implementation of models using the free programming language “R.” R is quickly becoming the standard in this area of technology and, like open-source platforms like Wikipedia, provides an adept user with a very large set of existing code and packages to be used in the quest to extract insights from marketing data. A key benefit of learning to use R is that students can take the models they learned in the specialization to their careers without the need to buy costly software.
+A declared major (only non-business majors are eligible)
+A minimum 2.0 cumulative GPA is required in courses applied to the minor.
+A minimum of 15 credits applied to the minor must be completed in residence at the UW-Seattle.
+A minimum of 15 credits must be at the 300- and/or 400-level.
+A minimum of 45 credits completed
+A minimum of a 2.0 cumulative and prerequisite GPA
 About
-AI at Foster
-The Dean’s Office
-Foster Careers
-Fostering Community
-Foster Merch
-Study Abroad
-Rankings
-Recruiters & Corporate Partners
-Undergraduate
+Academic Departments
+Academic Expertise
+Academic Programs
+Academic Rank
+Academic Units
+Accessibility
+Accounting
+ACCTG 215
+ACCTG 215 (Financial Accounting)
+ACCTG 215 and ACCTG 225 does apply to the lower division core requirements for the business major.
+ACCTG 215 Financial Accounting (5) & ACCTG 225 Managerial Accounting (5)
+ACCTG 219
+ACCTG 219 and I S 305: RSN
+ACCTG 219 does not meet the pre-application requirement for the major. It only fulfills requirements for the Business Minor, Entrepreneurship Minor, and Sales Certificate.
+ACCTG 219 Essentials of Accounting (4)
+ACCTG 219: Essentials of Accounting (4 CR); or ACCTG 225: Fundamentals of Managerial Accounting (5 CR)
+ACCTG 219/225, ECON 200 (Microeconomics), and ENTRE 370 (Introduction to Entrepreneurship) are offered each quarter during the academic year (excluding summer). ACCTG 225 and ECON 200 are typically available in the summer.
+ACCTG 225
+ACCTG 225 (Managerial Accounting)
 Admissions
+Advertising and Promotions (MKTG 456) delves into the final element of the marketing mix (promotion) that product marketers must manage to effectively communicate the value of the product to consumers and manage the consumer life cycle.
 Advising
-Curriculum
-Majors
-Certificates and Special Programs
-Minors
-Student Experience
-Undergraduate Career Outcomes
-Diversity Services
-Scholarships
-Pre-College Programs
-Graduate
-MBA Programs
-Specialty Master’s Programs
-PhD program
-Find your Fit
-at Foster
-Executive Education
-Comprehensive Programs
-Topic-Focused Courses
-Custom and Group Programs
-Contact Us
-Executive Development Program
-Centers
+AI at Foster
+Alumni
+Analytics for Marketing Decisions (MKTG 464) identifies analytic models that can be applied to real, large-scale databases to improve and automate firm-level marketing decisions. In particular, analytics are used to improve decisions around product design, pricing, promotion/advertising, and digital and mobile channel management.
+Anticipated course times for 2026-2027.
+Application and Admission FAQs
+Application details
+Application Periods
+Application Requirements
+Apply Contact Alumni Give CLOSE
+Apply Now
+Apply to Minor
+Approved as FIN 205 → counts as a Business Minor core course
+Approved as MGMT 402 → counts as a Business Minor elective
+Approved as MKTG 490 → not accepted (not on the approved list)
+April 25
+Are core courses offered every quarter?
+Are there opportunities outside of coursework to get involved for Entre minor students?
 Arthur W. Buerk Center for Entrepreneurship
+As part of the application to the minor, you will be required to get approval from your major advisor. Your major advisor’s signature confirms their approval to add the minor and that you can finish the minor alongside your major within the University of Washington’s Satisfactory Progress policies. Once admitted to the minor, the Entre Minor advisor will declare the minor for you. If you are a Lavin student, you should contact the Buerk Center to declare the minor.
+at Foster
+Autumn 2026
+Before submitting an evaluation request:
+Below is information about the credit requirements for the Bachelor of Arts in Business Administration (BABA) degree from the Foster School. Meet with an academic adviser in the Undergraduate Program Office to clarify your educational and career goals and make long-range plans to achieve them once you have been accepted to the Foster School.
+Benefits of declaring a major
+Box 353200
+Bringing Foster insight to market
+Business courses from study abroad programs are reviewed the same way as transfer courses. See information under “ Can I use transfer credits from another institution? ”
+Business for Life Badge
+Business Minor
+Business Minor Academic Misconduct Policy
+Business Minor Advising
+Business Minor Core Courses
+Business Minor Elective Courses
+CACTUS KEFIR
+Campus
+Can Business Minor students use Foster Career Services?
+Can I apply to the minor with the prerequisites in progress?
+Can I get credit for an internship and use it to meet the elective requirement of the minor?
+Can I late-add a course?
+Can I take a prerequisite class for the minor as S/NS?
+Can I use Foster’s Career Services if I have been accepted into the minor?
+Can I use internship credit?
+Can I use study abroad credits for the Business Minor?
+Can I use transfer credits from another institution or UW campus?
+Can I use transfer credits from other institutions for the prerequisite courses?
+Can I use UW courses outside of Foster toward the Business Minor?
+Canvas
+Career and Engagement Opportunities
+Career coaching is limited to Business Majors, but Business Minor students may attend select Foster Career Services events . All events are posted on Handshake , and will be highlighted periodically via email.
+Careers
+Careers in Accounting
 Center for Leadership and Strategic Thinking
 Center for Sales and Marketing Strategy
+Centers
+Certificate of International Studies in Business (CISB) is a rigorous, integrative academic supplement to the Bachelor of Arts in Business Administration. Through study abroad, foreign language immersion and area studies coursework, CISB students are equipped to meet the challenges facing business leaders in today’s global economy.
+Certificates and Special Programs
+Certification Programs
+Check the Business Minor website for general information.
+Complete the online application .
+Comprehensive Programs
 Consulting and Business Development Center
+Consumer Behavior (MKTG 450) focuses on understanding the customer’s needs and behaviors and using those insights to inform overall product strategy.
+Consumer Insights (MKTG 460) is focused on the methodologies that can be used to reveal customer needs, drives and preferences. This will include attention to both exploratory and experimental research techniques.
+Contact
+Contact [email&#160;protected]
+Contact us
+Contact Us
+Core courses : Online Learning (Hybrid)
+Core Courses:
+Course
+Course Equivalency & Business Major Overlap
+Course Forecast
+Course Offerings & Format
+Course Registration
+Courses
+Courses with specific student group reservations (specific majors or certificate programs) – not typically open to all students:
+Coursework
+Coveted expertise for a high-demand field
+Creating a Company
 Creative Destruction Lab
+Credits
+Curriculum
+Custom and Group Programs
+Customer Analytics (MKTG 462) introduces statistical modeling and coding techniques that help individuals manage the customer relationship from acquisition to development to retention. Special attention is directed to models that help firms appropriately value customers and target them with the right offer at the right time.
+Customer analytics are at the core of every important decision in a modern organization. Mastering analytical thinking and having hands-on experience with large data sets and analytics tools are major advantages for anyone entering the workforce in product management, marketing, finance or operations.
+Cutting Edge Research
+Declaring a major gives students priority to register for upper division business electives in the declared major during period I registration. Students can declare more than one major if it fits within the UW Satisfactory Progress rules. Foster students may declare a major once they are in progress of the final Lower Division Business Core classes (ACCTG 225, MGMT 200 and/or QMETH 201).
+Declaring the Business Minor
+Declaring the Minor FAQs
+Degree Programs
+Department of Marketing and International Business
+Digital badges are verifiable micro-credentials that can be shared on social media such as LinkedIn and used in e-portfolios or digital resumes. To earn the Foster School Business for Life badge, students need to take FIN 205 or ACCTG 219, plus two of any additional Business Minor core courses (MGMT 305, MKTG 305, or I S 305).
+Digital Marketing Analytics (MKTG 466) covers search and display advertising, email marketing, attribution models, social media strategies, and two-sided platforms. The course takes a quantitative and data-driven approach for analyzing and improving digital marketing strategies.
+Directions
+Diversity Services
+Do Business Minor core courses count toward the Business Major?
+Does ACCTG 219 replace ACCTG 215 and 225 for applying to the Business Major?
+Does MKTG 301 count towards the MKTG 305 requirement?
+ECON 200
+ECON 200 (Microeconomics)
+ECON 200 Microeconomics (5)
+ECON 200: Introduction to Microeconomics (5 CR)
+ECON 200*
+ECON 201 (Macroeconomics)
+Economics Research Impact
+Editorial Positions at Top Journals
+Elective courses : Offered in person
+Elective Courses:
+Email: [email&#160;protected]
+English Composition
+Enhance Your Business Education
+Enter search text:
+ENTRE 370
+ENTRE 370 Intro to Entrepreneurship (4)
+ENTRE 370, ENTRE 440, ENTRE 443, ENTRE 445, MKTG 315, MKTG 370, MKTG 456, MGMT 400
+ENTRE 370: Introduction to Entrepreneurship (4 CR)
+ENTRE 372 Grand Challenges in Entrepreneurship
+ENTRE 372 Grand Challenges in Entrepreneurship (4)
+ENTRE 422 Innovation Strategy
+ENTRE 422 Innovation Strategy (4)
+ENTRE 432 Software Entrepreneurship
+ENTRE 432 Software Entrepreneurship (4)
+ENTRE 440
+ENTRE 440 Business Plan Practicum
+ENTRE 440 Business Plan Practicum (2)
+ENTRE 440: Business Plan Practicum (2 CR)
+ENTRE 443
+ENTRE 443 Environmental Innovation Practicum
+ENTRE 443 Environmental Innovation Practicum (2)
+ENTRE 443: Environmental Innovation Practicum (2 CR)
+ENTRE 445
+ENTRE 445 Health Innovation Challenge Practicum (2)
+ENTRE 445 Health Innovation Practicum
+ENTRE 445: Health Innovation Challenge Practicum (2 CR)
+ENTRE 455 Entrepreneurial Marketing
+ENTRE 455 Entrepreneurial Marketing (4)
+ENTRE 455 Entrepreneurship Marketing
+ENTRE 455-Entrepreneurial Marketing has MKTG 301 listed as a prerequisite; can I take this course if I haven’t taken Marketing?
+ENTRE 459 Venture Investing
+ENTRE 459 Venture Investing (4)
+ENTRE 472
+ENTRE 472 Creating a Company I
+ENTRE 472 Creating a Company I (4)
+ENTRE 473
+ENTRE 473 Creating a Company II
+ENTRE 473 Creating a Company II (4)
+ENTRE 490 Small Business Entrepreneurship
+ENTRE 490 Special Topics in Entrepreneurship (check with ENTRE minor advisor for approval)
+ENTRE ELECTIVE
+ENTRE Electives (4 cr. required for students who take ACCTG 215 & 225; 8 cr. required for students who take ACCTG 219)
+Entrepreneurship Minor
+Every day, product marketing managers bring new ideas across industries to consumer markets, driving economies and delivering innovation to the masses. Our product marketing specialization focuses on bridging the gap between internal product management and external customer experience. Effective product marketing managers guide the delivery of the product to market and use the full strategic and tactical marketing mix to encourage consumer adoption and retention.
+Every entrepreneur needs to know where your money comes from, where it goes, and how to use the numbers to tell the financial story of the start-up.
+Example:
+Example: FIN 205 overlaps with B BUS 110, T BGEN 250, and TMATH 109, but none can substitute for FIN 205.
+Examples:
+Exclusive online certification programs are available for admitted Foster students. Complete Foster Excel for Business and Foster R for Business at your own pace to master these skills and earn a digital credential badge for LinkedIn.
+Executive Development Program
+Executive Education
+Explore careers in operations and supply chain management
+Facebook
+Faculty
+Faculty & Research
+Faculty &#038; Research
+Faculty Directory
+Faculty Expertise
+Faculty Rank
+Fall admission
+FIN 205
+FIN 205, ACCTG 219, MKTG 305, I S 305, MGMT 305, ECON 200
+FIN 205: Personal Financial Literacy (4 CR)
+FIN 205: SSC
+Finance and Business Economics
+Find your Fit
+Focus On Research
+For ECON 200, ACCTG 215, and ACCTG 225, check the UW Course Equivalency Guide to confirm transferability from Washington State community colleges.
+For more examples of how impactful these courses are for undergraduate students at UW, please contacted Alex Eli, manager of undergraduate programs at the Buerk Center, by e-mail at eliad.uw.edu or by scheduling office hours with him by visiting startup.uw.edu .
+For most Business Minor core courses, at least one in-person day is required for exams . Specific dates are listed in the course notes.
+Foster Careers
+Foster does not overload courses, we will not provide add codes for any courses.
+Foster experiential opportunities for all students
+Foster Exploration Seminars (3-week study abroad program) are open to all students: foster.uw.edu/exploration-seminars
+Foster Leadership Academy is a non-academic certification program partnering with UW Athletics that is focused on Authentic Leadership. Upon completion, each student will receive a certificate, a professional Foster branded gift, and a valuable experience for your resume.
+Foster Library
+Foster Merch
+Foster Minors and More Opportunities
+Foster Study Abroad options offer the opportunity to expand your business education while earning credits abroad. Gain the international perspective required to do business in today’s global economy.
+Foster’s Department of Information Systems and Operations Management
+Foster’s location gives marketing undergrads the opportunity to explore real-world opportunities and challenges from the countless innovative companies using the most innovative practices in business analytics, including Amazon, Microsoft, Expedia, Starbucks, and beyond.
+Fostering Community
+Frequently Asked Questions
+General Education Designations:
+Give to Foster
 Global Business Center
 Global Innovation Exchange
-UW Climate Risk Lab
-Faculty
-Academic Departments
-Accounting
-Finance and Business Economics
+Grading Basis: All courses must be taken for a numerical grade (no S/NS).
+Grading, GPA, and Requirements
+Graduate
+Graduate Programs
+How do I declare the minor?
+How do I drop the minor?
+How else can I engage with the Foster School?
+How long will it take me to complete the minor?
+How many credits is the Entrepreneurship minor?
+How to Apply
+I am in the Sales Program and have taken MKTG 301 and MKTG 335, do I still need to take MKTG 305?
+I BUS 490 ( application only )
+I BUS 490 from Foster Exploration Seminars always counts toward the Business Minor elective. To apply this credit, email [email&#160;protected] .
+I BUS 490: Foster Exploration Seminar (*study abroad course by application only)
+I S 305
+I took ENTRE 372 Winter 2023 or earlier. Can I use it as an elective for the minor?
+I won’t be able to finish my Business Minor without this course. What should I do?
+If a course is listed as:
+If I’m a Business Major, can I declare the Business Minor or earn the Business for Life badge?
+If needed, we will arrange an appointment after our email exchange.
+If this is your final quarter and you’re unable to secure a seat in the course through the seat notification process, you’ll need to work with your assigned major adviser to either adjust your graduation plan or remove the minor. Unfortunately, we cannot guarantee completion of the Business Minor within your intended graduation timeline.
+If you have questions about the Business Minor, Foster School advising offers the following resources:
+If your course isn’t listed and hasn’t been reviewed before, submit it through the Business Minor Evaluation Survey . (UW login required).
+If your question isn’t answered there , email us at [email&#160;protected] .
+In ACCTG 215, you will practice the art of creating balance sheets, income statements, and cash flow statements from underlying transactions. In ACCTG 225, you will learn to analyze and evaluate accounting information as part of the managerial process of planning, decision making and control. In ACCTG 219, you will learn accounting essentials that include a hybrid of information from both 215 and 225.
+In addition to the Lower Division Business Courses, you must complete four non-business prerequisite courses:
+IND E 250: Fundamentals of Engineering Economy (4 CR)
+IND E 250*
 Information Systems and Operations Management
-Management and Organization
-Marketing and International Business
-Faculty Directory
-Research
-News
-What's new
-at Foster
-Research
-School
-Alumni
-Programs
-Students
-Academic Programs
-Degree Programs
-Undergraduate Programs
-Curriculum
-Majors
-Majors
-While completing the Bachelor of Arts in Business Administration (BABA) course of study, students can either:
-Design their own area of study and choose from a variety of upper division business electives.
-or&#8230;
-Specialize in one of our predetermined courses of study. Eight majors are available: Accounting, Accounting for Business Professionals, Entrepreneurship, Finance, Human Resources Management, Information Systems, Marketing, and Operations &#038; Supply Chain Management. Applicants may select one major while applying to the undergraduate program.
-Business Majors
-Accounting
-What is accounting?
-Foster’s accounting curriculum utilizes research, interpersonal communication, and problem solving to enable students to think critically about financial transactions and the implications for an entire financial management system.
-What are the careers I can pursue with an Accounting Major?
-Certified Public Accountant serving clients with their financial and tax needs.
-Financial Analyst or Accountant for local public & private companies , such as Microsoft, Amazon, Starbucks, REI, Boeing, and Zillow,
-Consultant with Fortune 500 or international organizations specializing in areas such as Mergers and Acquisitions, Taxation, Auditing, Risk Management
-Forensic Auditor investigating fraud & financial mismanagement for governmental agencies like the FBI
-Non-Profit Accounting for charities and not-for-profit organizations
-Which of the two Accounting-related majors should I choose?
-The Accounting Major is ideal if you want a career in public, corporate, or nonprofit accounting or tax, and/or want a deep knowledge of financial reporting. In the Accounting Major, you learn how to understand, explain, and record business transactions, and you gain critical thinking and analytical skills to interpret and analyze financial information, develop tax strategy, and make information-driven decisions. Using case-based learning and data analytics, this eight-course major equips students to adapt to an ever-changing environment.
-The Accounting for Business Professionals Major is ideal if you want a narrower, focused accounting skillset to support a career in another business area. This major is designed with flexibility for students to select the accounting classes that fit best with their unique career goals and is often paired with another major like Finance or Information Systems. Students take one required accounting course, and then choose four more accounting courses (or three accounting courses and one of a set of approved finance courses).
-Graduate programs in Accounting
-The Foster school has two separate Master of Accounting degrees: the Master of Professional Accounting (MPAcc) and the Master of Science in Taxation (MST). For students interested in our Masters’ programs or CPA certification, the Department of Accounting highly recommends that they pursue the Accounting Major rather than the Accounting for Business Professionals Major, as it will better prepare students to succeed in these specialized, rigorous programs and pass the CPA exam. However, students wishing to major in Accounting for Business Professionals and pursue one of these graduate degrees should reach out to the program office .
-Students are eligible to apply to the MPAcc and MST programs during their senior year once fall quarter grades are posted. The GMAT is not required for Foster School Accounting students. These master’s degrees also satisfy the 225-quarter credit educational requirement to sit for the CPA exam in the State of Washington.
-Learn more about the MPAcc and MST programs .
-For more information about becoming a licensed certified public accountant (CPA), visit: Washington State Board of Accountancy .
-Accounting resources
-Video Introduction to Accounting Major at Foster
-Foster’s Accounting Department
-Beta Alpha Psi (BAP)
-Association of Latino Professionals for America (ALPFA)
-National Association of Black Accountants (NABA)
-Explore careers in accounting
-Master of Professional Accounting
-Master of Science in Taxation
-Entrepreneurship
-What is entrepreneurship?
-Entrepreneurship focuses on entrepreneurial strategy, finance, management, and marketing. Students will create business proposals, draft financial and marketing plans, and execute ideas through business clubs, case competitions, and real-world practice–ultimately transforming a vision of business ownership into a step-by-step achievable process.
-What kind of jobs can I get with the entrepreneurship major?
-Entrepreneurial-minded students can go in many directions with their career. Sample job functions include:
-Entrepreneurship in New Ventures (startups)
-Entrepreneurship in Large Organizations
-Private Equity Financing
-Social entrepreneurship
-We recommend finding a mentor, exploring different types of companies and on-campus resources like Start-Up Hall, Foster student club Startup UW, and connecting with the Buerk Center for Entrepreneurship.
-Buerk Center for Entrepreneurship
-The Buerk Center for Entrepreneurship is open to all students, regardless of major, who have an interest in creating new ventures or working in a startup environment. To learn about the programs, clubs, competitions, and extracurricular activities supported by the Buerk Center, attend a Buerk Center Open House (held during the first month of every quarter), or drop by the center any time.
-For more information, contact:
-The Buerk Center at [email&#160;protected] or 206.616.0734.
-Follow the Buerk Center on social media:
-@UWBuerk | Facebook
-Entrepreneurship resources
-Buerk Center programs for Undergrads
-Startup UW
-Startup Hall
-Explore careers in entrepreneurship
-Entrepreneurship Minor
-Finance
-What is finance?
-Foster’s finance curriculum covers four interrelated areas: Corporate Finance, Investments, Financial Markets, and International Finance. Through case studies and critical analysis, students utilize business economic theory, and financial management tools to understand capital markets, investigate problems, and make key managerial decisions.
-What kind of jobs can I get with the finance major?
-Sample job titles include:
-Financial Analyst
-Business Associate
-Investment Banking Analyst
-Financial Advisor
-Finance roles can be competitive. It is important for students to network with finance professionals to get a better understanding of what it takes to be successful at a specific company. Additionally, Foster Career Services recommends that students take the free Foster Excel Certificate, as Microsoft Excel skills are crucial for success in an internship or job in finance.
-Quantitative Finance
-Students interested in highly quantitative finance careers or considering graduate programs in Economics or Finance should consider completing additional coursework in mathematics, economics, and statistics.
-Suggested coursework will not substitute for required major coursework.
-Additional calculus courses: MATH 125 & 126, MATH 135 & 136, MATH 307, 308, 309, and MATH 334, 335, 336
-Take advanced Statistics: STAT 340, 341, and 342
-Computer programming: CSE 142
-Financial Economic courses: ECON 422, 423, 424, and 426
-Major Complementary Electives: ECON 422, 431, 435, 450
-Finance resources
-Association of Latino Professionals in Finance and Accounting (ALPFA)
-Foster Finance Association
-National Association of Black Accountants (NABA)
-Explore careers in finance
-Foster’s Department of Finance and Business Economics
-Human Resources Management
-What is human resources management (HR)?
-Human Resources Management draws on the study and practice of psychology, sociology, and organizational behavior to thoughtfully examine human performance within organizations. Students gain skills in recruiting and retaining talented people, understanding corporate responsibility and ethics, and building effective negotiation and decision-making practices.
-What kind of jobs can I get with the human resources management major?
-Sample HR job functions:
-Recruitment
-Training
-Compensation
-Benefits strategy/execution
-It is important that students network with HR professionals to learn about the field and job opportunities. Consider joining SHRM (Society for Human Resource Management) to network and learn about career opportunities.
-Professional in Human Resources Certification (PHR)
-The PHR certification focuses on the technical and operational aspects of HR practices. The PHR exam is divided into six parts: business management and strategy, workforce planning and employment, human resource development, compensation and benefits, employee and labor relations, and risk management. Typical candidates with a bachelor’s degree have two to four years of professional work experience in all HR disciplines before taking the exam.
-For more information, visit Foster’s Management and Organization website or email [email&#160;protected]
-Human Resources Management resources
-Society for Human Resource Management (SHRM)
-Foster’s Department of Management and Organization
-Explore careers in HR
-Information Systems
-What is Information Systems (IS)?
-Information Systems provides students with coursework emphasizing technical tools to design, develop, and manage information technologies. With a focus on computer programming and database management, students learn to interact and interface with various business applications and assess which program or information technology meets the organization’s needs.
-What kinds of jobs can I get with the Information Systems major?
-IS students have a range of career major including:
-Working for a technology company
-Supporting IT functions within an organization
-IT advisory/consulting
-While not required, we recommend having working knowledge of popular databases, systems, or programming language when interviewing for employment in this field.
-Master of Science in Information Systems (MSIS)
-The Master of Science in Information Systems (MSIS) program is a four-quarter, work-compatible degree that trains
-future business leaders to effectively use information technology to solve business problems and take advantage of new opportunities (and learn more about how MSIS is bridging the gap between business and technology.)
-The full-time program holds classes on two weeknights and some Saturdays. The GMAT or GRE requirement is waived for applicants who have graduated with an IS major from the Foster School in the last three years.
-For more information, visit the MSIS website or email [email&#160;protected]
-Information Systems resources
-Business Information Technology Society (BITS)
-National Association of Black Accountants (NABA)
-Foster’s Department of Information Systems and Operations Management
-Explore careers in IS
-Marketing
-What is marketing?
-Set of methods and frameworks to help measure, optimize, and automate marketing decisions such as advertising, branding, digital/mobile marketing, product development, retailing, and social media management. The frameworks have both qualitative and quantitative components and are built on concepts from economics, data science, psychology, and statistics.
-What kind of jobs can I get with the marketing major?
-Roles in this industry vary widely. Sample job functions include:
-Advertising and Communications Specialist
-Business Analyst
-Content Specialist
-Data Scientist for Consumer/Product Teams
-Digital Marketer
-Marketing Analytics Consultant
-Product Marketing Specialist
-Sales Rep
-Social Media Strategist
-Consultant
-Marketing Specializations
-The Foster School Marketing department has two specializations available to complete: Marketing Analytics and Product Marketing. These can be completed within the Marketing major. Each specialization requires the completion of three courses listed below,
-Marketing Analytics:
-The Marketing Analytics Specialization trains students how to use cutting edge analytics to better direct a wide variety of marketing decisions. Learn more.
-MKTG 462 Customer Analytics
-MKTG 464 Analytics for Marketing Decisions
-MKTG 466 Digital Marketing
-MKTG 468/415 Pricing Strategy Analytics
-Product Marketing:
-These courses will help future product marketing managers bring the customer’s voice into the company to guide product and brand strategy and to effectively deliver on that strategy. Learn more.
-MKTG 450 Consumer Behavior
-MKTG 460 Consumer Insights
-MKTG 454 Strategic Product Management
-MKTG 456 Advertising
-The courses can be taken in any order as they are not strict prerequisites for each other. Students can also complete just one or two of the courses within a specialization if that topic is of interest.
-While these specializations will not be shown on your transcript, Foster will be promoting them internally and externally so you can easily inform recruiters and potential employers about your expertise in these areas.
-Marketing resources
-Foster’s Department of Marketing and International Business
-Professional Sales Program
-Explore careers in marketing
-Operations & Supply Chain Management
-What is Operations & Supply Chain Management (OSCM)?
-Operations and Supply Chain Management covers design, planning, control, and improvement of manufacturing and service operations. Curriculum highlights include operations research, programming, and analysis of production and inventory models in the US and abroad.
-What kind of jobs can I get with the OSCM major?
-Typical roles include:
-Logistics planner
-Sourcing/buyer
-Demand planner
-Logistics analyst
-In addition to securing an internship, students should conduct informational interviews with professionals to understand the role of OSCM functions within an organization. Consider joining the Operations Supply Chain Management Club to meet professionals and learn more about career paths.
-Master of Supply Chain Management (MSCM)
-The Master of Supply Chain Management (MSCM) program is a four-quarter, work compatible degree that provides future business leaders with the technical and managerial skills needed to oversee the flow of goods. Students learn to effectively analyze data and build decision models. MSCM is a well-rounded and flexible experience focusing in supply chain, business management and industry.
-The full-time program holds classes on Monday and Wednesday evenings and five to six Saturdays per quarter, giving students flexibility to work full time. The GMAT or GRE requirement is waived for applicants with a recent bachelor’s degree from the Foster School of Business in the OSCM major.
-For more information, visit the MSCM website or email [email&#160;protected]
-OSCM resources
-Operations Supply Chain Management Club (OSCM)
-Foster’s Department of Information Systems and Operations Management
-Explore careers in operations and supply chain management
-Benefits of declaring a major
-Declaring a major gives students priority to register for upper division business electives in the declared major during period I registration. Students can declare more than one major if it fits within the UW Satisfactory Progress rules. Foster students may declare a major once they are in progress of the final Lower Division Business Core classes (ACCTG 225, MGMT 200 and/or QMETH 201).
-What is the difference between a general Business Administration Major and the discipline specific business majors?
-The Foster School offers one general major (Bachelor of Arts in Business Administration) and eight discipline-specific business majors (such as Accounting, Marketing, etc.) Different majors have different required courses and electives, and the declared major will be added to the student’s academic record (transcript).
-Michael G. Foster School of Business
-Box 353200
-University of Washington
-Seattle, WA 98195-3200
-Enter search text:
-Campus
-Contact
-Directions
-News
-Merch Shop
-Resources
-Canvas
-My UW
-Foster Library
-Wellbeing at Foster
-Intranet
-LinkedIn
 Instagram
-Facebook
-YouTube
+Intranet
+IS 305: Essentials of Business Finance and Information Systems (5 CR; prerequisite: either ACCTG 219 or ACCTG 225; and FIN 205)
+ISOM Student Employment Application
+January 25
+Jeana Jorgensen, General Manager, Cloud + AI, Microsoft (2001 Foster MBA)
+John Busby, Head of Analytics and Insights, AmazonFresh
+John Gagnon, Sales Director for Bing Ads, Microsoft
+Jonathan Nolis, Director of Insights and Analytics, Lenati
+JUMP TO:
+KEY COURSE TIMEFRAMES
+Lavin Entrepreneurship Program combines hands-on learning and coursework to give students the experience, skills, and know-how to succeed in their future business ventures. Students apply to the program as freshmen. The Lavin Program is offered by the Arthur W. Buerk Center for Entrepreneurship at the Foster School.
+Lavin students do not need to apply to the minor, but still need to complete all the prerequisite coursework and meet the minimum requirements. You also must be in good standing in the Lavin program.
+Leaders are expected to make smart decisions. But today’s world has a new problem – it’s overwhelmed by data. With the right tools and analytics background you can pull out insights to make decisions faster and smarter than your peers. Customer and Marketing analytics courses from UW Foster’s School of Business will give you the exposure and analytics background for real-world problems to tackle tomorrow’s challenges.
+Learn More
+Learn more about the Foster School&#8217;s Buerk Center for Entrepreneurship .
+LinkedIn
+Lower Division Core Course
+Lower Division Courses
+Majors
+Management and Organization
+Many Foster student organizations are open to all students: foster.uw.edu/student-organizations
+Marja Koopmans, DIRECTOR, AMAZON SMART HOME (Frequent Foster Guest Lecturer)
+Marketing analytics courses
+Marketing and customer analytics are becoming instrumental to the functioning of companies in our data-filled age. Having students prepared with an understanding of the fields, and how to use modern tools such as R, is extremely helpful to companies like Lenati. These are the same techniques and tools we use when we at Lenati consult with Fortune 500 companies.
+Marketing and International Business
+MATH 112, MATH 124, MATH 125, MATH 126, MATH 134 or Q SCI 291 (Calculus)
+MBA Curriculum
+MBA Marketing Analytics Specialization
+MBA Product Marketing Specialization
+MBA Programs
 Medium
-© 2026 Foster School of Business , University of Washington | Seattle, WA
-Accessibility
+Meet with your assigned adviser to confirm that the entrepreneurship minor coursework fits within your academic plan. On the application you will submit the email address of your assigned adviser, they will be prompted to confirm that you&#8217;ve met with them and they agree that you&#8217;re able to complete the coursework. You must submit their direct email address (ex. [email&#160;protected] ), you cannot submit a departmental email (ex. [email&#160;protected] ).
+MENU CLOSE
+Merch Shop
+MGMT 200 (Introduction to Law)
+MGMT 305
+MGMT 305: Essentials of Management and Entrepreneurship (5 CR)
+MGMT 400
+MGMT 400: Corporate Diversity, Equity, and Inclusion (4 CR; prerequisite MGMT 305)
+MGMT 401
+MGMT 401, MGMT 402, MGMT 403, MGMT 404, MKTG/MGMT 445, RE 250
+MGMT 401: Leadership Development (4 CR)
+MGMT 402: Negotiations (4 CR)
+MGMT 403
+MGMT 403: Developing High Performing Individuals, Teams, and Organizations (4 CR)
+MGMT 404: Organization Development and Change (4 CR)
+Michael G. Foster School of Business
+Minimum GPA: 2.0 cumulative across all Business Minor courses.
+Minors
+Minors and More opportunities
+Minors and More Opportunities
+Minors and More Opportunities | Foster School of Business
+MKTG 305
+MKTG 305: Essentials of Marketing and Sales (5 CR)
+MKTG 315
+MKTG 315: The Business of Personal Branding and Athletics (4 CR)
+MKTG 370
+MKTG 370: Retailing (4 CR; prerequisite: MKTG 305)
+MKTG 404
+MKTG 445/ENTRE 445: Multicultural Marketing and Business Development (4 CR; prerequisite: MKTG 305; during Period 3 of Registration)
+MKTG 456
+MKTG 456: Advertising (4 CR; prerequisite: MKTG 305)
+MKTG 496 (depending on the nature of your company/project – check with ENTRE minor advisor for approval)
+More Opportunities
+MSCM Curriculum
+MW
+My UW
+News
+No, students must take Microeconomics to be admitted to the minor.
+No, students who have completed MKTG 301 and MKTG 335 cannot receive credit for MKTG 305.
+No, you should plan on completing one of the listed ENTRE elective course options. If you have a special circumstance, you may contact the Entre minor advisor to discuss.
+No. Add codes are not provided by Foster. Students may not add a Foster class after the fifth day of the quarter .
+No. Core courses (ACCTG 219, FIN 205, MGMT 305, I S 305, MKTG 305) do not count toward Business Major requirements. If you plan to apply to the major, we do not recommend taking them.
+No. Foster does not overload courses, even with instructor permission or if it’s your final quarter at UW.
+No. If you have already taken a class as S/NS, you will need to petition the Registrar’s office and request to have it converted back into a grade.
+No. Internship credit does not count toward the Business Minor and we do not waive any requirements.
+No. These programs are reserved for students who are not admitted to the Business Major.
+Non-business courses taken abroad are not eligible for review.
+Not a Foster student, but want to get involved?
+Note that while these courses are designed to be taken in sequence, they can also be taken as standalone courses (i.e., they are not required as prerequisites for each other).
+Obtain the knowledge and real-world experience necessary to be successful in sales. This nationally ranked program teaches students how to sell, manage and lead.
+October 25
+Online Learning (Hybrid) courses include a combination of weekly synchronous class meetings (live sessions) and asynchronous recorded content (completed on your own time).
+Open to all non-business undergraduate students, the Foster School’s Business Minor offers students the opportunity to build a diverse set of career and life skills. Students completing the Business Minor will learn from excellent Foster faculty members in courses related to financial literacy, accounting, management, entrepreneurship, marketing, sales, and information systems. Coursework for the Business Minor will be delivered largely online with in-person events periodically.
+Operations Supply Chain Management Club (OSCM)
+OR
+OSCM resources
+Other questions
+Our Foster community is not limited to admitted Foster students. There are many opportunities open to prospective Foster students, high school students, community college students, and non-business majors to engage with their peers and participate in activities, organizations and programs within Foster. Click the buttons below to learn more.
+Overlapping courses share similar content but are not equivalent. Equivalent courses must be reviewed and approved. Please email [email&#160;protected] for next steps.
+Period 1
+Period 2
+PhD program
+PhD Program
+Please note that the business minor core courses are designed specifically for the Foster Business Minor and so equivalents of these courses are very rare ; finding an approved course towards the business minor elective requirement is more likely.
+Please see Course Forecast drop-down menu for more information on when courses are likely to be offered.
+Possibly, but only towards the business elective requirement. Please note that approvals are very rare and must be approved by both Foster and the course’s home department.
+Pre-College Programs
+Prepare to write one essay (3000 character maximum) describing why you are interested in the Entrepreneurship Minor. This is an opportunity to highlight what interests you about the entrepreneurship courses offered at the Foster School. Applicants should also write about any prior experience with entrepreneurship, including but not limited to, turning ideas into actionable outcomes, creating new ventures, or ideating within existing businesses.
+Prerequisite Courses
+Pricing Strategy Analytics (MKTG 468) blends marketing strategy, micro-economic theory, and data analytics to formulate actionable pricing strategies. The course combines cases and data analytics assignments to teach students how to design and execute pricing decisions and co-ordinate these decisions with other marketing decisions.
 Privacy
+Product marketing courses
+Product marketing is where you build product-market fit, the hardest thing to achieve when you bring a new offering to customers. My love for the discipline comes from the relentless focus on the customer, make the connection and in the end build marketing into the product. It’s the product marketer’s role to make marketing truly scalable and with that drive substantial value to the business.
+Programs
+QMETH 201 (Statistical Methods)
+Quarter 1
+Quarter 2
+Quarter 3
+Quarter 4
+Quarter 5
+R E 250*
+R E 250*: Introduction to Real Estate (3 CR)
+Rankings
+Reader/Grader Student Position
+Reader/Graders
+Recruiters & Corporate Partners
+Registration
+Registration & Add Codes
+Registration for Business Minor courses opens for students as follows:
+Required Courses
+Research
+Research Topics
+Residence Credit: Online Foster courses count as residence credit.
+Resources
+Review the Frequently Asked Questions (FAQ) section of the website as MOST questions we receive are answered there and we update it regularly!
+SALES CERTIFICATE PROGRAM
+Sales Certificate Program provides students with the knowledge and real-world experience necessary to be successful in sales. This nationally ranked program teaches students how to sell, manage and lead.
+Sample:
+Scholarships
+School
+Search
+Seattle, WA 98195-3200
+Seminars
+Send an email to [email&#160;protected] for questions about the application process and logistics
+Send an email to [email&#160;protected] for questions on how to leverage the minor for even more entrepreneurial opportunities.
+Skip to main content
+Specialty Master’s Programs
+Sports Business Badge
+Spring 2027
+Spring admission
+Strategic Product Management (MKTG 454) establishes the relationship between product management and product marketing. This course bridges the gap between product design and product delivery with particular attention to the pricing and channel decisions facing a product marketing managers.
+Student Employment
+Student Experience
+Students
+Students can choose one of two tracks to be eligible to apply for the minor. One track includes two accounting prerequisites (ACCT 215 and ACCT 225 – open to non-business majors) and ECON 200 Microeconomics. This track allows accepted students to complete the minor by taking one less entrepreneurship course.
+Students can earn a Sports Business Badge , an enhanced Foster Business for Life Badge specifically for students interested in careers in athletics. To complete the Sports Business Badge, students need to complete MKTG 315: The Business of Personal Branding and Athletics class in addition to the requirements for the Business for Life Badge. MKTG 315 was designed in conjunction with UW Athletics and explores the intersection of athletics and business. Students will cover key name, image and likeness topics such as personal brand development and strategy, business and entrepreneurship, and opportunity evaluation.
+Students enrolled in the Business Minor and Badge programs are expected to uphold the Foster Integrity Principles—honesty, respect, and integrity—and to comply with the University of Washington Student Conduct Code. This includes avoiding all forms of academic misconduct. Students who are found responsible for academic misconduct twice in Business Minor courses, as determined through the university’s formal conduct process, will be removed from the Business Minor.
+Students in the undergraduate program in the Foster School of Business work towards a Bachelor of Arts in Business Administration (BABA). Foster’s undergraduate curriculum balances business classes with those from outside disciplines, resulting in an overall educational experience of depth and quality.
+Students need a 2.0 minimum cumulative prerequisite GPA as well as an overall minimum GPA of 2.0.
+Students should plan on 4-5 quarters to complete the minor requirements including the application prerequisite courses (Microeconomics and Accounting). Following the application prerequisite courses, there is a 3 quarter sequence of required courses: ENTRE 370-Intro to Entrepreneurship, ENTRE 472- Creating a Company I, and ENTRE 473- Creating a Company II. The remaining electives required for the minor can be taken in the same quarter as one of the other ENTRE classes.
+Students who wish to try out business coursework before committing to the Business Minor or who do not have enough space in their schedule to complete the full minor have the option of completing the Business for Life digital badge .
+Students will register on their own for business minor coursework.
+Study Abroad
+Submit requests through the Business Minor Evaluation Survey . (UW login required).
+SUGAR + SPOON
+Summer 2027
+Support Accounting
+Taken Autumn 2021 or later– No, MKTG 301 will NOT substitute for MKTG 305
+Taken Spring 2024 or later – No
+Taken Summer 2021 or earlier: May substitute for MKTG 305 (by exception; contact the [email&#160;protected] ).
+Taken Winter 2023 or earlier– Yes
+Teaching Excellence
 Terms
+The application opens on the 5th of the month ahead of each deadline. (ex. April 5 ahead of April 25th spring quarter deadline).
+The below table indicates when to expect courses to be offered for the 2026-2027 academic year. Please note this schedule is just a prediction and is subject to change.
+The Business Minor consists of 5 core courses and 1-2 approved electives for a minimum of 27 credits.
+The course I need is full. Can I be overloaded?
+The creation of the Foster School’s Business for Life Badge & Minor Program was made possible by the generous support of BECU.
+The Dean’s Office
+The Entre Minor offers you access to popular offerings like the two-quarter Creating a Company course, where you’ll work on an innovative idea, identify real customers, and define and deliver products and services. Here are a couple examples of the kind of journey students like you took while enrolled in the course and after completing it.
+The field of (Marketing) Analytics is witnessing worldwide growth and has been called the “sexiest job of the 21st century” (Harvard Business Review). Demand for managers with ability to use (big) data analysis to make effective decisions is growing rapidly. McKinsey & Company forecast a shortage of 1.5 million such managers in the United States alone and PwC suggests that firms will therefore need to compete fiercely for individuals with strong analytics skills and business knowledge. The Foster School of Business is particularly well suited to address these needs as the Seattle metro area is home to several major companies who use the most innovative practices in business analytics such as Amazon, Microsoft, Expedia, and Starbucks.
+The field of marketing analytics is witnessing worldwide growth. Demand for knowledgeable managers with ability to use big data analysis to make effective decisions is growing rapidly. McKinsey & Company forecast a shortage of 1.5 million such managers in the United States alone and PwC suggests that firms will therefore need to compete fiercely for individuals with strong analytics skills and business knowledge.
+The Foster Honors program is designed to provide unique opportunities for a small group of students with an exceptional academic record and a desire to expand and intensify the academic experience provided through the Business Administration degree.
+The Foster School offers a range of academic opportunities for prospective Foster students and non-business majors to begin their business education. Follow the links below to learn more about our programs and opportunities open to all UW students.
+The Foster School offers one general major (Bachelor of Arts in Business Administration) and eight discipline-specific business majors (such as Accounting, Marketing, etc.) Different majors have different required courses and electives, and the declared major will be added to the student’s academic record (transcript).
+The Foster School provides a range of opportunities for admitted Foster students to accent their educational experiences. Follow the links below to learn more about these programs.
+The Foster School’s competitive Entrepreneurship Minor is for non-business students who want in-person, cross-disciplinary experiential learning. Whether you want to be an entrepreneur or not, you will learn how to solve problems related to developing products or services, as well as launching a business, and growing as a leader within a team. These skills serve students after graduation, whether they create a startup or work as an intrapreneur inside a larger company.
+The Hovind Global Leaders is a cohort-based experience to advance the next generation of inclusive, global leaders. This academic-year-long program includes weekly seminars, mentorship, and a fully funded spring-break global immersion.
+The new Product Marketing specialization for Foster students will be a huge asset to companies like Microsoft who are looking to hire graduating students who have a solid understanding of brand, strategic marketing, and advertising and promotion. The product marketing courses I took while at Foster were incredibly important for me as I was moving from non-profit to tech. The courses gave me the foundational knowledge I could apply to every different position I’ve held at Microsoft. As a company who recruits heavily from Foster, this is a very welcome investment from the University of Washington.
+The other track includes taking one accounting course (ACCT 219 – open specifically for non-business majors) and ECON 200 as prerequisites. Completing the minor using this track requires taking one additional entrepreneurship course.
+The specialization in Marketing Analytics consists of four courses: Customer Analytics (MKTG 462), Analytics for Marketing Decisions (MKTG 464), Digital Marketing Analytics (MKTG 466) and Pricing Strategy Analytics (MKTG 468). To complete the specialization, students are expected to take at least three of these four courses.
+There is no need to submit Foster courses. All approved courses are listed on the Business Minor website under “Curriculum.”
+This startup was also created and developed as part the ENTRE 472 Creating a Company I experience. The startup team included students studying computer science, electrical engineering, marketing and entrepreneurship. After completing the second section of this 2-part course, Cactus Kefir had developed their product, tested the market, participated in Farmer&#8217;s Markets, and even made sales. Cactus Kefir was named a finalist in the 2024 Dempsey Startup Competition and advanced to the Sweet 16 Round (out of a pool of 136 teams).
+This startup was created and developed as part of the group exercise that is essential to the ENTRE 472 Creating a Company I experience. The founders met in the class and were excited to try and create a safe-to-eat cookie dough. Sugar + Spoon went on to launch multiple food trucks and even a pop-up location, as well as an online store to sell their goods. Sugar + Spoon completed the Buerk Center for Entrepreneurship&#8217;s Jones + Foster Accelerator as part of the 2018-19 cohort. They have been profiled in the Seattle Times, Seattle Eater, Seattle Met, Seattled Refined, and on KING 5 News. Sugar + Spoon is still an active company today.
+To best prepare individuals for roles as product marketing managers, Foster’s Product Marketing Specialization features four related courses: Consumer Behavior (MKTG 450), Strategic Product Management (MKTG 454), Advertising and Promotions (MKTG 456) and Consumer Insights (MKTG 460). To complete the specialization, students are encouraged to complete at least three of the four courses.
+To declare the Business Minor, students must have a declared major and at least 45 credits completed. The Business Minor is an open minor and can be declared with your major advisor.
+To prepare students for these opportunities, the Marketing Analytics Specialization trains students how to use cutting edge analytics to better direct a wide variety of marketing decisions.
+Together, these courses will help future product marketing managers bring the customer’s voice into the company to guide product and brand strategy and to effectively deliver on that strategy. Note that while these courses are designed to be taken in sequence, they can also be taken as standalone courses (i.e., they are not required as prerequisites for each other).
+Topic-Focused Courses
+Total 29-31 credits
+Transfer, Study Abroad, and Course Evaluation
+Undergraduate
+Undergraduate Career Outcomes
+Undergraduate Curriculum
+Undergraduate Marketing Analytics Specialization
+Undergraduate Marketing Analytics Specialization | Foster School of Business
+Undergraduate Product Marketing Specialization
+Undergraduate Product Marketing Specialization | Foster School of Business
+Undergraduate Programs
+Unfortunately, no. Foster Career Services are restricted to students admitted to the major. However, you can go to the University of Washington Career Center in Mary Gates Hall and receive many of the same resources. There is a UW Startup Job Fair in spring quarter each year to which Entre Minor students are invited. It’s a great way to find opportunities to work with earl-stage companies.
+University of Washington
+Upon admission to the minor, students can register for ENTRE minor courses at the beginning of Period II registration.
+Upon completion of the required 3 Business courses, submit the Badge Completion Request Form . The Foster School will award students the digital badge at the end of each quarter which students can share on LinkedIn .
+Upon completion of the required 3 Business for Life courses and the Sports Business course, submit the Business for Life Badge Completion form and designate the Sports Business Badge. The Foster School will award students the digital badge at the end of each quarter which students can share on LinkedIn .
+UW Climate Risk Lab
+UW Summer Finance Conference
+Visit the Foster opportunities for all students website for more experiential opportunities, events, and ways to get involved in the Foster community.
+Wellbeing at Foster
+West Coast Research Symposium
+What does it mean if another UW course “overlaps” with a Business Minor course?
+What grades do I need in the prerequisite courses? Is there a minimum GPA?
+What happens if I am found responsible for academic misconduct?
+What if I am a Lavin student?
+What if I took Macroeconomics instead of Microeconomics? Would that be accepted for the Economics prerequisite?
+What is the difference between a general Business Administration Major and the discipline specific business majors?
+What is the difference in course content between taking ACCTG 215 & 225 and just taking ACCTG 219?
+What is the structure of the Online Learning (Hybrid) courses?
+What's new
+When can I register for ENTRE classes once accepted into the minor?
+Which courses are offered online or in person?
+Why is accounting a prerequisite for the minor?
+Winter 2027
+Winter admission
+Yes — only if the course transfers as a direct UW equivalent of an approved Business Minor course listed under “Curriculum.”
+Yes, we waive this prerequisite for students in the minor. The Entre minor advisor can enroll you in ENTRE 455, bypassing the system requirements.
+Yes, you can apply to the minor with prerequisites in progress. We do need at least one graded prerequisite on your transcript. You also need to pass the prerequisites in order to stay in the minor if admitted.
+Yes! The Buerk Center for Entrepreneurship offers many resources and opportunities for engagement including entrepreneurship competitions, entrepreneur events, resources for startups, and programs specifically for undergraduate students. Check out their website or contact ( [email&#160;protected] ) to learn more. You can also join the Startup UW student organization .
+Yes. ACCTG 219, FIN 205, I S 305, MGMT 305, and MKTG 305 are typically offered in Autumn, Winter, and Spring. A table indicating when to expect courses to be offered for the academic year is provided under the dropdown “ course forecast” on this business minor website page.
+Yes. We have no preference on where prerequisite courses are taken. Courses taken in state at a community college can be reviewed on the Equivalency Guide .
+You are welcome to email [email&#160;protected] to see if a transfer course has been reviewed before.
+You can submit a new Change of Major/Minor form with your major advisor. Email [email&#160;protected] to let us know you plan to drop the minor.
+You do not need to be declared in the minor to register for the coursework.
+You may earn the Business for Life or Sports Business Badges. See the separate dropdown for these certifications.
+You must meet course prerequisites to register; we will not allow students to take course prerequisites concurrently.
+You would typically log in for a live (synchronous) session at 9:00 a.m. on Monday , and then use Wednesday to complete the asynchronous recorded lectures and coursework at your own pace. During the quarter, there will be one required in-person exam day for all students. This date is communicated by the instructor of the course prior to the class beginning.
+YouTube

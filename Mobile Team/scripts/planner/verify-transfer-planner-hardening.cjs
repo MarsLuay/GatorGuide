@@ -52,7 +52,9 @@ function readText(relativePath) {
 }
 
 function escapeMarkdown(value) {
-  return String(value ?? "").replace(/\|/g, "\\|");
+  return String(value ?? "")
+    .replace(/\\/g, "\\\\")
+    .replace(/\|/g, "\\|");
 }
 
 function runCheck(id, label, callback) {

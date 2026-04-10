@@ -1,13 +1,13 @@
 # Transfer Planner Source Link Summary
 
-Generated: 2026-04-08T20:26:34.929Z
+Generated: 2026-04-09T19:41:49.812Z
 
-- Total tracked source URLs: 375
-- Reachable: 375
-- Failed: 0
-- Added since previous snapshot: 2
-- Changed since previous snapshot: 72
-- Removed since previous snapshot: 0
+- Total tracked source URLs: 378
+- Reachable: 376
+- Failed: 2
+- Added since previous snapshot: 5
+- Changed since previous snapshot: 92
+- Removed since previous snapshot: 2
 
 ## Changed URLs
 
@@ -23,29 +23,45 @@ Generated: 2026-04-08T20:26:34.929Z
   - owners: uw-bothell-computer-engineering
 - https://admissions.uwb.edu/register/mpw-crs
   - owners: uw-bothell-conservation-and-restoration-science
+- https://admissions.uwb.edu/register/mpw-csse
+  - owners: uw-bothell-csse, uw-bothell-csse-information-assurance-and-cybersecurity
 - https://admissions.uwb.edu/register/mpw-DataVis-BA
   - owners: uw-bothell-data-visualization-ba
 - https://admissions.uwb.edu/register/mpw-DataVis-BS
   - owners: uw-bothell-data-visualization-bs
+- https://admissions.uwb.edu/register/mpw-EE
+  - owners: uw-bothell-electrical-engineering
 - https://admissions.uwb.edu/register/mpw-hs
   - owners: uw-bothell-health-studies
 - https://admissions.uwb.edu/register/mpw-me
   - owners: uw-bothell-mechanical-engineering
 - https://admissions.uwb.edu/register/mpw-psy
   - owners: uw-bothell-psychology
-- https://asian.washington.edu/ba-korean
-  - owners: uw-seattle-korean
-- https://asian.washington.edu/ba-south-asian-languages-and-cultures
-  - owners: uw-seattle-south-asian-languages-and-cultures
-- https://chem.washington.edu/bs-chemistry
-  - owners: uw-seattle-chemistry, uw-seattle-chemistry::acs-certified-bs-route, uw-seattle-chemistry::ba-route, uw-seattle-chemistry::bs-route
-- https://classics.washington.edu/ba-classics
-  - owners: uw-seattle-classics
-- https://classics.washington.edu/ba-greek
-  - owners: uw-seattle-greek
-- https://classics.washington.edu/ba-latin
-  - owners: uw-seattle-latin
+- https://admit.washington.edu/majors/english-creative-writing/
+  - owners: uw-seattle-english-creative-writing
+- https://aes.washington.edu/ba-american-ethnic-studies
+  - owners: uw-seattle-american-ethnic-studies
+- https://art.washington.edu/admission-major-art-history
+  - owners: uw-seattle-art-history
+- https://art.washington.edu/art/undergraduate-program
+  - owners: uw-seattle-art
+- https://art.washington.edu/design
+  - owners: uw-seattle-design
+- https://art.washington.edu/design/bachelor-design-admissions
+  - owners: uw-seattle-design
+- https://asian.washington.edu/ba-chinese
+  - owners: uw-seattle-chinese
+- https://astro.washington.edu/undergraduate-program
+  - owners: uw-seattle-astronomy
+- https://catalog.greenriver.edu/
+  - owners: grc-catalog-2025-2026
+- https://catalog.greenriver.edu/content.php?catoid=10&navoid=624
+  - owners: grc-course-descriptions-2025-2026
+- https://chem.washington.edu/bs-biochemistry
+  - owners: uw-seattle-biochemistry, uw-seattle-biochemistry::ba-route, uw-seattle-biochemistry::bs-route
 - https://disabilitystudies.washington.edu/
+  - owners: uw-seattle-disability-studies
+- https://disabilitystudies.washington.edu/DS_major
   - owners: uw-seattle-disability-studies
 - https://dlmp.uw.edu/education/mls-apply
   - owners: uw-seattle-medical-laboratory-science
@@ -63,32 +79,25 @@ Generated: 2026-04-08T20:26:34.929Z
   - owners: uw-seattle-informatics
 - https://ischool.uw.edu/programs/informatics/curriculum/capstone
   - owners: uw-seattle-informatics
-- https://sphsc.washington.edu/admissions-prerequisites
-  - owners: uw-seattle-speech-and-hearing-sciences
-- https://sphsc.washington.edu/undergraduate-major
-  - owners: uw-seattle-speech-and-hearing-sciences
-- https://sphsc.washington.edu/uw-transfer-students-faq
-  - owners: uw-seattle-speech-and-hearing-sciences
-- https://www.tacoma.uw.edu/sias
-  - owners: uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed
-- https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration
-  - owners: uw-bothell-business-administration
-- https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses
-  - owners: uw-bothell-business-administration, uw-bothell-business-administration-accounting, uw-bothell-business-administration-finance, uw-bothell-business-administration-leadership-and-strategic-innovation, uw-bothell-business-administration-marketing, uw-bothell-business-administration-supply-chain-management
-- https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum
-  - owners: uw-bothell-business-administration
-- https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership
-  - owners: uw-bothell-business-administration-leadership-and-strategic-innovation
-- https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing
-  - owners: uw-bothell-business-administration-marketing
-- https://www.uwb.edu/business/undergraduate/bachelor-of-economics/curriculum
-  - owners: uw-bothell-economics
-- https://www.uwb.edu/business/undergraduate/bachelor-of-economics/prerequisites
-  - owners: uw-bothell-economics
-- https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/admissions
-  - owners: uw-bothell-developmental-and-youth-studies
-- https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements
-  - owners: uw-bothell-developmental-and-youth-studies
-- https://www.uwb.edu/education/undergraduate/elementary-education
-  - owners: uw-bothell-educational-studies-elementary-education
+- https://linguistics.washington.edu/ba-linguistics
+  - owners: uw-seattle-linguistics
+- https://math.washington.edu/ba-mathematics-standard-major-requirements-0
+  - owners: uw-seattle-mathematics
+- https://music.washington.edu/bachelor-music-music-education-instrumental-emphasis
+  - owners: uw-seattle-music-education-b-m
+- https://music.washington.edu/bachelor-music-organ
+  - owners: uw-seattle-organ-b-m
+- https://music.washington.edu/bachelor-music-voice
+  - owners: uw-seattle-voice-b-m
+- https://scandinavian.washington.edu/ba-scandinavian-area-studies
+  - owners: uw-seattle-scandinavian-area-studies
+
+## Failed URLs
+
+- https://evans.uw.edu/undergraduate-programs/public-service-and-policy-major/
+  - owners: uw-seattle-public-service-and-policy
+  - error: fetch failed
+- https://evans.uw.edu/undergraduate-programs/public-service-and-policy-major/major-requirements/
+  - owners: uw-seattle-public-service-and-policy
+  - error: fetch failed
 

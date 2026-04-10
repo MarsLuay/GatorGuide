@@ -1,3 +1,4 @@
+/* global __dirname, Buffer */
 const fs = require("fs");
 const path = require("path");
 const { spawnSync } = require("child_process");
@@ -65,6 +66,9 @@ function sleep(delayMs) {
 }
 
 function runVerification() {
+  runStep("Audit transfer planner owners", () =>
+    runCommand("node", ["scripts/planner/verify-transfer-planner-owner-audit.cjs"])
+  );
   runStep("Run TypeScript typecheck", () => runCommand(NPX_BIN, ["tsc", "--noEmit"]));
   runStep("Run transfer planner tests", () =>
     runTsNode("scripts/planner/transfer-planner.service.test.ts")
@@ -155,6 +159,9 @@ async function main() {
       forceRefresh: true,
       allowSnapshotFallback: true,
     })
+  );
+  runStep("Generate Green River associate tracks", () =>
+    runCommand("node", ["scripts/planner/generate-transfer-planner-grc-associate-tracks.cjs"])
   );
   const scheduleDownloads = grcPublicMaterials.annualSchedules.map((entry) => ({
     label: `Green River annual schedule ${entry.label}`,

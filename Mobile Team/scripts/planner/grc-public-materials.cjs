@@ -17,21 +17,31 @@ function ensureTmpDir() {
   fs.mkdirSync(TMP_DIR, { recursive: true });
 }
 
+const HTML_ENTITY_DECODERS = {
+  nbsp: " ",
+  amp: "&",
+  quot: '"',
+  "#39": "'",
+  apos: "'",
+};
+
+function decodeKnownHtmlEntities(value) {
+  return String(value ?? "").replace(/&(nbsp|amp|quot|#39|apos);/gi, (match, entityName) => {
+    const normalizedEntityName = String(entityName ?? "").toLowerCase();
+    return Object.prototype.hasOwnProperty.call(HTML_ENTITY_DECODERS, normalizedEntityName)
+      ? HTML_ENTITY_DECODERS[normalizedEntityName]
+      : match;
+  });
+}
+
 function normalizeWhitespace(value) {
-  return String(value ?? "")
-    .replace(/&nbsp;/gi, " ")
-    .replace(/&amp;/gi, "&")
-    .replace(/&#39;|&apos;/gi, "'")
-    .replace(/&quot;/gi, '"')
+  return decodeKnownHtmlEntities(value)
     .replace(/\s+/g, " ")
     .trim();
 }
 
 function decodeHtmlAttribute(value) {
-  return String(value ?? "")
-    .replace(/&amp;/gi, "&")
-    .replace(/&quot;/gi, '"')
-    .replace(/&#39;|&apos;/gi, "'");
+  return decodeKnownHtmlEntities(value);
 }
 
 function stripHtml(value) {

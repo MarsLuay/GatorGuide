@@ -2,498 +2,447 @@ Owner: uw-seattle-physics
 Source: https://phys.washington.edu/physics-bs-degree-requirements
 Title: Physics B.S. Degree Requirements | Department of Physics | University of Washington
 
-Physics B.S. Degree Requirements | Department of Physics | University of Washington
-Skip to main content
-Washington
-University of Washington
-College of Arts & Sciences
-Quick links
-Quick Links
-Make a Gift
-Directories
-Maps
-MyUW
-MyPhys
-User account menu
-Search
-Search
-Main menu
-Department of Physics
-Menu
-People
-Full Directory
-Faculty
-Department Faculty
-Adjuncts & Affiliates
-Emeritus Faculty
-In Memoriam
-Staff
-All Staff
-Administrative Contacts
-Postdocs
-PhD Students
-Programs & Courses
-B.S. Degree
-Requirements
-Declaring Major
-Honors in Physics
-Undergraduate Research
-Mentoring Program
-Advice for Students
-Graduation
-Physics Minor
-PhD Program
-Professional Master&#039;s
-Courses
-Courses Offered
-Course Syllabi
-Course Exam Archive
-Introductory Courses
-Research
-Research Areas
-Research News
-Centers & Institutes
-Postdoctoral Fellowship Programs
-Research Experiences for Undergrads (REU)
-News & Events
-Physics News
-Events
-Upcoming Events
-Physics Colloquium
-Frontiers of Physics Lecture Series
-Research Seminars
-Calendar
-Newsletter
-In the Press
-Alumni News
-Resources
-Advising & Student Services
-Community Support
-IT Support (PACS)
-Machine Shop
-Student Shop
-About
-Department Profile
-History
-Climate & Diversity
-Awards
-Recipients
-Visitor Information
-Employment
-Get Involved
-Support Us
-Contact Us
-Make a Gift
-Directories
-Maps
-MyUW
-You are here
-Home
-Programs & Courses
-B.S. Degree
-Physics B.S. Degree Requirements
-Every Physics B.S. degree option requires completion of a selection of courses plus fulfilment of a capstone requirement involving activities outside a typical classroom. Continuation in the major requires maintaining satisfactory progress. For further information on the range of activies which may be used to satisfy the capstone requirement for each degree track, and on satisfactory progress criteria, refer to:
-Capstone Options
-Continuation Policy
-The course requirements for a Physics B.S. degree begin with a common set of course options, applicable to all degree tracks, followed by a selection of additional option-specific courses. Note that any single course may satisfy at most one physics-specific degree requirement.
-Common requirements, all tracks
-Comprehensive track
-Applied physics track
-Biological physics track (No longer accepting new students as of Spring 2024)
-Teaching physics track
-Comprehensive & Applied Physics Track Electives
-BS Degree Requirements Before Autumn 2021
-Common Requirements, All Tracks (52 credits)
-Courses
-Topics
-100-level:
-Phys 121 or Phys 141
-Mechanics (5)
-Phys 122 or Phys 142
-Electromagnetism (5)
-Phys 123 or Phys 143
-Waves, Optics & Heat (5)
-Math 124 or Math 134
-Differential Calculus (5)
-Math 125 or Math 135
-Integral Calculus (5)
-Math 126 or Math 136
-Multivariate Calculus (5)
-200-level:
-Phys 224
-Thermal & Statistical Physics (3)
-Phys 225
-Introduction to Quantum Mechanics (3)
-Phys 227
-Mathematical Methods of Physics I (4)
-Phys 294
-Introduction to Research: Frontiers of Physics (1)
-300-level:
-Phys 321
-Electromagnetism I (4)
-Phys 322
-Electromagnetism II (4)
-Phys 334
-Electronics Lab: Analog (3)
-Comprehensive Track (addl. 38-46 credits)
-Courses
-Topics
-Core Physics:
-Phys 226
-Particles & Symmetries (3)
-Phys 228
-Mathematical Methods of Physics II (4)
-Phys 324
-Quantum Mechanics I (4)
-More Physics,
-3 courses from:
-Phys 323
-Electromagnetism III (4)
-Phys 325
-Quantum Mechanics II (4)
-Phys 328
-Statistical Physics (3)
-Phys 329
-Classical Mechanics (3)
-Astr 321 *
-Solar System (3)
-Astr 322 *
-Our Galaxy (3)
-Astr 323 *
-Extragalactic Astronomy & Cosmology (3)
-More Math (3-5 credits),
-2 courses from:
-Math 207 or AMath 351
-Ordinary Differential Equations (3)
-Math 208 or AMath 352
-Linear Algebra (3)
-Math 209 or AMath 353
-Partial Differential Equations (3)
-Math 224
-Advanced Multivariable Calculus (3)
-AMath 401
-Vector Calculus & Complex Variables (4)
-Math 334 or 335 or 336
-Accelerated Advanced Calculus (5)
-Advanced Laboratory (6-8 credits),
-2 courses from:
-Phys 331
-Optics Lab (3)
-Phys 335
-Electronics Lab: Digital (3)
-Phys 417 ‖
-Neural Network Methods (3)
-Phys 431
-Modern Physics Lab: Condensed Matter (3)
-Phys 432
-Modern Physics Lab: Atomic (3)
-Phys 433
-Modern Physics Lab: Nuclear & Particle (3)
-Phys 434
-Computers in Data Acquisition (3)
-Astr 480 or Astr 481 ‡
-Astronomical Data Analysis/Acquisition (5)
-Electives,
-6 credits from:
-Additional physics or cognate electives
-Capstone,
-3 to 5 credits from any
-combination of:
-Phys 494 , 495 or 496
-Senior Seminar (1)
-Phys 485 , 486 or 487
-Honors Seminar (1)
-Phys 499 or Astr 499 §
-Undergraduate Research (1-6)
-Astr 481
-Astronomical Observation (5)
-* At most two of Astr 321, 322 and 323 may be used to satisfy this Physics requirement.
-‖ PHYS 417 can be used to meet the advanced laboratory requirement OR the elective requirement.
-‡ Students taking other advanced labs may petition the UFA to have them substitute for Astr 480.
-§ Students receiving credit for physics-related research or independent project work in another department may petition the UFA to have it meet the capstone requirement by writing a paper describing how they applied physics to their independent project.
-Applied Physics Track (addl. 34-43 credits)
-Courses
-Topics
-Data Acquisition
-& Analysis:
-Phys 231
-Introductory Experimental Physics (3)
-AMath 301 *
-Beginning Scientific Computing (4)
-More Physics,
-1 course from:
-Phys 226
-Particles & Symmetries (3)
-Phys 323
-Electromagnetism III (4)
-Phys 324
-Quantum Mechanics I (4)
-Phys 328
-Statistical Physics (3)
-Phys 329
-Classical Mechanics (3)
-More Math,
-3 courses from:
-Phys 228
-Mathematical Methods of Physics II (4)
-Math 207 or AMath 351
-Ordinary Differential Equations (3)
-Math 208 or AMath 352
-Linear Algebra (3)
-Math 209 or AMath 353
-Partial Differential Equations (3)
-Math 224
-Vector Calculus (3)
-AMath 401
-Vector Calculus & Complex Variables (4)
-Math 334 or 335 or 336
-Accelerated Advanced Calculus (5)
-Advanced Laboratory,
-2 courses from:
-Phys 331
-Optics Lab (3)
-Phys 335
-Electronics Lab: Digital (3)
-Phys 417 ‖
-Neural Network Methods (3)
-Phys 431
-Modern Physics Lab: Condensed Matter (3)
-Phys 432
-Modern Physics Lab: Atomic (3)
-Phys 433
-Modern Physics Lab: Nuclear & Particle (3)
-Phys 434
-Computers in Data Acquisition (3)
-Astr 480 ‡ or Astr 481
-Astronomical Data Analysis/Acquisition (5)
-Electives,
-9 credits from:
-Additional physics or cognate electives
-Capstone,
-3 credits from:
-Phys 494 , 495 or 496
-Senior Seminar (1)
-Phys 485 , 486 or 487
-Honors Seminar (1)
-Phys 498
-Direct Reading in Physics (2)
-Phys 499 or Astr 499 §
-Undergraduate Research (1-6)
-Astr 481
-Astronomical Observation (5)
-* Astronomy students may substitute Astr 300 or 427 for AMath 301; contact the undergraduate faculty advisor (UFA) to have this entered into your DARS. Students may petition the UFA for other upper-division data science, computing or statistics classes to substitute for AMath 301, note however that STAT 311, CS 142, and CS 143 do not meet this requirement.
-‖ PHYS 417 can be used to meet the advanced laboratory requirement OR the elective requirement.
-‡ Students taking other advanced labs may petition the UFA to have them substitute for Astr 480.
-§ Students receiving credit for physics-related research or independent project work in another department may petition the UFA to have it meet the capstone requirement by writing a paper describing how they applied physics to their independent project.
-Biological Physics Track (addl. 48-56 credits)
-No longer accepting new students as of Spring 2024
-Courses
-Topics
-Core Physics:
-Phys 228
-Mathematical Methods of Physics II (4)
-Phys 324
-Quantum Mechanics I (4)
-Phys 328 *
-Statistical Physics (3)
-Phys 429
-Biological Physics (3)
-Introductory Biology
 (10 credits)
-Biol 180
-Evolution & Ecology (5)
-Biol 200
-Cellular & Developmental Biology (5)
-Introductory Chemistry,
-12-15 credits from the
-following options:
-a) Chem 142 (or Chem 145 ), 152 (or Chem 155 ), 162 (or Chem 165 )
-General Chemistry
-b) Chem 143 and CHEM 153
-Accelerated General Chemistry
-More Physics,
-1 course from:
-Phys 226
-Particles & Symmetries (3)
-Phys 323
-Electromagnetism III (4)
-Phys 325
-Quantum Mechanics II (4)
-Phys 329
-Classical Mechanics (3)
-More Math,
-1 course from:
-Math 207 or AMath 351
-Ordinary Differential Equations (3)
-Math 208 or AMath 352
-Linear Algebra (3)
-Math 209 or AMath 353
-Partial Differential Equations (3)
-Math 224
-Vector Calculus (3)
-AMath 401
-Vector Calculus & Complex Variables (4)
-Math 334 or 335 or 336
-Accelerated Advanced Calculus (5)
-Biology & Chemistry
 (6-10 credits),
+[Supplemental official source] Continuation Policy
+[Supplemental official source] Declaring Major
+[Supplemental official source] Graduation
+‖ PHYS 417 can be used to meet the advanced laboratory requirement OR the elective requirement.
+§ Students receiving credit for physics-related research or independent project work in another department may petition the UFA to have it meet the capstone requirement by writing a paper describing how they applied physics to their independent project.
+* Astronomy students may substitute Astr 300 or 427 for AMath 301; contact the undergraduate faculty advisor (UFA) to have this entered into your DARS. Students may petition the UFA for other upper-division data science, computing or statistics classes to substitute for AMath 301, note however that STAT 311, CS 142, and CS 143 do not meet this requirement.
+* At most two of Astr 321, 322 and 323 may be used to satisfy this Physics requirement.
+* Chem 457 plus an additional upper-division physics course may substitute for the Phys 328 requirement with permission from the undergraduate faculty advisor (UFA). Most students should not take both Phys 328 and Chem 457.
+& Analysis:
+&copy; 2026 University of Washington . All rights reserved.
+‡ Chem 143 + 153 , Accelerated General Chemistry, may substitute for Chem 142+152+162; see the UFA to allow this.
+‡ Students taking other advanced labs may petition the UFA to have them substitute for Astr 480.
+1 course from:
+100-level:
+12-15 credits from the
 2 courses from:
-Chem 223 (or 237 or 335 )
-Organic Chemistry I (4)
-Chem 224 (or 238 or 336 )
-Organic Chemistry II (4)
-Chem 428
-Biomolecular Analysis (3)
-Chem 452 (or 456 )
-Physical Chemistry for Biochemists I
-Chem 453
-Physical Chemistry for Biochemists II
-Chem 454
-Biomolecular Spectroscopy (3)
-Chem 455 (or 456)
-Physical Chemistry I & II (3)
-Biol 220
-Introductory Biology (5)
-Biol 340
-Genetics & Molecular Ecology (5)
-Biol 350
-Foundations in Physiology (3)
-Biol 355
-Foundations in Molecular Cell Biology (3)
-Biol 401
+200-level:
+2026 Physics Department Graduation Celebration
+3 courses from:
+3 credits from any
+3 credits from:
+3 to 5 credits from any
+300-level:
+6 credits from:
+9 credits from:
+A completed MyPlan listing all graduation requirements is required. We recognize that plans can change over time, however applicants should develop a well-considered plan for degree completion, which includes UW general education requirements . A list of physics courses, the quarters in which they are offered, and their prerequisites may be found at the bottom of this page for the upcoming year. You should assume a similar schedule in future years. Upon request, Physics Student Services will review your completed MyPlans and provide feedback either through email ( physadvs@uw.edu ) or during appointed advising hours .
+A student on Academic Alert who fails to make satisfactory progress for an additional quarter will be placed on Academic Warning and receive a registration hold. An Academic Warning email will be sent detailing the unmet criteria. To remove the hold, the student must meet with a Physics Student Services advisor , who will provide support as mentioned in the section above. Failure to meet with an advisor will prevent future registrations. Students on Academic Warning are also encouraged to meet with an Undergraduate Academic Affairs advisor to develop a backup plan in case of dismissal from the Physics major. They must meet with a Physics Student Services advisor each quarter on Academic Warning. If a student shows satisfactory progress for two consecutive quarters, they will revert to Academic Alert status.
+a) Chem 142 (or Chem 145 ), 152 (or Chem 155 ), 162 (or Chem 165 )
+About
+Academic Alert
+Academic Drop
+Academic Honesty
+Academic Warning
+Accelerated Advanced Calculus (5)
+Accelerated General Chemistry
+Additional physics or cognate electives
+Adjuncts & Affiliates
+Administrative Contacts
+Admission Cycles (Standard and Early)
+Admission Decisions
+Admissions
+Admissions | Department of Physics | University of Washington
+Admissions to the Physics major is capacity constrained and requires an application. Completion of the application does not guarantee admission. Members of the Undergraduate Admissions Committee review each application holistically and make decisions based on the requirements below. .
+Admitted applicants must register in the academic quarter following the application decision (not including summer quarter); students who do not register will forfeit their admission offer to the major and will need to reapply in a future application cycle.
 Advanced Cell Biology (3)
-Biol 404
+Advanced Laboratory (6-8 credits),
+Advanced Laboratory,
+Advanced Multivariable Calculus (3)
+Advice for Students
+Advising & Student Services
+After a student has used two quarters of GSP, their registration priority will revert to regular senior priority. GSP does not need to be used in consecutive quarters. You can save your GSP by registering during regular senior registration (after 6am PST).
+After you complete your MyPlan and the exit survey, make arrangements to talk with an advisor in Physics Student Services . We can meet over zoom or in-person during a scheduled appointment or drop-in hours. We can also complete these steps over email ( physadvs@uw.edu ) as long as you are responsive.
+After your Physics major advisor submits your application to the UW, you will receive an email from the Graduation & Records Office ( ugradoff@uw.edu ) with the subject line: PLEASE CONFIRM - Your Application To Graduate . Read this email carefully for important details and confirm your Graduation Application within 7 days. Check your spam/junk folder if you have not received this message.
+ALL applicants must submit a pdf of academic transcripts and graduation plan. You can activate UW Google here . Contact Physics Student Services if you have difficulty accessing the form.
+All Staff
+All students newly admitted to the major must file a graduation plan approved by Physics Student Services by the end of the quarter in which they become a Physics major. Failure to do so will result in a registration hold until their graduation plan is approved by Physics Student Services.
+Alumni News
+Alumni Update
+AMath 301 *
+AMath 401
 Animal Physiology:
-Cellular Aspects (3)
-Biol 427
-Biomechanics (5)
-Biol 461
-Neurobiology (3)
-Biol 467
-Comparative Animal Physiology (3)
+Applicants receive admission decisions to their UW email within 2 weeks of the application deadline , in time for registration the following quarter. If admitted, follow the directions in the email acceptance message; if you do not accept the offer by the deadline you will need to reapply. Transfer applicants will be informed of their status by UW Admissions.
+Applicants receiving a negative admission decision who believe important facts were overlooked by the admissions committee may appeal the decision by submitting a petition for reconsideration to Physics Student Services within two weeks of the notification email date. Submit only pertinent information not included with your original application. Applicants receive appeal decision emails one week after the deadline.
+Application Closes
+Application Opens
+Application Quarter
+Applied physics track
+Applied Physics Track (addl. 34-43 credits)
+Appropriate for Transfer Applicants who wish to apply for direct admission to the Physics major while applying to the UW.
+April 6
+Astr 321 *
+Astr 322 *
+Astr 323 *
+Astr 480 ‡ or Astr 481
+Astr 480 or Astr 481 ‡
+Astr 481
+Astronomical Data Analysis/Acquisition (5)
+Astronomical Observation (5)
+Autumn
+Awards
+B.S. Degree
+b) Chem 143 and CHEM 153
+Baccalaureate Honors
+Baccalaureate Honors are: Cum Laude, Magna Cum Laude, and Summa Cum Laude. These honors are awarded upon graduation to undergraduates earning their first bachelor’s degree with at least 90 credits taken at UW. Of these 90 credits, 60 must be numerically graded (extension credits do not count toward these 60 credits). These honors awards are not directly related to the Departmental or College Honors Programs. They also represent the top 10% of students in each of UW's schools and colleges.
+Back to top
+Beginning Scientific Computing (4)
 BioC 405 or 440
 Biochemistry (3-4)
-Capstone,
-3 credits from any
-combination of:
-Phys 499 or BioC 499
-Undergraduate Research (1-6)
+Biol 180
+Biol 200
+Biol 220
+Biol 340
+Biol 350
+Biol 355
+Biol 401
+Biol 404
+Biol 427
+Biol 461
+Biol 467
 Biol 499 or Chem 499
-Undergraduate Research (1-6)
-P Bio 499 or BioE 499
-Undergraduate Research (1-6)
-Neusci 499
-Undergraduate Research (1-6)
-Genome 499 or MicroM 499
-Undergraduate Research (1-6)
+Biological Physics (3)
+Biological Physics Track (addl. 48-56 credits)
+Biological physics track (No longer accepting new students as of Spring 2024)
+Biology & Chemistry
+Biomechanics (5)
+Biomolecular Analysis (3)
+Biomolecular Spectroscopy (3)
 Biophysics-related projects in Phys 498
-Direct Reading in Physics
 Biophysics-related projects in Phys 499
-Undergraduate Research (1-6)
-* Chem 457 plus an additional upper-division physics course may substitute for the Phys 328 requirement with permission from the undergraduate faculty advisor (UFA). Most students should not take both Phys 328 and Chem 457.
-‡ Chem 143 + 153 , Accelerated General Chemistry, may substitute for Chem 142+152+162; see the UFA to allow this.
-Teaching Physics Track (addl. 41-43 credits)
-Courses
-Topics
-Core Physics:
-Phys 226
-Particles & Symmetries (3)
-Phys 228
-Mathematical Methods of Physics II (4)
-Phys 324
-Quantum Mechanics I (4)
-Phys 407 + 408 + 409
-Physics by Inquiry (15)
-More Physics,
-1 course from:
-Phys 323
-Electromagnetism III (4)
-Phys 328 *
-Statistical Physics (3)
-Phys 329
-Classical Mechanics (3)
-More Math,
-1 course from:
-Math 207 or AMath 351
-Ordinary Differential Equations (3)
-Math 208 or AMath 352
-Linear Algebra (3)
-Math 209 or AMath 353
-Partial Differential Equations (3)
-Math 224
-Vector Calculus (3)
-AMath 401
-Vector Calculus & Complex Variables (4)
-Math 334 or 335 or 336
-Accelerated Advanced Calculus (5)
-Advanced Laboratory,
-1 course from:
-Phys 331
-Optics Lab (3)
-Phys 335
-Electronics Lab: Digital (3)
-Phys 417 ‖
-Neural Network Methods (3)
-Phys 431
-Modern Physics Lab: Condensed Matter (3)
-Phys 432
-Modern Physics Lab: Atomic (3)
-Phys 433
-Modern Physics Lab: Nuclear & Particle (3)
-Phys 434
-Computers in Data Acquisition (3)
-Astr 480 or Astr 481 ‡
-Astronomical Data Analysis/Acquisition (5)
-Capstone,
-3 credits from:
-Phys 401 or Phys 402 or Phys 403
-Physics Pedagogy (3)
-Phys 499 , working on a project that
-involves teaching
-Undergraduate Research (1-6)
-‖ PHYS 417 can be used to meet the advanced laboratory requirement OR the elective requirement.
-‡ Students taking other advanced labs may petition the UFA to have them substitute for Astr 480.
-Share
-Programs & Courses
-B.S. Degree
-Requirements
-Capstone Options
-Continuation Policy
-Transfer Credit
-Declaring Major
-Honors in Physics
-Undergraduate Research
-Mentoring Program
-Advice for Students
-Graduation
-Physics Minor
-PhD Program
-Professional Master&#039;s
-Courses
-Quick Links
-Student Services
-Society of Physics Students (SPS)
-Summer REU at UW
-UW Course Catalog
-UW Time Schedule
-Support Physics
-Instagram
-LinkedIn
-YouTube
-Events Mailing Lists
-Newsletter
-Department of Physics
-University of Washington
-Physics-Astronomy Building, Rm. C121
 Box 351560
-Seattle, WA 98195-1560
-Phone: (206) 543-2771
-Fax: (206) 685-0635
-physrecp@uw.edu
-Privacy
-Terms
-Site Map
-Alumni Update
-Employment
+BS Degree Requirements Before Autumn 2021
+Calendar
+Capstone Options
+Capstone,
+Cellular & Developmental Biology (5)
+Cellular Aspects (3)
+Centers & Institutes
+Changing Your Graduation Date
+Chem 223 (or 237 or 335 )
+Chem 224 (or 238 or 336 )
+Chem 428
+Chem 452 (or 456 )
+Chem 453
+Chem 454
+Chem 455 (or 456)
+Classical Mechanics (3)
+Climate & Diversity
+College of Arts & Sciences
+combination of:
+Common requirements, all tracks
+Common Requirements, All Tracks (52 credits)
+Community Support
+Comparative Animal Physiology (3)
+Complete a Graduating Senior Exit Survey
+Completion of Math 124 & 125 (or Math 134 & 135)
+Completion of Math 124, 125 & 126 (or Math 134, 135 & 136)
+Completion of Phys 121 & 122 (or Phys 141 & 142)
+Completion of Phys 121, 122 & 123 (or Phys 141, 142 & 143)
+Comprehensive & Applied Physics Track Electives
+Comprehensive track
+Comprehensive Track (addl. 38-46 credits)
+Computers in Data Acquisition (3)
+Consider seeing a Career Coach , who can be a helpful guide in career exploration, strategies on job & internship searching, and interview advising.
 Contact Us
-&copy; 2026 University of Washington . All rights reserved.
+Continuation in the Major
+Continuation in the Major | Department of Physics | University of Washington
+Continuation Policy
+Core Physics:
+Course Exam Archive
+Course Syllabi
+Courses
+Courses Offered
+Criteria for Satisfactory Progress & Continuation in the Major:
+Currently enrolled in Phys 123 (or Phys 143) & Math 126 (or Math 136 or 200-level math)
+Currently enrolled in physics lecture course higher than 220
+Data Acquisition
+Declaring Major
+Degrees are posted to your transcript by the UW Office of Graduation & Academic Records approximately 2-3 weeks after the end of the quarter upon verification that you have completed all degree requirements.
+Department Faculty
+Department of Physics
+Department Profile
+Differential Calculus (5)
+Diplomas and Degree Validation
+Direct Reading in Physics
+Direct Reading in Physics (2)
+Directories
+Double degree or major students
+During this time, the Physics advisor will review your MyPlan to ensure everything is in place for a graduation within 3 quarters (or less, depending on your timeline), verify that your exit survey has been submitted, and talk about submitting the Graduation Application to the University of Washington.
+Early Admissions Requirements – Successful applicants typically have grades ≥ 3.2 in recent physics and math courses as well as a cumulative GPA ≥ 3.2.
+Electives,
+Electromagnetism (5)
+Electromagnetism I (4)
+Electromagnetism II (4)
+Electromagnetism III (4)
+Electronics Lab: Analog (3)
+Electronics Lab: Digital (3)
+Eligible participants to the Physics Department Graduation Celebration will have completed their degrees between autumn and summer quarters (this is different from the campus-wide ceremony of summer to summer). The Physics Department Graduation Celebration be held at 4pm in the Husky Union Building (room 211 - Ballroom). Graduation apparel is optional. We do not require tickets to attend, but we need your RSVP and a slide for our slideshow. We would recommend purchasing parking through the UW Commencement website as parking will be competitive on the day of the Graduation Ceremony.
+Emeritus Faculty
+Employment
+Enrollment into Major
+Events
+Events Mailing Lists
+Every Physics B.S. degree option requires completion of a selection of courses plus fulfilment of a capstone requirement involving activities outside a typical classroom. Continuation in the major requires maintaining satisfactory progress. For further information on the range of activies which may be used to satisfy the capstone requirement for each degree track, and on satisfactory progress criteria, refer to:
+Every quarter, Physics Student Services reviews the progress of all majors. If a student's performance fails to meet the above satisfactory progress standards in any quarter during their tenure as a Physics major, the student is first placed on Academic Alert status. This changes to Academic Warning, and lastly on Academic Drop status, in each subsequent quarter in which satisfactory progress standards are not met, unless the non-satisfactory status is removed through the procedures described below.
+Evolution & Ecology (5)
+Excessive course repeats, course drops, and/or University withdrawals may constitute a lack of satisfactory progress.
+Extragalactic Astronomy & Cosmology (3)
+Faculty
+Fax: (206) 685-0635
+following options:
+For more information, visit the University Registrar's website for Graduation and Diplomas: https://registrar.washington.edu/students/graduation/
+Foundations in Molecular Cell Biology (3)
+Foundations in Physiology (3)
+Frontiers of Physics Lecture Series
+Full Directory
+General Chemistry
+Genetics & Molecular Ecology (5)
+Genome 499 or MicroM 499
+Get Involved
+Graduating Senior Priority (GSP) Registration
+Graduation
+Graduation for International Students
+Graduation Plan
+Graduation Plan (completed in MyPlan).
+Handshake is UW's primary resource for job searches, recruiting, and on-campus workshops & opportunities to network with employers. Current students and alumni are welcome to utilize Handshake:
+Hardship Withdrawal
+History
+Home
+Honors in Physics
+Honors Seminar (1)
+If admitted to the Physics major, current UW and entering transfer students must register at UW Seattle during the first quarter of admittance to the major. Students not enrolled for the quarter following the application decision will forfeit their admissions offer and will need to reapply for a future application cycle.
+If you need to change your graduation date, contact Physics Student Services as soon as possible. This will help to ensure that your registration for the additional quarter(s) opens as quickly as possible.
+If you’re thinking about graduate school, the UW Graduate School offers a great course that can help students explore the graduate school application process, develop an understanding of the purpose of graduate education, and access helpful resources. Preparing for Graduate Education (GRDSCH 200) is offered nearly every quarter: https://grad.uw.edu/prospective-students/finding-your-path/grad-school-200-preparing-for-graduate-education/
+Important: If you are graduating in the current quarter, please reach out to Physics Student Services within the first two weeks of the quarter because there is a strict deadline.
+In accordance with University policy and applicable federal and state statutes and regulations, the Department of Physics reaffirms its policy of equal opportunity regardless of race, color, creed, religion, national origin, sex, sexual orientation, age, marital status, disability, or status as a protected veteran. The University of Washington is committed to providing access and reasonable accommodation in its services, programs, activities, education and employment for individuals. To request accommodation in the application process, contact the Physics Department at 206-685-1832 or physadvs@uw.edu , or the Disability Services Office at 206-543-6450 (206-543-6452 TTY, 206-685-7264 FAX, 253-642-0142 VP) or e-mail to dso@uw.edu , at least ten days in advance of the application deadline
+In addition to the University policies regarding academic satisfactory progress , the Department of Physics has adopted the following additional requirements for continuation in the major. These are intended to provide reasonable assurance of academic success of our students while also making good use of departmental resources. Students are encouraged to periodically review their academic progress, and may seek advice from Physics Student Services at any time.
+In Memoriam
+In the Press
+Information for Graduating Seniors in the Physics Major
+Information for Graduating Seniors in the Physics Major | Department of Physics | University of Washington
+Instagram
+Integral Calculus (5)
+International Students are highly encouraged to refer to the ISS Final Year Checklist , or check in with their International Student Services advisor, as they can provide helpful information, especially regarding any requirements and suggestions as you approach your final quarter at the UW.
+Introduction to Quantum Mechanics (3)
+Introduction to Research: Frontiers of Physics (1)
+Introductory Biology
+Introductory Biology (5)
+Introductory Chemistry,
+Introductory Courses
+Introductory Experimental Physics (3)
+involves teaching
+IT Support (PACS)
+It takes 2-3 months for diplomas to arrive in the mail. Please be sure to check your MyUW address settings to ensure that your diploma arrives at the correct address. You can also specify the name printed on your diploma if it does not match your student record name in the UW database: https://registrar.washington.edu/students/diplomas/
+January 1
+January 15
+Join the UW Alumni Group on LinkedIn! https://www.linkedin.com/groups/40422/
+Keep phones and other electronics devices off and put away. If a test is closed book (& notes), keep all papers and other materials put away and out of sight.
+Letters of Recommendation: How to Ask: https://careers.uw.edu/blog/2022/09/08/how-to-ask-for-a-letter-of-recommendation/
+Letters of Recommendation: Tips & Advice from the Office of Merit Scholarships, Fellowships, & Awards https://expd.uw.edu/scholarships/applying/letters-of-recommendation/
+Linear Algebra (3)
+LinkedIn
+Machine Shop
+Main menu
+Make a Gift
+Maps
+March 15
+Math 124 or Math 134
+Math 125 or Math 135
+Math 126 or Math 136
+Math 207 or AMath 351
+Math 208 or AMath 352
+Math 209 or AMath 353
+Math 224
+Math 334 or 335 or 336
+Mathematical Methods of Physics I (4)
+Mathematical Methods of Physics II (4)
+Mechanics (5)
+Meet or email with a Physics advisor
+Mentoring Program
+Menu
+Modern Physics Lab: Atomic (3)
+Modern Physics Lab: Condensed Matter (3)
+Modern Physics Lab: Nuclear & Particle (3)
+More Math (3-5 credits),
+More Math,
+More Physics,
+Multivariate Calculus (5)
+MyPhys
+MyUW
+Neural Network Methods (3)
+Neurobiology (3)
+Neusci 499
+News & Events
+Newsletter
+Next, submit a Graduating Senior Exit Survey . This is a survey which asks how your experience was in the Physics major. It asks questions about the courses, the textbooks, about your interactions with members of the Physics Department, and whether you would like to be contacted in the future for participation in career panels or informational interviews. The feedback we receive is considered for making improvements to benefit future Physics majors, such as the creation of this graduation website!
+No longer accepting new students as of Spring 2024
+Note: After a student has earned their UW degree, the "Graduation Date" on the Degree Audit will go back to "not found". This is considered normal, as the degree will have already been posted to the student's transcript, making the Degree Audit irrelevant.
+October 5
+Once you apply for graduation, you are eligible for Graduating Senior Priority (GSP) registration which grants you priority Period 1 registration for your last 2 quarters. For example, a Physics student planning to graduate in spring quarter would have GSP registration for both winter and spring quarters if they complete their graduation process with Physics Student Services within the first 2-3 weeks of autumn quarter. For your specific timeline, please view Academic Calendar , select the appropriate academic year, and view when the Graduating Senior Priority application is due under ‘Application Deadlines’.
+Once you have confirmed your Graduation Application, you will receive the following notification: Thank you! We have received your confirmation. A new degree audit will also show that you have a graduation quarter listed at the top.
+ONLY for recently admitted UW transfer students or current UW students who have completed ≥ 105 credits and ≥ 5 post high-school college quarters. Either Standard or Early Pathway, as appropriate.
+Optics Lab (3)
+Order Official Transcripts: https://registrar.washington.edu/students/transcripts/
+Ordinary Differential Equations (3)
+Organic Chemistry I (4)
+Organic Chemistry II (4)
+Other than the reset options described above, involving two consecutive quarters of satisfactory progress after an Academic Alert or Academic Warning, the above three stages of unsatisfactory progress can only be removed with a Hardship Withdrawal (or Former Quarter Drop ) from the problematic course(s) in question, or if the grades for the problematic course(s) change to a 2.0 or above. Students who are seeking Hardship Withdrawals should be in contact with an advisor. It is the student's responsibility to let Physics Student Services know if their Hardship Withdrawal has been approved.
+Our Galaxy (3)
+P Bio 499 or BioE 499
+Partial Differential Equations (3)
+Participating in Graduation events
+Particles & Symmetries (3)
+Pay close attention to the rules regarding academic honesty for the particular course and instructor, as they may vary;
+People
+Personal Statement
+Personal Statement. Describe reasons for choosing major, include strategies for success.
+PhD Program
+PhD Students
+Phone: (206) 543-2771
+Phys 121 or Phys 141
+Phys 122 or Phys 142
+Phys 123 or Phys 143
+Phys 224
+Phys 225
+Phys 226
+Phys 227
+Phys 228
+Phys 231
+Phys 294
+Phys 321
+Phys 322
+Phys 323
+Phys 324
+Phys 325
+Phys 328
+Phys 328 *
+Phys 329
+Phys 331
+Phys 334
+Phys 335
+Phys 401 or Phys 402 or Phys 403
+Phys 407 + 408 + 409
+Phys 417 ‖
+Phys 429
+Phys 431
+Phys 432
+Phys 433
+Phys 434
+Phys 485 , 486 or 487
+Phys 494 , 495 or 496
+Phys 498
+Phys 499 , working on a project that
+Phys 499 or Astr 499 §
+Phys 499 or BioC 499
+Physical Chemistry for Biochemists I
+Physical Chemistry for Biochemists II
+Physical Chemistry I & II (3)
+Physics B.S. Degree Requirements
+Physics B.S. Degree Requirements | Department of Physics | University of Washington
+Physics by Inquiry (15)
+Physics Colloquium
+Physics Minor
+Physics News
+Physics Pedagogy (3)
+Physics Student Services will periodically run reports of their major students who have achieved a certain number of credits and reach out to students with whom we believe are close to graduation.
+Physics-Astronomy Building, Rm. C121
+physrecp@uw.edu
+Place your general education and major requirements into your MyPlan. If you are able to finish your courses within 3 quarters, then you can let us know you would like to graduate!
+Planning for Careers, Internships & Graduate School
+Postdocs
+Postdoctoral Fellowship Programs
+Privacy
+PROCEED TO APPLICATION FOR NEXT ADMISSIONS CYCLE
+Professional Master&#039;s
+Programs & Courses
+Prospective employers, graduate programs, and others who require verification that you’ve earned your degree can access this information through a UW Degree Validation website: https://registrar.washington.edu/students/enrollment-and-degree-verification/
+Quantum Mechanics I (4)
+Quantum Mechanics II (4)
+Quick links
+Quick Links
+Recipients
+Registration for the UW Commencement will begin in May.
+Related, you may also want to start thinking about obtaining Letters of Recommendation and any future references that you may need down the road for internships, employment, or graduate schools. Here are some helpful websites on how to start:
+Requirements
+Research
+Research Areas
+Research Experiences for Undergrads (REU)
+Research News
+Research Seminars
+Resources
+Review and Notification of Progress:
+Search
+Seattle, WA 98195-1560
+Senior Seminar (1)
+September 15
+Share
+Sit as far as possible from other students during tests. Do not sit near your regular study partners, so any unusually similar methods you may have learned together won't suggest copying occurred;
+Site Map
+Skip to main content
+Society of Physics Students (SPS)
+Solar System (3)
+Sometimes students will find a registration hold placed on their account if they have not applied to graduate. When this happens, please contact Physics Student Services so that we can review the hold and help.
+Spring
+Staff
+Standard Admission Requirements – Successful applicants typically have grades ≥ 2.6 in recent physics and math courses as well as a cumulative GPA ≥ 2.6.
+Statistical Physics (3)
+Student conduct at the University of Washington is governed by the Student Conduct Code . Students are expected to maintain the highest standards of academic conduct. For further information, refer to this page . The UW Physics Department expects every student to uphold academic honesty and refrain from any cheating on tests or plagiarism on assignments. Cheating/plagiarism is generally defined as taking credit for someone else's work, whether the source is a fellow student, book, or online resource. Cheating/plagiarism on assignments and tests hurts both the student committing the infraction and their fellow physics majors. Cheating, plagiarism, or other forms of academic misconduct, especially repeated offenses, may have severe consequences. Imposition of disciplinary sanctions by the Student Conduct Office will be considered equivalent to a student not making satisfactory progress during that quarter. To avoid any instance of apparent or inadvertent academic dishonesty, students are strongly urged to:
+Student Services
+Student Shop
+Students graduating in spring or summer 2026 and planning to participate in the UW Commencement Ceremony in June 2026 must have their Graduation Application submitted by the third Friday of spring quarter 2026.
+Students graduating with Baccalaureate Honors may order a gold honor cord to wear for the UW Commencement Ceremony when registering at the UW Commencement website. For students graduating in the spring, the honors listed in the Commencement Program (and honor cord distribution), are based on the student’s cumulative GPA through the preceding Winter Quarter. Spring Quarter grades are ultimately included in the credit totals and GPA calculations, determining wither the honors are posted to the student’s final record. You can find more information about baccalaureate honors, the Dean’s list, and other honors societies on the UW Baccalaureate Honors site .
+Students in all tracks of the Physics B.S. program are required to maintain a cumulative average GPA of at least 2.0 in all physics classes. This average includes the grades from all enrollments in any repeated course.
+Students must earn a numerical grade of at least a 2.0 in each course used to satisfy the requirements of the physics major. Courses used to satisfy requirements of the major must be taken on a graded basis, except if the course is only offered CR/NC. Courses taken as satisfactory/non-satisfactory (S/NS) cannot be used towards major requirements and thus violate this policy except during quarters which have been declared to be Extraordinary Circumstances Quarters , during which S grades may be used to satisfy graduation requirements.
+Students must take physics courses, courses from the menu of cognate math classes, or electives in other departments that meet a requirement for the physics major, such that they are able to graduate with a physics degree within the limits set by the University's satisfactory progress policy. Specifically, students should take one or more courses in each quarter for which they are registered that meet a requirement for the physics major, with allowable exceptions for students completing double majors and students who have nearly completed all requirements of the physics major.
+Students on Academic Warning who do not meet satisfactory progress in the following quarter will be placed on Academic Drop status. They will receive an email with appeal instructions, which must include a realistic graduation plan and be submitted to Physics Student Services by the deadline specified in the email. Students have one chance to appeal; if unsuccessful or if they do not appeal, they will be assigned a premajor status and may be removed from physics courses restricted to declared majors. If the appeal is approved, students must adhere to the agreed-upon progress plan. Failing to do so in the next quarter will result in a final drop from the major, which cannot be appealed.
+Students who are not currently on Academic Alert or Academic Warning will receive an email and a registration hold after failing to meet departmental progress criteria. The Academic Alert email will detail unmet criteria; students must acknowledge the email to lift the hold. Those who believe they received an erroneous warning should contact Physics Student Services . Students are strongly urged to meet with an advisor, who will offer resources, help plan manageable course loads, and discuss pathways within or outside their major. Circumstances affecting academic performance, including extenuating factors, should be addressed. Academic Alert status will be lifted if satisfactory progress is made in the following two quarters or if the warning was issued in error.
+Students who have double majors/double degrees must work with their other department advisor on their graduation process and have a separate graduation application submitted to the UW. You must graduate with both in the same quarter.
+Students will receive the GSP designation within 1-2 days of successfully confirming their graduation application.
+Submit a graduation application to the UW
+Summer or Autumn
+Summer REU at UW
+Support Physics
+Support Us
+Teaching physics track
+Teaching Physics Track (addl. 41-43 credits)
+Terms
+The Biophysics Track is no longer accepting new students as of Spring 2024
+The course requirements for a Physics B.S. degree begin with a common set of course options, applicable to all degree tracks, followed by a selection of additional option-specific courses. Note that any single course may satisfy at most one physics-specific degree requirement.
+The Graduating Senior Exit Survey must be completed before we can submit your graduation application.
+The Residence Requirement states that you will be ‘in-residence’ for 45 of the last 60 credits of your program. In other words, you will be taking your final classes here at the UW Seattle campus.
+The UW Alumni Association is a network of over 50,000 alumni Huskies, with chapters and regional groups all over the country and the world! The UWAA offers a complimentary one-year membership to its most-recent alumni, numerous opportunities to network with fellow Huskies, and alumni services such as library access and a UW alumni email account.
+The UW Commencement website has information on guest tickets to the UW ceremony, ordering announcements, graduation apparel, photos, purchasing parking permits, etc.
+The UW’s campus-wide graduation ceremony is for students who have or will graduate, between summer quarters. Example: for the 2026 June graduation, eligible students would graduate between summer 2025 and summer 2026.
+Thermal & Statistical Physics (3)
+This statement (500 words or less) should discuss reasons for choosing the Physics major and strategies for success, including lessons learned from previous successes / difficulties and plans for accessing support. The statement should also address how the chosen degree option (Applied, Comprehensive, or Teaching) is suited to life and career goals.
+Topics
+Transfer Credit
+Transfer Student Admissions
+Undergraduate Research
+Undergraduate Research (1-6)
+University of Washington
+Unofficial UW Transcript: https://my.uw.edu/ > UW Resources > Academics > Grades & Transcripts
+Upcoming Events
+Use the Career & Internship Center , which offers help in job-hunting skills, career planning, and career coaching for up to 3yrs after graduation.
+User account menu
+UW Alumni Association
+UW Course Catalog
+UW diplomas only list the graduate's name, the degree earned, and any applicable honors. Majors, minors, and options are not listed on UW diplomas unless they are part of the honors designation.
+UW Time Schedule
+Vector Calculus (3)
+Vector Calculus & Complex Variables (4)
+Visitor Information
+Washington
+Waves, Optics & Heat (5)
+What happens to your UW online services after you graduate? https://itconnect.uw.edu/tools-services-support/access-authentication/uw-netids/about-uw-netids/expiration/
+When can you graduate?
+When you are ready to graduate, please contact Physics Student Services so that we can go through the process outlined below.
+Winter
+Winter Quarter Admission
+You are here
+Your Physics major advisor will be the one to submit your graduation application to the UW. We will confirm your graduation quarter, any additional programs (such as another major or degree, minors, or any honors), and your residence requirement with you before we submit the graduation application.
+YouTube

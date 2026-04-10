@@ -1,3 +1,4 @@
+/* global __dirname, Buffer */
 const crypto = require("crypto");
 const fs = require("fs");
 const os = require("os");
@@ -17,8 +18,10 @@ require("ts-node").register({
 
 const {
   TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS,
-  TRANSFER_PLANNER_TRACKS,
 } = require("../../constants/transfer-planner-source");
+const {
+  TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS,
+} = require("../../constants/transfer-planner-source/grc-associate-tracks.generated");
 const {
   TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY,
 } = require("../../constants/transfer-planner-source/registry");
@@ -32,6 +35,8 @@ const DEFAULT_CONCURRENCY = 6;
 const HOST_MIN_DELAY_MS = 900;
 const RETRYABLE_STATUS_CODES = new Set([429]);
 const MAX_RETRY_ATTEMPTS = 3;
+const DEFAULT_RETRY_DELAY_MS = 5000;
+const MAX_RETRY_DELAY_MS = 60000;
 const USER_AGENT = "GatorGuideTransferPlannerSourceAudit/1.0";
 const CURL_COMMAND = process.platform === "win32" ? "curl.exe" : "curl";
 const CURL_MAX_BUFFER_BYTES = 20 * 1024 * 1024;
@@ -133,7 +138,7 @@ function collectSourceEntries(extraSourceLinks) {
     }
   }
 
-  for (const track of TRANSFER_PLANNER_TRACKS) {
+  for (const track of TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS) {
     for (const link of track.officialLinks ?? []) {
       const entry = getOrCreate(link.url);
       if (!entry) continue;
@@ -224,7 +229,27 @@ function parseHeaderBlock(rawHeaders) {
     lastModified: headerMap.get("last-modified") ?? null,
     contentLength: headerMap.get("content-length") ?? null,
     contentType: headerMap.get("content-type") ?? null,
+    retryAfter: headerMap.get("retry-after") ?? null,
   };
+}
+
+function parseRetryAfterMs(value) {
+  const raw = String(value ?? "").trim();
+  if (!raw) {
+    return null;
+  }
+
+  const seconds = Number.parseInt(raw, 10);
+  if (Number.isFinite(seconds) && seconds >= 0) {
+    return seconds * 1000;
+  }
+
+  const retryAt = Date.parse(raw);
+  if (Number.isFinite(retryAt)) {
+    return Math.max(0, retryAt - Date.now());
+  }
+
+  return null;
 }
 
 async function inspectSourceWithCurl(entry, timeoutMs) {
@@ -268,6 +293,7 @@ async function inspectSourceWithCurl(entry, timeoutMs) {
           lastModified: null,
           contentLength: null,
           contentType: null,
+          retryAfter: null,
         };
     const contentType = contentTypeLine || headers.contentType;
     const isHtml = String(contentType ?? "").toLowerCase().includes("text/html");
@@ -285,6 +311,7 @@ async function inspectSourceWithCurl(entry, timeoutMs) {
       bodyHash: bodyBuffer.byteLength ? sha256(bodyBuffer) : null,
       error: null,
       fetchMode: "curl",
+      retryAfterMs: parseRetryAfterMs(headers.retryAfter),
     };
   } catch (error) {
     return {
@@ -300,6 +327,7 @@ async function inspectSourceWithCurl(entry, timeoutMs) {
       bodyHash: null,
       error: error.message,
       fetchMode: "curl-error",
+      retryAfterMs: null,
     };
   } finally {
     fs.rmSync(tempDir, { recursive: true, force: true });
@@ -370,6 +398,7 @@ async function inspectSourceWithBrowser(entry, timeoutMs) {
       bodyHash: null,
       error: null,
       fetchMode: "browser",
+      retryAfterMs: parseRetryAfterMs(headers["retry-after"]),
     };
   } catch (error) {
     return {
@@ -385,6 +414,7 @@ async function inspectSourceWithBrowser(entry, timeoutMs) {
       bodyHash: null,
       error: error.message,
       fetchMode: "browser-error",
+      retryAfterMs: null,
     };
   } finally {
     if (page) {
@@ -427,6 +457,7 @@ function buildParsedPrimaryVerificationResult(entry) {
     bodyHash: null,
     error: null,
     fetchMode: "parsed-source",
+    retryAfterMs: null,
   };
 }
 
@@ -451,7 +482,26 @@ function shouldRetryInspection(result) {
 }
 
 function getRetryDelayMs(attemptIndex) {
-  return HOST_MIN_DELAY_MS * Math.max(2, attemptIndex + 2);
+  return Math.min(
+    MAX_RETRY_DELAY_MS,
+    Math.max(DEFAULT_RETRY_DELAY_MS * 2 ** attemptIndex, HOST_MIN_DELAY_MS * Math.max(2, attemptIndex + 2))
+  );
+}
+
+function getRetryDelayForResultMs(result, attemptIndex) {
+  return Math.min(
+    MAX_RETRY_DELAY_MS,
+    Math.max(getRetryDelayMs(attemptIndex), result?.retryAfterMs ?? 0)
+  );
+}
+
+function extendHostCooldown(host, delayMs) {
+  if (!Number.isFinite(delayMs) || delayMs <= 0) {
+    return;
+  }
+
+  const nextAllowedAt = Date.now() + delayMs;
+  hostNextAllowedAt.set(host, Math.max(hostNextAllowedAt.get(host) ?? 0, nextAllowedAt));
 }
 
 function runWithHostThrottle(url, task) {
@@ -465,9 +515,9 @@ function runWithHostThrottle(url, task) {
     }
 
     try {
-      return await task();
+      return await task(host);
     } finally {
-      hostNextAllowedAt.set(host, Date.now() + HOST_MIN_DELAY_MS);
+      extendHostCooldown(host, HOST_MIN_DELAY_MS);
     }
   });
 
@@ -514,6 +564,25 @@ async function inspectSourceOnce(entry, timeoutMs) {
       bodyHash: null,
       error: null,
       fetchMode: "head",
+      retryAfterMs: parseRetryAfterMs(getHeaderValue(headResponse, "retry-after")),
+    };
+  }
+
+  if (headResponse && RETRYABLE_STATUS_CODES.has(headResponse.status)) {
+    return {
+      ...entry,
+      ok: false,
+      status: headResponse.status,
+      finalUrl: headResponse.url,
+      contentType: getHeaderValue(headResponse, "content-type"),
+      contentLength: getHeaderValue(headResponse, "content-length"),
+      etag: getHeaderValue(headResponse, "etag"),
+      lastModified: getHeaderValue(headResponse, "last-modified"),
+      title: null,
+      bodyHash: null,
+      error: `HEAD returned ${headResponse.status}`,
+      fetchMode: "head",
+      retryAfterMs: parseRetryAfterMs(getHeaderValue(headResponse, "retry-after")),
     };
   }
 
@@ -525,6 +594,25 @@ async function inspectSourceOnce(entry, timeoutMs) {
       },
       timeoutMs
     );
+
+    if (RETRYABLE_STATUS_CODES.has(getResponse.status)) {
+      return {
+        ...entry,
+        ok: false,
+        status: getResponse.status,
+        finalUrl: getResponse.url,
+        contentType: getHeaderValue(getResponse, "content-type"),
+        contentLength: getHeaderValue(getResponse, "content-length"),
+        etag: getHeaderValue(getResponse, "etag"),
+        lastModified: getHeaderValue(getResponse, "last-modified"),
+        title: null,
+        bodyHash: null,
+        error: `GET returned ${getResponse.status}`,
+        fetchMode: "get",
+        retryAfterMs: parseRetryAfterMs(getHeaderValue(getResponse, "retry-after")),
+      };
+    }
+
     const bodyBuffer = Buffer.from(await getResponse.arrayBuffer());
     const contentType = getHeaderValue(getResponse, "content-type");
     const isHtml = String(contentType ?? "").toLowerCase().includes("text/html");
@@ -543,6 +631,7 @@ async function inspectSourceOnce(entry, timeoutMs) {
         bodyHash: sha256(bodyBuffer),
         error: null,
         fetchMode: "get",
+        retryAfterMs: parseRetryAfterMs(getHeaderValue(getResponse, "retry-after")),
       };
     }
   } catch (error) {
@@ -559,7 +648,7 @@ async function inspectSourceOnce(entry, timeoutMs) {
     return parsedPrimaryVerificationResult;
   }
 
-  if (RETRYABLE_STATUS_CODES.has(curlResult.status) || curlResult.status == null) {
+  if (curlResult.status == null) {
     const browserResult = await inspectSourceWithBrowser(entry, timeoutMs);
     if (browserResult.ok) {
       return browserResult;
@@ -581,7 +670,7 @@ async function inspectSourceOnce(entry, timeoutMs) {
 }
 
 async function inspectSource(entry, timeoutMs) {
-  return runWithHostThrottle(entry.url, async () => {
+  return runWithHostThrottle(entry.url, async (host) => {
     let lastResult = null;
 
     for (let attemptIndex = 0; attemptIndex <= MAX_RETRY_ATTEMPTS; attemptIndex += 1) {
@@ -590,16 +679,27 @@ async function inspectSource(entry, timeoutMs) {
         return lastResult;
       }
 
-      await sleep(getRetryDelayMs(attemptIndex));
+      const retryDelayMs = getRetryDelayForResultMs(lastResult, attemptIndex);
+      const retryReason =
+        lastResult.status != null ? `status ${lastResult.status}` : lastResult.error ?? "temporary fetch error";
+      console.log(
+        `Backing off ${Math.ceil(retryDelayMs / 1000)}s before retry ${attemptIndex + 1}/${MAX_RETRY_ATTEMPTS} for ${entry.url} (${retryReason})`
+      );
+      extendHostCooldown(host, retryDelayMs);
+      await sleep(retryDelayMs);
     }
 
     return lastResult;
   });
 }
 
-async function mapWithConcurrency(items, worker, concurrency) {
+async function mapWithConcurrency(items, worker, concurrency, options = {}) {
   const results = new Array(items.length);
   let nextIndex = 0;
+  let completedCount = 0;
+  const progressLabel = String(options.progressLabel ?? "items").trim() || "items";
+  const describeItem =
+    typeof options.describeItem === "function" ? options.describeItem : null;
 
   async function runWorker() {
     while (true) {
@@ -609,6 +709,11 @@ async function mapWithConcurrency(items, worker, concurrency) {
         return;
       }
       results[currentIndex] = await worker(items[currentIndex], currentIndex);
+      completedCount += 1;
+      const itemSuffix = describeItem
+        ? ` - ${String(describeItem(items[currentIndex], currentIndex) ?? "").trim()}`
+        : "";
+      console.log(`[${completedCount}/${items.length}] ${progressLabel}${itemSuffix}`);
     }
   }
 
@@ -718,7 +823,11 @@ async function main() {
   const currentSources = await mapWithConcurrency(
     sourceEntries,
     (entry) => inspectSource(entry, timeoutMs),
-    DEFAULT_CONCURRENCY
+    DEFAULT_CONCURRENCY,
+    {
+      progressLabel: "sources checked",
+      describeItem: (entry) => entry.url,
+    }
   );
   const previousSnapshot = loadPreviousSnapshot();
   const diff = buildDiff(previousSnapshot, currentSources);

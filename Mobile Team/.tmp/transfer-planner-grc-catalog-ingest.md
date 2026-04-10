@@ -1,9 +1,9 @@
 # Green River Catalog Ingest
 
-Generated: 2026-04-08T20:31:25.062Z
+Generated: 2026-04-09T18:58:20.227Z
 Source: https://catalog.greenriver.edu/content.php?catoid=10&navoid=624
 Catalog year: 2025-2026
-Source fingerprint: 313252bff1df9b676b845d0508063cc346d638ed2658cb149cf4e5c02875fa55
+Source fingerprint: 80e06cd10c583f0ab037d34f723126454936e89c7904c3ed44808d9467963af9
 
 - Catalog pages parsed: 16
 - Used cached snapshot fallback: no

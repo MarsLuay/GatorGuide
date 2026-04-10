@@ -82,7 +82,7 @@ export default function PrivacyPolicyPage() {
             <Card cardBgClass={cardBgClass} cardPadding={cardPadding}>
               <Bullet textClass={secondaryTextClass}>Account details (such as name and email) when you create an account or log in.</Bullet>
               <Bullet textClass={secondaryTextClass}>
-                Profile information you provide: intended major/field of study, GPA (optional), test scores (optional), and resume upload (optional).
+                Profile information you provide: intended major/field of study, GPA (optional), test scores (optional), and transcript upload (optional).
               </Bullet>
               <Bullet textClass={secondaryTextClass}>Questionnaire responses used to understand preferences and strengths.</Bullet>
               <Bullet textClass={secondaryTextClass}>Goal university list, comparisons, and saved preferences.</Bullet>

@@ -2,511 +2,246 @@ Owner: uw-bothell-law-economics-and-public-policy
 Source: https://www.uwb.edu/ias/undergraduate/majors/law-economics-public-policy
 Title: Law, Economics & Public Policy - School of Interdisciplinary Arts & Sciences
 
-Law, Economics & Public Policy - School of Interdisciplinary Arts & Sciences
-<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
-height="0" width="0" style="display:none;visibility:hidden">
-Skip To Content
-Current site
-All UW Bothell
-Search keywords
-Search
-Open mobile menu
-Quick Links
-School of Interdisciplinary Arts & Sciences
-Close mobile menu
-School of Interdisciplinary Arts & Sciences
-Search keywords
-Current site
-All UW Bothell
-About IAS
-Expand Navigation
-Mission, Values, and Goals
-Diversity and Equity
-Expand Navigation
-Diversity Plan
-Scholarship
-Contact Us
-Undergraduate
-Expand Navigation
-How to apply
-Majors
-Expand Navigation
-American & Ethnic Studies
-Community Psychology
-Conservation & Restoration Science
-Culture, Literature & the Arts
-Data Visualization
-Earth System Science
-Environmental Science
-Environmental Studies
-Gender, Women & Sexuality Studies
-Global Studies
-Interdisciplinary Arts
-Interdisciplinary Social Sciences
-Interdisciplinary Studies
-Law, Economics & Public Policy
-Mathematical Thinking & Visualization
-Media & Communication Studies
-Psychology
-Science, Technology & Society
-Society, Ethics & Human Behavior
-Minors
-Expand Navigation
-Minor in Climate Change & Society
-Minor in Creative Writing
-Minor in Diversity Studies
-Minor in Ecological Restoration
-Minor in Gender, Women & Sexuality Studies
-Minor in Geographic Information Systems
-Minor in Human Rights
-Minor in Performance
-Minor in Policy Studies
-Minor in Science, Technology & Society
-Minor in Visual & Media Arts
-Learning Objectives
-Hands-on Learning (IPR)
-Expand Navigation
-Research Opportunities
-Peer Facilitation
-Internships
-Community Engagement
-D.C. Human Rights Seminar
-Study Abroad
-Global Scholars
-Student Resources
-Expand Navigation
-Student Feedback
-Petitions and Forms
-Grade Appeal
-Grievances and Complaints
-Career Planning
-Graduate Programs
-Expand Navigation
-Creative Writing & Poetics (MFA)
-Expand Navigation
-People
-Admissions
-Learning Objectives
-Curriculum
-Thesis Work
-Events
-Fall Convergence
-Spring Festival
-MFA Publications
-Careers
-Policy Studies (MA)
-Expand Navigation
-Why Policy Studies?
-People
-Prospective Students
-Admissions
-Learning Objectives
-Curriculum
-Careers
-Student Resources
-Expand Navigation
-Funding
-Admitted Students
-Housing
-Faculty & staff
-Expand Navigation
-Faculty
-Staff
-News
-Events
-Give
-Expand Navigation
-Educational Access & Opportunity Fund
-Global Scholars Fund
-Experiential & Community Based Learning Fund
-Academic Excellence & Emerging Initiatives Fund
-Nony Clark Milmoe Scholarship
-Sandra Martin Roberts Memorial Scholarship
-Washington D.C. Travel Assistance Fund
-Graduate Studies Excellence Fund
-Master of Fine Arts (MFA) Program Fund
-American Muslim Research Institute Fund
-All IAS Funds
-UW Bothell Home
-Quick Links
-MyUW
-Canvas
-Directory
-Library
-Workday Login
-Give
-Apply As Undergraduate
-More Links
-Time Schedule
-Information Technology
-Commuter Services
-Facilities
-Human Resources
-Campus Safety
-Alumni
-About IAS
-Mission, Values, and Goals
-Diversity and Equity
-Contact Us
-Undergraduate
-How to apply
-Majors
-Minors
-Learning Objectives
-Hands-on Learning (IPR)
-Student Resources
-Graduate Programs
-Creative Writing & Poetics (MFA)
-Policy Studies (MA)
-Student Resources
-Faculty & staff
-Faculty
-Staff
-News
-Events
-Give
-Educational Access & Opportunity Fund
-Global Scholars Fund
-Experiential & Community Based Learning Fund
-Academic Excellence & Emerging Initiatives Fund
-Nony Clark Milmoe Scholarship
-Sandra Martin Roberts Memorial Scholarship
-Washington D.C. Travel Assistance Fund
-Graduate Studies Excellence Fund
-Master of Fine Arts (MFA) Program Fund
-American Muslim Research Institute Fund
-All IAS Funds
-Close mobile menu
-In this section
-About IAS
-Expand Navigation
-Mission, Values, and Goals
-Diversity and Equity
-Expand Navigation
-Diversity Plan
-Scholarship
-Contact Us
-Undergraduate
-Expand Navigation
-How to apply
-Majors
-Expand Navigation
-American & Ethnic Studies
-Community Psychology
-Conservation & Restoration Science
-Culture, Literature & the Arts
-Data Visualization
-Earth System Science
-Environmental Science
-Environmental Studies
-Gender, Women & Sexuality Studies
-Global Studies
-Interdisciplinary Arts
-Interdisciplinary Social Sciences
-Interdisciplinary Studies
-Law, Economics & Public Policy
-Mathematical Thinking & Visualization
-Media & Communication Studies
-Psychology
-Science, Technology & Society
-Society, Ethics & Human Behavior
-Minors
-Expand Navigation
-Minor in Climate Change & Society
-Minor in Creative Writing
-Minor in Diversity Studies
-Minor in Ecological Restoration
-Minor in Gender, Women & Sexuality Studies
-Minor in Geographic Information Systems
-Minor in Human Rights
-Minor in Performance
-Minor in Policy Studies
-Minor in Science, Technology & Society
-Minor in Visual & Media Arts
-Learning Objectives
-Hands-on Learning (IPR)
-Expand Navigation
-Research Opportunities
-Peer Facilitation
-Internships
-Community Engagement
-D.C. Human Rights Seminar
-Study Abroad
-Global Scholars
-Student Resources
-Expand Navigation
-Student Feedback
-Petitions and Forms
-Grade Appeal
-Grievances and Complaints
-Career Planning
-Graduate Programs
-Expand Navigation
-Creative Writing & Poetics (MFA)
-Expand Navigation
-People
-Admissions
-Learning Objectives
-Curriculum
-Thesis Work
-Events
-Fall Convergence
-Spring Festival
-MFA Publications
-Careers
-Policy Studies (MA)
-Expand Navigation
-Why Policy Studies?
-People
-Prospective Students
-Admissions
-Learning Objectives
-Curriculum
-Careers
-Student Resources
-Expand Navigation
-Funding
-Admitted Students
-Housing
-Faculty & staff
-Expand Navigation
-Faculty
-Staff
-News
-Events
-Give
-Expand Navigation
-Educational Access & Opportunity Fund
-Global Scholars Fund
-Experiential & Community Based Learning Fund
-Academic Excellence & Emerging Initiatives Fund
-Nony Clark Milmoe Scholarship
-Sandra Martin Roberts Memorial Scholarship
-Washington D.C. Travel Assistance Fund
-Graduate Studies Excellence Fund
-Master of Fine Arts (MFA) Program Fund
-American Muslim Research Institute Fund
-All IAS Funds
-School of Interdisciplinary Arts & Sciences
+(1-2 credits x 4 quarters)
+(5 credits, Autumn)
+(5 credits, Early Fall)
+(5 credits, Spring)
+(5 credits, Winter)
+(8 credits, Summer)
+[Supplemental official source] Curriculum
 &#124;
-Majors
-School of Interdisciplinary Arts & Sciences
-&#124;
-Undergraduate
-&#124;
-Majors
-&#124;
-Law, Economics & Public Policy
-Law, Economics & Public Policy
-BACHELOR OF ARTS
-On this page: Major Description | Learning Objectives | Degree Planning
-Do courses like Human Rights in America or Intro to Public Policy sound exciting to you?
-Do you want to explore a career in Government, Management, or Law?
-The Law, Economics, & Public Policy (LEPP) major at the University of Washington Bothell offers students the opportunity to explore how legal institutions shape policy decisions, and how political and economic contexts influence the creation of law. The major also provides opportunities for advocacy and reflection on problems and issues impacting education, business, the environment, and human rights. Academic and other learning experiences enhance student’s analytical, research, and communication skills which prepares them for law school and other graduate or professional opportunities.
-PURPOSE
-Students in the Law, Economics & Public Policy major are passionate about participating in policy and legal decisions to create change and promote citizenship. Students may be interested in attending law school or pursuing a career in law.
-PRACTICE
-Courses in the Law, Economics & Public Policy major include class discussion, writing exercises, and group projects to help students interpret and analyze complex legal and political issues, and communicate about real-world issues affecting the public.
-PROFESSION
-Graduates of the Law, Economics & Public Policy major use their knowledge of political institutions to pursue careers in law, business, public health, non-profit agencies, media, consulting, federal agencies, state government, & politics.
-Learning objectives
-The Law, Economics & Public Policy curriculum advances the five core IAS learning objectives . Students taking courses and/or majoring in Law, Economics & Public Policy:
-Understand, critically examine, and apply theories and models of economic, political, social, and legal decision-making and policy-making.
-Acquire appropriate skill sets for analyzing, displaying and employing data (qualitative and quantitative) as evidence for understanding social, legal and political concerns.
-Become an effective and persuasive speaker, writer and presenter.
-Recognize and understand the role of ethical dimensions inherent in policy-making.
-Are able to apply the above skills to address complex social and policy problems in practice in order to foster greater equity and ethically negotiate intersectional spaces where diverse interests are represented.
-Contacts
-Camille Walsh
-Faculty Coordinator
-Chelsea Nesvig
-Research Librarian
-Please contact the Law, Economics & Public Policy Faculty Coordinator if you have any questions, concerns or ideas about the major.
-Plan your degree
-Recommended preparation
-Interested in exploring this major but not ready to commit? Consider taking one of the below courses! Any of these selections will help familiarize you with the academic program and prepare you for advanced coursework in the major.
-BIS 282 Introduction to Globalization
-BIS 279 Introduction to Law & Society
-BIS 284 International Relations
-Prerequisites
-Students must complete the following prerequisites, with a minimum 2.0 grade, to declare the Bachelor of Arts in Law, Economics, and Public Policy major. Once all have been completed you can submit a declaration form using the online Major Declaration Form .
-English Composition Coursework
-B WRIT 133 OR B WRIT 134 OR ENGL 131 or equivalent Composition course (5 credits)
-B WRIT 135 OR ENGL 141 or equivalent Composition course (5 credits)
-Introduction Microeconomics Course
-BIS 200/B BUS 220, ECON 200 or equivalent Microeconomics course (5 credits)
-Introduction to American Government or American Politics (5 credits)
-BIS 175, BIS 280, POL S 202 or equivalent American Government/Politics course
+&copy; 2026 University of Washington Bothell
 <a class="bothell-link-block link-block-1 bothell-link-block--margin-top "
-style="color:var(--wp--custom--color--purple-100)"
-href="https://www.uwb.edu/ias/undergraduate/admissions"
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
 >
-Learn more about how to apply
-Learn more about how to apply
-Major Requirements
-Degree Requirements
-The following degree requirements are required as of Autumn 2024 quarter. Students who entered the Law, Economics, and Public Policy (LEPP) major prior to Autumn 2024 have different requirements. Please see your Academic Advisor for questions and academic planning.
-BISLEP 301 Law, Economics & Public Policy (5 credits)
-BISLEP 302 Policy Analysis (5 credits)
-BIS 215 Understanding Statistics (5 credits)
-Additional Skills & Methods coursework (5 credits)
-Policy Foundation courses (10 credits)
-Policy Foundation or Policy Problem courses (20 credits)
-Additional IAS Coursework (20 credits)
-TOTAL = 70 Credits
-Note: Classes in this major are offered primarily during day-time hours.
-School of IAS Requirements & Policies
-Residency Requirement: 30 credits must be completed in residency at UW Bothell.
-Cumulative GPA Requirement: Major GPA must be at a cumulative of 2.00 or higher.
-Interdisciplinary Practice & Reflection (IPR): The IPR requirement can overlap with the 70 credits of major coursework, or it can be completed through elective credits. Please see the IPR webpage for course options.
-Upper Division Credit Policy: A maximum of 35 credits earned in 100- and 200-level courses may apply toward the major. Remaining credits must be earned in upper division courses (300-level and above).
-Note: See all IAS policies and procedures on the Student Resources webpage .
-Courses
+18115 Campus Way NE
+425.352.5000
+425.352.5350
 A. LEPP Core Courses (LEPP:CORE)
-Students must complete both Core courses
-BISLEP 301 Law, Economics & Public Policy (5 credits) (AUT or WIN quarter)
-BISLEP 302 Policy Analysis (5 credits) (WIN or SPR quarter)
-B. Statistics Requirement
-Students choose from one of the Statistics courses
-BIS 215 Understanding Statistics
+About IAS
+Academic Excellence & Emerging Initiatives Fund
+Accessibility
+Acquire appropriate skill sets for analyzing, displaying and employing data (qualitative and quantitative) as evidence for understanding social, legal and political concerns.
+Additional IAS Coursework (20 credits)
+Additional Skills & Methods coursework (5 credits)
+Admissions
+Admitted Students
+All IAS Funds
+All UW Bothell
+Alumni
+American & Ethnic Studies
+American Muslim Research Institute Fund
+Apply As Undergraduate
+Are able to apply the above skills to address complex social and policy problems in practice in order to foster greater equity and ethically negotiate intersectional spaces where diverse interests are represented.
 B BUS 215 Introduction to Business Statistics
 B MATH 215 Statistics for Health Sciences
-STAT 220 Statistical Reasoning
-C. Skills & Method Courses (LEPP:SKILLS)
-Students choose from one of the Skills and Methods courses
-BIS 312 Approaches to Social Research
-BIS 340 Approaches to Cultural Research
-BIS 342 Geographic Information Systems
-BIS 343 Geographic Visualization
-BIS 352 Mapping Communities
-BIS 410 Topics in Qualitative Inquiry
-BIS 442 Advanced GIS Analysis and Applications
-BIS 447 Topics in Quantitative Inquiry
-BIS 483 Community Organizing
-BIS 495 Internship
-BIS 497 Political Internship in State Government
-D. Policy Foundation Courses (LEPP:FOUND)
-BIS 201/B BUS 221 Introduction to Macroeconomics
-BIS 203 Economics of Gender
-BIS 226 Foundations of U.S. Social Service
-BIS 279 Introduction to Law & Society
-BIS 304 Introduction to Political Economy and the Environment
-BIS 353 Human Rights in Theory and Practice
-BIS 338 Political Institutions & Processes
-BIS 365 Institutions and Social Change (formerly BISSTA 304)
-BIS 367 Ethics and Society (formerly BISSTA 359)
-BIS 374 Middle East Politics
-BIS 394 Comparative Economic Development
-BIS 414 Topics in Human Rights
-BIS 415 Public Policy & Law
-BIS 416 U.S. Constitutional Law
-BIS 491 Topics in Policy Studies
-BISGST 324 International Political Economy
-BISLEP 397 Topics in Law, Economics, and Public Policy
-BISLEP 497 Advanced Topics in Law, Economics, and Public Policy
-E. Policy Problem Courses (LEPP:PROBLEM)
+B WRIT 133 OR B WRIT 134 OR ENGL 131 or equivalent Composition course (5 credits)
+B WRIT 135 OR ENGL 141 or equivalent Composition course (5 credits)
+B. Statistics Requirement
+BACHELOR OF ARTS
+BACK TO TOP
 BEARTH 155 Introduction to Climate Science
+Become an effective and persuasive speaker, writer and presenter.
+BIS 175, BIS 280, POL S 202 or equivalent American Government/Politics course
 BIS 180 Introduction to Human Geography
 BIS 183 Introduction to the Middle East
+BIS 200/B BUS 220, ECON 200 or equivalent Microeconomics course (5 credits)
+BIS 201/B BUS 221 Introduction to Macroeconomics
+BIS 203 Economics of Gender
+BIS 215 Understanding Statistics
+BIS 215 Understanding Statistics (5 credits)
 BIS 219 The Politics of Sex Education
+BIS 226 Foundations of U.S. Social Service
 BIS 227 Rad Women in the Global South
 BIS 234 Media, Culture, and Capitalism
 BIS 249 Introduction to Labor Studies
 BIS 252 Politics of Science
 BIS 255 Critical Diversity Studies
+BIS 279 Introduction to Law & Society
 BIS 282 Introduction to Globalization
 BIS 284 International Relations
+BIS 293 Special Topics
+BIS 304 Introduction to Political Economy and the Environment
 BIS 307 Environmental Justice
 BIS 310 Women, Culture and Development
+BIS 312 Approaches to Social Research
+BIS 314 Topics in Geography
+BIS 316 Topics in Psychology
 BIS 326 Race, Space, and Segregation
 BIS 327 History of US Labor Institutions
-BIS/BEDUC 328 Diversity, Leadership, and Engagement
 BIS 335 Human Rights in America
 BIS 336 History of Mass Incarceration in the United States
+BIS 338 Political Institutions & Processes
+BIS 339 Global Cultural Studies
+BIS 340 Approaches to Cultural Research
+BIS 341 Topics in the Study of Culture
+BIS 342 Geographic Information Systems
+BIS 343 Geographic Visualization
 BIS 349 Industrial and Organizational Psychology
+BIS 352 Mapping Communities
+BIS 353 Human Rights in Theory and Practice
 BIS 359 Principles & Controversies of Sustainability
+BIS 365 Institutions and Social Change (formerly BISSTA 304)
+BIS 367 Ethics and Society (formerly BISSTA 359)
+BIS 374 Middle East Politics
 BIS 380 Bioethics
 BIS 384 Health, Medicine and Society
 BIS 386 Climate Change Adaptation Policy
 BIS 392 Water & Sustainability
+BIS 393 Special Topics
+BIS 394 Comparative Economic Development
+BIS 396 Topics in Sustainability
 BIS 403 Washington D.C. Seminar on Human Rights
 BIS 406 Urban Planning and Geography
 BIS 408 Critical Physical Geography
+BIS 410 Topics in Qualitative Inquiry
+BIS 414 Topics in Human Rights
+BIS 415 Public Policy & Law
+BIS 416 U.S. Constitutional Law
 BIS 421 Technology Policy
 BIS 441 Global Labor Markets
+BIS 442 Advanced Geographic Information Systems
+BIS 442 Advanced GIS Analysis and Applications
 BIS 443 Education Policy & the Economy
+BIS 447 Topics in Quantitative Inquiry
 BIS 448 Social Policy
 BIS 456 Climate Anxiety, Grief and Resilience
 BIS 458 Energy, Environment, and Society
 BIS 459 Conservation & Sustainable Development
 BIS 466 Human Rights & Resistance
 BIS 468 Human Rights & Sustainability
-BISAES 305 Power, Dissent, and American Culture
-BISGWS 302 Histories and Movements of Gender and Sexuality
-BISGST 303 History and Globalization
-BISGST 397 Topics in Global Studies
-BISGST 497 Advanced Topics in Global Studies
-F. Courses that may count in LEPP
-Topics courses under the below course numbers may apply to the LEPP major depending on the subject and title. Please see the Time Schedule notes to determine how they count toward the major.
-BIS 293 Special Topics
-BIS 314 Topics in Geography
-BIS 316 Topics in Psychology
-BIS 339 Global Cultural Studies
-BIS 341 Topics in the Study of Culture
-BIS 393 Special Topics
-BIS 396 Topics in Sustainability
-BIS 442 Advanced Geographic Information Systems
+BIS 483 Community Organizing
 BIS 490 Advanced Seminar
 BIS 491 Topics in Policy Studies
 BIS 493 Special Topics
-BACK TO TOP
-Plan your career
+BIS 495 Internship
+BIS 497 Political Internship in State Government
+BIS/BEDUC 328 Diversity, Leadership, and Engagement
+BISAES 305 Power, Dissent, and American Culture
+BISGST 303 History and Globalization
+BISGST 324 International Political Economy
+BISGST 397 Topics in Global Studies
+BISGST 497 Advanced Topics in Global Studies
+BISGWS 302 Histories and Movements of Gender and Sexuality
+BISLEP 301 Law, Economics & Public Policy (5 credits)
+BISLEP 301 Law, Economics & Public Policy (5 credits) (AUT or WIN quarter)
+BISLEP 302 Policy Analysis (5 credits)
+BISLEP 302 Policy Analysis (5 credits) (WIN or SPR quarter)
+BISLEP 397 Topics in Law, Economics, and Public Policy
+BISLEP 497 Advanced Topics in Law, Economics, and Public Policy
+Bothell, WA 98011-8246
+Bothell, Washington View our location on Google maps.
+Box 358530
+BPOLST 502 Statistics for Policy Studies
+BPOLST 509 Pro-seminar
+BPOLST 510 Statistics Fundamentals for Policy Studies
+BPOLST 511 Policy Process and Analysis
+BPOLST 513 Practicum
+BPOLST 514 Management and Program Evaluation
+BPOLST 515 Capstone Project
+BPOLST 594 Research Design is the default means of satisfying the Research Methods requirement. (You may petition for other options, including BPOLST 520 Internship, or BPOLST 598 Directed Research in Advanced Quantitative Methods). The course’s goal is to develop students’ own research questions and explore appropriate research methods for addressing these questions. Readings and discussion provide grounding in research designs, including experimental, longitudinal, cross-sectional, case-study, and participatory action research. Special attention will be devoted to planning and developing student capstone projects.
+C. Skills & Method Courses (LEPP:SKILLS)
+Camille Walsh
+Campus Safety
+Canvas
+Career Planning
 Career Resources
-Take advantage of the free resources offered by UW Bothell’s Career Services team. From mock interviews to internships and events, Career Services has everything you need to plan for your future!
+Careers
+Chelsea Nesvig
+Click on the link for the form you wish to access
+Close mobile menu
 Coaching appointments are offered in-person or over Zoom.
-Did you know? UW Alumni can access Career Services for three years after graduation (and Veterans have lifetime access)!
-The University of Washington offers numerous free resources to help IAS students prepare for a career after college. Featured career planning tools are listed on the IAS Student Resources page.
-BACK TO TOP
-Interested in graduate school?
-Undergraduate degrees offered in the School of IAS prepare students for a wide variety of graduate programs. If you think you might be interested in earning a master’s or doctoral degree, start planning now!
-Tips for exploring graduate school
-Make an appointment for graduate school coaching
-BACK TO TOP
-In this section
-About IAS
-Expand Navigation
-Mission, Values, and Goals
-Diversity and Equity
-Expand Navigation
-Diversity Plan
-Scholarship
-Contact Us
-Undergraduate
-Expand Navigation
-How to apply
-Majors
-Expand Navigation
-American & Ethnic Studies
+Community Engagement
 Community Psychology
+Commuter Services
 Conservation & Restoration Science
+Contact
+Contact Us
+Contact us by phone at:
+Contacts
+Copy the URL for this page into the incognito window
+Core Courses
+Courses
+Courses in the Law, Economics & Public Policy major include class discussion, writing exercises, and group projects to help students interpret and analyze complex legal and political issues, and communicate about real-world issues affecting the public.
+Creative Writing & Poetics (MFA)
 Culture, Literature & the Arts
+Cumulative GPA Requirement: Major GPA must be at a cumulative of 2.00 or higher.
+Current site
+Curriculum
+D. Policy Foundation Courses (LEPP:FOUND)
+D.C. Human Rights Seminar
 Data Visualization
+Degree Requirements
+Did you know? UW Alumni can access Career Services for three years after graduation (and Veterans have lifetime access)!
+Directory
+Diversity and Equity
+Diversity Plan
+Do courses like Human Rights in America or Intro to Public Policy sound exciting to you?
+Do you want to explore a career in Government, Management, or Law?
+E. Policy Problem Courses (LEPP:PROBLEM)
 Earth System Science
+Educational Access & Opportunity Fund
+Elective Credits
+English Composition Coursework
 Environmental Science
 Environmental Studies
+Events
+Expand Navigation
+Experiential & Community Based Learning Fund
+F. Courses that may count in LEPP
+Facilities
+Faculty
+Faculty & staff
+Faculty Coordinator
+Fall Convergence
+Funding
 Gender, Women & Sexuality Studies
+Give
+Global Scholars
+Global Scholars Fund
 Global Studies
+Grade Appeal
+Graduate Programs
+Graduate Studies Excellence Fund
+Graduates of the Law, Economics & Public Policy major use their knowledge of political institutions to pursue careers in law, business, public health, non-profit agencies, media, consulting, federal agencies, state government, & politics.
+Grievances and Complaints
+Hands-on Learning (IPR)
+height="0" width="0" style="display:none;visibility:hidden">
+Housing
+How to apply
+href="https://www.uwb.edu/ias/undergraduate/admissions"
+Human Resources
+iasinfo@uw.edu
+In this section
+Information Technology
 Interdisciplinary Arts
+Interdisciplinary Practice & Reflection (IPR): The IPR requirement can overlap with the 70 credits of major coursework, or it can be completed through elective credits. Please see the IPR webpage for course options.
 Interdisciplinary Social Sciences
 Interdisciplinary Studies
+Interested in exploring this major but not ready to commit? Consider taking one of the below courses! Any of these selections will help familiarize you with the academic program and prepare you for advanced coursework in the major.
+Interested in graduate school?
+Internships
+Introduction Microeconomics Course
+Introduction to American Government or American Politics (5 credits)
+Jobs
 Law, Economics & Public Policy
+Law, Economics & Public Policy - School of Interdisciplinary Arts & Sciences
+Learn more about how to apply
+Learn more about how to conduct an Internship
+Learn more about how to enroll in Directed Research
+Learn more about how to participate in Study Abroad program
+Learn more about the capstone research process
+Learning objectives
+Learning Objectives
+Library
+Major Requirements
+Majors
+Make an appointment for graduate school coaching
+Maps & directions
+Master of Fine Arts (MFA) Program Fund
 Mathematical Thinking & Visualization
 Media & Communication Studies
-Psychology
-Science, Technology & Society
-Society, Ethics & Human Behavior
-Minors
-Expand Navigation
+MFA Publications
 Minor in Climate Change & Society
 Minor in Creative Writing
 Minor in Diversity Studies
@@ -518,99 +253,100 @@ Minor in Performance
 Minor in Policy Studies
 Minor in Science, Technology & Society
 Minor in Visual & Media Arts
-Learning Objectives
-Hands-on Learning (IPR)
-Expand Navigation
-Research Opportunities
-Peer Facilitation
-Internships
-Community Engagement
-D.C. Human Rights Seminar
-Study Abroad
-Global Scholars
-Student Resources
-Expand Navigation
-Student Feedback
-Petitions and Forms
-Grade Appeal
-Grievances and Complaints
-Career Planning
-Graduate Programs
-Expand Navigation
-Creative Writing & Poetics (MFA)
-Expand Navigation
-People
-Admissions
-Learning Objectives
-Curriculum
-Thesis Work
-Events
-Fall Convergence
-Spring Festival
-MFA Publications
-Careers
-Policy Studies (MA)
-Expand Navigation
-Why Policy Studies?
-People
-Prospective Students
-Admissions
-Learning Objectives
-Curriculum
-Careers
-Student Resources
-Expand Navigation
-Funding
-Admitted Students
-Housing
-Faculty & staff
-Expand Navigation
-Faculty
-Staff
+Minors
+Mission, Values, and Goals
+More Links
+MyUW
 News
-Events
-Give
-Expand Navigation
-Educational Access & Opportunity Fund
-Global Scholars Fund
-Experiential & Community Based Learning Fund
-Academic Excellence & Emerging Initiatives Fund
 Nony Clark Milmoe Scholarship
-Sandra Martin Roberts Memorial Scholarship
-Washington D.C. Travel Assistance Fund
-Graduate Studies Excellence Fund
-Master of Fine Arts (MFA) Program Fund
-American Muslim Research Institute Fund
-All IAS Funds
-Contact Us
-School of Interdisciplinary Arts & Sciences
-iasinfo@uw.edu
-425.352.5350
-Box 358530
-18115 Campus Way NE
-Bothell, WA 98011-8246
-University of Washington Bothell Homepage
-Bothell, Washington View our location on Google maps.
-Contact us by phone at:
-425.352.5000
-Contact
-Visitors
-Maps & directions
-Jobs
-Accessibility
+Note: Classes in this major are offered primarily during day-time hours.
+Note: See all IAS policies and procedures on the Student Resources webpage .
+On this page: Major Description | Learning Objectives | Degree Planning
+Open an incognito window ( What is incognito mode or private browsing, and how to do it)
+Open mobile menu
+Other options
+Peer Facilitation
+People
+Petitions and Forms
+Plan your career
+Plan your degree
+Please contact the Law, Economics & Public Policy Faculty Coordinator if you have any questions, concerns or ideas about the major.
+Policy Foundation courses (10 credits)
+Policy Foundation or Policy Problem courses (20 credits)
+Policy Studies (MA)
+PRACTICE
+Practicum courses provide students with the opportunity to explore particular social and policy issues by connecting with community stakeholders that influence and are affected by those issues. The goal is to build relationships with communities with whom students are interested in working and/or conducting research. This course will advance around the three themes of exploration, connection, and relationship building. Students explore their community and political settings by conducting informal research into these contexts. Students will connect with community stakeholders through direct service, informational interviews, events, and/or other means. Currently in development and review for 2017-2018.
+Prerequisites
 Privacy
+PROFESSION
+Prospective Students
+Psychology
+PURPOSE
+Quick Links
+Recognize and understand the role of ethical dimensions inherent in policy-making.
+Recommended preparation
+Research Librarian
+Research Methods Requirement/ BPOLST 594 Research Design
+Research Opportunities
+Residency Requirement: 30 credits must be completed in residency at UW Bothell.
 Rules Docket
-Terms
+Sandra Martin Roberts Memorial Scholarship
+Scholarship
+School of IAS Requirements & Policies
+School of Interdisciplinary Arts & Sciences
+Science, Technology & Society
+Search
+Search keywords
 Seattle Campus
+See a description of current courses being offered.
+Skip To Content
+Society, Ethics & Human Behavior
+Spring Festival
+Staff
+STAT 220 Statistical Reasoning
+Still having difficulties? Contact UW-IT at help@uw.edu or 206-221-5000.
+Student Feedback
+Student Resources
+Students choose from one of the Skills and Methods courses
+Students choose from one of the Statistics courses
+Students in the Law, Economics & Public Policy major are passionate about participating in policy and legal decisions to create change and promote citizenship. Students may be interested in attending law school or pursuing a career in law.
+Students must complete both Core courses
+Students must complete the following prerequisites, with a minimum 2.0 grade, to declare the Bachelor of Arts in Law, Economics, and Public Policy major. Once all have been completed you can submit a declaration form using the online Major Declaration Form .
+Students wishing to receive elective credit for courses taken in other departments (either at UW Bothell or UW Seattle) must fill out a Petition for Outside Coursework and obtain faculty approval.
+Study Abroad
+style="color:var(--wp--custom--color--purple-100)"
 Tacoma Campus
+Take advantage of the free resources offered by UW Bothell’s Career Services team. From mock interviews to internships and events, Career Services has everything you need to plan for your future!
+Terms
+The Capstone is an independent research project intended to be the culmination of the degree program. Building on the networking and research done in the Practicum as well as the planning and design work from the previous quarter, students will work with a faculty advisor to complete and write up their own research. Depending on the nature of the research question and the kind of partners or collaborators students engage, the capstone manuscript may take different formats. In general, capstone manuscripts will include a description of the policy problem, literature review, description of research methods, review of research findings, and conclusions or implications.
+The following degree requirements are required as of Autumn 2024 quarter. Students who entered the Law, Economics, and Public Policy (LEPP) major prior to Autumn 2024 have different requirements. Please see your Academic Advisor for questions and academic planning.
+The Law, Economics & Public Policy curriculum advances the five core IAS learning objectives . Students taking courses and/or majoring in Law, Economics & Public Policy:
+The Law, Economics, & Public Policy (LEPP) major at the University of Washington Bothell offers students the opportunity to explore how legal institutions shape policy decisions, and how political and economic contexts influence the creation of law. The major also provides opportunities for advocacy and reflection on problems and issues impacting education, business, the environment, and human rights. Academic and other learning experiences enhance student’s analytical, research, and communication skills which prepares them for law school and other graduate or professional opportunities.
+The primary goal of this class is to help students develop the statistical skills needed to be independent policy researchers. It lays the basic foundation for both academic and practical investigation. This course begins your training by surveying important aspects of the conduct of research into social scientific questions. By the end of the quarter, you will be able to apply appropriate univariate, bivariate, and multivariate statistical techniques to answering research questions; understand the principles and logic behind statistical methods deployed in the course; utilize SPSS to execute a data analysis project and draw statistical inferences; and apply statistical knowledge to understand policy case studies.
+The University of Washington offers numerous free resources to help IAS students prepare for a career after college. Featured career planning tools are listed on the IAS Student Resources page.
+There are many options available to students when it comes to choosing electives. The first place to look is at the BPOLST elective offerings, located for the year on the current courses page. Students can also take graduate level coursework in other degrees, or 400-level classes that are relevant to their field of study. To find other UWB courses, please refer to the UWB Time Schedule . To find courses on the Seattle campus, please refer to the UWS Time Schedule .
+Thesis Work
+This course focuses on political and institutional aspects of public policy processes. It examines rationales for public policy and the processes in which they are articulated and negotiated; formulation of policies; selection of policy instruments; policy implementation; and policy analysis. The course pays particular attention to methods and approaches commonly used to analyze policy at the formation and implementation stages of policy-making, including cost-benefit analysis, trend analysis, and deliberative approaches.
+This course provides an overview of the major literatures in organization theory and management. Assignments focus on developing managerial skills such as: supervising subordinates, building a team, mapping stakeholders, problem-spotting, and evaluating existing programs. Special attention will be devoted to methods and approaches to program evaluation, including logic models, participatory approaches, and rational/quantitative approaches.
+This four-course sequence of quarterly one-credit courses develops students’ professional competence in a number of areas essential to the field of policy work. Workshops deepen skills in applied policy ethics, conflict resolution, policy writing and public speaking, and oral presentation of policy information. Students also network with alumni, professionals active in the field, and other faculty in the program in order to structure their MAPS experience and explore policy perspectives from multiple points of view.
+This two-week intensive course at the end of September prepares students for BPOLST 502 and more advanced statistics in the future, by providing a survey of college-level mathematical and foundational statistical methods. Topics to be covered include statistical notation, population, sampling distribution and standard normal distributions, graphs and tables, inferential statistics, descriptive statistics and correlations.
+Time Schedule
+Tips for exploring graduate school
+Topics courses under the below course numbers may apply to the LEPP major depending on the subject and title. Please see the Time Schedule notes to determine how they count toward the major.
+TOTAL = 70 Credits
+Undergraduate
+Undergraduate degrees offered in the School of IAS prepare students for a wide variety of graduate programs. If you think you might be interested in earning a master’s or doctoral degree, start planning now!
+Understand, critically examine, and apply theories and models of economic, political, social, and legal decision-making and policy-making.
+University of Washington Bothell Homepage
+Upper Division Credit Policy: A maximum of 35 credits earned in 100- and 200-level courses may apply toward the major. Remaining credits must be earned in upper division courses (300-level and above).
+UW Bothell Facebook
+UW Bothell Home
 UW Bothell Instagram
 UW Bothell Linkedin
-UW Bothell Facebook
 UW Bothell Twitter
 UW Bothell Youtube
-&copy; 2026 University of Washington Bothell
-UW Bothell Instagram
-UW Bothell Linkedin
-UW Bothell Facebook
-UW Bothell Twitter
-UW Bothell Youtube
+Visitors
+Washington D.C. Travel Assistance Fund
+Why Policy Studies?
+Workday Login
+You should be prompted to sign into Microsoft. Please use your UW NetID to login

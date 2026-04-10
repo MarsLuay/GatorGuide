@@ -181,11 +181,10 @@ export default function HomePage() {
         questionnaireAnswers: state.questionnaireAnswers,
         targetSchools: state.savedColleges.map((college) => college.name),
         documents: {
-          ...(user?.resume ? { resume: { fileUrl: user.resume } } : {}),
           ...(user?.transcript ? { transcripts: { fileUrl: user.transcript } } : {}),
         },
       }),
-    [state.questionnaireAnswers, state.savedColleges, user?.gpa, user?.major, user?.resume, user?.transcript]
+    [state.questionnaireAnswers, state.savedColleges, user?.gpa, user?.major, user?.transcript]
   );
 
   const textClass = isDark ? "text-white" : isGreen ? "text-white" : isLight ? "text-emerald-900" : "text-gray-900";
@@ -508,19 +507,7 @@ export default function HomePage() {
 
   const desktopHomeTasks = useMemo<DesktopHomeTask[]>(() => {
     const tasks: DesktopHomeTask[] = [];
-    const hasBlockingSetupTasks = !user?.resume || !user?.transcript || !hasCompletedQuestionnaire;
-
-    if (!user?.resume) {
-      tasks.push({
-        id: "resume",
-        icon: "document-attach-outline",
-        title: t("home.desktopTaskResumeTitle"),
-        body: t("home.desktopTaskResumeBody"),
-        actionLabel: t("home.desktopTaskResumeAction"),
-        onPress: () => router.push(ROUTES.profile),
-        tone: "warning",
-      });
-    }
+    const hasBlockingSetupTasks = !user?.transcript || !hasCompletedQuestionnaire;
 
     if (!user?.transcript) {
       tasks.push({
@@ -622,7 +609,6 @@ export default function HomePage() {
     getOpportunityTypeLabel,
     openOpportunity,
     router,
-    user?.resume,
     user?.transcript,
   ]);
 
@@ -745,7 +731,7 @@ export default function HomePage() {
       id: "calendar",
       icon: "calendar-outline",
       title: "Deadline calendar is live",
-      body: "Track roadmap milestones, scholarships, and college deadlines from one view.",
+      body: "Track planning milestones, scholarships, and college deadlines from one view.",
       actionLabel: "Open calendar",
       onPress: openCalendar,
       tone: "info",
@@ -766,7 +752,7 @@ export default function HomePage() {
         id: "guest-account",
         icon: "person-add-outline",
         title: "Save your progress",
-        body: "Create an account to sync roadmap, opportunities, and notifications across sessions.",
+        body: "Create an account to sync your planning data, opportunities, and notifications across sessions.",
         actionLabel: "Create account",
         onPress: () => router.push(ROUTES.login),
         tone: "info",
@@ -805,16 +791,16 @@ export default function HomePage() {
 
   const tourSteps = useMemo<HomeTourStep[]>(() => [
     {
-      id: "roadmap",
-      title: "Roadmap",
-      description: "Roadmap tracks tasks and transfer milestones so you always know your next step.",
+      id: "planning",
+      title: "Planning Snapshot",
+      description: "This area tracks transfer tasks, deadlines, and your next steps in one place.",
       x: tourCardLeft + tourCardWidth * 0.5,
       y: topAnchor + 360,
     },
     {
       id: "tab-home",
       title: "Home",
-      description: "Home is your main page for tasks, deadlines, and your roadmap snapshot.",
+      description: "Home is your main page for tasks, deadlines, and your planning snapshot.",
       x: screenWidth * 0.125,
       y: tabAnchorY,
     },
@@ -932,7 +918,7 @@ export default function HomePage() {
         <View className={`border rounded-3xl p-4 ${dashboardMutedClass}`}>
           <Text className={`${textClass} font-semibold`}>No deadlines yet</Text>
           <Text className={`${secondaryTextClass} text-sm mt-1`}>
-            Add dates to your roadmap or finish your profile to see more deadlines here.
+            Add dates to your planner or finish your profile to see more deadlines here.
           </Text>
         </View>
       )}
@@ -1040,7 +1026,7 @@ export default function HomePage() {
             <View className={`border rounded-3xl p-4 ${dashboardMutedClass}`}>
               <Text className={`${textClass} font-semibold`}>No deadlines yet</Text>
               <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                Add dates to your roadmap or finish your profile to see more deadlines here.
+                Add dates to your planner or finish your profile to see more deadlines here.
               </Text>
             </View>
           )}
@@ -1663,7 +1649,7 @@ export default function HomePage() {
                   <View className="flex-1">
                     <Text className={`font-semibold ${textClass}`}>Deadline calendar</Text>
                     <Text className={`${secondaryTextClass} text-sm`}>
-                      See scholarships, college deadlines, and roadmap dates by month
+                      See scholarships, college deadlines, and planning dates by month
                     </Text>
                   </View>
                   <Ionicons name="chevron-forward" size={18} color={placeholderTextColor} />

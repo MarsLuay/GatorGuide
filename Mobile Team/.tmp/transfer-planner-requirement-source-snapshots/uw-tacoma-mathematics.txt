@@ -2,246 +2,440 @@ Owner: uw-tacoma-mathematics
 Source: https://www.tacoma.uw.edu/sias/sam/mathematics
 Title: Mathematics | Department of Sciences and Mathematics | University of Washington Tacoma
 
-Mathematics | Department of Sciences and Mathematics | University of Washington Tacoma
-<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMVD9WN"
-height="0"
-width="0"
-style="display:none;
-visibility:hidden">
-Skip to main content
-Apply
-Canvas
-Map
-Calendar
-Library
-Directory
-MyUW
-more_vert
-more_vert
-Close Search
-<img
-src="/sites/default/files/sites/uwtd8main/W.svg"
-alt="Block W - Link to UW Tacoma homepage"/>
-<img class="mobile-hide desktop-show"
-src="/sites/default/files/sites/uwtd8main/wordmark-full.svg"
-alt="University of Washington Tacoma"/>
-<img class="mobile-show desktop-hide"
-src="/sites/default/files/sites/uwtd8main/Wordmark-Tacoma.svg"
-alt="University of Washington Tacoma"/>
-Tools
-25Live
-Canvas
-Directory
-IT Help
-Library
-Map
-MyUW
-Office365
-Panopto
-Scout
-UW Gmail
-Workday
-Zoom
-Search
+[Supplemental official source] graduation requirements
+[Supplemental official source] major academic advisor
+[Supplemental official source] Mathematics Portfolio Requirements
+[Supplemental official source] UWT general education
+* Students with last names starting with A-R
+* Students with last names starting with S-Z
+**Students with last names starting with A-Q
+**Students with last names starting with R-Z
+*For students admitted to the University prior to autumn quarter 2023, the DIV requirement is a minimum of 3 credits.
+*Students with last names starting with A-L
+*Students with last names starting with M-Z
+&copy; 2026 University of Washington Tacoma
 <a
-href=" https://www.tacoma.uw.edu/sias ">School of Interdisciplinary Arts & Sciences
-Department of Sciences and Mathematics
-<span
-class="path2">
-Make a Gift
-Department of Sciences and Mathematics
-ACCESS in STEM
-Advising Resources
-Majors
-expand_more
-Biomedical Sciences
-Environmental Science
-Environmental Sustainability
-Mathematics
-Minors
-expand_more
-Environmental Studies Minor
-Mathematics Minor
-Restoration Ecology Minor
-Sustainability Minor
-Partners in Science
-Research
-SAM DEI Initiatives
-SAM Resources
-expand_more
-SAM Directory
-Open Public Meetings
-SAMURS
-MyUW
-Map
-Tools
-Breadcrumb
-<a href="https://www.tacoma.uw.edu/"
-class="breadcrumb--home-icon uwt-icon" title="UW Tacoma Homepage"
->Home
+<a href="/registrar"
 <a href="/sias"
->School of Interdisciplinary Arts & Sciences
 <a href="/sias/sam"
->Department of Sciences and Mathematics
-Mathematics
-Mathematics
-Bachelor of Science
-Main Content
+<a href="https://instagram.com/uwtacoma"
+<a href="https://www.facebook.com/uwtacoma"
+<a href="https://www.linkedin.com/school/university-of-washington-tacoma"
+<a href="https://www.tacoma.uw.edu/"
+<a href="https://www.tiktok.com/@uwtacoma"
+<a href="https://www.youtube.com/channel/UC5yP5pgHK5hPnPwfxMykQFw"
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMVD9WN"
+<img
+<img class="mobile-hide desktop-show"
+<img class="mobile-show desktop-hide"
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2020-10/hendrixw.jpg"
 <img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2025-04/tbiol-312.jpg"
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2025-04/tbiol-312.jpg 1940w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2025-04/tbiol-312.jpg 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2025-04/tbiol-312.jpg 600w"
-sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
-alt="a classroom with college students working on a project">
-The BS in Mathematics provides students with a strong theoretical foundation and practical applications to help graduates secure STEM-related jobs. The major is structured so that you will see the three branches of mathematics: algebra, analysis and geometry and study one of these topics in depth. A two-quarter sequence of study in one of these branches is required, fostering a depth and maturity of mathematical thought in a modern context. The flexibility of this degree allows you to follow multiple pathways into the major and through the upper division courses while supporting your personal career goals.
-Admission Requirements
-Core courses (49 credits)
+<span
+>
+>Department of Sciences and Mathematics
+>Home
+>Office of the Registrar
+>School of Interdisciplinary Arts & Sciences
+15
+1900 Commerce Street, Tacoma, WA 98402-3100
+253-692-4414
+253-692-4450
+253-692-4913
+253-692-5718
+25Live
+4/20, 3-4:30pm, In-person (SCI 102)
+4/21, 10-11:30am, Zoom
+40 additional credits
+5
 A grade of at least 1.5 is required for TMATH 402 and TMATH 424 to satisfy the major requirements. A 2.0 is required if you wish to take the second class in the sequence TMATH 403 or TMATH 425.
-TMATH 124 Calculus with Analytic Geometry I
-TMATH 125 Calculus with Analytic Geometry II
-TMATH 126 Calculus with Analytic Geometry III
-TMATH 207 Introduction to Differential Equations
-TMATH 208 Matrix Algebra with Applications
-TMATH 224 Multivariable Calculus
-TMATH 300 Foundations of Mathematical Reasoning
-TMATH 350 Mathematics Research Seminar (must co-enroll in TMATH 351)
-TMATH 402 Introduction to Abstract Algebra I
-TMATH 424 Introduction to Real Analysis I
-Extended Core (5 credits)
-TMATH 403 Introduction to Abstract Algebra II OR
-TMATH 425 Introduction to Real Analysis II
-Electives (20 credits)
-No more than 5 credits can be satisfied by a course numbered below 300. No more than 5 credits can be satisfied by TMATH 495 , TMATH 496 , TMATH 498 or TMATH 499 . Note that a class may satisfy two elective areas, which will afford students flexibility to tailor their studies toward their desired career goals.
+A minimum of 180 college credits must be completed (with more required in some programs) and include academic credits in the following areas:
+A minimum of 45 lower-division credits is required before declaring the major. To declare the Mathematics major, students should reach out to the major academic advisor .
+A student must satisfy the requirements for the degree at the time the degree is to be awarded. For questions, please contact the Graduate School or your advisor.
+A student would not need to submit a petition if some of the transferable credits earned at another school are considered elective credits and would not be used towards fulfilling any degree requirements. For example, if a student has completed 185 credits, of which the last 20 credits were taken at another college or university, and at least 5 of those 20 credits include elective credits, the 5 credits would not be used towards meeting any degree requirements and the student would not need to fill out a petition.
+About
+ABOUT UW TACOMA
+Academic advising
+Academic Advising
+Academic Advising | School of Interdisciplinary Arts & Sciences | University of Washington Tacoma
+Academic calendar
+Academic Planning Resources
+Academic Programs
+ACADEMICS
+ACCESS in STEM
+Accessibility |
+Acknowledgement
+Actuarial Science
+add
+Administration
+Admission Requirements
+ADMISSION REQUIREMENTS
+Admissions
+Advising
+Advising Appointments: Appointments can be scheduled using the links below. Students should prepare for their advising appointments by reviewing their academic records (degree audit, transcript, etc.), major requirements , and course offerings in MyPlan . When you schedule an appointment, your advisor is setting aside this time just for you. If you cannot attend your appointment, please cancel your appointment online or email your advisor as soon as possible. If you are over 10 minutes late for an advising meeting, you will need to reschedule.
+Advising Resources
+ADVISOR
+Advisor contact information and scheduling links can be found below.
+alt="a classroom with college students working on a project">
+alt="Block W - Link to UW Tacoma homepage"/>
+alt="Hendrix the Husky at the W">
+alt="University of Washington Tacoma"/>
+Any additional courses beyond the required 5 credits from the extended core list.
+Apply
 Area: Computing (Required: A minimum of three credits and at least one course.)
-TMATH 210 Intermediate Statistics with Applications
-TMATH 390 Probability and Statistics in Engineering and Science
-TMATH 412 Cryptography OR TCSS 487 Cryptography (may receive elective credit for one class only)
-TME 311 Computational Physical Modeling II
-TESC 430 Environmental Modeling
+Area: Math in Culture (Required: A minimum of three credits and at least one course.)
+Area: Modeling (Required: A minimum of three credits and at least one course.)
+Area: Probability/Statistics (Required: A minimum of three credits and at least one course.)
+Area: Topology/Geometry (Required: A minimum of three credits and at least one course.)
+Areas of Inquiry (AoI)
+aria-label="University of Washington Tacoma Homepage">
+Arts and Humanities (A&H) Formerly known as Visual, Literary, and Performing Arts (VLPA)
+Arts and Humanities (A&H): 20 credits
+Arts, Media and Culture
+Arts, Media, Culture
+As part of the degree requirements, students must complete approximately 85 credits of general education coursework:
+As the university prioritizes students completing their first degree, post-baccalaureate students may have later registration times than standard undergraduates which can limit access to certain classes that fill up quickly.
+Autumn quarter - June 1
+Bachelor of Science
+Basic Skill
+Biomedical Sciences
+Biomedical Sciences *
+Bothell
+Breadcrumb
+Brian Burhenn
+Calendar
+CAMPUS
+Campus Safety
+Canvas
+Capstone (5 credits)
+Capstone Archive
+CAREER OPPORTUNITIES
+class="breadcrumb--home-icon uwt-icon" title="UW Tacoma Homepage"
+class="path2">
+class="uwt-icon uwt-icon-per-site-facebook">
+class="uwt-icon uwt-icon-per-site-instagram">
+Close Search
+Communication
+Connect with Advising
+Connect with your advisor quarterly to make sure you are on track to graduate. We look forward to meeting you!
+Contact
+Contact information
+Contact us |
+Contact your academic advisor if you have questions about how your coursework fulfills these requirements.
+Core courses (49 credits)
+Course Repeats
+Courses in TARTS, TAMST, TFILM, TLIT, TWRT; select courses from other subject areas may count
+Courses in TBIOL, TCHEM, TESC, TMATH, TPHYS, TCSS; select courses from other subject areas may count
+Courses in TEGL, THIST, TLAWPL, TPPE, TPSYCH, TSOC; select courses from other subject areas may count
+Courses such as Macroeconomics, Microeconomics, General Chemistry, Statistics, and others may fulfill this requirement
+Courses that focus on sociocultural, political, and economic diversity of human experience
+Credit from external sources (AP/IB credit, transfer coursework, by exam, Armed Forces Training School, etc.)
+Cross-campus courses taken at UW (Seattle) & UW Bothell
+Culture Arts & Communication
+Current Students
+Currently declared students have the following options for accessing advising support:
+Database and Computer Systems Administration
+Declared SIAS Major Students
+DEGREE REQUIREMENTS
+DEPARTMENT
+Department of Sciences and Mathematics
+Department of Sciences and Mathematics (SAM)
+Designated courses study diversity in the United States with focus on the sociocultural, political and economic diversity of human experience and help students develop an understanding of the complexities of living in increasingly diverse and interconnected societies.
+Details
+Directory
+Diversity (DIV)
+Diversity (DIV): 5 credits
+Economics and Policy Analysis
+Economics and Policy Analysis (EPA)
+Education
+Electives (20 credits)
+Email: bburhenn@uw.edu
+Email: karin@uw.edu
+Email: rclarkb@uw.edu
+Email: siasadv@uw.edu
+Email: sveal@uw.edu
+Email: twoodman@uw.edu
+Email: You are always welcome to directly email your advisor with any questions you might have (advisor contact information below). If you are not sure who to contact, please email our main account at SIASadv@uw.edu . Please include your student ID number in your emails, and always send emails from your UW email address.
+Engineering
+English Composition (C): 5 credits
+Environmental Science
+Environmental Science **
+Environmental Studies Minor
+Environmental Sustainability
+Equity & Inclusion
+Ethnic, Gender and Labor Studies
+Ethnic, Gender, and Labor Studies
+Exceptions to the rule regarding majors may be granted at the discretion of the department. If major requirements other than the current ones are being used, a note to that effect must be made on the degree application.
+expand_more
+Extended Core (5 credits)
+Faculty & Staff
+Fax Number
+Final Year Residency Requirement
+Financial Aid
+Find your advisor
+For a BS in Mathematics, students must complete 79 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+For admissions related questions, please reach out to Office of Admissions .
+For questions regarding the admission and application process, please see the Post-baccalaureate Admissions from the Office of Admissions and reach out to them directly with any questions or concerns about the process. They can be reached at uwtinfo@uw.edu or 253-692-4742.
+Formerly known as Areas of Knowledge (AoK)
+Formerly known as Quantitative/Symbolic Reasoning (QSR)
+Forms
+General Education Requirements
+General Education Requirements | School of Interdisciplinary Arts & Sciences | University of Washington Tacoma
+General Electives
+Global Studies Concentration
+Government
+Graduating Under Earlier Catalogs
+Graduating with Honors
+Graduation Requirements
+Graduation Requirements | Office of the Registrar | University of Washington Tacoma
+Graduation Requirements for a Master&#039;s Degree
+Graduation Requirements for a Masters Degree
+Have 40 earned college credits and have decided on an IAS major.
+Have 90 earned college credits and are considering an IAS major.
+Have met with a pre-major advisor who has referred you to work with an IAS advisor.
+height="0"
+History
+Home
+Housing
+href=" https://www.tacoma.uw.edu/sias ">School of Interdisciplinary Arts & Sciences
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2020-10/hendrixw.jpg 600w"
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2025-04/tbiol-312.jpg 600w"
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2020-10/hendrixw.jpg 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2025-04/tbiol-312.jpg 980w,
+IAS: Global Studies Concentration
+iashelp@uw.edu
+If the student is requesting to waive a university requirement, the petition will be submitted to their academic advisor for review by the Faculty Assembly's Academic Policy and Curriculum Committee. Once a determination has been made the student is contacted.
+If you have any questions please reach out to your assigned advisor.
+In order to graduate with a bachelor's degree, a student must meet minimum general educational and basic skills requirements, in addition to completing the requirements of their academic program. General Education requirements are outlined in this website. Additional requirements for specific degree requirements are found online on the degree program's webpages, or within the Degree Programs webpage of the General Catalog.
+Incoming students with less than 40 transfer credits should start by working with a pre-major advisor in University Academic Advising.
+Incoming UW Tacoma Students
+Information Technology
+Institutional Research
+Interdisciplinary Arts and Sciences
+IT Help
+Jobs
+Karin Dalesky
+Land
+Law and Policy
+Learn More >
+Library
+Location: WCG 424
+M-F 9a.m.-5p.m.
+Main Content
+MAJOR COORDINATOR
+Majors
+Majors:
+Make a Gift
+Make sure you have sent UWT all of your college transcripts. Because official transcripts can take a few weeks to be received and processed, please also have your current unofficial transcripts available to reference while meeting with an advisor.
+Map
+Master’s Degree Requirements
+Mathematics
+Mathematics | Department of Sciences and Mathematics | University of Washington Tacoma
+Mathematics Community Points: A minimum of 25 points earned by attending public math talks, giving math presentations, and attending math centered events.
+Mathematics Minor
+Mathematics Portfolio Requirements
+Mathematics Portfolio Requirements | Department of Sciences and Mathematics | University of Washington Tacoma
+Mattress Factory, room 251
+Meet with your advisor. Advisor contact information and scheduling links can be found below. Action items 1-4 must be completed before meeting with an advisor. Students are invited to start meeting with advisors on specific dates depending on the quarter in which they plan to start attending UWT. These dates are listed below. If needed, students can reach out to advisors before the dates below via email.
+Minimum GPA
+minimum of 5 credits
+Minors
+Monday-Friday, 9 a.m. - 5 p.m.
+more_vert
+Most students who transfer from another college have already completed many of these requirements. Any requirements that aren't complete when a transfer student is admitted to UW Tacoma become part of the student's degree program.
+Must include 5 credits of English Composition (C) with a minimum grade of 2.0 and 10 credits of Writing (W) courses
+MyUW
+Natural Sciences (NSc) Formerly known as Natural World (NW)
+Natural Sciences (NSc): 20 credits
+Network and Data Communication Analysis
+New transfer students starting Autumn 2026 or later: Please see the incoming student action items and advising dates listed in the Incoming Student section below.
+Newly admitted UW Tacoma students with 40 or more transfer credits, who have declared in or are intending to declare an IAS major, should complete the following steps to prepare for registration and advising.
+News & Communications
+No more than 5 credits can be satisfied by a course numbered below 300. No more than 5 credits can be satisfied by TMATH 495 , TMATH 496 , TMATH 498 or TMATH 499 . Note that a class may satisfy two elective areas, which will afford students flexibility to tailor their studies toward their desired career goals.
+Number of Credits
+Office Hours:
+Office Location
+Office of the Registrar
+Office365
+On this page:
+One course may be part of the major requirements for students in majors such as Communication, History (all tracks), PP&E (all tracks), Law & Policy, Psychology, and Writing Studies
+Open Public Meetings
+Operating Hours:
+Our advisors are student-centered professionals who aim to guide and challenge students through their academic careers. Our mission is to engage students in meaningful conversations that require them to think critically and learn life skills. We strive to successfully prepare students for graduation from the University of Washington Tacoma to enhance the impact they make in our local and global communities.
+Panopto
+Parking & transportation
+Partners in Science
+Petitioning to seek an exception to the residency requirement
+Physics
+Please connect with the advisor for your program via email.
+Please follow the steps below, based on your student status, to connect with an SIAS Advisor.
+Politics, Philosophy and Economics (PP&E)
+Politics, Philosophy, and Economics
+Post-baccalaureate (sometimes called "fifth-year") is a matriculated status (degree-seeking), reserved for students who are working toward a second bachelor’s degree. Only a small number of applicants are admitted each year as post-baccalaureates because the university’s primary commitment is to undergraduates who are completing their first degree. If you have completed or will complete an equivalent four-year bachelor’s degree before enrolling, you must apply as a post-baccalaureate student.
+Post-baccalaureate Registration
+Post-baccalaureate Students
+Post-graduate Studies
+Privacy |
+Professor Ruth Vanderpool
+Professor Zaher Kmail
+Prospective Students
+Psychology
+Psychology*
+Puyallup Tribe of Indians
+Quantitative Finance
+Reasoning (RSN)
+Reasoning (RSN): 5 credits
+Registration Resources
+reguwt@uw.edu
+Required materials and opportunities are assigned in key courses and are collected electronically beginning in TMATH 300. A completed portfolio is submitted as part of the course requirements for TMATH 450. Details about each item in the list below are provided through the Canvas course Mathematics Portfolio.
+Research
+Resources
+Restoration Ecology Minor
+Returning or Dropped Students
+Review MyPlan and Register.UW : https://www.tacoma.uw.edu/registrar/registration#permalink-15488. These are tools you will use to plan for future schedules and to complete the registration process each quarter. You can also find registration tutorials on Youtube.
+Review your major requirements .
+Rules Docket
+Ryan Branchini
+SAM DEI Initiatives
+SAM Directory
+SAM Resources
+SAMURS
+Schedule with Brian
+Schedule with Karin
+Schedule with Ryan
+Schedule with Shelli
+Schedule with Toni
+School of Interdisciplinary Arts & Sciences
+Schools and programs
+Science and mathematics students should also review the academic planning tools on the SAM Advising page. Students pursuing the Environmental Science, Mathematics, or Biomedical Sciences majors must watch the corresponding major orientation video and complete the action items outlined in the video.
+Sciences and Mathematics
+Scout
+Search
+Shelli Veal
+SIAS Advising Services
+SIAS Advisors
+SIAS Directory
+SIAS News
+SIAS Scholarships
+SIAS Student Advisory Council
+sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
+Skip to main content
+Social Sciences
+Social Sciences (SSc) Formerly known as Individuals and Society (I&S)
+Social Sciences (SSc): 20 credits
+Some courses may fulfill more than one general education category at the same time. For example, a course might be a Writing course and also an Arts and Humanities (A&H). Courses that are both A&H and Social Science (SSc) can only fulfill one general education area.
+Spanish Language and Cultures
+Spring quarter - February 10
+src="/sites/default/files/sites/uwtd8main/W.svg"
+src="/sites/default/files/sites/uwtd8main/wordmark-full.svg"
+src="/sites/default/files/sites/uwtd8main/Wordmark-Tacoma.svg"
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2020-10/hendrixw.jpg 1940w,
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2025-04/tbiol-312.jpg 1940w,
+Statistical Analysis
+Student Advising Mentors: For assistance navigating UWT academic planning tools (including MyPlan, degree audits, time schedules, and MyUW), connect with the Student Advising Mentors online or in person: https://www.tacoma.uw.edu/advising.
+Student Affairs resources are available to all currently enrolled students regardless of race, sex or other identity.
+Student Life
+Students
+Students are required to complete 45 of their final 60 credits as matriculated students in residence at UW Tacoma, which means that no more than a maximum of 15 of the final 60 credits may be non-resident credit. If a student takes more than 15 of the final 60 credits out of residence, the extra credits need not be counted against the limit of 15 if credits from the courses are not needed in any way to meet degree requirements. Some degree programs may have stricter residency requirements, please check with your advisor. Fully online degree programs are exempt from this requirement.
+Students hoping to return after an absence of more than one quarter (excluding summer quarter) should complete the returning student process outlined on the UWT Registrar's website.
+Students may be eligible to receive Baccalaureate honors (summa cum laude, magna cum laude, cum laude) or Faculty honors. More information about eligibility and requirements for each designation may be found on the Honors Requirements webpage.
+Students who have been dropped from the university due to low scholarship can petition for reinstatement . To be considered, the reinstatement petition must be submitted to your academic advisor three weeks prior to the start of the quarter. The petition will be forwarded to the department chair for review and, if approved, forwarded to the registrar's office for processing. Students who have not attended UWT for more than one quarter (excluding summer) will also need to complete the returning student process .
+Students who have not yet been admitted to UW Tacoma are invited to reach out to SIAS advisors via email. Have questions about major requirements, prerequisites, transfer courses, etc.? Find the advisor for your intended major below.
+Study Abroad
+style="display:none;
+Sustainability Minor
+TBECON 420 Intermediate Microeconomic Theory
 TBGEN 210 Computer-Based Business Problem Solving
 TCSS 142 Introduction to Programming
 TCSS 143 Fundamental of Object-Oriented Programming Theory and Application
-TINST 310 Computational Problem Solving
-TINST 311 Database Management and Data Analysis
-TSTAT 280 Applied Data Science
-Area: Math in Culture (Required: A minimum of three credits and at least one course.)
-TMATH 302 Mathematics and Social Justice
-TMATH 420 Math History
-TMATH 473 Math, Power and Society
+TCSS 321 Discrete Structures I (May open to math majors in Registration Period III. See section details linked in MyPlan.)
 TCSS 325 Computers, Ethics and Society (May open to math majors in Registration Period III. See section details linked in MyPlan.)
-TURB 225 Statistics for Urban Analysis
-TWOMN 211 Women in Science
-Area: Modeling (Required: A minimum of three credits and at least one course.)
-TBECON 420 Intermediate Microeconomic Theory
-TPHYS 122 Physics-Electromagnetism and Oscillatory Motion
+Teaching and Learning Center
+Terms of Use |
 TESC 430 Environmental Modeling
 TESC 490 Special Topics in Environmental Science
+The BS in Mathematics provides students with a strong theoretical foundation and practical applications to help graduates secure STEM-related jobs. The major is structured so that you will see the three branches of mathematics: algebra, analysis and geometry and study one of these topics in depth. A two-quarter sequence of study in one of these branches is required, fostering a depth and maturity of mathematical thought in a modern context. The flexibility of this degree allows you to follow multiple pathways into the major and through the upper division courses while supporting your personal career goals.
+The decision of the Academic Policy and Curriculum committee is final. An exception from a university graduation requirement becomes void at the end of two calendar years from the date the exemption was granted if all degree requirements have not been completed by that date.
+The following are considered non-resident credit:
+The student must present a minimum cumulative 2.00 GPA for all coursework taken in residence at the University of Washington Tacoma. The graduation grade point average is computed when the student has completed all work for the degree and includes only credits earned while in residence at the university. Residence credits are UW credits earned through the campus granting the degree.
+The student needs to submit a graduation petition two quarters in advance to their academic advisor. Petitions requesting approval of 16-25 non-resident credits will be reviewed by the department awarding the degree. Petitions requesting more than 25 credits will be reviewed by the Academic Policy & Curriculum Committee. The student will be notified by mail and UW email of the decision by the Office of the Registrar.
+This is especially true in the Department of Science and Mathematics (SAM) as some introductory science and math courses may be restricted to undergraduate students during Registration Period 1. Review individual course listings in the time schedule for details. It should also be noted that any priority status in registration does not supersede registration restrictions. This means that spots in these courses are not guaranteed for post-baccalaureate students.
+TINST 310 Computational Problem Solving
+TINST 311 Database Management and Data Analysis
+title="Follow UW Tacoma on Facebook">
+title="Follow UW Tacoma on Instagram">
+title="Follow UW Tacoma on Linkedin">
+title="Follow UW Tacoma on TikTok">
+title="Follow UW Tacoma on Youtube">
+TMATH 124 Calculus with Analytic Geometry I
+TMATH 125 Calculus with Analytic Geometry II
+TMATH 126 Calculus with Analytic Geometry III
 TMATH 172 Mathematics for Teachers II: Statistics and Modeling
+TMATH 207 Introduction to Differential Equations
+TMATH 208 Matrix Algebra with Applications
+TMATH 210 Intermediate Statistics with Applications
+TMATH 224 Multivariable Calculus
+TMATH 300 Foundations of Mathematical Reasoning
+TMATH 300's proof compilation: Identify the assignment from TMATH 300 where you chose one or more proofs to rewrite. The assignment then required minimally: 1) Rewritten Proof(s): typed, presented and solved completely and correctly; 2) A brief reflection describing why you chose the proof(s) that you did; and 3) Your name and expected graduation date.
+TMATH 302 Mathematics and Social Justice
 TMATH 316 Financial Mathematics
 TMATH 342 Applied Topology
-TMATH 393 Introduction to Probability Models
-TMATH 410 Regression Modeling
-TMATH 473 Math, Power and Society
-TSTAT 280 Applied Data Science
-Area: Probability/Statistics (Required: A minimum of three credits and at least one course.)
-TMATH 210 Intermediate Statistics with Applications
+TMATH 344 Fundamentals of Geometry
+TMATH 350 Mathematics Research Seminar (must co-enroll in TMATH 351)
+TMATH 350's Capstone Proposal.
 TMATH 390 Probability and Statistics in Engineering and Science
 TMATH 393 Introduction to Probability Models
-TME 351 Engineering Probability and Statistics
-TURB 225 Statistics for Urban Analysis
-Area: Topology/Geometry (Required: A minimum of three credits and at least one course.)
-TMATH 342 Applied Topology
-TMATH 344 Fundamentals of Geometry
-TMATH 420 Math History
-TMATH 427 Complex Analysis
-General Electives
+TMATH 402 Introduction to Abstract Algebra I
+TMATH 402's proof compilation: Identify the assignment from TMATH 402 where you chose one or more proofs to rewrite. The assignment then required minimally: a) Rewritten Proofs(s): typed, presented and solved completely & correctly. b) A brief reflection describing why you chose the proof(s) that you did.
+TMATH 403 Introduction to Abstract Algebra II OR
+TMATH 412 Cryptography OR TCSS 487 Cryptography (may receive elective credit for one class only)
 TMATH 413 Coding Theory
+TMATH 420 Math History
+TMATH 424 Introduction to Real Analysis I
+TMATH 424's proof compilation: Identify the assignment from TMATH 424 where you chose one or more proofs to rewrite. The assignment then required minimally: a) Rewritten Proof(s): typed, presented and solved completely & correctly. b) A brief reflection describing why you chose the proof(s) that you did.
+TMATH 425 Introduction to Real Analysis II
+TMATH 427 Complex Analysis
+TMATH 450 , the Mathematics Capstone class, is designed to both provide opportunities to earn Mathematics Community Points and to hone students' technical communication skills. Students must complete a research experience such as an independent reading, undergraduate research experience, special topics course, internship or senior thesis before enrolling so that they can draw upon the experience and results when creating their paper and presentation.
+TMATH 450's Capstone paper, presentation & marked rubric.
+TMATH 450's essay & supporting work.
+TMATH 473 Math, Power and Society
 TMATH 495 Collaborative Mathematics Research Experience
 TMATH 496 Mathematical Internship
 TMATH 498 Directed Readings in Mathematics
 TMATH 499 Undergraduate Research in Mathematics
-TCSS 321 Discrete Structures I (May open to math majors in Registration Period III. See section details linked in MyPlan.)
-Any additional courses beyond the required 5 credits from the extended core list.
-Capstone (5 credits)
-TMATH 450 , the Mathematics Capstone class, is designed to both provide opportunities to earn Mathematics Community Points and to hone students' technical communication skills. Students must complete a research experience such as an independent reading, undergraduate research experience, special topics course, internship or senior thesis before enrolling so that they can draw upon the experience and results when creating their paper and presentation.
+TME 311 Computational Physical Modeling II
+TME 351 Engineering Probability and Statistics
+To ensure a determination is made in time for graduation, petitions should be submitted at least two quarters before the student's graduation date to allow time for committee review and student registration.
+To include a minimum of 10 credits in each of the three areas of study:
 To prepare to enroll in TMATH 450, the Capstone project should be started no later than the summer before 450 is to be taken. The Capstone experience culminates in a paper, which is used as a basis for enrollment in TMATH 450 in Winter quarter. The paper must be 75 percent complete to be considered for enrollment in TMATH 450, which is required for graduation. Students in TMATH 450 must earn marks at or above 1.5, and must co-enroll in TMATH 351 .
-ADVISOR
+To request a waiver of program/major requirements a student must submit a petition to their academic program. Students should confer with their advisor before completing the petition. Review is done by the academic program faculty committee or director/dean, as procedures specific to each academic program dictate.
 Toni Woodman
-Connect with Advising
-Academic Planning Resources
-MAJOR COORDINATOR
-Professor Ruth Vanderpool
-Professor Zaher Kmail
-DEPARTMENT
-Department of Sciences and Mathematics (SAM)
-CAREER OPPORTUNITIES
-Actuarial Science
-Database and Computer Systems Administration
-Education
-Government
-Engineering
-Network and Data Communication Analysis
-Physics
-Post-graduate Studies
-Quantitative Finance
-Statistical Analysis
-ADMISSION REQUIREMENTS
-A minimum of 45 lower-division credits is required before declaring the major. To declare the Mathematics major, students should reach out to the major academic advisor .
-DEGREE REQUIREMENTS
-For a BS in Mathematics, students must complete 79 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
-Capstone Archive
-Mathematics Portfolio Requirements
-Course Repeats
-Contact
-Department of Sciences and Mathematics
-ACADEMICS
-Academic advising
-Academic calendar
-Canvas
-Library
-Schools and programs
-Study Abroad
-Teaching and Learning Center
-CAMPUS
-Campus Safety
-Equity & Inclusion
-Financial Aid
-Housing
-Information Technology
-Student Life
-University YMCA Student Center
-ABOUT UW TACOMA
-Administration
-Admissions
-Institutional Research
-Jobs
-Parking & transportation
-Research
-UWNetID login
-<a href="https://www.tacoma.uw.edu/"
-aria-label="University of Washington Tacoma Homepage">
-<a href="https://www.facebook.com/uwtacoma"
-title="Follow UW Tacoma on Facebook">
-<a href="https://instagram.com/uwtacoma"
-title="Follow UW Tacoma on Instagram">
-<a href="https://www.tiktok.com/@uwtacoma"
-title="Follow UW Tacoma on TikTok">
-<a href="https://www.youtube.com/channel/UC5yP5pgHK5hPnPwfxMykQFw"
-title="Follow UW Tacoma on Youtube">
-<a href="https://www.linkedin.com/school/university-of-washington-tacoma"
-title="Follow UW Tacoma on Linkedin">
-Puyallup Tribe of Indians
+Tools
+Total Credits Required to Graduate
+TPHYS 122 Physics-Electromagnetism and Oscillatory Motion
 Tribal Sponsor of UW Tacoma
-Learn More >
-Land
-Acknowledgement
->
+TSTAT 280 Applied Data Science
+TURB 225 Statistics for Urban Analysis
+TWOMN 211 Women in Science
+University Graduation Requirements for the Baccalaureate Degree
+University Requirements for a Baccalaureate Degree
+University YMCA Student Center
+Upcoming drop-ins:
+UW Gmail
 UW Seattle | UW
-Bothell
-&copy; 2026 University of Washington Tacoma
-1900 Commerce Street, Tacoma, WA 98402-3100
-Contact us |
-Terms of Use |
-Privacy |
-Accessibility |
-Rules Docket
+UW Tacoma Pre-major Students
+UW Tacoma pre-major students who have earned 45 college credits and meet their intended major's pre-admission requirements can reach out directly to an IAS major advisor to get declared and to address any academic planning needs.
+UW Tacoma pre-majors who have not yet fulfilled their major's pre-admission requirements are invited to work directly with IAS major advisors if they meet any of the criteria below:
+UWNetID login
+Various / Click Here
+visibility:hidden">
+Waiver of Degree Requirements
+We are glad you have chosen to be part of the University of Washington Tacoma community and are investing time in planning your academic career.
+width="0"
+Winter quarter - October 25
+With School or Program approval, a student may choose to graduate under the current catalog or the catalog in effect at the time they entered the program from which they are to graduate. University policy on use of earlier graduation requirements provides that if fewer than ten years have elapsed since a student's admission into the major program, they may choose to graduate under the requirements in effect at the time of admission, or under any subsequent requirements. If more than ten years have elapsed since admission to the major, the major program has the option of requiring the student to complete the current major requirements.
+Workday
+Writing (W)
+Writing (W): 10 credits
+Writing Studies
+You are strongly urged to contact the academic program you are interested in before applying to UW Tacoma. Each major has its own requirements and prerequisites, so it is very important that you discuss your qualifications and academic goals with an academic advisor from the appropriate academic program. Whether or not previous coursework can apply toward graduation requirements is determined by program faculty and advisors.
+Zoom

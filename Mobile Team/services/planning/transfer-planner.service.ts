@@ -119,21 +119,6 @@ export type TransferPlannerStudentEvaluationReport = {
 };
 
 type RequirementPriorityBucket = "application" | "beforeEnrollment" | "stayAtGrc";
-type ChecklistGuidanceTopic =
-  | "programming"
-  | "circuit"
-  | "math"
-  | "statistics"
-  | "writing"
-  | "physics"
-  | "chemistry"
-  | "biology"
-  | "economics"
-  | "gis"
-  | "language"
-  | "communication"
-  | "design"
-  | "general";
 
 type PendingSuggestedCourse = SuggestedQuarterCourse & {
   sequenceGroup: string | null;
@@ -160,166 +145,44 @@ const REQUIREMENT_PRIORITY_RANK: Record<RequirementPriorityBucket, number> = {
   stayAtGrc: 2,
 };
 
-function detectChecklistGuidanceTopic(item: TransferPlannerChecklistItem): ChecklistGuidanceTopic {
-  const normalized = `${item.title} ${(item.grcCourses ?? []).join(" ")} ${(
-    item.alternatives ?? []
-  )
-    .flat()
-    .join(" ")}`
-    .toUpperCase()
-    .replace(/\s+/g, " ");
+const REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE =
+  "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.";
 
-  if (
-    /\b(CIRCUIT|EE 201|EE 215|ENGR& 204|ENGR& 214|ENGR& 224|ENGR& 225|ENGR 140)\b/.test(normalized)
-  ) {
-    return "circuit";
-  }
-
-  if (
-    /\b(PROGRAMMING|COMPUTING|CS 12[123]|CS& 13[12]|CS& 14[15]|ENGR 250|TCSS 14[23]|CSE 12[23]|CSE 14[23]|CSS 14[23])\b/.test(
-      normalized
-    )
-  ) {
-    return "programming";
-  }
-
-  if (/\b(STAT|STATISTICS|Q SCI|QMETH)\b/.test(normalized)) {
-    return "statistics";
-  }
-
-  if (
-    /\b(CALCULUS|DIFFERENTIAL EQUATIONS|LINEAR ALGEBRA|MATRIX|MATH|AMATH|TMATH|STMATH)\b/.test(
-      normalized
-    )
-  ) {
-    return "math";
-  }
-
-  if (/\b(WRITING|ENGL|COMPOSITION|TECHNICAL WRITING)\b/.test(normalized)) {
-    return "writing";
-  }
-
-  if (/\b(PHYS|PHYSICS)\b/.test(normalized)) {
-    return "physics";
-  }
-
-  if (/\b(CHEM|CHEMISTRY)\b/.test(normalized)) {
-    return "chemistry";
-  }
-
-  if (/\b(BIOL|BIOLOGY|BBIO|ANATOMY|PHYSIOLOGY|MICROBIOLOGY|NUTR)\b/.test(normalized)) {
-    return "biology";
-  }
-
-  if (/\b(ECON|ECONOMICS)\b/.test(normalized)) {
-    return "economics";
-  }
-
-  if (/\b(GIS|GEOGRAPHY|MAPPING|SPATIAL)\b/.test(normalized)) {
-    return "gis";
-  }
-
-  if (
-    /\b(CHINESE|JAPANESE|KOREAN|SPANISH|FRENCH|GERMAN|LATIN|GREEK|DANISH|FINNISH|NORWEGIAN|SWEDISH|ITALIAN|LANGUAGE)\b/.test(
-      normalized
-    )
-  ) {
-    return "language";
-  }
-
-  if (/\b(COMM|COMMUNICATION|MEDIA|JOURNALISM|FILM|CINEMA)\b/.test(normalized)) {
-    return "communication";
-  }
-
-  if (/\b(DESIGN|ART|DRAWING|STUDIO|VISUAL)\b/.test(normalized)) {
-    return "design";
-  }
-
-  return "general";
+function joinPlannerLabelList(labels: string[]) {
+  if (labels.length <= 1) return labels[0] ?? "";
+  if (labels.length === 2) return `${labels[0]} and ${labels[1]}`;
+  return `${labels.slice(0, -1).join(", ")}, and ${labels[labels.length - 1]}`;
 }
 
-function buildBeforeEnrollmentFallbackNote(topic: ChecklistGuidanceTopic) {
-  switch (topic) {
-    case "programming":
-      return "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because stronger programming prep makes the first UW terms easier.";
-    case "circuit":
-      return "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it gives a stronger circuit foundation for later UW engineering coursework.";
-    case "math":
-      return "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.";
-    case "statistics":
-      return "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because later UW coursework still depends on statistics or data-method work either way.";
-    case "writing":
-      return "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because stronger writing prep helps right away after transfer.";
-    case "physics":
-    case "chemistry":
-    case "biology":
-      return "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because later UW coursework still depends on this science preparation either way.";
-    case "economics":
-      return "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the degree still uses this background either way.";
-    case "gis":
-      return "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it gives a useful technical foundation before upper-division UW coursework.";
-    case "language":
-      return "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it can reduce early UW language bottlenecks.";
-    case "communication":
-      return "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it gives a stronger foundation before upper-division UW coursework.";
-    case "design":
-      return "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it gives a stronger creative foundation before upper-division UW coursework.";
-    default:
-      return "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment.";
-  }
-}
+function joinGuidanceSummaries(...parts: (string | null | undefined)[]) {
+  const cleaned = parts
+    .map((part) => String(part ?? "").trim())
+    .filter(Boolean);
 
-function buildStayAtGrcFallbackNote(topic: ChecklistGuidanceTopic) {
-  switch (topic) {
-    case "programming":
-      return "Useful programming head start to finish at Green River if time and aid allow before transfer.";
-    case "circuit":
-      return "Useful circuit head start to finish at Green River if time and aid allow before transfer.";
-    case "math":
-      return "Useful extra math head start to finish at Green River if time and aid allow before transfer.";
-    case "statistics":
-      return "Useful statistics head start to finish at Green River if time and aid allow before transfer.";
-    case "writing":
-      return "Useful writing head start to finish at Green River if time and aid allow before transfer.";
-    case "physics":
-    case "chemistry":
-    case "biology":
-      return "Useful science head start to finish at Green River if time and aid allow before transfer.";
-    case "economics":
-      return "Useful economics head start to finish at Green River if time and aid allow before transfer.";
-    case "gis":
-      return "Useful GIS or mapping head start to finish at Green River if time and aid allow before transfer.";
-    case "language":
-      return "Useful language head start to finish at Green River if time and aid allow before transfer.";
-    case "communication":
-      return "Useful communication or media head start to finish at Green River if time and aid allow before transfer.";
-    case "design":
-      return "Useful design head start to finish at Green River if time and aid allow before transfer.";
-    default:
-      return "Useful Green River head start if time and aid allow before transfer.";
-  }
+  return cleaned.length ? cleaned.join(" ") : null;
 }
 
 function buildChecklistGuidanceSummary(
-  bucket: RequirementPriorityBucket,
+  _bucket: RequirementPriorityBucket,
   item: TransferPlannerChecklistItem
 ) {
   const explicitNote = String(item.note ?? "").trim();
-  if (explicitNote) {
+  if (explicitNote === REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE) {
     return explicitNote;
   }
 
-  const topic = detectChecklistGuidanceTopic(item);
-
-  if (bucket === "beforeEnrollment") {
-    return buildBeforeEnrollmentFallbackNote(topic);
-  }
-
-  if (bucket === "stayAtGrc") {
-    return buildStayAtGrcFallbackNote(topic);
-  }
-
   return null;
+}
+
+function buildPrerequisiteGuidanceSummary(dependentCourseLabels: string[]) {
+  const uniqueLabels = unique(
+    dependentCourseLabels
+      .map((label) => String(label ?? "").trim())
+      .filter(Boolean)
+  );
+  if (!uniqueLabels.length) return null;
+
+  return `Prerequisite for ${joinPlannerLabelList(uniqueLabels)}.`;
 }
 
 function getChecklistChoiceLabels(item: TransferPlannerChecklistItem) {
@@ -2084,9 +1947,6 @@ function buildPrerequisiteDependencyCoursesForEssentialPlan(
             dependencyCourse.priorityRank,
             REQUIREMENT_PRIORITY_RANK.beforeEnrollment
           ),
-          guidanceSummary:
-            dependencyCourse.guidanceSummary ??
-            `Needed before ${course.label} can be completed for this plan.`,
         };
         selectedByLabel.set(promotedDependencyCourse.label, promotedDependencyCourse);
         for (const explicitCourseCode of promotedDependencyCourse.explicitCourseCodes) {
@@ -2098,6 +1958,44 @@ function buildPrerequisiteDependencyCoursesForEssentialPlan(
   }
 
   return [...selectedByLabel.values()];
+}
+
+function attachAutomaticPrerequisiteGuidance(courses: PendingSuggestedCourse[]) {
+  const dependentLabelsByPrerequisiteCode = new Map<string, string[]>();
+
+  for (const course of courses) {
+    const prerequisiteCodes = unique(course.prerequisiteCourseSets.flat());
+
+    for (const prerequisiteCode of prerequisiteCodes) {
+      const existingLabels = dependentLabelsByPrerequisiteCode.get(prerequisiteCode) ?? [];
+      if (!existingLabels.includes(course.label)) {
+        existingLabels.push(course.label);
+      }
+      dependentLabelsByPrerequisiteCode.set(prerequisiteCode, existingLabels);
+    }
+  }
+
+  return courses.map<PendingSuggestedCourse>((course) => {
+    const dependentLabels = unique(
+      course.explicitCourseCodes.flatMap(
+        (courseCode) => dependentLabelsByPrerequisiteCode.get(courseCode) ?? []
+      )
+    ).filter((label) => label !== course.label);
+    const prerequisiteGuidanceSummary = buildPrerequisiteGuidanceSummary(dependentLabels);
+    const guidanceSummary = joinGuidanceSummaries(
+      prerequisiteGuidanceSummary,
+      course.guidanceSummary
+    );
+
+    if (guidanceSummary === course.guidanceSummary) {
+      return course;
+    }
+
+    return {
+      ...course,
+      guidanceSummary,
+    };
+  });
 }
 
 export function buildSuggestedQuarterPlan(input: {
@@ -2162,9 +2060,7 @@ export function buildSuggestedQuarterPlan(input: {
   );
   const remainingCourses =
     input.includeStayAtGrcCourses === false
-      ? essentialRemainingCourses.length || essentialDependencyCourses.length
-        ? [...essentialRemainingCourses, ...essentialDependencyCourses]
-        : stayAtGrcRemainingCourses
+      ? [...essentialRemainingCourses, ...essentialDependencyCourses]
       : buildRemainingSuggestedCourses([
           {
             bucket: "application",
@@ -2179,8 +2075,9 @@ export function buildSuggestedQuarterPlan(input: {
             statuses: input.stayAtGrcStatuses,
           },
         ], prerequisiteCourseMap, corequisiteCourseMap);
+  const guidedRemainingCourses = attachAutomaticPrerequisiteGuidance(remainingCourses);
   const completedQuarterPlans = buildCompletedQuarterPlans(input.completedCourses);
-  const currentQuarterCourses = remainingCourses
+  const currentQuarterCourses = guidedRemainingCourses
     .filter((course) => selectedCurrentCourseLabels.has(course.label))
     .map<PendingSuggestedCourse>((course) => ({
       ...course,
@@ -2189,11 +2086,11 @@ export function buildSuggestedQuarterPlan(input: {
   const currentQuarterSlot = currentQuarterCourses.length
     ? getCurrentOrNextQuarterSlot(input.referenceDate)
     : null;
-  const coursesStillToPlan = remainingCourses.filter(
+  const guidedCoursesStillToPlan = guidedRemainingCourses.filter(
     (course) => !selectedCurrentCourseLabels.has(course.label)
   );
 
-  const essentialCorePool = coursesStillToPlan
+  const essentialCorePool = guidedCoursesStillToPlan
     .filter((course) => isCoreCourseLabel(course.label))
     .filter((course) => course.priorityRank < REQUIREMENT_PRIORITY_RANK.stayAtGrc)
     .map<PendingSuggestedCourse>((course) => ({
@@ -2201,7 +2098,7 @@ export function buildSuggestedQuarterPlan(input: {
       type: "core",
       status: "planned",
     }));
-  const essentialElectivePool = coursesStillToPlan
+  const essentialElectivePool = guidedCoursesStillToPlan
     .filter((course) => !isCoreCourseLabel(course.label))
     .filter((course) => course.priorityRank < REQUIREMENT_PRIORITY_RANK.stayAtGrc)
     .map<PendingSuggestedCourse>((course) => ({
@@ -2209,7 +2106,7 @@ export function buildSuggestedQuarterPlan(input: {
       type: "elective",
       status: "planned",
     }));
-  const optionalCorePool = coursesStillToPlan
+  const optionalCorePool = guidedCoursesStillToPlan
     .filter((course) => isCoreCourseLabel(course.label))
     .filter((course) => course.priorityRank >= REQUIREMENT_PRIORITY_RANK.stayAtGrc)
     .map<PendingSuggestedCourse>((course) => ({
@@ -2217,7 +2114,7 @@ export function buildSuggestedQuarterPlan(input: {
       type: "core",
       status: "planned",
     }));
-  const optionalElectivePool = coursesStillToPlan
+  const optionalElectivePool = guidedCoursesStillToPlan
     .filter((course) => !isCoreCourseLabel(course.label))
     .filter((course) => course.priorityRank >= REQUIREMENT_PRIORITY_RANK.stayAtGrc)
     .map<PendingSuggestedCourse>((course) => ({
@@ -2225,22 +2122,26 @@ export function buildSuggestedQuarterPlan(input: {
       type: "elective",
       status: "planned",
     }));
-  const fillerPool = buildGeneralEducationPlaceholders(
+  const fillerLabels = buildGeneralEducationPlaceholders(
     input.track,
     input.completedCourses,
     input.referenceDate
-  ).map<PendingSuggestedCourse>((label) => ({
-      label,
-      type: "elective",
-      status: "planned",
-      guidanceSummary: null,
-      sequenceGroup: null,
-      priorityRank: REQUIREMENT_PRIORITY_RANK.stayAtGrc + 1,
-      sourceOrder: Number.MAX_SAFE_INTEGER,
-      explicitCourseCodes: [],
-      prerequisiteCourseSets: [],
-      corequisiteCourseSets: [],
-    }));
+  );
+  const fillerPool =
+    input.includeStayAtGrcCourses === false
+      ? []
+      : fillerLabels.map<PendingSuggestedCourse>((label) => ({
+          label,
+          type: "elective",
+          status: "planned",
+          guidanceSummary: null,
+          sequenceGroup: null,
+          priorityRank: REQUIREMENT_PRIORITY_RANK.stayAtGrc + 1,
+          sourceOrder: Number.MAX_SAFE_INTEGER,
+          explicitCourseCodes: [],
+          prerequisiteCourseSets: [],
+          corequisiteCourseSets: [],
+        }));
   const currentQuarterPlan = currentQuarterCourses.length
     ? {
         label: currentQuarterSlot?.label ?? "Current / In progress",
@@ -2259,7 +2160,7 @@ export function buildSuggestedQuarterPlan(input: {
     : null;
 
   const futureQuarterPlans: SuggestedQuarterPlan[] = [];
-  if (coursesStillToPlan.length || (!completedQuarterPlans.length && !currentQuarterCourses.length)) {
+  if (guidedCoursesStillToPlan.length || (!completedQuarterPlans.length && !currentQuarterCourses.length)) {
     const futureQuarterSlots = currentQuarterSlot
       ? buildQuarterSlotsAfterCurrent(input.referenceDate)
       : buildQuarterSlots(input.referenceDate);

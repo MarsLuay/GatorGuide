@@ -2,425 +2,359 @@ Owner: uw-tacoma-social-welfare
 Source: https://www.tacoma.uw.edu/swcj/basw-curriculum
 Title: BASW Curriculum | School of Social Work & Criminal Justice | University of Washington Tacoma
 
-BASW Curriculum | School of Social Work & Criminal Justice | University of Washington Tacoma
+[Supplemental official source] BASW Prerequisites
+[Supplemental official source] CJ Campus Curriculum
+[Supplemental official source] CJ Online Curriculum
+[Supplemental official source] Criminal Justice Curriculum
+[Supplemental official source] Curriculum
+[Supplemental official source] Graduation Requirements
+[Supplemental official source] MSW Admission Requirements
+*Although advised to have completed, one or both of these courses may be in-progress or planned for a future quarter at the time of application to the BASW program.
+&copy; 2026 University of Washington Tacoma
+<a href="https://instagram.com/uwtacoma"
+<a href="https://www.facebook.com/uwtacoma"
+<a href="https://www.linkedin.com/school/university-of-washington-tacoma"
+<a href="https://www.tacoma.uw.edu/"
+<a href="https://www.tiktok.com/@uwtacoma"
+<a href="https://www.youtube.com/channel/UC5yP5pgHK5hPnPwfxMykQFw"
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMVD9WN"
-height="0"
-width="0"
-style="display:none;
-visibility:hidden">
-Skip to main content
-Apply
-Canvas
-Map
-Calendar
-Library
-Directory
-MyUW
-more_vert
-more_vert
-Close Search
 <img
-src="/sites/default/files/sites/uwtd8main/W.svg"
-alt="Block W - Link to UW Tacoma homepage"/>
 <img class="mobile-hide desktop-show"
-src="/sites/default/files/sites/uwtd8main/wordmark-full.svg"
-alt="University of Washington Tacoma"/>
 <img class="mobile-show desktop-hide"
-src="/sites/default/files/sites/uwtd8main/Wordmark-Tacoma.svg"
-alt="University of Washington Tacoma"/>
-Tools
-25Live
-Canvas
-Directory
-IT Help
-Library
-Map
-MyUW
-Office365
-Panopto
-Scout
-UW Gmail
-Workday
-Zoom
-Search
-School of Social Work & Criminal Justice
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2022-09/Campus%20at%20night.jpg"
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2023-02/16323606968_a19b5eda05_k.jpg"
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2024-08/swcj-students-ready-for-ceremony.jpg"
 <span
-class="path2">
-Make a Gift
-School of Social Work & Criminal Justice
+>
+10
+180
+1900 Commerce Street, Tacoma, WA 98402-3100
+253-692-5820
+25Live
+3 Year MSW Curriculum
+3 year MSW program of study
+3-year Program | Advanced Standing Program | Independent Study | Academic Review Policy & Procedures | Program Goals | Graduation Requirements
+3-year Program of Study
+5 Credits of English Composition
+58
+75 (minimum)
+About CWTAP
 About Us
-expand_more
-Dean&#039;s Welcome
-Strategic Plan
+ABOUT UW TACOMA
+Academic advising
+Academic Advising
+Academic calendar
+Academic Review Policy and Procedures
+ACADEMICS
+Accessibility |
+Acknowledgement
 add
-Strategic Planning Committee
-Meet our Faculty & Staff
-Faculty Spotlight
-Faculty Presentations
-Faculty Publications
-CSWE Accreditation
-Support Us
-Contact Us
-BA in Social Welfare
-expand_more
+Add/Drop Codes
+Administration
+Admission to the MSW program is competitive and typically there is not enough space available to accommodate all applicants who meet the basic qualifications for admission. Selection is based on academic performance and potential, clarity and appropriateness of career objectives, understanding of social issues, knowledge of diverse populations, and relevant practice experiences.
 Admissions
-add
+Advanced Standing
+Advanced Standing Applicants only: Effective Winter 2022, students applying for the advanced standing program must have graduated from a U.S. baccalaureate program in social work or social welfare accredited by the CSWE. A degree accredited by the CASWE (Canadian Association for Social Work Education) or other non-U.S. degree considered to be equivalent by the ISWDRES (International Social Work Degree Recognition and Evaluation Service) may be accepted in lieu of a U.S. degree. Advanced Standing applicants who graduated more than five years ago should demonstrate continued professional growth through social work experience. Professional training, leadership, and advancement in the social work field are also considered.
+Advanced Standing MSW Curriculum
+Advanced Standing MSW Program of Study
+Advanced Standing Program of Study
+Advising for Criminal Justice
+Advising for MSW
+Advising for Social Welfare
+alt="Block W - Link to UW Tacoma homepage"/>
+alt="Campus at night">
+alt="CJ Faculty Andrea Hill">
+alt="MSW class discussion">
+alt="SWCJ students ready for ceremony">
+alt="University of Washington Tacoma"/>
+Alumni
+Application Process
+Apply
+Apply to MSW
+Applying to graduate
+aria-label="University of Washington Tacoma Homepage">
+AUTUMN
+BA in Criminal Justice
+BA in Social Welfare
+Background check
+Background checks are needed for admitted students for their field placement.
+BASW 2026-27 Field Placement
+BASW Admission Prerequisites
 BASW Admission Requirements and How to Apply
 BASW Application
 BASW Deadlines
+BASW Model Program of Study
 BASW Prerequisites
-New Student Onboarding for Social Welfare
-Advising for Social Welfare
-Curriculum
-add
-Program Goals & Standards
-Independent Study
-Graduation Requirements
-Field Education
-add
-BASW 2026-27 Field Placement
-Practicum FAQs
-Benchmarks
-Honors
-add
-Social Work Honor Society
-Student Resources
-add
-Immunizations
-Child Welfare Training and Advancement Program
-add
-About CWTAP
-CWTAP Application Process for BASW students
-Social Work Mission
-Master of Social Work
-expand_more
-Admissions
-add
-MSW Admission Requirements
-MSW Application Instructions
-MSW Deadlines
-MSW Admission FAQs
-Reinstatement to MSW Program
-New Student Onboarding for Master of Social Work
-Advising for MSW
-Curriculum
-add
-3-year Program of Study
-Advanced Standing Program of Study
-Independent Study
-Academic Review Policy and Procedures
-Program Goals
-Graduation Requirements
-Benchmarks
-Child Welfare Training and Advancement
-add
-Application Process
-FAQs
-Quotes from Alumni
-Advanced Standing
-Student Resources
-add
-Grading Policies
-Immunizations
-Field Education
-add
-MSW 2026-27 Field Placement
-Practicum FAQs
 Behavioral Health Workforce Development (BHCS)
-Social Work Honor Society
-Social Work Mission
-BA in Criminal Justice
-expand_more
-Admissions
-add
-Criminal Justice Admission Requirements and How to Apply
-Criminal Justice Deadlines
-Criminal Justice Online Admission Requirements and How to Apply
-New Student Onboarding for Criminal Justice
-Advising for Criminal Justice
-Criminal Justice Curriculum
-add
+Bellevue College
+Benchmarks
+Bothell
+Calendar
+CAMPUS
+Campus Resources
+Campus Safety
+Canvas
+Cascadia C
+CATEGORY
+Centralia College
+Child Welfare Training and Advancement
+Child Welfare Training and Advancement Program
 CJ Campus Curriculum
 CJ Online Curriculum
-Independent Study
-Program Goals & Standards
-Prep for Graduation
-Honors
-add
-Criminal Justice Honor Society
-Student Resources
-add
-Criminal Justice League
-Student Learning Outcomes
-Internship
-Minor in Criminal Justice
-Criminal Justice Career Opportunities
-Initiatives
-expand_more
-The Violence Prevention and Transformation Research Collaborative
-add
-About Us
-Events
-Media Appearances
-Research
-Resources
+class="path2">
+class="per-site-social-media-title">Criminal Justice League
+class="per-site-social-media-title">School of Social Work and Criminal Justice
+class="uwt-icon uwt-icon-per-site-facebook">
+class="uwt-icon uwt-icon-per-site-facebook"> <span
+class="uwt-icon uwt-icon-per-site-instagram">
+class="uwt-icon uwt-icon-per-site-linkedin">
+class="uwt-icon uwt-icon-per-site-youtube">
+Close Search
+College-level credits: General Education, Prerequisites, and electives
+Complete at least 45 upper-division credits (300- and 400-level).
+Complete at least 68 upper-division credits (300- and 400-level).
+Contact
 Contact Us
-Student Resources
-expand_more
-Academic Advising
-New Student Onboarding
+Contact us |
+Core courses
 Courses
-Online Learning Resources
-Campus Resources
-Add/Drop Codes
-Related Links
-Scholarships
-Student Highlights
-Alumni
-Wellbeing Resources
-Staff/Faculty
+Courses in the 3-year MSW program focus on the following:
+Courses in the Advanced Standing MSW focus on the following:
+CREDITS
+Criminal Justice Admission Requirements and How to Apply
+Criminal Justice Career Opportunities
+Criminal Justice Curriculum
+Criminal Justice Curriculum page
+Criminal Justice Deadlines
+Criminal Justice Honor Society
+Criminal Justice League
+Criminal Justice Online Admission Requirements and How to Apply
+Criminal Justice requirements
+CSWE Accreditation
+CULTURAL DIVERSITY AND SOCIETAL JUSTICE
+Current social welfare majors, criminal justice majors or students who have declared the minor in criminal justice are eligible to submit course substitution petitions for review. You must supply documentation as outlined on the Program Petition for Course Substitution along with the signed form. Please allow a minimum of 7 -10 days for review. Decision notifications will be sent to your UW email address. Only college-level transferable courses are eligible for course substitutions (vocational-technical coursework is not eligible). All CJ core or core elective course substitutions must be approved by petition after CJ admission. A maximum of 10 transfer equivalent credits are allowed towards the 65 credit major.
+Curriculum
+Curriculum in Brief
+Curriculum overview
+CWTAP Application Process for BASW students
+Dean&#039;s Welcome
+Designed for eligible graduates of baccalaureate programs in social work/social welfare, Advanced Standing allows students to enter the advanced level of the MSW curriculum. During the 6 quarters of the advanced curriculum, students will gain knowledge and skills in the specialization area of Integrative Practice Specialization and complete the Practicum Specialization.
+Directory
+During the first-year and part of the second, the Professional Generalist curriculum provides instruction in the basic knowledge, skills and values required for beginning social work practice, as well as an opportunity for socialization to the profession, its value orientation, ethics and history. The general curriculum also includes a field practicum where students are given the opportunity to put into practice the knowledge gained in classroom courses. In the remaining second and third year, the advanced curriculum is designed to provide knowledge and skills in the specialization area of Integrative Practice Specialization. This also includes the Specialization Practicum, which is an integral part of the specialization curricula. Specialization Practicum may not begin until all generalist requirements are completed.
+Earn a 2.0 grade or higher in English composition.
+Earn a minimum 2.0 grade or credit (in courses taken C/NC) in each required Social Welfare course.
+Earn a minimum 2.0 grade or higher in each Criminal Justice major requirement.
+ENGL& 101
+English Composition
+Equity & Inclusion
+Essential Skills, Values and Standards of Professional Conduct
+Evaluation of Applicants
+Events
 expand_more
-Part-Time Lecturer Resources
-Field Instructor Resources
-Faculty/Staff Intranet
-School of SWCJ Meetings
+Faculty Presentations
+Faculty Publications
 Faculty Resources
-MyUW
-Map
-Tools
-BASW Curriculum
-Main Content
-BA in Social Welfare | Admissions | Advising | Field Education | Benchmarks | Honors | Student Resources
-Social Welfare Course Requirements
-All Social Welfare majors are required to complete each BASW core course with a 2.0 or higher grade and maintain a 2.5 GPA in all major coursework.
-The courses listed below are not taken in numerical order. See the BASW Model Program of Study for course sequencing details.
-Social Welfare Core Courses
-TSOCWF 300: Historical Approaches to Social Welfare (5 cr)
-TSOCWF 310: Social Welfare Practice I (3 cr)
-TSOCWF 311: Social Welfare Practice II (3cr)
-TSOCWF 312: Social Welfare Practice III (5 cr)
-TSOCWF 320: Social Welfare: Contemporary Approaches (5 cr)
-TSOCWF 390: Introduction to Social Welfare Research* (5 cr)
-TSOCWF 402: Human Behavior and the Social Environment I (5 cr) - W**
-TSOCWF 404: Cultural Diversity and Social Justice (5 cr)
-TSOCWF 405: Practicum Seminar I (3 cr) - W**
-TSOCWF 406: Practicum Seminar II (3 cr) - W**
-TSOCWF 414: Introduction to Field (1 cr)
-TSOCWF 415: Practicum (11 cr total)
-* Successful (C or 2.0 or higher) completion of a course in statistics is a prerequisite for TSOCWF 390.
-**W indicates that the course meets the University's Writing Intensive Criteria.
-Please note, students with admission requirement or Social Welfare prerequisite deficiencies must meet with the academic advisor regarding completion of deficiencies. Also, students who have not completed at least 20 credits of Arts and Humanities (A&H) or 20 credits of Natural Sciences (NSc) distribution within their lower-division coursework must meet with the academic advisor regarding selection of appropriate courses within an elective category to complete requirements.
-GENERAL EDUCATION REQUIREMENTS AND BASW PREREQUISITES
-General Education Requirements
-BASW Admission Requirements
+Faculty Spotlight
+Faculty/Staff Intranet
+FAQs
+Field Education
+Field Instructor Resources
+Financial Aid
+General electives
+General Electives
+GENERAL ELECTIVES
+Generalist Curriculum Goals
+Grading Policies
+Graduate Record Examination (GRE)
+Graduation is not automatic. In order to officially graduate and receive your diploma you must submit a graduation application. Graduation applications are completed during an appointment with an academic advisor. It is recommended that you apply for graduation two quarters before your planned date of graduation. The absolute deadline for filing an application is the Friday of the third week of the quarter in which the student intends to graduate.
 Graduation Requirements
-Mathematics (1)
-Three (3) years of high school math through intermediate algebra or a course in intermediate algebra at the college
-Reasoning [RSN]
-5 credits; Will be met with a required introductory statistics course (2)
-Composition [C]
-5 credits of English composition (2)
-5 credits of English composition (2) ; Met with prerequisite course
-Writing [W]
-10 credits of writing-intensive course work (3)
-Diversity [D]
-Introductory/Survey course in Sociology (2)
-5 credits; Met with prerequisite course
-Arts and Humanities [A&H]
-20 credits
-Social Sciences [SSc]
-Introductory/Survey course in Psychology (2)
-Introductory/Survey course in Sociology (2)
-20 credits; Two of four courses met (4) with prerequisite courses
-Natural Science [NSc]
-20 credits
-5 credits may be met with a required introductory statistics course
-Other requirements
-Completion of a minimum of 75 college-level credits before start of the program
-Completion of 180 college-level quarter credits
-(1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major.
-(2) Minimum grade of 2.0/C required in each course.
-(3) Writing-intensive coursework requirements can also be met with core TSOCWF coursework (3 courses)
-(4) One course can fulfill multiple GER areas, but the credits completed can only count once toward the 180 total credits needed to graduate.
-SOCIAL WELFARE ELECTIVES
-Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives.
-TSOCWF 350 Biopsychosocial Human Services (5 cr)
-TSOCWF 351 Applied Statistics for Social and Human Services (5 cr)
-TSOCWF 353 Mental Illness and Recovery (5 cr)
-TSOCWF 354 Sexual Orientation and Gender Identity (5 cr)
-TSOCWF 355 HIV/AIDS: Global and National Issues (5 cr)
-TSOCWF 361 Addictions and Mental Illness in Criminal Justice (5 cr)
-TSOCWF 363 Criminalization of Immigration (5 cr)
-TSOCWF 374 Human Trafficking (5 cr)
-TSOCWF 409 Readings in Social Welfare (1-5 cr, max. 15 cr)
-TSOCWF 420 Interpersonal Violence and Society (5 cr)
-TSOCWF 421 Cross-Cultural Grieving (5 cr)
-TSOCWF 422 Aging in American Society (5 cr)
-TSOCWF 425 Comparative Social Policy (5 cr)
-TSOCWF 427 Racialized Disproportionality Across Systems (5 cr)
-TSOCWF 428 Policy and Practice with Sexual Offenders (5 cr)
+Grays Harbor C
+Green River C
+Have at least a 2.50 GPA in all required Social Welfare classes.
+Have earned a minimum 3.0 GPA in their most recently earned 90 graded quarter credits or 60 graded semester credits.
+height="0"
+Historical Approaches (5)
+Hold the minimum equivalent of a four-year baccalaureate degree from a regionally accredited college or university in the U.S. or its equivalent from a foreign institution. Also, acceptable would be a Master’s degree, a doctoral degree (Ph.D., D.Phil.), or a professional degree (M.D., J.D., D.V.M., etc.) from a regionally accredited college or university in the U.S. or its equivalent from a foreign institution.
+Honors
+Housing
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2022-09/Campus%20at%20night.jpg 600w"
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2023-02/16323606968_a19b5eda05_k.jpg 600w"
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2024-08/swcj-students-ready-for-ceremony.jpg 600w"
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2022-09/Campus%20at%20night.jpg 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2023-02/16323606968_a19b5eda05_k.jpg 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2024-08/swcj-students-ready-for-ceremony.jpg 980w,
+HUMAN BEHAVIOR AND THE SOCIAL ENVIRONMENT
+Immunizations
+In addition to fulfilling all University requirements, Criminal Justice prerequisites, and Criminal Justice major requirements by the time of graduation, a student must also:
+In addition to fulfilling all University requirements, Social Welfare prerequisites, and Social Welfare major requirements by the time of graduation, a student must also:
+Independent Study
+Information about the Commencement ceremony and what you need to do to prepare for it can be found on the Commencement website .
+Information on Background checks
+Information Technology
+Initiatives
+Institutional Research
+INTEGRATIVE POLICY AND ADVOCACY
+Integrative Practice Specialization
+Internship
+Intro to Psychology
+Intro to Sociology
+Introduction to Psychology*
+INTRODUCTION TO SOCIAL WORK PRACTICE
+Introduction to Sociology*
+IT Help
+Jobs
+Land
+Learn More >
+Library
+Link to Essential Skills, Values and Standards of Professional Conduct
+M-F 9:00-5:00
+Main Content
+Major Principles of the National Association of Social Workers&#039; (NASW) Code of Ethics
+Make a Gift
+Map
+Master of Social Work
+Media Appearances
+Meet our Faculty & Staff
+Meet the minimum admission requirements outlined by the UW Graduate School.
+Meet UW Tacoma MSW Program English Proficiency Requirements. Some applicants with foreign degrees may be required to meet the University of Washington Graduate School English Language Proficiency (ELP) requirement. The TOEFL iBT requirement is a minimum score of 92 for tests taken within the past two years and on or before January 20, 2026 , or a minimum overall score of 4.5 for tests taken on or after January 21, 2026 . More information is available here .
+Minor in Criminal Justice
+more_vert
+MSW 2026-27 Field Placement
+MSW Admission FAQs
+MSW Admission Requirements
+MSW Admission Requirements | School of Social Work & Criminal Justice | University of Washington Tacoma
+MSW Application Instructions
+MSW Curriculum
+MSW Curriculum | School of Social Work & Criminal Justice | University of Washington Tacoma
+MSW Deadlines
+MyUW
+NASW Code of Ethics
+New Student Onboarding
+New Student Onboarding for Criminal Justice
+New Student Onboarding for Master of Social Work
+New Student Onboarding for Social Welfare
+New students admitted to the Social Work Program must submit appropriate documentation within a specific timeframe. New students will be advised of specific submission deadlines upon admission, but generally all documentation must be supplied prior to entering the Social Work program. The following immunizations and verifications are REQUIRED for all Social Work students. No student will be permitted to enter any practicum site until all immunization verification is submitted and verified by the Health Sciences Immunization Program (HSIP) . Students must document immunity to Measles (Rubeola), Mumps, Rubella, Hepatitis B, Tetanus-Diphtheria-Pertussis, Varicella (chicken pox), COVID-19 (and any required boosters), seasonal influenza, and have a current, annual TB screening. Due to the nature of health professions training programs, exemptions are rarely granted and only in alignment with CDC recommendations, HSIP policy, and University policy and practice. For information about exemption requests for required vaccines, please refer to the Vaccine Exemption section on the HSIP webpage .
+Note: Academic credit toward the MSW is not given for previous employment or life experience.
+Note: The UWT MSW program may consider an exceptional applicant with a GPA below a 3.0. Applicants with less than a 3.0 GPA are encouraged to meet with the MSW Recruiter and Advisor .
+Office Hours:
+Office Location
+Office365
+Online Learning Resources
+Our commitment to diversity is elaborated on this webpage on Essential Skills, Values, and Standards of Professional Conduct. Before submitting an application, all applicants should review these essential abilities to understand the qualities and professional behavior expected of students.
+Panopto
+Parking & transportation
+Part-Time Lecturer Resources
+Please note: Students who have not met the minimum of at least 15 credits of Arts and Humanities [A&H], 15 credits of Natural Sciences [NSc] and 15 credits of Social Sciences [SSc] within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (AoI) requirements.
+Please note: Students who have not met the minimum of at least 15 credits of Arts and Humanities [A&H], 15 credits of Natural Sciences [NSc] and 15 credits of Social Sciences [SSc] within their lower-division coursework must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (AoI) requirements.
+Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+Please review the immunization FAQs for further information.
+Practicum FAQs
+Prep for Graduation
+Prerequisites
+Privacy |
+Professional Conduct and Ethics
+Professionalism in Social Work (2)
+Program Goals
+Program Goals & Standards
+Program Petition for Course Substitution
+PSYC& 100
+Puyallup Tribe of Indians
+Quotes from Alumni
+Registration Priority for Graduating Seniors
+Reinstatement to MSW Program
+Related Links
+Research
+RESEARCH FOR PRACTICE AND PROGRAM EVALUATION
+Resources
+Rules Docket
+Scholarships
+School of Social Work & Criminal Justice
+School of SWCJ Meetings
+Schools and programs
+Scout
+Search
+sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
+Skip to main content
+SOC& 101
+SOCIAL POLICY AND ECONOMIC SECURITY
+Social Welfare electives
+Social Welfare requirements
+Social Welfare requirements checklist
+Social Work Honor Society
+Social Work Mission
+Specialization Curriculum Goals
+SPECIALIZED INTEGRATIVE PRACTICE SPECIALIZATION
+SPRING
+src="/sites/default/files/sites/uwtd8main/W.svg"
+src="/sites/default/files/sites/uwtd8main/wordmark-full.svg"
+src="/sites/default/files/sites/uwtd8main/Wordmark-Tacoma.svg"
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2022-09/Campus%20at%20night.jpg 1940w,
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2023-02/16323606968_a19b5eda05_k.jpg 1940w,
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2024-08/swcj-students-ready-for-ceremony.jpg 1940w,
+Staff/Faculty
+Statistics prerequisite no longer required
+Strategic Plan
+Strategic Planning Committee
+Student Highlights
+Student Learning Outcomes
+Student Life
+Student Resources
+Students complete the required BASW core curriculum in sequence over a two-year period. The BASW curriculum consists of a 58-credit program, offered through a hybrid schedule, comprised of three major areas: foundation courses, social work practice courses and practicum (field experience) combined with practicum seminars. In addition to these three areas, students will be required to complete 10 credits of upper-division Social Welfare electives. General electives may also be required depending upon the number of college level credits applied toward the degree.
+Students focus their advanced course of study in an area of particular interest to them. These areas might include, but are not limited to: children and youth; clinical mental health; chemical dependency; military families and veterans; older adults; criminal justice; health care systems; school social work; domestic violence; and public child welfare. Students develop knowledge and skills to address their topic in depth, while actively integrating the relevant practice concerns, policies, issues of diversity and social justice, research evidence, and the community contexts impacting their chosen topic.
+Study Abroad
+style="display:none;
+SUMMER
+Support Us
+swcj@uw.edu
+T CRIM Course Descriptions
+Teaching and Learning Center
+Tentative Time Schedule
+Terms of Use |
+The college-level courses listed below have been approved to meet the admission and prerequisite requirements for the Social Welfare program. Select Advanced Placement (AP) credit earned in high school may satisfy this requirement. Some restrictions may apply. Contact us for more information: swcj@uw.edu .
+The course requirements for a degree will not always total the 180 credits needed to graduate. The additional credits needed to complete 180 college-level quarter credits are called "general electives." Students may choose from a variety of disciplines outside their major to fulfill general electives.
+The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called "general electives." Students may choose from a variety of disciplines outside their major to fulfill general electives.
+The institutions listed on the grid below are schools that BASW applicants transfer from most frequently. However, if your school does not appear on the list, that does not mean that we are unable to accept their courses. Many of the courses below are commonly shared among Washington State community and technical colleges and are denoted with a “&” behind the course prefix. Therefore, if you have taken a ‘common course numbered’ class that appears below, from a Washington State community or technical college that is not listed on the grid, it will satisfy a BASW prerequisite. For example, SOC& 101 from Pierce College is equivalent to SOC& 101 from Edmonds Community College.
+The mission of the Integrative Practice Specialization is to prepare MSW-level practitioners to assume leadership roles in the design, delivery, and evaluation of interventions at all levels of practice, from work with an individual client to community advocacy or policy analysis. These interventions, informed by research, focus on specific practice fields and methods of service delivery within the context of emerging societal conditions and needs. In the tradition of the social work profession, the prime motivator and ultimate goal of this advanced specialization is the realization of social and economic justice for those marginalized by society.
+The Model Program of Study shows a typical progression for the degree. To qualify for graduation with a Bachelor of Arts in Social Welfare, students must complete a minimum of 180 quarter credits. Below is an example curriculum plan based on entry to the major with at least 90 college-level credits already completed.
+The MSW generalist curriculum provides a generalist year educational experience that builds on an undergraduate, liberal arts degree and prepares students to enter into a concentrated area of social work practice.
+The MSW specialization curriculum builds on, broadens, and deepens the generalist foundation and prepares students for competent and effective social work practice in an area of specialization.
+The NASW is the major professional organization for social workers. Before submitting an application, all applicants should review the NASW Code of Ethics to understand the major principles to which students of UWT MSW program are expected to adhere.
+The University of Washington Health Sciences Center requires that its students show documentation of protection against a number of vaccine-preventable diseases. The University of Washington Seattle School of Social Work falls under the umbrella of UW Health Sciences and therefore all UW Tacoma MSW and BASW students must comply. Applicants must submit the HSIP Acknowledgement form with their application.
+The UW Tacoma MSW Program does not require applicants to submit GRE scores.
+The Violence Prevention and Transformation Research Collaborative
+title="Follow UW Tacoma on Facebook">
+title="Follow UW Tacoma on Instagram">
+title="Follow UW Tacoma on Linkedin">
+title="Follow UW Tacoma on TikTok">
+title="Follow UW Tacoma on Youtube">
+To be considered for BASW admission, the following courses must be completed with a 2.0 or higher.
+To be considered for MSW program admission, applicants must:
+To qualify for graduation with a Bachelor of Arts in Social Welfare a student must complete a minimum of 180 credits as outlined:
+Tools
+Total
+Tribal Sponsor of UW Tacoma
+TSOCWF 300
+TSOCWF 301
 TSOCWF 430 Children of Incarcerated Parents (5 cr)
 TSOCWF 433 Trauma-informed Interventions with Systems-impacted People (5 cr)
 TSOCWF 436 Contemporary Social Work in Criminal Justice Settings (5 cr)
 TSOCWF 490 Research in Social Welfare (1-3 cr, max. 10 cr)
-GENERAL ELECTIVES
-The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called "general electives." Students may choose from a variety of disciplines outside their major to fulfill general electives.
-Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
-Curriculum overview
-Students complete the required BASW core curriculum in sequence over a two-year period. The BASW curriculum consists of a 58-credit program, offered through a hybrid schedule, comprised of three major areas: foundation courses, social work practice courses and practicum (field experience) combined with practicum seminars. In addition to these three areas, students will be required to complete 10 credits of upper-division Social Welfare electives. General electives may also be required depending upon the number of college level credits applied toward the degree.
-To qualify for graduation with a Bachelor of Arts in Social Welfare a student must complete a minimum of 180 credits as outlined:
-CATEGORY
-CREDITS
-College-level credits: General Education, Prerequisites, and electives
-75 (minimum)
-Core courses
-58
-Social Welfare electives
-10
-General electives
-Varies
-Total
-180
-BASW Model Program of Study
-The Model Program of Study shows a typical progression for the degree. To qualify for graduation with a Bachelor of Arts in Social Welfare, students must complete a minimum of 180 quarter credits. Below is an example curriculum plan based on entry to the major with at least 90 college-level credits already completed.
-Year 1 in BASW Program
-AUTUMN
-WINTER
-SPRING
-SUMMER
-TSOCWF 301
-Professionalism in Social Work (2)
-TSOCWF 300
-Historical Approaches (5)
-TSOCWF 402 (W)
-Human Behavior & Social Environment I (5)
-TSOCWF 310
-Practice I - Individuals & Families (5)
-TSOCWF 320
-Contemporary Approaches (5)
-SW Elective*
-If needed, TSOCWF 351 Applied Statistics may be taken here.
-or General Elective** (5)
-TSOCWF 311
-Practice II - Groups (3)
-TSOCWF 404 (DIV)
-Cultural Diversity and Social Justice (5)
-TSOCWF 414
-Intro to Practicum (1)
-SW Elective*
-or General Elective** (5)
-Electives - Attendance during summer quarter may be optional, but is likely needed. Consult with an academic advisor.
-12 credits
-15 credits
-14 credits
-Varies
-Year 2 in BASW Program
-AUTUMN
-WINTER
-SPRING
-TSOCWF 390
-Introduction to Social Welfare Research (5)
-TSOCWF 405 (W)
-Field Seminar I (3)
-TSOCWF 415
-Practicum (4)
-TSOCWF 312
-Practicum III - Organizations & Communities (5)
-TSOCWF 415
-Practicum (3)
-SW Elective*
-or General Elective** (5)
-TSOCWF 406 (W)
-Field Seminar II (3)
-TSOCWF 415
-Practicum (4)
-SW Elective*
-or General Elective** (5)
-12 credits
-13 credits
-12 credits
-NOTE: Statistics is a required course for the BASW program; if a statistics course has not been completed with a 2.0 (or C) grade or higher, students must take it prior to TSOCWF 390.
-* Ten (10) credits of approved Social Welfare electives and general electives may be taken at times other than those designated above, schedule permitting. Based upon sample plan, enrollment in 12 credits during summer is suggested.
-** Total may vary based on the number of college level credits applied toward the degree.
-Distribution Note: Social Welfare majors who are pursuing the minor in Criminal Justice may not double count TSOCWF 300-400 level courses as approved Social Welfare electives and as electives for the minor in Criminal Justice. The TSOCWF 300-400 level course(s) may satisfy one distribution area or another, but not both.
-More Information for BASW curriculum
-BASW Requirements Checklist | Tentative TSOCWF Time Schedule | TSOCWF Course Descriptions
-Social Welfare Practicum
-In addition to classroom instruction, students are required to complete 480 hours of practicum experience, known as field education, in an outside agency or organization under the supervision of a qualified social worker. In the practicum settings, BASW students gain experience in such roles as advocate, case manager, change agent, group leader and organizer. They may assist a chemically-dependent person in changing destructive behavior patterns; help a battered person find a safe, stable environment; support a person with mental illness in living independently in their community; marshal resources to enable a person with a physical disability to enter mainstream society; foster or find a safe environment for an abused child; advocate for housing for homeless people; or help a community organize itself to prevent a number of neighborhood problems.
-Field Education
-Program petition for course substitution
-Current social welfare majors, criminal justice majors or students who have declared the minor in criminal justice are eligible to submit course substitution petitions for review. You must supply documentation as outlined on the Program Petition for Course Substitution along with the signed form, including the course syllabus. Please allow a minimum of 7 -10 days for review. Decision notifications will be sent to your UW email address. Only college-level transferable courses are eligible for course substitutions (vocational-technical course work is not eligible).
-Petition for course substitution
-Contact
-School of Social Work & Criminal Justice
-swcj@uw.edu
-253-692-5820
-Office Hours:
-M-F 9:00-5:00
-Office Location
-WCG 203
-<span
-class="uwt-icon uwt-icon-per-site-facebook">
-<span
-class="uwt-icon uwt-icon-per-site-instagram">
-<span
-class="uwt-icon uwt-icon-per-site-linkedin">
-<span
-class="uwt-icon uwt-icon-per-site-youtube">
-<span
-class="uwt-icon uwt-icon-per-site-facebook"> <span
-class="per-site-social-media-title">School of Social Work and Criminal Justice
-<span
-class="uwt-icon uwt-icon-per-site-facebook"> <span
-class="per-site-social-media-title">Criminal Justice League
-ACADEMICS
-Academic advising
-Academic calendar
-Canvas
-Library
-Schools and programs
-Study Abroad
-Teaching and Learning Center
-CAMPUS
-Campus Safety
-Equity & Inclusion
-Financial Aid
-Housing
-Information Technology
-Student Life
 University YMCA Student Center
-ABOUT UW TACOMA
-Administration
-Admissions
-Institutional Research
-Jobs
-Parking & transportation
-Research
-UWNetID login
-<a href="https://www.tacoma.uw.edu/"
-aria-label="University of Washington Tacoma Homepage">
-<a href="https://www.facebook.com/uwtacoma"
-title="Follow UW Tacoma on Facebook">
-<a href="https://instagram.com/uwtacoma"
-title="Follow UW Tacoma on Instagram">
-<a href="https://www.tiktok.com/@uwtacoma"
-title="Follow UW Tacoma on TikTok">
-<a href="https://www.youtube.com/channel/UC5yP5pgHK5hPnPwfxMykQFw"
-title="Follow UW Tacoma on Youtube">
-<a href="https://www.linkedin.com/school/university-of-washington-tacoma"
-title="Follow UW Tacoma on Linkedin">
-Puyallup Tribe of Indians
-Tribal Sponsor of UW Tacoma
-Learn More >
-Land
-Acknowledgement
->
+UW Gmail
+UW Health Sciences Immunization Program
+UW Health Sciences Immunization Program (HSIP)
+UW HSIP
 UW Seattle | UW
-Bothell
-&copy; 2026 University of Washington Tacoma
-1900 Commerce Street, Tacoma, WA 98402-3100
-Contact us |
-Terms of Use |
-Privacy |
-Accessibility |
-Rules Docket
+UW Tacoma Graduation Requirements
+UWNetID login
+Varies
+visibility:hidden">
+WCG 203
+We no longer require a statistics course as a prerequisite. A basic understanding of statistics is still highly recommended and we will make an information sheet with basic concepts and free resources available to everyone admitted to the program.
+Wellbeing Resources
+width="0"
+WINTER
+Workday
+Year 1 in BASW Program
+You can apply to graduate when you are within 45 credits of graduation. Once the graduation application is on file, you will allowed to register for classes earlier than other students. This is called Graduating Senior Priority. You get a maximum of two quarters of priority. If, after two quarters, you have not graduated and continue to take classes, you will register during regular senior registration according to the schedule.
+Zoom

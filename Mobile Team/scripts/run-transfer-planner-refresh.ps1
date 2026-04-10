@@ -22,6 +22,7 @@ $sourceGapPath = Join-Path $tmpDir "transfer-planner-source-gaps.md"
 $sourceFingerprintPath = Join-Path $tmpDir "transfer-planner-source-fingerprints.md"
 $requirementDiffReportPath = Join-Path $tmpDir "transfer-planner-requirement-diff-promotion-report.md"
 $requirementSourceParsePath = Join-Path $tmpDir "transfer-planner-requirement-source-parse-report.md"
+$ownerAuditPath = Join-Path $tmpDir "transfer-planner-owner-audit.md"
 $equivalencyGuidePath = Join-Path $tmpDir "transfer-planner-equivalency-guide-parse.md"
 $grcCatalogPath = Join-Path $tmpDir "transfer-planner-grc-catalog-ingest.md"
 $uwCatalogPath = Join-Path $tmpDir "transfer-planner-uw-catalog-ingest.md"
@@ -133,6 +134,7 @@ try {
       @{ Label = "primary-source source-gap report"; Path = $primarySourceGapPath },
       @{ Label = "requirement source parse report"; Path = $requirementSourceParsePath },
       @{ Label = "requirement-diff promotion report"; Path = $requirementDiffReportPath },
+      @{ Label = "owner audit report"; Path = $ownerAuditPath },
       @{ Label = "equivalency guide parse report"; Path = $equivalencyGuidePath },
       @{ Label = "GRC catalog ingest report"; Path = $grcCatalogPath },
       @{ Label = "UW catalog ingest report"; Path = $uwCatalogPath }

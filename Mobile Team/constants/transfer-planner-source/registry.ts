@@ -45,7 +45,7 @@ import type {
   TransferPlannerTrack,
   TransferPlannerTrackCatalogYear,
   TransferPlannerTrackTerm,
-} from "../transfer-planner-data";
+} from "../transfer-planner-types";
 import type {
   TransferPlannerSourceManifestConfidence,
   TransferPlannerSourceManifestEntry,
@@ -72,20 +72,26 @@ const INVALID_EXTRACTED_COURSE_SUBJECTS = new Set([
   "AND",
   "ANY",
   "APPROVED",
+  "AT",
+  "BETWEEN",
   "DIVISION",
+  "FOR",
   "INTO",
   "LEAST",
   "MINIMUM",
   "OF",
+  "OCCUPIES",
   "ONE",
   "OR",
   "PLUS",
   "REACH",
   "REQUIRES",
+  "THAT",
   "THE",
   "THEN",
   "TO",
   "TOTALS",
+  "TWO",
 ]);
 const EXTRACTED_COURSE_SUBJECT_ALIASES: Partial<Record<string, string>> = {
   BIOLOGY: "BIOL",
@@ -431,10 +437,21 @@ type MutableCourseRegistryEntry = Omit<
 };
 
 function normalizeCourseCode(value: string) {
-  return String(value ?? "")
+  const normalized = String(value ?? "")
     .toUpperCase()
     .replace(/\s+/g, " ")
     .trim();
+  const match = normalized.match(/^([A-Z&]+(?: [A-Z&]+)*) (\d{3}(?:\.\d+)?[A-Z]?)$/);
+  if (!match) {
+    return normalized;
+  }
+
+  const subjectTokens = match[1].split(" ").filter(Boolean);
+  const normalizedSubject = subjectTokens.every((token) => token.length === 1)
+    ? subjectTokens.join("")
+    : subjectTokens.join(" ");
+
+  return `${normalizedSubject} ${match[2]}`;
 }
 
 function parseGuideTermSortValue(label: string | null | undefined) {
@@ -481,6 +498,9 @@ function normalizeExtractedCourseCode(value: string) {
     .match(/\b([A-Z]{2,8}&?)\s*(\d{3}(?:\.\d+)?[A-Z]?)\b/);
 
   if (!match) {
+    return null;
+  }
+  if (/^000(?:\.0+)?[A-Z]?$/.test(match[2])) {
     return null;
   }
 

@@ -46,15 +46,14 @@ export default function ProfileSetupPage() {
 
   const [step, setStep] = useState(1);
   const [major, setMajor] = useState("");
-  const [resumeDoc, setResumeDoc] = useState<SelectedDocument | null>(null);
   const [transcriptDoc, setTranscriptDoc] = useState<SelectedDocument | null>(null);
   const [gpa, setGpa] = useState("");
 
   const [isConfettiPlaying, setIsConfettiPlaying] = useState(false);
   const [confettiCooldown, setConfettiCooldown] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
-  const [activeDocumentAnalysis, setActiveDocumentAnalysis] = useState<"resume" | "transcript" | null>(null);
-  const [documentReviews, setDocumentReviews] = useState<Partial<Record<"resume" | "transcript", DocumentExtractionReview>>>({});
+  const [isTranscriptAnalysisActive, setIsTranscriptAnalysisActive] = useState(false);
+  const [transcriptReview, setTranscriptReview] = useState<DocumentExtractionReview | null>(null);
   const isCompactPhone = width < 390;
   const isTablet = width >= 768;
   const isWideLayout = width >= 1080;
@@ -71,22 +70,18 @@ export default function ProfileSetupPage() {
       ? t("setup.major")
       : step === 2
         ? t("setup.gpa")
-        : `${t("setup.resume")} / ${t("setup.transcript")}`;
+        : t("setup.transcript");
   const stepItems = [
     { id: 1, label: t("setup.major") },
     { id: 2, label: t("setup.gpa") },
-    { id: 3, label: `${t("setup.resume")} / ${t("setup.transcript")}` },
+    { id: 3, label: t("setup.transcript") },
   ];
 
-  const dismissDocumentReview = (documentType: "resume" | "transcript") => {
-    setDocumentReviews((prev) => {
-      const next = { ...prev };
-      delete next[documentType];
-      return next;
-    });
+  const dismissDocumentReview = () => {
+    setTranscriptReview(null);
   };
 
-  const handlePickDocument = async (type: "resume" | "transcript") => {
+  const handlePickTranscript = async () => {
     try {
       const result = await DocumentPicker.getDocumentAsync({
         type: [
@@ -106,18 +101,17 @@ export default function ProfileSetupPage() {
       const asset = result.assets[0];
       const selected: SelectedDocument = {
         uri: asset.uri,
-        name: asset.name || asset.uri.split("/").pop() || `${type}_${Date.now()}`,
+        name: asset.name || asset.uri.split("/").pop() || `transcript_${Date.now()}`,
         mimeType: asset.mimeType,
         size: asset.size,
       };
 
-      if (type === "resume") setResumeDoc(selected);
-      else setTranscriptDoc(selected);
+      setTranscriptDoc(selected);
 
-      setActiveDocumentAnalysis(type);
+      setIsTranscriptAnalysisActive(true);
       try {
         const review = await documentReaderService.extractDocumentReview({
-          documentType: type,
+          documentType: "transcript",
           fileUri: selected.uri,
           fileName: selected.name,
           mimeType: selected.mimeType,
@@ -128,21 +122,21 @@ export default function ProfileSetupPage() {
           },
           questionnaireAnswers: state.questionnaireAnswers,
         });
-        setDocumentReviews((prev) => ({ ...prev, [type]: review }));
+        setTranscriptReview(review);
       } catch (error) {
         Alert.alert(
           t("profile.documentReaderUnavailableTitle"),
           error instanceof Error ? error.message : t("profile.prepareDataError")
         );
       } finally {
-        setActiveDocumentAnalysis(null);
+        setIsTranscriptAnalysisActive(false);
       }
 
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     } catch (err) {
       void errorLoggingService.captureException(err, {
         category: "upload",
-        operation: `analyze-${type}-document`,
+        operation: "analyze-transcript-document",
         severity: "error",
         handled: true,
         source: "profile-setup-page",
@@ -177,8 +171,8 @@ export default function ProfileSetupPage() {
     }
   };
 
-  const applyDocumentReview = async (documentType: "resume" | "transcript") => {
-    const review = documentReviews[documentType];
+  const applyDocumentReview = async () => {
+    const review = transcriptReview;
     if (!review) return;
 
     if (review.userPatch.major) setMajor(review.userPatch.major);
@@ -191,7 +185,7 @@ export default function ProfileSetupPage() {
       });
     }
 
-    dismissDocumentReview(documentType);
+    dismissDocumentReview();
     Alert.alert(t("profile.documentReaderAppliedTitle"), t("profile.documentReaderAppliedMessage"));
   };
 
@@ -199,22 +193,11 @@ export default function ProfileSetupPage() {
     if (step < 3) setStep(step + 1);
   };
 
-  const uploadSelectedDocument = async (
+  const uploadTranscriptDocument = async (
     userId: string,
-    selectedDoc: SelectedDocument | null,
-    _folder: "resumes" | "transcripts",
-    type: "resume" | "transcript"
+    selectedDoc: SelectedDocument | null
   ): Promise<string> => {
-    // Single upload helper keeps the submit path consistent for both file types.
     if (!selectedDoc?.uri) return "";
-    if (type === "resume") {
-      const localFile = await storageService.uploadResume(userId, selectedDoc.uri, {
-        fileName: selectedDoc.name,
-        mimeType: selectedDoc.mimeType,
-        sizeBytes: selectedDoc.size,
-      });
-      return localFile.url;
-    }
     const localFile = await storageService.uploadTranscript(userId, selectedDoc.uri, {
       fileName: selectedDoc.name,
       mimeType: selectedDoc.mimeType,
@@ -233,13 +216,12 @@ export default function ProfileSetupPage() {
 
       setIsUploading(true);
 
-      const finalResumeUrl = await uploadSelectedDocument(userId, resumeDoc, "resumes", "resume");
-      const finalTranscriptUrl = await uploadSelectedDocument(userId, transcriptDoc, "transcripts", "transcript");
+      const finalTranscriptUrl = await uploadTranscriptDocument(userId, transcriptDoc);
 
       const flatData = {
         major,
         gpa: gpa || "",
-        resume: finalResumeUrl,
+        resume: "",
         transcript: finalTranscriptUrl,
         isProfileComplete: true,
       };
@@ -250,7 +232,7 @@ export default function ProfileSetupPage() {
           userDocRef,
           {
             ...flatData,
-            resumeFileName: resumeDoc?.name || "",
+            resumeFileName: "",
             transcriptFileName: transcriptDoc?.name || "",
             updatedAt: serverTimestamp(),
           },
@@ -267,14 +249,6 @@ export default function ProfileSetupPage() {
           questionnaireAnswers: state.questionnaireAnswers,
           targetSchools: (state.savedColleges ?? []).map((college) => college.name),
           documents: {
-            ...(finalResumeUrl
-              ? {
-                  resume: {
-                    fileName: resumeDoc?.name || "",
-                    fileUrl: finalResumeUrl,
-                  },
-                }
-              : {}),
             ...(finalTranscriptUrl
               ? {
                   transcripts: {
@@ -286,9 +260,9 @@ export default function ProfileSetupPage() {
           },
         });
       } catch {
-        void errorLoggingService.captureMessage("Roadmap generation failed, but profile saved.", {
+        void errorLoggingService.captureMessage("Planning data generation failed, but profile saved.", {
           category: "ai",
-          operation: "post-profile-setup-roadmap-generation",
+          operation: "post-profile-setup-planning-generation",
           severity: "warn",
           handled: true,
           source: "profile-setup-page",
@@ -509,75 +483,52 @@ export default function ProfileSetupPage() {
 
                   {step === 3 && (
                     <View className="gap-4">
-                      <View
-                        style={{
-                          flexDirection: showUploadGrid ? "row" : "column",
-                          flexWrap: showUploadGrid ? "wrap" : "nowrap",
-                          gap: 16,
-                        }}
-                      >
-                        {renderUploadCard(
-                          t("setup.resume"),
-                          t("setup.uploadResume"),
-                          resumeDoc,
-                          () => handlePickDocument("resume"),
-                          () => {
-                            setResumeDoc(null);
-                            dismissDocumentReview("resume");
-                          }
-                        )}
+                      {renderUploadCard(
+                        t("setup.transcript"),
+                        t("setup.uploadTranscript"),
+                        transcriptDoc,
+                        () => handlePickTranscript(),
+                        () => {
+                          setTranscriptDoc(null);
+                          dismissDocumentReview();
+                        }
+                      )}
 
-                        {renderUploadCard(
-                          t("setup.transcript"),
-                          t("setup.uploadTranscript"),
-                          transcriptDoc,
-                          () => handlePickDocument("transcript"),
-                          () => {
-                            setTranscriptDoc(null);
-                            dismissDocumentReview("transcript");
-                          }
-                        )}
-                      </View>
-
-                      {activeDocumentAnalysis ? (
+                      {isTranscriptAnalysisActive ? (
                         <Text className={`text-sm ${styles.secondaryTextClass}`}>{t("profile.documentReaderAnalyzing")}</Text>
                       ) : null}
 
-                      {(["resume", "transcript"] as const).map((documentType) => {
-                        const review = documentReviews[documentType];
-                        if (!review) return null;
-                        return (
-                          <DocumentExtractionReviewCard
-                            key={`setup-review-${documentType}`}
-                            title={t("profile.documentReaderReviewTitle")}
-                            subtitle={t("profile.documentReaderReviewSubtitle")}
-                            fileName={review.fileName}
-                            confidenceText={
-                              typeof review.confidence === "number"
-                                ? t("profile.documentReaderConfidence", { confidence: review.confidence })
-                                : null
-                            }
-                            emptyStateText={t("profile.documentReaderNoFields")}
-                            applyLabel={t("profile.documentReaderApply")}
-                            dismissLabel={t("profile.documentReaderDismiss")}
-                            currentValueLabel={t("profile.documentReaderCurrent")}
-                            suggestedValueLabel={t("profile.documentReaderSuggested")}
-                            confidenceLabel={t("profile.documentReaderConfidenceShort")}
-                            cardBgClass={styles.cardBgClass}
-                            textClass={styles.textClass}
-                            secondaryTextClass={styles.secondaryTextClass}
-                            items={review.items.map((item) => ({
-                              ...item,
-                              label: t(item.labelKey),
-                            }))}
-                            uncertainties={review.uncertainties}
-                            onApply={() => {
-                              applyDocumentReview(documentType).catch(() => {});
-                            }}
-                            onDismiss={() => dismissDocumentReview(documentType)}
-                          />
-                        );
-                      })}
+                      {transcriptReview ? (
+                        <DocumentExtractionReviewCard
+                          key="setup-review-transcript"
+                          title={t("profile.documentReaderReviewTitle")}
+                          subtitle={t("profile.documentReaderReviewSubtitle")}
+                          fileName={transcriptReview.fileName}
+                          confidenceText={
+                            typeof transcriptReview.confidence === "number"
+                              ? t("profile.documentReaderConfidence", { confidence: transcriptReview.confidence })
+                              : null
+                          }
+                          emptyStateText={t("profile.documentReaderNoFields")}
+                          applyLabel={t("profile.documentReaderApply")}
+                          dismissLabel={t("profile.documentReaderDismiss")}
+                          currentValueLabel={t("profile.documentReaderCurrent")}
+                          suggestedValueLabel={t("profile.documentReaderSuggested")}
+                          confidenceLabel={t("profile.documentReaderConfidenceShort")}
+                          cardBgClass={styles.cardBgClass}
+                          textClass={styles.textClass}
+                          secondaryTextClass={styles.secondaryTextClass}
+                          items={transcriptReview.items.map((item) => ({
+                            ...item,
+                            label: t(item.labelKey),
+                          }))}
+                          uncertainties={transcriptReview.uncertainties}
+                          onApply={() => {
+                            applyDocumentReview().catch(() => {});
+                          }}
+                          onDismiss={() => dismissDocumentReview()}
+                        />
+                      ) : null}
                     </View>
                   )}
 

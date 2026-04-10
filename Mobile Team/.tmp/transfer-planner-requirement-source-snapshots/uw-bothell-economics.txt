@@ -1,402 +1,579 @@
 Owner: uw-bothell-economics
-Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics/curriculum
-Title: Curriculum - School of Business
+Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
+Title: Bachelor of Economics - School of Business
 
-Curriculum - School of Business
+(*Note: Students in the process of completing a course will not be considered for the Accounting Option until the course has been completed.)
+(1 credit)
+(4 credits)
+(any 300/400 level UW courses)
+(Description forthcoming.)
+(formerly B CUSP 202)
+[Supplemental official source] Accounting Option
+[Supplemental official source] Curriculum
+[Supplemental official source] Entrepreneurship Concentration
+[Supplemental official source] Finance Option and Concentration
+[Supplemental official source] Leadership & Strategic Innovation Option
+[Supplemental official source] Prerequisite Courses
+[Supplemental official source] Prerequisites
+[Supplemental official source] Supplemental official track and option pages
+[Supplemental official source] UW Bothell Economics curriculum
+* POLS & 201 is not standard across all community colleges.
+**Accounting Option students who add a Finance Concentration cannot count the following courses as Accounting Option electives:
+**AP Statistics score not accepted
+*Accounting Option students who add a Finance Concentration cannot use the following courses as part of their Finance Concentration (i.e., no double-counting of courses):
+*AP Calculus score of 3, 4, or 5 accepted
+*AP Language/Literature Exam scores not accepted
+*AP Macroeconomics score of 3, 4, or 5 accepted
+*AP Microeconomics score of 3, 4, or 5 accepted
+*Higher level business statistics accepted
+*If you are an Accounting Option student with a Finance Concentration, you cannot use the following courses as part of your Finance Concentration (i.e., no double-counting of courses):
+*Note: The DIV credits can overlap with General Education requirements above.
+&#124;
+&copy; 2026 University of Washington Bothell
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
-height="0" width="0" style="display:none;visibility:hidden">
-Skip To Content
-Current site
-All UW Bothell
-Search keywords
-Search
-Open mobile menu
-Quick Links
-School of Business
-Close mobile menu
-School of Business
-Search keywords
-Current site
-All UW Bothell
-About
-Expand Navigation
-News
-Vision, Mission & Values
-Leadership History
-Undergraduate
-Expand Navigation
-Bachelor in Business Administration
-Expand Navigation
-Admissions
-Expand Navigation
-How to apply
-Prerequisite Courses
-Accounting Option
-Leadership & Strategic Innovation Option
-Marketing Option and Concentration
-Supply Chain Management Option
-Entrepreneurship Concentration
-Finance Option and Concentration
-Management Concentration
-Management Information Systems (MIS) Concentration
-Retail Management Concentration
-Technology & Innovation Management (TIM) Concentration
-Bachelor in Economics
-Expand Navigation
-Admissions
-Expand Navigation
-Prerequisites
-Curriculum
-Direct First-Year Admit (DFA)
-Minor in Actuarial Science
-Minor in Business Administration
-Minor in Economics
-Minor in Retail Management
-Policies & Petitions
-Graduate
-Expand Navigation
-Master of Business Administration
-Expand Navigation
-PharmD-MBA Program
-Admissions
-Curriculum
-Tuition & Financial Aid
-Master of Science in Accounting
-Expand Navigation
-Admissions
-Curriculum
-Tuition and Financial Aid
-MSA Faculty
-MS Accounting Advisory Board
-Certificate in Accounting
-Executive Education
-Expand Navigation
-Ethics Conference
-Opportunities
-Expand Navigation
-Mentorship EDGE
-Expand Navigation
-Get a Mentor
-Become a Mentor
-Mentors
-Events
-Awards
-Scholarships
-Expand Navigation
-Ron Tilden Accounting Scholarship
-Don Whitney Scholarship for Graduate Students
-Donor Excellence Scholarship
-Internships
-Expand Navigation
-Why hire a business student?
-Business Consulting Course
-Professional Coaching
-Independent Study Projects
-People
-Expand Navigation
-Faculty
-Expand Navigation
-Promotion and Tenure Guidelines
-Staff
-Advisory boards
-Expand Navigation
-Dean’s Advisory Board
-Mentorship EDGE Mentors
-Events
-Give
-UW Bothell Home
-Quick Links
-MyUW
-Canvas
-Directory
-Library
-Workday Login
-Give
-Apply As Undergraduate
-More Links
-Time Schedule
-Information Technology
-Commuter Services
-Facilities
-Human Resources
-Campus Safety
-Alumni
-About
-News
-Vision, Mission & Values
-Leadership History
-Undergraduate
-Bachelor in Business Administration
-Bachelor in Economics
-Direct First-Year Admit (DFA)
-Minor in Actuarial Science
-Minor in Business Administration
-Minor in Economics
-Minor in Retail Management
-Policies & Petitions
-Graduate
-Master of Business Administration
-Master of Science in Accounting
-Certificate in Accounting
-Executive Education
-Ethics Conference
-Opportunities
-Mentorship EDGE
-Scholarships
-Internships
-Business Consulting Course
-Professional Coaching
-Independent Study Projects
-People
-Faculty
-Staff
-Advisory boards
-Mentorship EDGE Mentors
-Events
-Give
-Close mobile menu
-In this section
-About
-Expand Navigation
-News
-Vision, Mission & Values
-Leadership History
-Undergraduate
-Expand Navigation
-Bachelor in Business Administration
-Expand Navigation
-Admissions
-Expand Navigation
-How to apply
-Prerequisite Courses
-Accounting Option
-Leadership & Strategic Innovation Option
-Marketing Option and Concentration
-Supply Chain Management Option
-Entrepreneurship Concentration
-Finance Option and Concentration
-Management Concentration
-Management Information Systems (MIS) Concentration
-Retail Management Concentration
-Technology & Innovation Management (TIM) Concentration
-Bachelor in Economics
-Expand Navigation
-Admissions
-Expand Navigation
-Prerequisites
-Curriculum
-Direct First-Year Admit (DFA)
-Minor in Actuarial Science
-Minor in Business Administration
-Minor in Economics
-Minor in Retail Management
-Policies & Petitions
-Graduate
-Expand Navigation
-Master of Business Administration
-Expand Navigation
-PharmD-MBA Program
-Admissions
-Curriculum
-Tuition & Financial Aid
-Master of Science in Accounting
-Expand Navigation
-Admissions
-Curriculum
-Tuition and Financial Aid
-MSA Faculty
-MS Accounting Advisory Board
-Certificate in Accounting
-Executive Education
-Expand Navigation
-Ethics Conference
-Opportunities
-Expand Navigation
-Mentorship EDGE
-Expand Navigation
-Get a Mentor
-Become a Mentor
-Mentors
-Events
-Awards
-Scholarships
-Expand Navigation
-Ron Tilden Accounting Scholarship
-Don Whitney Scholarship for Graduate Students
-Donor Excellence Scholarship
-Internships
-Expand Navigation
-Why hire a business student?
-Business Consulting Course
-Professional Coaching
-Independent Study Projects
-People
-Expand Navigation
-Faculty
-Expand Navigation
-Promotion and Tenure Guidelines
-Staff
-Advisory boards
-Expand Navigation
-Dean’s Advisory Board
-Mentorship EDGE Mentors
-Events
-Give
-School of Business
-&#124;
-Bachelor of Economics
-School of Business
-&#124;
-Undergraduate Programs
-&#124;
-Bachelor of Economics
-&#124;
-Curriculum
-Curriculum
-Bachelor of Science in Economics degree
-Degree Requirements
-Students pursuing the B.S. in Economics major must complete the following 55 credits for graduation.
-Course Type
-Course Numbers & Names
-Core Courses ( prerequisites in parentheses)
+● Additional Writing (W) – 10 credits
+● Arts and Humanities (A&H) – 15 credits
+● Diversity (DIV) – 5 credits (3 credits for students admitted to UWB prior to Fall 2023)
+● English Composition (C) – 5 credits (A grade of 2.0 is required)
+● Natural Sciences (NSc) – 15 credits
+● Reasoning (RSN) – 5 credits
+● Social Sciences (SSc) – 15 credits
+10 credits – Complete 2 courses from this list:
+10 credits &#8211; Complete two courses from this list:
+10 credits from the following:
+15 credits
+18807 Beardslee Blvd, Suite 210
+20 Credits from the following list:
+30 credits
 30 credits:
-B BUS220/BIS 200: Principles of Microeconomics
-B BUS 221/BIS 201: Principles of Macroeconomics (BBUS 220, or BIS 200, or B CUSP 200)
-B BUS 210: Financial Accounting
+425.352.5000
+425.352.5394
+5 credits
+5 credits – Complete one Enrichment Elective from this list:
+5 credits &#8211; Complete one course from this list:
+5-10 credits
+55 Credits
+60 Credits
+90 credits
+90 Credits
+A project-based applied learning practicum focused on introducing students to the field of management consulting. Designed to serve an integrative role, bringing together the functional disciplines and components of the MBA curriculum in a summative project-based consulting experience.
+About
+Accessibility
+Accounting certification preparation
+Accounting curriculum
+Accounting Electives (prerequisites in parentheses)
+Accounting Option
+Accounting Option - School of Business
+Accounting Option students must complete the following courses for graduation.
+Accounting Profession
+Accounting Profession (1 credit)
+Accounting Professional Development
+Accounting Theory
+ACCTG 215
+ACCTG 225
+ACCTG& 201 and ACCTG& 202
+ACCTG& 203
+Admissions
+Admitted students must complete a minimum of 60 transferable quarter credits (80 preferred), with a cumulative grade point average (GPA) of at least a 2.0 and also have a cumulative business prerequisite GPA of at least a 2.5, prior to beginning their business studies at UW Bothell. These credits must include all of the following prerequisite courses (with a minimum grade of 2.0 in each):
+Advanced Accounting and Analytics
+Advanced Business Law
+Advanced Composition
+Advanced Leadership Models
+Advanced Managerial Accounting
+Advanced Managerial Accounting (4 credits)
+Advanced Quantitative Methods
+Advanced Quantitative Methods (4 credits)
+Advanced Taxation
+Advisory boards
+After completing the two-year Accounting Option, students are eligible to take the Certified Management Accountant (CMA) exam . Students who wish to become a Certified Public Accountant (CPA) , however, should plan on spending three years in the program. To take the CPA exam, a student needs a minimum of 225 quarter hours or five years of college (a master degree is not required).
+All UW Bothell
+Alumni
+An economics degree is a versatile credential that opens doors across diverse industries. It equips students with in-demand, transferable analytical and problem-solving skills, essential for interpreting data, evaluating policies, and guiding market-based decisions.
+Analyzes economic structures and trends in nations across the globe and examines their implications for business decision-making. Examines how these economies are influenced by political, legal, regulatory, and technological issues in a global context.
+Apply As Undergraduate
+Apply Now
+Autumn
+Awards
+B ACCT 500:
+B ACCT 501:
+B ACCT 502 :
+B ACCT 503:
+B ACCT 505:
+B ACCT 506:
+B ACCT 510:
+B ACCT 568:
+B BECN 300: Quantitative Methods in Economics (STMATH 114, or 124, or 125, or 126, or B MATH 144)
 B BECN 302: Intermediate Microeconomics (BBUS 220, or BIS 200 and STMATH 114, or 124, or 125, or 126, or B MATH 144 )
 B BECN 303: Intermediate Macroeconomics (B BECN 302)
 B BECN 382: Introduction to Econometrics (B BECN 302)
-Economics Electives (prerequisites in parentheses)
-20 Credits from the following list:
-B BECN 300: Quantitative Methods in Economics (STMATH 114, or 124, or 125, or 126, or B MATH 144)
-B BUS 301: Data Management ( BIS 215, or BBUS 215, or B MATH 215, or STMATH 341)
-B BECN/B BUS 458: Risk Modeling (B BECN 302)
 B BECN 460: Financial Economics ( BECN 302 and either B BECN 458, or STMATH 330 and STMATH 392)
 B BECN 469: Game Theory (BBUS 310 or STMATH 114, or 124, or 125, or 126, or B MATH 144)
-General Electives (any 300/400 level B BECN or B BUS course)
-5 credits
-Total Credits
-55 Credits
-General Education Requirements
-In addition to the B.S. in Economics course requirements, students are required to fulfill the UW Bothell general education requirements.
-● English Composition (C) – 5 credits (A grade of 2.0 is required)
-● Additional Writing (W) – 10 credits
-● Reasoning (RSN) – 5 credits
-● Natural Sciences (NSc) – 15 credits
-● Arts and Humanities (A&H) – 15 credits
-● Social Sciences (SSc) – 15 credits
-● Diversity (DIV) – 5 credits (3 credits for students admitted to UWB prior to Fall 2023)
-*Note: The DIV credits can overlap with General Education requirements above.
-In this section
-About
-Expand Navigation
-News
-Vision, Mission & Values
-Leadership History
-Undergraduate
-Expand Navigation
+B BECN/B BUS 458: Risk Modeling (B BECN 302)
+B BUS 210
+B BUS 210: Financial Accounting
+B BUS 211
+B BUS 220/BIS 200
+B BUS 221/BIS 201
+B BUS 221/BIS 201: Principles of Macroeconomics (BBUS 220, or BIS 200, or B CUSP 200)
+B BUS 230
+B BUS 301: Data Management ( BIS 215, or BBUS 215, or B MATH 215, or STMATH 341)
+B BUS 361 – Intermediate Accounting I
+B BUS 362 – Intermediate Accounting II (361)
+B BUS 373 – Cost Accounting
+B BUS 402 – Managing Work Teams
+B BUS 402 Managing Work Teams
+B BUS 427 Entrepreneurial Marketing (320)
+B BUS 441 – Business Project Management (340)
+B BUS 443 – Entrepreneurship Seminar
+B BUS 443 Entrepreneurship Seminar
+B BUS 444 – Product Development Lab
+B BUS 444 Product Development Lab
+B BUS 455 – Financial Risk Management (454)
+B BUS 456 – Entrepreneurial Finance (350)
+B BUS 456 Entrepreneurial Finance (350)
+B BUS 457 – Advanced Valuation (454)
+B BUS 459 – Special Topics in Finance (350)
+B BUS 460 – Sustainable Business
+B BUS 461 – Business, Government, and Society ( 300, 310 )
+B BUS 462 – Negotiations and Conflict Management (300, 320)
+B BUS 463 – Advanced Financial Accounting (362)
+B BUS 464 New Product Marketing (320)
+B BUS 465 – Applied Financial Accounting (350)
+B BUS 468 – Advanced Accounting and Analytics (363)
+B BUS 471 – Entrepreneurial Management
+B BUS 471 Entrepreneurial Management
+B BUS 472 – Managing Employees (300)
+B BUS 473 – Leadership and Decision Making ( 300 )
+B BUS 475 – Managing Innovation
+B BUS 476 – New Technology and Future Markets (320, 350)
+B BUS 476 New Technology & Future Markets (300, 320, 350)
+B BUS 477 – Human Resource Management (300)
+B BUS 478 Venture Startup, Management & Growth
+B BUS 479 – Special Topics in Management (300)
+B BUS 491 – Business Consulting
+B BUS 501
+B BUS 502
+B BUS 503
+B BUS 504
+B BUS 505
+B BUS 506
+B BUS 507
+B BUS 509
+B BUS 510
+B BUS 512
+B BUS 531
+B BUS220/BIS 200: Principles of Microeconomics
+B MATH 144
+B WRIT 135* (must be designated (C) composition)
+BA& 240
 Bachelor in Business Administration
-Expand Navigation
-Admissions
-Expand Navigation
-How to apply
-Prerequisite Courses
-Accounting Option
-Leadership & Strategic Innovation Option
-Marketing Option and Concentration
-Supply Chain Management Option
-Entrepreneurship Concentration
-Finance Option and Concentration
-Management Concentration
-Management Information Systems (MIS) Concentration
-Retail Management Concentration
-Technology & Innovation Management (TIM) Concentration
 Bachelor in Economics
-Expand Navigation
-Admissions
-Expand Navigation
-Prerequisites
+Bachelor of Business Administration
+Bachelor of Economics
+Bachelor of Economics - School of Business
+Bachelor of Science in Economics degree
+BBUS 300 – Organizational Behavior, Ethics and Inclusivity, Diversity Designated Course
+BBUS 307 – Business Writing, Writing Designated Course
+BBUS 310 – Managerial Economics (BMATH 144, or STMATH 124, or MATH 112)
+BBUS 310 – Managerial Economics (BMATH 144, STMATH 124, or MATH 112)
+BBUS 320 – Marketing Management
+BBUS 340 – Operations & Project Management
+BBUS 340 – Operations & Project Management (310)
+BBUS 350 – Business Finance (310)
+BBUS 361 – Intermediate Accounting 1*
+BBUS 361 – Intermediate Accounting I
+BBUS 361 – Intermediate Accounting I*
+BBUS 362 – Intermediate Accounting 2 (361)
+BBUS 363 – Intermediate Accounting 3 (362)
+BBUS 373 – Cost Accounting
+BBUS 373 – Cost Accounting*
+BBUS 411 – Auditing Theory & Practice (362)
+BBUS 412 – Advanced Business Law
+BBUS 435 – Accounting Information Systems (361)
+BBUS 449 – Accounting Practices in Not-for-Profit Organizations (363)
+BBUS 450 – Federal Income Taxation (361)
+BBUS 451 – Financial Policy & Planning
+BBUS 451 – Financial Policy & Planning (350) **
+BBUS 451 – Financial Policy and Practice (350)
+BBUS 452 – Financial Modeling (350)
+BBUS 453 – Financial Institutions & Markets
+BBUS 453 – Financial Institutions and Markets (350)
+BBUS 454 – Investments
+BBUS 454 – Investments (350)
+BBUS 455 – Financial Risk Management (454)
+BBUS 456 – Entrepreneurial Finance (350)
+BBUS 457 – Advance Valuation (454)
+BBUS 458 &#8211; Risk Modeling
+BBUS 459 – Special Topics in Finance (350)
+BBUS 463 &#8211; Advanced Financial Accounting (362)
+BBUS 465 – Applied Finance Accounting (350)
+BBUS 465 &#8211; Applied Financial Accounting (350)
+BBUs 466 &#8211; Applied Managerial Accounting (350)
+BBUS 467 – Advanced Taxation (450)
+BBUS 468 – Advanced Accounting and Analytics (363)
+BBUS 470 – Business Policy & Strategic Management
+BBUS 476 – New Technology and Future Markets (300, 320, 350)
+BBUS 477 – Human Resource Management (300)
+BBUS 480 – Global Environment of Business
+BBUS 490 – Special Topics in Business (300, 310)
+BBUS 490 – Special Topics in Business (300, 310), Only counts when approved for concentration; see your advisor before registering.
+BBUS 491 – Business Consulting
+Beardslee Building (UWBB)
+Because the Bachelor Degree in Business Administration is an upper division program, students begin the program after completing prerequisite coursework. Transfer students applying to UW Bothell as Business majors and UW Bothell students declaring a Business major must have completed the majority of following courses at the time of application. All prerequisite coursework must be completed prior to matriculation (i.e., the start of studies at UW Bothell).
+Become a Mentor
+Before you can register for the capstone courses, you must complete all core courses and meet with your advisor to file a graduation application .
+BIS 215 (previously BIS 315), B BUS 215, BMATH 215, or STMATH 341
+BIS 215 (previously BIS 315), or B BUS 215, or BMATH 21, or STMATH 341
+Bothell, WA 98011
+Bothell, Washington View our location on Google maps.
+Box 358533
+Build your expertise. Advance your career. Become a leader in accounting.
+Build your own path with any five electives (20 credits).
+BUS& 201
+Business Communications
+Business Consulting Course
+Business Intelligence and AI
+Calculus
+Campus Safety
+Canvas
+Capstone Courses
+Career Flexibility: Our Major opens doors to diverse opportunities, whether in the private sector, public policy, or academic and policy research—allowing you to tailor your career path to your interests
+Career Opportunities
+Certificate in Accounting
+Choose two courses (10 credits) from the following:
+Close mobile menu
+COMMON TRANSFER COURSE NUMBERING
+Commuter Services
+Complete one of the following:
+Concentration Courses
+Considers some of the most important economic aspects of a business enterprise including demand and cost analysis, pricing strategy (including auctions), and the economics of information. Highlights the usefulness of game theory.
+Contact
+Contact Us
+Contact us by phone at:
+Core Courses
+Core Courses ( prerequisites in parentheses)
+Core Courses (prerequisites in parentheses)
+Corporate Financial Reporting
+Corporate Financial Reporting (4 credits)
+Corporate Governance
+Course Descriptions
+Course Numbers & Names
+Course Schedule
+Course Type
+Courses
+COURSES
+Credits : 64 total (44 core &#8211; listed below, 20 electives)
+Current site
 Curriculum
+Curriculum - School of Business
+Dean’s Advisory Board
+Degree Requirements
+Digital Marketing
 Direct First-Year Admit (DFA)
+Directions & Maps
+Directory
+Don Whitney Scholarship for Graduate Students
+Donor Excellence Scholarship
+Duration : Complete in 18 months or set your own pace
+Duration: 12 – 24 months
+ECON 200
+ECON 201
+ECON& 201
+ECON& 202
+Economics Electives (prerequisites in parentheses)
+Economics provides the knowledge and tools to understand the impact of micro and macro level decisions and government policy across a wide range of domains such as market dynamics, inflation, economic growth, AI job displacement, employment, inequality, poverty, development, health, and pollution, to name a few.
+ELCBUS 463 – International Finance and Trade (350)
+Elective
+Elective (4 &#8211; 8 credits)
+Elective (4 credits)
+Elective (4-8 credits)
+Electives
+Electives can be taken any quarter, including Summer. Electives vary per program. Course availability varies per quarter.
+Email Us
+ENG& 102
+ENGL 111, 121, 131, 182, 197, 198, 199, 281, 282, 297, 298, 299, 381, or 382
+Enterprise IT Management
+Entrepreneurial Finance
+Entrepreneurship Concentration
+Entrepreneurship Concentration - School of Business
+Entrepreneurship curriculum
+Ethics Conference
+Evening classes with select options for daytime classes.
+Events
+Examines factors associated with leader and team effectiveness using high- and low-element exercises and lecture/discussion. Introduces management analysis and decision-making using the case study method. Three-day off-campus retreat followed by two evening class meetings on campus.
+Examines financial challenges common to new ventures, and discusses each participant in the venture arena. Explores alternative sources of private equity for new ventures.
+Examines how AI and data analytics shape managerial decision‑making and organizational strategy. Covers business intelligence for collecting, analyzing, and visualizing data to produce actionable insights. Introduces core AI concepts—machine learning, natural language processing, and generative AI—and their applications across business functions. Students work with modern analytics tools, dashboards, and cloud-based AI platforms to support data-driven practices. Emphasizes interpreting analytics for business impact and understanding the ethical and governance considerations of responsible AI use.
+Examines strategies and state-of-the art analytical methods that support profitable new product introductions.
+Examines the operations function in service and manufacturing organizations from a managerial perspective. Key topics include strategic and design decisions relating to operations and processes, quality management, lean systems, inventory control and supply chain management. Uses blend of theory, cases, analytical techniques, and business vignettes.
+Examines the theory and processes of negotiation. Includes a broad spectrum of negotiation problems.
+Executive Education
+Expand Navigation
+Explores intangible assets and &#8220;meso&#8221; issues that underpin organizational effectiveness. Topics include organizational phenomena (cultures, structures, routines, capabilities, life cycles), intellectual capital, and knowledge management (creating, maintaining, and diffusing knowledge). Projects require application of best practices to personally relevant situations.
+Explores the critical challenges facing businesses in becoming more environmentally sustainable without forgoing traditional indicators of success. Topics drawn from current major concerns related to environment and sustainability, such as climate, water, toxics, transportation, buildings, and food. Application of economics, strategy, marketing, manufacturing and technology, finance, organization theory, and accounting.
+Explores the variety of corporate control and governance structures around the world. Examines important governance practices and their impact on corporate strategy and competitiveness.
+Facilitates the development of a customer orientation and explores the use of the marketing mix of product, price, place and promotion to create, communicate and deliver value to targeted customer segments. Explains how marketing strategy is developed, implemented, and controlled in the marketplace.
+Facilities
+Faculty
+Fall
+Finance Electives (prerequisites in parentheses)
+Finance Option and Concentration
+Finance Option and Concentration - School of Business
+Financial Accounting
+Financial Accounting Seminar
+Financial Management
+Financial Management (4)
+Financial Reporting and Analysis
+Financial Reporting and Analysis (4)
+Financial Statement Analysis
+Financial Statement Analysis (4 credits)
+Focus on team leadership, strategic change, and organizational growth.
+Focuses on critical issues for aligning information technology resources with the enterprise. Demonstrates the role of company mission and objectives on decisions regarding project approval and implementation. Topics include: project due diligence; technology process management; technology agility; enterprise system implementation, legal and ethical aspects, and contemporary issues.
+Focuses on leadership and managerial effectiveness. Builds upon students&#8217; knowledge of factors which influence leadership behavior and the critical personal and interpersonal associated with leadership. At a two-day, overnight retreat, students engage in an organizational simulation and receive feedback from faculty and mentors.
+Focuses on major top management decisions, emphasizing how competitive advantage is created and maintained through planning and strategy. Using readings and cases, demonstrates importance in diverse industries of external environments (customers, competitors, science and technology, laws), organizational phenomena (structure, processes, decision making), and an international perspective.
+Focuses on making written and spoken communications effective and authentic, using case studies of several communication challenges that occur in organizations. Teaches how successful communication is both intentional and strategic; and how to formulate communication goals, understand your audience, and use the correct approach in each situation.
+Focuses on understanding design, data analysis techniques, and interpretation of market segmentation studies, customer satisfaction studies, user experience studies, product positioning research, and recommender system. Students have hands-on experience designing research projects and deriving marketing insights from various data analysis exercise and projects.
+For example, if you&#8217;re a transfer student completing the remaining prerequisites in summer quarter, you can still apply to UW Bothell in spring with the intention of starting Business classes in fall quarter, so long as you&#8217;ve completed all the prerequisites before fall quarter begins.
+For questions regarding your submitted online application, please contact our program team.
+Forensic Accounting
+Format : In-person evening classes, weekend electives with some courses offered online.
+Full-time or Part-time tracks
+General Education Requirements
+General Electives
+General Electives (any 300/400 level B BECN or B BUS course)
+General Electives (any 300/400 level UW course)
+General Electives (any 300/400 level UW courses)
+General MBA
+Get a Mentor
+Get Updates
+Give
+Global Business
+Global Business (4)
+Global Study Tour
+Graduate
+Graduate Programs
+height="0" width="0" style="display:none;visibility:hidden">
+High Return on Investment: An Economics degree will position you for analytically rigorous roles across sectors that offer strong earning potential.
+Highly sought-after transferable skills: Employers value economists for their analytical thinking, quantitative reasoning, and data interpretation abilities.
+How to apply
+Human Resource Management
+Human Resources
+In addition to public accounting, the Accounting Option will thoroughly prepare students for careers in private, government and non-profit accounting. The curriculum is designed to enable graduates to fill a number of corporate positions such as internal auditor, managerial accountant and tax accountant. Graduates will also be prepared to serve in government positions such as tax examiner, budget analyst and government auditor. You can get more information from the Washington Society of Certified Public Accountants .
+In addition to the B.S. in Economics course requirements, students are required to fulfill the UW Bothell general education requirements.
+In this section
+Independent Study Projects
+Information Technology
+International students who engage in post-completion Optional Practical Training (OPT) can seek a 24-month extension of their initial OPT. This extension, known as a STEM OPT Extension , permits international students to prolong their employment with a qualifying employer for a combined total of 36 months of U.S. work experience.
+Internships
+Jobs
+Join an Info Session
+Law
+Leadership & Strategic Innovation Option
+Leadership & Strategic Innovation Option - School of Business
+Leadership and Ethical Decision Making
+Leadership and Ethical Decision Making (4)
+Leadership History
+Leadership MBA
+Leadership Social Responsibility
+Leadership Social Responsibility (4)
+Learn to innovate in data-driven, tech-focused industries.
+Library
+LSI curriculum
+LSI Electives (prerequisites in parentheses)
+Macroeconomics
+Management Concentration
+Management Consulting
+Management Information Systems (MIS) Concentration
+Managerial Accounting
+Managing Organizational Effectiveness
+Managing Organizational Effectiveness (4)
+Maps & directions
+Marketing Intelligence
+Marketing Management
+Marketing Management (4)
+Marketing Option and Concentration
+Master Advanced Accounting with a Flexible, Applied Program
+Master of Business Administration
+Master of Science in Accounting
+MATH 112, 124, 125, 126, 134, or 145
+MATH 112, or 124, or 125, or 126, or 134, or 145, or
+MATH 390, or Q SCI 381, or IND E 315
+MATH 390, Q SCI 381, or IND E 315
+MATH& 146 or
+MATH& 148 or MATH&151
+MATH&148 or MATH& 151
+MBA Elective Courses
+Mentors
+Mentorship EDGE
+Mentorship EDGE Mentors
+MGMT 200
+Microeconomics
+Microeconomics for Business
+Microeconomics for Business (4)
 Minor in Actuarial Science
 Minor in Business Administration
 Minor in Economics
 Minor in Retail Management
-Policies & Petitions
-Graduate
-Expand Navigation
-Master of Business Administration
-Expand Navigation
-PharmD-MBA Program
-Admissions
-Curriculum
-Tuition & Financial Aid
-Master of Science in Accounting
-Expand Navigation
-Admissions
-Curriculum
-Tuition and Financial Aid
-MSA Faculty
+More Links
 MS Accounting Advisory Board
-Certificate in Accounting
-Executive Education
-Expand Navigation
-Ethics Conference
+MSA Faculty
+Must have completed all required prerequisite Accounting courses with a minimum grade of 2.5 in each course.
+Must have earned a minimum 3.0 cumulative grade point average across all prerequisite Accounting courses.
+MyUW
+Negotiations
+New Product Marketing
+News
+Note: schedule subject to change.
+Open mobile menu
+Operations and Supply Chain Management
+Operations and Supply Chain Management (4)
 Opportunities
-Expand Navigation
-Mentorship EDGE
-Expand Navigation
-Get a Mentor
-Become a Mentor
-Mentors
-Events
-Awards
-Scholarships
-Expand Navigation
-Ron Tilden Accounting Scholarship
-Don Whitney Scholarship for Graduate Students
-Donor Excellence Scholarship
-Internships
-Expand Navigation
-Why hire a business student?
-Business Consulting Course
-Professional Coaching
-Independent Study Projects
+Option Courses
+Our B.S. in Economics is designed and taught by expert faculty. The School of Business provides a student-centric education and mentoring, as well as strong connections to industry. Our campus constitutes a supportive and active community which embraces students from all backgrounds. To sum up, we offer:
+Our program prepares you for success across a broad spectrum of careers grounded in quantitative economic research—such as public policy, financial analysis, data science, healthcare, and more. It also lays a strong foundation for graduate and professional studies in economics, public policy, business, law, and related disciplines.
 People
-Expand Navigation
-Faculty
-Expand Navigation
-Promotion and Tenure Guidelines
-Staff
-Advisory boards
-Expand Navigation
-Dean’s Advisory Board
-Mentorship EDGE Mentors
-Events
-Give
-Contact Us
-University of Washington Bothell Homepage
-Bothell, Washington View our location on Google maps.
-Contact us by phone at:
-425.352.5000
-Contact
-Visitors
-Maps & directions
-Jobs
-Accessibility
+PharmD-MBA Program
+Policies & Petitions
+POLS& 201*or
+Pre-Fall
+Prerequisite Course Requirements
+Prerequisite Courses
+Prerequisite Courses - School of Business
+Prerequisites
+Prerequisites for matriculation
 Privacy
+Professional Coaching
+Program Snapshot
+Project Management
+Promotion and Tenure Guidelines
+Provides a general manager&#8217;s perspective on the management of innovation. Focuses on conceptual frameworks and analytical tools for managing innovation throughout the firm. Topics include the nature of innovation, how organizational and technical capabilities affect innovation, product/process development systems, and technology implementation.
+Provides an advanced overview of leadership theory and practice and helps students understand and develop their own leadership potential. Relies on a variety of approaches including readings, cases, simulations, guest speakers, activities, discussion, assessments, lectures, and reflection.
+Provides an introduction to the models used in the investment and financing decisions of a firm. Topics include: valuation of stocks and bonds; measurement of risk and return; project evaluation and analysis; financial leverage and optimal capital structure, and optimal dividend policy.
+Provides an introduction to the strategic role of the human resource function within modern organizations; examines human resource management practices associated with individual and organizational effectiveness, employee satisfaction, and motivation; and develops an understanding of how general managers can apply these concepts in managing people within their organizations.
+Provides knowledge and insights to construct, implement, and evaluate digital marketing strategies based on data-driven analysis. Explores topics including search engine optimization, search advertising, display advertising, web analytics, social media marketing, and mobile marketing.
+PSYCH 315, 317, or 318
+PSYCH 315, or 317, or 318
+Q METH 201
+Q METH 201, or
+Q SCI 291
+Questions?
+Quick Links
+Read, interpret, and analyze company financial reports. Understand the procedural aspects of the preparation of financial statements. Acquire a working knowledge of generally accepted accounting principles and financial reporting standards. Understand the ambiguities that arise in preparing financial statements and the role of good business judgment in resolving these ambiguities.
+Ready to design your MBA path?
+Related Links
+Request Information
+Required Accounting Courses (prerequisites in parentheses)
+Required Capstone Courses
+REQUIRED COURSES
+Required Courses (prerequisites in parentheses)
+Required Electives
+Required Entrepreneurship Courses (prerequisites in parentheses)
+Required LSI Courses (prerequisites in parentheses)
+Requirements to declare the option
+Requirements to declare the Option or the Concentration
+Requires two of the following courses:
+Retail Management Concentration
+Reviews descriptive statistics, exploratory data, and probability distributions. Studies the theory and methods of statistical inference, emphasizing those applications most useful in modeling business problems. Topics include sampling theory, estimation, hypothesis testing, linear regression, analysis of variance, and several advanced applications of the general linear model.
+Ron Tilden Accounting Scholarship
 Rules Docket
-Terms
+Sample Program Schedule
+Schedule : Full-time or part-time available, M/W or T/TH evenings and Saturdays (electives)
+Scholarships
+School of Business
+Search
+Search keywords
 Seattle Campus
+Select Electives
+Seminar on Financial Accounting (4 credits)
+Seminar on Global Economic Issues
+Seminar on Strategic Cost Accounting
+Seminar on Strategic Cost Accounting (4 credits)
+Signup for Email Updates
+Skip To Content
+Small class sizes to maximize faculty-student interactions
+Special Core Courses
+Special Electives
+Specializations
+Spring
+Staff
+Start : Any quarter (Autumn, Winter, Spring, Summer)
+STAT 220, 221 (221 prior to A&#8217;17), 311, or 390
+STAT 220, or 221 (221 prior to A’17), or 311, or 390, or
+Statistics
+Statistics for Business
+Statistics for Business (4)
+Stem-designated
+STMATH 113 & 114, 124, 125, or 126, or
+STMATH 114, 124, 125, or 126, or
+Strategic Management Capstone
+Strategic Management Capstone (4)
+Strong Foundation for Graduate Studies: Whether you consider pursuing an MBA, MPA, JD, or Ph.D., our B.S. in Economics offers a rigorous foundation to support your next professional and academic goals.
+Strong industry partnerships connecting classroom learning to real life context.
+Students are also required to complete 20 credits of Accounting electives. Electives can be arranged across quarters as desired.
+Students in the Entrepreneurship concentration must complete the following courses for graduation.
+Students in the Finance Option or Concentration must complete the courses below to be eligible for graduation.
+Students in the Leadership & Strategic Innovation option must complete the following courses for graduation.
+Students may NOT enroll in any Accounting courses until speaking to their advisor to determine whether they meet the requirements.
+Students pursuing the B.S. in Economics major must complete the following 55 credits for graduation.
+Students wanting to declare the Accounting option must meet the following requirements:
+Students wanting to declare the Finance Option are required to have taken B BUS 350 with a minimum GPA of 3.0. Students may apply for a waiver of this minimum GPA requirement if they earn a minimum GPA of 3.0 across all other Finance Option required courses. Students must have completed BBUS 350 – Business Finance, to declare the Finance concentration.
+Students wanting to declare the LSI Option must complete BBUS 300 and BBUS 307 with a minimum grade of 3.0 in each course.
+Study abroad tour that cultivates a rich understanding of business theory and a genuine global perspective. Develops an appreciation of national difference in culture and economic, legal, and political systems that affect business strategy, operations, and performance.
+Subscribe to Notifications
+Summer
+Supply Chain Management Option
+Supportive community with student organizations and networking events.
+Sustainability
+Synthesizes and extends perspective on global business environment. Demonstrates how choices related to organization and strategy (such as outsourcing and diversification) require an understanding of trade theory and policy, differences in national cultures, and international institutions.
 Tacoma Campus
+Take the Next Step
+Taught by leading faculty, our Economics major combines conceptual insight with technical skills. Its flexible, interdisciplinary structure encourages students to apply economic thinking across fields that foster innovative, cross-disciplinary learning and problem-solving from diverse perspectives.
+Technology / Leadership Electives
+Technology & Innovation Management (TIM) Concentration
+Technology and Innovation Management
+Technology MBA
+Terms
+The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+The Accounting Option prepares students for careers in private, government, non-profit and public accounting. Demand for accountants is extremely high as businesses work to plan, manage and control their operations. Graduates can serve as internal auditors, managerial accountants, tax examiners, budget analysts or government auditors. After completing this option, students are eligible to take the Certified Management Accounting (CMA) exam. If you want to be a Certified Public Accountant (CPA), a minimum of 225 quarter hours or five years of college is required.
+The B.S. in Economics qualifies as a STEM-designated program categorized under “Econometrics and Quantitative Economics” (CIP Code 45.0603) on the Department of Homeland Security’s roster of STEM-designated degrees .
+The comparison chart above is for students interested in applying to the UW Bothell School of Business only. It is not an approved equivalency guide for all campuses. If you have questions about the specific prerequisite courses needed for a program, please speak to an advisor.
+The Entrepreneurship Concentration prepares students to start their own companies, whether they be tech startups, local shops, or professional services. Students learn by developing actual startup ideas on real startup teams. They spot new business opportunities and create value propositions, which align products or services with customer needs. And they develop strategies and business models for their startups. The concentration prepares students (if interested) to compete in UW&#8217;s Dempsey Startup Competition or to apply to the Buerk Accelerator Program .
+The Finance Option allows students acquire knowledge about how firms make financial decisions and how these decisions affect individual organizations and society as a whole. Students also learn how firms acquire and allocate funds; how financial markets operate and the role these markets play in economic welfare. The study of finance includes the use of models to develop analytical approaches to problems. Students are trained to take positions in financial institutions such as commercial and investment banks, in finance departments of major corporations or with consulting firms.
+The Leadership & Strategic Innovation (LSI) option will engage students in a rigorous study of leadership, strategy, and innovation. You will graduate ready to lead teams, manage innovation, and inspire employees. LSI graduates can go on to become project leads, managers, consultants, business development leads, HR analysts, market analysts, sales managers, entrepreneurs, and much more.
+The UW Bothell School of Business MBA Program blends rigorous academics with real-world experiences, preparing you to lead in any business environment. Learn from award-winning faculty, collaborate with peers, and apply your skills to real local and global challenges.
+There are three entry points into the B.S. in Economics major. These include students transferring from another institution, students directly admitted into the major from high school, and UWB pre-majors. Regardless of how you enter the B.S. in Economics major, the requirements are the same. The table below outlines the five prerequisite courses and their most common equivalents.
+This course is designed to introduce students to concepts, methods and tools of project management. Students will be exposed to topics such as exploring the processes of selecting and defining the project, planning the project, leading the project team, monitoring and controlling the execution of the project, and closing and evaluating the project.
+Throughout the program, you will explore core economic concepts—from the dynamics of markets to the formulation of models that explain financial risk and economic fluctuations. The emphasis on analytical rigor and quantitative methods equips you with the toolkit necessary to interpret data, derive economic insights, and develop well-informed policy or market decisions. Our curriculum combines rigorous training in economic theory with hands-on, data-based learning that goes beyond the classroom. While you build a strong analytical foundation, you will also tackle real-world challenges through applied projects and case studies —ensuring that you graduate ready to make an impact.
+Time Schedule
+Total Credits
+Total Credits: 52 (32 core, 20 electives)
+Tuition & Financial Aid
+Tuition and Financial Aid
+Undergraduate
+Undergraduate Programs
+University of Washington Bothell Homepage
+UW BOTHELL
+UW Bothell Facebook
+UW Bothell Home
 UW Bothell Instagram
 UW Bothell Linkedin
-UW Bothell Facebook
 UW Bothell Twitter
 UW Bothell Youtube
-&copy; 2026 University of Washington Bothell
-UW Bothell Instagram
-UW Bothell Linkedin
-UW Bothell Facebook
-UW Bothell Twitter
-UW Bothell Youtube
+UW IN SEATTLE
+UW SEATTLE
+uwbbusiness@uw.edu
+uwbmba@uw.edu
+uwbmsa@uw.edu
+Vision, Mission & Values
+Visitors
+What an Economics Major offers:
+Why Economics at UWB?
+Why hire a business student?
+Why study accounting?
+Why study Entrepreneurship?
+Why study finance?
+Why study Leadership & Strategic Innovation?
+Winter
+Workday Login
+Year One
+Year Two
+Your MBA Journey Starts Here

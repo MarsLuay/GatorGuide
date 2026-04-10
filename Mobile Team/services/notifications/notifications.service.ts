@@ -116,14 +116,14 @@ function buildReminderCopy(offsetDays: (typeof DEADLINE_REMINDER_OFFSETS_DAYS)[n
   if (offsetDays === 7) {
     return {
       title: 'Transfer deadline in one week',
-      body: `Your target transfer deadline is ${formattedDeadline}. Open GatorGuide to review your roadmap and documents.`,
+      body: `Your target transfer deadline is ${formattedDeadline}. Open GatorGuide to review your tasks and documents.`,
     };
   }
 
   if (offsetDays === 1) {
     return {
       title: 'Transfer deadline tomorrow',
-      body: `Your target transfer deadline is ${formattedDeadline}. Take a final look at your roadmap, documents, and applications.`,
+      body: `Your target transfer deadline is ${formattedDeadline}. Take a final look at your tasks, documents, and applications.`,
     };
   }
 

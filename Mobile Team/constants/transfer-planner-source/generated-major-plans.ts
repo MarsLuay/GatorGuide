@@ -19,7 +19,7 @@ import type {
   TransferPlannerMajorPlan,
   TransferPlannerResolvedMajorPlan,
   TransferPlannerTrack,
-} from "../transfer-planner-data";
+} from "../transfer-planner-types";
 import {
   TRANSFER_PLANNER_CANONICAL_COURSE_REGISTRY,
   TRANSFER_PLANNER_DEGREE_MAP_BLOCK_REGISTRY,
@@ -29,6 +29,7 @@ import {
   TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY,
   TRANSFER_PLANNER_POLICY_REGISTRY,
   TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY,
+  getTransferPlannerPromotedRequirementAtomOverrides,
 } from "./registry";
 import {
   TRANSFER_PLANNER_SOURCE_GAP_ENTRIES,
@@ -37,7 +38,9 @@ import type {
   TransferPlannerDegreeMapBlock,
   TransferPlannerMajorPathwayEntry,
   TransferPlannerMajorRequirementAtom,
+  TransferPlannerParsedRequirementAtomCandidate,
   TransferPlannerPolicyEntry,
+  TransferPlannerRequirementDiffClassificationEntry,
   TransferPlannerRequirementPhase,
   TransferPlannerSourceLink,
 } from "./schema";
@@ -78,8 +81,42 @@ const TRANSFER_PLANNER_CHAIN_LABELS: Record<string, string> = {
 const AUTO_FALLBACK_CHECKLIST_LIMIT = 6;
 const AUTO_TRACK_MATCH_EXAMPLE_LIMIT = 4;
 const MIN_AUTO_TRACK_MATCH_COUNT = 3;
+const AUTO_MATCH_EXCLUDED_TRACK_TERM_LABEL_PATTERN =
+  /\b(transferability of credits|generally transferable courses|section [a-z])\b/i;
+const REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE =
+  "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.";
 const AUTO_FALLBACK_CORE_LABEL_PATTERN =
   /\b(MATH|PHYS|CHEM|BIOL|ENGR|CS|STAT|ECON|ENGL|CMST|GIS|GEOG|LANG|JAPN|CHIN|SPAN|FRCH|GERM|LATIN|GREEK|MUSC|ART|DESN|DRMA)\b/i;
+const AUTO_FALLBACK_CHECKLIST_NOTE =
+  "Auto-generated from the current source-backed Green River class list for this major.";
+const AUTO_CUSTOM_PREP_FALLBACK_NOTE =
+  "Use the current source-backed Green River class list as the planning starting point. Unsupported class mixes stay hidden until public sources can verify them.";
+const AUTO_SOURCE_BACKED_UW_PREP_TARGET_PREFIX = "UW prep target:";
+const AUTO_SOURCE_BACKED_UW_PREP_TARGET_NOTE =
+  "Official UW prep target found in the current source-backed requirements, but no public Green River equivalent is currently provable.";
+const AUTO_SOURCE_BACKED_UW_PREP_GUIDANCE_TITLE = "Source-backed UW prep guidance";
+const AUTO_SOURCE_BACKED_UW_PREP_GUIDANCE_NOTE =
+  "Current official source-backed requirement materials identify more UW prep for this major, but the published Green River equivalent path is not yet provable enough for planner-ready course mapping.";
+const MAX_SOURCE_BACKED_UW_PREP_TARGET_COUNT = 18;
+const SOURCE_ONLY_FALLBACK_ALLOWED_NOTES = new Set([
+  REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE,
+  AUTO_FALLBACK_CHECKLIST_NOTE,
+  AUTO_CUSTOM_PREP_FALLBACK_NOTE,
+  AUTO_SOURCE_BACKED_UW_PREP_TARGET_NOTE,
+  AUTO_SOURCE_BACKED_UW_PREP_GUIDANCE_NOTE,
+]);
+const SOURCE_ONLY_FALLBACK_NOISE_PREFIXES = new Set([
+  "AUTUMN",
+  "WINTER",
+  "SPRING",
+  "SUMMER",
+  "LANGUAGE",
+  "BOTH",
+  "CALL",
+  "COMPLETE",
+  "EARN",
+  "THROUGH",
+]);
 
 type PathwayPlanKey = `${string}::${string}`;
 
@@ -109,8 +146,17 @@ export function isTransferPlannerStudentHiddenSourceGap(
   return STUDENT_HIDDEN_SOURCE_GAP_PLAN_IDS.has(planId);
 }
 
-function unique<T>(values: T[]) {
-  return Array.from(new Set(values));
+function uniqueById<T extends { id: string }>(values: T[]) {
+  const seen = new Set<string>();
+  const uniqueValues: T[] = [];
+
+  for (const value of values) {
+    if (!value?.id || seen.has(value.id)) continue;
+    seen.add(value.id);
+    uniqueValues.push(value);
+  }
+
+  return uniqueValues;
 }
 
 function compact<T>(values: Array<T | null | undefined | false>) {
@@ -126,10 +172,21 @@ function toPlannerLink(link: TransferPlannerSourceLink): TransferPlannerLink {
 }
 
 function normalizeCourseCode(value: string) {
-  return String(value ?? "")
+  const normalized = String(value ?? "")
     .toUpperCase()
     .replace(/\s+/g, " ")
     .trim();
+  const match = normalized.match(/^([A-Z&]+(?: [A-Z&]+)*) (\d{3}(?:\.\d+)?[A-Z]?)$/);
+  if (!match) {
+    return normalized;
+  }
+
+  const subjectTokens = match[1].split(" ").filter(Boolean);
+  const normalizedSubject = subjectTokens.every((token) => token.length === 1)
+    ? subjectTokens.join("")
+    : subjectTokens.join(" ");
+
+  return `${normalizedSubject} ${match[2]}`;
 }
 
 function uniquePlannerStrings(values: string[]) {
@@ -592,13 +649,18 @@ function sanitizePlannerOwnedStrings(values: string[] | null | undefined) {
   return uniquePlannerStrings((values ?? []).map((value) => sanitizePlannerOwnedText(value)).filter(Boolean));
 }
 
+function sanitizeChecklistItemNote(note: string | null | undefined) {
+  const sanitized = sanitizePlannerOwnedText(note);
+  return SOURCE_ONLY_FALLBACK_ALLOWED_NOTES.has(sanitized) ? sanitized : undefined;
+}
+
 function sanitizeChecklistItem(item: TransferPlannerChecklistItem): TransferPlannerChecklistItem {
   return {
     ...item,
     title: sanitizePlannerOwnedText(item.title),
     grcCourses: [...item.grcCourses],
     alternatives: item.alternatives?.map((group) => [...group]),
-    note: sanitizePlannerOwnedText(item.note),
+    note: sanitizeChecklistItemNote(item.note),
   };
 }
 
@@ -655,11 +717,15 @@ function getChecklistReferenceCoursesFromItems(items: TransferPlannerChecklistIt
   );
 }
 
+function normalizeChecklistItems(items: TransferPlannerChecklistItem[] | undefined) {
+  return items ?? [];
+}
+
 function getChecklistReferenceCourses(plan: TransferPlannerMajorPlan) {
   return getChecklistReferenceCoursesFromItems([
-    ...plan.applicationChecklist,
-    ...plan.beforeEnrollmentChecklist,
-    ...plan.stayAtGrcChecklist,
+    ...normalizeChecklistItems(plan.applicationChecklist),
+    ...normalizeChecklistItems(plan.beforeEnrollmentChecklist),
+    ...normalizeChecklistItems(plan.stayAtGrcChecklist),
   ]);
 }
 
@@ -712,12 +778,183 @@ function extractLeafId(id: string) {
   return String(id ?? "").split(":").pop() ?? id;
 }
 
-function buildChecklistItem(atom: TransferPlannerMajorRequirementAtom): TransferPlannerChecklistItem {
+type ChecklistItemSource = Pick<
+  TransferPlannerMajorRequirementAtom,
+  "id" | "title" | "grcCourseCodes" | "alternativeCourseCodeSets" | "note"
+> & {
+  minCompletedCount?: number | null;
+};
+
+function buildChecklistItemSignature(item: Pick<
+  TransferPlannerChecklistItem,
+  "title" | "grcCourses" | "alternatives" | "minCompletedCount"
+>) {
+  return JSON.stringify({
+    title: sanitizePlannerOwnedText(item.title),
+    grcCourses: item.grcCourses.map((code) => normalizeCourseCode(code)),
+    alternatives: (item.alternatives ?? []).map((group) =>
+      group.map((code) => normalizeCourseCode(code))
+    ),
+    minCompletedCount: item.minCompletedCount ?? null,
+  });
+}
+
+const CANONICAL_GRC_COURSE_BY_CODE = new Map(
+  TRANSFER_PLANNER_CANONICAL_COURSE_REGISTRY.filter((entry) => entry.schoolId === "grc").map(
+    (entry) => [normalizeCourseCode(entry.code), entry] as const
+  )
+);
+const GRC_PREREQUISITE_CLOSURE_CACHE = new Map<string, Set<string>>();
+
+function getTransitiveGrcDependencyCourseCodes(courseCode: string) {
+  const normalizedCourseCode = normalizeCourseCode(courseCode);
+  const cached = GRC_PREREQUISITE_CLOSURE_CACHE.get(normalizedCourseCode);
+  if (cached) {
+    return cached;
+  }
+
+  const dependencyCodes = new Set<string>();
+  const pending = [normalizedCourseCode];
+  const visited = new Set<string>();
+
+  while (pending.length) {
+    const currentCode = pending.pop();
+    if (!currentCode || visited.has(currentCode)) {
+      continue;
+    }
+    visited.add(currentCode);
+
+    const entry = CANONICAL_GRC_COURSE_BY_CODE.get(currentCode);
+    if (!entry) {
+      continue;
+    }
+
+    const nextCodes = uniquePlannerStrings([
+      ...(entry.prerequisiteCourseCodes ?? []),
+      ...(entry.prerequisiteAlternativeCourseCodeSets ?? []).flat(),
+      ...(entry.corequisiteCourseCodes ?? []),
+      ...(entry.corequisiteAlternativeCourseCodeSets ?? []).flat(),
+    ].map((code) => normalizeCourseCode(code)));
+
+    for (const nextCode of nextCodes) {
+      if (nextCode === normalizedCourseCode || dependencyCodes.has(nextCode)) {
+        continue;
+      }
+      dependencyCodes.add(nextCode);
+      pending.push(nextCode);
+    }
+  }
+
+  GRC_PREREQUISITE_CLOSURE_CACHE.set(normalizedCourseCode, dependencyCodes);
+  return dependencyCodes;
+}
+
+function pruneRuntimeChecklistCourseGroup(group: string[], supportedCourseCodes: Set<string>) {
+  const normalizedGroup = uniqueReferenceCourseLabels(group);
+  const directlySupportedCodes = normalizedGroup.filter((code) =>
+    supportedCourseCodes.has(normalizeCourseCode(code))
+  );
+
+  if (!directlySupportedCodes.length) {
+    return [] as string[];
+  }
+
+  const keptCodes = new Set(directlySupportedCodes.map((code) => normalizeCourseCode(code)));
+  let changed = true;
+
+  while (changed) {
+    changed = false;
+    for (const code of normalizedGroup) {
+      const normalizedCode = normalizeCourseCode(code);
+      if (keptCodes.has(normalizedCode)) {
+        continue;
+      }
+
+      const isDependencyOfKeptCode = [...keptCodes].some((keptCode) =>
+        getTransitiveGrcDependencyCourseCodes(keptCode).has(normalizedCode)
+      );
+
+      if (isDependencyOfKeptCode) {
+        keptCodes.add(normalizedCode);
+        changed = true;
+      }
+    }
+  }
+
+  return normalizedGroup.filter((code) => keptCodes.has(normalizeCourseCode(code)));
+}
+
+function buildSourceValidatedRuntimeChecklistItem(
+  atom: ChecklistItemSource,
+  supportedCourseCodes: Set<string>
+) {
+  const primaryCourses = pruneRuntimeChecklistCourseGroup(atom.grcCourseCodes, supportedCourseCodes);
+  const alternativeGroups = (atom.alternativeCourseCodeSets ?? [])
+    .map((group) => pruneRuntimeChecklistCourseGroup(group, supportedCourseCodes))
+    .filter((group) => group.length > 0);
+
+  const grcCourses = primaryCourses.length
+    ? primaryCourses
+    : alternativeGroups.shift() ?? [];
+
+  if (!grcCourses.length && !alternativeGroups.length) {
+    return null;
+  }
+
+  return sanitizeChecklistItem({
+    id: extractLeafId(atom.id),
+    title: atom.title,
+    grcCourses,
+    alternatives: alternativeGroups.length ? alternativeGroups : undefined,
+    note: atom.note,
+    minCompletedCount: atom.minCompletedCount ?? undefined,
+  });
+}
+
+function getChecklistCoverageCourseCodes(items: TransferPlannerChecklistItem[]) {
+  return uniqueReferenceCourseLabels(
+    items.flatMap((item) => [item.grcCourses, ...(item.alternatives ?? [])].flat())
+  ).map((code) => normalizeCourseCode(code));
+}
+
+function pruneRedundantRuntimeChecklistItems(
+  items: TransferPlannerChecklistItem[],
+  coveredCourseCodes: Iterable<string>
+) {
+  const coverage = new Set(
+    [...coveredCourseCodes].map((code) => normalizeCourseCode(code)).filter(Boolean)
+  );
+  const prunedItems: TransferPlannerChecklistItem[] = [];
+
+  for (const item of items) {
+    const itemCourseCodes = getChecklistCoverageCourseCodes([item]);
+
+    if (itemCourseCodes.length && itemCourseCodes.every((code) => coverage.has(code))) {
+      continue;
+    }
+
+    prunedItems.push(item);
+    for (const courseCode of itemCourseCodes) {
+      coverage.add(courseCode);
+    }
+  }
+
+  return prunedItems;
+}
+
+function getRuntimeRequirementAtoms(planId: string, pathwayId?: string | null) {
+  return uniqueById([
+    ...(REQUIREMENTS_BY_KEY.get(makePathwayPlanKey(planId, null)) ?? []),
+    ...(pathwayId ? REQUIREMENTS_BY_KEY.get(makePathwayPlanKey(planId, pathwayId)) ?? [] : []),
+  ]);
+}
+
+function buildChecklistItem(atom: ChecklistItemSource): TransferPlannerChecklistItem {
   return sanitizeChecklistItem({
     id: extractLeafId(atom.id),
     title: atom.title,
     grcCourses: [...atom.grcCourseCodes],
-    alternatives: atom.alternativeCourseCodeSets.length
+    alternatives: (atom.alternativeCourseCodeSets ?? []).length
       ? atom.alternativeCourseCodeSets.map((group) => [...group])
       : undefined,
     note: atom.note,
@@ -798,8 +1035,7 @@ function buildAutoFallbackChecklist(scope: {
       id: buildAutoChecklistItemId(label, index),
       title: label,
       grcCourses: [label],
-      note:
-        "Auto-generated from the current degree-specific Green River class list because this major does not have a hand-authored checklist yet.",
+      note: AUTO_FALLBACK_CHECKLIST_NOTE,
     }));
   }
 
@@ -809,11 +1045,460 @@ function buildAutoFallbackChecklist(scope: {
       id: "auto-custom-prep",
       title: "Custom source-backed Green River prep",
       grcCourses: [],
-      note:
-        explicitGuidance ||
-        "Use the current degree-specific planner guidance as your custom Green River prep starting point. Unsupported class mixes stay hidden until public sources can verify them.",
+      note: explicitGuidance || AUTO_CUSTOM_PREP_FALLBACK_NOTE,
     },
   ] satisfies TransferPlannerChecklistItem[];
+}
+
+type SourceBackedFallbackChecklistsByPhase = {
+  beforeApplication: TransferPlannerChecklistItem[];
+  beforeEnrollment: TransferPlannerChecklistItem[];
+  stayAtGrc: TransferPlannerChecklistItem[];
+};
+
+function buildEmptySourceBackedFallbackChecklists(): SourceBackedFallbackChecklistsByPhase {
+  return {
+    beforeApplication: [],
+    beforeEnrollment: [],
+    stayAtGrc: [],
+  };
+}
+
+function getRequirementDiffClassificationsForScope(planId: string, pathwayId?: string | null) {
+  return TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY.filter(
+    (entry) =>
+      entry.planId === planId &&
+      (pathwayId === undefined
+        ? true
+        : pathwayId === null
+          ? !entry.pathwayId
+          : entry.pathwayId === pathwayId)
+  );
+}
+
+function getParsedRequirementAtomCandidatesForScope(planId: string, pathwayId?: string | null) {
+  return TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY.filter(
+    (entry) =>
+      entry.planId === planId &&
+      (pathwayId === undefined
+        ? true
+        : pathwayId === null
+          ? !entry.pathwayId
+          : entry.pathwayId === pathwayId)
+  ).flatMap((entry) => entry.parsedRequirementAtomCandidates);
+}
+
+function getRequirementCueLinesFromClassification(
+  entry: TransferPlannerRequirementDiffClassificationEntry
+) {
+  return entry.validationNotes
+    .filter((note) => note.startsWith("Requirement cue lines:"))
+    .map((note) => note.replace(/^Requirement cue lines:\s*/i, "").trim())
+    .filter(Boolean);
+}
+
+function getSourceBackedFallbackCourseLevel(code: string) {
+  const match = normalizeCourseCode(code).match(/(\d{3})[A-Z]?$/);
+  return match ? Number(match[1]) : null;
+}
+
+function getSourceBackedFallbackCoursePrefix(code: string) {
+  const normalized = normalizeCourseCode(code);
+  const withoutNumber = normalized.replace(/\s+\d{3}[A-Z]?$/, "").trim();
+  const tokens = withoutNumber.split(/\s+/).filter(Boolean);
+  return tokens[0] ?? withoutNumber;
+}
+
+function getSourceBackedFallbackCodeIdentity(code: string) {
+  return normalizeCourseCode(code).replace(/\s+/g, "");
+}
+
+function countSourceBackedFallbackPrefixSpaces(code: string) {
+  return (
+    getSourceBackedFallbackCoursePrefix(code)
+      .match(/\s+/g)
+      ?.length ?? 0
+  );
+}
+
+function shouldPreferSourceBackedFallbackDisplayCode(candidateCode: string, existingCode: string) {
+  const normalizedCandidate = normalizeCourseCode(candidateCode);
+  const normalizedExisting = normalizeCourseCode(existingCode);
+  if (!normalizedExisting) {
+    return true;
+  }
+
+  const candidateSpaceCount = countSourceBackedFallbackPrefixSpaces(normalizedCandidate);
+  const existingSpaceCount = countSourceBackedFallbackPrefixSpaces(normalizedExisting);
+  if (candidateSpaceCount !== existingSpaceCount) {
+    return candidateSpaceCount > existingSpaceCount;
+  }
+
+  if (normalizedCandidate.length !== normalizedExisting.length) {
+    return normalizedCandidate.length > normalizedExisting.length;
+  }
+
+  return normalizedCandidate.localeCompare(normalizedExisting) < 0;
+}
+
+function pickPreferredSourceBackedFallbackDisplayCode(...codes: Array<string | null | undefined>) {
+  let bestCode = "";
+
+  for (const code of codes) {
+    const normalizedCode = normalizeCourseCode(code ?? "");
+    if (!normalizedCode) {
+      continue;
+    }
+    if (!bestCode || shouldPreferSourceBackedFallbackDisplayCode(normalizedCode, bestCode)) {
+      bestCode = normalizedCode;
+    }
+  }
+
+  return bestCode;
+}
+
+function isLowerDivisionSourceBackedFallbackCode(code: string) {
+  const level = getSourceBackedFallbackCourseLevel(code);
+  return level !== null && level < 300;
+}
+
+function shouldExcludeSourceBackedFallbackCode(scope: {
+  code: string;
+  requirementCueLines: string[];
+  allCandidateCodes: Set<string>;
+}) {
+  const normalizedCode = normalizeCourseCode(scope.code);
+  const prefix = getSourceBackedFallbackCoursePrefix(normalizedCode);
+  if (!normalizedCode || SOURCE_ONLY_FALLBACK_NOISE_PREFIXES.has(prefix)) {
+    return true;
+  }
+
+  const combinedCueText = scope.requirementCueLines.join(" ").toLowerCase();
+  if (!combinedCueText) {
+    return false;
+  }
+
+  const normalizedCodeLower = normalizedCode.toLowerCase();
+  if (/\bexclud(?:e|es|ed|ing)\b/i.test(combinedCueText) && combinedCueText.includes(normalizedCodeLower)) {
+    return true;
+  }
+
+  if (
+    /\bmay also be helpful\b/i.test(combinedCueText) ||
+    /\bwish to count\b/i.test(combinedCueText) ||
+    /\bmay be counted\b/i.test(combinedCueText) ||
+    /\bmay count toward\b/i.test(combinedCueText)
+  ) {
+    return true;
+  }
+
+  if (prefix === "LANGUAGE") {
+    const sameLevelSpecificCodes = [...scope.allCandidateCodes].filter((candidateCode) => {
+      if (candidateCode === normalizedCode) return false;
+      if (getSourceBackedFallbackCourseLevel(candidateCode) !== getSourceBackedFallbackCourseLevel(normalizedCode)) {
+        return false;
+      }
+      return !SOURCE_ONLY_FALLBACK_NOISE_PREFIXES.has(
+        getSourceBackedFallbackCoursePrefix(candidateCode)
+      );
+    });
+    if (sameLevelSpecificCodes.length > 0) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function getDominantSourceBackedFallbackPhase(
+  entries: TransferPlannerRequirementDiffClassificationEntry[],
+  fallbackPhase: TransferPlannerRequirementPhase = "before-enrollment"
+): TransferPlannerRequirementPhase {
+  const phases = entries
+    .map((entry) => entry.displayPhase)
+    .filter((phase): phase is TransferPlannerRequirementPhase => Boolean(phase));
+
+  if (phases.includes("before-application")) {
+    return "before-application";
+  }
+  if (phases.includes("before-enrollment")) {
+    return "before-enrollment";
+  }
+  return phases[0] ?? fallbackPhase;
+}
+
+function addFallbackChecklistItemForPhase(
+  checklists: SourceBackedFallbackChecklistsByPhase,
+  phase: TransferPlannerRequirementPhase,
+  item: TransferPlannerChecklistItem
+) {
+  if (phase === "before-application") {
+    checklists.beforeApplication.push(item);
+    return;
+  }
+  if (phase === "before-enrollment") {
+    checklists.beforeEnrollment.push(item);
+    return;
+  }
+  checklists.stayAtGrc.push(item);
+}
+
+function appendUniqueChecklistItems(
+  existingItems: TransferPlannerChecklistItem[] | undefined,
+  addedItems: TransferPlannerChecklistItem[]
+) {
+  const nextItems = [...(existingItems ?? [])];
+  const seenSignatures = new Set(nextItems.map((item) => buildChecklistItemSignature(item)));
+
+  for (const item of addedItems) {
+    const signature = buildChecklistItemSignature(item);
+    if (seenSignatures.has(signature)) {
+      continue;
+    }
+    seenSignatures.add(signature);
+    nextItems.push(item);
+  }
+
+  return nextItems;
+}
+
+function buildSourceBackedFallbackGuidanceChecklists(
+  phase: TransferPlannerRequirementPhase,
+  scope: {
+    planId: string;
+    pathwayId?: string | null;
+  }
+) {
+  const checklists = buildEmptySourceBackedFallbackChecklists();
+  addFallbackChecklistItemForPhase(checklists, phase, {
+    id: buildAutoChecklistItemId(`source-guidance-${scope.planId}-${scope.pathwayId ?? "base"}`, 0),
+    title: AUTO_SOURCE_BACKED_UW_PREP_GUIDANCE_TITLE,
+    grcCourses: [],
+    note: AUTO_SOURCE_BACKED_UW_PREP_GUIDANCE_NOTE,
+  });
+  return checklists;
+}
+
+function buildStrictSourceBackedFallbackChecklists(scope: {
+  planId: string;
+  pathwayId?: string | null;
+  includeParsedCandidates: boolean;
+}) {
+  const classifications = getRequirementDiffClassificationsForScope(scope.planId, scope.pathwayId);
+  const supportsStrictFallback =
+    classifications.length > 0 &&
+    classifications.every(
+      (entry) =>
+        entry.classificationKind === "source-backed-choice-set-no-public-grc-path" &&
+        !entry.promotedRequirementAtomOverrideId
+    );
+
+  const candidateByCode = new Map<
+    string,
+    {
+      displayCode: string;
+      candidate: TransferPlannerParsedRequirementAtomCandidate;
+    }
+  >();
+  for (const candidate of getParsedRequirementAtomCandidatesForScope(scope.planId, scope.pathwayId)) {
+    const normalizedCode = normalizeCourseCode(candidate.uwCourseCode);
+    const codeIdentity = getSourceBackedFallbackCodeIdentity(normalizedCode);
+    if (!normalizedCode || !codeIdentity) {
+      continue;
+    }
+
+    const existing = candidateByCode.get(codeIdentity) ?? null;
+    if (
+      !existing ||
+      shouldPreferSourceBackedFallbackDisplayCode(normalizedCode, existing.displayCode)
+    ) {
+      candidateByCode.set(codeIdentity, {
+        displayCode: normalizedCode,
+        candidate,
+      });
+    }
+  }
+
+  const classificationByCode = new Map<
+    string,
+    {
+      displayCode: string;
+      classification: TransferPlannerRequirementDiffClassificationEntry;
+    }
+  >();
+  for (const classification of classifications) {
+    const normalizedCode = normalizeCourseCode(classification.sourceUwCourseCode);
+    const codeIdentity = getSourceBackedFallbackCodeIdentity(normalizedCode);
+    if (!normalizedCode || !codeIdentity) {
+      continue;
+    }
+
+    const existing = classificationByCode.get(codeIdentity) ?? null;
+    if (
+      !existing ||
+      shouldPreferSourceBackedFallbackDisplayCode(normalizedCode, existing.displayCode)
+    ) {
+      classificationByCode.set(codeIdentity, {
+        displayCode: normalizedCode,
+        classification,
+      });
+    }
+  }
+
+  const supportsParsedFallback =
+    scope.includeParsedCandidates && (candidateByCode.size > 0 || classificationByCode.size > 0);
+
+  if (!supportsStrictFallback && !supportsParsedFallback) {
+    return buildEmptySourceBackedFallbackChecklists();
+  }
+
+  const codeIdentitiesToInspect = new Set<string>();
+  if (supportsStrictFallback || supportsParsedFallback) {
+    for (const codeIdentity of classificationByCode.keys()) {
+      codeIdentitiesToInspect.add(codeIdentity);
+    }
+  }
+  if (supportsParsedFallback) {
+    for (const codeIdentity of candidateByCode.keys()) {
+      codeIdentitiesToInspect.add(codeIdentity);
+    }
+  }
+
+  const dominantPhase = getDominantSourceBackedFallbackPhase(
+    classifications,
+    supportsStrictFallback ? "before-enrollment" : "stay-at-grc"
+  );
+  const checklists = buildEmptySourceBackedFallbackChecklists();
+
+  const orderedCodeIdentities = [...codeIdentitiesToInspect].sort((left, right) => {
+    const leftCode = pickPreferredSourceBackedFallbackDisplayCode(
+      candidateByCode.get(left)?.displayCode,
+      classificationByCode.get(left)?.displayCode,
+      left
+    );
+    const rightCode = pickPreferredSourceBackedFallbackDisplayCode(
+      candidateByCode.get(right)?.displayCode,
+      classificationByCode.get(right)?.displayCode,
+      right
+    );
+    const levelDelta =
+      (getSourceBackedFallbackCourseLevel(leftCode) ?? Number.MAX_SAFE_INTEGER) -
+      (getSourceBackedFallbackCourseLevel(rightCode) ?? Number.MAX_SAFE_INTEGER);
+    if (levelDelta !== 0) {
+      return levelDelta;
+    }
+    return leftCode.localeCompare(rightCode);
+  });
+
+  for (const codeIdentity of orderedCodeIdentities) {
+    const classificationRecord = classificationByCode.get(codeIdentity) ?? null;
+    const candidateRecord = candidateByCode.get(codeIdentity) ?? null;
+    const normalizedCode = pickPreferredSourceBackedFallbackDisplayCode(
+      candidateRecord?.displayCode,
+      classificationRecord?.displayCode,
+      codeIdentity
+    );
+    if (!isLowerDivisionSourceBackedFallbackCode(normalizedCode)) {
+      continue;
+    }
+
+    const classification = classificationRecord?.classification ?? null;
+    const candidate = candidateRecord?.candidate ?? null;
+    const requirementCueLines = uniquePlannerStrings([
+      ...(candidate?.sourceLineHints ?? []),
+      ...(classification ? getRequirementCueLinesFromClassification(classification) : []),
+    ]);
+
+    if (
+      shouldExcludeSourceBackedFallbackCode({
+        code: normalizedCode,
+        requirementCueLines,
+        allCandidateCodes: new Set(
+          [...codeIdentitiesToInspect]
+            .map((identity) =>
+              pickPreferredSourceBackedFallbackDisplayCode(
+                candidateByCode.get(identity)?.displayCode,
+                classificationByCode.get(identity)?.displayCode,
+                identity
+              )
+            )
+            .filter(Boolean)
+        ),
+      })
+    ) {
+      continue;
+    }
+
+    const phase = classification?.displayPhase ?? dominantPhase;
+    addFallbackChecklistItemForPhase(checklists, phase, {
+      id: buildAutoChecklistItemId(`uw-prep-${normalizedCode}`, 0),
+      title: `${AUTO_SOURCE_BACKED_UW_PREP_TARGET_PREFIX} ${normalizedCode}`,
+      grcCourses: [],
+      note: AUTO_SOURCE_BACKED_UW_PREP_TARGET_NOTE,
+    });
+  }
+
+  const totalFallbackTargets =
+    checklists.beforeApplication.length +
+    checklists.beforeEnrollment.length +
+    checklists.stayAtGrc.length;
+  if (
+    supportsParsedFallback &&
+    !supportsStrictFallback &&
+    totalFallbackTargets > MAX_SOURCE_BACKED_UW_PREP_TARGET_COUNT
+  ) {
+    return buildSourceBackedFallbackGuidanceChecklists(dominantPhase, scope);
+  }
+
+  if (
+    checklists.beforeApplication.length ||
+    checklists.beforeEnrollment.length ||
+    checklists.stayAtGrc.length
+  ) {
+    return checklists;
+  }
+
+  return buildSourceBackedFallbackGuidanceChecklists(dominantPhase, scope);
+}
+
+function applyStrictSourceBackedFallback<T extends {
+  id: string;
+  applicationChecklist?: TransferPlannerChecklistItem[];
+  beforeEnrollmentChecklist?: TransferPlannerChecklistItem[];
+  stayAtGrcChecklist?: TransferPlannerChecklistItem[];
+  grcCourseList?: string[];
+}>(scope: T, pathwayId?: string | null): T {
+  const hasExistingChecklistCoverage = hasAnyChecklistItems(scope);
+  const hasExistingCourseListCoverage = Boolean(scope.grcCourseList?.length);
+  const fallbackChecklists = buildStrictSourceBackedFallbackChecklists({
+    planId: scope.id,
+    pathwayId,
+    includeParsedCandidates: !hasExistingChecklistCoverage && !hasExistingCourseListCoverage,
+  });
+
+  if (
+    !fallbackChecklists.beforeApplication.length &&
+    !fallbackChecklists.beforeEnrollment.length &&
+    !fallbackChecklists.stayAtGrc.length
+  ) {
+    return scope;
+  }
+
+  return {
+    ...scope,
+    applicationChecklist: appendUniqueChecklistItems(
+      scope.applicationChecklist,
+      fallbackChecklists.beforeApplication
+    ),
+    beforeEnrollmentChecklist: appendUniqueChecklistItems(
+      scope.beforeEnrollmentChecklist,
+      fallbackChecklists.beforeEnrollment
+    ),
+    stayAtGrcChecklist: appendUniqueChecklistItems(
+      scope.stayAtGrcChecklist,
+      fallbackChecklists.stayAtGrc
+    ),
+  };
 }
 
 function collectPlannerCourseLabels(scope: {
@@ -822,14 +1507,19 @@ function collectPlannerCourseLabels(scope: {
   beforeEnrollmentChecklist?: TransferPlannerChecklistItem[];
   stayAtGrcChecklist?: TransferPlannerChecklistItem[];
 }) {
-  return uniqueReferenceCourseLabels([
-    ...(scope.grcCourseList ?? []),
-    ...getChecklistReferenceCoursesFromItems([
+  const checklistLabels = uniqueReferenceCourseLabels(
+    getChecklistReferenceCoursesFromItems([
       ...(scope.applicationChecklist ?? []),
       ...(scope.beforeEnrollmentChecklist ?? []),
       ...(scope.stayAtGrcChecklist ?? []),
-    ]),
-  ]);
+    ])
+  );
+
+  if (checklistLabels.length) {
+    return checklistLabels;
+  }
+
+  return uniqueReferenceCourseLabels([...(scope.grcCourseList ?? [])]);
 }
 
 function buildReferenceLabelByCode(labels: string[]) {
@@ -846,14 +1536,34 @@ function buildReferenceLabelByCode(labels: string[]) {
   return labelByCode;
 }
 
-function buildTrackReferenceCourseCodes(track: TransferPlannerTrack) {
+function shouldUseTrackTermForAutoMatch(termLabel: string) {
+  return !AUTO_MATCH_EXCLUDED_TRACK_TERM_LABEL_PATTERN.test(String(termLabel ?? "").trim());
+}
+
+function buildTrackReferenceCourseCodes(
+  track: TransferPlannerTrack,
+  options: {
+    includeCatalogYears?: boolean;
+    autoMatchOnly?: boolean;
+  } = {}
+) {
+  const includeCatalogYears = options.includeCatalogYears ?? true;
+  const filterTerms = (terms: TransferPlannerTrack["terms"]) =>
+    (
+      options.autoMatchOnly
+        ? terms.filter((term) => shouldUseTrackTermForAutoMatch(term.label))
+        : terms
+    ).flatMap((term) => term.courses);
+
   return uniqueReferenceCourseLabels(
     [
-      ...track.terms.flatMap((term) => term.courses),
-      ...(track.catalogYears ?? []).flatMap((catalogYear) => [
-        ...catalogYear.terms.flatMap((term) => term.courses),
-        ...(catalogYear.slotExpansions ?? []).flatMap((slot) => slot.recommendedCourses),
-      ]),
+      ...filterTerms(track.terms),
+      ...(includeCatalogYears
+        ? (track.catalogYears ?? []).flatMap((catalogYear) => [
+            ...filterTerms(catalogYear.terms),
+            ...(catalogYear.slotExpansions ?? []).flatMap((slot) => slot.recommendedCourses),
+          ])
+        : []),
     ].flatMap((label) => extractReferenceCourseCodes(label))
   );
 }
@@ -1305,6 +2015,208 @@ function buildSourceGeneratedPlan(basePlan: TransferPlannerMajorPlan): TransferP
   }));
 }
 
+function getAutomaticScopeKeys(planId: string, pathwayId?: string | null) {
+  return pathwayId
+    ? [makePathwayPlanKey(planId, null), makePathwayPlanKey(planId, pathwayId)]
+    : [makePathwayPlanKey(planId, null)];
+}
+
+function getAutomaticPromotedRequirementAtoms(planId: string, pathwayId?: string | null) {
+  return uniqueById([
+    ...getTransferPlannerPromotedRequirementAtomOverrides(planId, null),
+    ...(pathwayId ? getTransferPlannerPromotedRequirementAtomOverrides(planId, pathwayId) : []),
+  ]);
+}
+
+function buildAutomaticChecklistForPhase(
+  planId: string,
+  phase: TransferPlannerRequirementPhase,
+  pathwayId?: string | null
+) {
+  const supportedCourseCodes = new Set(
+    buildAutomaticCourseList(planId, pathwayId).map((code) => normalizeCourseCode(code))
+  );
+  const seenSignatures = new Set<string>();
+  const runtimeItems: TransferPlannerChecklistItem[] = [];
+
+  for (const atom of getRuntimeRequirementAtoms(planId, pathwayId)) {
+    if (atom.displayPhase !== phase) {
+      continue;
+    }
+
+    const item = buildSourceValidatedRuntimeChecklistItem(atom, supportedCourseCodes);
+    if (!item) {
+      continue;
+    }
+
+    const signature = buildChecklistItemSignature(item);
+    if (seenSignatures.has(signature)) {
+      continue;
+    }
+
+    seenSignatures.add(signature);
+    runtimeItems.push(item);
+  }
+
+  return runtimeItems;
+}
+
+function buildAutomaticCourseList(planId: string, pathwayId?: string | null) {
+  const scopeKeys = getAutomaticScopeKeys(planId, pathwayId);
+  const overrideCourseCodes = getAutomaticPromotedRequirementAtoms(planId, pathwayId).flatMap(
+    (entry) => [
+      ...entry.grcCourseCodes,
+      ...(entry.alternativeCourseCodeSets ?? []).flat(),
+    ]
+  );
+
+  return orderStringsByBase(
+    uniquePlannerStrings([
+      ...overrideCourseCodes,
+      ...scopeKeys.flatMap(
+        (scopeKey) => SOURCE_BACKED_CLASSIFICATION_COURSES_BY_KEY.get(scopeKey) ?? []
+      ),
+      ...scopeKeys.flatMap(
+        (scopeKey) => SOURCE_BACKED_GUIDE_COURSES_BY_KEY.get(scopeKey) ?? []
+      ),
+    ]),
+    []
+  );
+}
+
+function buildStudentVisibleAutomaticCourseList(scope: {
+  grcCourseList: string[];
+  applicationChecklist: TransferPlannerChecklistItem[];
+  beforeEnrollmentChecklist: TransferPlannerChecklistItem[];
+  stayAtGrcChecklist: TransferPlannerChecklistItem[];
+}) {
+  return collectPlannerCourseLabels(scope);
+}
+
+function buildStudentRuntimePathway(
+  basePlan: TransferPlannerMajorPlan,
+  basePathway: TransferPlannerMajorPathway
+) {
+  const applicationChecklist = buildAutomaticChecklistForPhase(
+    basePlan.id,
+    "before-application",
+    basePathway.id
+  );
+  const beforeEnrollmentChecklist = buildAutomaticChecklistForPhase(
+    basePlan.id,
+    "before-enrollment",
+    basePathway.id
+  );
+  const prunedBeforeEnrollmentChecklist = pruneRedundantRuntimeChecklistItems(
+    beforeEnrollmentChecklist,
+    getChecklistCoverageCourseCodes(applicationChecklist)
+  );
+  const stayAtGrcChecklist = buildAutomaticChecklistForPhase(
+    basePlan.id,
+    "stay-at-grc",
+    basePathway.id
+  );
+  const prunedStayAtGrcChecklist = pruneRedundantRuntimeChecklistItems(
+    stayAtGrcChecklist,
+    getChecklistCoverageCourseCodes([
+      ...applicationChecklist,
+      ...prunedBeforeEnrollmentChecklist,
+    ])
+  );
+  const automaticCourseList = buildAutomaticCourseList(basePlan.id, basePathway.id);
+  const studentVisibleCourseList = buildStudentVisibleAutomaticCourseList({
+    grcCourseList: automaticCourseList,
+    applicationChecklist,
+    beforeEnrollmentChecklist: prunedBeforeEnrollmentChecklist,
+    stayAtGrcChecklist: prunedStayAtGrcChecklist,
+  });
+
+  return applyAutoChecklistFallback(
+    applyStrictSourceBackedFallback(
+      applyAutoTrackRecommendation({
+      id: basePathway.id,
+      label: basePathway.label,
+      summary: "",
+      applicationChecklist,
+      beforeEnrollmentChecklist: prunedBeforeEnrollmentChecklist,
+      stayAtGrcChecklist: prunedStayAtGrcChecklist,
+      advisorFlags: [],
+      officialLinks: [],
+      degreeMapSections: [],
+      manualReviewNotes: [],
+      grcCourseList: studentVisibleCourseList,
+      grcCourseListGuidance: undefined,
+      plannerNote: undefined,
+      bestTrackId: null,
+      bestTrackSummary: "",
+      whyThisTrack: [],
+      financialAidNote: "",
+      } satisfies TransferPlannerMajorPathway),
+      basePathway.id
+    )
+  );
+}
+
+function buildStudentRuntimePlan(basePlan: TransferPlannerMajorPlan): TransferPlannerMajorPlan {
+  const applicationChecklist = buildAutomaticChecklistForPhase(
+    basePlan.id,
+    "before-application"
+  );
+  const beforeEnrollmentChecklist = buildAutomaticChecklistForPhase(
+    basePlan.id,
+    "before-enrollment"
+  );
+  const prunedBeforeEnrollmentChecklist = pruneRedundantRuntimeChecklistItems(
+    beforeEnrollmentChecklist,
+    getChecklistCoverageCourseCodes(applicationChecklist)
+  );
+  const stayAtGrcChecklist = buildAutomaticChecklistForPhase(basePlan.id, "stay-at-grc");
+  const prunedStayAtGrcChecklist = pruneRedundantRuntimeChecklistItems(
+    stayAtGrcChecklist,
+    getChecklistCoverageCourseCodes([
+      ...applicationChecklist,
+      ...prunedBeforeEnrollmentChecklist,
+    ])
+  );
+  const automaticCourseList = buildAutomaticCourseList(basePlan.id);
+  const studentVisibleCourseList = buildStudentVisibleAutomaticCourseList({
+    grcCourseList: automaticCourseList,
+    applicationChecklist,
+    beforeEnrollmentChecklist: prunedBeforeEnrollmentChecklist,
+    stayAtGrcChecklist: prunedStayAtGrcChecklist,
+  });
+
+  return applyAutoChecklistFallback(
+    applyStrictSourceBackedFallback(
+      applyAutoTrackRecommendation({
+      ...basePlan,
+      summary: "",
+      bestTrackId: null,
+      bestTrackSummary: "",
+      whyThisTrack: [],
+      financialAidNote: "",
+      applicationChecklist,
+      beforeEnrollmentChecklist: prunedBeforeEnrollmentChecklist,
+      stayAtGrcChecklist: prunedStayAtGrcChecklist,
+      advisorFlags: [],
+      involvementIdeas: [],
+      projectIdeas: [],
+      officialLinks: [],
+      degreeMapSections: [],
+      manualReviewNotes: [],
+      grcCourseList: studentVisibleCourseList,
+      grcCourseListGuidance: undefined,
+      plannerNote: undefined,
+      pathways: orderByBaseIds(
+        (basePlan.pathways ?? []).map((pathway) => buildStudentRuntimePathway(basePlan, pathway)),
+        (basePlan.pathways ?? []).map((pathway) => pathway.id)
+      ),
+      }),
+      null
+    )
+  );
+}
+
 function materializePlannerPathway(pathway: TransferPlannerMajorPathway): TransferPlannerMajorPathway {
   return {
     ...pathway,
@@ -1337,6 +2249,9 @@ function materializePlanPathways(plan: TransferPlannerMajorPlan, includeHiddenSo
 function materializePlanReferenceCourses(plan: TransferPlannerMajorPlan): TransferPlannerMajorPlan {
   return {
     ...plan,
+    applicationChecklist: normalizeChecklistItems(plan.applicationChecklist),
+    beforeEnrollmentChecklist: normalizeChecklistItems(plan.beforeEnrollmentChecklist),
+    stayAtGrcChecklist: normalizeChecklistItems(plan.stayAtGrcChecklist),
     pathways: materializePlanPathways(plan),
     grcCourseList: uniqueReferenceCourseLabels([
       ...(plan.grcCourseList ?? []),
@@ -1352,10 +2267,10 @@ function mergePlannerPathwayWithPlan(
 ): TransferPlannerResolvedMajorPlan {
   const mergedPlan = materializePlanReferenceCourses({
     ...plan,
-    applicationChecklist: pathway.applicationChecklist ?? plan.applicationChecklist,
+    applicationChecklist: pathway.applicationChecklist ?? plan.applicationChecklist ?? [],
     beforeEnrollmentChecklist:
-      pathway.beforeEnrollmentChecklist ?? plan.beforeEnrollmentChecklist,
-    stayAtGrcChecklist: pathway.stayAtGrcChecklist ?? plan.stayAtGrcChecklist,
+      pathway.beforeEnrollmentChecklist ?? plan.beforeEnrollmentChecklist ?? [],
+    stayAtGrcChecklist: pathway.stayAtGrcChecklist ?? plan.stayAtGrcChecklist ?? [],
     advisorFlags: sanitizePlannerOwnedStrings([
       ...(plan.advisorFlags ?? []),
       ...(pathway.advisorFlags ?? []),
@@ -1399,7 +2314,16 @@ const TRACKS_BY_ID = new Map(
   TRANSFER_PLANNER_BOOTSTRAP_TRACKS.map((track) => [track.id, track] as const)
 );
 const TRACK_REFERENCE_CODES_BY_ID = new Map(
-  TRANSFER_PLANNER_BOOTSTRAP_TRACKS.map((track) => [track.id, buildTrackReferenceCourseCodes(track)] as const)
+  TRANSFER_PLANNER_BOOTSTRAP_TRACKS.map(
+    (track) =>
+      [
+        track.id,
+        buildTrackReferenceCourseCodes(track, {
+          includeCatalogYears: false,
+          autoMatchOnly: true,
+        }),
+      ] as const
+  )
 );
 
 const CHAINS_BY_ID = new Map(
@@ -1469,6 +2393,8 @@ function formatAvailabilityStatusSummary(
 
 export const TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS: TransferPlannerMajorPlan[] =
   TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.map(buildSourceGeneratedPlan);
+export const TRANSFER_PLANNER_STUDENT_RUNTIME_MAJOR_PLANS: TransferPlannerMajorPlan[] =
+  TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.map(buildStudentRuntimePlan);
 
 export const TRANSFER_PLANNER_CAMPUSES: TransferPlannerCampus[] = TRANSFER_PLANNER_BOOTSTRAP_CAMPUSES;
 export const TRANSFER_PLANNER_TRACKS: TransferPlannerTrack[] = TRANSFER_PLANNER_BOOTSTRAP_TRACKS;
@@ -1493,6 +2419,14 @@ export function getTransferPlannerStudentVisibleMajorsForCampus(campusId: Transf
   return getTransferPlannerStudentVisibleSourceGeneratedMajorsForCampus(campusId);
 }
 
+export function getTransferPlannerStudentRuntimeMajorsForCampus(
+  campusId: TransferPlannerCampusId
+) {
+  return TRANSFER_PLANNER_STUDENT_RUNTIME_MAJOR_PLANS.filter(
+    (plan) => plan.campusId === campusId && !isTransferPlannerStudentHiddenSourceGap(plan.id)
+  );
+}
+
 export function getTransferPlannerSourceGeneratedMajorPlan(planId: string) {
   return (
     TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS.find((plan) => plan.id === planId) ?? null
@@ -1505,6 +2439,12 @@ export function getTransferPlannerMajorsForCampus(campusId: TransferPlannerCampu
 
 export function getTransferPlannerMajorPlan(planId: string) {
   return getTransferPlannerSourceGeneratedMajorPlan(planId);
+}
+
+export function getTransferPlannerStudentRuntimeMajorPlan(planId: string) {
+  return (
+    TRANSFER_PLANNER_STUDENT_RUNTIME_MAJOR_PLANS.find((plan) => plan.id === planId) ?? null
+  );
 }
 
 export function getTransferPlannerPathwaysForPlan(
@@ -1521,6 +2461,13 @@ export function getTransferPlannerStudentVisiblePathwaysForPlan(
   return materializePlanPathways(plan, false);
 }
 
+export function getTransferPlannerStudentRuntimePathwaysForPlan(
+  plan: TransferPlannerMajorPlan | null | undefined
+) {
+  if (!plan?.pathways?.length) return [] as TransferPlannerMajorPathway[];
+  return materializePlanPathways(plan, false);
+}
+
 export function resolveTransferPlannerMajorPlan(
   plan: TransferPlannerMajorPlan | null | undefined,
   pathwayId: string | null | undefined
@@ -1528,6 +2475,37 @@ export function resolveTransferPlannerMajorPlan(
   if (!plan) return null as TransferPlannerResolvedMajorPlan | null;
 
   const pathways = materializePlanPathways(plan);
+  if (!pathways.length) {
+    return {
+      ...materializePlanReferenceCourses(plan),
+      pathways: [],
+      selectedPathwayId: null,
+      selectedPathwayLabel: null,
+      selectedPathwaySummary: null,
+    };
+  }
+
+  const selectedPathway = pathways.find((entry) => entry.id === pathwayId) ?? pathways[0] ?? null;
+  if (!selectedPathway) {
+    return {
+      ...materializePlanReferenceCourses(plan),
+      pathways,
+      selectedPathwayId: null,
+      selectedPathwayLabel: null,
+      selectedPathwaySummary: null,
+    };
+  }
+
+  return mergePlannerPathwayWithPlan(plan, selectedPathway, pathways);
+}
+
+export function resolveTransferPlannerStudentRuntimeMajorPlan(
+  plan: TransferPlannerMajorPlan | null | undefined,
+  pathwayId: string | null | undefined
+) {
+  if (!plan) return null as TransferPlannerResolvedMajorPlan | null;
+
+  const pathways = materializePlanPathways(plan, false);
   if (!pathways.length) {
     return {
       ...materializePlanReferenceCourses(plan),
@@ -1636,4 +2614,4 @@ export type {
   TransferPlannerResolvedMajorPlan,
   TransferPlannerCourseAvailability,
   TransferPlannerTrack,
-} from "../transfer-planner-data";
+} from "../transfer-planner-types";

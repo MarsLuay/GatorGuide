@@ -2,5 +2,277 @@ Owner: uw-bothell-mechanical-engineering
 Source: https://www.uwb.edu/stem/wp-content/uploads/sites/31/2025/01/B-ME-Curriculum-AY24_25.pdf
 Title: University of Washington Bothell Mechanical Engineering Curriculum AY24/25 Natural Science: 21 credits *B CHEM 143/144: General Chemistry I w/ Lab 6 *B PHYS 121: Mechanics 5 *B PHYS 122: Electromagnetism and Oscillatory 5 B PHYS 123: Waves 5 B ENGR 321: Materials Engineering Lab 2 *B ME 221: Statics 4 Mathematics: 30 credits *B ME 222: Mechanics of Materials 4 *STMATH 124: Calculus I 5 *B ME 223: Dynamics 4 *STMATH 125: Calculus II 5 B ME 301: Intro Seminar for Mechanical Engineering 1 *STMATH 126: Calculus III 5 *STMATH 207: Intro to Differential Equations 5 *STMATH 224: Multivariable Calculus 5 B ME 410: Electric Power and Machinery 5 STMATH 390: Probability & Statistics in Engineering 5 B ME 481: Citizen Engineer 5 General education and additional courses: 39 credits B ME 331: Thermodynamics 4 *B WRIT134: Composition 5 B ME 332: Fluid Mechanics 4 B ME 333: Heat Transfer 4 B ME 334: Thermal Fulds Lab 2 Any A&H (BIS 121 or equivalent suggested) 5 Any A&H 5 B ME 341: Mechanical Systems Design I 4 Any A&H 1 B ME 342: Mechanical Systems Design II 4 Any SSc 5 B ME 343: Mechanical Systems Design III 5 Any SSc 5 B ENGR 494: Enineering Design & Innovation 3 B ENGR 495: Capstone Project in Engineering I 3 B ENGR 496: Capstone Project in Engineering II 4 Mechanical Engineering Electives (16 credits) 4 4 4 4 Student # B ME policies and notes A minimum grade of 2.0 is required in each departmental requirement and prerequisite. Electives - Maximum of 4 credits of BME498/499 can be counted as BME elective credits. Courses in other disciplines require the department's approval. UW Policies Additional Writing (W): BWRIT135 (or ENGL141, ENGL182, HCDE231, ENGR231) 5 *Program Prerequisites Diversity, Natural World, and QSR requirements are fufilled by program requirements. Residency - 45 out of the final 60 credits must be earned at your home campus. Cross Campus Enrollment - after earning 15 crdits at your home campus, students are able to take up to 15 credits a year at another UW campus. Thermal Fluid Systems Analysis Mechanical Systems Design Capstone Sequence B ME 315: Intro to 3D Modeling, Design & Analysis (ME 123 allowed) 4 Additional credit as neede to reach 180 minimum for graduation CSS 112: Intro to Programming for Scientific Applications 4 Name: Mechanical Engineering: 90 credits B ENGR 320: Fundamentals of Material Science (MSE 170 allowed) 4 4 B ENGR 310: Computational Physical Modeling (or AMATH 301 & STMATH 208) 7/10/2024
 
+(1-5) max 4 counted as degree credit
+(reduced from 5) and does not currently fulfill the Social Science (SSc) Area
 [Page 1] University of Washington Bothell Mechanical Engineering Curriculum AY24/25 Natural Science: 21 credits *B CHEM 143/144: General Chemistry I w/ Lab 6 *B PHYS 121: Mechanics 5 *B PHYS 122: Electromagnetism and Oscillatory 5 B PHYS 123: Waves 5 B ENGR 321: Materials Engineering Lab 2 *B ME 221: Statics 4 Mathematics: 30 credits *B ME 222: Mechanics of Materials 4 *STMATH 124: Calculus I 5 *B ME 223: Dynamics 4 *STMATH 125: Calculus II 5 B ME 301: Intro Seminar for Mechanical Engineering 1 *STMATH 126: Calculus III 5 *STMATH 207: Intro to Differential Equations 5 *STMATH 224: Multivariable Calculus 5 B ME 410: Electric Power and Machinery 5 STMATH 390: Probability & Statistics in Engineering 5 B ME 481: Citizen Engineer 5 General education and additional courses: 39 credits B ME 331: Thermodynamics 4 *B WRIT134: Composition 5 B ME 332: Fluid Mechanics 4 B ME 333: Heat Transfer 4 B ME 334: Thermal Fulds Lab 2 Any A&H (BIS 121 or equivalent suggested) 5 Any A&H 5 B ME 341: Mechanical Systems Design I 4 Any A&H 1 B ME 342: Mechanical Systems Design II 4 Any SSc 5 B ME 343: Mechanical Systems Design III 5 Any SSc 5 B ENGR 494: Enineering Design & Innovation 3 B ENGR 495: Capstone Project in Engineering I 3 B ENGR 496: Capstone Project in Engineering II 4 Mechanical Engineering Electives (16 credits) 4 4 4 4 Student # B ME policies and notes A minimum grade of 2.0 is required in each departmental requirement and prerequisite. Electives - Maximum of 4 credits of BME498/499 can be counted as BME elective credits. Courses in other disciplines require the department's approval. UW Policies Additional Writing (W): BWRIT135 (or ENGL141, ENGL182, HCDE231, ENGR231) 5 *Program Prerequisites Diversity, Natural World, and QSR requirements are fufilled by program requirements. Residency - 45 out of the final 60 credits must be earned at your home campus. Cross Campus Enrollment - after earning 15 crdits at your home campus, students are able to take up to 15 credits a year at another UW campus. Thermal Fluid Systems Analysis Mechanical Systems Design Capstone Sequence B ME 315: Intro to 3D Modeling, Design & Analysis (ME 123 allowed) 4 Additional credit as neede to reach 180 minimum for graduation CSS 112: Intro to Programming for Scientific Applications 4 Name: Mechanical Engineering: 90 credits B ENGR 320: Fundamentals of Material Science (MSE 170 allowed) 4 4 B ENGR 310: Computational Physical Modeling (or AMATH 301 & STMATH 208) 7/10/2024
 [Page 2] The University of Washington Bothell Bachelor of Science in Mechanical Engineering curriculum is designed to meet requirements set forth by the Accreditation Board for Engineering and Technology (ABET). Each student completing the BSME degree will demonstrate mastery of the following competencies as established by ABET: a) Ability to apply knowledge of mathematics, science, and engineering. b) Ability to design and conduct experiments, as well as to analyze and interpret data. c) Ability to design a system, component, or process to meet desired needs within realistic constraints such as economic, environmental, social, political, ethical, health and safety, manufacturability, and sustainability. d) Ability to function on multidisciplinary teams. e) Ability to identify, formulate, and solve engineering problems. f) Understanding of professional and ethical responsibility. g) Ability to communicate effectively. h) The broad education necessary to understand the impact of engineering solutions in a global, economic, environmental, and societal context. i) Recognition of the need for, and an ability to engage in life-long learning. j) Knowledge of contemporary issues. k) Ability to use the techniques, skills, and modern engineering tools necessary for engineering practice. 1/16/2024
+[Supplemental official source] Culminating Experience
+[Supplemental official source] Curriculum
+[Supplemental official source] UW Bothell Mechanical Engineering curriculum
+&#124;
+&copy; 2026 University of Washington Bothell
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
+1
+10 (of 15)
+11 (of 15)
+16
+2
+21
+21 credits of science courses ( Table 1 )
+231)
+3
+30
+30 credits of mathematics courses ( Table 2 )
+39
+39 credits of general education and additional courses ( Table 5 )
+4
+425.352.5000
+5
+6
+90
+90 credits of engineering courses ( Table 3 and
+About
+academic advisor
+academic advisor .
+Accessibility
+Actuarial Science
+Additional credit as needed to reach 180 minimum for graduation
+Additional Writing (W):
+Admissions
+Advising
+All UW Bothell
+Alumni
+Applied Computing
+Apply As Undergraduate
+Arts and Humanities (A&H)
+Associate Professor with Tenure
+Autumn 2020 curriculum change
+Awards & Endowments
+B CHEM 143/144 General Chemistry I/Lab 1
+B ENGR 310 Computational Physical Modeling
+B ENGR 320 Fund. of Material Science
+B ENGR 321 Materials Engineering Lab
+B ENGR 494 Engineering Design and Innovation
+B ME 221 Statics
+B ME 222 Mechanics of Materials
+B ME 223 Dynamics
+B ME 301 Introduction to Mechanical Engineering
+B ME 315 Intro to 3D Modeling, Design, and Analysis
+B ME 331 Thermodynamics
+B ME 332 Fluid Mechanics
+B ME 333 Heat Transfer
+B ME 334 Thermal Fluids Lab
+B ME 341 Mechanical Systems Design I
+B ME 342 Mechanical Systems Design II
+B ME 343 Mechanical Systems Design III
+B ME 345 Machining Fundamentals
+B ME 410 Electric Power and Machinery
+B ME 431 Acoustical Engineering: Fundamentals
+B ME 432 Acoustical Engineering: Medical Devices
+B ME 433 Advanced Thermal Fluids
+B ME 435 Intro to Heating, Ventilation, and Air
+B ME 440 Mechanical Behavior of Materials
+B ME 446 Sustainable Energy
+B ME 450 Intro to Ocean Engineering and Sciences
+B ME 460 Intro to Mechatronics
+B ME 481 The Citizen Engineer
+B ME 483 Fundamentals of Engineering Mechanical Exam
+B ME 493 Aircraft Design
+B ME 493 Aircraft Stability and Loads
+B ME 493 Finite Element Analysis
+B ME 493 Intro to Instrumentation
+B ME 493 Intro to Vibration and Structures
+B ME 493 Ocean Sensor Data Analysis
+B ME 493 Product Design Leveraging AI
+B ME 493 Space Mission Analysis and Design
+B ME 494 has been replaced with B ENGR 494. The new course is 3 credits
+B ME 495 Capstone Project in ME I
+B ME 496 Capstone Project in ME II
+B ME 498 Independent Study in Mechanical Engineering
+B ME 499 Undergraduate Research in Mechanical Engineering
+B PHYS 121 Mechanics
+B PHYS 122 Electromagnetism and Oscillatory Motion
+B PHYS 123 Waves
+B WRIT 135 Research Writing (or ENGL 141, ENGL 182, HCDE 231, ENGR
+before Autumn 2020, please consult with your
+Biological Sciences
+Biology
+Biomedical
+Biomedical Systems and Devices
+Bothell, Washington View our location on Google maps.
+Campus Safety
+Canvas
+Capstone
+Capstones
+Career Resources
+Careers
+Center for Biotechnology Innovation & Training
+Chemistry
+Close mobile menu
+Commuter Services
+Composition (C): B WRIT 134 Composition
+Computer Engineering
+Computer Science & Software Engineering
+Computer Science &#038; Software Engineering (CSSE)
+Computing &#038; Software Systems
+Conditioning
+Contact
+Contact Us
+Contact us by phone at:
+Core Courses
+Credit
+Credits
+CSS 112 Introduction to Programming for Scientific Applications
+CSS Labs
+CSS Registration
+Culminating Experience
+Current requirements
+Current site
+Curriculum
+Cybersecurity
+Data Science
+Department of Biological Sciences Faculty
+Department of Computing & Software Systems Faculty
+Department of Engineering & Mathematics Faculty
+Department of Physical Sciences Faculty
+Department of Physical Sciences Research
+Departments
+Directory
+Earth System Science
+EE Open lab schedule
+Elective course offerings are subject to change each year.
+Elective Courses
+Electrical Engineering
+Engineering &#038; Mathematics
+Events
+Excellence in Cybersecurity Education
+Expand Navigation
+Facilities
+Faculty
+Faculty Research Projects
+For a more visual version of the information on this page, download the Mechanical Engineering degree checklist .
+for permission.
+Frequently Asked Questions
+Friday Harbor Laboratories
+Full Professor
+General education and additional courses
+Getting Started with Computer Science
+Give
+Graduate
+Graduate Certificate in Electrical & Computer Engineering Foundations
+Graduate Certificate in Software Design & Development
+graduation.
+height="0" width="0" style="display:none;visibility:hidden">
+Heritage University REU
+How to Apply
+Human Resources
+In this section
+Industry partners
+Information Technology
+Information Technology (IT)
+Investigative Biology
+Jobs
+Laboratories
+Library
+Majors
+Maps & directions
+Marine Biology
+Master of Science in Computer Science & Software Engineering
+Master of Science in Cybersecurity Engineering
+Master of Science in Electrical & Computer Engineering
+Materials
+Mathematics
+ME elective requirement.
+ME electives (see Table 4, below)
+Mechanical Engineering
+Mechanical Engineering Curriculum
+Mechanical Engineering Curriculum - School of Science, Technology, Engineering & Mathematics
+Mechanical Engineering elective courses
+Mechanical Engineering Research
+Microelectronics and Devices
+might also fulfill UWB ME requirements, but students must consult with their
+Minors
+More Links
+more SSc credits to fulfill these requirements.
+MyUW
+National Center of Academic Excellence in Cybersecurity
+Neuroscience
+News
+Ocean Engineering
+of Knowledge Requirement. If you have any questions or began the program
+Open mobile menu
+Physical Sciences
+Physics
+Power &#038; Energy
+Preparation
+Prerequisites guide
+Previous Quarters
+Privacy
+program, the curriculum of the ME degree requires a total of 180 credits for
+Project or Thesis
+Promotion & Tenure Guidelines
+Promotion and Tenure Public Statement
+Quick Links
+Recommended: BIS 121 Intro to Drawing
+Research
+Research &#038; Internships
+Research &#038; labs
+Research Experiences for Undergraduates
+Resources
+Rules Docket
+Safety and Security Studies and Modeling in Fluids
+School of Science, Technology, Engineering & Mathematics
+School of STEM Student Success
+Search
+Search keywords
+Seattle Campus
+Signal Processing
+Skip To Content
+Social Science (SSc)
+SSc credit, so students only need to plan for 11 more A&H credits and 10
+Staff
+STEM Advisory Board
+STEM Symposium Event
+stemsuccess@uw.edu
+STMATH 124 Calculus I
+STMATH 125 Calculus II
+STMATH 126 Calculus III
+STMATH 207 Intro to Differential Equations
+STMATH 224 Multivariable Calculus
+STMATH 390 Probability and Statistics in Engineering
+Student Forms &#038; Resources
+Student Organizations
+Students select courses from the list given in Table 4 to meet the 16 credit
+Table 1: Natural science courses
+Table 2: Mathematics courses
+Table 3: Mechanical engineering courses
+Table 4 )
+Table 4:
+Table 5:
+Tacoma Campus
+Teaching Effectiveness Public Statement
+Teaching Track Faculty
+Terms
+The ME curriculum has required courses that fulfill 4 A&H credit and 5
+The Mechanical Engineering curriculum is ABET accredited and students need to complete major requirements and meet learning objectives and outcomes .
+Thesis/Project Final Defense Schedule
+Time Schedule
+To prepare the graduates to achieve the educational objectives set out by the
+Total
+Tuition
+Undergraduate
+Undergraduate Policies & Procedures
+University of Washington Bothell Homepage
+UW Bothell Facebook
+UW Bothell Home
+UW Bothell Instagram
+UW Bothell Linkedin
+UW Bothell Twitter
+UW Bothell Youtube
+UW Seattle college of Engineering courses
+View B ENGR course descriptions
+View B ME course descriptions
+View curriculum flowchart
+Visitors
+Wireless, RF/Microwave, and Telecommunications
+Workday Login

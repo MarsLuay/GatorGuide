@@ -1,3 +1,4 @@
+/* global __dirname */
 const fs = require("fs");
 const path = require("path");
 const { spawnSync } = require("child_process");
@@ -72,6 +73,36 @@ const BEFORE_APPLICATION_PATTERN =
 const BEFORE_ENROLLMENT_PATTERN =
   /\b(before the first|before first|before the following|after admission|beyond admission|later adds|adds\b|still needs|needed to complete|to complete the degree|continuation|beyond the admission baseline)\b/i;
 const COMBINED_ENTRY_REFERENCE_PATTERN = /combined[- ]entry|combined entries|see .*combined/i;
+const NON_PROMOTABLE_REQUIREMENT_CONTEXT_PATTERNS = [
+  /\bnot required for transferring\b/i,
+  /\bsuggested general education coursework\b/i,
+  /\bsuggested coursework\b/i,
+  /\bthere is no benefit in admissions\b/i,
+  /\bapproved list\b/i,
+  /\badditional natural science\b/i,
+  /\bfree electives?\b/i,
+  /\badditional courses from\b/i,
+  /\bone course chosen from\b/i,
+  /\b(?:one|two|three|\d+)\s+courses?\s+from\b/i,
+  /\bfrom the following list\b/i,
+  /\bchoose from\b/i,
+  /\bother recommended courses?\b/i,
+  /\bstrongly encouraged\b/i,
+  /\bcan use (?:that|this|it) to replace\b/i,
+  /\bif [^.|\n\r]* major\b/i,
+  /\bif they fit your schedule\b/i,
+  /\badditional cse or engineering credits\b/i,
+  /\bareas of inquiry\b/i,
+  /\bdiversity requirement\b/i,
+  /\badvanced placement\b/i,
+  /\bexcept for\b/i,
+];
+const ALTERNATIVE_REQUIREMENT_CONTEXT_PATTERN =
+  /\b(?:or|either|choose one|one of|approved equivalent)\b|\/|->/i;
+
+function escapeRegExp(value) {
+  return String(value ?? "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
 
 function hasArg(flag) {
   return process.argv.slice(2).includes(flag);
@@ -722,6 +753,99 @@ function getRelevantOwnerCourseLines(owner, uwCourseCode) {
   return lines;
 }
 
+const BASE_REQUIREMENT_ATOMS_BY_SCOPE = new Map();
+for (const requirement of TRANSFER_PLANNER_MAJOR_REQUIREMENT_REGISTRY) {
+  if (requirement.id.includes(":auto-")) {
+    continue;
+  }
+
+  const scopeKey = getOwnerScopeKey(requirement.planId, requirement.pathwayId);
+  const current = BASE_REQUIREMENT_ATOMS_BY_SCOPE.get(scopeKey) ?? [];
+  current.push(requirement);
+  BASE_REQUIREMENT_ATOMS_BY_SCOPE.set(scopeKey, current);
+}
+
+function getOwnerBaseRequirementTitleCourseCodes(owner) {
+  const scopeKey = getOwnerScopeKey(owner.planId, owner.pathwayId);
+  return uniqueSorted(
+    (BASE_REQUIREMENT_ATOMS_BY_SCOPE.get(scopeKey) ?? []).flatMap((requirement) =>
+      extractCourseCodes(requirement.title)
+    )
+  );
+}
+
+function isInformativeRequirementLine(line, uwCourseCode) {
+  const normalizedLine = normalizeWhitespace(decodeHtmlEntities(line));
+  if (!normalizedLine) {
+    return false;
+  }
+
+  const parts = getCourseCodeParts(uwCourseCode);
+  if (!parts) {
+    return false;
+  }
+
+  const leadingPattern = new RegExp(
+    `^(?:[A-Z]{1,3}\\s+)?${escapeRegExp(parts.subjectCode)}\\s*${escapeRegExp(parts.catalogNumber)}\\s*[:\\-â€“â€”]?\\s*`,
+    "i"
+  );
+  const strippedLine = normalizeWhitespace(
+    normalizedLine
+      .replace(/^[*â€¢-]\s*/, "")
+      .replace(leadingPattern, "")
+  );
+
+  return strippedLine.length >= 8 && /[A-Za-z]/.test(strippedLine);
+}
+
+function getPromotionSuppressionReason(owner, uwCourseCode, relevantLines) {
+  const relevantText = relevantLines.join(" | ");
+  const noisyContext = NON_PROMOTABLE_REQUIREMENT_CONTEXT_PATTERNS.find((pattern) =>
+    pattern.test(relevantText)
+  );
+  if (noisyContext) {
+    return "the matched source lines describe suggested, elective, replacement, or approved-list context instead of a clean transfer-planning requirement";
+  }
+
+  if (!relevantLines.some((line) => isInformativeRequirementLine(line, uwCourseCode))) {
+    return "the source lines do not provide an informative requirement cue beyond the bare UW course code or title";
+  }
+
+  const normalizedUwCourseCode = normalizeCourseCode(uwCourseCode);
+  const existingTitleCourseCodes = new Set(getOwnerBaseRequirementTitleCourseCodes(owner));
+  if (existingTitleCourseCodes.has(normalizedUwCourseCode)) {
+    return "the planner already has a base requirement row for this UW course code";
+  }
+
+  for (const line of relevantLines) {
+    const lineCourseCodes = extractCourseCodes(line);
+    if (!lineCourseCodes.includes(normalizedUwCourseCode)) {
+      continue;
+    }
+    if (
+      lineCourseCodes.length >= 3 &&
+      !BEFORE_APPLICATION_PATTERN.test(line) &&
+      !BEFORE_ENROLLMENT_PATTERN.test(line) &&
+      !/\b(?:required|required by|prereq|prerequisite|must complete)\b/i.test(line)
+    ) {
+      return "the matched source lines list several sibling UW options without a clean admission or enrollment cue for this single course";
+    }
+    if (!ALTERNATIVE_REQUIREMENT_CONTEXT_PATTERN.test(line)) {
+      continue;
+    }
+    if (
+      lineCourseCodes.some(
+        (courseCode) =>
+          courseCode !== normalizedUwCourseCode && existingTitleCourseCodes.has(courseCode)
+      )
+    ) {
+      return "the matched source lines describe an alternate path that the planner already represents through an existing requirement row";
+    }
+  }
+
+  return null;
+}
+
 function extractTitleCandidateFromRequirementLine(uwCourseCode, line) {
   const parts = getCourseCodeParts(uwCourseCode);
   const normalizedLine = normalizeWhitespace(decodeHtmlEntities(line));
@@ -877,6 +1001,7 @@ function inferPhase(owner, uwCourseCode, consensus) {
   const snapshotLines = readSnapshotLines(owner.snapshotPath);
   const matchingLines = snapshotLines.filter((line) => line.includes(uwCourseCode)).slice(0, 8);
   const relevantText = [...matchingLines, ...(owner.requirementCueLines ?? [])].join(" | ");
+  const starredCoursePattern = new RegExp(`\\*\\s*${escapeRegExp(uwCourseCode)}\\b`, "i");
 
   if (BEFORE_ENROLLMENT_PATTERN.test(relevantText)) {
     return {
@@ -890,6 +1015,22 @@ function inferPhase(owner, uwCourseCode, consensus) {
     return {
       phase: "before-application",
       phaseConfidence: "high",
+      matchedLines: matchingLines,
+    };
+  }
+
+  if (matchingLines.some((line) => starredCoursePattern.test(line))) {
+    return {
+      phase: "before-application",
+      phaseConfidence: "high",
+      matchedLines: matchingLines,
+    };
+  }
+
+  if (matchingLines.length > 0) {
+    return {
+      phase: "before-enrollment",
+      phaseConfidence: "medium",
       matchedLines: matchingLines,
     };
   }
@@ -925,37 +1066,14 @@ function formatHumanDate(isoString) {
 }
 
 function buildGeneratedNote(phase, uwCourseCode) {
-  const subjectCode = normalizeCourseCode(uwCourseCode).split(" ")[0];
-
-  if (phase === "before-application") {
-    return `The current official degree page names ${uwCourseCode} in the early transfer-preparation set, so keep the clean Green River equivalent in place before applying when that route matches the student's plan.`;
-  }
+  const degreeRequiredBeforeEnrollmentNote =
+    "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.";
 
   if (phase === "before-enrollment") {
-    if (/^(MATH|STAT|TMATH|STMATH)$/.test(subjectCode)) {
-      return "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the degree still needs this math requirement either way.";
-    }
-    if (/^(PHYS|TPHYS|BPHYS)$/.test(subjectCode)) {
-      return "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the degree still needs this physics requirement either way.";
-    }
-    if (/^(CHEM|BCHEM)$/.test(subjectCode)) {
-      return "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the degree still needs this chemistry requirement either way.";
-    }
-    if (/^(BIOL|BBIO|NURS|NUTR)$/.test(subjectCode)) {
-      return "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the degree still needs this life-science requirement either way.";
-    }
-    if (/^(CSE|CS|TCSS|CSS|INFO|AMATH|ENGR)$/.test(subjectCode)) {
-      return "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the degree still needs this computing or technical requirement either way.";
-    }
-
-    return "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.";
+    return degreeRequiredBeforeEnrollmentNote;
   }
 
-  if (/^(MATH|STAT|TMATH|STMATH|PHYS|TPHYS|CHEM|BCHEM|BIOL|BBIO|CS|CSE|TCSS|CSS|INFO|ENGR|AMATH)$/.test(subjectCode)) {
-    return "Useful to complete at Green River when it cleanly matches the published degree page, even if the department does not treat it as part of the minimum admission-side checklist.";
-  }
-
-  return "Useful to complete at Green River when it cleanly matches the published degree page, but confirm the exact timing with an advisor if the major has multiple internal routes.";
+  return "";
 }
 
 function buildClassificationNote(classificationKind, uwCourseCode, promoted = false) {
@@ -1456,6 +1574,12 @@ function buildPromotionReport(parseReport) {
         phase: "stay-at-grc",
         phaseConfidence: "low",
       });
+      const promotionRelevantLines = getRelevantOwnerCourseLines(owner, uwCourseCode).slice(0, 8);
+      const promotionSuppressionReason = getPromotionSuppressionReason(
+        owner,
+        uwCourseCode,
+        promotionRelevantLines
+      );
       const guideSourceCourseSets = guideRule
         ? normalizeSourceCourseSets(guideRule.sourceCourseSets)
         : [];
@@ -1478,7 +1602,8 @@ function buildPromotionReport(parseReport) {
       if (
         guideRule &&
         !guideCoverageSatisfied &&
-        owner.parseConfidence !== "low"
+        owner.parseConfidence !== "low" &&
+        !promotionSuppressionReason
       ) {
         const [primarySourceSet = [], ...alternativeSourceSets] = guideSourceCourseSets;
         const guidePromotionKind =
@@ -1570,7 +1695,8 @@ function buildPromotionReport(parseReport) {
         !guideRule &&
         consensus?.grcCourseCodes?.length &&
         !consensusCoverageSatisfied &&
-        isTransferRelevantUwCourseCode(uwCourseCode, consensus)
+        isTransferRelevantUwCourseCode(uwCourseCode, consensus) &&
+        !promotionSuppressionReason
       ) {
         const phaseInference = inferPhase(owner, uwCourseCode, consensus);
         const rationale = [
@@ -1684,6 +1810,9 @@ function buildPromotionReport(parseReport) {
           `Automatically classified parsed requirement diff on ${humanDate}.`,
           `Source parse confidence: ${owner.parseConfidence}.`,
           `Guide-backed rule: ${guideRule.id}.`,
+          ...(promotionSuppressionReason
+            ? [`Auto-promotion was intentionally skipped because ${promotionSuppressionReason}.`]
+            : []),
           ...(fallbackPhaseInference.matchedLines.length
             ? [
                 `Requirement cue lines: ${fallbackPhaseInference.matchedLines
@@ -1743,7 +1872,8 @@ function buildPromotionReport(parseReport) {
         exactTitleMatches.length === 1 &&
         !exactTitleCoverageSatisfied &&
         owner.parseConfidence !== "low" &&
-        fallbackPhaseInference.phaseConfidence !== "low"
+        fallbackPhaseInference.phaseConfidence !== "low" &&
+        !promotionSuppressionReason
       ) {
         const matchedGrcCourse = exactTitleMatches[0];
         const rationale = [
@@ -1823,7 +1953,8 @@ function buildPromotionReport(parseReport) {
         exactTitleMatches.length > 1 &&
         !exactTitleCoverageSatisfied &&
         owner.parseConfidence !== "low" &&
-        fallbackPhaseInference.phaseConfidence !== "low"
+        fallbackPhaseInference.phaseConfidence !== "low" &&
+        !promotionSuppressionReason
       ) {
         const exactTitleSourceCourseSets = sortSourceCourseSets(
           exactTitleMatches.map((match) => [match.code])
@@ -1928,7 +2059,8 @@ function buildPromotionReport(parseReport) {
         !familyConsensusCoverageSatisfied &&
         owner.parseConfidence === "high" &&
         courseFamilyConsensus.mappingConfidence === "high" &&
-        fallbackPhaseInference.phaseConfidence !== "low"
+        fallbackPhaseInference.phaseConfidence !== "low" &&
+        !promotionSuppressionReason
       ) {
         const rationale = [
           `Parsed from the current primary degree page with ${owner.parseConfidence} source-parse confidence.`,
@@ -2022,7 +2154,8 @@ function buildPromotionReport(parseReport) {
         choiceSetResolution?.sourceCourseSets?.length &&
         !choiceSetCoverageSatisfied &&
         owner.parseConfidence !== "low" &&
-        fallbackPhaseInference.phaseConfidence !== "low"
+        fallbackPhaseInference.phaseConfidence !== "low" &&
+        !promotionSuppressionReason
       ) {
         const [primarySourceSet = [], ...alternativeSourceSets] =
           choiceSetResolution.sourceCourseSets;
@@ -2149,6 +2282,9 @@ function buildPromotionReport(parseReport) {
           validationNotes: [
             `Automatically classified parsed requirement diff on ${humanDate}.`,
             `Source parse confidence: ${owner.parseConfidence}.`,
+            ...(promotionSuppressionReason
+              ? [`Auto-promotion was intentionally skipped because ${promotionSuppressionReason}.`]
+              : []),
             titleMatchCandidate.titleMetadata
               ? `Best parsed title candidate: ${titleMatchCandidate.titleMetadata.title} (${titleMatchCandidate.titleMetadata.source}).`
               : `No clean parsed title candidate was available for ${uwCourseCode}.`,

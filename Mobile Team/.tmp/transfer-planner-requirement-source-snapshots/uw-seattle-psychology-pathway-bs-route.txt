@@ -98,6 +98,7 @@ Core Courses
 One course from List A (5 credits):
 Psych 300 Animal Behavior
 Psych 302 Neuroscience of the Mind
+Psych 322 Introduction to Drugs and Behavior
 Psych 333 Sensory and Perceptual Processes Sensory
 Psych 355 Cognitive Psychology
 One course from List B (5 credits):
@@ -156,6 +157,7 @@ Core Courses
 One course from List A (5 credits):
 Psych 300 Animal Behavior
 Psych 302 Neuroscience of the Mind
+Psych 322 Introduction to Drugs and Behavior
 Psych 333 Sensory and Perceptual Processes Sensory
 Psych 355 Cognitive Psychology
 One course from List B (5 credits):
