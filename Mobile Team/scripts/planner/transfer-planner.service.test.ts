@@ -4222,6 +4222,16 @@ test("Phase 10 TransferPlannerPage uses student runtime planner selectors", () =
   assert.doesNotMatch(transferPlannerPage, /tired dev/i);
 });
 
+test("Pathway selector hides the already-selected pathway from the open option list", () => {
+  const transferPlannerPage = readFileSync("components/pages/TransferPlannerPage.tsx", "utf8");
+
+  assert.match(transferPlannerPage, /hideSelectedOptionWhenOpen/);
+  assert.match(
+    transferPlannerPage,
+    /selectedOptionId=\{selectedPathwayId \?\? pathwayOptions\[0\]\?\.id \?\? null\}/
+  );
+});
+
 test("Planner docs now use source-gap and source-backed language instead of review queues", () => {
   const toolSummary = readFileSync("docs/planner/TRANSFER_PLANNER_TOOL_SUMMARY.md", "utf8");
   const generalTodo = readFileSync("docs/planner/TRANSFER_PLANNER_GENERAL_TODO.md", "utf8");

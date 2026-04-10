@@ -388,6 +388,8 @@ function SelectorField({
   onToggle,
   options,
   onSelect,
+  selectedOptionId,
+  hideSelectedOptionWhenOpen,
   searchable,
   searchPlaceholder,
   textClass,
@@ -402,6 +404,8 @@ function SelectorField({
   onToggle: () => void;
   options: { id: string; label: string; description?: string }[];
   onSelect: (id: string) => void;
+  selectedOptionId?: string | null;
+  hideSelectedOptionWhenOpen?: boolean;
   searchable?: boolean;
   searchPlaceholder?: string;
   textClass: string;
@@ -424,14 +428,19 @@ function SelectorField({
       ? ""
       : normalizedQuery;
   const filteredOptions = useMemo(() => {
+    const visibleOptions =
+      hideSelectedOptionWhenOpen && open && selectedOptionId
+        ? options.filter((option) => option.id !== selectedOptionId)
+        : options;
+
     if (!searchable || !effectiveQuery) {
-      return searchable ? options.slice(0, 12) : options;
+      return searchable ? visibleOptions.slice(0, 12) : visibleOptions;
     }
 
     const startsWithMatches: { id: string; label: string; description?: string }[] = [];
     const includesMatches: { id: string; label: string; description?: string }[] = [];
 
-    for (const option of options) {
+    for (const option of visibleOptions) {
       const normalizedLabel = normalizeSelectorSearchValue(option.label);
       if (normalizedLabel.startsWith(effectiveQuery)) {
         startsWithMatches.push(option);
@@ -443,7 +452,14 @@ function SelectorField({
     }
 
     return [...startsWithMatches, ...includesMatches];
-  }, [effectiveQuery, options, searchable]);
+  }, [
+    effectiveQuery,
+    hideSelectedOptionWhenOpen,
+    open,
+    options,
+    searchable,
+    selectedOptionId,
+  ]);
 
   return (
     <View>
@@ -646,13 +662,6 @@ function TranscriptSummaryCard({
         </View>
 
       <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-5`}>
-        <Text className={`${textClass} text-base font-semibold`}>
-          Choose your UW path
-          </Text>
-          <Text className={`${secondaryTextClass} text-sm mt-1`}>
-            Set the campus and major you want this Green River plan to match against.
-          </Text>
-
           <View
             className="mt-4"
             style={isDesktop ? { flexDirection: "row", alignItems: "flex-start", gap: 16 } : { gap: 16 }}
@@ -661,7 +670,7 @@ function TranscriptSummaryCard({
               <SelectorField
                 label="Campus"
                 value={selectedCampusLabel}
-                helper="UW Seattle is the default. Switch this if you are aiming for Bothell or Tacoma."
+                helper="Set the campus and major you want this Green River plan to match against."
                 open={openSelector === "campus"}
                 onToggle={onToggleCampus}
                 options={campusOptions}
@@ -695,6 +704,7 @@ function TranscriptSummaryCard({
 
       <MajorPathwaySection
         pathwayOptions={pathwayOptions}
+        selectedPathwayId={plan.selectedPathwayId}
         selectedPathwayLabel={selectedPathwayLabel}
         isPathwaySelectorOpen={isPathwaySelectorOpen}
         onTogglePathway={() => setIsPathwaySelectorOpen((currentValue) => !currentValue)}
@@ -784,13 +794,6 @@ function TranscriptSummaryCard({
       ) : null}
 
       <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-4`}>
-        <Text className={`${textClass} text-base font-semibold`}>
-          Choose your UW path
-        </Text>
-        <Text className={`${secondaryTextClass} text-sm mt-1`}>
-          Set the campus and major you want this Green River plan to match against.
-        </Text>
-
         <View
           className="mt-4"
           style={isDesktop ? { flexDirection: "row", alignItems: "flex-start", gap: 16 } : { gap: 16 }}
@@ -799,7 +802,7 @@ function TranscriptSummaryCard({
             <SelectorField
               label="Campus"
               value={selectedCampusLabel}
-              helper="UW Seattle is the default. Switch this if you are aiming for Bothell or Tacoma."
+              helper="Set the campus and major you want this Green River plan to match against."
               open={openSelector === "campus"}
               onToggle={onToggleCampus}
               options={campusOptions}
@@ -833,6 +836,7 @@ function TranscriptSummaryCard({
 
       <MajorPathwaySection
         pathwayOptions={pathwayOptions}
+        selectedPathwayId={plan.selectedPathwayId}
         selectedPathwayLabel={selectedPathwayLabel}
         isPathwaySelectorOpen={isPathwaySelectorOpen}
         onTogglePathway={() => setIsPathwaySelectorOpen((currentValue) => !currentValue)}
@@ -891,6 +895,7 @@ function TranscriptSummaryCard({
 
 function MajorPathwaySection({
   pathwayOptions,
+  selectedPathwayId,
   selectedPathwayLabel,
   isPathwaySelectorOpen,
   onTogglePathway,
@@ -901,6 +906,7 @@ function MajorPathwaySection({
   borderClass,
 }: {
   pathwayOptions: TransferPlannerMajorPathway[];
+  selectedPathwayId: string | null;
   selectedPathwayLabel: string | null;
   isPathwaySelectorOpen: boolean;
   onTogglePathway: () => void;
@@ -934,6 +940,8 @@ function MajorPathwaySection({
             description: pathway.summary,
           }))}
           onSelect={onSelectPathway}
+          selectedOptionId={selectedPathwayId ?? pathwayOptions[0]?.id ?? null}
+          hideSelectedOptionWhenOpen
           textClass={textClass}
           secondaryTextClass={secondaryTextClass}
           cardClass={cardClass}
