@@ -29,11 +29,13 @@ import {
   TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY,
   TRANSFER_PLANNER_POLICY_REGISTRY,
   TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY,
+  getTransferPlannerPrimaryDegreeRequirementsSource,
   getTransferPlannerPromotedRequirementAtomOverrides,
 } from "./registry";
 import {
   TRANSFER_PLANNER_SOURCE_GAP_ENTRIES,
 } from "./source-gaps.generated";
+import { materializeTransferPlannerPathways } from "./pathway-materialization";
 import type {
   TransferPlannerDegreeMapBlock,
   TransferPlannerMajorPathwayEntry,
@@ -201,6 +203,28 @@ function uniquePlannerStrings(values: string[]) {
   }
 
   return uniqueValues;
+}
+
+function pickResolvedPlannerPathway(
+  pathways: TransferPlannerMajorPathway[],
+  pathwayId: string | null | undefined
+) {
+  if (!pathways.length) return null;
+  if (!pathwayId) return pathways[0] ?? null;
+
+  const exactMatch = pathways.find((entry) => entry.id === pathwayId) ?? null;
+  if (exactMatch) {
+    return exactMatch;
+  }
+
+  const expandedFamilyMatches = pathways.filter((entry) => entry.id.startsWith(`${pathwayId}:`));
+  if (!expandedFamilyMatches.length) {
+    return pathways[0] ?? null;
+  }
+
+  return expandedFamilyMatches.find((entry) => /\bgeneral\b/i.test(entry.label)) ??
+    expandedFamilyMatches[0] ??
+    null;
 }
 
 function getGuideRuleStatusScore(rule: {
@@ -1232,6 +1256,12 @@ function addFallbackChecklistItemForPhase(
   phase: TransferPlannerRequirementPhase,
   item: TransferPlannerChecklistItem
 ) {
+  // Keep UW-only guidance placeholders out of the student planner until there is a
+  // source-backed GRC course path we can actually show.
+  if (!getChecklistReferenceCoursesFromItems([item]).length) {
+    return;
+  }
+
   if (phase === "before-application") {
     checklists.beforeApplication.push(item);
     return;
@@ -1724,19 +1754,28 @@ function applyAutoChecklistFallback<T extends {
   applicationChecklist?: TransferPlannerChecklistItem[];
   beforeEnrollmentChecklist?: TransferPlannerChecklistItem[];
   stayAtGrcChecklist?: TransferPlannerChecklistItem[];
-}>(scope: T): T {
+}>(scope: T, options?: { allowCustomPrepFallback?: boolean }): T {
   if (hasAnyChecklistItems(scope)) {
+    return scope;
+  }
+
+  const rawFallbackChecklist = buildAutoFallbackChecklist({
+    planId: scope.id,
+    bestTrackId: scope.bestTrackId,
+    grcCourseList: scope.grcCourseList ?? [],
+    grcCourseListGuidance: scope.grcCourseListGuidance,
+  });
+  const fallbackChecklist =
+    options?.allowCustomPrepFallback === false
+      ? rawFallbackChecklist.filter((item) => getChecklistReferenceCoursesFromItems([item]).length)
+      : rawFallbackChecklist;
+  if (!fallbackChecklist.length) {
     return scope;
   }
 
   return {
     ...scope,
-    stayAtGrcChecklist: buildAutoFallbackChecklist({
-      planId: scope.id,
-      bestTrackId: scope.bestTrackId,
-      grcCourseList: scope.grcCourseList ?? [],
-      grcCourseListGuidance: scope.grcCourseListGuidance,
-    }),
+    stayAtGrcChecklist: fallbackChecklist,
   };
 }
 
@@ -2153,7 +2192,8 @@ function buildStudentRuntimePathway(
       financialAidNote: "",
       } satisfies TransferPlannerMajorPathway),
       basePathway.id
-    )
+    ),
+    { allowCustomPrepFallback: false }
   );
 }
 
@@ -2213,7 +2253,8 @@ function buildStudentRuntimePlan(basePlan: TransferPlannerMajorPlan): TransferPl
       ),
       }),
       null
-    )
+    ),
+    { allowCustomPrepFallback: false }
   );
 }
 
@@ -2236,13 +2277,28 @@ function materializePlannerPathway(pathway: TransferPlannerMajorPathway): Transf
   };
 }
 
+function getPlanPrimaryParsedRequirementSourceBlocks(planId: string) {
+  const primaryDegreeSourceUrl = getTransferPlannerPrimaryDegreeRequirementsSource(planId)?.url ?? null;
+
+  return TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY.filter(
+    (entry) =>
+      entry.planId === planId &&
+      !entry.pathwayId &&
+      entry.ok &&
+      (!primaryDegreeSourceUrl || entry.primarySourceUrl === primaryDegreeSourceUrl)
+  );
+}
+
 function materializePlanPathways(plan: TransferPlannerMajorPlan, includeHiddenSourceGaps = true) {
   const pathways = (plan.pathways ?? []).map(materializePlannerPathway);
-  if (includeHiddenSourceGaps) {
-    return pathways;
-  }
-  return pathways.filter(
-    (pathway) => !isTransferPlannerStudentHiddenSourceGap(plan.id, pathway.id)
+  const visibleBasePathways = includeHiddenSourceGaps
+    ? pathways
+    : pathways.filter((pathway) => !isTransferPlannerStudentHiddenSourceGap(plan.id, pathway.id));
+
+  return materializeTransferPlannerPathways(
+    plan,
+    visibleBasePathways,
+    getPlanPrimaryParsedRequirementSourceBlocks(plan.id)
   );
 }
 
@@ -2450,21 +2506,21 @@ export function getTransferPlannerStudentRuntimeMajorPlan(planId: string) {
 export function getTransferPlannerPathwaysForPlan(
   plan: TransferPlannerMajorPlan | null | undefined
 ) {
-  if (!plan?.pathways?.length) return [] as TransferPlannerMajorPathway[];
+  if (!plan) return [] as TransferPlannerMajorPathway[];
   return materializePlanPathways(plan);
 }
 
 export function getTransferPlannerStudentVisiblePathwaysForPlan(
   plan: TransferPlannerMajorPlan | null | undefined
 ) {
-  if (!plan?.pathways?.length) return [] as TransferPlannerMajorPathway[];
+  if (!plan) return [] as TransferPlannerMajorPathway[];
   return materializePlanPathways(plan, false);
 }
 
 export function getTransferPlannerStudentRuntimePathwaysForPlan(
   plan: TransferPlannerMajorPlan | null | undefined
 ) {
-  if (!plan?.pathways?.length) return [] as TransferPlannerMajorPathway[];
+  if (!plan) return [] as TransferPlannerMajorPathway[];
   return materializePlanPathways(plan, false);
 }
 
@@ -2485,7 +2541,7 @@ export function resolveTransferPlannerMajorPlan(
     };
   }
 
-  const selectedPathway = pathways.find((entry) => entry.id === pathwayId) ?? pathways[0] ?? null;
+  const selectedPathway = pickResolvedPlannerPathway(pathways, pathwayId);
   if (!selectedPathway) {
     return {
       ...materializePlanReferenceCourses(plan),
@@ -2516,7 +2572,7 @@ export function resolveTransferPlannerStudentRuntimeMajorPlan(
     };
   }
 
-  const selectedPathway = pathways.find((entry) => entry.id === pathwayId) ?? pathways[0] ?? null;
+  const selectedPathway = pickResolvedPlannerPathway(pathways, pathwayId);
   if (!selectedPathway) {
     return {
       ...materializePlanReferenceCourses(plan),

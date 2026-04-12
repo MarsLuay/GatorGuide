@@ -36,6 +36,7 @@ import {
   TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS,
   TRANSFER_PLANNER_SOURCE_FINGERPRINTS,
 } from "./source-fingerprints.generated";
+import { countMaterializedTransferPlannerPathways } from "./pathway-materialization";
 import type {
   TransferPlannerChecklistItem,
   TransferPlannerDegreeMapSection,
@@ -1798,19 +1799,40 @@ const HIDDEN_SOURCE_GAP_PATHWAY_KEYS = new Set(
     (entry) => entry.studentVisibility === "hidden" && entry.pathwayId
   ).map((entry) => `${entry.planId}::${entry.pathwayId}`)
 );
+function getPlanPrimaryParsedRequirementSourceBlocks(planId: string) {
+  const primaryDegreeSourceUrl = getTransferPlannerPrimaryDegreeRequirementsSource(planId)?.url ?? null;
+
+  return TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY.filter(
+    (entry) =>
+      entry.planId === planId &&
+      !entry.pathwayId &&
+      entry.ok &&
+      (!primaryDegreeSourceUrl || entry.primarySourceUrl === primaryDegreeSourceUrl)
+  );
+}
+
 const SOURCE_GENERATED_PATHWAY_COUNT = TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.reduce(
-  (count, plan) => count + (plan.pathways?.length ?? 0),
+  (count, plan) =>
+    count +
+    countMaterializedTransferPlannerPathways(
+      plan,
+      [...(plan.pathways ?? [])],
+      getPlanPrimaryParsedRequirementSourceBlocks(plan.id)
+    ),
   0
 );
+
 const STUDENT_VISIBLE_SOURCE_GENERATED_PATHWAY_COUNT = TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.reduce(
   (count, plan) => {
     if (HIDDEN_SOURCE_GAP_PLAN_IDS.has(plan.id)) return count;
-    return (
-      count +
-      (plan.pathways ?? []).filter(
-        (pathway) => !HIDDEN_SOURCE_GAP_PATHWAY_KEYS.has(`${plan.id}::${pathway.id}`)
-      ).length
-    );
+    return count +
+      countMaterializedTransferPlannerPathways(
+        plan,
+        (plan.pathways ?? []).filter(
+          (pathway) => !HIDDEN_SOURCE_GAP_PATHWAY_KEYS.has(`${plan.id}::${pathway.id}`)
+        ),
+        getPlanPrimaryParsedRequirementSourceBlocks(plan.id)
+      );
   },
   0
 );

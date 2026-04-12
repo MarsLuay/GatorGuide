@@ -13,6 +13,7 @@ export const ROUTES = {
   calendar: "/calendar" as Href,
   opportunityAdmin: "/opportunity-admin" as const,
   transferPlanner: "/transfer-planner" as const,
+  transferEquivalencies: "/transfer-equivalencies" as const,
   compare: "/compare" as const,
   costCalculator: "/cost-calculator" as const,
   savedColleges: "/saved-colleges" as const,

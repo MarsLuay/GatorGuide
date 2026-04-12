@@ -37,6 +37,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2009",
     "guideDepartment": "Accounting",
     "sourceCourseLabel": "ACCT& 201, 202 (5, 5) formerly B A 210, 220",
+    "sourceCourseTitle": "Principles of Accounting I / Principles of Accounting II",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -88,6 +89,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2009",
     "guideDepartment": "Accounting",
     "sourceCourseLabel": "ACCT& 202 (5) formerly B A 220 (5) see ACCT& 201 combined entry",
+    "sourceCourseTitle": "Principles of Accounting II",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -139,6 +141,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2009",
     "guideDepartment": "Accounting",
     "sourceCourseLabel": "ACCT& 203 (5) formerly B A 230",
+    "sourceCourseTitle": "Principles of Accounting III",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -189,6 +192,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996",
     "guideDepartment": "American minority and ethnic studies",
     "sourceCourseLabel": "AMES 100 (5) formerly ETH S 100",
+    "sourceCourseTitle": "Introduction to American Ethnic Studies",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -242,6 +246,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2011",
     "guideDepartment": "American minority and ethnic studies",
     "sourceCourseLabel": "AMES 150 (5)",
+    "sourceCourseTitle": "Race and Ethnicity in the Pacific",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -295,6 +300,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "SPR Qtr. 1997",
     "guideDepartment": "American minority and ethnic studies",
     "sourceCourseLabel": "AMES 194 (1-5)",
+    "sourceCourseTitle": "Special Topics-American Ethnic Studies",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -345,6 +351,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "American minority and ethnic studies",
     "sourceCourseLabel": "AMES 211 (5) formerly AMES 215 same as ANTH 211 and S SCI 211",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -398,6 +405,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SUM Qtr. 2004",
     "guideDepartment": "American minority and ethnic studies",
     "sourceCourseLabel": "§ AMES 215 (5) same as ANTHR 215, HIST 215, and S SCI 215",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -453,6 +461,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2006 thru SPR Qtr. 2009",
     "guideDepartment": "American minority and ethnic studies",
     "sourceCourseLabel": "§ AMES 215 (5) same as ANTHR 215, HIST 215, and S SCI 215",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -508,6 +517,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992",
     "guideDepartment": "Anatomy and physiology (prefix formerly A-PHY)",
     "sourceCourseLabel": "AP 100 (5)",
+    "sourceCourseTitle": "Survey of Human Anatomy and Physiology",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -561,6 +571,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2005",
     "guideDepartment": "Anatomy and physiology (prefix formerly A-PHY)",
     "sourceCourseLabel": "AP 102 (5)",
+    "sourceCourseTitle": "Bringing Anatomy and Physiology to Life",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -608,6 +619,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Anatomy and physiology (prefix formerly A-PHY)",
     "sourceCourseLabel": "AP 103 (5)",
+    "sourceCourseTitle": "Essentials of Human Anatomy and Physiology 1",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -654,6 +666,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Anatomy and physiology (prefix formerly A-PHY)",
     "sourceCourseLabel": "AP 104 (5)",
+    "sourceCourseTitle": "Essentials of Human Anatomy and Physiology 2",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -706,6 +719,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1986",
     "guideDepartment": "Anatomy and physiology (prefix formerly A-PHY)",
     "sourceCourseLabel": "§ A-PHY 197 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -758,6 +772,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1986",
     "guideDepartment": "Anatomy and physiology (prefix formerly A-PHY)",
     "sourceCourseLabel": "§ A-PHY 198 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -810,6 +825,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1986",
     "guideDepartment": "Anatomy and physiology (prefix formerly A-PHY)",
     "sourceCourseLabel": "§ A-PHY 199 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -864,6 +880,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Anatomy and physiology (prefix formerly A-PHY)",
     "sourceCourseLabel": "§ AP 205, 206 (5, 5) formerly A-PHY 205, 206",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -919,6 +936,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Anatomy and physiology (prefix formerly A-PHY)",
     "sourceCourseLabel": "§ AP 206 (5) see A P 205 combined entry",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -971,6 +989,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "SPR Qtr. 2000",
     "guideDepartment": "Anatomy and physiology (prefix formerly A-PHY)",
     "sourceCourseLabel": "AP 210 (1)",
+    "sourceCourseTitle": "Cadaver Anatomy",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -1024,6 +1043,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "ANTH& 100 (5) formerly ANTHR 100",
+    "sourceCourseTitle": "Survey of Anthropology",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -1077,6 +1097,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "§ ANTHR 100 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -1132,6 +1153,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "ANTH 194 (1-5) previously ANTHR 194",
+    "sourceCourseTitle": "Special Topics-Anthropology 1",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -1182,6 +1204,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000 thru SPR Qtr. 2009",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "§ ANTHR 194 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -1234,6 +1257,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "§ ANTHR 201 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -1289,6 +1313,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "§ ANTHR 202 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -1344,6 +1369,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "WIN Qtr. 2003 thru SUM Qtr. 2009",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "§ ANTHR 203 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -1399,6 +1425,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1988",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "§ ANTHR 203 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -1454,6 +1481,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2011",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "ANTH& 204 (5) formerly ANTHR 203",
+    "sourceCourseTitle": "Archaeology",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -1507,6 +1535,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "ANTH& 205 (5) formerly ANTHR 201",
+    "sourceCourseTitle": "Biological Anthropology",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -1560,6 +1589,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "SPR Qtr. 1999 thru SPR Qtr. 2009",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "§ ANTHR 205 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -1615,6 +1645,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "ANTH& 206 (5) formerly ANTHR 202",
+    "sourceCourseTitle": "Cultural Anthropology",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -1668,6 +1699,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "WIN Qtr. 2003 thru SPR Qtr. 2009",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "§ ANTHR 206 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -1723,6 +1755,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "ANTH& 210 (5) formerly ANTHR 210",
+    "sourceCourseTitle": "Indigenous Peoples of North America",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -1776,6 +1809,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "§ ANTHR 210 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -1831,6 +1865,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "ANTH 211 (5) formerly ANTHR 215 same as AMES 211 and S SCI 211",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -1884,6 +1919,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SUM Qtr. 2004",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "§ ANTHR 215 (5) same as AMES 215, HIST 215, and S SCI 215",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -1939,6 +1975,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2006 thru SPR Qtr. 2009",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "§ ANTHR 215 (5) same as AMES 215, HIST 215, and S SCI 215",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -1994,6 +2031,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "ANTH& 216 (5) formerly ANTHR 220",
+    "sourceCourseTitle": "Indigenous Peoples of the Northwest Coast",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -2047,6 +2085,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SPR Qtr. 2009",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "§ ANTHR 220 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -2102,6 +2141,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "ANTH& 234 (5) formerly ANTHR 206",
+    "sourceCourseTitle": "Religion and Culture",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -2155,6 +2195,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "ANTH& 235 (5) formerly ANTHR 205",
+    "sourceCourseTitle": "Cross-Cultural Medicine",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -2208,6 +2249,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "ANTH& 236 (5) formerly ANTHR 265",
+    "sourceCourseTitle": "Forensic Anthropology",
     "targetRequirementTags": [
       "SSc",
       "NSc"
@@ -2262,6 +2304,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "WIN Qtr. 2003 thru SPR Qtr. 2009",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "§ ANTHR 265 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc",
       "NSc"
@@ -2318,6 +2361,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "ANTH 273 (1-10) formerly ANTHR 273",
+    "sourceCourseTitle": "Field Archeology",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -2368,6 +2412,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "§ ANTHR 273 (1-10)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -2420,6 +2465,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "§ ANTHR 274 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -2475,6 +2521,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1990",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "§ ANTHR 275 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -2530,6 +2577,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1988 thru SUM Qtr. 2002",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "§ ANTHR 276 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -2585,6 +2633,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2000",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "§ ANTHR 293 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -2640,6 +2689,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "ANTH 294 (1-5) formerly ANTHR 294",
+    "sourceCourseTitle": "Special Topics-Anthropology 2",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -2690,6 +2740,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000 thru SPR Qtr. 2009",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "§ ANTHR 294 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -2742,6 +2793,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "ANTH 298 (1-5) formerly ANTHR 298",
+    "sourceCourseTitle": "Independent Study-Anthropology 1",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -2792,6 +2844,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "§ ANTHR 298 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -2844,6 +2897,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "ANTH 299 (1-5) formerly ANTHR 299",
+    "sourceCourseTitle": "Independent Study-Anthropology 2",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -2894,6 +2948,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Anthropology",
     "sourceCourseLabel": "§ ANTHR 299 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -2946,7 +3001,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART& 100 (5) formerly ART 100",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Art Appreciation",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -2997,7 +3055,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SPR Qtr. 2009",
     "guideDepartment": "Art",
     "sourceCourseLabel": "§ ART 100 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -3050,7 +3111,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1988 thru SUM Qtr. 1992",
     "guideDepartment": "Art",
     "sourceCourseLabel": "§ ART 100 (1-5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -3097,7 +3161,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 105 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Beginning Drawing",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -3141,7 +3208,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 106 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Intermediate Drawing",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -3185,7 +3255,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 107 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Advanced Drawing",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -3229,7 +3302,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 109 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Beginning Design",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -3279,7 +3355,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996",
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 110 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Intermediate Design and Color",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -3324,7 +3403,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 111 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Painting 1",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -3368,7 +3450,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 112 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Painting 2",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -3412,7 +3497,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 113 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Painting 3",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -3456,7 +3544,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 114 (3 - 5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Pottery 1",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -3500,7 +3591,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 115 (3 - 5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Pottery 2",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -3550,7 +3644,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1990",
     "guideDepartment": "Art",
     "sourceCourseLabel": "§ ART 116 (1-5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -3603,7 +3700,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 119 (5) formerly ART 209 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "3-Dimensional Design",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -3654,7 +3754,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004",
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 120 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Introduction to Graphic Design",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -3705,7 +3808,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1986",
     "guideDepartment": "Art",
     "sourceCourseLabel": "§ ART 129 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -3758,7 +3864,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004",
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 130 (3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Watercolor Painting",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -3809,7 +3918,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1990 thru SUM Qtr. 1992",
     "guideDepartment": "Art",
     "sourceCourseLabel": "§ ART 131 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -3862,7 +3974,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1990 thru SUM Qtr. 1992",
     "guideDepartment": "Art",
     "sourceCourseLabel": "§ ART 132 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -3915,7 +4030,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2008",
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 133 (3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -3966,7 +4084,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1990 thru SUM Qtr. 1992",
     "guideDepartment": "Art",
     "sourceCourseLabel": "§ ART 134 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -4019,7 +4140,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2008",
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 135 (3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Introduction to Screen Printing",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -4070,7 +4194,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1988 thru SUM Qtr. 1992",
     "guideDepartment": "Art",
     "sourceCourseLabel": "§ ART 141 (1-5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -4123,7 +4250,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_0: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1988 thru SUM Qtr. 1992",
     "guideDepartment": "Art",
     "sourceCourseLabel": "§ ART 142 (1-5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -4179,6 +4309,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "SPR Qtr. 2003",
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 150 (3) was the same as § ENGL 154",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -4231,7 +4362,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1992",
     "guideDepartment": "Art",
     "sourceCourseLabel": "§ ART 154 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -4284,7 +4418,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1992",
     "guideDepartment": "Art",
     "sourceCourseLabel": "§ ART 155 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -4337,7 +4474,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1992",
     "guideDepartment": "Art",
     "sourceCourseLabel": "§ ART 156 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -4390,7 +4530,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1992",
     "guideDepartment": "Art",
     "sourceCourseLabel": "§ ART 161 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -4443,7 +4586,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1992",
     "guideDepartment": "Art",
     "sourceCourseLabel": "§ ART 162 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -4496,7 +4642,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1992",
     "guideDepartment": "Art",
     "sourceCourseLabel": "§ ART 163 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -4549,7 +4698,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986 thru SUM Qtr. 1998",
     "guideDepartment": "Art",
     "sourceCourseLabel": "§ ART 171 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -4602,7 +4754,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986 thru SUM Qtr. 1998",
     "guideDepartment": "Art",
     "sourceCourseLabel": "§ ART 172 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -4655,6 +4810,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "SPR Qtr. 2003",
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 180 (3)",
+    "sourceCourseTitle": "The Artist's Portfolio",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -4705,6 +4861,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2006",
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 199 (1-5)",
+    "sourceCourseTitle": "Independent Study-Design",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -4755,7 +4912,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Art",
     "sourceCourseLabel": "§ ART 209 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -4808,7 +4968,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Art",
     "sourceCourseLabel": "§ ART 210 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -4855,7 +5018,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 212 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "History of Art 1",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -4899,7 +5065,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 213 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "History of Art 2",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -4943,7 +5112,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 214 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "History of Art 3",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -4993,7 +5165,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 219 (5) formerly ART 210",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Advanced 3-Dimensional Design",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -5038,7 +5213,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 251 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Ceramics 1",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -5082,7 +5260,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 252 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Ceramics 2",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -5126,7 +5307,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 253 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Ceramics 3",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -5170,7 +5354,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 255 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Advanced Painting 1",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -5214,7 +5401,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 256 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Advanced Painting 2",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -5258,7 +5448,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 257 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Advanced Painting 3",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -5308,7 +5501,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1992",
     "guideDepartment": "Art",
     "sourceCourseLabel": "§ ART 271 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -5361,7 +5557,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1992",
     "guideDepartment": "Art",
     "sourceCourseLabel": "§ ART 272 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -5414,7 +5613,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1992",
     "guideDepartment": "Art",
     "sourceCourseLabel": "§ ART 273 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -5461,7 +5663,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 275 (1-5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Independent Study-Ceramics 1",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -5505,7 +5710,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 276 (1-5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Independent Study-Ceramics 2",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -5549,7 +5757,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 277 (1-5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Independent Study-Ceramics 3",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -5599,7 +5810,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SUM Qtr. 2004",
     "guideDepartment": "Art",
     "sourceCourseLabel": "§ ART 279 (3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -5652,7 +5866,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SUM Qtr. 1998",
     "guideDepartment": "Art",
     "sourceCourseLabel": "§ ART 280 (3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -5705,6 +5922,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1990 thru SUM Qtr. 1992",
     "guideDepartment": "Art",
     "sourceCourseLabel": "§ ART 280 (1-3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -5757,7 +5975,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SUM Qtr. 2002",
     "guideDepartment": "Art",
     "sourceCourseLabel": "§ ART 281 (3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -5810,7 +6031,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2004",
     "guideDepartment": "Art",
     "sourceCourseLabel": "§ ART 291 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -5863,7 +6087,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2002",
     "guideDepartment": "Art",
     "sourceCourseLabel": "§ ART 292 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -5916,7 +6143,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2002",
     "guideDepartment": "Art",
     "sourceCourseLabel": "§ ART 293 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -5963,7 +6193,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 294 (1-5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Independent Study-Painting 1",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -6007,7 +6240,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 295 (1-5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -6051,7 +6287,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 296 (1-5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -6095,7 +6334,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 297 (1-5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Independent Study-Advanced Drawing 1",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -6139,7 +6381,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 298 (1-5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -6189,7 +6434,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004",
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 299 (1-5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -6240,7 +6488,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2002",
     "guideDepartment": "Art",
     "sourceCourseLabel": "§ ART 299 (1-5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -6295,9 +6546,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Astronomy",
     "sourceCourseLabel": "ASTR& 100, 101 (5, 5) formerly ASTRO 100, 101",
+    "sourceCourseTitle": "Introduction to Astronomy",
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -6353,9 +6604,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Astronomy",
     "sourceCourseLabel": "§ ASTRO 100, 101 (5, 5) see ASTR& 100, 101",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -6408,6 +6659,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SPR Qtr. 2009",
     "guideDepartment": "Astronomy",
     "sourceCourseLabel": "§ ASTRO 101 (5) see ASTRO 100 combined entry",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -6461,9 +6713,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1998",
     "guideDepartment": "Astronomy",
     "sourceCourseLabel": "§ ASTRO 101, 102 (4, 1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -6511,6 +6763,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Astronomy",
     "sourceCourseLabel": "§ ASTRO 102 (1) see ASTRO 101 combined entry",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -6562,6 +6815,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1992",
     "guideDepartment": "Astronomy",
     "sourceCourseLabel": "§ ASTRO 103 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -6617,6 +6871,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1995 thru SUM Qtr. 1998",
     "guideDepartment": "Astronomy",
     "sourceCourseLabel": "§ ASTRO 201 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -6672,6 +6927,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1998",
     "guideDepartment": "Behavioral science",
     "sourceCourseLabel": "§ BEHSC 100 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -6723,6 +6979,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1994 thru SUM Qtr. 1998",
     "guideDepartment": "Behavioral science",
     "sourceCourseLabel": "§ BEHSC 101",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -6775,6 +7032,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "WIN Qtr. 1992 thru SUM Qtr. 1996",
     "guideDepartment": "Behavioral science",
     "sourceCourseLabel": "§ BEHSC 106 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -6827,6 +7085,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1988",
     "guideDepartment": "Behavioral science",
     "sourceCourseLabel": "§ BEHSC 125 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -6879,6 +7138,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "Prior to SUM 2009",
     "guideDepartment": "Behavioral science",
     "sourceCourseLabel": "§ BEHSC 175 (5) same as § HL ED 175 and § PSYCH 175",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -6934,6 +7194,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SUM Qtr. 2011",
     "guideDepartment": "Behavioral science",
     "sourceCourseLabel": "§ BEHSC 185 (5) formerly BEHSC 280",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -6986,6 +7247,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SUM Qtr. 1998",
     "guideDepartment": "Behavioral science",
     "sourceCourseLabel": "§ BEHSC 280 (5) formerly BEHSC 106",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -7038,6 +7300,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "BIOL& 100 (5) formerly BIOL 100",
+    "sourceCourseTitle": "Survey of Biology",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -7091,6 +7354,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1994 thru SPR Qtr. 2009",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "§ BIOL 100 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -7146,6 +7410,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992 thru SUM Qtr. 1994",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "§ BIOL 100 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -7201,6 +7466,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "BIOL 103 (5)",
+    "sourceCourseTitle": "Introduction to Botany",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -7254,6 +7520,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1998",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "§ BIOL 105 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -7309,6 +7576,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "BIOL 110 (5) formerly BIOL 105",
+    "sourceCourseTitle": "Northwest Ecology",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -7366,6 +7634,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "Prior to WIN Qtr. 1995",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "§ BIOL 111, 115, 116 (5, 5, 5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -7423,6 +7692,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "Prior to WIN Qtr. 1995",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "§ BIOL 111 (5) see also BIOL 111 combined entry",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -7479,6 +7749,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1988",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "§ BIOL 112 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -7534,6 +7805,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "Prior to WIN Qtr. 1995",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "§ BIOL 115 (5) see also BIOL 111 combined entry",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -7590,6 +7862,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "Prior to WIN Qtr. 1995",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "§ BIOL 116 (5) see also BIOL 111 combined entry",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -7646,6 +7919,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1988",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "§ BIOL 120 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -7701,6 +7975,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2009",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "BIOL 125 (3-5)",
+    "sourceCourseTitle": "Field Studies",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -7751,6 +8026,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru AUT Qtr. 2002",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "§ BIOL 125 (5) same as ENV S 125 and N SCI 125",
+    "sourceCourseTitle": "Field Studies",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -7803,6 +8079,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "WIN Qtr. 2002",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "BIOL 127 (5)",
+    "sourceCourseTitle": "Natural Science of Australia and New Zealand",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -7856,6 +8133,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1990",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "BIOL 140 (1)",
+    "sourceCourseTitle": "Field Trips in Biology",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -7906,6 +8184,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1990 thru SUM Qtr. 2000",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "§ BIOL 141 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -7958,6 +8237,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1990 thru SUM Qtr. 2000",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "§ BIOL 142 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -8010,6 +8290,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1998",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "§ BIOL 150 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -8065,6 +8346,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1992",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "§ BIOL 160 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -8120,6 +8402,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1990 thru SUM Qtr. 1998",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "§ BIOL 170 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -8169,6 +8452,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Biology",
     "sourceCourseLabel": "BIOL 194 (1-5)",
+    "sourceCourseTitle": "Special Topics-Biology 1",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -8221,6 +8505,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "BIOL 195 (1-4)",
+    "sourceCourseTitle": "Special Topics-Biology 2",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -8282,6 +8567,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2001 thru SPR Qtr. 2009",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "§ BIOL 201, 202, 203 (6, 6, 6) see BIOL& 211, 212, 213",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -8339,6 +8625,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "§ BIOL 201 (6) see also BIOL 201 combined entry",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -8396,6 +8683,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2001 thru SUM Qtr. 2004",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "§ BIOL 201 (6) see also BIOL 201 combined entry",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -8453,6 +8741,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "WIN Qtr. 1995 thru SUM Qtr. 2001",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "§ BIOL 201 (6)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -8508,6 +8797,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "WIN Qtr. 1995",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "§ BIOL 202 (6) formerly BIOL 116; see also BIOL 201 combined entry",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -8564,6 +8854,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "WIN Qtr. 1995",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "§ BIOL 203 (6) formerly BIOL 115; see also BIOL 201 combined entry",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -8621,6 +8912,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "§ BIOL 210 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -8681,6 +8973,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "BIOL& 211, 212, 213 (6, 6, 6) formerly BIOL 201, 202, 203",
+    "sourceCourseTitle": "Majors Cellular / Majors Animal / Majors Plant",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -8739,6 +9032,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "BIOL& 241, 242 (5, 5) formerly AP 205, 206",
+    "sourceCourseTitle": "Human Anatomy and Physiology 1 / Human Anatomy and Physiology 2",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -8793,6 +9087,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2009",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "BIOL& 242 (5) formerly AP 206, see BIOL& 241 combined entry",
+    "sourceCourseTitle": "Human Anatomy and Physiology 2",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -8845,6 +9140,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Biology",
     "sourceCourseLabel": "BIOL& 260 (5) formerly BIOL 210",
+    "sourceCourseTitle": "Microbiology",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -8892,6 +9188,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Biology",
     "sourceCourseLabel": "BIOL 298 (1-5)",
+    "sourceCourseTitle": "Independent Study-Biology",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -8941,6 +9238,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Business administration",
     "sourceCourseLabel": "§ B A 101 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -8988,6 +9286,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Business administration",
     "sourceCourseLabel": "B A 145",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -9030,6 +9329,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Business administration",
     "sourceCourseLabel": "B A 146",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -9078,6 +9378,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2004",
     "guideDepartment": "Business administration",
     "sourceCourseLabel": "§ B A 147",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -9130,6 +9431,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Business administration",
     "sourceCourseLabel": "§ B A 200 (5) same as S SCI 200",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -9185,6 +9487,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Business administration",
     "sourceCourseLabel": "§ B A 205 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -9239,6 +9542,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Business administration",
     "sourceCourseLabel": "§ B A 210, 220 (5, 5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -9291,6 +9595,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Business administration",
     "sourceCourseLabel": "§ B A 220 (5) see B A 210 combined entry",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -9343,6 +9648,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Business administration",
     "sourceCourseLabel": "§ B A 230 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -9396,9 +9702,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2004",
     "guideDepartment": "Business administration",
     "sourceCourseLabel": "§ B A 256 (5) same as MATH 256",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -9444,6 +9750,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Business education",
     "sourceCourseLabel": "BUS E 110",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -9494,6 +9801,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Business management",
     "sourceCourseLabel": "BUS& 101 (1-5) formerly B A 101",
+    "sourceCourseTitle": "Introduction to Business",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -9547,6 +9855,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998",
     "guideDepartment": "Business management",
     "sourceCourseLabel": "BUS 121 (5) formerly BUS 256",
+    "sourceCourseTitle": "Marketing Fundamentals",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -9597,6 +9906,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2012",
     "guideDepartment": "Business management",
     "sourceCourseLabel": "BUS& 201 (5)",
+    "sourceCourseTitle": "Business Law and the Regulation of Business",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -9650,6 +9960,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009 thru SUM Qtr. 2012",
     "guideDepartment": "Business management",
     "sourceCourseLabel": "§ BUS& 201 (5) formerly B A 205",
+    "sourceCourseTitle": "Business Law and the Regulation of Business",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -9702,6 +10013,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1988 thru SUM Qtr. 1998",
     "guideDepartment": "Business management",
     "sourceCourseLabel": "§ BUS 256 (5) formerly MAN 256",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -9754,6 +10066,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1988",
     "guideDepartment": "Business management",
     "sourceCourseLabel": "BUS 258 (5) formerly MAN 258",
+    "sourceCourseTitle": "Principles of Management and Supervision",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -9804,6 +10117,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1986",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "§ CHEM 100 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -9859,9 +10173,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "§ CHEM 101 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -9915,6 +10229,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "§ CHEM 102 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -9970,9 +10285,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986 thru SPR Qtr. 2009",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "§ CHEM 105 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -10026,6 +10341,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992 thru SUM Qtr. 2000",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "§ CHEM 112 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -10078,6 +10394,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992 thru SUM Qtr. 2000",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "§ CHEM 113 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -10130,9 +10447,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "CHEM& 121 (5) formerly CHEM 101",
+    "sourceCourseTitle": "Introduction to Chemistry",
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -10184,6 +10501,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "CHEM& 131 (5) formerly CHEM 102",
+    "sourceCourseTitle": "Introduction to Organic Chemistry and Biochemistry",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -10237,9 +10555,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "CHEM& 140 (5-6) formerly CHEM 140",
+    "sourceCourseTitle": "General Chemistry Prep with Lab",
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -10292,9 +10610,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "§ CHEM 140 (6)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -10351,6 +10669,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "SPR Qtr. 2005 thru SPR Qtr. 2009",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "§ CHEM 150, 160 (6, 6)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -10411,6 +10730,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "Prior to SPR Qtr. 2005",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "§ CHEM 150, 160 (6, 6)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -10468,6 +10788,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "§ CHEM 150 (6) see also CHEM 150 combined entry",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -10524,6 +10845,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "§ CHEM 160 (6) see also CHEM 150 combined entry",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -10581,9 +10903,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "CHEM& 161 (6) formerly CHEM 140",
+    "sourceCourseTitle": "General Chemistry with Lab I",
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -10638,6 +10960,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "CHEM& 162, 163 (6, 6) formerly CHEM 150, 160",
+    "sourceCourseTitle": "General Chemistry with Lab II / General Chemistry with Lab III",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -10694,6 +11017,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2006",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "CHEM 194 (1-5)",
+    "sourceCourseTitle": "Special Topics-Chemistry 1",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -10744,6 +11068,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2004",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "§ CHEM 194 (1-5)",
+    "sourceCourseTitle": "Special Topics-Chemistry 1",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -10796,6 +11121,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2006",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "CHEM 195 (1-5)",
+    "sourceCourseTitle": "Special Topics-Chemistry 2",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -10846,6 +11172,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002 thru SUM Qtr. 2004",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "§ CHEM 195 (1-5)",
+    "sourceCourseTitle": "Special Topics-Chemistry 2",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -10898,6 +11225,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1994 thru SUM Qtr. 2002",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "§ CHEM 195 (3)",
+    "sourceCourseTitle": "Special Topics-Chemistry 2",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -10956,6 +11284,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "§ CHEM 235, 236, 237 (6, 6, 6)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -11017,6 +11346,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "§ CHEM 235, 236 (6, 6)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -11075,6 +11405,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "§ CHEM 235 (6) see also CHEM 235 combined entries",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -11132,6 +11463,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "§ CHEM 236 (6) see also CHEM 235 combined entries",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -11189,6 +11521,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "§ CHEM 237 (6) see also CHEM 235 combined entry",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -11251,6 +11584,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "CHEM& 261, 262, 263 (6, 6, 6) formerly CHEM 235, 236, 237",
+    "sourceCourseTitle": "Organic Chemistry with Lab I / Organic Chemistry with Lab II / Organic Chemistry with Lab III",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -11311,6 +11645,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "CHEM& 261, 262 (6, 6) formerly CHEM 235, 236",
+    "sourceCourseTitle": "Organic Chemistry with Lab I / Organic Chemistry with Lab II",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -11368,6 +11703,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "CHEM& 261 (6) formerly CHEM 235",
+    "sourceCourseTitle": "Organic Chemistry with Lab I",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -11422,6 +11758,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "CHEM& 262 (6) formerly CHEM 236",
+    "sourceCourseTitle": "Organic Chemistry with Lab II",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -11476,6 +11813,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "CHEM& 263 (6) formerly CHEM 237",
+    "sourceCourseTitle": "Organic Chemistry with Lab III",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -11529,6 +11867,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "CHEM 296 (1-5)",
+    "sourceCourseTitle": "Independent Study-Chemistry 1",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -11579,6 +11918,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986 thru SUM Qtr. 2002",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "§ CHEM 297 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -11631,6 +11971,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2002",
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "§ CHEM 298 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -11677,6 +12018,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Chemistry",
     "sourceCourseLabel": "CHEM 299 (1-5)",
+    "sourceCourseTitle": "Independent Study-Chemistry 2",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -11726,6 +12068,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "SPR Qtr. 1995 thru SPR Qtr. 2009",
     "guideDepartment": "Chinese*",
     "sourceCourseLabel": "§ CHIN 101 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -11778,6 +12121,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SPR Qtr. 2009",
     "guideDepartment": "Chinese*",
     "sourceCourseLabel": "§ CHIN 102 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -11830,6 +12174,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SPR Qtr. 2009",
     "guideDepartment": "Chinese*",
     "sourceCourseLabel": "§ CHIN 103 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -11882,6 +12227,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2008",
     "guideDepartment": "Chinese*",
     "sourceCourseLabel": "CHIN 111 (5)",
+    "sourceCourseTitle": "First Year Chinese for Heritage Learners",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -11932,6 +12278,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Chinese*",
     "sourceCourseLabel": "CHIN& 121 (5) formerly CHIN 101",
+    "sourceCourseTitle": "Chinese I",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -11982,6 +12329,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Chinese*",
     "sourceCourseLabel": "CHIN& 122 (5) formerly CHIN 102",
+    "sourceCourseTitle": "Chinese II",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -12032,6 +12380,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Chinese*",
     "sourceCourseLabel": "CHIN& 123 (5) formerly CHIN 103",
+    "sourceCourseTitle": "Chinese III",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -12082,7 +12431,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004 thru SPR Qtr. 2009",
     "guideDepartment": "Communication studies",
     "sourceCourseLabel": "§ COMM 101 (5) formerly SPCH 100",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": true,
@@ -12137,6 +12488,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "SPR Qtr. 2018",
     "guideDepartment": "Communication studies",
     "sourceCourseLabel": "CMST& 102 (5)",
+    "sourceCourseTitle": "Introduction to Mass Media",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -12190,6 +12542,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009 thru WIN Qtr. 2018",
     "guideDepartment": "Communication studies",
     "sourceCourseLabel": "§ CMST& 102 (5) formerly JOURN 201",
+    "sourceCourseTitle": "Introduction to Mass Media",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -12245,7 +12598,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004 thru SPR Qtr. 2009",
     "guideDepartment": "Communication studies",
     "sourceCourseLabel": "§ COMM 110 (5) formerly SPCH 110",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": true,
@@ -12300,6 +12655,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1998",
     "guideDepartment": "Communication studies",
     "sourceCourseLabel": "§ COMM 131 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -12355,6 +12711,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1998",
     "guideDepartment": "Communication studies",
     "sourceCourseLabel": "§ COMM 140 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -12410,7 +12767,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1990 thru SPR 2006",
     "guideDepartment": "Communication studies",
     "sourceCourseLabel": "§ COMM 145 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": true,
@@ -12465,6 +12824,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1998",
     "guideDepartment": "Communication studies",
     "sourceCourseLabel": "§ COMM 150 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -12520,6 +12880,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986 thru SUM Qtr. 1988",
     "guideDepartment": "Communication studies",
     "sourceCourseLabel": "§ COMM 170 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -12578,7 +12939,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1988 thru AUT Qtr. 2006",
     "guideDepartment": "Communication studies",
     "sourceCourseLabel": "§ COMM 180 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": true,
@@ -12633,6 +12996,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Communication studies",
     "sourceCourseLabel": "CMST 194 (1-5) formerly COMM 194",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -12685,6 +13049,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1990 thru SPR Qtr. 2009",
     "guideDepartment": "Communication studies",
     "sourceCourseLabel": "§ COMM 194 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -12738,7 +13103,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Communication studies",
     "sourceCourseLabel": "CMST& 210 (5) formerly COMM 110",
+    "sourceCourseTitle": "Interpersonal Communication",
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": false,
@@ -12791,7 +13158,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Communication studies",
     "sourceCourseLabel": "CMST 212 (5) formerly COMM 212",
+    "sourceCourseTitle": "Persuasion and Propaganda",
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": false,
@@ -12844,7 +13213,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004 thru SPR Qtr. 2009",
     "guideDepartment": "Communication studies",
     "sourceCourseLabel": "§ COMM 212 (5) formerly SPCH 212",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": true,
@@ -12899,6 +13270,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Communication studies",
     "sourceCourseLabel": "CMST 215 (5) formerly COMM 215",
+    "sourceCourseTitle": "Critical Analysis of Media",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -12952,6 +13324,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004 thru SPR Qtr. 2009",
     "guideDepartment": "Communication studies",
     "sourceCourseLabel": "§ COMM 215 (5) formerly SPCH 215",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -13007,7 +13380,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Communication studies",
     "sourceCourseLabel": "CMST& 220 (5) formerly COMM 101",
+    "sourceCourseTitle": "Public Speaking",
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": false,
@@ -13060,7 +13435,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Communication studies",
     "sourceCourseLabel": "CMST& 230 (5) formerly COMM 234",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Small Group Communication",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -13111,7 +13489,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004 thru SPR Qtr. 2009",
     "guideDepartment": "Communication studies",
     "sourceCourseLabel": "§ COMM 234 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -13164,7 +13545,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Communication studies",
     "sourceCourseLabel": "CMST 238 (5) formerly COMM 238",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": false,
@@ -13217,7 +13600,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004 thru SPR Qtr. 2009",
     "guideDepartment": "Communication studies",
     "sourceCourseLabel": "§ COMM 238 (5) formerly SPCH 238",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": true,
@@ -13272,7 +13657,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Communication studies",
     "sourceCourseLabel": "CMST 245 (5) formerly COMM 245",
+    "sourceCourseTitle": "Argumentation",
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": false,
@@ -13325,7 +13712,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2011",
     "guideDepartment": "Communication studies",
     "sourceCourseLabel": "CMST 265 (5)",
+    "sourceCourseTitle": "Introduction to Popular Culture",
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": false,
@@ -13378,7 +13767,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2013",
     "guideDepartment": "Communication studies",
     "sourceCourseLabel": "CMST 266 (1-5)",
+    "sourceCourseTitle": "Film and Television as Popular Culture",
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": false,
@@ -13434,7 +13825,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004 thru SPR Qtr. 2009",
     "guideDepartment": "Communication studies",
     "sourceCourseLabel": "§ COMM 245 (5) formerly SPCH 245",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": true,
@@ -13489,6 +13882,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Communication studies",
     "sourceCourseLabel": "CMST 299 (1-5) formerly COMM 299",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -13541,6 +13935,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SPR Qtr. 2009",
     "guideDepartment": "Communication studies",
     "sourceCourseLabel": "§ COMM 299 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -13594,9 +13989,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1988 thru SUM Qtr. 1998",
     "guideDepartment": "§ Computer information systems",
     "sourceCourseLabel": "§ CIS 102 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -13650,9 +14045,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1994 thru SUM Qtr. 1996",
     "guideDepartment": "§ Computer information systems",
     "sourceCourseLabel": "§ CIS 106 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -13706,9 +14101,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1992",
     "guideDepartment": "§ Computer information systems",
     "sourceCourseLabel": "§ CIS 120 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -13762,9 +14157,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986 thru SUM Qtr. 1996",
     "guideDepartment": "Computer science",
     "sourceCourseLabel": "§ C SCI 113 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -13818,6 +14213,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986 thru SUM Qtr. 1996",
     "guideDepartment": "Computer science",
     "sourceCourseLabel": "§ C SCI 114 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -13873,9 +14269,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986 thru SUM Qtr. 1998",
     "guideDepartment": "Computer science",
     "sourceCourseLabel": "§ C SCI 115 (4) formerly DP 115",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -13930,9 +14326,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2023",
     "guideDepartment": "Computer science",
     "sourceCourseLabel": "CS 121 (5)",
+    "sourceCourseTitle": "Computer Programming 1",
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -13985,9 +14381,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2023",
     "guideDepartment": "Computer science",
     "sourceCourseLabel": "CS 122 (5)",
+    "sourceCourseTitle": "Computer Programming 2 - Java Objects",
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -14040,9 +14436,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2023",
     "guideDepartment": "Computer science",
     "sourceCourseLabel": "CS 123 (5)",
+    "sourceCourseTitle": "Computer Programming 3 - Java Data Structures",
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -14094,9 +14490,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Computer science",
     "sourceCourseLabel": "CS& 131 (5) formerly C SCI 142",
+    "sourceCourseTitle": "Computer Science I C++",
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -14148,9 +14544,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Computer science",
     "sourceCourseLabel": "CS 132 (5) formerly C SCI 143",
+    "sourceCourseTitle": "C++ Data Structures",
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -14203,9 +14599,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Computer science",
     "sourceCourseLabel": "CS& 141 (5) formerly C SCI 144",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -14257,9 +14653,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2007 thru SPR Qtr. 2009",
     "guideDepartment": "Computer science",
     "sourceCourseLabel": "§ C SCI 142 (5) same as G E 142",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -14314,9 +14710,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2001 thru AUT Qtr. 2007",
     "guideDepartment": "Computer science",
     "sourceCourseLabel": "§ C SCI 142 (5) same as G E 142",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -14370,9 +14766,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SUM Qtr. 2001",
     "guideDepartment": "Computer science",
     "sourceCourseLabel": "§ C SCI 142 (5) same as G E 142",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -14426,9 +14822,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000 thru SPR Qtr. 2009",
     "guideDepartment": "Computer science",
     "sourceCourseLabel": "§ C SCI 143 (5) same as G E 143",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -14483,9 +14879,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002 thru SPR Qtr. 2009",
     "guideDepartment": "Computer science",
     "sourceCourseLabel": "§ C SCI 144 (5) same as GE 144",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -14539,6 +14935,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Computer science",
     "sourceCourseLabel": "CS 145 (5) formerly C SCI 145",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -14589,6 +14986,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "SPR Qtr. 2007 thru SPR Qtr. 2009",
     "guideDepartment": "Computer science",
     "sourceCourseLabel": "§ C SCI 145 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -14641,6 +15039,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "WIN Qtr. 2003 thru SPR Qtr. 2007",
     "guideDepartment": "Computer science",
     "sourceCourseLabel": "§ C SCI 145 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -14694,6 +15093,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "WIN Qtr. 2024",
     "guideDepartment": "Computer science",
     "sourceCourseLabel": "CS 202 (5)",
+    "sourceCourseTitle": "Discrete Structures 1",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -14748,6 +15148,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1988 thru SUM Qtr. 1992",
     "guideDepartment": "§ Creative arts",
     "sourceCourseLabel": "§ C A 197 (1-3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -14802,6 +15203,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1988 thru SUM Qtr. 1992",
     "guideDepartment": "§ Creative arts",
     "sourceCourseLabel": "§ C A 198 (1-3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -14856,6 +15258,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1988 thru SUM Qtr. 1992",
     "guideDepartment": "§ Creative arts",
     "sourceCourseLabel": "§ C A 199 (1-3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -14909,6 +15312,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Criminal justice",
     "sourceCourseLabel": "CJ& 101 (5) formerly CRJ 100",
+    "sourceCourseTitle": "Introduction to Criminal Justice",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -14962,6 +15366,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SPR Qtr. 2009",
     "guideDepartment": "Criminal justice",
     "sourceCourseLabel": "§ CRJ 100 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -15017,6 +15422,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Criminal justice",
     "sourceCourseLabel": "CJ& 105 (5) formerly CRJ 230",
+    "sourceCourseTitle": "Introduction to Corrections",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -15072,6 +15478,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Criminal justice",
     "sourceCourseLabel": "CJ& 110 (5) formerly CRJ 225",
+    "sourceCourseTitle": "Criminal Law",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -15127,6 +15534,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SUM Qtr. 2000",
     "guideDepartment": "Criminal justice",
     "sourceCourseLabel": "§ CRJ 125 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -15184,6 +15592,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Criminal justice",
     "sourceCourseLabel": "CJ 200 (5) formerly CRJ 200",
+    "sourceCourseTitle": "Constitutional Law",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -15238,6 +15647,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SPR Qtr. 2009",
     "guideDepartment": "Criminal justice",
     "sourceCourseLabel": "§ CRJ 200 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -15293,6 +15703,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Criminal justice",
     "sourceCourseLabel": "CJ 205 (5) formerly CRJ 205",
+    "sourceCourseTitle": "Criminal Evidence",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -15348,6 +15759,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SPR Qtr. 2009",
     "guideDepartment": "Criminal justice",
     "sourceCourseLabel": "§ CRJ 205 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -15404,9 +15816,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SUM Qtr. 2004",
     "guideDepartment": "Criminal justice",
     "sourceCourseLabel": "§ CRJ 210 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "SSc",
-      "[RSN]"
+      "SSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -15460,6 +15872,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "WIN Qtr. 2000 thru SPR Qtr. 2009",
     "guideDepartment": "Criminal justice",
     "sourceCourseLabel": "§ CRJ 215 (5) same as SOC 215",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -15515,6 +15928,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru AUT Qtr. 1999",
     "guideDepartment": "Criminal justice",
     "sourceCourseLabel": "§ CRJ 215 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -15570,6 +15984,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Criminal justice",
     "sourceCourseLabel": "CJ 220 (5) formerly CRJ 220",
+    "sourceCourseTitle": "Race and Class in Criminal Justice",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -15622,6 +16037,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SPR Qtr. 2009",
     "guideDepartment": "Criminal justice",
     "sourceCourseLabel": "§ CRJ 220 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -15675,6 +16091,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SPR Qtr. 2009",
     "guideDepartment": "Criminal justice",
     "sourceCourseLabel": "§ CRJ 225 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -15731,6 +16148,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SPR Qtr. 2009",
     "guideDepartment": "Criminal justice",
     "sourceCourseLabel": "§ CRJ 230 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -15787,6 +16205,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000 thru SPR Qtr. 2006",
     "guideDepartment": "Criminal justice",
     "sourceCourseLabel": "§ CRJ 235 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -15843,6 +16262,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Criminal justice",
     "sourceCourseLabel": "CJ 236 (5) formerly CRJ 240",
+    "sourceCourseTitle": "Policing",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -15895,6 +16315,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SPR Qtr. 2009",
     "guideDepartment": "Criminal justice",
     "sourceCourseLabel": "§ CRJ 240 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -15948,6 +16369,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Criminal justice",
     "sourceCourseLabel": "CJ& 240 (5)",
+    "sourceCourseTitle": "Introduction to Forensic Science",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -16000,6 +16422,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SUM Qtr. 2004",
     "guideDepartment": "Criminal justice",
     "sourceCourseLabel": "§ CRJ 245 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -16055,6 +16478,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SUM Qtr. 2004",
     "guideDepartment": "Criminal justice",
     "sourceCourseLabel": "§ CRJ 250 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -16111,6 +16535,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Criminal justice",
     "sourceCourseLabel": "CJ 294 (1-5) formerly CRJ 294",
+    "sourceCourseTitle": "Special Topics-Criminal Justice",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -16163,6 +16588,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SPR Qtr. 2009",
     "guideDepartment": "Criminal justice",
     "sourceCourseLabel": "§ CRJ 294 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -16216,6 +16642,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Criminal justice",
     "sourceCourseLabel": "CJ 299 (1-5) formerly CRJ 299",
+    "sourceCourseTitle": "Independent Study-Criminal Justice",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -16268,6 +16695,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SPR Qtr. 2009",
     "guideDepartment": "Criminal justice",
     "sourceCourseLabel": "§ CJ 299 (1-5)",
+    "sourceCourseTitle": "Independent Study-Criminal Justice",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -16321,7 +16749,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992",
     "guideDepartment": "Dance",
     "sourceCourseLabel": "DANCE 101 (3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Introduction to Dance",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -16372,7 +16803,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1992",
     "guideDepartment": "Dance",
     "sourceCourseLabel": "§ DANCE 101 (3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Introduction to Dance",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -16425,7 +16859,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992",
     "guideDepartment": "Dance",
     "sourceCourseLabel": "DANCE 102 (3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Dance Technique 1",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -16476,7 +16913,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1992",
     "guideDepartment": "Dance",
     "sourceCourseLabel": "§ DANCE 102 (3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Dance Technique 1",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -16529,7 +16969,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992",
     "guideDepartment": "Dance",
     "sourceCourseLabel": "DANCE 103 (3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Dance Technique 2",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -16580,7 +17023,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1992",
     "guideDepartment": "Dance",
     "sourceCourseLabel": "§ DANCE 103 (3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Dance Technique 2",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -16633,7 +17079,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992 thru SUM Qtr. 1998",
     "guideDepartment": "Dance",
     "sourceCourseLabel": "§ DANCE 104 (3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -16686,7 +17135,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992 thru SUM Qtr. 2004",
     "guideDepartment": "Dance",
     "sourceCourseLabel": "§ DANCE 105 (3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -16739,7 +17191,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2009",
     "guideDepartment": "Dance",
     "sourceCourseLabel": "DANCE 110 (2)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -16790,7 +17245,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986 thru SUM Qtr. 1990",
     "guideDepartment": "Dance",
     "sourceCourseLabel": "§ DANCE 201 (3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -16843,7 +17301,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986 thru SUM Qtr. 1990",
     "guideDepartment": "Dance",
     "sourceCourseLabel": "§ DANCE 202 (3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -16899,7 +17360,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986 thru SUM Qtr. 1990",
     "guideDepartment": "Dance",
     "sourceCourseLabel": "§ DANCE 203 (3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -16952,7 +17416,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992",
     "guideDepartment": "Dance",
     "sourceCourseLabel": "DANCE 204 (3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Choreography Workshop",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -17003,9 +17470,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1986",
     "guideDepartment": "§ Data processing",
     "sourceCourseLabel": "§ DP 115 (4)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -17059,7 +17526,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "DRMA& 101 (5) formerly DRAMA 102",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Introduction to Theatre",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -17110,7 +17580,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1992",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "§ DRAMA 101 (1-5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -17163,7 +17636,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "§ DRAMA 102 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -17216,7 +17692,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2011",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "DRMA 102 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Contemporary American Theatre",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -17267,7 +17746,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "DRMA 111 (5) formerly DRAMA 111",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Rehearsal and Performance 1",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -17318,7 +17800,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "§ DRAMA 111 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -17371,7 +17856,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "DRMA 112 (5) formerly DRAMA 112",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Rehearsal and Performance 2",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -17422,7 +17910,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "§ DRAMA 112 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -17475,7 +17966,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "DRMA 113 (5) formerly DRAMA 113",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Rehearsal and Performance 3",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -17526,7 +18020,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "§ DRAMA 113 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -17579,7 +18076,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1992",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "§ DRAMA 115 (3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -17632,7 +18132,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009 thru SUM Qtr. 2013",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "§ DRMA 120 (5) formerly DRAMA 120",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -17685,7 +18188,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "§ DRAMA 120 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -17738,6 +18244,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2009 thru SUM Qtr. 2013",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "§ DRMA 121 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -17790,7 +18297,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "WIN Qtr. 2003 thru SPR Qtr. 2009",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "§ DRAMA 140 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -17843,7 +18353,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009 thru SUM Qtr. 2013",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "§ DRMA 141 (5) formerly DRAMA 141",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -17896,7 +18409,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "WIN Qtr. 2006",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "§ DRAMA 141 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -17949,7 +18465,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2019",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "DRMA 151 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Acting Fundamentals",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -18000,7 +18519,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "§ DRMA 151 (5) formerly DRAMA 151",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Acting Fundamentals",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -18053,7 +18575,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "§ DRAMA 151 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -18106,7 +18631,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "DRMA 152 (5) formerly DRAMA 152",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Acting-Building a Character",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -18157,7 +18685,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "§ DRAMA 152 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -18210,7 +18741,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "DRMA 153 (5) formerly DRAMA 153",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Acting-Text Analysis",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -18261,7 +18795,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "§ DRAMA 153 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -18314,7 +18851,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2013",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "DRMA 154 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Improvisation 1",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -18365,7 +18905,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2013",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "DRMA 155 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Improvisation 2",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -18416,7 +18959,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2013",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "DRMA 156 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Improvisation 3",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -18467,7 +19013,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992 thru SUM Qtr. 2004",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "§ DRAMA 180 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -18520,7 +19069,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1996",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "§ DRAMA 210 (2)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -18573,7 +19125,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2013",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "DRMA 211 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Rehearsal and Performance 4",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -18624,7 +19179,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2013",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "DRMA 212 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Rehearsal and Performance 5",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -18675,7 +19233,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2013",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "DRMA 213 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Rehearsal and Performance 6",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -18726,7 +19287,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2000",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "§ DRAMA 251 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -18779,7 +19343,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2000",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "§ DRAMA 252 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -18832,7 +19399,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2000",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "§ DRAMA 253 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -18885,6 +19455,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "DRMA 298 (1-5) formerly DRAMA 298",
+    "sourceCourseTitle": "Independent Study-Drama",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -18935,6 +19506,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "§ DRAMA 298 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -18987,6 +19559,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2002",
     "guideDepartment": "Drama",
     "sourceCourseLabel": "§ DRAMA 299 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -19039,6 +19612,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2013",
     "guideDepartment": "Early childhood education",
     "sourceCourseLabel": "ECED& 105 (5)",
+    "sourceCourseTitle": "Introduction to Early Childhood Education",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -19089,6 +19663,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1990 thru SUM Qtr. 2000",
     "guideDepartment": "Early childhood education",
     "sourceCourseLabel": "§ ECE 110 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -19144,6 +19719,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992 thru SUM Qtr. 2000",
     "guideDepartment": "Early childhood education",
     "sourceCourseLabel": "§ ECE 110.1 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -19199,6 +19775,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992 thru SUM Qtr. 2000",
     "guideDepartment": "Early childhood education",
     "sourceCourseLabel": "§ ECE 110.2 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -19254,6 +19831,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2015",
     "guideDepartment": "Early childhood education",
     "sourceCourseLabel": "ECED& 132 (3)",
+    "sourceCourseTitle": "Infants and Toddlers-Nurturing Care",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -19304,6 +19882,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2015",
     "guideDepartment": "Early childhood education",
     "sourceCourseLabel": "ECED& 134 (3)",
+    "sourceCourseTitle": "Family Childcare Management",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -19354,6 +19933,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2015",
     "guideDepartment": "Early childhood education",
     "sourceCourseLabel": "ECED& 139 (3)",
+    "sourceCourseTitle": "Administration of Early Learning Programs",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -19404,6 +19984,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2013",
     "guideDepartment": "Early childhood education",
     "sourceCourseLabel": "ECED 152 (3)",
+    "sourceCourseTitle": "Multicultural Books",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -19454,6 +20035,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2013",
     "guideDepartment": "Early childhood education",
     "sourceCourseLabel": "ECED 155 (5)",
+    "sourceCourseTitle": "Exploring Science and Math",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -19504,6 +20086,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2013",
     "guideDepartment": "Early childhood education",
     "sourceCourseLabel": "ECED& 160 (5)",
+    "sourceCourseTitle": "Curriculum Development in Early Childhood Education",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -19554,6 +20137,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2013",
     "guideDepartment": "Early childhood education",
     "sourceCourseLabel": "ECED 165 (3)",
+    "sourceCourseTitle": "Art for Children",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -19604,6 +20188,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2013",
     "guideDepartment": "Early childhood education",
     "sourceCourseLabel": "ECED& 170 (3)",
+    "sourceCourseTitle": "Learning Environments",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -19654,6 +20239,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2013",
     "guideDepartment": "Early childhood education",
     "sourceCourseLabel": "ECED 175 (3)",
+    "sourceCourseTitle": "Music/Movement Activities",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -19704,6 +20290,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2013",
     "guideDepartment": "Early childhood education",
     "sourceCourseLabel": "ECED& 180 (3)",
+    "sourceCourseTitle": "Language and Literacy Development",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -19754,6 +20341,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2013",
     "guideDepartment": "Early childhood education",
     "sourceCourseLabel": "ECED& 190 (3)",
+    "sourceCourseTitle": "Observation and Assessment",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -19804,6 +20392,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2013",
     "guideDepartment": "Early childhood education",
     "sourceCourseLabel": "ECED 220 (2)",
+    "sourceCourseTitle": "Introduction to Sign Language",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -19848,9 +20437,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Economics",
     "sourceCourseLabel": "ECON 100 (5)",
+    "sourceCourseTitle": "Economic Principles and Applications",
     "targetRequirementTags": [
-      "SSc",
-      "[RSN]"
+      "SSc"
     ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -19901,6 +20490,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004",
     "guideDepartment": "Economics",
     "sourceCourseLabel": "ECON 101 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -19954,6 +20544,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1988 thru SUM Qtr. 2002",
     "guideDepartment": "Economics",
     "sourceCourseLabel": "§ ECON 101 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -20003,6 +20594,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Economics",
     "sourceCourseLabel": "ECON 194 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -20052,9 +20644,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Economics",
     "sourceCourseLabel": "§ ECON 200 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "SSc",
-      "[RSN]"
+      "SSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -20108,9 +20700,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Economics",
     "sourceCourseLabel": "ECON& 201 (5) formerly ECON 201",
+    "sourceCourseTitle": "Micro Economics",
     "targetRequirementTags": [
-      "SSc",
-      "[RSN]"
+      "SSc"
     ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -20162,9 +20754,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Economics",
     "sourceCourseLabel": "§ ECON 201 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "SSc",
-      "[RSN]"
+      "SSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -20218,9 +20810,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Economics",
     "sourceCourseLabel": "ECON& 202 (5) formerly ECON 200",
+    "sourceCourseTitle": "Macro Economics",
     "targetRequirementTags": [
-      "SSc",
-      "[RSN]"
+      "SSc"
     ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -20272,6 +20864,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004",
     "guideDepartment": "Economics",
     "sourceCourseLabel": "ECON 298 (1-5)",
+    "sourceCourseTitle": "Independent Study-Economics 1",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -20322,6 +20915,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2002",
     "guideDepartment": "Economics",
     "sourceCourseLabel": "§ ECON 298 (1-5)",
+    "sourceCourseTitle": "Independent Study-Economics 1",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -20368,6 +20962,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Economics",
     "sourceCourseLabel": "ECON 299 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -20417,6 +21012,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009 thru SUM Qtr. 2011",
     "guideDepartment": "Education",
     "sourceCourseLabel": "§ EDUC 110.1 (3) formerly EDEC 110.1",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -20472,6 +21068,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009 thru SUM Qtr. 2011",
     "guideDepartment": "Education",
     "sourceCourseLabel": "§ EDUC 110.2 (2) formerly EDEC 110.2",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -20527,6 +21124,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000 thru AUT Qtr. 2004",
     "guideDepartment": "Education",
     "sourceCourseLabel": "§ EDUC 110 (5) formerly ECE 110",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -20582,6 +21180,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000 thru SUM Qtr. 2004",
     "guideDepartment": "Education",
     "sourceCourseLabel": "§ EDUC 110.1 (3) formerly ECE 110.1",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -20637,6 +21236,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000 thru SUM Qtr. 2004",
     "guideDepartment": "Education",
     "sourceCourseLabel": "§ EDUC 110.2 (2) formerly ECE 110.2",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -20692,6 +21292,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Education",
     "sourceCourseLabel": "EDUC& 115 (5) formerly EDEC 110",
+    "sourceCourseTitle": "Child Development",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -20745,6 +21346,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2013",
     "guideDepartment": "Education",
     "sourceCourseLabel": "EDUC& 130 (3)",
+    "sourceCourseTitle": "Guiding Behavior",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -20795,6 +21397,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2019",
     "guideDepartment": "Education",
     "sourceCourseLabel": "EDUC& 136 (3)",
+    "sourceCourseTitle": "School-Age Care",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -20845,6 +21448,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2013",
     "guideDepartment": "Education",
     "sourceCourseLabel": "EDUC& 150 (3)",
+    "sourceCourseTitle": "Child, Family and Community Relationship",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -20895,6 +21499,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004 thru SPR Qtr. 2009",
     "guideDepartment": "Education",
     "sourceCourseLabel": "§ EDU 170 (3) formerly EDUC 170",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -20947,6 +21552,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SUM Qtr. 2004",
     "guideDepartment": "Education",
     "sourceCourseLabel": "§ EDUC 170 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -20999,6 +21605,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_4: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2011",
     "guideDepartment": "Education",
     "sourceCourseLabel": "EDUC& 204 (5)",
+    "sourceCourseTitle": "Inclusive Education",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -21052,6 +21659,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Education",
     "sourceCourseLabel": "EDUC& 205 (3) formerly EDU 170",
+    "sourceCourseTitle": "Introduction to Education with Field Experience",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -21102,6 +21710,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002",
     "guideDepartment": "Education",
     "sourceCourseLabel": "EDUC 240 (3-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -21152,6 +21761,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2011",
     "guideDepartment": "Education",
     "sourceCourseLabel": "EDUC 245 (3)",
+    "sourceCourseTitle": "Challenging Behaviors in Young Children",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -21202,6 +21812,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004 thru SPR Qtr. 2009",
     "guideDepartment": "§ Education in early childhood",
     "sourceCourseLabel": "§ EDEC 110 (5) formerly EDUC 110",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -21257,6 +21868,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004 thru SPR Qtr. 2009",
     "guideDepartment": "§ Education in early childhood",
     "sourceCourseLabel": "§ EDEC 110.1 (3) formerly EDUC 110.1",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -21312,6 +21924,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004 thru SPR Qtr. 2009",
     "guideDepartment": "§ Education in early childhood",
     "sourceCourseLabel": "§ EDEC 110.2 (2) formerly EDUC 110.2",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -21367,6 +21980,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "ENGR 100 (2) formerly GE 100",
+    "sourceCourseTitle": "Careers in Engineering",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -21417,6 +22031,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "§ G E 100 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -21469,6 +22084,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "Prior to SPR Qtr. 1996",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "§ G E 101 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -21521,6 +22137,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "Prior to SPR Qtr. 1996",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "§ G E 102 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -21573,6 +22190,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1988",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "§ G E 103 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -21625,6 +22243,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "ENGR& 104 (5) formerly G E 104",
+    "sourceCourseTitle": "Introduction to Design",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -21678,6 +22297,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004 thru SPR Qtr. 2009",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "§ G E 104 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -21733,6 +22353,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "ENGR 106 (3) formerly G E 106",
+    "sourceCourseTitle": "Introduction to Engineering Problems",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -21783,6 +22404,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986 thru SPR Qtr. 2009",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "§ G E 106 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -21836,6 +22458,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "§ G E 112 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -21892,7 +22515,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "ENGR& 114 (5) formerly G E 123",
+    "sourceCourseTitle": "Engineering Graphics",
     "targetRequirementTags": [
+      "A&H",
       "NSc"
     ],
     "isObsoleteSourceCourse": false,
@@ -21945,9 +22570,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2000",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "§ G E 115 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -22001,6 +22626,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000 thru SUM Qtr. 2004",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "§ G E 121 (7)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -22053,6 +22679,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "SPR Qtr. 1996 thru SPR Qtr. 2009",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "§ G E 123 (5) formerly GE 101,102",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -22106,6 +22733,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "ENGR 140 (5) formerly G E 140",
+    "sourceCourseTitle": "Engineering Materials",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -22160,6 +22788,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "§ G E 140 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -22215,6 +22844,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1994",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "§ G E 141 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -22270,9 +22900,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2007 thru SUM Qtr. 2009",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "§ G E 142 (5) same as C SCI 142",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -22327,9 +22957,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2001 thru AUT Qtr. 2007",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "§ G E 142 (5) same as C SCI 142",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -22383,9 +23013,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SUM Qtr. 2001",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "§ G E 142 (5) same as C SCI 142",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -22439,9 +23069,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000 thru SUM Qtr. 2009",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "§ G E 143 (5) same as C SCI 143",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -22496,9 +23126,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002 thru SUM Qtr. 2009",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "§ GE 144 (5) same as C SCI 144",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -22552,6 +23182,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986 thru SUM Qtr. 1988",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "§ G E 190 (4)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -22607,6 +23238,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "ENGR 199 (1-5) formerly G E 199",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -22657,6 +23289,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "§ G E 199 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -22710,6 +23343,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "ENGR& 204 (5) formerly G E 235",
+    "sourceCourseTitle": "Electrical Circuits",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -22764,6 +23398,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "ENGR& 214 (5) formerly G E 112",
+    "sourceCourseTitle": "Statics",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -22818,6 +23453,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "ENGR& 215 (5) formerly G E 281",
+    "sourceCourseTitle": "Dynamics",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -22871,6 +23507,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1996",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "§ G E 215 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -22923,6 +23560,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "ENGR& 224 (4) formerly G E 280",
+    "sourceCourseTitle": "Thermodynamics",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -22977,6 +23615,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "ENGR& 225 (5) formerly G E 240",
+    "sourceCourseTitle": "Mechanics of Materials",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -23030,6 +23669,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1986",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "§ G E 230 (4)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -23086,6 +23726,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1994 thru SPR Qtr. 2009",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "§ G E 235 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -23142,6 +23783,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "§ G E 240 (5",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -23198,6 +23840,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "SPR Qtr. 2009",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "ENGR 250 (5)",
+    "sourceCourseTitle": "Numerical Methods Using MATLAB",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -23251,6 +23894,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1988 thru SUM Qtr. 1994",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "§ G E 275 (4)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -23304,6 +23948,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004 thru SUM Qtr. 2009",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "§ G E 280 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -23359,6 +24004,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "§ G E 280 (4)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -23415,6 +24061,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Engineering (formerly General engineering)",
     "sourceCourseLabel": "§ G E 281 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -23470,9 +24117,8 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL& 101 (5) formerly ENGL 110",
-    "targetRequirementTags": [
-      "[C]"
-    ],
+    "sourceCourseTitle": "English Composition I",
+    "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -23523,9 +24169,8 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1995",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 101 (5)",
-    "targetRequirementTags": [
-      "[C]"
-    ],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -23578,6 +24223,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SPR Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 102 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -23630,9 +24276,8 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1984",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 102 (5)",
-    "targetRequirementTags": [
-      "[C]"
-    ],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -23685,6 +24330,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2011",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL 103 (1-3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -23735,6 +24381,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL 109 (5) formerly ENGL 102",
+    "sourceCourseTitle": "Writing for Trades and Career/Technical Degrees",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -23785,9 +24432,8 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1995 thru SPR Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 110 (5) formerly ENGL 101",
-    "targetRequirementTags": [
-      "[C]"
-    ],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -23840,9 +24486,8 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986 thru SPR Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 111 (5) formerly ENGL 102",
-    "targetRequirementTags": [
-      "[C]"
-    ],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -23895,7 +24540,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL& 112 (5) formerly ENGL 131",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Introduction to Fiction",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -23946,9 +24594,8 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986 thru SPR Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 112 (5)",
-    "targetRequirementTags": [
-      "[C]"
-    ],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -24001,7 +24648,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL& 113 (5) formerly ENGL 133",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Introduction to Poetry",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -24054,6 +24704,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SPR Qtr. 2009 for 113, thru SUM Qtr. 2000 for 116",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 113, 116 (5, 3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -24107,7 +24758,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SPR Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL& 114 (5) formerly ENGL 132",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Introduction to Drama",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -24158,7 +24812,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL 115 (5) formerly ENGL 135",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Introduction to Novels",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -24209,9 +24866,8 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SUM Qtr. 2000",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 115 (3)",
-    "targetRequirementTags": [
-      "[C]"
-    ],
+    "sourceCourseTitle": "Introduction to Novels",
+    "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -24266,6 +24922,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SUM Qtr. 2000 for 116, thru SUM Qtr. 2009 for 113",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 116, 113 (3, 5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -24319,7 +24976,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SUM Qtr. 1998",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 120 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -24375,7 +25035,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2002",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 121, 122, 123 (5, 5, 5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -24421,6 +25084,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 122 (5) see ENGL 121 combined entry",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -24464,6 +25128,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 123 (5) see ENGL 121 combined entry",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -24515,9 +25180,8 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL 126 (5) formerly ENGL 111",
-    "targetRequirementTags": [
-      "[C]"
-    ],
+    "sourceCourseTitle": "Writing: Humanities",
+    "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -24568,9 +25232,8 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL 127 (5) formerly ENGL 112",
-    "targetRequirementTags": [
-      "[C]"
-    ],
+    "sourceCourseTitle": "Writing: Social Science",
+    "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -24622,6 +25285,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL 128 (5) formerly ENGL 113",
+    "sourceCourseTitle": "Research Writing: Science/Engineering/Business",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -24672,7 +25336,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 131 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -24725,7 +25392,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SPR Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 132 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -24778,7 +25448,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 133 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -24831,7 +25504,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 135 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -24884,7 +25560,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 151 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -24937,7 +25616,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 152 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -24990,7 +25672,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SUM Qtr. 1998",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 153 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -25043,7 +25728,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1994",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 153 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -25096,6 +25784,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "SPR Qtr. 2002 thru SPR Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 154 (3) same as ART 150",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -25144,7 +25833,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL 160 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Women's Literature",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -25194,7 +25886,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2011",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL 161 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Cultures of Desire",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -25245,7 +25940,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2006",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL 163 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "The Poetics of Rap and Hip Hop",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -25299,7 +25997,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2013",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL 164 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Film as Literature",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -25350,7 +26051,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL 165 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Introduction to the Myths of the World",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -25401,7 +26105,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "SPR Qtr. 2006",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL 168 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Introduction to Irish Literature",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -25452,7 +26159,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1988",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 170 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -25505,7 +26215,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SUM Qtr. 1998",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 175 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -25559,7 +26272,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1988 thru SUM Qtr. 1994",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 175 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -25613,7 +26329,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "SPR Qtr. 1996",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL 180 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Children's Literature",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -25664,7 +26383,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1988",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 180 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Children's Literature",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -25717,7 +26439,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "WIN Qtr. 2003",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL 181 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Literary Approaches to Pop Culture",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -25768,7 +26493,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL 183 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Detective and Mystery Fiction",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -25813,7 +26541,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL 185 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "The Bible as Literature",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -25863,7 +26594,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL 187 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -25914,7 +26648,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL 190 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Young Adult Literature",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -25965,6 +26702,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1984",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 191 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -26017,6 +26755,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1984",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 192 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -26069,6 +26808,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1998",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 193 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -26115,6 +26855,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL 194 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -26164,6 +26905,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1984",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 195 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -26216,6 +26958,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1984",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 196 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -26268,6 +27011,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1984",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 197 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -26320,6 +27064,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1984",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 198 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -26366,6 +27111,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL 199 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -26415,7 +27161,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL& 220 (5) formerly ENGL 240",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Introduction to Shakespeare",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -26468,7 +27217,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002 thru SPR Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 221, 222 (5, 5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -26514,6 +27266,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 222 (5) see ENGL 221 combined entries",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -26565,7 +27318,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002 thru SPR Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 223 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -26618,7 +27374,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2003 thru SPR Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 224 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -26671,7 +27430,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL& 226 (5) formerly ENGL 244",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "British Literature I: 7th to 16th Century",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -26722,7 +27484,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL& 227 (5) formerly ENGL 245",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "British Literature II: 17th to 18th Century",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -26773,7 +27538,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL& 228 (5) formerly ENGL 246",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "British Literature III: 19th to 21st Century",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -26824,7 +27592,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL& 236 (5) formerly ENGL 151",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Creative Writing I",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -26875,7 +27646,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL& 237 (5) formerly ENGL 152",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Creative Writing II",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -26926,6 +27700,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL 239 (3) formerly ENGL 154 same as ART 150",
+    "sourceCourseTitle": "Espial Workshop",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -26978,7 +27753,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 240 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -27033,7 +27811,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL& 244, 245 (5, 5) formerly ENGL 221, 222",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "American Literature I: American Literature to 1860 / American Literature II: Civil War to WWI",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -27086,7 +27867,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 244 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -27137,6 +27921,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL& 245 (5) formerly ENGL 222, see ENGL& 244 combined entry",
+    "sourceCourseTitle": "American Literature II: Civil War to WWI",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -27188,7 +27973,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1990 thru SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 245 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -27241,7 +28029,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL& 246 (5) formerly ENGL 223",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "American Literature III: WWI to Present",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -27292,7 +28083,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 246 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -27345,7 +28139,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL 247 (5) formerly ENGL 224",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "American Ethnic Literature",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -27396,7 +28193,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL 248 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "African-American Literature",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -27447,7 +28247,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2011",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL 249 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "U.S. Latinx Literature",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -27498,7 +28301,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL& 254 (5) formerly ENGL 265",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -27549,7 +28355,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL& 255 (5) formerly ENGL 266",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "World Literature II: 7th to 18th Century",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -27600,7 +28409,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL& 256 (5) formerly ENGL 267",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "World Literature III: 19th to 21st Century",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -27651,7 +28463,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL 257 (5) formerly ENGL 268",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -27702,7 +28517,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1994 thru SPR Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 265 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -27755,7 +28573,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SPR Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 266 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -27808,7 +28629,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SPR Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 267 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -27861,7 +28685,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2006 thru SPR Qtr. 2009",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 268 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -27914,7 +28741,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1988",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 269 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -27967,6 +28797,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1984",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 297 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -28019,6 +28850,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1984",
     "guideDepartment": "English",
     "sourceCourseLabel": "§ ENGL 298 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -28065,6 +28897,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "English",
     "sourceCourseLabel": "ENGL 299 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -28114,6 +28947,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SUM Qtr. 2002",
     "guideDepartment": "Environmental science",
     "sourceCourseLabel": "§ ENV S 125 (5) same as BIOL 215 and N SCI 125",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -28160,6 +28994,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Environmental science",
     "sourceCourseLabel": "ENV S 204 (5)",
+    "sourceCourseTitle": "Natural Science and the Environment",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -28212,6 +29047,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1996",
     "guideDepartment": "§ Ethnic studies",
     "sourceCourseLabel": "§ ETH S 100 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -28267,6 +29103,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992 thru SUM Qtr. 2004",
     "guideDepartment": "§ Ethnic studies",
     "sourceCourseLabel": "§ ETH S 299 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -28319,7 +29156,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2013",
     "guideDepartment": "Film",
     "sourceCourseLabel": "FILM 120 (5) formerly DRMA 120",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "The Art of the Film",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -28370,6 +29210,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2013",
     "guideDepartment": "Film",
     "sourceCourseLabel": "FILM 121 (5) formerly DRMA 121",
+    "sourceCourseTitle": "Contemporary American Film",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -28420,6 +29261,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2013",
     "guideDepartment": "Film",
     "sourceCourseLabel": "FILM 122 (5) formerly HUMAN 272",
+    "sourceCourseTitle": "Introduction to Film: Genres",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -28470,6 +29312,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992 thru SUM Qtr. 2002",
     "guideDepartment": "§ Forest resources",
     "sourceCourseLabel": "§ FORES 100 (5) formerly FRSTY 100",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -28525,6 +29368,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000 thru SUM Qtr. 2002",
     "guideDepartment": "§ Forest resources",
     "sourceCourseLabel": "§ FORES 117 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -28577,6 +29421,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992 thru SUM Qtr. 2002",
     "guideDepartment": "§ Forest resources",
     "sourceCourseLabel": "§ FORES 161 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -28632,6 +29477,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SUM Qtr. 2002",
     "guideDepartment": "§ Forest resources",
     "sourceCourseLabel": "§ FORES 172 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -28684,6 +29530,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992 thru SUM Qtr. 2002",
     "guideDepartment": "§ Forest resources",
     "sourceCourseLabel": "§ FORES 180 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -28736,6 +29583,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992 thru SUM Qtr. 2002",
     "guideDepartment": "§ Forest resources",
     "sourceCourseLabel": "§ FORES 181 (8)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -28788,6 +29636,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1994 thru SUM Qtr. 2002",
     "guideDepartment": "§ Forest resources",
     "sourceCourseLabel": "§ FORES 182 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -28843,6 +29692,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992 thru SUM Qtr. 2002",
     "guideDepartment": "§ Forest resources",
     "sourceCourseLabel": "§ FORES 183 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -28898,6 +29748,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992 thru SUM Qtr. 2002",
     "guideDepartment": "§ Forest resources",
     "sourceCourseLabel": "§ FORES 184 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -28953,6 +29804,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992 thru SUM Qtr. 1994",
     "guideDepartment": "§ Forest resources",
     "sourceCourseLabel": "§ FORES 185 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -29008,6 +29860,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992 thru SUM Qtr. 2002",
     "guideDepartment": "§ Forest resources",
     "sourceCourseLabel": "§ FORES 195 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -29063,6 +29916,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992 thru SUM Qtr. 2002",
     "guideDepartment": "§ Forest resources",
     "sourceCourseLabel": "§ FORES 197 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -29118,6 +29972,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SUM Qtr. 2002",
     "guideDepartment": "§ Forest resources",
     "sourceCourseLabel": "§ FORES 198 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -29170,6 +30025,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992 thru SUM Qtr. 2002",
     "guideDepartment": "§ Forest resources",
     "sourceCourseLabel": "§ FORES 199 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -29222,6 +30078,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992 thru SUM Qtr. 1996",
     "guideDepartment": "§ Forest resources",
     "sourceCourseLabel": "§ FORES 282 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -29274,6 +30131,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992 thru SUM Qtr. 2002",
     "guideDepartment": "§ Forest resources",
     "sourceCourseLabel": "§ FORES 284 (6)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -29329,6 +30187,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1994 thru SUM Qtr. 2002",
     "guideDepartment": "§ Forest resources",
     "sourceCourseLabel": "§ FORES 285 (5) formerly FORES 185",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -29385,6 +30244,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_6: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992 thru SUM Qtr. 2002",
     "guideDepartment": "§ Forest resources",
     "sourceCourseLabel": "§ FORES 292 (8)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -29440,6 +30300,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992 thru SUM Qtr. 2002",
     "guideDepartment": "§ Forest resources",
     "sourceCourseLabel": "§ FORES 293 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -29495,6 +30356,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SUM Qtr. 2002",
     "guideDepartment": "§ Forest resources",
     "sourceCourseLabel": "§ FORES 294 (1-14)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -29547,6 +30409,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000 thru SUM Qtr. 2002",
     "guideDepartment": "§ Forest resources",
     "sourceCourseLabel": "§ FORES 297 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -29602,6 +30465,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000 thru SUM Qtr. 2002",
     "guideDepartment": "§ Forest resources",
     "sourceCourseLabel": "§ FORES 298 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -29657,6 +30521,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SUM Qtr. 2002",
     "guideDepartment": "§ Forest resources",
     "sourceCourseLabel": "§ FORES 299 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -29709,6 +30574,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1992",
     "guideDepartment": "§ Forestry (formerly Forestry technology)",
     "sourceCourseLabel": "§ FRSTY 100 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -29764,6 +30630,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "French*",
     "sourceCourseLabel": "§ FREN 101 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -29816,6 +30683,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "French*",
     "sourceCourseLabel": "§ FREN 102 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -29868,6 +30736,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "French*",
     "sourceCourseLabel": "§ FREN 103 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -29920,6 +30789,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1988",
     "guideDepartment": "French*",
     "sourceCourseLabel": "§ FREN 110 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -29972,6 +30842,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "French*",
     "sourceCourseLabel": "FRCH& 121 (5) formerly FREN 101",
+    "sourceCourseTitle": "French I",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -30022,6 +30893,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "French*",
     "sourceCourseLabel": "FRCH& 122 formerly FREN 102",
+    "sourceCourseTitle": "French II",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -30072,6 +30944,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "French*",
     "sourceCourseLabel": "FRCH& 123 formerly FREN 103",
+    "sourceCourseTitle": "French III",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -30122,7 +30995,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1988",
     "guideDepartment": "French*",
     "sourceCourseLabel": "§ FREN 202 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -30175,7 +31051,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1988",
     "guideDepartment": "French*",
     "sourceCourseLabel": "§ FREN 203 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -30228,7 +31107,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "French*",
     "sourceCourseLabel": "FRCH& 221 formerly FREN 201",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "French IV",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -30280,6 +31162,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1994 thru SUM Qtr. 2000",
     "guideDepartment": "Geographic information systems",
     "sourceCourseLabel": "§ GIS 100 (8)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -30337,9 +31220,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1994 thru SUM Qtr. 2000",
     "guideDepartment": "Geographic information systems",
     "sourceCourseLabel": "§ GIS 150, 160 (8, 5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "SSc",
-      "[RSN]"
+      "SSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -30395,9 +31278,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SUM Qtr. 2004",
     "guideDepartment": "Geographic information systems",
     "sourceCourseLabel": "§ GIS 151 (8)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "SSc",
-      "[RSN]"
+      "SSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -30453,9 +31336,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1994 thru SUM Qtr. 2000",
     "guideDepartment": "Geographic information systems",
     "sourceCourseLabel": "§ GIS 160, 150 (5, 8)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "SSc",
-      "[RSN]"
+      "SSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -30511,6 +31394,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000 thru SUM Qtr. 2009",
     "guideDepartment": "Geographic information systems",
     "sourceCourseLabel": "§ GIS 200 (5) formerly GIS 100",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -30566,6 +31450,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2009",
     "guideDepartment": "Geographic information systems",
     "sourceCourseLabel": "GIS 202 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc",
       "QSR"
@@ -30620,6 +31505,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2007 thru SUM Qtr. 2009",
     "guideDepartment": "Geographic information systems",
     "sourceCourseLabel": "§ GIS 201 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc",
       "QSR"
@@ -30676,6 +31562,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000",
     "guideDepartment": "Geographic information systems",
     "sourceCourseLabel": "GIS 260 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -30729,6 +31616,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2011",
     "guideDepartment": "Geography",
     "sourceCourseLabel": "GEOG& 100 (5)",
+    "sourceCourseTitle": "Introduction to Geography",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -30782,6 +31670,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2011",
     "guideDepartment": "Geography",
     "sourceCourseLabel": "§ GEOG 100 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -30837,6 +31726,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1988 thru SUM Qtr. 2011",
     "guideDepartment": "Geography",
     "sourceCourseLabel": "§ GEOG 108 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -30892,6 +31782,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1986",
     "guideDepartment": "Geography",
     "sourceCourseLabel": "§ GEOG 110 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -30947,6 +31838,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1992",
     "guideDepartment": "Geography",
     "sourceCourseLabel": "§ GEOG 117 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -30993,6 +31885,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Geography",
     "sourceCourseLabel": "GEOG 120 (5)",
+    "sourceCourseTitle": "Introduction to Physical Geography",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -31045,6 +31938,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "SPR Qtr. 2008",
     "guideDepartment": "Geography",
     "sourceCourseLabel": "GEOG 123 (5)",
+    "sourceCourseTitle": "Globalization",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -31098,6 +31992,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1988",
     "guideDepartment": "Geography",
     "sourceCourseLabel": "§ GEOG 150 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -31150,6 +32045,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986",
     "guideDepartment": "Geography",
     "sourceCourseLabel": "GEOG 190 (1-10) formerly GEOG 194",
+    "sourceCourseTitle": "Geographic Exploration",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -31200,6 +32096,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1986",
     "guideDepartment": "Geography",
     "sourceCourseLabel": "§ GEOG 194 (1-10)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -31252,6 +32149,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2011",
     "guideDepartment": "Geography",
     "sourceCourseLabel": "GEOG& 200 (5) formerly GEOG 108",
+    "sourceCourseTitle": "Human Geography",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -31305,6 +32203,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2011",
     "guideDepartment": "Geography",
     "sourceCourseLabel": "§ GEOG 200 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -31358,6 +32257,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2011",
     "guideDepartment": "Geography",
     "sourceCourseLabel": "GEOG 201 (5) formerly GEOG 200",
+    "sourceCourseTitle": "World Regional Geography",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -31411,6 +32311,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2007",
     "guideDepartment": "Geography",
     "sourceCourseLabel": "GEOG 205 (5)",
+    "sourceCourseTitle": "Environmental Geography",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -31464,6 +32365,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1986",
     "guideDepartment": "Geography",
     "sourceCourseLabel": "§ GEOG 213 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -31516,6 +32418,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SPR Qtr. 2009",
     "guideDepartment": "Geography",
     "sourceCourseLabel": "§ GEOG 260 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -31565,6 +32468,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Geography",
     "sourceCourseLabel": "GEOG 298 (1-5)",
+    "sourceCourseTitle": "Independent Study-Geography 1",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -31608,6 +32512,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Geography",
     "sourceCourseLabel": "GEOG 299 (1-5)",
+    "sourceCourseTitle": "Independent Study-Geography 2",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -31657,6 +32562,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Geology",
     "sourceCourseLabel": "GEOL& 101 (5) formerly GEOL 101",
+    "sourceCourseTitle": "Introduction to Physical Geology",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -31710,6 +32616,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Geology",
     "sourceCourseLabel": "§ GEOL 101 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -31765,6 +32672,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1988 thru SPR Qtr. 2009",
     "guideDepartment": "Geology",
     "sourceCourseLabel": "§ GEOL 102 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -31817,6 +32725,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1986",
     "guideDepartment": "Geology",
     "sourceCourseLabel": "§ GEOL 102 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -31872,6 +32781,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1988 thru SPR Qtr. 2009",
     "guideDepartment": "Geology",
     "sourceCourseLabel": "§ GEOL 103 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -31924,6 +32834,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1986",
     "guideDepartment": "Geology",
     "sourceCourseLabel": "§ GEOL 103 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -31979,6 +32890,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1988 thru SPR Qtr. 2009",
     "guideDepartment": "Geology",
     "sourceCourseLabel": "§ GEOL 104 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -32031,6 +32943,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986 thru SUM Qtr. 1994",
     "guideDepartment": "Geology",
     "sourceCourseLabel": "§ GEOL 105 (5) formerly GEOL 102",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -32086,6 +32999,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1994",
     "guideDepartment": "Geology",
     "sourceCourseLabel": "§ GEOL 112 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -32141,6 +33055,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Geology",
     "sourceCourseLabel": "GEOL 150 (1) formerly GEOL 102",
+    "sourceCourseTitle": "Field Trips in Geology 1",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -32191,6 +33106,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Geology",
     "sourceCourseLabel": "GEOL 152 (1) formerly GEOL 103",
+    "sourceCourseTitle": "Field Trips in Geology 2",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -32241,6 +33157,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Geology",
     "sourceCourseLabel": "GEOL 153 (1) formerly GEOL 104",
+    "sourceCourseTitle": "Field Trips in Geology 3",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -32291,6 +33208,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to SUM 2004",
     "guideDepartment": "Geology",
     "sourceCourseLabel": "§ GEOL 194 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -32343,6 +33261,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1988",
     "guideDepartment": "Geology",
     "sourceCourseLabel": "GEOL 200 (5)",
+    "sourceCourseTitle": "Geological Investigations of the National Parks",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -32396,6 +33315,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1988",
     "guideDepartment": "Geology",
     "sourceCourseLabel": "§ GEOL 205 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -32451,6 +33371,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986",
     "guideDepartment": "Geology",
     "sourceCourseLabel": "GEOL 206 (5)",
+    "sourceCourseTitle": "Earth History",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -32504,6 +33425,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Geology",
     "sourceCourseLabel": "GEOL& 208 (5) formerly GEOL 208",
+    "sourceCourseTitle": "Geology of the Pacific Northwest",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -32557,6 +33479,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Geology",
     "sourceCourseLabel": "§ GEOL 208 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -32612,6 +33535,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1990 thru SUM Qtr. 1992",
     "guideDepartment": "Geology",
     "sourceCourseLabel": "§ GEOL 280 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -32658,6 +33582,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Geology",
     "sourceCourseLabel": "GEOL 299 (1-5)",
+    "sourceCourseTitle": "Independent Study-Geology",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -32707,6 +33632,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "German*",
     "sourceCourseLabel": "§ GERM 101 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -32759,6 +33685,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "German*",
     "sourceCourseLabel": "§ GERM 102 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -32811,6 +33738,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "German*",
     "sourceCourseLabel": "§ GERM 103 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -32863,6 +33791,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2004",
     "guideDepartment": "German*",
     "sourceCourseLabel": "§ GERM 110 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -32915,6 +33844,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "German*",
     "sourceCourseLabel": "GERM& 121 (5) formerly GERM 101",
+    "sourceCourseTitle": "German I",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -32965,6 +33895,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "German*",
     "sourceCourseLabel": "GERM& 122 (5) formerly GERM 102",
+    "sourceCourseTitle": "German II",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -33015,6 +33946,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "German*",
     "sourceCourseLabel": "GERM& 123 (5) formerly GERM 103",
+    "sourceCourseTitle": "German III",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -33065,6 +33997,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1988",
     "guideDepartment": "German*",
     "sourceCourseLabel": "§ GERM 194 (3-5)",
+    "sourceCourseTitle": "Special Studies-German",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -33117,7 +34050,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2000",
     "guideDepartment": "German*",
     "sourceCourseLabel": "§ GERM 201 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -33170,7 +34106,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2000",
     "guideDepartment": "German*",
     "sourceCourseLabel": "§ GERM 202 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -33223,7 +34162,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2000",
     "guideDepartment": "German*",
     "sourceCourseLabel": "§ GERM 203 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -33276,6 +34218,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2004",
     "guideDepartment": "German*",
     "sourceCourseLabel": "§ GERM 299 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -33328,6 +34271,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2006",
     "guideDepartment": "Health education",
     "sourceCourseLabel": "§ HL ED 175 (5) same as BEHSC 175 and PSYCH 175",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -33383,6 +34327,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1992",
     "guideDepartment": "Health education",
     "sourceCourseLabel": "§ HL ED 180 (1)",
+    "sourceCourseTitle": "Food and Health",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -33429,6 +34374,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Health education",
     "sourceCourseLabel": "HL ED 190 (3)",
+    "sourceCourseTitle": "Standard First Aid/CPR",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -33478,6 +34424,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1986",
     "guideDepartment": "History",
     "sourceCourseLabel": "§ HIST 100 (3-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -33533,6 +34480,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004",
     "guideDepartment": "History",
     "sourceCourseLabel": "HIST 101 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -33586,6 +34534,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_7: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1990 thru SUM Qtr. 2004",
     "guideDepartment": "History",
     "sourceCourseLabel": "§ HIST 101 (5) formerly S SCI 101",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -33644,6 +34593,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004",
     "guideDepartment": "History",
     "sourceCourseLabel": "HIST 102 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -33697,6 +34647,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1990 thru SUM Qtr. 2004",
     "guideDepartment": "History",
     "sourceCourseLabel": "§ HIST 102 (5) formerly S SCI 102",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -33752,6 +34703,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004",
     "guideDepartment": "History",
     "sourceCourseLabel": "HIST 103 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -33805,6 +34757,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1990 thru SUM Qtr. 2004",
     "guideDepartment": "History",
     "sourceCourseLabel": "§ HIST 103 (5) formerly S SCI 103",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -33860,7 +34813,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996",
     "guideDepartment": "History",
     "sourceCourseLabel": "HIST 120 (5)",
+    "sourceCourseTitle": "History of the Movies",
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": false,
@@ -33913,7 +34868,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "WIN Qtr. 2001",
     "guideDepartment": "History",
     "sourceCourseLabel": "HIST 122 (5)",
+    "sourceCourseTitle": "History of Australian Movies",
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": false,
@@ -33960,6 +34917,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "History",
     "sourceCourseLabel": "§ HIST 124 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -34014,6 +34972,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992",
     "guideDepartment": "History",
     "sourceCourseLabel": "HIST 135 (5)",
+    "sourceCourseTitle": "The United States Since 1940",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -34069,6 +35028,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "History",
     "sourceCourseLabel": "HIST& 136, 137 (5, 5) formerly HIST 221, 222",
+    "sourceCourseTitle": "U.S. History I / U.S. History II",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -34125,6 +35085,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992 thru SUM Qtr. 2000",
     "guideDepartment": "History",
     "sourceCourseLabel": "§ HIST 145 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -34180,6 +35141,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1992",
     "guideDepartment": "History",
     "sourceCourseLabel": "§ HIST 150 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -34235,6 +35197,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1988",
     "guideDepartment": "History",
     "sourceCourseLabel": "§ HIST 151 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -34290,6 +35253,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986 thru SUM Qtr. 1992",
     "guideDepartment": "History",
     "sourceCourseLabel": "§ HIST 175 (5) formerly HIST 100",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -34345,6 +35309,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986",
     "guideDepartment": "History",
     "sourceCourseLabel": "HIST 194 (1-3)",
+    "sourceCourseTitle": "Special Topics - History",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -34395,6 +35360,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986 thru SUM Qtr. 1992",
     "guideDepartment": "History",
     "sourceCourseLabel": "§ HIST 195 (1-3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -34447,6 +35413,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986 thru SUM Qtr. 1992",
     "guideDepartment": "History",
     "sourceCourseLabel": "§ HIST 196 (1-3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -34499,6 +35466,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "History",
     "sourceCourseLabel": "§ HIST 200 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -34554,6 +35522,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1988",
     "guideDepartment": "History",
     "sourceCourseLabel": "§ HIST 201 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -34609,6 +35578,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "SPR Qtr. 1998 thru SUM Qtr. 2004",
     "guideDepartment": "History",
     "sourceCourseLabel": "§ HIST 202 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -34664,6 +35634,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "History",
     "sourceCourseLabel": "HIST& 214 (5) formerly HIST 200",
+    "sourceCourseTitle": "Pacific Northwest History",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -34718,6 +35689,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "History",
     "sourceCourseLabel": "HIST& 215 (5) formerly HIST 225",
+    "sourceCourseTitle": "Women in U.S. History",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -34771,6 +35743,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SUM Qtr. 2000",
     "guideDepartment": "History",
     "sourceCourseLabel": "§ HIST 215 (5) same as AMES 215, ANTHR 215, and S SCI 215",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -34826,6 +35799,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2007",
     "guideDepartment": "History",
     "sourceCourseLabel": "HIST 220 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -34881,6 +35855,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1990 thru SPR Qtr. 2009",
     "guideDepartment": "History",
     "sourceCourseLabel": "§ HIST 221, 222 (5, 5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -34941,6 +35916,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1990",
     "guideDepartment": "History",
     "sourceCourseLabel": "§ HIST 221, 222, 223 (5, 5, 5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -34998,6 +35974,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2008",
     "guideDepartment": "History",
     "sourceCourseLabel": "HIST 224 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -35052,6 +36029,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1994 thru SPR Qtr. 2009",
     "guideDepartment": "History",
     "sourceCourseLabel": "§ HIST 225 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -35107,6 +36085,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2008",
     "guideDepartment": "History",
     "sourceCourseLabel": "HIST 226 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -35160,6 +36139,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2005",
     "guideDepartment": "History",
     "sourceCourseLabel": "HIST 228 (5)",
+    "sourceCourseTitle": "Latinos in the United States",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -35207,6 +36187,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "History",
     "sourceCourseLabel": "HIST 230 (5)",
+    "sourceCourseTitle": "Modern Europe",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -35253,6 +36234,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "History",
     "sourceCourseLabel": "HIST 231 (5)",
+    "sourceCourseTitle": "Modern Asia",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -35305,6 +36287,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004",
     "guideDepartment": "History",
     "sourceCourseLabel": "HIST 232 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -35358,6 +36341,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2009",
     "guideDepartment": "History",
     "sourceCourseLabel": "HIST 233 (5)",
+    "sourceCourseTitle": "History of Latin America",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -35412,6 +36396,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1990 thru SUM Qtr. 2000",
     "guideDepartment": "History",
     "sourceCourseLabel": "§ HIST 234 (5) formerly S SCI 234",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -35467,6 +36452,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996",
     "guideDepartment": "History",
     "sourceCourseLabel": "HIST 235 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -35520,6 +36506,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "WIN Qtr. 2001 thru SUM Qtr. 2006",
     "guideDepartment": "History",
     "sourceCourseLabel": "§ HIST 236 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -35575,6 +36562,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "WIN Qtr. 2005",
     "guideDepartment": "History",
     "sourceCourseLabel": "HIST 237 (5)",
+    "sourceCourseTitle": "History of Australia and New Zealand",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -35628,6 +36616,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1994",
     "guideDepartment": "History",
     "sourceCourseLabel": "HIST 240 (5)",
+    "sourceCourseTitle": "The Civil War",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -35681,6 +36670,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004",
     "guideDepartment": "History",
     "sourceCourseLabel": "HIST 245 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -35734,6 +36724,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986",
     "guideDepartment": "History",
     "sourceCourseLabel": "HIST 250 (5)",
+    "sourceCourseTitle": "The Vietnam War",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -35787,6 +36778,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SPR Qtr. 2008",
     "guideDepartment": "History",
     "sourceCourseLabel": "§ HIST 254 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -35842,6 +36834,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004 thru SUM Qtr. 2012",
     "guideDepartment": "History",
     "sourceCourseLabel": "§ HIST 297 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -35894,6 +36887,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004 thru SUM Qtr. 2012",
     "guideDepartment": "History",
     "sourceCourseLabel": "§ HIST 298 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -35940,6 +36934,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "History",
     "sourceCourseLabel": "HIST 299 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -35983,7 +36978,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Humanities",
     "sourceCourseLabel": "HUMAN 100 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": false,
@@ -36035,7 +37032,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1988",
     "guideDepartment": "Humanities",
     "sourceCourseLabel": "HUMAN 110 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Background for the Humanities",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -36088,9 +37088,11 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1990",
     "guideDepartment": "Humanities",
     "sourceCourseLabel": "§ HUMAN 115, 116, 117 (5, 5, 5) same as N SCI 115, 116, 117 and S SCI 115, 116, 117",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "SSc"
+      "A&H",
+      "SSc",
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -36145,7 +37147,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "WIN Qtr. 1996",
     "guideDepartment": "Humanities",
     "sourceCourseLabel": "HUMAN 133 (5)",
+    "sourceCourseTitle": "People, Language and Culture",
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": false,
@@ -36198,6 +37202,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2008",
     "guideDepartment": "Humanities",
     "sourceCourseLabel": "HUMAN 142 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -36248,6 +37253,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1994 thru SUM Qtr. 2002",
     "guideDepartment": "Humanities",
     "sourceCourseLabel": "§ HUMAN 150 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -36297,6 +37303,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Humanities",
     "sourceCourseLabel": "HUMAN 186 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -36346,6 +37353,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1988",
     "guideDepartment": "Humanities",
     "sourceCourseLabel": "§ HUMAN 187 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -36398,7 +37406,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998",
     "guideDepartment": "Humanities",
     "sourceCourseLabel": "HUMAN 190 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": false,
@@ -36451,7 +37461,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "SPR Qtr. 2001",
     "guideDepartment": "Humanities",
     "sourceCourseLabel": "HUMAN 191 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": false,
@@ -36498,6 +37510,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Humanities",
     "sourceCourseLabel": "HUMAN 194 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -36547,6 +37560,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004",
     "guideDepartment": "Humanities",
     "sourceCourseLabel": "HUMAN 224 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -36600,6 +37614,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2009 thru SUM Qtr. 2013",
     "guideDepartment": "Humanities",
     "sourceCourseLabel": "§ HUMAN 272 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -36652,6 +37667,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2000",
     "guideDepartment": "Interdisciplinary science",
     "sourceCourseLabel": "IDS 101 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -36705,6 +37721,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2000",
     "guideDepartment": "Interdisciplinary science",
     "sourceCourseLabel": "IDS 102 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -36758,6 +37775,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2000",
     "guideDepartment": "Interdisciplinary science",
     "sourceCourseLabel": "IDS 103 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -36811,6 +37829,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1988 thru SPR Qtr. 2009",
     "guideDepartment": "Japanese*",
     "sourceCourseLabel": "§ JAPAN 101 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -36863,6 +37882,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1988 thru SPR Qtr. 2009",
     "guideDepartment": "Japanese*",
     "sourceCourseLabel": "§ JAPAN 102 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -36915,6 +37935,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1988 thru SPR Qtr. 2009",
     "guideDepartment": "Japanese*",
     "sourceCourseLabel": "§ JAPAN 103 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -36967,6 +37988,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Japanese*",
     "sourceCourseLabel": "JAPN& 121 (5) formerly JAPAN 101",
+    "sourceCourseTitle": "Japanese I",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -37017,6 +38039,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Japanese*",
     "sourceCourseLabel": "JAPN& 122 (5) formerly JAPAN 102",
+    "sourceCourseTitle": "Japanese II",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -37067,6 +38090,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Japanese*",
     "sourceCourseLabel": "JAPN& 123 (5) formerly JAPAN 103",
+    "sourceCourseTitle": "Japanese III",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -37117,7 +38141,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1994 thru SUM Qtr. 1998",
     "guideDepartment": "Japanese*",
     "sourceCourseLabel": "§ JAPAN 201 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -37170,6 +38197,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1992",
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "§ JOURN 100 (2, max. 6)",
+    "sourceCourseTitle": "Foundations of Journalism",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -37225,6 +38253,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992",
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "JOURN 100.1, 100.2, 100.3 (1-5 each) series is formerly JOURN 100",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -37269,6 +38298,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "JOURN 100.2 (1-5) see JOURN 100.1 combined entry",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -37311,6 +38341,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "JOURN 100.3 (1-5) see JOURN 100.1 combined entry",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -37355,6 +38386,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "JOURN 101 (5)",
+    "sourceCourseTitle": "Multimedia Journalism",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -37404,6 +38436,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002",
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "JOURN 103 (5) formerly JOURN 160,161",
+    "sourceCourseTitle": "Introduction to Public Relations",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -37456,6 +38489,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2009",
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "JOURN 107 (5)",
+    "sourceCourseTitle": "Introduction to Video Journalism",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -37502,6 +38536,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "JOURN 110 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -37553,6 +38588,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986",
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "JOURN 111 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -37605,6 +38641,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986",
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "JOURN 112 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -37657,6 +38694,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002",
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "JOURN 120 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -37709,6 +38747,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986 thru SUM Qtr. 1992",
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "§ JOURN 120 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -37762,6 +38801,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002",
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "JOURN 121 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -37817,6 +38857,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002",
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "JOURN 122 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -37863,6 +38904,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "JOURN 150 (3)",
+    "sourceCourseTitle": "Introduction to Broadcasting & Digital Media",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -37908,6 +38950,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "JOURN 151 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -37953,6 +38996,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "JOURN 152 (3)",
+    "sourceCourseTitle": "Broadcasting & Digital Media Management",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -38004,6 +39048,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998",
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "JOURN 153 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -38054,6 +39099,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000 thru SUM Qtr. 2003",
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "§ JOURN 154 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -38107,6 +39153,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000 thru SUM Qtr. 2003",
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "§ JOURN 155 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -38160,6 +39207,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1990 thru SUM Qtr. 1998",
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "§ JOURN 160 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -38213,6 +39261,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1994 thru SUM Qtr. 1998",
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "§ JOURN 161 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -38266,6 +39315,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000",
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "JOURN 198 (1-5)",
+    "sourceCourseTitle": "Independent Study-Journalism 1",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -38318,6 +39368,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000",
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "JOURN 199 (1-5)",
+    "sourceCourseTitle": "Independent Study-Journalism 2",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -38364,6 +39415,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "JOURN 200 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -38415,6 +39467,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "§ JOURN 201 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -38470,6 +39523,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1994",
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "§ JOURN 202 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -38525,6 +39579,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1992",
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "§ JOURN 203 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -38574,6 +39629,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "JOURN 205 (1-5)",
+    "sourceCourseTitle": "Radio Management",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -38619,6 +39675,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "JOURN 206 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -38664,6 +39721,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "JOURN 207 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -38715,6 +39773,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2002",
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "§ JOURN 210 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -38768,6 +39827,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2002",
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "§ JOURN 211 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -38821,6 +39881,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2002",
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "§ JOURN 212 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -38874,6 +39935,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1986",
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "§ JOURN 226 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -38927,6 +39989,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2003",
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "JOURN 254 (3) formerly JOURN 154",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -38979,6 +40042,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2003",
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "JOURN 255 (3) formerly JOURN 155",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -39031,6 +40095,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1990 thru SUM Qtr. 1992",
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "§ JOURN 291 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -39083,6 +40148,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000",
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "JOURN 298 (1-5)",
+    "sourceCourseTitle": "Independent Study-Journalism 3",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -39135,6 +40201,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000",
     "guideDepartment": "Journalism",
     "sourceCourseLabel": "JOURN 299 (1-5)",
+    "sourceCourseTitle": "Independent Study-Journalism 4",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -39187,6 +40254,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1998",
     "guideDepartment": "§ Law enforcement",
     "sourceCourseLabel": "§ L E 101 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -39243,6 +40311,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1998",
     "guideDepartment": "§ Law enforcement",
     "sourceCourseLabel": "§ L E 103 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -39299,6 +40368,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1998",
     "guideDepartment": "§ Law enforcement",
     "sourceCourseLabel": "§ L E 104 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -39355,6 +40425,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1990 thru SUM Qtr. 1998",
     "guideDepartment": "§ Law enforcement",
     "sourceCourseLabel": "§ L E 194 (var.)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -39408,6 +40479,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1998",
     "guideDepartment": "§ Law enforcement",
     "sourceCourseLabel": "§ L E 200 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -39464,6 +40536,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1998",
     "guideDepartment": "§ Law enforcement",
     "sourceCourseLabel": "§ L E 201 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -39517,6 +40590,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1998",
     "guideDepartment": "§ Law enforcement",
     "sourceCourseLabel": "§ L E 203 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -39573,6 +40647,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1998",
     "guideDepartment": "§ Law enforcement",
     "sourceCourseLabel": "§ L E 240 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -39626,6 +40701,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1998",
     "guideDepartment": "§ Law enforcement",
     "sourceCourseLabel": "§ L E 260 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -39679,6 +40755,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992 thru SUM Qtr. 1998",
     "guideDepartment": "§ Law enforcement",
     "sourceCourseLabel": "§ L E 298 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -39732,6 +40809,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1998",
     "guideDepartment": "§ Law enforcement",
     "sourceCourseLabel": "§ L E 299 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -39785,6 +40863,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2006 thru SUM Qtr. 2013",
     "guideDepartment": "Library",
     "sourceCourseLabel": "§ LIB 180 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -39840,6 +40919,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1988",
     "guideDepartment": "§ Management",
     "sourceCourseLabel": "§ MAN 256 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -39892,6 +40972,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1988",
     "guideDepartment": "§ Management",
     "sourceCourseLabel": "§ MAN 258 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -39944,6 +41025,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 1996",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "MATH 097",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -39994,6 +41076,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SUM Qtr. 2000",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 097C",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -40046,6 +41129,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SUM Qtr. 1998",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 097L",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -40097,6 +41181,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "MATH 097R",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -40146,6 +41231,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SUM Qtr. 2000",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 097T",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -40196,6 +41282,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SUM Qtr. 2000",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 097V",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -40246,6 +41333,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000 thru SUM Qtr. 2002",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 100T",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -40298,6 +41386,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1970 thru SUM Qtr. 1996",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 101",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -40352,6 +41441,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1974 thru SUM Qtr. 1976",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 101.1,101.2",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -40398,6 +41488,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 101.2 see MATH 101.1 combined entry",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -40451,9 +41542,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 102, 104 (5, 5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -40509,9 +41600,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "MATH 106 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -40563,9 +41654,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "MATH& 107 (5) formerly MATH 107",
+    "sourceCourseTitle": "Math in Society",
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -40617,9 +41708,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 107 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -40671,6 +41762,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "MATH 115T",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -40720,6 +41812,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "MATH 116T",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -40769,6 +41862,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "MATH 117T",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -40818,6 +41912,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SUM Qtr. 2002",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 119T",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -40870,9 +41965,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 124 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -40926,6 +42021,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 125 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -40983,6 +42079,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 126, 224 (5, 5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -41040,6 +42137,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 126 (5) see also MATH 126 combined entry",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -41090,6 +42188,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 130 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -41144,6 +42243,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992 thru SUM Qtr. 1998",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 134 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -41199,9 +42299,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "MATH& 141 (5) formerly MATH 102",
+    "sourceCourseTitle": "PreCalculus I",
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -41253,9 +42353,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "MATH& 142 (5) formerly MATH 104",
+    "sourceCourseTitle": "PreCalculus II",
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -41307,9 +42407,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2017",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "MATH& 146 (5)",
+    "sourceCourseTitle": "Introduction to Statistics",
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -41361,9 +42461,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "MATH 147 (5) formerly MATH 156",
+    "sourceCourseTitle": "Finite Mathematics-Business and Social Science",
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -41415,9 +42515,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "MATH& 148 (5) formerly MATH 157",
+    "sourceCourseTitle": "Business Calculus",
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -41469,9 +42569,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SUM Qtr. 2002",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 150 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -41525,9 +42625,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "MATH& 151 (5) formerly MATH 124",
+    "sourceCourseTitle": "Calculus I",
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -41579,6 +42679,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "MATH& 152 (5) formerly MATH 125",
+    "sourceCourseTitle": "Calculus II",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -41632,6 +42733,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2025",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH& 153 (5) formerly MATH 126 (5) see also MATH& 153 combined entry",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -41690,6 +42792,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009 thru SPR Qtr. 2025",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH& 153, 254 (5, 5) formerly MATH 126, 224 combined entry",
+    "sourceCourseTitle": "Calculus IV",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -41747,9 +42850,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 156 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -41803,9 +42906,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 157 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -41859,6 +42962,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2024",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "MATH& 163 (5)",
+    "sourceCourseTitle": "Calculus III",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -41912,6 +43016,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SUM Qtr. 2013",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 170 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -41967,6 +43072,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2013",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "MATH& 171 (5) formerly MATH 170",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -42023,6 +43129,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SPR Qtr. 1999 thru SUM Qtr. 2013",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 171 (4-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -42080,6 +43187,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2013",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "MATH& 172 (5) formerly MATH 171",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -42133,6 +43241,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000 thru SUM Qtr. 2013",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 172 (4-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -42188,6 +43297,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2013",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "MATH& 173 (5) formerly MATH 172",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -42241,6 +43351,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1999 thru SUM Qtr. 2013",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 191 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -42296,6 +43407,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1999 thru SUM Qtr. 2013",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 192 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -42345,6 +43457,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "MATH 194 (1-5)",
+    "sourceCourseTitle": "Special Topics-Mathematics",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -42398,6 +43511,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "WIN Qtr. 2016 thru AUT Qtr. 2023",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 210 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -42453,6 +43567,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2007 thru AUT Qtr. 2015",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 210 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -42509,6 +43624,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 224 (5) see also MATH 126 combined entry",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -42559,6 +43675,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 231 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -42607,6 +43724,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 232 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -42662,6 +43780,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2025",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "MATH 238 (5)",
+    "sourceCourseTitle": "Differential Equations",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -42716,6 +43835,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2025",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 238 (5)",
+    "sourceCourseTitle": "Differential Equations",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -42772,6 +43892,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2025",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "MATH 240 (5)",
+    "sourceCourseTitle": "Topics in Linear Algebra",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -42826,6 +43947,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2025",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 240 (5)",
+    "sourceCourseTitle": "Topics in Linear Algebra",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -42882,6 +44004,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2025",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "MATH& 254 (5) see also MATH& 153 combined entry",
+    "sourceCourseTitle": "Calculus IV",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -42938,6 +44061,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009 thru SPR Qtr. 2025",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH& 254 (5) formerly MATH 224, see also MATH& 153 combined entry",
+    "sourceCourseTitle": "Calculus IV",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -42989,9 +44113,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "MATH 256 (5)",
+    "sourceCourseTitle": "Statistics for Business and Social Science",
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -43042,6 +44166,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1990 thru SUM Qtr. 1994",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 290 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -43094,6 +44219,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "MATH 297 (1-5)",
+    "sourceCourseTitle": "Independent Study-Mathematics",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -43144,6 +44270,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2002",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 297 (1-5)",
+    "sourceCourseTitle": "Independent Study-Mathematics",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -43196,6 +44323,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1995 thru SUM Qtr. 1996",
     "guideDepartment": "§ Meteorology",
     "sourceCourseLabel": "§ METR 101 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -43251,7 +44379,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 100 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -43304,7 +44435,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC 101 (5) formerly MUSIC 101",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Fundamentals of Music",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -43355,7 +44489,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2004 thru SPR Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 101 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -43408,7 +44545,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 1994",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 101 (2)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -43461,7 +44601,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 1998",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 102 (3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -43514,7 +44657,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC 103 (5) formerly MUSIC 103",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "American Popular Music",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -43565,7 +44711,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SPR Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 103 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -43618,7 +44767,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC 104 (5) formerly MUSIC 104",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Music in World Culture",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -43669,7 +44821,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "WIN Qtr. 2008 thru SPR Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 104 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -43722,7 +44877,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC& 105 (5) formerly MUSIC 100",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Music Appreciation",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -43773,7 +44931,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SPR Qtr. 1995 thru SPR Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 105 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -43826,7 +44987,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SPR Qtr. 1995 thru SPR Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 106 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -43879,7 +45043,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC 107 (5) formerly MUSIC 107",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "History of Jazz",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -43930,7 +45097,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "WIN Qtr. 2007 thru SPR Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 107 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -43983,7 +45153,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC 108 (5) formerly MUSIC 105",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Computer Music 1",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -44034,7 +45207,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC 109 (5) formerly MUSIC 106",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Computer Music 2",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -44085,7 +45261,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC 110 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Computer Music 3",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -44136,7 +45315,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 111 (3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -44189,7 +45371,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 112 (3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -44242,7 +45427,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 113 (3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -44295,7 +45483,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 114 (2)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -44348,7 +45539,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 115 (2)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -44401,7 +45595,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 116 (2)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -44454,7 +45651,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC 118 (1-3) formerly MUSIC 118",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Concert Choir 1",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -44505,7 +45705,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SPR Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 118 (1-3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -44558,7 +45761,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC 119 (1-3) formerly MUSIC 119",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Concert Choir 2",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -44609,7 +45815,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SPR Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 119 (1-3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -44662,7 +45871,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC 120 (1-3) formerly MUSIC 120",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Concert Choir 3",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -44713,7 +45925,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 120 (1-3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -44766,7 +45981,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC& 121 (2) formerly MUSIC 114",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Ear Training 1",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -44817,7 +46035,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC& 122 (2) formerly MUSIC 115",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Ear Training 2",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -44868,7 +46089,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 1996",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 122 (3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -44921,7 +46145,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC& 123 (2) formerly MUSIC 116",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Ear Training 3",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -44972,7 +46199,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 1996",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 123 (3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -45025,7 +46255,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC 124 (5) formerly MUSIC 124",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Musical Rehearsal and Performance",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -45076,7 +46309,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 124 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -45129,7 +46365,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SPR Qtr. 2015",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC 125 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Vocal Couching for Singers",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -45180,7 +46419,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC 127 (1-5) formerly MUSIC 127",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Green River Jazz Voices 1",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -45231,7 +46473,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SPR Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 127 (1-5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -45284,7 +46529,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC 128 (1-5) formerly MUSIC 128",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Green River Jazz Voices 2",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -45335,7 +46583,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SPR Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 128 (1-5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -45388,7 +46639,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC 129 (1-5) formerly MUSIC 129",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Green River Jazz Voices 3",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -45439,7 +46693,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SPR Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 129",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -45492,7 +46749,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1996",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 130 (1)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -45545,7 +46805,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC 130.1 (1) formerly MUSIC 130.1",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -45596,7 +46859,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SPR Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 130.1 (1)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -45649,7 +46915,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC 130.2 (1) formerly MUSIC 130.2",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -45700,7 +46969,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SPR Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 130.2 (1)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -45753,7 +47025,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC 130.3 (1) formerly MUSIC 130.3",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -45804,7 +47079,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SPR Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 130.3 (1)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -45857,7 +47135,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC& 131 (3) formerly MUSIC 111",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Music Theory 1",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -45908,7 +47189,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC& 132 (3) formerly MUSIC 112",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Music Theory 2",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -45959,7 +47243,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 132 (2)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -46012,7 +47299,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC& 133 (3) formerly MUSIC 113",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Music Theory 3",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -46063,7 +47353,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 133 (2)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -46116,7 +47409,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 134 (2)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -46163,7 +47459,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 136 (2)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -46212,7 +47511,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 137 (2)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -46258,7 +47560,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 139 (2)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -46310,7 +47615,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC 140 (2) formerly MUSIC 132",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Class Piano 1",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -46355,7 +47663,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 140 (2)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -46407,7 +47718,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC 141 (2) formerly MUSIC 133",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Class Piano 2",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -46458,7 +47772,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1994 thru SUM Qtr. 1996",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 141 (4)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -46511,7 +47828,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC 142 (2) formerly MUSIC 134",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Class Piano 3",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -46562,7 +47882,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1994 thru SUM Qtr. 1996",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 142 (4)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -46609,7 +47932,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 145 (2)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -46655,7 +47981,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 170 (1-7)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -46701,7 +48030,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 171 (1-7)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -46747,7 +48079,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 180 (10)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -46793,7 +48128,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 181 (10)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -46839,7 +48177,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 182 (10)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -46885,7 +48226,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 211 (3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -46931,7 +48275,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 212 (3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -46977,7 +48324,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 213 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -47029,7 +48379,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC 218 (1-3) formerly MUSIC 218",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Concert Choir 4",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -47080,7 +48433,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SPR Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 218 (1-3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -47133,7 +48489,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC 219 (1-3) formerly MUSIC 219",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Concert Choir 5",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -47184,7 +48543,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SPR Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 219 (1-3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -47237,7 +48599,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC 220 (1-3) MUSIC 220",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Concert Choir 6",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -47288,7 +48653,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SPR Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 220 (1-3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -47341,7 +48709,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC& 221 (2) formerly MUSIC 254",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -47392,7 +48763,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC& 222 (2) formerly MUSIC 255",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -47437,7 +48811,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 222 (3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -47483,7 +48860,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 223 (3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -47535,7 +48915,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC 227 (1-5) formerly MUSIC 227",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Green River Jazz Voices 4",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -47586,7 +48969,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SPR Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 227 (1-5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -47639,7 +49025,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSIC 228 (1-5) formerly MUSIC 228",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -47690,7 +49079,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SPR Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 228 (1-5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -47743,7 +49135,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSIC 229 (1-5) formerly MUSIC 229",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -47794,7 +49189,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SPR Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 229 (1-5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -47847,7 +49245,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1996",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 230 (1)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -47900,7 +49301,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC 230.1 (1) formerly MUSIC 230.1",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -47951,7 +49355,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SPR Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 230.1 (1)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -48004,7 +49411,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC 230.2 (1) formerly MUSIC 230.2",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -48055,7 +49465,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SPR Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 230.2 (1)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -48108,7 +49521,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC 230.3 (1) formerly MUSIC 230.3",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -48159,7 +49575,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SPR Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 230.3 (1)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -48212,7 +49631,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC& 231 (3) formerly MUSIC 251",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -48263,7 +49685,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC& 232 (3) formerly MUSIC 252",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -48314,7 +49739,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 232 (2)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -48367,7 +49795,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 233 (2)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -48420,7 +49851,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 234 (2)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -48473,7 +49907,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2008 thru SPR Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 251 (3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -48526,7 +49963,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2008 thru SPR Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 252 (3)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -48579,7 +50019,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2008 thru SPR Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 254 (2)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -48632,7 +50075,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2008 thru SPR Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 255 (2)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -48679,7 +50125,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 280 (10)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -48725,7 +50174,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 281 (10)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -48771,7 +50223,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 282 (10)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -48823,6 +50278,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC 298 (1-5) formerly MUSIC 298",
+    "sourceCourseTitle": "Independent Study-Music 1",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -48873,6 +50329,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "SUM Qtr 2006 thru SPR Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 298 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -48925,6 +50382,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "MUSC 299 (1-5) formerly MUSIC 299",
+    "sourceCourseTitle": "Independent Study-Music 2",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -48975,6 +50433,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Music",
     "sourceCourseLabel": "§ MUSIC 299 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -49027,6 +50486,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002",
     "guideDepartment": "Natural resources",
     "sourceCourseLabel": "NATRS 100 (5) formerly FORES 100",
+    "sourceCourseTitle": "Introduction to Natural Resources",
     "targetRequirementTags": [
       "SSc",
       "NSc"
@@ -49081,6 +50541,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002",
     "guideDepartment": "Natural resources",
     "sourceCourseLabel": "NATRS 117 (2) formerly FORES 117",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -49134,6 +50595,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002",
     "guideDepartment": "Natural resources",
     "sourceCourseLabel": "NATRS 161 (5) formerly FORES 161",
+    "sourceCourseTitle": "Wildlife Habitat Management",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -49187,6 +50649,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "SPR Qtr. 2003",
     "guideDepartment": "Natural resources",
     "sourceCourseLabel": "NATRS 162 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -49240,6 +50703,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002",
     "guideDepartment": "Natural resources",
     "sourceCourseLabel": "NATRS 172 (3-4) formerly FORES 172",
+    "sourceCourseTitle": "Computer Applications Overview",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -49292,6 +50756,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002",
     "guideDepartment": "Natural resources",
     "sourceCourseLabel": "NATRS 180, NATRS 292 (5, 5)",
+    "sourceCourseTitle": "Natural Resources Measurement / Resource Sampling and Appraisal of Forest Condit",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -49348,6 +50813,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002",
     "guideDepartment": "Natural resources",
     "sourceCourseLabel": "NATRS 180 (5-7) formerly FORES 180, see also NATRS 180 combined entry",
+    "sourceCourseTitle": "Natural Resources Measurement",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -49403,6 +50869,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002",
     "guideDepartment": "Natural resources",
     "sourceCourseLabel": "NATRS 181 (8) formerly FORES 181",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -49456,6 +50923,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002",
     "guideDepartment": "Natural resources",
     "sourceCourseLabel": "NATRS 182 (5) formerly FORES 182",
+    "sourceCourseTitle": "Aerial Photos, GIS and Forest Navigation",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -49512,6 +50980,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002",
     "guideDepartment": "Natural resources",
     "sourceCourseLabel": "NATRS 183 (5) formerly FORES 183",
+    "sourceCourseTitle": "Tree and Shrub Identification",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -49565,6 +51034,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002",
     "guideDepartment": "Natural resources",
     "sourceCourseLabel": "NATRS 184 (5) formerly FORES 184",
+    "sourceCourseTitle": "Wildflower Identification",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -49618,6 +51088,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002 thru SPR Qtr. 2004",
     "guideDepartment": "Natural resources",
     "sourceCourseLabel": "§ NATRS 195 (5) formerly FORES 195",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -49673,6 +51144,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002 thru SUM Qtr. 2013",
     "guideDepartment": "Natural resources",
     "sourceCourseLabel": "§ NATRS 197 (3) formerly FORES 197",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -49730,6 +51202,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002",
     "guideDepartment": "Natural resources",
     "sourceCourseLabel": "NATRS 198 (1-5) formerly FORES 198",
+    "sourceCourseTitle": "Independent Study-Natural Resources 1",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -49783,6 +51256,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002",
     "guideDepartment": "Natural resources",
     "sourceCourseLabel": "NATRS 199 (1-5) formerly FORES 199",
+    "sourceCourseTitle": "Independent Study-Natural Resources 2",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -49836,6 +51310,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002",
     "guideDepartment": "Natural resources",
     "sourceCourseLabel": "NATRS 210 (5)",
+    "sourceCourseTitle": "Introduction to Soils",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -49889,6 +51364,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002",
     "guideDepartment": "Natural resources",
     "sourceCourseLabel": "NATRS 270 (5)",
+    "sourceCourseTitle": "Stream and Wetland Ecology",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -49942,6 +51418,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002",
     "guideDepartment": "Natural resources",
     "sourceCourseLabel": "NATRS 271 (5)",
+    "sourceCourseTitle": "Stream and Wetland Restoration",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -49995,6 +51472,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002",
     "guideDepartment": "Natural resources",
     "sourceCourseLabel": "NATRS 284 (6) formerly FORES 284",
+    "sourceCourseTitle": "Road and Trail Engineering",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -50048,6 +51526,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002",
     "guideDepartment": "Natural resources",
     "sourceCourseLabel": "NATRS 285 (5) formerly FORES 285",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -50104,9 +51583,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2007",
     "guideDepartment": "Natural resources",
     "sourceCourseLabel": "NATRS 286 (5)",
+    "sourceCourseTitle": "Natural Resources Business Principles",
     "targetRequirementTags": [
-      "NSc",
-      "SSc"
+      "SSc",
+      "NSc"
     ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -50158,6 +51638,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002",
     "guideDepartment": "Natural resources",
     "sourceCourseLabel": "NATRS 292 (8) formerly FORES 292, see also NATRS 180 combined entry",
+    "sourceCourseTitle": "Resource Sampling and Appraisal of Forest Condit",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -50210,6 +51691,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002",
     "guideDepartment": "Natural resources",
     "sourceCourseLabel": "NATRS 293 (5) formerly FORES 293",
+    "sourceCourseTitle": "Silvicultural Analysis and Forest Protection",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -50264,6 +51746,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002",
     "guideDepartment": "Natural resources",
     "sourceCourseLabel": "NATRS 294 (14) formerly FORES 294",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -50320,6 +51803,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002",
     "guideDepartment": "Natural resources",
     "sourceCourseLabel": "NATRS 297 (1-5) formerly FORES 297",
+    "sourceCourseTitle": "Independent Study-Natural Resources 4",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -50373,6 +51857,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002",
     "guideDepartment": "Natural resources",
     "sourceCourseLabel": "NATRS 298 (1-5) formerly FORES 298",
+    "sourceCourseTitle": "Independent Study-Natural Resources 5",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -50426,6 +51911,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002",
     "guideDepartment": "Natural resources",
     "sourceCourseLabel": "NATRS 299 (1-5) formerly FORES 299",
+    "sourceCourseTitle": "Independent Study-Natural Resources 6",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -50476,6 +51962,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "WIN Qtr. 1999 thru SPR Qtr. 2004",
     "guideDepartment": "Natural science",
     "sourceCourseLabel": "§ N SCI 100 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -50531,6 +52018,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1988",
     "guideDepartment": "Natural science",
     "sourceCourseLabel": "§ N SCI 101 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -50586,6 +52074,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1986",
     "guideDepartment": "Natural science",
     "sourceCourseLabel": "§ N SCI 104 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -50643,9 +52132,11 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1990",
     "guideDepartment": "Natural science",
     "sourceCourseLabel": "§ N SCI 115, 116, 117 (5, 5, 5) same as HUMAN 115, 116, 117 and S SCI 115, 116, 117",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "SSc"
+      "A&H",
+      "SSc",
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -50700,6 +52191,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SUM Qtr. 2002",
     "guideDepartment": "Natural science",
     "sourceCourseLabel": "§ N SCI 125 (5) same as BIOL 125 and ENV S 125",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -50752,6 +52244,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1990",
     "guideDepartment": "Natural science",
     "sourceCourseLabel": "N SCI 194 (1-5)",
+    "sourceCourseTitle": "Special Topics-Natural Science",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -50802,6 +52295,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Nursing",
     "sourceCourseLabel": "§ NURSE 100 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -50855,6 +52349,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009 thru SUM Qtr. 2011",
     "guideDepartment": "Nutrition",
     "sourceCourseLabel": "§ NUTR& 100 (3) formerly NURSE 100",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -50907,6 +52402,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "WIN Qtr. 2025",
     "guideDepartment": "Nutrition",
     "sourceCourseLabel": "NUTR& 101 (5)",
+    "sourceCourseTitle": "Nutrition",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -50960,6 +52456,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2011 thru AUT Qtr. 2024",
     "guideDepartment": "Nutrition",
     "sourceCourseLabel": "§ NUTR& 101 (5)",
+    "sourceCourseTitle": "Nutrition",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -51006,6 +52503,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Occupational therapy",
     "sourceCourseLabel": "O T 100 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -51049,6 +52547,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Occupational therapy",
     "sourceCourseLabel": "§ O T 101(3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -51100,6 +52599,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004 thru SUM Qtr. 2013",
     "guideDepartment": "Occupational therapy",
     "sourceCourseLabel": "§ O T 102 (4)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -51152,6 +52652,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2004",
     "guideDepartment": "Occupational therapy",
     "sourceCourseLabel": "§ O T 102 (8)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -51198,6 +52699,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Occupational therapy",
     "sourceCourseLabel": "O T 105 (1-2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -51247,6 +52749,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000 thru SUM Qtr. 2013",
     "guideDepartment": "Occupational therapy",
     "sourceCourseLabel": "§ O T 106 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -51299,6 +52802,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2013",
     "guideDepartment": "Occupational therapy",
     "sourceCourseLabel": "§ O T 108 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -51351,6 +52855,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000 thru SUM Qtr. 2013",
     "guideDepartment": "Occupational therapy",
     "sourceCourseLabel": "§ O T 109 (4-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -51397,6 +52902,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Occupational therapy",
     "sourceCourseLabel": "O T 110 (4)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -51440,6 +52946,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Occupational therapy",
     "sourceCourseLabel": "O T 115 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -51489,6 +52996,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004",
     "guideDepartment": "Occupational therapy",
     "sourceCourseLabel": "O T 116 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -51533,6 +53041,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Occupational therapy",
     "sourceCourseLabel": "O T 194 (1-2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -51576,6 +53085,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Occupational therapy",
     "sourceCourseLabel": "O T 198 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -51625,6 +53135,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2002",
     "guideDepartment": "Occupational therapy",
     "sourceCourseLabel": "§ O T 199 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -51677,6 +53188,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000",
     "guideDepartment": "Occupational therapy",
     "sourceCourseLabel": "O T 202 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -51727,6 +53239,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2013",
     "guideDepartment": "Occupational therapy",
     "sourceCourseLabel": "§ O T 204 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -51779,6 +53292,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2013",
     "guideDepartment": "Occupational therapy",
     "sourceCourseLabel": "§ O T 206 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -51831,6 +53345,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "Prior to SPR Qtr. 2009",
     "guideDepartment": "Occupational therapy",
     "sourceCourseLabel": "§ O T 207 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -51883,6 +53398,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2002",
     "guideDepartment": "Occupational therapy",
     "sourceCourseLabel": "§ O T 209 (4)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -51935,6 +53451,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2013",
     "guideDepartment": "Occupational therapy",
     "sourceCourseLabel": "§ O T 210 (3-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -51987,6 +53504,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2013",
     "guideDepartment": "Occupational therapy",
     "sourceCourseLabel": "§ O T 211 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -52039,6 +53557,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2013",
     "guideDepartment": "Occupational therapy",
     "sourceCourseLabel": "§ O T 212 (3-4)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -52091,6 +53610,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2013",
     "guideDepartment": "Occupational therapy",
     "sourceCourseLabel": "§ O T 215 (1-3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -52143,6 +53663,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004 thru SUM Qtr. 2013",
     "guideDepartment": "Occupational therapy",
     "sourceCourseLabel": "§ O T 220 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -52189,6 +53710,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Occupational therapy",
     "sourceCourseLabel": "O T 250 (1-12)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -52232,6 +53754,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Occupational therapy",
     "sourceCourseLabel": "O T 251 (1-12)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -52281,6 +53804,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Oceanography",
     "sourceCourseLabel": "OCEA& 101 (5) formerly OCEAN 101",
+    "sourceCourseTitle": "Introduction to Oceanography",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -52334,6 +53858,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2007 thru SPR Qtr. 2009",
     "guideDepartment": "Oceanography",
     "sourceCourseLabel": "§ OCEAN 101 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -52389,6 +53914,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "§ PHIL 100 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -52444,6 +53970,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "PHIL& 101 (5) formerly PHIL 100",
+    "sourceCourseTitle": "Introduction to Philosophy",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -52491,7 +54018,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "PHIL 102 (5)",
+    "sourceCourseTitle": "Contemporary Moral Problems",
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": false,
@@ -52537,6 +54066,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "PHIL 103 (5)",
+    "sourceCourseTitle": "Historical Survey-Ancient Philosophy",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -52583,6 +54113,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "PHIL 104 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -52629,6 +54160,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "PHIL 105 (5)",
+    "sourceCourseTitle": "Historical Survey-Modern Philosophy",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -52681,10 +54213,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009 thru SPR Qtr. 2012",
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "§ PHIL& 106 (5) formerly PHIL 120",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc",
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -52732,6 +54264,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "PHIL 110 (5)",
+    "sourceCourseTitle": "Social and Political Philosophy",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -52784,6 +54317,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996",
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "PHIL 112 (5)",
+    "sourceCourseTitle": "Ethics in the Workplace",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -52828,6 +54362,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "PHIL 114 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -52874,9 +54409,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "PHIL 115 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "SSc",
-      "[RSN]"
+      "SSc"
     ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -52927,10 +54462,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2012",
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "PHIL& 120 (5) formerly PHIL& 106",
+    "sourceCourseTitle": "Symbolic Logic",
     "targetRequirementTags": [
       "SSc",
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -52982,10 +54517,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "§ PHIL 120 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc",
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -53033,6 +54568,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "§ PHIL 135 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -53084,6 +54620,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996",
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "PHIL 160 (5)",
+    "sourceCourseTitle": "Introduction to the Philosophy of Science",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -53137,6 +54674,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1988",
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "§ PHIL 160 (5)",
+    "sourceCourseTitle": "Introduction to the Philosophy of Science",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -53186,6 +54724,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "§ PHIL 191 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -53231,6 +54770,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "§ PHIL 192 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -53276,6 +54816,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "§ PHIL 193 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -53321,6 +54862,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "PHIL 194 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -53367,6 +54909,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "§ PHIL 195 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -53412,6 +54955,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "§ PHIL 196 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -53457,6 +55001,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "PHIL 200 (5)",
+    "sourceCourseTitle": "Introduction to the Philosophy of Religion",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -53509,6 +55054,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1992",
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "§ PHIL 205 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -53568,6 +55114,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "SPR Qtr. 1999",
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "PHIL 206 (5)",
+    "sourceCourseTitle": "Gender and Philosophy",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -53615,6 +55162,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "PHIL 210 (5)",
+    "sourceCourseTitle": "Comparative Religion",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -53667,10 +55215,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2008",
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "PHIL 215 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc",
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -53716,6 +55264,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "PHIL 220 (5)",
+    "sourceCourseTitle": "Introduction to Eastern Philosophy",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -53768,6 +55317,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2003 thru SUM Qtr. 2004",
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "§ PHIL 224 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -53817,7 +55367,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "§ PHIL 230 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": true,
@@ -53871,6 +55423,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2009",
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "PHIL 236 (5)",
+    "sourceCourseTitle": "Existentialism",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -53924,6 +55477,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2008",
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "PHIL 238 (5)",
+    "sourceCourseTitle": "Introduction to Philosophy of Human Rights",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -53971,7 +55525,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "PHIL 240 (5)",
+    "sourceCourseTitle": "Introduction to Ethics",
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": false,
@@ -54023,6 +55579,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2008",
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "PHIL 243 (5)",
+    "sourceCourseTitle": "Environmental Ethics",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -54067,6 +55624,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Philosophy",
     "sourceCourseLabel": "PHIL 299 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -54110,7 +55668,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Photography",
     "sourceCourseLabel": "PHOTO 101 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Beginning Black and White Photography",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -54154,7 +55715,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Photography",
     "sourceCourseLabel": "PHOTO 102 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Intermediate Photography",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -54198,7 +55762,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Photography",
     "sourceCourseLabel": "PHOTO 103 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Advanced Photography",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -54248,7 +55815,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1994 thru SPR Qtr. 2009",
     "guideDepartment": "Photography",
     "sourceCourseLabel": "§ PHOTO 104 (5) see now PHOTO 111",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -54304,6 +55874,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SPR Qtr 2009",
     "guideDepartment": "Photography",
     "sourceCourseLabel": "§ PHOTO 105 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -54356,6 +55927,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SPR Qtr 2009",
     "guideDepartment": "Photography",
     "sourceCourseLabel": "§ PHOTO 106 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -54408,7 +55980,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Photography",
     "sourceCourseLabel": "PHOTO 111 (5) formerly PHOTO 104",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Beginning Digital Photography",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -54459,7 +56034,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Photography",
     "sourceCourseLabel": "PHOTO 112 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Intermediate Digital Photography",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -54510,7 +56088,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Photography",
     "sourceCourseLabel": "PHOTO 113 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Advanced Digital Photography",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -54561,7 +56142,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1990 thru SUM Qtr. 1992",
     "guideDepartment": "Photography",
     "sourceCourseLabel": "§ PHOTO 201 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -54614,7 +56198,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1990 thru SUM Qtr. 1992",
     "guideDepartment": "Photography",
     "sourceCourseLabel": "§ PHOTO 202 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -54667,7 +56254,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1990 thru SUM Qtr. 1992",
     "guideDepartment": "Photography",
     "sourceCourseLabel": "§ PHOTO 203 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -54720,7 +56310,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "SPR Qtr. 2001 thru SPR Qtr 2009",
     "guideDepartment": "Photography",
     "sourceCourseLabel": "§ PHOTO 204 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -54767,6 +56360,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 100 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -54813,6 +56407,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 101 (2)",
+    "sourceCourseTitle": "Physical Fitness Lab",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -54858,6 +56453,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 101.5 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -54904,6 +56500,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 102 (2)",
+    "sourceCourseTitle": "Jogging",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -54949,6 +56546,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 103 (3)",
+    "sourceCourseTitle": "Total Physical Fitness",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -55000,6 +56598,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2006",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 104 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -55053,6 +56652,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2000",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 105 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -55100,6 +56700,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 106 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -55146,6 +56747,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 107 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -55191,6 +56793,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 108 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -55236,6 +56839,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 109 (3)",
+    "sourceCourseTitle": "Court Games",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -55281,6 +56885,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 110 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -55332,6 +56937,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 111 (2)",
+    "sourceCourseTitle": "Aerobic Walking",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -55378,6 +56984,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 112 (1)",
+    "sourceCourseTitle": "Karate",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -55423,6 +57030,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 113 (1)",
+    "sourceCourseTitle": "Group Dynamic Activities",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -55468,6 +57076,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 114 (1)",
+    "sourceCourseTitle": "Cardio Conditioning",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -55513,6 +57122,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 115 (1)",
+    "sourceCourseTitle": "Kick-Box Aerobics",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -55564,6 +57174,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2006",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 116 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -55617,6 +57228,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 117 (1)",
+    "sourceCourseTitle": "Badminton/Pickleball",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -55663,6 +57275,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 118 (1)",
+    "sourceCourseTitle": "Volleyball",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -55708,6 +57321,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 119 (1)",
+    "sourceCourseTitle": "Intermediate and Advanced Volleyball",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -55753,6 +57367,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 120 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -55799,6 +57414,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 121 (1)",
+    "sourceCourseTitle": "Badminton",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -55844,6 +57460,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 122 (1)",
+    "sourceCourseTitle": "Archery",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -55889,6 +57506,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 123 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -55935,6 +57553,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 124 (1)",
+    "sourceCourseTitle": "Indoor Soccer",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -55980,6 +57599,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 125 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -56031,6 +57651,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2006",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 126 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -56078,6 +57699,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 127 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -56130,6 +57752,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2011",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 128 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -56182,6 +57805,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2006",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 128 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -56229,6 +57853,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 129 (1)",
+    "sourceCourseTitle": "Pickleball",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -56274,6 +57899,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 130 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -56320,6 +57946,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 131 (2)",
+    "sourceCourseTitle": "Weight Training",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -56365,6 +57992,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 132 (1)",
+    "sourceCourseTitle": "Strength Conditioning",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -56410,6 +58038,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 133 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -56462,6 +58091,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2006",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 134 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -56508,6 +58138,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 135 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -56554,6 +58185,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 136 (1)",
+    "sourceCourseTitle": "Yoga 1",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -56599,6 +58231,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 137 (1)",
+    "sourceCourseTitle": "Body Toning",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -56644,6 +58277,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 138 (1)",
+    "sourceCourseTitle": "Zumba",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -56689,6 +58323,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 139 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -56740,6 +58375,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 140 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -56792,6 +58428,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1982",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 140 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -56845,6 +58482,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2006",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 141 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -56891,6 +58529,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 141 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -56937,6 +58576,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 142 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -56989,6 +58629,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 143 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -57041,6 +58682,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1986",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 143 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -57094,6 +58736,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 144 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -57146,6 +58789,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1986",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 144 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -57193,6 +58837,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 145 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -57245,6 +58890,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2006",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 147 (1)",
+    "sourceCourseTitle": "Pilates/Yoga",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -57291,6 +58937,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 147 (1)",
+    "sourceCourseTitle": "Pilates/Yoga",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -57343,6 +58990,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2006",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 148 (1)",
+    "sourceCourseTitle": "CORE Training",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -57395,6 +59043,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2006",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 149 (1)",
+    "sourceCourseTitle": "CORE Training for Health",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -57441,6 +59090,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 150 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -57492,6 +59142,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2006",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 151 (2)",
+    "sourceCourseTitle": "Sport Conditioning",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -57545,6 +59196,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2006",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 152 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -57592,6 +59244,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ PE 156 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -57644,6 +59297,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2009",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 158 (1)",
+    "sourceCourseTitle": "Cardio Fusion",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -57696,6 +59350,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2006",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ PE 159 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -57749,6 +59404,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1992",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 160 (1-3)",
+    "sourceCourseTitle": "Exercise and Nutrition",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -57796,6 +59452,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 161 (1-3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -57842,6 +59499,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 162 (1-3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -57888,6 +59546,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 163 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -57933,6 +59592,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 164 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -57978,6 +59638,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 175 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -58024,6 +59685,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 190 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -58075,6 +59737,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 193 (1-2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -58121,6 +59784,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 198 (1-3)",
+    "sourceCourseTitle": "Independent Study-Physical Education 1",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -58169,6 +59833,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 201 (2)",
+    "sourceCourseTitle": "Advanced Physical Fitness Lab",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -58214,6 +59879,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 202 (2)",
+    "sourceCourseTitle": "Physical Fitness Lab",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -58265,6 +59931,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2006",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 203 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -58312,6 +59979,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 204 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -58358,6 +60026,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 205 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -58404,6 +60073,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 207 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -58449,6 +60119,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 208 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -58495,6 +60166,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 210 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -58540,6 +60212,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 211 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -58585,6 +60258,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 212 (2)",
+    "sourceCourseTitle": "Advanced Jogging",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -58630,6 +60304,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 215 (2)",
+    "sourceCourseTitle": "Advanced Aerobic Walking",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -58681,6 +60356,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 216 (1)",
+    "sourceCourseTitle": "Advanced Karate",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -58727,6 +60403,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 218 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -58773,6 +60450,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 224 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -58818,6 +60496,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 225 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -58864,6 +60543,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 231 (2)",
+    "sourceCourseTitle": "Advanced Weight Training",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -58915,6 +60595,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2006",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 234 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -58967,6 +60648,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 236 (1)",
+    "sourceCourseTitle": "Yoga 2",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -59019,6 +60701,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2011",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 237 (1)",
+    "sourceCourseTitle": "Advanced Body Toning",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -59071,6 +60754,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2011",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 248 (1)",
+    "sourceCourseTitle": "Advanced Core Training",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -59117,6 +60801,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 251 (2)",
+    "sourceCourseTitle": "Advanced Sport Conditioning",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -59162,6 +60847,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 253 (3)",
+    "sourceCourseTitle": "Advanced Total Physical Fitness",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -59213,6 +60899,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2011",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 258 (1)",
+    "sourceCourseTitle": "Advanced Cardio Fusion",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -59259,6 +60946,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 260 (1-3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -59311,6 +60999,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2000",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 261 (1-3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -59364,6 +61053,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2000",
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 262 (1-3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -59411,6 +61101,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 265 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -59457,6 +61148,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "§ P E 290 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -59502,6 +61194,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physical education",
     "sourceCourseLabel": "P E 298 (1-3)",
+    "sourceCourseTitle": "Independent Study-Physical Education 2",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -59553,6 +61246,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2011",
     "guideDepartment": "§ Physical therapy",
     "sourceCourseLabel": "§ P T 101 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -59605,6 +61299,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000 thru SUM Qtr. 2011",
     "guideDepartment": "§ Physical therapy",
     "sourceCourseLabel": "§ P T 102 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -59657,6 +61352,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000 thru SUM Qtr. 2011",
     "guideDepartment": "§ Physical therapy",
     "sourceCourseLabel": "§ P T 105 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -59709,6 +61405,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2011",
     "guideDepartment": "§ Physical therapy",
     "sourceCourseLabel": "§ P T 110 (2-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -59761,6 +61458,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SPR Qtr. 2006",
     "guideDepartment": "§ Physical therapy",
     "sourceCourseLabel": "§ P T 110L (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -59813,6 +61511,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2011",
     "guideDepartment": "§ Physical therapy",
     "sourceCourseLabel": "§ P T 111 (3-6)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -59865,6 +61564,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SPR Qtr. 2006",
     "guideDepartment": "§ Physical therapy",
     "sourceCourseLabel": "§ P T 111L (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -59917,6 +61617,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2011",
     "guideDepartment": "§ Physical therapy",
     "sourceCourseLabel": "§ P T 112 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -59969,6 +61670,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SUM Qtr. 2000",
     "guideDepartment": "§ Physical therapy",
     "sourceCourseLabel": "§ P T 112L (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -60021,6 +61723,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000 thru SUM Qtr. 2011",
     "guideDepartment": "§ Physical therapy",
     "sourceCourseLabel": "§ P T 113 (3-4)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -60073,6 +61776,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000 thru SPR Qtr. 2006",
     "guideDepartment": "§ Physical therapy",
     "sourceCourseLabel": "§ P T 113L (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -60125,6 +61829,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000 thru SUM Qtr. 2011",
     "guideDepartment": "§ Physical therapy",
     "sourceCourseLabel": "§ P T 114 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -60177,6 +61882,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2011",
     "guideDepartment": "§ Physical therapy",
     "sourceCourseLabel": "§ P T 151 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -60229,6 +61935,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SUM Qtr. 2000",
     "guideDepartment": "§ Physical therapy",
     "sourceCourseLabel": "§ P T 161 (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -60281,6 +61988,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2011",
     "guideDepartment": "§ Physical therapy",
     "sourceCourseLabel": "§ P T 199 (1-8)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -60333,6 +62041,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2011",
     "guideDepartment": "§ Physical therapy",
     "sourceCourseLabel": "§ P T 201 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -60385,6 +62094,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2011",
     "guideDepartment": "§ Physical therapy",
     "sourceCourseLabel": "§ P T 210 (3-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -60437,6 +62147,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SPR Qtr. 2006",
     "guideDepartment": "§ Physical therapy",
     "sourceCourseLabel": "§ P T 210L (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -60489,6 +62200,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2011",
     "guideDepartment": "§ Physical therapy",
     "sourceCourseLabel": "§ P T 211 (4-6)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -60541,6 +62253,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SPR Qtr. 2006",
     "guideDepartment": "§ Physical therapy",
     "sourceCourseLabel": "§ P T 211L (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -60593,6 +62306,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1992 thru SUM Qtr. 2011",
     "guideDepartment": "§ Physical therapy",
     "sourceCourseLabel": "§ P T 212 (1-3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -60645,6 +62359,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SPR Qtr. 2006",
     "guideDepartment": "§ Physical therapy",
     "sourceCourseLabel": "§ P T 212L (1)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -60697,6 +62412,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000 thru SUM Qtr. 2011",
     "guideDepartment": "§ Physical therapy",
     "sourceCourseLabel": "§ P T 213 (3-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -60749,6 +62465,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000 thru SPR Qtr. 2006",
     "guideDepartment": "§ Physical therapy",
     "sourceCourseLabel": "§ P T 213L (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -60801,6 +62518,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2011",
     "guideDepartment": "§ Physical therapy",
     "sourceCourseLabel": "§ P T 251 (1-2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -60853,6 +62571,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2011",
     "guideDepartment": "§ Physical therapy",
     "sourceCourseLabel": "§ P T 252 (1-2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -60905,6 +62624,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2006",
     "guideDepartment": "§ Physical therapy",
     "sourceCourseLabel": "§ P T 253 (12-14)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -60957,6 +62677,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SUM Qtr. 2000",
     "guideDepartment": "§ Physical therapy",
     "sourceCourseLabel": "§ P T 261 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -61009,6 +62730,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SUM Qtr. 2000",
     "guideDepartment": "§ Physical therapy",
     "sourceCourseLabel": "§ P T 262 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -61061,6 +62783,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SUM Qtr. 2000",
     "guideDepartment": "§ Physical therapy",
     "sourceCourseLabel": "§ P T 263 (14)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -61113,6 +62836,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2006",
     "guideDepartment": "§ Physical therapy",
     "sourceCourseLabel": "§ P T 270 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -61165,9 +62889,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Physics",
     "sourceCourseLabel": "§ PHYS 101 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -61221,9 +62945,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009 SPR Qtr. 2012",
     "guideDepartment": "Physics",
     "sourceCourseLabel": "§ PHYS 105 (5) formerly PHYS 101",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -61277,9 +63001,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2012",
     "guideDepartment": "Physics",
     "sourceCourseLabel": "PHYS& 110 (5) formerly PHYS 105",
+    "sourceCourseTitle": "Physics Non-Science Majors with Lab",
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -61333,9 +63057,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2012",
     "guideDepartment": "Physics",
     "sourceCourseLabel": "§ PHYS 110, 150 (5, 5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -61392,9 +63116,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2012",
     "guideDepartment": "Physics",
     "sourceCourseLabel": "§ PHYS 111, 151 (5, 5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -61451,9 +63175,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2012",
     "guideDepartment": "Physics",
     "sourceCourseLabel": "§ PHYS 112, 152 (5, 5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -61510,9 +63234,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2012",
     "guideDepartment": "Physics",
     "sourceCourseLabel": "PHYS& 114, 154 (5, 5) formerly PHYS 110, 150",
+    "sourceCourseTitle": "General Physics I with Lab",
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -61568,9 +63292,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2012",
     "guideDepartment": "Physics",
     "sourceCourseLabel": "PHYS& 115, 155 (5, 5) formerly PHYS 111, 151",
+    "sourceCourseTitle": "General Physics II with Lab",
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -61626,9 +63350,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2012",
     "guideDepartment": "Physics",
     "sourceCourseLabel": "PHYS& 116, 156 (5, 5) formerly PHYS 112, 152",
+    "sourceCourseTitle": "General Physics III with Lab",
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -61676,6 +63400,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physics",
     "sourceCourseLabel": "§ PHYS 194 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -61727,9 +63452,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2012",
     "guideDepartment": "Physics",
     "sourceCourseLabel": "§ PHYS 201 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -61783,6 +63508,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2012",
     "guideDepartment": "Physics",
     "sourceCourseLabel": "§ PHYS 202 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -61838,6 +63564,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2012",
     "guideDepartment": "Physics",
     "sourceCourseLabel": "§ PHYS 203 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -61893,6 +63620,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000 thru SPR Qtr. 2012",
     "guideDepartment": "Physics",
     "sourceCourseLabel": "§ PHYS 208 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -61948,6 +63676,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Physics",
     "sourceCourseLabel": "§ PHYS 221 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -62003,9 +63732,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2012",
     "guideDepartment": "Physics",
     "sourceCourseLabel": "PHYS& 221 (5) formerly PHYS 201",
+    "sourceCourseTitle": "Engineering Physics I with Lab",
     "targetRequirementTags": [
-      "NSc",
-      "[RSN]"
+      "NSc"
     ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -62057,6 +63786,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2012",
     "guideDepartment": "Physics",
     "sourceCourseLabel": "PHYS& 222 (5) formerly PHYS 202",
+    "sourceCourseTitle": "Engineering Physics II with Lab",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -62110,6 +63840,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2012",
     "guideDepartment": "Physics",
     "sourceCourseLabel": "PHYS& 223 (5) formerly PHYS 203",
+    "sourceCourseTitle": "Engineering Physics III with Lab",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -62163,6 +63894,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Physics",
     "sourceCourseLabel": "PHYS 225 (3) formerly PHYS 221",
+    "sourceCourseTitle": "Modern Physics",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -62216,6 +63948,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2012",
     "guideDepartment": "Physics",
     "sourceCourseLabel": "PHYS 229 (2) formerly PHYS 208",
+    "sourceCourseTitle": "Electric and Magnetic Fields",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -62266,6 +63999,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physics",
     "sourceCourseLabel": "§ PHYS 280 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -62311,6 +64045,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Physics",
     "sourceCourseLabel": "PHYS 298 (1-5)",
+    "sourceCourseTitle": "Independent Study-Physics",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -62360,6 +64095,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2002",
     "guideDepartment": "Physics",
     "sourceCourseLabel": "§ PHYS 299 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -62412,6 +64148,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Political science",
     "sourceCourseLabel": "POLS& 101 (5) formerly P SCI 100",
+    "sourceCourseTitle": "Introduction to Political Science",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -62465,6 +64202,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Political science",
     "sourceCourseLabel": "§ P SCI 100 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -62520,6 +64258,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1988 thru WIN Qtr. 1999",
     "guideDepartment": "Political science",
     "sourceCourseLabel": "§ P SCI 101 (2)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -62575,6 +64314,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Political science",
     "sourceCourseLabel": "POLS 194 (5) formerly P SCI 194",
+    "sourceCourseTitle": "Special Topics-Political Science",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -62625,6 +64365,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Political science",
     "sourceCourseLabel": "§ P SCI 194 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -62677,6 +64418,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2022",
     "guideDepartment": "Political science",
     "sourceCourseLabel": "POLS& 200 (5)",
+    "sourceCourseTitle": "Introduction to Law: United States",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -62730,6 +64472,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009 thru SPR Qtr. 2022",
     "guideDepartment": "Political science",
     "sourceCourseLabel": "§ POLS& 200 (5) formerly B A 200",
+    "sourceCourseTitle": "Introduction to Law: United States",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -62785,6 +64528,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Political science",
     "sourceCourseLabel": "§ P SCI 201 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -62840,6 +64584,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Political science",
     "sourceCourseLabel": "POLS& 202 (5) formerly P SCI 202",
+    "sourceCourseTitle": "United States Government",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -62893,6 +64638,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Political science",
     "sourceCourseLabel": "§ P SCI 202 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -62948,6 +64694,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Political science",
     "sourceCourseLabel": "POLS& 203 (5) formerly P SCI 203",
+    "sourceCourseTitle": "International Relations",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -63001,6 +64748,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Political science",
     "sourceCourseLabel": "§ P SCI 203 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -63056,6 +64804,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Political science",
     "sourceCourseLabel": "POLS& 204 (5) formerly P SCI 201",
+    "sourceCourseTitle": "Comparative Government",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -63109,6 +64858,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SPR Qtr. 2009",
     "guideDepartment": "Political science",
     "sourceCourseLabel": "§ P SCI 204 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -63164,6 +64914,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1990",
     "guideDepartment": "Political science",
     "sourceCourseLabel": "§ P SCI 204 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -63219,6 +64970,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SUM Qtr. 2004",
     "guideDepartment": "Political science",
     "sourceCourseLabel": "§ P SCI 205 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -63274,6 +65026,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SUM Qtr. 2000",
     "guideDepartment": "Political science",
     "sourceCourseLabel": "§ P SCI 206 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -63329,6 +65082,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "WIN Qtr. 2021",
     "guideDepartment": "Political science",
     "sourceCourseLabel": "POLS 207 (5)",
+    "sourceCourseTitle": "American Political Participation",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -63382,6 +65136,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Political science",
     "sourceCourseLabel": "POLS 209 (5) formerly P SCI 204",
+    "sourceCourseTitle": "State and Local Government Politics",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -63435,6 +65190,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Political science",
     "sourceCourseLabel": "POLS 298 (1-5) formerly P SCI 298",
+    "sourceCourseTitle": "Independent Study-Political Science",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -63485,6 +65241,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000 thru SPR Qtr. 2009",
     "guideDepartment": "Political science",
     "sourceCourseLabel": "§ P SCI 298 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -63537,6 +65294,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Psychology",
     "sourceCourseLabel": "PSYC& 100 (5) formerly PSYCH 100",
+    "sourceCourseTitle": "General Psychology",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -63590,6 +65348,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Psychology",
     "sourceCourseLabel": "§ PSYCH 100 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -63645,6 +65404,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1986",
     "guideDepartment": "Psychology",
     "sourceCourseLabel": "§ PSYCH 105 (3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -63697,6 +65457,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SPR Qtr. 2009",
     "guideDepartment": "Psychology",
     "sourceCourseLabel": "§ PSYCH 175 (5) formerly S SCI 175; now same as BEHSC 175 and HL ED 175",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -63752,6 +65513,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Psychology",
     "sourceCourseLabel": "PSYC& 180 (5) formerly PSYCH 200",
+    "sourceCourseTitle": "Human Sexuality",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -63805,6 +65567,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998 thru SUM Qtr. 2000",
     "guideDepartment": "Psychology",
     "sourceCourseLabel": "§ PSYCH 180 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -63860,6 +65623,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1986",
     "guideDepartment": "Psychology",
     "sourceCourseLabel": "§ PSYCH 194 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -63912,6 +65676,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Psychology",
     "sourceCourseLabel": "PSYC& 200 (5) formerly PSYCH 210",
+    "sourceCourseTitle": "Lifespan Psychology",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -63965,6 +65730,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Psychology",
     "sourceCourseLabel": "§ PSYCH 200 (5) formerly PSYCH 175",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -64021,6 +65787,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Psychology",
     "sourceCourseLabel": "PSYC 201 (5) formerly PSYCH 201",
+    "sourceCourseTitle": "Personality",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -64075,6 +65842,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986 thru SPR Qtr. 2009",
     "guideDepartment": "Psychology",
     "sourceCourseLabel": "§ PSYCH 201 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -64130,6 +65898,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1986",
     "guideDepartment": "Psychology",
     "sourceCourseLabel": "§ PSYCH 205 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -64185,6 +65954,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Psychology",
     "sourceCourseLabel": "PSYC 209 (5) formerly PSYCH 209",
+    "sourceCourseTitle": "Fundamentals of Psychological Research",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -64235,6 +66005,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1994 thru SPR Qtr. 2009",
     "guideDepartment": "Psychology",
     "sourceCourseLabel": "§ PSYCH 209 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -64287,6 +66058,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002 thru SPR Qtr. 2009",
     "guideDepartment": "Psychology",
     "sourceCourseLabel": "§ PSYCH 210 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -64342,6 +66114,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2002",
     "guideDepartment": "Psychology",
     "sourceCourseLabel": "§ PSYCH 210 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -64397,6 +66170,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Psychology",
     "sourceCourseLabel": "PSYC& 220 (5) formerly PSYCH 250",
+    "sourceCourseTitle": "Psychological Disorders",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -64450,6 +66224,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "SPR Qtr. 2001 thru SPR Qtr. 2009",
     "guideDepartment": "Psychology",
     "sourceCourseLabel": "§ PSYCH 220 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "NSc"
     ],
@@ -64505,6 +66280,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Psychology",
     "sourceCourseLabel": "PSYC 225 (5) formerly PSYCH 220",
+    "sourceCourseTitle": "Fundamentals of Physiological Psychology",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -64558,6 +66334,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1992",
     "guideDepartment": "Psychology",
     "sourceCourseLabel": "§ PSYCH 240 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -64613,6 +66390,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002 thru SPR Qtr. 2009",
     "guideDepartment": "Psychology",
     "sourceCourseLabel": "§ PSYCH 250 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -64668,6 +66446,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2002",
     "guideDepartment": "Psychology",
     "sourceCourseLabel": "§ PSYCH 250 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -64723,6 +66502,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Psychology",
     "sourceCourseLabel": "PSYC 298 (1-5) formerly PSYCH 298",
+    "sourceCourseTitle": "Independent Study-Psychology 1",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -64773,6 +66553,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Psychology",
     "sourceCourseLabel": "§ PSYCH 298 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -64825,6 +66606,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Psychology",
     "sourceCourseLabel": "PSYC 299 (1-5) formerly PSYCH 299",
+    "sourceCourseTitle": "Independent Study-Psychology 2",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -64875,6 +66657,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Psychology",
     "sourceCourseLabel": "§ PSYCH 299 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -64927,6 +66710,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1994 thru SUM Qtr. 1998",
     "guideDepartment": "§ Russian*",
     "sourceCourseLabel": "§ RUSSN 101 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -64979,6 +66763,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1994 thru SUM Qtr. 1998",
     "guideDepartment": "§ Russian*",
     "sourceCourseLabel": "§ RUSSN 102 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -65031,6 +66816,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1994 thru SUM Qtr. 1998",
     "guideDepartment": "§ Russian*",
     "sourceCourseLabel": "§ RUSSN 103 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -65083,6 +66869,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1990",
     "guideDepartment": "Social science",
     "sourceCourseLabel": "§ S SCI 101 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -65138,6 +66925,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1990",
     "guideDepartment": "Social science",
     "sourceCourseLabel": "§ S SCI 102 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -65193,6 +66981,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1990",
     "guideDepartment": "Social science",
     "sourceCourseLabel": "§ S SCI 103 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -65248,6 +67037,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986 thru SUM Qtr. 2000",
     "guideDepartment": "Social science",
     "sourceCourseLabel": "§ S SCI 110 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -65305,7 +67095,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1990",
     "guideDepartment": "Social science",
     "sourceCourseLabel": "§ S SCI 115, 116, 117 (5, 5, 5) same as HUMAN 115, 116, 117 and N SCI 115, 116, 117",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
+      "A&H",
       "SSc",
       "NSc"
     ],
@@ -65362,6 +67154,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004",
     "guideDepartment": "Social science",
     "sourceCourseLabel": "S SCI 160 (5)",
+    "sourceCourseTitle": "Introduction to the Study of Gender",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -65415,6 +67208,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986 thru SUM Qtr. 1996",
     "guideDepartment": "Social science",
     "sourceCourseLabel": "§ S SCI 175 (5) same as BEHSC 175 and HL ED 175",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -65464,6 +67258,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Social science",
     "sourceCourseLabel": "S SCI 194 (1-5)",
+    "sourceCourseTitle": "Special Topics-Social Science",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -65513,6 +67308,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Social science",
     "sourceCourseLabel": "§ S SCI 200 (5) same as B A 200",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -65568,6 +67364,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Social science",
     "sourceCourseLabel": "S SCI 211 (5) formerly S SCI 215, same as AMES 211, and ANTHR 211",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -65621,6 +67418,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2006 thru SPR Qtr. 2009",
     "guideDepartment": "Social science",
     "sourceCourseLabel": "§ S SCI 215 (5) same as AMES 215, ANTHR 215, and HIST 215",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -65676,6 +67474,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SUM Qtr. 2004",
     "guideDepartment": "Social science",
     "sourceCourseLabel": "§ S SCI 215 (5) same as AMES 215, ANTHR 215, and HIST 215",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -65731,6 +67530,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1988",
     "guideDepartment": "Social science",
     "sourceCourseLabel": "§ S SCI 233 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -65786,6 +67586,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1990",
     "guideDepartment": "Social science",
     "sourceCourseLabel": "§ S SCI 234 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -65841,6 +67642,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Sociology",
     "sourceCourseLabel": "SOC& 101 (5) formerly SOC 110",
+    "sourceCourseTitle": "Introduction to Sociology",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -65894,6 +67696,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Sociology",
     "sourceCourseLabel": "§ SOC 110 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -65950,6 +67753,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1986",
     "guideDepartment": "Sociology",
     "sourceCourseLabel": "§ SOC 120 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -65999,6 +67803,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Sociology",
     "sourceCourseLabel": "SOC 194 (1-5)",
+    "sourceCourseTitle": "Special Topics-Sociology",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -66048,6 +67853,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Sociology",
     "sourceCourseLabel": "SOC& 201 (5) formerly SOC 201",
+    "sourceCourseTitle": "Social Problems",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -66101,6 +67907,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Sociology",
     "sourceCourseLabel": "§ SOC 201 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -66156,6 +67963,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "WIN Qtr. 2000",
     "guideDepartment": "Sociology",
     "sourceCourseLabel": "SOC 215 (5) was same as § CRJ 215",
+    "sourceCourseTitle": "Survey of Criminology",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -66210,6 +68018,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986",
     "guideDepartment": "Sociology",
     "sourceCourseLabel": "SOC 220 (5) formerly SOC 120",
+    "sourceCourseTitle": "Sex and Gender in Society",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -66263,6 +68072,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996 thru SUM Qtr. 2000",
     "guideDepartment": "Sociology",
     "sourceCourseLabel": "§ SOC 225 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -66318,6 +68128,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004",
     "guideDepartment": "Sociology",
     "sourceCourseLabel": "SOC 230 (5)",
+    "sourceCourseTitle": "Sociology of Death and Dying",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -66371,6 +68182,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004",
     "guideDepartment": "Sociology",
     "sourceCourseLabel": "SOC 240 (5)",
+    "sourceCourseTitle": "Sociology of the Family",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -66424,6 +68236,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2000",
     "guideDepartment": "Sociology",
     "sourceCourseLabel": "SOC 245 (5)",
+    "sourceCourseTitle": "Juvenile Delinquency",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -66471,6 +68284,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Sociology",
     "sourceCourseLabel": "§ SOC 250 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -66528,6 +68342,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1986",
     "guideDepartment": "Sociology",
     "sourceCourseLabel": "SOC 260 (5)",
+    "sourceCourseTitle": "Crime and Justice",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -66581,6 +68396,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1988 thru SUM Qtr. 1996",
     "guideDepartment": "Sociology",
     "sourceCourseLabel": "§ SOC 271 (5)",
+    "sourceCourseTitle": "Deviance, Power, and Social Control",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -66630,6 +68446,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Sociology",
     "sourceCourseLabel": "SOC 298 (1-5)",
+    "sourceCourseTitle": "Independent Study-Sociology",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -66679,6 +68496,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2004",
     "guideDepartment": "Sociology",
     "sourceCourseLabel": "§ SOC 299 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -66731,6 +68549,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Spanish*",
     "sourceCourseLabel": "§ SPAN 101 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -66783,6 +68602,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Spanish*",
     "sourceCourseLabel": "§ SPAN 102 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -66835,6 +68655,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Spanish*",
     "sourceCourseLabel": "§ SPAN 103 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -66881,6 +68702,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Spanish*",
     "sourceCourseLabel": "SPAN 110 (2-4)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -66930,6 +68752,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Spanish*",
     "sourceCourseLabel": "SPAN& 121 (5) formerly SPAN 101",
+    "sourceCourseTitle": "Spanish I",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -66980,6 +68803,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Spanish*",
     "sourceCourseLabel": "SPAN& 122 (5) formerly SPAN 102",
+    "sourceCourseTitle": "Spanish II",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -67030,6 +68854,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Spanish*",
     "sourceCourseLabel": "SPAN& 123 (5) formerly SPAN 103",
+    "sourceCourseTitle": "Spanish III",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -67074,6 +68899,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Spanish*",
     "sourceCourseLabel": "SPAN 194 (1-5)",
+    "sourceCourseTitle": "Special Studies-Spanish",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -67123,7 +68949,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Spanish*",
     "sourceCourseLabel": "§ SPAN 201 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -67176,7 +69005,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Spanish*",
     "sourceCourseLabel": "§ SPAN 202 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -67229,7 +69061,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2009",
     "guideDepartment": "Spanish*",
     "sourceCourseLabel": "§ SPAN 203 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -67282,7 +69117,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Spanish*",
     "sourceCourseLabel": "SPAN& 221 (5) formerly SPAN 201",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Spanish IV",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -67333,7 +69171,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Spanish*",
     "sourceCourseLabel": "SPAN& 222 (5) formerly SPAN 202",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Spanish V",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -67384,7 +69225,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Spanish*",
     "sourceCourseLabel": "SPAN& 223 (5) formerly SPAN 203",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": "Spanish VI",
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [],
@@ -67429,6 +69273,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Spanish*",
     "sourceCourseLabel": "SPAN 299 (1-5)",
+    "sourceCourseTitle": "Independent Study-Spanish",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -67478,7 +69323,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2004",
     "guideDepartment": "§ Speech",
     "sourceCourseLabel": "§ SPCH 100 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": true,
@@ -67533,7 +69380,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2004",
     "guideDepartment": "§ Speech",
     "sourceCourseLabel": "§ SPCH 110 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": true,
@@ -67588,7 +69437,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1994 thru SUM Qtr. 2000",
     "guideDepartment": "§ Speech",
     "sourceCourseLabel": "§ SPCH 140 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -67641,7 +69493,10 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1988",
     "guideDepartment": "§ Speech",
     "sourceCourseLabel": "§ SPCH 140 (5)",
-    "targetRequirementTags": [],
+    "sourceCourseTitle": null,
+    "targetRequirementTags": [
+      "A&H"
+    ],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
@@ -67694,7 +69549,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1996",
     "guideDepartment": "§ Speech",
     "sourceCourseLabel": "§ SPCH 144 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": true,
@@ -67749,7 +69606,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 1998",
     "guideDepartment": "§ Speech",
     "sourceCourseLabel": "§ SPCH 145 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": true,
@@ -67804,6 +69663,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1982 thru SUM Qtr. 1988",
     "guideDepartment": "§ Speech",
     "sourceCourseLabel": "§ SPCH 147 (1-3)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -67856,6 +69716,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1982 thru SUM Qtr. 2004",
     "guideDepartment": "§ Speech",
     "sourceCourseLabel": "§ SPCH 194 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -67908,6 +69769,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 1994 thru WIN Qtr. 1995",
     "guideDepartment": "§ Speech",
     "sourceCourseLabel": "§ SPCH 200 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
@@ -67960,7 +69822,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "SPR Qtr. 1995 thru SUM Qtr. 2004",
     "guideDepartment": "§ Speech",
     "sourceCourseLabel": "§ SPCH 212 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": true,
@@ -68015,6 +69879,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002 thru SUM Qtr. 2004",
     "guideDepartment": "§ Speech",
     "sourceCourseLabel": "§ SPCH 215 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
       "SSc"
     ],
@@ -68070,7 +69935,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1994 thru SUM Qtr. 2004",
     "guideDepartment": "§ Speech",
     "sourceCourseLabel": "§ SPCH 225 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": true,
@@ -68125,7 +69992,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2004",
     "guideDepartment": "§ Speech",
     "sourceCourseLabel": "§ SPCH 234 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": true,
@@ -68180,7 +70049,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2004",
     "guideDepartment": "§ Speech",
     "sourceCourseLabel": "§ SPCH 235 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": true,
@@ -68235,7 +70106,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "WIN Qtr. 2003 thru SUM Qtr. 2004",
     "guideDepartment": "§ Speech",
     "sourceCourseLabel": "§ SPCH 238 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": true,
@@ -68290,7 +70163,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "SPR Qtr. 2003 thru SUM Qtr. 2004",
     "guideDepartment": "§ Speech",
     "sourceCourseLabel": "§ SPCH 245 (5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [
+      "A&H",
       "SSc"
     ],
     "isObsoleteSourceCourse": true,
@@ -68345,6 +70220,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     "effectiveDateLabel": "Prior to AUT Qtr. 2004",
     "guideDepartment": "§ Speech",
     "sourceCourseLabel": "§ SPCH 299 (1-5)",
+    "sourceCourseTitle": null,
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,

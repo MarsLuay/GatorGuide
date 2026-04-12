@@ -2,6 +2,30 @@
 
 This folder contains Windows launchers for the transfer planner refresh flow.
 
+## Quick start for future people
+
+For the easiest full run, use one command:
+
+```bash
+npm run planner:full:verify
+```
+
+Or double-click:
+
+- `scripts/run-planner-maintenance.cmd`
+
+This executes refresh + verification + hardening + Windows QA and writes a summary to:
+
+- `.tmp/transfer-planner-maintenance-summary.md`
+
+If a run fails because of temporary schedule-download/network issues, use:
+
+```bash
+scripts/run-planner-refresh-no-downloads.cmd
+```
+
+Then rerun the full maintenance command once network access is stable.
+
 ## Planner launchers
 
 - `run-planner-refresh.cmd`
@@ -18,6 +42,37 @@ This folder contains Windows launchers for the transfer planner refresh flow.
   - Larger maintenance flow.
   - Runs the planner refresh plus the extra maintenance/QA steps used for the full planner verification workflow.
 
+## Required update inputs
+
+These are the required inputs that drive planner updates:
+
+- Working Node + npm install in `Mobile Team`.
+- Official UW/GRC source pages and PDFs reachable over network.
+- Current Green River annual schedule URLs (discovered automatically by the GRC public-materials step).
+- Current UW/GRC catalog pages for ingestion.
+- Existing source manifest and parser adapter coverage for each major/pathway owner.
+
+If any of those inputs change, the run output reports exactly where automation coverage broke.
+
+## How to see what must be updated
+
+After `planner:full:verify`, open:
+
+- `.tmp/transfer-planner-maintenance-summary.md`
+
+The summary now includes:
+
+- `Automation Signals` counts (source gaps, parse failures, diff debt, owner-audit issues, hardening outcome).
+- `Required Update Queue`, which lists the concrete update categories still blocking a clean state.
+
+Use the linked reports in that summary for details:
+
+- `.tmp/transfer-planner-source-gaps.md`
+- `.tmp/transfer-planner-requirement-source-parse-report.md`
+- `.tmp/transfer-planner-requirement-diff-promotion-report.md`
+- `.tmp/transfer-planner-owner-audit.md`
+- `.tmp/transfer-planner-hardening-report.md`
+
 ## PowerShell wrappers
 
 These `.cmd` files call the PowerShell scripts in the same folder:
@@ -30,6 +85,9 @@ These `.cmd` files call the PowerShell scripts in the same folder:
 From `Mobile Team`:
 
 ```bash
+npm run planner:full:verify
+npm run planner:status
+npm run planner:check-year-coverage
 npm run planner:refresh
 npm run planner:verify
 npm run planner:audit:owners

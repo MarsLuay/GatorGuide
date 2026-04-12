@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-09T18:56:20.803Z",
+  "generatedAt": "2026-04-10T22:47:55.136Z",
   "sourceUrl": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
   "status": 200,
   "finalUrl": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
@@ -131,6 +131,7 @@
       "effectiveDateLabel": "AUT Qtr. 2009",
       "guideDepartment": "Accounting",
       "sourceCourseLabel": "ACCT& 201, 202 (5, 5) formerly B A 210, 220",
+      "sourceCourseTitle": "Principles of Accounting I / Principles of Accounting II",
       "targetRequirementTags": [],
       "isObsoleteSourceCourse": false,
       "parsedFromOfficialGuide": true,
@@ -182,6 +183,7 @@
       "effectiveDateLabel": "AUT Qtr. 2009",
       "guideDepartment": "Accounting",
       "sourceCourseLabel": "ACCT& 202 (5) formerly B A 220 (5) see ACCT& 201 combined entry",
+      "sourceCourseTitle": "Principles of Accounting II",
       "targetRequirementTags": [],
       "isObsoleteSourceCourse": false,
       "parsedFromOfficialGuide": true,
@@ -233,6 +235,7 @@
       "effectiveDateLabel": "AUT Qtr. 2009",
       "guideDepartment": "Accounting",
       "sourceCourseLabel": "ACCT& 203 (5) formerly B A 230",
+      "sourceCourseTitle": "Principles of Accounting III",
       "targetRequirementTags": [],
       "isObsoleteSourceCourse": false,
       "parsedFromOfficialGuide": true,
@@ -283,6 +286,7 @@
       "effectiveDateLabel": "AUT Qtr. 1996",
       "guideDepartment": "American minority and ethnic studies",
       "sourceCourseLabel": "AMES 100 (5) formerly ETH S 100",
+      "sourceCourseTitle": "Introduction to American Ethnic Studies",
       "targetRequirementTags": [
         "SSc"
       ],
@@ -336,6 +340,7 @@
       "effectiveDateLabel": "AUT Qtr. 2011",
       "guideDepartment": "American minority and ethnic studies",
       "sourceCourseLabel": "AMES 150 (5)",
+      "sourceCourseTitle": "Race and Ethnicity in the Pacific",
       "targetRequirementTags": [
         "SSc"
       ],
@@ -389,6 +394,7 @@
       "effectiveDateLabel": "SPR Qtr. 1997",
       "guideDepartment": "American minority and ethnic studies",
       "sourceCourseLabel": "AMES 194 (1-5)",
+      "sourceCourseTitle": "Special Topics-American Ethnic Studies",
       "targetRequirementTags": [],
       "isObsoleteSourceCourse": false,
       "parsedFromOfficialGuide": true,
@@ -439,6 +445,7 @@
       "effectiveDateLabel": "SUM Qtr. 2009",
       "guideDepartment": "American minority and ethnic studies",
       "sourceCourseLabel": "AMES 211 (5) formerly AMES 215 same as ANTH 211 and S SCI 211",
+      "sourceCourseTitle": null,
       "targetRequirementTags": [
         "SSc"
       ],
@@ -492,6 +499,7 @@
       "effectiveDateLabel": "AUT Qtr. 1996 thru SUM Qtr. 2004",
       "guideDepartment": "American minority and ethnic studies",
       "sourceCourseLabel": "§ AMES 215 (5) same as ANTHR 215, HIST 215, and S SCI 215",
+      "sourceCourseTitle": null,
       "targetRequirementTags": [
         "SSc"
       ],
@@ -547,6 +555,7 @@
       "effectiveDateLabel": "SUM Qtr. 2006 thru SPR Qtr. 2009",
       "guideDepartment": "American minority and ethnic studies",
       "sourceCourseLabel": "§ AMES 215 (5) same as ANTHR 215, HIST 215, and S SCI 215",
+      "sourceCourseTitle": null,
       "targetRequirementTags": [
         "SSc"
       ],
@@ -602,6 +611,7 @@
       "effectiveDateLabel": "AUT Qtr. 1992",
       "guideDepartment": "Anatomy and physiology (prefix formerly A-PHY)",
       "sourceCourseLabel": "AP 100 (5)",
+      "sourceCourseTitle": "Survey of Human Anatomy and Physiology",
       "targetRequirementTags": [
         "NSc"
       ],
@@ -655,6 +665,7 @@
       "effectiveDateLabel": "AUT Qtr. 2005",
       "guideDepartment": "Anatomy and physiology (prefix formerly A-PHY)",
       "sourceCourseLabel": "AP 102 (5)",
+      "sourceCourseTitle": "Bringing Anatomy and Physiology to Life",
       "targetRequirementTags": [
         "NSc"
       ],
@@ -702,6 +713,7 @@
       "effectiveDateLabel": null,
       "guideDepartment": "Anatomy and physiology (prefix formerly A-PHY)",
       "sourceCourseLabel": "AP 103 (5)",
+      "sourceCourseTitle": "Essentials of Human Anatomy and Physiology 1",
       "targetRequirementTags": [
         "NSc"
       ],
@@ -748,6 +760,7 @@
       "effectiveDateLabel": null,
       "guideDepartment": "Anatomy and physiology (prefix formerly A-PHY)",
       "sourceCourseLabel": "AP 104 (5)",
+      "sourceCourseTitle": "Essentials of Human Anatomy and Physiology 2",
       "targetRequirementTags": [
         "NSc"
       ],
@@ -800,6 +813,7 @@
       "effectiveDateLabel": "Prior to AUT Qtr. 1986",
       "guideDepartment": "Anatomy and physiology (prefix formerly A-PHY)",
       "sourceCourseLabel": "§ A-PHY 197 (1-5)",
+      "sourceCourseTitle": null,
       "targetRequirementTags": [],
       "isObsoleteSourceCourse": true,
       "parsedFromOfficialGuide": true,
@@ -852,6 +866,7 @@
       "effectiveDateLabel": "Prior to AUT Qtr. 1986",
       "guideDepartment": "Anatomy and physiology (prefix formerly A-PHY)",
       "sourceCourseLabel": "§ A-PHY 198 (1-5)",
+      "sourceCourseTitle": null,
       "targetRequirementTags": [],
       "isObsoleteSourceCourse": true,
       "parsedFromOfficialGuide": true,
@@ -904,6 +919,7 @@
       "effectiveDateLabel": "Prior to AUT Qtr. 1986",
       "guideDepartment": "Anatomy and physiology (prefix formerly A-PHY)",
       "sourceCourseLabel": "§ A-PHY 199 (1-5)",
+      "sourceCourseTitle": null,
       "targetRequirementTags": [],
       "isObsoleteSourceCourse": true,
       "parsedFromOfficialGuide": true,
@@ -958,6 +974,7 @@
       "effectiveDateLabel": "Prior to SUM Qtr. 2009",
       "guideDepartment": "Anatomy and physiology (prefix formerly A-PHY)",
       "sourceCourseLabel": "§ AP 205, 206 (5, 5) formerly A-PHY 205, 206",
+      "sourceCourseTitle": null,
       "targetRequirementTags": [
         "NSc"
       ],
@@ -1013,6 +1030,7 @@
       "effectiveDateLabel": "Prior to SUM Qtr. 2009",
       "guideDepartment": "Anatomy and physiology (prefix formerly A-PHY)",
       "sourceCourseLabel": "§ AP 206 (5) see A P 205 combined entry",
+      "sourceCourseTitle": null,
       "targetRequirementTags": [],
       "isObsoleteSourceCourse": true,
       "parsedFromOfficialGuide": true,
@@ -1065,6 +1083,7 @@
       "effectiveDateLabel": "SPR Qtr. 2000",
       "guideDepartment": "Anatomy and physiology (prefix formerly A-PHY)",
       "sourceCourseLabel": "AP 210 (1)",
+      "sourceCourseTitle": "Cadaver Anatomy",
       "targetRequirementTags": [
         "NSc"
       ],
@@ -1118,6 +1137,7 @@
       "effectiveDateLabel": "SUM Qtr. 2009",
       "guideDepartment": "Anthropology",
       "sourceCourseLabel": "ANTH& 100 (5) formerly ANTHR 100",
+      "sourceCourseTitle": "Survey of Anthropology",
       "targetRequirementTags": [
         "SSc"
       ],

@@ -131,6 +131,7 @@ export default function TabLayout() {
         <Tabs.Screen name="calendar" options={{ tabBarButton: () => null }} />
         <Tabs.Screen name="opportunity-admin" options={{ tabBarButton: () => null }} />
         <Tabs.Screen name="transfer-planner" options={{ tabBarButton: () => null }} />
+        <Tabs.Screen name="transfer-equivalencies" options={{ tabBarButton: () => null }} />
         <Tabs.Screen name="college-search" options={{ tabBarButton: () => null }} />
         <Tabs.Screen name="questionnaire" options={{ tabBarButton: () => null }} />
         <Tabs.Screen name="compare" options={{ tabBarButton: () => null }} />

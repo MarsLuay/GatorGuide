@@ -160,6 +160,9 @@ async function main() {
       allowSnapshotFallback: true,
     })
   );
+  runStep("Check source year coverage", () =>
+    runCommand("node", ["scripts/planner/check-transfer-planner-source-year-coverage.cjs"])
+  );
   runStep("Generate Green River associate tracks", () =>
     runCommand("node", ["scripts/planner/generate-transfer-planner-grc-associate-tracks.cjs"])
   );

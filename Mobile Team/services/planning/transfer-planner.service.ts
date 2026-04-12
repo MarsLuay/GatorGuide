@@ -819,6 +819,27 @@ function selectEvaluationRuleCandidate(candidates: EvaluationRuleCandidate[]) {
   return [...candidates].sort(compareEvaluationRuleCandidates)[0] ?? null;
 }
 
+function inferRuleSourceCreditAmount(rule: TransferPlannerEquivalencyRule | null | undefined) {
+  if (!rule) return null;
+
+  const rawSourceLabel = String(rule.sourceCourseLabel ?? "").trim();
+  if (!rawSourceLabel) return null;
+
+  const rangeMatch = rawSourceLabel.match(/\((\d+(?:\.\d+)?)\s*-\s*(\d+(?:\.\d+)?)\)/);
+  if (rangeMatch) {
+    const maxInRange = Number.parseFloat(rangeMatch[2] ?? "");
+    return Number.isFinite(maxInRange) ? maxInRange : null;
+  }
+
+  const directMatch = rawSourceLabel.match(/\((\d+(?:\.\d+)?)\)/);
+  if (directMatch) {
+    const parsed = Number.parseFloat(directMatch[1] ?? "");
+    return Number.isFinite(parsed) ? parsed : null;
+  }
+
+  return null;
+}
+
 function isElectiveCreditRule(rule: TransferPlannerEquivalencyRule) {
   return (
     rule.type === "elective-credit" ||
@@ -900,6 +921,8 @@ export function buildTransferPlannerStudentCourseEvaluations(
       ruleStatus: null,
       acceptanceCategory: null,
       targetOutcome: null,
+      targetRequirementTags: [],
+      sourceCreditAmount: null,
       targetCourseCodes: [],
       sourceCourseSet: [],
       missingSourceCourseCodes: [],
@@ -961,6 +984,8 @@ export function buildTransferPlannerStudentCourseEvaluations(
       ruleStatus: candidate?.rule.ruleStatus ?? null,
       acceptanceCategory: candidate?.rule.acceptanceCategory ?? null,
       targetOutcome: candidate?.rule.targetOutcome ?? null,
+      targetRequirementTags: [...(candidate?.rule.targetRequirementTags ?? [])],
+      sourceCreditAmount: inferRuleSourceCreditAmount(candidate?.rule),
       targetCourseCodes: [...(candidate?.rule.targetCourseCodes ?? [])],
       sourceCourseSet: [...(candidate?.sourceCourseSet ?? [])],
       missingSourceCourseCodes,
@@ -1359,6 +1384,24 @@ function buildGeneralEducationPlaceholders(
   return mapped.length
     ? mapped
     : ["5 credits of Humanities", "5 credits of Social Science"];
+}
+
+function buildGeneralEducationPlaceholderGuidanceSummary(label: string) {
+  const normalized = String(label ?? "").toLowerCase();
+
+  if (normalized.includes("humanit")) {
+    return "Pick a source-backed A&H transfer option that fits this plan.";
+  }
+
+  if (normalized.includes("social")) {
+    return "Pick a source-backed SSc transfer option that fits this plan.";
+  }
+
+  if (normalized.includes("elective") || normalized.includes("general")) {
+    return "Pick a source-backed elective or general-education transfer option that fits this plan.";
+  }
+
+  return "Pick a source-backed elective or general-education transfer option that fits this plan.";
 }
 
 function normalizeCourseRequirementPath(courseCodes: string[]) {
@@ -2134,7 +2177,7 @@ export function buildSuggestedQuarterPlan(input: {
           label,
           type: "elective",
           status: "planned",
-          guidanceSummary: null,
+          guidanceSummary: buildGeneralEducationPlaceholderGuidanceSummary(label),
           sequenceGroup: null,
           priorityRank: REQUIREMENT_PRIORITY_RANK.stayAtGrc + 1,
           sourceOrder: Number.MAX_SAFE_INTEGER,

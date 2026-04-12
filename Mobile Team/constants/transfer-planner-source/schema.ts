@@ -365,6 +365,7 @@ export type TransferPlannerEquivalencyRule = {
   effectiveDateLabel?: string | null;
   guideDepartment?: string | null;
   sourceCourseLabel?: string | null;
+  sourceCourseTitle?: string | null;
   targetRequirementTags?: string[];
   isObsoleteSourceCourse?: boolean;
   parsedFromOfficialGuide?: boolean;
@@ -396,6 +397,8 @@ export type TransferPlannerStudentCourseEvaluation = {
   ruleStatus: TransferPlannerEquivalencyRuleStatus | null;
   acceptanceCategory: TransferPlannerEquivalencyAcceptanceCategory | null;
   targetOutcome: string | null;
+  targetRequirementTags: string[];
+  sourceCreditAmount: number | null;
   targetCourseCodes: string[];
   sourceCourseSet: string[];
   missingSourceCourseCodes: string[];

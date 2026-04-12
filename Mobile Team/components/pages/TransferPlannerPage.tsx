@@ -27,6 +27,7 @@ import {
   getTransferPlannerPrimaryDegreeRequirementsSource,
   getTransferPlannerGrcCourseList,
   getTransferPlannerGrcCourseListGuidance,
+  getTransferPlannerEquivalencyRulesForSourceCourse,
   getTransferPlannerStudentRuntimeMajorsForCampus,
   getTransferPlannerStudentRuntimePathwaysForPlan,
   getTransferPlannerTrack,
@@ -273,6 +274,236 @@ function getEvaluationOutcomeTextClass(
   }
 }
 
+function normalizeRequirementTag(value: string | null | undefined) {
+  return String(value ?? "")
+    .trim()
+    .toUpperCase()
+    .replace(/[^A-Z]/g, "");
+}
+
+function getRequirementTagLabel(normalizedTag: string) {
+  switch (normalizedTag) {
+    case "AH":
+      return "A&H";
+    case "SSC":
+      return "SSc";
+    case "NSC":
+      return "NSc";
+    case "QSR":
+      return "QSR";
+    case "VLPA":
+      return "VLPA";
+    case "DIV":
+      return "DIV";
+    case "NW":
+      return "NW";
+    case "IANDS":
+      return "I&S";
+    default:
+      return normalizedTag;
+  }
+}
+
+function escapeRegExp(value: string) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function inferRequirementCreditTotalFromText(text: string, normalizedTag: string) {
+  const tagLabel = getRequirementTagLabel(normalizedTag);
+  const escapedTag = escapeRegExp(tagLabel);
+  const patterns = [
+    new RegExp(`${escapedTag}[^\\n]{0,60}?(\\d+(?:\\.\\d+)?)\\s*credits`, "i"),
+    new RegExp(`(\\d+(?:\\.\\d+)?)\\s*credits[^\\n]{0,60}?${escapedTag}`, "i"),
+  ];
+
+  for (const pattern of patterns) {
+    const match = text.match(pattern);
+    if (!match) continue;
+
+    const parsed = Number.parseFloat(match[1] ?? "");
+    if (Number.isFinite(parsed) && parsed > 0) {
+      return parsed;
+    }
+  }
+
+  return null;
+}
+
+function buildRequirementCreditTotalsByTag(
+  plan: TransferPlannerResolvedMajorPlan,
+  evaluations: TransferPlannerStudentCourseEvaluation[]
+) {
+  const totals = new Map<string, number>();
+  const candidateTags = new Set(
+    evaluations
+      .flatMap((evaluation) => evaluation.targetRequirementTags)
+      .map((tag) => normalizeRequirementTag(tag))
+      .filter(Boolean)
+  );
+
+  if (!candidateTags.size || !plan.degreeMapSections?.length) {
+    return totals;
+  }
+
+  const searchableText = plan.degreeMapSections
+    .flatMap((section) => [section.title, section.note ?? "", ...section.items])
+    .join("\n");
+
+  for (const tag of candidateTags) {
+    const detectedTotal = inferRequirementCreditTotalFromText(searchableText, tag);
+    if (detectedTotal && detectedTotal > 0) {
+      totals.set(tag, detectedTotal);
+    }
+  }
+
+  return totals;
+}
+
+function shouldShowRequirementCreditMessage(evaluation: TransferPlannerStudentCourseEvaluation) {
+  return (
+    (evaluation.outcome === "auto-approved" ||
+      evaluation.outcome === "legacy-rule-used" ||
+      evaluation.outcome === "elective-credit") &&
+    evaluation.targetRequirementTags.length > 0
+  );
+}
+
+function getEvaluationRequirementCreditMessageParts(input: {
+  evaluation: TransferPlannerStudentCourseEvaluation;
+  totalsByTag: Map<string, number>;
+  completedByTag: Map<string, number>;
+  campusId: TransferPlannerCampusId;
+}) {
+  const { evaluation, totalsByTag, completedByTag, campusId } = input;
+  if (!shouldShowRequirementCreditMessage(evaluation)) return null;
+
+  const normalizedTags = Array.from(
+    new Set(
+      evaluation.targetRequirementTags
+        .map((tag) => normalizeRequirementTag(tag))
+        .filter(Boolean)
+    )
+  );
+  if (!normalizedTags.length) return null;
+
+  const selectedTag = normalizedTags.find((tag) => totalsByTag.has(tag)) ?? normalizedTags[0];
+  if (!selectedTag) return null;
+
+  const tagLabel = getRequirementTagLabel(selectedTag);
+  const fulfilledCredits = evaluation.sourceCreditAmount ?? 5;
+  const totalCredits = totalsByTag.get(selectedTag) ?? null;
+
+  if (!totalCredits) {
+    return {
+      prefix: `Fulfills ${fulfilledCredits} credits of the `,
+      clickableLabel: tagLabel,
+      suffix: " requirement.",
+      normalizedTag: selectedTag,
+      campusId,
+    };
+  }
+
+  const completedCredits = Math.min(completedByTag.get(selectedTag) ?? 0, totalCredits);
+  return {
+    prefix: `Fulfills ${fulfilledCredits} credits of the ${totalCredits}-credit `,
+    clickableLabel: tagLabel,
+    suffix: ` requirement. ${completedCredits}/${totalCredits} credits have been completed.`,
+    normalizedTag: selectedTag,
+    campusId,
+  };
+}
+
+function getPlanRequirementCourseCodes(plan: TransferPlannerResolvedMajorPlan) {
+  const checklistItems = [
+    ...plan.applicationChecklist,
+    ...plan.beforeEnrollmentChecklist,
+    ...plan.stayAtGrcChecklist,
+  ];
+
+  return Array.from(
+    new Set(
+      checklistItems.flatMap((item) =>
+        extractCourseCodes([item.grcCourses, ...(item.alternatives ?? [])].flat().join(" "))
+      )
+    )
+  );
+}
+
+function hasDirectEquivalentRuleForCourse(courseCode: string, campusId: TransferPlannerCampusId) {
+  return getTransferPlannerEquivalencyRulesForSourceCourse(courseCode).some((rule) => {
+    if (!rule.targetSchoolIds.includes(campusId)) return false;
+    if (rule.acceptanceCategory === "no-credit") return false;
+    if (rule.type === "elective-credit" || rule.type === "limited-credit") return false;
+    return true;
+  });
+}
+
+function hasAnyDirectMajorEquivalencies(plan: TransferPlannerResolvedMajorPlan) {
+  const requirementCourseCodes = getPlanRequirementCourseCodes(plan);
+  if (!requirementCourseCodes.length) return false;
+
+  return requirementCourseCodes.some((courseCode: string) =>
+    hasDirectEquivalentRuleForCourse(courseCode, plan.campusId)
+  );
+}
+
+function getMajorSelectivityLabel(plan: TransferPlannerResolvedMajorPlan) {
+  const selectivityText = [
+    ...plan.advisorFlags,
+    ...(plan.manualReviewNotes ?? []),
+    plan.summary,
+  ]
+    .join(" ")
+    .toLowerCase();
+
+  if (/capacity\s*[- ]?constrain|capacity\s*[- ]?limited|competitive\s+admission/.test(selectivityText)) {
+    return "capacity-constrained";
+  }
+  if (/open\s+major|open\s+admission/.test(selectivityText)) {
+    return "open";
+  }
+  return "admission-competitive";
+}
+
+function getGeneralAdmissionRequirementsSummary(plan: TransferPlannerResolvedMajorPlan) {
+  const titles = Array.from(
+    new Set(
+      plan.applicationChecklist
+        .map((item) => String(item.title ?? "").trim())
+        .filter(Boolean)
+    )
+  );
+
+  if (!titles.length) {
+    return "complete the published prerequisite coursework listed for this major";
+  }
+
+  const preview = titles.slice(0, 4);
+  return preview.join(", ");
+}
+
+function getSchedulePlaceholderRequirementLinkData(courseLabel: string) {
+  const normalized = String(courseLabel ?? "").trim();
+  if (!normalized) return null;
+  if (!/\bcredits?\s+of\b/i.test(normalized)) return null;
+
+  const lower = normalized.toLowerCase();
+  if (lower.includes("humanit") || lower.includes("a&h") || lower.includes("arts and humanities")) {
+    return { tag: "AH" as const };
+  }
+  if (lower.includes("social science") || /\bssc\b/i.test(lower)) {
+    return { tag: "SSC" as const };
+  }
+  if (lower.includes("natural science") || /\bnsc\b/i.test(lower)) {
+    return { tag: "NSC" as const };
+  }
+  if (lower.includes("elective") || lower.includes("general education") || lower.includes("gen ed")) {
+    return { tag: null };
+  }
+
+  return { tag: null };
+}
+
 function buildTranscriptDebugSnapshot({
   phase,
   document,
@@ -368,8 +599,7 @@ async function openExternalLink(url: string) {
 }
 
 function getAutoTrackSummaryText(trackSummary: string) {
-  const normalized = String(trackSummary ?? "").trim();
-  return normalized || "No automatic Green River associate-path match is available for this major yet.";
+  return String(trackSummary ?? "").trim();
 }
 
 function normalizeSelectorSearchValue(value: string) {
@@ -560,6 +790,124 @@ function SelectorField({
   );
 }
 
+function NoDirectEquivalenciesCard({
+  plan,
+  selectedCampusId,
+  selectedCampusLabel,
+  selectedMajorLabel,
+  pathwayOptions,
+  selectedPathwayLabel,
+  openSelector,
+  campusOptions,
+  majorOptions,
+  onToggleCampus,
+  onToggleMajor,
+  onSelectCampus,
+  onSelectMajor,
+  onSelectPathway,
+  textClass,
+  secondaryTextClass,
+  cardClass,
+  borderClass,
+}: {
+  plan: TransferPlannerResolvedMajorPlan;
+  selectedCampusId: TransferPlannerCampusId;
+  selectedCampusLabel: string;
+  selectedMajorLabel: string;
+  pathwayOptions: TransferPlannerMajorPathway[];
+  selectedPathwayLabel: string | null;
+  openSelector: "campus" | "major" | null;
+  campusOptions: { id: string; label: string; description?: string }[];
+  majorOptions: { id: string; label: string; description?: string }[];
+  onToggleCampus: () => void;
+  onToggleMajor: () => void;
+  onSelectCampus: (id: string) => void;
+  onSelectMajor: (id: string) => void;
+  onSelectPathway: (pathwayId: string) => void;
+  textClass: string;
+  secondaryTextClass: string;
+  cardClass: string;
+  borderClass: string;
+}) {
+  const [isPathwaySelectorOpen, setIsPathwaySelectorOpen] = useState(false);
+  const selectivityLabel = getMajorSelectivityLabel(plan);
+  const generalRequirementsSummary = getGeneralAdmissionRequirementsSummary(plan);
+
+  return (
+    <View className={`${cardClass} border rounded-[28px] p-5`}>
+      <View className="gap-4">
+        <View
+          className="mt-1"
+          style={{ gap: 16 }}
+        >
+          <SelectorField
+            label="Campus"
+            value={selectedCampusLabel}
+            helper=""
+            open={openSelector === "campus"}
+            onToggle={onToggleCampus}
+            options={campusOptions}
+            onSelect={onSelectCampus}
+            selectedOptionId={selectedCampusId}
+            hideSelectedOptionWhenOpen
+            textClass={textClass}
+            secondaryTextClass={secondaryTextClass}
+            cardClass={cardClass}
+            borderClass={borderClass}
+          />
+
+          <SelectorField
+            label="Major"
+            value={selectedMajorLabel}
+            helper=""
+            open={openSelector === "major"}
+            onToggle={onToggleMajor}
+            options={majorOptions}
+            onSelect={onSelectMajor}
+            searchable
+            searchPlaceholder="Search majors"
+            textClass={textClass}
+            secondaryTextClass={secondaryTextClass}
+            cardClass={cardClass}
+            borderClass={borderClass}
+          />
+        </View>
+
+        <MajorPathwaySection
+          pathwayOptions={pathwayOptions}
+          selectedPathwayId={plan.selectedPathwayId}
+          selectedPathwayLabel={selectedPathwayLabel}
+          isPathwaySelectorOpen={isPathwaySelectorOpen}
+          onTogglePathway={() => setIsPathwaySelectorOpen((currentValue) => !currentValue)}
+          onSelectPathway={(pathwayId) => {
+            setIsPathwaySelectorOpen(false);
+            onSelectPathway(pathwayId);
+          }}
+          textClass={textClass}
+          secondaryTextClass={secondaryTextClass}
+          cardClass={cardClass}
+          borderClass={borderClass}
+        />
+
+        <View className={`border ${borderClass} rounded-2xl px-4 py-4`}>
+          <Text className={`${textClass} text-base font-semibold`}>
+            No direct major equivalencies for {plan.title}
+          </Text>
+          <Text className={`${secondaryTextClass} text-sm mt-2`}>
+            There are no direct major equivalencies for this path right now.
+          </Text>
+          <Text className={`${secondaryTextClass} text-sm mt-2`}>
+            To get into the major, general UW admission requirements are {generalRequirementsSummary}.
+          </Text>
+          <Text className={`${secondaryTextClass} text-sm mt-2`}>
+            This is a {selectivityLabel} major, so plan on advisor review, early application prep, and meeting published prerequisites before transfer.
+          </Text>
+        </View>
+      </View>
+    </View>
+  );
+}
+
 function TranscriptSummaryCard({
   transcriptDocument,
   isAnalyzing,
@@ -569,6 +917,7 @@ function TranscriptSummaryCard({
   plan,
   pathwayOptions,
   selectedPathwayLabel,
+  selectedCampusId,
   selectedCampusLabel,
   selectedMajorLabel,
   trackCode,
@@ -601,6 +950,7 @@ function TranscriptSummaryCard({
   plan: TransferPlannerResolvedMajorPlan;
   pathwayOptions: TransferPlannerMajorPathway[];
   selectedPathwayLabel: string | null;
+  selectedCampusId: TransferPlannerCampusId;
   selectedCampusLabel: string;
   selectedMajorLabel: string;
   trackCode: string | null;
@@ -628,6 +978,7 @@ function TranscriptSummaryCard({
   const [isPathwaySelectorOpen, setIsPathwaySelectorOpen] = useState(false);
   const visibleTrackSummary = getAutoTrackSummaryText(trackSummary);
   const visibleFinancialAidNote = String(financialAidNote ?? "").trim();
+  const shouldShowBestTrackCard = Boolean(trackCode);
 
   if (!transcriptDocument) {
     return (
@@ -675,6 +1026,8 @@ function TranscriptSummaryCard({
                 onToggle={onToggleCampus}
                 options={campusOptions}
                 onSelect={onSelectCampus}
+                selectedOptionId={selectedCampusId}
+                hideSelectedOptionWhenOpen
                 textClass={textClass}
                 secondaryTextClass={secondaryTextClass}
                 cardClass={cardClass}
@@ -718,22 +1071,24 @@ function TranscriptSummaryCard({
         borderClass={borderClass}
       />
 
-      <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-4`}>
-        <Text className={`${textClass} text-base font-semibold`}>Best Green River Transfer Associates path</Text>
-        <Text className={`${secondaryTextClass} text-sm mt-1`}>
-          This shows the Green River degree path that best matches the UW degree you picked.
-        </Text>
-
-        <View className={`mt-4 border ${borderClass} rounded-2xl px-4 py-4`}>
-          <Text className={`${textClass} font-semibold`}>
-            {trackCode ? `${trackCode} | ${trackTitle}` : trackTitle}
+      {shouldShowBestTrackCard ? (
+        <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-4`}>
+          <Text className={`${textClass} text-base font-semibold`}>Best Green River Transfer Associates path</Text>
+          <Text className={`${secondaryTextClass} text-sm mt-1`}>
+            This shows the Green River degree path that best matches the UW degree you picked.
           </Text>
-          <Text className={`${secondaryTextClass} text-sm mt-2`}>{visibleTrackSummary}</Text>
-          {visibleFinancialAidNote ? (
-            <Text className={`${secondaryTextClass} text-sm mt-3`}>{visibleFinancialAidNote}</Text>
-          ) : null}
+
+          <View className={`mt-4 border ${borderClass} rounded-2xl px-4 py-4`}>
+            <Text className={`${textClass} font-semibold`}>
+              {trackCode ? `${trackCode} | ${trackTitle}` : trackTitle}
+            </Text>
+            <Text className={`${secondaryTextClass} text-sm mt-2`}>{visibleTrackSummary}</Text>
+            {visibleFinancialAidNote ? (
+              <Text className={`${secondaryTextClass} text-sm mt-3`}>{visibleFinancialAidNote}</Text>
+            ) : null}
+          </View>
         </View>
-      </View>
+      ) : null}
 
       <MajorSpecificsSection
         plan={plan}
@@ -807,6 +1162,8 @@ function TranscriptSummaryCard({
               onToggle={onToggleCampus}
               options={campusOptions}
               onSelect={onSelectCampus}
+              selectedOptionId={selectedCampusId}
+              hideSelectedOptionWhenOpen
               textClass={textClass}
               secondaryTextClass={secondaryTextClass}
               cardClass={cardClass}
@@ -850,22 +1207,24 @@ function TranscriptSummaryCard({
         borderClass={borderClass}
       />
 
-      <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-4`}>
-        <Text className={`${textClass} text-base font-semibold`}>Best Green River Transfer Associates path</Text>
-        <Text className={`${secondaryTextClass} text-sm mt-1`}>
-          This shows the Green River degree path that best matches the UW degree you picked.
-        </Text>
-
-        <View className={`mt-4 border ${borderClass} rounded-2xl px-4 py-4`}>
-          <Text className={`${textClass} font-semibold`}>
-            {trackCode ? `${trackCode} | ${trackTitle}` : trackTitle}
+      {shouldShowBestTrackCard ? (
+        <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-4`}>
+          <Text className={`${textClass} text-base font-semibold`}>Best Green River Transfer Associates path</Text>
+          <Text className={`${secondaryTextClass} text-sm mt-1`}>
+            This shows the Green River degree path that best matches the UW degree you picked.
           </Text>
-          <Text className={`${secondaryTextClass} text-sm mt-2`}>{visibleTrackSummary}</Text>
-          {visibleFinancialAidNote ? (
-            <Text className={`${secondaryTextClass} text-sm mt-3`}>{visibleFinancialAidNote}</Text>
-          ) : null}
+
+          <View className={`mt-4 border ${borderClass} rounded-2xl px-4 py-4`}>
+            <Text className={`${textClass} font-semibold`}>
+              {trackCode ? `${trackCode} | ${trackTitle}` : trackTitle}
+            </Text>
+            <Text className={`${secondaryTextClass} text-sm mt-2`}>{visibleTrackSummary}</Text>
+            {visibleFinancialAidNote ? (
+              <Text className={`${secondaryTextClass} text-sm mt-3`}>{visibleFinancialAidNote}</Text>
+            ) : null}
+          </View>
         </View>
-      </View>
+      ) : null}
 
       <MajorSpecificsSection
         plan={plan}
@@ -881,6 +1240,7 @@ function TranscriptSummaryCard({
         <TranscriptEvaluationReportCard
           report={studentEvaluationReport}
           evaluations={studentCourseEvaluations}
+          plan={plan}
           textClass={textClass}
           secondaryTextClass={secondaryTextClass}
           cardClass={cardClass}
@@ -956,6 +1316,7 @@ function SuggestedScheduleCard({
   quarters,
   degreeTitle,
   campusLabel,
+  selectedCampusId,
   onlyUwEssentialClasses,
   showOnlyUwEssentialClassesToggle,
   onToggleOnlyUwEssentialClasses,
@@ -969,6 +1330,7 @@ function SuggestedScheduleCard({
   quarters: SuggestedQuarterPlan[];
   degreeTitle: string;
   campusLabel: string;
+  selectedCampusId: TransferPlannerCampusId;
   onlyUwEssentialClasses: boolean;
   showOnlyUwEssentialClassesToggle: boolean;
   onToggleOnlyUwEssentialClasses: () => void;
@@ -979,6 +1341,7 @@ function SuggestedScheduleCard({
   cardClass: string;
   borderClass: string;
 }) {
+  const router = useRouter();
   const visibleQuarters = quarters.filter(
     (quarter) => quarter.phase !== "planned" || quarter.courses.length > 0
   );
@@ -1072,8 +1435,8 @@ function SuggestedScheduleCard({
                           />
                         ) : null}
                         <View style={{ flex: 1 }}>
-                          <Text
-                            className={`text-sm font-medium ${
+                          {(() => {
+                            const courseTextClass = `text-sm font-medium ${
                               course.status === "completed"
                                 ? "text-emerald-500"
                                 : course.status === "current"
@@ -1081,10 +1444,38 @@ function SuggestedScheduleCard({
                                   : course.type === "core"
                                     ? "text-emerald-500"
                                     : textClass
-                            }`}
-                          >
-                            {course.label}
-                          </Text>
+                            }`;
+                            const linkData = getSchedulePlaceholderRequirementLinkData(course.label);
+
+                            if (!linkData) {
+                              return (
+                                <Text className={courseTextClass}>
+                                  {course.label}
+                                </Text>
+                              );
+                            }
+
+                            const params: Record<string, string> = {
+                              campusId: selectedCampusId,
+                            };
+                            if (linkData.tag) {
+                              params.tag = linkData.tag;
+                            }
+
+                            return (
+                              <Text
+                                className={`${courseTextClass} underline`}
+                                onPress={() =>
+                                  router.push({
+                                    pathname: ROUTES.transferEquivalencies,
+                                    params,
+                                  })
+                                }
+                              >
+                                {course.label}
+                              </Text>
+                            );
+                          })()}
                           {course.guidanceSummary ? (
                             <Text className={`${secondaryTextClass} text-xs mt-1`}>
                               {course.guidanceSummary}
@@ -1130,6 +1521,7 @@ function SuggestedScheduleCard({
 function TranscriptEvaluationReportCard({
   report,
   evaluations,
+  plan,
   textClass,
   secondaryTextClass,
   cardClass,
@@ -1138,13 +1530,41 @@ function TranscriptEvaluationReportCard({
 }: {
   report: TransferPlannerStudentEvaluationReport;
   evaluations: TransferPlannerStudentCourseEvaluation[];
+  plan: TransferPlannerResolvedMajorPlan;
   textClass: string;
   secondaryTextClass: string;
   cardClass: string;
   borderClass: string;
   embedded?: boolean;
 }) {
+  const router = useRouter();
   const studentFacingEvaluations = evaluations.filter((entry) => entry.studentFacing);
+  const creditTotalsByTag = useMemo(
+    () => buildRequirementCreditTotalsByTag(plan, studentFacingEvaluations),
+    [plan, studentFacingEvaluations]
+  );
+  const completedCreditsByTag = useMemo(() => {
+    const totals = new Map<string, number>();
+
+    for (const evaluation of studentFacingEvaluations) {
+      if (!shouldShowRequirementCreditMessage(evaluation)) continue;
+
+      const creditAmount = evaluation.sourceCreditAmount ?? 5;
+      const normalizedTags = Array.from(
+        new Set(
+          evaluation.targetRequirementTags
+            .map((tag) => normalizeRequirementTag(tag))
+            .filter(Boolean)
+        )
+      );
+
+      for (const tag of normalizedTags) {
+        totals.set(tag, (totals.get(tag) ?? 0) + creditAmount);
+      }
+    }
+
+    return totals;
+  }, [studentFacingEvaluations]);
   const activeBuckets = report.buckets.filter((bucket) => bucket.count > 0);
   const [isEvaluationOpen, setIsEvaluationOpen] = useState(false);
 
@@ -1215,11 +1635,19 @@ function TranscriptEvaluationReportCard({
 
           {studentFacingEvaluations.length ? (
             <View className="gap-3 mt-4">
-              {studentFacingEvaluations.map((evaluation) => (
-                <View
-                  key={evaluation.id}
-                  className={`border ${borderClass} rounded-2xl px-4 py-4`}
-                >
+              {studentFacingEvaluations.map((evaluation) => {
+                const requirementCreditMessage = getEvaluationRequirementCreditMessageParts({
+                  evaluation,
+                  totalsByTag: creditTotalsByTag,
+                  completedByTag: completedCreditsByTag,
+                  campusId: plan.campusId,
+                });
+
+                return (
+                  <View
+                    key={evaluation.id}
+                    className={`border ${borderClass} rounded-2xl px-4 py-4`}
+                  >
                   <View className="flex-row items-start justify-between gap-3">
                     <View className="flex-1 min-w-0">
                       <Text className={`${textClass} font-semibold`}>{evaluation.courseCode}</Text>
@@ -1244,8 +1672,30 @@ function TranscriptEvaluationReportCard({
                       Missing for strongest sequence: {evaluation.missingSourceCourseCodes.join(", ")}
                     </Text>
                   ) : null}
+
+                  {requirementCreditMessage ? (
+                    <Text className={`${secondaryTextClass} text-xs mt-2`}>
+                      {requirementCreditMessage.prefix}
+                      <Text
+                        className="text-emerald-500 underline"
+                        onPress={() =>
+                          router.push({
+                            pathname: ROUTES.transferEquivalencies,
+                            params: {
+                              tag: requirementCreditMessage.normalizedTag,
+                              campusId: requirementCreditMessage.campusId,
+                            },
+                          })
+                        }
+                      >
+                        {requirementCreditMessage.clickableLabel}
+                      </Text>
+                      {requirementCreditMessage.suffix}
+                    </Text>
+                  ) : null}
                 </View>
-              ))}
+                );
+              })}
             </View>
           ) : null}
 
@@ -2026,6 +2476,10 @@ export default function TransferPlannerPage() {
       })),
     [campusMajors]
   );
+  const hasNoDirectMajorEquivalencies = useMemo(
+    () => !!plan && !hasAnyDirectMajorEquivalencies(plan),
+    [plan]
+  );
 
   if (!user) {
     return (
@@ -2051,6 +2505,92 @@ export default function TransferPlannerPage() {
             message="There is not a course plan for this campus yet."
           />
         </View>
+      </ScreenBackground>
+    );
+  }
+
+  if (hasNoDirectMajorEquivalencies) {
+    return (
+      <ScreenBackground includeTopInset includeBottomInset={false}>
+        <ScrollView
+          contentContainerStyle={{
+            paddingBottom: scrollContentPadding.paddingBottom,
+          }}
+          showsVerticalScrollIndicator={false}
+        >
+          <View
+            style={{
+              alignSelf: "center",
+              width: "100%",
+              maxWidth: shellMaxWidth,
+              paddingHorizontal: shellHorizontalPadding,
+              paddingTop: scrollContentPadding.paddingTop + 12,
+              gap: 24,
+            }}
+          >
+            <View className="gap-4">
+              <AnimatedIconPressable
+                onPress={handleGoBack}
+                className="flex-row items-center"
+                containerStyle={{ alignSelf: "flex-start" }}
+              >
+                <MaterialIcons
+                  name="arrow-back"
+                  size={20}
+                  color="#1f8a5d"
+                />
+                <Text className={`${secondaryTextClass} ml-2`}>
+                  {backLabel}
+                </Text>
+              </AnimatedIconPressable>
+
+              <View className="flex-row items-start">
+                <View className="w-12 h-12 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">
+                  <Ionicons name="trail-sign-outline" size={22} color="#008f4e" />
+                </View>
+                <View className="flex-1">
+                  <Text className={`${textClass} text-2xl font-semibold`}>
+                    {"GRC -> UW Course Planner"}
+                  </Text>
+                  <Text className={`${secondaryTextClass} text-sm mt-1`}>
+                    This major currently has no direct source-backed major equivalency map, so the planner is showing admission guidance only.
+                  </Text>
+                </View>
+              </View>
+            </View>
+
+            <NoDirectEquivalenciesCard
+              plan={plan}
+              selectedCampusId={selectedCampusId}
+              selectedCampusLabel={campus.title}
+              selectedMajorLabel={plan?.title ?? "Select major"}
+              pathwayOptions={pathwayOptions}
+              selectedPathwayLabel={plan.selectedPathwayLabel}
+              openSelector={openSelector}
+              campusOptions={campusOptions}
+              majorOptions={majorOptions}
+              onToggleCampus={() =>
+                setOpenSelector((current) => (current === "campus" ? null : "campus"))
+              }
+              onToggleMajor={() =>
+                setOpenSelector((current) => (current === "major" ? null : "major"))
+              }
+              onSelectCampus={(id) => {
+                setSelectedCampusId(id as TransferPlannerCampusId);
+                setOpenSelector(null);
+              }}
+              onSelectMajor={(id) => {
+                setSelectedMajorId(id);
+                setOpenSelector(null);
+              }}
+              onSelectPathway={handleSelectPathway}
+              textClass={textClass}
+              secondaryTextClass={secondaryTextClass}
+              cardClass={cardBgClass}
+              borderClass={borderClass}
+            />
+          </View>
+        </ScrollView>
       </ScreenBackground>
     );
   }
@@ -2113,6 +2653,7 @@ export default function TransferPlannerPage() {
             plan={plan}
             pathwayOptions={pathwayOptions}
             selectedPathwayLabel={plan.selectedPathwayLabel}
+            selectedCampusId={selectedCampusId}
             selectedCampusLabel={campus.title}
             selectedMajorLabel={plan?.title ?? "Select major"}
             trackCode={track?.code ?? null}
@@ -2171,6 +2712,7 @@ export default function TransferPlannerPage() {
                     : plan.title
                 }
                 campusLabel={campus.title}
+                selectedCampusId={plan.campusId}
                 onlyUwEssentialClasses={onlyUwEssentialClasses}
                 showOnlyUwEssentialClassesToggle={hasOptionalStayAtGrcChecklist}
                 onToggleOnlyUwEssentialClasses={() =>

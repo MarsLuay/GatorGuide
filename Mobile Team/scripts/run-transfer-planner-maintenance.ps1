@@ -21,6 +21,12 @@ $summaryPath = Join-Path $tmpDir "transfer-planner-maintenance-summary.md"
 $refreshLauncherPath = Join-Path $PSScriptRoot "run-transfer-planner-refresh.ps1"
 $qaResultsRoot = Join-Path $projectRoot ".tools"
 $qaWebPath = Join-Path $qaResultsRoot "qa-web"
+$sourceGapReportPath = Join-Path $tmpDir "transfer-planner-source-gaps.json"
+$requirementParseReportPath = Join-Path $tmpDir "transfer-planner-requirement-source-parse-report.json"
+$requirementDiffReportPath = Join-Path $tmpDir "transfer-planner-requirement-diff-promotion-report.json"
+$ownerAuditReportPath = Join-Path $tmpDir "transfer-planner-owner-audit.json"
+$hardeningReportPath = Join-Path $tmpDir "transfer-planner-hardening-report.json"
+$sourceYearCoverageReportPath = Join-Path $tmpDir "transfer-planner-source-year-coverage.json"
 
 $stepResults = [ordered]@{
   "Planner refresh" = "pending"
@@ -108,6 +114,74 @@ function Write-Summary {
     [string]$FailureMessage
   )
 
+  function Read-JsonReport {
+    param([string]$Path)
+
+    if (-not (Test-Path $Path)) {
+      return $null
+    }
+
+    try {
+      return Get-Content -Path $Path -Raw | ConvertFrom-Json
+    } catch {
+      return $null
+    }
+  }
+
+  function Add-RequiredAction {
+    param(
+      [System.Collections.Generic.List[string]]$List,
+      [string]$Message
+    )
+
+    if ([string]::IsNullOrWhiteSpace($Message)) {
+      return
+    }
+
+    if (-not $List.Contains($Message)) {
+      $List.Add($Message)
+    }
+  }
+
+  $sourceGapReport = Read-JsonReport -Path $sourceGapReportPath
+  $requirementParseReport = Read-JsonReport -Path $requirementParseReportPath
+  $requirementDiffReport = Read-JsonReport -Path $requirementDiffReportPath
+  $ownerAuditReport = Read-JsonReport -Path $ownerAuditReportPath
+  $hardeningReport = Read-JsonReport -Path $hardeningReportPath
+  $sourceYearCoverageReport = Read-JsonReport -Path $sourceYearCoverageReportPath
+
+  $requiredActions = [System.Collections.Generic.List[string]]::new()
+
+  if ($sourceGapReport -and $sourceGapReport.totalSourceGapOwners -gt 0) {
+    Add-RequiredAction -List $requiredActions -Message "Resolve source gaps: add stronger official source discovery/parser support until hidden source-gap owners reaches 0."
+  }
+
+  if ($requirementParseReport -and $requirementParseReport.failedCount -gt 0) {
+    Add-RequiredAction -List $requiredActions -Message "Fix requirement parsing failures: update source manifest links or parser adapters for owners that did not parse cleanly."
+  }
+
+  if ($requirementDiffReport -and (($requirementDiffReport.reviewCandidateCount -gt 0) -or ($requirementDiffReport.unmappedCount -gt 0))) {
+    Add-RequiredAction -List $requiredActions -Message "Resolve requirement diff promotion debt: reduce review-needed/unmapped requirement diffs to 0 through parser or mapping updates."
+  }
+
+  if ($ownerAuditReport -and (($ownerAuditReport.issueCounts.error -gt 0) -or ($ownerAuditReport.issueCounts.warning -gt 0))) {
+    Add-RequiredAction -List $requiredActions -Message "Address owner-audit issues: fix missing/invalid primary sources, manifest gaps, and parser fallback warnings."
+  }
+
+  if ($hardeningReport -and ($hardeningReport.outcome -ne "passed")) {
+    Add-RequiredAction -List $requiredActions -Message "Clear hardening failures: fix failing checks in transfer-planner-hardening-report.md before shipping planner updates."
+  }
+
+  if ($sourceYearCoverageReport -and ($sourceYearCoverageReport.outcome -ne "ok")) {
+    if ($sourceYearCoverageReport.requiredActions) {
+      foreach ($action in $sourceYearCoverageReport.requiredActions) {
+        Add-RequiredAction -List $requiredActions -Message ([string]$action)
+      }
+    } else {
+      Add-RequiredAction -List $requiredActions -Message "Source year coverage needs attention: latest schedule coverage is not aligned with current/future academic year baselines."
+    }
+  }
+
   $summaryLines = @(
     "# Transfer Planner Maintenance Summary",
     "",
@@ -138,6 +212,74 @@ function Write-Summary {
 
   $summaryLines += @(
     "",
+    "## Run Flags",
+    "",
+    "- Skip downloads: $([string]$SkipDownloads)",
+    "- Skip Windows QA: $([string]$SkipWindowsQa)",
+    "- Skip Chromium install: $([string]$SkipChromiumInstall)",
+    ""
+  )
+
+  $summaryLines += @(
+    "## Automation Signals",
+    ""
+  )
+
+  if ($sourceGapReport) {
+    $summaryLines += "- Hidden source-gap owners: $($sourceGapReport.totalSourceGapOwners)"
+  } else {
+    $summaryLines += "- Hidden source-gap owners: unavailable (source-gap report missing)."
+  }
+
+  if ($requirementParseReport) {
+    $summaryLines += "- Requirement parser failures: $($requirementParseReport.failedCount)"
+  } else {
+    $summaryLines += "- Requirement parser failures: unavailable (parse report missing)."
+  }
+
+  if ($requirementDiffReport) {
+    $summaryLines += "- Requirement diff review-needed count: $($requirementDiffReport.reviewCandidateCount)"
+    $summaryLines += "- Requirement diff unmapped count: $($requirementDiffReport.unmappedCount)"
+  } else {
+    $summaryLines += "- Requirement diff counts: unavailable (diff promotion report missing)."
+  }
+
+  if ($ownerAuditReport) {
+    $summaryLines += "- Owner-audit errors: $($ownerAuditReport.issueCounts.error)"
+    $summaryLines += "- Owner-audit warnings: $($ownerAuditReport.issueCounts.warning)"
+  } else {
+    $summaryLines += "- Owner-audit issue counts: unavailable (owner audit report missing)."
+  }
+
+  if ($hardeningReport) {
+    $summaryLines += "- Hardening outcome: $($hardeningReport.outcome)"
+  } else {
+    $summaryLines += "- Hardening outcome: unavailable (hardening report missing)."
+  }
+
+  if ($sourceYearCoverageReport) {
+    $summaryLines += "- Source year coverage outcome: $($sourceYearCoverageReport.outcome)"
+  } else {
+    $summaryLines += "- Source year coverage outcome: unavailable (source year coverage report missing)."
+  }
+
+  $summaryLines += ""
+
+  $summaryLines += @(
+    "## Required Update Queue",
+    ""
+  )
+
+  if ($requiredActions.Count -eq 0) {
+    $summaryLines += "- None. All monitored automation gates are clean."
+  } else {
+    foreach ($action in $requiredActions) {
+      $summaryLines += "- $action"
+    }
+  }
+
+  $summaryLines += @(
+    "",
     "## Generated Outputs",
     "",
     "- Planner maintenance summary: $summaryPath",
@@ -147,6 +289,7 @@ function Write-Summary {
     "- Planner requirement parse report: $(Join-Path $tmpDir 'transfer-planner-requirement-source-parse-report.md')",
     "- Planner diff classification report: $(Join-Path $tmpDir 'transfer-planner-requirement-diff-promotion-report.md')",
     "- Planner hardening report: $(Join-Path $tmpDir 'transfer-planner-hardening-report.md')",
+    "- Planner source year coverage report: $(Join-Path $tmpDir 'transfer-planner-source-year-coverage.md')",
     "- QA web export: $qaWebPath",
     "- QA output root: $qaResultsRoot",
     ""

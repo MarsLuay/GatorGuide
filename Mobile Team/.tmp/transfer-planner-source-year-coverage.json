@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-04-10T22:58:43.370Z",
+  "nowUtc": "2026-04-10T22:58:43.368Z",
+  "currentAcademicStartYear": 2025,
+  "nextAcademicStartYear": 2026,
+  "futureCoverageExpectedAfterUtc": "2025-10-01T00:00:00.000Z",
+  "futureCoverageExpectedByNow": true,
+  "latestScheduleStartYear": 2026,
+  "discoveredScheduleLabels": [
+    "2024-2025",
+    "2025-2026",
+    "2026-2027"
+  ],
+  "scheduleCount": 3,
+  "coversCurrentAcademicYear": true,
+  "coversFutureAcademicYear": true,
+  "staleYearCoverage": false,
+  "missingFutureCoverage": false,
+  "currentCatalogLabel": "2025-2026",
+  "currentCatalogRootUrl": "https://catalog.greenriver.edu/",
+  "usedSnapshotFallback": false,
+  "snapshotFallbackReason": null,
+  "outcome": "ok",
+  "requiredActions": []
+}

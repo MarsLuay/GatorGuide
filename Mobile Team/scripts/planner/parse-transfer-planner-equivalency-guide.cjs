@@ -2,6 +2,22 @@ const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
 
+require("ts-node").register({
+  skipProject: true,
+  transpileOnly: true,
+  compilerOptions: {
+    module: "CommonJS",
+    moduleResolution: "node",
+  },
+});
+
+let TRANSFER_PLANNER_GENERATED_COURSE_METADATA = [];
+try {
+  ({ TRANSFER_PLANNER_GENERATED_COURSE_METADATA } = require("../../constants/transfer-planner-source/course-metadata.generated"));
+} catch {
+  TRANSFER_PLANNER_GENERATED_COURSE_METADATA = [];
+}
+
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
 const SNAPSHOT_DIR = path.resolve(TMP_DIR, "transfer-planner-equivalency-guide-snapshots");
@@ -33,6 +49,17 @@ const ENTITY_MAP = {
   "#8217": "'",
 };
 const CHUNK_SIZE = 80;
+
+function normalizeMetadataCourseCode(code) {
+  return normalizeWhitespace(code).toUpperCase().replace(/\s+/g, " ");
+}
+
+const GRC_COURSE_TITLE_BY_CODE = new Map(
+  TRANSFER_PLANNER_GENERATED_COURSE_METADATA
+    .filter((entry) => entry && entry.schoolId === "grc")
+    .map((entry) => [normalizeMetadataCourseCode(entry.code), normalizeWhitespace(entry.title)])
+    .filter((entry) => entry[0] && entry[1])
+);
 
 function decodeHtmlEntities(value) {
   return String(value ?? "").replace(
@@ -138,7 +165,28 @@ function parseRequirementTags(value) {
   if (!normalized) {
     return [];
   }
-  return [...new Set(normalized.match(/\[[^\]]+\]|[A-Z][A-Za-z]{1,4}/g) ?? [])];
+
+  const tags = new Set();
+  const cleaned = normalized
+    .replace(/\[[^\]]+\]/g, " ")
+    .replace(/\(\s*\d+(?:\.\d+)?\s*\)/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  if (!cleaned) {
+    return [];
+  }
+
+  if (/\bA\s*&\s*H\b/i.test(cleaned)) tags.add("A&H");
+  if (/\bS\s*Sc\b/i.test(cleaned)) tags.add("SSc");
+  if (/\bN\s*Sc\b/i.test(cleaned)) tags.add("NSc");
+  if (/\bQSR\b/i.test(cleaned)) tags.add("QSR");
+  if (/\bVLPA\b/i.test(cleaned)) tags.add("VLPA");
+  if (/\bI\s*&\s*S\b/i.test(cleaned)) tags.add("I&S");
+  if (/\bDIV\b/i.test(cleaned)) tags.add("DIV");
+  if (/\bNW\b/i.test(cleaned)) tags.add("NW");
+
+  return [...tags];
 }
 
 function parseEffectiveYearRanges(effectiveDateLabel) {
@@ -333,6 +381,12 @@ function buildRule(row) {
   const targetCourseCodes = parseTargetCourseCodes(row.uwequiv);
   const type = classifyRule(row, sourceCourseSet, targetCourseCodes);
   const effectiveDateLabel = row.effdate || null;
+  const sourceCourseTitles = [...new Set(
+    sourceCourseSet
+      .map((courseCode) => GRC_COURSE_TITLE_BY_CODE.get(normalizeMetadataCourseCode(courseCode)) ?? null)
+      .filter(Boolean)
+  )];
+  const sourceCourseTitle = sourceCourseTitles.length ? sourceCourseTitles.join(" / ") : null;
 
   return {
     id: `uw-grc-guide:${String(row.rowNumber).padStart(4, "0")}:${slugify(row.department)}:${slugify(row.cccourse)}`,
@@ -351,6 +405,7 @@ function buildRule(row) {
     effectiveDateLabel,
     guideDepartment: row.department,
     sourceCourseLabel: row.cccourse,
+    sourceCourseTitle,
     targetRequirementTags: parseRequirementTags(row.uwreqs),
     isObsoleteSourceCourse: row.obsolete,
     parsedFromOfficialGuide: true,
