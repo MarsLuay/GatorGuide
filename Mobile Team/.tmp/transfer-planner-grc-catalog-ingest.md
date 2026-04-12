@@ -1,17 +1,17 @@
 # Green River Catalog Ingest
 
-Generated: 2026-04-12T11:27:49.323Z
-Source: https://catalog.greenriver.edu/content.php?catoid=10&navoid=624
-Catalog year: 2025-2026
-Source fingerprint: 313252bff1df9b676b845d0508063cc346d638ed2658cb149cf4e5c02875fa55
+Generated: 2026-04-12T20:06:26.594Z
+Catalog years: 2019-2020, 2020-2021, 2021-2022, 2022-2023, 2023-2024, 2024-2025, 2025-2026
+Source fingerprint: 0c3287f997b043bacebb9f61fbd5f6df09a2078025488624383bc430d40fdaff
 
-- Catalog pages parsed: 16
-- Used cached snapshot fallback: yes
-- Snapshot fallback reason: fetch failed
-- Courses parsed: 1458
-- Courses with credit labels: 1458
-- Courses with enrollment requirement notes: 1178
-- Courses with structured prerequisite paths: 474
+- Catalog roots parsed: 7
+- Catalog pages parsed: 107
+- Catalog years parsed: 7
+- Used cached snapshot fallback: no
+- Courses parsed: 1711
+- Courses with credit labels: 1711
+- Courses with enrollment requirement notes: 1264
+- Courses with structured prerequisite paths: 568
 - Courses with corequisite notes: 0
-- Courses with structured corequisite paths: 98
+- Courses with structured corequisite paths: 153
 

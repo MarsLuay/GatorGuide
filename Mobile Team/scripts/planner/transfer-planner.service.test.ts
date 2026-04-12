@@ -3182,7 +3182,7 @@ test("Seattle Aeronautics runtime planning uses the authored 24-credit breadth t
   );
 });
 
-test("Applied Mathematics filler guidance no longer double-counts shared A&H/SSc placeholders", () => {
+test("Applied Mathematics filler guidance keeps separate A&H and SSc placeholders when the source does not define a shared A&H/SSc bucket", () => {
   const plan = getRequiredPlan("uw-seattle-applied-mathematics");
   const track = {
     id: "test-apmath-general-education-placeholders",
@@ -3220,7 +3220,7 @@ test("Applied Mathematics filler guidance no longer double-counts shared A&H/SSc
 
   assert.ok(humanitiesCourse, "Expected at least one Humanities placeholder.");
   assert.ok(socialScienceCourse, "Expected at least one Social Science placeholder.");
-  assert.ok(sharedBreadthCourse, "Expected at least one combined A&H/SSc placeholder.");
+  assert.equal(sharedBreadthCourse, undefined);
 
   assert.match(
     humanitiesCourse?.guidanceSummary ?? "",
@@ -3230,13 +3230,44 @@ test("Applied Mathematics filler guidance no longer double-counts shared A&H/SSc
     socialScienceCourse?.guidanceSummary ?? "",
     /5\/20 SSc credits needed for Applied Mathematics\./i
   );
+});
+
+test("Seattle American Ethnic Studies planning includes Natural Sciences placeholders from the university areas-of-knowledge requirement", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-american-ethnic-studies");
+  assert.ok(runtimePlan, "Expected the American Ethnic Studies runtime plan.");
+
+  const quarterPlan = buildSuggestedQuarterPlan({
+    plan: runtimePlan,
+    applicationStatuses: buildRequirementStatuses(runtimePlan.applicationChecklist, []),
+    beforeEnrollmentStatuses: buildRequirementStatuses(runtimePlan.beforeEnrollmentChecklist, []),
+    stayAtGrcStatuses: buildRequirementStatuses(runtimePlan.stayAtGrcChecklist, []),
+    completedCourses: [],
+    track: getTransferPlannerTrack(runtimePlan.bestTrackId ?? null),
+    includeStayAtGrcCourses: true,
+    referenceDate: new Date("2026-01-15T12:00:00.000Z"),
+  });
+  const naturalSciencePlaceholders = quarterPlan
+    .filter((quarter) => quarter.phase === "planned")
+    .flatMap((quarter) =>
+      quarter.courses
+        .filter((course) => course.label === "5 credits of Natural Sciences")
+        .map((course) => ({ quarterLabel: quarter.label, course }))
+    );
+  const sharedBreadthPlaceholders = quarterPlan
+    .filter((quarter) => quarter.phase === "planned")
+    .flatMap((quarter) =>
+      quarter.courses.filter((course) => course.label === "5 credits of A&H or SSc")
+    );
+
+  assert.equal(naturalSciencePlaceholders.length, 4);
+  assert.equal(sharedBreadthPlaceholders.length, 0);
   assert.match(
-    sharedBreadthCourse?.guidanceSummary ?? "",
-    /15\/40 A&H\/SSc credits needed for Applied Mathematics\./i
+    naturalSciencePlaceholders[0]?.course.guidanceSummary ?? "",
+    /5\/20 NSc credits needed for American Ethnic Studies\./i
   );
-  assert.doesNotMatch(
-    sharedBreadthCourse?.guidanceSummary ?? "",
-    /15\/15 A&H\/SSc credits needed for Applied Mathematics\./i
+  assert.match(
+    naturalSciencePlaceholders[3]?.course.guidanceSummary ?? "",
+    /20\/20 NSc credits needed for American Ethnic Studies\./i
   );
 });
 
@@ -3652,29 +3683,22 @@ test("Phase 7 planning graph derives prerequisite paths from source-backed cours
   });
 
   assert.deepEqual(graph.prerequisiteCourseSetsByCourseCode["MATH& 254"], [["MATH& 153"]]);
-  assert.deepEqual(
-    graph.prerequisiteCourseSetsByCourseCode["MATH 240"]?.map((path) => path.join(" + ")).sort(),
-    ["MATH& 153 + MATH& 254", "MATH& 163"]
-  );
-  assert.deepEqual(
-    graph.prerequisiteCourseSetsByCourseCode["MATH 238"]?.map((path) => path.join(" + ")).sort(),
-    ["MATH& 153 + MATH& 254", "MATH& 163"]
-  );
-  assert.equal(graph.sourceCounts.metadataPrerequisiteCourseCount, 3);
+  assert.deepEqual(graph.prerequisiteCourseSetsByCourseCode["MATH 240"], [["MATH& 163"]]);
+  assert.equal(graph.prerequisiteCourseSetsByCourseCode["MATH 238"], undefined);
+  assert.deepEqual(graph.corequisiteCourseSetsByCourseCode["MATH 238"], [["MATH& 254"]]);
+  assert.equal(graph.sourceCounts.metadataPrerequisiteCourseCount, 2);
   assert.equal(graph.sourceCounts.chainPrerequisiteCourseCount, 0);
-  assert.equal(graph.sourceCounts.metadataCorequisiteCourseCount, 0);
+  assert.equal(graph.sourceCounts.metadataCorequisiteCourseCount, 1);
 });
 
-test("Phase 7 planning graph drops incomplete multi-course alternative paths instead of shrinking them", () => {
+test("Phase 7 planning graph drops non-actionable corequisites instead of inventing replacement prerequisite paths", () => {
   const graph = buildTransferPlannerCoursePlanningGraph({
     plan: null,
-    actionableCourseCodes: ["MATH& 153", "MATH& 163", "MATH 238"],
+    actionableCourseCodes: ["MATH& 153", "MATH 238"],
   });
 
-  assert.deepEqual(
-    graph.prerequisiteCourseSetsByCourseCode["MATH 238"]?.map((path) => path.join(" + ")).sort(),
-    ["MATH& 163"]
-  );
+  assert.equal(graph.prerequisiteCourseSetsByCourseCode["MATH 238"], undefined);
+  assert.equal(graph.corequisiteCourseSetsByCourseCode["MATH 238"], undefined);
 });
 
 test("Phase 7 planning graph keeps curated chain rules as a fallback while metadata coverage grows", () => {
@@ -3706,12 +3730,11 @@ test("Phase 7 planning graph keeps chain fallback targets inside the actionable 
 });
 
 test("Phase 7 quarter planning respects metadata prerequisites even without a hardcoded chain", () => {
-  const completedCourses = buildTranscriptCourses("MATH& 151", "MATH& 152");
+  const completedCourses = buildTranscriptCourses("MATH& 151", "MATH& 152", "MATH& 153");
   const applicationStatuses = buildRequirementStatuses(
     [
-      buildChecklistItem("calc3", "Calculus III", ["MATH& 163"]),
+      buildChecklistItem("calc4", "Calculus IV", ["MATH& 254"]),
       buildChecklistItem("diffeq", "Differential equations", ["MATH 238"]),
-      buildChecklistItem("linear-algebra", "Linear algebra", ["MATH 240"]),
     ],
     completedCourses
   );
@@ -3735,10 +3758,9 @@ test("Phase 7 quarter planning respects metadata prerequisites even without a ha
     .flatMap((quarter) => quarter.courses);
   const math238Course = plannedCourses.find((course) => course.label === "MATH 238");
 
-  assert.equal(plannedQuarterLabelForCourse("MATH& 163"), "Fall 2026");
-  assert.equal(plannedQuarterLabelForCourse("MATH 238"), "Winter 2027");
-  assert.equal(plannedQuarterLabelForCourse("MATH 240"), "Winter 2027");
-  assert.doesNotMatch(math238Course?.guidanceSummary ?? "", /Prerequisite for MATH 240\./i);
+  assert.equal(plannedQuarterLabelForCourse("MATH& 254"), "Fall 2026");
+  assert.equal(plannedQuarterLabelForCourse("MATH 238"), "Fall 2026");
+  assert.match(math238Course?.guidanceSummary ?? "", /MATH& 254/i);
 });
 
 test("Phase 7 quarter planning pulls in Statics support courses before scheduling ENGR& 214", () => {
@@ -3811,10 +3833,7 @@ test("Phase 7 quarter planning does not schedule a course before a partial alter
 
   assert.notEqual(plannedCourseLabels.indexOf("MATH& 254"), -1);
   assert.notEqual(plannedCourseLabels.indexOf("MATH 238"), -1);
-  assert.equal(
-    plannedCourseLabels.indexOf("MATH& 254") < plannedCourseLabels.indexOf("MATH 238"),
-    true
-  );
+  assert.equal(plannedCourseLabels.indexOf("MATH& 254") <= plannedCourseLabels.indexOf("MATH 238"), true);
 });
 
 test("Phase 7 quarter planning accepts a completed alternative prerequisite path", () => {
@@ -5034,17 +5053,18 @@ test("Canonical course registry bootstraps planner-tracked GRC and UW courses wi
 });
 
 test("Canonical course registry now stores normalized sequence metadata for planner-critical GRC courses", () => {
+  const math153 = getTransferPlannerCanonicalCourse("grc", "MATH& 153");
   const math240 = getTransferPlannerCanonicalCourse("grc", "MATH 240");
   const chemistryTwo = getTransferPlannerCanonicalCourse("grc", "CHEM& 162");
   const csTwo = getTransferPlannerCanonicalCourse("grc", "CS 122");
   const math238 = getTransferPlannerCanonicalCourse("grc", "MATH 238");
 
+  assert.equal(math153?.title, "Calculus III");
+  assert.deepEqual(math153?.prerequisiteCourseCodes, ["MATH& 152"]);
+
   assert.equal(math240?.title, "Linear Algebra");
   assert.equal(math240?.creditValue, 5);
-  assert.deepEqual(
-    math240?.prerequisiteAlternativeCourseCodeSets?.map((path) => path.join(" + ")).sort(),
-    ["MATH& 153 + MATH& 254", "MATH& 163"]
-  );
+  assert.deepEqual(math240?.prerequisiteCourseCodes, ["MATH& 163"]);
 
   assert.equal(chemistryTwo?.title, "General Chemistry with Lab II");
   assert.deepEqual(chemistryTwo?.prerequisiteCourseCodes, ["CHEM& 161"]);
@@ -5053,10 +5073,8 @@ test("Canonical course registry now stores normalized sequence metadata for plan
   assert.deepEqual(csTwo?.prerequisiteCourseCodes, ["CS 121"]);
 
   assert.equal(math238?.title, "Differential Equations");
-  assert.deepEqual(math238?.prerequisiteAlternativeCourseCodeSets, [
-    ["MATH& 153", "MATH& 254"],
-    ["MATH& 163"],
-  ]);
+  assert.deepEqual(math238?.prerequisiteCourseCodes, []);
+  assert.deepEqual(math238?.corequisiteCourseCodes, ["MATH& 254"]);
 });
 
 test("Generated Green River catalog metadata now expands source-backed title and credit coverage", () => {

@@ -3,6 +3,8 @@ const fs = require("fs");
 const path = require("path");
 const {
   buildPagedGrcCourseDescriptionsUrl,
+  compareAcademicYearLabels,
+  extractCurrentGrcCatalogDetails,
   loadGrcPublicMaterials,
 } = require("./grc-public-materials.cjs");
 
@@ -242,6 +244,15 @@ function uniqueCoursePaths(paths) {
   return [...byKey.values()].sort((a, b) => a.join("|").localeCompare(b.join("|")));
 }
 
+function removeOverlappingRequirementPaths(paths, overlappingPaths) {
+  if (!paths.length || !overlappingPaths.length) {
+    return paths;
+  }
+
+  const overlappingKeys = new Set(overlappingPaths.map((path) => path.join("|")));
+  return paths.filter((path) => !overlappingKeys.has(path.join("|")));
+}
+
 function crossCombineCoursePaths(leftPaths, rightPaths) {
   if (!leftPaths.length) {
     return uniqueCoursePaths(rightPaths);
@@ -301,6 +312,32 @@ function parseCoursePathsFromExpression(expression) {
     return innerPaths;
   }
   return outerPaths;
+}
+
+function extractExplicitConcurrentEnrollmentPaths(chunk) {
+  let remainder = normalizeWhitespace(chunk);
+  const explicitCorequisitePaths = [];
+
+  remainder = remainder.replace(
+    /\(\s*([^()]+?)\s+or\s+concurrent enrollment\s*\)/gi,
+    (_match, expression) => {
+      explicitCorequisitePaths.push(...parseCoursePathsFromExpression(expression));
+      return " ";
+    }
+  );
+
+  remainder = remainder.replace(
+    /\b(?:at least\s+)?concurrent enrollment in\s+([^;.,]+)/gi,
+    (_match, expression) => {
+      explicitCorequisitePaths.push(...parseCoursePathsFromExpression(expression));
+      return " ";
+    }
+  );
+
+  return {
+    remainder: normalizeWhitespace(remainder),
+    explicitCorequisitePaths: uniqueCoursePaths(explicitCorequisitePaths),
+  };
 }
 
 function mergeRequirementPaths(existingPaths, incomingPaths, joiner) {
@@ -369,8 +406,43 @@ function parseGrcEnrollmentRequirementText(value) {
       continue;
     }
 
-    const chunkPaths = parseCoursePathsFromExpression(chunk);
+    const { remainder, explicitCorequisitePaths } = extractExplicitConcurrentEnrollmentPaths(chunk);
+    const chunkPaths = parseCoursePathsFromExpression(remainder);
     if (!chunkPaths.length) {
+      if (explicitCorequisitePaths.length) {
+        if (joiner === "or" && prerequisitePaths.length > 0) {
+          prerequisitePaths = removeOverlappingRequirementPaths(
+            prerequisitePaths,
+            explicitCorequisitePaths
+          );
+        }
+        corequisitePaths = mergeRequirementPaths(
+          corequisitePaths,
+          explicitCorequisitePaths,
+          joiner
+        );
+      }
+      continue;
+    }
+
+    if (explicitCorequisitePaths.length) {
+      if (joiner === "or" && prerequisitePaths.length > 0) {
+        prerequisitePaths = removeOverlappingRequirementPaths(
+          prerequisitePaths,
+          explicitCorequisitePaths
+        );
+      }
+
+      prerequisitePaths = mergeRequirementPaths(
+        prerequisitePaths,
+        removeOverlappingRequirementPaths(chunkPaths, explicitCorequisitePaths),
+        joiner
+      );
+      corequisitePaths = mergeRequirementPaths(
+        corequisitePaths,
+        explicitCorequisitePaths,
+        joiner
+      );
       continue;
     }
 
@@ -826,18 +898,108 @@ function buildCourseEntries(html, catalogYearLabel, courseDescriptionsSourceUrl)
   return entries.sort((left, right) => left.code.localeCompare(right.code));
 }
 
+function mergeRanges(left = [], right = []) {
+  const byKey = new Map();
+  for (const range of [...left, ...right]) {
+    byKey.set(`${range.startLabel}|${range.endLabel ?? ""}|${range.note ?? ""}`, range);
+  }
+  return [...byKey.values()].sort((a, b) => compareAcademicYearLabels(a.startLabel, b.startLabel));
+}
+
+function mergeLinks(left = [], right = []) {
+  const byUrl = new Map();
+  for (const link of [...left, ...right]) {
+    if (link?.url) {
+      byUrl.set(link.url, link);
+    }
+  }
+  return [...byUrl.values()].sort((a, b) => a.label.localeCompare(b.label));
+}
+
+function mergeCourseEntries(entries) {
+  const byCode = new Map();
+  for (const entry of entries) {
+    const key = `${entry.schoolId}|${entry.code}`;
+    const existing = byCode.get(key);
+    if (!existing) {
+      byCode.set(key, {
+        ...entry,
+        prerequisiteCourseCodes: [...(entry.prerequisiteCourseCodes ?? [])],
+        prerequisiteAlternativeCourseCodeSets: mergeAlternativeCourseCodeSets(
+          [],
+          entry.prerequisiteAlternativeCourseCodeSets
+        ),
+        prerequisiteNotes: [...(entry.prerequisiteNotes ?? [])],
+        corequisiteCourseCodes: [...(entry.corequisiteCourseCodes ?? [])],
+        corequisiteAlternativeCourseCodeSets: mergeAlternativeCourseCodeSets(
+          [],
+          entry.corequisiteAlternativeCourseCodeSets
+        ),
+        corequisiteNotes: [...(entry.corequisiteNotes ?? [])],
+        effectiveYearRanges: [...(entry.effectiveYearRanges ?? [])],
+        sourceLinks: [...(entry.sourceLinks ?? [])],
+        notes: [...(entry.notes ?? [])],
+      });
+      continue;
+    }
+
+    byCode.set(key, {
+      ...existing,
+      title: entry.title ?? existing.title ?? null,
+      creditValue:
+        entry.creditValue !== undefined && entry.creditValue !== null
+          ? entry.creditValue
+          : existing.creditValue ?? null,
+      creditLabel: entry.creditLabel ?? existing.creditLabel ?? null,
+      catalogDescription: entry.catalogDescription ?? existing.catalogDescription ?? null,
+      prerequisiteCourseCodes: uniqueStrings([
+        ...(existing.prerequisiteCourseCodes ?? []),
+        ...(entry.prerequisiteCourseCodes ?? []),
+      ]),
+      prerequisiteAlternativeCourseCodeSets: mergeAlternativeCourseCodeSets(
+        existing.prerequisiteAlternativeCourseCodeSets,
+        entry.prerequisiteAlternativeCourseCodeSets
+      ),
+      prerequisiteNotes: uniqueStrings([
+        ...(existing.prerequisiteNotes ?? []),
+        ...(entry.prerequisiteNotes ?? []),
+      ]),
+      corequisiteCourseCodes: uniqueStrings([
+        ...(existing.corequisiteCourseCodes ?? []),
+        ...(entry.corequisiteCourseCodes ?? []),
+      ]),
+      corequisiteAlternativeCourseCodeSets: mergeAlternativeCourseCodeSets(
+        existing.corequisiteAlternativeCourseCodeSets,
+        entry.corequisiteAlternativeCourseCodeSets
+      ),
+      corequisiteNotes: uniqueStrings([
+        ...(existing.corequisiteNotes ?? []),
+        ...(entry.corequisiteNotes ?? []),
+      ]),
+      effectiveYearRanges: mergeRanges(existing.effectiveYearRanges, entry.effectiveYearRanges),
+      sourceLinks: mergeLinks(existing.sourceLinks, entry.sourceLinks),
+      notes: uniqueStrings([...(existing.notes ?? []), ...(entry.notes ?? [])]),
+    });
+  }
+
+  return [...byCode.values()].sort((left, right) => left.code.localeCompare(right.code));
+}
+
 function writeMarkdown(report) {
   const lines = [
     "# Green River Catalog Ingest",
     "",
     `Generated: ${report.generatedAt}`,
-    `Source: ${report.sourceUrl}`,
-    `Catalog year: ${report.catalogYearLabel}`,
+    `Catalog years: ${report.catalogYearLabels.join(", ")}`,
     `Source fingerprint: ${report.sourceFingerprint}`,
     "",
+    `- Catalog roots parsed: ${report.catalogRootCount}`,
     `- Catalog pages parsed: ${report.pageCount}`,
+    `- Catalog years parsed: ${report.catalogYearLabels.length}`,
     `- Used cached snapshot fallback: ${report.usedSnapshotFallback ? "yes" : "no"}`,
-    ...(report.snapshotFallbackReason ? [`- Snapshot fallback reason: ${report.snapshotFallbackReason}`] : []),
+    ...(report.snapshotFallbackYears.length
+      ? [`- Snapshot fallback years: ${report.snapshotFallbackYears.join(", ")}`]
+      : []),
     `- Courses parsed: ${report.courseCount}`,
     `- Courses with credit labels: ${report.coursesWithCreditLabels}`,
     `- Courses with enrollment requirement notes: ${report.coursesWithEnrollmentRequirementNotes}`,
@@ -850,36 +1012,90 @@ function writeMarkdown(report) {
   fs.writeFileSync(OUTPUT_MD_PATH, `${lines.join("\n")}\n`);
 }
 
+async function fetchCatalogDefinitions(grcPublicMaterials) {
+  const catalogEntries = [...(grcPublicMaterials.catalogEntries ?? [])]
+    .filter((entry) => /^20\d{2}-20\d{2}$/.test(String(entry?.label ?? "")))
+    .filter((entry) => /^https?:\/\/catalog\.greenriver\.edu\//i.test(String(entry?.url ?? "")))
+    .sort((left, right) => compareAcademicYearLabels(left.label, right.label));
+
+  const definitions = [];
+  for (const catalogEntry of catalogEntries) {
+    const rootHtml = await fetchText(catalogEntry.url, {
+      label: `Green River catalog root ${catalogEntry.label}`,
+    });
+    const details = extractCurrentGrcCatalogDetails(
+      rootHtml,
+      catalogEntry.url,
+      catalogEntry.label
+    );
+    const snapshotPath = getCatalogSnapshotPath(details.label);
+    const catalogHtml = await fetchCatalogHtml(
+      details.courseDescriptionsExpandedUrl,
+      snapshotPath
+    );
+
+    definitions.push({
+      label: details.label,
+      courseDescriptionsUrl: details.courseDescriptionsUrl,
+      courseDescriptionsExpandedUrl: details.courseDescriptionsExpandedUrl,
+      snapshotPath,
+      html: catalogHtml.html,
+      pageCount: catalogHtml.pageCount,
+      usedSnapshotFallback: catalogHtml.usedSnapshotFallback,
+      snapshotFallbackReason: catalogHtml.snapshotFallbackReason,
+    });
+  }
+
+  return definitions;
+}
+
 async function main() {
   const grcPublicMaterials = await loadGrcPublicMaterials({
     forceRefresh: false,
     allowSnapshotFallback: true,
   });
-  const { currentCatalog } = grcPublicMaterials;
   fs.mkdirSync(SNAPSHOT_DIR, { recursive: true });
 
-  const snapshotPath = getCatalogSnapshotPath(currentCatalog.label);
-  const catalogHtml = await fetchCatalogHtml(
-    currentCatalog.courseDescriptionsExpandedUrl,
-    snapshotPath
+  const catalogDefinitions = await fetchCatalogDefinitions(grcPublicMaterials);
+  const rawEntries = catalogDefinitions.flatMap((catalogDefinition) =>
+    buildCourseEntries(
+      catalogDefinition.html,
+      catalogDefinition.label,
+      catalogDefinition.courseDescriptionsUrl
+    )
   );
-  const html = catalogHtml.html;
-
-  const entries = buildCourseEntries(
-    html,
-    currentCatalog.label,
-    currentCatalog.courseDescriptionsUrl
+  const entries = mergeCourseEntries(rawEntries);
+  const sourceFingerprint = sha256Text(
+    catalogDefinitions
+      .map((catalogDefinition) => `${catalogDefinition.label}\n${catalogDefinition.html}`)
+      .join("\n\n")
   );
   const report = {
     generatedAt: new Date().toISOString(),
-    sourceUrl: currentCatalog.courseDescriptionsUrl,
-    expandedSourceUrl: currentCatalog.courseDescriptionsExpandedUrl,
-    pageCount: catalogHtml.pageCount,
-    snapshotPath,
-    usedSnapshotFallback: catalogHtml.usedSnapshotFallback,
-    snapshotFallbackReason: catalogHtml.snapshotFallbackReason,
-    catalogYearLabel: currentCatalog.label,
-    sourceFingerprint: sha256Text(html),
+    sourceUrls: catalogDefinitions.map((catalogDefinition) => catalogDefinition.courseDescriptionsUrl),
+    expandedSourceUrls: catalogDefinitions.map(
+      (catalogDefinition) => catalogDefinition.courseDescriptionsExpandedUrl
+    ),
+    pageCount: catalogDefinitions.reduce(
+      (sum, catalogDefinition) => sum + catalogDefinition.pageCount,
+      0
+    ),
+    catalogRootCount: catalogDefinitions.length,
+    snapshotPaths: catalogDefinitions.map((catalogDefinition) => catalogDefinition.snapshotPath),
+    usedSnapshotFallback: catalogDefinitions.some(
+      (catalogDefinition) => catalogDefinition.usedSnapshotFallback
+    ),
+    snapshotFallbackYears: catalogDefinitions
+      .filter((catalogDefinition) => catalogDefinition.usedSnapshotFallback)
+      .map((catalogDefinition) => catalogDefinition.label),
+    snapshotFallbackReasons: catalogDefinitions
+      .filter((catalogDefinition) => Boolean(catalogDefinition.snapshotFallbackReason))
+      .map((catalogDefinition) => ({
+        label: catalogDefinition.label,
+        reason: catalogDefinition.snapshotFallbackReason,
+      })),
+    catalogYearLabels: catalogDefinitions.map((catalogDefinition) => catalogDefinition.label),
+    sourceFingerprint,
     courseCount: entries.length,
     coursesWithCreditLabels: entries.filter((entry) => Boolean(entry.creditLabel)).length,
     coursesWithEnrollmentRequirementNotes: entries.filter(
@@ -903,7 +1119,9 @@ async function main() {
   fs.writeFileSync(OUTPUT_JSON_PATH, `${JSON.stringify(report, null, 2)}\n`);
   writeMarkdown(report);
 
-  console.log(`Parsed ${report.courseCount} Green River catalog courses.`);
+  console.log(
+    `Parsed ${report.courseCount} merged Green River catalog courses across ${report.catalogYearLabels.length} catalog years.`
+  );
   console.log(`Catalog ingest JSON: ${OUTPUT_JSON_PATH}`);
   console.log(`Catalog ingest Markdown: ${OUTPUT_MD_PATH}`);
 }

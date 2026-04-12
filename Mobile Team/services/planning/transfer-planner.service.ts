@@ -5,6 +5,7 @@ import {
   getTransferPlannerChainsForPlan,
   getTransferPlannerEquivalencyRulesForSourceCourse,
   getTransferPlannerMajorPlan,
+  getTransferPlannerParsedRequirementSourceBlocks,
   resolveTransferPlannerMajorPlan,
   TRANSFER_PLANNER_SOURCE_GAP_REGISTRY,
   TransferPlannerChecklistItem,
@@ -1620,7 +1621,7 @@ function getCourseAvailabilityMatch(
   return latestPublishedQuarters.includes(getAvailabilityQuarterForPlanningKind(preferredQuarterKind));
 }
 
-type GeneralEducationPlaceholderKind = "ah" | "ssc" | "ahOrSsc" | "elective";
+type GeneralEducationPlaceholderKind = "ah" | "ssc" | "nsc" | "ahOrSsc" | "elective";
 
 type GeneralEducationPlaceholder = {
   label: string;
@@ -1630,6 +1631,7 @@ type GeneralEducationPlaceholder = {
 type GeneralEducationRequirementTargets = {
   ahCredits: number | null;
   sscCredits: number | null;
+  nscCredits: number | null;
   breadthCredits: number | null;
   electiveCredits: number | null;
 };
@@ -1642,6 +1644,7 @@ function getGeneralEducationPlaceholderKind(
   const normalized = String(label ?? "").toLowerCase();
   const hasHumanities = normalized.includes("humanit");
   const hasSocialScience = normalized.includes("social");
+  const hasNaturalScience = normalized.includes("natural science") || /\bnsc\b/i.test(normalized);
   const hasElective =
     normalized.includes("elective") ||
     normalized.includes("general education") ||
@@ -1657,6 +1660,10 @@ function getGeneralEducationPlaceholderKind(
 
   if (hasSocialScience) {
     return "ssc";
+  }
+
+  if (hasNaturalScience) {
+    return "nsc";
   }
 
   if (hasElective) {
@@ -1690,6 +1697,11 @@ function createGeneralEducationPlaceholderByKind(
         label: "5 credits of Social Science",
         kind,
       };
+    case "nsc":
+      return {
+        label: "5 credits of Natural Sciences",
+        kind,
+      };
     case "ahOrSsc":
       return {
         label: "5 credits of A&H or SSc",
@@ -1703,37 +1715,100 @@ function createGeneralEducationPlaceholderByKind(
   }
 }
 
+function isCombinedOnlyBreadthRequirementTarget(
+  requirementTargets: GeneralEducationRequirementTargets
+) {
+  return (
+    requirementTargets.breadthCredits !== null &&
+    requirementTargets.ahCredits === null &&
+    requirementTargets.sscCredits === null
+  );
+}
+
+function getSharedBreadthCreditsForPlaceholders(
+  placeholders: GeneralEducationPlaceholder[],
+  requirementTargets: GeneralEducationRequirementTargets
+) {
+  return placeholders.filter((entry) => {
+    if (entry.kind === "ahOrSsc") {
+      return true;
+    }
+
+    return (
+      isCombinedOnlyBreadthRequirementTarget(requirementTargets) &&
+      (entry.kind === "ah" || entry.kind === "ssc")
+    );
+  }).length * GENERAL_ED_PLACEHOLDER_CREDITS;
+}
+
+function rebalanceSharedBreadthPlaceholders(
+  placeholders: GeneralEducationPlaceholder[],
+  requirementTargets: GeneralEducationRequirementTargets
+) {
+  let ahCredits = placeholders.filter((entry) => entry.kind === "ah").length * GENERAL_ED_PLACEHOLDER_CREDITS;
+  let sscCredits = placeholders.filter((entry) => entry.kind === "ssc").length * GENERAL_ED_PLACEHOLDER_CREDITS;
+
+  for (const placeholder of placeholders) {
+    if (placeholder.kind !== "ahOrSsc") {
+      continue;
+    }
+
+    const remainingAh = Math.max(0, (requirementTargets.ahCredits ?? 0) - ahCredits);
+    const remainingSsc = Math.max(0, (requirementTargets.sscCredits ?? 0) - sscCredits);
+    const nextKind = remainingSsc > remainingAh ? "ssc" : "ah";
+    const replacement = createGeneralEducationPlaceholderByKind(nextKind);
+    placeholder.kind = replacement.kind;
+    placeholder.label = replacement.label;
+
+    if (nextKind === "ah") {
+      ahCredits += GENERAL_ED_PLACEHOLDER_CREDITS;
+    } else {
+      sscCredits += GENERAL_ED_PLACEHOLDER_CREDITS;
+    }
+  }
+}
+
 function buildGeneralEducationPlaceholders(
   track: TransferPlannerTrack | null,
   completedCourses: TranscriptCourseEntry[],
   referenceDate?: Date,
   plan?: TransferPlannerMajorPlan | null
 ) {
-  const fallbackPlaceholders: GeneralEducationPlaceholder[] = [
-    createGeneralEducationPlaceholderByKind("ah"),
-    createGeneralEducationPlaceholderByKind("ssc"),
-  ];
-
-  if (!track) {
-    return fallbackPlaceholders;
-  }
-
-  const mapped = getResolvedTrackTermsForPlanning(track, completedCourses, referenceDate)
+  const resolvedTrackTerms = track
+    ? getResolvedTrackTermsForPlanning(track, completedCourses, referenceDate)
+    : [];
+  const mapped = resolvedTrackTerms
     .flatMap((term) => term.courses)
     .map((entry) => buildGeneralEducationPlaceholder(String(entry)))
     .filter((entry): entry is GeneralEducationPlaceholder => !!entry);
-
-  const placeholders = mapped.length ? mapped : fallbackPlaceholders;
   const requirementTargets = buildGeneralEducationRequirementTargets(plan);
+  const fallbackPlaceholders: GeneralEducationPlaceholder[] = isCombinedOnlyBreadthRequirementTarget(
+    requirementTargets
+  )
+    ? [createGeneralEducationPlaceholderByKind("ahOrSsc")]
+    : [
+        createGeneralEducationPlaceholderByKind("ah"),
+        createGeneralEducationPlaceholderByKind("ssc"),
+      ];
+  const placeholders = mapped.length ? mapped : fallbackPlaceholders;
+  if (requirementTargets.breadthCredits === null) {
+    rebalanceSharedBreadthPlaceholders(placeholders, requirementTargets);
+  }
+  const sourceBackedNscCredits = getSourceBackedNaturalScienceCredits({
+    courseLabels: resolvedTrackTerms.flatMap((term) => term.courses),
+    completedCourses,
+    campusId: plan?.campusId,
+  });
 
   const getAhCredits = () =>
     placeholders.filter((entry) => entry.kind === "ah").length * GENERAL_ED_PLACEHOLDER_CREDITS;
   const getSscCredits = () =>
     placeholders.filter((entry) => entry.kind === "ssc").length * GENERAL_ED_PLACEHOLDER_CREDITS;
+  const getNscCredits = () =>
+    sourceBackedNscCredits +
+    placeholders.filter((entry) => entry.kind === "nsc").length * GENERAL_ED_PLACEHOLDER_CREDITS;
   const getBreadthCredits = () =>
-    placeholders.filter(
-      (entry) => entry.kind === "ah" || entry.kind === "ssc" || entry.kind === "ahOrSsc"
-    ).length * GENERAL_ED_PLACEHOLDER_CREDITS;
+    getSharedBreadthCreditsForPlaceholders(placeholders, requirementTargets);
   const getElectiveCredits = () =>
     placeholders.filter((entry) => entry.kind === "elective").length *
     GENERAL_ED_PLACEHOLDER_CREDITS;
@@ -1750,6 +1825,13 @@ function buildGeneralEducationPlaceholders(
     getSscCredits() < requirementTargets.sscCredits
   ) {
     placeholders.push(createGeneralEducationPlaceholderByKind("ssc"));
+  }
+
+  while (
+    requirementTargets.nscCredits !== null &&
+    getNscCredits() < requirementTargets.nscCredits
+  ) {
+    placeholders.push(createGeneralEducationPlaceholderByKind("nsc"));
   }
 
   while (
@@ -1795,7 +1877,8 @@ function getDefaultGeneralEducationRequirementTargets(
     return {
       ahCredits: 20,
       sscCredits: 20,
-      breadthCredits: 40,
+      nscCredits: null,
+      breadthCredits: null,
       electiveCredits: null,
     };
   }
@@ -1825,6 +1908,15 @@ function buildGeneralEducationRequirementTargets(
   plan: TransferPlannerMajorPlan | null | undefined
 ): GeneralEducationRequirementTargets {
   const sourcePlan = getGeneralEducationRequirementTargetSourcePlan(plan);
+  const selectedPathwayId =
+    (sourcePlan as { selectedPathwayId?: string | null } | null | undefined)?.selectedPathwayId ?? null;
+  const parsedRequirementSourceLines = sourcePlan
+    ? getTransferPlannerParsedRequirementSourceBlocks(sourcePlan.id, selectedPathwayId).flatMap((block) => [
+        ...(block.requirementCueLines ?? []),
+        ...(block.pathwayLabels ?? []),
+        ...(block.chooseStatements ?? []),
+      ])
+    : [];
   const normalized = [
     ...(sourcePlan?.degreeMapSections ?? []).flatMap((section) => section.items),
     sourcePlan?.summary ?? "",
@@ -1832,6 +1924,7 @@ function buildGeneralEducationRequirementTargets(
     sourcePlan?.financialAidNote ?? "",
     ...(sourcePlan?.advisorFlags ?? []),
     ...(sourcePlan?.manualReviewNotes ?? []),
+    ...parsedRequirementSourceLines,
   ]
     .map((item) => String(item ?? "").toLowerCase().replace(/\s+/g, " ").trim())
     .filter(Boolean)
@@ -1840,6 +1933,7 @@ function buildGeneralEducationRequirementTargets(
   const emptyTargets: GeneralEducationRequirementTargets = {
     ahCredits: null,
     sscCredits: null,
+    nscCredits: null,
     breadthCredits: null,
     electiveCredits: null,
   };
@@ -1848,7 +1942,11 @@ function buildGeneralEducationRequirementTargets(
     return getDefaultGeneralEducationRequirementTargets(sourcePlan ?? plan) ?? emptyTargets;
   }
 
-  const sharedAreaCredits = findGeneralEducationCreditValue(normalized, [
+  const sharedAoiCredits = findGeneralEducationCreditValue(normalized, [
+    /(\d+)\s+credits?\s+(?:of|in)\s+each[^.]*\ba&h\b[^.]*\bssc\b[^.]*\bnsc\b/,
+    /(\d+)\s+credits?\s+(?:of|in)\s+each[^.]*\barts?\s+and\s+humanities\b[^.]*\bsocial sciences?\b[^.]*\bnatural sciences?\b/,
+  ]);
+  const sharedAreaCredits = sharedAoiCredits ?? findGeneralEducationCreditValue(normalized, [
     /(\d+)\s+credits?\s+(?:of|in)\s+each[^.]*\ba&h\b[^.]*\bssc\b/,
     /(\d+)\s+credits?\s+(?:of|in)\s+each[^.]*\barts?\s+and\s+humanities\b[^.]*\bsocial sciences?\b/,
   ]);
@@ -1872,6 +1970,22 @@ function buildGeneralEducationRequirementTargets(
       /(\d+)\s+credits?\s+(?:of|in)\s+social sciences?\b/,
       /(\d+)\s+social sciences?\s+credits?\b/,
     ]);
+  const parsedNscCredits =
+    sharedAoiCredits ??
+    findGeneralEducationCreditValue(normalized, [
+      /at least\s+(\d+)\s+nsc\s+credits?\b/,
+      /(\d+)\s+credits?\s+(?:of|in)\s+nsc\b/,
+      /(\d+)\s+nsc\s+credits?\b/,
+      /at least\s+(\d+)\s+natural sciences?\s+credits?\b/,
+      /(\d+)\s+credits?\s+(?:of|in)\s+natural sciences?\b/,
+      /(\d+)\s+natural sciences?\s+credits?\b/,
+    ]);
+  const inferredAreasOfKnowledgeNscCredits =
+    parsedNscCredits === null &&
+    sourcePlan?.campusId === "uw-seattle" &&
+    /\bareas of knowledge\b/.test(normalized)
+      ? 20
+      : null;
   const combinedBreadthCredits = findGeneralEducationCreditValue(normalized, [
     /(\d+)\s+credits?\s+(?:of|in)\s+a&h\/ssc(?:\/div)?\b/,
     /(\d+)\s+a&h\/ssc(?:\/div)?\s+credits?\b/,
@@ -1890,17 +2004,19 @@ function buildGeneralEducationRequirementTargets(
   const parsedTargets: GeneralEducationRequirementTargets = {
     ahCredits,
     sscCredits,
+    nscCredits: parsedNscCredits ?? inferredAreasOfKnowledgeNscCredits,
     breadthCredits:
-      combinedBreadthCredits ??
-      (ahCredits !== null && sscCredits !== null
-        ? ahCredits + sscCredits + (additionalBreadthCredits ?? 0)
-        : null),
+      additionalBreadthCredits ??
+      (combinedBreadthCredits !== null && ahCredits !== null && sscCredits !== null
+        ? Math.max(0, combinedBreadthCredits - ahCredits - sscCredits)
+        : combinedBreadthCredits),
     electiveCredits,
   };
 
   const hasParsedRequirementTargets =
     parsedTargets.ahCredits !== null ||
     parsedTargets.sscCredits !== null ||
+    parsedTargets.nscCredits !== null ||
     parsedTargets.breadthCredits !== null ||
     parsedTargets.electiveCredits !== null;
 
@@ -1914,7 +2030,8 @@ function buildGeneralEducationRequirementTargets(
 function countCompatibleGeneralEducationPlaceholders(
   placeholders: GeneralEducationPlaceholder[],
   placeholderIndex: number,
-  kind: GeneralEducationPlaceholderKind
+  kind: GeneralEducationPlaceholderKind,
+  requirementTargets: GeneralEducationRequirementTargets
 ) {
   return placeholders
     .slice(0, placeholderIndex + 1)
@@ -1927,8 +2044,14 @@ function countCompatibleGeneralEducationPlaceholders(
         return entry.kind === "ssc";
       }
 
+      if (kind === "nsc") {
+        return entry.kind === "nsc";
+      }
+
       if (kind === "ahOrSsc") {
-        return entry.kind !== "elective";
+        return isCombinedOnlyBreadthRequirementTarget(requirementTargets)
+          ? entry.kind === "ah" || entry.kind === "ssc" || entry.kind === "ahOrSsc"
+          : entry.kind === "ahOrSsc";
       }
 
       return entry.kind === "elective";
@@ -1940,10 +2063,11 @@ function buildGeneralEducationPlaceholderSlotTotals(placeholders: GeneralEducati
     ahCredits: placeholders.filter((entry) => entry.kind === "ah").length * GENERAL_ED_PLACEHOLDER_CREDITS,
     sscCredits:
       placeholders.filter((entry) => entry.kind === "ssc").length * GENERAL_ED_PLACEHOLDER_CREDITS,
+    nscCredits:
+      placeholders.filter((entry) => entry.kind === "nsc").length * GENERAL_ED_PLACEHOLDER_CREDITS,
     breadthCredits:
-      placeholders.filter(
-        (entry) => entry.kind === "ah" || entry.kind === "ssc" || entry.kind === "ahOrSsc"
-      ).length * GENERAL_ED_PLACEHOLDER_CREDITS,
+      placeholders.filter((entry) => entry.kind === "ahOrSsc").length *
+      GENERAL_ED_PLACEHOLDER_CREDITS,
     electiveCredits:
       placeholders.filter((entry) => entry.kind === "elective").length *
       GENERAL_ED_PLACEHOLDER_CREDITS,
@@ -2002,6 +2126,14 @@ function buildGeneralEducationPlaceholderGuidanceSummary(args: {
       areaLabel = "SSc";
       totalCredits = slotTotals.sscCredits;
     }
+  } else if (placeholder.kind === "nsc") {
+    areaLabel = "NSc";
+    if (requirementTargets.nscCredits !== null) {
+      totalCredits = requirementTargets.nscCredits;
+      relation = "needed for";
+    } else {
+      totalCredits = slotTotals.nscCredits;
+    }
   } else if (placeholder.kind === "ahOrSsc") {
     areaLabel = "A&H/SSc";
     if (requirementTargets.breadthCredits !== null) {
@@ -2019,12 +2151,57 @@ function buildGeneralEducationPlaceholderGuidanceSummary(args: {
     countCompatibleGeneralEducationPlaceholders(
       placeholders,
       placeholderIndex,
-      placeholder.kind
+      placeholder.kind,
+      requirementTargets
     ) * GENERAL_ED_PLACEHOLDER_CREDITS,
     totalCredits
   );
 
   return `This so far covers ${progressCredits}/${totalCredits} ${areaLabel} credits ${relation} ${planTitle}.`;
+}
+
+function normalizeGeneralEducationRequirementTag(value: string | null | undefined) {
+  return String(value ?? "")
+    .trim()
+    .toUpperCase()
+    .replace(/[^A-Z]/g, "");
+}
+
+function getSourceBackedNaturalScienceCredits(args: {
+  courseLabels: string[];
+  completedCourses: TranscriptCourseEntry[];
+  campusId: TransferPlannerMajorPlan["campusId"] | null | undefined;
+}) {
+  const { courseLabels, completedCourses, campusId } = args;
+  if (!campusId) {
+    return 0;
+  }
+
+  const countedCourseCodes = unique([
+    ...courseLabels.flatMap((label) => extractCourseCodes(label)),
+    ...completedCourses.map((course) => course.code),
+  ]);
+
+  return countedCourseCodes.reduce((totalCredits, courseCode) => {
+    const hasNaturalScienceTag = getTransferPlannerEquivalencyRulesForSourceCourse(courseCode).some(
+      (rule) =>
+        rule.targetSchoolIds.includes(campusId) &&
+        !rule.isObsoleteSourceCourse &&
+        rule.acceptanceCategory !== "no-credit" &&
+        (rule.targetRequirementTags ?? []).some(
+          (tag) => normalizeGeneralEducationRequirementTag(tag) === "NSC"
+        )
+    );
+    if (!hasNaturalScienceTag) {
+      return totalCredits;
+    }
+
+    return (
+      totalCredits +
+      (getTransferPlannerCanonicalCourse("grc", courseCode)?.creditValue ??
+        GENERAL_ED_PLACEHOLDER_CREDITS)
+    );
+  }, 0);
 }
 
 function normalizeCourseRequirementPath(courseCodes: string[]) {

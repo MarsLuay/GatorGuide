@@ -142,7 +142,7 @@ export default function TransferEquivalencyCatalogPage() {
         <View className="mt-4">
           <Text className={`${textClass} text-2xl font-semibold`}>Transfer Category Equivalencies</Text>
           <Text className={`${secondaryTextClass} text-sm mt-2`}>
-            Eligible Green River to {campusLabel} transfer options for SSc, A&H, and related requirement categories.
+            Eligible Green River to {campusLabel} transfer options for A&H, SSc, NSc, and related requirement categories.
           </Text>
         </View>
 

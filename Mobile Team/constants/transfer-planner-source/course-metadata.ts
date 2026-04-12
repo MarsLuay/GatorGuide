@@ -108,10 +108,6 @@ const TRANSFER_PLANNER_MANUAL_COURSE_METADATA_RAW: TransferPlannerNormalizedCour
     prerequisiteCourseCodes: ["MATH& 152"],
     prerequisiteNotes: ["Planner-normalized sequential prerequisite from the current Green River STEM calculus path."],
   }),
-  grcCourseMetadata("MATH& 153", "Calculus III", 5, {
-    prerequisiteCourseCodes: ["MATH& 152"],
-    prerequisiteNotes: ["Planner-normalized sequential prerequisite from the older Green River STEM calculus alternative still preserved by the planner."],
-  }),
   grcCourseMetadata("MATH& 254", "Calculus IV", 5, {
     prerequisiteCourseCodes: ["MATH& 153"],
     prerequisiteNotes: ["Planner-normalized sequential prerequisite from the older Green River STEM calculus alternative still preserved by the planner."],
@@ -122,10 +118,6 @@ const TRANSFER_PLANNER_MANUAL_COURSE_METADATA_RAW: TransferPlannerNormalizedCour
         note: "Retained because current UW and planner materials still preserve the older calculus path as a valid alternate route.",
       },
     ],
-  }),
-  grcCourseMetadata("MATH 238", "Differential Equations", 5, {
-    prerequisiteAlternativeCourseCodeSets: [["MATH& 163"], ["MATH& 153", "MATH& 254"]],
-    prerequisiteNotes: ["Planner-normalized prerequisite supports either the current Calc III path or the older Calc III plus Calc IV path."],
   }),
   grcCourseMetadata("MATH 240", "Linear Algebra", 5, {
     prerequisiteAlternativeCourseCodeSets: [["MATH& 163"], ["MATH& 153", "MATH& 254"]],
@@ -184,14 +176,6 @@ const TRANSFER_PLANNER_MANUAL_COURSE_METADATA_RAW: TransferPlannerNormalizedCour
     prerequisiteNotes: ["Planner-normalized sequential prerequisite from the algebra-based physics sequence."],
   }),
   grcCourseMetadata("PHYS& 221", "Engineering Physics I", 5),
-  grcCourseMetadata("PHYS& 222", "Engineering Physics II", 5, {
-    prerequisiteCourseCodes: ["PHYS& 221"],
-    prerequisiteNotes: ["Planner-normalized sequential prerequisite from the calculus-based physics sequence."],
-  }),
-  grcCourseMetadata("PHYS& 223", "Engineering Physics III", 5, {
-    prerequisiteCourseCodes: ["PHYS& 222"],
-    prerequisiteNotes: ["Planner-normalized sequential prerequisite from the calculus-based physics sequence."],
-  }),
 
   grcCourseMetadata("CS 121", "Computer Science I", 5),
   grcCourseMetadata("CS 122", "Computer Science II", 5, {
@@ -212,18 +196,10 @@ const TRANSFER_PLANNER_MANUAL_COURSE_METADATA_RAW: TransferPlannerNormalizedCour
     prerequisiteNotes: ["Planner-normalized sequential prerequisite from the shared engineering mechanics sequence."],
   }),
   grcCourseMetadata("ENGR& 224", "Thermodynamics", 5),
-  grcCourseMetadata("ENGR& 225", "Dynamics", 5, {
-    prerequisiteCourseCodes: ["ENGR& 215"],
-    prerequisiteNotes: ["Planner-normalized sequential prerequisite from the shared engineering mechanics sequence used in the planner."],
-  }),
 
   grcCourseMetadata("GEOG& 100", "Physical Geography", 5),
   grcCourseMetadata("GEOG& 200", "Human Geography", 5),
   grcCourseMetadata("GIS 202", "Geographic Information Systems I", 5),
-  grcCourseMetadata("GIS 260", "Geographic Information Systems II", 5, {
-    prerequisiteCourseCodes: ["GIS 202"],
-    prerequisiteNotes: ["Planner-normalized sequential prerequisite from the Green River GIS preparation path used by Tacoma and Seattle geography routes."],
-  }),
 
   grcCourseMetadata("HL ED 190", "Introduction to Public Health", 5),
   grcCourseMetadata("NUTR& 101", "Nutrition", 5),

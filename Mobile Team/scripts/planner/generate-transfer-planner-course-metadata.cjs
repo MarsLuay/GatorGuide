@@ -1,6 +1,8 @@
 const fs = require("fs");
+const Module = require("module");
 const path = require("path");
 const pdfjs = require("pdfjs-dist/legacy/build/pdf.mjs");
+const ts = require("typescript");
 const { loadGrcPublicMaterials } = require("./grc-public-materials.cjs");
 
 const OUTPUT_PATH = path.resolve(
@@ -25,6 +27,34 @@ const UW_CATALOG_INGEST_PATH = path.resolve(
   ".tmp",
   "transfer-planner-uw-catalog-ingest.json"
 );
+const BOOTSTRAP_GENERATED_PATH = path.resolve(
+  __dirname,
+  "..",
+  "..",
+  "constants",
+  "transfer-planner-source",
+  "bootstrap.generated.ts"
+);
+const EQUIVALENCY_GUIDE_GENERATED_PATH = path.resolve(
+  __dirname,
+  "..",
+  "..",
+  "constants",
+  "transfer-planner-source",
+  "equivalency-guide.generated.ts"
+);
+const GRC_AVAILABILITY_GENERATED_PATH = path.resolve(
+  __dirname,
+  "..",
+  "..",
+  "constants",
+  "transfer-planner-grc-availability.generated.ts"
+);
+const EXACT_GRC_COURSE_CODE_PATTERN = /^[A-Z]{2,8}&?(?:\s+[A-Z]{2,8}&?){0,2}\s+\d{2,3}(?:\.\d+)?[A-Z]?$/;
+const SUPPLEMENTAL_LEGACY_AVAILABILITY_STATUSES = new Set([
+  "catalog-listed-not-in-latest-schedules",
+  "published-in-recent-history-not-latest",
+]);
 
 const HEADING_STOP_WORDS = new Set([
   "Course",
@@ -48,6 +78,23 @@ function normalizeCourseCode(value) {
     .toUpperCase()
     .replace(/\s+/g, " ")
     .trim();
+}
+
+function loadGeneratedTsModule(filePath) {
+  const source = fs.readFileSync(filePath, "utf8");
+  const transpiled = ts.transpileModule(source, {
+    compilerOptions: {
+      module: ts.ModuleKind.CommonJS,
+      target: ts.ScriptTarget.ES2020,
+      esModuleInterop: true,
+    },
+    fileName: filePath,
+  }).outputText;
+  const moduleInstance = new Module(filePath, module);
+  moduleInstance.filename = filePath;
+  moduleInstance.paths = Module._nodeModulePaths(path.dirname(filePath));
+  moduleInstance._compile(transpiled, filePath);
+  return moduleInstance.exports;
 }
 
 function normalizeTitle(value) {
@@ -294,6 +341,186 @@ function mergeMetadataEntries(entries) {
     .sort((left, right) => left.schoolId.localeCompare(right.schoolId) || left.code.localeCompare(right.code));
 }
 
+function extractExactCourseCodes(values) {
+  return (values ?? [])
+    .map((value) => normalizeCourseCode(value))
+    .filter((value) => EXACT_GRC_COURSE_CODE_PATTERN.test(value));
+}
+
+function addPlannerSequenceSupport(sequenceSupport, courseCodes, sourceLinks) {
+  for (let index = 1; index < courseCodes.length; index += 1) {
+    const previousCode = courseCodes[index - 1];
+    const nextCode = courseCodes[index];
+    let support = sequenceSupport.get(nextCode);
+    if (!support) {
+      support = {
+        total: 0,
+        predecessors: new Map(),
+      };
+      sequenceSupport.set(nextCode, support);
+    }
+
+    support.total += 1;
+    const existingPredecessor = support.predecessors.get(previousCode) ?? {
+      count: 0,
+      sourceLinks: [],
+    };
+    support.predecessors.set(previousCode, {
+      count: existingPredecessor.count + 1,
+      sourceLinks: mergeLinks(existingPredecessor.sourceLinks, sourceLinks),
+    });
+  }
+}
+
+function collectPlannerSequenceSupport(plans) {
+  const sequenceSupport = new Map();
+
+  for (const plan of plans ?? []) {
+    addPlannerSequenceSupport(
+      sequenceSupport,
+      extractExactCourseCodes(plan.grcCourseList),
+      plan.officialLinks ?? []
+    );
+
+    for (const pathway of plan.pathways ?? []) {
+      addPlannerSequenceSupport(
+        sequenceSupport,
+        extractExactCourseCodes(pathway.grcCourseList),
+        pathway.officialLinks ?? plan.officialLinks ?? []
+      );
+    }
+
+    for (const item of [
+      ...(plan.applicationChecklist ?? []),
+      ...(plan.beforeEnrollmentChecklist ?? []),
+      ...(plan.stayAtGrcChecklist ?? []),
+    ]) {
+      addPlannerSequenceSupport(
+        sequenceSupport,
+        extractExactCourseCodes(item.grcCourses),
+        plan.officialLinks ?? []
+      );
+    }
+  }
+
+  return sequenceSupport;
+}
+
+function parseCreditValueFromSourceCourseLabel(value) {
+  const match = String(value ?? "").match(/\((\d+(?:\.\d+)?)\)/);
+  return match ? Number.parseFloat(match[1]) : null;
+}
+
+function buildSupplementalLegacyGuideEntries(existingEntries) {
+  const bootstrap = loadGeneratedTsModule(BOOTSTRAP_GENERATED_PATH);
+  const equivalencyGuide = loadGeneratedTsModule(EQUIVALENCY_GUIDE_GENERATED_PATH);
+  const grcAvailability = loadGeneratedTsModule(GRC_AVAILABILITY_GENERATED_PATH);
+  const sequenceSupport = collectPlannerSequenceSupport(
+    bootstrap.TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS
+  );
+  const existingGrcCodes = new Set(
+    existingEntries
+      .filter((entry) => entry.schoolId === "grc")
+      .map((entry) => normalizeCourseCode(entry.code))
+  );
+  const rulesByCode = new Map();
+
+  for (const rule of equivalencyGuide.TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULES ?? []) {
+    if (rule.sourceSchoolId !== "grc") {
+      continue;
+    }
+
+    for (const sourceCourseSet of rule.sourceCourseSets ?? []) {
+      if (!Array.isArray(sourceCourseSet) || sourceCourseSet.length !== 1) {
+        continue;
+      }
+
+      const code = normalizeCourseCode(sourceCourseSet[0]);
+      if (!EXACT_GRC_COURSE_CODE_PATTERN.test(code)) {
+        continue;
+      }
+
+      const matchingRules = rulesByCode.get(code) ?? [];
+      matchingRules.push(rule);
+      rulesByCode.set(code, matchingRules);
+    }
+  }
+
+  const supplementalEntries = [];
+  for (const [code, rules] of rulesByCode.entries()) {
+    if (existingGrcCodes.has(code)) {
+      continue;
+    }
+
+    const availabilityStatus =
+      grcAvailability.TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY?.[code]?.status ?? null;
+    if (!SUPPLEMENTAL_LEGACY_AVAILABILITY_STATUSES.has(availabilityStatus)) {
+      continue;
+    }
+
+    const support = sequenceSupport.get(code);
+    if (!support?.predecessors?.size) {
+      continue;
+    }
+
+    const sortedPredecessors = [...support.predecessors.entries()].sort(
+      (left, right) => right[1].count - left[1].count || left[0].localeCompare(right[0])
+    );
+    const [predecessorCode, predecessorSupport] = sortedPredecessors[0] ?? [];
+    if (!predecessorCode || !predecessorSupport) {
+      continue;
+    }
+
+    if (
+      predecessorSupport.count < 2 ||
+      predecessorSupport.count / Math.max(1, support.total) < 0.75
+    ) {
+      continue;
+    }
+
+    const title =
+      rules
+        .map((rule) => normalizeTitle(rule.sourceCourseTitle))
+        .find(Boolean) ?? null;
+    const creditValue =
+      rules
+        .map((rule) => parseCreditValueFromSourceCourseLabel(rule.sourceCourseLabel))
+        .find((value) => Number.isFinite(value)) ?? null;
+    const mergedSourceLinks = mergeLinks(
+      rules.flatMap((rule) => rule.sourceLinks ?? []),
+      predecessorSupport.sourceLinks
+    );
+    const prioritizedSourceLinks = [
+      ...mergedSourceLinks.filter((link) => /equivalency guide/i.test(link.label)),
+      ...mergedSourceLinks.filter((link) => !/equivalency guide/i.test(link.label)).slice(0, 7),
+    ];
+
+    supplementalEntries.push(
+      pruneEntry({
+        schoolId: "grc",
+        code,
+        title,
+        creditValue,
+        creditLabel: creditValue != null ? String(creditValue) : null,
+        prerequisiteCourseCodes: [predecessorCode],
+        prerequisiteNotes: [
+          `Source-backed planning-order prerequisite inferred from ${predecessorSupport.count}/${support.total} published planner course lists that place ${predecessorCode} immediately before ${code} while the current public catalog no longer exposes a standalone course-description page for ${code}.`,
+        ],
+        effectiveYearRanges: mergeRanges(
+          [],
+          rules.flatMap((rule) => rule.effectiveYearRanges ?? [])
+        ),
+        sourceLinks: prioritizedSourceLinks,
+        notes: [
+          "Source-backed legacy Green River metadata synthesized from official UW equivalency-guide coverage plus repeated planner ordering across published transfer-planning sources.",
+        ],
+      })
+    );
+  }
+
+  return supplementalEntries;
+}
+
 function chunkEntries(entries, size) {
   const chunks = [];
   for (let index = 0; index < entries.length; index += size) {
@@ -358,10 +585,14 @@ async function main() {
     await parseSchedule(schedule, courseMap);
   }
 
-  const entries = mergeMetadataEntries([
+  const baseEntries = [
     ...buildScheduleEntries(courseMap),
     ...readCatalogIngestEntries(GRC_CATALOG_INGEST_PATH, "Green River catalog ingest"),
     ...readCatalogIngestEntries(UW_CATALOG_INGEST_PATH, "UW catalog ingest"),
+  ];
+  const entries = mergeMetadataEntries([
+    ...baseEntries,
+    ...buildSupplementalLegacyGuideEntries(baseEntries),
   ]);
   const output = buildGeneratedCourseMetadataSource(entries);
 
