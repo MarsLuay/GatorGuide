@@ -39,10 +39,7 @@ Title: Degree Requirements: Autumn 2024 Onwards | Human Centered Design & Engine
 20 additional credits from mathematics, statistics, or sciences
 2023–2024 Academic Year​
 2024–2025 Academic Year​
-2025-2026
-2025-2026 Academic Year
 2025–2026 Academic Year​
-2026-2027
 2026-2027 Academic Year
 302 *
 303 *
@@ -63,7 +60,6 @@ Title: Degree Requirements: Autumn 2024 Onwards | Human Centered Design & Engine
 438
 439
 450
-485
 492
 493
 498
@@ -222,8 +218,8 @@ Course descriptions
 Course descriptions are available here .
 Course is open to students who have completed both HCDE 318 and HCDE 300.
 Course is open to students who have completed either HCDE 303 or both HCDE 318 and HCDE 300.
-Course Schedule
-Course Schedule | Human Centered Design & Engineering
+Course schedule
+Course schedule | Human Centered Design & Engineering
 Course Substitution Petition
 Courses that count toward these requirements are identified as A&H, SSc, and DIV in the quarterly Time Schedule and in the UW Catalogue.
 Creating 2 separate categories of HCDE electives
@@ -536,7 +532,6 @@ PHYS 329 : Mathematical Methods and Classical Mechanics (3)
 PHYS 334 : Advanced Laboratory: Analog Electronics (3)
 PHYS 335 : Advanced Laboratory: Digital Electronics (3)
 Planned course schedule is available here .
-Planned Undergraduate Course Schedule
 Policies
 Prerequisite: either HCDE 303, INFO 360, CSE 440, or HCDE 300 and HCDE 318.
 Privacy
@@ -609,6 +604,7 @@ Students on track to graduate in Spring 2026 or earlier will not be eligible to 
 Study abroad
 Systems and Society Electives (8 credits)
 tabindex="-1">Computing/IT
+Tentative undergraduate course schedule
 Terms
 The Department plans to submit a self study in July of 2027 in preparation for the on-site visit in Autumn 2027. If the process proceeds according to this timeline, we would be notified of the outcome in the Summer of 2028. If ABET accreditation is granted, it would apply to students who completed the accredited curriculum and who graduated in Autumn 2026 or later.
 The HCDE Department has made changes that impact our admission prerequisites and our mathematics and sciences course lists. Students who will be applying to begin the HCDE major in Autumn 2026 or later should note that MATH 120, PHYS 114-116, and PSYCH 202 will no longer be accepted as HCDE admission prerequisites and these courses plus the PHYS 117-119 labs will no longer apply towards the course lists above for HCDE students admitted to the major for Autumn 2026 or later.
@@ -640,9 +636,8 @@ Topic: Product Management
 Topic: Rapid Research & Design Iteration
 Topic: Service Design
 Tuition & financial aid
-Tuition & Financial Aid
-Undergraduate Curriculum Changes FAQs
-Undergraduate Curriculum Changes FAQs | Human Centered Design & Engineering
+Undergraduate curriculum changes FAQs
+Undergraduate curriculum changes FAQs | Human Centered Design & Engineering
 Undergraduate students
 University of Washington
 Updates to the HCDE math statistics, science, and engineering fundamentals course lists

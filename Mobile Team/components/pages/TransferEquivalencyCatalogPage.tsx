@@ -56,10 +56,17 @@ export default function TransferEquivalencyCatalogPage() {
   const { textClass, secondaryTextClass, cardBgClass, borderClass } = styles;
   const [tagOpenState, setTagOpenState] = useState<Record<string, boolean>>({});
 
-  const selectedTag = useMemo(() => {
-    const rawTag = Array.isArray(params.tag) ? params.tag[0] : params.tag;
-    const normalized = normalizeRequirementTag(rawTag);
-    return SUPPORTED_TAGS.includes(normalized) ? normalized : null;
+  const selectedTags = useMemo(() => {
+    const rawTags = Array.isArray(params.tag) ? params.tag : [params.tag];
+
+    return Array.from(
+      new Set(
+        rawTags
+          .flatMap((value) => String(value ?? "").split(","))
+          .map((value) => normalizeRequirementTag(value))
+          .filter((value) => SUPPORTED_TAGS.includes(value))
+      )
+    );
   }, [params.tag]);
 
   const selectedCampusId = useMemo(() => {
@@ -112,9 +119,9 @@ export default function TransferEquivalencyCatalogPage() {
   }, [selectedCampusId]);
 
   const visibleTags = useMemo(() => {
-    if (selectedTag) return [selectedTag];
+    if (selectedTags.length) return selectedTags;
     return SUPPORTED_TAGS.filter((tag) => (equivalenciesByTag.get(tag)?.length ?? 0) > 0);
-  }, [equivalenciesByTag, selectedTag]);
+  }, [equivalenciesByTag, selectedTags]);
 
   const campusLabel = selectedCampusId === "uw-bothell" ? "UW Bothell" : selectedCampusId === "uw-tacoma" ? "UW Tacoma" : "UW Seattle";
 
@@ -150,7 +157,7 @@ export default function TransferEquivalencyCatalogPage() {
           <View className="mt-5 gap-4">
             {visibleTags.map((tag) => {
               const rows = equivalenciesByTag.get(tag) ?? [];
-              const isOpen = tagOpenState[tag] ?? false;
+              const isOpen = tagOpenState[tag] ?? (selectedTags.length > 0);
               return (
                 <View key={tag} className={`${cardBgClass} border ${borderClass} rounded-2xl px-4 py-4`}>
                   <AnimatedIconPressable

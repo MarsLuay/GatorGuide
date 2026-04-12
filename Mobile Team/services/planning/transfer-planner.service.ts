@@ -4,6 +4,8 @@ import {
   getTransferPlannerGrcCourseLatestPublishedQuarters,
   getTransferPlannerChainsForPlan,
   getTransferPlannerEquivalencyRulesForSourceCourse,
+  getTransferPlannerMajorPlan,
+  resolveTransferPlannerMajorPlan,
   TRANSFER_PLANNER_SOURCE_GAP_REGISTRY,
   TransferPlannerChecklistItem,
   TransferPlannerEquivalencyRule,
@@ -183,6 +185,255 @@ function buildPrerequisiteGuidanceSummary(dependentCourseLabels: string[]) {
   if (!uniqueLabels.length) return null;
 
   return `Prerequisite for ${joinPlannerLabelList(uniqueLabels)}.`;
+}
+
+function isSpecificTransferTargetCourseCode(courseCode: string) {
+  return !/\b\dXX(?:\.\d+)?[A-Z]?\b/i.test(String(courseCode ?? "").trim());
+}
+
+function getTransferGuidanceRuleStatusScore(rule: TransferPlannerEquivalencyRule) {
+  switch (rule.ruleStatus) {
+    case "active":
+      return 3;
+    case "legacy":
+      return 2;
+    case "deprecated":
+      return 1;
+    default:
+      return 2;
+  }
+}
+
+function getTransferGuidanceRuleAcceptanceScore(rule: TransferPlannerEquivalencyRule) {
+  switch (rule.acceptanceCategory) {
+    case "preferred":
+      return 4;
+    case "accepted":
+      return 3;
+    case "accepted-with-warning":
+      return 2;
+    case "legacy-accepted":
+      return 1;
+    default:
+      return 0;
+  }
+}
+
+function getTransferGuidanceRuleTypeScore(rule: TransferPlannerEquivalencyRule) {
+  switch (rule.type) {
+    case "direct-course":
+      return 5;
+    case "full-credit-combo":
+      return 4;
+    case "sequence":
+      return 3;
+    case "alternate-path":
+      return 2;
+    default:
+      return 1;
+  }
+}
+
+function compareTransferGuidanceRules(
+  left: TransferPlannerEquivalencyRule,
+  right: TransferPlannerEquivalencyRule
+) {
+  const statusDelta =
+    getTransferGuidanceRuleStatusScore(right) - getTransferGuidanceRuleStatusScore(left);
+  if (statusDelta !== 0) return statusDelta;
+
+  const acceptanceDelta =
+    getTransferGuidanceRuleAcceptanceScore(right) -
+    getTransferGuidanceRuleAcceptanceScore(left);
+  if (acceptanceDelta !== 0) return acceptanceDelta;
+
+  const typeDelta = getTransferGuidanceRuleTypeScore(right) - getTransferGuidanceRuleTypeScore(left);
+  if (typeDelta !== 0) return typeDelta;
+
+  const targetCodeCountDelta =
+    (left.targetCourseCodes?.length ?? Number.MAX_SAFE_INTEGER) -
+    (right.targetCourseCodes?.length ?? Number.MAX_SAFE_INTEGER);
+  if (targetCodeCountDelta !== 0) return targetCodeCountDelta;
+
+  return left.id.localeCompare(right.id);
+}
+
+function ruleMatchesExactSourceCourseSet(
+  rule: TransferPlannerEquivalencyRule,
+  explicitCourseCodes: string[]
+) {
+  const normalizedExplicitCourseCodes = sortCourseCodes(
+    explicitCourseCodes.map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean)
+  );
+  if (!normalizedExplicitCourseCodes.length) return false;
+
+  return (rule.sourceCourseSets ?? []).some((courseSet) => {
+    const normalizedRuleCourseSet = sortCourseCodes(
+      (courseSet ?? []).map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean)
+    );
+
+    return (
+      normalizedRuleCourseSet.length === normalizedExplicitCourseCodes.length &&
+      normalizedRuleCourseSet.every(
+        (courseCode, index) => courseCode === normalizedExplicitCourseCodes[index]
+      )
+    );
+  });
+}
+
+function getSubsetMatchCompanionCourseCodes(
+  rule: TransferPlannerEquivalencyRule,
+  explicitCourseCodes: string[]
+) {
+  const normalizedExplicitCourseCodes = sortCourseCodes(
+    explicitCourseCodes.map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean)
+  );
+  if (!normalizedExplicitCourseCodes.length) return null;
+
+  const normalizedExplicitCourseCodeSet = new Set(normalizedExplicitCourseCodes);
+  const matchingSourceCourseSets = (rule.sourceCourseSets ?? [])
+    .map((courseSet) =>
+      sortCourseCodes(
+        (courseSet ?? []).map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean)
+      )
+    )
+    .filter(
+      (normalizedRuleCourseSet) =>
+        normalizedRuleCourseSet.length > normalizedExplicitCourseCodes.length &&
+        normalizedExplicitCourseCodes.every((courseCode) =>
+          normalizedRuleCourseSet.includes(courseCode)
+        )
+    )
+    .sort((left, right) => {
+      const lengthDelta = left.length - right.length;
+      if (lengthDelta !== 0) return lengthDelta;
+      return left.join("|").localeCompare(right.join("|"));
+    });
+
+  const selectedSourceCourseSet = matchingSourceCourseSets[0];
+  if (!selectedSourceCourseSet) return null;
+
+  const companionCourseCodes = selectedSourceCourseSet.filter(
+    (courseCode) => !normalizedExplicitCourseCodeSet.has(courseCode)
+  );
+  return companionCourseCodes.length ? companionCourseCodes : null;
+}
+
+function getTransferGuidanceCandidateRulesForSourceCourse(
+  sourceCourseCode: string,
+  campusId: TransferPlannerMajorPlan["campusId"]
+) {
+  const allCandidateRules = getTransferPlannerEquivalencyRulesForSourceCourse(sourceCourseCode)
+    .filter((rule) => rule.sourceKind === "uw-green-river-equivalency-guide")
+    .filter((rule) => rule.acceptanceCategory !== "no-credit")
+    .filter((rule) => (rule.targetCourseCodes ?? []).length > 0);
+
+  const campusScopedRules = allCandidateRules.filter((rule) =>
+    rule.targetSchoolIds.includes(campusId)
+  );
+  if (campusScopedRules.length || campusId === "uw-seattle") {
+    return campusScopedRules;
+  }
+
+  return allCandidateRules.filter((rule) => rule.targetSchoolIds.includes("uw-seattle"));
+}
+
+function buildTransferEquivalencyGuidanceSummary(
+  explicitCourseCodes: string[],
+  campusId: TransferPlannerMajorPlan["campusId"] | null | undefined
+) {
+  const normalizedExplicitCourseCodes = sortCourseCodes(
+    explicitCourseCodes.map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean)
+  );
+  if (!campusId || !normalizedExplicitCourseCodes.length) return null;
+
+  const exactMatchRulesById = new Map<string, TransferPlannerEquivalencyRule>();
+  for (const courseCode of normalizedExplicitCourseCodes) {
+    for (const rule of getTransferGuidanceCandidateRulesForSourceCourse(courseCode, campusId)) {
+      if (!ruleMatchesExactSourceCourseSet(rule, normalizedExplicitCourseCodes)) continue;
+      exactMatchRulesById.set(rule.id, rule);
+    }
+  }
+
+  const selectedRule = [...exactMatchRulesById.values()].sort(compareTransferGuidanceRules)[0];
+  if (selectedRule) {
+    const specificTargetCourseCodes = unique(
+      (selectedRule.targetCourseCodes ?? [])
+        .map((courseCode) => normalizeCourseCode(courseCode))
+        .filter(isSpecificTransferTargetCourseCode)
+    );
+    if (!specificTargetCourseCodes.length) return null;
+
+    return `Transfers into ${joinPlannerLabelList(specificTargetCourseCodes)}.`;
+  }
+
+  const subsetMatchByRuleId = new Map<
+    string,
+    {
+      rule: TransferPlannerEquivalencyRule;
+      specificTargetCourseCodes: string[];
+      companionCourseCodes: string[];
+    }
+  >();
+
+  for (const courseCode of normalizedExplicitCourseCodes) {
+    for (const rule of getTransferGuidanceCandidateRulesForSourceCourse(courseCode, campusId)) {
+
+      const companionCourseCodes = getSubsetMatchCompanionCourseCodes(
+        rule,
+        normalizedExplicitCourseCodes
+      );
+      if (!companionCourseCodes?.length) continue;
+
+      const specificTargetCourseCodes = unique(
+        (rule.targetCourseCodes ?? [])
+          .map((targetCourseCode) => normalizeCourseCode(targetCourseCode))
+          .filter(isSpecificTransferTargetCourseCode)
+      );
+      if (!specificTargetCourseCodes.length) continue;
+
+      const existing = subsetMatchByRuleId.get(rule.id);
+      if (!existing) {
+        subsetMatchByRuleId.set(rule.id, {
+          rule,
+          specificTargetCourseCodes,
+          companionCourseCodes,
+        });
+        continue;
+      }
+
+      if (
+        companionCourseCodes.length < existing.companionCourseCodes.length ||
+        (companionCourseCodes.length === existing.companionCourseCodes.length &&
+          companionCourseCodes.join("|").localeCompare(existing.companionCourseCodes.join("|")) <
+            0)
+      ) {
+        subsetMatchByRuleId.set(rule.id, {
+          rule,
+          specificTargetCourseCodes,
+          companionCourseCodes,
+        });
+      }
+    }
+  }
+
+  const selectedSubsetMatch = [...subsetMatchByRuleId.values()].sort((left, right) => {
+    const ruleDelta = compareTransferGuidanceRules(left.rule, right.rule);
+    if (ruleDelta !== 0) return ruleDelta;
+
+    const companionDelta = left.companionCourseCodes.length - right.companionCourseCodes.length;
+    if (companionDelta !== 0) return companionDelta;
+
+    return left.companionCourseCodes
+      .join("|")
+      .localeCompare(right.companionCourseCodes.join("|"));
+  })[0];
+
+  if (!selectedSubsetMatch) return null;
+
+  return `Transfers into ${joinPlannerLabelList(
+    selectedSubsetMatch.specificTargetCourseCodes
+  )} when taken with ${joinPlannerLabelList(selectedSubsetMatch.companionCourseCodes)}.`;
 }
 
 function getChecklistChoiceLabels(item: TransferPlannerChecklistItem) {
@@ -1281,11 +1532,15 @@ function buildQuarterSlots(referenceDate = new Date()) {
   const month = referenceDate.getMonth();
   const year = referenceDate.getFullYear();
   const fallYear = month >= 8 ? year + 1 : year;
-  return [
-    buildPlanningQuarterSlot("Fall", fallYear),
-    buildPlanningQuarterSlot("Winter", fallYear + 1),
-    buildPlanningQuarterSlot("Spring", fallYear + 1),
-  ];
+  const slots: PlanningQuarterSlot[] = [];
+  let slot = buildPlanningQuarterSlot("Fall", fallYear);
+
+  while (slots.length < 3) {
+    slots.push(slot);
+    slot = getNextPlannedQuarterSlot(slot);
+  }
+
+  return slots;
 }
 
 function buildQuarterSlotsAfterCurrent(referenceDate = new Date()) {
@@ -1299,6 +1554,9 @@ function buildQuarterSlotsAfterCurrent(referenceDate = new Date()) {
 
   return slots;
 }
+
+const MAX_AUTOMATIC_PLANNED_QUARTERS = 18;
+const PLANNING_NO_PROGRESS_QUARTER_LIMIT = 3;
 
 function buildCompletedQuarterPlans(completedCourses: TranscriptCourseEntry[]) {
   const grouped = new Map<
@@ -1362,46 +1620,411 @@ function getCourseAvailabilityMatch(
   return latestPublishedQuarters.includes(getAvailabilityQuarterForPlanningKind(preferredQuarterKind));
 }
 
+type GeneralEducationPlaceholderKind = "ah" | "ssc" | "ahOrSsc" | "elective";
+
+type GeneralEducationPlaceholder = {
+  label: string;
+  kind: GeneralEducationPlaceholderKind;
+};
+
+type GeneralEducationRequirementTargets = {
+  ahCredits: number | null;
+  sscCredits: number | null;
+  breadthCredits: number | null;
+  electiveCredits: number | null;
+};
+
+const GENERAL_ED_PLACEHOLDER_CREDITS = 5;
+
+function getGeneralEducationPlaceholderKind(
+  label: string
+): GeneralEducationPlaceholderKind | null {
+  const normalized = String(label ?? "").toLowerCase();
+  const hasHumanities = normalized.includes("humanit");
+  const hasSocialScience = normalized.includes("social");
+  const hasElective =
+    normalized.includes("elective") ||
+    normalized.includes("general education") ||
+    normalized.includes("general-education");
+
+  if (hasHumanities && hasSocialScience) {
+    return "ahOrSsc";
+  }
+
+  if (hasHumanities) {
+    return "ah";
+  }
+
+  if (hasSocialScience) {
+    return "ssc";
+  }
+
+  if (hasElective) {
+    return "elective";
+  }
+
+  return null;
+}
+
+function buildGeneralEducationPlaceholder(
+  label: string
+): GeneralEducationPlaceholder | null {
+  const kind = getGeneralEducationPlaceholderKind(label);
+  if (!kind) return null;
+
+  return createGeneralEducationPlaceholderByKind(kind);
+}
+
+function createGeneralEducationPlaceholderByKind(
+  kind: GeneralEducationPlaceholderKind
+): GeneralEducationPlaceholder {
+
+  switch (kind) {
+    case "ah":
+      return {
+        label: "5 credits of Humanities",
+        kind,
+      };
+    case "ssc":
+      return {
+        label: "5 credits of Social Science",
+        kind,
+      };
+    case "ahOrSsc":
+      return {
+        label: "5 credits of A&H or SSc",
+        kind,
+      };
+    case "elective":
+      return {
+        label: "5 credits of elective/general education",
+        kind,
+      };
+  }
+}
+
 function buildGeneralEducationPlaceholders(
   track: TransferPlannerTrack | null,
   completedCourses: TranscriptCourseEntry[],
-  referenceDate?: Date
+  referenceDate?: Date,
+  plan?: TransferPlannerMajorPlan | null
 ) {
-  if (!track) return ["5 credits of Humanities", "5 credits of Social Science"];
+  const fallbackPlaceholders: GeneralEducationPlaceholder[] = [
+    createGeneralEducationPlaceholderByKind("ah"),
+    createGeneralEducationPlaceholderByKind("ssc"),
+  ];
 
-  const mapped = unique(
-    getResolvedTrackTermsForPlanning(track, completedCourses, referenceDate)
-      .flatMap((term) => term.courses)
-      .filter((entry) => extractCourseCodes(entry).length === 0)
-      .map((entry) => String(entry).toLowerCase())
-      .map((entry) => {
-        if (entry.includes("humanit")) return "5 credits of Humanities";
-        if (entry.includes("social")) return "5 credits of Social Science";
-        return "5 credits of elective/general education";
-      })
-  );
+  if (!track) {
+    return fallbackPlaceholders;
+  }
 
-  return mapped.length
-    ? mapped
-    : ["5 credits of Humanities", "5 credits of Social Science"];
+  const mapped = getResolvedTrackTermsForPlanning(track, completedCourses, referenceDate)
+    .flatMap((term) => term.courses)
+    .map((entry) => buildGeneralEducationPlaceholder(String(entry)))
+    .filter((entry): entry is GeneralEducationPlaceholder => !!entry);
+
+  const placeholders = mapped.length ? mapped : fallbackPlaceholders;
+  const requirementTargets = buildGeneralEducationRequirementTargets(plan);
+
+  const getAhCredits = () =>
+    placeholders.filter((entry) => entry.kind === "ah").length * GENERAL_ED_PLACEHOLDER_CREDITS;
+  const getSscCredits = () =>
+    placeholders.filter((entry) => entry.kind === "ssc").length * GENERAL_ED_PLACEHOLDER_CREDITS;
+  const getBreadthCredits = () =>
+    placeholders.filter(
+      (entry) => entry.kind === "ah" || entry.kind === "ssc" || entry.kind === "ahOrSsc"
+    ).length * GENERAL_ED_PLACEHOLDER_CREDITS;
+  const getElectiveCredits = () =>
+    placeholders.filter((entry) => entry.kind === "elective").length *
+    GENERAL_ED_PLACEHOLDER_CREDITS;
+
+  while (
+    requirementTargets.ahCredits !== null &&
+    getAhCredits() < requirementTargets.ahCredits
+  ) {
+    placeholders.push(createGeneralEducationPlaceholderByKind("ah"));
+  }
+
+  while (
+    requirementTargets.sscCredits !== null &&
+    getSscCredits() < requirementTargets.sscCredits
+  ) {
+    placeholders.push(createGeneralEducationPlaceholderByKind("ssc"));
+  }
+
+  while (
+    requirementTargets.electiveCredits !== null &&
+    getElectiveCredits() < requirementTargets.electiveCredits
+  ) {
+    placeholders.push(createGeneralEducationPlaceholderByKind("elective"));
+  }
+
+  while (
+    requirementTargets.breadthCredits !== null &&
+    getBreadthCredits() < requirementTargets.breadthCredits
+  ) {
+    placeholders.push(createGeneralEducationPlaceholderByKind("ahOrSsc"));
+  }
+
+  return placeholders;
 }
 
-function buildGeneralEducationPlaceholderGuidanceSummary(label: string) {
-  const normalized = String(label ?? "").toLowerCase();
+function findGeneralEducationCreditValue(text: string, patterns: RegExp[]) {
+  let detectedValue: number | null = null;
 
-  if (normalized.includes("humanit")) {
-    return "Pick a source-backed A&H transfer option that fits this plan.";
+  for (const pattern of patterns) {
+    const flags = pattern.flags.includes("g") ? pattern.flags : `${pattern.flags}g`;
+    const globalPattern = new RegExp(pattern.source, flags);
+    let match: RegExpExecArray | null = null;
+
+    while ((match = globalPattern.exec(text)) !== null) {
+      const value = Number.parseInt(match[1] ?? "", 10);
+      if (Number.isFinite(value)) {
+        detectedValue = detectedValue === null ? value : Math.max(detectedValue, value);
+      }
+    }
   }
 
-  if (normalized.includes("social")) {
-    return "Pick a source-backed SSc transfer option that fits this plan.";
+  return detectedValue;
+}
+
+function getDefaultGeneralEducationRequirementTargets(
+  plan: TransferPlannerMajorPlan | null | undefined
+): GeneralEducationRequirementTargets | null {
+  if (plan?.campusId === "uw-seattle") {
+    return {
+      ahCredits: 20,
+      sscCredits: 20,
+      breadthCredits: 40,
+      electiveCredits: null,
+    };
   }
 
-  if (normalized.includes("elective") || normalized.includes("general")) {
-    return "Pick a source-backed elective or general-education transfer option that fits this plan.";
+  return null;
+}
+
+function getGeneralEducationRequirementTargetSourcePlan(
+  plan: TransferPlannerMajorPlan | null | undefined
+) {
+  if (!plan) {
+    return null;
   }
 
-  return "Pick a source-backed elective or general-education transfer option that fits this plan.";
+  const authoredBasePlan = getTransferPlannerMajorPlan(plan.id);
+  if (!authoredBasePlan) {
+    return plan;
+  }
+
+  const selectedPathwayId =
+    (plan as { selectedPathwayId?: string | null } | null | undefined)?.selectedPathwayId ?? null;
+
+  return resolveTransferPlannerMajorPlan(authoredBasePlan, selectedPathwayId) ?? authoredBasePlan;
+}
+
+function buildGeneralEducationRequirementTargets(
+  plan: TransferPlannerMajorPlan | null | undefined
+): GeneralEducationRequirementTargets {
+  const sourcePlan = getGeneralEducationRequirementTargetSourcePlan(plan);
+  const normalized = [
+    ...(sourcePlan?.degreeMapSections ?? []).flatMap((section) => section.items),
+    sourcePlan?.summary ?? "",
+    sourcePlan?.bestTrackSummary ?? "",
+    sourcePlan?.financialAidNote ?? "",
+    ...(sourcePlan?.advisorFlags ?? []),
+    ...(sourcePlan?.manualReviewNotes ?? []),
+  ]
+    .map((item) => String(item ?? "").toLowerCase().replace(/\s+/g, " ").trim())
+    .filter(Boolean)
+    .join(" ");
+
+  const emptyTargets: GeneralEducationRequirementTargets = {
+    ahCredits: null,
+    sscCredits: null,
+    breadthCredits: null,
+    electiveCredits: null,
+  };
+
+  if (!normalized) {
+    return getDefaultGeneralEducationRequirementTargets(sourcePlan ?? plan) ?? emptyTargets;
+  }
+
+  const sharedAreaCredits = findGeneralEducationCreditValue(normalized, [
+    /(\d+)\s+credits?\s+(?:of|in)\s+each[^.]*\ba&h\b[^.]*\bssc\b/,
+    /(\d+)\s+credits?\s+(?:of|in)\s+each[^.]*\barts?\s+and\s+humanities\b[^.]*\bsocial sciences?\b/,
+  ]);
+  const ahCredits =
+    sharedAreaCredits ??
+    findGeneralEducationCreditValue(normalized, [
+      /at least\s+(\d+)\s+a&h\s+credits?\b/,
+      /(\d+)\s+credits?\s+(?:of|in)\s+a&h\b(?!\/)/,
+      /(\d+)\s+a&h\s+credits?\b/,
+      /at least\s+(\d+)\s+arts?\s+and\s+humanities\s+credits?\b/,
+      /(\d+)\s+credits?\s+(?:of|in)\s+arts?\s+and\s+humanities\b/,
+      /(\d+)\s+arts?\s+and\s+humanities\s+credits?\b/,
+    ]);
+  const sscCredits =
+    sharedAreaCredits ??
+    findGeneralEducationCreditValue(normalized, [
+      /at least\s+(\d+)\s+ssc\s+credits?\b/,
+      /(\d+)\s+credits?\s+(?:of|in)\s+ssc\b/,
+      /(\d+)\s+ssc\s+credits?\b/,
+      /at least\s+(\d+)\s+social sciences?\s+credits?\b/,
+      /(\d+)\s+credits?\s+(?:of|in)\s+social sciences?\b/,
+      /(\d+)\s+social sciences?\s+credits?\b/,
+    ]);
+  const combinedBreadthCredits = findGeneralEducationCreditValue(normalized, [
+    /(\d+)\s+credits?\s+(?:of|in)\s+a&h\/ssc(?:\/div)?\b/,
+    /(\d+)\s+a&h\/ssc(?:\/div)?\s+credits?\b/,
+    /(\d+)\s+credits?\s+(?:of|in)\s+arts?\s+and\s+humanities\s+or\s+social sciences?\b/,
+    /(\d+)\s+arts?\s+and\s+humanities\s+or\s+social sciences?\s+credits?\b/,
+  ]);
+  const additionalBreadthCredits = findGeneralEducationCreditValue(normalized, [
+    /(\d+)\s+additional\s+a&h\s+or\s+ssc\s+credits?\b/,
+    /(\d+)\s+additional\s+arts?\s+and\s+humanities\s+or\s+social sciences?\s+credits?\b/,
+  ]);
+  const electiveCredits = findGeneralEducationCreditValue(normalized, [
+    /(\d+)\s+credits?\s+of additional areas?\s+of inquiry\b/,
+    /(\d+)\s+credits?\s+of additional coursework\b/,
+  ]);
+
+  const parsedTargets: GeneralEducationRequirementTargets = {
+    ahCredits,
+    sscCredits,
+    breadthCredits:
+      combinedBreadthCredits ??
+      (ahCredits !== null && sscCredits !== null
+        ? ahCredits + sscCredits + (additionalBreadthCredits ?? 0)
+        : null),
+    electiveCredits,
+  };
+
+  const hasParsedRequirementTargets =
+    parsedTargets.ahCredits !== null ||
+    parsedTargets.sscCredits !== null ||
+    parsedTargets.breadthCredits !== null ||
+    parsedTargets.electiveCredits !== null;
+
+  if (hasParsedRequirementTargets) {
+    return parsedTargets;
+  }
+
+  return getDefaultGeneralEducationRequirementTargets(sourcePlan ?? plan) ?? parsedTargets;
+}
+
+function countCompatibleGeneralEducationPlaceholders(
+  placeholders: GeneralEducationPlaceholder[],
+  placeholderIndex: number,
+  kind: GeneralEducationPlaceholderKind
+) {
+  return placeholders
+    .slice(0, placeholderIndex + 1)
+    .filter((entry) => {
+      if (kind === "ah") {
+        return entry.kind === "ah";
+      }
+
+      if (kind === "ssc") {
+        return entry.kind === "ssc";
+      }
+
+      if (kind === "ahOrSsc") {
+        return entry.kind !== "elective";
+      }
+
+      return entry.kind === "elective";
+    }).length;
+}
+
+function buildGeneralEducationPlaceholderSlotTotals(placeholders: GeneralEducationPlaceholder[]) {
+  return {
+    ahCredits: placeholders.filter((entry) => entry.kind === "ah").length * GENERAL_ED_PLACEHOLDER_CREDITS,
+    sscCredits:
+      placeholders.filter((entry) => entry.kind === "ssc").length * GENERAL_ED_PLACEHOLDER_CREDITS,
+    breadthCredits:
+      placeholders.filter(
+        (entry) => entry.kind === "ah" || entry.kind === "ssc" || entry.kind === "ahOrSsc"
+      ).length * GENERAL_ED_PLACEHOLDER_CREDITS,
+    electiveCredits:
+      placeholders.filter((entry) => entry.kind === "elective").length *
+      GENERAL_ED_PLACEHOLDER_CREDITS,
+  };
+}
+
+function getGeneralEducationPlanTitle(plan: TransferPlannerMajorPlan | null | undefined) {
+  const selectedPathwayLabel =
+    (plan as { selectedPathwayLabel?: string | null } | null | undefined)?.selectedPathwayLabel ??
+    null;
+  if (!plan?.title) {
+    return "this plan";
+  }
+
+  return selectedPathwayLabel ? `${plan.title} (${selectedPathwayLabel})` : plan.title;
+}
+
+function buildGeneralEducationPlaceholderGuidanceSummary(args: {
+  placeholder: GeneralEducationPlaceholder;
+  placeholderIndex: number;
+  placeholders: GeneralEducationPlaceholder[];
+  plan?: TransferPlannerMajorPlan | null;
+}) {
+  const { placeholder, placeholderIndex, placeholders, plan } = args;
+  const requirementTargets = buildGeneralEducationRequirementTargets(plan);
+  const slotTotals = buildGeneralEducationPlaceholderSlotTotals(placeholders);
+  const planTitle = getGeneralEducationPlanTitle(plan);
+
+  let areaLabel = "elective/general-education";
+  let totalCredits = slotTotals.electiveCredits;
+  let relation = "planned for";
+
+  if (placeholder.kind === "ah") {
+    if (requirementTargets.ahCredits !== null) {
+      areaLabel = "A&H";
+      totalCredits = requirementTargets.ahCredits;
+      relation = "needed for";
+    } else if (requirementTargets.breadthCredits !== null) {
+      areaLabel = "A&H/SSc";
+      totalCredits = requirementTargets.breadthCredits;
+      relation = "needed for";
+    } else {
+      areaLabel = "A&H";
+      totalCredits = slotTotals.ahCredits;
+    }
+  } else if (placeholder.kind === "ssc") {
+    if (requirementTargets.sscCredits !== null) {
+      areaLabel = "SSc";
+      totalCredits = requirementTargets.sscCredits;
+      relation = "needed for";
+    } else if (requirementTargets.breadthCredits !== null) {
+      areaLabel = "A&H/SSc";
+      totalCredits = requirementTargets.breadthCredits;
+      relation = "needed for";
+    } else {
+      areaLabel = "SSc";
+      totalCredits = slotTotals.sscCredits;
+    }
+  } else if (placeholder.kind === "ahOrSsc") {
+    areaLabel = "A&H/SSc";
+    if (requirementTargets.breadthCredits !== null) {
+      totalCredits = requirementTargets.breadthCredits;
+      relation = "needed for";
+    } else {
+      totalCredits = slotTotals.breadthCredits;
+    }
+  } else if (requirementTargets.electiveCredits !== null) {
+    totalCredits = requirementTargets.electiveCredits;
+    relation = "needed for";
+  }
+
+  const progressCredits = Math.min(
+    countCompatibleGeneralEducationPlaceholders(
+      placeholders,
+      placeholderIndex,
+      placeholder.kind
+    ) * GENERAL_ED_PLACEHOLDER_CREDITS,
+    totalCredits
+  );
+
+  return `This so far covers ${progressCredits}/${totalCredits} ${areaLabel} credits ${relation} ${planTitle}.`;
 }
 
 function normalizeCourseRequirementPath(courseCodes: string[]) {
@@ -1638,8 +2261,14 @@ function buildSeedCoursesForQuarter(
 
   const filtered: PendingSuggestedCourse[] = [];
   const selectedSequenceGroups = new Set<string>();
+  const selectedLabelKeys = new Set<string>();
 
   for (const course of seedCourses) {
+    const labelKey = String(course.label ?? "").trim().toLowerCase();
+    if (selectedLabelKeys.has(labelKey)) {
+      continue;
+    }
+
     if (
       course.sequenceGroup &&
       selectedSequenceGroups.has(course.sequenceGroup)
@@ -1652,6 +2281,7 @@ function buildSeedCoursesForQuarter(
     }
 
     filtered.push(course);
+    selectedLabelKeys.add(labelKey);
     if (course.sequenceGroup) {
       selectedSequenceGroups.add(course.sequenceGroup);
     }
@@ -1671,10 +2301,15 @@ function takeNextEligibleCourse(
       .map((course) => course.sequenceGroup)
       .filter((group): group is string => !!group)
   );
+  const selectedLabelKeys = new Set(
+    selectedCourses.map((course) => String(course.label ?? "").trim().toLowerCase())
+  );
 
   const eligibleIndices = pool
     .map((course, index) => ({ course, index }))
     .filter(({ course }) => {
+      const labelKey = String(course.label ?? "").trim().toLowerCase();
+      if (selectedLabelKeys.has(labelKey)) return false;
       if (course.sequenceGroup && selectedSequenceGroups.has(course.sequenceGroup)) return false;
       return courseHasSatisfiedPlanningGraph(course, completedCourseCodes, selectedCourses);
     });
@@ -1827,6 +2462,21 @@ function allocateQuarterCourses({
     guidanceSummary,
     availabilitySummary: getTransferPlannerGrcCourseAvailabilitySummary(label),
   }));
+}
+
+function hasPendingQuarterPlanCourses(pools: PendingSuggestedCourse[][]) {
+  return pools.some((pool) => pool.length > 0);
+}
+
+function recordPlannedQuarterCourseCodes(
+  courses: SuggestedQuarterCourse[],
+  completedCourseCodes: Set<string>
+) {
+  for (const course of courses) {
+    for (const courseCode of extractCourseCodes(course.label)) {
+      completedCourseCodes.add(courseCode);
+    }
+  }
 }
 
 function buildRemainingSuggestedCourses(
@@ -2005,8 +2655,13 @@ function buildPrerequisiteDependencyCoursesForEssentialPlan(
 
 function attachAutomaticPrerequisiteGuidance(courses: PendingSuggestedCourse[]) {
   const dependentLabelsByPrerequisiteCode = new Map<string, string[]>();
+  const requiredPriorityThreshold = REQUIREMENT_PRIORITY_RANK.stayAtGrc;
 
   for (const course of courses) {
+    if (course.priorityRank >= requiredPriorityThreshold) {
+      continue;
+    }
+
     const prerequisiteCodes = unique(course.prerequisiteCourseSets.flat());
 
     for (const prerequisiteCode of prerequisiteCodes) {
@@ -2027,6 +2682,35 @@ function attachAutomaticPrerequisiteGuidance(courses: PendingSuggestedCourse[]) 
     const prerequisiteGuidanceSummary = buildPrerequisiteGuidanceSummary(dependentLabels);
     const guidanceSummary = joinGuidanceSummaries(
       prerequisiteGuidanceSummary,
+      course.guidanceSummary
+    );
+
+    if (guidanceSummary === course.guidanceSummary) {
+      return course;
+    }
+
+    return {
+      ...course,
+      guidanceSummary,
+    };
+  });
+}
+
+function attachAutomaticTransferEquivalencyGuidance(
+  courses: PendingSuggestedCourse[],
+  campusId: TransferPlannerMajorPlan["campusId"] | null | undefined
+) {
+  if (!campusId) {
+    return courses;
+  }
+
+  return courses.map<PendingSuggestedCourse>((course) => {
+    const transferGuidanceSummary = buildTransferEquivalencyGuidanceSummary(
+      course.explicitCourseCodes,
+      campusId
+    );
+    const guidanceSummary = joinGuidanceSummaries(
+      transferGuidanceSummary,
       course.guidanceSummary
     );
 
@@ -2118,7 +2802,9 @@ export function buildSuggestedQuarterPlan(input: {
             statuses: input.stayAtGrcStatuses,
           },
         ], prerequisiteCourseMap, corequisiteCourseMap);
-  const guidedRemainingCourses = attachAutomaticPrerequisiteGuidance(remainingCourses);
+  const guidedRemainingCourses = attachAutomaticPrerequisiteGuidance(
+    attachAutomaticTransferEquivalencyGuidance(remainingCourses, input.plan?.campusId)
+  );
   const completedQuarterPlans = buildCompletedQuarterPlans(input.completedCourses);
   const currentQuarterCourses = guidedRemainingCourses
     .filter((course) => selectedCurrentCourseLabels.has(course.label))
@@ -2168,16 +2854,22 @@ export function buildSuggestedQuarterPlan(input: {
   const fillerLabels = buildGeneralEducationPlaceholders(
     input.track,
     input.completedCourses,
-    input.referenceDate
+    input.referenceDate,
+    input.plan
   );
   const fillerPool =
     input.includeStayAtGrcCourses === false
       ? []
-      : fillerLabels.map<PendingSuggestedCourse>((label) => ({
-          label,
+      : fillerLabels.map<PendingSuggestedCourse>((placeholder, placeholderIndex, placeholders) => ({
+          label: placeholder.label,
           type: "elective",
           status: "planned",
-          guidanceSummary: buildGeneralEducationPlaceholderGuidanceSummary(label),
+          guidanceSummary: buildGeneralEducationPlaceholderGuidanceSummary({
+            placeholder,
+            placeholderIndex,
+            placeholders,
+            plan: input.plan,
+          }),
           sequenceGroup: null,
           priorityRank: REQUIREMENT_PRIORITY_RANK.stayAtGrc + 1,
           sourceOrder: Number.MAX_SAFE_INTEGER,
@@ -2202,13 +2894,26 @@ export function buildSuggestedQuarterPlan(input: {
       }
     : null;
 
+  const planningPools = [
+    essentialCorePool,
+    essentialElectivePool,
+    optionalCorePool,
+    optionalElectivePool,
+    fillerPool,
+  ];
+  const hasPendingFutureCourses = hasPendingQuarterPlanCourses(planningPools);
   const futureQuarterPlans: SuggestedQuarterPlan[] = [];
-  if (guidedCoursesStillToPlan.length || (!completedQuarterPlans.length && !currentQuarterCourses.length)) {
-    const futureQuarterSlots = currentQuarterSlot
+  const shouldShowEmptyPlanningShell =
+    !hasPendingFutureCourses && !completedQuarterPlans.length && !currentQuarterCourses.length;
+  if (hasPendingFutureCourses || shouldShowEmptyPlanningShell) {
+    const [firstFutureQuarterSlot] = currentQuarterSlot
       ? buildQuarterSlotsAfterCurrent(input.referenceDate)
       : buildQuarterSlots(input.referenceDate);
+    let slot = firstFutureQuarterSlot ?? null;
+    let consecutiveEmptyQuarterCount = 0;
+    let generatedQuarterCount = 0;
 
-    for (const slot of futureQuarterSlots) {
+    while (slot && generatedQuarterCount < MAX_AUTOMATIC_PLANNED_QUARTERS) {
       const courses = allocateQuarterCourses({
         essentialCorePool,
         essentialElectivePool,
@@ -2219,17 +2924,37 @@ export function buildSuggestedQuarterPlan(input: {
         preferredQuarterKind: slot.kind,
       });
 
-      futureQuarterPlans.push({
-        label: slot.label,
-        phase: "planned",
-        courses,
-      });
+      generatedQuarterCount += 1;
 
-      for (const course of courses) {
-        for (const courseCode of extractCourseCodes(course.label)) {
-          completedCourseCodes.add(courseCode);
-        }
+      if (courses.length) {
+        futureQuarterPlans.push({
+          label: slot.label,
+          phase: "planned",
+          courses,
+        });
+        recordPlannedQuarterCourseCodes(courses, completedCourseCodes);
+        consecutiveEmptyQuarterCount = 0;
+      } else {
+        consecutiveEmptyQuarterCount += 1;
       }
+
+      if (!hasPendingQuarterPlanCourses(planningPools)) {
+        break;
+      }
+
+      if (consecutiveEmptyQuarterCount >= PLANNING_NO_PROGRESS_QUARTER_LIMIT) {
+        break;
+      }
+
+      slot = getNextPlannedQuarterSlot(slot);
+    }
+
+    if (!futureQuarterPlans.length && shouldShowEmptyPlanningShell && firstFutureQuarterSlot) {
+      futureQuarterPlans.push({
+        label: firstFutureQuarterSlot.label,
+        phase: "planned",
+        courses: [],
+      });
     }
   }
 

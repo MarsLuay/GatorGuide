@@ -4,6 +4,7 @@ type ThemeTokens = {
   textClass: string;
   secondaryTextClass: string;
   cardBgClass: string;
+  dropdownSurfaceColor: string;
   inputBgClass: string;
   inactiveButtonClass: string;
   borderClass: string;
@@ -48,6 +49,7 @@ const THEME_TOKENS: Record<ResolvedAppTheme, ThemeTokens> = {
     textClass: "text-emerald-900",
     secondaryTextClass: "text-emerald-700",
     cardBgClass: "bg-white border-emerald-200",
+    dropdownSurfaceColor: "#FFFFFF",
     inputBgClass: "bg-white border-emerald-300",
     inactiveButtonClass: "bg-emerald-100",
     borderClass: "border-emerald-300",
@@ -90,6 +92,7 @@ const THEME_TOKENS: Record<ResolvedAppTheme, ThemeTokens> = {
     textClass: "text-white",
     secondaryTextClass: "text-gray-400",
     cardBgClass: "bg-gray-900/80 border-gray-800",
+    dropdownSurfaceColor: "#111827",
     inputBgClass: "bg-gray-800 border-gray-700",
     inactiveButtonClass: "bg-gray-800",
     borderClass: "border-gray-800",
@@ -132,6 +135,7 @@ const THEME_TOKENS: Record<ResolvedAppTheme, ThemeTokens> = {
     textClass: "text-white",
     secondaryTextClass: "text-emerald-100",
     cardBgClass: "bg-emerald-900/90 border-emerald-800",
+    dropdownSurfaceColor: "#064e3b",
     inputBgClass: "bg-emerald-900/70 border-emerald-700",
     inactiveButtonClass: "bg-emerald-800/70",
     borderClass: "border-emerald-700",

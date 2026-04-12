@@ -16,9 +16,10 @@ Title: Major Requirements | Marine Biology
 * CHEM 143, 153 and 145, 155 are pre-approved substitutes for CHEM 142 and 152.
 * If you were a student enrolled prior to the Fall 2021 semester, click here to view the previous major requirements.
 * Independent research can be registered for any quarter, but requires an individual learning contract
-&#109;&#97;&#114;&#98;&#105;&#111;l&#64;&#117;w.ed&#117;
-&#109;a&#114;b&#105;o&#108;&#64;&#117;&#119;&#46;ed&#117;
-&#109;arbiol&#64;uw.&#101;&#100;u
+&#109;&#97;rbio&#108;&#64;uw.&#101;&#100;u
+&#109;a&#114;&#98;&#105;ol&#64;&#117;w&#46;&#101;&#100;&#117;
+&#109;a&#114;&#98;i&#111;&#108;&#64;uw&#46;&#101;&#100;u
+&#109;ar&#98;iol&#64;uw&#46;&#101;du
 &copy; 2026 University of Washington |
 ⁺ CHEM 237 pre-approved to substitute for CHEM 223
 <!--
@@ -339,10 +340,8 @@ Lab; Only if not applied to &#8216;integrative field experience&#8217; requireme
 Lab; registration restricted to Biology majors period 1
 Learn more
 Learning Goals
-m&#97;&#114;&#98;&#105;&#111;l&#64;&#117;&#119;&#46;&#101;&#100;&#117;
-m&#97;r&#98;&#105;&#111;&#108;&#64;u&#119;.&#101;d&#117;
-ma&#114;&#98;i&#111;l&#64;uw&#46;&#101;du
-ma&#114;b&#105;ol&#64;&#117;&#119;&#46;e&#100;u
+m&#97;r&#98;&#105;&#111;&#108;&#64;u&#119;.&#101;&#100;u
+ma&#114;&#98;&#105;o&#108;&#64;&#117;w.e&#100;u
 Major Electives
 Major Electives | Marine Biology
 Major Requirements
@@ -362,6 +361,7 @@ MARBIO 479*
 MARBIO 488
 MARBIO 488: Marine Biology in the Field (6 credits): Standard, campus-based course offered annually in the fall with a mandatory field component covered in the three weeks prior to the start of fall quarter (exact dates vary by year) at Friday Harbor Labs. The FHL field component consists of short research training modules focused on intertidal ecology, trophic ecology, and oceanography followed by independent research projects conducted in small groups. The on-campus portion focuses on analysis, presentation, and communication of research project results.
 MARBIO/FISH/OCEAN 370
+marbiol&#64;&#117;&#119;&#46;edu
 Marine and Environmental Affairs
 Marine Biogeochemical Cycles
 Marine Biology

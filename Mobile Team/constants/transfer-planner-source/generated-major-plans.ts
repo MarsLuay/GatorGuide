@@ -1651,13 +1651,13 @@ export function getTransferPlannerAutoMatchedTrackRecommendation(
     normalizedCourseLabels.flatMap((label) => extractReferenceCourseCodes(label))
   );
 
-  if (planCourseCodes.length < MIN_AUTO_TRACK_MATCH_COUNT) {
+  if (!planCourseCodes.length) {
     return null;
   }
 
   const planCourseCodeSet = new Set(planCourseCodes);
   const labelByCode = buildReferenceLabelByCode(normalizedCourseLabels);
-  const scoredTracks = TRANSFER_PLANNER_BOOTSTRAP_TRACKS.map((track) => {
+  const scoredTrackCandidates = TRANSFER_PLANNER_BOOTSTRAP_TRACKS.map((track) => {
     const trackCourseCodes = TRACK_REFERENCE_CODES_BY_ID.get(track.id) ?? [];
     const matchedCourseCodes = trackCourseCodes.filter((code) => planCourseCodeSet.has(code));
     return {
@@ -1672,7 +1672,18 @@ export function getTransferPlannerAutoMatchedTrackRecommendation(
       trackCoverage: matchedCourseCodes.length / Math.max(trackCourseCodes.length, 1),
       preferred: track.id === preferredTrackId,
     };
-  }).filter((entry) => entry.matchCount >= MIN_AUTO_TRACK_MATCH_COUNT);
+  });
+
+  const minimumMatchCount = MIN_AUTO_TRACK_MATCH_COUNT;
+  let scoredTracks = scoredTrackCandidates.filter(
+    (entry) => entry.matchCount >= minimumMatchCount
+  );
+
+  // For plans without a curated preferred track, keep a best-effort auto-match even
+  // when only 1-2 source-backed course overlaps are currently available.
+  if (!scoredTracks.length && !preferredTrackId) {
+    scoredTracks = scoredTrackCandidates.filter((entry) => entry.matchCount >= 1);
+  }
 
   if (!scoredTracks.length) {
     return null;

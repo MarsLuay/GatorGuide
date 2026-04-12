@@ -32,6 +32,31 @@ const ENTITY_MAP = {
   "#8212": "-",
   "#8217": "'",
 };
+const COURSE_CODE_PATTERN = /\b[A-Z&]{1,8}(?:\s+[A-Z&]{1,8}){0,2}\s+\d{2,3}(?:\.\d+)?[A-Z]?\b/g;
+const COURSE_CODE_LEADING_STOPWORDS = new Set([
+  "AND",
+  "ANY",
+  "APPROVED",
+  "AT",
+  "BEFORE",
+  "BETWEEN",
+  "DIVISION",
+  "FOR",
+  "FROM",
+  "IN",
+  "INTO",
+  "LEAST",
+  "MINIMUM",
+  "OF",
+  "ONE",
+  "OR",
+  "PLUS",
+  "THE",
+  "THREE",
+  "TO",
+  "TWO",
+  "WITH",
+]);
 
 function decodeHtmlEntities(value) {
   return String(value ?? "").replace(/&(?:amp|apos|nbsp|quot|#39|#160|#8211|#8212|#8217);/gi, (match) => {
@@ -55,6 +80,360 @@ function normalizeCourseCode(value) {
   return normalizeWhitespace(value)
     .toUpperCase()
     .replace(/\s+/g, " ");
+}
+
+function sortCourseCodes(values) {
+  return [...values].sort((left, right) => left.localeCompare(right));
+}
+
+function uniqueStrings(values) {
+  return [...new Set((values ?? []).filter(Boolean))].sort((left, right) =>
+    left.localeCompare(right)
+  );
+}
+
+function normalizeCoursePath(values) {
+  return sortCourseCodes(
+    [...new Set((values ?? []).map((value) => normalizeCourseCode(value)).filter(Boolean))]
+  );
+}
+
+function mergeAlternativeCourseCodeSets(left = [], right = []) {
+  const byKey = new Map();
+  for (const courseSet of [...left, ...right]) {
+    const normalizedSet = normalizeCoursePath(courseSet);
+    if (!normalizedSet.length) {
+      continue;
+    }
+    byKey.set(normalizedSet.join("|"), normalizedSet);
+  }
+  return [...byKey.values()].sort((a, b) => a.join("|").localeCompare(b.join("|")));
+}
+
+function expandCourseCodeSlashShorthand(value) {
+  let expanded = normalizeWhitespace(value);
+  let previousValue = "";
+
+  while (expanded !== previousValue) {
+    previousValue = expanded;
+    expanded = expanded.replace(
+      /\b([A-Z&]{1,8}(?:\s+[A-Z&]{1,8}){0,2})\s+(\d{2,3}[A-Z]?)(\s*(?:\/\s*\d{2,3}[A-Z]?)+)\b/g,
+      (_match, subject, firstNumber, trailingNumbers) => {
+        const normalizedSubject = normalizeWhitespace(subject);
+        const numbers = [
+          firstNumber,
+          ...String(trailingNumbers)
+            .split("/")
+            .map((part) => normalizeWhitespace(part))
+            .filter(Boolean),
+        ];
+        return numbers.map((number) => `${normalizedSubject} ${number}`).join(" or ");
+      }
+    );
+  }
+
+  return expanded;
+}
+
+function getCourseCodeMatches(value) {
+  const matches = [];
+  COURSE_CODE_PATTERN.lastIndex = 0;
+  let match;
+
+  while ((match = COURSE_CODE_PATTERN.exec(String(value ?? ""))) !== null) {
+    const code = normalizeCourseCode(match[0]);
+    const subject = code.replace(/\s+\d{2,3}(?:\.\d+)?[A-Z]?$/, "");
+    const leadingToken = subject.split(/\s+/)[0] ?? "";
+    if (COURSE_CODE_LEADING_STOPWORDS.has(leadingToken)) {
+      continue;
+    }
+
+    matches.push({
+      code,
+      index: match.index,
+      end: match.index + match[0].length,
+    });
+  }
+
+  return matches;
+}
+
+function shouldIgnoreCourseCodeMatch(text, match) {
+  const boundaryStart = Math.max(
+    text.lastIndexOf(";", match.index),
+    text.lastIndexOf(".", match.index),
+    text.lastIndexOf(":", match.index),
+    text.lastIndexOf("(", match.index)
+  );
+  const before = text.slice(boundaryStart + 1, match.index).toLowerCase();
+  const after = text.slice(match.end, Math.min(text.length, match.end + 80)).toLowerCase();
+
+  if (/\beligible for\s*$/.test(before)) {
+    return true;
+  }
+  if (/\bequivalent of\s*$/.test(before)) {
+    return true;
+  }
+  if (/\badmission (?:into|to)\s*$/.test(before)) {
+    return true;
+  }
+  if (/\byears?\s+in high school\b/.test(after)) {
+    return true;
+  }
+
+  return false;
+}
+
+function getSafeCourseCodeMatches(value) {
+  const normalized = expandCourseCodeSlashShorthand(normalizeWhitespace(value));
+  return getCourseCodeMatches(normalized).filter((match) => !shouldIgnoreCourseCodeMatch(normalized, match));
+}
+
+function getCourseCodeSubject(value) {
+  return normalizeCourseCode(value).replace(/\s+\d{2,3}(?:\.\d+)?[A-Z]?$/, "");
+}
+
+function hasAlternativeBoundary(text) {
+  const normalized = normalizeWhitespace(text).toLowerCase();
+  if (!normalized) {
+    return false;
+  }
+
+  const cleaned = normalized.replace(
+    /\bor\s+(?:higher|lower|better|concurrent enrollment|instructor(?:'s)?|permission|consent|appropriate|equivalent)\b/g,
+    " "
+  );
+  return /\bor\b/.test(cleaned);
+}
+
+function applySharedPrefixToAlternativePaths(paths) {
+  if (paths.length < 2 || paths[0].length < 2) {
+    return paths;
+  }
+
+  const prefix = paths[0].slice(0, -1);
+  const anchorSubject = getCourseCodeSubject(paths[0][paths[0].length - 1]);
+  if (!prefix.length || !anchorSubject) {
+    return paths;
+  }
+
+  const laterPathsShareSubject = paths
+    .slice(1)
+    .every((path) => path.length === 1 && getCourseCodeSubject(path[0]) === anchorSubject);
+  if (!laterPathsShareSubject) {
+    return paths;
+  }
+
+  return [
+    paths[0],
+    ...paths.slice(1).map((path) => normalizeCoursePath([...prefix, ...path])),
+  ];
+}
+
+function uniqueCoursePaths(paths) {
+  const byKey = new Map();
+  for (const path of paths) {
+    const normalizedPath = normalizeCoursePath(path);
+    if (!normalizedPath.length) {
+      continue;
+    }
+    byKey.set(normalizedPath.join("|"), normalizedPath);
+  }
+  return [...byKey.values()].sort((a, b) => a.join("|").localeCompare(b.join("|")));
+}
+
+function crossCombineCoursePaths(leftPaths, rightPaths) {
+  if (!leftPaths.length) {
+    return uniqueCoursePaths(rightPaths);
+  }
+  if (!rightPaths.length) {
+    return uniqueCoursePaths(leftPaths);
+  }
+
+  return uniqueCoursePaths(
+    leftPaths.flatMap((leftPath) =>
+      rightPaths.map((rightPath) => [...leftPath, ...rightPath])
+    )
+  );
+}
+
+function parseSimpleCoursePathsFromExpression(expression) {
+  const normalizedExpression = expandCourseCodeSlashShorthand(normalizeWhitespace(expression));
+  const matches = getSafeCourseCodeMatches(normalizedExpression);
+  if (!matches.length) {
+    return [];
+  }
+
+  const segments = [[matches[0].code]];
+  for (let index = 1; index < matches.length; index += 1) {
+    const previousMatch = matches[index - 1];
+    const currentMatch = matches[index];
+    const between = normalizedExpression.slice(previousMatch.end, currentMatch.index);
+    if (hasAlternativeBoundary(between)) {
+      segments.push([currentMatch.code]);
+    } else {
+      segments[segments.length - 1].push(currentMatch.code);
+    }
+  }
+
+  return uniqueCoursePaths(applySharedPrefixToAlternativePaths(segments));
+}
+
+function parseCoursePathsFromExpression(expression) {
+  const normalizedExpression = expandCourseCodeSlashShorthand(normalizeWhitespace(expression));
+  const parentheticalMatch = normalizedExpression.match(/\(([^()]+)\)/);
+  if (!parentheticalMatch) {
+    return parseSimpleCoursePathsFromExpression(normalizedExpression);
+  }
+
+  const innerPaths = parseSimpleCoursePathsFromExpression(parentheticalMatch[1]);
+  const outerExpression = normalizeWhitespace(
+    `${normalizedExpression.slice(0, parentheticalMatch.index)} ${normalizedExpression.slice(
+      parentheticalMatch.index + parentheticalMatch[0].length
+    )}`
+  );
+  const outerPaths = parseSimpleCoursePathsFromExpression(outerExpression);
+
+  if (innerPaths.length && outerPaths.length) {
+    return crossCombineCoursePaths(innerPaths, outerPaths);
+  }
+  if (innerPaths.length) {
+    return innerPaths;
+  }
+  return outerPaths;
+}
+
+function mergeRequirementPaths(existingPaths, incomingPaths, joiner) {
+  if (!incomingPaths.length) {
+    return existingPaths;
+  }
+  if (!existingPaths.length) {
+    return uniqueCoursePaths(incomingPaths);
+  }
+  if (joiner === "or") {
+    return uniqueCoursePaths([...existingPaths, ...incomingPaths]);
+  }
+  return crossCombineCoursePaths(existingPaths, incomingPaths);
+}
+
+function materializeParsedRequirementFields(prerequisitePaths, corequisitePaths) {
+  const result = {
+    prerequisiteCourseCodes: [],
+    prerequisiteAlternativeCourseCodeSets: [],
+    corequisiteCourseCodes: [],
+    corequisiteAlternativeCourseCodeSets: [],
+  };
+
+  if (prerequisitePaths.length === 1) {
+    result.prerequisiteCourseCodes = [...prerequisitePaths[0]];
+  } else if (prerequisitePaths.length > 1) {
+    result.prerequisiteAlternativeCourseCodeSets = prerequisitePaths.map((path) => [...path]);
+  }
+
+  if (corequisitePaths.length === 1) {
+    result.corequisiteCourseCodes = [...corequisitePaths[0]];
+  } else if (corequisitePaths.length > 1) {
+    result.corequisiteAlternativeCourseCodeSets = corequisitePaths.map((path) => [...path]);
+  }
+
+  return {
+    ...result,
+    hasStructuredRequirementFields:
+      result.prerequisiteCourseCodes.length > 0 ||
+      result.prerequisiteAlternativeCourseCodeSets.length > 0 ||
+      result.corequisiteCourseCodes.length > 0 ||
+      result.corequisiteAlternativeCourseCodeSets.length > 0,
+  };
+}
+
+function parseGrcEnrollmentRequirementText(value) {
+  const normalizedText = expandCourseCodeSlashShorthand(
+    normalizeWhitespace(String(value ?? "").split(/\bRecommended\s*:/i)[0])
+  );
+  if (!normalizedText) {
+    return materializeParsedRequirementFields([], []);
+  }
+
+  const chunks = normalizedText
+    .split(/(?:;|\.(?=\s|$))/)
+    .map((chunk) => normalizeWhitespace(chunk))
+    .filter(Boolean);
+
+  let prerequisitePaths = [];
+  let corequisitePaths = [];
+
+  for (const rawChunk of chunks) {
+    const joiner = /^\s*or\b/i.test(rawChunk) ? "or" : "and";
+    const chunk = normalizeWhitespace(rawChunk.replace(/^\s*(?:and|or)\s+/i, ""));
+    if (!chunk) {
+      continue;
+    }
+
+    const chunkPaths = parseCoursePathsFromExpression(chunk);
+    if (!chunkPaths.length) {
+      continue;
+    }
+
+    if (/\bconcurrent enrollment\b/i.test(chunk)) {
+      if (joiner === "or" && prerequisitePaths.length > 0) {
+        const prerequisitePathKeys = new Set(prerequisitePaths.map((path) => path.join("|")));
+        const overlappingCorequisitePaths = chunkPaths.filter((path) =>
+          prerequisitePathKeys.has(path.join("|"))
+        );
+        if (overlappingCorequisitePaths.length > 0) {
+          const overlappingKeys = new Set(
+            overlappingCorequisitePaths.map((path) => path.join("|"))
+          );
+          prerequisitePaths = prerequisitePaths.filter(
+            (path) => !overlappingKeys.has(path.join("|"))
+          );
+          corequisitePaths = mergeRequirementPaths(
+            corequisitePaths,
+            overlappingCorequisitePaths,
+            "or"
+          );
+        }
+        continue;
+      }
+
+      corequisitePaths = mergeRequirementPaths(corequisitePaths, chunkPaths, joiner);
+      continue;
+    }
+
+    prerequisitePaths = mergeRequirementPaths(prerequisitePaths, chunkPaths, joiner);
+  }
+
+  return materializeParsedRequirementFields(prerequisitePaths, corequisitePaths);
+}
+
+function parseGrcCorequisiteText(value) {
+  const normalizedText = expandCourseCodeSlashShorthand(normalizeWhitespace(value));
+  if (!normalizedText) {
+    return materializeParsedRequirementFields([], []);
+  }
+
+  const chunks = normalizedText
+    .split(/(?:;|\.(?=\s|$))/)
+    .map((chunk) => normalizeWhitespace(chunk))
+    .filter(Boolean);
+
+  let corequisitePaths = [];
+  for (const rawChunk of chunks) {
+    const joiner = /^\s*or\b/i.test(rawChunk) ? "or" : "and";
+    const chunk = normalizeWhitespace(rawChunk.replace(/^\s*(?:and|or)\s+/i, ""));
+    if (!chunk) {
+      continue;
+    }
+
+    const chunkPaths = parseCoursePathsFromExpression(chunk);
+    if (!chunkPaths.length) {
+      continue;
+    }
+
+    corequisitePaths = mergeRequirementPaths(corequisitePaths, chunkPaths, joiner);
+  }
+
+  return materializeParsedRequirementFields([], corequisitePaths);
 }
 
 function sha256Text(value) {
@@ -379,6 +758,11 @@ function buildCourseEntries(html, catalogYearLabel, courseDescriptionsSourceUrl)
     const enrollmentRequirement = extractLabeledSectionText(rawBody, "Enrollment Requirement");
     const corequisiteRequirement = extractLabeledSectionText(rawBody, "Corequisite");
     const description = extractCourseDescription(rawBody);
+    const parsedEnrollmentRequirement = parseGrcEnrollmentRequirementText(enrollmentRequirement);
+    const parsedCorequisiteRequirement = parseGrcCorequisiteText(corequisiteRequirement);
+    const hasStructuredRequirementFields =
+      parsedEnrollmentRequirement.hasStructuredRequirementFields ||
+      parsedCorequisiteRequirement.hasStructuredRequirementFields;
     const sourceUrl = `${courseDescriptionsSourceUrl}#${rawCode
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, "-")
@@ -391,12 +775,31 @@ function buildCourseEntries(html, catalogYearLabel, courseDescriptionsSourceUrl)
       creditValue: credits.creditValue,
       creditLabel: credits.creditLabel,
       catalogDescription: description,
+      prerequisiteCourseCodes: uniqueStrings([
+        ...(parsedEnrollmentRequirement.prerequisiteCourseCodes ?? []),
+      ]),
+      prerequisiteAlternativeCourseCodeSets: mergeAlternativeCourseCodeSets(
+        [],
+        parsedEnrollmentRequirement.prerequisiteAlternativeCourseCodeSets
+      ),
       prerequisiteNotes: enrollmentRequirement
         ? [
             `Official Green River enrollment requirement text: ${enrollmentRequirement}`,
-            "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites.",
+            ...(!hasStructuredRequirementFields
+              ? [
+                  "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites.",
+                ]
+              : []),
           ]
         : [],
+      corequisiteCourseCodes: uniqueStrings([
+        ...(parsedEnrollmentRequirement.corequisiteCourseCodes ?? []),
+        ...(parsedCorequisiteRequirement.corequisiteCourseCodes ?? []),
+      ]),
+      corequisiteAlternativeCourseCodeSets: mergeAlternativeCourseCodeSets(
+        parsedEnrollmentRequirement.corequisiteAlternativeCourseCodeSets,
+        parsedCorequisiteRequirement.corequisiteAlternativeCourseCodeSets
+      ),
       corequisiteNotes: corequisiteRequirement
         ? [`Official Green River corequisite text: ${corequisiteRequirement}`]
         : [],
@@ -438,7 +841,9 @@ function writeMarkdown(report) {
     `- Courses parsed: ${report.courseCount}`,
     `- Courses with credit labels: ${report.coursesWithCreditLabels}`,
     `- Courses with enrollment requirement notes: ${report.coursesWithEnrollmentRequirementNotes}`,
+    `- Courses with structured prerequisite paths: ${report.coursesWithStructuredPrerequisitePaths}`,
     `- Courses with corequisite notes: ${report.coursesWithCorequisiteNotes}`,
+    `- Courses with structured corequisite paths: ${report.coursesWithStructuredCorequisitePaths}`,
     "",
   ];
 
@@ -480,8 +885,18 @@ async function main() {
     coursesWithEnrollmentRequirementNotes: entries.filter(
       (entry) => (entry.prerequisiteNotes ?? []).length > 0
     ).length,
+    coursesWithStructuredPrerequisitePaths: entries.filter(
+      (entry) =>
+        (entry.prerequisiteCourseCodes ?? []).length > 0 ||
+        (entry.prerequisiteAlternativeCourseCodeSets ?? []).length > 0
+    ).length,
     coursesWithCorequisiteNotes: entries.filter((entry) => (entry.corequisiteNotes ?? []).length > 0)
       .length,
+    coursesWithStructuredCorequisitePaths: entries.filter(
+      (entry) =>
+        (entry.corequisiteCourseCodes ?? []).length > 0 ||
+        (entry.corequisiteAlternativeCourseCodeSets ?? []).length > 0
+    ).length,
     entries,
   };
 
@@ -493,7 +908,15 @@ async function main() {
   console.log(`Catalog ingest Markdown: ${OUTPUT_MD_PATH}`);
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
+module.exports = {
+  parseGrcEnrollmentRequirementText,
+  parseGrcCorequisiteText,
+  buildCourseEntries,
+};
+
+if (require.main === module) {
+  main().catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+}

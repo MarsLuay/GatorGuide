@@ -96,7 +96,7 @@ function uwCourseMetadata(
   };
 }
 
-const TRANSFER_PLANNER_MANUAL_COURSE_METADATA: TransferPlannerNormalizedCourseMetadataEntry[] = [
+const TRANSFER_PLANNER_MANUAL_COURSE_METADATA_RAW: TransferPlannerNormalizedCourseMetadataEntry[] = [
   grcCourseMetadata("ENGL& 101", "English Composition I", 5),
 
   grcCourseMetadata("MATH& 151", "Calculus I", 5),
@@ -243,6 +243,59 @@ const TRANSFER_PLANNER_MANUAL_COURSE_METADATA: TransferPlannerNormalizedCourseMe
     sourceLinks: UW_SEATTLE_COMPUTING_SOURCE_LINKS,
   }),
 ];
+
+const GENERATED_GRC_STRUCTURED_REQUIREMENT_COVERAGE = new Map<
+  string,
+  {
+    prerequisite: boolean;
+    corequisite: boolean;
+  }
+>();
+
+for (const entry of TRANSFER_PLANNER_GENERATED_COURSE_METADATA) {
+  if (entry.schoolId !== "grc") {
+    continue;
+  }
+
+  GENERATED_GRC_STRUCTURED_REQUIREMENT_COVERAGE.set(`${entry.schoolId}|${entry.code}`, {
+    prerequisite:
+      (entry.prerequisiteCourseCodes ?? []).length > 0 ||
+      (entry.prerequisiteAlternativeCourseCodeSets ?? []).length > 0,
+    corequisite:
+      (entry.corequisiteCourseCodes ?? []).length > 0 ||
+      (entry.corequisiteAlternativeCourseCodeSets ?? []).length > 0,
+  });
+}
+
+function dropManualStructuredRequirementFieldsWhenGeneratedCovered(
+  entry: TransferPlannerNormalizedCourseMetadataEntry
+): TransferPlannerNormalizedCourseMetadataEntry {
+  const coverage = GENERATED_GRC_STRUCTURED_REQUIREMENT_COVERAGE.get(
+    `${entry.schoolId}|${entry.code}`
+  );
+  if (!coverage) {
+    return entry;
+  }
+
+  const nextEntry: TransferPlannerNormalizedCourseMetadataEntry = { ...entry };
+  if (coverage.prerequisite) {
+    delete nextEntry.prerequisiteCourseCodes;
+    delete nextEntry.prerequisiteAlternativeCourseCodeSets;
+    delete nextEntry.prerequisiteNotes;
+  }
+  if (coverage.corequisite) {
+    delete nextEntry.corequisiteCourseCodes;
+    delete nextEntry.corequisiteAlternativeCourseCodeSets;
+    delete nextEntry.corequisiteNotes;
+  }
+
+  return nextEntry;
+}
+
+const TRANSFER_PLANNER_MANUAL_COURSE_METADATA: TransferPlannerNormalizedCourseMetadataEntry[] =
+  TRANSFER_PLANNER_MANUAL_COURSE_METADATA_RAW.map(
+    dropManualStructuredRequirementFieldsWhenGeneratedCovered
+  );
 
 export const TRANSFER_PLANNER_NORMALIZED_COURSE_METADATA: TransferPlannerNormalizedCourseMetadataEntry[] = [
   ...TRANSFER_PLANNER_GENERATED_COURSE_METADATA,

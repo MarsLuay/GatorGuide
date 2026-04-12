@@ -243,7 +243,16 @@ function loadCachedGrcPublicMaterials() {
     return null;
   }
 
-  return JSON.parse(fs.readFileSync(OUTPUT_JSON_PATH, "utf8"));
+  const cached = JSON.parse(fs.readFileSync(OUTPUT_JSON_PATH, "utf8"));
+  return {
+    ...cached,
+    annualSchedules: Array.isArray(cached.annualSchedules)
+      ? cached.annualSchedules.map((entry) => ({
+          ...entry,
+          outputPath: buildAnnualScheduleSnapshotPath(entry.label),
+        }))
+      : [],
+  };
 }
 
 function writeMarkdown(materials) {

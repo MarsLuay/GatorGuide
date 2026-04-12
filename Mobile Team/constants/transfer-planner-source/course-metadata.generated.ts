@@ -41,8 +41,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
     "creditLabel": "2",
     "catalogDescription": "Teaches students the basic skills for flying an unmanned aerial systems (UAS), including proper preflight and post flight procedures as well as professional conduct with an UAS. They will learn the different means by which UAS pilots operate and basic flight maneuvers.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: AVIA 107 with a grade of 1.0 or higher: or AVIA 107 concurrent enrollment: or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: AVIA 107 with a grade of 1.0 or higher: or AVIA 107 concurrent enrollment: or instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "AVIA 107"
     ],
     "effectiveYearRanges": [
       {
@@ -98,9 +100,16 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
     "creditValue": 1,
     "creditLabel": "1",
     "catalogDescription": "Credits: 1 Flight simulation activity that provides hands-on experience with private pilot flight operations using an FAA approved flight simulator. Applied learning topics include preflight preparation and procedures; airport surface operations; takeoffs, landings, and go-arounds; flight performance maneuvers; ground reference maneuvers; navigation; slow flight; stalls; basic instrument maneuvers; emergency flight operations; night operations; and post flight procedures. Students must possess a Private Pilot Certificate to complete this course.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "A SIM 111"
+      ],
+      [
+        "AVIA 111"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: A SIM 111 or AVIA 111 ; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: A SIM 111 or AVIA 111 ; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -185,9 +194,16 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
     "creditValue": 1,
     "creditLabel": "1",
     "catalogDescription": "Flight simulation activity that provides hands-on experience with flight operations in instrument meteorological conditions using an FAA approved flight simulator. Applied learning topics include preflight preparation and procedures; air traffic control clearances and procedures; flight by reference to instruments; navigation systems; instrument approach procedures; emergency operations; and post flight procedures. Students must possess an Instrument Rating to complete this course.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "A SIM 216"
+      ],
+      [
+        "AVIA 216"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: A SIM 216 or AVIA 216 ; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: A SIM 216 or AVIA 216 ; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -214,9 +230,16 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
     "creditValue": 1,
     "creditLabel": "1",
     "catalogDescription": "Flight simulation activity that provides hands-on experience with commercial pilot flight operations using an FAA approved flight simulator. Applied learning topics include preflight preparation and procedures; airport surface operations; takeoffs, landings, and go-arounds; flight performance maneuvers; navigation; slow flight; stalls; emergency flight operations; multiengine and high-altitude operations; and post flight procedures. Students must possess a Commercial Pilot Certificate to complete this course.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "A SIM 218"
+      ],
+      [
+        "AVIA 218"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: A SIM 218 or AVIA 218 ; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: A SIM 218 or AVIA 218 ; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -330,9 +353,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Focuses on modern aircraft cockpit design. Includes discussion of glass cockpit technology, Flight Management Systems (FMS), GPS navigation, and modern aircraft design. Emphasis will be placed on familiarizing pilots with system designs that they can expect to see in modern corporate and commercial aircraft with emphasis on line oriented flight training (LOFT).",
+    "prerequisiteCourseCodes": [
+      "A SIM 324"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission to BAS in Aeronautical Science degree; and A SIM 324 ; or instructor consent. Student must have FAA Commercial ASEL with instrument rating or FAA Commercial AMEL with instrument rating.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission to BAS in Aeronautical Science degree; and A SIM 324 ; or instructor consent. Student must have FAA Commercial ASEL with instrument rating or FAA Commercial AMEL with instrument rating."
     ],
     "effectiveYearRanges": [
       {
@@ -465,9 +490,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "A continuation of ACCT 110 covering the accounting cycle for merchandising businesses, with an emphasis on generally accepted accounting principles. Topics may include payroll and other short-term liabilities, special journals, receivables, bad debts, inventories and accounting for partnerships.",
+    "prerequisiteCourseCodes": [
+      "ACCT 110"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ACCT 110 with a grade of 2.0 or higher; or instructor consent .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ACCT 110 with a grade of 2.0 or higher; or instructor consent ."
     ],
     "effectiveYearRanges": [
       {
@@ -504,9 +531,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "A continuation of ACCT 111 . The last in the financial accounting series for the Accounting, AAA . Topics may include accounting for property, plant and equipment, partnerships and corporations, bonds payable, the statement of cash flows, financial statement analysis and manufacturing accounting. May include integrated general ledger accounting software applications and spreadsheet applications.",
+    "prerequisiteCourseCodes": [
+      "ACCT 111",
+      "BTAC 110"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ACCT 111 and BTAC 110 with grades of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ACCT 111 and BTAC 110 with grades of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -543,9 +573,18 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Provides hands-on experience using QuickBooks online. Includes comprehensive coverage of setting up accounting records, recording sales and purchases transactions, accounts receivable, accounts payable, inventory management and job costing. The capstone financial accounting course for the accounting certificate. Previously ACCT 112.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "ACCT 110",
+        "BTAC 100"
+      ],
+      [
+        "ACCT& 201",
+        "BTAC 100"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ACCT 110 or ACCT& 201 ; and BTAC 100 with grades of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ACCT 110 or ACCT& 201 ; and BTAC 100 with grades of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -582,9 +621,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Expands the computational skills of students preparing to enter business and accounting employment. Provides a thorough review of more complex arithmetic processes and their application to typical business and accounting problems. Covers topics such as annuities, installment buying, mortgages, insurance, investments and business statistics.",
+    "prerequisiteCourseCodes": [
+      "BTAC 110"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: BTAC 110 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: BTAC 110 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -621,9 +662,16 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces the principles and problems in tax accounting for individuals. Includes the concepts of gross income, adjusted gross income, taxable income, deductions, exemptions, and credits. Provides experience in completing tax reporting forms manually and with tax return preparation software. Previously ACCT 118.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "ACCT 111"
+      ],
+      [
+        "ACCT& 201"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ACCT 111 or ACCT& 201 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ACCT 111 or ACCT& 201 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -660,9 +708,16 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "In-depth coverage of payroll calculations, payroll taxes, maintaining proper payroll records and preparing necessary deposits and filings. Includes an Excel-based payroll project. Previously ACCT 121.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "ACCT 111"
+      ],
+      [
+        "ACCT& 201"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ACCT 111 or ACCT& 201 with a grade of 2.0 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ACCT 111 or ACCT& 201 with a grade of 2.0 or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -699,9 +754,16 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "A framework for accounting processes and financial reporting for government and not-for-profit organizations. Topics include general and special fund accounting for hospitals, charities, foundations, colleges and universities, and government agencies.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "ACCT 113"
+      ],
+      [
+        "ACCT& 202"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ACCT 113 or ACCT& 202 with a minimum 2.0 grade or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ACCT 113 or ACCT& 202 with a minimum 2.0 grade or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -777,9 +839,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "A continuation of Intermediate Accounting I. Covers valuation and financial reporting of long-term assets, debt and equity investments, current liabilities, contingencies, bonds, long-term notes payable, and leases.",
+    "prerequisiteCourseCodes": [
+      "ACCT 301"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Accounting program; and ACCT 301 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Accounting program; and ACCT 301 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -816,9 +880,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "A continuation of Intermediate Accounting II and the last course of the sequence. Covers accounting for income taxes, pensions and other post-retirement benefits, shareholders' equity, and additional financial reporting issues.",
+    "prerequisiteCourseCodes": [
+      "ACCT 302"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Accounting program; and ACCT 302 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Accounting program; and ACCT 302 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -1011,9 +1077,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "An in-depth study of U.S. federal income tax concepts and their application to corporations and partnerships. Covers preparation of tax forms and tax planning.",
+    "prerequisiteCourseCodes": [
+      "ACCT 218"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Accounting program; and ACCT 218 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Accounting program; and ACCT 218 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -1050,9 +1118,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Credits: 5 Introduces business analytics processes and applications in the context of accounting and finance. Prepares students to understand, manage, and wrangle data; apply appropriate analytical and data visualization methods; and communicate findings for business decision making.",
+    "prerequisiteCourseCodes": [
+      "SDEV 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Accounting program; and SDEV 101 with a grade of 2.0 or higher; or instructor consent",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Accounting program; and SDEV 101 with a grade of 2.0 or higher; or instructor consent"
     ],
     "effectiveYearRanges": [
       {
@@ -1128,9 +1198,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Credits: 5 The first course in the accounting transfer sequence. Introduces basic principles, concepts, theories and procedures of recording, analyzing, and interpreting financial data. Students learn fundamentals of the accounting cycle, recording and classifying of transactions, and construction of financial statements. Students study manual and electronic accounting systems, accounting for cash, internal control, receivables, payables, and inventory. Includes computer application.",
+    "prerequisiteCourseCodes": [
+      "MATH 147"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL& 101 and MATH 147 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL& 101 and MATH 147 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -1176,9 +1248,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "The second course in the accounting transfer sequence. Topics include fixed assets, liability and equity sections of the balance sheet, the statement of cash flows, and financial statement analysis. Uses problem solving and application of generally accepted accounting principles to promote critical reasoning. Includes computer application.",
+    "prerequisiteCourseCodes": [
+      "ACCT& 201",
+      "MATH 147"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL& 101 and MATH 147 ; and ACCT& 201 with a grade of 2.0 or higher; or instructor consent. Recommended: BUS& 101 and computer spreadsheet skills.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL& 101 and MATH 147 ; and ACCT& 201 with a grade of 2.0 or higher; or instructor consent. Recommended: BUS& 101 and computer spreadsheet skills."
     ],
     "effectiveYearRanges": [
       {
@@ -1224,9 +1299,16 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "The third course in the accounting transfer sequence. Covers introductory concepts of managerial accounting. Topics include job-order costing, cost-volume-profit relationships, budgeting, standard costs, variance analysis, differential analysis for decision making, and capital budgeting. Includes computer application.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "ACCT 113"
+      ],
+      [
+        "ACCT& 202"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ACCT& 202 with a grade of 2.0 or higher; or ACCT 113 with a grade of 2.0 or higher; or instructor consent",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ACCT& 202 with a grade of 2.0 or higher; or ACCT 113 with a grade of 2.0 or higher; or instructor consent"
     ],
     "effectiveYearRanges": [
       {
@@ -1272,9 +1354,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Study of solving equations, solving formulas, proportions, percents, calculator operations, measurement systems, geometry, and right triangle and oblique triangle trigonometry. For technical students only.",
+    "prerequisiteCourseCodes": [
+      "MATH 70"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH 70 with a grade of 2.5 or higher or appropriate math placement.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH 70 with a grade of 2.5 or higher or appropriate math placement."
     ],
     "effectiveYearRanges": [
       {
@@ -1494,8 +1578,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
     "creditLabel": "5",
     "catalogDescription": "Credits: 5 Focuses in Hawai'i as a site for exploring the islands as the land and its people negotiate a global milieu. Through historical texts, western and indigenous theory, art, music and local travel we will explore what it means to live in Hawai'i. This program will also explore its connection to the U.S. occupation of the Hawai'i and its implications on Pacific Islander American students identity and academic achievement particularly in the Aloha State. This inquiry will draw on fieldwork, historic sites visits, and scholarly sources. Students will survey their mutual foundation and interconnectedness in situating colonial community formation, tourism, and militarism within the similar critical lens.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in AMES 253 . Eligible for ENGL& 101 or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in AMES 253 . Eligible for ENGL& 101 or instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "AMES 253"
     ],
     "effectiveYearRanges": [
       {
@@ -1581,8 +1667,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
     "creditLabel": "2",
     "catalogDescription": "Credits: 2 The course is tied to the broad themes and questions of AMES 100 and AMES 103 as they play out in the specific places of Hawai'i including localizing knowledge and community engagement. This course is to examine questions regarding the production of knowledge about communities and nations. What does it mean to use categories that refer to specific groups and nations? How do these categories arise? Who benefits from these categories and whom they disadvantage? This course will also enable its participants to then apply critical thinking skills to knowledge-production issues related to communities of color in Hawai'i. Participants will learn different ways of understanding the specificities of communities of color such as Filipino American and Samoan American migration and colonization histories, identity and community formations, and institutional and national politics, as they all relate to critiques of ethnicity, &#8220;nation,&#8221; and power.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in AMES 206 . Eligible for ENGL& 101 or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in AMES 206 . Eligible for ENGL& 101 or instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "AMES 206"
     ],
     "effectiveYearRanges": [
       {
@@ -1732,9 +1820,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
     "title": "Field Archeology",
     "creditLabel": "1-10",
     "catalogDescription": "Provides the student with fieldwork in archaeology through experiences in site survey, excavation, recording, classifying, cataloging and reporting.",
+    "prerequisiteCourseCodes": [
+      "ANTH& 100"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ANTH& 100 and eligible for ENGL& 101 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ANTH& 100 and eligible for ENGL& 101 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -2338,9 +2428,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Intended for students interested in taking human anatomy and physiology without going into the depth of the other Green River anatomy/physiology course. Intended for non-science majors and for students not pursuing an allied health career. Develops an understanding of the structure and function of some of the key systems in the human body. Non-lab science course.",
+    "prerequisiteCourseCodes": [
+      "MATH 72"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL& 101 or MATH 72 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL& 101 or MATH 72 ."
     ],
     "effectiveYearRanges": [
       {
@@ -2416,9 +2508,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introductory course in human anatomy and physiology. Second of a two-quarter sequence including the study of the endocrine, cardiovascular, lymphatic/immune, respiratory, digestive, urinary, and reproductive systems. Introduces common human disease processes. Laboratory component includes anatomical studies using microscopy and dissection and the study of physiological concepts via experimentation.",
+    "prerequisiteCourseCodes": [
+      "AP 103"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: AP 103 with a grade of 2.0 or higher and eligible for ENGL& 101 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: AP 103 with a grade of 2.0 or higher and eligible for ENGL& 101 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -2456,8 +2550,15 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
     "creditLabel": "1",
     "catalogDescription": "Comprehensive review of human cadaver anatomy for health professionals and students of the health professions. Covers major muscles, skin, bones and joints, internal organs, blood vessels, the brain, spinal cord and major nerves. Uses dissected cadavers to study anatomical variations, pathologies, and anatomical change due to the aging process.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in AP 104 or BIOL& 242 ; and eligible for ENGL& 101 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in AP 104 or BIOL& 242 ; and eligible for ENGL& 101 ; or instructor consent."
+    ],
+    "corequisiteAlternativeCourseCodeSets": [
+      [
+        "AP 104"
+      ],
+      [
+        "BIOL& 242"
+      ]
     ],
     "effectiveYearRanges": [
       {
@@ -2542,9 +2643,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "The second level of the first year of Modern Standard Arabic language used throughout the Arab World. Develops the four communicative language skills: listening, speaking, reading, and writing. It stresses communication skills and emphasizes the links between language, culture and history.",
+    "prerequisiteCourseCodes": [
+      "ARAB 121"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL 99 and ARAB 121 with a grade of 2.0 or higher; or equivalent with instructor consent. The equivalent of ARAB 121 is one year in high school with a grade of B or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL 99 and ARAB 121 with a grade of 2.0 or higher; or equivalent with instructor consent. The equivalent of ARAB 121 is one year in high school with a grade of B or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -2590,9 +2693,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "The third level of the first year of the Modern Standard Arabic language used throughout the Arab World. Develops the four communicative language skills: listening, speaking, reading, and writing at the appropriate level. Stresses communication skills and emphasizes understanding the connections between the language with the culture and diversity of the Arab-speaking World.",
+    "prerequisiteCourseCodes": [
+      "ARAB 122"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL 99 and ARAB 122 with a grade of 2.0 or higher; or equivalent with instructor consent. The equivalent of ARAB 122 is two years in high school with a grade of B or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL 99 and ARAB 122 with a grade of 2.0 or higher; or equivalent with instructor consent. The equivalent of ARAB 122 is two years in high school with a grade of B or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -2682,9 +2787,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Focuses on the human form as a basis for learning about anatomy, composition, relationship of figure to environment, line, shape, value, and color.",
+    "prerequisiteCourseCodes": [
+      "ART 105"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ART 105 with a grade of 1.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ART 105 with a grade of 1.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -2721,9 +2828,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Further explores the human form as subject matter for drawing as a means of creating a coherent visual and expressive statement.",
+    "prerequisiteCourseCodes": [
+      "ART 106"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ART 106 with a grade of 1.0 or higher or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ART 106 with a grade of 1.0 or higher or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -2813,9 +2922,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_0: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Continues the study of two-dimensional design through exploration and understanding of color theory. In-depth exploration of color theory principles such as additive and subtractive color systems, color harmony and palette analysis, color interaction and the expressive impact of color. Digital and traditional media are used for visual problem solving exercises.",
+    "prerequisiteCourseCodes": [
+      "ART 109"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ART 109 with a grade of 1.0 or higher or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ART 109 with a grade of 1.0 or higher or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -2899,9 +3010,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Students further the skills taught in ART 111 and investigate painting as a means for self-expression. Explores advanced compositions and use of various materials.",
+    "prerequisiteCourseCodes": [
+      "ART 111"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ART 111 with a grade of 1.0 or higher or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ART 111 with a grade of 1.0 or higher or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -2956,9 +3069,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Provides advanced instruction in painting using objectives taught in ART 112 . Students demonstrate advanced compositional theories and painting methods.",
+    "prerequisiteCourseCodes": [
+      "ART 112"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ART 112 with a grade of 1.0 or higher or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ART 112 with a grade of 1.0 or higher or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -3055,9 +3170,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
     "title": "Pottery 2",
     "creditLabel": "3-5",
     "catalogDescription": "Students continue to develop their skills on and off the potter's wheel. Instructor leads students through discussions of the forming process of object-making. Encourages students to explore the visual, tactile, and intellectual possibilities through this art medium. Art transfer majors must take ART 252 instead of ART 115.",
+    "prerequisiteCourseCodes": [
+      "ART 114"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ART 114 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ART 114 ."
     ],
     "effectiveYearRanges": [
       {
@@ -3147,9 +3264,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces the principles of graphic form to convey meaning and communicate ideas through text and imagery. Students learn the principles of visual communication through compositional-layout, color and typography in a variety of formats. Digital and traditional media are used for visual problem solving exercises.",
+    "prerequisiteCourseCodes": [
+      "ART 109"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ART 109 with a grade of 1.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ART 109 with a grade of 1.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -3480,9 +3599,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Leads students through the process of organizing a body of artwork into a portfolio. Through discussions, critiques, and demonstrations, students learn how to assemble, document, and provide support materials for a professional portfolio. Course ends with an art exhibition of the student's work.",
+    "prerequisiteCourseCodes": [
+      "ART 105",
+      "ART 109"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ART 105 and ART 109 with grades of 1.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ART 105 and ART 109 with grades of 1.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -3652,9 +3774,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Further development of 3-dimensional design concepts as they apply to the visual arts. Students work on an independent project, developing an idea through various design stages, culminating in the installation of a final sculpture.",
+    "prerequisiteCourseCodes": [
+      "ART 119"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ART 119 with a grade of 1.0 or higher or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ART 119 with a grade of 1.0 or higher or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -3741,9 +3865,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces students to conceptual problems and challenges with developing solutions in clay. Students demonstrate their understanding of the narrative object and its effectiveness in communicating ideas, values, and identity. Exposes students to non-traditional processes in clay construction, glaze application, firing process, and finishing surfaces, and discusses their aesthetic choices.",
+    "prerequisiteCourseCodes": [
+      "ART 114",
+      "ART 115"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ART 114 and ART 115 with grades of 1.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ART 114 and ART 115 with grades of 1.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -3798,9 +3925,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Intermediate course in ceramics in which students demonstrate a complete understanding of the ceramic process through clay construction and firing. Students gain knowledge of various clay bodies, glaze properties and effects. Students demonstrate the ability to work responsibly and safely in the glaze room and mix, test, and assess fired glaze results. Students begin to develop the sensibilities to integrate concept and material in their approach to ceramics.",
+    "prerequisiteCourseCodes": [
+      "ART 251"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ART 251 with a grade 1.0 or higher or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ART 251 with a grade 1.0 or higher or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -3855,9 +3984,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Advanced course in ceramics with an emphasis on the rigors of developing the conceptual skills of art making. Students develop an individual approach to a full integration of ideas, materials, and process. Encourages students to experiment with different strategies of clay construction and firing.",
+    "prerequisiteCourseCodes": [
+      "ART 252"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ART 252 with a grade of 1.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ART 252 with a grade of 1.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -3912,9 +4043,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Covers theory, as well as practice and encourages originality and creativity. Furthers student understanding of the methods, materials, and ideas that are central to the practice of painting still lifes, figures, and landscapes.",
+    "prerequisiteCourseCodes": [
+      "ART 113"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ART 113 with grade of 1.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ART 113 with grade of 1.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -3969,9 +4102,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Students continue to develop their skills in painting by focusing on advanced compositional theories and abstract concepts. Explores value, pattern, tone, mood, and color theories to stretch and refine abilities. Emphasizes the creative process from concept to finished art.",
+    "prerequisiteCourseCodes": [
+      "ART 255"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ART 255 with a grade of 1.0 or higher or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ART 255 with a grade of 1.0 or higher or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -4026,9 +4161,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Explores traditional and contemporary approaches to theory and practice of painting. Emphasizes evoking emotional responses through effects of light, color, and abstraction. Students work in a series and further explore materials and subject matter.",
+    "prerequisiteCourseCodes": [
+      "ART 256"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ART 256 with a grade of 1.0 or higher or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ART 256 with a grade of 1.0 or higher or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -4166,9 +4303,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
     "title": "Independent Study-Painting 1",
     "creditLabel": "1-5",
     "catalogDescription": "Encourages students to study and develop independently in their major areas of painting. Students develop their own objectives, evaluation criteria and performance standards in conjunction with the appropriate instructor.",
+    "prerequisiteCourseCodes": [
+      "ART 256"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ART 256 with a grade of 1.0 or higher or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ART 256 with a grade of 1.0 or higher or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -4194,9 +4333,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
     "title": "Independent Study-Advanced Drawing 1",
     "creditLabel": "1-5",
     "catalogDescription": "Encourages students to study and develop independently in their major areas of advanced drawing. Students develop their own objectives, evaluation criteria and performance standards in conjunction with the appropriate instructor.",
+    "prerequisiteCourseCodes": [
+      "ART 107"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ART 107 with a grade of 1.0 or higher or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ART 107 with a grade of 1.0 or higher or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -4380,9 +4521,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
     "title": "Electrical and Electronics Systems",
     "creditLabel": "1-14",
     "catalogDescription": "Presents fundamental principles and terminology of automotive electrical systems. Use of Ohm's Law, wiring diagrams, diagnostic, and test instruments. Covers diagnosis and repair of batteries, starting systems, charging systems, lighting systems, operator information and warning systems, and onboard body computer control systems. Emphasizes development of a positive attitude toward work ethic, cultural and gender diversity, personal and workplace safety, and hazardous materials handling and disposal.",
+    "prerequisiteCourseCodes": [
+      "ATECH 110"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ATECH 110 and instructor consent. Eligible for READ 104 . All students must have a current valid driver's license.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ATECH 110 and instructor consent. Eligible for READ 104 . All students must have a current valid driver's license."
     ],
     "effectiveYearRanges": [
       {
@@ -4436,9 +4579,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
     "title": "Engine Performance",
     "creditLabel": "1-14",
     "catalogDescription": "Encompasses spark system management, emissions control, computerized engine control system sensors and actuators and use of diagnostic equipment necessary to test, adjust, and repair engine systems. Emphasizes development of a positive attitude toward work ethic, cultural and gender diversity, personal and workplace safety, and hazardous materials handling and disposal.",
+    "prerequisiteCourseCodes": [
+      "ATECH 110",
+      "ATECH 111"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ATECH 110 , ATECH 111, eligible for READ 104 and instructor consent. All students must have a current valid driver's license.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ATECH 110 , ATECH 111, eligible for READ 104 and instructor consent. All students must have a current valid driver's license."
     ],
     "effectiveYearRanges": [
       {
@@ -4492,9 +4638,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
     "title": "Engine Repair",
     "creditLabel": "1-5",
     "catalogDescription": "Covers internal combustion engine mechanical systems and components operation including diagnosis of component or system malfunctions. Includes practical application in cylinder head reconditioning and repair. Emphasizes development of a positive attitude toward work ethic, cultural and gender diversity, personal and workplace safety, and hazardous materials handling and disposal.",
+    "prerequisiteCourseCodes": [
+      "ATECH 110"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ATECH 110 and instructor consent. Eligible for READ 104 . All students must have a current valid driver's license.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ATECH 110 and instructor consent. Eligible for READ 104 . All students must have a current valid driver's license."
     ],
     "effectiveYearRanges": [
       {
@@ -4548,9 +4696,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
     "title": "Automatic Transmission and Transaxle",
     "creditLabel": "1-6",
     "catalogDescription": "Covers theory, application, diagnosis and repair of fluid power, hydraulics, power transmission, and final drive units as applied to automatic transmissions and trans-axles. Emphasizes development of a positive attitude toward work ethic, cultural and gender diversity, personal and workplace safety, and hazardous materials handling and disposal.",
+    "prerequisiteCourseCodes": [
+      "ATECH 110"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ATECH 110 and instructor consent. Eligible for READ 104 . All students must have a current valid driver's license.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ATECH 110 and instructor consent. Eligible for READ 104 . All students must have a current valid driver's license."
     ],
     "effectiveYearRanges": [
       {
@@ -4604,9 +4754,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
     "title": "Manual Drive Trains and Axles",
     "creditLabel": "1-6",
     "catalogDescription": "Covers theory, diagnosis, adjustment and repair of manual drive train components: i.e., clutch transmission, drive line and axles. Emphasizes development of a positive attitude toward work ethic, cultural and gender diversity, personal and workplace safety, and hazardous materials handling and disposal.",
+    "prerequisiteCourseCodes": [
+      "ATECH 110"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ATECH 110 and instructor consent. Eligible for READ 104 . All students must have a current valid driver's license.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ATECH 110 and instructor consent. Eligible for READ 104 . All students must have a current valid driver's license."
     ],
     "effectiveYearRanges": [
       {
@@ -4660,9 +4812,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
     "title": "Suspension and Steering",
     "creditLabel": "1-6",
     "catalogDescription": "Covers application of automotive suspension and steering systems. Topics include tires and wheels, suspension systems, two and four wheel alignment, diagnosis, adjustment, and repair of systems and components. Emphasizes development of a positive attitude toward work ethic, cultural and gender diversity, personal and work place safety, and hazardous materials handling and disposal.",
+    "prerequisiteCourseCodes": [
+      "ATECH 110"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ATECH 110 and instructor consent. Eligible for READ 104 . All students must have a current valid driver's license.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ATECH 110 and instructor consent. Eligible for READ 104 . All students must have a current valid driver's license."
     ],
     "effectiveYearRanges": [
       {
@@ -4716,9 +4870,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
     "title": "Brakes",
     "creditLabel": "1-7",
     "catalogDescription": "Covers theory, diagnosis, adjustments, and repair of automotive brake systems to include hydraulic systems, drum brakes, boosters, parking brakes and anti-skid brake system (ABS). Emphasizes development of a positive attitude toward work ethic, cultural and gender diversity, personal and workplace safety, and hazardous materials handling and disposal.",
+    "prerequisiteCourseCodes": [
+      "ATECH 110"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ATECH 110 and instructor consent. Eligible for READ 104 . All students must have a current valid driver's license.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ATECH 110 and instructor consent. Eligible for READ 104 . All students must have a current valid driver's license."
     ],
     "effectiveYearRanges": [
       {
@@ -4772,9 +4928,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
     "title": "Heating and Air Conditioning",
     "creditLabel": "1-6",
     "catalogDescription": "A modular, self-paced course in automotive heating and air conditioning systems including diagnosis, service and repair of systems and system components. Emphasizes development of a positive attitude toward work ethic, cultural and gender diversity, personal and workplace safety, and hazardous materials handling and disposal.",
+    "prerequisiteCourseCodes": [
+      "ATECH 110"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ATECH 110 and instructor consent. Eligible for READ 104 . All students must have a current valid driver's license.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ATECH 110 and instructor consent. Eligible for READ 104 . All students must have a current valid driver's license."
     ],
     "effectiveYearRanges": [
       {
@@ -4828,9 +4986,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
     "title": "Special Shop Practice",
     "creditLabel": "1-12",
     "catalogDescription": "Practical application and development of skills acquired during study and application of competencies listed in course modules ATECH 111 through ATECH 118 . Emphasizes development of a positive attitude toward work ethic, cultural and gender diversity, personal and workplace safety, and hazardous materials handling and disposal.",
+    "prerequisiteCourseCodes": [
+      "ATECH 110"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ATECH 110 and instructor consent. Eligible for READ 104 . All students must have a current valid driver's license.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ATECH 110 and instructor consent. Eligible for READ 104 . All students must have a current valid driver's license."
     ],
     "effectiveYearRanges": [
       {
@@ -5967,9 +6127,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Covers human factors in aeronautical decision-making and situation-awareness. Emphasizes human error, personal attitudes and physical elements (pilot fitness, pilot workload, cockpit distractions, etc.), pilot preparedness, and effective use of crew resource management to manage and mitigate aviation risk. Includes accident case studies.",
+    "prerequisiteCourseCodes": [
+      "AVIA 111"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: AVIA 111 with a grade of 2.0 or higher or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: AVIA 111 with a grade of 2.0 or higher or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -6040,9 +6202,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Provides a comprehensive foundation in instrument flight operations and prepares students to pass the FAA Instrument Pilot Written Examination. Topics include basic instrument flight procedures, IFR flight planning and decision-making, ground and satellite-based navigation systems, IFR aircraft systems, weather formation and services for IFR operations, and airport operations under IFR conditions. Students will also study ATC procedures, communications, and clearances, along with FAA regulations related to instrument flight.",
+    "prerequisiteCourseCodes": [
+      "AVIA 111"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: AVIA 111 or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: AVIA 111 or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -6123,9 +6287,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Topics include Federal Aviation Regulations, Aeronautical Decision Making, aeromedical factors, advanced avionics and navigation, aerodynamics, aircraft systems, performance, airspace, and weather. FAA Part 141 approved. Prepares students for the FAA Commercial Pilot written exam.",
+    "prerequisiteCourseCodes": [
+      "AVIA 111"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: AVIA 111 or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: AVIA 111 or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -6187,9 +6353,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Covers aviation weather planning theory. Practical applications of weather planning as both a pilot or dispatcher. Students will learn not just how to read the weather text, but to interpret weather sources for operational planning purposes.",
+    "prerequisiteCourseCodes": [
+      "AVIA 123"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: AVIA 123",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: AVIA 123"
     ],
     "effectiveYearRanges": [
       {
@@ -6216,9 +6384,20 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_1: unknown[] = [
     "creditValue": 10,
     "creditLabel": "10",
     "catalogDescription": "Teaches practical dispatching for airline and corporate operations, as well as preflight, in-flight and post flight duties. Covers federal aviation regulations, meteorology, navigation, large aircraft weight/balance, performance, systems, and communications. Also covers air traffic control procedure, and pilot departure and arrival procedures.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "AVIA 123",
+        "AVIA 216",
+        "AVIA 270"
+      ],
+      [
+        "AVIA 123",
+        "AVIA 216",
+        "AVIA 281"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ( AVIA 270 or AVIA 281 ) and AVIA 123 and AVIA 216 ; or instructor consent; and eligible for ENGL& 101 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ( AVIA 270 or AVIA 281 ) and AVIA 123 and AVIA 216 ; or instructor consent; and eligible for ENGL& 101 ."
     ],
     "effectiveYearRanges": [
       {
@@ -6370,9 +6549,20 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Credits: 5 Teaches CFR 14 Part 121 operations, as well as preflight, in-flight, and post-flight procedures. Covers Federal Aviation Regulations, meteorology, navigation, performance, large aircraft systems, and communications. Covers air traffic control clearances, flight planning and departure and arrival procedures.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "AVIA 123",
+        "AVIA 216",
+        "AVIA 270"
+      ],
+      [
+        "AVIA 123",
+        "AVIA 216",
+        "AVIA 281"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ( AVIA 270 or AVIA 281 ) and AVIA 123 and AVIA 216 ; or instructor consent; and eligible for ENGL& 101 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ( AVIA 270 or AVIA 281 ) and AVIA 123 and AVIA 216 ; or instructor consent; and eligible for ENGL& 101 ."
     ],
     "effectiveYearRanges": [
       {
@@ -6428,8 +6618,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
     "creditLabel": "5",
     "catalogDescription": "Teaches practical dispatching for CFR 14, Part 121 airlines, as well as high altitude flight planning, airline preflight and post-flight procedures. Covers Federal Aviation Regulations pertaining to CFR 14, Part 121 airlines, high altitude meteorology, navigation, large aircraft performance, large aircraft systems, and communications. Covers air traffic control procedures, ATC clearances and departure and arrival procedures. The course prepares students for the FAA Aircraft Dispatcher practical test.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: AVIA 275 with a 2.0 or better or concurrent enrollment; or instructor permission.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: AVIA 275 with a 2.0 or better or concurrent enrollment; or instructor permission."
+    ],
+    "corequisiteCourseCodes": [
+      "AVIA 275"
     ],
     "effectiveYearRanges": [
       {
@@ -6467,8 +6659,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
     "creditLabel": "5",
     "catalogDescription": "Introduces radar and non-radar air traffic control, flight data processing, aircraft communication, FAA separation standards, controller techniques, and airspace management. Covers computer simulation of ATC problems.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: AVIA 216 or concurrent enrollment; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: AVIA 216 or concurrent enrollment; or instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "AVIA 216"
     ],
     "effectiveYearRanges": [
       {
@@ -6505,9 +6699,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Covers ATC procedures in terminal ATC environments for controllers and pilots. Emphasizes proper radio communications procedures, terminal ATC radar and non-radar separation and sequencing, correct application of applicable terminal ATC Operational rules and regulations for controllers and correct application of FAR and AIM rules and procedures for pilots.",
+    "prerequisiteCourseCodes": [
+      "AVIA 281"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: AVIA 281 with a grade of 2.5 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: AVIA 281 with a grade of 2.5 or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -6544,9 +6740,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Expands on the foundation of basic control procedures students learned in AVIA 281, and focuses on students aspiring to become air traffic controllers.",
+    "prerequisiteCourseCodes": [
+      "AVIA 282"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: AVIA 282 with a grade of 2.5 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: AVIA 282 with a grade of 2.5 or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -6584,8 +6782,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
     "creditLabel": "4",
     "catalogDescription": "Covers FAA ATC academy procedures and curriculum specializing in ATC tower environments. Emphasizes proper radio communications procedures, aircraft recognition, weather dissemination, tower equipment, airport layouts, airspace, and correct application of applicable terminal ATC operational rules and regulations for tower controllers and correct application of FAR, AIM, and FAA manual 7110.65.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment with AVIA 281 - Air Traffic Control 1 or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment with AVIA 281 - Air Traffic Control 1 or instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "AVIA 281"
     ],
     "effectiveYearRanges": [
       {
@@ -6612,9 +6812,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Covers FAA ATC academy procedures and curriculum in terminal ATC environments for controllers. Emphasizes ATIS, flight data, clearance delivery, general control, emergency procedures, FDIO, general control of VFR/IFR traffic, wake turbulence, traffic separation, VFR/IFR arrival and departure procedures. Covers operational rules and regulations for controllers and correct application of FAR, AIM, and 7112.10.",
+    "prerequisiteCourseCodes": [
+      "AVIA 111"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: AVIA 111 and 287 with minimum grades of 2.5.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: AVIA 111 and 287 with minimum grades of 2.5."
     ],
     "effectiveYearRanges": [
       {
@@ -6641,9 +6843,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
     "creditValue": 10,
     "creditLabel": "10",
     "catalogDescription": "Covers FAA ATC academy procedures and curriculum in terminal ATC environments for controllers. Emphasizes runway incursions, fatigue and countermeasures, human factors in air traffic control, loss of communications, tower training, on the job expectations. Covers ATC operational rules and regulations for controllers and correct application of FAR, AIM, 7110.65 and 7112.10.",
+    "prerequisiteCourseCodes": [
+      "AVIA 287"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: AVIA 287 and 288 with grades of 2.5 or higher, or Instructor's permission.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: AVIA 287 and 288 with grades of 2.5 or higher, or Instructor's permission."
     ],
     "effectiveYearRanges": [
       {
@@ -7708,8 +7912,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
     "creditLabel": "1-12",
     "catalogDescription": "Allows students to work full- or part-time in jobs directly related to their programs and interests. Students may receive a salary or volunteer.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 ; and eligible for ENGL& 101 ; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 ; and eligible for ENGL& 101 ; and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "COOP 171"
     ],
     "effectiveYearRanges": [
       {
@@ -7877,9 +8083,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces major concepts in cell biology, including science process, cell biochemistry, cell physiology and structure, molecular biology, genetics, and evolution. Course is a prerequisite for professional health-science programs. Format includes group work in a laboratory setting. Intended for health science majors.",
+    "prerequisiteCourseCodes": [
+      "ENGL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ENGL& 101 with a grade of 2.0 or higher. Recommended: STRONGLY MATH 97 or higher and CHEM& 121 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ENGL& 101 with a grade of 2.0 or higher. Recommended: STRONGLY MATH 97 or higher and CHEM& 121 ."
     ],
     "effectiveYearRanges": [
       {
@@ -7982,9 +8190,18 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
     "creditValue": 6,
     "creditLabel": "6",
     "catalogDescription": "Students will develop an understanding of the chemical basis of life, cell structure and function, cellular respiration, photosynthesis, cell division, mitosis/meiosis, principles of inheritance, molecular genetics, DNA technology, and natural selection; interpret and evaluate biological information; and understand science as a process. For students planning to take advanced biology courses and/or completing pre-professional programs. Stresses independent laboratory work. Successful students apply their understanding of the principles taught to new situations.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "CHEM& 131",
+        "ENGL& 101"
+      ],
+      [
+        "CHEM& 163",
+        "ENGL& 101"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CHEM& 131 or CHEM& 163 ; and ENGL& 101 with grades of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CHEM& 131 or CHEM& 163 ; and ENGL& 101 with grades of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -8021,9 +8238,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
     "creditValue": 6,
     "creditLabel": "6",
     "catalogDescription": "Surveys the animal kingdom in the context of evolution, taxonomic classification, and comparative anatomy and physiology. Focuses on selected representatives of the animal kingdom. Laboratory portion of this class corresponds to selected lecture topics, and provides hands-on experience. Stresses independent laboratory work. Successful students apply their understanding of the principles taught to new situations.",
+    "prerequisiteCourseCodes": [
+      "BIOL& 211"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: BIOL& 211 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: BIOL& 211 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -8069,9 +8288,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
     "creditValue": 6,
     "creditLabel": "6",
     "catalogDescription": "Covers the phylogenetic relationships of flowering plants, photosynthesis, plant structure and function, water and mineral nutrition, control of growth and development, and animal and plant ecology. Presents topics using a problem solving approach to plant biology through observation and discussion. Stresses independent laboratory work. Successful students apply their understanding of the principles taught to new situations.",
+    "prerequisiteCourseCodes": [
+      "BIOL& 211"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: BIOL& 211 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: BIOL& 211 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -8108,9 +8329,19 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "First of a two-quarter sequence covering the study of human structure and function. Includes the study of cells, tissues and the integumentary, skeletal, muscular and nervous systems. Explores mechanisms of common human disease processes. Laboratory component includes anatomical studies using microscopy, palpation, and dissection and the study of physiological concepts via experimentation. Prepares transfer students for careers in health profession fields.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "AP 104"
+      ],
+      [
+        "BIOL& 160"
+      ],
+      [
+        "BIOL& 211"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL& 101 ; and AP 104 or BIOL& 160 or BIOL& 211 , with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL& 101 ; and AP 104 or BIOL& 160 or BIOL& 211 , with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -8156,9 +8387,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Second of a two-quarter sequence covering the study of human structure and function. Includes the study of endocrine, cardiovascular, lymphatic/immune, respiratory, digestive, urinary, and reproductive systems. Explores mechanisms of common human disease processes. Laboratory component includes anatomical studies using microscopy, palpation, and dissection and the study of physiological concepts via experimentation. Prepares transfer students for careers in health professions.",
+    "prerequisiteCourseCodes": [
+      "BIOL& 241"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: BIOL& 241 with a grade of 2.0 or higher; and eligible for ENGL& 101 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: BIOL& 241 with a grade of 2.0 or higher; and eligible for ENGL& 101 ."
     ],
     "effectiveYearRanges": [
       {
@@ -8195,9 +8428,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_2: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces the characteristics and activities of microorganisms with emphasis on the role of microorganisms in medicine, the environment and industry. Topics include microbial classification, growth, metabolism, the role of microorganisms in disease, and immune responses of the host. Laboratory portion includes culture, identification and control of selected microorganisms.",
+    "prerequisiteCourseCodes": [
+      "AP 104"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: AP 104 , BIOL&212 , or BIOL&242 with a grade of 2.0 or higher; and eligible for ENGL&101 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: AP 104 , BIOL&212 , or BIOL&242 with a grade of 2.0 or higher; and eligible for ENGL&101 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -9639,9 +9874,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Builds on the keyboarding skills and concepts developed in BTAC 101 . Continues emphasis on speed and accuracy development on a computer keyboard. Students use a word processing program to refine formatting skills on basic business documents such as business letters, memorandums, reports, and tables.",
+    "prerequisiteCourseCodes": [
+      "BTAC 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: BTAC 101 with a grade of 2.0 or higher or instructor consent. Recommended: BTAC 112 and a minimum typing speed of 30 wpm.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: BTAC 101 with a grade of 2.0 or higher or instructor consent. Recommended: BTAC 112 and a minimum typing speed of 30 wpm."
     ],
     "effectiveYearRanges": [
       {
@@ -9696,9 +9933,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Builds on the keyboarding skills and concepts developed in BTAC 102 . Continues emphasis on speed and accuracy development on a computer keyboard. Students use a word processing program to further refine formatting skills on a computer. Students enhance their ability to make decisions and to work independently.",
+    "prerequisiteCourseCodes": [
+      "BTAC 102",
+      "BTAC 112"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: BTAC 102 and BTAC 112 , all with a grade of 2.0 or higher or instructor consent. Recommended: A minimum typing speed of 30 wpm.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: BTAC 102 and BTAC 112 , all with a grade of 2.0 or higher or instructor consent. Recommended: A minimum typing speed of 30 wpm."
     ],
     "effectiveYearRanges": [
       {
@@ -9872,9 +10112,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
     "creditValue": 4,
     "creditLabel": "4",
     "catalogDescription": "For students who know the keyboard and would like intensive speed and accuracy skill development. Emphasizes proper technique, rhythm development, straight-copy skill, and accuracy improvement. This is a pass/no credit course.",
+    "prerequisiteCourseCodes": [
+      "BTAC 107"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: BTAC 107 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: BTAC 107 ."
     ],
     "effectiveYearRanges": [
       {
@@ -10041,9 +10283,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces the basic skills of Microsoft Word. Focuses on creating, saving, and printing a document; editing and managing documents; formatting characters and paragraphs; using spellchecker, autocorrect, thesaurus, word count and grammar tools; conducting find and replace; using autotext; manipulating tabs, merging documents, creating headers, footers, footnotes and end notes.",
+    "prerequisiteCourseCodes": [
+      "BTAC 100"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: BTAC 100 with a grade of 2.0 or higher; or instructor consent. Recommended: A minimum typing speed of 30 wpm.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: BTAC 100 with a grade of 2.0 or higher; or instructor consent. Recommended: A minimum typing speed of 30 wpm."
     ],
     "effectiveYearRanges": [
       {
@@ -10155,9 +10399,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Students learn to create and deliver easy, effective, professional-looking presentations using Microsoft PowerPoint.",
+    "prerequisiteCourseCodes": [
+      "BTAC 100"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: BTAC 100 with a grade of 2.0 or higher, or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: BTAC 100 with a grade of 2.0 or higher, or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -10408,9 +10654,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Focuses on the use of the PowerPoint, Outlook and One Note applications. Includes basic and advanced concepts for each application and their usage in business.",
+    "prerequisiteCourseCodes": [
+      "BTAC 100"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: BTAC 100 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: BTAC 100 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -10631,9 +10879,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces filing methods, related rules and applications for paper and electronic records management. Uses Microsoft Access extensively for lab applications. Students create appropriate electronic file structures for various record volumes. Covers filing equipment, supplies, microfilms, vital records plan, retention scheduling, and the records life cycle process.",
+    "prerequisiteCourseCodes": [
+      "BTAC 100"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: BTAC 100 with a grade of 2.0 or higher; or instructor consent. Recommended: BTAC 185 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: BTAC 100 with a grade of 2.0 or higher; or instructor consent. Recommended: BTAC 185 ."
     ],
     "effectiveYearRanges": [
       {
@@ -10709,9 +10959,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces the International Classification of Diagnosis code (ICD) diagnostic coding, the numeric classification of disease and injury, coding methodology, and guidelines. Demonstrates the importance of accuracy and specificity in code selection acquaints students with the different forms of medical data, and lays the foundation for advanced coding and medical record analysis. Students code from both reference books and the utilization of an online based encoder. Teaches students to assign valid diagnostic codes using authentic source documents. Provides an overview of Diagnostic Groupings (DRG's) and other clinical vocabularies such as the Systematized Nomenclature of Medicine-Clinical Terms,(SNOMED-CT).",
+    "prerequisiteCourseCodes": [
+      "AP 100",
+      "BTAC 125"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: AP 100 and BTAC 125 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: AP 100 and BTAC 125 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -10748,9 +11001,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces coding in ambulatory settings using Current Procedural Terminology (CPT), Health Care Common Procedure Coding System (HCPCS) Level 2 and ICD Procedures (ICD-9 Volume III and ICD-10-PCS). General content includes coding guidelines, and the role in healthcare reimbursement. Covers coding of basic medical and surgical services including use of modifiers, as well as ethical coding and compliance issues.",
+    "prerequisiteCourseCodes": [
+      "BTAC 145"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: BTAC 145 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: BTAC 145 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -10862,9 +11117,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces Microsoft Windows graphical user interface, the preparation of text and graphics documents, and the management of windows on the desktop. Includes the customization of the Windows desktop, techniques for working with files, folders and documents, and communication with other computers through the Internet.",
+    "prerequisiteCourseCodes": [
+      "BTAC 100"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: BTAC 100 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: BTAC 100 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -11092,9 +11349,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces the basic skills for developing spreadsheets in Microsoft Excel. Students prepare and format worksheets, and maintain and enhance workbooks.",
+    "prerequisiteCourseCodes": [
+      "BTAC 100"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: BTAC 100 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: BTAC 100 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -11140,9 +11399,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Focuses on advanced formatting and functions, creating and modifying templates and workbooks, using analysis tools, managing and auditing worksheets and workbooks, collaborating with workbooks, and using data from external sources.",
+    "prerequisiteCourseCodes": [
+      "BTAC 162"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: BTAC 162 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: BTAC 162 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -11344,8 +11605,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
     "creditLabel": "1-12",
     "catalogDescription": "Allows student to gain experience in full- or part-time employment directly related to their program of study. Students may receive a salary or volunteer.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "COOP 171"
     ],
     "effectiveYearRanges": [
       {
@@ -11400,8 +11663,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
     "creditLabel": "1-12",
     "catalogDescription": "Allows student to gain experience in full- or part-time employment directly related to their program of study. Students may receive a salary or volunteer.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "COOP 171"
     ],
     "effectiveYearRanges": [
       {
@@ -11438,8 +11703,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
     "creditLabel": "1-12",
     "catalogDescription": "Allows student to gain experience in full- or part-time employment directly related to their program of study. Students may receive a salary or volunteer.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "COOP 171"
     ],
     "effectiveYearRanges": [
       {
@@ -11477,8 +11744,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
     "creditLabel": "5",
     "catalogDescription": "Provides students virtual professional practice experience with ICD-10, HCPCS and CPT clinical code assignment. Students complete in-class or online virtual based coding using authentic medical reports for a variety of patient types and encounters including healthcare facilities, physician practices, specialty clinics and other healthcare settings. Students will utilize classification systems text and online tools such as encoders and will demonstrate full understanding and compliance with official classification system guidelines.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: BTAC 257 and BTAC 258 with grades of 2.0 or higher or concurrent enrollment; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: BTAC 257 and BTAC 258 with grades of 2.0 or higher or concurrent enrollment; or instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "BTAC 257",
+      "BTAC 258"
     ],
     "effectiveYearRanges": [
       {
@@ -11515,9 +11785,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Students apply the necessary online skills to be successful using the Internet. Topics include understanding and using the Internet, web, FTP, E-mail, HTML, web graphics, browsers, browser plug-ins, relative/absolute addressing, and other related aspects. Students produce a web site using a variety of available technologies.",
+    "prerequisiteCourseCodes": [
+      "BTAC 100"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: BTAC 100 with a grade of 2.0 or higher; or instructor consent. Recommended: BTAC 150 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: BTAC 100 with a grade of 2.0 or higher; or instructor consent. Recommended: BTAC 150 ."
     ],
     "effectiveYearRanges": [
       {
@@ -11563,9 +11835,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Provides students with introductory Microsoft Access database training, specifically storage of data in a logical manner for later retrieval and use in the business environment.",
+    "prerequisiteCourseCodes": [
+      "BTAC 100"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: BTAC 100 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: BTAC 100 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -11592,9 +11866,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Focuses on advanced multi-table database design and techniques using Microsoft Access.",
+    "prerequisiteCourseCodes": [
+      "BTAC 185"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: BTAC 185 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: BTAC 185 ."
     ],
     "effectiveYearRanges": [
       {
@@ -11878,9 +12154,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces the multi-faceted aspects of information security: facility and hardware security, data security, human security, organizational security, network security, and Internet security. Discusses the legal and ethical issues concerning information security. Focuses on information security for business and personal use, but does not deal with specific technical security equipment.",
+    "prerequisiteCourseCodes": [
+      "BTAC 100"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: BTAC 100 with a grade of 2.0 or higher; or instructor consent. Recommended: BTAC 150 or IT 101 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: BTAC 100 with a grade of 2.0 or higher; or instructor consent. Recommended: BTAC 150 or IT 101 ."
     ],
     "effectiveYearRanges": [
       {
@@ -11972,9 +12250,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
     "title": "Computer Support Internship 2",
     "creditLabel": "2-5",
     "catalogDescription": "Students assist Business Technologies and Administrative Careers (BTAC) instructors with computer applications and basic hardware functions.",
+    "prerequisiteCourseCodes": [
+      "BTAC 216"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: BTAC 216 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: BTAC 216 and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -12011,9 +12291,13 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Provides a study of the impact and use of technology in the legal office. Topics include ethical issues in using technology in a legal office; legal use of hardware and software; use of the Internet, cloud computing, and computer applications by legal assistants and the court system.",
+    "prerequisiteCourseCodes": [
+      "BTAC 100",
+      "BTAC 103",
+      "BTAC 109"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: BTAC 100 , BTAC 103 and BTAC 109 , all with a grade of 2.0 or higher; Eligible for ENGL 99 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: BTAC 100 , BTAC 103 and BTAC 109 , all with a grade of 2.0 or higher; Eligible for ENGL 99 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -12050,9 +12334,13 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Provides a study of activities most often performed by a legal assistant. Topics include legal office environment, communication services and management, legal code of ethics, scheduling/docketing techniques, messenger services, Washington's legal court system structure, legal billing procedures, wills/probate procedures, job search and informational interview, preparation of job-ready resume/portfolio, leadership, and human relations.",
+    "prerequisiteCourseCodes": [
+      "BTAC 100",
+      "BTAC 102",
+      "BTAC 109"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: BTAC 100 , BTAC 102 , and BTAC 109 , all with a grade of 2.0 or higher. Recommended: BTAC 220 or concurrent enrollment.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: BTAC 100 , BTAC 102 , and BTAC 109 , all with a grade of 2.0 or higher. Recommended: BTAC 220 or concurrent enrollment."
     ],
     "effectiveYearRanges": [
       {
@@ -12167,9 +12455,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Provides instruction and activities directed toward technology, communication, and human relations skills of the administrative support professional. Topics include organizational structures, virtual offices, teamwork, anger, stress and time management; ethics, diversity, and sexual harassment; communication essentials, customer service, postal services, telecommunications, meetings and travel, job search, and leadership elements.",
+    "prerequisiteCourseCodes": [
+      "BTAC 100",
+      "BTAC 130"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: BTAC 100 and BTAC 130 , both with a grade of 2.0 or higher; and eligible for ENGL& 101 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: BTAC 100 and BTAC 130 , both with a grade of 2.0 or higher; and eligible for ENGL& 101 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -12206,9 +12497,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Credits: 5 Focuses on using bookmarks and hyphenation; creating annotations and macros; adding borders, frames, and pictures; using WordArt, and Equation Editor; creating tables and charts; formatting text into columns; sorting text; formatting with styles; creating outlines, fill-in forms, tables of contents and indexes.",
+    "prerequisiteCourseCodes": [
+      "BTAC 112"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: BTAC 112 with a grade of 2.0 or higher; or instructor consent. Recommended: A typing speed of 30 wpm.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: BTAC 112 with a grade of 2.0 or higher; or instructor consent. Recommended: A typing speed of 30 wpm."
     ],
     "effectiveYearRanges": [
       {
@@ -12245,9 +12538,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Focuses on intermediate coding using the International Classification of Diseases (ICD) diagnostic classification coding system. Students assign accurate codes to complex authentic case studies, applying compliance strategies, performing auditing procedures and maintaining quality monitor reports. Teaches students to abstract and assign valid diagnostic codes and verify code selection using real-life challenging coding cases.",
+    "prerequisiteCourseCodes": [
+      "BTAC 145",
+      "BTAC 146"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: BTAC 145 and BTAC 146 with a grade of 2.0 or higher; or concurrent enrollment in BTAC 146 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: BTAC 145 and BTAC 146 with a grade of 2.0 or higher; or concurrent enrollment in BTAC 146 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -12284,9 +12580,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Focuses on intermediate coding using Current Procedural Terminology (CPT), Healthcare Common Procedural Coding System (HCPCS) and International Classification of Diseases (ICD) procedural classification coding systems to assign accurate codes to complex authentic case studies. Teaches students to abstract and assign valid procedural codes and verify code selection using real-life challenging coding cases to a variety of procedural groupings including Ambulatory Payment Classifications (APC) and Resource Utilization Groups (RUG).",
+    "prerequisiteCourseCodes": [
+      "BTAC 145",
+      "BTAC 146"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: BTAC 145 and BTAC 146 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: BTAC 145 and BTAC 146 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -12323,9 +12622,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_3: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Focuses on the use of advanced Microsoft Office applications including object linking and embedding (OLE) and the integration of applications. Enhances prior application skills. These skills culminate in a professional PowerPoint group presentation that also may incorporate Word, Excel, and Access concepts.",
+    "prerequisiteCourseCodes": [
+      "BTAC 112",
+      "BTAC 162"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: BTAC 112 and BTAC 162 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: BTAC 112 and BTAC 162 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -12965,9 +13267,13 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Students learn to formulate marketing goals by utilizing market research methods to collect, analyze, and evaluate marketing data and information. Topics include market research methods, data analysis and interpretation, research proposals, communicating research, and strategic applications of research.",
+    "prerequisiteCourseCodes": [
+      "BUS 300",
+      "BUS 395",
+      "BUS 401"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Marketing and Entrepreneurship program, BUS 395 , BUS 300 and BUS 401 ; or instructor consent. Recommended: MATH 256 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Marketing and Entrepreneurship program, BUS 395 , BUS 300 and BUS 401 ; or instructor consent. Recommended: MATH 256 ."
     ],
     "effectiveYearRanges": [
       {
@@ -13004,9 +13310,19 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Students learn to develop, measure, and evaluate an integrated marketing communications plan. Topics include situational and competitive analysis, target market segmentation, creative strategy, media planning and selection, budget determination, and measuring effectiveness of promotional program.",
+    "prerequisiteCourseCodes": [
+      "BUS 300",
+      "BUS 310",
+      "BUS 344",
+      "BUS 350",
+      "BUS 385",
+      "BUS 395",
+      "BUS 401",
+      "BUS 402",
+      "BUS 403"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Marketing and Entrepreneurship program, BUS 395 , BUS 300 , BUS 401 , BUS 310 , BUS 344 , BUS 402 , BUS 350 , BUS 385 and BUS 403 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Marketing and Entrepreneurship program, BUS 395 , BUS 300 , BUS 401 , BUS 310 , BUS 344 , BUS 402 , BUS 350 , BUS 385 and BUS 403 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -13072,9 +13388,13 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Students learn to apply financial management practices to obtain the financial capital necessary to operate and grow entrepreneurial ventures. Topics include financial statement analysis, valuation, determining financing needs, financing alternatives, and stages of financing.",
+    "prerequisiteCourseCodes": [
+      "BUS 300",
+      "BUS 395",
+      "BUS 401"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Marketing and Entrepreneurship program, BUS 395 , BUS 300 and BUS 401 ; or instructor consent. Recommended: STRONGLY ENCOURAGE ACCT 110 or ACCT& 201 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Marketing and Entrepreneurship program, BUS 395 , BUS 300 and BUS 401 ; or instructor consent. Recommended: STRONGLY ENCOURAGE ACCT 110 or ACCT& 201 ."
     ],
     "effectiveYearRanges": [
       {
@@ -13111,9 +13431,16 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Students learn how to identify, design, produce, test, and evaluate a new product. Topics include identification of market opportunities, generation of product concepts, feasibility analysis, prototyping, supplier selection, production planning, and testing.",
+    "prerequisiteCourseCodes": [
+      "BUS 300",
+      "BUS 310",
+      "BUS 344",
+      "BUS 395",
+      "BUS 401",
+      "BUS 402"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Marketing and Entrepreneurship program, BUS 395 , BUS 300 , BUS 401 , BUS 310 , BUS 344 and BUS 402 ; or instructor consent. Recommended: STRONGLY ENCOURAGE ACCT 110 or ACCT& 201 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Marketing and Entrepreneurship program, BUS 395 , BUS 300 , BUS 401 , BUS 310 , BUS 344 and BUS 402 ; or instructor consent. Recommended: STRONGLY ENCOURAGE ACCT 110 or ACCT& 201 ."
     ],
     "effectiveYearRanges": [
       {
@@ -13168,9 +13495,22 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Students learn to integrate selling and negotiation strategies to effectively create productive buyer-seller relationships. Topics include strategic prospecting, managing the sales funnel, developing sales proposals, applying interest-based negotiations principles, and developing options for mutual gain.",
+    "prerequisiteCourseCodes": [
+      "BUS 300",
+      "BUS 310",
+      "BUS 335",
+      "BUS 344",
+      "BUS 350",
+      "BUS 365",
+      "BUS 385",
+      "BUS 390",
+      "BUS 395",
+      "BUS 401",
+      "BUS 402",
+      "BUS 403"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Marketing and Entrepreneurship program, BUS 395 , BUS 300 , BUS 401 , BUS 310 , BUS 344 , BUS 402 , BUS 350 , BUS 385 , BUS 403 , BUS 335 , BUS 390 and BUS 365 ; or instructor consent. Recommended: BUS 159 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Marketing and Entrepreneurship program, BUS 395 , BUS 300 , BUS 401 , BUS 310 , BUS 344 , BUS 402 , BUS 350 , BUS 385 , BUS 403 , BUS 335 , BUS 390 and BUS 365 ; or instructor consent. Recommended: BUS 159 ."
     ],
     "effectiveYearRanges": [
       {
@@ -13197,9 +13537,19 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Examines how and why people behave as buyers. Students learn how to analyze buyer behavior, consumer motivation, perception, attitudes, and influences. Topics include cultural and social influences, advertising and salesperson influences, market segmentation, and the decision-making process.",
+    "prerequisiteCourseCodes": [
+      "BUS 300",
+      "BUS 310",
+      "BUS 344",
+      "BUS 350",
+      "BUS 385",
+      "BUS 395",
+      "BUS 401",
+      "BUS 402",
+      "BUS 403"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Marketing and Entrepreneurship program, BUS 395 , BUS 300 , BUS 401 , BUS 310 , BUS 344 , BUS 402 , BUS 350 , BUS 385 and BUS 403 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Marketing and Entrepreneurship program, BUS 395 , BUS 300 , BUS 401 , BUS 310 , BUS 344 , BUS 402 , BUS 350 , BUS 385 and BUS 403 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -13236,9 +13586,16 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Students learn to apply operations management methods to increase results and streamline processes in small to medium-sized businesses. Topics include forecasting, process and facility selection, work design, production planning and scheduling, process improvement, and quality control.",
+    "prerequisiteCourseCodes": [
+      "BUS 300",
+      "BUS 310",
+      "BUS 344",
+      "BUS 395",
+      "BUS 401",
+      "BUS 402"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Marketing and Entrepreneurship program, BUS 395 , BUS 300 , BUS 401 , BUS 310 , BUS 344 and BUS 402 ; or instructor consent. Recommended: MATH 256 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Marketing and Entrepreneurship program, BUS 395 , BUS 300 , BUS 401 , BUS 310 , BUS 344 and BUS 402 ; or instructor consent. Recommended: MATH 256 ."
     ],
     "effectiveYearRanges": [
       {
@@ -13293,9 +13650,19 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Students learn how to apply digital marketing and analytic tools to create competitive and effective digital marketing programs. Topics include optimizing web and social content, online advertising, lead generation, email marketing, and web analytics.",
+    "prerequisiteCourseCodes": [
+      "BUS 300",
+      "BUS 310",
+      "BUS 344",
+      "BUS 350",
+      "BUS 385",
+      "BUS 395",
+      "BUS 401",
+      "BUS 402",
+      "BUS 403"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Marketing and Entrepreneurship program, BUS 395 , BUS 300 , BUS 401 , BUS 310 , BUS 344 , BUS 402 , BUS 350 , BUS 385 and BUS 403 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Marketing and Entrepreneurship program, BUS 395 , BUS 300 , BUS 401 , BUS 310 , BUS 344 , BUS 402 , BUS 350 , BUS 385 and BUS 403 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -13371,9 +13738,25 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Students apply personal and professional branding strategies to develop a comprehensive personal marketing and career plan. Topics include methods of conveying a consistent personal brand, career planning, job targeting, networking, personal marketing materials, effective use of social media, and involvement in targeted professional associations.",
+    "prerequisiteCourseCodes": [
+      "BUS 300",
+      "BUS 310",
+      "BUS 335",
+      "BUS 344",
+      "BUS 350",
+      "BUS 360",
+      "BUS 365",
+      "BUS 385",
+      "BUS 390",
+      "BUS 395",
+      "BUS 401",
+      "BUS 402",
+      "BUS 403",
+      "BUS 404",
+      "BUS 460"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Marketing and Entrepreneurship program, BUS 395 , BUS 300 , BUS 401 , BUS 310 , BUS 344 , BUS 402 , BUS 350 , BUS 385 , BUS 403 , BUS 335 , BUS 390 , BUS 365 , BUS 360 , BUS 460 and BUS 404 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Marketing and Entrepreneurship program, BUS 395 , BUS 300 , BUS 401 , BUS 310 , BUS 344 , BUS 402 , BUS 350 , BUS 385 , BUS 403 , BUS 335 , BUS 390 , BUS 365 , BUS 360 , BUS 460 and BUS 404 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -13449,9 +13832,13 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Students study and train to meet established needs in business, marketing and entrepreneurship practices. Course content varies each time it is offered. Intended to meet the program outcomes associated with the Bachelors of Applied Science in Marketing and Entrepreneurship.",
+    "prerequisiteCourseCodes": [
+      "BUS 300",
+      "BUS 395",
+      "BUS 401"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Marketing and Entrepreneurship program, BUS 395 , BUS 300 and BUS 401 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Marketing and Entrepreneurship program, BUS 395 , BUS 300 and BUS 401 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -13488,9 +13875,16 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Students study and train to meet established needs in business, marketing and entrepreneurship practices. Course content varies each time it is offered. Intended to meet the program outcomes associated with the Bachelors of Applied Science in Marketing and Entrepreneurship.",
+    "prerequisiteCourseCodes": [
+      "BUS 300",
+      "BUS 310",
+      "BUS 344",
+      "BUS 395",
+      "BUS 401",
+      "BUS 402"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Marketing and Entrepreneurship program, BUS 395 , BUS 300 , BUS 401 , BUS 310 , BUS 344 and BUS 402 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Marketing and Entrepreneurship program, BUS 395 , BUS 300 , BUS 401 , BUS 310 , BUS 344 and BUS 402 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -13536,9 +13930,22 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Students study and train to meet established needs in business, marketing, and entrepreneurship practices. Course content varies each time it is offered. Intended to meet the program outcomes associated with the Bachelors of Applied Science in Marketing and Entrepreneurship.",
+    "prerequisiteCourseCodes": [
+      "BUS 300",
+      "BUS 310",
+      "BUS 335",
+      "BUS 344",
+      "BUS 350",
+      "BUS 365",
+      "BUS 385",
+      "BUS 390",
+      "BUS 395",
+      "BUS 401",
+      "BUS 402",
+      "BUS 403"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Marketing and Entrepreneurship program, BUS 395 , BUS 300 , BUS 401 , BUS 310 , BUS 344 , BUS 402 , BUS 350 , BUS 385 , BUS 403 , BUS 335 , BUS 390 and BUS 365 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Marketing and Entrepreneurship program, BUS 395 , BUS 300 , BUS 401 , BUS 310 , BUS 344 , BUS 402 , BUS 350 , BUS 385 , BUS 403 , BUS 335 , BUS 390 and BUS 365 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -13575,9 +13982,25 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Students study and train to meet established needs in business, marketing, and entrepreneurship practices. Course content varies each time it is offered. Intended to meet the program outcomes associated with the Bachelors of Applied Science in Marketing and Entrepreneurship.",
+    "prerequisiteCourseCodes": [
+      "BUS 300",
+      "BUS 310",
+      "BUS 335",
+      "BUS 344",
+      "BUS 350",
+      "BUS 360",
+      "BUS 365",
+      "BUS 385",
+      "BUS 390",
+      "BUS 395",
+      "BUS 401",
+      "BUS 402",
+      "BUS 403",
+      "BUS 404",
+      "BUS 460"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Marketing and Entrepreneurship program, BUS 395 , BUS 300 , BUS 401 , BUS 310 , BUS 344 , BUS 402 , BUS 350 , BUS 385 , BUS 403 , BUS 335 , BUS 390 , BUS 365 , BUS 360 , BUS 460 and BUS 404 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Marketing and Entrepreneurship program, BUS 395 , BUS 300 , BUS 401 , BUS 310 , BUS 344 , BUS 402 , BUS 350 , BUS 385 , BUS 403 , BUS 335 , BUS 390 , BUS 365 , BUS 360 , BUS 460 and BUS 404 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -13614,9 +14037,22 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Students work in teams to research, plan, and present a business proposal to business development counselors and institutional funding professionals. This a two-course sequence with BUS 490 .",
+    "prerequisiteCourseCodes": [
+      "BUS 300",
+      "BUS 310",
+      "BUS 335",
+      "BUS 344",
+      "BUS 350",
+      "BUS 365",
+      "BUS 385",
+      "BUS 390",
+      "BUS 395",
+      "BUS 401",
+      "BUS 402",
+      "BUS 403"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Marketing and Entrepreneurship program, BUS 395 , BUS 300 , BUS 401 , BUS 310 , BUS 344 , BUS 402 , BUS 350 , BUS 385 , BUS 403 , BUS 335 , BUS 390 and BUS 365 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Marketing and Entrepreneurship program, BUS 395 , BUS 300 , BUS 401 , BUS 310 , BUS 344 , BUS 402 , BUS 350 , BUS 385 , BUS 403 , BUS 335 , BUS 390 and BUS 365 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -13653,9 +14089,25 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Students continue to work in teams to prototype, validate, and present proof of concept to a community of investors and funding sources. This is a two-course sequence with BUS 460 .",
+    "prerequisiteCourseCodes": [
+      "BUS 300",
+      "BUS 310",
+      "BUS 335",
+      "BUS 344",
+      "BUS 350",
+      "BUS 360",
+      "BUS 365",
+      "BUS 385",
+      "BUS 390",
+      "BUS 395",
+      "BUS 401",
+      "BUS 402",
+      "BUS 403",
+      "BUS 404",
+      "BUS 460"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Marketing and Entrepreneurship program, BUS 395 , BUS 300 , BUS 401 , BUS 310 , BUS 344 , BUS 402 , BUS 350 , BUS 385 , BUS 403 , BUS 335 , BUS 390 , BUS 365 , BUS 360 , BUS 460 and BUS 404 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Marketing and Entrepreneurship program, BUS 395 , BUS 300 , BUS 401 , BUS 310 , BUS 344 , BUS 402 , BUS 350 , BUS 385 , BUS 403 , BUS 335 , BUS 390 , BUS 365 , BUS 360 , BUS 460 and BUS 404 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -13740,9 +14192,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Focuses on business law and the regulation of business activities. Emphasizes contracts, including third party contract rights, the uniform commercial code, and the statute of frauds related to contracts in writing. Illustrates concepts using the case method approach.",
+    "prerequisiteCourseCodes": [
+      "POLS& 200"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: POLS& 200 - Introduction to Law: United States ; and eligible for ENGL 99 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: POLS& 200 - Introduction to Law: United States ; and eligible for ENGL 99 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -14176,9 +14630,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "title": "Intermediate Woodworking and Cabinetry",
     "creditLabel": "1-4",
     "catalogDescription": "A competency-based/hybrid course. Intermediate woodworking and cabinetry skills. Topics include wood species and identification and characteristics, various cabinet construction methods, common cabinetry materials and hardware, sources for cabinetry parts and components, cabinet design and construction, hardware installation and adjustment, power tool and stationary tool set-up, safety procedures and operations.",
+    "prerequisiteCourseCodes": [
+      "INDUS 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: INDUS 101 or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: INDUS 101 or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -14317,9 +14773,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "title": "Advanced Cabinetry and Wood Fabrication",
     "creditLabel": "1-6",
     "catalogDescription": "Credits: 1-6 Open-content course designed for students to design and build a medium to large wood project of their choosing in the carpentry lab.",
+    "prerequisiteCourseCodes": [
+      "CARP 164"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CARP 164 or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CARP 164 or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -14365,8 +14823,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditLabel": "1-12",
     "catalogDescription": "Allows students to work full- or part-time in jobs directly related to their programs and interests. Students may receive a salary or volunteer.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "COOP 171"
     ],
     "effectiveYearRanges": [
       {
@@ -14393,8 +14853,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditLabel": "1-12",
     "catalogDescription": "Allows students to work full- or part-time in jobs directly related to their programs and interests. Students may receive a salary or volunteer.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "COOP 171"
     ],
     "effectiveYearRanges": [
       {
@@ -14421,8 +14883,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditLabel": "1-12",
     "catalogDescription": "Allows students to work full- or part-time in jobs directly related to their programs and interests. Students may receive a salary or volunteer.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "COOP 171"
     ],
     "effectiveYearRanges": [
       {
@@ -14477,8 +14941,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditLabel": "1-12",
     "catalogDescription": "Allows students to work full- or part-time in jobs directly related to their programs and interests. Students may receive a salary or volunteer.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent; and eligible for ENGL& 101 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent; and eligible for ENGL& 101 ."
+    ],
+    "corequisiteCourseCodes": [
+      "COOP 171"
     ],
     "effectiveYearRanges": [
       {
@@ -14617,9 +15083,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "An introduction to chemistry for the nonscience student with less mathematical rigor than CHEM& 121 . Presents general ideas about how models of atoms, bonding, and the structures of materials help in understanding chemical processes and reactions. Selection of applications is chosen from topics such as energy and environment, foods, drugs, poisons and household chemicals.",
+    "prerequisiteCourseCodes": [
+      "MATH 72"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH 72 ; or eligible for MATH 97 ; and eligible for ENGL& 101 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH 72 ; or eligible for MATH 97 ; and eligible for ENGL& 101 ."
     ],
     "effectiveYearRanges": [
       {
@@ -14646,9 +15114,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Beginning course for the non-science student interested in chemistry with less mathematical rigor than CHEM& 140 . Together with CHEM& 131 , it satisfies the chemistry requirement for many students in the allied health sciences and related fields.",
+    "prerequisiteCourseCodes": [
+      "MATH 72"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH 72 with a grade of 2.0 or higher; or in a one-year high school algebra course; or eligible for MATH 97 or equivalent placement; and eligible for ENGL& 101 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH 72 with a grade of 2.0 or higher; or in a one-year high school algebra course; or eligible for MATH 97 or equivalent placement; and eligible for ENGL& 101 ."
     ],
     "effectiveYearRanges": [
       {
@@ -14703,9 +15173,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Satisfies allied health program requirements. Covers structure, nomenclature and reactions of organic and biological compounds, and applications to living systems.",
+    "prerequisiteCourseCodes": [
+      "CHEM& 121"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CHEM& 121 with a grade of 2.0 or higher or instructor consent and eligible for ENGL& 101 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CHEM& 121 with a grade of 2.0 or higher or instructor consent and eligible for ENGL& 101 ."
     ],
     "effectiveYearRanges": [
       {
@@ -14817,9 +15289,14 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 6,
     "creditLabel": "6",
     "catalogDescription": "For science, engineering and other majors who plan to take a year or more of chemistry. Covers the structure of matter, solution chemistry (acid-base and oxidation-reduction), stoichiometry of reactions in solution, thermochemistry, atomic and electronic structure and quantitative relationships.",
+    "prerequisiteCourseCodes": [
+      "CHEM& 140"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL& 101 . A grade of 2.0 or higher in CHEM& 140 or in a one-year high school chemistry course. Concurrent enrollment in MATH& 141 or eligible for MATH& 142 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL& 101 . A grade of 2.0 or higher in CHEM& 140 or in a one-year high school chemistry course. Concurrent enrollment in MATH& 141 or eligible for MATH& 142 or higher; or instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "MATH& 141"
     ],
     "effectiveYearRanges": [
       {
@@ -14874,9 +15351,14 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 6,
     "creditLabel": "6",
     "catalogDescription": "Continuation of CHEM&161 . Covers modern atomic theory, chemical bonding, molecular and electronic structure, valence bond theory, liquids and solids, and intermolecular forces.",
+    "prerequisiteCourseCodes": [
+      "CHEM& 161"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL& 101 . CHEM& 161 with a grade of 2.0 or higher; and concurrent enrollment in MATH 142 ; or eligible for MATH& 151 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL& 101 . CHEM& 161 with a grade of 2.0 or higher; and concurrent enrollment in MATH 142 ; or eligible for MATH& 151 or higher; or instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "MATH 142"
     ],
     "effectiveYearRanges": [
       {
@@ -14931,9 +15413,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 6,
     "creditLabel": "6",
     "catalogDescription": "Continuation of CHEM& 162 . Covers metals and non-metals, electrochemistry, nuclear reactions and coordination compounds, thermodynamics, kinetics, equilibrium, acid-base and solubility equilibria.",
+    "prerequisiteCourseCodes": [
+      "CHEM& 162"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL& 101 . CHEM& 162 with a grade of 2.0 or higher; and eligible for MATH& 151 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL& 101 . CHEM& 162 with a grade of 2.0 or higher; and eligible for MATH& 151 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -14988,9 +15472,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 6,
     "creditLabel": "6",
     "catalogDescription": "For science and other related majors that require a full year of organic chemistry. Covers structure, nomenclature, reactions (including mechanisms) and synthesis of organic compounds, as well as spectroscopic analysis.",
+    "prerequisiteCourseCodes": [
+      "CHEM& 163"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CHEM& 163 with a grade of 1.5 or higher and eligible for ENGL& 101 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CHEM& 163 with a grade of 1.5 or higher and eligible for ENGL& 101 ."
     ],
     "effectiveYearRanges": [
       {
@@ -15027,9 +15513,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 6,
     "creditLabel": "6",
     "catalogDescription": "Continuation of CHEM& 261 .",
+    "prerequisiteCourseCodes": [
+      "CHEM& 261"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CHEM& 261 with a grade of 2.0 or higher and eligible for ENGL& 101 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CHEM& 261 with a grade of 2.0 or higher and eligible for ENGL& 101 ."
     ],
     "effectiveYearRanges": [
       {
@@ -15066,9 +15554,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 6,
     "creditLabel": "6",
     "catalogDescription": "A continuation of CHEM& 262 . Covers the chemistry of selected classes of biomolecules.",
+    "prerequisiteCourseCodes": [
+      "CHEM& 262"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CHEM& 262 with a grade of 1.5 or higher and eligible for ENGL& 101 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CHEM& 262 with a grade of 1.5 or higher and eligible for ENGL& 101 ."
     ],
     "effectiveYearRanges": [
       {
@@ -15192,9 +15682,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Continues the study of Mandarin Chinese. Focuses on listening, speaking, reading, and writing. Emphasizes pronunciation, vocabulary development, and sentence structure. Includes practice with complex Chinese characters as well as simpler forms.",
+    "prerequisiteCourseCodes": [
+      "CHIN& 121"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CHIN& 121 with a grade of 2.0 or higher; and eligible for ENGL 99 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CHIN& 121 with a grade of 2.0 or higher; and eligible for ENGL 99 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -15221,9 +15713,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Completes the study of Mandarin at the elementary level. Focuses on listening, speaking, reading and writing. Emphasizes pronunciation, vocabulary development, complex sentence structure, and writing with Chinese characters.",
+    "prerequisiteCourseCodes": [
+      "CHIN& 122"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CHIN& 122 with a grade of 2.0 or higher; and eligible for ENGL 99 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CHIN& 122 with a grade of 2.0 or higher; and eligible for ENGL 99 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -15338,8 +15832,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditLabel": "1-5",
     "catalogDescription": "Allows students to work full- or part-time in jobs directly related to their programs and interests. Students may receive a salary or volunteer.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "COOP 171"
     ],
     "effectiveYearRanges": [
       {
@@ -15366,8 +15862,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditLabel": "1-5",
     "catalogDescription": "Allows students to work full- or part-time in jobs directly related to their programs and interests. Students may receive a salary or volunteer.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "COOP 171"
     ],
     "effectiveYearRanges": [
       {
@@ -15394,8 +15892,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditLabel": "1-5",
     "catalogDescription": "Allows students to work full- or part-time in jobs directly related to their programs and interests. Students may receive a salary or volunteer.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "COOP 171"
     ],
     "effectiveYearRanges": [
       {
@@ -15422,9 +15922,26 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Covers the historic, legal and political basis of individual rights in the United States. Analyzes search and seizure, freedom of expression, pornography, sexual harassment, arrest, and workings of the United States Supreme Court.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "CJ& 101",
+        "ENGL& 101"
+      ],
+      [
+        "ENGL 126"
+      ],
+      [
+        "ENGL 127"
+      ],
+      [
+        "ENGL 128"
+      ],
+      [
+        "ENGL 235"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CJ& 101 and ENGL& 101 or ENGL 126/127/128/235 with a grade of 2.0 higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CJ& 101 and ENGL& 101 or ENGL 126/127/128/235 with a grade of 2.0 higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -15461,9 +15978,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Examines the basic rules of evidence as they apply to the criminal justice system. Reviews the collection, examination, and preservation of evidence for the purpose of criminal investigations and the presentation of evidence during the trial process.",
+    "prerequisiteCourseCodes": [
+      "CJ& 101",
+      "ENGL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CJ& 101 and ENGL& 101 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CJ& 101 and ENGL& 101 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -15500,9 +16020,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Provides an in-depth analysis of friction ridge skin, building on basic fingerprint identification concepts from CJ 115 - Fingerprint Science . Students will make complex evaluations of ridge detail using best practices. Explore various techniques used to process evidence, document results, and testify as an expert witness.",
+    "prerequisiteCourseCodes": [
+      "CJ 115"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CJ 115 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CJ 115 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -15539,9 +16061,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Provides an in-depth examination of the historical challenges on race, class, and gender in the American criminal justice system, including the relationship with law enforcement, courts, and corrections. This course examines diversity that exists in the communities and the theoretical and practical information to respond effectively to diversity issues. This course addresses the marginalized groups including African Americans, LatinX Americans, Asian Americans, Native Americans, women, and the LBGTQIA+ community issues faced in the criminal justice system.",
+    "prerequisiteCourseCodes": [
+      "CJ& 101",
+      "ENGL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CJ& 101 and ENGL& 101 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CJ& 101 and ENGL& 101 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -15613,9 +16138,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_4: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces students to the history and theories of policing, organizational structures (federal, state, and local), chain of command and hierarchy within policing. Includes procedures and methods of operation of police with emphasis on discretionary powers of the working police officer, public perception of policing, ethics, and police deviance. Introduces students to career opportunities and current trends in law enforcement including diversity, equity, and inclusion with an antiracist mindset.",
+    "prerequisiteCourseCodes": [
+      "CJ& 101",
+      "ENGL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CJ& 101 and ENGL& 101 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CJ& 101 and ENGL& 101 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -15762,9 +16290,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Course focuses on the historical ideologies of punishment and major programs developments within the corrections component of the criminal justice system. It includes the development of the penitentiary, the philosophy of incarceration, analysis of probation, and the benefits of community corrections.",
+    "prerequisiteCourseCodes": [
+      "CJ& 101",
+      "ENGL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CJ& 101 and ENGL& 101 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CJ& 101 and ENGL& 101 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -15810,9 +16341,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces basic concepts, theories, principles and an historical overview of the criminal process as they relate to the formal and informal adjudication of violent, serious, and chronic juvenile offenders.",
+    "prerequisiteCourseCodes": [
+      "CJ& 101",
+      "ENGL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CJ& 101 and ENGL& 101 or 126/127/128/235 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CJ& 101 and ENGL& 101 or 126/127/128/235 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -15849,9 +16383,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Examines criminal laws such as federal, state, and county laws. Focuses on criminal laws and their impact through selective enforcement by criminal justice officials. Gives special attention to substantive criminal law.",
+    "prerequisiteCourseCodes": [
+      "CJ& 101",
+      "ENGL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CJ& 101 and ENGL& 101 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CJ& 101 and ENGL& 101 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -15888,9 +16425,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Surveys the study of crime, causation, and criminals. Topics include types and characteristics of offenders and criminal behaviors, recidivism, environmental influences, diagnostic methods, prediction, prevention, and social policy.",
+    "prerequisiteCourseCodes": [
+      "CJ& 101",
+      "ENGL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CJ& 101 and ENGL& 101 or 126/127/128/235 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CJ& 101 and ENGL& 101 or 126/127/128/235 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -15927,9 +16467,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Credits: 5 A multidisciplinary approach to the crime scene investigations and the applications of forensic science. Proper crime scene management, focusing on the ability to identify, process, collect and preserve physical evidence. To include the proper documentation of evidence and its analysis, chain of custody and courtroom presentation of expert witness scientific testimony.",
+    "prerequisiteCourseCodes": [
+      "CJ& 101",
+      "ENGL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CJ& 101 and ENGL& 101 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CJ& 101 and ENGL& 101 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -16127,8 +16670,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditLabel": "1-12",
     "catalogDescription": "Allows students to work full- or part-time in jobs directly related to their programs and interests. Students may receive a salary or volunteer.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "COOP 171"
     ],
     "effectiveYearRanges": [
       {
@@ -16320,8 +16865,15 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditLabel": "1-2",
     "catalogDescription": "Taken in conjunction with courses that require oral presentations. Helps increase confidence and skill when delivering an oral presentation by providing opportunities for individual coaching. Students taking CMST& 220 or CMST& 230 concurrently will be able to practice speeches assigned in their classes, however, this class is available to any student wishing to improve presentational skills. Student coaching sessions will be recorded, and students will have access to their own speeches for the purpose of analysis.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in CMST& 220 or CMST& 230 ; or instructor consent for other courses requiring oral presentations.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in CMST& 220 or CMST& 230 ; or instructor consent for other courses requiring oral presentations."
+    ],
+    "corequisiteAlternativeCourseCodeSets": [
+      [
+        "CMST& 220"
+      ],
+      [
+        "CMST& 230"
+      ]
     ],
     "effectiveYearRanges": [
       {
@@ -16367,9 +16919,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Offers students who have taken a beginning public speaking course an opportunity to enhance their public speaking skills further. Students will learn skills that will enable them to intern at the Public Speaking Center where they will observe coaching sessions and coach students wishing to improve their presentations. Tailored toward any student whose future careers or community involvement will require delivering presentations.",
+    "prerequisiteCourseCodes": [
+      "CMST& 220"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CMST& 220 with a grade of 3.2 or higher; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CMST& 220 with a grade of 3.2 or higher; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -16522,9 +17076,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces students to the communication dynamics of organizations. Students will examine the ways in which they shape and are shaped by their interactions with organizations as well as analyze how communication processes are used, coordinated, and controlled to achieve collective organizational outcomes. Students will explore structure, culture, decision-making, conflict, power, and network effects of communication in organizations.",
+    "prerequisiteCourseCodes": [
+      "ENGL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into a BAS program; and ENGL& 101 ; or instructor consent. Recommended: CMST& 230",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into a BAS program; and ENGL& 101 ; or instructor consent. Recommended: CMST& 230"
     ],
     "effectiveYearRanges": [
       {
@@ -16561,9 +17117,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Course offers students the opportunity to understand how communication influences behavior and the construction of our worldviews across global contexts. Students will examine intercultural communication through the effects of globalization; understand and evaluate the effects of communication technologies on globalization and communication; and develop solutions to issues that arise within intercultural communication settings.",
+    "prerequisiteCourseCodes": [
+      "ENGL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into a BAS program; and ENGL& 101 ; or instructor consent. Recommended: CMST 240",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into a BAS program; and ENGL& 101 ; or instructor consent. Recommended: CMST 240"
     ],
     "effectiveYearRanges": [
       {
@@ -17023,9 +17581,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 8,
     "creditLabel": "8",
     "catalogDescription": "Students study the theory and arrangement of the keyboard. Teaches StenEd Realtime Theory. Includes intensive practice dictation with emphasis on rapid and accurate reading of notes.",
+    "prerequisiteCourseCodes": [
+      "CRC 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 101 with a grade of 2.0 or higher and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 101 with a grade of 2.0 or higher and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -17071,9 +17631,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 8,
     "creditLabel": "8",
     "catalogDescription": "Continues the study of theory and develops skill in writing dictation and reading notes with practice on new and familiar material. Students should attain 40 wpm with a minimum of four tests at 95 percent accuracy in a transcription.",
+    "prerequisiteCourseCodes": [
+      "CRC 102"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 102 with a grade of 2.0 or higher and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 102 with a grade of 2.0 or higher and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -17119,9 +17681,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 4,
     "creditLabel": "4",
     "catalogDescription": "Develops skill in writing literary dictation and reading notes with practice on new and familiar material. Students should attain 60 wpm with a minimum of four tests at 95 percent accuracy in transcription.",
+    "prerequisiteCourseCodes": [
+      "CRC 103"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 103 with a grade of 2.0 or higher and instructor consent; and concurrent enrollment in testimony dictation course.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 103 with a grade of 2.0 or higher and instructor consent; and concurrent enrollment in testimony dictation course."
     ],
     "effectiveYearRanges": [
       {
@@ -17167,9 +17731,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 4,
     "creditLabel": "4",
     "catalogDescription": "Develops skill in writing testimony dictation and reading notes with practice on new and familiar material. Students should attain 60 wpm with a minimum of 95 percent accuracy in transcription.",
+    "prerequisiteCourseCodes": [
+      "CRC 103"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 103 with a grade of 2.0 or higher and instructor consent; and concurrent enrollment in literary dictation course.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 103 with a grade of 2.0 or higher and instructor consent; and concurrent enrollment in literary dictation course."
     ],
     "effectiveYearRanges": [
       {
@@ -17215,9 +17781,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 4,
     "creditLabel": "4",
     "catalogDescription": "Develops skill in writing literary dictation and reading notes with practice on new and familiar material. Students should attain 80 wpm with a minimum four tests at 95 percent accuracy in transcription.",
+    "prerequisiteCourseCodes": [
+      "CRC 111"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 111 with a 2.0 and instructor consent; and concurrent enrollment in testimony dictation course.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 111 with a 2.0 and instructor consent; and concurrent enrollment in testimony dictation course."
     ],
     "effectiveYearRanges": [
       {
@@ -17263,9 +17831,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 4,
     "creditLabel": "4",
     "catalogDescription": "Develops skill in writing two-voice testimony dictation and reading notes with practice on new and familiar material. Students should attain 80 wpm with a minimum of four tests at 95 percent accuracy in transcription.",
+    "prerequisiteCourseCodes": [
+      "CRC 112"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 112 with a grade of 2. 0 and instructor consent; and concurrent enrollment in literary dictation course.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 112 with a grade of 2. 0 and instructor consent; and concurrent enrollment in literary dictation course."
     ],
     "effectiveYearRanges": [
       {
@@ -17311,9 +17881,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 4,
     "creditLabel": "4",
     "catalogDescription": "Develops skill in writing literary dictation and reading notes with practice on new and familiar material. Students should attain 100 wpm with a minimum of four tests at 95 percent accuracy in transcription.",
+    "prerequisiteCourseCodes": [
+      "CRC 121"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 121 with a grade 2.0 or higher; and instructor consent; and concurrent enrollment in testimony and jury charge dictation courses.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 121 with a grade 2.0 or higher; and instructor consent; and concurrent enrollment in testimony and jury charge dictation courses."
     ],
     "effectiveYearRanges": [
       {
@@ -17359,9 +17931,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 4,
     "creditLabel": "4",
     "catalogDescription": "Develops skill in writing two-voice testimony dictation and reading notes with practice on new and familiar material. Students should attain 100 wpm with a minimum of 95% accuracy in transcription.",
+    "prerequisiteCourseCodes": [
+      "CRC 122"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 122 with a grade of 2.0 or higher; and instructor consent; and concurrent enrollment in literary, jury charge, and medical dictation courses.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 122 with a grade of 2.0 or higher; and instructor consent; and concurrent enrollment in literary, jury charge, and medical dictation courses."
     ],
     "effectiveYearRanges": [
       {
@@ -17455,9 +18029,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 4,
     "creditLabel": "4",
     "catalogDescription": "Develops skill in writing literary dictation and reading notes with practice on new and familiar material. Students should attain 120 wpm with a minimum of four tests at 95 percent accuracy in transcription.",
+    "prerequisiteCourseCodes": [
+      "CRC 131"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 131 with a grade of 2.0 or higher; and instructor consent; and concurrent enrollment in testimony, jury charge, and medical dictation courses.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 131 with a grade of 2.0 or higher; and instructor consent; and concurrent enrollment in testimony, jury charge, and medical dictation courses."
     ],
     "effectiveYearRanges": [
       {
@@ -17503,9 +18079,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 4,
     "creditLabel": "4",
     "catalogDescription": "Develops skill in writing two-voice testimony dictation and reading notes with practice on new and familiar material. Students should attain 120 wpm with a minimum of four tests at 95% accuracy in transcription.",
+    "prerequisiteCourseCodes": [
+      "CRC 132"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 132 with a grade of 2.0 or higher; and instructor consent; and concurrent enrollment in literary, jury charge, and medical dictation courses.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 132 with a grade of 2.0 or higher; and instructor consent; and concurrent enrollment in literary, jury charge, and medical dictation courses."
     ],
     "effectiveYearRanges": [
       {
@@ -17551,9 +18129,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 4,
     "creditLabel": "4",
     "catalogDescription": "Develops skill in writing jury charge dictation and reading notes with practice on new and familiar material. Students should attain 120 wpm with a minimum of four tests at 95% accuracy in transcription.",
+    "prerequisiteCourseCodes": [
+      "CRC 133"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 133 with a grade of 2.0 or higher; and instructor consent and concurrent enrollment in literary, testimony, and medical dictation courses.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 133 with a grade of 2.0 or higher; and instructor consent and concurrent enrollment in literary, testimony, and medical dictation courses."
     ],
     "effectiveYearRanges": [
       {
@@ -17638,9 +18218,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 4,
     "creditLabel": "4",
     "catalogDescription": "Teaches students the basic care and maintenance of computer hardware and CAT writers, as well as an understanding of computer technology. Students learn the necessary steps to produce a transcript, including how to read, translate, edit and print transcripts through hands-on techniques using Case Catalyst software. Includes discussions of other software and applications. Covers psychology of real-time writing, utilization of resource materials preparatory to writing real-time, updating dictionaries, file maintenance, and litigation support ASCII disks, keyword indexes. Course requires previous computer familiarity.",
+    "prerequisiteCourseCodes": [
+      "CRC 142",
+      "CRC 143"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 142 and CRC 143 with grades of 2.0 or higher; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 142 and CRC 143 with grades of 2.0 or higher; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -17677,9 +18260,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Students receive instruction in advanced features of Computer-Aided Transcription (CAT) software. Students learn the steps to produce advanced elements of a verbatim transcript through hands-on techniques using CaseCATalyst software. Course includes an overview of other software and their applications. Covers advanced real-time writing options and features, resource material prior to writing real-time, dictionary maintenance, exhibit, and keyword indexes, custom include files, custom page layouts, and number conversion features. Course requires previous use of CaseCATalyst or other CAT software.",
+    "prerequisiteCourseCodes": [
+      "CRC 150"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 150 with a grade of 2.0 or higher; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 150 with a grade of 2.0 or higher; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -17716,8 +18301,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditLabel": "1-12",
     "catalogDescription": "Credits: 1-12 Allows student to work full- or part-time in jobs directly related to their programs and interests. Students may receive a salary or volunteer.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "COOP 171"
     ],
     "effectiveYearRanges": [
       {
@@ -17744,8 +18331,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditLabel": "1-12",
     "catalogDescription": "Allows student to work full- or part-time in jobs directly related to their programs and interests. Students may receive a salary or volunteer.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "COOP 171"
     ],
     "effectiveYearRanges": [
       {
@@ -17772,8 +18361,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditLabel": "1-12",
     "catalogDescription": "Allows student to work full- or part-time in jobs directly related to their programs and interests. Students may receive a salary or volunteer.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "COOP 171"
     ],
     "effectiveYearRanges": [
       {
@@ -17800,9 +18391,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 4,
     "creditLabel": "4",
     "catalogDescription": "Develops skill in writing literary dictation and reading notes with practice on new and familiar material. Students should attain 140 wpm with a minimum of four tests at 95 percent accuracy in transcription.",
+    "prerequisiteCourseCodes": [
+      "CRC 141"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 141 with a grade of 2.0 or higher: and instructor consent; and concurrent enrollment in testimony, jury charge, and medical dictation courses.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 141 with a grade of 2.0 or higher: and instructor consent; and concurrent enrollment in testimony, jury charge, and medical dictation courses."
     ],
     "effectiveYearRanges": [
       {
@@ -17848,9 +18441,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 4,
     "creditLabel": "4",
     "catalogDescription": "Develops skill in writing two-voice testimony dictation and reading notes with practice on new and familiar material. Students should attain140 wpm with a minimum of four tests at 95% accuracy in transcription.",
+    "prerequisiteCourseCodes": [
+      "CRC 142"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 142 with a grade of 2.0 or higher; and instructor consent; concurrent enrollment in literary, jury charge, and medical dictation courses.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 142 with a grade of 2.0 or higher; and instructor consent; concurrent enrollment in literary, jury charge, and medical dictation courses."
     ],
     "effectiveYearRanges": [
       {
@@ -17896,9 +18491,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 4,
     "creditLabel": "4",
     "catalogDescription": "Develops skill in writing jury charge dictation and reading notes with practice on new and familiar material. Students should attain 140 wpm with a minimum of four tests at 95% accuracy in transcription.",
+    "prerequisiteCourseCodes": [
+      "CRC 143"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 143 with a grade of 2.0 or higher; and instructor consent; and concurrent enrollment in literary, testimony, and medical dictation courses.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 143 with a grade of 2.0 or higher; and instructor consent; and concurrent enrollment in literary, testimony, and medical dictation courses."
     ],
     "effectiveYearRanges": [
       {
@@ -17944,9 +18541,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 4,
     "creditLabel": "4",
     "catalogDescription": "Develops skill in writing two-voice medical testimony dictation and reading notes with practice on new and familiar material at 140 wpm with a minimum of 95% accuracy.",
+    "prerequisiteCourseCodes": [
+      "CRC 144"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 144 or instructor consent; and concurrent enrollment in literary, jury charge, and testimony courses.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 144 or instructor consent; and concurrent enrollment in literary, jury charge, and testimony courses."
     ],
     "effectiveYearRanges": [
       {
@@ -17983,9 +18582,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 4,
     "creditLabel": "4",
     "catalogDescription": "Develops skill in writing literary dictation and reading notes with practice on new and familiar material. Students should attain 160 wpm with a minimum of four tests at 95 percent accuracy in transcription.",
+    "prerequisiteCourseCodes": [
+      "CRC 211"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 211 with a grade of 2.0 or higher; and instructor consent; and concurrent enrollment in testimony, jury charge, and medical dictation course.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 211 with a grade of 2.0 or higher; and instructor consent; and concurrent enrollment in testimony, jury charge, and medical dictation course."
     ],
     "effectiveYearRanges": [
       {
@@ -18031,9 +18632,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 4,
     "creditLabel": "4",
     "catalogDescription": "Develops skill in writing two-voice and multi-voice testimony dictation and reading notes with practice on new and familiar material. Students should attain 160 wpm with a minimum of four tests at 95% accuracy in transcription.",
+    "prerequisiteCourseCodes": [
+      "CRC 212"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 212 with a grade of 2.0 or higher: and instructor consent; and concurrent enrollment in literary, jury charge, and medical dictation courses.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 212 with a grade of 2.0 or higher: and instructor consent; and concurrent enrollment in literary, jury charge, and medical dictation courses."
     ],
     "effectiveYearRanges": [
       {
@@ -18079,9 +18682,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 4,
     "creditLabel": "4",
     "catalogDescription": "Develops skill in writing jury charge dictation and reading notes with practice on new and familiar material. Students should attain 160 wpm with a minimum of four tests at 95% accuracy in transcription.",
+    "prerequisiteCourseCodes": [
+      "CRC 213"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 213 with a 2.0 and instructor consent; and concurrent enrollment in literary, testimony, and medical dictation courses.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 213 with a 2.0 and instructor consent; and concurrent enrollment in literary, testimony, and medical dictation courses."
     ],
     "effectiveYearRanges": [
       {
@@ -18127,9 +18732,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 4,
     "creditLabel": "4",
     "catalogDescription": "Develops skill in writing two-voice medical testimony dictation and reading notes with practice on new and familiar material at 160 wpm with a minimum of 95% accuracy.",
+    "prerequisiteCourseCodes": [
+      "CRC 144"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 144 or instructor consent; and concurrent enrollment in literary, jury charge, and testimony dictation course.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 144 or instructor consent; and concurrent enrollment in literary, jury charge, and testimony dictation course."
     ],
     "effectiveYearRanges": [
       {
@@ -18166,9 +18773,14 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Prepares students for the reporting profession and related jobs. Topics include professional responsibilities and ethics, professional associations, professional image and dress, notary public, reference materials including methods of researching medical information, psychological and physical diseases, and drugs, deposition procedures, transcript preparation and format, marking exhibits, indexing and storing steno notes, and reporting techniques. Covers punctuating the spoken word, vocabulary building, capitalization, and proofreading.",
+    "prerequisiteCourseCodes": [
+      "CRC 142",
+      "CRC 143",
+      "CRC 151",
+      "ENGL 105"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 142 and CRC 143 and CRC 151 and ENGL 105 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 142 and CRC 143 and CRC 151 and ENGL 105 and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -18205,9 +18817,15 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Covers more advanced reporting procedures, such as court transcripts and procedures, overview of video equipment in depositions and trials, state and federal judicial system, civil and criminal law and the trial process, administrative hearings, dictating a transcript, reporting interpreted proceedings including administering the oath, voir dire proceedings, polling of the jury, daily copy, computer-aided transcription, computer-integrated courtroom, and types of reporting possibilities. Students participate in mock depositions and trials. Stresses all punctuation aspects and proofreading.",
+    "prerequisiteCourseCodes": [
+      "CRC 142",
+      "CRC 143",
+      "CRC 151",
+      "CRC 250",
+      "ENGL 105"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 142 and CRC 143 and CRC 151 and CRC 250 and ENGL 105 all with grades of 2.0 or higher and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 142 and CRC 143 and CRC 151 and CRC 250 and ENGL 105 all with grades of 2.0 or higher and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -18531,9 +19149,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 4,
     "creditLabel": "4",
     "catalogDescription": "Develops skill in writing literary dictation and reading notes with practice on new and familiar material. Students should attain 200 wpm with a minimum of two tests at 95 percent accuracy in transcription.",
+    "prerequisiteCourseCodes": [
+      "CRC 311"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 311 with a grade of 2.0 or higher: and instructor consent; concurrent enrollment in testimony, jury charge, and certification prep dictation courses; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 311 with a grade of 2.0 or higher: and instructor consent; concurrent enrollment in testimony, jury charge, and certification prep dictation courses; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -18579,9 +19199,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 4,
     "creditLabel": "4",
     "catalogDescription": "Develops skill in writing two-voice and multi-voice testimony dictation and reading notes with practice on new and familiar material. Students should attain 200 wpm with a minimum of three tests at 96% accuracy in transcription.",
+    "prerequisiteCourseCodes": [
+      "CRC 312"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 312 with a grade of 2.0 or higher; and instructor consent; concurrent enrollment in literary, testimony, and certification prep courses.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 312 with a grade of 2.0 or higher; and instructor consent; concurrent enrollment in literary, testimony, and certification prep courses."
     ],
     "effectiveYearRanges": [
       {
@@ -18627,9 +19249,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 4,
     "creditLabel": "4",
     "catalogDescription": "Develops skill in writing jury charge dictation and reading notes with practice on new and familiar material. Students should attain 200 wpm with a minimum of three tests at 96% accuracy in transcription.",
+    "prerequisiteCourseCodes": [
+      "CRC 313"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 313 with a grade of 2.0 or higher; and instructor consent; concurrent enrollment in literary, testimony, and certification prep courses.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 313 with a grade of 2.0 or higher; and instructor consent; concurrent enrollment in literary, testimony, and certification prep courses."
     ],
     "effectiveYearRanges": [
       {
@@ -18675,9 +19299,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 4,
     "creditLabel": "4",
     "catalogDescription": "Further prepares students for Washington State Certified Court Reporter examination and Registered Professional Reporter examination-Jury Charge portion through mock CCR and RPR-JC examinations. Students continue to strengthen writing skills during multivoice dictation and practice the role of a court reporter during mock depositions and mock trials. Students develop critical-thinking skills pertaining to court reporting situations.",
+    "prerequisiteCourseCodes": [
+      "CRC 314"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 314 or instructor consent; and concurrent enrollment in literary, testimony, and jury charge dictation courses.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 314 or instructor consent; and concurrent enrollment in literary, testimony, and jury charge dictation courses."
     ],
     "effectiveYearRanges": [
       {
@@ -18714,9 +19340,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Provides students experiential learning through real-world practice working with industry professionals in professional settings related to their field of interest. Students apply critical-thinking skills pertaining to court reporting situations.",
+    "prerequisiteCourseCodes": [
+      "CRC 322"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 322 with a grade of 2.0 or higher and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 322 with a grade of 2.0 or higher and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -18753,9 +19381,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 4,
     "creditLabel": "4",
     "catalogDescription": "Introduces applications and environments of captioning and CART equipment and software considerations. Industry-approved guidelines for captioning preparation, formats, and methods of presentation, text placement, presentation rate, and special considerations are covered. Dictionary entries, prefixes/suffixes, fingerspelling, building endurance, practice strategies, internet-based research are covered. Hands-on captioning simulation utilizing audio/video drills. Previous completion of 160 wpm literary required.",
+    "prerequisiteCourseCodes": [
+      "CRC 221"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Realtime Reporting: Court Reporting & Captioning program; CRC 221 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Realtime Reporting: Court Reporting & Captioning program; CRC 221 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -18792,9 +19422,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 4,
     "creditLabel": "4",
     "catalogDescription": "Hands-on experience simulating the captioning environment. Focuses on the captioning process from job assignment, research, dictionary prep, writing session, and file review for quality control. Emphasizes dictionary building and maintenance in current local, national, and international news, politics and government, sports, food, arts and entertainment, and other related topics.",
+    "prerequisiteCourseCodes": [
+      "CRC 360"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 360 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 360 and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -18831,9 +19463,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 4,
     "creditLabel": "4",
     "catalogDescription": "Develops skill in writing two-voice and multi-voice testimony dictation and reading notes with practice on new and familiar material. Students should attain 225 wpm with a minimum of three tests at 95% accuracy in transcription.",
+    "prerequisiteCourseCodes": [
+      "CRC 322"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 322 with a grade of 2.0 or higher; and instructor consent; and concurrent enrollment in literary, jury charge, and certification prep courses.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 322 with a grade of 2.0 or higher; and instructor consent; and concurrent enrollment in literary, jury charge, and certification prep courses."
     ],
     "effectiveYearRanges": [
       {
@@ -18879,9 +19513,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 4,
     "creditLabel": "4",
     "catalogDescription": "Prepares students for Registered Professional Reporter examination - Testimony portion and Certified Realtime Reporter examination through mock RPR-QA and CRR examinations. Students will continue to strengthen writing skills during multivoice dictation and practice the role of a court reporter during mock depositions and mock trials. Students will develop critical-thinking skills pertaining to court reporting situations.",
+    "prerequisiteCourseCodes": [
+      "CRC 324"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 324 or instructor consent; and concurrent enrollment in testimony dictation course.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 324 or instructor consent; and concurrent enrollment in testimony dictation course."
     ],
     "effectiveYearRanges": [
       {
@@ -18918,9 +19554,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Prepares students for Certified Realtime Captioner examination. Students will develop critical thinking skills pertaining to captioning situations related to the Realtime Writing and Language Skills domains of the Written Knowledge Test portion of the CRC exam. Students will strengthen writing skills during 5-minute and 15-minute literary takes at 180 wpm.",
+    "prerequisiteCourseCodes": [
+      "CRC 361"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 361 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 361 and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -18957,9 +19595,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_5: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Further prepares students for Certified Realtime Captioner examination. Students will develop critical thinking skills pertaining to captioning situations related to the Broadcast Captioning Environment, CART Captioning Environment, and Research domains of the Written Knowledge Test portion of the CRC exam. Students will continue strengthening writing skills during 5-minute and 15-minute literary takes at 180 wpm.",
+    "prerequisiteCourseCodes": [
+      "CRC 450"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CRC 450 with a grade of 2.0 or higher and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CRC 450 with a grade of 2.0 or higher and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -19182,9 +19822,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Computer programming for students with some previous programming experience. Emphasizes program design, style, and decomposition. Topics covered include object oriented programming, introduction to memory models, inheritance, polymorphic behavior and the use of data structure interfaces. All within the Java programming language system.",
+    "prerequisiteCourseCodes": [
+      "CS 121"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CS 121 with grade of 1.0 or higher; or Instructor verification of prior programming experience.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CS 121 with grade of 1.0 or higher; or Instructor verification of prior programming experience."
     ],
     "effectiveYearRanges": [
       {
@@ -19230,9 +19872,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Computer programming using the Java language that focuses on the implementation and analysis of elementary data structures (array-list, linked list, binary search tree, etc) and related algorithms. Introduces recursion, linked lists, references, as tools in the development of these structures.",
+    "prerequisiteCourseCodes": [
+      "CS 122"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CS 122 with grade of 1.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CS 122 with grade of 1.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -19269,9 +19913,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "A continuation of CS& 131 . Uses C++ data structure to illustrate concepts in computer science. Students organize and write C++ language computer programs to obtain the solutions to assigned problems. Emphasizes use of common data structures, abstract data types, inheritance, modularity, encapsulation, and recursion. Students learn to understand, design and implement medium-sized programs.",
+    "prerequisiteCourseCodes": [
+      "CS& 131",
+      "MATH& 151"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CS& 131 and MATH& 151 with grades of 2.5 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CS& 131 and MATH& 151 with grades of 2.5 or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -19308,9 +19955,22 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Designed for engineering and computer science students, this course offers a comprehensive overview of linear algebra concepts and theories. Both abstract and practical aspects of linear algebra will be covered, with the goal of giving students a strong understanding of the principles and their real-world applications.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "CS 121"
+      ],
+      [
+        "CS& 131"
+      ],
+      [
+        "CS& 141"
+      ],
+      [
+        "SDEV 218"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for college level mathematics (Math 100 or higher) and CS 121 or CS& 131 or CS& 141 or SDEV 218 or higher programming class; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for college level mathematics (Math 100 or higher) and CS 121 or CS& 131 or CS& 141 or SDEV 218 or higher programming class; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -19337,9 +19997,22 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Covers set theory, relations, functions, formal logic, constructing proofs, computing with base-n numbers, combinatorics, and discrete probability with applications in Python as tools for advanced mathematics and computer science.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "CS 121"
+      ],
+      [
+        "CS& 131"
+      ],
+      [
+        "CS& 141"
+      ],
+      [
+        "SDEV 218"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CS 121 or CS& 131 or CS& 141 or SDEV 218 or higher programming class; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CS 121 or CS& 131 or CS& 141 or SDEV 218 or higher programming class; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -19376,9 +20049,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "C++ programming language is used to illustrate concepts in engineering and computer science. Introduces students to problem solving methods, and algorithm development and object-oriented design. Students design, implement, document, and debug C++ computer programs.",
+    "prerequisiteCourseCodes": [
+      "MATH& 142"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH& 142 or higher with grades of 2.5 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH& 142 or higher with grades of 2.5 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -19483,9 +20158,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Emphasizes jazz and ballet techniques, and further develops the skills and practice of both dance forms. Jazz involves body toning exercises, physical fitness, cardiovascular endurance, strength and flexibility. Students learn short dance routines. Ballet focuses on body awareness, mental and physical discipline, balance, poise, gracefulness and rhythmic awareness, as well as building an appreciation of the arts.",
+    "prerequisiteCourseCodes": [
+      "DANCE 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: DANCE 101 with a grade of 1.0 or higher or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: DANCE 101 with a grade of 1.0 or higher or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -19531,9 +20208,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Emphasizes jazz and ballet techniques. Further develops the skills and practice of both dance forms. Jazz involves body toning exercises, physical fitness, cardiovascular endurance, strength and flexibility. Students learn short dance routines. Ballet focuses on body awareness, mental and physical discipline, balance, poise, gracefulness and rhythmic awareness, as well as building an appreciation of the arts.",
+    "prerequisiteCourseCodes": [
+      "DANCE 102"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: DANCE 102 with a grade of 1.0 or higher or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: DANCE 102 with a grade of 1.0 or higher or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -19579,9 +20258,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Students present rehearsal and performance of dance works in concert. Students practice advanced dance skills and develops choreography for dance pieces.",
+    "prerequisiteCourseCodes": [
+      "DANCE 101",
+      "DANCE 102"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: DANCE 101 and DANCE 102 with grades of 1.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: DANCE 101 and DANCE 102 with grades of 1.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -19726,9 +20408,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Students participate in play production and performance at a beginning level to include bit parts or ensemble members onstage; and/or backstage crew head on costumes, props, etc.",
+    "prerequisiteCourseCodes": [
+      "DRMA 111"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: DRMA 111 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: DRMA 111 ."
     ],
     "effectiveYearRanges": [
       {
@@ -19765,9 +20449,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Students participate in play production and performance at an intermediate level to include featured roles in plays and musicals; and/or backstage crew head on costumes, props, etc.",
+    "prerequisiteCourseCodes": [
+      "DRMA 112"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: DRMA 112 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: DRMA 112 ."
     ],
     "effectiveYearRanges": [
       {
@@ -20109,9 +20795,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Students participate in play production and performance on an advanced level to include leading roles in plays and musicals; or work as stage manager, costume designer, set designer, props master or choreographer, etc.",
+    "prerequisiteCourseCodes": [
+      "DRMA 211"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: DRMA 211 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: DRMA 211 ."
     ],
     "effectiveYearRanges": [
       {
@@ -20148,9 +20836,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Students participate in play production and performance on an advanced level to include leading roles in plays and musicals, or work as assistant director, stage manager or lead designer.",
+    "prerequisiteCourseCodes": [
+      "DRMA 212"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: DRMA 212 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: DRMA 212 ."
     ],
     "effectiveYearRanges": [
       {
@@ -20288,9 +20978,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Provides students practical work experience in an ECE setting with the purpose of applying theoretical knowledge. Students are under the guidance and supervision of a college instructor while working with children under the age of six.",
+    "prerequisiteCourseCodes": [
+      "ECED& 120"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ECED& 120 or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ECED& 120 or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -20635,9 +21327,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Provides second year practical work experience in an ECE setting for the purpose of applying theoretical knowledge. Students work under the guidance and supervision of a college instructor while working with children under the age of six. Requires 66 hours volunteering/working in a licensed childcare setting.",
+    "prerequisiteCourseCodes": [
+      "ECED 214"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ECED 214 with a grade of 2.0 or higher or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ECED 214 with a grade of 2.0 or higher or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -20879,9 +21573,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Students will work a minimum of 20 hours per week with children and families in an early childhood setting. Through regular group meetings, students will have the opportunity to engage in reflective practice, with faculty facilitation, around their field experience. Students will be encouraged to carefully consider the qualities and characteristics of their actions and ideas.",
+    "prerequisiteCourseCodes": [
+      "ECED 301"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into BAS in Early Childhood Education and ECED 301 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into BAS in Early Childhood Education and ECED 301 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -20918,9 +21614,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Students will work a minimum of 20 hours per week with children and families in an early childhood setting. Through regular group meetings, students will have the opportunity to engage in reflective practice, with faculty facilitation, around their field experience. Students will be encouraged to carefully consider the qualities and characteristics of their actions and ideas.",
+    "prerequisiteCourseCodes": [
+      "ECED 301",
+      "ECED 302"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into BAS in Early Childhood Education; and ECED 301 and ECED 302 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into BAS in Early Childhood Education; and ECED 301 and ECED 302 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -21191,9 +21890,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Students will work a minimum of 20 hours per week with children and families in an early childhood setting. Through regular group meetings, students will have the opportunity to engage in reflective consultation with faculty facilitation around their field experience. Students will go beyond just reflecting on simple application and knowledge, and will begin to integrate ideas and concepts into their work.",
+    "prerequisiteCourseCodes": [
+      "ECED 301"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into BAS in Early Childhood Education; and ECED 301 , 302 and 303 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into BAS in Early Childhood Education; and ECED 301 , 302 and 303 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -21230,9 +21931,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Students will work a minimum of 20 hours per week with children and families in an early childhood setting. Through regular group meetings, students will have the opportunity to engage in reflective consultation with faculty facilitation around their field experience. Students will go beyond just reflecting on simple application and knowledge, and will begin to integrate ideas and concepts into their work.",
+    "prerequisiteCourseCodes": [
+      "ECED 301"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into BAS in Early Childhood Education; and ECED 301 , 302 , 303 and 401 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into BAS in Early Childhood Education; and ECED 301 , 302 , 303 and 401 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -21464,9 +22167,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_6: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Through small-group seminars and individual meetings with core faculty, students will reflect on their coursework and the experiences they have had in the Infant/Child Mental Health BAS Degree, and how this program has impacted their life, both personally and professionally.",
+    "prerequisiteCourseCodes": [
+      "ECED 301"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into BAS in Early Childhood Education; and ECED 301 , 302 , 303 , 401 and 402 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into BAS in Early Childhood Education; and ECED 301 , 302 , 303 , 401 and 402 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -22103,9 +22808,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Continues the analysis of problems involving scarcity, choice, competition, and cost. Examines the basic principles and models of microeconomics and their application to contemporary issues and problems. Primarily for students who are taking additional courses requiring a working knowledge of microeconomic theory.",
+    "prerequisiteCourseCodes": [
+      "ECON& 202"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL& 101 ; and ECON& 202 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL& 101 ; and ECON& 202 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -22151,9 +22858,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces economic reasoning. Covers basic economic questions concerning economizing, competition and exchange. Also covers macroeconomics and questions relating to the determination of national income, output, employment and the price level.",
+    "prerequisiteCourseCodes": [
+      "MATH 147"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL& 101 and MATH 147 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL& 101 and MATH 147 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -23189,9 +23898,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
     "title": "English Language Learning Intensive Writing L3",
     "creditLabel": "1-15",
     "catalogDescription": "Credits: 1-15 Low-intermediate level of ELL for students who are permanent residents of Washington state. Students prepare for academic or work readiness with contextualized study of content. Students work on all language skills with an emphasis on reading and writing. Students will also work on information literacy, tech skills, and project-based learning. This is a pass/no credit course.",
+    "prerequisiteCourseCodes": [
+      "ELL 20"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ELL 20 , 21 , 22 or 28 ; and placement test; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ELL 20 , 21 , 22 or 28 ; and placement test; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -23218,9 +23929,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Credits: 5 Provides low-intermediate ELL students with conversation and pronunciation practice. This is a pass/no credit course.",
+    "prerequisiteCourseCodes": [
+      "ELL 20"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ELL 20 , 21 , 22 or 28 ; and placement test; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ELL 20 , 21 , 22 or 28 ; and placement test; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -23303,9 +24016,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
     "title": "ELL Writing Support Level 3",
     "creditLabel": "1-5",
     "catalogDescription": "Credits: 1-5 For current students in ELL 3 , 30 , 31 or 38 who want to improve their writing skills, and especially for students who have stronger speaking/listening skills than reading/writing skills for their level. This is a pass/no credit course.",
+    "prerequisiteCourseCodes": [
+      "ELL 20"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ELL 20 , 21 or 28 ; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ELL 20 , 21 or 28 ; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -23699,9 +24414,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
     "title": "English Language Learning Level 5",
     "creditLabel": "1-15",
     "catalogDescription": "Credits: 1-15 High-Intermediate level of ELL. Students prepare for academic or work readiness with contextualized study of content. Students work on all language skills plus information literacy, tech skills, and project based learning. This is a pass/no credit course.",
+    "prerequisiteCourseCodes": [
+      "ELL 40"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ELL 40 , 41 or 48 ; and placement test; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ELL 40 , 41 or 48 ; and placement test; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -23728,9 +24445,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Credits: 5 Provides high-intermediate ELL students with conversation and pronunciation language practice. This is a pass/no credit course.",
+    "prerequisiteCourseCodes": [
+      "ELL 40"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ELL 40 , 41 or 48 ; and placement test; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ELL 40 , 41 or 48 ; and placement test; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -23757,9 +24476,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Credits: 5 High-intermediate ELL students who want to focus on their fluency and accuracy in writing through project-based learning. This is a pass/no credit course.",
+    "prerequisiteCourseCodes": [
+      "ELL 40"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ELL 40 , 41 or 48 ; and placement test; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ELL 40 , 41 or 48 ; and placement test; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -23785,9 +24506,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
     "title": "ELL Conversation Support Level 5",
     "creditLabel": "1-5",
     "catalogDescription": "Credits: 1-5 Provides additional conversation support for current students in ELL 50 who need to improve their conversational skills. This is a pass/no credit course.",
+    "prerequisiteCourseCodes": [
+      "ELL 40"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ELL 40 , 41 or 48 ; and placement test; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ELL 40 , 41 or 48 ; and placement test; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -23813,9 +24536,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
     "title": "ELL Pronunciation Support Level 5",
     "creditLabel": "1-5",
     "catalogDescription": "Credits: 1-5 Provides additional support for current students in ELL 50 who need to improve their pronunciation skills. This is a pass/no credit course.",
+    "prerequisiteCourseCodes": [
+      "ELL 40"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ELL 40 , 41 or 48 ; and placement test; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ELL 40 , 41 or 48 ; and placement test; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -23841,9 +24566,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
     "title": "ELL Writing Support Level 5",
     "creditLabel": "1-5",
     "catalogDescription": "Credits: 1-5 For current students in ELL 50 who want to improve their writing skills, and especially for students who have stronger speaking/listening skills than reading/writing skills for their level. This is a pass/no credit course.",
+    "prerequisiteCourseCodes": [
+      "ELL 40"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ELL 40 , 41 or 48 ; and placement test; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ELL 40 , 41 or 48 ; and placement test; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -23869,9 +24596,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
     "title": "ELL Technology Support Level 5",
     "creditLabel": "1-5",
     "catalogDescription": "Credits: 1-5 Provides ELL 50 students with opportunities to learn, improve, and use English through technology. Students will discover new ways to enhance their language-learning skills, which will add to their overall success in other ELL classes and beyond. This is a pass/no credit course.",
+    "prerequisiteCourseCodes": [
+      "ELL 40"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ELL 40 , 41 or 48 ; and placement test; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ELL 40 , 41 or 48 ; and placement test; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -23898,9 +24627,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Credits: 2 This is a multi-level class offered every summer quarter. Students will explore and become familiar with their community through field trips, volunteer experiences, and other hands-on project based learning. Students will use and strengthen their communicative language skills through authentic English immersion. Students will have the opportunity to explore the campus at large and off-campus sites. This is a pass/no credit course.",
+    "prerequisiteCourseCodes": [
+      "ELL 40"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ELL 40 , 41 or 48 ; and placement test; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ELL 40 , 41 or 48 ; and placement test; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -23954,9 +24685,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
     "title": "English Language Learning Level 6",
     "creditLabel": "1-15",
     "catalogDescription": "Credits: 1-15 Advanced level of ELL. Students prepare for academic or work readiness with contextualized study of content. Students work on all language skills plus information literacy, tech skills, and project based learning. This is a pass/no credit course.",
+    "prerequisiteCourseCodes": [
+      "ELL 50"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ELL 50 ; placement test; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ELL 50 ; placement test; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -23983,9 +24716,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Credits: 5 Provides advanced ELL students with conversation and pronunciation language practice. This is a pass/no credit course.",
+    "prerequisiteCourseCodes": [
+      "ELL 50"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ELL 50 ; and placement test; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ELL 50 ; and placement test; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -24012,9 +24747,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Credits: 5 Advanced ELL students who want to focus on their fluency and accuracy in writing through project-based learning. This is a pass/no credit course.",
+    "prerequisiteCourseCodes": [
+      "ELL 50"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ELL 50 ; placement test; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ELL 50 ; placement test; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -24040,9 +24777,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
     "title": "ELL Conversation Support Level 6",
     "creditLabel": "1-5",
     "catalogDescription": "Credits: 1-5 Provides additional conversation support for current students in ELL 60 who need to improve their conversational skills. This is a pass/no credit course.",
+    "prerequisiteCourseCodes": [
+      "ELL 50"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ELL 50 ; placement test; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ELL 50 ; placement test; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -24068,9 +24807,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
     "title": "ELL Pronunciation Support Level 6",
     "creditLabel": "1-5",
     "catalogDescription": "Credits: 1-5 Provides additional support for current students in ELL 60 who need to improve their pronunciation skills. This is a pass/no credit course.",
+    "prerequisiteCourseCodes": [
+      "ELL 50"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ELL 50 ; and placement test; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ELL 50 ; and placement test; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -24096,9 +24837,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
     "title": "ELL Writing Support Level 6",
     "creditLabel": "1-5",
     "catalogDescription": "Credits: 1-5 For current students in ELL 60 who want to improve their writing skills, and especially for students who have stronger speaking/listening skills than reading/writing skills for their level. This is a pass/no credit course.",
+    "prerequisiteCourseCodes": [
+      "ELL 50"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ELL 50 ; placement test; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ELL 50 ; placement test; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -24124,9 +24867,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
     "title": "ELL Technology Support Level 6",
     "creditLabel": "1-5",
     "catalogDescription": "Credits: 1-5 Provides ELL 60 students with opportunities to learn, improve, and use English through technology. Students will discover new ways to enhance their language-learning skills, which will add to their overall success in other ELL classes and beyond. This is a pass/no credit course.",
+    "prerequisiteCourseCodes": [
+      "ELL 50"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ELL 50 ; and placement test; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ELL 50 ; and placement test; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -24153,9 +24898,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_7: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Credits: 2 This is a multi-level class offered every summer quarter. Students will explore and become familiar with their community through field trips, volunteer experiences, and other hands-on project based learning. Students will use and strengthen their communicative language skills through authentic English immersion. Students will have the opportunity to explore the campus at large and off-campus sites. This is a pass/no credit course.",
+    "prerequisiteCourseCodes": [
+      "ELL 50"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ELL 50 ; and placement test; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ELL 50 ; and placement test; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -24408,9 +25155,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
     "title": "English For Women's Health Level 5",
     "creditLabel": "1-5",
     "catalogDescription": "Provides high-intermediate ELL students with opportunity to practice and improve speaking, listening, reading and writing skills in the context of women's health. This is a pass/no credit course.",
+    "prerequisiteCourseCodes": [
+      "ELL 40"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ELL 40 or 41 or 48 ; and placement test; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ELL 40 or 41 or 48 ; and placement test; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -24436,9 +25185,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
     "title": "English for Women's Health Level 6",
     "creditLabel": "1-5",
     "catalogDescription": "Provides high level ELL with opportunity to practice and improve speaking, listening, reading and writing skills in the context of women's health. This is a pass/no credit course.",
+    "prerequisiteCourseCodes": [
+      "ELL 50"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ELL 50 ; and placement test; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ELL 50 ; and placement test; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -24561,9 +25312,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Teaches critical reading and clear, effective, practical college writing. Readings are keyed to career/technical topics. Writing assignments reflect actual work products, including letters, memoranda, surveys, reports, evaluations, and proposals.",
+    "prerequisiteCourseCodes": [
+      "ENGL 97"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ENGL 97 with a grade of 2.0 or higher, or eligible for READ 104 , or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ENGL 97 with a grade of 2.0 or higher, or eligible for READ 104 , or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -24639,9 +25392,14 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "A fully integrated support course for ENGL& 101 for accelerated and traditional students. Helps students succeed in ENGL& 101 by providing additional coaching in critical thinking skills; time management and study skills; active, critical and cross-disciplinary reading techniques; enhanced writing instruction, and an integration of on-campus resources for additional support.",
+    "prerequisiteCourseCodes": [
+      "ENGL 97"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in ENGL& 101 ; ENGL 97 with a grade of 2.0 or higher; Reading placement score; or high school transcript evaluation; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in ENGL& 101 ; ENGL 97 with a grade of 2.0 or higher; Reading placement score; or high school transcript evaluation; or instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "ENGL& 101"
     ],
     "effectiveYearRanges": [
       {
@@ -24696,9 +25454,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "A composition course with readings designed to teach research-based writing in the disciplines of the humanities. Continues to develop the reading and writing skills taught in ENGL& 101 , but emphasizes the development of academic research and writing skills. Students engage in critical thinking throughout the course, which includes analysis, interpretation, and evaluation of humanities texts and the documentation and synthesis of multiple sources and evidence.",
+    "prerequisiteCourseCodes": [
+      "ENGL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ENGL& 101 with a grade of 2.0 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ENGL& 101 with a grade of 2.0 or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -24753,9 +25513,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "A composition course with readings designed to teach research-based writing in the social sciences. Continues to develop the basic reading and writing skills taught in ENGL& 101 , but emphasizes the development of academic research and writing skills. Students engage in critical thinking, which includes the analysis, interpretation, evaluation, documentation, and synthesis of multiple sources and evidence.",
+    "prerequisiteCourseCodes": [
+      "ENGL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ENGL& 101 with a grade of 2.0 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ENGL& 101 with a grade of 2.0 or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -24801,9 +25563,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "A composition course with readings designed to teach research-based writing in the sciences, engineering and business. Continues to develop the basic reading and writing skills taught in ENGL& 101 , but emphasizes the development of academic research and writing skills. Students engage in critical thinking which includes the analysis, interpretation, evaluation, documentation, and synthesis of multiple sources and evidence.",
+    "prerequisiteCourseCodes": [
+      "ENGL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ENGL& 101 with a grade of 2.0 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ENGL& 101 with a grade of 2.0 or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -25131,9 +25895,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Encourages students to engage critically with the imaginative and speculative nature of science fiction while fostering an appreciation for and understanding of the genre's diverse and significant contributions to literature. Students will explore and analyze various science fiction texts through a multitude of literary lenses and frameworks, with close attention paid to how cultural, historical, and political themes are manifested in the text as well as how said texts explore issues related to race, gender, equity, environmentalism, technology, utopias/dystopias, and imbalanced power structures. Students will synthesize their engagement with course content through discussion, written work, research projects, and/or responses composed using other modalities.",
+    "prerequisiteCourseCodes": [
+      "ENGL 99"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligibile for ENGL 99 - Introductory Composition ; or instructor permission.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligibile for ENGL 99 - Introductory Composition ; or instructor permission."
     ],
     "effectiveYearRanges": [
       {
@@ -25661,9 +26427,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Prepare students to communicate effectively in a professional environment. Students become familiar with the processes, forms, and styles of technical writing as they create various documents, including instructions, proposals, and discipline-specific and/or client-based research projects. Emphasizes the purpose and audience, as well as clarity, concision, and document design.",
+    "prerequisiteCourseCodes": [
+      "ENGL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into a bachelor's degree program; and ENGL& 101 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into a bachelor's degree program; and ENGL& 101 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -25763,9 +26531,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Credits: 5 Intensive writing course designed to prepare students for ENGL& 101 . Focuses on college-level composition skills (composition and revision processes) and college-level reading analysis. Presents a general review of the rules of English grammar and spelling.",
+    "prerequisiteCourseCodes": [
+      "ENGL 97"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ENGL 97 with a grade of 2.0 or higher; or appropriate English/reading placement; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ENGL 97 with a grade of 2.0 or higher; or appropriate English/reading placement; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -25792,9 +26562,35 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "A composition course designed to teach critical reading and clear, purposeful, and effective writing. Writing tasks are related to course readings and prepare students for writing assignments in other college classes.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "ENGL 97"
+      ],
+      [
+        "ENGL 99",
+        "READ 104"
+      ],
+      [
+        "OD 65"
+      ],
+      [
+        "OD 66"
+      ],
+      [
+        "OD 76"
+      ],
+      [
+        "OD 77"
+      ],
+      [
+        "OD 85"
+      ],
+      [
+        "OD 86"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: READ 104 and ENGL 99 , with a grade of 2.0 or higher; or concurrent enrollment in ENGL 117 ; or TS or TS-OD 65/66/76/77/85/86 with a grade of 2.5 or higher; or ENGL 97 with a grade of 3.5 or higher; or appropriate English/reading placement score.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: READ 104 and ENGL 99 , with a grade of 2.0 or higher; or concurrent enrollment in ENGL 117 ; or TS or TS-OD 65/66/76/77/85/86 with a grade of 2.5 or higher; or ENGL 97 with a grade of 3.5 or higher; or appropriate English/reading placement score."
     ],
     "effectiveYearRanges": [
       {
@@ -26101,9 +26897,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Credits: 5 Focuses on the varied genres, rhetorical situations, and work patterns of technical communication across an array of professional and academic contexts.",
+    "prerequisiteCourseCodes": [
+      "ENGL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ENGL& 101 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ENGL& 101 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -26202,9 +27000,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Develops skills in using techniques for writing poetry (metaphor and simile, use of diction, irony, imagery, sound, and structure) and develops skills in using techniques for writing fiction (generating ideas; controlling viewpoint; and exploring development of theme, tone, symbols, and style).",
+    "prerequisiteCourseCodes": [
+      "ENGL& 236"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ENGL& 236 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ENGL& 236 ."
     ],
     "effectiveYearRanges": [
       {
@@ -26411,9 +27211,14 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Introduces dimensional analysis and vector algebra and their use in solving engineering problems. Uses Newton's laws in problems involving forces, moments, acceleration and velocities. Discusses problem format, significant figures, statistics and error analysis, and their role in the design process.",
+    "prerequisiteCourseCodes": [
+      "MATH& 142"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ENGR 100 with a grade of 2.5 or higher or concurrent enrollment; MATH& 142 or higher with a grade of 2.5 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ENGR 100 with a grade of 2.5 or higher or concurrent enrollment; MATH& 142 or higher with a grade of 2.5 or higher."
+    ],
+    "corequisiteCourseCodes": [
+      "ENGR 100"
     ],
     "effectiveYearRanges": [
       {
@@ -26460,8 +27265,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
     "creditLabel": "5",
     "catalogDescription": "Investigates the basic principles relating to the structure and properties of materials used by practicing engineers. Provides discussion of the properties of organic and inorganic materials as related to their atomic, molecular, and crystalline structure.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CHEM& 161 with a grade of 2.5 or higher or concurrent enrollment.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CHEM& 161 with a grade of 2.5 or higher or concurrent enrollment."
+    ],
+    "corequisiteCourseCodes": [
+      "CHEM& 161"
     ],
     "effectiveYearRanges": [
       {
@@ -26498,9 +27305,19 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces students to the use of computers and the MATLAB program to solve engineering problems using applied numerical method. Students learn how to implement important and fundamental numerical methods, with applications from a variety of courses, including the engineering mechanics sequence ( ENGR& 214 , CS 132 and ENGR& 215 ), ENGR& 224 - Thermodynamics , and Electrical Circuits ( ENGR& 204 ).",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "MATH 238"
+      ],
+      [
+        "MATH 240"
+      ],
+      [
+        "MATH& 254"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH& 254 or MATH 240 or MATH 238 with grades of 2.5 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH& 254 or MATH 240 or MATH 238 with grades of 2.5 or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -26664,9 +27481,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces basic electrical circuits and systems. Topics include basic analysis techniques, nodal and mesh analysis, and Thevenin and Norton equivalent circuits. Applies linear differential equations to basic circuits. Concurrent enrollment in MATH 238 is desirable.",
+    "prerequisiteCourseCodes": [
+      "MATH& 163",
+      "PHYS& 222"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH& 163 and PHYS& 222 with grades of 2.5 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH& 163 and PHYS& 222 with grades of 2.5 or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -26704,8 +27524,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
     "creditLabel": "5",
     "catalogDescription": "A fundamental course in the mechanics of rigid bodies in static equilibrium conditions. Solves practical engineering problems involving the loads carried by structural components using Static principles, vector notation and calculus for mathematical modeling. Teaches principles and their limitations within the context of engineering applications and the engineering design process.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ENGR 106 and MATH& 152 with grades of 2.5 or higher or concurrent enrollment.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ENGR 106 and MATH& 152 with grades of 2.5 or higher or concurrent enrollment."
+    ],
+    "corequisiteCourseCodes": [
+      "ENGR 106",
+      "MATH& 152"
     ],
     "effectiveYearRanges": [
       {
@@ -26742,9 +27565,13 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "An in-depth treatment of the dynamics of particles and rigid bodies using vector analysis. Topics include kinematics, kinetics, momentum, and energy principles for both particles and rigid bodies. A required course for numerous engineering programs.",
+    "prerequisiteCourseCodes": [
+      "ENGR& 214",
+      "MATH& 152",
+      "PHYS& 221"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ENGR& 214 , MATH& 152 and PHYS& 221 with grades of 2.5 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ENGR& 214 , MATH& 152 and PHYS& 221 with grades of 2.5 or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -26781,9 +27608,13 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces the basic principles of thermodynamics. Covers energy transformations, work and heat, ideal and real gases, first and second laws of thermodynamics, and applications to engineering systems.",
+    "prerequisiteCourseCodes": [
+      "CHEM& 161",
+      "MATH& 152",
+      "PHYS& 221"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CHEM& 161, MATH& 152 , and PHYS& 221 with grades of 2.5 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CHEM& 161, MATH& 152 , and PHYS& 221 with grades of 2.5 or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -26821,8 +27652,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
     "creditLabel": "5",
     "catalogDescription": "A rigorous investigation of the concepts of stress and deformation in structural members. Focuses on the development of basic relationships between loads, stress, and deformation in members such as beams, columns, shafts, and tension members.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ENGR& 214 and ( MATH& 163 or concurrent enrollment) with grades of 2.5 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ENGR& 214 and ( MATH& 163 or concurrent enrollment) with grades of 2.5 or higher."
+    ],
+    "corequisiteCourseCodes": [
+      "ENGR& 214",
+      "MATH& 163"
     ],
     "effectiveYearRanges": [
       {
@@ -26887,9 +27721,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_8: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Investigates the interaction of physical and biological systems in the environment. Examines the scientific principles which are involved in modern environmental problems and issues. Scientific topics could include energy, climate, soils, water, animal studies, local plants, and the dynamics of plants and animal populations and the communities they form. For students wishing to obtain a broad picture of human activities and their relationship to basic processes of ecosystems. This class does not meet the lab requirement.",
+    "prerequisiteCourseCodes": [
+      "MATH 97"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH 97 with a grade of 2.0 or higher; and eligible for ENGL& 101 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH 97 with a grade of 2.0 or higher; and eligible for ENGL& 101 ."
     ],
     "effectiveYearRanges": [
       {
@@ -27496,9 +28332,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Credits: 3 Qualifies students to obtain skills and knowledge necessary to meet flight proficiency and stage check requirements for the Flight Instructor Rating. Students must follow the requirements of Title 14 of the Code of Federal Rules Part 141 stage check requirement for this class under the training course outline from the appropriate authorized flight school providing all in-flight instruction. The stage check requirement for this class is to demonstrate right-seat proficiency to commercial pilot standards as a flight instructor. See Chart of Fees",
+    "prerequisiteCourseCodes": [
+      "FLT 233"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: FLT 233 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: FLT 233 and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -27554,9 +28392,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Credits: 2 Qualifies students to obtain skills and knowledge necessary to meet flight proficiency and earn an FAA multi-engine rating under the flight school's approved training course outline and Title 14 of the Code of Federal Rules Part 141 requirements for multi-engine rating. This training must be accomplished at the appropriate authorized flight school providing all in-flight instruction. See Chart of Fees",
+    "prerequisiteCourseCodes": [
+      "FLT 233"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: FLT 233 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: FLT 233 and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -27583,9 +28423,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
     "creditValue": 1,
     "creditLabel": "1",
     "catalogDescription": "Credits: 1 Qualifies students to obtain skills and knowledge necessary to meet flight proficiency and earn an FAA multi-engine instructor rating under the flight school's approved training course outline and Title 14 of the Code of Federal Rules Part 141 requirements for multi-engine instructor. This training must be accomplished at the appropriate authorized flight school providing all in-flight instruction. See Chart of Fees",
+    "prerequisiteCourseCodes": [
+      "FLT 401"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: FLT 401 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: FLT 401 and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -27708,9 +28550,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "A systematic study of French using the four basic skills of listening, speaking, reading, and writing. Students acquire basic knowledge of the diversity of the French speaking world, its history, and cultures.",
+    "prerequisiteCourseCodes": [
+      "FRCH& 121"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: FRCH& 121 with a grade of 2.0 or higher; and eligible for ENGL 99 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: FRCH& 121 with a grade of 2.0 or higher; and eligible for ENGL 99 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -27747,9 +28591,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Completion of basic system grammar, vocabulary, reading, writing, and conversation. Students acquire basic knowledge of the diversity of the French speaking world, its history, and cultures. Fulfills University of Washington College of Arts and Sciences graduation requirement.",
+    "prerequisiteCourseCodes": [
+      "FRCH& 122"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: FRCH& 122 with a grade of 2.0 or higher; and eligible for ENGL 99 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: FRCH& 122 with a grade of 2.0 or higher; and eligible for ENGL 99 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -27786,9 +28632,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Systematic review of French grammar. Intensive practice in listening, speaking, reading, and writing, with special emphasis on reading and writing. Oral practice through drills and discussion of selected pieces of French written materials.",
+    "prerequisiteCourseCodes": [
+      "FRCH& 123"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: FRCH& 123 or placement by language instructor and eligible for ENGL 99 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: FRCH& 123 or placement by language instructor and eligible for ENGL 99 ."
     ],
     "effectiveYearRanges": [
       {
@@ -27825,9 +28673,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Systematic review of French grammar aimed at communicative competency at an intermediate level. Intensive practice in listening, speaking, reading, and writing with special emphasis on reading and reacting to texts that explore the diversity of the French speaking world, as well as the global and local implications of gender, racial and cultural interdependence. Includes oral practice through discussion of abovementioned materials.",
+    "prerequisiteCourseCodes": [
+      "FRCH& 221"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: FRCH& 221 with a grade of 2.0 or higher; or equivalent, FRCH& 221 is four years in high school with a grade of B or above higher; and eligible for ENGL 99 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: FRCH& 221 with a grade of 2.0 or higher; or equivalent, FRCH& 221 is four years in high school with a grade of B or above higher; and eligible for ENGL 99 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -27864,9 +28714,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Systematic review of French grammar aimed at communicative competency at an upper intermediate level. Intensive practice in listening, speaking, reading, and writing with special emphasis on reading and reacting to texts that explore the diversity of the French speaking world, as well as the global and local implications of gender, racial and cultural interdependence. Includes oral practice through discussion of above-mentioned materials.",
+    "prerequisiteCourseCodes": [
+      "FRCH& 222"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: FRCH& 222 with a grade of 2.0 or higher; and eligible for ENGL 99 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: FRCH& 222 with a grade of 2.0 or higher; and eligible for ENGL 99 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -28055,9 +28907,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Studies the relationship between humans and the natural world. Topics include population, consumption, resources, pollution, agriculture, and sustainability. Emphasizes global climate change and the environmental systems of the Puget Sound bioregion.",
+    "prerequisiteCourseCodes": [
+      "MATH& 141"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL& 101 and MATH& 141; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL& 101 and MATH& 141; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -28364,8 +29218,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
     "creditLabel": "1",
     "catalogDescription": "Investigates the geology of the Pacific Northwest. Locations of field trips vary from quarter to quarter. Some of the trips involve hiking up to three or four miles on variable terrain. This is a pass/no credit course.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in GEOL, or GEOL& 101 ; or instructor consent. Eligible for ENGL& 101 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in GEOL, or GEOL& 101 ; or instructor consent. Eligible for ENGL& 101 ."
+    ],
+    "corequisiteCourseCodes": [
+      "GEOL& 101"
     ],
     "effectiveYearRanges": [
       {
@@ -28422,8 +29278,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
     "creditLabel": "1",
     "catalogDescription": "Investigates the geology of the Pacific Northwest. Locations of field trips vary from quarter to quarter. Some of the trips involve hiking up to 3 or 4 miles on variable terrain. This is a pass/no credit course.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in GEOL, or GEOL& 101 , or instructor consent. Eligible for ENGL& 101 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in GEOL, or GEOL& 101 , or instructor consent. Eligible for ENGL& 101 ."
+    ],
+    "corequisiteCourseCodes": [
+      "GEOL& 101"
     ],
     "effectiveYearRanges": [
       {
@@ -28451,8 +29309,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
     "creditLabel": "1",
     "catalogDescription": "Investigates the geology of the Pacific Northwest. Locations of field trips vary from quarter to quarter. Some of the trips involve hiking up to 3 or 4 miles on variable terrain. This is a pass/no credit course.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in GEOL, or GEOL& 101 , or instructor consent. Eligible for ENGL& 101 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in GEOL, or GEOL& 101 , or instructor consent. Eligible for ENGL& 101 ."
+    ],
+    "corequisiteCourseCodes": [
+      "GEOL& 101"
     ],
     "effectiveYearRanges": [
       {
@@ -28479,9 +29339,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "An investigation of the geology of national parks of the U.S. and Canada. The primary emphasis is on the geology of the western park.",
+    "prerequisiteCourseCodes": [
+      "GEOL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: GEOL& 101 with a grade of 2.0 or higher; and eligible for ENGL& 101 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: GEOL& 101 with a grade of 2.0 or higher; and eligible for ENGL& 101 ."
     ],
     "effectiveYearRanges": [
       {
@@ -28508,9 +29370,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "A study of the geological theories of the evolution of the earth, the oceans, the atmospheres, and life. Includes principles of physical stratigraphy, biostratigraphy, geochronology, plate tectonics, fossil identification, and the paleogeographic changes in North America through time.",
+    "prerequisiteCourseCodes": [
+      "GEOL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: GEOL& 101 with a grade of 2.0 or higher; and eligible for ENGL& 101 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: GEOL& 101 with a grade of 2.0 or higher; and eligible for ENGL& 101 ."
     ],
     "effectiveYearRanges": [
       {
@@ -28536,9 +29400,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
     "title": "Independent Study-Geology",
     "creditLabel": "1-5",
     "catalogDescription": "Allows and encourages students to study independently in their special interest in geology. Course contents, type and scope of project are decided in conference between student and instructor.",
+    "prerequisiteCourseCodes": [
+      "GEOL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: GEOL& 101 with a grade of 2.0 or higher; and eligible for ENGL& 101 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: GEOL& 101 with a grade of 2.0 or higher; and eligible for ENGL& 101 ."
     ],
     "effectiveYearRanges": [
       {
@@ -28604,9 +29470,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Covers the geological history of Washington, Oregon, and Idaho. Emphasizes the use of geologic principles in interpreting evidence found in landscapes and rocks. Includes field trips.",
+    "prerequisiteCourseCodes": [
+      "GEOL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: GEOL& 101 with a grade of 2.0 or higher; and eligible for ENGL& 101 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: GEOL& 101 with a grade of 2.0 or higher; and eligible for ENGL& 101 ."
     ],
     "effectiveYearRanges": [
       {
@@ -28725,9 +29593,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Continues the systematic study of the language using the four basic skills of listening, speaking, reading, and writing.",
+    "prerequisiteCourseCodes": [
+      "GERM& 121"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: GERM& 121 or two years of high school German with a grade of &#8220;B&#8221; or higher or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: GERM& 121 or two years of high school German with a grade of &#8220;B&#8221; or higher or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -28764,9 +29634,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces the systematic study of German with emphasis on speaking and listening. Includes basic grammar, vocabulary, reading, writing, and conversation practice. Fulfills University of Washington College of Arts and Sciences graduation requirements.",
+    "prerequisiteCourseCodes": [
+      "GERM& 122"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: GERM& 122 or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: GERM& 122 or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -28803,9 +29675,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Systematic review of German grammar. Practice in listening, speaking, reading, and writing. Oral practice through scaffolded conversations and discussions of selected German texts.",
+    "prerequisiteCourseCodes": [
+      "GERM& 123"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: GERM& 123 with a grade of 2.0 or higher or placement by language instructor; eligible for ENGL 99 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: GERM& 123 with a grade of 2.0 or higher or placement by language instructor; eligible for ENGL 99 ."
     ],
     "effectiveYearRanges": [
       {
@@ -28832,9 +29706,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Systematic review of German grammar. Practice in listening, speaking, reading, and writing at an intermediate level. Oral practice through scaffolded conversations and discussions of selected German texts and media.",
+    "prerequisiteCourseCodes": [
+      "GERM& 221"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: GERM& 221 with a grade of 2.0 or higher or placement by a language instructor; eligible for ENGL 99 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: GERM& 221 with a grade of 2.0 or higher or placement by a language instructor; eligible for ENGL 99 ."
     ],
     "effectiveYearRanges": [
       {
@@ -28861,9 +29737,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_9: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Systematic review of German grammar aimed at an upper intermediate level. Intensive practice in listening, speaking, reading, and writing with special emphasis on reading and reacting to texts and media in German.",
+    "prerequisiteCourseCodes": [
+      "GERM& 222"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: GERM& 222 with a 2.0 or higher or instructor approval; eligible for ENGL 99 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: GERM& 222 with a 2.0 or higher or instructor approval; eligible for ENGL 99 ."
     ],
     "effectiveYearRanges": [
       {
@@ -30053,9 +30931,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
     "title": "Civics and Government",
     "creditLabel": "3-5",
     "catalogDescription": "Introduces students to the American political system; its core values and principles as set forth in foundational documents, as well as its origins, institutions and operations. Includes brief treatments of political parties, historic development of American politics, civil liberties, plus taxes and budgets. Introduces students to the rights and responsibilities of citizenship and of democratic civic involvement.",
+    "prerequisiteCourseCodes": [
+      "TS 75"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL 97 ; or TS 75 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL 97 ; or TS 75 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -30225,9 +31105,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
     "title": "Introduction to Careers for ELL 2",
     "creditLabel": "3-15",
     "catalogDescription": "Provides an introduction for students interested in participating in an IBEST. Allows students to learn about each IBEST program and its' requirements. Gives students the necessary information to choose a program, while teaching the students study skills, employability skills, and improve their English in reading, writing, listening, and speaking. This is a pass/no credit course.",
+    "prerequisiteCourseCodes": [
+      "ELL 10"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ELL 10 or appropriate CASAS score; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ELL 10 or appropriate CASAS score; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -30253,9 +31135,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
     "title": "Introduction to Careers for ELL 3",
     "creditLabel": "3-15",
     "catalogDescription": "Provides an introduction for ELL level 3 students interested in participating in an IBEST. Allows students to learn about each IBEST program and its requirements. Gives students the necessary information to choose a program, while teaching the students study skills, employability skills, and improve their English in reading, writing, listening, and speaking. This is a pass/no credit course.",
+    "prerequisiteCourseCodes": [
+      "ELL 20"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ELL 20 or appropriate CASAS score; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ELL 20 or appropriate CASAS score; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -30449,9 +31333,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
     "title": "Introduction to Careers for ELL 4",
     "creditLabel": "3-15",
     "catalogDescription": "Provides an introduction for ELL Level 4 students interested in participating in an IBEST. Allows students to learn about each IBEST program and its requirements. Gives students the necessary information to choose a program, while teaching the students study skills, employability skills, and improve their English in reading, writing, listening, and speaking. This is a pass/no credit course.",
+    "prerequisiteCourseCodes": [
+      "ELL 20"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ELL 20 or appropriate CASAS score; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ELL 20 or appropriate CASAS score; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -32174,9 +33060,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
     "creditValue": 7,
     "creditLabel": "7",
     "catalogDescription": "Focuses on the knowledge and skills to implement and configure routing and switching. Topics include device configuration, IPv4, IPv6, Subnetting, virtual local area networks (VLANs), routing protocols, and wide area networking (WAN) technologies.",
+    "prerequisiteCourseCodes": [
+      "IT 131"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: IT 131 or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: IT 131 or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -32231,9 +33119,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Covers a variety of cybersecurity topics including: security principles, network security and endpoint security concepts, vulnerability assessment and risk management, and incident handling. The activities in this course include many hands-on assignments to help students better understand the technical material presented in the course.",
+    "prerequisiteCourseCodes": [
+      "IT 131"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: IT 131 or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: IT 131 or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -32270,9 +33160,18 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces PowerShell scripting language for Windows. Students will write, test and execute basic and advanced administrative scripts for Windows.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "IT 160",
+        "MATH 72"
+      ],
+      [
+        "IT 160",
+        "OD 57"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: IT 160 with a grade of 2.0 or higher; MATH 72 or TS/TS-OD 57 with a grade of 2.5 or higher; or eligible for MATH 97 or higher; or or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: IT 160 with a grade of 2.0 or higher; MATH 72 or TS/TS-OD 57 with a grade of 2.5 or higher; or eligible for MATH 97 or higher; or or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -32327,9 +33226,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Provides students competency in cloud models, virtualization, infrastructure, security, resource management and business continuity.",
+    "prerequisiteCourseCodes": [
+      "IT 131"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: IT 131 and 160 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: IT 131 and 160 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -32384,9 +33285,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Provides students with the knowledge and skills necessary to install, configure, and administer advanced directory services. Focuses on performing tasks required to centrally manage users, computers, and resources.",
+    "prerequisiteCourseCodes": [
+      "IT 160"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: IT 160 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: IT 160 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -32476,9 +33379,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
     "creditValue": 7,
     "creditLabel": "7",
     "catalogDescription": "Builds upon the knowledge and skills attained in IT 210 . Covers advanced routing using Open Shortest Path First (OSPF), Router Fail-over, inter-VLAN routing, link aggregation, Software Defined Networking, and VPNs. Hands-on exercises include configuration, installation, and troubleshooting.",
+    "prerequisiteCourseCodes": [
+      "IT 210"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: IT 210 ; and admission into the IT Bachelor's in Cybersecurity and Networking program; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: IT 210 ; and admission into the IT Bachelor's in Cybersecurity and Networking program; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -32647,9 +33552,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Provides an introduction to the knowledge and skills needed for a Security Analyst working with a Security Operations Center team. It teaches core security and forensic skills needed for monitoring, detecting, investigating, analyzing and responding to security events, thus protecting systems and organizations from cybersecurity risks, threats and vulnerabilities.",
+    "prerequisiteCourseCodes": [
+      "IT 190"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: IT 190 ; and admission into the BAS in IT program or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: IT 190 ; and admission into the BAS in IT program or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -32695,9 +33602,16 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Covers the configuration and use of Kibana to monitor network security traffic and alerts, and to effectively search for information regarding the alerts they are researching. Previously IT 350.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "IT 201"
+      ],
+      [
+        "SDEV 201"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: IT 201 or SDEV 201 , and admission into a BAS in IT Cybersecurity and Networking; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: IT 201 or SDEV 201 , and admission into a BAS in IT Cybersecurity and Networking; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -32734,9 +33648,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Prepares students to take the Implementing Microsoft Azure Infrastructure Solutions certification exam.",
+    "prerequisiteCourseCodes": [
+      "IT 244"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: IT 244 ; and admission into the BAS in IT program or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: IT 244 ; and admission into the BAS in IT program or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -32782,9 +33698,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces the student to different automation tools such as Ansible and other scripting languages such as Python and PowerShell.",
+    "prerequisiteCourseCodes": [
+      "IT 102",
+      "IT 224"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: IT 102 and IT 224 ; and admission into a BAS in IT program; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: IT 102 and IT 224 ; and admission into a BAS in IT program; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -32830,9 +33749,14 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_10: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Credits: 5 Covers cybersecurity analysis from initial implementation to performing actual analysis of potential incidents. Students will perform a variety of tasks, including weekly monitoring and analysis of network traffic, creating tickets, and resolving them.",
+    "prerequisiteCourseCodes": [
+      "IT 340"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: IT 340 ; and IT 360 (or concurrent enrollment); and admission into a Information Technology-Cybersecurity and Networking, BAS program; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: IT 340 ; and IT 360 (or concurrent enrollment); and admission into a Information Technology-Cybersecurity and Networking, BAS program; or instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "IT 360"
     ],
     "effectiveYearRanges": [
       {
@@ -33151,9 +34075,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "A direct continuation of JAPN& 121 . The focus of the course is the systematic study of Japanese vocabulary, grammar and kanji using the four basic skills of listening, speaking, reading and writing. Attained communicative competency can be applied to interactions with peers from diverse cultural backgrounds and native speakers in classroom and real-world situations.",
+    "prerequisiteCourseCodes": [
+      "JAPN& 121"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: A grade of 2.0 or higher in JAPN& 121 or equivalent with instructor consent. Eligible for JAPN& 121 . The equivalent of JAPN& 121 is one year in high school with a grade of B or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: A grade of 2.0 or higher in JAPN& 121 or equivalent with instructor consent. Eligible for JAPN& 121 . The equivalent of JAPN& 121 is one year in high school with a grade of B or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -33190,9 +34116,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "A direct continuation of JAPN& 122 . The focus of the course is the systematic study of Japanese vocabulary, grammar and kanji using the four basic skills of listening, speaking, reading and writing. Attained communicative competency can be applied to interactions with peers from diverse cultural backgrounds and native speakers in classroom and real-world situations.",
+    "prerequisiteCourseCodes": [
+      "JAPN& 122"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: A grade of 2.0 or higher in JAPN& 122 or equivalent with instructor consent. Eligible for ENGL 99 . The equivalent of JAPN& 122 is two years in high school with a grade of B or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: A grade of 2.0 or higher in JAPN& 122 or equivalent with instructor consent. Eligible for ENGL 99 . The equivalent of JAPN& 122 is two years in high school with a grade of B or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -33229,9 +34157,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "A direct continuation of JAPN& 123 . The focus of the course is the systematic study of Japanese vocabulary, grammar and kanji using the four basic skills of listening, speaking, reading and writing. Attained communicative competency can be applied to interactions with peers from diverse cultural backgrounds and native speakers in classroom and real-world situations.",
+    "prerequisiteCourseCodes": [
+      "JAPN& 123"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: JAPN& 123 with a grade of 2.0 or higher; or instructor consent. Eligible for ENGL 99 . The equivalent of JAPN& 123 is three years in high school with a grade of B or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: JAPN& 123 with a grade of 2.0 or higher; or instructor consent. Eligible for ENGL 99 . The equivalent of JAPN& 123 is three years in high school with a grade of B or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -33268,9 +34198,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "A direct continuation of JAPN& 221 . The focus of the course is the systematic study of Japanese vocabulary, grammar and kanji using the four basic skills of listening, speaking, reading and writing. Attained communicative competency can be applied to interactions with peers from diverse cultural backgrounds and native speakers in classroom and real-world situations.",
+    "prerequisiteCourseCodes": [
+      "JAPN& 221"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: JAPN& 221 with a grade of 2.0 or higher; or instructor consent. Eligible for ENGL 99 . The equivalent of JAPN& 221 is four years in high school with a grade of B or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: JAPN& 221 with a grade of 2.0 or higher; or instructor consent. Eligible for ENGL 99 . The equivalent of JAPN& 221 is four years in high school with a grade of B or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -33307,9 +34239,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "A direct continuation of JAPN& 222 . The focus of the course is the systematic study of Japanese vocabulary, grammar and kanji using the four basic skills of listening, speaking, reading and writing. Attained communicative competency can be applied to interactions with peers from diverse cultural backgrounds and native speakers in classroom and real-world situations.",
+    "prerequisiteCourseCodes": [
+      "JAPN& 222"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: JAPN& 222 with a grade of 2.0 or higher; or instructor consent. Eligible for ENGL 99 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: JAPN& 222 with a grade of 2.0 or higher; or instructor consent. Eligible for ENGL 99 ."
     ],
     "effectiveYearRanges": [
       {
@@ -33463,9 +34397,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "title": "Advanced Newswriting",
     "creditLabel": "3-5",
     "catalogDescription": "Advanced writing for news media; clarity in use of language, style and punctuation; sentence and paragraph structure and organization of stories; credibility of information and news judgment; basic methods of researching and writing. Weekly news discussions based on current events.",
+    "prerequisiteCourseCodes": [
+      "JOURN 104"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: JOURN 104 with a grade of 1.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: JOURN 104 with a grade of 1.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -33491,9 +34427,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "title": "News Laboratory 3",
     "creditLabel": "3-5",
     "catalogDescription": "Students gain additional experience as they write, edit, design, photograph and produce the digital and print versions of the student publication, The Current.",
+    "prerequisiteCourseCodes": [
+      "JOURN 105"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: JOURN 105 with a grade of 1.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: JOURN 105 with a grade of 1.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -33643,9 +34581,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "In this hands-on course, students delve into the theory and practice of multimedia creation through projects and workshops. Building on foundational knowledge, they explore intermediate concepts in podcasting, streaming, radio and TV broadcasting, social media content creation, script writing, and news reporting.",
+    "prerequisiteCourseCodes": [
+      "JOURN 115"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: JOURN 115 or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: JOURN 115 or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -33962,9 +34902,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "title": "Independent Study-Journalism 1",
     "creditLabel": "1-5",
     "catalogDescription": "Encourages students to study and develop independently in journalism. Students develop their own focus area and objectives in consultation with the instructor.",
+    "prerequisiteCourseCodes": [
+      "JOURN 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: JOURN 101 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: JOURN 101 and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -33990,9 +34932,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "title": "Independent Study-Journalism 2",
     "creditLabel": "1-5",
     "catalogDescription": "Encourages students to study and develop independently in journalism. Students develop their own focus areas and objectives in consultation with the instructor.",
+    "prerequisiteCourseCodes": [
+      "JOURN 198"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: JOURN 198 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: JOURN 198 and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -34019,9 +34963,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Students will learn additional skills as part of the management team at our broadcast radio stations (KGRG and KGRG-FM). Planning, organizing, managing events and staff are practiced as preparation for advanced careers in broadcasting.",
+    "prerequisiteCourseCodes": [
+      "JOURN 115"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: JOURN 115 or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: JOURN 115 or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -34134,9 +35080,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "title": "Independent Study-Journalism 3",
     "creditLabel": "1-5",
     "catalogDescription": "Encourages students to study and develop independently in journalism. Students develop their own focus areas and objectives in consultation with the instructor.",
+    "prerequisiteCourseCodes": [
+      "JOURN 199"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: JOURN 199 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: JOURN 199 and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -34162,9 +35110,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "title": "Independent Study-Journalism 4",
     "creditLabel": "1-5",
     "catalogDescription": "Encourages students to study and develop independently in journalism. Students develop their own focus areas and objectives in consultation with the instructor.",
+    "prerequisiteCourseCodes": [
+      "JOURN 199"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: JOURN 199 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: JOURN 199 and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -34413,9 +35363,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Study of a variety of mathematical topics related to information technology, including routes and networks, scheduling, statistics, probability, the decimal, binary and hexadecimal number systems, logic gates and Boolean algebra.",
+    "prerequisiteCourseCodes": [
+      "MATH 97"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH 97 with a grade of 2.0 or higher; or appropriate math placement.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH 97 with a grade of 2.0 or higher; or appropriate math placement."
     ],
     "effectiveYearRanges": [
       {
@@ -34452,9 +35404,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Credits: 5 Study of modeling using functions, algebraic equations, probability, and expected value, focused on the context of gaming. Includes elementary function growth analysis and game theory.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "MATH 109",
+        "MATH 39",
+        "OD 57"
+      ],
+      [
+        "MATH 72"
+      ],
+      [
+        "MATH 97"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH 97 with a grade of 2.0 or higher; or MATH 72 or TS/TS-OD 57 with a grade of 2.5 or higher and concurrently enrolled in MATH 39 - Support Course for MATH 109 ; or appropriate math placement.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH 97 with a grade of 2.0 or higher; or MATH 72 or TS/TS-OD 57 with a grade of 2.5 or higher and concurrently enrolled in MATH 39 - Support Course for MATH 109 ; or appropriate math placement."
     ],
     "effectiveYearRanges": [
       {
@@ -34491,9 +35455,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Study of graphs and solutions of linear equations, systems of equations, matrices, linear inequalities and linear programming, the simplex method, piecewise defined, quadratic, polynomial, rational exponential and logarithmic functions, and financial formulas. Many problems and examples are drawn from the fields of business, economics, and social science. Graphing calculator required.",
+    "prerequisiteCourseCodes": [
+      "MATH 97"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH 97 with a grade of 2.0 or higher; or appropriate math placement.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH 97 with a grade of 2.0 or higher; or appropriate math placement."
     ],
     "effectiveYearRanges": [
       {
@@ -34568,8 +35534,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "creditLabel": "5",
     "catalogDescription": "Study of the theory and solutions of first and second order differential equations, existence and uniqueness theorems, numerical methods of solution, and applications. Additional topics may be chosen from the following: series solutions for differential equations, systems of linear differential equations, Laplace transforms, and stability theory. Graphing calculator required.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH& 254 with a grade of 2.0 or higher; or concurrent enrollment in MATH& 254 ; or appropriate math placement.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH& 254 with a grade of 2.0 or higher; or concurrent enrollment in MATH& 254 ; or appropriate math placement."
+    ],
+    "corequisiteCourseCodes": [
+      "MATH& 254"
     ],
     "effectiveYearRanges": [
       {
@@ -34606,9 +35574,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Study of systems of linear equations, vector spaces, matrices and matrix equations, eigenvalues and eigenvectors, linear transformations, and applications. Graphing calculator required.",
+    "prerequisiteCourseCodes": [
+      "MATH& 163"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH& 163 with a grade of 2.0 or higher; or appropriate math placement.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH& 163 with a grade of 2.0 or higher; or appropriate math placement."
     ],
     "effectiveYearRanges": [
       {
@@ -34654,9 +35624,16 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Study of descriptive and inferential statistics; boxplots, histograms and scatterplots; introduction to design of experiments; measures of central tendency; frequency distributions; probability distributions; sampling and sampling distributions; hypothesis testing; confidence intervals; and linear regression.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "MATH 147"
+      ],
+      [
+        "MATH& 141"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH& 141 or MATH 147 with a grade of 2.0 or higher; or appropriate math placement. Recommended: Eligible for READ 104 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH& 141 or MATH 147 with a grade of 2.0 or higher; or appropriate math placement. Recommended: Eligible for READ 104 ."
     ],
     "effectiveYearRanges": [
       {
@@ -34729,9 +35706,17 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "title": "Independent Study-Mathematics",
     "creditLabel": "1-5",
     "catalogDescription": "Encourages students to independently study an area or topic of special interest in mathematics. Students meet on a tutorial basis with the instructor.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "MATH 256"
+      ],
+      [
+        "MATH& 148",
+        "MATH& 151"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH& 148 , MATH& 151 or MATH 256 with a grade of 2.0 or higher and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH& 148 , MATH& 151 or MATH 256 with a grade of 2.0 or higher and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -34758,9 +35743,19 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Support course for MATH& 107 that covers pre-college topics needed in MATH& 107 - Math in Society . The course must be taken concurrently with MATH& 107 . Study of fractions, percents, exponents, roots, functions, formulas, linear equations, and study skills strategies. This is a pass/no credit course.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "MATH 72"
+      ],
+      [
+        "OD 57"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH 72 or TS/TS-OD 57 with a 2.5 or higher, or appropriate math placement; and concurrent enrollment in MATH& 107 . Recommended: READ 104 , ENGL 97",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH 72 or TS/TS-OD 57 with a 2.5 or higher, or appropriate math placement; and concurrent enrollment in MATH& 107 . Recommended: READ 104 , ENGL 97"
+    ],
+    "corequisiteCourseCodes": [
+      "MATH& 107"
     ],
     "effectiveYearRanges": [
       {
@@ -34787,9 +35782,14 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Credits: 2 Support course for MATH& 141 that covers pre-college topics needed in MATH& 141 - PreCalculus I . The course must be taken concurrently with MATH& 141 . Study of factoring, exponents, complex fractions, graphing, linear equations, linear inequalities, quadratic equations, literal equations, graphing calculator, and study skills strategies. This is a pass/no credit course.",
+    "prerequisiteCourseCodes": [
+      "MATH 97"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH 97 with a grade of 2.0 or higher, or appropriate math placement; and concurrent enrollment in MATH& 141 . Recommended: READ 104 , ENGL 97",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH 97 with a grade of 2.0 or higher, or appropriate math placement; and concurrent enrollment in MATH& 141 . Recommended: READ 104 , ENGL 97"
+    ],
+    "corequisiteCourseCodes": [
+      "MATH& 141"
     ],
     "effectiveYearRanges": [
       {
@@ -34816,9 +35816,19 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Support course for MATH& 146 that covers pre-college topics needed in MATH& 146 - Introduction to Statistics . The course must be taken concurrently with MATH& 146 . Study of linear graphing, rounding, scientific notation, exponents, order of operations, linear equation solving, square roots, and linear inequalities. The course emphasizes problem-solving techniques, critical thinking, and study skills to prepare students for statistical analysis. This is a pass/no credit course.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "MATH 72"
+      ],
+      [
+        "OD 57"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH 72 or TS/TS-OD 57 with a grade of 2.5 or higher, or appropriate math placement; and concurrent enrollment in MATH& 146 . Recommended: READ 104 , ENGL 97",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH 72 or TS/TS-OD 57 with a grade of 2.5 or higher, or appropriate math placement; and concurrent enrollment in MATH& 146 . Recommended: READ 104 , ENGL 97"
+    ],
+    "corequisiteCourseCodes": [
+      "MATH& 146"
     ],
     "effectiveYearRanges": [
       {
@@ -34845,9 +35855,19 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Support course for MATH 109 that covers pre-college topics needed in MATH 109 - Mathematical Models in Gaming . The course must be taken concurrently with MATH 109 . Study of functions, formulas, fractions, percents, exponents, roots, linear equations, and study skills strategies. This is a pass/no credit course.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "MATH 72"
+      ],
+      [
+        "OD 57"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH 72 or TS/TS-OD 57 with a 2.5 or higher, or appropriate math placement; and concurrent enrollment in MATH 109 . Recommended: READ 104 , ENGL 97",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH 72 or TS/TS-OD 57 with a 2.5 or higher, or appropriate math placement; and concurrent enrollment in MATH 109 . Recommended: READ 104 , ENGL 97"
+    ],
+    "corequisiteCourseCodes": [
+      "MATH 109"
     ],
     "effectiveYearRanges": [
       {
@@ -34899,9 +35919,16 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Study of graphing, solving linear equations and inequalities, unit analysis, ratios, rates, proportions, solving systems of equations, Pythagorean Theorem, and applications. Course requires a graphing calculator.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "MATH 70"
+      ],
+      [
+        "OD 56"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH 70 or TS/TS-OD 56 with a grade of 2.5 or higher; or appropriate math placement.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH 70 or TS/TS-OD 56 with a grade of 2.5 or higher; or appropriate math placement."
     ],
     "effectiveYearRanges": [
       {
@@ -34928,9 +35955,16 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Study of the definition of a function; graphs and solutions of quadratic, rational, radical, and literal equations; complex numbers; radical expressions; variation; and applications. Graphing calculator required.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "MATH 72"
+      ],
+      [
+        "OD 57"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH 72 or TS/TS-OD 57 with a grade of 2.5 or higher; or appropriate math placement.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH 72 or TS/TS-OD 57 with a grade of 2.5 or higher; or appropriate math placement."
     ],
     "effectiveYearRanges": [
       {
@@ -34957,9 +35991,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Study of various mathematical topics including growth models, finance, statistics, and probability. Additional topics may include voting theory, fair division, networks, scheduling, apportionment and other fields.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "MATH 30",
+        "MATH& 107",
+        "OD 57"
+      ],
+      [
+        "MATH 72"
+      ],
+      [
+        "MATH 97"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH 97 with a grade of 2.0 or higher; or either MATH 72 or TS/TS-OD 57 with a grade of 2.5 or higher and concurrently enrolled in MATH 30 Support Course for MATH& 107 ; or appropriate math placement.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH 97 with a grade of 2.0 or higher; or either MATH 72 or TS/TS-OD 57 with a grade of 2.5 or higher and concurrently enrolled in MATH 30 Support Course for MATH& 107 ; or appropriate math placement."
     ],
     "effectiveYearRanges": [
       {
@@ -35005,9 +36051,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces problem-solving techniques, number theory, set theory, and numeration systems related to topics taught at the K-8 level. Recommended for prospective or practicing elementary and middle school teachers, paraeducators, parents, and others who help educate children in grades K-8. Previously MATH& 171.",
+    "prerequisiteCourseCodes": [
+      "MATH 97"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH 97 with a grade of 2.0 or higher; or appropriate math placement.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH 97 with a grade of 2.0 or higher; or appropriate math placement."
     ],
     "effectiveYearRanges": [
       {
@@ -35034,9 +36082,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Covers the mathematics elementary teachers are responsible for teaching at K-8 levels, including polyhedra, polygons, symmetry, tessellations, size changes, curves and curved surfaces, transformations, length, angles, area and surface area, volume, measure formulas; quantifying uncertainty, simulating probabilistic situations, sampling, and organizing and interpreting data with one and two variables. Previously MATH& 172.",
+    "prerequisiteCourseCodes": [
+      "MATH& 131"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH& 131 with a grade of 2.0 or higher or appropriate math placement. Courses may be taken out of sequence with instructor permission.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH& 131 with a grade of 2.0 or higher or appropriate math placement. Courses may be taken out of sequence with instructor permission."
     ],
     "effectiveYearRanges": [
       {
@@ -35063,9 +36113,18 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Study of piecewise, absolute value, power, polynomial, rational, exponential, and logarithmic functions and their applications; algebraic combinations of functions; composition of functions; inverse functions; transformations. Graphing calculator required.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "MATH 31",
+        "MATH 97",
+        "MATH& 141"
+      ],
+      [
+        "MATH 97"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH 97 with a grade of 2.5 or higher; or MATH 97 with a grade of 2.0 or higher AND concurrently enrolled in MATH 31 - Support Course for MATH& 141 ; or appropriate math placement.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH 97 with a grade of 2.5 or higher; or MATH 97 with a grade of 2.0 or higher AND concurrently enrolled in MATH 31 - Support Course for MATH& 141 ; or appropriate math placement."
     ],
     "effectiveYearRanges": [
       {
@@ -35120,9 +36179,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Study of trigonometric functions and their applications, inverse trigonometric functions, trigonometric equations, trigonometric identities, solutions of right and oblique triangles, vectors, polar coordinates, and parametric equations. Graphing calculator required.",
+    "prerequisiteCourseCodes": [
+      "MATH& 141"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH& 141 with a grade of 2.0 or higher; or appropriate math placement.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH& 141 with a grade of 2.0 or higher; or appropriate math placement."
     ],
     "effectiveYearRanges": [
       {
@@ -35177,9 +36238,21 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduction to the analysis of statistical studies, descriptive statistics, basic probability, sampling distributions, hypothesis testing, confidence intervals, and correlation.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "MATH 36",
+        "MATH& 146",
+        "OD 57"
+      ],
+      [
+        "MATH 72"
+      ],
+      [
+        "MATH 97"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH 97 with a grade of 2.0 or higher; or either MATH 72 or TS/TS-OD 57 with a grade of 2.5 or higher and concurrently enrolled in MATH 36 - Support Course for MATH& 146; or appropriate math placement.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH 97 with a grade of 2.0 or higher; or either MATH 72 or TS/TS-OD 57 with a grade of 2.5 or higher and concurrently enrolled in MATH 36 - Support Course for MATH& 146; or appropriate math placement."
     ],
     "effectiveYearRanges": [
       {
@@ -35225,9 +36298,16 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Study of differential and integral calculus of polynomial, logarithmic and exponential functions. Many problems and examples are drawn from the fields of business, economics, and social science. Graphing calculator required.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "MATH 147"
+      ],
+      [
+        "MATH& 141"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH& 141 or MATH 147 with a grade of 2.0 or higher; or appropriate math placement.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH& 141 or MATH 147 with a grade of 2.0 or higher; or appropriate math placement."
     ],
     "effectiveYearRanges": [
       {
@@ -35273,9 +36353,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "The first course of a four-quarter calculus sequence. Introduces students to differential calculus and related applications. Topics include limits, derivatives of algebraic and transcendental functions, optimization, linearization, numerical methods, modeling. Graphing calculator required.",
+    "prerequisiteCourseCodes": [
+      "MATH& 142"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH& 142 with a grade of 2.0 or higher; or appropriate placement math placement.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH& 142 with a grade of 2.0 or higher; or appropriate placement math placement."
     ],
     "effectiveYearRanges": [
       {
@@ -35330,9 +36412,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "The second course of a four-quarter calculus sequence. Introduces students to integral calculus and related applications. Topics include antiderivatives of algebraic and transcendental functions, the Fundamental Theorem of Calculus, techniques of integration, areas, volumes, moments and centers of mass, numerical methods. Graphing calculator required.",
+    "prerequisiteCourseCodes": [
+      "MATH& 151"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH& 151 with a grade of 2.0 or higher; or appropriate math placement.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH& 151 with a grade of 2.0 or higher; or appropriate math placement."
     ],
     "effectiveYearRanges": [
       {
@@ -35387,9 +36471,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Credits: 5 The third course of a four-quarter calculus sequence. Introduces students to series representations of functions, as well as calculus concepts in higher dimensions. Topics include Taylor series, vectors, three-dimensional space and surfaces, vector-valued functions, multivariable functions, partial derivatives, and double integrals. Graphing calculator required. Previously MATH& 153.",
+    "prerequisiteCourseCodes": [
+      "MATH& 152"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH& 152 with a grade of 2.0 or higher; or appropriate math placement.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH& 152 with a grade of 2.0 or higher; or appropriate math placement."
     ],
     "effectiveYearRanges": [
       {
@@ -35435,9 +36521,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "The fourth course of a four-quarter calculus sequence. Introduces students to functions of two and three variables; limits and continuity; partial differentiation; gradients; multiple integration; iterated integrals; vector analysis including such topics as divergence, curl, line integrals, and the fundamental theorems of vector calculus. Graphing calculator required.",
+    "prerequisiteCourseCodes": [
+      "MATH& 163"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH& 163 with a grade of 2.0 or higher; or appropriate math placement.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH& 163 with a grade of 2.0 or higher; or appropriate math placement."
     ],
     "effectiveYearRanges": [
       {
@@ -35503,9 +36591,13 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "title": "Pre-Algebra-Resource Module",
     "creditLabel": "1-2",
     "catalogDescription": "Uses self-paced, individual computer mediated learning to supplement concepts learned in MATH 70 . Recommended for students who want extra work in MATH 70 and for those who need to work on specific skills to prepare for MATH 70 . Students use software to learn standard concepts from MATH 70 . Students investigate Math Learning Center resources such as videos, computers, supplementary books, and/or drop-in tutoring to work on concepts learned in MATH 70 . A minimum of 22 hours of work must be completed to receive one credit, 44 hours for two credits. This is a pass/no credit course.",
+    "prerequisiteCourseCodes": [
+      "MATHM 70",
+      "MATHM 72",
+      "MATHM 97"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: A student cannot be enrolled in more than one math modules class (MATHM 70, MATHM 72, MATHM 97) at the same time.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: A student cannot be enrolled in more than one math modules class (MATHM 70, MATHM 72, MATHM 97) at the same time."
     ],
     "effectiveYearRanges": [
       {
@@ -35531,9 +36623,13 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "title": "Elementary Algebra-Resource Module",
     "creditLabel": "1-2",
     "catalogDescription": "Uses self-paced, individual computer mediated learning to supplement concepts learned in MATH 72 . Recommended for students who want extra work in MATH 72 and for those who need to work on specific skills to prepare for MATH 72 . Students use software to learn standard concepts from MATH 72 . Students investigate Math Learning Center resources such as videos, computers, supplementary books, and/or drop-in tutoring to work on concepts learned in MATH 72 . A minimum of 22 hours of work must be completed to receive one credit, 44 hours for two credits. This is a pass/no credit course.",
+    "prerequisiteCourseCodes": [
+      "MATHM 70",
+      "MATHM 72",
+      "MATHM 97"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: A student cannot be enrolled in more than one math modules class (MATHM 70, MATHM 72, MATHM 97) at the same time.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: A student cannot be enrolled in more than one math modules class (MATHM 70, MATHM 72, MATHM 97) at the same time."
     ],
     "effectiveYearRanges": [
       {
@@ -35559,9 +36655,13 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "title": "Intermediate Algebra-Resource Module",
     "creditLabel": "1-2",
     "catalogDescription": "Credits: 1-2 Uses self-paced, individual computer mediated learning to supplement concepts learned in MATH 97 . Recommended for students who want extra work in MATH 97 and for those who need to work on specific skills to prepare for MATH 97 . Students use software to learn standard concepts from MATH 97 . Students investigate Math Learning Center resources such as videos, computers, supplementary books, and/or drop-in tutoring to work on concepts learned in MATH 97 . A minimum of 22 hours of work must be completed to receive one credit, 44 hours for two credits. This is a pass/no credit course.",
+    "prerequisiteCourseCodes": [
+      "MATHM 70",
+      "MATHM 72",
+      "MATHM 97"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: A student cannot be enrolled in more than one math modules class (MATHM 70, MATHM 72, MATHM 97) at the same time.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: A student cannot be enrolled in more than one math modules class (MATHM 70, MATHM 72, MATHM 97) at the same time."
     ],
     "effectiveYearRanges": [
       {
@@ -35643,9 +36743,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "title": "Conventional Milling and Turning",
     "creditLabel": "1-13",
     "catalogDescription": "Introduces progressively more difficult operations on conventional lathes and milling machines with an emphasis on job planning sequence, attention to blueprint specifications, setting up equipment for safe operation, speeds and feeds calculations, proper selection of tooling and work holding, as well as work piece layout and final inspection processes.",
+    "prerequisiteCourseCodes": [
+      "MFG 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MFG 101 with a grade of 2.0 or higher; eligible for READ 104 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MFG 101 with a grade of 2.0 or higher; eligible for READ 104 and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -35699,9 +36801,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "title": "Conventional and Computer Numerical Control (CNC) Machining Level 1",
     "creditLabel": "1-13",
     "catalogDescription": "Emphasizes advanced calculations and machining operations on conventional lathes, milling machines, and surface grinders and their accessories. Introduces the basics of CNC programming and machining.",
+    "prerequisiteCourseCodes": [
+      "MFG 102"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MFG 102 with a grade of 2.0 or higher; Reading requirement - Eligible for READ 104 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MFG 102 with a grade of 2.0 or higher; Reading requirement - Eligible for READ 104 and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -35755,9 +36859,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "title": "Conventional and Computer Numerical Control (CNC) Machining Level 2",
     "creditLabel": "1-13",
     "catalogDescription": "Emphasizes more advanced calculations and machining operations on conventional lathes, milling machines, and surface grinders and their accessories. Includes basic CNC milling and turning operations and introduces CAD/CAM software.",
+    "prerequisiteCourseCodes": [
+      "MFG 103"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MFG 103 with a grade of 2.0 or higher; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MFG 103 with a grade of 2.0 or higher; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -35811,9 +36917,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "title": "Intermediate Computer Numerical Control (CNC) Machining",
     "creditLabel": "1-13",
     "catalogDescription": "Emphasizes more advanced calculations and machining operations on CNC milling and turning centers and includes more extensive use of CAD/CAM software.",
+    "prerequisiteCourseCodes": [
+      "MFG 104"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MFG 104 with a grade of 2.0 or higher; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MFG 104 with a grade of 2.0 or higher; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -35867,9 +36975,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "title": "Special Machining Practices",
     "creditLabel": "1-13",
     "catalogDescription": "A capstone course in which learners refine their skills working independently to produce final projects using conventional or CNC machine tools and CAD/CAM software.",
+    "prerequisiteCourseCodes": [
+      "MFG 105"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MFG 105 with a grade of 2.0 or higher; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MFG 105 with a grade of 2.0 or higher; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -35963,9 +37073,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_11: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Provides an in depth look at Fused Filament Fabrication (FFF), Stereolithography (SLA) printing and discusses advanced slicer settings used to fine tune printing cycle time and quality. Important topics include material selection, choosing the proper settings to best fit the use of the part(s), printing to reduce post-processing, and additive manufacturing filament recycling.",
+    "prerequisiteCourseCodes": [
+      "MFG 107"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MFG 107 with a grade of 2.0 or higher; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MFG 107 with a grade of 2.0 or higher; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -36005,9 +37117,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Provides an in-depth look at Applied Rapid Prototyping and Hybrid Manufacturing. Important topics include: material selection based on prototype function, ensuring dimensional stability of prototypes, maintaining parts surface finish quality, and post-processing prototypes using multi-axis Computer Numerical Controlled (CNC) machining processes.",
+    "prerequisiteCourseCodes": [
+      "MFG 108"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MFG 108 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MFG 108 and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -36205,9 +37319,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "title": "Manufacturing Work Experience",
     "creditLabel": "1-13",
     "catalogDescription": "offers learners an opportunity to work full- or part-time in manufacturing jobs directly related to their programs and interests. Students may receive a salary or volunteer.",
+    "prerequisiteCourseCodes": [
+      "MFG 105"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MFG 105 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MFG 105 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -36234,8 +37350,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditLabel": "1-13",
     "catalogDescription": "Allows students to work full- or part-time in jobs directly related to their programs and interests. Students may receive a salary or volunteer.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "COOP 171"
     ],
     "effectiveYearRanges": [
       {
@@ -36262,9 +37380,13 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Credits: 5 Learn to apply leadership concepts to make an impact on teams within organizations, communities, and society. Topics include team dynamics, leading people, leading by example, leading projects, creating goals, and setting expectations.",
+    "prerequisiteCourseCodes": [
+      "BUS 121",
+      "BUS 258",
+      "BUS& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program and BUS& 101 , BUS 121 and BUS 258 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program and BUS& 101 , BUS 121 and BUS 258 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -36301,9 +37423,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Learn to apply leadership practices to make an impact on teams within organizations, communities, and society. Topics include emotional intelligence, strengths-based leadership, high-performance leadership behaviors.",
+    "prerequisiteCourseCodes": [
+      "ENGL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and ENGL& 101 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and ENGL& 101 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -36330,9 +37454,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Learn to apply leadership practices to make an impact on teams within organizations, communities, and society. Topics include team dynamics, leading people, leading by example.",
+    "prerequisiteCourseCodes": [
+      "ENGL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and ENGL& 101 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and ENGL& 101 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -36359,9 +37485,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 1,
     "creditLabel": "1",
     "catalogDescription": "Learn to apply leadership practices to make an impact on teams within organizations, communities, and society. Topics include leading projects, creating goals, and setting expectations.",
+    "prerequisiteCourseCodes": [
+      "ENGL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and ENGL& 101 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and ENGL& 101 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -36388,9 +37516,22 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Learn to formulate marketing goals by utilizing market research methods to collect, analyze, and evaluate marketing data and information. Topics include market research methods, data analysis and interpretation, research proposals, communicating research, and strategic applications of research.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "BUS 121",
+        "BUS& 101",
+        "ENGL& 101",
+        "MATH 147"
+      ],
+      [
+        "BUS 121",
+        "BUS& 101",
+        "ENGL& 101",
+        "MATH& 141"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and MATH& 141 or MATH 147 ; and ENGL& 101 ; and BUS& 101 ; and BUS 121 ; or instructor consent. Recommended: MATH 256",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and MATH& 141 or MATH 147 ; and ENGL& 101 ; and BUS& 101 ; and BUS 121 ; or instructor consent. Recommended: MATH 256"
     ],
     "effectiveYearRanges": [
       {
@@ -36417,9 +37558,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Learn effective organizational design in both traditional and innovative organizations, with special emphasis on organizational structures that can provide strategic advantage. Topics include when to use functional, divisional, or matrix organizations, and examples of high-engagement organizational cultures.",
+    "prerequisiteCourseCodes": [
+      "BUS& 101",
+      "ENGL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and BUS& 101 ; and ENGL& 101 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and BUS& 101 ; and ENGL& 101 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -36446,9 +37590,13 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Examines the role of the human resource professional as a strategic partner in managing today's organizations. Topics include recruitment, selection, development, appraisal, retention, compensation, employment law, and labor relations.",
+    "prerequisiteCourseCodes": [
+      "BUS 258",
+      "BUS& 101",
+      "ENGL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and BUS& 101 ; and BUS 258 ; and ENGL& 101 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and BUS& 101 ; and BUS 258 ; and ENGL& 101 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -36485,9 +37633,13 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Credits: 5 Focuses on the tactical and operational tasks related to workforce management and the HR function. Topics included: HR operations, Compensation & Benefits and Employee Relations. Prepares students for the Associate Professional in Human Resources (aPHR) exam.",
+    "prerequisiteCourseCodes": [
+      "BUS 121",
+      "BUS 258",
+      "BUS& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and BUS& 101 , BUS 121 , and BUS 258 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and BUS& 101 , BUS 121 , and BUS 258 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -36542,9 +37694,13 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Learn to develop, measure, and evaluate an integrated marketing communications plan. Topics include situational and competitive analysis, target market segmentation, creative strategy, media planning and selection, social media management, budget determination, and measuring effectiveness of promotional program.",
+    "prerequisiteCourseCodes": [
+      "BUS& 101",
+      "ENGL& 101",
+      "MGMT 395"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and BUS& 101 ; and ENGL& 101 ; and MGMT 395 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and BUS& 101 ; and ENGL& 101 ; and MGMT 395 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -36571,9 +37727,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Examines the theories and best practices for completing projects on time, on budget, and to specification. Students learn to apply knowledge and skills to effectively initiate, plan, execute, and complete projects. Software-based project management tools are discussed. Course aligns with current PMBOK Guide.",
+    "prerequisiteCourseCodes": [
+      "ENGL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and ENGL& 101 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and ENGL& 101 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -36619,9 +37777,13 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "A survey of business financial practices. Topics include financial analysis, planning and control, net present value, and CVP analysis.",
+    "prerequisiteCourseCodes": [
+      "BUS 258",
+      "BUS& 101",
+      "ENGL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and BUS& 101 ; and BUS 258 ; and ENGL& 101 ; or admission into the BAS in Accounting program; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and BUS& 101 ; and BUS 258 ; and ENGL& 101 ; or admission into the BAS in Accounting program; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -36658,9 +37820,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "A continuation of corporate finance. Topics include: Risk and return, managing working capital, capital investment, sources and costs of financing and valuation.",
+    "prerequisiteCourseCodes": [
+      "MGMT 344"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; MGMT 344 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; MGMT 344 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -36715,9 +37879,13 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Learn how to identify, design, produce, test, and evaluate a new product. Topics include identification of market opportunities, generation of product concepts, feasibility analysis, prototyping, supplier selection, production planning, and testing.",
+    "prerequisiteCourseCodes": [
+      "BUS& 101",
+      "ENGL& 101",
+      "MGMT 395"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and BUS& 101 ; and ENGL& 101 ; and MGMT 395 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and BUS& 101 ; and ENGL& 101 ; and MGMT 395 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -36744,9 +37912,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Learn to integrate business development and selling strategies to effectively create productive buyer-seller relationships. Topics include strategic prospecting, personal selling strategies, organizational relationships, managing the sales funnel, and developing sales proposals.",
+    "prerequisiteCourseCodes": [
+      "BUS& 101",
+      "ENGL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and BUS& 101 ; and ENGL& 101 ; or instructor consent. Recommended: BUS 159",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and BUS& 101 ; and ENGL& 101 ; or instructor consent. Recommended: BUS 159"
     ],
     "effectiveYearRanges": [
       {
@@ -36783,9 +37954,13 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Learn to integrate negotiation strategies to effectively maximize outcomes and secure agreements between two or more parties. Topics include applying interest-based negotiations principles and developing options for mutual gain.",
+    "prerequisiteCourseCodes": [
+      "BUS 121",
+      "BUS 258",
+      "BUS& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and BUS& 101 , BUS 121 and BUS 258 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and BUS& 101 , BUS 121 and BUS 258 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -36822,9 +37997,20 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Learn to apply operations management methods to increase results and streamline processes in small to medium-sized businesses. Topics include forecasting, process and facility selection, work design, production planning and scheduling, process improvement, and quality control.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "BUS 258",
+        "BUS& 101",
+        "MATH 147"
+      ],
+      [
+        "BUS 258",
+        "BUS& 101",
+        "MATH& 141"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management; and BUS& 101 ; and BUS 258 ; and MATH& 141 or MATH 147 ; or instructor consent. Recommended: MATH 256 and/or MGMT 340",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management; and BUS& 101 ; and BUS 258 ; and MATH& 141 or MATH 147 ; or instructor consent. Recommended: MATH 256 and/or MGMT 340"
     ],
     "effectiveYearRanges": [
       {
@@ -36879,9 +38065,13 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Examines how managers develop, implement, and evaluate strategic marketing decisions to maximize long-term profitability of a firm. Topics include analysis of competitor behavior, product line management, and long-term road mapping of product and branding strategy.",
+    "prerequisiteCourseCodes": [
+      "BUS 121",
+      "BUS& 101",
+      "ENGL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management; and BUS& 101 ; and BUS 121 ; and ENGL& 101 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management; and BUS& 101 ; and BUS 121 ; and ENGL& 101 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -36936,9 +38126,13 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Facilitates student development in the world of work through highly experiential and reflective learning focused on personal, professional, and career growth. Topics include personal branding, networking, interviewing, career planning, and continued professional development.",
+    "prerequisiteCourseCodes": [
+      "BUS 121",
+      "BUS 258",
+      "BUS& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and BUS& 101 , BUS 121 and BUS 258 ; or admission into the BAS in Accounting program; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and BUS& 101 , BUS 121 and BUS 258 ; or admission into the BAS in Accounting program; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -36975,9 +38169,13 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Credits: 2 Using research, best practices, and the experience from leaders in diversity, equity & inclusion (DEI), participants will gain insights and practice essential leadership skills and behaviors that help foster diverse, equitable, and inclusive teams and organizations.",
+    "prerequisiteCourseCodes": [
+      "BUS 121",
+      "BUS 258",
+      "BUS& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; BUS& 101 , BUS 121 and BUS 258 ; or admission into the BAS in Accounting program; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; BUS& 101 , BUS 121 and BUS 258 ; or admission into the BAS in Accounting program; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -37023,9 +38221,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Learn to integrate corporate social responsibility (CSR) strategies into core business objectives to create value and positive social change. Topics include the shareholder-stakeholder controversy, triple-bottom-line analyses, supplier sourcing, employee considerations, and the global environment.",
+    "prerequisiteCourseCodes": [
+      "BUS& 101",
+      "ENGL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and BUS& 101 ; and ENGL& 101 ; or instructor consent. Recommended: MGMT 385",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and BUS& 101 ; and ENGL& 101 ; or instructor consent. Recommended: MGMT 385"
     ],
     "effectiveYearRanges": [
       {
@@ -37062,9 +38263,13 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Learn to develop and execute strategic plans that create and sustain a competitive advantage in a given market. Topics include techniques for analyzing firm capabilities, competitive environments, and strategic positioning; and tactics for implementing strategic plans across an organization; and analysis of business models.",
+    "prerequisiteCourseCodes": [
+      "BUS& 101",
+      "ENGL& 101",
+      "MGMT 345"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and BUS& 101 ; and ENGL& 101 ; and MGMT 345 and 395 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and BUS& 101 ; and ENGL& 101 ; and MGMT 345 and 395 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -37101,9 +38306,13 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Learn techniques for analyzing business opportunities, improving processes, and making rational decisions that maximize value and limit risk. Topic include value stream mapping, structured analysis techniques such as linear programming and sensitivity analysis, and foundations for sound decision-making.",
+    "prerequisiteCourseCodes": [
+      "BUS& 101",
+      "ENGL& 101",
+      "MGMT 345"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and BUS& 101 ; and ENGL& 101; and MGMT 345 , 385 and 395 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Admission into the BAS in Applied Management program; and BUS& 101 ; and ENGL& 101; and MGMT 345 , 385 and 395 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -37273,9 +38482,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "title": "Mechatronics Technician 2",
     "creditLabel": "1-13",
     "catalogDescription": "Further explores hydraulic and pneumatic systems through instruction and hands-on experience. Fundamental AC/DC electrical concepts will also be introduced. Students acquire industry and workplace safety standards and practices, as well as essential interpersonal communication skills. Basic computer skills are highly recommended: Windows, Internet, and Email.",
+    "prerequisiteCourseCodes": [
+      "MTX 100"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MTX 100 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MTX 100 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -37320,9 +38531,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "title": "Mechatronics Technician 3",
     "creditLabel": "1-13",
     "catalogDescription": "Advanced knowledge and skills of hydraulic and pneumatic systems through instruction and hands-on experience. Students will develop an understanding of electro-fluid power. Students acquire industry and workplace safety standards and practices, as well as essential interpersonal communication skills. Basic computer skills are highly recommended: Windows, Internet, and Email.",
+    "prerequisiteCourseCodes": [
+      "MTX 110"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MTX 110 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MTX 110 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -37367,9 +38580,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "title": "Mechatronics Technician 4",
     "creditLabel": "1-13",
     "catalogDescription": "Applies skills and knowledge gained in previous courses to troubleshoot hydraulic systems. Students will begin to develop an understanding of power and control electronics and electrical relay controls. Students acquire industry and workplace safety standards and practices, as well as essential interpersonal communication skills. Basic computer skills are highly recommended: Windows, Internet, and Email.",
+    "prerequisiteCourseCodes": [
+      "MTX 120"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MTX 120 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MTX 120 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -37414,9 +38629,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "title": "Mechatronics Technician 5",
     "creditLabel": "1-13",
     "catalogDescription": "Introduction to PLC programming though instruction and hands-on application of PLC simulation software. Students will gain knowledge and skills in PLC programming and AC motor drives. Students acquire industry and workplace safety standards and practices, as well as essential interpersonal communication skills. Basic computer skills are highly recommended: Windows, Internet, and Email.",
+    "prerequisiteCourseCodes": [
+      "MTX 130"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MTX 130 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MTX 130 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -37461,9 +38678,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "title": "Mechatronics Technician 6",
     "creditLabel": "1-13",
     "catalogDescription": "Students will develop Programmable Logic Controllers (PLC) troubleshooting skills through instruction and hands-on experience. Students will also gain the fundamental skills and knowledge to program multiple variations of PLCs. Students will work on core training needed to implement, and program, robotics and automation through the use of digital and analog inputs and outputs.",
+    "prerequisiteCourseCodes": [
+      "MTX 140"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MTX 140 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MTX 140 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -37755,9 +38974,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "A continuation of MUSC 108 with more in-depth study and use of digital of audio workstation (DAW) software. Students will begin to work with basic mixing and master procedures, study procedures in effects processing, and be introduced to the history of electronic music prior to 1960.",
+    "prerequisiteCourseCodes": [
+      "MUSC 108"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MUSC 108 with a grade of 2.0 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MUSC 108 with a grade of 2.0 or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -37803,9 +39024,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "A continuation of MUSC 109 with additional study and use of digital audio workstation (DAW) and/or notation software. Students will continue to work with mixing and mastering procedures, effects processing, different plug-in types, and study the history of electronic music through the 1980s.",
+    "prerequisiteCourseCodes": [
+      "MUSC 109"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MUSC 109 with a grade of 2.0 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MUSC 109 with a grade of 2.0 or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -37874,9 +39097,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "title": "Concert Choir 2",
     "creditLabel": "1-3",
     "catalogDescription": "Continuation of MUSC 118 . Students prepare and present selected choral works. Gives an in-depth study of fundamentals of vocal production. One required evening performance each quarter.",
+    "prerequisiteCourseCodes": [
+      "MUSC 118"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MUSC 118 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MUSC 118 ."
     ],
     "effectiveYearRanges": [
       {
@@ -37902,9 +39127,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "title": "Concert Choir 3",
     "creditLabel": "1-3",
     "catalogDescription": "Continuation of MUSC 119 . Gives an in-depth study of fundamentals of vocal production. One required evening performance each quarter.",
+    "prerequisiteCourseCodes": [
+      "MUSC 119"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MUSC 119 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MUSC 119 ."
     ],
     "effectiveYearRanges": [
       {
@@ -38028,9 +39255,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "title": "Green River Jazz Voices 2",
     "creditLabel": "1-5",
     "catalogDescription": "Prepares and presents classical, jazz, and pop idioms. Some students may be involved as rhythm section players or sound technicians. Requires extensive performance demands and additional hours for rehearsals and concerts. BY AUDITION ONLY.",
+    "prerequisiteCourseCodes": [
+      "MUSC 127"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MUSC 127 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MUSC 127 and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -38066,9 +39295,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "title": "Green River Jazz Voices 3",
     "creditLabel": "1-5",
     "catalogDescription": "Prepares and presents choral music in classical, jazz and pop idioms. Some students may be involved as rhythm section players or sound technicians. Requires extensive performance demands and additional hours for rehearsals and concerts. BY AUDITION ONLY.",
+    "prerequisiteCourseCodes": [
+      "MUSC 128"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MUSC 128 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MUSC 128 and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -38140,9 +39371,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "This ensemble will explore traditional Korean drumming practices, their use among rural farmers, and their use in social protest (i.e. Japanese occupation, pro-democratization movements, to the ousting of President Park Geun-hye). We will learn intermediate techniques of the Korean drumming traditions pungmul, samulnori, and nongak and play the four main instruments: ching, kkwaenggwari, puk, and changgo.",
+    "prerequisiteCourseCodes": [
+      "MUSC 137"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MUSC 137 with a grade of 1.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MUSC 137 with a grade of 1.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -38179,9 +39412,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "This ensemble will explore traditional Korean drumming practices, their use among rural farmers, and their use in social protest (i.e. Japanese occupation, pro-democratization movements, to the ousting of President Park Geun-hye). We will learn advanced techniques of the Korean drumming traditions pungmul, samulnori, and nongak and play the four main instruments: ching, kkwaenggwari, puk, and changgo.",
+    "prerequisiteCourseCodes": [
+      "MUSC 138"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MUSC 138 with a grade of 1.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MUSC 138 with a grade of 1.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -38253,9 +39488,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Offers basic and intermediate piano pedagogy in a group classroom situation. Covers hand positions, fingering, and chord structures.",
+    "prerequisiteCourseCodes": [
+      "MUSC 140"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MUSC 140 with a grade of 2.0 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MUSC 140 with a grade of 2.0 or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -38292,9 +39529,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Offers intermediate piano pedagogy in a group classroom situation. Covers hand positions, fingering, and intermediate chord structures and progressions.",
+    "prerequisiteCourseCodes": [
+      "MUSC 141"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MUSC 141 with a grade of 2.0 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MUSC 141 with a grade of 2.0 or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -38360,9 +39599,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 1,
     "creditLabel": "1",
     "catalogDescription": "Individual instruction in voice or on any common instrument.",
+    "prerequisiteCourseCodes": [
+      "MUSC 150"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MUSC 150 or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MUSC 150 or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -38389,9 +39630,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 1,
     "creditLabel": "1",
     "catalogDescription": "Individual instruction in voice or on any common instrument.",
+    "prerequisiteCourseCodes": [
+      "MUSC 151"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MUSC 151 or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MUSC 151 or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -38418,9 +39661,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduction to songwriting and music composition. Students will analyze musical works and study techniques of composition to create their own music.",
+    "prerequisiteCourseCodes": [
+      "MUSC& 121",
+      "MUSC& 131"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MUSC& 131 and MUSC& 121 with grades of 2.0 or higher or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MUSC& 131 and MUSC& 121 with grades of 2.0 or higher or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -38457,9 +39703,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Credits: 5 A continuation of MUSC 160 with study of basic songwriting and music composition techniques. Students will continue to analyze musical works and study composition techniques to create their own music.",
+    "prerequisiteCourseCodes": [
+      "MUSC 160"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MUSC 160 with a 2.0 grade or higher. Recommended: MUSC& 132 and MUSC& 122",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MUSC 160 with a 2.0 grade or higher. Recommended: MUSC& 132 and MUSC& 122"
     ],
     "effectiveYearRanges": [
       {
@@ -38496,9 +39744,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Credits: 5 A continuation of MUSC 161 with more in-depth study of basic songwriting and music composition techniques. Students will continue to analyze musical works and study composition techniques to create their own music.",
+    "prerequisiteCourseCodes": [
+      "MUSC 161"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MUSC 161 with a grade of 2.0 or higher. Recommended: MUSC& 132 and MUSC& 122",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MUSC 161 with a grade of 2.0 or higher. Recommended: MUSC& 132 and MUSC& 122"
     ],
     "effectiveYearRanges": [
       {
@@ -38569,9 +39819,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "title": "Concert Choir 4",
     "creditLabel": "1-3",
     "catalogDescription": "Continuation of MUSC 120 . Students prepare and present selected choral works. Students study the basics of vocal production. One required evening performance each quarter.",
+    "prerequisiteCourseCodes": [
+      "MUSC 120"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MUSC 120 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MUSC 120 ."
     ],
     "effectiveYearRanges": [
       {
@@ -38597,9 +39849,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "title": "Concert Choir 5",
     "creditLabel": "1-3",
     "catalogDescription": "Continuation of MUSC 218 . Students study the basics of vocal production. One required evening performance each quarter.",
+    "prerequisiteCourseCodes": [
+      "MUSC 218"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MUSC 218 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MUSC 218 ."
     ],
     "effectiveYearRanges": [
       {
@@ -38625,9 +39879,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "title": "Concert Choir 6",
     "creditLabel": "1-3",
     "catalogDescription": "Continuation of MUSC 219 . Students prepare and present selected choral works. Students study the basics of vocal production. One required evening performance each quarter.",
+    "prerequisiteCourseCodes": [
+      "MUSC 219"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MUSC 219 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MUSC 219 ."
     ],
     "effectiveYearRanges": [
       {
@@ -38653,9 +39909,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "title": "Green River Jazz Voices 4",
     "creditLabel": "1-5",
     "catalogDescription": "Students prepare and present choral music in classical, jazz and pop idioms. Some students may be involved as rhythm section players or sound technicians. Requires extensive performance demands and additional hours for rehearsals and concerts. BY AUDITION ONLY.",
+    "prerequisiteCourseCodes": [
+      "MUSC 129"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MUSC 129 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MUSC 129 and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -38691,9 +39949,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "title": "Green River Jazz Voices 5",
     "creditLabel": "1-5",
     "catalogDescription": "Students prepare and present choral music in classical, jazz and pop idioms. Some students may be involved as rhythm section players or sound technicians. Requires extensive performance demands and additional hours for rehearsals and concerts. BY AUDITION ONLY.",
+    "prerequisiteCourseCodes": [
+      "MUSC 227"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MUSC 227 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MUSC 227 and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -38729,9 +39989,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "title": "Green River Jazz Voices 6",
     "creditLabel": "1-5",
     "catalogDescription": "Students prepare and present choral music in classical, jazz and pop idioms. Some students may be involved as rhythm section players or sound technicians. Requires extensive performance demands and additional hours for rehearsals and concerts. BY AUDITION ONLY.",
+    "prerequisiteCourseCodes": [
+      "MUSC 228"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MUSC 228 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MUSC 228 and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -38768,9 +40030,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 1,
     "creditLabel": "1",
     "catalogDescription": "Individual instruction in voice or on any common instrument.",
+    "prerequisiteCourseCodes": [
+      "MUSC 152"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MUSC 152 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MUSC 152 and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -38797,9 +40061,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 1,
     "creditLabel": "1",
     "catalogDescription": "Individual instruction in voice or on any common instrument.",
+    "prerequisiteCourseCodes": [
+      "MUSC 250"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MUSC 250 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MUSC 250 and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -38826,9 +40092,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 1,
     "creditLabel": "1",
     "catalogDescription": "Individual instruction in voice or on any common instrument. Student pays instructor fee.",
+    "prerequisiteCourseCodes": [
+      "MUSC 251"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MUSC 251 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MUSC 251 and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -38855,9 +40123,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Credits: 5 A continuation of MUSC 162 with study of intermediate songwriting and music composition techniques. Students will continue to analyze musical works and study composition techniques to create their own music.",
+    "prerequisiteCourseCodes": [
+      "MUSC 162"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MUSC 162 with a grade of 2.0 or higher. Recommended: MUSC& 132 and MUSC& 122",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MUSC 162 with a grade of 2.0 or higher. Recommended: MUSC& 132 and MUSC& 122"
     ],
     "effectiveYearRanges": [
       {
@@ -38884,9 +40154,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Credits: 5 A continuation of MUSC 260 with additional study of intermediate songwriting and music composition techniques. Students will continue to analyze musical works and study composition techniques to create their own music.",
+    "prerequisiteCourseCodes": [
+      "MUSC 260"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MUSC 260 with a grade of 2.0 or higher. Recommended: MUSC& 133 and MUSC& 123",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MUSC 260 with a grade of 2.0 or higher. Recommended: MUSC& 133 and MUSC& 123"
     ],
     "effectiveYearRanges": [
       {
@@ -38913,9 +40185,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_12: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Credits: 5 A continuation of MUSC 261 with additional study of intermediate techniques of songwriting and music composition and an introduction to more advanced techniques. Students will continue to analyze musical works and study composition techniques to create their own music.",
+    "prerequisiteCourseCodes": [
+      "MUSC 261"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MUSC 261 with a grade of 2.0 or higher. Recommended: MUSC& 133 and MUSC& 123",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MUSC 261 with a grade of 2.0 or higher. Recommended: MUSC& 133 and MUSC& 123"
     ],
     "effectiveYearRanges": [
       {
@@ -38972,9 +40246,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "title": "Independent Study-Music 2",
     "creditLabel": "1-5",
     "catalogDescription": "Encourages students to study independently in their fields of special interest in music. Each student meets on a tutorial basis with the instructor.",
+    "prerequisiteCourseCodes": [
+      "MUSC 298"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MUSC 298 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MUSC 298 and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -39110,9 +40386,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Continues to study simple and compound intervals, triads and seventh chords in four-part harmony and complete melodies through a program designed to train the ear to identify and write down musical structures from dictation.",
+    "prerequisiteCourseCodes": [
+      "MUSC& 122"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MUSC& 122 with a grade of 2.0 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MUSC& 122 with a grade of 2.0 or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -39174,9 +40452,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Continuation of MUSC& 131 . Covers the study of musical texture, species counterpoint, phrases, motives, and diatonic harmony including the dominant seventh chord, non-harmonic tones, cadences and inversions in a variety of choral and keyboard textures in common practice style. Includes analysis, composition and performance.",
+    "prerequisiteCourseCodes": [
+      "MUSC& 131"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MUSC& 131 with a grade of 2.0 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MUSC& 131 with a grade of 2.0 or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -39213,9 +40493,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Continuation of MUSC& 132 . Continued study of musical texture, counterpoint, and diatonic harmony including non-dominant seventh chords, secondary dominant chords, basic musical forms, and modulation.",
+    "prerequisiteCourseCodes": [
+      "MUSC& 132"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MUSC& 132 with a grade of 2.0 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MUSC& 132 with a grade of 2.0 or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -39351,9 +40633,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces the study of natural resources outdoors and in a classroom setting. Explores natural resources careers. Introduces concepts of systems, biomes, forest biology, tree physiology, forest ecology, silviculture, water resources, fish and wildlife management, and Washington forest practices. Students study forest history, forest policy, and forest ownership.",
+    "prerequisiteCourseCodes": [
+      "ENGL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ENGL& 101 with a grade of 2.0 or higher; or concurrent enrollment; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ENGL& 101 with a grade of 2.0 or higher; or concurrent enrollment; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -39429,9 +40713,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 12,
     "creditLabel": "12",
     "catalogDescription": "A field intensive course that covers uses and management of watersheds and the forests contained therein. Teaches watershed scale assessments, backcountry management, and human dimensions of wilderness use including forest harvesting practices across the State of Washington. Topics include land use assessment and management impacts through extensive field exercises in individual, team, and group situations. Students conduct basic trail maintenance, orienteering and examine uses and misuses of backcountry resources. Students create a field journal including a management plan for effective backcountry use. Summer field trip includes base camping, backpacking and/ or backcountry day hiking and field-intensive studies.",
+    "prerequisiteCourseCodes": [
+      "NATRS 182",
+      "NATRS 270"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: NATRS 182 and NATRS 270 with grades of 2.0 or higher; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: NATRS 182 and NATRS 270 with grades of 2.0 or higher; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -39575,9 +40862,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 6,
     "creditLabel": "6",
     "catalogDescription": "Application of algebra, geometry, and trigonometry to the solution of tree measurement, surveying, mapping, and orienteering problems. Requires calculator with trigonometric functions and capabilities.",
+    "prerequisiteCourseCodes": [
+      "MATH 70"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH 70 with a grade of 2.0 or higher and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH 70 with a grade of 2.0 or higher and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -39614,9 +40903,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 8,
     "creditLabel": "8",
     "catalogDescription": "Teaches the use of compass and chain/tape, mapping, map reading, topography, orientation, area determination, triangulation, the U.S. survey system, note keeping, field reporting, GPS (Global Positioning Systems), pacing and Studies and uses aerial photographs to interpret vegetation and land forms, measure distance and direction, and to navigate. Uses extensive field exercises in individual, team, and group situations. Students conduct basic tree measurements as well as open and closed traverses of roads, trails, and areas. Students apply previously learned mathematical concepts and field skills.",
+    "prerequisiteCourseCodes": [
+      "NATRS 180"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: NATRS 180 with a grade of 2.0 or higher; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: NATRS 180 with a grade of 2.0 or higher; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -39692,9 +40983,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Credits: 5 Collects specimens and identifies wildflower species found in Washington forests. Teaches the use of taxonomic keys and their ecological characteristics and growth habits.",
+    "prerequisiteCourseCodes": [
+      "NATRS 183"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: NATRS 183 with a grade of 2.0 or higher; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: NATRS 183 with a grade of 2.0 or higher; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -39731,9 +41024,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces geospatial concepts as part of the discipline of geographic information systems (GIS). Provides an overview with hands-on experience with ArcGIS software and functionality in natural resources applications. Emphasizes principal components of ArcGIS including: ArcGIS Pro, Catalog, Toolbox and ArcGIS Online. Provides hands-on practical exercises using field data in various formats including shapefiles, raster, geodatabase feature classes, GPX, and surface features datasets. Explores how to use geospatial datasets already available and how to create, modify or build new datasets. Create, manage, analyze, and display georeferenced datasets and finished maps.",
+    "prerequisiteCourseCodes": [
+      "MATH 70",
+      "NATRS 172"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: NATRS 172 and MATH 70 or higher with grades of 2.0 or higher; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: NATRS 172 and MATH 70 or higher with grades of 2.0 or higher; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -39827,8 +41123,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditLabel": "4",
     "catalogDescription": "Students learn skills needed to develop and manage wildland parks and recreational sites for private, state, and federal owners. Students visit, observe, and participate in actual projects within the growing wildland recreational industry.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: NATRS 100 with grade of 2.0 or higher or concurrent enrollment; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: NATRS 100 with grade of 2.0 or higher or concurrent enrollment; and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "NATRS 100"
     ],
     "effectiveYearRanges": [
       {
@@ -39865,9 +41163,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 4,
     "creditLabel": "4",
     "catalogDescription": "Introduces the study of physical and chemical properties of soil and soil ecology. Includes topics on soil formation, plant nutrition, soil water, water and soil conservation, soil erosion and stability, and use of soil maps. Schedules mini labs and field trips to offer hands-on experience. Discusses influence of soils on environmental quality, human health, and forest and agricultural economies.",
+    "prerequisiteCourseCodes": [
+      "MATH 72"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH 72 with a grade of 2.0 or higher; or eligible for MATH 97 or higher; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH 72 with a grade of 2.0 or higher; or eligible for MATH 97 or higher; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -39904,9 +41204,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Focuses on various software and GPS tools to collect, create, edit and maintain attributes and spatial information from the office, to the field, and back using applications like ESRI's Field Map, Survey 123, Avenza and others. Covers several different analytical techniques and methods pertaining for field data collection and imagery collection as applied to natural resources.",
+    "prerequisiteCourseCodes": [
+      "NATRS 192"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: NATRS 192 with a grade of 2.5 or higher; and instructor consent",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: NATRS 192 with a grade of 2.5 or higher; and instructor consent"
     ],
     "effectiveYearRanges": [
       {
@@ -39943,9 +41245,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Provides general introduction to the principles and techniques of cartography. Reviews fundamental mapping concepts of map design using GIS technology. Applies concepts of map scale, projection, and coordinate systems. Learn new software and tools within ArcGIS software including well MapPlex and ColorBrewer to aid in understanding principles of thematic map design.",
+    "prerequisiteCourseCodes": [
+      "NATRS 192"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: NATRS 192 with a grade of 2.5 or higher; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: NATRS 192 with a grade of 2.5 or higher; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -39982,9 +41286,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Students gain an understanding of stream, pond, and wetland ecology through classroom and field experiences. Students study stream and wetland dynamics, associated plant and animal ecology, streamflow hydraulics, and Washington Forest Practices Regulations in an applied field setting. Students conduct measurements and sampling within ponds, streams, and wetlands with follow-up analysis and reports.",
+    "prerequisiteCourseCodes": [
+      "ENGL& 101",
+      "NATRS 172"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ENGL& 101 and NATRS 172 with grades of 2.0 or higher; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ENGL& 101 and NATRS 172 with grades of 2.0 or higher; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -40021,9 +41328,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Stream and wetland restoration is an important issue in water and fish management. Students are given the opportunity to evaluate fundamental ecological processes with the end result being restoration of streams and wetlands. Students look at possible structure and functional issues within the riparian ecosystem. Students develop an efficient and productive restoration project addressing human-induced changes surrounding both aquatic and terrestrial components. Class is taught with lecture, field sampling, demonstrations, and interviews with agencies and private organizations.",
+    "prerequisiteCourseCodes": [
+      "ENGL& 101",
+      "NATRS 270"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ENGL& 101 and NATRS 270 with grades of 2.0 or higher; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ENGL& 101 and NATRS 270 with grades of 2.0 or higher; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -40060,9 +41370,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Covers the classification, identification, anatomy and physiology, age and growth, behavior, life history, and habitat of fish of the Pacific Northwest. Examines the importance of fish in our society and investigates related regulations and policies.",
+    "prerequisiteCourseCodes": [
+      "NATRS 270"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: NATRS 270 with a grade of 2.0 or higher; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: NATRS 270 with a grade of 2.0 or higher; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -40327,9 +41639,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 7,
     "creditLabel": "7",
     "catalogDescription": "Covers road and recreational trail location priorities, location on topographic maps with grade, slope, and property line constraints; Forest Practice Regulations; harvesting and construction equipment; curve computation and field layout; slope staking and cut/fill computation; culvert location; surfaces and drainage; calculations for cut/fill and curves; plan and profile drawing of fieldwork. Uses extensive field exercises in team and group situations.",
+    "prerequisiteCourseCodes": [
+      "NATRS 182"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: NATRS 182 and 292 with grades of 2.0 or higher; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: NATRS 182 and 292 with grades of 2.0 or higher; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -40366,9 +41680,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "A study of human relations and business activities unique to small independent businesses and organizations. Emphasizes contract supervision and consulting/contracting in natural resources management. Includes study of interactions of individuals, teams and crews, organizations, and business ethics. Teaches the types of ownership, organization, state and federal laws, contracts, taxation, insurance, payroll, finance, accounting, customer relations, personnel management, and negotiation.",
+    "prerequisiteCourseCodes": [
+      "NATRS 172"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: NATRS 172 with a grade of 2.0 or higher; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: NATRS 172 with a grade of 2.0 or higher; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -40444,9 +41760,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 8,
     "creditLabel": "8",
     "catalogDescription": "Credits: 8 Students acquire skills and knowledge to measure, calculate, and sample resources and forest products to determine value using statistically valid procedures. A rigorous course using skills and knowledge of tree diseases and disasters affecting forest product quality. Includes classroom, field studies and library research.",
+    "prerequisiteCourseCodes": [
+      "NATRS 182"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: NATRS 182 with a grade of 2.0 or higher; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: NATRS 182 with a grade of 2.0 or higher; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -40483,9 +41801,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Study of silvicultural and forest protection practices common in management of natural resources in the Pacific Northwest. Course prescribes specific management objectives and inventories resources and soils. Students design, measure and report a research project by working independently and in groups, indoors and outdoors.",
+    "prerequisiteCourseCodes": [
+      "NATRS 172"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: NATRS 172 and 180 with grades of 2.0 or higher; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: NATRS 172 and 180 with grades of 2.0 or higher; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -40606,9 +41926,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Focuses on ecological principles applied to forest management including production ecology, biogeochemistry, disturbances, environmental factors, populations, community ecology, forest succession, and forest classification/description. Course will be taught through classroom and field studies. Hands-on application will be emphasized.",
+    "prerequisiteCourseCodes": [
+      "ENGL 128"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ENGL 128 with a grade of 2.0 or higher; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ENGL 128 with a grade of 2.0 or higher; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -40684,9 +42006,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Teaches students about the various biotic and abiotic disturbance agents that affect forest ecosystems. Students identify important forest insects and diseases of North America, especially the Pacific Northwest, as well as their effects on forest ecology. Students learn predisposing factors that increase susceptibility as well as propose effective management strategies to reduce impacts.",
+    "prerequisiteCourseCodes": [
+      "ENGL 128"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ENGL 128 with a grade of 2.0 or higher; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ENGL 128 with a grade of 2.0 or higher; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -40723,9 +42047,14 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Walks students through the positive identification of invasive species and noxious weeds in Washington State. Students have the opportunity to learn about non-plant invasive and observe or participate in their management. Students learn sources of invasive species, methods of control and visit sites where biological, mechanical and chemical control has been used. Students learn the ecology behind biological invasions and assess invasive species control in the field. Students participate in mechanical control methods in various locations targeting various invasive species and have the opportunity to observe chemical methods. Students produce an invasive species management plan.",
+    "prerequisiteCourseCodes": [
+      "ENGL 128"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ENGL 128 with a grade of 2.0 or higher; and concurrent enrollment in NATRS 417 ; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ENGL 128 with a grade of 2.0 or higher; and concurrent enrollment in NATRS 417 ; and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "NATRS 417"
     ],
     "effectiveYearRanges": [
       {
@@ -40762,9 +42091,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces students to conflict theory as applied in complex natural resource disputes including forest harvest in the Pacific Northwest. Focuses on skill development in planning culturally appropriate and inclusive public participation processes, meeting facilitation, and conflict mediation including option comparison for nonviolent conflict management.",
+    "prerequisiteCourseCodes": [
+      "ENGL 128"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ENGL 128 with a grade of 2.0 or higher; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ENGL 128 with a grade of 2.0 or higher; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -40801,9 +42132,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 1,
     "creditLabel": "1",
     "catalogDescription": "Showcases timely speeches by professionals in natural resource management. Guide students through a review of current topics in forestry, fire, watershed, or soils. Presentations by guest speakers and professionals in the field complement student's development of writing and oral presentation skills.",
+    "prerequisiteCourseCodes": [
+      "ENGL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ENGL& 101 with a grade of 2.0 or higher; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ENGL& 101 with a grade of 2.0 or higher; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -40840,9 +42173,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "A core forest resource management course. Students examine and analyze natural resource policy including environmental impact statements, environmental assessments, and habitat conservation plans. Students appraise and critique administrative behavior, as well as legislative, regulatory, legal, ethical, and personal considerations as applied to forestry operations in Washington State and nationally. Students discuss and demonstrate applications of Washington Forest Practices, Habitat Conservation Plans, Clean Air, Clean Water, and Endangered Species Acts.",
+    "prerequisiteCourseCodes": [
+      "ENGL 128",
+      "NATRS 390"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ENGL 128 and NATRS 390 with grades of 2.0 or higher; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ENGL 128 and NATRS 390 with grades of 2.0 or higher; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -40879,9 +42215,14 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Focuses on in-depth understanding of various harvest systems for the applied forester or land manger. Topics include skyline operations, safety rules, rigging requirements, payload analysis, harvest unit planning and layout. Specialized areas include helicopter logging, Riparian Management Zone (RMZ) rules, Wetland Management Zones (WMZ) rules, Channel Migration Zone (CMZ) rules and unstable slopes.",
+    "prerequisiteCourseCodes": [
+      "NATRS 182"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: NATRS 182 with a grade of 2.0 or higher; concurrent enrollment in NATRS 402 and 403 ; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: NATRS 182 with a grade of 2.0 or higher; concurrent enrollment in NATRS 402 and 403 ; and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "NATRS 402"
     ],
     "effectiveYearRanges": [
       {
@@ -40908,9 +42249,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 4,
     "creditLabel": "4",
     "catalogDescription": "Focuses on more in-depth understanding of various harvest systems for the applied forester or land manager. Topics include mechanical operations for ground based systems, rigging requirements, payload analysis, harvest unit planning and layout. Specialized areas include helicopter logging, Riparian Management Zone (RMZ) rules, Wetland Management Zones (WMZ) rules, Channel Migration Zone (CMZ) rules and unstable slopes.",
+    "prerequisiteCourseCodes": [
+      "NATRS 182"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: NATRS 182 with a grade of 2.0 or higher; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: NATRS 182 with a grade of 2.0 or higher; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -40937,9 +42280,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "An intermediate level class for foresters and resource managers in issues and responsibilities relating to transportation systems. Students study road types, standards and design procedures. Includes basic soil engineering, route surveying, reconnaissance and design software. Specialized topics include design and installation of drainage structures, erosion control techniques and methods, and material stockpiles. Covers administrative activities such as road costing, rules, regulations, permits and road maintenance plans.",
+    "prerequisiteCourseCodes": [
+      "NATRS 182"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: NATRS 182 with a grade of 2.0 or higher; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: NATRS 182 with a grade of 2.0 or higher; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -40966,9 +42311,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Credits: 5 Explore unmanned aerial vehicle (UAV) applications for mapping including methods of data collection, processing, and analysis for agriculture, real-estate, surveying, construction, with an emphasis on natural resources and forestry applications. Gain knowledge of rules and regulations of commercial use of UAVs including federal, state, and local jurisdiction regulations. Become familiar with UAV platforms for data acquisition, software for automated data collection, and software for acquired data post processing. Learn to use mapping software for remote sensing, image analysis, and change detection from data collected in the field.",
+    "prerequisiteCourseCodes": [
+      "NATRS 192"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: NATRS 192 or equivalent; and instructor consent. Recommended: NATRS 107",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: NATRS 192 or equivalent; and instructor consent. Recommended: NATRS 107"
     ],
     "effectiveYearRanges": [
       {
@@ -40995,9 +42342,14 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "A supplementary GIS course that accompanies NATRS 386 Bio Invasions . Students apply GIS principles to generate projects for NATRS 386 . Students build on their current GIS skills and employ trouble shooting and problem solving with the ultimate outcome of successful spatial mapping and analysis to complete NATRS 386 assignments.",
+    "prerequisiteCourseCodes": [
+      "NATRS 192"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: NATRS 192 with a grade of 2.0 or higher; and concurrent enrollment with NATRS 386; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: NATRS 192 with a grade of 2.0 or higher; and concurrent enrollment with NATRS 386; and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "NATRS 386"
     ],
     "effectiveYearRanges": [
       {
@@ -41034,9 +42386,14 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "A supplementary GIS course that accompanies NATRS 493 Advanced Silviculture. Students apply GIS principles to generate projects for NATRS 493 . Students build on their current GIS skills and employ trouble shooting and problem solving with the ultimate outcome of successful spatial mapping and analysis to complete NATRS 493 assignments.",
+    "prerequisiteCourseCodes": [
+      "NATRS 192"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: NATRS 192 with a grade of 2.0 or higher; concurrent enrollment with NATRS 493; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: NATRS 192 with a grade of 2.0 or higher; concurrent enrollment with NATRS 493; and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "NATRS 493"
     ],
     "effectiveYearRanges": [
       {
@@ -41073,9 +42430,14 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "A supplementary GIS course that accompanies NATRS 461 Wildlife Ecology Students apply GIS principles to complete projects for NATRS 461 . Students build on their current GIS skills and utilize trouble shooting and problem solving with the ultimate outcome of generating successful spatial mapping and analysis to complete NATRS 461 assignments.",
+    "prerequisiteCourseCodes": [
+      "NATRS 192"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: NATRS 192 with a grade of 2.0 or higher; concurrent enrollment with NATRS 461 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: NATRS 192 with a grade of 2.0 or higher; concurrent enrollment with NATRS 461 and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "NATRS 461"
     ],
     "effectiveYearRanges": [
       {
@@ -41113,8 +42475,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditLabel": "5",
     "catalogDescription": "Students examine, identify and determine important wildlife habitats and their characteristic plants and animals within an ecological and management context through outdoor application of concepts. Discusses identification of species and habitats as well as life histories and ecology of important species. Examines and critiques scientific principles and management implications. Students organize and carry out a scientific sampling and assessment in the field.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: NATRS 161 with grades of 2.0 or higher or concurrent enrollment; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: NATRS 161 with grades of 2.0 or higher or concurrent enrollment; and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "NATRS 161"
     ],
     "effectiveYearRanges": [
       {
@@ -41151,9 +42515,14 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Examines forest restoration at multiple spatial scales from stand to watershed to landscape levels. Students demonstrate outdoor skills and conduct restoration assessments. Compares goals for biological conservation, invasive species management, carbon sequestration, and economic viability through field trips and applied experience with restoration techniques and case studies.",
+    "prerequisiteCourseCodes": [
+      "NATRS 210"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ENGL 335 with grade of 2.0 or higher or concurrent enrollment; and NATRS 210 with a grade of 2.0 or higher; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ENGL 335 with grade of 2.0 or higher or concurrent enrollment; and NATRS 210 with a grade of 2.0 or higher; and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "ENGL 335"
     ],
     "effectiveYearRanges": [
       {
@@ -41190,9 +42559,16 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Students learn, through classroom and field studies, woody plant interactions with environmental stresses including changes to stand structure caused by humans, nature or time and selection using genetic principles for improved growth. Students participate in hands-on seedling production methods while applying the theory and practice of controlling forest establishment, composition, and growth. Students assess fundamentals of forest stand development and dynamics and use critical thinking to propose forest stewardship techniques to satisfy a range of possible objectives (biological, economic, and social).",
+    "prerequisiteCourseCodes": [
+      "ENGL 128",
+      "NATRS 292"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ENGL 128 , NATRS 292 and 293 with grades of 2.0 or higher; and MATH& 146 with grade of 2.0 or higher or concurrent enrollment; and concurrent enrollment in NATRS 418 ; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ENGL 128 , NATRS 292 and 293 with grades of 2.0 or higher; and MATH& 146 with grade of 2.0 or higher or concurrent enrollment; and concurrent enrollment in NATRS 418 ; and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "MATH& 146",
+      "NATRS 418"
     ],
     "effectiveYearRanges": [
       {
@@ -41278,8 +42654,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditLabel": "2",
     "catalogDescription": "Conduct field work and other associated tasks in connection with capstone project proposals by working with a sponsoring organization. Students are given the opportunity to utilize, synthesis and expand knowledge and expertise in key areas of interest to them through their capstone work.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: NATRS 494 with a grade of 2.0 or higher or concurrent enrollment; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: NATRS 494 with a grade of 2.0 or higher or concurrent enrollment; and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "NATRS 494"
     ],
     "effectiveYearRanges": [
       {
@@ -41335,8 +42713,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditLabel": "2",
     "catalogDescription": "Finalize all necessary steps to complete all deliverables including making a presentation of the project to the sponsoring organization. Final field work, data analysis, meetings, evaluations, writing and other necessary tasks are finished.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: NATRS 494 and 495 with grades of 2.0 or higher or concurrent enrollment; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: NATRS 494 and 495 with grades of 2.0 or higher or concurrent enrollment; and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "NATRS 494"
     ],
     "effectiveYearRanges": [
       {
@@ -41507,9 +42887,19 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduction to the role of nutrition in human health. Topics include human metabolism, utilization of nutrients, nutritive value of foods, factors that affect eating habits, food advertising, nutrition and disease, and establishing a healthy lifestyle. This course is particularly suitable for health occupations students.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "AP 100"
+      ],
+      [
+        "AP 103"
+      ],
+      [
+        "BIOL& 160"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: AP 100 or AP 103; or BIOL& 160 , all with grades of 2.0 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: AP 100 or AP 103; or BIOL& 160 , all with grades of 2.0 or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -41673,8 +43063,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditLabel": "3",
     "catalogDescription": "Credits: 3 Demonstrate knowledge and understanding of the function of the human body to include applied concepts related to anatomy, kinesiology, and biomechanics with an emphasis on material related to the practice of occupational therapy across diverse clientele and practice settings. Client factors, body functions and body structures related to movement are studied as they affect performance in areas of occupation.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 103 ; and enrollment in OTA program.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 103 ; and enrollment in OTA program."
+    ],
+    "corequisiteCourseCodes": [
+      "OTA 103"
     ],
     "effectiveYearRanges": [
       {
@@ -41712,8 +43104,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditLabel": "2",
     "catalogDescription": "Credits: 2 Application of concepts learned in OTA 102 . Demonstrate knowledge and understanding of the function of the human body to include applied concepts related to anatomy, kinesiology, and biomechanics with an emphasis on material related to the practice of occupational therapy across diverse clientele and practice settings. Client factors, body functions and body structures related to movement are studied as they affect performance in areas of occupation.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 102 ; and enrollment in OTA program.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 102 ; and enrollment in OTA program."
+    ],
+    "corequisiteCourseCodes": [
+      "OTA 102"
     ],
     "effectiveYearRanges": [
       {
@@ -41751,8 +43145,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditLabel": "2",
     "catalogDescription": "Students learn basic patient-therapist interaction and communication skills, introductory use of medical terminology, patient confidentiality and HIPAA rules, infection control and blood borne pathogens guidelines, and time management skills.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 112 ; and enrollment in OTA program.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 112 ; and enrollment in OTA program."
+    ],
+    "corequisiteCourseCodes": [
+      "OTA 112"
     ],
     "effectiveYearRanges": [
       {
@@ -41790,8 +43186,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditLabel": "2",
     "catalogDescription": "Students demonstrate ability to apply strategies for learned communication with inter disciplinary team and patients with the use of proper medical terminology, and safe practice of infection control and blood borne pathogens guidelines. Implement strategies for time management and application of study skills. Demonstrates implementation of OT practice framework and introduction into task analyses.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 111 ; and enrollment in OTA program.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 111 ; and enrollment in OTA program."
+    ],
+    "corequisiteCourseCodes": [
+      "OTA 111"
     ],
     "effectiveYearRanges": [
       {
@@ -41829,8 +43227,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditLabel": "3",
     "catalogDescription": "An introduction to the principles of growth and development and the effects of common heritable diseases, genetic conditions, mental illness, disability, trauma and injury in children. Includes instruction in the OT process, assessments and interventions that are based on the frames of references that are used to meet the needs of children with diverse conditions. Students also learn the role of the COTA and how the profession continues to evolve based on changing societal influences and needs.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 121 ; and enrollment in OTA program.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 121 ; and enrollment in OTA program."
+    ],
+    "corequisiteCourseCodes": [
+      "OTA 121"
     ],
     "effectiveYearRanges": [
       {
@@ -41868,8 +43268,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditLabel": "2",
     "catalogDescription": "Lab allows for practical experience in administering screening tools and standardized assessments, and the development of interventions to meet the needs of children with common heritable diseases, genetic conditions, mental illness, disability, trauma, and injury. Emphasis is on the application of knowledge and experiential learning of approaches and techniques that are used with children.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 120 ; and enrollment in OTA program.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 120 ; and enrollment in OTA program."
+    ],
+    "corequisiteCourseCodes": [
+      "OTA 120"
     ],
     "effectiveYearRanges": [
       {
@@ -41906,9 +43308,15 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Study of the effects of heritable diseases, genetic conditions, disability, trauma and injury to the physical and mental health and occupational performance of the individual. Study the structure and function of the human body to include the biological and physical foundation of specific clinical conditions. Includes basic assessment and treatment approaches utilized in occupational therapy intervention of the physically disabled.",
+    "prerequisiteCourseCodes": [
+      "OTA 102",
+      "OTA 103"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: OTA 102 and OTA 103 with grades of 2.0 or higher; concurrent enrollment in OTA 123 ; and enrollment in OTA program.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: OTA 102 and OTA 103 with grades of 2.0 or higher; concurrent enrollment in OTA 123 ; and enrollment in OTA program."
+    ],
+    "corequisiteCourseCodes": [
+      "OTA 123"
     ],
     "effectiveYearRanges": [
       {
@@ -41946,8 +43354,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_13: unknown[] = [
     "creditLabel": "2",
     "catalogDescription": "Basic assessment and treatment techniques as it relates to adult physical disabilities. Lab allows for practical experience in patient assessment, transfers and daily living skills.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 122 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 122 ; or instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "OTA 122"
     ],
     "effectiveYearRanges": [
       {
@@ -42027,8 +43437,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditLabel": "1",
     "catalogDescription": "Teaches students the basics of client-therapist interaction, documentation, clinical issues, and therapeutic techniques. Includes weekly discussion of concurrent clinical experiences.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 127 and OTA 128 ; and enrollment in OTA program.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 127 and OTA 128 ; and enrollment in OTA program."
+    ],
+    "corequisiteCourseCodes": [
+      "OTA 127",
+      "OTA 128"
     ],
     "effectiveYearRanges": [
       {
@@ -42066,8 +43479,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditLabel": "1",
     "catalogDescription": "Students demonstrate skills at a novice level to gather necessary information to implement evaluation, treatment, and occupational profile of the client, document occupational therapy service, implement treatment based on the OTPF. Students also demonstrate professional behaviors required to be successful in the fieldwork.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 126 and OTA 128 ; and enrollment in OTA program.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 126 and OTA 128 ; and enrollment in OTA program."
+    ],
+    "corequisiteCourseCodes": [
+      "OTA 126",
+      "OTA 128"
     ],
     "effectiveYearRanges": [
       {
@@ -42105,8 +43521,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditLabel": "1",
     "catalogDescription": "Students participate in supervised clinical experience with clients in a community practice setting. Includes directed observation, planning, and implementation of client treatments as assigned by clinical supervisor, and application of theory and treatment techniques. This is a pass/no credit course.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 126 and OTA 127 ; and enrollment in OTA program.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 126 and OTA 127 ; and enrollment in OTA program."
+    ],
+    "corequisiteCourseCodes": [
+      "OTA 126",
+      "OTA 127"
     ],
     "effectiveYearRanges": [
       {
@@ -42182,9 +43601,17 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Understand the effects of heritable diseases, genetic conditions, disability, trauma, and injury to the physical and mental health and occupational performance of the individual. Demonstrate knowledge and understanding of the structure and function of the human body to include the biological and physical sciences of specific clinical conditions. Describe and demonstrate basic assessment and treatment approaches utilized in occupational therapy intervention of the physically disabled through practical experiences in a lab setting.",
+    "prerequisiteCourseCodes": [
+      "OTA 102",
+      "OTA 103",
+      "OTA 122",
+      "OTA 123"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: OTA 102 and OTA 103 ; OTA 122 and OTA 123 all with grades of 2.0 or higher; concurrent enrollment in OTA 132 ; and enrollment in OTA program.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: OTA 102 and OTA 103 ; OTA 122 and OTA 123 all with grades of 2.0 or higher; concurrent enrollment in OTA 132 ; and enrollment in OTA program."
+    ],
+    "corequisiteCourseCodes": [
+      "OTA 132"
     ],
     "effectiveYearRanges": [
       {
@@ -42221,9 +43648,17 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Basic assessment and treatment techniques as it relates to adult physical disabilities. Lab allows for practical experience in patient assessment, transfers, and daily living skills.",
+    "prerequisiteCourseCodes": [
+      "OTA 102",
+      "OTA 103",
+      "OTA 122",
+      "OTA 123"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: OTA 102 and OTA 103 ; OTA 122 and OTA 123 with grades of 2.0 or higher; concurrent enrollment in OTA 131 ; and enrollment in OTA program.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: OTA 102 and OTA 103 ; OTA 122 and OTA 123 with grades of 2.0 or higher; concurrent enrollment in OTA 131 ; and enrollment in OTA program."
+    ],
+    "corequisiteCourseCodes": [
+      "OTA 131"
     ],
     "effectiveYearRanges": [
       {
@@ -42261,8 +43696,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditLabel": "3",
     "catalogDescription": "Students learn the techniques used to meet mental health needs within the occupational therapy setting. Includes the application of psychosocial frames of reference, clinical conditions, and the application of occupational therapy to these conditions.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 134 ; and enrollment in OTA program.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 134 ; and enrollment in OTA program."
+    ],
+    "corequisiteCourseCodes": [
+      "OTA 134"
     ],
     "effectiveYearRanges": [
       {
@@ -42300,8 +43737,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditLabel": "1",
     "catalogDescription": "Students participate in supervised clinical experience with clients in a community practice setting. Includes directed observations, planning and implementation of client treatments as assigned by clinical supervisor, and application of theory and treatment techniques in a group setting with clients with psychological and social factors influencing engagement in occupation.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 133 ; and enrollment in OTA program.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 133 ; and enrollment in OTA program."
+    ],
+    "corequisiteCourseCodes": [
+      "OTA 133"
     ],
     "effectiveYearRanges": [
       {
@@ -42490,9 +43929,15 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Students apply and demonstrate novice competency of material learned in OTA 200 . Focuses on application and hands on experience with task analysis, assistive technology and devices and occupational based approaches. Students demonstrate interventions and collaborate with clients, educators and other health care professionals using a service learning model.",
+    "prerequisiteCourseCodes": [
+      "OTA 120",
+      "OTA 121"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: OTA 120 and OTA 121 with grades of 2.0 or higher; and concurrent enrollment in OTA 200 ; and enrollment in OTA program.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: OTA 120 and OTA 121 with grades of 2.0 or higher; and concurrent enrollment in OTA 200 ; and enrollment in OTA program."
+    ],
+    "corequisiteCourseCodes": [
+      "OTA 200"
     ],
     "effectiveYearRanges": [
       {
@@ -42568,9 +44013,18 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "An advanced level course that incorporates the application of theories, models of practice, and frames of reference in the analysis, selection and use of activities in a therapeutic environment while addressing the needs of diverse patient populations. Emphasis is placed on the application of the OT Practice Framework in the development of intervention targeting basic and higher level living skills. Includes instruction in the responsibilities a COTA has in the areas of documentation, record keeping, service operations, research, and safety and infection control.",
+    "prerequisiteCourseCodes": [
+      "OTA 122",
+      "OTA 123",
+      "OTA 131",
+      "OTA 132",
+      "OTA 133"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: OTA 122, OTA 123, OTA 131, OTA 132 and OTA 133 all with grades of 2.0 or higher; and concurrent enrollment in OTA 211 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: OTA 122, OTA 123, OTA 131, OTA 132 and OTA 133 all with grades of 2.0 or higher; and concurrent enrollment in OTA 211 ."
+    ],
+    "corequisiteCourseCodes": [
+      "OTA 211"
     ],
     "effectiveYearRanges": [
       {
@@ -42616,9 +44070,18 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "An advanced level course that emphasizes the application of therapeutic practices in a clinical context. Includes training and feedback in areas related to client care including chart review, intervention planning, intervention implementation, documentation and discharge planning.",
+    "prerequisiteCourseCodes": [
+      "OTA 122",
+      "OTA 123",
+      "OTA 131",
+      "OTA 132",
+      "OTA 133"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: OTA 122, OTA 123, OTA 131, OTA 132, and OTA 133 all with grades of 2.0 or higher; concurrent enrollment in OTA 210 ; and enrollment in OTA program.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: OTA 122, OTA 123, OTA 131, OTA 132, and OTA 133 all with grades of 2.0 or higher; concurrent enrollment in OTA 210 ; and enrollment in OTA program."
+    ],
+    "corequisiteCourseCodes": [
+      "OTA 210"
     ],
     "effectiveYearRanges": [
       {
@@ -42665,8 +44128,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditLabel": "1",
     "catalogDescription": "Students study group dynamics as related to occupational therapy. Students learn to plan and implement activity groups appropriate to patients or clients of all ages. Emphasizes group leadership skills.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 213 ; and enrollment in OTA program.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 213 ; and enrollment in OTA program."
+    ],
+    "corequisiteCourseCodes": [
+      "OTA 213"
     ],
     "effectiveYearRanges": [
       {
@@ -42704,8 +44169,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditLabel": "1",
     "catalogDescription": "Students implement activities, appropriate to clients of all ages, incorporating components of a group, characteristics of different type of groups, and developmental levels of a group.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 212 ; and enrollment in OTA program.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 212 ; and enrollment in OTA program."
+    ],
+    "corequisiteCourseCodes": [
+      "OTA 212"
     ],
     "effectiveYearRanges": [
       {
@@ -42791,8 +44258,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditLabel": "2",
     "catalogDescription": "Students implement and lead activities for clients of all ages with consideration of characteristics of different types and developmental levels of a group.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 220 and enrollment in OTA program.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 220 and enrollment in OTA program."
+    ],
+    "corequisiteCourseCodes": [
+      "OTA 220"
     ],
     "effectiveYearRanges": [
       {
@@ -42839,8 +44308,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditLabel": "1",
     "catalogDescription": "Students learn basics of patient-therapist interaction, documentation, clinical issues, and therapeutic techniques. Also includes weekly discussion of concurrent clinical experiences.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 223 ; and enrollment in OTA program.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 223 ; and enrollment in OTA program."
+    ],
+    "corequisiteCourseCodes": [
+      "OTA 223"
     ],
     "effectiveYearRanges": [
       {
@@ -42878,8 +44349,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditLabel": "1",
     "catalogDescription": "Students participate in supervised clinical experience with patients in a community practice setting. Includes directed observation, planning, and implementation of patient treatments as assigned by the clinical supervisor. This is a pass/no credit course.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 222 and enrollment in OTA program.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 222 and enrollment in OTA program."
+    ],
+    "corequisiteCourseCodes": [
+      "OTA 222"
     ],
     "effectiveYearRanges": [
       {
@@ -42917,8 +44390,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditLabel": "2",
     "catalogDescription": "An advanced course where students demonstrate previously learned technical skills as well as their knowledge of physical dysfunctions as they work with a variety of material to design, modify, adapt and fabricate special equipment and assistive devices for the disabled. Students demonstrate and articulate the use of technology to support performance, participation, health and wellbeing.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 225 ; and admitted to the OTA program.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 225 ; and admitted to the OTA program."
+    ],
+    "corequisiteCourseCodes": [
+      "OTA 225"
     ],
     "effectiveYearRanges": [
       {
@@ -42956,8 +44431,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditLabel": "3",
     "catalogDescription": "An advanced course where students will apply and integrate previously learned technical skills as well as knowledge of physical dysfunction as they work with a variety of materials to design, modify, adapt and fabricate special equipment and assistive devices for the disabled.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 224 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 224 ."
+    ],
+    "corequisiteCourseCodes": [
+      "OTA 224"
     ],
     "effectiveYearRanges": [
       {
@@ -43034,8 +44511,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditLabel": "1",
     "catalogDescription": "Students discuss and problem-solve fieldwork experiences, read and discuss literature appropriate to fieldwork and review OTA program content in preparation for national certification exam.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 245 ; and enrollment in OTA program.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 245 ; and enrollment in OTA program."
+    ],
+    "corequisiteCourseCodes": [
+      "OTA 245"
     ],
     "effectiveYearRanges": [
       {
@@ -43073,8 +44552,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditLabel": "1",
     "catalogDescription": "Students discuss and problem-solve fieldwork experiences, read and discuss literature appropriate to fieldwork, and review OTA program content in preparation for national certification exam.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 246 ; and enrollment in OTA program.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 246 ; and enrollment in OTA program."
+    ],
+    "corequisiteCourseCodes": [
+      "OTA 246"
     ],
     "effectiveYearRanges": [
       {
@@ -43121,8 +44602,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditLabel": "11",
     "catalogDescription": "Fieldwork experience includes practice in one of the following areas: physical disabilities, psychological dysfunction, geriatrics, developmental disabilities, pediatrics, work hardening/pain management, or hand therapy under the supervision of a licensed occupational therapy practitioner. This is a pass/no credit course.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 240 ; and enrollment in OTA program.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in OTA 240 ; and enrollment in OTA program."
+    ],
+    "corequisiteCourseCodes": [
+      "OTA 240"
     ],
     "effectiveYearRanges": [
       {
@@ -43159,9 +44642,14 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditValue": 11,
     "creditLabel": "11",
     "catalogDescription": "Fieldwork experience includes practice in one of the following areas: physical disabilities, psychological dysfunction, geriatrics, developmental disabilities, pediatrics, work hardening/pain management, or hand therapy under the supervision of a licensed occupational therapy practitioner. This is a pass/no credit course.",
+    "prerequisiteCourseCodes": [
+      "OTA 245"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: OTA 245 with grade of 2.0 or higher; concurrent enrollment in OTA 241 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: OTA 245 with grade of 2.0 or higher; concurrent enrollment in OTA 241 ; or instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "OTA 241"
     ],
     "effectiveYearRanges": [
       {
@@ -43491,9 +44979,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditValue": 1,
     "creditLabel": "1",
     "catalogDescription": "Focuses on intermediate and advanced volleyball skills and strategies. Students practice and acquire intermediate and advanced techniques and skills associated with volleyball.",
+    "prerequisiteCourseCodes": [
+      "P E 118"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: P E 118 or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: P E 118 or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -43948,9 +45438,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Allows students to continue and advance their health and fitness knowledge and their aerobic activity using treadmills, stationary bicycles, stair climbers, rowing machines, cross-country ski machines, elliptical trainers, arc trainers, and ADA SciFit machine.",
+    "prerequisiteCourseCodes": [
+      "P E 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: P E 101 or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: P E 101 or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -43977,9 +45469,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Allows students to continue and advance their health and fitness using treadmills, stationary bicycles, stair climbers, rowing machines, cross-country ski machines, elliptical trainers, arc trainers, and ADA SciFit machine.",
+    "prerequisiteCourseCodes": [
+      "P E 201"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: P E 201 or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: P E 201 or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -44006,9 +45500,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Allows students to continue and advance their health and fitness through jogging. Students jog on the walking track, campus trails, and through nearby neighborhoods.",
+    "prerequisiteCourseCodes": [
+      "P E 102"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: P E 102 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: P E 102 ."
     ],
     "effectiveYearRanges": [
       {
@@ -44035,9 +45531,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Allows students to continue to advance their health and fitness through aerobic walking. Students walk on the campus track, campus trails, and through nearby neighborhoods.",
+    "prerequisiteCourseCodes": [
+      "P E 111"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: P E 111 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: P E 111 ."
     ],
     "effectiveYearRanges": [
       {
@@ -44089,9 +45587,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Allows students to continue and advance their health and fitness knowledge and their muscular strength and endurance through resistance training with Nautilus and Cybex machines and free weights.",
+    "prerequisiteCourseCodes": [
+      "P E 131"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: P E 131 or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: P E 131 or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -44143,9 +45643,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditValue": 1,
     "creditLabel": "1",
     "catalogDescription": "Focuses on use of weights, benches and bands set to music. Allows students to continue to develop muscular strength and endurance, enhance cardio respiratory endurance, reduce or maintain body fat levels, and gain knowledge in safe and effective activity principles.",
+    "prerequisiteCourseCodes": [
+      "P E 137"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: P E 137 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: P E 137 ."
     ],
     "effectiveYearRanges": [
       {
@@ -44172,9 +45674,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditValue": 1,
     "creditLabel": "1",
     "catalogDescription": "Allows students to continue their training in Pilates and yoga by training core muscle groups- -abdomen, lower back, hips, and buttocks. Focuses on building a stronger, healthier body, and improving posture, circulation, energy and stamina. Emphasizes stretching and relaxing the mind and body.",
+    "prerequisiteCourseCodes": [
+      "P E 147"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: P E 147 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: P E 147 ."
     ],
     "effectiveYearRanges": [
       {
@@ -44201,9 +45705,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditValue": 1,
     "creditLabel": "1",
     "catalogDescription": "Focuses on utilizing Swiss balls and free weights (dumbbells) to build core strength and functional fitness. Allows students to continue to advance their core fitness by toning the entire body with special emphasis on progressively challenging the spinal extensors and deep abdominal muscles.",
+    "prerequisiteCourseCodes": [
+      "P E 148"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: P E 148 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: P E 148 ."
     ],
     "effectiveYearRanges": [
       {
@@ -44230,9 +45736,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Uses aerobic activity, anaerobic activity, and weight training. Allows students to continue training and gain information appropriate for sport-specific conditioning.",
+    "prerequisiteCourseCodes": [
+      "P E 151"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: P E 151.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: P E 151."
     ],
     "effectiveYearRanges": [
       {
@@ -44259,9 +45767,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Emphasizes total body fitness focusing on aerobic activity and resistance training. Allows students to continue and improve their total physical fitness.",
+    "prerequisiteCourseCodes": [
+      "P E 103"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: P E 103 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: P E 103 ."
     ],
     "effectiveYearRanges": [
       {
@@ -44288,9 +45798,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_14: unknown[] = [
     "creditValue": 1,
     "creditLabel": "1",
     "catalogDescription": "Focuses on using a boot camp format which promotes cardio respiratory fitness and muscular strength and endurance. Applies interval training principles using hand-held weights, resistance bands, Swiss balls, and aerobic exercise set to music.",
+    "prerequisiteCourseCodes": [
+      "P E 158"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: P E 158 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: P E 158 ."
     ],
     "effectiveYearRanges": [
       {
@@ -45140,9 +46652,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces students to modern symbolic logic, including both propositional logic translation and proofs and predicate logic translation and proofs. Topics may include recognizing arguments, translating from a natural to a formal language, validity of arguments, logical implication, equivalency, and consistency.",
+    "prerequisiteCourseCodes": [
+      "MATH 97"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH 97 with a grade of 2.0 or higher; or eligible for MATH 107 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH 97 with a grade of 2.0 or higher; or eligible for MATH 107 or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -45392,9 +46906,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "For students who have learned the fundamentals of film photography. Concentrates on the more complex aspects of exposure, printmaking skills, lighting and composition while increasing photographic concepts and vision. Students refine the aesthetic and technical aspects of their photography. Course requires a 35mm film camera.",
+    "prerequisiteCourseCodes": [
+      "PHOTO 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: PHOTO 101 with a grade of 1.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: PHOTO 101 with a grade of 1.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -45431,9 +46947,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "For the student who has chosen to use photography as a form of creative expression. Students further refine their aesthetic and technical skills while developing a personal style. Students are directed toward personal projects that result in a portfolio of coherent images. Course requires a 35mm film camera.",
+    "prerequisiteCourseCodes": [
+      "PHOTO 102"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: PHOTO 102 with a grade of 1.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: PHOTO 102 with a grade of 1.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -45523,9 +47041,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Continues the study of aesthetic and technical theories and techniques of digital photography. Topics include intermediate level exposure, composition, lighting, creativity and image editing and correction techniques. Students begin to develop a personal photographic style. Course requires a digital camera.",
+    "prerequisiteCourseCodes": [
+      "PHOTO 111"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: PHOTO 111 with a grade of 1.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: PHOTO 111 with a grade of 1.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -45562,9 +47082,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Furthers the study of aesthetic and technical theories and techniques of digital photography. Emphasizes the development of a related body of work demonstrating the student's personal photographic vision. Explores advanced digital camera and image editing software techniques. Course requires a digital camera.",
+    "prerequisiteCourseCodes": [
+      "PHOTO 112"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: PHOTO 112 with a grade of 1.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: PHOTO 112 with a grade of 1.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -45629,9 +47151,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "For students in college transfer programs. Course goals are to further develop an understanding of basic concepts of physics and analytical and problem-solving skills with applications to biological systems. Laboratory is an integral component of the course. Covers the ideas of motion, forces, momentum and energy from within the framework of Newton's Laws. No credit given to students who have completed PHYS& 114 .",
+    "prerequisiteCourseCodes": [
+      "MATH 97"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL& 101 and a grade of 2.0 or higher in MATH 97 or 1-1/2 years of high school Algebra.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL& 101 and a grade of 2.0 or higher in MATH 97 or 1-1/2 years of high school Algebra."
     ],
     "effectiveYearRanges": [
       {
@@ -45668,9 +47192,17 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "For students in college transfer programs, especially those interested in biological or medical sciences. Course develops an understanding of the basic concepts of physics and analytical and problem solving skills with applications to biological systems. Laboratory is an integral component of the course. Teaches the principles of energy flow and conservation, along with electricity with biological and medical applications. No credit given to students who have completed PHYS& 115 .",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "MATH 97",
+        "PHYS 154"
+      ],
+      [
+        "PHYS& 114"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL& 101 and a grade of 2.0 or higher in PHYS& 114 or PHYS 154 and in either MATH 97 or 1 1/2 years of high school Algebra.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL& 101 and a grade of 2.0 or higher in PHYS& 114 or PHYS 154 and in either MATH 97 or 1 1/2 years of high school Algebra."
     ],
     "effectiveYearRanges": [
       {
@@ -45707,9 +47239,18 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Course develops an understanding of the basic concepts of physics and analytical and problem solving skills with applications to biological systems. Laboratory is an integral component of the course. Teaches the dynamics of oscillations, waves, electromagnetism, and light with biological and medical applications. No credit given to students who have completed PHYS& 116 .",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "MATH 97",
+        "PHYS 155"
+      ],
+      [
+        "MATH 97",
+        "PHYS& 115"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: PHYS& 115 or PHYS 155 with a grade of 2.0 or higher; eligible for ENGL& 101 ; and a grade of 2.0 or higher in either MATH 97 ; or 1 1/2 years of high school algebra.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: PHYS& 115 or PHYS 155 with a grade of 2.0 or higher; eligible for ENGL& 101 ; and a grade of 2.0 or higher in either MATH 97 ; or 1 1/2 years of high school algebra."
     ],
     "effectiveYearRanges": [
       {
@@ -45747,8 +47288,13 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
     "creditLabel": "3",
     "catalogDescription": "Fourth quarter general physics sequence course for science and engineering students. Serves as a terminal course for non-physics majors and gives students a good conceptual background for the study of quantum mechanics. Emphasizes a thorough study of phenomena that cannot be explained with ideas from classical physics.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL& 101 and a grade of 2.0 or higher in PHYS& 222 and MATH& 152 and at least concurrent enrollment in PHYS& 223 and MATH& 163 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL& 101 and a grade of 2.0 or higher in PHYS& 222 and MATH& 152 and at least concurrent enrollment in PHYS& 223 and MATH& 163 ."
+    ],
+    "corequisiteCourseCodes": [
+      "MATH& 152",
+      "MATH& 163",
+      "PHYS& 222",
+      "PHYS& 223"
     ],
     "effectiveYearRanges": [
       {
@@ -45776,8 +47322,13 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
     "creditLabel": "2",
     "catalogDescription": "Introduces the quantitative laws of electricity and magnetism including principles of electromagnets, electric generators, and electromagnetic waves.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL& 101 and a grade of 2.0 or higher in PHYS& 222 and MATH& 152 and at least concurrent enrollment in MATH& 163 and PHYS& 223 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL& 101 and a grade of 2.0 or higher in PHYS& 222 and MATH& 152 and at least concurrent enrollment in MATH& 163 and PHYS& 223 ."
+    ],
+    "corequisiteCourseCodes": [
+      "MATH& 152",
+      "MATH& 163",
+      "PHYS& 222",
+      "PHYS& 223"
     ],
     "effectiveYearRanges": [
       {
@@ -45804,9 +47355,16 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Gives students the experience of doing research in a cutting edge field. Students read relevant literature, pose a question, state a hypothesis, plan and perform experiments to test their hypothesis. Students work in teams and present their work to their peers. The culmination of the project would be a written paper modeled after a journal article.",
+    "prerequisiteCourseCodes": [
+      "MATH& 152",
+      "PHYS& 222"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL& 101 ; and a grade of 2.0 or higher in PHYS& 222 and MATH& 152 ; and at least concurrent enrollment in MATH& 163 and PHYS& 223 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL& 101 ; and a grade of 2.0 or higher in PHYS& 222 and MATH& 152 ; and at least concurrent enrollment in MATH& 163 and PHYS& 223 ."
+    ],
+    "corequisiteCourseCodes": [
+      "MATH& 163",
+      "PHYS& 223"
     ],
     "effectiveYearRanges": [
       {
@@ -45890,9 +47448,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "For students in technical and transfer programs. Course goals are to further develop an understanding of basic concepts of physics and analytical and problem-solving skills. Laboratory is an integral component of the course. Covers the ideas of motion, forces, momentum and energy from within the framework of Newton's Laws. No credits given to students who have completed PHYS 154 .",
+    "prerequisiteCourseCodes": [
+      "MATH 97"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL& 101 and a grade of 2.0 or higher in MATH 97 ; or a grade of 2.0 or higher in 1-1/2 years of high school algebra.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL& 101 and a grade of 2.0 or higher in MATH 97 ; or a grade of 2.0 or higher in 1-1/2 years of high school algebra."
     ],
     "effectiveYearRanges": [
       {
@@ -45947,9 +47507,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Continues the goals of PHYS& 114 . Course is based on concepts involving thermal properties of matter, and electricity and magnetism. Teaches the properties of fluids as time permits.",
+    "prerequisiteCourseCodes": [
+      "MATH 97",
+      "PHYS& 114"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL& 101 ; and a grade of 2.0 or higher in PHYS& 114 and in MATH 97 ; or 1-1/2 years of high school algebra.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL& 101 ; and a grade of 2.0 or higher in PHYS& 114 and in MATH 97 ; or 1-1/2 years of high school algebra."
     ],
     "effectiveYearRanges": [
       {
@@ -45986,9 +47549,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Continues the goals of PHYS& 115 . Explores the concepts associated with wave phenomena and atomic physics. Uses sound, light (including lasers) and mechanical vibrations as examples of waves.",
+    "prerequisiteCourseCodes": [
+      "MATH 97",
+      "PHYS& 115"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL& 101 and a grade of 2.0 or higher in PHYS& 115 and MATH 97 ,or 1-1/2 years of high school Algebra.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL& 101 and a grade of 2.0 or higher in PHYS& 115 and MATH 97 ,or 1-1/2 years of high school Algebra."
     ],
     "effectiveYearRanges": [
       {
@@ -46026,8 +47592,18 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
     "creditLabel": "5",
     "catalogDescription": "Includes a detailed study of the basic laws of physics. Emphasizes the evolution of ideas from experimental observation to mathematical models. Includes a comprehensive investigation of Newtonian particle dynamics. Laboratory is an integral part of the course.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL& 101 and a grade of 2.0 or higher in PHYS& 114 or in a high school physics, or equivalent, and in MATH& 142 or equivalent with concurrent enrollment or completion in MATH& 151 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL& 101 and a grade of 2.0 or higher in PHYS& 114 or in a high school physics, or equivalent, and in MATH& 142 or equivalent with concurrent enrollment or completion in MATH& 151 ."
+    ],
+    "corequisiteAlternativeCourseCodeSets": [
+      [
+        "MATH& 142"
+      ],
+      [
+        "MATH& 151"
+      ],
+      [
+        "PHYS& 114"
+      ]
     ],
     "effectiveYearRanges": [
       {
@@ -46083,8 +47659,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
     "creditLabel": "5",
     "catalogDescription": "Applications of Newtonian Physics to energy, momentum, and extended bodies, as well as the study of electro-magnetic theory. Course develops ideas from experimental observation to a mathematics model. Laboratory is an integral part of the course.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL& 101 and a grade of 2.0 or higher in PHYS& 221 and MATH& 151 and at least concurrent enrollment in MATH& 152 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL& 101 and a grade of 2.0 or higher in PHYS& 221 and MATH& 151 and at least concurrent enrollment in MATH& 152 ."
+    ],
+    "corequisiteCourseCodes": [
+      "MATH& 151",
+      "MATH& 152",
+      "PHYS& 221"
     ],
     "effectiveYearRanges": [
       {
@@ -46122,8 +47702,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
     "creditLabel": "5",
     "catalogDescription": "Study of classical wave properties with applications to mechanical and electrical systems, sound, electromagnetic waves, light, and atomic physics.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL& 101 and a grade of 2.0 or higher in PHYS& 222 and MATH& 152 and at least concurrent enrollment in MATH& 163 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL& 101 and a grade of 2.0 or higher in PHYS& 222 and MATH& 152 and at least concurrent enrollment in MATH& 163 ."
+    ],
+    "corequisiteCourseCodes": [
+      "MATH& 152",
+      "MATH& 163",
+      "PHYS& 222"
     ],
     "effectiveYearRanges": [
       {
@@ -47500,9 +49084,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Presents an overview of various approaches to personality and their implications for healthy psychological adjustment to the demands of living. Approaches may include biological, psychodynamic, trait, behavioral, humanistic and cognitive perspectives on personality. Presents core concepts used by each perspective, as well as the assessment techniques generated by and used by that perspective.",
+    "prerequisiteCourseCodes": [
+      "PSYC& 100"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL& 101 ; and PSYC& 100 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL& 101 ; and PSYC& 100 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -47539,9 +49125,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces psychological research. Topics include interpretation of research, research problems and design, scientific writing, ethics, and literature review techniques.",
+    "prerequisiteCourseCodes": [
+      "PSYC& 100"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL& 101 ; and PSYC& 100 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL& 101 ; and PSYC& 100 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -47568,9 +49156,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces the physiological psychology and the neural mechanisms of behavior. May cover how neurons and neurotransmitters function, the anatomical overview of the nervous system, how sensory systems and motor systems function, the neural mechanisms of motivated behavior, emotion, learning, memory, and sleep and psychological disorders.",
+    "prerequisiteCourseCodes": [
+      "PSYC& 100"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL& 101 ; and PSYC& 100 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL& 101 ; and PSYC& 100 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -47597,9 +49187,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Covers theories and supporting research that explore the area of social psychology. Topics may include the social self, social cognition, stereotypes, prejudice and discrimination, individualistic and collectivistic cultures, attitudes, persuasion, group influence, conformity and obedience, attraction and close relationships, aggression and helping others, and conflict resolution.",
+    "prerequisiteCourseCodes": [
+      "PSYC& 100"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: PSYC& 100 with a grade of 2.0 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: PSYC& 100 with a grade of 2.0 or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -47635,9 +49227,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
     "title": "Independent Study-Psychology 1",
     "creditLabel": "1-5",
     "catalogDescription": "Allows students to pursue a special field of interest in psychology under the guidance of an instructor.",
+    "prerequisiteCourseCodes": [
+      "PSYC& 100"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: PSYC& 100 with a grade of 2.0 or higher and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: PSYC& 100 with a grade of 2.0 or higher and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -47663,9 +49257,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_15: unknown[] = [
     "title": "Independent Study-Psychology 2",
     "creditLabel": "1-5",
     "catalogDescription": "Continues project started in PSYC 298 , or a second project.",
+    "prerequisiteCourseCodes": [
+      "PSYC 298"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: PSYC 298 with a grade of 2.0 or higher and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: PSYC 298 with a grade of 2.0 or higher and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -47782,9 +49378,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_16: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Explores the physiological, social and psychological aspects of sexuality. Covers the major theoretical constructs and empirical data regarding sexuality. May cover research techniques, sexual anatomy and physiology, sexual response, sexual behavior, orientation, relationships, love, sexual communication, sexual dysfunctions, deviations and treatment.",
+    "prerequisiteCourseCodes": [
+      "PSYC& 100"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL 99 ; and PSYC& 100 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL 99 ; and PSYC& 100 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -47811,9 +49409,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_16: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Covers theories and supporting research that explain psychological development from conception through old age. Topics may include physiological development, emotional development, personality and social development, cognitive development, and aging and death.",
+    "prerequisiteCourseCodes": [
+      "PSYC& 100"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL& 101 ; and PSYC& 100 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL& 101 ; and PSYC& 100 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -47859,9 +49459,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_16: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Covers the diagnosis, causes, and treatment of psychological disorders. Topics may include defining disorders, the history of psychological disorders, and differing theoretical models used to explain the cause of psychological disorders and the supporting research. Reviews disorders such as depression, anxiety, schizophrenia, anorexia nervosa, and dissociative identity disorder.",
+    "prerequisiteCourseCodes": [
+      "PSYC& 100"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL& 101 ; and PSYC& 100 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL& 101 ; and PSYC& 100 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -49541,7 +51143,7 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_16: unknown[] = [
     "title": "Social Science",
     "creditValue": 5,
     "creditLabel": "5",
-    "catalogDescription": "Social Science Distribution Page: 1 &lt;- Back 10 &#8230; 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 Contract All Courses | Print this Page Facebook this Page (opens a new window) Tweet this Page (opens a new window) All catalogs &#169; 2026 Green River College. Powered by Modern Campus Catalog™ . Course Descriptions - Green River College (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-107975519-3', 'auto'); ga('send', 'pageview'); Javascript is currently not supported, or is disabled by this browser. Please enable Javascript for full functionality. var gatewayFeatureSearchBar = true; var gatewayFeatureToolbarText = false; var gatewayFeatureBackToTopText = false; document.getElementById(\"gateway-styles-nojs\").parentNode.removeChild(document.getElementById(\"gateway-styles-nojs\")); Skip to Content jQuery(document).ready( function($) { if ($('#gateway-page').length) { $(' &#65279; ').appendTo('body'); $(window).scroll(function() { if ($(this).scrollTop() >= 50) { $('#return-to-top').fadeIn(200); } else { $('#return-to-top').fadeOut(200); } }); $('#return-to-top').click(function() { $('body,html').animate({ scrollTop : 0 }, 500); }); }}); Academic Catalog © 2018 GREEN RIVER COLLEGE, ALL RIGHTS RESERVED | Privacy | Accessibility & Disclaimers | Consumer Information | Careers 2025-2026 Catalog Green River College Apr 09, 2026 2025-2026 Catalog Select a Catalog 2025-2026 Catalog 2024-2025 Catalog [ARCHIVED CATALOG] 2023-2024 Catalog [ARCHIVED CATALOG] 2022-2023 Catalog [ARCHIVED CATALOG] 2021-2022 Catalog [ARCHIVED CATALOG] 2020-2021 Catalog [ARCHIVED CATALOG] 2019-2020 Catalog [ARCHIVED CATALOG] 2017-2019 Catalog Addendum [ARCHIVED CATALOG] Global Search Catalog Search Choose Search Location function reloadLocations() { var locations_in_use = 1; var chosen_locations_div = document.getElementById('chosen_locations_div'); var category = document.getElementById('location').value; if((category === '1' || category === '3' || category === '33') && (locations_in_use !== 0)){ chosen_locations_div.classList.remove(\"disabled\"); } else { chosen_locations_div.classList.add(\"disabled\"); } }; Select an option Courses Programs Hierarchy Items Other Content Entire Catalog Search Keyword Field Whole Word/Phrase Advanced Search Catalog Navigation Catalog Home Disclaimers Academic Calendar Welcome Getting Started Student Resources Academic Information Graduation Information Programs of Study Programs A to Z Curriculum Maps University Transfer Professional and Technical Other Learning Options Course Descriptions Career and Program Explorer College Policies Important Phone Numbers Faculty and Administration Glossary Campus Map Catalog Archive Career and Program Explorer My Portfolio HELP 2025-2026 Catalog Course Descriptions Contract All Courses | Print this Page Facebook this Page (opens a new window) Tweet this Page (opens a new window) This section includes a brief description of each credit class offered on a regular basis at Green River College. Classes are arranged in alphabetical order according to the college department that offers the class. Each listing includes a course number (prefix & code/number), course title, number of credits awarded, prerequisite, course outcomes, and academic transfer distributions are also designated where applicable. Common course numbers are identified by an “&” symbol at the end of the department abbreviation. Course numbers 100-299 are designated for Green River College programs and courses that transfer to senior institutions (transfer is sometimes limited). The 100 series is ordinarily for first-year students and the 200 series for second-year students, but this distinction varies because of differing requirements at other colleges and universities. The 300 and 400 level series are for third- and fourth-year students. The courses 0-99 are pre-college level courses, are designed to ease your transition to college and start on a pathway to a degree. Consult the “ Programs of Study ” section of this catalog and your faculty advisor for specific information about each class and about which classes will meet your requirements. Course Filter Filter this list of courses using course prefix, course code, keywords or any combination. Prefix: Code or Number: Type Keyword or Phrase: Choose Course Prefix All prefixes&#8230; 2 A SIM ACCT ACOMP AMES ANTH AP ARAB ART ASTR ATECH AVIA BASIC BIOL BNURSE BTAC BUS CARDIO CARP CHEM CHIN CJ CMST COOP CRC CS D DANCE DRMA ECED ECON EDUC ELL ELL-O ENGL ENGR ENV S ERTECH FILM FLT FRCH GEOG GEOL GERM H H SCI HEALTH HIST HL ED HSC HUMAN IBEST IBEST-OD INDUS INFO INPNUR INRNUR IT JAPN JOURN LAS MATH MATHM MFG MGMT MNURS MTX MUSC N N SCI NATRS NCLEX NRS A NUTR OCEA OTA P E PHIL PHLEB PHOTO PHYS PLA PNURSE POLS PSYC PTA READ RFPNUR RFRNUR S S SCI SDEV SOC SPAN ST SK TS TS-OD WELD WST WTECH WWT Choose Course Number Choose Course Type All types&#8230; Accounting American Ethnic Studies Anthropology Anatomy and Physiology Arabic Art Astronomy Automotive Technology Aviation Aviation - Flight Aviation - Simulation Basic Education Biology Business Management Business Technologies & Administrative Careers Cardiac Monitor Carpentry Technology Chemistry Chinese Communication Studies Computation Court Reporting and Captioning Computer Science Cooperative Education Criminal Justice Dance Drama Early Childhood Education Economics Education Emergency Room and Patient Care Technician Engineering English English Language Learning English Language Learning-Online Environmental Science Film French Geography Geology German Health Health Education Health Science High School Completion History Humanities Integrated Basic Education and Skills Training Integrated Basic Education and Skills Training-Open Doors Industrial Education Information Literacy Information Technology Japanese Journalism Latin American Studies Machining and Manufacturing Technology Mechatronics Technician Management Mathematics Music Natural Resources Natural Science Nursing Nursing, BSN Nursing Assistant Nutrition Occupational Therapy Assistant Oceanography Philosophy Phlebotomy Photography Physical Education Physical Therapist Assistant Physics Political Science Practical Nursing Prior Learning Assessment Psychology Reading Social Science Sociology Software Development Spanish Study Skills Transitional Studies Transitional Studies-Open Doors Wastewater Technology Water Supply Technology Water Technology Welding Distribution List Choose Keyword Find whole word or phrase only. Distribution List",
+    "catalogDescription": "Social Science Distribution Page: 1 &lt;- Back 10 &#8230; 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 Contract All Courses | Print this Page Facebook this Page (opens a new window) Tweet this Page (opens a new window) All catalogs &#169; 2026 Green River College. Powered by Modern Campus Catalog™ . Course Descriptions - Green River College (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-107975519-3', 'auto'); ga('send', 'pageview'); Javascript is currently not supported, or is disabled by this browser. Please enable Javascript for full functionality. var gatewayFeatureSearchBar = true; var gatewayFeatureToolbarText = false; var gatewayFeatureBackToTopText = false; document.getElementById(\"gateway-styles-nojs\").parentNode.removeChild(document.getElementById(\"gateway-styles-nojs\")); Skip to Content jQuery(document).ready( function($) { if ($('#gateway-page').length) { $(' &#65279; ').appendTo('body'); $(window).scroll(function() { if ($(this).scrollTop() >= 50) { $('#return-to-top').fadeIn(200); } else { $('#return-to-top').fadeOut(200); } }); $('#return-to-top').click(function() { $('body,html').animate({ scrollTop : 0 }, 500); }); }}); Academic Catalog © 2018 GREEN RIVER COLLEGE, ALL RIGHTS RESERVED | Privacy | Accessibility & Disclaimers | Consumer Information | Careers 2025-2026 Catalog Green River College Apr 08, 2026 2025-2026 Catalog Select a Catalog 2025-2026 Catalog 2024-2025 Catalog [ARCHIVED CATALOG] 2023-2024 Catalog [ARCHIVED CATALOG] 2022-2023 Catalog [ARCHIVED CATALOG] 2021-2022 Catalog [ARCHIVED CATALOG] 2020-2021 Catalog [ARCHIVED CATALOG] 2019-2020 Catalog [ARCHIVED CATALOG] 2017-2019 Catalog Addendum [ARCHIVED CATALOG] Global Search Catalog Search Choose Search Location function reloadLocations() { var locations_in_use = 1; var chosen_locations_div = document.getElementById('chosen_locations_div'); var category = document.getElementById('location').value; if((category === '1' || category === '3' || category === '33') && (locations_in_use !== 0)){ chosen_locations_div.classList.remove(\"disabled\"); } else { chosen_locations_div.classList.add(\"disabled\"); } }; Select an option Courses Programs Hierarchy Items Other Content Entire Catalog Search Keyword Field Whole Word/Phrase Advanced Search Catalog Navigation Catalog Home Disclaimers Academic Calendar Welcome Getting Started Student Resources Academic Information Graduation Information Programs of Study Programs A to Z Curriculum Maps University Transfer Professional and Technical Other Learning Options Course Descriptions Career and Program Explorer College Policies Important Phone Numbers Faculty and Administration Glossary Campus Map Catalog Archive Career and Program Explorer My Portfolio HELP 2025-2026 Catalog Course Descriptions Contract All Courses | Print this Page Facebook this Page (opens a new window) Tweet this Page (opens a new window) This section includes a brief description of each credit class offered on a regular basis at Green River College. Classes are arranged in alphabetical order according to the college department that offers the class. Each listing includes a course number (prefix & code/number), course title, number of credits awarded, prerequisite, course outcomes, and academic transfer distributions are also designated where applicable. Common course numbers are identified by an “&” symbol at the end of the department abbreviation. Course numbers 100-299 are designated for Green River College programs and courses that transfer to senior institutions (transfer is sometimes limited). The 100 series is ordinarily for first-year students and the 200 series for second-year students, but this distinction varies because of differing requirements at other colleges and universities. The 300 and 400 level series are for third- and fourth-year students. The courses 0-99 are pre-college level courses, are designed to ease your transition to college and start on a pathway to a degree. Consult the “ Programs of Study ” section of this catalog and your faculty advisor for specific information about each class and about which classes will meet your requirements. Course Filter Filter this list of courses using course prefix, course code, keywords or any combination. Prefix: Code or Number: Type Keyword or Phrase: Choose Course Prefix All prefixes&#8230; 2 A SIM ACCT ACOMP AMES ANTH AP ARAB ART ASTR ATECH AVIA BASIC BIOL BNURSE BTAC BUS CARDIO CARP CHEM CHIN CJ CMST COOP CRC CS D DANCE DRMA ECED ECON EDUC ELL ELL-O ENGL ENGR ENV S ERTECH FILM FLT FRCH GEOG GEOL GERM H H SCI HEALTH HIST HL ED HSC HUMAN IBEST IBEST-OD INDUS INFO INPNUR INRNUR IT JAPN JOURN LAS MATH MATHM MFG MGMT MNURS MTX MUSC N N SCI NATRS NCLEX NRS A NUTR OCEA OTA P E PHIL PHLEB PHOTO PHYS PLA PNURSE POLS PSYC PTA READ RFPNUR RFRNUR S S SCI SDEV SOC SPAN ST SK TS TS-OD WELD WST WTECH WWT Choose Course Number Choose Course Type All types&#8230; Accounting American Ethnic Studies Anthropology Anatomy and Physiology Arabic Art Astronomy Automotive Technology Aviation Aviation - Flight Aviation - Simulation Basic Education Biology Business Management Business Technologies & Administrative Careers Cardiac Monitor Carpentry Technology Chemistry Chinese Communication Studies Computation Court Reporting and Captioning Computer Science Cooperative Education Criminal Justice Dance Drama Early Childhood Education Economics Education Emergency Room and Patient Care Technician Engineering English English Language Learning English Language Learning-Online Environmental Science Film French Geography Geology German Health Health Education Health Science High School Completion History Humanities Integrated Basic Education and Skills Training Integrated Basic Education and Skills Training-Open Doors Industrial Education Information Literacy Information Technology Japanese Journalism Latin American Studies Machining and Manufacturing Technology Mechatronics Technician Management Mathematics Music Natural Resources Natural Science Nursing Nursing, BSN Nursing Assistant Nutrition Occupational Therapy Assistant Oceanography Philosophy Phlebotomy Photography Physical Education Physical Therapist Assistant Physics Political Science Practical Nursing Prior Learning Assessment Psychology Reading Social Science Sociology Software Development Spanish Study Skills Transitional Studies Transitional Studies-Open Doors Wastewater Technology Water Supply Technology Water Technology Welding Distribution List Choose Keyword Find whole word or phrase only. Distribution List",
     "effectiveYearRanges": [
       {
         "startLabel": "2025-2026",
@@ -49675,8 +51277,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_16: unknown[] = [
     "creditLabel": "1-12",
     "catalogDescription": "Allows students to work full- or part-time in jobs directly related to their programs and interests. Students may receive a salary or volunteer.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL 99 and concurrent enrollment in COOP 171 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL 99 and concurrent enrollment in COOP 171 and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "COOP 171"
     ],
     "effectiveYearRanges": [
       {
@@ -49703,8 +51307,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_16: unknown[] = [
     "creditLabel": "1-12",
     "catalogDescription": "Allows students to work full- or part-time in jobs directly related to their programs and interests. Students may receive a salary or volunteer.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL 99 and concurrent enrollment in COOP 171 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL 99 and concurrent enrollment in COOP 171 and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "COOP 171"
     ],
     "effectiveYearRanges": [
       {
@@ -49731,8 +51337,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_16: unknown[] = [
     "creditLabel": "1-12",
     "catalogDescription": "Allows students to work full- or part-time in jobs directly related to their programs and interests. Students may receive a salary or volunteer.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL 99 and concurrent enrollment in COOP 171 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL 99 and concurrent enrollment in COOP 171 and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "COOP 171"
     ],
     "effectiveYearRanges": [
       {
@@ -49871,9 +51479,20 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_16: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces students to JavaScript, a powerful programming language for creating dynamic, interactive web pages. Students learn the basics of JavaScript, and apply it toward the development of a website. Topics include language constructs and syntax, event-driven programming, manipulating the Document Object Model (DOM), form validation, and utilizing JavaScript libraries, such as jQuery. Previously IT 207.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "CS 108",
+        "CS 109",
+        "CS 121",
+        "SDEV 106"
+      ],
+      [
+        "SDEV 106",
+        "SDEV 218"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CS 108 , CS 109 , CS 121 or SDEV 218 ; and SDEV 106 all with grades of 1.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CS 108 , CS 109 , CS 121 or SDEV 218 ; and SDEV 106 all with grades of 1.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -49910,9 +51529,16 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_16: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Problem solving and algorithm development are emphasized as students learn Python, the most widely-used data science programming language. Students learn how to write Python programs to process data sets and gather insights from interpreting data.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "CS 108"
+      ],
+      [
+        "CS 109"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: CS 108 or CS 109 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: CS 108 or CS 109 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -50022,9 +51648,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_16: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces students to problem solving methods, algorithm development and object-oriented design. Design, implement, document and debug programs using an object-oriented programming language. Previously IT 219.",
+    "prerequisiteCourseCodes": [
+      "SDEV 218"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: SDEV 218 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: SDEV 218 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -50051,9 +51679,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_16: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "A continuation of SDEV 219 emphasizing concepts of data abstraction and encapsulation. Topics include inheritance, interfaces, generics, collections, and the implementation of linked lists and binary search trees. Previously IT 220.",
+    "prerequisiteCourseCodes": [
+      "SDEV 219"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: SDEV 219 with a grade of 2.0 or higher; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: SDEV 219 with a grade of 2.0 or higher; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -50090,9 +51720,13 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_16: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Initiate and complete a project in service of an organization, supporting the data life cycle by collecting, transforming, and analyzing data, and communicating results in order to inform and guide decision making. Topics include data sourcing, data visualization tools and techniques, and broader impacts such as privacy, ethics, and transparency.",
+    "prerequisiteCourseCodes": [
+      "SDEV 101",
+      "SDEV 121",
+      "SDEV 201"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: SDEV 101 and SDEV 121 and SDEV 201 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: SDEV 101 and SDEV 121 and SDEV 201 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -50207,9 +51841,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_16: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Students develop the back end of a data-driven web application using a server-side web framework. Topics include the HTTP protocol, RESTful web APIs, and authentication and authorization systems.",
+    "prerequisiteCourseCodes": [
+      "SDEV 301",
+      "SDEV 305"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: SDEV 301 and SDEV 305 with a grades of 1.0 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: SDEV 301 and SDEV 305 with a grades of 1.0 or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -50246,9 +51883,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_16: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Introduces algorithmic thinking and data structures, including lists, stacks, queues, trees, hash tables, and heaps. Focus on data structure and algorithm implementation with integrated coverage of theory: logic, sets and set operations, functions. Previously IT 333.",
+    "prerequisiteCourseCodes": [
+      "SDEV 301",
+      "SDEV 305"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: SDEV 301 and SDEV 305 with a grades of 1.0 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: SDEV 301 and SDEV 305 with a grades of 1.0 or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -50285,9 +51925,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_16: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "A continuation of the concepts and themes from SDEV 333 . Algorithms selected from areas such as sorting, searching, shortest paths, greedy algorithms, divide-and-conquer, backtracking, and dynamic programming. Includes coverage of graph theory, graph data structures, and graph algorithms. Previously IT 334.",
+    "prerequisiteCourseCodes": [
+      "SDEV 328",
+      "SDEV 333"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: SDEV 328 and SDEV 333 with a grades of 1.0 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: SDEV 328 and SDEV 333 with a grades of 1.0 or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -50324,9 +51967,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_16: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Students build a Single-Page Application (SPA) using a modern web framework to explore the distributed application model from the perspective of a front-end developer. Topics include component-based user interfaces, routing, and managing application state.",
+    "prerequisiteCourseCodes": [
+      "SDEV 328",
+      "SDEV 333"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: SDEV 328 and SDEV 333 with a grades of 1.0 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: SDEV 328 and SDEV 333 with a grades of 1.0 or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -50363,9 +52009,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_16: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Students explore principles of cloud applications from design to deployment. Topics include application deployment through virtual machines or containers and continuous integration/continuous delivery (CI/CD) pipelines for automated testing and deployment.",
+    "prerequisiteCourseCodes": [
+      "SDEV 355"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: SDEV 355 with a grade of 1.0 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: SDEV 355 with a grade of 1.0 or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -50441,9 +52089,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_16: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Software developers rely on design principles to guide their decisions when designing components of software. Topics include design notations, design patterns, refactoring, and design for change. Emphasis on design communication, design integrity and design trade-offs. Previously IT 426.",
+    "prerequisiteCourseCodes": [
+      "SDEV 333"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: SDEV 333 with a grade of 1.0 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: SDEV 333 with a grade of 1.0 or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -50470,9 +52120,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_16: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "First of two capstone project courses. Students as technical team members partner with business team members and/or clients to develop a product or service concept that fulfills a business need. Previously IT 485.",
+    "prerequisiteCourseCodes": [
+      "SDEV 355"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: SDEV 355 with a grade of 1.0 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: SDEV 355 with a grade of 1.0 or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -50509,9 +52161,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_16: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Second of two capstone project courses. Students as technical team members continue development of a product or service that fulfills a business need for clients and adapt as needed to changing business environments and/or requirements. Students present their products to a community of peers. Previously IT 486.",
+    "prerequisiteCourseCodes": [
+      "SDEV 485"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: SDEV 485 with a grade of 1.0 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: SDEV 485 with a grade of 1.0 or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -50548,9 +52202,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_16: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Course content varies by section and is selected to address contemporary and timely topics in software development, data analytics, and/or data engineering, supporting the program outcomes of the BAS Software Development program.",
+    "prerequisiteCourseCodes": [
+      "SDEV 328",
+      "SDEV 333"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: SDEV 328 and SDEV 333 with grades of 1.0 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: SDEV 328 and SDEV 333 with grades of 1.0 or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -51146,9 +52803,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_17: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "A continuation of SPAN 111 . Focuses on further developing communication skills primarily for health care workers or for anyone desiring a background in the language of medicine in Spanish. Students expand introductory vocabulary and grammatical structures in Spanish related to the language health care.",
+    "prerequisiteCourseCodes": [
+      "SPAN 111"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL 99 and SPAN 111 with a grade of 2.0 or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL 99 and SPAN 111 with a grade of 2.0 or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -51232,9 +52891,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_17: unknown[] = [
     "title": "Special Studies-Spanish",
     "creditLabel": "3-5",
     "catalogDescription": "A field course experience in which students improve their conversational Spanish within a cultural framework. Content varies each time the course is offered. Includes actual practice in the language.",
+    "prerequisiteCourseCodes": [
+      "SPAN& 121",
+      "SPAN& 122"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: SPAN& 121 and SPAN& 122 ; or instructor consent; and eligible for ENGL 99 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: SPAN& 121 and SPAN& 122 ; or instructor consent; and eligible for ENGL 99 ."
     ],
     "effectiveYearRanges": [
       {
@@ -51261,9 +52923,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_17: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Explores the cultural, historical and ethnographic forces influential in the development of modern Spanish culture. Explores the diverse cultural forces that forged modern demographics and cultures of Spain. Includes topics on marginalized cultures, cultural syncretism and cultural hegemony in the context of the Iberian Peninsula. Taught in the Spanish language, all lectures, readings, class discussion and assignments are in Spanish.",
+    "prerequisiteCourseCodes": [
+      "SPAN& 223"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: SPAN& 223 or instructor consent; and eligible for ENGL 99 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: SPAN& 223 or instructor consent; and eligible for ENGL 99 ."
     ],
     "effectiveYearRanges": [
       {
@@ -51329,9 +52993,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_17: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Explores the relationship between film and cultural interpretation and understanding of Latin America. Considers the history of cinema in Latin America. Focuses on how film has been used to interpret Latin American culture and how we can use it to understand Latin American past and present with special emphasis on discussing the complex history and social problems of the region. Also explores common stereotypes with which Latin America has been portrayed in mainstream U.S. movies. Knowledge of Spanish language required. Spanish 291 is cross-listed with LAS 191 and FILM 191",
+    "prerequisiteCourseCodes": [
+      "SPAN& 223"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL 99 and completion of SPAN& 223 ; or instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL 99 and completion of SPAN& 223 ; or instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -51405,9 +53071,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_17: unknown[] = [
     "title": "Independent Study-Spanish",
     "creditLabel": "1-5",
     "catalogDescription": "Encourages students to study independently in a field of their special interest in Spanish. Students meet on a tutorial basis with their instructor. Course content is decided in conferences between student and instructor.",
+    "prerequisiteCourseCodes": [
+      "SPAN& 222"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL 99 ; and a grade of 2.0 or higher in SPAN& 222 or equivalent with instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL 99 ; and a grade of 2.0 or higher in SPAN& 222 or equivalent with instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -51482,9 +53150,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_17: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Systematic study of Spanish using the four basic skills of listening, speaking, reading and writing. Course requires practice with lab materials.",
+    "prerequisiteCourseCodes": [
+      "SPAN& 121"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL 99 ; and a grade of 2.0 or higher in SPAN& 121 ; or equivalent with instructor consent. The equivalent of SPAN& 121 is one year in high school with a grade of B or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL 99 ; and a grade of 2.0 or higher in SPAN& 121 ; or equivalent with instructor consent. The equivalent of SPAN& 121 is one year in high school with a grade of B or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -51521,9 +53191,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_17: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Completion of basic grammar system, vocabulary, reading, writing, and conversation. Course requires practice with lab materials. Fulfills the University of Washington College of Arts and Sciences graduation requirement.",
+    "prerequisiteCourseCodes": [
+      "SPAN& 122"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL 99 ; and a grade of 2.0 or higher in SPAN& 122 or equivalent with instructor consent. The equivalent of SPAN& 122 is two years in high school with a grade of B or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL 99 ; and a grade of 2.0 or higher in SPAN& 122 or equivalent with instructor consent. The equivalent of SPAN& 122 is two years in high school with a grade of B or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -51560,9 +53232,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_17: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Systematic review of Spanish grammar aimed at communicative competency at an intermediate level. Intensive practice in listening, speaking, reading, and writing with special emphasis on reading and reacting to texts that explore the diversity of the Spanish speaking world, as well as the global and local implications of gender, racial and cultural interdependence. Includes a service component through interaction with ESL and International Hispanic students.",
+    "prerequisiteCourseCodes": [
+      "SPAN& 123"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL 99 ; and a grade of 2.0 or higher in SPAN& 123 or equivalent with instructor consent. The equivalent of SPAN& 123 is three years in high school with a grade of B or higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL 99 ; and a grade of 2.0 or higher in SPAN& 123 or equivalent with instructor consent. The equivalent of SPAN& 123 is three years in high school with a grade of B or higher."
     ],
     "effectiveYearRanges": [
       {
@@ -51599,9 +53273,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_17: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Systematic review of Spanish grammar aimed at communicative competency at an intermediate level. Intensive practice in listening, speaking, reading, and writing with special emphasis on reading and reacting to texts that explore the diversity of the Spanish speaking world, as well as the global and local implications of gender, racial and cultural interdependence. Includes a service component through interaction with ESL and International Hispanic students.",
+    "prerequisiteCourseCodes": [
+      "SPAN& 221"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL 99 ; and a grade of 2.0 or higher in SPAN& 221 or equivalent with instructor consent. The equivalent of SPAN& 221 is four years in high school with a grade of B or above higher.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL 99 ; and a grade of 2.0 or higher in SPAN& 221 or equivalent with instructor consent. The equivalent of SPAN& 221 is four years in high school with a grade of B or above higher."
     ],
     "effectiveYearRanges": [
       {
@@ -51638,9 +53314,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_17: unknown[] = [
     "creditValue": 5,
     "creditLabel": "5",
     "catalogDescription": "Systematic review of Spanish grammar aimed at communicative competency at an intermediate level. Intensive practice in listening, speaking, reading, and writing with special emphasis on reading and reacting to texts that explore the diversity of the Spanish speaking world, as well as the global and local implications of gender, racial and cultural interdependence. Includes oral practice through discussion of above-mentioned materials.",
+    "prerequisiteCourseCodes": [
+      "SPAN& 222"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Eligible for ENGL 99 ; and a grade of 2.0 or higher in SPAN& 222 or equivalent with instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Eligible for ENGL 99 ; and a grade of 2.0 or higher in SPAN& 222 or equivalent with instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -51897,8 +53575,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_17: unknown[] = [
     "creditLabel": "1-10",
     "catalogDescription": "A fully integrated support course for TS 53 for Transitional Studies students. Helps students succeed in TS 53 by providing additional coaching in critical thinking skills, time management, and study skills. Provides enhanced instruction in computer literacy, testing literacy, math language skills, college and career math readiness, integrating on-campus resources for additional support. This is a pass/no credit course.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Appropriate placement; concurrent enrollment in TS 53 ; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Appropriate placement; concurrent enrollment in TS 53 ; and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "TS 53"
     ],
     "effectiveYearRanges": [
       {
@@ -51953,8 +53633,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_17: unknown[] = [
     "creditLabel": "1-10",
     "catalogDescription": "Credits: 1-10 A fully integrated support course for TS 55 for Transitional Studies students. Helps students succeed in TS 55 by providing additional coaching in critical thinking skills, time management, and study skills. Provides enhanced instruction in computer literacy, testing literacy, math language skills, college and career math readiness, integrating on-campus resources for additional support. This is a pass/no credit course.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Appropriate placement; concurrent enrollment in TS 55 ; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Appropriate placement; concurrent enrollment in TS 55 ; and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "TS 55"
     ],
     "effectiveYearRanges": [
       {
@@ -52008,9 +53690,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_17: unknown[] = [
     "title": "TS Problem Solving for Math HS Equivalency I",
     "creditLabel": "5-10",
     "catalogDescription": "Study of problem solving, geometry and measurement, exponents and signed numbers. Includes introductory work with polynomials, simple equations, basic descriptive statistics, and graphing.",
+    "prerequisiteCourseCodes": [
+      "TS 55"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: TS 55 or appropriate placement; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: TS 55 or appropriate placement; and instructor consent."
     ],
     "effectiveYearRanges": [
       {
@@ -52036,9 +53720,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_17: unknown[] = [
     "title": "TS Problem Solving for Math HS Equivalency 2",
     "creditLabel": "5-8",
     "catalogDescription": "Study of properties and terminology of real numbers, absolute value, simplifying algebraic expressions, integer exponents, graphing and solving linear equations and inequalities, unit analysis, ratios, rates, and proportions, solving systems of equations, factoring and performing operations on polynomial expressions, Pythagorean Theorem, functions, and applications. Course requires a graphing calculator.",
+    "prerequisiteCourseCodes": [
+      "TS 56"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: TS 56 with a grade of 2.5 or higher; or appropriate placement; or high school transcript evaluation; and instructor consent. Recommended: Eligible for READ 104 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: TS 56 with a grade of 2.5 or higher; or appropriate placement; or high school transcript evaluation; and instructor consent. Recommended: Eligible for READ 104 ."
     ],
     "effectiveYearRanges": [
       {
@@ -52065,8 +53751,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_17: unknown[] = [
     "creditLabel": "1-10",
     "catalogDescription": "A fully integrated support course for TS 56 for Transitional Studies students. Helps students succeed in TS 56 by providing additional coaching in critical thinking skills, time management, and study skills. Provides enhanced instruction in computer literacy, testing literacy, math language skills, college and career math readiness, integrating on-campus resources for additional support. This is a pass/no credit course.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Appropriate placement; and concurrent enrollment in TS 56 ; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Appropriate placement; and concurrent enrollment in TS 56 ; and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "TS 56"
     ],
     "effectiveYearRanges": [
       {
@@ -52093,8 +53781,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_17: unknown[] = [
     "creditLabel": "1-10",
     "catalogDescription": "A fully integrated support course for TS 57 for Transitional Studies students. Helps students succeed in TS 57 by providing additional coaching in critical thinking skills, time management, and study skills. Provides enhanced instruction in computer literacy, testing literacy, math language skills, college and career math readiness, integrating on-campus resources for additional support. This is a pass/no credit course.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Appropriate placement; and concurrent enrollment in TS 57 ; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Appropriate placement; and concurrent enrollment in TS 57 ; and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "TS 57"
     ],
     "effectiveYearRanges": [
       {
@@ -53001,8 +54691,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_17: unknown[] = [
     "creditLabel": "1-12",
     "catalogDescription": "Allows student to work full- or part-time in jobs directly related to their programs and interests. Students may receive a salary or volunteer.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "COOP 171"
     ],
     "effectiveYearRanges": [
       {
@@ -53029,8 +54721,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_17: unknown[] = [
     "creditLabel": "1-12",
     "catalogDescription": "Allows student to work full- or part-time in jobs directly related to their programs and interests. Students may receive a salary or volunteer.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "COOP 171"
     ],
     "effectiveYearRanges": [
       {
@@ -53057,8 +54751,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_17: unknown[] = [
     "creditLabel": "1-12",
     "catalogDescription": "Allows student to work full- or part-time in jobs directly related to their programs and interests. Students may receive a salary or volunteer.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in COOP 171 and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "COOP 171"
     ],
     "effectiveYearRanges": [
       {
@@ -53253,8 +54949,10 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_17: unknown[] = [
     "creditLabel": "1-3",
     "catalogDescription": "A technical course including theory and safety, hands-on oxy-acetylene and MIG/wire feed welding, plasma cutting, basic grinding and other shop equipment. Lays the foundation for more advanced and project-based courses and increases your understanding and practice of incorporating metal into your artistic, architectural or sculptural visions.",
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: Concurrent enrollment in ART 119 ; and instructor consent.",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: Concurrent enrollment in ART 119 ; and instructor consent."
+    ],
+    "corequisiteCourseCodes": [
+      "ART 119"
     ],
     "effectiveYearRanges": [
       {
@@ -53309,9 +55007,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_17: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Covers components of a water distribution system, operation and maintenance procedures for a water distribution system and normal and abnormal conditions in water distribution systems.",
+    "prerequisiteCourseCodes": [
+      "ENGL 99",
+      "ENGL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ENGL 99 , ENGL& 101 or eligible for ENGL 99 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ENGL 99 , ENGL& 101 or eligible for ENGL 99 ."
     ],
     "effectiveYearRanges": [
       {
@@ -53341,9 +55042,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_18: unknown[] = [
     "creditValue": 1,
     "creditLabel": "1",
     "catalogDescription": "Provides basic information related to water sources used for public drinking water systems. Includes water supply hydrology, groundwater sources, surface water sources and water source protection.",
+    "prerequisiteCourseCodes": [
+      "ENGL 99",
+      "ENGL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ENGL 99 , ENGL& 101 or eligible for ENGL 99 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ENGL 99 , ENGL& 101 or eligible for ENGL 99 ."
     ],
     "effectiveYearRanges": [
       {
@@ -53370,9 +55074,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_18: unknown[] = [
     "creditValue": 2,
     "creditLabel": "2",
     "catalogDescription": "Provides an overview of federal and state drinking water regulations including a brief history and the structure of the Safe Drinking Water Act. Reviews current drinking water regulations. Identifies water quality parameters addressed in drinking water regulations. Covers operator certification.",
+    "prerequisiteCourseCodes": [
+      "ENGL 99",
+      "ENGL& 101"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: ENGL 99 , ENGL& 101 or eligible for ENGL 99 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: ENGL 99 , ENGL& 101 or eligible for ENGL 99 ."
     ],
     "effectiveYearRanges": [
       {
@@ -53399,9 +55106,18 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_18: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Covers public drinking water treatment processes, theory, operation and maintenance. Processes include preliminary treatment, coagulation, flocculation, sedimentation and filtration.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "ENGL 99",
+        "ENGL& 101"
+      ],
+      [
+        "MATH 72",
+        "MATH 97"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH 72 , MATH 97 or eligible for MATH 97 , and ENGL 99 , ENGL& 101 , or eligible for ENGL 99 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH 72 , MATH 97 or eligible for MATH 97 , and ENGL 99 , ENGL& 101 , or eligible for ENGL 99 ."
     ],
     "effectiveYearRanges": [
       {
@@ -53428,9 +55144,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_18: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "A continuation of WST 185 . Processes include fluoridation, control of corrosion and scaling, iron and manganese control, lime softening, ion exchange processes, absorption, aeration, and membrane processes.",
+    "prerequisiteCourseCodes": [
+      "WST 185"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: WST 185 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: WST 185 ."
     ],
     "effectiveYearRanges": [
       {
@@ -53510,9 +55228,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_18: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Examines the general principles of water hydraulics and how they relate to the operation of water distribution systems, wastewater collection systems, and water and wastewater treatment facilities. Topics include mass, density, displacement, flow, velocity, pressure, Bernoulli's theorem, friction loss, minor head loss, and flow measurement.",
+    "prerequisiteCourseCodes": [
+      "MATH 72",
+      "MATH 97"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH 72 , MATH 97 or eligible for MATH 97 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH 72 , MATH 97 or eligible for MATH 97 ."
     ],
     "effectiveYearRanges": [
       {
@@ -53539,9 +55260,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_18: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Examines pumps and pump piping systems used in water and wastewater applications. Emphasizes operational theory, application and basic maintenance of centrifugal pumps.",
+    "prerequisiteCourseCodes": [
+      "MATH 72",
+      "MATH 97"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH 72 , MATH 97 or eligible for MATH 97 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH 72 , MATH 97 or eligible for MATH 97 ."
     ],
     "effectiveYearRanges": [
       {
@@ -53593,9 +55317,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_18: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Covers principles of disinfection and disinfection alternatives. Discusses operation and maintenance of chemical feed systems used in water and wastewater applications including gas chlorinators and solution feed systems. Covers safety procedures for handling chlorine.",
+    "prerequisiteCourseCodes": [
+      "MATH 72",
+      "MATH 97"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH 72 , MATH 97 or eligible for MATH 97 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH 72 , MATH 97 or eligible for MATH 97 ."
     ],
     "effectiveYearRanges": [
       {
@@ -53622,9 +55349,12 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_18: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Students perform calculations related to water and wastewater laboratory, effectiveness of each major stage of water and wastewater treatment operation, pump capacities, pump rates, process loading rates, flow rates and chemical dosage rates.",
+    "prerequisiteCourseCodes": [
+      "MATH 72",
+      "MATH 97"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH 72 , MATH 97 or eligible for MATH 97 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH 72 , MATH 97 or eligible for MATH 97 ."
     ],
     "effectiveYearRanges": [
       {
@@ -53879,9 +55609,20 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_18: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Gives an overview of the purpose, operation and maintenance of municipal wastewater treatment plant processes including preliminary treatment, primary treatment, trickling filters and rotating biological contractors.",
+    "prerequisiteAlternativeCourseCodeSets": [
+      [
+        "ENGL 99",
+        "MATH 72",
+        "MATH 97"
+      ],
+      [
+        "ENGL& 101",
+        "MATH 72",
+        "MATH 97"
+      ]
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: MATH 72 , MATH 97 or eligible for MATH 97 ; ENGL 99 or ENGL& 101 or eligible for ENGL 99 .",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: MATH 72 , MATH 97 or eligible for MATH 97 ; ENGL 99 or ENGL& 101 or eligible for ENGL 99 ."
     ],
     "effectiveYearRanges": [
       {
@@ -53908,9 +55649,11 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_18: unknown[] = [
     "creditValue": 3,
     "creditLabel": "3",
     "catalogDescription": "Gives an overview of the purpose, operation and maintenance of municipal wastewater treatment activated sludge and stabilization pond processes. Covers solids processes including thickening, anaerobic digestion, aerobic digestion and dewatering.",
+    "prerequisiteCourseCodes": [
+      "WWT 185"
+    ],
     "prerequisiteNotes": [
-      "Official Green River enrollment requirement text: WWT 185",
-      "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites."
+      "Official Green River enrollment requirement text: WWT 185"
     ],
     "effectiveYearRanges": [
       {

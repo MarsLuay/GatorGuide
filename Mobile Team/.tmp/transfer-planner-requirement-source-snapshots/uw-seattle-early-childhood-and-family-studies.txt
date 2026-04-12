@@ -19,14 +19,14 @@ Title: Early Childhood & Family Studies (ECFS) | UW College of Education
 * 21682
 * 21683
 * 21685
+* 21686
 * 21692
 * 21697
+* 21710
+* 21712
 * 21722
 * 21729
-* 21848
-* 21877
 * 21994
-* 24962
 * 24964
 * 475
 * 476
@@ -227,6 +227,7 @@ Title: Early Childhood & Family Studies (ECFS) | UW College of Education
 * user.roles:authenticated
 * uw_boundless_barrio_mainnavigation
 * uw_boundless_barrio_shibbolethloginblock
+* uw_boundless_barrio_uwsidebarmenu
 * views_block__program_list_for_area_and_level_pages_block_1
 * views_block__program_list_for_degree_pages_block_1
 * webform:marketing_request
@@ -262,7 +263,6 @@ Advancement and Outreach
 Advising
 After graduation
 After submitting your enrollment deposit to the university, admitted transfer students will attend the required Transfer Advising & Orientation hosted by UW First Year Programs. This is a chance for you to meet with an ECFS adviser and create a plan to successfully complete the course and internship requirements.
-Alejandra Baires-Ramirez
 Alejandra Baires-Ramirez , Lead Admission & Outreach Adviser
 All current and prospective ECFS students who are ready to declare or learn more about the major are welcome schedule an academic advising appointment with:
 All EDST students take 30 credits of foundational courses and an additional 20-22 credits in their chosen option.
@@ -289,7 +289,6 @@ aria-labelledby="block-uw-boundless-barrio-uwsidebarmenu-menu" id="block-uw-boun
 Arts & Humanities (15 credits)
 As an ECFS student, you'll explore careers in early childhood education, and engage in courses that focus on research, curriculum, policy, language and literacy, mathematics, science, and technology. Additionally, you'll participate in extended community-based learning experiences, working directly with children in preschool classrooms or childcare centers. This unique combination of academic coursework and practical application will help you develop a comprehensive and culturally relevant understanding of child development and effective teaching strategies. As we engage in (un)learning, you will be challenged to envision systems that are more equitable and just and engage in teaching and advocacy work toward that vision.
 Assistant Dean for Undergraduate Programs
-Assistant Director for Undergraduate Academic and Student Services
 Assistant Professor
 Associate Professor
 Associate Teaching Professor
@@ -303,7 +302,6 @@ Brinda India Jegatheesan
 By Area
 By Degree
 Calendar
-Camille Lemire
 Careers in early childhood leadership, research and policy
 Careers in education research and education policy development
 Careers in educational research and policy with an emphasis on language and multilingual issues
@@ -520,6 +518,7 @@ It is highly recommended that students in the program complete the Federal Stude
 It is highly recommended that students in the program complete the Federal Student Aid (FAFSA) or Washington Application for State Financial Aid (WASFA) application. These applications are necessary for various forms of financial aid, including scholarships and loans. The College of Education also offers scholarship and funding opportunities.
 It will take a minimum of 7 quarters to complete the program. To graduate from the University of Washington, you must have a minimum of 180 quarterly credits. How long it takes to graduate depends on a number of factors, including how many credits you are transferring in with and how many credits you take per quarter as an ECFS student.
 Jamie Michelle ...
+Jessica G. Rigby
 Jodi Burrus Newman
 Join mailing list
 Join our next info session: Apr, 16 2026 | 3:00 PM
@@ -529,7 +528,6 @@ Jun, 4 2026 | 3:00 PM
 Katherine Lewis
 Knowledge
 Language, Literacy, and Culture (M.Ed.)
-Lead Admissions & Outreach Adviser
 Leadership
 Leadership roles in childcare centers and other early learning spaces
 Learn how to create inclusive and thriving learning environments for young children and their families. With our flexible online program, you can continue to live and work in your community while earning your bachelor’s degree.
@@ -562,6 +560,7 @@ Menu
 Min Sun
 Minimum 2.0 GPA (both cumulative UW GPA and major GPA)
 Minimum of 180 total credits
+Molly Shea
 Multilingual/Language Education option (22 credits)
 Multilingual/Language in Education Option
 MyUW
@@ -580,6 +579,7 @@ One of the following (5)
 One of the following education introduction courses
 One of the following human development courses
 Online
+Oscar L. Olvera Astivia
 Our curriculum is rooted in the belief that all young children and their families have the right to equitable opportunities to learn and develop in a just and culturally-thriving society. You'll have the opportunity to reflect on your identities and how they are influenced by larger power systems, encouraging critical thinking about early learning, equity, and community.
 Our program frameworks emphasize creating engaging interactions and environments that support individualized instruction and culturally responsive anti-bias anti-racist education. This program prepares you to be an early childhood professional who understands and actively works to dismantle systems of oppression.
 Our Programs
@@ -603,7 +603,6 @@ Prospective students interested in learning more about admission requirements, s
 Provide individualized instruction and behavioral support
 Question current values, practices, and policies rooted in unjust systems
 Quick Links
-Ramon Concepcion
 Ramon Concepcion , Assistant Director for Undergraduate Academic and Student Services
 Read our equity statement
 Reasoning (4-5 credits)
@@ -671,7 +670,6 @@ Undergraduate General Scholarships
 Undergraduate Minor
 Undergraduate Programs
 Undergraduate Programs | UW College of Education
-Undergraduate Programs Manager
 Undergraduate students committed to a career as an educator can receive awards that range from $3000 - $8,000.
 University of Washington
 University of Washington College of Education • 2012 Skagit Lane, Miller Hall • Box 353600 • Seattle, WA 98195-3600

@@ -13,21 +13,22 @@ Title: Informatics Curriculum | Information School | University of Washington
 &copy; 2026 UW Information School
 <!--
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TM46LWX"
-11:30-1:30 PM
 12:30-1:20 PM
+12:30-1:30 PM
 2017-02-13
 2024-04-19
 2024-05-29
 2026-03-10
 206-685-9937
-4:00-5:00 PM
-4:30-5:30 PM
+5:00-6:00 PM
+5:30-8:00 PM
 9-month online graduate certificate program
 About Us
 Academics
 Additional Information for Graduating Students
 Admissions
 Advising & Support
+AI Certificate Information Session & Q&A
 AI for Organizations
 AI for Organizations certificate to launch in autumn
 All
@@ -36,9 +37,9 @@ Alumni
 any two courses at the INFO 35x-level.
 Apply to graduate in autumn of senior year
 Approved electives
-Apr 10
 Apr 15
-Apr 9
+Apr 17
+Apr 22
 Attend iWelcome Week and Informatics New Student Orientation in September
 Autumn
 Azure Dev Tools
@@ -47,9 +48,9 @@ Before you are able to graduate, you are required to complete the following proc
 Begin applying for internships in autumn quarter (recommended)
 Begin taking major electives/degree option classes spring of junior year
 Biomedical and Health Informatics Option: BIME 300, BIME 435, INFO 468, INFO 478.
-Bloedel Hall 070
 Bluesky
 Box 352840 - Mary Gates Hall, Ste. 370
+Campfire Sessions: Climate Topics
 Canvas LMS
 Capstone
 Capstone (4 cr)
@@ -120,7 +121,6 @@ Exploring Informatics: Students take foundational skills to understand the domai
 Facebook
 Faculty & Staff
 Faculty Affairs
-Faculty Meeting
 Financial Aid & Scholarships
 Find help from our team of student advisors
 Find iSchool faculty, staff and students
@@ -197,7 +197,6 @@ iSchool Intranet
 iSchools.org
 IT / Help Desk
 Jasper Maynard Zhang : Jasper Maynard Zhang, Informatics: "I am interested in how technology and data science can be used to address causes I care about." Read more.
-Job Search Mastery: Strategies that Actually Work
 Jobs
 Jump to Footer Navigation
 Jump to Main Content
@@ -221,7 +220,6 @@ Menu
 Minors
 Minors are included as part of your major degree application but you should run a separate minor degree audit when checking on your academic progress. If requirements for the minor are not met, the major degree will not be awarded.
 MLIS
-MLIS Prospective Student Information Session - Fireside Chat with Chair
 More info
 MSIM
 Museology
@@ -236,11 +234,11 @@ one course from CSE 373: Data Structures and Algorithms (4 credits), INFO 442: C
 One course in computer programming; see the list of accepted courses
 One course in statistics; see the list of accepted courses
 One course in the social sciences (SSc) area of inquiry ; must be another course that is not INFO 200
-Online
 Organizations (INFO 38x, 48x course). These courses teach key perspectives on how information is used in organizations such as businesses, communities and governments, ensuring that students’ perspectives go beyond the individual.
 Outlook on the web
 People
 Ph.D.
+Pick Your Path Through MSIM
 Podcast
 Privacy Policy
 Product and Information Systems Management (5 cr)

@@ -105,6 +105,56 @@ const plannerPathway = (
   ...config,
 });
 
+const slugifyPlannerPathwayLabel = (value: string) =>
+  String(value ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+const buildExpandedPlannerPathwayFamilyLabel = (pathwayLabel: string, memberLabel: string) => {
+  const normalizedLabel = String(pathwayLabel ?? "").trim();
+  if (!normalizedLabel) return memberLabel;
+
+  if (/\boption family\b/i.test(normalizedLabel)) {
+    return normalizedLabel.replace(/\boption family\b/i, `${memberLabel} option`);
+  }
+
+  if (/\btrack family\b/i.test(normalizedLabel)) {
+    return normalizedLabel.replace(/\btrack family\b/i, `${memberLabel} track`);
+  }
+
+  if (/\broute family\b/i.test(normalizedLabel)) {
+    return normalizedLabel.replace(/\broute family\b/i, `${memberLabel} route`);
+  }
+
+  return `${normalizedLabel}: ${memberLabel}`;
+};
+
+const buildExpandedPlannerPathwayFamilySummary = (summary: string, memberLabel: string) => {
+  const normalizedSummary = String(summary ?? "").trim();
+  if (!normalizedSummary) return "";
+
+  return `Specific ${memberLabel} route. ${normalizedSummary}`;
+};
+
+const plannerExpandedPathwayFamily = (
+  id: string,
+  label: string,
+  summary: string,
+  memberLabels: string[],
+  config: Omit<TransferPlannerMajorPathway, "id" | "label" | "summary"> = {}
+): TransferPlannerMajorPathway[] =>
+  memberLabels.map((memberLabel) =>
+    plannerPathway(
+      `${id}:${slugifyPlannerPathwayLabel(memberLabel)}`,
+      buildExpandedPlannerPathwayFamilyLabel(label, memberLabel),
+      buildExpandedPlannerPathwayFamilySummary(summary, memberLabel),
+      config
+    )
+  );
+
 const itemStemCalcSequence = (
   id: string,
   title: string,
@@ -11340,10 +11390,17 @@ const GENERATED_PLAN_DOC_OVERRIDES: Record<
           ],
         }
       ),
-      plannerPathway(
+      ...plannerExpandedPathwayFamily(
         "bs-option-family",
         "B.S. option family",
         "Technical biology route that keeps the shared B.S. science spine alive before the student picks the final Biology option at UW.",
+        [
+          "Ecology, Evolution, and Conservation",
+          "General Biology",
+          "Molecular, Cellular, and Developmental Biology",
+          "Physiology",
+          "Plant Biology",
+        ],
         {
           grcCourseList: [
             ...FULL_BIOLOGY_MAJORS_SEQUENCE,
@@ -12150,10 +12207,11 @@ const GENERATED_PLAN_DOC_OVERRIDES: Record<
             "Use this route when the student wants the broad Seattle Earth and Space Sciences B.A. Build the first chemistry course, two quarters of quantitative math, and one introductory physics course first, then choose the extra supporting science only after the intended concentration is clearer.",
         }
       ),
-      plannerPathway(
+      ...plannerExpandedPathwayFamily(
         "bs-option-family",
         "B.S. option family",
         "More technical earth-science route that keeps the shared B.S. chemistry, calculus, physics, and ESS launchpad alive before the student picks the final UW option.",
+        ["Geology", "Biology", "Geoscience", "Physics"],
         {
           grcCourseList: ["CHEM& 161", "MATH& 151", "MATH& 152", "PHYS& 221", "PHYS& 222"],
           degreeMapSections: [

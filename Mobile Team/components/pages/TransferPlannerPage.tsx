@@ -447,7 +447,17 @@ function hasAnyDirectMajorEquivalencies(plan: TransferPlannerResolvedMajorPlan) 
   );
 }
 
-function getMajorSelectivityLabel(plan: TransferPlannerResolvedMajorPlan) {
+function joinPlannerTextList(values: string[]) {
+  if (!values.length) return "";
+  if (values.length === 1) return values[0] ?? "";
+  if (values.length === 2) {
+    return `${values[0]} and ${values[1]}`;
+  }
+
+  return `${values.slice(0, -1).join(", ")}, and ${values[values.length - 1]}`;
+}
+
+function getMajorSelectivityMessage(plan: TransferPlannerResolvedMajorPlan) {
   const selectivityText = [
     ...plan.advisorFlags,
     ...(plan.manualReviewNotes ?? []),
@@ -456,16 +466,62 @@ function getMajorSelectivityLabel(plan: TransferPlannerResolvedMajorPlan) {
     .join(" ")
     .toLowerCase();
 
-  if (/capacity\s*[- ]?constrain|capacity\s*[- ]?limited|competitive\s+admission/.test(selectivityText)) {
-    return "capacity-constrained";
+  if (/capacity\s*[- ]?constrain|capacity\s*[- ]?limited/.test(selectivityText)) {
+    return "Admission to this major is capacity-constrained";
+  }
+  if (/competitive\s+admission/.test(selectivityText)) {
+    return "Admission to this major is competitive";
   }
   if (/open\s+major|open\s+admission/.test(selectivityText)) {
-    return "open";
+    return "This is an open-admission major";
   }
-  return "admission-competitive";
+  return "Admission to this major is competitive";
+}
+
+function getAdmissionBaselineFragments(plan: TransferPlannerResolvedMajorPlan) {
+  const sourceText = [
+    plan.applicationWindow,
+    plan.summary,
+    ...(plan.degreeMapSections ?? []).flatMap((section) => section.items),
+    ...plan.advisorFlags,
+    ...(plan.manualReviewNotes ?? []),
+  ]
+    .map((item) => String(item ?? "").replace(/\s+/g, " ").trim())
+    .filter(Boolean)
+    .join(" ");
+
+  if (!sourceText) return [] as string[];
+
+  const fragments: string[] = [];
+  const lowerDivisionMatch =
+    sourceText.match(/\bat least\s+(\d+)\s+lower-division credits?\b/i) ??
+    sourceText.match(/\bat least\s+(\d+)\s+college-level credits?\b/i) ??
+    sourceText.match(/\b(\d+)\s+lower-division credits?\b/i);
+  if (lowerDivisionMatch?.[1]) {
+    const credits = lowerDivisionMatch[1];
+    const label = /college-level/i.test(lowerDivisionMatch[0] ?? "")
+      ? `${credits} college-level credits`
+      : `${credits} lower-division credits`;
+    fragments.push(`at least ${label}`);
+  }
+
+  const gpaMatch = sourceText.match(/\b(?:minimum|at least)\s+(\d+(?:\.\d+)?)\s+(?:cumulative\s+)?gpa\b/i);
+  if (gpaMatch?.[1]) {
+    fragments.push(`a minimum ${gpaMatch[1]} GPA`);
+  }
+
+  if (/\benglish composition\b|\bcomposition\b/i.test(sourceText)) {
+    fragments.push("the published composition requirement");
+  }
+  if (/\badvis(?:ing|er|or)\s+meeting\b|\bmeet with\b/i.test(sourceText)) {
+    fragments.push("any required advising steps");
+  }
+
+  return Array.from(new Set(fragments));
 }
 
 function getGeneralAdmissionRequirementsSummary(plan: TransferPlannerResolvedMajorPlan) {
+  const baselineFragments = getAdmissionBaselineFragments(plan);
   const titles = Array.from(
     new Set(
       plan.applicationChecklist
@@ -474,12 +530,21 @@ function getGeneralAdmissionRequirementsSummary(plan: TransferPlannerResolvedMaj
     )
   );
 
-  if (!titles.length) {
+  if (!baselineFragments.length && !titles.length) {
     return "complete the published prerequisite coursework listed for this major";
   }
 
+  if (!titles.length) {
+    return joinPlannerTextList(baselineFragments);
+  }
+
   const preview = titles.slice(0, 4);
-  return preview.join(", ");
+  const requirementFragment =
+    preview.length === 1
+      ? `published track-specific preparation such as ${preview[0]}`
+      : `published track-specific preparation such as ${joinPlannerTextList(preview)}`;
+
+  return joinPlannerTextList([...baselineFragments, requirementFragment]);
 }
 
 function getSchedulePlaceholderRequirementLinkData(courseLabel: string) {
@@ -488,20 +553,28 @@ function getSchedulePlaceholderRequirementLinkData(courseLabel: string) {
   if (!/\bcredits?\s+of\b/i.test(normalized)) return null;
 
   const lower = normalized.toLowerCase();
-  if (lower.includes("humanit") || lower.includes("a&h") || lower.includes("arts and humanities")) {
-    return { tag: "AH" as const };
+  const hasHumanities =
+    lower.includes("humanit") || lower.includes("a&h") || lower.includes("arts and humanities");
+  const hasSocialScience = lower.includes("social science") || /\bssc\b/i.test(lower);
+  const hasNaturalScience = lower.includes("natural science") || /\bnsc\b/i.test(lower);
+
+  if (hasHumanities && hasSocialScience) {
+    return { tags: ["AH", "SSC"] as const };
   }
-  if (lower.includes("social science") || /\bssc\b/i.test(lower)) {
-    return { tag: "SSC" as const };
+  if (hasHumanities) {
+    return { tags: ["AH"] as const };
   }
-  if (lower.includes("natural science") || /\bnsc\b/i.test(lower)) {
-    return { tag: "NSC" as const };
+  if (hasSocialScience) {
+    return { tags: ["SSC"] as const };
+  }
+  if (hasNaturalScience) {
+    return { tags: ["NSC"] as const };
   }
   if (lower.includes("elective") || lower.includes("general education") || lower.includes("gen ed")) {
-    return { tag: null };
+    return { tags: [] as const };
   }
 
-  return { tag: null };
+  return { tags: [] as const };
 }
 
 function buildTranscriptDebugSnapshot({
@@ -616,6 +689,7 @@ function SelectorField({
   helper,
   open,
   onToggle,
+  onDismiss,
   options,
   onSelect,
   selectedOptionId,
@@ -624,14 +698,15 @@ function SelectorField({
   searchPlaceholder,
   textClass,
   secondaryTextClass,
-  cardClass,
   borderClass,
+  dropdownBackgroundColor,
 }: {
   label: string;
   value: string;
   helper: string;
   open: boolean;
   onToggle: () => void;
+  onDismiss?: () => void;
   options: { id: string; label: string; description?: string }[];
   onSelect: (id: string) => void;
   selectedOptionId?: string | null;
@@ -640,16 +715,30 @@ function SelectorField({
   searchPlaceholder?: string;
   textClass: string;
   secondaryTextClass: string;
-  cardClass: string;
   borderClass: string;
+  dropdownBackgroundColor: string;
 }) {
   const [searchQuery, setSearchQuery] = useState("");
+  const searchInputRef = useRef<TextInput | null>(null);
 
   useEffect(() => {
     if (!open) {
+      searchInputRef.current?.blur();
       setSearchQuery("");
     }
   }, [open]);
+
+  useEffect(() => {
+    if (!open || !searchable) return;
+
+    const focusTimer = setTimeout(() => {
+      searchInputRef.current?.focus();
+    }, 0);
+
+    return () => {
+      clearTimeout(focusTimer);
+    };
+  }, [open, searchable]);
 
   const normalizedQuery = normalizeSelectorSearchValue(searchQuery);
   const normalizedSelectedValue = normalizeSelectorSearchValue(value);
@@ -664,7 +753,7 @@ function SelectorField({
         : options;
 
     if (!searchable || !effectiveQuery) {
-      return searchable ? visibleOptions.slice(0, 12) : visibleOptions;
+      return visibleOptions;
     }
 
     const startsWithMatches: { id: string; label: string; description?: string }[] = [];
@@ -692,7 +781,7 @@ function SelectorField({
   ]);
 
   return (
-    <View>
+    <View className="relative" style={open ? { zIndex: 30 } : undefined}>
       <Text className={`${textClass} text-base font-semibold`}>{label}</Text>
       <Text className={`${secondaryTextClass} text-sm mt-1`}>{helper}</Text>
 
@@ -701,6 +790,7 @@ function SelectorField({
           className={`mt-4 border ${borderClass} rounded-2xl px-4 py-2 flex-row items-center`}
         >
           <TextInput
+            ref={searchInputRef}
             value={open ? searchQuery : value}
             onChangeText={(nextValue) => {
               if (!open) {
@@ -754,156 +844,59 @@ function SelectorField({
       )}
 
       {open ? (
-        <View className="gap-3 mt-3">
+        <View
+          className={`absolute left-0 right-0 mt-3 border ${borderClass} rounded-2xl p-3`}
+          style={{
+            top: "100%",
+            zIndex: 35,
+            elevation: 16,
+            maxHeight: 320,
+            backgroundColor: dropdownBackgroundColor,
+            overflow: "hidden",
+            opacity: 1,
+          }}
+        >
           {searchable && !effectiveQuery ? (
-            <Text className={`${secondaryTextClass} text-xs`}>
-              Edit the major field to search all majors. Showing the first 12 until you type.
+            <Text className={`${secondaryTextClass} text-xs mb-2`}>
+              Scroll to browse all majors, or type to filter.
             </Text>
           ) : null}
 
-          {filteredOptions.map((option) => (
-            <AnimatedCardPressable
-              key={option.id}
-              onPress={() => {
-                setSearchQuery("");
-                onSelect(option.id);
-              }}
-              className={`border ${borderClass} rounded-2xl px-4 py-4`}
-            >
-              <Text className={`${textClass} font-semibold`}>{option.label}</Text>
-              {option.description ? (
-                <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                  {option.description}
-                </Text>
-              ) : null}
-            </AnimatedCardPressable>
-          ))}
+          <ScrollView
+            nestedScrollEnabled
+            showsVerticalScrollIndicator
+            keyboardShouldPersistTaps="always"
+            style={{ maxHeight: 270, backgroundColor: dropdownBackgroundColor }}
+            contentContainerStyle={{ gap: 12, paddingBottom: 4 }}
+          >
+            {filteredOptions.map((option) => (
+              <AnimatedCardPressable
+                key={option.id}
+                onPress={() => {
+                  searchInputRef.current?.blur();
+                  setSearchQuery("");
+                  onSelect(option.id);
+                }}
+                className={`border ${borderClass} rounded-2xl px-4 py-4`}
+                style={{ backgroundColor: dropdownBackgroundColor, opacity: 1 }}
+              >
+                <Text className={`${textClass} font-semibold`}>{option.label}</Text>
+                {option.description ? (
+                  <Text className={`${secondaryTextClass} text-sm mt-1`}>
+                    {option.description}
+                  </Text>
+                ) : null}
+              </AnimatedCardPressable>
+            ))}
 
-          {searchable && effectiveQuery && !filteredOptions.length ? (
-            <Text className={`${secondaryTextClass} text-sm`}>
-              No majors match that search yet.
-            </Text>
-          ) : null}
+            {searchable && effectiveQuery && !filteredOptions.length ? (
+              <Text className={`${secondaryTextClass} text-sm`}>
+                No majors match that search yet.
+              </Text>
+            ) : null}
+          </ScrollView>
         </View>
       ) : null}
-    </View>
-  );
-}
-
-function NoDirectEquivalenciesCard({
-  plan,
-  selectedCampusId,
-  selectedCampusLabel,
-  selectedMajorLabel,
-  pathwayOptions,
-  selectedPathwayLabel,
-  openSelector,
-  campusOptions,
-  majorOptions,
-  onToggleCampus,
-  onToggleMajor,
-  onSelectCampus,
-  onSelectMajor,
-  onSelectPathway,
-  textClass,
-  secondaryTextClass,
-  cardClass,
-  borderClass,
-}: {
-  plan: TransferPlannerResolvedMajorPlan;
-  selectedCampusId: TransferPlannerCampusId;
-  selectedCampusLabel: string;
-  selectedMajorLabel: string;
-  pathwayOptions: TransferPlannerMajorPathway[];
-  selectedPathwayLabel: string | null;
-  openSelector: "campus" | "major" | null;
-  campusOptions: { id: string; label: string; description?: string }[];
-  majorOptions: { id: string; label: string; description?: string }[];
-  onToggleCampus: () => void;
-  onToggleMajor: () => void;
-  onSelectCampus: (id: string) => void;
-  onSelectMajor: (id: string) => void;
-  onSelectPathway: (pathwayId: string) => void;
-  textClass: string;
-  secondaryTextClass: string;
-  cardClass: string;
-  borderClass: string;
-}) {
-  const [isPathwaySelectorOpen, setIsPathwaySelectorOpen] = useState(false);
-  const selectivityLabel = getMajorSelectivityLabel(plan);
-  const generalRequirementsSummary = getGeneralAdmissionRequirementsSummary(plan);
-
-  return (
-    <View className={`${cardClass} border rounded-[28px] p-5`}>
-      <View className="gap-4">
-        <View
-          className="mt-1"
-          style={{ gap: 16 }}
-        >
-          <SelectorField
-            label="Campus"
-            value={selectedCampusLabel}
-            helper=""
-            open={openSelector === "campus"}
-            onToggle={onToggleCampus}
-            options={campusOptions}
-            onSelect={onSelectCampus}
-            selectedOptionId={selectedCampusId}
-            hideSelectedOptionWhenOpen
-            textClass={textClass}
-            secondaryTextClass={secondaryTextClass}
-            cardClass={cardClass}
-            borderClass={borderClass}
-          />
-
-          <SelectorField
-            label="Major"
-            value={selectedMajorLabel}
-            helper=""
-            open={openSelector === "major"}
-            onToggle={onToggleMajor}
-            options={majorOptions}
-            onSelect={onSelectMajor}
-            searchable
-            searchPlaceholder="Search majors"
-            textClass={textClass}
-            secondaryTextClass={secondaryTextClass}
-            cardClass={cardClass}
-            borderClass={borderClass}
-          />
-        </View>
-
-        <MajorPathwaySection
-          pathwayOptions={pathwayOptions}
-          selectedPathwayId={plan.selectedPathwayId}
-          selectedPathwayLabel={selectedPathwayLabel}
-          isPathwaySelectorOpen={isPathwaySelectorOpen}
-          onTogglePathway={() => setIsPathwaySelectorOpen((currentValue) => !currentValue)}
-          onSelectPathway={(pathwayId) => {
-            setIsPathwaySelectorOpen(false);
-            onSelectPathway(pathwayId);
-          }}
-          textClass={textClass}
-          secondaryTextClass={secondaryTextClass}
-          cardClass={cardClass}
-          borderClass={borderClass}
-        />
-
-        <View className={`border ${borderClass} rounded-2xl px-4 py-4`}>
-          <Text className={`${textClass} text-base font-semibold`}>
-            No direct major equivalencies for {plan.title}
-          </Text>
-          <Text className={`${secondaryTextClass} text-sm mt-2`}>
-            There are no direct major equivalencies for this path right now.
-          </Text>
-          <Text className={`${secondaryTextClass} text-sm mt-2`}>
-            To get into the major, general UW admission requirements are {generalRequirementsSummary}.
-          </Text>
-          <Text className={`${secondaryTextClass} text-sm mt-2`}>
-            This is a {selectivityLabel} major, so plan on advisor review, early application prep, and meeting published prerequisites before transfer.
-          </Text>
-        </View>
-      </View>
     </View>
   );
 }
@@ -917,8 +910,10 @@ function TranscriptSummaryCard({
   plan,
   pathwayOptions,
   selectedPathwayLabel,
+  hasNoDirectMajorEquivalencies,
   selectedCampusId,
   selectedCampusLabel,
+  selectedMajorId,
   selectedMajorLabel,
   trackCode,
   trackTitle,
@@ -931,6 +926,8 @@ function TranscriptSummaryCard({
   majorOptions,
   onToggleCampus,
   onToggleMajor,
+  onDismissCampus,
+  onDismissMajor,
   onSelectCampus,
   onSelectMajor,
   onSelectPathway,
@@ -941,6 +938,7 @@ function TranscriptSummaryCard({
   secondaryTextClass,
   cardClass,
   borderClass,
+  dropdownBackgroundColor,
 }: {
   transcriptDocument: TranscriptDocument | null;
   isAnalyzing: boolean;
@@ -950,8 +948,10 @@ function TranscriptSummaryCard({
   plan: TransferPlannerResolvedMajorPlan;
   pathwayOptions: TransferPlannerMajorPathway[];
   selectedPathwayLabel: string | null;
+  hasNoDirectMajorEquivalencies: boolean;
   selectedCampusId: TransferPlannerCampusId;
   selectedCampusLabel: string;
+  selectedMajorId: string;
   selectedMajorLabel: string;
   trackCode: string | null;
   trackTitle: string;
@@ -964,6 +964,8 @@ function TranscriptSummaryCard({
   majorOptions: { id: string; label: string; description?: string }[];
   onToggleCampus: () => void;
   onToggleMajor: () => void;
+  onDismissCampus: () => void;
+  onDismissMajor: () => void;
   onSelectCampus: (id: string) => void;
   onSelectMajor: (id: string) => void;
   onSelectPathway: (pathwayId: string) => void;
@@ -974,15 +976,28 @@ function TranscriptSummaryCard({
   secondaryTextClass: string;
   cardClass: string;
   borderClass: string;
+  dropdownBackgroundColor: string;
 }) {
   const [isPathwaySelectorOpen, setIsPathwaySelectorOpen] = useState(false);
   const visibleTrackSummary = getAutoTrackSummaryText(trackSummary);
   const visibleFinancialAidNote = String(financialAidNote ?? "").trim();
-  const shouldShowBestTrackCard = Boolean(trackCode);
+  const shouldShowBestTrackCard = Boolean(trackCode) && !hasNoDirectMajorEquivalencies;
+  const hasOpenSelectorOverlay = openSelector !== null || isPathwaySelectorOpen;
+  const cardOverlayStyle = hasOpenSelectorOverlay
+    ? {
+        position: "relative" as const,
+        overflow: "visible" as const,
+        zIndex: 80,
+        elevation: 80,
+      }
+    : {
+        position: "relative" as const,
+        overflow: "visible" as const,
+      };
 
   if (!transcriptDocument) {
     return (
-      <View className={`${cardClass} border rounded-[28px] p-5`}>
+      <View className={`${cardClass} border rounded-[28px] p-5`} style={cardOverlayStyle}>
         <View className="flex-row items-start">
           <View className="w-11 h-11 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">
             <Ionicons name="document-text-outline" size={20} color="#008f4e" />
@@ -1012,7 +1027,14 @@ function TranscriptSummaryCard({
           </AnimatedChipPressable>
         </View>
 
-      <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-5`}>
+      <View
+        className={`border ${borderClass} rounded-2xl px-4 py-4 mt-5`}
+        style={
+          hasOpenSelectorOverlay
+            ? { position: "relative", overflow: "visible", zIndex: 90, elevation: 90 }
+            : { position: "relative", overflow: "visible" }
+        }
+      >
           <View
             className="mt-4"
             style={isDesktop ? { flexDirection: "row", alignItems: "flex-start", gap: 16 } : { gap: 16 }}
@@ -1024,14 +1046,15 @@ function TranscriptSummaryCard({
                 helper="Set the campus and major you want this Green River plan to match against."
                 open={openSelector === "campus"}
                 onToggle={onToggleCampus}
+                onDismiss={onDismissCampus}
                 options={campusOptions}
                 onSelect={onSelectCampus}
                 selectedOptionId={selectedCampusId}
                 hideSelectedOptionWhenOpen
                 textClass={textClass}
                 secondaryTextClass={secondaryTextClass}
-                cardClass={cardClass}
                 borderClass={borderClass}
+                dropdownBackgroundColor={dropdownBackgroundColor}
               />
             </View>
 
@@ -1042,14 +1065,16 @@ function TranscriptSummaryCard({
                 helper="Pick the UW bachelor's degree you want the course plan to follow."
                 open={openSelector === "major"}
                 onToggle={onToggleMajor}
+                onDismiss={onDismissMajor}
                 options={majorOptions}
                 onSelect={onSelectMajor}
+                selectedOptionId={selectedMajorId}
                 searchable
                 searchPlaceholder="Search majors"
                 textClass={textClass}
                 secondaryTextClass={secondaryTextClass}
-                cardClass={cardClass}
                 borderClass={borderClass}
+                dropdownBackgroundColor={dropdownBackgroundColor}
               />
           </View>
         </View>
@@ -1067,8 +1092,8 @@ function TranscriptSummaryCard({
         }}
         textClass={textClass}
         secondaryTextClass={secondaryTextClass}
-        cardClass={cardClass}
         borderClass={borderClass}
+        dropdownBackgroundColor={dropdownBackgroundColor}
       />
 
       {shouldShowBestTrackCard ? (
@@ -1104,7 +1129,7 @@ function TranscriptSummaryCard({
   }
 
   return (
-    <View className={`${cardClass} border rounded-[28px] p-5`}>
+    <View className={`${cardClass} border rounded-[28px] p-5`} style={cardOverlayStyle}>
       <View className="flex-row items-start justify-between gap-4">
         <View className="flex-1 min-w-0">
           <Text className={`${textClass} text-lg font-semibold`}>
@@ -1148,7 +1173,14 @@ function TranscriptSummaryCard({
         </View>
       ) : null}
 
-      <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-4`}>
+      <View
+        className={`border ${borderClass} rounded-2xl px-4 py-4 mt-4`}
+        style={
+          hasOpenSelectorOverlay
+            ? { position: "relative", overflow: "visible", zIndex: 90, elevation: 90 }
+            : { position: "relative", overflow: "visible" }
+        }
+      >
         <View
           className="mt-4"
           style={isDesktop ? { flexDirection: "row", alignItems: "flex-start", gap: 16 } : { gap: 16 }}
@@ -1160,14 +1192,15 @@ function TranscriptSummaryCard({
               helper="Set the campus and major you want this Green River plan to match against."
               open={openSelector === "campus"}
               onToggle={onToggleCampus}
+              onDismiss={onDismissCampus}
               options={campusOptions}
               onSelect={onSelectCampus}
               selectedOptionId={selectedCampusId}
               hideSelectedOptionWhenOpen
               textClass={textClass}
               secondaryTextClass={secondaryTextClass}
-              cardClass={cardClass}
               borderClass={borderClass}
+              dropdownBackgroundColor={dropdownBackgroundColor}
             />
           </View>
 
@@ -1178,14 +1211,16 @@ function TranscriptSummaryCard({
               helper="Pick the UW bachelor's degree you want the course plan to follow."
               open={openSelector === "major"}
               onToggle={onToggleMajor}
+              onDismiss={onDismissMajor}
               options={majorOptions}
               onSelect={onSelectMajor}
+              selectedOptionId={selectedMajorId}
               searchable
               searchPlaceholder="Search majors"
               textClass={textClass}
               secondaryTextClass={secondaryTextClass}
-              cardClass={cardClass}
               borderClass={borderClass}
+              dropdownBackgroundColor={dropdownBackgroundColor}
             />
           </View>
         </View>
@@ -1203,8 +1238,8 @@ function TranscriptSummaryCard({
         }}
         textClass={textClass}
         secondaryTextClass={secondaryTextClass}
-        cardClass={cardClass}
         borderClass={borderClass}
+        dropdownBackgroundColor={dropdownBackgroundColor}
       />
 
       {shouldShowBestTrackCard ? (
@@ -1262,8 +1297,8 @@ function MajorPathwaySection({
   onSelectPathway,
   textClass,
   secondaryTextClass,
-  cardClass,
   borderClass,
+  dropdownBackgroundColor,
 }: {
   pathwayOptions: TransferPlannerMajorPathway[];
   selectedPathwayId: string | null;
@@ -1273,8 +1308,8 @@ function MajorPathwaySection({
   onSelectPathway: (pathwayId: string) => void;
   textClass: string;
   secondaryTextClass: string;
-  cardClass: string;
   borderClass: string;
+  dropdownBackgroundColor: string;
 }) {
   if (pathwayOptions.length <= 1) {
     return null;
@@ -1304,8 +1339,8 @@ function MajorPathwaySection({
           hideSelectedOptionWhenOpen
           textClass={textClass}
           secondaryTextClass={secondaryTextClass}
-          cardClass={cardClass}
           borderClass={borderClass}
+          dropdownBackgroundColor={dropdownBackgroundColor}
         />
       </View>
     </View>
@@ -1379,8 +1414,11 @@ function SuggestedScheduleCard({
       </View>
 
       <View className="gap-4 mt-4">
-        {visibleQuarters.map((quarter) => (
-          <View key={quarter.label} className={`border ${borderClass} rounded-2xl px-4 py-4`}>
+        {visibleQuarters.map((quarter, quarterIndex) => (
+          <View
+            key={`${quarter.phase}-${quarter.label}-${quarterIndex}`}
+            className={`border ${borderClass} rounded-2xl px-4 py-4`}
+          >
             <View className="flex-row items-center justify-between gap-3">
               <Text className={`${textClass} font-semibold flex-1`}>{quarter.label}</Text>
               <View
@@ -1411,9 +1449,9 @@ function SuggestedScheduleCard({
             </View>
             <View className="gap-2 mt-3">
               {quarter.courses.length ? (
-                quarter.courses.map((course) => (
+                quarter.courses.map((course, courseIndex) => (
                   <View
-                    key={`${quarter.label}-${course.label}`}
+                    key={`${quarter.label}-${course.label}-${courseIndex}`}
                     className={`px-3 py-3 rounded-2xl ${
                       course.status === "completed"
                         ? "bg-emerald-500/10 border border-emerald-500/20"
@@ -1458,8 +1496,8 @@ function SuggestedScheduleCard({
                             const params: Record<string, string> = {
                               campusId: selectedCampusId,
                             };
-                            if (linkData.tag) {
-                              params.tag = linkData.tag;
+                            if (linkData.tags.length) {
+                              params.tag = linkData.tags.join(",");
                             }
 
                             return (
@@ -1914,7 +1952,7 @@ export default function TransferPlannerPage() {
 
   const transcriptAnalysisAttemptsRef = useRef<Set<string>>(new Set());
 
-  const { textClass, secondaryTextClass, cardBgClass, borderClass } = styles;
+  const { textClass, secondaryTextClass, cardBgClass, borderClass, dropdownSurfaceColor } = styles;
   const isDesktop = width >= 1180;
   const isTablet = width >= 768;
   const shellMaxWidth = isDesktop ? 1280 : isTablet ? 980 : 760;
@@ -2509,100 +2547,16 @@ export default function TransferPlannerPage() {
     );
   }
 
-  if (hasNoDirectMajorEquivalencies) {
-    return (
-      <ScreenBackground includeTopInset includeBottomInset={false}>
+  return (
+    <ScreenBackground includeTopInset includeBottomInset={false}>
         <ScrollView
           contentContainerStyle={{
             paddingBottom: scrollContentPadding.paddingBottom,
           }}
           showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="always"
+          scrollEnabled={openSelector === null}
         >
-          <View
-            style={{
-              alignSelf: "center",
-              width: "100%",
-              maxWidth: shellMaxWidth,
-              paddingHorizontal: shellHorizontalPadding,
-              paddingTop: scrollContentPadding.paddingTop + 12,
-              gap: 24,
-            }}
-          >
-            <View className="gap-4">
-              <AnimatedIconPressable
-                onPress={handleGoBack}
-                className="flex-row items-center"
-                containerStyle={{ alignSelf: "flex-start" }}
-              >
-                <MaterialIcons
-                  name="arrow-back"
-                  size={20}
-                  color="#1f8a5d"
-                />
-                <Text className={`${secondaryTextClass} ml-2`}>
-                  {backLabel}
-                </Text>
-              </AnimatedIconPressable>
-
-              <View className="flex-row items-start">
-                <View className="w-12 h-12 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">
-                  <Ionicons name="trail-sign-outline" size={22} color="#008f4e" />
-                </View>
-                <View className="flex-1">
-                  <Text className={`${textClass} text-2xl font-semibold`}>
-                    {"GRC -> UW Course Planner"}
-                  </Text>
-                  <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                    This major currently has no direct source-backed major equivalency map, so the planner is showing admission guidance only.
-                  </Text>
-                </View>
-              </View>
-            </View>
-
-            <NoDirectEquivalenciesCard
-              plan={plan}
-              selectedCampusId={selectedCampusId}
-              selectedCampusLabel={campus.title}
-              selectedMajorLabel={plan?.title ?? "Select major"}
-              pathwayOptions={pathwayOptions}
-              selectedPathwayLabel={plan.selectedPathwayLabel}
-              openSelector={openSelector}
-              campusOptions={campusOptions}
-              majorOptions={majorOptions}
-              onToggleCampus={() =>
-                setOpenSelector((current) => (current === "campus" ? null : "campus"))
-              }
-              onToggleMajor={() =>
-                setOpenSelector((current) => (current === "major" ? null : "major"))
-              }
-              onSelectCampus={(id) => {
-                setSelectedCampusId(id as TransferPlannerCampusId);
-                setOpenSelector(null);
-              }}
-              onSelectMajor={(id) => {
-                setSelectedMajorId(id);
-                setOpenSelector(null);
-              }}
-              onSelectPathway={handleSelectPathway}
-              textClass={textClass}
-              secondaryTextClass={secondaryTextClass}
-              cardClass={cardBgClass}
-              borderClass={borderClass}
-            />
-          </View>
-        </ScrollView>
-      </ScreenBackground>
-    );
-  }
-
-  return (
-    <ScreenBackground includeTopInset includeBottomInset={false}>
-      <ScrollView
-        contentContainerStyle={{
-          paddingBottom: scrollContentPadding.paddingBottom,
-        }}
-        showsVerticalScrollIndicator={false}
-      >
         <View
           style={{
             alignSelf: "center",
@@ -2611,6 +2565,7 @@ export default function TransferPlannerPage() {
             paddingHorizontal: shellHorizontalPadding,
             paddingTop: scrollContentPadding.paddingTop + 12,
             gap: 24,
+            position: "relative",
           }}
         >
           <View className="gap-4">
@@ -2653,8 +2608,10 @@ export default function TransferPlannerPage() {
             plan={plan}
             pathwayOptions={pathwayOptions}
             selectedPathwayLabel={plan.selectedPathwayLabel}
+            hasNoDirectMajorEquivalencies={hasNoDirectMajorEquivalencies}
             selectedCampusId={selectedCampusId}
             selectedCampusLabel={campus.title}
+            selectedMajorId={selectedMajorId}
             selectedMajorLabel={plan?.title ?? "Select major"}
             trackCode={track?.code ?? null}
             trackTitle={track?.title ?? "Custom Green River path"}
@@ -2670,6 +2627,12 @@ export default function TransferPlannerPage() {
             }
             onToggleMajor={() =>
               setOpenSelector((current) => (current === "major" ? null : "major"))
+            }
+            onDismissCampus={() =>
+              setOpenSelector((current) => (current === "campus" ? null : current))
+            }
+            onDismissMajor={() =>
+              setOpenSelector((current) => (current === "major" ? null : current))
             }
             onSelectCampus={(id) => {
               setSelectedCampusId(id as TransferPlannerCampusId);
@@ -2689,7 +2652,25 @@ export default function TransferPlannerPage() {
             secondaryTextClass={secondaryTextClass}
             cardClass={cardBgClass}
             borderClass={borderClass}
+            dropdownBackgroundColor={dropdownSurfaceColor}
           />
+
+          {hasNoDirectMajorEquivalencies ? (
+            <View className={`${cardBgClass} border rounded-[28px] p-5`}>
+              <Text className={`${textClass} text-lg font-semibold`}>
+                No direct major equivalencies for {plan.title}
+              </Text>
+              <Text className={`${secondaryTextClass} text-sm mt-2`}>
+                There are no direct source-backed major equivalencies for this path right now.
+              </Text>
+              <Text className={`${secondaryTextClass} text-sm mt-2`}>
+                To get into the major, plan for {getGeneralAdmissionRequirementsSummary(plan)}.
+              </Text>
+              <Text className={`${secondaryTextClass} text-sm mt-2`}>
+                {getMajorSelectivityMessage(plan)}, so plan on advisor review, early application prep, and meeting published prerequisites before transfer.
+              </Text>
+            </View>
+          ) : null}
 
           {!hasStructuredPlannerData ? (
             <View className={`${cardBgClass} border rounded-[28px] p-5`}>
@@ -2705,6 +2686,7 @@ export default function TransferPlannerPage() {
           {hasStructuredPlannerData ? (
             <>
               <SuggestedScheduleCard
+                key={plannerPathKey}
                 quarters={suggestedQuarterPlan}
                 degreeTitle={
                   plan.selectedPathwayLabel
@@ -2726,6 +2708,21 @@ export default function TransferPlannerPage() {
                 borderClass={borderClass}
               />
             </>
+          ) : null}
+
+          {openSelector !== null ? (
+            <Pressable
+              onPress={() => setOpenSelector(null)}
+              style={{
+                position: "absolute",
+                top: 0,
+                right: 0,
+                bottom: 0,
+                left: 0,
+                zIndex: 40,
+                backgroundColor: "rgba(15, 23, 42, 0.02)",
+              }}
+            />
           ) : null}
         </View>
       </ScrollView>

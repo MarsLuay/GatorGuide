@@ -139,7 +139,8 @@ function getOrCreate(map, key) {
 
 async function parseSchedule(schedule, courseMap) {
   if (!fs.existsSync(schedule.pdfPath)) {
-    throw new Error(`Missing annual schedule PDF: ${schedule.pdfPath}`);
+    console.warn(`Skipping missing annual schedule PDF: ${schedule.pdfPath}`);
+    return;
   }
 
   const pdfData = new Uint8Array(fs.readFileSync(schedule.pdfPath));

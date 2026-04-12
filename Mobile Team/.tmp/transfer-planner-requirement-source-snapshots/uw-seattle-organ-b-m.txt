@@ -8,7 +8,6 @@ Title: Bachelor of Music - Organ | School of Music | University of Washington
 [Supplemental official source] Guitar
 [Supplemental official source] Jazz Studies
 [Supplemental official source] Music Education, Instrumental Emphasis
-[Supplemental official source] Music Education, Post Bac, Instrumental Emphasis
 * The postbaccalaureate degree program is designed to serve students who already have an undergraduate degree in music, but wish to become trained and certified in music teaching. Prospective students must apply to the University (see http://admit.washington.edu/Apply/Postbacs for deadlines) and audition for the music education faculty (see audition dates for information and dates). The degree programs above can serve as a guide for the post-baccaluareate student but decisions about what previous credits will transfer are made on an individual basis at the time of admission.
 &copy; 2026 University of Washington . All rights reserved.
 A typical course of study:
@@ -20,7 +19,6 @@ Additional Music Requirements Starting 1st and 2nd Year of Study
 Admission
 Admission to the Bachelor of Music is intended for especially qualified students who wish to emphasize professional training in composition within a four ‐ year program. Music majors are required to earn a minimum grade of 2.0 in each music course (core and elective) that is to count toward Music degree requirements. A GPA of 2.5 in Music is required for graduation. A minimum of 180 credits is required, of which at least 60 must be taken in departments other than the School of Music. These 60 credits may include courses required to satisfy general education requirements .
 Admission to the Bachelor of Music is intended for especially qualified students who wish to emphasize professional training in music education within a four ‐ year program. Music majors are required to earn a minimum grade of 2.0 in each music course (core and elective) that is to count toward Music degree requirements. A GPA of 2.5 in Music is required for graduation. A minimum of 180 credits is required, of which at least 60 must be taken in departments other than the School of Music. These 60 credits may include courses required to satisfy general education requirements .
-Admission to the Bachelor of Music is intended for especially qualified students who wish to emphasize professional training in music education. Music majors are required to earn a minimum grade of 2.0 in each music course (core and elective) that is to count toward Music degree requirements. A GPA of 2.5 in Music is required for graduation. A minimum of 180 credits is required, of which at least 60 must be taken in departments other than the School of Music. These 60 credits may include courses required to satisfy general education requirements .
 Admission to the Bachelor of Music is intended for especially qualified students who wish to emphasize professional training in performance within a four ‐ year program. Music majors are required to earn a minimum grade of 2.0 in each music course (core and elective) that is to count toward Music degree requirements. A GPA of 2.5 in Music is required for graduation. A minimum of 180 credits is required, of which at least 60 must be taken in departments other than the School of Music. These 60 credits may include courses required to satisfy general education requirements .
 Admissions & Auditions
 Advising
@@ -39,7 +37,6 @@ Areas of Inquiry - 75 credits total (of which 15 cr. of major dept. prefix can c
 Areas of Study
 At least 3 credits from among: MUSIC 250, MUSIC 251, MUSIC 252, or any 400-level Ethnomusicology course
 At least 3 credits from among: MUSIC 250, MUSIC 251, MUSIC 252, or any 400-level Ethnomusicology course (3 credits)
-At least three credits from among: MUSIC 250, MUSIC 251, MUSIC 252, or any 400-level Ethnomusicology course (3 credits)
 Auditions
 Bachelor of Arts
 Bachelor of Arts | School of Music | University of Washington
@@ -58,14 +55,11 @@ Bachelor of Music - Jazz Studies Degree Program Sheet (PDF)
 Bachelor of Music - Music Education, Instrumental Emphasis
 Bachelor of Music - Music Education, Instrumental Emphasis | School of Music | University of Washington
 Bachelor of Music - Music Education, Instrumental Emphasis Sample Course Sequence
-Bachelor of Music - Music Education, Post Baccalaureate Certification, Instrumental Emphasis
-Bachelor of Music - Music Education, Post Baccalaureate Certification, Instrumental Emphasis | School of Music | University of Washington
 Bachelor of Music - Organ
 Bachelor of Music - Organ | School of Music | University of Washington
 Bachelor of Music - Organ Degree Program Sheet (PDF)
 Bachelor of Music | School of Music | University of Washington
 Bachelor of Music General Education Requirements
-Bachelor of Music-Music Education, Post-Bac, Instrumental Emphasis Degree Program Sheet (PDF)
 Bands
 BM Music Education - Instrumental Emphasis PDF
 Box 353450
@@ -186,7 +180,6 @@ Music Education - Post Baccalaureate Certfication, Instrumental Emphasis*
 Music Education - Post Baccalaureate Certficiation, Vocal Emphasis*
 Music Education - Vocal Emphasis
 Music Education with Teaching Certification (Instrumental/General Emphasis)
-Music Education with Teaching Certification (Post Bac, Instrumental/General Emphasis)
 Music Education, Instrumental Emphasis
 Music Education, Post Bac, Instrumental Emphasis
 Music Education, Post Bac, Vocal Emphasis
@@ -200,7 +193,6 @@ Music Library
 Music Minor
 Music Theory & History Core
 Music Theory Option
-Music Theory-History Core (36 credits)
 Music, Instrumental Option
 Music, Music History Option
 Music, Music Theory Option
@@ -208,7 +200,6 @@ Music, Voice Option
 Musical Instrument Collection
 MUSICP 320-338: Private Instruction (3) (12 credits)
 MUSICP 320-339/420-439 or MUSAP 136-139/233-239, 389 or MUSEN 389: Two years of Private Instruction: Vocal or Instrumental (Note: Admission to MUSICP lessons is done through audition - except MUSAP 389) (12-18 credits)
-MUSICP 321-339/421-439 (18 credits)
 MUSICP 321-339/421/439: Private Instruction (18 credits)
 MUSICP 322: Private Instruction (3) (18 credits)
 MUSICP 338: Private Instruction (3) (18 credits)
@@ -238,7 +229,6 @@ People
 Percussion
 Percussion Performance
 Performance (5 minutes, maximum) on your principal instrument or voice of a prepared accompanied piece (an accompanist can be provided); also performance of a familiar melody by ear
-Performance of a simple song and a simple harmonic accompaniment on piano
 Performances & Events
 Phone: (206) 543-1201
 PHYS 207: The Physics of Music (3 credits)
@@ -303,12 +293,9 @@ Ticketing
 To be considered for Organ Performance Status, you must pass a Piano audition at the MUSICP 321 level or above.
 TOTAL CORE CREDITS: 36
 TOTAL MAJOR CREDITS: 116-122 (Does not include Piano and Pre-Core)
-TOTAL MAJOR CREDITS: 119
 TOTAL MAJOR CREDITS: 120
 TOTAL MAJOR CREDITS: 126
 TOTAL NON-MUSIC CREDITS: 60
-TOTAL NON-MUSIC CREDITS: 60 (Generally Satisfied by prior Bachelor's degree)
-Transfer from Previous Degree
 Undergraduate Admissions
 Undergraduate Degrees
 University of Washington

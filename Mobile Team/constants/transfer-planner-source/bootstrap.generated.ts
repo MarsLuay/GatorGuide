@@ -13129,9 +13129,185 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "bs-option-family",
-        "label": "B.S. option family",
-        "summary": "Technical biology route that keeps the shared B.S. science spine alive before the student picks the final Biology option at UW.",
+        "id": "bs-option-family:ecology-evolution-and-conservation",
+        "label": "B.S. Ecology, Evolution, and Conservation option",
+        "summary": "Specific Ecology, Evolution, and Conservation route. Technical biology route that keeps the shared B.S. science spine alive before the student picks the final Biology option at UW.",
+        "grcCourseList": [
+          "BIOL& 211",
+          "BIOL& 212",
+          "BIOL& 213",
+          "CHEM& 161",
+          "CHEM& 162",
+          "CHEM& 163",
+          "MATH& 151",
+          "MATH& 152",
+          "MATH& 146",
+          "MATH 256",
+          "PHYS& 221",
+          "PHYS& 222"
+        ],
+        "degreeMapSections": [
+          {
+            "id": "biol-bs-admission",
+            "title": "Biology admission and shared lower-division baseline",
+            "items": [
+              "Biology is a capacity-constrained Seattle major with quarterly applications.",
+              "The department currently requires BIOL 180, BIOL 200, and BIOL 220 or BIOL 240, with at least a 2.0 in each course, plus at least a 2.5 cumulative GPA across supporting chemistry, physics, mathematics, biology, and related major-prep coursework completed at the time of application."
+            ]
+          },
+          {
+            "id": "biol-bs-path",
+            "title": "B.S. in Biology option family",
+            "items": [
+              "The B.S. family currently includes Ecology, Evolution, and Conservation; General Biology; Molecular, Cellular, and Developmental Biology; Physiology; and Plant Biology.",
+              "Across those B.S. options, students share the same lower-division biology base, one approved chemistry sequence, one approved two-quarter calculus/statistics sequence, two quarters of physics, a genetics course, a natural history or biodiversity course, a breadth course, and then an option-specific 29-34 credit upper-division block.",
+              "The catalog also applies common B.S. degree rules such as a minimum 2.0 cumulative GPA in courses used toward the major, at least 15 upper-division BIOL credits completed through UW Seattle, two upper-division laboratory courses, and at least 15 credits of 400-level BIOL coursework."
+            ]
+          }
+        ],
+        "manualReviewNotes": [
+          "Use this pathway when the student is intentionally keeping one of the Seattle Biology B.S. option families open."
+        ],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "whyThisTrack": []
+      },
+      {
+        "id": "bs-option-family:general-biology",
+        "label": "B.S. General Biology option",
+        "summary": "Specific General Biology route. Technical biology route that keeps the shared B.S. science spine alive before the student picks the final Biology option at UW.",
+        "grcCourseList": [
+          "BIOL& 211",
+          "BIOL& 212",
+          "BIOL& 213",
+          "CHEM& 161",
+          "CHEM& 162",
+          "CHEM& 163",
+          "MATH& 151",
+          "MATH& 152",
+          "MATH& 146",
+          "MATH 256",
+          "PHYS& 221",
+          "PHYS& 222"
+        ],
+        "degreeMapSections": [
+          {
+            "id": "biol-bs-admission",
+            "title": "Biology admission and shared lower-division baseline",
+            "items": [
+              "Biology is a capacity-constrained Seattle major with quarterly applications.",
+              "The department currently requires BIOL 180, BIOL 200, and BIOL 220 or BIOL 240, with at least a 2.0 in each course, plus at least a 2.5 cumulative GPA across supporting chemistry, physics, mathematics, biology, and related major-prep coursework completed at the time of application."
+            ]
+          },
+          {
+            "id": "biol-bs-path",
+            "title": "B.S. in Biology option family",
+            "items": [
+              "The B.S. family currently includes Ecology, Evolution, and Conservation; General Biology; Molecular, Cellular, and Developmental Biology; Physiology; and Plant Biology.",
+              "Across those B.S. options, students share the same lower-division biology base, one approved chemistry sequence, one approved two-quarter calculus/statistics sequence, two quarters of physics, a genetics course, a natural history or biodiversity course, a breadth course, and then an option-specific 29-34 credit upper-division block.",
+              "The catalog also applies common B.S. degree rules such as a minimum 2.0 cumulative GPA in courses used toward the major, at least 15 upper-division BIOL credits completed through UW Seattle, two upper-division laboratory courses, and at least 15 credits of 400-level BIOL coursework."
+            ]
+          }
+        ],
+        "manualReviewNotes": [
+          "Use this pathway when the student is intentionally keeping one of the Seattle Biology B.S. option families open."
+        ],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "whyThisTrack": []
+      },
+      {
+        "id": "bs-option-family:molecular-cellular-and-developmental-biology",
+        "label": "B.S. Molecular, Cellular, and Developmental Biology option",
+        "summary": "Specific Molecular, Cellular, and Developmental Biology route. Technical biology route that keeps the shared B.S. science spine alive before the student picks the final Biology option at UW.",
+        "grcCourseList": [
+          "BIOL& 211",
+          "BIOL& 212",
+          "BIOL& 213",
+          "CHEM& 161",
+          "CHEM& 162",
+          "CHEM& 163",
+          "MATH& 151",
+          "MATH& 152",
+          "MATH& 146",
+          "MATH 256",
+          "PHYS& 221",
+          "PHYS& 222"
+        ],
+        "degreeMapSections": [
+          {
+            "id": "biol-bs-admission",
+            "title": "Biology admission and shared lower-division baseline",
+            "items": [
+              "Biology is a capacity-constrained Seattle major with quarterly applications.",
+              "The department currently requires BIOL 180, BIOL 200, and BIOL 220 or BIOL 240, with at least a 2.0 in each course, plus at least a 2.5 cumulative GPA across supporting chemistry, physics, mathematics, biology, and related major-prep coursework completed at the time of application."
+            ]
+          },
+          {
+            "id": "biol-bs-path",
+            "title": "B.S. in Biology option family",
+            "items": [
+              "The B.S. family currently includes Ecology, Evolution, and Conservation; General Biology; Molecular, Cellular, and Developmental Biology; Physiology; and Plant Biology.",
+              "Across those B.S. options, students share the same lower-division biology base, one approved chemistry sequence, one approved two-quarter calculus/statistics sequence, two quarters of physics, a genetics course, a natural history or biodiversity course, a breadth course, and then an option-specific 29-34 credit upper-division block.",
+              "The catalog also applies common B.S. degree rules such as a minimum 2.0 cumulative GPA in courses used toward the major, at least 15 upper-division BIOL credits completed through UW Seattle, two upper-division laboratory courses, and at least 15 credits of 400-level BIOL coursework."
+            ]
+          }
+        ],
+        "manualReviewNotes": [
+          "Use this pathway when the student is intentionally keeping one of the Seattle Biology B.S. option families open."
+        ],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "whyThisTrack": []
+      },
+      {
+        "id": "bs-option-family:physiology",
+        "label": "B.S. Physiology option",
+        "summary": "Specific Physiology route. Technical biology route that keeps the shared B.S. science spine alive before the student picks the final Biology option at UW.",
+        "grcCourseList": [
+          "BIOL& 211",
+          "BIOL& 212",
+          "BIOL& 213",
+          "CHEM& 161",
+          "CHEM& 162",
+          "CHEM& 163",
+          "MATH& 151",
+          "MATH& 152",
+          "MATH& 146",
+          "MATH 256",
+          "PHYS& 221",
+          "PHYS& 222"
+        ],
+        "degreeMapSections": [
+          {
+            "id": "biol-bs-admission",
+            "title": "Biology admission and shared lower-division baseline",
+            "items": [
+              "Biology is a capacity-constrained Seattle major with quarterly applications.",
+              "The department currently requires BIOL 180, BIOL 200, and BIOL 220 or BIOL 240, with at least a 2.0 in each course, plus at least a 2.5 cumulative GPA across supporting chemistry, physics, mathematics, biology, and related major-prep coursework completed at the time of application."
+            ]
+          },
+          {
+            "id": "biol-bs-path",
+            "title": "B.S. in Biology option family",
+            "items": [
+              "The B.S. family currently includes Ecology, Evolution, and Conservation; General Biology; Molecular, Cellular, and Developmental Biology; Physiology; and Plant Biology.",
+              "Across those B.S. options, students share the same lower-division biology base, one approved chemistry sequence, one approved two-quarter calculus/statistics sequence, two quarters of physics, a genetics course, a natural history or biodiversity course, a breadth course, and then an option-specific 29-34 credit upper-division block.",
+              "The catalog also applies common B.S. degree rules such as a minimum 2.0 cumulative GPA in courses used toward the major, at least 15 upper-division BIOL credits completed through UW Seattle, two upper-division laboratory courses, and at least 15 credits of 400-level BIOL coursework."
+            ]
+          }
+        ],
+        "manualReviewNotes": [
+          "Use this pathway when the student is intentionally keeping one of the Seattle Biology B.S. option families open."
+        ],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "whyThisTrack": []
+      },
+      {
+        "id": "bs-option-family:plant-biology",
+        "label": "B.S. Plant Biology option",
+        "summary": "Specific Plant Biology route. Technical biology route that keeps the shared B.S. science spine alive before the student picks the final Biology option at UW.",
         "grcCourseList": [
           "BIOL& 211",
           "BIOL& 212",
@@ -18044,9 +18220,117 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "bs-option-family",
-        "label": "B.S. option family",
-        "summary": "More technical earth-science route that keeps the shared B.S. chemistry, calculus, physics, and ESS launchpad alive before the student picks the final UW option.",
+        "id": "bs-option-family:geology",
+        "label": "B.S. Geology option",
+        "summary": "Specific Geology route. More technical earth-science route that keeps the shared B.S. chemistry, calculus, physics, and ESS launchpad alive before the student picks the final UW option.",
+        "grcCourseList": [
+          "CHEM& 161",
+          "MATH& 151",
+          "MATH& 152",
+          "PHYS& 221",
+          "PHYS& 222"
+        ],
+        "degreeMapSections": [
+          {
+            "id": "ess-bs-overview",
+            "title": "Earth & Space Sciences degree family",
+            "items": [
+              "Earth and Space Sciences is an open major family with both a B.A. and multiple B.S. option paths.",
+              "The admissions page describes the B.A. as the broader earth-science route and the B.S. as the more technical path, with current B.S. options in Geology, Biology, Physics, and Geoscience."
+            ]
+          },
+          {
+            "id": "ess-bs-path",
+            "title": "B.S. in Earth & Space Sciences option structure",
+            "items": [
+              "The B.S. starts with a shared core of CHEM 142, MATH 124 and 125, PHYS 114/117 or 121, and three ESS core courses chosen from ESS 205, 211, 212, and 213.",
+              "After that shared base, students complete one of the option-area finishes in Geology, Biology, Geoscience, or Physics, each with its own supporting-science package, ESS required courses, and advanced ESS electives."
+            ]
+          }
+        ],
+        "manualReviewNotes": [
+          "Use this path when the student has intentionally chosen the technical Seattle Earth and Space Sciences B.S. family rather than the broader B.A."
+        ],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "whyThisTrack": []
+      },
+      {
+        "id": "bs-option-family:biology",
+        "label": "B.S. Biology option",
+        "summary": "Specific Biology route. More technical earth-science route that keeps the shared B.S. chemistry, calculus, physics, and ESS launchpad alive before the student picks the final UW option.",
+        "grcCourseList": [
+          "CHEM& 161",
+          "MATH& 151",
+          "MATH& 152",
+          "PHYS& 221",
+          "PHYS& 222"
+        ],
+        "degreeMapSections": [
+          {
+            "id": "ess-bs-overview",
+            "title": "Earth & Space Sciences degree family",
+            "items": [
+              "Earth and Space Sciences is an open major family with both a B.A. and multiple B.S. option paths.",
+              "The admissions page describes the B.A. as the broader earth-science route and the B.S. as the more technical path, with current B.S. options in Geology, Biology, Physics, and Geoscience."
+            ]
+          },
+          {
+            "id": "ess-bs-path",
+            "title": "B.S. in Earth & Space Sciences option structure",
+            "items": [
+              "The B.S. starts with a shared core of CHEM 142, MATH 124 and 125, PHYS 114/117 or 121, and three ESS core courses chosen from ESS 205, 211, 212, and 213.",
+              "After that shared base, students complete one of the option-area finishes in Geology, Biology, Geoscience, or Physics, each with its own supporting-science package, ESS required courses, and advanced ESS electives."
+            ]
+          }
+        ],
+        "manualReviewNotes": [
+          "Use this path when the student has intentionally chosen the technical Seattle Earth and Space Sciences B.S. family rather than the broader B.A."
+        ],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "whyThisTrack": []
+      },
+      {
+        "id": "bs-option-family:geoscience",
+        "label": "B.S. Geoscience option",
+        "summary": "Specific Geoscience route. More technical earth-science route that keeps the shared B.S. chemistry, calculus, physics, and ESS launchpad alive before the student picks the final UW option.",
+        "grcCourseList": [
+          "CHEM& 161",
+          "MATH& 151",
+          "MATH& 152",
+          "PHYS& 221",
+          "PHYS& 222"
+        ],
+        "degreeMapSections": [
+          {
+            "id": "ess-bs-overview",
+            "title": "Earth & Space Sciences degree family",
+            "items": [
+              "Earth and Space Sciences is an open major family with both a B.A. and multiple B.S. option paths.",
+              "The admissions page describes the B.A. as the broader earth-science route and the B.S. as the more technical path, with current B.S. options in Geology, Biology, Physics, and Geoscience."
+            ]
+          },
+          {
+            "id": "ess-bs-path",
+            "title": "B.S. in Earth & Space Sciences option structure",
+            "items": [
+              "The B.S. starts with a shared core of CHEM 142, MATH 124 and 125, PHYS 114/117 or 121, and three ESS core courses chosen from ESS 205, 211, 212, and 213.",
+              "After that shared base, students complete one of the option-area finishes in Geology, Biology, Geoscience, or Physics, each with its own supporting-science package, ESS required courses, and advanced ESS electives."
+            ]
+          }
+        ],
+        "manualReviewNotes": [
+          "Use this path when the student has intentionally chosen the technical Seattle Earth and Space Sciences B.S. family rather than the broader B.A."
+        ],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "whyThisTrack": []
+      },
+      {
+        "id": "bs-option-family:physics",
+        "label": "B.S. Physics option",
+        "summary": "Specific Physics route. More technical earth-science route that keeps the shared B.S. chemistry, calculus, physics, and ESS launchpad alive before the student picks the final UW option.",
         "grcCourseList": [
           "CHEM& 161",
           "MATH& 151",
