@@ -1639,7 +1639,7 @@ function buildAutoTrackWhyThisTrack(scope: {
 }
 
 function buildAutoTrackFinancialAidNote(track: TransferPlannerTrack) {
-  return `Use ${track.code} as the main Green River transfer-degree backbone for aid and degree-planning purposes, then layer the remaining source-backed major-specific classes on top.`;
+  return `Use ${track.code} as your main Green River transfer path. Then add any extra major classes it does not already cover.`;
 }
 
 export function getTransferPlannerAutoMatchedTrackRecommendation(
@@ -1786,6 +1786,10 @@ function applyAutoChecklistFallback<T extends {
 
   return {
     ...scope,
+    grcCourseList: collectPlannerCourseLabels({
+      ...scope,
+      stayAtGrcChecklist: fallbackChecklist,
+    }),
     stayAtGrcChecklist: fallbackChecklist,
   };
 }
@@ -2143,6 +2147,54 @@ function buildStudentVisibleAutomaticCourseList(scope: {
   return collectPlannerCourseLabels(scope);
 }
 
+function isStudentVisibleTrackCourseLabel(label: string) {
+  const normalizedLabel = normalizeCourseCode(label);
+  const extractedCourseCodes = extractReferenceCourseCodes(label);
+
+  return extractedCourseCodes.length === 1 && extractedCourseCodes[0] === normalizedLabel;
+}
+
+function getStudentVisibleTrackCourseList(trackId: string | null | undefined) {
+  const track = trackId ? TRACKS_BY_ID.get(trackId) ?? null : null;
+  if (!track) {
+    return [] as string[];
+  }
+
+  return uniqueReferenceCourseLabels(
+    track.terms
+      .filter((term) => shouldUseTrackTermForAutoMatch(term.label))
+      .flatMap((term) => term.courses)
+      .filter((label) => isStudentVisibleTrackCourseLabel(label))
+  );
+}
+
+function applyStudentVisibleTrackCourseList<T extends {
+  bestTrackId: string | null | undefined;
+  grcCourseList?: string[];
+}>(scope: T): T {
+  const existingCourseList = uniqueReferenceCourseLabels(scope.grcCourseList ?? []);
+  if (!existingCourseList.length) {
+    return scope;
+  }
+
+  const trackCourseList = getStudentVisibleTrackCourseList(scope.bestTrackId);
+  if (!trackCourseList.length) {
+    return scope;
+  }
+
+  const existingCourseCodeSet = new Set(
+    existingCourseList.flatMap((label) => extractReferenceCourseCodes(label))
+  );
+  const trackOrderForExistingCourses = trackCourseList.filter((label) =>
+    extractReferenceCourseCodes(label).some((code) => existingCourseCodeSet.has(code))
+  );
+  const baseOrder = [...trackOrderForExistingCourses, ...existingCourseList];
+  return {
+    ...scope,
+    grcCourseList: orderStringsByBase(existingCourseList, baseOrder),
+  };
+}
+
 function buildStudentRuntimePathway(
   basePlan: TransferPlannerMajorPlan,
   basePathway: TransferPlannerMajorPathway
@@ -2181,30 +2233,32 @@ function buildStudentRuntimePathway(
     stayAtGrcChecklist: prunedStayAtGrcChecklist,
   });
 
-  return applyAutoChecklistFallback(
-    applyStrictSourceBackedFallback(
-      applyAutoTrackRecommendation({
-      id: basePathway.id,
-      label: basePathway.label,
-      summary: "",
-      applicationChecklist,
-      beforeEnrollmentChecklist: prunedBeforeEnrollmentChecklist,
-      stayAtGrcChecklist: prunedStayAtGrcChecklist,
-      advisorFlags: [],
-      officialLinks: [],
-      degreeMapSections: [],
-      manualReviewNotes: [],
-      grcCourseList: studentVisibleCourseList,
-      grcCourseListGuidance: undefined,
-      plannerNote: undefined,
-      bestTrackId: null,
-      bestTrackSummary: "",
-      whyThisTrack: [],
-      financialAidNote: "",
-      } satisfies TransferPlannerMajorPathway),
-      basePathway.id
-    ),
-    { allowCustomPrepFallback: false }
+  return applyStudentVisibleTrackCourseList(
+    applyAutoChecklistFallback(
+      applyStrictSourceBackedFallback(
+        applyAutoTrackRecommendation({
+          id: basePathway.id,
+          label: basePathway.label,
+          summary: "",
+          applicationChecklist,
+          beforeEnrollmentChecklist: prunedBeforeEnrollmentChecklist,
+          stayAtGrcChecklist: prunedStayAtGrcChecklist,
+          advisorFlags: [],
+          officialLinks: [],
+          degreeMapSections: [],
+          manualReviewNotes: [],
+          grcCourseList: studentVisibleCourseList,
+          grcCourseListGuidance: undefined,
+          plannerNote: undefined,
+          bestTrackId: null,
+          bestTrackSummary: "",
+          whyThisTrack: [],
+          financialAidNote: "",
+        } satisfies TransferPlannerMajorPathway),
+        basePathway.id
+      ),
+      { allowCustomPrepFallback: false }
+    )
   );
 }
 
@@ -2237,35 +2291,37 @@ function buildStudentRuntimePlan(basePlan: TransferPlannerMajorPlan): TransferPl
     stayAtGrcChecklist: prunedStayAtGrcChecklist,
   });
 
-  return applyAutoChecklistFallback(
-    applyStrictSourceBackedFallback(
-      applyAutoTrackRecommendation({
-      ...basePlan,
-      summary: "",
-      bestTrackId: null,
-      bestTrackSummary: "",
-      whyThisTrack: [],
-      financialAidNote: "",
-      applicationChecklist,
-      beforeEnrollmentChecklist: prunedBeforeEnrollmentChecklist,
-      stayAtGrcChecklist: prunedStayAtGrcChecklist,
-      advisorFlags: [],
-      involvementIdeas: [],
-      projectIdeas: [],
-      officialLinks: [],
-      degreeMapSections: [],
-      manualReviewNotes: [],
-      grcCourseList: studentVisibleCourseList,
-      grcCourseListGuidance: undefined,
-      plannerNote: undefined,
-      pathways: orderByBaseIds(
-        (basePlan.pathways ?? []).map((pathway) => buildStudentRuntimePathway(basePlan, pathway)),
-        (basePlan.pathways ?? []).map((pathway) => pathway.id)
+  return applyStudentVisibleTrackCourseList(
+    applyAutoChecklistFallback(
+      applyStrictSourceBackedFallback(
+        applyAutoTrackRecommendation({
+          ...basePlan,
+          summary: "",
+          bestTrackId: null,
+          bestTrackSummary: "",
+          whyThisTrack: [],
+          financialAidNote: "",
+          applicationChecklist,
+          beforeEnrollmentChecklist: prunedBeforeEnrollmentChecklist,
+          stayAtGrcChecklist: prunedStayAtGrcChecklist,
+          advisorFlags: [],
+          involvementIdeas: [],
+          projectIdeas: [],
+          officialLinks: [],
+          degreeMapSections: [],
+          manualReviewNotes: [],
+          grcCourseList: studentVisibleCourseList,
+          grcCourseListGuidance: undefined,
+          plannerNote: undefined,
+          pathways: orderByBaseIds(
+            (basePlan.pathways ?? []).map((pathway) => buildStudentRuntimePathway(basePlan, pathway)),
+            (basePlan.pathways ?? []).map((pathway) => pathway.id)
+          ),
+        }),
+        null
       ),
-      }),
-      null
-    ),
-    { allowCustomPrepFallback: false }
+      { allowCustomPrepFallback: false }
+    )
   );
 }
 

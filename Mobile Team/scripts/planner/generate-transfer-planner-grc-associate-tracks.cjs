@@ -31,6 +31,9 @@ const PAGE_FETCH_CONCURRENCY = 8;
 const PROGRAM_FETCH_CONCURRENCY = 8;
 const PROGRAM_PAGE_SIZE = 100;
 const COURSE_CODE_PATTERN = /\b[A-Z]{2,6}&?\s*\d{3}(?:\.\d+)?[A-Z]?\b/g;
+const LEGACY_GRC_CODE_ALIASES = new Map([
+  ["MATH& 254", "MATH& 264"],
+]);
 
 const RETAINED_LEGACY_TRACK_IDS = new Set(["999B"]);
 const LEGACY_COMPATIBILITY_TRACKS_BY_PAGE_SLUG = new Map([
@@ -95,11 +98,12 @@ function stripHtml(value) {
 }
 
 function normalizeCourseCode(value) {
-  return String(value ?? "")
+  const normalized = String(value ?? "")
     .replace(/\u00A0/g, " ")
     .trim()
     .toUpperCase()
     .replace(/\s+/g, " ");
+  return LEGACY_GRC_CODE_ALIASES.get(normalized) ?? normalized;
 }
 
 function extractCourseCodes(value) {
@@ -120,6 +124,35 @@ function uniqueStrings(values) {
         .filter(Boolean)
     )
   );
+}
+
+function normalizeTrackCourseLabel(label) {
+  let raw = String(label ?? "").trim();
+  if (!raw) {
+    return "";
+  }
+
+  for (const [legacyCode, canonicalCode] of LEGACY_GRC_CODE_ALIASES.entries()) {
+    const escapedLegacyCode = legacyCode.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const legacyRegex = new RegExp(`\\b${escapedLegacyCode}\\b`, "gi");
+    raw = raw.replace(legacyRegex, canonicalCode);
+  }
+
+  return raw;
+}
+
+function normalizeTrackCourseTerms(terms) {
+  return (Array.isArray(terms) ? terms : []).map((term) => ({
+    ...term,
+    courses: uniqueStrings((term?.courses ?? []).map((course) => normalizeTrackCourseLabel(course))),
+  }));
+}
+
+function normalizeLegacyTrack(track) {
+  return {
+    ...track,
+    terms: normalizeTrackCourseTerms(track?.terms),
+  };
 }
 
 function slugify(value) {
@@ -678,12 +711,13 @@ async function main() {
 
   const retainedLegacyTracks = [...RETAINED_LEGACY_TRACK_IDS]
     .map((trackId) => LEGACY_TRACK_BY_ID.get(trackId))
-    .filter(Boolean);
+    .filter(Boolean)
+    .map((track) => normalizeLegacyTrack(track));
 
   const finalTracks = [
     ...retainedLegacyTracks,
     ...officialAssociateTrackRecords.map((record) => record.track),
-  ];
+  ].map((track) => normalizeLegacyTrack(track));
 
   const summary = {
     generatedAt: toIsoTimestamp(),

@@ -110,7 +110,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Year 2 Fall",
         "courses": [
           "PHYS& 221",
-          "MATH& 254",
+          "MATH& 264",
           "ENGR& 214"
         ]
       },
@@ -319,7 +319,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       {
         "label": "Quarter 4 (15 credits)",
         "courses": [
-          "MATH& 254",
+          "MATH& 264",
           "PHYS& 221",
           "2 C - Humanities/Fine Arts/English or Social Science"
         ]
@@ -611,7 +611,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       {
         "label": "Fall 2 (15 credits)",
         "courses": [
-          "MATH& 254",
+          "MATH& 264",
           "PHYS& 221",
           "CS 123",
           "2 C - Humanities/Fine Arts/English or Social Science"
@@ -881,7 +881,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Fall 2 (15 credits)",
         "courses": [
           "ENGR& 214",
-          "MATH& 254",
+          "MATH& 264",
           "PHYS& 223"
         ]
       },
@@ -6493,7 +6493,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "courses": [
           "CS 123",
           "PHYS& 222",
-          "MATH& 254",
+          "MATH& 264",
           "CS 109",
           "CS& 131",
           "CS 132",
@@ -6815,7 +6815,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       {
         "label": "Quarter 4 (15 credits)",
         "courses": [
-          "MATH& 254",
+          "MATH& 264",
           "PHYS& 221",
           "H 3 - Humanities/Fine Arts/English",
           "ART 105",
@@ -6848,7 +6848,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "courses": [
           "MATH& 153",
           "MATH 126",
-          "MATH& 254",
+          "MATH& 264",
           "MATH 238",
           "MATH 240",
           "MATH 147",
@@ -6932,7 +6932,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       {
         "label": "Quarter 5 (15 credits)",
         "courses": [
-          "MATH& 254",
+          "MATH& 264",
           "S 2 - Social Science",
           "N 2 - Natural Science List A",
           "Recommend: Something from the Diversity Course List"
@@ -7010,7 +7010,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       {
         "label": "Quarter 4 (15 credits)",
         "courses": [
-          "MATH& 254",
+          "MATH& 264",
           "N 1 - Natural Science List A (Lab)",
           "PHYS& 114",
           "PHYS& 221",
@@ -7113,7 +7113,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       {
         "label": "Quarter 4 (15 credits)",
         "courses": [
-          "MATH& 254",
+          "MATH& 264",
           "PHYS& 223",
           "Natural Science Distribution electives Consult with transfer university for program requirements and work with advisor"
         ]
@@ -8649,7 +8649,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "MATH& 132",
           "MATH 238",
           "MATH 240",
-          "MATH& 254",
+          "MATH& 264",
           "MATH 256",
           "PHIL& 120",
           "Select one of the following:"
@@ -8924,7 +8924,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
           "The mathematics block is MATH 124, 125, 126, 207, 208, and 224.",
           "The 25-credit science block is CHEM 142, PHYS 121, PHYS 122, PHYS 123, plus CSE 160 or ME 123 or another approved 5-credit natural-science course.",
           "Engineering fundamentals are AA 210, CEE 220, ME 230, and AA 260.",
-          "General education includes English composition, 9 additional writing credits built into A&A core courses, and 24 credits of A&H/SSc with diversity overlap allowed."
+          "General education includes English composition, 9 additional writing credits built into A&A core courses, 10 credits of A&H, 10 credits of SSc, and 4 additional A&H and/or SSc credits, with diversity overlap allowed."
         ]
       },
       {
@@ -18104,9 +18104,9 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "id": "uws-ess-physics",
         "title": "Physics support",
         "grcCourses": [
+          "PHYS& 114",
           "PHYS& 221",
-          "PHYS& 222",
-          "PHYS& 114"
+          "PHYS& 222"
         ],
         "note": "Physics readiness supports quantitative geoscience and space-science coursework.",
         "minCompletedCount": 1
@@ -18374,9 +18374,9 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "CHEM& 161",
       "CHEM& 162",
       "CHEM& 163",
+      "PHYS& 114",
       "PHYS& 221",
       "PHYS& 222",
-      "PHYS& 114",
       "GEOL& 101",
       "GEOL& 115",
       "GEOL& 121",
@@ -42882,10 +42882,10 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "id": "uwt-biomed-physics1",
         "title": "First physics requirement",
         "grcCourses": [
-          "PHYS& 221",
-          "PHYS& 114"
+          "PHYS& 114",
+          "PHYS& 221"
         ],
-        "note": "The transfer-credits page allows either the calculus-based PHYS& 221 route or the PHYS& 114 / 115 algebra-based physics route for the first physics requirement. The planner prefers PHYS& 221 when the student may still need a stronger STEM launch.",
+        "note": "The transfer-credits page allows either the calculus-based PHYS& 221 route or the PHYS& 114 / 115 algebra-based physics route for the first physics requirement. The planner now lists PHYS& 114 first so students can see the algebra-based path before engineering physics.",
         "minCompletedCount": 1
       }
     ],
@@ -43012,8 +43012,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       "CHEM& 263",
       "MATH& 151",
       "MATH& 152",
-      "PHYS& 221",
       "PHYS& 114",
+      "PHYS& 221",
       "MATH& 146",
       "MATH 256",
       "PHYS& 222",

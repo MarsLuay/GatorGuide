@@ -12,7 +12,7 @@ This doc already folds together the current planner rows plus Tacoma catalog gui
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `custom`.
+Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
 Tacoma Arts, Media and Culture is now modeled as a track-based interdisciplinary arts transfer where the planner keeps the Green River launch broad on purpose instead of pretending there is one single universal pre-transfer studio path.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -283,7 +283,7 @@ Tacoma Arts, Media and Culture is now modeled as a track-based interdisciplinary
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `999B`.
+Planner coverage: `detailed`. Best Green River base: `AB-DTA/MRP`.
 Tacoma BABA is now modeled as a capacity-constrained business-admission plan with the Milgard prerequisite list made explicit and the option split preserved for accounting, finance, general business, management, and marketing.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -376,7 +376,7 @@ Tacoma BABA is now modeled as a capacity-constrained business-admission plan wit
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `999O`.
+Planner coverage: `detailed`. Best Green River base: `AST-1`.
 Tacoma Biomedical Sciences is now modeled as a sequence-heavy science transfer where the full biology, chemistry, organic chemistry, calculus, and first-physics preparation are explicit in the planner instead of buried inside a broad science bank.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -384,7 +384,7 @@ Tacoma Biomedical Sciences is now modeled as a sequence-heavy science transfer w
 ##### Links Used
 
 - [UW Tacoma Biomedical Sciences overview](https://www.tacoma.uw.edu/sias/sam/biomedical-sciences)
-- [UW Tacoma Biomedical Sciences overview](https://www.tacoma.uw.edu/sias/sam/biomedical-sciences) - Auto-promoted from the parsed primary degree page on April 9, 2026.
+- [UW Tacoma Biomedical Sciences overview](https://www.tacoma.uw.edu/sias/sam/biomedical-sciences) - Auto-promoted from the parsed primary degree page on April 12, 2026.
 - [UW Tacoma Biomedical Sciences transfer credits](https://www.tacoma.uw.edu/sias/sam/biomedical-sciences-transfer-credits)
 - [UW Tacoma course equivalency guide](https://www.tacoma.uw.edu/admissions/course-equivalency-guide)
 
@@ -474,7 +474,7 @@ Tacoma Biomedical Sciences is now modeled as a sequence-heavy science transfer w
 - `MATH 240`
 - `MATH& 254`
 - `MATH 297`
-- `HL ED 190`
+- `ENGL& 101`
 
 #### Required sequences for specific credits
 
@@ -484,7 +484,7 @@ Tacoma Biomedical Sciences is now modeled as a sequence-heavy science transfer w
 - Required before application: TMATH 124 -> `MATH& 151`
 - Required before application: TMATH 125 -> `MATH& 152`
 - Required before application: First physics requirement -> `PHYS& 221`, `PHYS& 114`. complete at least 1 course from this set
-- Required before application: TBIOMD 201 -> `HL ED 190`
+- Required before application: TPHYS 123 -> `PHYS& 223`
 - Required before enrollment: Statistics through TMATH 110 -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set
 - Worth finishing at Green River: Second physics course for pre-health flexibility when the student's target profession still wants it -> `PHYS& 222`, `PHYS& 115`. complete at least 1 course from this set
 - Worth finishing at Green River: TMATH 126 if the student's pre-health or graduate-school path still benefits from extra math depth -> `MATH& 163`
@@ -498,12 +498,12 @@ Tacoma Biomedical Sciences is now modeled as a sequence-heavy science transfer w
 - Planner flag: Some pre-health students may still need extra preparation such as TMATH 126 or TPHYS 122 depending on the professional-school path they plan to pursue after Tacoma.
 - Source-backed note: Validated against the current UW Tacoma Biomedical Sciences overview and transfer-credits pages on April 2, 2026.
 - Source-backed note: Biomedical Sciences has a strong fixed science core, but the electives, ethics, and capstone spaces still need to be matched to the student's pre-health or research goal.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 9, 2026.
+- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
 - Source-backed note: Source parse confidence: high.
-- Source-backed note: Exact-title match source: parsed-source-cue.
-- Source-backed note: Matched source title: Intro to Public Health.
-- Source-backed note: Matched Green River title: Introduction to Public Health.
-- Source-backed note: Requirement cue lines: TBIOMD 201 Intro to Public Health
+- Source-backed note: Course-family consensus: 5/5 samples for PHYS 123.
+- Source-backed note: Supporting UW course codes: PHYS 123, T PHYS 123.
+- Source-backed note: Added the Green River course path PHYS& 223 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: TPHYS 123 Physics 3
 
 
 ### Civil Engineering (BSCE)
@@ -626,7 +626,7 @@ Tacoma Civil is now modeled as a competitive engineering transfer where calculus
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `custom`.
+Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
 Tacoma Communication is now modeled as a track-based media and writing transfer where Tacoma's own declaration course stays on the UW side and the planner treats Green River communication work as preparation, not a fake one-course replacement.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -696,6 +696,7 @@ Tacoma Communication is now modeled as a track-based media and writing transfer 
 - `JOURN 255`
 - `JOURN 298`
 - `JOURN 299`
+- `ENGL& 101`
 
 #### Required sequences for specific credits
 
@@ -723,9 +724,10 @@ Tacoma CompE is now modeled from the public SET catalog structure, with prerequi
 
 - [UW Tacoma Computer Engineering program details](https://www.tacoma.uw.edu/set/programs/undergrad/cengr)
 - [UW Tacoma SET catalog page](https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html)
-- [UW Tacoma SET catalog page](https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html) - Auto-promoted from the parsed primary degree page on April 9, 2026.
+- [UW Tacoma SET catalog page](https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html) - Auto-promoted from the parsed primary degree page on April 12, 2026.
 - [UW Tacoma transfer planning](https://www.tacoma.uw.edu/admissions/planning-your-transfer)
 - [UW Tacoma course equivalency guide](https://www.tacoma.uw.edu/admissions/course-equivalency-guide)
+- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### Computer Engineering admission baseline
 
@@ -811,6 +813,7 @@ Tacoma CompE is now modeled from the public SET catalog structure, with prerequi
 - `CHEM& 263`
 - `CHEM 296`
 - `CHEM 299`
+- `MATH& 264`
 
 #### Required sequences for specific credits
 
@@ -820,8 +823,9 @@ Tacoma CompE is now modeled from the public SET catalog structure, with prerequi
 - Required before application: Programming through TCSS 143-equivalent level -> `CS 121`, `CS 122`, `CS 123`. complete at least 2 courses from this set
 - Required before application: TCES 215 preparation -> `ENGR& 204`
 - Required before application: English composition -> `ENGL& 101`
-- Required before application: T CHEM 142 -> `CHEM& 161`
-- Required before application: TME 222 -> `ENGR& 225`
+- Required before application: MATH 224 -> `MATH& 264`
+- Required before application: TME 221 -> `ENGR& 214`
+- Required before application: TME 223 -> `ENGR& 215`
 - Required before enrollment: T PHYS 123 -> `PHYS& 223`
 - Required before enrollment: TMATH 208 -> `MATH 240`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 - Worth finishing at Green River: Strongest programming finish -> `CS 123`
@@ -833,20 +837,23 @@ Tacoma CompE is now modeled from the public SET catalog structure, with prerequi
 - Source-backed note: Validated against the current UW Tacoma Computer Engineering program page and transfer-planning pages on April 2, 2026.
 - Source-backed note: The public Autumn 2026 cycle currently shows a January 28, 2026 opening date and a July 1, 2026 priority deadline, so recheck the program page each year.
 - Source-backed note: Tacoma's equivalency guidance is still less centralized than Seattle, so check the intended entry year before finalizing the schedule.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 9, 2026.
+- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
 - Source-backed note: Source parse confidence: high.
-- Source-backed note: Choice-set supporting UW codes: CHEM 142.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0817:mathematics:mathand-254-5-see-also-mathand-153-combined-entry.
+- Source-backed note: Added the Green River course path MATH& 264 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: TMATH 224 or MATH 224
+- Source-backed note: Choice-set supporting UW codes: A A 210.
 - Source-backed note: Choice-set resolution strategies: auto-promoted-guide-direct-equivalent.
-- Source-backed note: Requirement cue lines: T CHEM 142 or CHEM 142
-- Source-backed note: Choice-set supporting UW codes: CEE 220.
-- Source-backed note: Requirement cue lines: TME 222 or CEE 220
+- Source-backed note: Requirement cue lines: TME 221 or A A 210
+- Source-backed note: Choice-set supporting UW codes: M E 230.
+- Source-backed note: Requirement cue lines: TME 223 or M E 230
 
 
 ### Computer Science and Systems (BA)
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `999P`.
+Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
 Tacoma CSS B.A. is now modeled as an interdisciplinary computing transfer where the full programming ladder, statistics, and outside-minor planning stay visible instead of getting flattened into the heavier B.S. math-and-science spine.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -855,6 +862,7 @@ Tacoma CSS B.A. is now modeled as an interdisciplinary computing transfer where 
 
 - [UW Tacoma CSS B.A. program details](https://www.tacoma.uw.edu/set/programs/undergrad/css/ba)
 - [UW Tacoma CSS B.S. program details](https://www.tacoma.uw.edu/set/programs/undergrad/css/bs)
+- [UW Tacoma CSS B.S. program details](https://www.tacoma.uw.edu/set/programs/undergrad/css/bs) - Auto-promoted from the parsed primary degree page on April 12, 2026.
 - [UW Tacoma course equivalency guide](https://www.tacoma.uw.edu/admissions/course-equivalency-guide)
 - [UW Tacoma transfer planning](https://www.tacoma.uw.edu/admissions/planning-your-transfer)
 
@@ -919,12 +927,15 @@ Tacoma CSS B.A. is now modeled as an interdisciplinary computing transfer where 
 - `PHYS 225`
 - `PHYS 229`
 - `PHYS 298`
+- `CHEM& 161`
 
 #### Required sequences for specific credits
 
 - Required before application: TMATH 124 -> `MATH& 151`
 - Required before application: Statistics through TMATH 110 -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set
 - Required before application: Programming through the published Tacoma CSS B.A. prerequisite stack -> `CS 121`, `CS 122`, `CS 123`. complete at least 3 courses from this set
+- Required before application: TBIOL 120 -> `CHEM& 161`
+- Required before application: TMATH 208 -> `MATH 240`
 - Worth finishing at Green River: Additional computing depth before TCSS 305 and TCSS 342 -> `CS 145`, `CS 202`. complete at least 1 course from this set
 - Worth finishing at Green River: Quantitative or writing support for the paired minor or application area -> `MATH& 152`, `MATH& 146`, `MATH 256`, `ENGL 126`, `ENGL 127`, `ENGL 128`. complete at least 1 course from this set
 - GRC sequence: `CS 121 -> CS 122 -> CS 123`. Current UW equivalency entries are separate, but planner sequencing at GRC should treat them in this order.
@@ -936,6 +947,14 @@ Tacoma CSS B.A. is now modeled as an interdisciplinary computing transfer where 
 - Source-backed note: Lifted from the current UW Tacoma CSS B.A., CSS B.S., course-equivalency, and transfer-planning pages on April 2, 2026.
 - Source-backed note: The public Autumn 2026 cycle currently shows a January 28, 2026 opening date and an August 31, 2026 final deadline, so recheck the CSS page each year.
 - Source-backed note: The planner treats the full modern CS 121 -> 122 -> 123 ladder as the safest Green River interpretation of the published B.A. prerequisite stack; older Green River programming combinations should still be reviewed individually.
+- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
+- Source-backed note: Source parse confidence: high.
+- Source-backed note: Choice-set supporting UW codes: TCHEM 142.
+- Source-backed note: Choice-set resolution strategies: auto-promoted-single-sample-consensus.
+- Source-backed note: Requirement cue lines: You may need one additional approved lab-based science course (Chemistry I -TCHEM 142 or Biology I - TBIOL 120) to meet the total number of lab science credits required (18 minimum) for graduation.
+- Source-backed note: Requirement-mapping consensus: 5/5 exact-title samples for TMATH 208.
+- Source-backed note: Added the Green River course path MATH 240 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: TMATH 208 Matrix Algebra with Applications
 
 
 ### Computer Science and Systems (BS)
@@ -950,7 +969,6 @@ Tacoma CSS B.S. is now modeled as the stronger theory-and-systems transfer where
 ##### Links Used
 
 - [UW Tacoma CSS B.S. program details](https://www.tacoma.uw.edu/set/programs/undergrad/css/bs)
-- [UW Tacoma CSS B.S. program details](https://www.tacoma.uw.edu/set/programs/undergrad/css/bs) - Auto-promoted from the parsed primary degree page on April 9, 2026.
 - [UW Tacoma CSS B.A. program details](https://www.tacoma.uw.edu/set/programs/undergrad/css/ba)
 - [UW Tacoma course equivalency guide](https://www.tacoma.uw.edu/admissions/course-equivalency-guide)
 - [UW Tacoma transfer planning](https://www.tacoma.uw.edu/admissions/planning-your-transfer)
@@ -1015,14 +1033,12 @@ Tacoma CSS B.S. is now modeled as the stronger theory-and-systems transfer where
 - `PHYS 225`
 - `PHYS 229`
 - `PHYS 298`
-- `CHEM& 161`
 
 #### Required sequences for specific credits
 
 - Required before application: TMATH 124 and 125 -> `MATH& 151`, `MATH& 152`, `MATH& 163`. complete at least 2 courses from this set. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`
 - Required before application: Programming through the published Tacoma CSS B.S. prerequisite stack -> `CS 121`, `CS 122`, `CS 123`. complete at least 2 courses from this set
 - Required before application: First approved lab-based science course -> `PHYS& 221`, `PHYS& 222`, `PHYS& 223`. complete at least 1 course from this set
-- Required before application: TBIOL 120 -> `CHEM& 161`
 - Required before enrollment: TMATH 124, 125, 126 -> `MATH& 151`, `MATH& 152`, `MATH& 163`. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`
 - Required before enrollment: TMATH 208 -> `MATH 240`
 - Worth finishing at Green River: Statistics support before TMATH 390 -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set
@@ -1037,18 +1053,13 @@ Tacoma CSS B.S. is now modeled as the stronger theory-and-systems transfer where
 - Source-backed note: Lifted from the current UW Tacoma CSS B.S., CSS B.A., course-equivalency, and transfer-planning pages on April 2, 2026.
 - Source-backed note: The public Autumn 2026 cycle currently shows a January 28, 2026 opening date and an August 31, 2026 final deadline, so recheck the CSS page each year.
 - Source-backed note: The current B.S. page explicitly names both TCSS 142 and TCSS 143 in the prerequisite stack. Older or mixed Green River programming histories should still be reviewed individually before the final schedule is locked.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 9, 2026.
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Choice-set supporting UW codes: TCHEM 142.
-- Source-backed note: Choice-set resolution strategies: auto-promoted-single-sample-consensus.
-- Source-backed note: Requirement cue lines: You may need one additional approved lab-based science course (Chemistry I -TCHEM 142 or Biology I - TBIOL 120) to meet the total number of lab science credits required (18 minimum) for graduation.
 
 
 ### Criminal Justice (BA)
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `custom`.
+Planner coverage: `detailed`. Best Green River base: `AAS-T`.
 Tacoma Criminal Justice is now modeled as a fixed-core social-science transfer where writing and statistics are made explicit before the upper-division research and capstone sequence begins.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -1127,7 +1138,7 @@ Tacoma Criminal Justice is now modeled as a fixed-core social-science transfer w
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `999B`.
+Planner coverage: `detailed`. Best Green River base: `AB-DTA/MRP`.
 Tacoma Economics and Policy Analysis is now modeled as an economics-first public-policy transfer where micro and macro are explicit early, while the lower-division philosophy, writing, and quantitative spaces stay visible as real requirements instead of guessed one-size-fits-all substitutions.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -1218,6 +1229,7 @@ Tacoma Economics and Policy Analysis is now modeled as an economics-first public
 - `MATH& 254`
 - `MATH 256`
 - `MATH 297`
+- `ENGL& 101`
 
 #### Required sequences for specific credits
 
@@ -1238,7 +1250,7 @@ Tacoma Economics and Policy Analysis is now modeled as an economics-first public
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `custom`.
+Planner coverage: `detailed`. Best Green River base: `AAS-T`.
 Tacoma Education is now modeled as a cohort-style teacher-preparation transfer where psychology and writing are explicit early and the endorsement-driven upper-division sequence is treated as planned cohort work, not a loose elective finish.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -1246,7 +1258,9 @@ Tacoma Education is now modeled as a cohort-style teacher-preparation transfer w
 ##### Links Used
 
 - [UW Tacoma B.A. in Education overview](https://www.tacoma.uw.edu/soe/bachelor-arts-education)
+- [UW Tacoma B.A. in Education overview](https://www.tacoma.uw.edu/soe/bachelor-arts-education) - Auto-promoted from the parsed primary degree page on April 12, 2026.
 - [UW Tacoma transfer planning](https://www.tacoma.uw.edu/admissions/planning-your-transfer)
+- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### Education admission baseline
 
@@ -1302,6 +1316,7 @@ Tacoma Education is now modeled as a cohort-style teacher-preparation transfer w
 
 - Required before application: Introductory psychology -> `PSYC& 100`
 - Required before application: English composition -> `ENGL& 101`
+- Required before application: PSYCH 306 -> `PSYCH 210`
 - Worth finishing at Green River: Early education or teacher-preparation support -> `ECED& 105`, `EDUC& 115`, `EDUC& 150`, `EDUC& 204`, `EDUC& 205`. complete at least 1 course from this set
 - Worth finishing at Green River: Child development or early learning background -> `ECED& 132`, `ECED& 139`, `ECED& 170`, `ECED& 180`. complete at least 1 course from this set
 - Planner flag: The exact upper-division sequence depends on the student's endorsement path and the current School of Education program-plan year.
@@ -1309,6 +1324,11 @@ Tacoma Education is now modeled as a cohort-style teacher-preparation transfer w
 - Planner flag: The admissions guidance also references an introductory ethnic studies, gender studies, or service-learning prerequisite space; the planner currently treats that slot as hidden-until-source-backed territory instead of guessing one universal Green River substitute.
 - Source-backed note: Lifted from the current UW Tacoma B.A. in Education overview and School of Education application pages on April 2, 2026.
 - Source-backed note: The exact final sequence depends on the student's endorsement path and the current School of Education program-plan year.
+- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
+- Source-backed note: Source parse confidence: high.
+- Source-backed note: Guide-backed rule: uw-grc-guide:1240:psychology:psych-210-5.
+- Source-backed note: Added the Green River course path PSYCH 210 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: T PSYCH 306 Community Psychology, Research, and Action
 
 
 ### Electrical Engineering
@@ -1324,9 +1344,10 @@ Tacoma EE is now modeled from the public SET catalog structure, with the planner
 
 - [UW Tacoma Electrical Engineering program details](https://www.tacoma.uw.edu/set/programs/undergrad/ee)
 - [UW Tacoma SET catalog page](https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html)
-- [UW Tacoma SET catalog page](https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html) - Auto-promoted from the parsed primary degree page on April 9, 2026.
+- [UW Tacoma SET catalog page](https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html) - Auto-promoted from the parsed primary degree page on April 12, 2026.
 - [UW Tacoma transfer planning](https://www.tacoma.uw.edu/admissions/planning-your-transfer)
 - [UW Tacoma course equivalency guide](https://www.tacoma.uw.edu/admissions/course-equivalency-guide)
+- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### Electrical Engineering admission baseline
 
@@ -1413,6 +1434,7 @@ Tacoma EE is now modeled from the public SET catalog structure, with the planner
 - `CHEM& 263`
 - `CHEM 296`
 - `CHEM 299`
+- `MATH& 264`
 
 #### Required sequences for specific credits
 
@@ -1422,8 +1444,9 @@ Tacoma EE is now modeled from the public SET catalog structure, with the planner
 - Required before application: One programming course -> `CS 121`, `CS 122`, `CS 123`. complete at least 1 course from this set
 - Required before application: TCES 215 or EE 215 preparation -> `ENGR& 204`
 - Required before application: English composition -> `ENGL& 101`
-- Required before application: T CHEM 142 -> `CHEM& 161`
-- Required before application: TME 222 -> `ENGR& 225`
+- Required before application: MATH 224 -> `MATH& 264`
+- Required before application: TME 221 -> `ENGR& 214`
+- Required before application: TME 223 -> `ENGR& 215`
 - Required before enrollment: T PHYS 123 -> `PHYS& 223`
 - Required before enrollment: TMATH 208 -> `MATH 240`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 - Worth finishing at Green River: Second programming course for stronger preparation -> `CS 122`, `CS 123`. complete at least 1 course from this set
@@ -1435,20 +1458,23 @@ Tacoma EE is now modeled from the public SET catalog structure, with the planner
 - Source-backed note: Validated against the current UW Tacoma Electrical Engineering program page and transfer-planning pages on April 2, 2026.
 - Source-backed note: The public Autumn 2026 cycle currently shows a January 28, 2026 opening date and a July 1, 2026 priority deadline, so recheck the program page each year.
 - Source-backed note: Confirm the intended entry year because Tacoma planning pages and catalog wording can shift over time.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 9, 2026.
+- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
 - Source-backed note: Source parse confidence: high.
-- Source-backed note: Choice-set supporting UW codes: CHEM 142.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0817:mathematics:mathand-254-5-see-also-mathand-153-combined-entry.
+- Source-backed note: Added the Green River course path MATH& 264 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: TMATH 224 or MATH 224
+- Source-backed note: Choice-set supporting UW codes: A A 210.
 - Source-backed note: Choice-set resolution strategies: auto-promoted-guide-direct-equivalent.
-- Source-backed note: Requirement cue lines: T CHEM 142 or CHEM 142
-- Source-backed note: Choice-set supporting UW codes: CEE 220.
-- Source-backed note: Requirement cue lines: TME 222 or CEE 220
+- Source-backed note: Requirement cue lines: TME 221 or A A 210
+- Source-backed note: Choice-set supporting UW codes: M E 230.
+- Source-backed note: Requirement cue lines: TME 223 or M E 230
 
 
 ### Environmental Science (BS)
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `999O`.
+Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
 Tacoma Environmental Science is now modeled as a science-heavy transfer where the planner keeps the lower-division biology, chemistry, earth-science, and quantitative preparation visible without pretending every finish path uses the exact same upper-division option mix.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -1456,7 +1482,6 @@ Tacoma Environmental Science is now modeled as a science-heavy transfer where th
 ##### Links Used
 
 - [UW Tacoma Environmental Science overview](https://www.tacoma.uw.edu/sias/sam/environmental-science)
-- [UW Tacoma Environmental Science overview](https://www.tacoma.uw.edu/sias/sam/environmental-science) - Auto-promoted from the parsed primary degree page on April 9, 2026.
 - [UW Tacoma transfer planning](https://www.tacoma.uw.edu/admissions/planning-your-transfer)
 
 ##### Environmental Science admission baseline
@@ -1578,11 +1603,10 @@ Tacoma Environmental Science is now modeled as a science-heavy transfer where th
 - `MATH& 254`
 - `MATH 256`
 - `MATH 297`
+- `ENGL& 101`
 
 #### Required sequences for specific credits
 
-- Required before application: TMATH 124 -> `MATH& 151`
-- Required before application: TMATH 125 -> `MATH& 152`
 - Worth finishing at Green River: Biology-majors sequence for the science-heavy or ecology-oriented path -> `BIOL& 211`, `BIOL& 212`, `BIOL& 213`
 - Worth finishing at Green River: General chemistry sequence for the science-heavy foundation -> `CHEM& 161`, `CHEM& 162`, `CHEM& 163`
 - Worth finishing at Green River: Earth-science, geography, or GIS support for the geoscience or field-oriented route -> `GEOL& 101`, `GEOL& 208`, `GEOG& 100`, `GEOG& 200`, `GIS 202`, `GIS 260`, `NATRS 180`. complete at least 1 course from this set
@@ -1594,20 +1618,13 @@ Tacoma Environmental Science is now modeled as a science-heavy transfer where th
 - Planner flag: The Tacoma page calls out a 63-credit lower-division preparation set, but the exact science mix still needs to be matched to the student's intended option and current advising guidance.
 - Source-backed note: Lifted from the current UW Tacoma Environmental Science overview and Tacoma transfer-planning pages on April 2, 2026.
 - Source-backed note: Environmental Science has multiple finish paths, so the exact upper-division list should still be confirmed once the student chooses the standard, ecology, or geoscience route.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 9, 2026.
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Requirement-mapping consensus: 3/3 exact-title samples for TMATH 124.
-- Source-backed note: Added the Green River course path MATH& 151 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Calculus: TMATH 124 AND TMATH 125 OR TMATH 210
-- Source-backed note: Requirement-mapping consensus: 1/1 exact-title samples for TMATH 125.
-- Source-backed note: Added the Green River course path MATH& 152 because the current planner rows did not expose it yet.
 
 
 ### Environmental Sustainability (BA)
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `custom`.
+Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
 Tacoma Environmental Sustainability is now modeled as an option-based sustainability transfer where policy, communication, leadership, and education routes stay separate instead of getting flattened into one fake universal course path.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -1809,7 +1826,7 @@ Tacoma Environmental Sustainability is now modeled as an option-based sustainabi
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `custom`.
+Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
 Tacoma Ethnic, Gender and Labor Studies is now modeled as an interdisciplinary social-justice transfer where writing, history, and social-analysis preparation stays explicit before students choose option-level work at UW Tacoma.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -1979,7 +1996,7 @@ Tacoma Ethnic, Gender and Labor Studies is now modeled as an interdisciplinary s
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `999O`.
+Planner coverage: `detailed`. Best Green River base: `AAS`.
 Tacoma Healthcare Leadership is now modeled as an interdisciplinary health-systems transfer where writing, statistics, and health-support coursework are explicit before leadership and policy-focused upper-division work.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -2094,7 +2111,7 @@ Tacoma Healthcare Leadership is now modeled as an interdisciplinary health-syste
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `custom`.
+Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
 Tacoma History is now modeled as an option-based humanities transfer where the shared history core stays visible while the planner keeps themed routes flexible instead of pretending there is one universal upper-division finish.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -2218,7 +2235,7 @@ Tacoma History is now modeled as an option-based humanities transfer where the s
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `999P`.
+Planner coverage: `detailed`. Best Green River base: `999O`.
 Tacoma Information Technology is now modeled as an applied computing transfer where the planner makes the real calculus, lab-science, programming, and follow-on math requirements explicit before the upper-division networking, systems, and cybersecurity core begins.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -2349,7 +2366,7 @@ Tacoma Information Technology is now modeled as an applied computing transfer wh
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `custom`.
+Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
 Tacoma Interdisciplinary Arts and Sciences is now modeled as a concentration-driven transfer where broad foundational preparation is kept explicit while the student's option focus is built with advising.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -2385,7 +2402,7 @@ Tacoma Interdisciplinary Arts and Sciences is now modeled as a concentration-dri
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `custom`.
+Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
 Tacoma Individually-designed IAS is now modeled as a proposal-driven transfer where students build a custom interdisciplinary plan under the published approval rules instead of following a fixed preset option.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -2421,7 +2438,7 @@ Tacoma Individually-designed IAS is now modeled as a proposal-driven transfer wh
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `custom`.
+Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
 Tacoma Law and Policy is now modeled as an interdisciplinary writing, reasoning, and policy-analysis transfer where the planner keeps the philosophy, policy, and law-support pieces visible instead of guessing one fake pre-law checklist.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -2555,7 +2572,7 @@ Tacoma Law and Policy is now modeled as an interdisciplinary writing, reasoning,
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `999P`.
+Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
 Tacoma Mathematics is now modeled as a proof-and-analysis-forward STEM transfer where the planner makes the full lower-division calculus, differential-equations, and linear-algebra spine explicit before the branch and elective areas open up.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -2624,6 +2641,7 @@ Tacoma Mathematics is now modeled as a proof-and-analysis-forward STEM transfer 
 - `PHYS 225`
 - `PHYS 229`
 - `PHYS 298`
+- `ENGL& 101`
 
 #### Required sequences for specific credits
 
@@ -2653,10 +2671,11 @@ Tacoma Mechanical is now modeled from the public SET catalog structure, with the
 ##### Links Used
 
 - [UW Tacoma Mechanical Engineering program details](https://www.tacoma.uw.edu/set/programs/undergrad/me)
+- [UW Tacoma Mechanical Engineering program details](https://www.tacoma.uw.edu/set/programs/undergrad/me) - Auto-promoted from the parsed primary degree page on April 12, 2026.
 - [UW Tacoma SET catalog page](https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html)
-- [UW Tacoma SET catalog page](https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html) - Auto-promoted from the parsed primary degree page on April 9, 2026.
 - [UW Tacoma transfer planning](https://www.tacoma.uw.edu/admissions/planning-your-transfer)
 - [UW Tacoma course equivalency guide](https://www.tacoma.uw.edu/admissions/course-equivalency-guide)
+- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### Mechanical Engineering admission baseline
 
@@ -2735,11 +2754,7 @@ Tacoma Mechanical is now modeled from the public SET catalog structure, with the
 - `CHEM& 263`
 - `CHEM 296`
 - `CHEM 299`
-- `CS 121`
-- `CS 122`
-- `CS 123`
-- `CS 145`
-- `CS& 141`
+- `MATH& 264`
 
 #### Required sequences for specific credits
 
@@ -2748,10 +2763,8 @@ Tacoma Mechanical is now modeled from the public SET catalog structure, with the
 - Required before application: TMATH 224 -> `MATH& 254`
 - Required before application: T PHYS 121, 122, and 123 -> `PHYS& 221`, `PHYS& 222`, `PHYS& 223`
 - Required before application: English composition -> `ENGL& 101`
-- Required before application: TCSS 141 -> `CS 121`
-- Required before application: TCSS 142 -> `CS 122`. alternate path `CS& 141`
-- Required before application: TCSS 143 -> `CS 123`. alternate path `CS 145`
-- Required before application: TMATH 208 -> `MATH 240`
+- Required before application: AMATH 301 -> `ENGR 250`
+- Required before application: EE 215 -> `ENGR& 204`
 - Worth finishing at Green River: Mechanics sequence -> `ENGR& 214`, `ENGR& 215`, `ENGR& 225`
 - Worth finishing at Green River: Chemistry depth if the current planning path still uses extra science preparation -> `CHEM& 161`, `CHEM& 162`, `CHEM& 163`
 - GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
@@ -2761,25 +2774,21 @@ Tacoma Mechanical is now modeled from the public SET catalog structure, with the
 - Source-backed note: Validated against the current UW Tacoma Mechanical Engineering program page and transfer-planning pages on April 2, 2026.
 - Source-backed note: The public Autumn 2026 cycle currently shows a January 28, 2026 opening date and a July 1, 2026 priority deadline, so recheck the program page each year.
 - Source-backed note: Confirm the intended entry year because Tacoma's public planning pages can change faster than the Green River equivalency guide.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 9, 2026.
+- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
 - Source-backed note: Source parse confidence: high.
-- Source-backed note: Choice-set supporting UW codes: CSE 121.
-- Source-backed note: Choice-set resolution strategies: auto-promoted-guide-direct-equivalent.
-- Source-backed note: Requirement cue lines: Programming: 4-5 credits of Introduction to Computer Programming C, C++, Python, or JAVA based languages. TCSS 141 (5) or CSE 121 (4) are examples of an acceptable course
-- Source-backed note: Choice-set supporting UW codes: CSE 122, CSE 142.
-- Source-backed note: Requirement cue lines: TCSS 142 or CSE 122 or CSE 142 or equivalent
-- Source-backed note: Choice-set supporting UW codes: CSE 123, CSE 143.
-- Source-backed note: Requirement cue lines: TCSS 143 or CSE 123 or CSE 143 or equivalent
-- Source-backed note: Requirement-mapping consensus: 5/5 exact-title samples for TMATH 208.
-- Source-backed note: Added the Green River course path MATH 240 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: TMATH 208 (5) | TMATH 208 (5) or MATH 208 (4) or equivalent
+- Source-backed note: Guide-backed rule: uw-grc-guide:0441:engineering-formerly-general-engineering:engr-250-5.
+- Source-backed note: Added the Green River course path ENGR 250 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: 5 credits of computer programming (Courses in Python, Java, C, C++, or the equivalent of AMATH 301: Beginning Scientific Computing will meet this requirement. If you are not sure if the course you plan to take will count, please check with a SET advisor.)
+- Source-backed note: Requirement-mapping consensus: 2/2 exact-title samples for EE 215.
+- Source-backed note: Added the Green River course path ENGR& 204 because the current planner rows did not expose it yet.
+- Source-backed note: Requirement cue lines: Electrical Circuits (TCES 215 or UWS: EE 215) is recommended but not required at the time of admission.
 
 
 ### Nursing (BSN)
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `999O`.
+Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
 Tacoma Nursing is now modeled as pre-nursing transfer preparation where core science, writing, and health-support requirements are explicit before BSN cohort and application sequencing.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -2936,7 +2945,7 @@ Tacoma Nursing is now modeled as pre-nursing transfer preparation where core sci
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `999B`.
+Planner coverage: `detailed`. Best Green River base: `AAS-T`.
 Tacoma PPE is now modeled as an interdisciplinary policy and reasoning transfer where economics, political science, and philosophy foundations stay explicit before the upper-division synthesis work.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -3040,6 +3049,7 @@ Tacoma PPE is now modeled as an interdisciplinary policy and reasoning transfer 
 - `MATH& 254`
 - `MATH 256`
 - `MATH 297`
+- `ENGL& 101`
 
 #### Required sequences for specific credits
 
@@ -3057,7 +3067,7 @@ Tacoma PPE is now modeled as an interdisciplinary policy and reasoning transfer 
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `999O`.
+Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
 Tacoma Psychology is now modeled as a methods-and-foundations transfer where the lower-division psychology, statistics, and research-methods baseline is explicit before the upper-division core areas and advanced topics branch out.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -3136,6 +3146,7 @@ Tacoma Psychology is now modeled as a methods-and-foundations transfer where the
 - `BIOL& 242`
 - `BIOL& 260`
 - `BIOL 298`
+- `ENGL& 101`
 
 #### Required sequences for specific credits
 
@@ -3154,7 +3165,7 @@ Tacoma Psychology is now modeled as a methods-and-foundations transfer where the
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `custom`.
+Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
 Tacoma Social Welfare is now modeled as a cohort-based BASW transfer where English, psychology, sociology, and the statistics prerequisite are explicit before the sequenced social-work core begins.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -3296,7 +3307,7 @@ Tacoma Social Welfare is now modeled as a cohort-based BASW transfer where Engli
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `custom`.
+Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
 Tacoma Spanish Language and Cultures is now modeled as a language-sequence transfer where sustained Spanish progression and writing support are explicit before upper-division cultural and literature work.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -3387,7 +3398,6 @@ Tacoma Sustainable Urban Development is now modeled as an urban-planning transfe
 ##### Links Used
 
 - [UW Tacoma Sustainable Urban Development overview](https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development)
-- [UW Tacoma Sustainable Urban Development overview](https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development) - Auto-promoted from the parsed primary degree page on April 9, 2026.
 - [UW Tacoma transfer planning](https://www.tacoma.uw.edu/admissions/planning-your-transfer)
 
 ##### SUD planning baseline
@@ -3500,23 +3510,16 @@ Tacoma Sustainable Urban Development is now modeled as an urban-planning transfe
 #### Required sequences for specific credits
 
 - Required before application: English composition -> `ENGL& 101`
-- Required before application: T GEOG 101 -> `GEOG& 100`
 - Worth finishing at Green River: GIS support before upper-division urban work -> `GIS 202`, `GIS 260`, `GEOG& 200`. complete at least 1 course from this set
 - Planner flag: SUD is option-based, so confirm pathway-specific upper-division sequencing and capstone details with current Tacoma advising.
 - Source-backed note: SUD now has a revised spring-2026 structure, so the exact upper-division list should still be tied to the student's admit year and chosen Community Engagement or GIS option.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 9, 2026.
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Exact-title match source: parsed-source-cue.
-- Source-backed note: Matched source title: Introduction to Geography.
-- Source-backed note: Matched Green River title: Introduction to Geography.
-- Source-backed note: Requirement cue lines: T GEOG 101 Introduction to Geography
 
 
 ### Urban Design (BS)
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `999B`.
+Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
 Tacoma Urban Design is now modeled as a design-and-GIS-forward transfer where the planner keeps the minimum admission classes, GIS encouragement, and admit-year split visible instead of flattening the new and legacy plans together.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -3675,7 +3678,7 @@ Tacoma Urban Design is now modeled as a design-and-GIS-forward transfer where th
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `999B`.
+Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
 Tacoma Urban Studies is now modeled as a policy-and-community transfer where social analysis, writing, and GIS-ready support are explicit before upper-division urban systems and pathway work.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -3683,6 +3686,7 @@ Tacoma Urban Studies is now modeled as a policy-and-community transfer where soc
 ##### Links Used
 
 - [UW Tacoma Urban Studies overview](https://www.tacoma.uw.edu/urban-studies/ba-urban-studies)
+- [UW Tacoma Urban Studies overview](https://www.tacoma.uw.edu/urban-studies/ba-urban-studies) - Auto-promoted from the parsed primary degree page on April 12, 2026.
 - [UW Tacoma transfer planning](https://www.tacoma.uw.edu/admissions/planning-your-transfer)
 
 ##### Urban Studies planning baseline
@@ -3795,16 +3799,23 @@ Tacoma Urban Studies is now modeled as a policy-and-community transfer where soc
 #### Required sequences for specific credits
 
 - Required before application: English composition -> `ENGL& 101`
+- Required before application: T GEOG 101 -> `GEOG& 100`
 - Worth finishing at Green River: GIS and urban-analysis support -> `GIS 202`, `GIS 260`, `GEOG& 200`, `POLS& 101`. complete at least 1 course from this set
 - Planner flag: Urban Studies pathways can shift by catalog year, so confirm option sequencing and elective mapping with Tacoma advising.
 - Source-backed note: Urban Studies uses both current and legacy curriculum structures, and the GIS option is sequential, so the exact final list should always be matched to admit year and chosen option.
+- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
+- Source-backed note: Source parse confidence: high.
+- Source-backed note: Exact-title match source: parsed-source-cue.
+- Source-backed note: Matched source title: Introduction to Geography.
+- Source-backed note: Matched Green River title: Introduction to Geography.
+- Source-backed note: Requirement cue lines: T GEOG 101 Introduction to Geography
 
 
 ### Writing Studies (BA)
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `custom`.
+Planner coverage: `detailed`. Best Green River base: `AAS-T`.
 Tacoma Writing Studies is now modeled as a writing-intensive transfer where composition sequence, rhetorical analysis, and professional-communication support are explicit before upper-division writing pathways.
 
 #### Exact UW Courses Needed for Full Degree at UW

@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-04-09T19:41:49.812Z",
-  "totalSources": 378,
-  "reachableSourceCount": 376,
+  "generatedAt": "2026-04-13T02:34:59.836Z",
+  "totalSources": 466,
+  "reachableSourceCount": 464,
   "failedSourceCount": 2,
   "sources": [
     {
@@ -20,8 +20,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/CinemaandMediaStudies-132.html",
       "contentType": "text/html",
       "contentLength": "45179",
-      "etag": "\"b07b-64ef78a1da076\"",
-      "lastModified": "Wed, 08 Apr 2026 19:02:21 GMT",
+      "etag": "\"b07b-64f33e3bc6e8c\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:22 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -43,9 +43,9 @@
       "status": 200,
       "finalUrl": "https://acms.washington.edu/admissions",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "33400",
-      "etag": "\"1775763089\"",
-      "lastModified": "Thu, 09 Apr 2026 19:31:29 GMT",
+      "contentLength": "33391",
+      "etag": "\"1776047125\"",
+      "lastModified": "Mon, 13 Apr 2026 02:25:25 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -67,9 +67,9 @@
       "status": 200,
       "finalUrl": "https://acms.washington.edu/program-requirements-and-information",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "32606",
-      "etag": "\"1775763090\"",
-      "lastModified": "Thu, 09 Apr 2026 19:31:30 GMT",
+      "contentLength": "32597",
+      "etag": "\"1776047126\"",
+      "lastModified": "Mon, 13 Apr 2026 02:25:26 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -115,7 +115,7 @@
       "status": 200,
       "finalUrl": "https://admissions.uwb.edu/register/mpw-CLA",
       "contentType": "text/html; charset=utf-8",
-      "contentLength": "15092",
+      "contentLength": "15090",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -139,7 +139,7 @@
       "status": 200,
       "finalUrl": "https://admissions.uwb.edu/register/mpw-compe",
       "contentType": "text/html; charset=utf-8",
-      "contentLength": "16257",
+      "contentLength": "16259",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -163,7 +163,7 @@
       "status": 200,
       "finalUrl": "https://admissions.uwb.edu/register/mpw-crs",
       "contentType": "text/html; charset=utf-8",
-      "contentLength": "15106",
+      "contentLength": "15104",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -188,7 +188,7 @@
       "status": 200,
       "finalUrl": "https://admissions.uwb.edu/register/mpw-csse",
       "contentType": "text/html; charset=utf-8",
-      "contentLength": "16414",
+      "contentLength": "16408",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -236,7 +236,7 @@
       "status": 200,
       "finalUrl": "https://admissions.uwb.edu/register/mpw-DataVis-BS",
       "contentType": "text/html; charset=utf-8",
-      "contentLength": "15884",
+      "contentLength": "15881",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -260,7 +260,7 @@
       "status": 200,
       "finalUrl": "https://admissions.uwb.edu/register/mpw-EE",
       "contentType": "text/html; charset=utf-8",
-      "contentLength": "15828",
+      "contentLength": "15827",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -308,7 +308,7 @@
       "status": 200,
       "finalUrl": "https://admissions.uwb.edu/register/mpw-me",
       "contentType": "text/html; charset=utf-8",
-      "contentLength": "16573",
+      "contentLength": "16570",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -332,7 +332,7 @@
       "status": 200,
       "finalUrl": "https://admissions.uwb.edu/register/mpw-psy",
       "contentType": "text/html; charset=utf-8",
-      "contentLength": "15927",
+      "contentLength": "15925",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -400,8 +400,15 @@
         "pathway"
       ],
       "ownerIds": [
-        "uw-bothell-data-visualization-ba",
-        "uw-bothell-mechanical-engineering",
+        "uw-bothell-business-administration",
+        "uw-bothell-business-administration-finance",
+        "uw-bothell-business-administration-marketing",
+        "uw-bothell-chemistry-ba",
+        "uw-bothell-economics",
+        "uw-bothell-electrical-engineering",
+        "uw-bothell-mathematics",
+        "uw-bothell-physics-ba",
+        "uw-bothell-physics-bs",
         "uw-seattle-aeronautics-astronautics",
         "uw-seattle-american-ethnic-studies",
         "uw-seattle-american-indian-studies",
@@ -427,7 +434,11 @@
         "uw-seattle-bioengineering",
         "uw-seattle-biology",
         "uw-seattle-biology::ba-general-biology",
-        "uw-seattle-biology::bs-option-family",
+        "uw-seattle-biology::bs-option-family:ecology-evolution-and-conservation",
+        "uw-seattle-biology::bs-option-family:general-biology",
+        "uw-seattle-biology::bs-option-family:molecular-cellular-and-developmental-biology",
+        "uw-seattle-biology::bs-option-family:physiology",
+        "uw-seattle-biology::bs-option-family:plant-biology",
         "uw-seattle-business-administration",
         "uw-seattle-chemical-engineering",
         "uw-seattle-chemistry",
@@ -456,7 +467,10 @@
         "uw-seattle-early-childhood-and-family-studies",
         "uw-seattle-earth-and-space-sciences",
         "uw-seattle-earth-and-space-sciences::ba-route",
-        "uw-seattle-earth-and-space-sciences::bs-option-family",
+        "uw-seattle-earth-and-space-sciences::bs-option-family:biology",
+        "uw-seattle-earth-and-space-sciences::bs-option-family:geology",
+        "uw-seattle-earth-and-space-sciences::bs-option-family:geoscience",
+        "uw-seattle-earth-and-space-sciences::bs-option-family:physics",
         "uw-seattle-economics",
         "uw-seattle-economics::ba-route",
         "uw-seattle-economics::bs-route",
@@ -546,8 +560,7 @@
         "uw-seattle-swedish",
         "uw-seattle-voice-b-m",
         "uw-tacoma-computer-engineering",
-        "uw-tacoma-electrical-engineering",
-        "uw-tacoma-mechanical-engineering"
+        "uw-tacoma-electrical-engineering"
       ],
       "ok": true,
       "status": 200,
@@ -958,7 +971,10 @@
       "ownerIds": [
         "uw-seattle-earth-and-space-sciences",
         "uw-seattle-earth-and-space-sciences::ba-route",
-        "uw-seattle-earth-and-space-sciences::bs-option-family"
+        "uw-seattle-earth-and-space-sciences::bs-option-family:biology",
+        "uw-seattle-earth-and-space-sciences::bs-option-family:geology",
+        "uw-seattle-earth-and-space-sciences::bs-option-family:geoscience",
+        "uw-seattle-earth-and-space-sciences::bs-option-family:physics"
       ],
       "ok": true,
       "status": 200,
@@ -1355,8 +1371,8 @@
       "finalUrl": "https://aes.washington.edu/ba-american-ethnic-studies",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "51310",
-      "etag": "\"1775761964\"",
-      "lastModified": "Thu, 09 Apr 2026 19:12:44 GMT",
+      "etag": "\"1776044031\"",
+      "lastModified": "Mon, 13 Apr 2026 01:33:51 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1379,8 +1395,8 @@
       "finalUrl": "https://ais.washington.edu/undergraduate-programs",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "46679",
-      "etag": "\"1775760081\"",
-      "lastModified": "Thu, 09 Apr 2026 18:41:21 GMT",
+      "etag": "\"1776047169\"",
+      "lastModified": "Mon, 13 Apr 2026 02:26:09 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1403,8 +1419,8 @@
       "finalUrl": "https://amath.washington.edu/undergraduate-major-applied-mathematics",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "47894",
-      "etag": "\"1775759680\"",
-      "lastModified": "Thu, 09 Apr 2026 18:34:40 GMT",
+      "etag": "\"1776047049\"",
+      "lastModified": "Mon, 13 Apr 2026 02:24:09 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1523,8 +1539,8 @@
       "finalUrl": "https://art.washington.edu/admission-major-art-history",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "44878",
-      "etag": "\"1775763129\"",
-      "lastModified": "Thu, 09 Apr 2026 19:32:09 GMT",
+      "etag": "\"1776047172\"",
+      "lastModified": "Mon, 13 Apr 2026 02:26:12 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1547,8 +1563,8 @@
       "finalUrl": "https://art.washington.edu/art-history/ba-art-history",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "46593",
-      "etag": "\"1775759596\"",
-      "lastModified": "Thu, 09 Apr 2026 18:33:16 GMT",
+      "etag": "\"1776045613\"",
+      "lastModified": "Mon, 13 Apr 2026 02:00:13 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1571,8 +1587,8 @@
       "finalUrl": "https://art.washington.edu/undergraduate-program",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "45042",
-      "etag": "\"1775762905\"",
-      "lastModified": "Thu, 09 Apr 2026 19:28:25 GMT",
+      "etag": "\"1776047175\"",
+      "lastModified": "Mon, 13 Apr 2026 02:26:15 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1595,8 +1611,8 @@
       "finalUrl": "https://art.washington.edu/division-design",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "92335",
-      "etag": "\"1775763133\"",
-      "lastModified": "Thu, 09 Apr 2026 19:32:13 GMT",
+      "etag": "\"1776046098\"",
+      "lastModified": "Mon, 13 Apr 2026 02:08:18 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1618,9 +1634,9 @@
       "status": 200,
       "finalUrl": "https://art.washington.edu/design/bachelor-design-admissions",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "47944",
-      "etag": "\"1775763137\"",
-      "lastModified": "Thu, 09 Apr 2026 19:32:17 GMT",
+      "contentLength": "48346",
+      "etag": "\"1776047179\"",
+      "lastModified": "Mon, 13 Apr 2026 02:26:19 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1643,8 +1659,8 @@
       "finalUrl": "https://asian.washington.edu/admissions-incoming-freshmen-current-students",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "52100",
-      "etag": "\"1775760085\"",
-      "lastModified": "Thu, 09 Apr 2026 18:41:25 GMT",
+      "etag": "\"1776047174\"",
+      "lastModified": "Mon, 13 Apr 2026 02:26:14 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1667,8 +1683,8 @@
       "finalUrl": "https://asian.washington.edu/ba-asian-languages-cultures",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "55164",
-      "etag": "\"1775759690\"",
-      "lastModified": "Thu, 09 Apr 2026 18:34:50 GMT",
+      "etag": "\"1776047177\"",
+      "lastModified": "Mon, 13 Apr 2026 02:26:17 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1691,8 +1707,8 @@
       "finalUrl": "https://asian.washington.edu/ba-chinese",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "52263",
-      "etag": "\"1775762008\"",
-      "lastModified": "Thu, 09 Apr 2026 19:13:28 GMT",
+      "etag": "\"1776047178\"",
+      "lastModified": "Mon, 13 Apr 2026 02:26:18 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1715,8 +1731,8 @@
       "finalUrl": "https://asian.washington.edu/ba-japanese",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "54266",
-      "etag": "\"1775759786\"",
-      "lastModified": "Thu, 09 Apr 2026 18:36:26 GMT",
+      "etag": "\"1776044076\"",
+      "lastModified": "Mon, 13 Apr 2026 01:34:36 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1739,8 +1755,8 @@
       "finalUrl": "https://asian.washington.edu/ba-korean",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "50980",
-      "etag": "\"1775759789\"",
-      "lastModified": "Thu, 09 Apr 2026 18:36:29 GMT",
+      "etag": "\"1776047181\"",
+      "lastModified": "Mon, 13 Apr 2026 02:26:21 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1763,8 +1779,8 @@
       "finalUrl": "https://asian.washington.edu/ba-south-asian-languages-and-cultures",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "55538",
-      "etag": "\"1775759828\"",
-      "lastModified": "Thu, 09 Apr 2026 18:37:08 GMT",
+      "etag": "\"1776046975\"",
+      "lastModified": "Mon, 13 Apr 2026 02:22:55 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1787,8 +1803,8 @@
       "finalUrl": "https://astro.washington.edu/advising",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "45918",
-      "etag": "\"1775759693\"",
-      "lastModified": "Thu, 09 Apr 2026 18:34:53 GMT",
+      "etag": "\"1776046412\"",
+      "lastModified": "Mon, 13 Apr 2026 02:13:32 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1811,8 +1827,8 @@
       "finalUrl": "https://astro.washington.edu/undergraduate-program",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "53730",
-      "etag": "\"1775760715\"",
-      "lastModified": "Thu, 09 Apr 2026 18:51:55 GMT",
+      "etag": "\"1776045897\"",
+      "lastModified": "Mon, 13 Apr 2026 02:04:57 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1961,7 +1977,7 @@
       "contentType": "text/html; charset=UTF-8",
       "contentLength": null,
       "etag": null,
-      "lastModified": "Thu, 09 Apr 2026 18:57:33 GMT",
+      "lastModified": "Mon, 13 Apr 2026 01:39:42 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1985,7 +2001,7 @@
       "contentType": "text/html; charset=UTF-8",
       "contentLength": null,
       "etag": null,
-      "lastModified": "Thu, 09 Apr 2026 18:57:33 GMT",
+      "lastModified": "Mon, 13 Apr 2026 01:39:42 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -2011,8 +2027,8 @@
       "finalUrl": "https://chem.washington.edu/ba-biochemistry",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "83650",
-      "etag": "\"1775759705\"",
-      "lastModified": "Thu, 09 Apr 2026 18:35:05 GMT",
+      "etag": "\"1776047181\"",
+      "lastModified": "Mon, 13 Apr 2026 02:26:21 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -2039,8 +2055,8 @@
       "finalUrl": "https://chem.washington.edu/ba-chemistry",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "68999",
-      "etag": "\"1775759719\"",
-      "lastModified": "Thu, 09 Apr 2026 18:35:19 GMT",
+      "etag": "\"1776044867\"",
+      "lastModified": "Mon, 13 Apr 2026 01:47:47 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -2066,8 +2082,8 @@
       "finalUrl": "https://chem.washington.edu/bs-biochemistry",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "86082",
-      "etag": "\"1775763138\"",
-      "lastModified": "Thu, 09 Apr 2026 19:32:18 GMT",
+      "etag": "\"1776047184\"",
+      "lastModified": "Mon, 13 Apr 2026 02:26:24 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -2094,8 +2110,8 @@
       "finalUrl": "https://chem.washington.edu/bs-chemistry",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "73984",
-      "etag": "\"1775759722\"",
-      "lastModified": "Thu, 09 Apr 2026 18:35:22 GMT",
+      "etag": "\"1776044867\"",
+      "lastModified": "Mon, 13 Apr 2026 01:47:47 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -2118,8 +2134,8 @@
       "finalUrl": "https://cinema.washington.edu/ba-comparative-literature",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "45842",
-      "etag": "\"1775759733\"",
-      "lastModified": "Thu, 09 Apr 2026 18:35:33 GMT",
+      "etag": "\"1776044252\"",
+      "lastModified": "Mon, 13 Apr 2026 01:37:32 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -2142,8 +2158,8 @@
       "finalUrl": "https://classics.washington.edu/ba-classical-studies",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "46329",
-      "etag": "\"1775759730\"",
-      "lastModified": "Thu, 09 Apr 2026 18:35:30 GMT",
+      "etag": "\"1776045555\"",
+      "lastModified": "Mon, 13 Apr 2026 01:59:15 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -2166,8 +2182,8 @@
       "finalUrl": "https://classics.washington.edu/ba-classics",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "46041",
-      "etag": "\"1775759732\"",
-      "lastModified": "Thu, 09 Apr 2026 18:35:32 GMT",
+      "etag": "\"1776044321\"",
+      "lastModified": "Mon, 13 Apr 2026 01:38:41 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -2190,8 +2206,8 @@
       "finalUrl": "https://classics.washington.edu/ba-greek",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "45812",
-      "etag": "\"1775759774\"",
-      "lastModified": "Thu, 09 Apr 2026 18:36:14 GMT",
+      "etag": "\"1776047185\"",
+      "lastModified": "Mon, 13 Apr 2026 02:26:25 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -2214,8 +2230,8 @@
       "finalUrl": "https://classics.washington.edu/ba-latin",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "45827",
-      "etag": "\"1775759789\"",
-      "lastModified": "Thu, 09 Apr 2026 18:36:29 GMT",
+      "etag": "\"1776047187\"",
+      "lastModified": "Mon, 13 Apr 2026 02:26:27 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -2261,9 +2277,9 @@
       "status": 200,
       "finalUrl": "https://disabilitystudies.washington.edu/",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "37490",
-      "etag": "\"1775763139\"",
-      "lastModified": "Thu, 09 Apr 2026 19:32:19 GMT",
+      "contentLength": "37481",
+      "etag": "\"1776046785\"",
+      "lastModified": "Mon, 13 Apr 2026 02:19:45 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -2285,9 +2301,9 @@
       "status": 200,
       "finalUrl": "https://disabilitystudies.washington.edu/DS_major",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "35857",
-      "etag": "\"1775763143\"",
-      "lastModified": "Thu, 09 Apr 2026 19:32:23 GMT",
+      "contentLength": "35848",
+      "etag": "\"1776047185\"",
+      "lastModified": "Mon, 13 Apr 2026 02:26:25 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -2311,7 +2327,7 @@
       "contentType": "text/html; charset=UTF-8",
       "contentLength": null,
       "etag": null,
-      "lastModified": "Thu, 09 Apr 2026 19:32:23 GMT",
+      "lastModified": "Mon, 13 Apr 2026 02:26:25 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -2335,7 +2351,7 @@
       "contentType": "text/html; charset=UTF-8",
       "contentLength": null,
       "etag": null,
-      "lastModified": "Thu, 09 Apr 2026 19:32:24 GMT",
+      "lastModified": "Mon, 13 Apr 2026 02:26:27 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -2359,7 +2375,7 @@
       "contentType": "text/html; charset=UTF-8",
       "contentLength": null,
       "etag": null,
-      "lastModified": "Thu, 09 Apr 2026 19:32:25 GMT",
+      "lastModified": "Mon, 13 Apr 2026 02:26:28 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -2503,8 +2519,8 @@
       "finalUrl": "https://english.washington.edu/english-language-literature-and-culture-option",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "73698",
-      "etag": "\"1775761272\"",
-      "lastModified": "Thu, 09 Apr 2026 19:01:12 GMT",
+      "etag": "\"1776047225\"",
+      "lastModified": "Mon, 13 Apr 2026 02:27:05 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -2547,7 +2563,10 @@
       "ownerIds": [
         "uw-seattle-earth-and-space-sciences",
         "uw-seattle-earth-and-space-sciences::ba-route",
-        "uw-seattle-earth-and-space-sciences::bs-option-family"
+        "uw-seattle-earth-and-space-sciences::bs-option-family:biology",
+        "uw-seattle-earth-and-space-sciences::bs-option-family:geology",
+        "uw-seattle-earth-and-space-sciences::bs-option-family:geoscience",
+        "uw-seattle-earth-and-space-sciences::bs-option-family:physics"
       ],
       "ok": true,
       "status": 200,
@@ -2818,8 +2837,8 @@
       "finalUrl": "https://frenchitalian.washington.edu/major-italian-studies",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "44605",
-      "etag": "\"1775760799\"",
-      "lastModified": "Thu, 09 Apr 2026 18:53:19 GMT",
+      "etag": "\"1776047229\"",
+      "lastModified": "Mon, 13 Apr 2026 02:27:09 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -2843,8 +2862,8 @@
       "finalUrl": "https://german.washington.edu/german-studies",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "51343",
-      "etag": "\"1775759773\"",
-      "lastModified": "Thu, 09 Apr 2026 18:36:13 GMT",
+      "etag": "\"1776047235\"",
+      "lastModified": "Mon, 13 Apr 2026 02:27:15 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -2890,9 +2909,9 @@
       "status": 200,
       "finalUrl": "https://history.washington.edu/major",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "53535",
-      "etag": "\"1775759777\"",
-      "lastModified": "Thu, 09 Apr 2026 18:36:17 GMT",
+      "contentLength": "53558",
+      "etag": "\"1776047235\"",
+      "lastModified": "Mon, 13 Apr 2026 02:27:15 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -2914,9 +2933,9 @@
       "status": 200,
       "finalUrl": "https://ischool.uw.edu/programs/informatics/curriculum",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "62777",
-      "etag": "\"1775763180\"",
-      "lastModified": "Thu, 09 Apr 2026 19:33:00 GMT",
+      "contentLength": "62730",
+      "etag": "\"1776047227\"",
+      "lastModified": "Mon, 13 Apr 2026 02:27:07 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -2938,9 +2957,9 @@
       "status": 200,
       "finalUrl": "https://ischool.uw.edu/programs/informatics/admissions/prerequisites",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "63833",
-      "etag": "\"1775763181\"",
-      "lastModified": "Thu, 09 Apr 2026 19:33:01 GMT",
+      "contentLength": "63773",
+      "etag": "\"1776047228\"",
+      "lastModified": "Mon, 13 Apr 2026 02:27:08 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -2962,9 +2981,9 @@
       "status": 200,
       "finalUrl": "https://ischool.uw.edu/programs/informatics/curriculum/capstone",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "61637",
-      "etag": "\"1775763182\"",
-      "lastModified": "Thu, 09 Apr 2026 19:33:02 GMT",
+      "contentLength": "61590",
+      "etag": "\"1776047230\"",
+      "lastModified": "Mon, 13 Apr 2026 02:27:10 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -3064,7 +3083,7 @@
       "etag": null,
       "lastModified": null,
       "title": "Undergraduate Programs - The Henry M. Jackson School of International Studies",
-      "bodyHash": "9eaa72b574c01d3f46be61941bfbb3001bd867f5328543505ff936e13ae72035",
+      "bodyHash": "b55af053a9f6730fdf1f4cfa111256be982072393eefe38a42dc11d182a24db5",
       "error": null,
       "fetchMode": "curl",
       "retryAfterMs": null
@@ -3088,7 +3107,7 @@
       "etag": null,
       "lastModified": null,
       "title": "Asian Studies - Major - The Henry M. Jackson School of International Studies",
-      "bodyHash": "1434233581721d69e7b95a6e1c290fb67afdf91a096543f4042e3e49233cd617",
+      "bodyHash": "84b67fa905819ad5ce47d33a1c551115f5664be9928b642d6dab55de8e561ccc",
       "error": null,
       "fetchMode": "curl",
       "retryAfterMs": null
@@ -3112,7 +3131,7 @@
       "etag": null,
       "lastModified": null,
       "title": "European Studies - Major - The Henry M. Jackson School of International Studies",
-      "bodyHash": "1b4765159e148fe0684371d08f858fffa6c4f5f930f5d432e564989f78b7fe43",
+      "bodyHash": "3f77bbdb7de838afada6735890e80c875996ce8fcf72e8891a1cb22f153aff26",
       "error": null,
       "fetchMode": "curl",
       "retryAfterMs": null
@@ -3136,7 +3155,7 @@
       "etag": null,
       "lastModified": null,
       "title": "Capstone Courses: 2025-26 Academic Year - The Henry M. Jackson School of International Studies",
-      "bodyHash": "69f1e61dd7bb31aac036156126aae9a5b585e3b297cd04be3fd0697e5ccd1d23",
+      "bodyHash": "27f137571aaec1bcd8247827b76b124b0bd8e9625eb2bf7462c4ef939bce57d4",
       "error": null,
       "fetchMode": "curl",
       "retryAfterMs": null
@@ -3160,7 +3179,7 @@
       "etag": null,
       "lastModified": null,
       "title": "Jewish Studies - Major - The Henry M. Jackson School of International Studies",
-      "bodyHash": "fa47f582a9b0fb3afe64151bacdb8a99c3639855bdca83e4f44d096b1d9a1871",
+      "bodyHash": "c72ad392e48410443f7ba773ee78680e28d636186ca26be59f962d627dfd79dd",
       "error": null,
       "fetchMode": "curl",
       "retryAfterMs": null
@@ -3184,7 +3203,7 @@
       "etag": null,
       "lastModified": null,
       "title": "Latin American and Caribbean Studies - Major - The Henry M. Jackson School of International Studies",
-      "bodyHash": "33595fc58282d322a6de888bddb2cf91df13055c833413b58e44a89a2715a3c3",
+      "bodyHash": "691bfc63d42ace59c4f75823a69096b9918064b3f5c701795f22ee7109f46984",
       "error": null,
       "fetchMode": "curl",
       "retryAfterMs": null
@@ -3229,8 +3248,8 @@
       "finalUrl": "https://linguistics.washington.edu/ba-linguistics",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "54028",
-      "etag": "\"1775760701\"",
-      "lastModified": "Thu, 09 Apr 2026 18:51:41 GMT",
+      "etag": "\"1776047241\"",
+      "lastModified": "Mon, 13 Apr 2026 02:27:21 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -3240,6 +3259,7 @@
     {
       "url": "https://lsj.washington.edu/lsj-gold-curriculum-requirements",
       "labels": [
+        "UW Law, Societies and Justice curriculum requirements",
         "UW LSJ Gold Curriculum requirements"
       ],
       "kinds": [
@@ -3253,8 +3273,8 @@
       "finalUrl": "https://lsj.washington.edu/lsj-gold-curriculum-requirements",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "121763",
-      "etag": "\"1775760141\"",
-      "lastModified": "Thu, 09 Apr 2026 18:42:21 GMT",
+      "etag": "\"1776047242\"",
+      "lastModified": "Mon, 13 Apr 2026 02:27:22 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -3349,8 +3369,8 @@
       "finalUrl": "https://math.washington.edu/ba-mathematics-standard-major-requirements-0",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "56216",
-      "etag": "\"1775762150\"",
-      "lastModified": "Thu, 09 Apr 2026 19:15:50 GMT",
+      "etag": "\"1776047244\"",
+      "lastModified": "Mon, 13 Apr 2026 02:27:24 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -3541,8 +3561,8 @@
       "finalUrl": "https://music.washington.edu/bachelor-arts-music-instrumental-option",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "55927",
-      "etag": "\"1775759801\"",
-      "lastModified": "Thu, 09 Apr 2026 18:36:41 GMT",
+      "etag": "\"1776047247\"",
+      "lastModified": "Mon, 13 Apr 2026 02:27:27 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -3565,8 +3585,8 @@
       "finalUrl": "https://music.washington.edu/bachelor-music-composition",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "59626",
-      "etag": "\"1775759799\"",
-      "lastModified": "Thu, 09 Apr 2026 18:36:39 GMT",
+      "etag": "\"1776046014\"",
+      "lastModified": "Mon, 13 Apr 2026 02:06:54 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -3589,8 +3609,8 @@
       "finalUrl": "https://music.washington.edu/bachelor-music-guitar",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "56783",
-      "etag": "\"1775759775\"",
-      "lastModified": "Thu, 09 Apr 2026 18:36:15 GMT",
+      "etag": "\"1776047250\"",
+      "lastModified": "Mon, 13 Apr 2026 02:27:30 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -3613,8 +3633,8 @@
       "finalUrl": "https://music.washington.edu/bachelor-music-jazz-studies",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "57441",
-      "etag": "\"1775759787\"",
-      "lastModified": "Thu, 09 Apr 2026 18:36:27 GMT",
+      "etag": "\"1776046690\"",
+      "lastModified": "Mon, 13 Apr 2026 02:18:10 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -3635,14 +3655,14 @@
       "ok": true,
       "status": 200,
       "finalUrl": "https://music.washington.edu/bachelor-music-music-education-instrumental-emphasis",
-      "contentType": "text/html; charset=UTF-8",
-      "contentLength": "60674",
-      "etag": "\"1775763194\"",
-      "lastModified": "Thu, 09 Apr 2026 19:33:14 GMT",
-      "title": null,
+      "contentType": "text/html",
+      "contentLength": null,
+      "etag": null,
+      "lastModified": null,
+      "title": "UW Bachelor of Music - Music Education, Instrumental Emphasis",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head",
+      "fetchMode": "parsed-source",
       "retryAfterMs": null
     },
     {
@@ -3659,14 +3679,14 @@
       "ok": true,
       "status": 200,
       "finalUrl": "https://music.washington.edu/bachelor-music-orchestral-instruments",
-      "contentType": "text/html; charset=UTF-8",
-      "contentLength": "56983",
-      "etag": "\"1775759813\"",
-      "lastModified": "Thu, 09 Apr 2026 18:36:53 GMT",
-      "title": null,
+      "contentType": "text/html",
+      "contentLength": null,
+      "etag": null,
+      "lastModified": null,
+      "title": "UW Bachelor of Music - Orchestral Instruments",
       "bodyHash": null,
       "error": null,
-      "fetchMode": "head",
+      "fetchMode": "parsed-source",
       "retryAfterMs": null
     },
     {
@@ -3685,8 +3705,8 @@
       "finalUrl": "https://music.washington.edu/bachelor-music-organ",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "57144",
-      "etag": "\"1775763197\"",
-      "lastModified": "Thu, 09 Apr 2026 19:33:17 GMT",
+      "etag": "\"1776047263\"",
+      "lastModified": "Mon, 13 Apr 2026 02:27:43 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -3709,8 +3729,8 @@
       "finalUrl": "https://music.washington.edu/bachelor-music-percussion-performance",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "56899",
-      "etag": "\"1775759815\"",
-      "lastModified": "Thu, 09 Apr 2026 18:36:55 GMT",
+      "etag": "\"1776044854\"",
+      "lastModified": "Mon, 13 Apr 2026 01:47:34 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -3733,8 +3753,8 @@
       "finalUrl": "https://music.washington.edu/bachelor-music-piano",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "57035",
-      "etag": "\"1775759817\"",
-      "lastModified": "Thu, 09 Apr 2026 18:36:57 GMT",
+      "etag": "\"1776047266\"",
+      "lastModified": "Mon, 13 Apr 2026 02:27:46 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -3757,8 +3777,8 @@
       "finalUrl": "https://music.washington.edu/bachelor-music-voice",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "57784",
-      "etag": "\"1775760885\"",
-      "lastModified": "Thu, 09 Apr 2026 18:54:45 GMT",
+      "etag": "\"1776047267\"",
+      "lastModified": "Mon, 13 Apr 2026 02:27:47 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -3780,7 +3800,7 @@
       "status": 200,
       "finalUrl": "https://nursing.uw.edu/academics/bsn/",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "37552",
+      "contentLength": "37617",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -3830,8 +3850,8 @@
       "finalUrl": "https://phys.washington.edu/physics-bs-degree-requirements",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "84544",
-      "etag": "\"1775760153\"",
-      "lastModified": "Thu, 09 Apr 2026 18:42:33 GMT",
+      "etag": "\"1776047265\"",
+      "lastModified": "Mon, 13 Apr 2026 02:27:45 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -3962,8 +3982,8 @@
       "finalUrl": "https://scandinavian.washington.edu/ba-danish",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "49352",
-      "etag": "\"1775759741\"",
-      "lastModified": "Thu, 09 Apr 2026 18:35:41 GMT",
+      "etag": "\"1776047267\"",
+      "lastModified": "Mon, 13 Apr 2026 02:27:47 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -3986,8 +4006,8 @@
       "finalUrl": "https://scandinavian.washington.edu/ba-finnish",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "50159",
-      "etag": "\"1775759769\"",
-      "lastModified": "Thu, 09 Apr 2026 18:36:09 GMT",
+      "etag": "\"1776047268\"",
+      "lastModified": "Mon, 13 Apr 2026 02:27:48 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -4010,8 +4030,8 @@
       "finalUrl": "https://scandinavian.washington.edu/ba-norwegian",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "49002",
-      "etag": "\"1775759801\"",
-      "lastModified": "Thu, 09 Apr 2026 18:36:41 GMT",
+      "etag": "\"1776047270\"",
+      "lastModified": "Mon, 13 Apr 2026 02:27:50 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -4034,8 +4054,8 @@
       "finalUrl": "https://scandinavian.washington.edu/ba-scandinavian-area-studies",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "48962",
-      "etag": "\"1775760836\"",
-      "lastModified": "Thu, 09 Apr 2026 18:53:56 GMT",
+      "etag": "\"1776047272\"",
+      "lastModified": "Mon, 13 Apr 2026 02:27:52 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -4058,8 +4078,8 @@
       "finalUrl": "https://scandinavian.washington.edu/ba-swedish",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "48849",
-      "etag": "\"1775759873\"",
-      "lastModified": "Thu, 09 Apr 2026 18:37:53 GMT",
+      "etag": "\"1776047273\"",
+      "lastModified": "Mon, 13 Apr 2026 02:27:53 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -4235,6 +4255,30 @@
       "retryAfterMs": null
     },
     {
+      "url": "https://slavic.washington.edu/ba-eastern-european-languages-literature-and-culture",
+      "labels": [
+        "UW Eastern European Languages, Literature, and Culture requirements"
+      ],
+      "kinds": [
+        "major"
+      ],
+      "ownerIds": [
+        "uw-seattle-slavic-languages-and-literatures"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://slavic.washington.edu/ba-eastern-european-languages-literature-and-culture",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "51302",
+      "etag": "\"1776047273\"",
+      "lastModified": "Mon, 13 Apr 2026 02:27:53 GMT",
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
       "url": "https://slavic.washington.edu/ba-global-literary-studies-glits",
       "labels": [
         "UW Global Literary Studies degree requirements"
@@ -4250,8 +4294,32 @@
       "finalUrl": "https://slavic.washington.edu/ba-global-literary-studies-glits",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "51695",
-      "etag": "\"1775759774\"",
-      "lastModified": "Thu, 09 Apr 2026 18:36:14 GMT",
+      "etag": "\"1776047146\"",
+      "lastModified": "Mon, 13 Apr 2026 02:25:46 GMT",
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://slavic.washington.edu/ba-russian-language-literature-and-culture",
+      "labels": [
+        "UW Russian Language, Literature, and Culture requirements"
+      ],
+      "kinds": [
+        "major"
+      ],
+      "ownerIds": [
+        "uw-seattle-slavic-languages-and-literatures"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://slavic.washington.edu/ba-russian-language-literature-and-culture",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "52923",
+      "etag": "\"1776047275\"",
+      "lastModified": "Mon, 13 Apr 2026 02:27:55 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -4274,8 +4342,8 @@
       "finalUrl": "https://slavic.washington.edu/undergraduate-policies",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "51033",
-      "etag": "\"1775759826\"",
-      "lastModified": "Thu, 09 Apr 2026 18:37:06 GMT",
+      "etag": "\"1776047277\"",
+      "lastModified": "Mon, 13 Apr 2026 02:27:57 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -4370,8 +4438,8 @@
       "finalUrl": "https://spanport.washington.edu/spanish-major-requirements",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "45088",
-      "etag": "\"1775759829\"",
-      "lastModified": "Thu, 09 Apr 2026 18:37:09 GMT",
+      "etag": "\"1776047276\"",
+      "lastModified": "Mon, 13 Apr 2026 02:27:56 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -4399,8 +4467,8 @@
       "finalUrl": "https://sph.washington.edu/phgh",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": null,
-      "etag": "\"1775689896-gzip\"",
-      "lastModified": "Wed, 08 Apr 2026 23:11:36 GMT",
+      "etag": "\"1776036122-gzip\"",
+      "lastModified": "Sun, 12 Apr 2026 23:22:02 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -4428,8 +4496,8 @@
       "finalUrl": "https://sph.washington.edu/phgh/application/prerequisites",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": null,
-      "etag": "\"1775690269-gzip\"",
-      "lastModified": "Wed, 08 Apr 2026 23:17:49 GMT",
+      "etag": "\"1776035445-gzip\"",
+      "lastModified": "Sun, 12 Apr 2026 23:10:45 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -4457,8 +4525,8 @@
       "finalUrl": "https://sph.washington.edu/phgh/requirements/options",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": null,
-      "etag": "\"1775692342-gzip\"",
-      "lastModified": "Wed, 08 Apr 2026 23:52:22 GMT",
+      "etag": "\"1776047279-gzip\"",
+      "lastModified": "Mon, 13 Apr 2026 02:27:59 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -4513,7 +4581,7 @@
       "etag": null,
       "lastModified": null,
       "title": "Admissions Prerequisites | Speech &amp; Hearing Sciences",
-      "bodyHash": "aaee60e52f53eaf92d746a8b6c3ddfd2c0086c726e6e4a07c4a93cabbbe7cda5",
+      "bodyHash": "cca8c5e785c72ad90e0677f2d4f0eaa6efb77c7244befdcb2d07d83681a2e1b1",
       "error": null,
       "fetchMode": "curl",
       "retryAfterMs": null
@@ -4537,7 +4605,7 @@
       "etag": null,
       "lastModified": null,
       "title": "Undergraduate Major | Speech &amp; Hearing Sciences",
-      "bodyHash": "6974231355751b97eca2a67b624980d00d0614b0c9c77cd088765726a4e29dd6",
+      "bodyHash": "99cee30e0f48fb33fb25a939869d87abb6aa446ca88313266c1d62ea859c12fc",
       "error": null,
       "fetchMode": "curl",
       "retryAfterMs": null
@@ -4561,7 +4629,7 @@
       "etag": null,
       "lastModified": null,
       "title": "UW Transfer Students FAQ | Speech &amp; Hearing Sciences",
-      "bodyHash": "48def6afa840d8a8ee1097ff388906e25445af411cf636eacaf161b1ccf9dd3e",
+      "bodyHash": "f2da2ae51e0d8051efde4681b5c1331f89e7923c94dc897a519694a710dc69a6",
       "error": null,
       "fetchMode": "curl",
       "retryAfterMs": null
@@ -4586,8 +4654,8 @@
       "finalUrl": "https://stat.uw.edu/academics/undergraduate/statistics-bs/major",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "48256",
-      "etag": "\"1775737043\"",
-      "lastModified": "Thu, 09 Apr 2026 12:17:23 GMT",
+      "etag": "\"1776038925\"",
+      "lastModified": "Mon, 13 Apr 2026 00:08:45 GMT",
       "title": "Major Requirements | University of Washington Department of Statistics",
       "bodyHash": "b167cc7699aa8c7cc44677db88bc88bca7d7b759d716dd0548c03863bf82271d",
       "error": null,
@@ -4614,8 +4682,8 @@
       "finalUrl": "https://stat.uw.edu/academics/undergraduate/statistics-bs/statistics-bs-tracks",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "38256",
-      "etag": "\"1775753659\"",
-      "lastModified": "Thu, 09 Apr 2026 16:54:19 GMT",
+      "etag": "\"1776043417\"",
+      "lastModified": "Mon, 13 Apr 2026 01:23:37 GMT",
       "title": "Statistics B.S. tracks | University of Washington Department of Statistics",
       "bodyHash": "10d70680ff41ad06ea6cc844c89f35a396b9071ac240c6da95aaade21449e0c4",
       "error": null,
@@ -4642,8 +4710,8 @@
       "finalUrl": "https://stat.uw.edu/statistics-major",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "32228",
-      "etag": "\"1775759846\"",
-      "lastModified": "Thu, 09 Apr 2026 18:37:26 GMT",
+      "etag": "\"1776047283\"",
+      "lastModified": "Mon, 13 Apr 2026 02:28:03 GMT",
       "title": "Statistics Major | University of Washington Department of Statistics",
       "bodyHash": "03bfa7d04fc35e603d17e7b04853829cf44c1cae86ff62a2853b5d3882b6de96",
       "error": null,
@@ -4665,7 +4733,7 @@
       "status": 200,
       "finalUrl": "https://students.nursing.uw.edu/academics/program-of-study/curriculum/",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "22839",
+      "contentLength": "22838",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -5149,8 +5217,8 @@
       "finalUrl": "https://www.deohs.washington.edu/degree-requirements",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": null,
-      "etag": "\"1775762115\"",
-      "lastModified": "Thu, 09 Apr 2026 19:15:15 GMT",
+      "etag": "\"1776047289\"",
+      "lastModified": "Mon, 13 Apr 2026 02:28:09 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5217,9 +5285,6 @@
       ],
       "ownerIds": [
         "999B",
-        "999O",
-        "999P",
-        "999Q",
         "uw-seattle-chemical-engineering"
       ],
       "ok": true,
@@ -5236,6 +5301,2046 @@
       "retryAfterMs": null
     },
     {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/accounting/aaa.html",
+      "labels": [
+        "Accounting, AAA curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-business-entrepreneurship-accounting-aaa"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/accounting/aaa.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/administrative-assistant/aaa.html",
+      "labels": [
+        "Administrative Assistant, AAA curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-business-entrepreneurship-administrative-assistant-aaa"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/administrative-assistant/aaa.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/business-applications-specialist/aaa.html",
+      "labels": [
+        "Business Applications Specialist, AAA curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-business-entrepreneurship-business-applications-specialist-aaa"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/business-applications-specialist/aaa.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/business-management/aaa.html",
+      "labels": [
+        "Business Management, AAA curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-business-entrepreneurship-business-management-aaa"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/business-management/aaa.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/business/ab-dta-mrp.html",
+      "labels": [
+        "Associate in Business, AB-DTA/MRP curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-business-entrepreneurship-business-ab-dta-mrp"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/business/ab-dta-mrp.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/american-ethnic-studies/aa-dta-emphasis-american-ethnic-studies.html",
+      "labels": [
+        "Associate in Arts-DTA with Emphasis in American Ethnic Studies curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-education-law-social-science-american-ethnic-studies-aa-dta-emphasis-american-ethnic-studies"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/american-ethnic-studies/aa-dta-emphasis-american-ethnic-studies.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/anthropology/aa-dta-emphasis-anthropology.html",
+      "labels": [
+        "Anthropology, AA-DTA curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-education-law-social-science-anthropology-aa-dta-emphasis-anthropology"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/anthropology/aa-dta-emphasis-anthropology.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/court-reporting-captioning/realtime-transcription-aaa.html",
+      "labels": [
+        "Realtime Transcription, AAA curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-education-law-social-science-court-reporting-captioning-realtime-transcription-aaa"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/court-reporting-captioning/realtime-transcription-aaa.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/criminal-justice/aas-t.html",
+      "labels": [
+        "Criminal Justice, AAS-T curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-education-law-social-science-criminal-justice-aas-t"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/criminal-justice/aas-t.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/criminal-justice/forensic-technology-aas-t.html",
+      "labels": [
+        "Forensic, AAS-T curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-education-law-social-science-criminal-justice-forensic-technology-aas-t"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/criminal-justice/forensic-technology-aas-t.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/early-childhood-education/early-childhood-education-aas.html",
+      "labels": [
+        "Early Childhood Education, AAS curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-education-law-social-science-early-childhood-education-early-childhood-education-aas"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/early-childhood-education/early-childhood-education-aas.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/early-childhood-education/early-childhood-education-diversity-studies-aas-t.html",
+      "labels": [
+        "Early Childhood Education and Diversity Studies, AAS-T curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-education-law-social-science-early-childhood-education-early-childhood-education-diversity-studies-aas-t"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/early-childhood-education/early-childhood-education-diversity-studies-aas-t.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/early-childhood-education/paraeducator-aas-t.html",
+      "labels": [
+        "Early Childhood Education Paraeducator, AAS-T curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-education-law-social-science-early-childhood-education-paraeducator-aas-t"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/early-childhood-education/paraeducator-aas-t.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/geography/aa-dta-with-emphasis-geography.html",
+      "labels": [
+        "Associate in Arts-DTA with Emphasis in Geography curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-education-law-social-science-geography-aa-dta-with-emphasis-geography"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/geography/aa-dta-with-emphasis-geography.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/history/aa-dta-with-emphasis-history.html",
+      "labels": [
+        "Associate in Arts-DTA with Emphasis in History curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-education-law-social-science-history-aa-dta-with-emphasis-history"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/history/aa-dta-with-emphasis-history.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/legal-administrative-assistant/aaa.html",
+      "labels": [
+        "Legal Administrative Assistant, AAA curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-education-law-social-science-legal-administrative-assistant-aaa"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/legal-administrative-assistant/aaa.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/political-science/aa-dta-with-emphasis-political-science.html",
+      "labels": [
+        "Associate in Arts-DTA with Emphasis in Political Science curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-education-law-social-science-political-science-aa-dta-with-emphasis-political-science"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/political-science/aa-dta-with-emphasis-political-science.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/psychology/aa-dta-with-concentration-psychology.html",
+      "labels": [
+        "Associate in Arts-DTA with Concentration in Psychology curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-education-law-social-science-psychology-aa-dta-with-concentration-psychology"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/psychology/aa-dta-with-concentration-psychology.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/sociology/aa-dta-with-emphasis-sociology.html",
+      "labels": [
+        "Associate in Arts-DTA with Emphasis in Sociology curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-education-law-social-science-sociology-aa-dta-with-emphasis-sociology"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/sociology/aa-dta-with-emphasis-sociology.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/arts/aa-dta-concentration-art-history.html",
+      "labels": [
+        "Associate in Arts-DTA with Concentration in Art History curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-fine-arts-humanities-arts-aa-dta-concentration-art-history"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/arts/aa-dta-concentration-art-history.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/arts/aa-dta-concentration-creative-expression.html",
+      "labels": [
+        "Associate in Arts-DTA with Concentration in Creative Expression curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-fine-arts-humanities-arts-aa-dta-concentration-creative-expression"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/arts/aa-dta-concentration-creative-expression.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/arts/afa-concentration-ceramics.html",
+      "labels": [
+        "Associate in Fine Arts, with Concentration in Ceramics curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-fine-arts-humanities-arts-afa-concentration-ceramics"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/arts/afa-concentration-ceramics.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/arts/afa-concentration-design.html",
+      "labels": [
+        "Associate in Fine Arts, with Concentration in Design curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-fine-arts-humanities-arts-afa-concentration-design"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/arts/afa-concentration-design.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/arts/afa-concentration-photography.html",
+      "labels": [
+        "Associate in Fine Arts, with Concentration in Photography curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-fine-arts-humanities-arts-afa-concentration-photography"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/arts/afa-concentration-photography.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/arts/afa-concentration-studio-art.html",
+      "labels": [
+        "Associate in Fine Arts, with Concentration in Studio Art curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-fine-arts-humanities-arts-afa-concentration-studio-art"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/arts/afa-concentration-studio-art.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/arts/associate-fine-arts.html",
+      "labels": [
+        "Associate in Fine Arts, AFA curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-fine-arts-humanities-arts-associate-fine-arts"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/arts/associate-fine-arts.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/asian-studies/aa-dta-concentration-asian-studies.html",
+      "labels": [
+        "Associate in Arts-DTA with Concentration in Asian Studies curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-fine-arts-humanities-asian-studies-aa-dta-concentration-asian-studies"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/asian-studies/aa-dta-concentration-asian-studies.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/black-studies/aa-dta-concentration-black-studies.html",
+      "labels": [
+        "AA-DTA with Concentration in Black Studies curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-fine-arts-humanities-black-studies-aa-dta-concentration-black-studies"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/black-studies/aa-dta-concentration-black-studies.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/communication-studies/aa-dta-concentration-communication-studies.html",
+      "labels": [
+        "AA-DTA with Concentration in Communication Studies curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-fine-arts-humanities-communication-studies-aa-dta-concentration-communication-studies"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/communication-studies/aa-dta-concentration-communication-studies.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/diversity-studies/aa-dta-concentration-diversity-studies.html",
+      "labels": [
+        "AA-DTA with Concentration in Diversity Studies curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-fine-arts-humanities-diversity-studies-aa-dta-concentration-diversity-studies"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/diversity-studies/aa-dta-concentration-diversity-studies.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/english/aa-dta-emphasis-creative-writing.html",
+      "labels": [
+        "Associate in Arts-DTA with Emphasis in Creative Writing curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-fine-arts-humanities-english-aa-dta-emphasis-creative-writing"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/english/aa-dta-emphasis-creative-writing.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/english/aa-dta-emphasis-english-literature.html",
+      "labels": [
+        "Associate in Arts-DTA with Emphasis in English Literature curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-fine-arts-humanities-english-aa-dta-emphasis-english-literature"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/english/aa-dta-emphasis-english-literature.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/english/aa-dta-emphasis-professional-technical-communication.html",
+      "labels": [
+        "AA-DTA with Emphasis in Professional & Technical Communication curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-fine-arts-humanities-english-aa-dta-emphasis-professional-technical-communication"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/english/aa-dta-emphasis-professional-technical-communication.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/film-studies/aa-dta-concentration-film-studies.html",
+      "labels": [
+        "AA-DTA with Concentration in Film Studies curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-fine-arts-humanities-film-studies-aa-dta-concentration-film-studies"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/film-studies/aa-dta-concentration-film-studies.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/gender-studies/aa-dta-concentration-gender-studies.html",
+      "labels": [
+        "Associate in Arts-DTA with Concentration in Gender Studies curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-fine-arts-humanities-gender-studies-aa-dta-concentration-gender-studies"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/gender-studies/aa-dta-concentration-gender-studies.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/global-hispanic-studies/aa-dta-concentration-global-studies-hispanic-studies.html",
+      "labels": [
+        "AA-DTA with concentration in Global Studies and Hispanic Studies curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-fine-arts-humanities-global-hispanic-studies-aa-dta-concentration-global-studies-hispanic-studies"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/global-hispanic-studies/aa-dta-concentration-global-studies-hispanic-studies.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/global-studies/aa-dta-concentration-global-studies.html",
+      "labels": [
+        "AA-DTA with Concentration in Global Studies curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-fine-arts-humanities-global-studies-aa-dta-concentration-global-studies"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/global-studies/aa-dta-concentration-global-studies.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/hispanic-studies/aa-dta-concentration-hispanic-studies.html",
+      "labels": [
+        "AA-DTA with Concentration in Hispanic Studies curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-fine-arts-humanities-hispanic-studies-aa-dta-concentration-hispanic-studies"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/hispanic-studies/aa-dta-concentration-hispanic-studies.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/journalism/aa-dta-concentration-digital-broadcast-media.html",
+      "labels": [
+        "AA-DTA with Concentration in Digital & Broadcast Media curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-fine-arts-humanities-journalism-aa-dta-concentration-digital-broadcast-media"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/journalism/aa-dta-concentration-digital-broadcast-media.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/music/aa-dta-concentration-music.html",
+      "labels": [
+        "AA-DTA with Concentration in Music curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-fine-arts-humanities-music-aa-dta-concentration-music"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/music/aa-dta-concentration-music.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/philosophy/aa-dta-concentration-philosophy.html",
+      "labels": [
+        "AA-DTA with Concentration in Philosophy curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-fine-arts-humanities-philosophy-aa-dta-concentration-philosophy"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/philosophy/aa-dta-concentration-philosophy.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/theatre-arts/aa-dta-concentration-theatre-arts.html",
+      "labels": [
+        "AA-DTA with Concentration in Theatre Arts curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-fine-arts-humanities-theatre-arts-aa-dta-concentration-theatre-arts"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/theatre-arts/aa-dta-concentration-theatre-arts.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/medical-office-administration/aaa-emphasis-front-office.html",
+      "labels": [
+        "Medical Office Administration, AAA with emphasis in Front Office curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-healthcare-wellness-medical-office-administration-aaa-emphasis-front-office"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/medical-office-administration/aaa-emphasis-front-office.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/medical-office-administration/aaa-emphasis-medical-coding-reimbursement.html",
+      "labels": [
+        "Medical Office Administration, AAA with emphasis in Medical Coding and Reimbursement curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-healthcare-wellness-medical-office-administration-aaa-emphasis-medical-coding-reimbursement"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/medical-office-administration/aaa-emphasis-medical-coding-reimbursement.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/associate-in-pre-nursing-apren-dta-mrp.html",
+      "labels": [
+        "Associate in Pre-Nursing, APreN-DTA/MRP curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-healthcare-wellness-nursing-associate-in-pre-nursing-apren-dta-mrp"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/associate-in-pre-nursing-apren-dta-mrp.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/medical-assistant-certified-practical-nursing.html",
+      "labels": [
+        "Medical Assistant-Certified (MA-C) to Practical Nursing (PN) program map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-healthcare-wellness-nursing-medical-assistant-certified-practical-nursing"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/medical-assistant-certified-practical-nursing.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/practical-nursing-aas-part-time-hybrid.html",
+      "labels": [
+        "Practical Nursing, AAS Part-time (Hybrid) curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-healthcare-wellness-nursing-practical-nursing-aas-part-time-hybrid"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/practical-nursing-aas-part-time-hybrid.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/practical-nursing-aas-part-time-online.html",
+      "labels": [
+        "Practical Nursing, AAS Part-time (Online) curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-healthcare-wellness-nursing-practical-nursing-aas-part-time-online"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/practical-nursing-aas-part-time-online.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/practical-nursing-aas.html",
+      "labels": [
+        "Practical Nursing, AAS curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-healthcare-wellness-nursing-practical-nursing-aas"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/practical-nursing-aas.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/occupational-therapy-assistant/aas-hybrid.html",
+      "labels": [
+        "Occupational Therapy Assistant, AAS Hybrid curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-healthcare-wellness-occupational-therapy-assistant-aas-hybrid"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/occupational-therapy-assistant/aas-hybrid.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/occupational-therapy-assistant/aas.html",
+      "labels": [
+        "Occupational Therapy Assistant, AAS curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-healthcare-wellness-occupational-therapy-assistant-aas"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/occupational-therapy-assistant/aas.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/physical-therapist-assistant/aas.html",
+      "labels": [
+        "Physical Therapist Assistant, AAS curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-healthcare-wellness-physical-therapist-assistant-aas"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/physical-therapist-assistant/aas.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/biology/associate-in-biology-dta-mrp.html",
+      "labels": [
+        "Associate in Biology, DTA/MRP curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-stem-biology-associate-in-biology-dta-mrp"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/biology/associate-in-biology-dta-mrp.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "86799",
+      "etag": null,
+      "lastModified": null,
+      "title": "Associate in Biology, DTA/MRP",
+      "bodyHash": "2efc11f2ce5debc1f2ca97ef39d6d2aeb8102ff5b71c6aaac26145612dc462c0",
+      "error": null,
+      "fetchMode": "curl",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/biology/associate-in-science-transfer-track-1-biology.html",
+      "labels": [
+        "Associate in Science Transfer Track 1 Biology curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-stem-biology-associate-in-science-transfer-track-1-biology"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/biology/associate-in-science-transfer-track-1-biology.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/chemistry/associate-in-science-transfer-track-1-chemistry.html",
+      "labels": [
+        "Associate in Science Transfer Track 1 - Chemistry curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-stem-chemistry-associate-in-science-transfer-track-1-chemistry"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/chemistry/associate-in-science-transfer-track-1-chemistry.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/computer-science/associate-in-computer-science-acs-dta-mrp.html",
+      "labels": [
+        "Associate in Computer Science, ACS-DTA/MRP curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-stem-computer-science-associate-in-computer-science-acs-dta-mrp"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/computer-science/associate-in-computer-science-acs-dta-mrp.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/cybersecurity-and-networking-aas-t.html",
+      "labels": [
+        "Cybersecurity and Networking, AAS-T curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-stem-cybersecurity-networking-cybersecurity-and-networking-aas-t"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/cybersecurity-and-networking-aas-t.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/data-analytics-software-development/aas-t-business-management-track.html",
+      "labels": [
+        "Data Analytics and Software Development, AAS-T Business Management Track curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-stem-data-analytics-software-development-aas-t-business-management-track"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/data-analytics-software-development/aas-t-business-management-track.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/data-analytics-software-development/aas-t-software-development-track.html",
+      "labels": [
+        "Data Analytics and Software Development, AAS-T Software Development Track curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-stem-data-analytics-software-development-aas-t-software-development-track"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/data-analytics-software-development/aas-t-software-development-track.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/engineering/associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering.html",
+      "labels": [
+        "Transfer Track 2-Bioengineering and Chemical Engineering curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "999O"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/engineering/associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/engineering/associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering.html",
+      "labels": [
+        "Transfer Track 2/MRP-Civil and Mechanical Engineering curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "999Q"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/engineering/associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/engineering/associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering.html",
+      "labels": [
+        "Transfer Track 2/MRP-Computer and Electrical Engineering curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "999P"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/engineering/associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/mathematics/math-curriculum-map--am-dta-mrp.html",
+      "labels": [
+        "Math Education, AM-DTA/MRP curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-stem-mathematics-math-curriculum-map-am-dta-mrp"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/mathematics/math-curriculum-map--am-dta-mrp.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/mathematics/math-curriculum-map-AA-DTA-math-emphasis.html",
+      "labels": [
+        "Math Education, AM-DTA (Mathematics) curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-stem-mathematics-math-curriculum-map-aa-dta-math-emphasis"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/mathematics/math-curriculum-map-AA-DTA-math-emphasis.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/mathematics/math-curriculum-map-AA-DTA-statistics.html",
+      "labels": [
+        "Math Education, AM-DTA (Statistics) curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-stem-mathematics-math-curriculum-map-aa-dta-statistics"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/mathematics/math-curriculum-map-AA-DTA-statistics.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/physics/associate-in-science-transfer-track-2-physics.html",
+      "labels": [
+        "Associate in Science Transfer Track 2-Physics curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-stem-physics-associate-in-science-transfer-track-2-physics"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/physics/associate-in-science-transfer-track-2-physics.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/automotive-technology/aas.html",
+      "labels": [
+        "Automotive Technology, AAS curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-trades-industrial-tech-aviation-natural-resources-automotive-technology-aas"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/automotive-technology/aas.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/aviation-technology/aas-air-traffic-control-track.html",
+      "labels": [
+        "Aviation Technology, AAS-Air Traffic Control Track curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-trades-industrial-tech-aviation-natural-resources-aviation-technology-aas-air-traffic-control-track"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/aviation-technology/aas-air-traffic-control-track.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/aviation-technology/aas-airline-dispatch-track.html",
+      "labels": [
+        "Aviation Technology, AAS-Airline Dispatch Track curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-trades-industrial-tech-aviation-natural-resources-aviation-technology-aas-airline-dispatch-track"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/aviation-technology/aas-airline-dispatch-track.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/aviation-technology/aas-aviation-management-track.html",
+      "labels": [
+        "Aviation Technology, AAS-Aviation Management Track curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-trades-industrial-tech-aviation-natural-resources-aviation-technology-aas-aviation-management-track"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/aviation-technology/aas-aviation-management-track.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/aviation-technology/aas-commercial-pilot-track.html",
+      "labels": [
+        "Aviation Technology, AAS-Commercial Pilot Track curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-trades-industrial-tech-aviation-natural-resources-aviation-technology-aas-commercial-pilot-track"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/aviation-technology/aas-commercial-pilot-track.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/aviation-technology/unmanned-aerial-systems-aas.html",
+      "labels": [
+        "Unmanned Aerial Systems, AAS Curriclum Map curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-trades-industrial-tech-aviation-natural-resources-aviation-technology-unmanned-aerial-systems-aas"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/aviation-technology/unmanned-aerial-systems-aas.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/carpentry-technology/residential-and-light-commercial-aas-curriculm-map.html",
+      "labels": [
+        "Residential and Light Commercial, AAS curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-trades-industrial-tech-aviation-natural-resources-carpentry-technology-residential-and-light-commercial-aas-curriculm-map"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/carpentry-technology/residential-and-light-commercial-aas-curriculm-map.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/machining-manufacturing-technology/aas.html",
+      "labels": [
+        "Machining and Manufacturing Technology, AAS curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-trades-industrial-tech-aviation-natural-resources-machining-manufacturing-technology-aas"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/machining-manufacturing-technology/aas.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/mechatronics-technician/aas.html",
+      "labels": [
+        "Mechatronics Technician, AAS curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-trades-industrial-tech-aviation-natural-resources-mechatronics-technician-aas"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/mechatronics-technician/aas.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/natural-resources/aas-t.html",
+      "labels": [
+        "Natural Resources, AAS-T curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-trades-industrial-tech-aviation-natural-resources-natural-resources-aas-t"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/natural-resources/aas-t.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/natural-resources/forestry-aas.html",
+      "labels": [
+        "Natural Resources-Forestry, AAS curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-trades-industrial-tech-aviation-natural-resources-natural-resources-forestry-aas"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/natural-resources/forestry-aas.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/natural-resources/geographic-information-systems-aas.html",
+      "labels": [
+        "Geographic Information Systems, AAS curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-trades-industrial-tech-aviation-natural-resources-natural-resources-geographic-information-systems-aas"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/natural-resources/geographic-information-systems-aas.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/natural-resources/park-management-aas.html",
+      "labels": [
+        "Natural Resources-Park Management, AAS curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-trades-industrial-tech-aviation-natural-resources-natural-resources-park-management-aas"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/natural-resources/park-management-aas.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/natural-resources/water-quality-aas.html",
+      "labels": [
+        "Natural Resources-Water Quality, AAS curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-trades-industrial-tech-aviation-natural-resources-natural-resources-water-quality-aas"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/natural-resources/water-quality-aas.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/natural-resources/wildland-fire-aas.html",
+      "labels": [
+        "Natural Resources-Wildland Fire, AAS curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-trades-industrial-tech-aviation-natural-resources-natural-resources-wildland-fire-aas"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/natural-resources/wildland-fire-aas.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/water-wastewater-technology/wastewater-technology-aas.html",
+      "labels": [
+        "Wastewater Technology, AAS curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-trades-industrial-tech-aviation-natural-resources-water-wastewater-technology-wastewater-technology-aas"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/water-wastewater-technology/wastewater-technology-aas.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/water-wastewater-technology/water-supply-technology-aas.html",
+      "labels": [
+        "Water Supply Technology, AAS curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-trades-industrial-tech-aviation-natural-resources-water-wastewater-technology-water-supply-technology-aas"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/water-wastewater-technology/water-supply-technology-aas.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/welding-technology/welding-technology-aas.html",
+      "labels": [
+        "Welding Technology, AAS curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-trades-industrial-tech-aviation-natural-resources-welding-technology-welding-technology-aas"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/welding-technology/welding-technology-aas.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/undecided/associate-in-arts-dta.html",
+      "labels": [
+        "Associate in Arts-DTA curriculum map"
+      ],
+      "kinds": [
+        "track"
+      ],
+      "ownerIds": [
+        "grc-associate-undecided-associate-in-arts-dta"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/undecided/associate-in-arts-dta.html",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "0",
+      "etag": null,
+      "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
       "url": "https://www.greenriver.edu/students/academics/areas-of-interest/university-and-college-transfer/index.html",
       "labels": [
         "Green River transfer-degree index"
@@ -5244,10 +7349,7 @@
         "track"
       ],
       "ownerIds": [
-        "999B",
-        "999O",
-        "999P",
-        "999Q"
+        "999B"
       ],
       "ok": true,
       "status": 200,
@@ -5322,9 +7424,6 @@
       ],
       "ownerIds": [
         "999B",
-        "999O",
-        "999P",
-        "999Q",
         "grc-annual-schedule-2024-2025"
       ],
       "ok": true,
@@ -5352,9 +7451,6 @@
       ],
       "ownerIds": [
         "999B",
-        "999O",
-        "999P",
-        "999Q",
         "grc-annual-schedule-2025-2026"
       ],
       "ok": true,
@@ -5563,30 +7659,6 @@
       "retryAfterMs": null
     },
     {
-      "url": "https://www.ocean.washington.edu/file/Bachelor_of_Arts_in_Oceanography_Checklist",
-      "labels": [
-        "BA in Oceanography checklist"
-      ],
-      "kinds": [
-        "major"
-      ],
-      "ownerIds": [
-        "uw-seattle-oceanography"
-      ],
-      "ok": true,
-      "status": 200,
-      "finalUrl": "https://www.ocean.washington.edu/file/Bachelor_of_Arts_in_Oceanography_Checklist",
-      "contentType": "text/html;charset=UTF-8",
-      "contentLength": null,
-      "etag": null,
-      "lastModified": null,
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head",
-      "retryAfterMs": null
-    },
-    {
       "url": "https://www.ocean.washington.edu/story/Bachelor_Degrees_in_Oceanography",
       "labels": [
         "UW Bachelor Degrees in Oceanography"
@@ -5674,8 +7746,8 @@
       "finalUrl": "https://www.polisci.washington.edu/political-science-major-declaration-and-requirements",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "65246",
-      "etag": "\"1775763228\"",
-      "lastModified": "Thu, 09 Apr 2026 19:33:48 GMT",
+      "etag": "\"1776046945\"",
+      "lastModified": "Mon, 13 Apr 2026 02:22:25 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5714,8 +7786,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/admissions/course-equivalency-guide",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "45134",
-      "etag": "\"1775749403\"",
-      "lastModified": "Thu, 09 Apr 2026 15:43:23 GMT",
+      "etag": "\"1776015497\"",
+      "lastModified": "Sun, 12 Apr 2026 17:38:17 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5784,8 +7856,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/admissions/planning-your-transfer",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "59706",
-      "etag": "\"1775744838\"",
-      "lastModified": "Thu, 09 Apr 2026 14:27:18 GMT",
+      "etag": "\"1776010358\"",
+      "lastModified": "Sun, 12 Apr 2026 16:12:38 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5814,8 +7886,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/business/baba-admissions",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "66910",
-      "etag": "\"1775743978\"",
-      "lastModified": "Thu, 09 Apr 2026 14:12:58 GMT",
+      "etag": "\"1776002740\"",
+      "lastModified": "Sun, 12 Apr 2026 14:05:40 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5844,8 +7916,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/business/design-courses-baba",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "88501",
-      "etag": "\"1775748458\"",
-      "lastModified": "Thu, 09 Apr 2026 15:27:38 GMT",
+      "etag": "\"1776014014\"",
+      "lastModified": "Sun, 12 Apr 2026 17:13:34 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5868,8 +7940,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/nursing",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "61029",
-      "etag": "\"1775747086\"",
-      "lastModified": "Thu, 09 Apr 2026 15:04:46 GMT",
+      "etag": "\"1776003744\"",
+      "lastModified": "Sun, 12 Apr 2026 14:22:24 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5892,8 +7964,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/nursing/bachelor-science-nursing-rn-bsn",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "49801",
-      "etag": "\"1775748835\"",
-      "lastModified": "Thu, 09 Apr 2026 15:33:55 GMT",
+      "etag": "\"1776003750\"",
+      "lastModified": "Sun, 12 Apr 2026 14:22:30 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5916,8 +7988,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/nursing/declare-healthcare-leadership-major",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "43813",
-      "etag": "\"1775745253\"",
-      "lastModified": "Thu, 09 Apr 2026 14:34:13 GMT",
+      "etag": "\"1776003749\"",
+      "lastModified": "Sun, 12 Apr 2026 14:22:29 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5940,8 +8012,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/nursing/healthcare-leadership-sample-program-plan",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "46972",
-      "etag": "\"1775744889\"",
-      "lastModified": "Thu, 09 Apr 2026 14:28:09 GMT",
+      "etag": "\"1776003930\"",
+      "lastModified": "Sun, 12 Apr 2026 14:25:30 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5964,8 +8036,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/nursing/rn-bsn-application-overview",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "53123",
-      "etag": "\"1775744764\"",
-      "lastModified": "Thu, 09 Apr 2026 14:26:04 GMT",
+      "etag": "\"1776003753\"",
+      "lastModified": "Sun, 12 Apr 2026 14:22:33 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5988,8 +8060,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/nursing/rn-bsn-sample-program-plans",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "49869",
-      "etag": "\"1775759811\"",
-      "lastModified": "Thu, 09 Apr 2026 18:36:51 GMT",
+      "etag": "\"1776005008\"",
+      "lastModified": "Sun, 12 Apr 2026 14:43:28 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6018,8 +8090,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/registrar/graduation-requirements",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "48646",
-      "etag": "\"1775744300\"",
-      "lastModified": "Thu, 09 Apr 2026 14:18:20 GMT",
+      "etag": "\"1776006850\"",
+      "lastModified": "Sun, 12 Apr 2026 15:14:10 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6042,8 +8114,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/set/programs/undergrad/cengr",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "110360",
-      "etag": "\"1775760435\"",
-      "lastModified": "Thu, 09 Apr 2026 18:47:15 GMT",
+      "etag": "\"1776005906\"",
+      "lastModified": "Sun, 12 Apr 2026 14:58:26 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6066,8 +8138,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/set/programs/undergrad/civil",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "104707",
-      "etag": "\"1775760748\"",
-      "lastModified": "Thu, 09 Apr 2026 18:52:28 GMT",
+      "etag": "\"1776002855\"",
+      "lastModified": "Sun, 12 Apr 2026 14:07:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6091,8 +8163,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "84775",
-      "etag": "\"1775760755\"",
-      "lastModified": "Thu, 09 Apr 2026 18:52:35 GMT",
+      "etag": "\"1776003828\"",
+      "lastModified": "Sun, 12 Apr 2026 14:23:48 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6116,8 +8188,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "107367",
-      "etag": "\"1775760504\"",
-      "lastModified": "Thu, 09 Apr 2026 18:48:24 GMT",
+      "etag": "\"1776006034\"",
+      "lastModified": "Sun, 12 Apr 2026 15:00:34 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6140,8 +8212,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/set/programs/undergrad/ee",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "104957",
-      "etag": "\"1775761016\"",
-      "lastModified": "Thu, 09 Apr 2026 18:56:56 GMT",
+      "etag": "\"1776003512\"",
+      "lastModified": "Sun, 12 Apr 2026 14:18:32 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6164,8 +8236,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/set/programs/undergrad/it",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "104685",
-      "etag": "\"1775760792\"",
-      "lastModified": "Thu, 09 Apr 2026 18:53:12 GMT",
+      "etag": "\"1776004723\"",
+      "lastModified": "Sun, 12 Apr 2026 14:38:43 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6188,8 +8260,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/set/programs/undergrad/me",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "104389",
-      "etag": "\"1775760809\"",
-      "lastModified": "Thu, 09 Apr 2026 18:53:29 GMT",
+      "etag": "\"1776004747\"",
+      "lastModified": "Sun, 12 Apr 2026 14:39:07 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6211,9 +8283,9 @@
       "status": 200,
       "finalUrl": "https://www.tacoma.uw.edu/sias",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "94666",
-      "etag": "\"1775762714\"",
-      "lastModified": "Thu, 09 Apr 2026 19:25:14 GMT",
+      "contentLength": "94646",
+      "etag": "\"1776038727\"",
+      "lastModified": "Mon, 13 Apr 2026 00:05:27 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6236,8 +8308,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/socs/economics-and-policy-analysis-epa",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "54676",
-      "etag": "\"1775743355\"",
-      "lastModified": "Thu, 09 Apr 2026 14:02:35 GMT",
+      "etag": "\"1776005160\"",
+      "lastModified": "Sun, 12 Apr 2026 14:46:00 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6264,8 +8336,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/socs/ethnic-gender-and-labor-studies",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "50794",
-      "etag": "\"1775749079\"",
-      "lastModified": "Thu, 09 Apr 2026 15:37:59 GMT",
+      "etag": "\"1776005160\"",
+      "lastModified": "Sun, 12 Apr 2026 14:46:00 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6292,8 +8364,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/socs/ethnic-studies-option",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "67563",
-      "etag": "\"1775757477\"",
-      "lastModified": "Thu, 09 Apr 2026 17:57:57 GMT",
+      "etag": "\"1776003539\"",
+      "lastModified": "Sun, 12 Apr 2026 14:18:59 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6316,8 +8388,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/socs/interdisciplinary-arts-and-sciences",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "72201",
-      "etag": "\"1775749084\"",
-      "lastModified": "Thu, 09 Apr 2026 15:38:04 GMT",
+      "etag": "\"1776005161\"",
+      "lastModified": "Sun, 12 Apr 2026 14:46:01 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6340,8 +8412,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/socs/labor-and-social-movements-option",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "51629",
-      "etag": "\"1775759778\"",
-      "lastModified": "Thu, 09 Apr 2026 18:36:18 GMT",
+      "etag": "\"1776004141\"",
+      "lastModified": "Sun, 12 Apr 2026 14:29:01 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6364,8 +8436,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/cac/american-cultures-track",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "99890",
-      "etag": "\"1775759683\"",
-      "lastModified": "Thu, 09 Apr 2026 18:34:43 GMT",
+      "etag": "\"1776018343\"",
+      "lastModified": "Sun, 12 Apr 2026 18:25:43 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6394,8 +8466,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/cac/arts-media-culture",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "56469",
-      "etag": "\"1775752946\"",
-      "lastModified": "Thu, 09 Apr 2026 16:42:26 GMT",
+      "etag": "\"1776005834\"",
+      "lastModified": "Sun, 12 Apr 2026 14:57:14 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6421,8 +8493,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/cac/communication",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "52683",
-      "etag": "\"1775747774\"",
-      "lastModified": "Thu, 09 Apr 2026 15:16:14 GMT",
+      "etag": "\"1776005834\"",
+      "lastModified": "Sun, 12 Apr 2026 14:57:14 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6445,8 +8517,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/cac/comparative-arts-track",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "102865",
-      "etag": "\"1775759686\"",
-      "lastModified": "Thu, 09 Apr 2026 18:34:46 GMT",
+      "etag": "\"1776015787\"",
+      "lastModified": "Sun, 12 Apr 2026 17:43:07 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6472,9 +8544,9 @@
       "status": 200,
       "finalUrl": "https://www.tacoma.uw.edu/sias/cac/creative-writing-track",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "58387",
-      "etag": "\"1775759878\"",
-      "lastModified": "Thu, 09 Apr 2026 18:37:58 GMT",
+      "contentLength": "58388",
+      "etag": "\"1776005781\"",
+      "lastModified": "Sun, 12 Apr 2026 14:56:21 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6497,8 +8569,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/cac/film-and-media-track",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "100275",
-      "etag": "\"1775759688\"",
-      "lastModified": "Thu, 09 Apr 2026 18:34:48 GMT",
+      "etag": "\"1776005793\"",
+      "lastModified": "Sun, 12 Apr 2026 14:56:33 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6524,8 +8596,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/cac/communication-how-apply-faqs",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "56582",
-      "etag": "\"1775760214\"",
-      "lastModified": "Thu, 09 Apr 2026 18:43:34 GMT",
+      "etag": "\"1776005834\"",
+      "lastModified": "Sun, 12 Apr 2026 14:57:14 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6548,8 +8620,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/cac/literature-track",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "101699",
-      "etag": "\"1775759690\"",
-      "lastModified": "Thu, 09 Apr 2026 18:34:50 GMT",
+      "etag": "\"1776011271\"",
+      "lastModified": "Sun, 12 Apr 2026 16:27:51 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6576,8 +8648,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/cac/rhetoric-writing-and-social-change-track",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "60448",
-      "etag": "\"1775759879\"",
-      "lastModified": "Thu, 09 Apr 2026 18:37:59 GMT",
+      "etag": "\"1776005890\"",
+      "lastModified": "Sun, 12 Apr 2026 14:58:10 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6600,8 +8672,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/cac/spanish-language-and-cultures",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "55089",
-      "etag": "\"1775749119\"",
-      "lastModified": "Thu, 09 Apr 2026 15:38:39 GMT",
+      "etag": "\"1776004633\"",
+      "lastModified": "Sun, 12 Apr 2026 14:37:13 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6628,8 +8700,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/cac/technical-communication-track",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "56656",
-      "etag": "\"1775759880\"",
-      "lastModified": "Thu, 09 Apr 2026 18:38:00 GMT",
+      "etag": "\"1776005836\"",
+      "lastModified": "Sun, 12 Apr 2026 14:57:16 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6652,8 +8724,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/cac/visual-and-performing-arts-track",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "100824",
-      "etag": "\"1775759691\"",
-      "lastModified": "Thu, 09 Apr 2026 18:34:51 GMT",
+      "etag": "\"1776015284\"",
+      "lastModified": "Sun, 12 Apr 2026 17:34:44 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6680,8 +8752,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/cac/writing-studies",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "53018",
-      "etag": "\"1775745949\"",
-      "lastModified": "Thu, 09 Apr 2026 14:45:49 GMT",
+      "etag": "\"1776005835\"",
+      "lastModified": "Sun, 12 Apr 2026 14:57:15 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6704,8 +8776,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/sam/biomedical-sciences",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "69292",
-      "etag": "\"1775752190\"",
-      "lastModified": "Thu, 09 Apr 2026 16:29:50 GMT",
+      "etag": "\"1776002998\"",
+      "lastModified": "Sun, 12 Apr 2026 14:09:58 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6728,8 +8800,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/sam/biomedical-sciences-transfer-credits",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "57827",
-      "etag": "\"1775744975\"",
-      "lastModified": "Thu, 09 Apr 2026 14:29:35 GMT",
+      "etag": "\"1776003220\"",
+      "lastModified": "Sun, 12 Apr 2026 14:13:40 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6752,8 +8824,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-science",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "101379",
-      "etag": "\"1775754286\"",
-      "lastModified": "Thu, 09 Apr 2026 17:04:46 GMT",
+      "etag": "\"1776004498\"",
+      "lastModified": "Sun, 12 Apr 2026 14:34:58 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6781,8 +8853,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "68270",
-      "etag": "\"1775753676\"",
-      "lastModified": "Thu, 09 Apr 2026 16:54:36 GMT",
+      "etag": "\"1776004673\"",
+      "lastModified": "Sun, 12 Apr 2026 14:37:53 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6805,8 +8877,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/sam/mathematics",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "68179",
-      "etag": "\"1775754404\"",
-      "lastModified": "Thu, 09 Apr 2026 17:06:44 GMT",
+      "etag": "\"1776004673\"",
+      "lastModified": "Sun, 12 Apr 2026 14:37:53 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6833,8 +8905,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/socs/ethnic-gender-and-labor-studies",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "50794",
-      "etag": "\"1775749079\"",
-      "lastModified": "Thu, 09 Apr 2026 15:37:59 GMT",
+      "etag": "\"1776005160\"",
+      "lastModified": "Sun, 12 Apr 2026 14:46:00 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6857,8 +8929,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/socs/history",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "58590",
-      "etag": "\"1775749020\"",
-      "lastModified": "Thu, 09 Apr 2026 15:37:00 GMT",
+      "etag": "\"1776005161\"",
+      "lastModified": "Sun, 12 Apr 2026 14:46:01 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6881,8 +8953,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/socs/law-and-policy",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "65044",
-      "etag": "\"1775743659\"",
-      "lastModified": "Thu, 09 Apr 2026 14:07:39 GMT",
+      "etag": "\"1776002623\"",
+      "lastModified": "Sun, 12 Apr 2026 14:03:43 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6905,8 +8977,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-ppe",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "50475",
-      "etag": "\"1775747813\"",
-      "lastModified": "Thu, 09 Apr 2026 15:16:53 GMT",
+      "etag": "\"1776002634\"",
+      "lastModified": "Sun, 12 Apr 2026 14:03:54 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6929,8 +9001,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/socs/psychology",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "63279",
-      "etag": "\"1775746327\"",
-      "lastModified": "Thu, 09 Apr 2026 14:52:07 GMT",
+      "etag": "\"1776005161\"",
+      "lastModified": "Sun, 12 Apr 2026 14:46:01 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6952,9 +9024,9 @@
       "status": 200,
       "finalUrl": "https://www.tacoma.uw.edu/soe/bachelor-arts-education",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "76345",
-      "etag": "\"1775743949\"",
-      "lastModified": "Thu, 09 Apr 2026 14:12:29 GMT",
+      "contentLength": "76350",
+      "etag": "\"1776003004\"",
+      "lastModified": "Sun, 12 Apr 2026 14:10:04 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6977,8 +9049,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/swcj/basw-admission-requirements-and-how-apply",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "93676",
-      "etag": "\"1775751702\"",
-      "lastModified": "Thu, 09 Apr 2026 16:21:42 GMT",
+      "etag": "\"1776002600\"",
+      "lastModified": "Sun, 12 Apr 2026 14:03:20 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7025,8 +9097,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "92250",
-      "etag": "\"1775756023\"",
-      "lastModified": "Thu, 09 Apr 2026 17:33:43 GMT",
+      "etag": "\"1776002606\"",
+      "lastModified": "Sun, 12 Apr 2026 14:03:26 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7049,8 +9121,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/swcj/criminal-justice",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "76729",
-      "etag": "\"1775748187\"",
-      "lastModified": "Thu, 09 Apr 2026 15:23:07 GMT",
+      "etag": "\"1776002630\"",
+      "lastModified": "Sun, 12 Apr 2026 14:03:50 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7073,8 +9145,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/swcj/criminal-justice-campus-curriculum",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "99754",
-      "etag": "\"1775748240\"",
-      "lastModified": "Thu, 09 Apr 2026 15:24:00 GMT",
+      "etag": "\"1776002635\"",
+      "lastModified": "Sun, 12 Apr 2026 14:03:55 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7100,8 +9172,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "84945",
-      "etag": "\"1775754762\"",
-      "lastModified": "Thu, 09 Apr 2026 17:12:42 GMT",
+      "etag": "\"1776005680\"",
+      "lastModified": "Sun, 12 Apr 2026 14:54:40 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7127,8 +9199,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "87686",
-      "etag": "\"1775747647\"",
-      "lastModified": "Thu, 09 Apr 2026 15:14:07 GMT",
+      "etag": "\"1776003745\"",
+      "lastModified": "Sun, 12 Apr 2026 14:22:25 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7151,8 +9223,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/urban-studies/bs-urban-design",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "88412",
-      "etag": "\"1775745764\"",
-      "lastModified": "Thu, 09 Apr 2026 14:42:44 GMT",
+      "etag": "\"1776005681\"",
+      "lastModified": "Sun, 12 Apr 2026 14:54:41 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7174,7 +9246,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/admissions/apply/major-planning-worksheets",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "55097",
+      "contentLength": "55099",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -7198,7 +9270,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "58223",
+      "contentLength": "58224",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -7280,7 +9352,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "56267",
+      "contentLength": "56268",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -7352,7 +9424,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "56138",
+      "contentLength": "56137",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -7547,7 +9619,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/admissions",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "57298",
+      "contentLength": "57297",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -7571,7 +9643,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "61364",
+      "contentLength": "61363",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -7595,7 +9667,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/education/undergraduate/elementary-education",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "59915",
+      "contentLength": "59916",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -7619,7 +9691,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/education/undergraduate/elementary-education/admissions",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "58173",
+      "contentLength": "58174",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -7715,7 +9787,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/conservation-restoration-science",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "66448",
+      "contentLength": "66446",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -7764,7 +9836,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/data-visualization",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "64167",
+      "contentLength": "64168",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -7812,7 +9884,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/environmental-studies",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "64134",
+      "contentLength": "64132",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -7836,7 +9908,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/gender-women-sexuality",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "66553",
+      "contentLength": "66554",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -7956,7 +10028,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/media-communication",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "63793",
+      "contentLength": "63792",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -7980,7 +10052,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/psychology",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "68246",
+      "contentLength": "68245",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8004,7 +10076,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/science-technology-society",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "67448",
+      "contentLength": "40368",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8052,7 +10124,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/nhs/undergraduate/health-studies/admissions",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "56684",
+      "contentLength": "56683",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8076,7 +10148,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/nhs/undergraduate/health-studies/overview",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "57180",
+      "contentLength": "57177",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8100,7 +10172,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/nhs/undergraduate/rn-bsn/admissions",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "59057",
+      "contentLength": "59058",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8124,7 +10196,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/nhs/undergraduate/rn-bsn/becomearn",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "61046",
+      "contentLength": "61045",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8148,7 +10220,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/nhs/undergraduate/rn-bsn/how-to-apply",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "57425",
+      "contentLength": "57424",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8173,7 +10245,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "67360",
+      "contentLength": "67359",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8263,7 +10335,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "52965",
+      "contentLength": "52999",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8287,7 +10359,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/applied-computing/admissions",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "67009",
+      "contentLength": "67008",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8359,7 +10431,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "67548",
+      "contentLength": "67549",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8383,7 +10455,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscompe/admissions",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "65955",
+      "contentLength": "65954",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8407,7 +10479,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscompe/curriculum",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "65269",
+      "contentLength": "65270",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8432,7 +10504,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/admissions",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "66699",
+      "contentLength": "66697",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8457,7 +10529,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "68803",
+      "contentLength": "68801",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8483,7 +10555,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "63464",
+      "contentLength": "63463",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8559,7 +10631,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/electrical/admissions",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "65828",
+      "contentLength": "65827",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8583,7 +10655,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/electrical/curriculum",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "64357",
+      "contentLength": "64356",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8607,7 +10679,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/mathematics/admissions",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "65180",
+      "contentLength": "65179",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8655,7 +10727,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/mechanical/admissions",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "65790",
+      "contentLength": "65791",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8729,7 +10801,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "64249",
+      "contentLength": "64248",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -8826,8 +10898,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/SchoolofEnvironmentalandForestScience-1069.html",
       "contentType": "text/html",
       "contentLength": "64091",
-      "etag": "\"fa5b-64ef78a1cb618\"",
-      "lastModified": "Wed, 08 Apr 2026 19:02:21 GMT",
+      "etag": "\"fa5b-64f33e3bc6e8c\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:22 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -8850,8 +10922,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/AmericanEthnicStudies-100.html",
       "contentType": "text/html",
       "contentLength": "20646",
-      "etag": "\"50a6-64ef78a1f4e24\"",
-      "lastModified": "Wed, 08 Apr 2026 19:02:21 GMT",
+      "etag": "\"50a6-64f33e3be1c3a\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:23 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -8874,8 +10946,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
       "contentType": "text/html",
       "contentLength": "70810",
-      "etag": "\"1149a-64ef78a1f7534\"",
-      "lastModified": "Wed, 08 Apr 2026 19:02:21 GMT",
+      "etag": "\"1149a-64f33e3be1c3a\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:23 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -8898,8 +10970,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/AppliedandComputationalMathSciences-994.html",
       "contentType": "text/html",
       "contentLength": "39929",
-      "etag": "\"9bf9-64ef78a1c67f8\"",
-      "lastModified": "Wed, 08 Apr 2026 19:02:21 GMT",
+      "etag": "\"9bf9-64f33e3bc206c\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:22 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -8922,8 +10994,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/AppliedMathematics-208.html",
       "contentType": "text/html",
       "contentLength": "74977",
-      "etag": "\"124e1-64ef78a1f2715\"",
-      "lastModified": "Wed, 08 Apr 2026 19:02:21 GMT",
+      "etag": "\"124e1-64f33e3bdce1b\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:23 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -8950,8 +11022,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html",
       "contentType": "text/html",
       "contentLength": "48158",
-      "etag": "\"bc1e-64ef78a1f7534\"",
-      "lastModified": "Wed, 08 Apr 2026 19:02:21 GMT",
+      "etag": "\"bc1e-64f33e3be434a\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:23 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -8979,8 +11051,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html",
       "contentType": "text/html",
       "contentLength": "43627",
-      "etag": "\"aa6b-64ef78a1cb618\"",
-      "lastModified": "Wed, 08 Apr 2026 19:02:21 GMT",
+      "etag": "\"aa6b-64f33e3bc6e8c\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:22 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -8999,15 +11071,19 @@
       "ownerIds": [
         "uw-seattle-biology",
         "uw-seattle-biology::ba-general-biology",
-        "uw-seattle-biology::bs-option-family"
+        "uw-seattle-biology::bs-option-family:ecology-evolution-and-conservation",
+        "uw-seattle-biology::bs-option-family:general-biology",
+        "uw-seattle-biology::bs-option-family:molecular-cellular-and-developmental-biology",
+        "uw-seattle-biology::bs-option-family:physiology",
+        "uw-seattle-biology::bs-option-family:plant-biology"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
       "contentType": "text/html",
       "contentLength": "53651",
-      "etag": "\"d193-64ef78a1c67f8\"",
-      "lastModified": "Wed, 08 Apr 2026 19:02:21 GMT",
+      "etag": "\"d193-64f33e3bc206c\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:22 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -9030,8 +11106,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/Communication-1035.html",
       "contentType": "text/html",
       "contentLength": "41708",
-      "etag": "\"a2ec-64ef78a1f4e24\"",
-      "lastModified": "Wed, 08 Apr 2026 19:02:21 GMT",
+      "etag": "\"a2ec-64f33e3be1c3a\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:23 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -9054,8 +11130,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/ComparativeHistoryofIdeas-202.html",
       "contentType": "text/html",
       "contentLength": "24993",
-      "etag": "\"61a1-64ef78a1e3cb6\"",
-      "lastModified": "Wed, 08 Apr 2026 19:02:21 GMT",
+      "etag": "\"61a1-64f33e3bdce1b\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:23 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -9078,8 +11154,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/ConstructionManagement-52.html",
       "contentType": "text/html",
       "contentLength": "37424",
-      "etag": "\"9230-64ef78a1e3cb6\"",
-      "lastModified": "Wed, 08 Apr 2026 19:02:21 GMT",
+      "etag": "\"9230-64f33e3bda70b\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:23 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -9102,8 +11178,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/Dance-133.html",
       "contentType": "text/html",
       "contentLength": "26452",
-      "etag": "\"6754-64ef78a1da076\"",
-      "lastModified": "Wed, 08 Apr 2026 19:02:21 GMT",
+      "etag": "\"6754-64f33e3bc959c\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:22 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -9126,8 +11202,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/Drama-134.html",
       "contentType": "text/html",
       "contentLength": "45618",
-      "etag": "\"b232-64ef78a1da076\"",
-      "lastModified": "Wed, 08 Apr 2026 19:02:21 GMT",
+      "etag": "\"b232-64f33e3bc959c\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:22 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -9140,21 +11216,22 @@
         "Degree requirements"
       ],
       "kinds": [
-        "major",
         "pathway"
       ],
       "ownerIds": [
-        "uw-seattle-earth-and-space-sciences",
         "uw-seattle-earth-and-space-sciences::ba-route",
-        "uw-seattle-earth-and-space-sciences::bs-option-family"
+        "uw-seattle-earth-and-space-sciences::bs-option-family:biology",
+        "uw-seattle-earth-and-space-sciences::bs-option-family:geology",
+        "uw-seattle-earth-and-space-sciences::bs-option-family:geoscience",
+        "uw-seattle-earth-and-space-sciences::bs-option-family:physics"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html",
       "contentType": "text/html",
       "contentLength": "44019",
-      "etag": "\"abf3-64ef78a1cb618\"",
-      "lastModified": "Wed, 08 Apr 2026 19:02:21 GMT",
+      "etag": "\"abf3-64f33e3bc6e8c\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:22 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -9180,8 +11257,32 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
       "contentType": "text/html",
       "contentLength": "51933",
-      "etag": "\"cadd-64ef78a1da076\"",
-      "lastModified": "Wed, 08 Apr 2026 19:02:21 GMT",
+      "etag": "\"cadd-64f33e3bc959c\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:22 GMT",
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.washington.edu/students/gencat/program/S/FrenchandItalianStudies-1102.html#program-UG-ITAL-MAJOR",
+      "labels": [
+        "UW Italian Studies degree requirements"
+      ],
+      "kinds": [
+        "major"
+      ],
+      "ownerIds": [
+        "uw-seattle-italian"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.washington.edu/students/gencat/program/S/FrenchandItalianStudies-1102.html",
+      "contentType": "text/html",
+      "contentLength": "38341",
+      "etag": "\"95c5-64f33e3bc6e8c\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:22 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -9204,8 +11305,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/Gender%2CWomen%2CandSexualityStudies-298.html",
       "contentType": "text/html",
       "contentLength": "33631",
-      "etag": "\"835f-64ef78a1f2715\"",
-      "lastModified": "Wed, 08 Apr 2026 19:02:21 GMT",
+      "etag": "\"835f-64f33e3bdf52b\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:23 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -9228,35 +11329,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/GeneralStudies-185.html",
       "contentType": "text/html",
       "contentLength": "35815",
-      "etag": "\"8be7-64ef78a1f4e24\"",
-      "lastModified": "Wed, 08 Apr 2026 19:02:21 GMT",
-      "title": null,
-      "bodyHash": null,
-      "error": null,
-      "fetchMode": "head",
-      "retryAfterMs": null
-    },
-    {
-      "url": "https://www.washington.edu/students/gencat/program/S/Geography-188.html",
-      "labels": [
-        "Degree requirements"
-      ],
-      "kinds": [
-        "major",
-        "pathway"
-      ],
-      "ownerIds": [
-        "uw-seattle-geography",
-        "uw-seattle-geography::data-science-option",
-        "uw-seattle-geography::standard-ba-route"
-      ],
-      "ok": true,
-      "status": 200,
-      "finalUrl": "https://www.washington.edu/students/gencat/program/S/Geography-188.html",
-      "contentType": "text/html",
-      "contentLength": "43395",
-      "etag": "\"a983-64ef78a1f4e24\"",
-      "lastModified": "Wed, 08 Apr 2026 19:02:21 GMT",
+      "etag": "\"8be7-64f33e3be1c3a\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:23 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -9283,8 +11357,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
       "contentType": "text/html",
       "contentLength": "122925",
-      "etag": "\"1e02d-64ef78a1c40e8\"",
-      "lastModified": "Wed, 08 Apr 2026 19:02:21 GMT",
+      "etag": "\"1e02d-64f33e3bb5d1d\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:22 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -9309,8 +11383,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html",
       "contentType": "text/html",
       "contentLength": "40805",
-      "etag": "\"9f65-64ef78a1e3cb6\"",
-      "lastModified": "Wed, 08 Apr 2026 19:02:21 GMT",
+      "etag": "\"9f65-64f33e3bdce1b\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:23 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -9333,8 +11407,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/MiddleEasternLanguagesandCultures-123.html",
       "contentType": "text/html",
       "contentLength": "47550",
-      "etag": "\"b9be-64ef78a1c8f08\"",
-      "lastModified": "Wed, 08 Apr 2026 19:02:21 GMT",
+      "etag": "\"b9be-64f33e3bc477c\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:22 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -9357,8 +11431,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/Music-217.html",
       "contentType": "text/html",
       "contentLength": "172664",
-      "etag": "\"2a278-64ef78a1f4e24\"",
-      "lastModified": "Wed, 08 Apr 2026 19:02:21 GMT",
+      "etag": "\"2a278-64f33e3be1c3a\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:23 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -9383,8 +11457,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/Philosophy-221.html",
       "contentType": "text/html",
       "contentLength": "47868",
-      "etag": "\"bafc-64ef78a1f4e24\"",
-      "lastModified": "Wed, 08 Apr 2026 19:02:21 GMT",
+      "etag": "\"bafc-64f33e3be1c3a\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:23 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -9407,8 +11481,32 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/ProgramontheEnvironment-1070.html",
       "contentType": "text/html",
       "contentLength": "30634",
-      "etag": "\"77aa-64ef78a1c8f08\"",
-      "lastModified": "Wed, 08 Apr 2026 19:02:21 GMT",
+      "etag": "\"77aa-64f33e3bc477c\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:22 GMT",
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.washington.edu/students/gencat/program/S/PublicPolicyandGovernance-770.html#program-UG-PSP-MAJOR",
+      "labels": [
+        "UW Public Service and Policy degree requirements"
+      ],
+      "kinds": [
+        "major"
+      ],
+      "ownerIds": [
+        "uw-seattle-public-service-and-policy"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.washington.edu/students/gencat/program/S/PublicPolicyandGovernance-770.html",
+      "contentType": "text/html",
+      "contentLength": "44265",
+      "etag": "\"ace9-64f33e3bc6e8c\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:22 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -9431,8 +11529,32 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/RealEstate-54.html",
       "contentType": "text/html",
       "contentLength": "32548",
-      "etag": "\"7f24-64ef78a1e3cb6\"",
-      "lastModified": "Wed, 08 Apr 2026 19:02:21 GMT",
+      "etag": "\"7f24-64f33e3bdce1b\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:23 GMT",
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.washington.edu/students/gencat/program/S/ScandinavianStudies-281.html#program-UG-NORW-MAJOR",
+      "labels": [
+        "UW Norwegian catalog degree requirements"
+      ],
+      "kinds": [
+        "major"
+      ],
+      "ownerIds": [
+        "uw-seattle-norwegian"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.washington.edu/students/gencat/program/S/ScandinavianStudies-281.html",
+      "contentType": "text/html",
+      "contentLength": "63606",
+      "etag": "\"f876-64f33e3bdce1b\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:23 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -9455,8 +11577,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/SocialWork-779.html",
       "contentType": "text/html",
       "contentLength": "47516",
-      "etag": "\"b99c-64ef78a1dc786\"",
-      "lastModified": "Wed, 08 Apr 2026 19:02:21 GMT",
+      "etag": "\"b99c-64f33e3bcbcac\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:22 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -9479,8 +11601,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/Sociology-293.html",
       "contentType": "text/html",
       "contentLength": "25916",
-      "etag": "\"653c-64ef78a1f2715\"",
-      "lastModified": "Wed, 08 Apr 2026 19:02:21 GMT",
+      "etag": "\"653c-64f33e3bdce1b\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:23 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -9503,8 +11625,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/SpeechandHearingSciences-296.html",
       "contentType": "text/html",
       "contentLength": "49109",
-      "etag": "\"bfd5-64ef78a1f2715\"",
-      "lastModified": "Wed, 08 Apr 2026 19:02:21 GMT",
+      "etag": "\"bfd5-64f33e3bdf52b\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:23 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -9527,8 +11649,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/UrbanDesignandPlanning-50.html",
       "contentType": "text/html",
       "contentLength": "40016",
-      "etag": "\"9c50-64ef78a1e3cb6\"",
-      "lastModified": "Wed, 08 Apr 2026 19:02:21 GMT",
+      "etag": "\"9c50-64f33e3bda70b\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:23 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -9553,8 +11675,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html",
       "contentType": "text/html",
       "contentLength": "158280",
-      "etag": "\"26a48-64ef78a1f2715\"",
-      "lastModified": "Wed, 08 Apr 2026 19:02:21 GMT",
+      "etag": "\"26a48-64f33e3bdce1b\"",
+      "lastModified": "Sat, 11 Apr 2026 19:02:23 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,

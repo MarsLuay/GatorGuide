@@ -4309,7 +4309,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_1: unknown[] = [
     "effectiveDateLabel": "SPR Qtr. 2003",
     "guideDepartment": "Art",
     "sourceCourseLabel": "ART 150 (3) was the same as § ENGL 154",
-    "sourceCourseTitle": null,
+    "sourceCourseTitle": "Espial Journal Design and Publication",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -9286,7 +9286,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_2: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Business administration",
     "sourceCourseLabel": "B A 145",
-    "sourceCourseTitle": null,
+    "sourceCourseTitle": "Business Computation",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -13545,7 +13545,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Communication studies",
     "sourceCourseLabel": "CMST 238 (5) formerly COMM 238",
-    "sourceCourseTitle": null,
+    "sourceCourseTitle": "Intercultural Communication",
     "targetRequirementTags": [
       "A&H",
       "SSc"
@@ -14599,7 +14599,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Computer science",
     "sourceCourseLabel": "CS& 141 (5) formerly C SCI 144",
-    "sourceCourseTitle": null,
+    "sourceCourseTitle": "Computer Science I Java",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -14935,7 +14935,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_3: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009",
     "guideDepartment": "Computer science",
     "sourceCourseLabel": "CS 145 (5) formerly C SCI 145",
-    "sourceCourseTitle": null,
+    "sourceCourseTitle": "Java 2-Data Structures",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -21710,7 +21710,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_5: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2002",
     "guideDepartment": "Education",
     "sourceCourseLabel": "EDUC 240 (3-5)",
-    "sourceCourseTitle": null,
+    "sourceCourseTitle": "Multicultural/Anti-Bias Issues in Education",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -36287,7 +36287,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004",
     "guideDepartment": "History",
     "sourceCourseLabel": "HIST 232 (5)",
-    "sourceCourseTitle": null,
+    "sourceCourseTitle": "Renaissance and Reformation",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -36670,7 +36670,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004",
     "guideDepartment": "History",
     "sourceCourseLabel": "HIST 245 (5)",
-    "sourceCourseTitle": null,
+    "sourceCourseTitle": "The Second World War",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -36934,7 +36934,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "History",
     "sourceCourseLabel": "HIST 299 (1-5)",
-    "sourceCourseTitle": null,
+    "sourceCourseTitle": "Independent Study-History",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -37202,7 +37202,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2008",
     "guideDepartment": "Humanities",
     "sourceCourseLabel": "HUMAN 142 (5)",
-    "sourceCourseTitle": null,
+    "sourceCourseTitle": "Introduction to Japanese Life and Culture",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -37303,7 +37303,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Humanities",
     "sourceCourseLabel": "HUMAN 186 (5)",
-    "sourceCourseTitle": null,
+    "sourceCourseTitle": "Peoples of the World",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -37406,7 +37406,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1998",
     "guideDepartment": "Humanities",
     "sourceCourseLabel": "HUMAN 190 (5)",
-    "sourceCourseTitle": null,
+    "sourceCourseTitle": "Latin American Culture Through Literature",
     "targetRequirementTags": [
       "A&H",
       "SSc"
@@ -37461,7 +37461,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "SPR Qtr. 2001",
     "guideDepartment": "Humanities",
     "sourceCourseLabel": "HUMAN 191 (5)",
-    "sourceCourseTitle": null,
+    "sourceCourseTitle": "Latin America in Film",
     "targetRequirementTags": [
       "A&H",
       "SSc"
@@ -37510,7 +37510,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": null,
     "guideDepartment": "Humanities",
     "sourceCourseLabel": "HUMAN 194 (5)",
-    "sourceCourseTitle": null,
+    "sourceCourseTitle": "Special Studies-Humanities",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -37560,7 +37560,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_8: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2004",
     "guideDepartment": "Humanities",
     "sourceCourseLabel": "HUMAN 224 (5)",
-    "sourceCourseTitle": null,
+    "sourceCourseTitle": "Women and World Religions",
     "targetRequirementTags": [
       "SSc"
     ],
@@ -41025,7 +41025,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 1996",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "MATH 097",
-    "sourceCourseTitle": null,
+    "sourceCourseTitle": "Intermediate Algebra",
     "targetRequirementTags": [],
     "isObsoleteSourceCourse": false,
     "parsedFromOfficialGuide": true,
@@ -41600,7 +41600,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 1996",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "MATH 106 (5)",
-    "sourceCourseTitle": null,
+    "sourceCourseTitle": "Essentials of Pre-Calculus Mathematics",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -42733,7 +42733,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "Prior to SUM Qtr. 2025",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH& 153 (5) formerly MATH 126 (5) see also MATH& 153 combined entry",
-    "sourceCourseTitle": null,
+    "sourceCourseTitle": "Calculus III",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -42773,7 +42773,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "sourceCourseSets": [
       [
         "MATH& 153",
-        "MATH& 254"
+        "MATH& 264"
       ]
     ],
     "targetCourseCodes": [
@@ -42792,7 +42792,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "SUM Qtr. 2009 thru SPR Qtr. 2025",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH& 153, 254 (5, 5) formerly MATH 126, 224 combined entry",
-    "sourceCourseTitle": "Calculus IV",
+    "sourceCourseTitle": "Calculus III / Calculus IV",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -43072,7 +43072,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_9: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2013",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "MATH& 171 (5) formerly MATH 170",
-    "sourceCourseTitle": null,
+    "sourceCourseTitle": "Mathematics for Elementary Education I",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -43187,7 +43187,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2013",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "MATH& 172 (5) formerly MATH 171",
-    "sourceCourseTitle": null,
+    "sourceCourseTitle": "Mathematics for Elementary Education II",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -43297,7 +43297,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2013",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "MATH& 173 (5) formerly MATH 172",
-    "sourceCourseTitle": null,
+    "sourceCourseTitle": "Mathematics for Elementary Education III",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -43511,7 +43511,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "WIN Qtr. 2016 thru AUT Qtr. 2023",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 210 (5)",
-    "sourceCourseTitle": null,
+    "sourceCourseTitle": "Discrete Mathematics",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -43567,7 +43567,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveDateLabel": "AUT Qtr. 2007 thru AUT Qtr. 2015",
     "guideDepartment": "Mathematics",
     "sourceCourseLabel": "§ MATH 210 (5)",
-    "sourceCourseTitle": null,
+    "sourceCourseTitle": "Discrete Mathematics",
     "targetRequirementTags": [
       "NSc"
     ],
@@ -43973,9 +43973,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0817:mathematics:mathand-254-5-see-also-mathand-153-combined-entry",
+    "id": "uw-grc-guide:0817:mathematics:mathand-264-5-see-also-mathand-153-combined-entry",
     "type": "sequence",
-    "title": "MATH& 254 (5) see also MATH& 153 combined entry -> MATH 224 (4), 2XX (1)",
+    "title": "MATH& 264 (5) see also MATH& 153 combined entry -> MATH 224 (4), 2XX (1)",
     "acceptanceCategory": "accepted-with-warning",
     "ruleStatus": "active",
     "sourceKind": "uw-green-river-equivalency-guide",
@@ -43985,7 +43985,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ],
     "sourceCourseSets": [
       [
-        "MATH& 254"
+        "MATH& 264"
       ]
     ],
     "targetCourseCodes": [
@@ -44003,7 +44003,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ],
     "effectiveDateLabel": "SUM Qtr. 2025",
     "guideDepartment": "Mathematics",
-    "sourceCourseLabel": "MATH& 254 (5) see also MATH& 153 combined entry",
+    "sourceCourseLabel": "MATH& 264 (5) see also MATH& 153 combined entry",
     "sourceCourseTitle": "Calculus IV",
     "targetRequirementTags": [
       "NSc"
@@ -44015,7 +44015,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ],
     "notes": [
       "UW guide department: Mathematics.",
-      "Official Green River row: MATH& 254 (5) see also MATH& 153 combined entry.",
+      "Official Green River row: MATH& 264 (5) see also MATH& 153 combined entry.",
       "Official UW equivalency row: MATH 224 (4), 2XX (1).",
       "Official UW requirement tags: NSc.",
       "Official effective date: SUM Qtr. 2025.",
@@ -44030,9 +44030,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0818:mathematics:mathand-254-5-formerly-math-224-see-also-mathand-153-combined-entry",
+    "id": "uw-grc-guide:0818:mathematics:mathand-264-5-formerly-math-224-see-also-mathand-153-combined-entry",
     "type": "sequence",
-    "title": "§ MATH& 254 (5) formerly MATH 224, see also MATH& 153 combined entry -> MATH 224 (3), 2XX (2)",
+    "title": "§ MATH& 264 (5) formerly MATH 224, see also MATH& 153 combined entry -> MATH 224 (3), 2XX (2)",
     "acceptanceCategory": "legacy-accepted",
     "ruleStatus": "legacy",
     "sourceKind": "uw-green-river-equivalency-guide",
@@ -44042,7 +44042,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ],
     "sourceCourseSets": [
       [
-        "MATH& 254"
+        "MATH& 264"
       ]
     ],
     "targetCourseCodes": [
@@ -44060,7 +44060,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ],
     "effectiveDateLabel": "SUM Qtr. 2009 thru SPR Qtr. 2025",
     "guideDepartment": "Mathematics",
-    "sourceCourseLabel": "§ MATH& 254 (5) formerly MATH 224, see also MATH& 153 combined entry",
+    "sourceCourseLabel": "§ MATH& 264 (5) formerly MATH 224, see also MATH& 153 combined entry",
     "sourceCourseTitle": "Calculus IV",
     "targetRequirementTags": [
       "NSc"
@@ -44073,7 +44073,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ],
     "notes": [
       "UW guide department: Mathematics.",
-      "Official Green River row: § MATH& 254 (5) formerly MATH 224, see also MATH& 153 combined entry.",
+      "Official Green River row: § MATH& 264 (5) formerly MATH 224, see also MATH& 153 combined entry.",
       "Official UW equivalency row: MATH 224 (3), 2XX (2).",
       "Official UW requirement tags: NSc.",
       "Official effective date: SUM Qtr. 2009 thru SPR Qtr. 2025.",

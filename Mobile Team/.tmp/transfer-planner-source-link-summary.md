@@ -1,22 +1,22 @@
 # Transfer Planner Source Link Summary
 
-Generated: 2026-04-09T19:41:49.812Z
+Generated: 2026-04-13T02:34:59.836Z
 
-- Total tracked source URLs: 378
-- Reachable: 376
+- Total tracked source URLs: 466
+- Reachable: 464
 - Failed: 2
-- Added since previous snapshot: 5
-- Changed since previous snapshot: 92
+- Added since previous snapshot: 90
+- Changed since previous snapshot: 209
 - Removed since previous snapshot: 2
 
 ## Changed URLs
 
+- http://www.washington.edu/students/gencat/program/S/CinemaandMediaStudies-132.html
+  - owners: uw-seattle-cinema-and-media-studies
 - https://acms.washington.edu/admissions
   - owners: uw-seattle-applied-and-computational-mathematical-sciences
 - https://acms.washington.edu/program-requirements-and-information
   - owners: uw-seattle-applied-and-computational-mathematical-sciences
-- https://admissions.uwb.edu/register/mpw-aes
-  - owners: uw-bothell-american-and-ethnic-studies
 - https://admissions.uwb.edu/register/mpw-CLA
   - owners: uw-bothell-culture-literature-and-the-arts
 - https://admissions.uwb.edu/register/mpw-compe
@@ -25,23 +25,23 @@ Generated: 2026-04-09T19:41:49.812Z
   - owners: uw-bothell-conservation-and-restoration-science
 - https://admissions.uwb.edu/register/mpw-csse
   - owners: uw-bothell-csse, uw-bothell-csse-information-assurance-and-cybersecurity
-- https://admissions.uwb.edu/register/mpw-DataVis-BA
-  - owners: uw-bothell-data-visualization-ba
 - https://admissions.uwb.edu/register/mpw-DataVis-BS
   - owners: uw-bothell-data-visualization-bs
 - https://admissions.uwb.edu/register/mpw-EE
   - owners: uw-bothell-electrical-engineering
-- https://admissions.uwb.edu/register/mpw-hs
-  - owners: uw-bothell-health-studies
 - https://admissions.uwb.edu/register/mpw-me
   - owners: uw-bothell-mechanical-engineering
 - https://admissions.uwb.edu/register/mpw-psy
   - owners: uw-bothell-psychology
-- https://admit.washington.edu/majors/english-creative-writing/
-  - owners: uw-seattle-english-creative-writing
 - https://aes.washington.edu/ba-american-ethnic-studies
   - owners: uw-seattle-american-ethnic-studies
+- https://ais.washington.edu/undergraduate-programs
+  - owners: uw-seattle-american-indian-studies
+- https://amath.washington.edu/undergraduate-major-applied-mathematics
+  - owners: uw-seattle-applied-mathematics
 - https://art.washington.edu/admission-major-art-history
+  - owners: uw-seattle-art-history
+- https://art.washington.edu/art-history/ba-art-history
   - owners: uw-seattle-art-history
 - https://art.washington.edu/art/undergraduate-program
   - owners: uw-seattle-art
@@ -49,48 +49,48 @@ Generated: 2026-04-09T19:41:49.812Z
   - owners: uw-seattle-design
 - https://art.washington.edu/design/bachelor-design-admissions
   - owners: uw-seattle-design
+- https://asian.washington.edu/admissions-incoming-freshmen-current-students
+  - owners: uw-seattle-chinese
+- https://asian.washington.edu/ba-asian-languages-cultures
+  - owners: uw-seattle-asian-languages-and-cultures
 - https://asian.washington.edu/ba-chinese
   - owners: uw-seattle-chinese
+- https://asian.washington.edu/ba-japanese
+  - owners: uw-seattle-japanese
+- https://asian.washington.edu/ba-korean
+  - owners: uw-seattle-korean
+- https://asian.washington.edu/ba-south-asian-languages-and-cultures
+  - owners: uw-seattle-south-asian-languages-and-cultures
+- https://astro.washington.edu/advising
+  - owners: uw-seattle-astronomy
 - https://astro.washington.edu/undergraduate-program
   - owners: uw-seattle-astronomy
 - https://catalog.greenriver.edu/
   - owners: grc-catalog-2025-2026
 - https://catalog.greenriver.edu/content.php?catoid=10&navoid=624
   - owners: grc-course-descriptions-2025-2026
+- https://chem.washington.edu/ba-biochemistry
+  - owners: uw-seattle-biochemistry, uw-seattle-biochemistry::ba-route, uw-seattle-biochemistry::bs-route
+- https://chem.washington.edu/ba-chemistry
+  - owners: uw-seattle-chemistry, uw-seattle-chemistry::acs-certified-bs-route, uw-seattle-chemistry::ba-route, uw-seattle-chemistry::bs-route
 - https://chem.washington.edu/bs-biochemistry
   - owners: uw-seattle-biochemistry, uw-seattle-biochemistry::ba-route, uw-seattle-biochemistry::bs-route
+- https://chem.washington.edu/bs-chemistry
+  - owners: uw-seattle-chemistry, uw-seattle-chemistry::acs-certified-bs-route, uw-seattle-chemistry::ba-route, uw-seattle-chemistry::bs-route
+- https://cinema.washington.edu/ba-comparative-literature
+  - owners: uw-seattle-comparative-literature
+- https://classics.washington.edu/ba-classical-studies
+  - owners: uw-seattle-classical-studies
+- https://classics.washington.edu/ba-classics
+  - owners: uw-seattle-classics
+- https://classics.washington.edu/ba-greek
+  - owners: uw-seattle-greek
+- https://classics.washington.edu/ba-latin
+  - owners: uw-seattle-latin
 - https://disabilitystudies.washington.edu/
   - owners: uw-seattle-disability-studies
 - https://disabilitystudies.washington.edu/DS_major
   - owners: uw-seattle-disability-studies
-- https://dlmp.uw.edu/education/mls-apply
-  - owners: uw-seattle-medical-laboratory-science
-- https://dlmp.uw.edu/education/mls-requirements
-  - owners: uw-seattle-medical-laboratory-science
-- https://dlmp.uw.edu/education/mls-undergrad
-  - owners: uw-seattle-medical-laboratory-science
-- https://english.washington.edu/english-language-literature-and-culture-option
-  - owners: uw-seattle-english-creative-writing, uw-seattle-english-language-literature-and-culture
-- https://frenchitalian.washington.edu/major-italian-studies
-  - owners: uw-seattle-italian
-- https://ischool.uw.edu/academics/informatics/curriculum
-  - owners: uw-seattle-informatics
-- https://ischool.uw.edu/programs/informatics/admissions/prerequisites
-  - owners: uw-seattle-informatics
-- https://ischool.uw.edu/programs/informatics/curriculum/capstone
-  - owners: uw-seattle-informatics
-- https://linguistics.washington.edu/ba-linguistics
-  - owners: uw-seattle-linguistics
-- https://math.washington.edu/ba-mathematics-standard-major-requirements-0
-  - owners: uw-seattle-mathematics
-- https://music.washington.edu/bachelor-music-music-education-instrumental-emphasis
-  - owners: uw-seattle-music-education-b-m
-- https://music.washington.edu/bachelor-music-organ
-  - owners: uw-seattle-organ-b-m
-- https://music.washington.edu/bachelor-music-voice
-  - owners: uw-seattle-voice-b-m
-- https://scandinavian.washington.edu/ba-scandinavian-area-studies
-  - owners: uw-seattle-scandinavian-area-studies
 
 ## Failed URLs
 

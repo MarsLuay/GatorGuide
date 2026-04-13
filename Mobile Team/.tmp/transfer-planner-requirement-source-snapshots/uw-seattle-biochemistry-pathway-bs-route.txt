@@ -2,7 +2,6 @@ Owner: uw-seattle-biochemistry:pathway:bs-route
 Source: https://chem.washington.edu/ba-biochemistry
 Title: BA in Biochemistry | Department of Chemistry | University of Washington
 
-[Supplemental official source] BA in Biochemistry
 [Supplemental official source] BA in Chemistry
 [Supplemental official source] BS in Biochemistry
 [Supplemental official source] BS in Chemistry

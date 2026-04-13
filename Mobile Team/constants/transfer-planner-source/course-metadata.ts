@@ -99,18 +99,12 @@ function uwCourseMetadata(
 const TRANSFER_PLANNER_MANUAL_COURSE_METADATA_RAW: TransferPlannerNormalizedCourseMetadataEntry[] = [
   grcCourseMetadata("ENGL& 101", "English Composition I", 5),
 
+  // Keep planner-normalized labels for legacy display consistency; source-backed GRC
+  // prerequisite/corequisite structure now comes from generated catalog metadata.
   grcCourseMetadata("MATH& 151", "Calculus I", 5),
-  grcCourseMetadata("MATH& 152", "Calculus II", 5, {
-    prerequisiteCourseCodes: ["MATH& 151"],
-    prerequisiteNotes: ["Planner-normalized sequential prerequisite from the current Green River STEM calculus path."],
-  }),
-  grcCourseMetadata("MATH& 163", "Calculus III", 5, {
-    prerequisiteCourseCodes: ["MATH& 152"],
-    prerequisiteNotes: ["Planner-normalized sequential prerequisite from the current Green River STEM calculus path."],
-  }),
+  grcCourseMetadata("MATH& 152", "Calculus II", 5),
+  grcCourseMetadata("MATH& 163", "Calculus III", 5),
   grcCourseMetadata("MATH& 254", "Calculus IV", 5, {
-    prerequisiteCourseCodes: ["MATH& 153"],
-    prerequisiteNotes: ["Planner-normalized sequential prerequisite from the older Green River STEM calculus alternative still preserved by the planner."],
     effectiveYearRanges: [
       {
         startLabel: "legacy-planner-support",
@@ -119,10 +113,7 @@ const TRANSFER_PLANNER_MANUAL_COURSE_METADATA_RAW: TransferPlannerNormalizedCour
       },
     ],
   }),
-  grcCourseMetadata("MATH 240", "Linear Algebra", 5, {
-    prerequisiteAlternativeCourseCodeSets: [["MATH& 163"], ["MATH& 153", "MATH& 254"]],
-    prerequisiteNotes: ["Planner-normalized prerequisite supports the Calc III path used by the current Green River math flowchart, while preserving the older planner-supported calculus route."],
-  }),
+  grcCourseMetadata("MATH 240", "Linear Algebra", 5),
   grcCourseMetadata("MATH& 146", "Introduction to Statistics", 5),
   grcCourseMetadata("MATH 256", "Statistics", 5),
 
@@ -130,71 +121,35 @@ const TRANSFER_PLANNER_MANUAL_COURSE_METADATA_RAW: TransferPlannerNormalizedCour
   grcCourseMetadata("CHEM& 131", "Introductory Chemistry", 5),
   grcCourseMetadata("CHEM& 140", "General Chemistry Preparation", 5),
   grcCourseMetadata("CHEM& 161", "General Chemistry with Lab I", 5),
-  grcCourseMetadata("CHEM& 162", "General Chemistry with Lab II", 5, {
-    prerequisiteCourseCodes: ["CHEM& 161"],
-    prerequisiteNotes: ["Planner-normalized sequential prerequisite from the current Green River general chemistry sequence."],
-  }),
-  grcCourseMetadata("CHEM& 163", "General Chemistry with Lab III", 5, {
-    prerequisiteCourseCodes: ["CHEM& 162"],
-    prerequisiteNotes: ["Planner-normalized sequential prerequisite from the current Green River general chemistry sequence."],
-  }),
+  grcCourseMetadata("CHEM& 162", "General Chemistry with Lab II", 5),
+  grcCourseMetadata("CHEM& 163", "General Chemistry with Lab III", 5),
   grcCourseMetadata("CHEM& 261", "Organic Chemistry with Lab I", 5),
-  grcCourseMetadata("CHEM& 262", "Organic Chemistry with Lab II", 5, {
-    prerequisiteCourseCodes: ["CHEM& 261"],
-    prerequisiteNotes: ["Planner-normalized sequential prerequisite from the Green River organic chemistry sequence."],
-  }),
-  grcCourseMetadata("CHEM& 263", "Organic Chemistry with Lab III", 5, {
-    prerequisiteCourseCodes: ["CHEM& 262"],
-    prerequisiteNotes: ["Planner-normalized sequential prerequisite from the Green River organic chemistry sequence."],
-  }),
+  grcCourseMetadata("CHEM& 262", "Organic Chemistry with Lab II", 5),
+  grcCourseMetadata("CHEM& 263", "Organic Chemistry with Lab III", 5),
 
   grcCourseMetadata("BIOL& 100", "Survey of Biology", 5),
   grcCourseMetadata("BIOL& 160", "General Biology with Lab", 5),
   grcCourseMetadata("BIOL& 211", "Biology Majors I", 5),
-  grcCourseMetadata("BIOL& 212", "Biology Majors II", 5, {
-    prerequisiteCourseCodes: ["BIOL& 211"],
-    prerequisiteNotes: ["Planner-normalized sequential prerequisite from the biology-majors series used by multiple Seattle science pathways."],
-  }),
-  grcCourseMetadata("BIOL& 213", "Biology Majors III", 5, {
-    prerequisiteCourseCodes: ["BIOL& 212"],
-    prerequisiteNotes: ["Planner-normalized sequential prerequisite from the biology-majors series used by multiple Seattle science pathways."],
-  }),
+  grcCourseMetadata("BIOL& 212", "Biology Majors II", 5),
+  grcCourseMetadata("BIOL& 213", "Biology Majors III", 5),
   grcCourseMetadata("BIOL& 241", "Human Anatomy and Physiology I", 5),
-  grcCourseMetadata("BIOL& 242", "Human Anatomy and Physiology II", 5, {
-    prerequisiteCourseCodes: ["BIOL& 241"],
-    prerequisiteNotes: ["Planner-normalized sequential prerequisite from the anatomy and physiology sequence."],
-  }),
+  grcCourseMetadata("BIOL& 242", "Human Anatomy and Physiology II", 5),
   grcCourseMetadata("BIOL& 260", "Microbiology", 5),
 
   grcCourseMetadata("PHYS& 114", "General Physics with Lab I", 5),
-  grcCourseMetadata("PHYS& 115", "General Physics with Lab II", 5, {
-    prerequisiteCourseCodes: ["PHYS& 114"],
-    prerequisiteNotes: ["Planner-normalized sequential prerequisite from the algebra-based physics sequence."],
-  }),
-  grcCourseMetadata("PHYS& 116", "General Physics with Lab III", 5, {
-    prerequisiteCourseCodes: ["PHYS& 115"],
-    prerequisiteNotes: ["Planner-normalized sequential prerequisite from the algebra-based physics sequence."],
-  }),
+  grcCourseMetadata("PHYS& 115", "General Physics with Lab II", 5),
+  grcCourseMetadata("PHYS& 116", "General Physics with Lab III", 5),
   grcCourseMetadata("PHYS& 221", "Engineering Physics I", 5),
 
   grcCourseMetadata("CS 121", "Computer Science I", 5),
-  grcCourseMetadata("CS 122", "Computer Science II", 5, {
-    prerequisiteCourseCodes: ["CS 121"],
-    prerequisiteNotes: ["Planner-normalized sequential prerequisite from the current Green River CS 121/122/123 path."],
-  }),
-  grcCourseMetadata("CS 123", "Computer Science III", 5, {
-    prerequisiteCourseCodes: ["CS 122"],
-    prerequisiteNotes: ["Planner-normalized sequential prerequisite from the current Green River CS 121/122/123 path."],
-  }),
+  grcCourseMetadata("CS 122", "Computer Science II", 5),
+  grcCourseMetadata("CS 123", "Computer Science III", 5),
 
   grcCourseMetadata("ENGR 140", "Materials Science", 5),
   grcCourseMetadata("ENGR 250", "Scientific Computing", 5),
   grcCourseMetadata("ENGR& 204", "Electrical Circuits", 5),
   grcCourseMetadata("ENGR& 214", "Statics", 5),
-  grcCourseMetadata("ENGR& 215", "Mechanics of Materials", 5, {
-    prerequisiteCourseCodes: ["ENGR& 214"],
-    prerequisiteNotes: ["Planner-normalized sequential prerequisite from the shared engineering mechanics sequence."],
-  }),
+  grcCourseMetadata("ENGR& 215", "Mechanics of Materials", 5),
   grcCourseMetadata("ENGR& 224", "Thermodynamics", 5),
 
   grcCourseMetadata("GEOG& 100", "Physical Geography", 5),

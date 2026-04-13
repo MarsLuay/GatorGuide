@@ -49,9 +49,31 @@ const ENTITY_MAP = {
   "#8217": "'",
 };
 const CHUNK_SIZE = 80;
+const LEGACY_GRC_CODE_ALIASES = new Map([
+  ["MATH& 254", "MATH& 264"],
+]);
+
+function applyGrcLegacyCourseCodeAlias(value) {
+  return LEGACY_GRC_CODE_ALIASES.get(value) ?? value;
+}
+
+function escapeRegExp(value) {
+  return String(value ?? "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function canonicalizeLegacyCodesInText(value) {
+  let normalized = normalizeWhitespace(value);
+  for (const [legacyCode, canonicalCode] of LEGACY_GRC_CODE_ALIASES.entries()) {
+    const legacyPattern = escapeRegExp(legacyCode).replace(/\\ /g, "\\s+");
+    normalized = normalized.replace(new RegExp(`\\b${legacyPattern}\\b`, "gi"), canonicalCode);
+  }
+  return normalized;
+}
 
 function normalizeMetadataCourseCode(code) {
-  return normalizeWhitespace(code).toUpperCase().replace(/\s+/g, " ");
+  return applyGrcLegacyCourseCodeAlias(
+    normalizeWhitespace(code).toUpperCase().replace(/\s+/g, " ")
+  );
 }
 
 const GRC_COURSE_TITLE_BY_CODE = new Map(
@@ -105,7 +127,9 @@ function normalizeCourseSubject(value) {
 }
 
 function normalizeCourseCodeFromParts(subject, number) {
-  return `${normalizeCourseSubject(subject)} ${normalizeWhitespace(number).toUpperCase()}`;
+  return applyGrcLegacyCourseCodeAlias(
+    `${normalizeCourseSubject(subject)} ${normalizeWhitespace(number).toUpperCase()}`
+  );
 }
 
 function parseCourseCodesWithSubjectCarry(value) {
@@ -377,10 +401,17 @@ function parseGuideRows(html) {
 }
 
 function buildRule(row) {
-  const sourceCourseSet = parseSourceCourseSet(row.cccourse);
-  const targetCourseCodes = parseTargetCourseCodes(row.uwequiv);
-  const type = classifyRule(row, sourceCourseSet, targetCourseCodes);
-  const effectiveDateLabel = row.effdate || null;
+  const canonicalRow = {
+    ...row,
+    cccourse: canonicalizeLegacyCodesInText(row.cccourse),
+    uwequiv: canonicalizeLegacyCodesInText(row.uwequiv),
+    uwreqs: canonicalizeLegacyCodesInText(row.uwreqs),
+    effdate: canonicalizeLegacyCodesInText(row.effdate),
+  };
+  const sourceCourseSet = parseSourceCourseSet(canonicalRow.cccourse);
+  const targetCourseCodes = parseTargetCourseCodes(canonicalRow.uwequiv);
+  const type = classifyRule(canonicalRow, sourceCourseSet, targetCourseCodes);
+  const effectiveDateLabel = canonicalRow.effdate || null;
   const sourceCourseTitles = [...new Set(
     sourceCourseSet
       .map((courseCode) => GRC_COURSE_TITLE_BY_CODE.get(normalizeMetadataCourseCode(courseCode)) ?? null)
@@ -389,28 +420,29 @@ function buildRule(row) {
   const sourceCourseTitle = sourceCourseTitles.length ? sourceCourseTitles.join(" / ") : null;
 
   return {
-    id: `uw-grc-guide:${String(row.rowNumber).padStart(4, "0")}:${slugify(row.department)}:${slugify(row.cccourse)}`,
+    id: `uw-grc-guide:${String(canonicalRow.rowNumber).padStart(4, "0")}:${slugify(canonicalRow.department)}:${slugify(canonicalRow.cccourse)}`,
     type,
-    title: `${row.cccourse} -> ${row.uwequiv || "see combined-entry row"}`,
-    acceptanceCategory: buildAcceptanceCategory(type, row),
-    ruleStatus: buildRuleStatus(row),
+    title: `${canonicalRow.cccourse} -> ${canonicalRow.uwequiv || "see combined-entry row"}`,
+    acceptanceCategory: buildAcceptanceCategory(type, canonicalRow),
+    ruleStatus: buildRuleStatus(canonicalRow),
     sourceKind: "uw-green-river-equivalency-guide",
     sourceSchoolId: "grc",
     targetSchoolIds: TARGET_CAMPUSES,
     sourceCourseSets: sourceCourseSet.length > 0 ? [sourceCourseSet] : [],
     targetCourseCodes,
-    targetOutcome: row.uwequiv || "See the official combined-entry wording on the Green River equivalency guide.",
+    targetOutcome:
+      canonicalRow.uwequiv || "See the official combined-entry wording on the Green River equivalency guide.",
     weakerThanRuleIds: [],
     effectiveYearRanges: parseEffectiveYearRanges(effectiveDateLabel),
     effectiveDateLabel,
-    guideDepartment: row.department,
-    sourceCourseLabel: row.cccourse,
+    guideDepartment: canonicalRow.department,
+    sourceCourseLabel: canonicalRow.cccourse,
     sourceCourseTitle,
-    targetRequirementTags: parseRequirementTags(row.uwreqs),
-    isObsoleteSourceCourse: row.obsolete,
+    targetRequirementTags: parseRequirementTags(canonicalRow.uwreqs),
+    isObsoleteSourceCourse: canonicalRow.obsolete,
     parsedFromOfficialGuide: true,
-    plannerWarnings: buildWarnings(type, row, sourceCourseSet),
-    notes: buildNotes(row, targetCourseCodes),
+    plannerWarnings: buildWarnings(type, canonicalRow, sourceCourseSet),
+    notes: buildNotes(canonicalRow, targetCourseCodes),
     sourceLinks: [GUIDE_SOURCE_LINK],
   };
 }

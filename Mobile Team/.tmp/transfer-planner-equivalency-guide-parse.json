@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-04-10T22:47:55.136Z",
+  "generatedAt": "2026-04-13T03:48:08.728Z",
   "sourceUrl": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
   "status": 200,
   "finalUrl": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
   "contentType": "text/html; charset=UTF-8",
   "snapshotPath": ".tmp/transfer-planner-equivalency-guide-snapshots/uw-green-river-equivalency-guide.html",
-  "snapshotSha256": "e1393b0f6014eafea2cc822ba4e284419ec5013f0f9cf1f05054a91abc323878",
+  "snapshotSha256": "6c99fc5126279a9b39d9c1fb2b33d95fa5d27ea9eb0b4537cadb8bd925cf036e",
   "departmentCount": 67,
   "rowCount": 1316,
   "ruleCount": 1316,

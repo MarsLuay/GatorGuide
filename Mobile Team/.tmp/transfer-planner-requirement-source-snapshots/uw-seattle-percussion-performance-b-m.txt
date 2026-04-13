@@ -6,7 +6,7 @@ Title: Bachelor of Music - Percussion Performance | School of Music | University
 [Supplemental official source] Composition
 [Supplemental official source] general education requirements
 [Supplemental official source] Guitar
-[Supplemental official source] Music Education, Post Bac, Instrumental Emphasis
+[Supplemental official source] Jazz Studies
 [Supplemental official source] Music Education, Post Bac, Vocal Emphasis
 * The postbaccalaureate degree program is designed to serve students who already have an undergraduate degree in music, but wish to become trained and certified in music teaching. Prospective students must apply to the University (see http://admit.washington.edu/Apply/Postbacs for deadlines) and audition for the music education faculty (see audition dates for information and dates). The degree programs above can serve as a guide for the post-baccaluareate student but decisions about what previous credits will transfer are made on an individual basis at the time of admission.
 &copy; 2026 University of Washington . All rights reserved.
@@ -49,7 +49,7 @@ Bachelor of Music - Composition | School of Music | University of Washington
 Bachelor of Music - Composition Course Sequence (PDF)
 Bachelor of Music - Composition Degree Program Sheet (PDF)
 Bachelor of Music - Guitar
-Bachelor of Music - Music Education, Post Baccalaureate Certification, Instrumental Emphasis
+Bachelor of Music - Jazz Studies
 Bachelor of Music - Music Education, Post Baccalaureate Certification, Vocal Emphasis
 Bachelor of Music - Percussion Performance
 Bachelor of Music - Percussion Performance | School of Music | University of Washington
@@ -121,11 +121,11 @@ Master of Music
 Menu
 Modern & Contemporary
 MUHST 210, 211, 212: Music History I, II, III ( Aut,Win,Spr ) (3,3,3) (9 credits)
+MUHST 425: Jazz History and Analysis (3 credits)
 MUSED 301: Techniques for Teaching Music to Children (2 credits)
 MUSED 304, 305: Introductory Music Methods (2, 2) (4 credits)
 MUSED 340: Music in Education (3 credits)
 MUSED 440: Music for Children (3 credits)
-MUSED 442: Instrumental Curriculum: Methods and Materials (3 credits)
 MUSED 443: Choral Curriculum: Methods and Materials (3 credits)
 MUSED 452: Ethnomusicology in the Schools (3 credits)
 MUSED 465: Classroom Management and Evaluation in Music Education (3 credits)
@@ -133,6 +133,7 @@ MUSIC 113: Beginning Ear Training ( Autumn ) (1 credit)
 MUSIC 119: Theory ( Autumn ) (3 credits)
 MUSIC 120: Survey of Music History ( Aut/Win/Spr ) (5 credits) or proficiency exam
 MUSIC 120: Survey of Music History ( Win/Spr ) (5 credits) or proficiency exam
+MUSIC 131: History of Jazz (5)
 MUSIC 201, 202: First-Year Theory I, II ( Winter, Spring ) (3,3) (6 credits)
 MUSIC 203, 301, 302: First-Year Theory III & Second-Year Theory I, II ( Aut,Win,Spr ) (3,3,3) (9 credits)
 MUSIC 204, 205: First-Year Ear Training I, II ( Winter, Spring ) (1,1) (2 credits)
@@ -143,13 +144,15 @@ MUSIC 216, 217, 218: Introductory Composition (2, 2, 2) (6 credits)
 MUSIC 303: Second-Year Theory III ( Autumn ) (3 credits)
 MUSIC 306: Second-Year Ear Training III ( Autumn ) (1 credit)
 MUSIC 326, 327, 328: Repertoire (2, 2, 2) (6 credits)
+MUSIC 336, 426: Jazz Arranging (2, 2) (4 credits)
 MUSIC 350, 351, 352: Choral Conducting (1, 1, 1) (3 credits)
 MUSIC 379: Junior Recital (1 credit)
 MUSIC 380, 381, 382: Conducting (1, 1, 1) (3 credits)
-MUSIC 380, 381, 382: Instrumental Conducting (1, 1, 1) (3 credits)
 MUSIC 391/491: Private Instruction: Composition (18 credits)
 MUSIC 400/DXARTS 460: Digital Sound (5 credits)
 MUSIC 434, 435, 436: Pedagogy (2, 2, 2) (6 credits)
+MUSIC 464: Jazz Laboratory (1) (6 credits)
+MUSIC 467, 468, 469: Advanced Jazz Improvisation (1, 1, 1) (3 credits)
 MUSIC 471 or 472: Introduction to Atonal Theory and Analysis or Analysis of Twentieth Century Music, 1900-1950 (3 credits)
 MUSIC 479: Senior Recital (1 credit)
 MUSIC 487 or 438: Tonal Counterpoint or Problems in Contemporary Performance (3 credits)
@@ -160,7 +163,6 @@ Music Education - Instrumental Emphasis
 Music Education - Post Baccalaureate Certfication, Instrumental Emphasis*
 Music Education - Post Baccalaureate Certficiation, Vocal Emphasis*
 Music Education - Vocal Emphasis
-Music Education with Teaching Certification (Post Bac, Instrumental/General Emphasis)
 Music Education with Teaching Certification (Post Bac,Vocal/General Emphasis)
 Music Education, Instrumental Emphasis
 Music Education, Post Bac, Instrumental Emphasis
@@ -180,7 +182,6 @@ Music, Music Theory Option
 Music, Voice Option
 Musical Instrument Collection
 MUSICP 320-339/420-439 or MUSAP 136-139/233-239, 389 or MUSEN 389: Two years of Private Instruction: Vocal or Instrumental (Note: Admission to MUSICP lessons is done through audition - except MUSAP 389) (12-18 credits)
-MUSICP 321-339/421-439 (18 credits)
 MUSICP 337: Percussion Private Lessons (18 credits)
 MUSICP 338: Private Instruction (3) (18 credits)
 MUSICP 437: Percussion Private Lessons (18 credits)

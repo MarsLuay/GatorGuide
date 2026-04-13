@@ -1,6 +1,6 @@
 {
   "summary": {
-    "generatedAt": "2026-04-10T19:13:40.180Z",
+    "generatedAt": "2026-04-13T03:37:07.458Z",
     "currentCatalogId": 11,
     "currentCatalogName": "2025-2026 Catalog",
     "programMapPageCount": 147,
@@ -76,7 +76,7 @@
           {
             "label": "Quarter 4 (15 credits)",
             "courses": [
-              "MATH& 254",
+              "MATH& 264",
               "PHYS& 221",
               "2 C - Humanities/Fine Arts/English or Social Science"
             ]
@@ -388,7 +388,7 @@
           {
             "label": "Fall 2 (15 credits)",
             "courses": [
-              "MATH& 254",
+              "MATH& 264",
               "PHYS& 221",
               "CS 123",
               "2 C - Humanities/Fine Arts/English or Social Science"
@@ -678,7 +678,7 @@
             "label": "Fall 2 (15 credits)",
             "courses": [
               "ENGR& 214",
-              "MATH& 254",
+              "MATH& 264",
               "PHYS& 223"
             ]
           },
@@ -7323,7 +7323,7 @@
             "courses": [
               "CS 123",
               "PHYS& 222",
-              "MATH& 254",
+              "MATH& 264",
               "CS 109",
               "CS& 131",
               "CS 132",
@@ -7723,7 +7723,7 @@
           {
             "label": "Quarter 4 (15 credits)",
             "courses": [
-              "MATH& 254",
+              "MATH& 264",
               "PHYS& 221",
               "H 3 - Humanities/Fine Arts/English",
               "ART 105",
@@ -7756,7 +7756,7 @@
             "courses": [
               "MATH& 153",
               "MATH 126",
-              "MATH& 254",
+              "MATH& 264",
               "MATH 238",
               "MATH 240",
               "MATH 147",
@@ -7860,7 +7860,7 @@
           {
             "label": "Quarter 5 (15 credits)",
             "courses": [
-              "MATH& 254",
+              "MATH& 264",
               "S 2 - Social Science",
               "N 2 - Natural Science List A",
               "Recommend: Something from the Diversity Course List"
@@ -7958,7 +7958,7 @@
           {
             "label": "Quarter 4 (15 credits)",
             "courses": [
-              "MATH& 254",
+              "MATH& 264",
               "N 1 - Natural Science List A (Lab)",
               "PHYS& 114",
               "PHYS& 221",
@@ -8079,7 +8079,7 @@
           {
             "label": "Quarter 4 (15 credits)",
             "courses": [
-              "MATH& 254",
+              "MATH& 264",
               "PHYS& 223",
               "Natural Science Distribution electives Consult with transfer university for program requirements and work with advisor"
             ]
@@ -9971,7 +9971,7 @@
               "MATH& 132",
               "MATH 238",
               "MATH 240",
-              "MATH& 254",
+              "MATH& 264",
               "MATH 256",
               "PHIL& 120",
               "Select one of the following:"

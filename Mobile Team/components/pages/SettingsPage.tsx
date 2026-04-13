@@ -52,6 +52,11 @@ const SUPPORT_MESSAGE_WEBHOOK =
   process.env.EXPO_PUBLIC_SUPPORT_MESSAGE_WEBHOOK ||
   "https://us-central1-gatorguide.cloudfunctions.net/sendSupportMessage";
 
+const TRANSCRIPT_COURSES_FIELD = "transferPlannerCompletedCourses";
+const TRANSCRIPT_SOURCE_FIELD = "transferPlannerTranscriptSource";
+const TRANSCRIPT_UPLOADED_AT_FIELD = "transferPlannerTranscriptUploadedAt";
+const TRANSCRIPT_PARSER_VERSION_FIELD = "transferPlannerTranscriptParserVersion";
+
 export default function SettingsPage() {
   const router = useRouter();
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
@@ -68,7 +73,16 @@ export default function SettingsPage() {
 
   const { theme, isDark, isGreen, setTheme } = useAppTheme();
   const { t, language } = useAppLanguage();
-  const { isHydrated, state, signOut, deleteAccount, setNotificationsEnabled, restoreData } = useAppData();
+  const {
+    isHydrated,
+    state,
+    signOut,
+    deleteAccount,
+    setNotificationsEnabled,
+    restoreData,
+    setQuestionnaireAnswers,
+    updateUser,
+  } = useAppData();
   const { getScrollContentPadding } = useResponsiveLayout();
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
@@ -281,13 +295,33 @@ export default function SettingsPage() {
     try {
       setIsClearingCache(true);
       const { clearedCount } = await cacheManagerService.clearRelevantCaches();
+
+      if (user?.isGuest) {
+        const nextQuestionnaireAnswers = {
+          ...(state.questionnaireAnswers ?? {}),
+        };
+
+        delete nextQuestionnaireAnswers.completedCourses;
+        delete nextQuestionnaireAnswers[TRANSCRIPT_COURSES_FIELD];
+        delete nextQuestionnaireAnswers[TRANSCRIPT_SOURCE_FIELD];
+        delete nextQuestionnaireAnswers[TRANSCRIPT_UPLOADED_AT_FIELD];
+        delete nextQuestionnaireAnswers[TRANSCRIPT_PARSER_VERSION_FIELD];
+
+        await setQuestionnaireAnswers(nextQuestionnaireAnswers);
+        await updateUser({
+          transcript: undefined,
+          resume: undefined,
+          avatar: undefined,
+        });
+      }
+
       setCacheClearedCount(clearedCount);
       setShowClearCacheConfirm(false);
       setShowCacheClearedPopup(true);
     } finally {
       setIsClearingCache(false);
     }
-  }, []);
+  }, [setQuestionnaireAnswers, state.questionnaireAnswers, updateUser, user?.isGuest]);
 
   const sendSupportMessage = async () => {
     const message = supportMessage.trim();

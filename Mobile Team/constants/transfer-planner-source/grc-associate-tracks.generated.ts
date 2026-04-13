@@ -43,7 +43,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "label": "Year 2 Fall",
         "courses": [
           "PHYS& 221",
-          "MATH& 254",
+          "MATH& 264",
           "ENGR& 214"
         ]
       },
@@ -252,7 +252,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       {
         "label": "Quarter 4 (15 credits)",
         "courses": [
-          "MATH& 254",
+          "MATH& 264",
           "PHYS& 221",
           "2 C - Humanities/Fine Arts/English or Social Science"
         ]
@@ -544,7 +544,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       {
         "label": "Fall 2 (15 credits)",
         "courses": [
-          "MATH& 254",
+          "MATH& 264",
           "PHYS& 221",
           "CS 123",
           "2 C - Humanities/Fine Arts/English or Social Science"
@@ -814,7 +814,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "label": "Fall 2 (15 credits)",
         "courses": [
           "ENGR& 214",
-          "MATH& 254",
+          "MATH& 264",
           "PHYS& 223"
         ]
       },
@@ -6426,7 +6426,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "CS 123",
           "PHYS& 222",
-          "MATH& 254",
+          "MATH& 264",
           "CS 109",
           "CS& 131",
           "CS 132",
@@ -6748,7 +6748,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       {
         "label": "Quarter 4 (15 credits)",
         "courses": [
-          "MATH& 254",
+          "MATH& 264",
           "PHYS& 221",
           "H 3 - Humanities/Fine Arts/English",
           "ART 105",
@@ -6781,7 +6781,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "MATH& 153",
           "MATH 126",
-          "MATH& 254",
+          "MATH& 264",
           "MATH 238",
           "MATH 240",
           "MATH 147",
@@ -6865,7 +6865,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       {
         "label": "Quarter 5 (15 credits)",
         "courses": [
-          "MATH& 254",
+          "MATH& 264",
           "S 2 - Social Science",
           "N 2 - Natural Science List A",
           "Recommend: Something from the Diversity Course List"
@@ -6943,7 +6943,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       {
         "label": "Quarter 4 (15 credits)",
         "courses": [
-          "MATH& 254",
+          "MATH& 264",
           "N 1 - Natural Science List A (Lab)",
           "PHYS& 114",
           "PHYS& 221",
@@ -7046,7 +7046,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       {
         "label": "Quarter 4 (15 credits)",
         "courses": [
-          "MATH& 254",
+          "MATH& 264",
           "PHYS& 223",
           "Natural Science Distribution electives Consult with transfer university for program requirements and work with advisor"
         ]
@@ -8582,7 +8582,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "MATH& 132",
           "MATH 238",
           "MATH 240",
-          "MATH& 254",
+          "MATH& 264",
           "MATH 256",
           "PHIL& 120",
           "Select one of the following:"
@@ -8672,7 +8672,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
 ];
 
 export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACK_SUMMARY: { generatedAt: string; currentCatalogId: number; currentCatalogName: string; programMapPageCount: number; officialAssociateTrackCount: number; previousManualTrackCount: number; newlyAddedOfficialAssociateTrackCount: number; retainedLegacyTrackCount: number; generatedTrackCount: number; } = {
-  "generatedAt": "2026-04-10T19:13:40.180Z",
+  "generatedAt": "2026-04-13T03:37:07.458Z",
   "currentCatalogId": 11,
   "currentCatalogName": "2025-2026 Catalog",
   "programMapPageCount": 147,

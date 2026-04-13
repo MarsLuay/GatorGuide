@@ -1,11 +1,11 @@
 # UW Catalog Ingest
 
-Generated: 2026-04-09T18:58:40.059Z
+Generated: 2026-04-13T03:20:32.514Z
 
 - Planner-relevant UW courses: 1039
 - Parsed UW catalog courses: 915
 - Courses with credit labels: 845
-- Courses with prerequisite notes: 279
+- Courses with prerequisite notes: 280
 - Courses with corequisite notes: 5
 
 ## Campuses

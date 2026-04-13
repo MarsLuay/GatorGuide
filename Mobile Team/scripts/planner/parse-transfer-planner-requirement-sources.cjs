@@ -119,6 +119,9 @@ const INVALID_EXTRACTED_COURSE_SUBJECTS = new Set([
   "WITH",
   "YOUR",
 ]);
+const LEGACY_GRC_CODE_ALIASES = new Map([
+  ["MATH& 254", "MATH& 264"],
+]);
 const LEADING_EXTRACTED_COURSE_SUBJECT_TOKENS = new Set(["AND", "AS", "OR"]);
 const LEADING_LIST_MARKER_TOKENS = new Set(["I", "II", "III", "IV"]);
 const EXTRACTED_COURSE_SUBJECT_ALIASES = {
@@ -133,6 +136,8 @@ const KNOWN_UW_EXTRACTED_COURSE_SUBJECTS = new Set(
 );
 const REQUIREMENT_CUE_PATTERN =
   /\b(required|requirements|prereq|prerequisite|complete|credits|credit|elective|select|choose|one of the following|two of the following|option|track|route|pathway|concentration)\b/i;
+const GENERAL_ED_REQUIREMENT_CUE_PATTERN =
+  /\b(areas of inquiry|arts?\s+and\s+humanities|social sciences?|natural sciences?|a&h|ssc|nsc|diversity|additional a&h|additional areas? of inquiry|additional coursework)\b/i;
 const STRUCTURAL_REQUIREMENT_PATTERN =
   /\b(admission requirements|degree requirements|major requirements|completion requirements|required courses|elective courses|core courses|core requirements|curriculum|prerequisite courses|shared set of core courses|specialization|track|option|route|pathway|concentration|checklist|foundation|distribution requirement)\b/i;
 const BLOCK_TAG_PATTERN = /<(?:\/?(?:p|div|section|article|li|ul|ol|table|tr|td|th|h1|h2|h3|h4|h5|h6|br))[^>]*>/gi;
@@ -320,7 +325,7 @@ function normalizeCourseCode(rawValue) {
   const normalized = normalizeWhitespace(String(rawValue ?? "").toUpperCase().replace(/\s+/g, " "));
   const match = normalized.match(/^([A-Z&]+(?: [A-Z&]+)*) (\d{3}(?:\.\d+)?[A-Z]?)$/);
   if (!match) {
-    return normalized;
+    return LEGACY_GRC_CODE_ALIASES.get(normalized) ?? normalized;
   }
 
   const subjectTokens = match[1].split(" ").filter(Boolean);
@@ -328,7 +333,8 @@ function normalizeCourseCode(rawValue) {
     ? subjectTokens.join("")
     : subjectTokens.join(" ");
 
-  return `${normalizedSubject} ${match[2]}`;
+  const normalizedCode = `${normalizedSubject} ${match[2]}`;
+  return LEGACY_GRC_CODE_ALIASES.get(normalizedCode) ?? normalizedCode;
 }
 
 function slugify(value) {
@@ -1183,7 +1189,12 @@ function extractHeadings(html) {
 }
 
 function extractRequirementCueLines(lines) {
-  return lines.filter((line) => REQUIREMENT_CUE_PATTERN.test(line)).slice(0, 30);
+  return lines
+    .filter(
+      (line) =>
+        REQUIREMENT_CUE_PATTERN.test(line) || GENERAL_ED_REQUIREMENT_CUE_PATTERN.test(line)
+    )
+    .slice(0, 40);
 }
 
 function extractChooseStatements(lines) {

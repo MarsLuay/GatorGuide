@@ -3,13 +3,17 @@ Source: https://ischool.uw.edu/academics/informatics/curriculum
 Title: Informatics Curriculum | Information School | University of Washington
 
 -->
+(Please note: All schedules subject to change)
 [Supplemental official source] Academics
+[Supplemental official source] Capstone
+[Supplemental official source] Course Schedules
 [Supplemental official source] Degree Planning
 [Supplemental official source] Experiential Learning
 [Supplemental official source] Graduation
 [Supplemental official source] Registration
 * These courses are only offered during the quarters noted above.
 ** Choose one of these three options:
+*Please note: Some courses that are taken by MSIM and MLIS students may be of interest to Informatics students. However, not all IMT and LIS courses are appropriate for INFO students. Consult with the Informatics advisor before registering if you are interested in taking an IMT or LIS class.
 &copy; 2026 UW Information School
 <!--
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TM46LWX"
@@ -18,11 +22,14 @@ Title: Informatics Curriculum | Information School | University of Washington
 2017-02-13
 2024-04-19
 2024-05-29
+2025-07-07
 2026-03-10
+2026-04-10
 206-685-9937
 5:00-6:00 PM
 5:30-8:00 PM
 9-month online graduate certificate program
+A better way to pay artists
 About Us
 Academics
 Additional Information for Graduating Students
@@ -40,8 +47,10 @@ Approved electives
 Apr 15
 Apr 17
 Apr 22
+As cybersecurity and artificial intelligence intersect, they introduce both new capabilities and potential risks. To better understand these dynamics, Informatics students in INFO 492 devised cybersecurity attack and defense simulations... Read more
 Attend iWelcome Week and Informatics New Student Orientation in September
 Autumn
+Autumn 2023 | Winter 2024 | Spring 2024 | Summer 2024 | Autumn 2024 | Winter 2025 | Spring 2025 | Summer 2025 | Autumn 2025 | Winter 2026
 Azure Dev Tools
 Baccalaureate Honors
 Before you are able to graduate, you are required to complete the following procedures. If you have any questions concerning this process, please contact Student Services. Learn about the Convocation ceremony .
@@ -56,7 +65,10 @@ Capstone
 Capstone (4 cr)
 Capstone (8-credits): Students complete a culminating experience.
 Capstone details
+Capstone is the culmination of students’ learning experience at the iSchool. For their Capstone projects, Informatics students work independently or with sponsors to identify real-world information problems. Then, they develop the approaches and methods needed to address these problems, conduct the research, and finally present their findings in both oral and written formats.
 Capstone Projects
+Capstone Stories
+Capstone: Student Info
 Career Outcomes
 Careers
 Changing, Postponing, or Reactivating Graduation
@@ -74,6 +86,7 @@ Computer Programming II (5 cr) and CSE 163: Intermediate Data Programming (4 cr)
 Contact Us
 Core courses (54-58 credits)
 Core topics of iSchool research
+Course descriptions
 Course Maps
 Course Registration
 Course Registration | Information School | University of Washington
@@ -126,7 +139,10 @@ Find help from our team of student advisors
 Find iSchool faculty, staff and students
 Focus Areas
 Follow the steps to graduate with your bachelor&#039;s degree in Informatics.
+For a music creator, getting paid by listeners around the world should be as simple as a fan clicking “subscribe.” But for many artists in less developed countries, existing streaming platforms make that difficult or out of reach.An... Read more
+For Capstone, students act as attackers
 For more information about course registration, please click here .
+For planning purposes, links to the UW Time Schedule for past quarters are included below. Please note that course offerings and schedules may not be the same for future quarters.
 Foundations (INFO 20x, 30x, 40x courses). These courses teach the foundations of data, information and knowledge, helping students understand what information is, and how we create and use it in our lives, organizations and communities.
 Full Results
 Future Students
@@ -141,11 +157,15 @@ How to collaborate with faculty and students
 Hubs for innovative scholarship & research
 I am the iSchool
 I Am the iSchool
+iEngage partners and iSchool community partners are invited to sponsor Capstone projects by submitting project ideas each autumn and working with students during the winter and spring quarters. Learn about sponsoring a student team.
 If you are new to the major, please read our Registration FAQ .
 If you need an add code for a course due to alternate or waived prerequisites, class standing, or other issues, please email informatics@uw.edu at least one week in advance of your registration date.
 If you plan to graduate, you must apply to graduate by following the instructions on the Informatics Resource Site (Canvas) . Please run the degree audit via MyUW regularly to ensure that you are making timely progress toward the degree. If there are any discrepancies or questions, contact informatics@uw.edu as soon as you can.
+IMT - Master of Science in Information Management (MSIM) *
+In today’s fast-paced work environment, managers often look for tools to make their jobs easier. For someone managing a large team, wouldn’t it be nice to have a tool that regularly provides summarized feedback about each employee?... Read more
 Independent Study
 Indigenous data has a history of bad management from non-Natives, says UW Information School Assistant Professor Sandy Littletree (Eastern Shoshone/Navajo). Library collections may include sacred songs, ceremonies and stories that were...
+INFO - Informatics
 INFO 200
 INFO 200: Intellectual Foundations of Informatics
 INFO 201
@@ -172,8 +192,13 @@ INFO 495 Internship for Credit
 INFO 496 Service Learning
 INFO 499 Independent Study
 INFO Elective
+INFO: Spring 2026 | Summer 2026 | Autumn 2026
 Informatics
 Informatics Academics
+Informatics Capstone
+Informatics Capstone | Information School | University of Washington
+Informatics Course Schedules
+Informatics Course Schedules | Information School | University of Washington
 Informatics courses can also be understood as informing a variety of focus areas, which are lenses that frame different considerations of information in the curriculum. For example, Informatics offers courses in data science (INFO 37x/47x), cybersecurity (INFO 31x/41x), and search and retrieval (INFO 32x/42x). Most Informatics courses can be labeled as drawing on one or more focus areas; students can use these focus areas to help plan their core classes and electives. See the full list of focus areas for details.
 Informatics Curriculum
 Informatics Curriculum | Information School | University of Washington
@@ -182,6 +207,8 @@ Informatics Experiential Learning | Information School | University of Washingto
 Informatics major requirements
 Informatics Minor
 Informatics students are strongly encouraged to do one or more internships or independent studies.
+Informatics students help Google improve bug reporting
+Informatics students wrangle data for legal-aid organization
 Information
 Information and Organizations: Students learn to analyze the impacts and use of information technologies within organizations.
 Information and Society (8-10 credits): Students learn to analyze the impacts of information technologies on individuals and society as a whole.
@@ -190,10 +217,12 @@ Information for Informatics majors and non-majors on registering for INFO classe
 Information Systems Analysis & Design (5 cr)
 Instagram
 Intellectual Foundations of Informatics (5 cr)
+Intensive Capstone students use AI to improve rural health care
 Internship Reporting
 Internships for Credit
 Internships for credit, service learning, and independent study / research require approval from the Informatics academic advisor. You can find more information on registering for experiential learning courses here .
 iSchool Intranet
+iSchool Showcase
 iSchools.org
 IT / Help Desk
 Jasper Maynard Zhang : Jasper Maynard Zhang, Informatics: "I am interested in how technology and data science can be used to address causes I care about." Read more.
@@ -205,6 +234,7 @@ Jump to Top Navigation
 Knowledge Base
 Law Librarianship
 LinkedIn
+LIS - Master of Library and Information Science (MLIS) *
 Loading Results... Loading search results, please wait.
 Logo & Brand Guidelines
 Magna Cum Laude is the next 3%
@@ -221,9 +251,11 @@ Minors
 Minors are included as part of your major degree application but you should run a separate minor degree audit when checking on your academic progress. If requirements for the minor are not met, the major degree will not be awarded.
 MLIS
 More info
+More Information
 MSIM
 Museology
 MyUW
+New course offerings, including special topics
 News
 News & Events
 Non-majors are able to enroll in classes in the Informatics major as space is available. There is no restriction on the number of Informatics courses non-majors may take. During Period I and Period 2 registration, students already enrolled in the major have priority in registering for classes. Informatics classes are available to non-majors during Period 3 registration.
@@ -236,6 +268,7 @@ One course in statistics; see the list of accepted courses
 One course in the social sciences (SSc) area of inquiry ; must be another course that is not INFO 200
 Organizations (INFO 38x, 48x course). These courses teach key perspectives on how information is used in organizations such as businesses, communities and governments, ensuring that students’ perspectives go beyond the individual.
 Outlook on the web
+Past Time Schedules
 People
 Ph.D.
 Pick Your Path Through MSIM
@@ -245,9 +278,14 @@ Product and Information Systems Management (5 cr)
 Professional & Cont. Ed.
 Professor&#039;s work helps to advance Indigenous librarianship
 Programs
+Projected Course Schedules
+Projected INFO Schedule
+Projected INFX Schedule
 Qualtrics
+Quarterly Time Schedules
 Read more
 Recent funding for iSchool research projects
+Recent, current and projected schedules for courses in the Informatics major.
 Recruiting Timelines Decoded
 Registering for Informatics classes as a non-major
 Registering for Informatics classes as an Informatics major
@@ -276,14 +314,20 @@ Site Login
 Society (INFO 35x, 45x courses). These courses teach core concepts in data and information ethics, policy, and society, giving students perspectives on how information is used in our society.
 Special Topics & New Courses
 Specialized MLIS for those with a JD
+Sponsor a Project
 Spring
 Standard Grading Scale
 Stay connected with the iSchool and fellow alumni
 Steps to completing your degree
 Steps to Graduate
+Student Info
 Students are strongly encouraged to complete internships, service learning, and independent studies. Internships may take various forms, such as a full-time summer internship or a part-time internship that runs throughout a quarter or school year. Internships may be paid or unpaid. Service learning allows students to use the skills gained through the Informatics program in service of community organizations, particularly in volunteer or unpaid roles. Independent studies are typically research-oriented, and are beneficial for students interested in pursuing careers in research or academia.
+Students make kudos count
 Students may also declare a degree option in either Data Science or Biomedical and Health Informatics to have that phrase added to their transcript. Completing an option requires taking four electives from within that option’s focus area:
+Students present their Capstone projects at the annual iSchool Showcase, which highlights student work from across the Information School. Learn about the 2025 iSchool Showcase.
 Students pursuing double degrees will need a minimum of 225 credits to graduate. Double degree students will submit two applications and receive two diplomas. Individual departments handle graduation application differently, so check with your other department to ensure that you are following their departmental application process.
+Students show real-world impact of Capstone projects
+Students showcase skills and solutions at annual Capstone gala event
 Students take a range of Informatics electives (other upper-division INFO courses). Courses outside of INFO can also count as electives; please reach out to informatics@uw.edu for more information. Students may also complete a degree option in either Data Science or Biomedical and Health Informatics by choosing electives in the Data Science or Health & Well-Being focus areas respectively. Completing either option requires 4 electives:
 Students work with organizations to solve information problems
 Study Abroad
@@ -300,9 +344,11 @@ The Informatics major includes a core that spans the breadth of the curriculum, 
 The iSchool is home to innovators and leaders who make information work
 The latest news from our faculty and research staff
 The latest stories from our community
+The official UW Time Schedule shows course numbers, titles, descriptions, instructors, meeting days and times for each iSchool class.
 The School
 The University of Washington Information School is introducing a new graduate certificate geared toward professionals in organizations that are responding to the opportunities and challenges represented by artificial intelligence. The...
 Three or four months after you graduate your diploma will be sent to the permanent address on record in the MyUW website at the time of graduation. The name on the diploma will appear as it does on the MyUW website. Visit the UW Graduation, Commencement, and Diplomas website for more information.
+Thursday, May 22, 2025
 To earn a Bachelor of Science in Informatics, students must complete the following major requirements (effective Autumn 2023; see previous requirements ):
 To propose an internship, service learning, or independent study in Informatics, you must prepare and present your proposal to the iSchool faculty member who will supervise and evaluate your work. Submit your proposal at least two to three weeks in advance of the quarter in which registration is intended. Please see the links below for more information on the process:
 toolkit
@@ -316,7 +362,9 @@ University of Washington
 University of Washington Information School
 Upcoming Info Sessions
 Updates
+UW academic calendar
 UW Academic Calendar
+UW course evaluation catalog
 UW Diploma
 UW Time Schedule
 Videos: Alumni at Work
@@ -325,9 +373,11 @@ Watermark
 We are committed to building an inclusive community
 Wednesday, April 1, 2026
 Wednesday, April 8, 2026
+Wednesday, May 28, 2025
 What's happening on campus and beyond
 Winter
 Workday
+Working individually or in a defined group, Capstone is student-directed, meaning you take responsibility for identifying and defining a problem to work on, developing the approach and methods needed to address or research the problem, carrying out the investigation, and presenting findings. Learn about the Capstone experience.
 You must attain a GPA of 3.50 in the final grades with minimum 12 graded credits per quarter. Learn more about the dean’s list .
 Youtube
 Zoom / Online

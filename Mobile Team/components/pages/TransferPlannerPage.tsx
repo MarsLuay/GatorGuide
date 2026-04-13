@@ -25,8 +25,6 @@ import { ROUTES } from "@/constants/routes";
 import { StateCard } from "@/components/ui/StateCard";
 import {
   getTransferPlannerPrimaryDegreeRequirementsSource,
-  getTransferPlannerGrcCourseList,
-  getTransferPlannerGrcCourseListGuidance,
   getTransferPlannerEquivalencyRulesForSourceCourse,
   getTransferPlannerStudentRuntimeMajorsForCampus,
   getTransferPlannerStudentRuntimePathwaysForPlan,
@@ -65,6 +63,7 @@ const TRANSCRIPT_UPLOADED_AT_FIELD = "transferPlannerTranscriptUploadedAt";
 const TRANSCRIPT_PARSER_VERSION_FIELD = "transferPlannerTranscriptParserVersion";
 const CURRENT_PLANNED_COURSES_FIELD = "transferPlannerCurrentCoursesByPath";
 const SELECTED_PATHWAY_FIELD = "transferPlannerSelectedPathwayByPlan";
+const LAST_SELECTED_PLAN_FIELD = "transferPlannerLastSelectedPlan";
 const TRANSCRIPT_PARSER_VERSION = 2;
 
 type TranscriptDocument = UploadedFile;
@@ -209,6 +208,20 @@ function normalizePlannerSelectedPathwayMap(rawValue: unknown) {
   }
 
   return normalized;
+}
+
+function normalizePlannerLastSelectedPlan(rawValue: unknown) {
+  if (!rawValue || typeof rawValue !== "object" || Array.isArray(rawValue)) {
+    return null;
+  }
+
+  const rawCampusId = (rawValue as Record<string, unknown>).campusId;
+  const rawMajorId = (rawValue as Record<string, unknown>).majorId;
+  const campusId = String(rawCampusId ?? "").trim();
+  const majorId = String(rawMajorId ?? "").trim();
+  if (!campusId || !majorId) return null;
+
+  return { campusId, majorId };
 }
 
 function getScheduleCampusLabel(campusLabel: string) {
@@ -700,6 +713,7 @@ function SelectorField({
   secondaryTextClass,
   borderClass,
   dropdownBackgroundColor,
+  onTouchStartInside,
 }: {
   label: string;
   value: string;
@@ -717,6 +731,7 @@ function SelectorField({
   secondaryTextClass: string;
   borderClass: string;
   dropdownBackgroundColor: string;
+  onTouchStartInside?: () => void;
 }) {
   const [searchQuery, setSearchQuery] = useState("");
   const searchInputRef = useRef<TextInput | null>(null);
@@ -781,7 +796,11 @@ function SelectorField({
   ]);
 
   return (
-    <View className="relative" style={open ? { zIndex: 30 } : undefined}>
+    <View
+      className="relative"
+      style={open ? { zIndex: 30 } : undefined}
+      onTouchStart={onTouchStartInside}
+    >
       <Text className={`${textClass} text-base font-semibold`}>{label}</Text>
       <Text className={`${secondaryTextClass} text-sm mt-1`}>{helper}</Text>
 
@@ -926,6 +945,7 @@ function TranscriptSummaryCard({
   majorOptions,
   onToggleCampus,
   onToggleMajor,
+  onSelectorTouchStartInside,
   onDismissCampus,
   onDismissMajor,
   onSelectCampus,
@@ -964,6 +984,7 @@ function TranscriptSummaryCard({
   majorOptions: { id: string; label: string; description?: string }[];
   onToggleCampus: () => void;
   onToggleMajor: () => void;
+  onSelectorTouchStartInside: () => void;
   onDismissCampus: () => void;
   onDismissMajor: () => void;
   onSelectCampus: (id: string) => void;
@@ -1046,6 +1067,7 @@ function TranscriptSummaryCard({
                 helper="Set the campus and major you want this Green River plan to match against."
                 open={openSelector === "campus"}
                 onToggle={onToggleCampus}
+                onTouchStartInside={onSelectorTouchStartInside}
                 onDismiss={onDismissCampus}
                 options={campusOptions}
                 onSelect={onSelectCampus}
@@ -1065,6 +1087,7 @@ function TranscriptSummaryCard({
                 helper="Pick the UW bachelor's degree you want the course plan to follow."
                 open={openSelector === "major"}
                 onToggle={onToggleMajor}
+                onTouchStartInside={onSelectorTouchStartInside}
                 onDismiss={onDismissMajor}
                 options={majorOptions}
                 onSelect={onSelectMajor}
@@ -1118,8 +1141,6 @@ function TranscriptSummaryCard({
       <MajorSpecificsSection
         plan={plan}
         selectedPathwayLabel={selectedPathwayLabel}
-        completedCourses={completedCourses}
-        currentCourseLabels={currentCourseLabels}
         textClass={textClass}
         secondaryTextClass={secondaryTextClass}
         borderClass={borderClass}
@@ -1192,6 +1213,7 @@ function TranscriptSummaryCard({
               helper="Set the campus and major you want this Green River plan to match against."
               open={openSelector === "campus"}
               onToggle={onToggleCampus}
+              onTouchStartInside={onSelectorTouchStartInside}
               onDismiss={onDismissCampus}
               options={campusOptions}
               onSelect={onSelectCampus}
@@ -1211,6 +1233,7 @@ function TranscriptSummaryCard({
               helper="Pick the UW bachelor's degree you want the course plan to follow."
               open={openSelector === "major"}
               onToggle={onToggleMajor}
+              onTouchStartInside={onSelectorTouchStartInside}
               onDismiss={onDismissMajor}
               options={majorOptions}
               onSelect={onSelectMajor}
@@ -1264,8 +1287,6 @@ function TranscriptSummaryCard({
       <MajorSpecificsSection
         plan={plan}
         selectedPathwayLabel={selectedPathwayLabel}
-        completedCourses={completedCourses}
-        currentCourseLabels={currentCourseLabels}
         textClass={textClass}
         secondaryTextClass={secondaryTextClass}
         borderClass={borderClass}
@@ -1355,6 +1376,8 @@ function SuggestedScheduleCard({
   onlyUwEssentialClasses,
   showOnlyUwEssentialClassesToggle,
   onToggleOnlyUwEssentialClasses,
+  allowSummerClasses,
+  onToggleAllowSummerClasses,
   currentCourseLabels,
   onToggleCurrentCourse,
   textClass,
@@ -1369,6 +1392,8 @@ function SuggestedScheduleCard({
   onlyUwEssentialClasses: boolean;
   showOnlyUwEssentialClassesToggle: boolean;
   onToggleOnlyUwEssentialClasses: () => void;
+  allowSummerClasses: boolean;
+  onToggleAllowSummerClasses: () => void;
   currentCourseLabels: Set<string>;
   onToggleCurrentCourse: (courseLabel: string) => void;
   textClass: string;
@@ -1387,29 +1412,49 @@ function SuggestedScheduleCard({
         <View className="flex-1 min-w-0">
           <Text className={`${textClass} text-lg font-semibold`}>GRC Quarter Plan</Text>
           <Text className={`${secondaryTextClass} text-sm mt-1`}>
-            {`This is your source-backed plan for finishing the ${degreeTitle} degree at ${getScheduleCampusLabel(campusLabel)}. Unsupported majors, rules, or sequences stay hidden until public sources can verify them.`}
+            {`This is your transfer plan for finishing the ${degreeTitle} degree at ${getScheduleCampusLabel(campusLabel)}. Press the Classes for UW transfer only button to hide optional Green River track classes and focus on UW-required classes plus prerequisite dependencies.`}
           </Text>
         </View>
 
         {showOnlyUwEssentialClassesToggle ? (
-          <Pressable
-            onPress={onToggleOnlyUwEssentialClasses}
-            accessibilityRole="checkbox"
-            accessibilityState={{ checked: onlyUwEssentialClasses }}
-            accessibilityLabel="Only show classes that transfer into UW on this track"
-            accessibilityHint="Hides optional Green River classes that do not count toward the UW track."
-            className={`border ${borderClass} rounded-xl px-3 py-2 flex-row items-center justify-center gap-2`}
-            hitSlop={8}
-          >
-            <Text className={`${secondaryTextClass} text-xs font-medium`}>
-              Classes for UW transfer only
-            </Text>
-            <Ionicons
-              name={onlyUwEssentialClasses ? "checkbox" : "square-outline"}
-              size={20}
-              color={onlyUwEssentialClasses ? "#008f4e" : "#9CA3AF"}
-            />
-          </Pressable>
+          <View className="gap-2">
+            <Pressable
+              onPress={onToggleOnlyUwEssentialClasses}
+              accessibilityRole="checkbox"
+              accessibilityState={{ checked: onlyUwEssentialClasses }}
+              accessibilityLabel="Only show classes that transfer into UW on this track"
+              accessibilityHint="Hides nonessential Green River track classes while keeping prerequisite classes that still unlock UW-required work."
+              className={`border ${borderClass} rounded-xl px-3 py-2 flex-row items-center justify-center gap-2`}
+              hitSlop={8}
+            >
+              <Text className={`${secondaryTextClass} text-xs font-medium`}>
+                Classes for UW transfer only
+              </Text>
+              <Ionicons
+                name={onlyUwEssentialClasses ? "checkbox" : "square-outline"}
+                size={20}
+                color={onlyUwEssentialClasses ? "#008f4e" : "#9CA3AF"}
+              />
+            </Pressable>
+            <Pressable
+              onPress={onToggleAllowSummerClasses}
+              accessibilityRole="checkbox"
+              accessibilityState={{ checked: allowSummerClasses }}
+              accessibilityLabel="Allow summer classes in quarter planning"
+              accessibilityHint="Includes summer quarter when building your future course plan."
+              className={`border ${borderClass} rounded-xl px-3 py-2 flex-row items-center justify-center gap-2`}
+              hitSlop={8}
+            >
+              <Text className={`${secondaryTextClass} text-xs font-medium`}>
+                Allow summer classes
+              </Text>
+              <Ionicons
+                name={allowSummerClasses ? "checkbox" : "square-outline"}
+                size={20}
+                color={allowSummerClasses ? "#008f4e" : "#9CA3AF"}
+              />
+            </Pressable>
+          </View>
         ) : null}
       </View>
 
@@ -1711,6 +1756,12 @@ function TranscriptEvaluationReportCard({
                     </Text>
                   ) : null}
 
+                  {evaluation.automaticGuidanceSummary ? (
+                    <Text className={`${secondaryTextClass} text-xs mt-2`}>
+                      {evaluation.automaticGuidanceSummary}
+                    </Text>
+                  ) : null}
+
                   {requirementCreditMessage ? (
                     <Text className={`${secondaryTextClass} text-xs mt-2`}>
                       {requirementCreditMessage.prefix}
@@ -1756,22 +1807,16 @@ function TranscriptEvaluationReportCard({
 function MajorSpecificsSection({
   plan,
   selectedPathwayLabel,
-  completedCourses,
-  currentCourseLabels,
   textClass,
   secondaryTextClass,
   borderClass,
 }: {
   plan: TransferPlannerResolvedMajorPlan;
   selectedPathwayLabel: string | null;
-  completedCourses: TranscriptCourseEntry[];
-  currentCourseLabels: Set<string>;
   textClass: string;
   secondaryTextClass: string;
   borderClass: string;
 }) {
-  const grcCourseList = getTransferPlannerGrcCourseList(plan);
-  const grcCourseListGuidance = getTransferPlannerGrcCourseListGuidance(plan);
   const degreeMapSections = plan.degreeMapSections ?? [];
   const primaryDegreeSource = getTransferPlannerPrimaryDegreeRequirementsSource(
     plan.id,
@@ -1783,10 +1828,13 @@ function MajorSpecificsSection({
         url: primaryDegreeSource.url,
       }
     : plan.officialLinks[0] ?? null;
-  const completedCourseCodeSet = new Set(completedCourses.map((course) => course.code));
-  const currentCourseCodeSet = new Set(
-    [...currentCourseLabels].flatMap((label) => extractCourseCodes(label))
-  );
+  const majorSpecificsSummaryText = primaryUwDegreeLink
+    ? degreeMapSections.length
+      ? "Open this dropdown for the official UW degree page and degree-specific requirement sections for your selected major."
+      : "Open this dropdown for the official UW degree page for your selected major."
+    : degreeMapSections.length
+      ? "Open this dropdown for degree-specific requirement sections for your selected major."
+      : "Open this dropdown for major details as they become available.";
   const [isReferenceOpen, setIsReferenceOpen] = useState(false);
 
   return (
@@ -1802,7 +1850,7 @@ function MajorSpecificsSection({
               Major Specifics
             </Text>
             <Text className={`${secondaryTextClass} text-sm mt-1`}>
-              Open this dropdown for the source-backed Green River class list and UW degree sources tied to your selected major.
+              {majorSpecificsSummaryText}
             </Text>
           </View>
           <Ionicons
@@ -1832,65 +1880,6 @@ function MajorSpecificsSection({
                   {primaryUwDegreeLink.url}
                 </Text>
               </AnimatedCardPressable>
-            </View>
-          ) : null}
-
-          {grcCourseList.length || grcCourseListGuidance ? (
-            <View className="mt-5 gap-4">
-              <Text className={`${textClass} text-base font-semibold`}>Green River classes</Text>
-              <Text className={`${secondaryTextClass} text-sm`}>
-                {grcCourseList.length
-                  ? selectedPathwayLabel
-                    ? `This is the explicit Green River course list currently attached to the ${selectedPathwayLabel} route for this major.`
-                    : "This is the explicit Green River course list currently attached to this UW major."
-                  : "This major does not use one fixed universal Green River course list. Follow the custom planning guidance below instead of treating the empty list like missing data."}
-              </Text>
-              {grcCourseList.length ? (
-                <View className={`border ${borderClass} rounded-2xl px-4 py-4`}>
-                  <View className="flex-row flex-wrap gap-2">
-                    {grcCourseList.map((course) => {
-                      const courseCodes = extractCourseCodes(course);
-                      const isCompleted = courseCodes.some((code) => completedCourseCodeSet.has(code));
-                      const isCurrent =
-                        !isCompleted && courseCodes.some((code) => currentCourseCodeSet.has(code));
-
-                      return (
-                        <View
-                          key={`${plan.id}-${course}`}
-                          className={`px-3 py-2 rounded-full border ${
-                            isCompleted
-                              ? "bg-emerald-500/10 border-emerald-500/20"
-                              : isCurrent
-                                ? "bg-sky-500/10 border-sky-500/20"
-                                : "bg-white/5 border-white/10"
-                          }`}
-                        >
-                          <Text
-                            className={`text-xs font-semibold ${
-                              isCompleted
-                                ? "text-emerald-500"
-                                : isCurrent
-                                  ? "text-sky-400"
-                                  : textClass
-                            }`}
-                          >
-                            {course}
-                          </Text>
-                        </View>
-                      );
-                    })}
-                  </View>
-                </View>
-              ) : (
-                <View className={`border ${borderClass} rounded-2xl px-4 py-4`}>
-                  <Text className={`${textClass} font-semibold`}>
-                    Custom Green River planning guidance
-                  </Text>
-                  <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                    {grcCourseListGuidance}
-                  </Text>
-                </View>
-              )}
             </View>
           ) : null}
 
@@ -1936,7 +1925,7 @@ export default function TransferPlannerPage() {
   const { t } = useTranslation();
   const styles = useThemeStyles();
   const { width } = useWindowDimensions();
-  const { state, updateUser, setQuestionnaireAnswers } = useAppData();
+  const { isHydrated, state, updateUser, setQuestionnaireAnswers } = useAppData();
   const { getScrollContentPadding } = useResponsiveLayout();
 
   const [selectedCampusId, setSelectedCampusId] =
@@ -1949,8 +1938,11 @@ export default function TransferPlannerPage() {
   const [isAnalyzingTranscript, setIsAnalyzingTranscript] = useState(false);
   const [transcriptError, setTranscriptError] = useState<string | null>(null);
   const [onlyUwEssentialClasses, setOnlyUwEssentialClasses] = useState(false);
+  const [allowSummerClasses, setAllowSummerClasses] = useState(false);
 
   const transcriptAnalysisAttemptsRef = useRef<Set<string>>(new Set());
+  const selectorWasOpenOnTouchStartRef = useRef(false);
+  const selectorTouchStartedInsideRef = useRef(false);
 
   const { textClass, secondaryTextClass, cardBgClass, borderClass, dropdownSurfaceColor } = styles;
   const isDesktop = width >= 1180;
@@ -2018,6 +2010,10 @@ export default function TransferPlannerPage() {
       ),
     [state.questionnaireAnswers]
   );
+  const storedLastSelectedPlan = useMemo(
+    () => normalizePlannerLastSelectedPlan(state.questionnaireAnswers?.[LAST_SELECTED_PLAN_FIELD]),
+    [state.questionnaireAnswers]
+  );
   const pathwayOptions = useMemo(
     () => getTransferPlannerStudentRuntimePathwaysForPlan(selectedBasePlan),
     [selectedBasePlan]
@@ -2061,6 +2057,7 @@ export default function TransferPlannerPage() {
     ? `${transcriptSourceKey}|v${TRANSCRIPT_PARSER_VERSION}`
     : "";
   const autoMajorSelectionRef = useRef(false);
+  const hydratedLastSelectionRef = useRef(false);
   const returnTo = useMemo(() => {
     const raw = Array.isArray(params.returnTo) ? params.returnTo[0] : params.returnTo;
     const normalized = String(raw ?? "").trim();
@@ -2091,6 +2088,26 @@ export default function TransferPlannerPage() {
   }, [returnTo, router]);
 
   useEffect(() => {
+    if (!isHydrated || hydratedLastSelectionRef.current) return;
+
+    hydratedLastSelectionRef.current = true;
+    if (!storedLastSelectedPlan) return;
+
+    const matchedCampus = TRANSFER_PLANNER_CAMPUSES.find(
+      (entry) => entry.id === storedLastSelectedPlan.campusId
+    );
+    if (!matchedCampus) return;
+
+    const nextMajors = getTransferPlannerStudentRuntimeMajorsForCampus(matchedCampus.id);
+    const matchedMajor = nextMajors.find((entry) => entry.id === storedLastSelectedPlan.majorId);
+    if (!matchedMajor) return;
+
+    autoMajorSelectionRef.current = true;
+    setSelectedCampusId(matchedCampus.id);
+    setSelectedMajorId(matchedMajor.id);
+  }, [isHydrated, storedLastSelectedPlan]);
+
+  useEffect(() => {
     const nextFirstMajorId = campusMajors[0]?.id ?? "";
     if (!campusMajors.some((entry) => entry.id === selectedMajorId)) {
       setSelectedMajorId(nextFirstMajorId);
@@ -2112,6 +2129,29 @@ export default function TransferPlannerPage() {
     autoMajorSelectionRef.current = true;
     setSelectedMajorId(matchedMajor.id);
   }, [campusMajors, user?.major]);
+
+  useEffect(() => {
+    if (!isHydrated || !selectedMajorId) return;
+
+    const currentCampusId = String(storedLastSelectedPlan?.campusId ?? "").trim();
+    const currentMajorId = String(storedLastSelectedPlan?.majorId ?? "").trim();
+    if (currentCampusId === selectedCampusId && currentMajorId === selectedMajorId) return;
+
+    void setQuestionnaireAnswers({
+      ...state.questionnaireAnswers,
+      [LAST_SELECTED_PLAN_FIELD]: {
+        campusId: selectedCampusId,
+        majorId: selectedMajorId,
+      },
+    });
+  }, [
+    isHydrated,
+    selectedCampusId,
+    selectedMajorId,
+    setQuestionnaireAnswers,
+    state.questionnaireAnswers,
+    storedLastSelectedPlan,
+  ]);
 
   useEffect(() => {
     let active = true;
@@ -2375,6 +2415,7 @@ export default function TransferPlannerPage() {
   const hasOptionalStayAtGrcChecklist = plan?.stayAtGrcChecklist.length
     ? plan.stayAtGrcChecklist.some((item) => item.grcCourses.length > 0)
     : false;
+  const shouldShowUwOnlyToggle = Boolean(track) || hasOptionalStayAtGrcChecklist;
   const suggestedQuarterPlan = useMemo(
     () =>
       buildSuggestedQuarterPlan({
@@ -2386,12 +2427,14 @@ export default function TransferPlannerPage() {
         currentCourseLabels: currentPlannedCourseLabels,
         track,
         includeStayAtGrcCourses: !onlyUwEssentialClasses,
+        includeSummerQuarter: allowSummerClasses,
       }),
     [
       applicationStatuses,
       beforeEnrollmentStatuses,
       completedCourses,
       currentPlannedCourseLabels,
+      allowSummerClasses,
       onlyUwEssentialClasses,
       plan,
       stayAtGrcStatuses,
@@ -2555,7 +2598,22 @@ export default function TransferPlannerPage() {
           }}
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="always"
-          scrollEnabled={openSelector === null}
+          onTouchStart={() => {
+            selectorWasOpenOnTouchStartRef.current = openSelector !== null;
+            selectorTouchStartedInsideRef.current = false;
+          }}
+          onTouchEnd={() => {
+            if (
+              selectorWasOpenOnTouchStartRef.current &&
+              !selectorTouchStartedInsideRef.current
+            ) {
+              setOpenSelector(null);
+            }
+            selectorWasOpenOnTouchStartRef.current = false;
+            selectorTouchStartedInsideRef.current = false;
+          }}
+          onScrollBeginDrag={() => setOpenSelector(null)}
+          scrollEnabled
         >
         <View
           style={{
@@ -2593,7 +2651,7 @@ export default function TransferPlannerPage() {
                   {"GRC -> UW Course Planner"}
                 </Text>
                 <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                  Upload your unofficial transcript, pick a UW campus and major, and the planner will show which Green River classes already count, which ones still matter before transfer, and how much of the Green River associate path is actually used by the UW bachelor&apos;s.
+                  Classes for Green River College are cheaper/easier than the University of Washington. This tool matches you with a transfer track most compatible with the major you want while letting you take advantage of this fact by giving you every course you can possibly take here required for your major.
                 </Text>
               </View>
             </View>
@@ -2628,6 +2686,9 @@ export default function TransferPlannerPage() {
             onToggleMajor={() =>
               setOpenSelector((current) => (current === "major" ? null : "major"))
             }
+            onSelectorTouchStartInside={() => {
+              selectorTouchStartedInsideRef.current = true;
+            }}
             onDismissCampus={() =>
               setOpenSelector((current) => (current === "campus" ? null : current))
             }
@@ -2696,9 +2757,13 @@ export default function TransferPlannerPage() {
                 campusLabel={campus.title}
                 selectedCampusId={plan.campusId}
                 onlyUwEssentialClasses={onlyUwEssentialClasses}
-                showOnlyUwEssentialClassesToggle={hasOptionalStayAtGrcChecklist}
+                showOnlyUwEssentialClassesToggle={shouldShowUwOnlyToggle}
                 onToggleOnlyUwEssentialClasses={() =>
                   setOnlyUwEssentialClasses((current) => !current)
+                }
+                allowSummerClasses={allowSummerClasses}
+                onToggleAllowSummerClasses={() =>
+                  setAllowSummerClasses((current) => !current)
                 }
                 currentCourseLabels={currentPlannedCourseSet}
                 onToggleCurrentCourse={handleToggleCurrentCourse}
@@ -2710,20 +2775,6 @@ export default function TransferPlannerPage() {
             </>
           ) : null}
 
-          {openSelector !== null ? (
-            <Pressable
-              onPress={() => setOpenSelector(null)}
-              style={{
-                position: "absolute",
-                top: 0,
-                right: 0,
-                bottom: 0,
-                left: 0,
-                zIndex: 40,
-                backgroundColor: "rgba(15, 23, 42, 0.02)",
-              }}
-            />
-          ) : null}
         </View>
       </ScrollView>
     </ScreenBackground>

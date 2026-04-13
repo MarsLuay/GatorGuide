@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-04-10T20:18:30.155Z",
-  "totalOwners": 244,
+  "generatedAt": "2026-04-13T03:55:44.423Z",
+  "totalOwners": 251,
   "ownersWithErrorsCount": 0,
   "ownersWithWarningsCount": 1,
-  "ownersWithSourceOnlyUwCourseCodesCount": 242,
-  "totalSourceOnlyUwCourseCodes": 10891,
+  "ownersWithSourceOnlyUwCourseCodesCount": 249,
+  "totalSourceOnlyUwCourseCodes": 11273,
   "issueCounts": {
     "error": 0,
     "warning": 1
@@ -1031,14 +1031,74 @@
       "issues": []
     },
     {
-      "ownerId": "uw-seattle-biology:pathway:bs-option-family",
-      "ownerKey": "uw-seattle-biology::bs-option-family",
+      "ownerId": "uw-seattle-biology:pathway:bs-option-family:ecology-evolution-and-conservation",
+      "ownerKey": "uw-seattle-biology::bs-option-family:ecology-evolution-and-conservation",
       "planId": "uw-seattle-biology",
-      "pathwayId": "bs-option-family",
-      "title": "Biology - B.S. option family",
+      "pathwayId": "bs-option-family:ecology-evolution-and-conservation",
+      "title": "Biology - B.S. Ecology, Evolution, and Conservation option",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
       "sourceOnlyUwCourseCodeCount": 38,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-biology:pathway:bs-option-family:general-biology",
+      "ownerKey": "uw-seattle-biology::bs-option-family:general-biology",
+      "planId": "uw-seattle-biology",
+      "pathwayId": "bs-option-family:general-biology",
+      "title": "Biology - B.S. General Biology option",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
+      "sourceOnlyUwCourseCodeCount": 38,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-biology:pathway:bs-option-family:molecular-cellular-and-developmental-biology",
+      "ownerKey": "uw-seattle-biology::bs-option-family:molecular-cellular-and-developmental-biology",
+      "planId": "uw-seattle-biology",
+      "pathwayId": "bs-option-family:molecular-cellular-and-developmental-biology",
+      "title": "Biology - B.S. Molecular, Cellular, and Developmental Biology option",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
+      "sourceOnlyUwCourseCodeCount": 45,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-biology:pathway:bs-option-family:physiology",
+      "ownerKey": "uw-seattle-biology::bs-option-family:physiology",
+      "planId": "uw-seattle-biology",
+      "pathwayId": "bs-option-family:physiology",
+      "title": "Biology - B.S. Physiology option",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
+      "sourceOnlyUwCourseCodeCount": 45,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-biology:pathway:bs-option-family:plant-biology",
+      "ownerKey": "uw-seattle-biology::bs-option-family:plant-biology",
+      "planId": "uw-seattle-biology",
+      "pathwayId": "bs-option-family:plant-biology",
+      "title": "Biology - B.S. Plant Biology option",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
+      "sourceOnlyUwCourseCodeCount": 45,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1128,7 +1188,7 @@
       "title": "Chemistry - B.S. route",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://chem.washington.edu/bs-chemistry",
-      "sourceOnlyUwCourseCodeCount": 94,
+      "sourceOnlyUwCourseCodeCount": 98,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1466,14 +1526,59 @@
       "issues": []
     },
     {
-      "ownerId": "uw-seattle-earth-and-space-sciences:pathway:bs-option-family",
-      "ownerKey": "uw-seattle-earth-and-space-sciences::bs-option-family",
+      "ownerId": "uw-seattle-earth-and-space-sciences:pathway:bs-option-family:biology",
+      "ownerKey": "uw-seattle-earth-and-space-sciences::bs-option-family:biology",
       "planId": "uw-seattle-earth-and-space-sciences",
-      "pathwayId": "bs-option-family",
-      "title": "Earth & Space Sciences - B.S. option family",
+      "pathwayId": "bs-option-family:biology",
+      "title": "Earth & Space Sciences - B.S. Biology option",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html",
       "sourceOnlyUwCourseCodeCount": 63,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-earth-and-space-sciences:pathway:bs-option-family:geology",
+      "ownerKey": "uw-seattle-earth-and-space-sciences::bs-option-family:geology",
+      "planId": "uw-seattle-earth-and-space-sciences",
+      "pathwayId": "bs-option-family:geology",
+      "title": "Earth & Space Sciences - B.S. Geology option",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html",
+      "sourceOnlyUwCourseCodeCount": 60,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-earth-and-space-sciences:pathway:bs-option-family:geoscience",
+      "ownerKey": "uw-seattle-earth-and-space-sciences::bs-option-family:geoscience",
+      "planId": "uw-seattle-earth-and-space-sciences",
+      "pathwayId": "bs-option-family:geoscience",
+      "title": "Earth & Space Sciences - B.S. Geoscience option",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html",
+      "sourceOnlyUwCourseCodeCount": 60,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-earth-and-space-sciences:pathway:bs-option-family:physics",
+      "ownerKey": "uw-seattle-earth-and-space-sciences::bs-option-family:physics",
+      "planId": "uw-seattle-earth-and-space-sciences",
+      "pathwayId": "bs-option-family:physics",
+      "title": "Earth & Space Sciences - B.S. Physics option",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html",
+      "sourceOnlyUwCourseCodeCount": 60,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2238,7 +2343,7 @@
       "title": "Music, B.A.",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://music.washington.edu/bachelor-arts-music-instrumental-option",
-      "sourceOnlyUwCourseCodeCount": 31,
+      "sourceOnlyUwCourseCodeCount": 15,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2268,7 +2373,7 @@
       "title": "Music Education, B.M.",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://music.washington.edu/bachelor-music-music-education-instrumental-emphasis",
-      "sourceOnlyUwCourseCodeCount": 61,
+      "sourceOnlyUwCourseCodeCount": 57,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2298,7 +2403,7 @@
       "title": "Norwegian",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://scandinavian.washington.edu/ba-norwegian",
-      "sourceOnlyUwCourseCodeCount": 4,
+      "sourceOnlyUwCourseCodeCount": 16,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2373,7 +2478,7 @@
       "title": "Percussion Performance, B.M.",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://music.washington.edu/bachelor-music-percussion-performance",
-      "sourceOnlyUwCourseCodeCount": 57,
+      "sourceOnlyUwCourseCodeCount": 61,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2403,7 +2508,22 @@
       "title": "Physics",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://phys.washington.edu/physics-bs-degree-requirements",
-      "sourceOnlyUwCourseCodeCount": 20,
+      "sourceOnlyUwCourseCodeCount": 43,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-piano-b-m",
+      "ownerKey": "uw-seattle-piano-b-m::",
+      "planId": "uw-seattle-piano-b-m",
+      "pathwayId": null,
+      "title": "Piano, B.M.",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": "https://music.washington.edu/bachelor-music-piano",
+      "sourceOnlyUwCourseCodeCount": 93,
       "issueCounts": {
         "error": 0,
         "warning": 1
@@ -2418,21 +2538,6 @@
       ]
     },
     {
-      "ownerId": "uw-seattle-piano-b-m",
-      "ownerKey": "uw-seattle-piano-b-m::",
-      "planId": "uw-seattle-piano-b-m",
-      "pathwayId": null,
-      "title": "Piano, B.M.",
-      "campusId": "uw-seattle",
-      "primarySourceUrl": "https://music.washington.edu/bachelor-music-piano",
-      "sourceOnlyUwCourseCodeCount": 90,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "issues": []
-    },
-    {
       "ownerId": "uw-seattle-political-science",
       "ownerKey": "uw-seattle-political-science::",
       "planId": "uw-seattle-political-science",
@@ -2440,7 +2545,7 @@
       "title": "Political Science",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.polisci.washington.edu/political-science-major-declaration-and-requirements",
-      "sourceOnlyUwCourseCodeCount": 11,
+      "sourceOnlyUwCourseCodeCount": 14,
       "issueCounts": {
         "error": 0,
         "warning": 0

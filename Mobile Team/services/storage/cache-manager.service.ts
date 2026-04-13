@@ -1,4 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as FileSystem from "expo-file-system";
+
+import { LOCAL_DOCUMENTS_DIR_NAME } from "@/constants/schema";
 
 const CACHE_AUTO_CLEAR_ENABLED_KEY = "settings:cache:autoClear30d";
 const CACHE_LAST_CLEARED_AT_KEY = "settings:cache:lastClearedAt";
@@ -18,6 +21,64 @@ const CACHE_KEY_EXACT = new Set([
 ]);
 
 class CacheManagerService {
+  private isGuestDocumentStorageKey(key: string) {
+    return (
+      key.startsWith("transcript:guest-") ||
+      key.startsWith("resume:guest-") ||
+      key.startsWith("avatar:guest-") ||
+      key.startsWith("roadmap:guest-")
+    );
+  }
+
+  private async clearGuestLocalDocumentDirectories(): Promise<number> {
+    const baseDir =
+      (FileSystem as any).documentDirectory ??
+      (FileSystem as any).cacheDirectory ??
+      "";
+    if (!baseDir) {
+      return 0;
+    }
+
+    const docsRoot = `${baseDir}${LOCAL_DOCUMENTS_DIR_NAME}/`;
+
+    let childEntries: string[] = [];
+    try {
+      childEntries = await FileSystem.readDirectoryAsync(docsRoot);
+    } catch {
+      return 0;
+    }
+
+    const guestDirectories = childEntries.filter((entry) => /_guest-/i.test(String(entry)));
+    let removedCount = 0;
+
+    for (const directory of guestDirectories) {
+      const targetPath = `${docsRoot}${directory}`;
+      try {
+        await FileSystem.deleteAsync(targetPath, { idempotent: true });
+        removedCount += 1;
+      } catch {
+        // Ignore individual cleanup failures so cache clear can continue.
+      }
+    }
+
+    return removedCount;
+  }
+
+  async clearGuestDocumentCaches(): Promise<{ clearedCount: number }> {
+    const keys = await AsyncStorage.getAllKeys();
+    const guestDocumentKeys = keys.filter((key) => this.isGuestDocumentStorageKey(key));
+
+    if (guestDocumentKeys.length) {
+      await AsyncStorage.multiRemove(guestDocumentKeys);
+    }
+
+    const removedGuestDirs = await this.clearGuestLocalDocumentDirectories();
+
+    return {
+      clearedCount: guestDocumentKeys.length + removedGuestDirs,
+    };
+  }
+
   async getAutoClearEnabled(): Promise<boolean> {
     try {
       const raw = await AsyncStorage.getItem(CACHE_AUTO_CLEAR_ENABLED_KEY);
@@ -43,8 +104,10 @@ class CacheManagerService {
       await AsyncStorage.multiRemove(targetKeys);
     }
 
+    const { clearedCount: guestDocumentClearedCount } = await this.clearGuestDocumentCaches();
+
     await AsyncStorage.setItem(CACHE_LAST_CLEARED_AT_KEY, String(Date.now()));
-    return { clearedCount: targetKeys.length };
+    return { clearedCount: targetKeys.length + guestDocumentClearedCount };
   }
 
   async runAutoClearMaintenance(): Promise<{ ran: boolean; clearedCount: number }> {

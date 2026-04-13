@@ -6,8 +6,10 @@ Title: Major | Department of History | University of Washington
 -10 credits of composition or writing with a 2.00 in each course.
 -2.00 UW GPA.
 -Enrolled, registered, and attending classes at the University of Washington during the current quarter.
+[Supplemental official source] elective History coursework
 [Supplemental official source] History Endorsement
 [Supplemental official source] History Thematic Majors
+[Supplemental official source] Social Studies Endorsement
 &copy; 2026 University of Washington . All rights reserved.
 10 credits of approved courses in the Modern period.
 10 credits of approved courses in the Pre-Modern period.
@@ -20,11 +22,17 @@ Administrative Forms & Resources
 Admissions
 Advising
 Advisory Board
+All History courses: HSTRY or HSTAA , HSTAM , HSTAS , HSTEU, HSTLAC, HSTAFM, HSTCMP
+All HSTAA courses
+All HSTAM courses
 Alumni
 Alumni News
 Alumni Update
+Any course listed jointly with the Department of History.
 Applying to Graduate
 Approved Courses
+Approved Courses for the History Major
+Approved Elective Courses for the Major
 Areas of Study
 Asian History (all HSTAS courses)
 Assessments
@@ -32,11 +40,14 @@ Books
 Canvas Basics
 Career Preparation
 Center for the Study of the Pacific Northwest
+Civics: 10 credits/2 courses
 College of Arts & Sciences
 College to Career
 Comparative and Transregional Global History (all HSTCMP courses)
 Contact Us
 Courses
+Courses Meeting the Junior Seminar Requirement
+Courses Meeting the Senior Seminar Requirement
 Current Lecture Series
 Declaring the History Major
 Degree Requirements
@@ -51,6 +62,7 @@ Discussions
 Dissertations
 Diversity
 Diversity Statement
+Economics: 10 credits/2 courses
 European History (all HSTAM and HSTEU courses)
 Events Calendar
 Facebook
@@ -60,6 +72,7 @@ Featured Courses
 Fields of Interest
 Full Directory
 Funding
+Geography: 5 credits/1 course
 Graduate
 Graduate Student Resources
 Graduate Students
@@ -78,9 +91,24 @@ History of Race, Gender, and Power
 History of Religion and Society
 History of War and Society
 History Writing Center
+History: 35 credits/7 courses
 History: 50 credits/10 courses
 Home
 Honors
+HSTAFM 151; 161; 162; 261; 361; 370; 461; 462
+HSTAFM 152; 163; 253; 263; 268; 278; 314; 451; 452; 463; 465
+HSTAS 201; 202; 211; 212; 241; 348; 401; 402; 406; 422; 431; 441; 451; 452; 453; 457; 462; 465; 481
+HSTAS 221; 235; 244; 254; 265; 303; 317; 327; 330; 364; 403; 404; 408; 423, 424; 432; 440; 454; 459; 463; 482; 484
+HSTCMP 121; 166; 202; 204; 205; 211; 212; 215; 217; 220; 221; 247; 248; 249; 251; 259; 265; 269; 270; 281; 283; 284; 292; 309; 312; 313; 314; 315; 340; 345; 346; 358; 367; 369; 381; 402; 407; 408; 410 412; 425; 446; 449; 466; 467; 469; 483; 485
+HSTCMP 207; 210; 250; 321; 368; HSTEU 240; 250; HSTAFM 288
+HSTCMP 209; 225; 245; 260; 310; 311; 320
+HSTEU 113; 210; 211; 219; 220; 234; 245; 251; 252; 273; 274; 276; 302; 303; 323; 334; 364; 368, 370; 376; 378; 381; 406; 407; 411; 412; 413; 414; 415; 422; 431; 432; 433; 435; 439; 440; 444; 445; 451; 452; 453; 454; 462; 465; 474; 475; 477; 480; 482; 484
+HSTEU 140; 275; 301; 304; 305; 361; 380; 401; 402; 405; 421; 464; 470; 471; 472; 481
+HSTLAC 185; 280; 282; 285; 289; 323; 325; 384; 386; 481; 482; 488
+HSTLAC 283; 385
+HSTRY 192; 199; 200; 221; 222; 294; 388; 395; 398; 390; 399; 491; 492; 493; 494; 495; 496; 497; 498; 499
+HSTRY 388
+HSTRY 494; 498
 If you have questions about these requirements, please contact the History Undergraduate Advising Office .
 In Memoriam
 In order for a course to count toward these prerequisite requirements, a grade of 2.5 or its equivalent must be recorded.
@@ -100,14 +128,17 @@ Maps
 Menu
 Middle Eastern & African History (all HSTAFM courses and HSTAM 325)
 Minor
+Modern Courses
 More ways to connect
 MyUW
+Neither Modern nor Pre-Modern
 News & Events
 Newsletter
 On this page:
 One 5-credit HSTRY 388: Introduction to History (Junior Seminar) completed at the University of Washington.
 One 5-credit HSTRY 494: Historiography OR HSTRY 498: Colloquium in History (Senior Seminar) completed at the University of Washington in which a major research paper or its equivalent will be written.
 One course (approx. 5 credits) in Historical Methodologies
+One course (approx. 5 credits) in Historical Methodologies/Research
 One course (approx. 5 credits) in Historical Research
 One course (approx. 5 credits) in History of Colonial America and the Founding of the U.S.
 One course (approx. 5 credits) in History of the Ancient World
@@ -115,6 +146,11 @@ One course (approx. 5 credits) in History of the Early Modern & Modern World
 One course (approx. 5 credits) in History of the Medieval World through 1450
 One course (approx. 5 credits) in History of the United States in the Long Twentieth Century
 One course (approx. 5 credits) in History of Washington State and the Pacific Northwest
+One course (approx. 5 credits) in Human Geography
+One course (approx. 5 credits) in Institutions and Politics in American Government
+One course (approx. 5 credits) in International Relations, Politics or Globalization
+One course (approx. 5 credits) in Macroeconomics
+One course (approx. 5 credits) in Microeconomics
 Online Teaching
 Other History Videos
 Overview
@@ -123,6 +159,7 @@ People
 Ph.D. Degree
 Phone: (206) 543-5790
 Please note: Undergraduates at the University of Washington who began their endorsement prerequisite coursework prior to Winter 2018 may use the "old" (pre-2018) guidelines instead of these. This policy is in recognition of work they may have already done according to old guidelines; no other candidates may use old endorsement guidelines.
+Pre-Modern Courses
 Prerequisites for the History Major
 Privacy
 Program Details
@@ -141,6 +178,8 @@ Share
 Site Map
 Skip to main content
 Social Studies Endorsement
+Social Studies Endorsement Requirements
+Social Studies Endorsement Requirements | Department of History | University of Washington
 Staff
 Stay Connected
 Student Resources
@@ -154,11 +193,13 @@ Teacher Education Program
 Technology
 Terms
 The choice of remaining elective History coursework (to reach a total of 60 credits) is entirely at the student's discretion. This coursework varies, however, depending on whether you have chosen to declare one of the History Thematic Majors . For the Thematic Majors, students must choose 25 elective credits from the approved course lists available by clicking here . Remaining elective credit to reach 60 total History credits is at the student's discretion.
+The following is a list of coursework required as prerequisites for the UW Seattle Master in Teaching Secondary Teacher Education Program candidates who wish to earn a social studies endorsement upon completion of the MIT. Social studies pedagogy will be covered in the College of Education programming. For more information, or to arrange a transcript review in advance of your application deadline, please visit Department of History Advising . Transcripts, course descriptions and syllabi may all be required for a complete transcript review. The transcript evaluation process can take some time, so please email unofficial transcripts and other course information to histadv@uw.edu no later than two weeks before the application deadline.
 The following is a list of coursework required as prerequisites for UW Seattle Master in Teaching Secondary Teacher Education Program candidates who wish to earn a history endorsement upon completion of the MIT. History pedagogy will be covered in the College of Education programming. For more information, or to arrange a transcript review in advance of your application deadline, please visit Department of History Advising . Transcripts, course descriptions and syllabi may all be required for a complete transcript review. The transcript evaluation process can take some time, so please email unofficial transcripts and other course information to histadv@uw.edu no later than two weeks before the application deadline.
 The Historical Review
 The history department faculty has determined which of our courses fulfill the above requirements. Click here to see the Approved Course lists .
 The junior seminar must be completed before the senior seminar may be taken; concurrent enrollment is not permitted.
 Thematic Degree Options
+Thematic major elective courses (25 out of the 30 total elective credits required for completion of the major).
 Thematic Major Options
 Thematic Major Options | Department of History | University of Washington
 This course must be completed before a student may take the senior seminar; concurrent enrollment is not permitted. Students should take at least two upper division history courses before they take their HSTRY 388.

@@ -59,6 +59,9 @@ const COURSE_CODE_LEADING_STOPWORDS = new Set([
   "TWO",
   "WITH",
 ]);
+const LEGACY_GRC_CODE_ALIASES = new Map([
+  ["MATH& 254", "MATH& 264"],
+]);
 
 function decodeHtmlEntities(value) {
   return String(value ?? "").replace(/&(?:amp|apos|nbsp|quot|#39|#160|#8211|#8212|#8217);/gi, (match) => {
@@ -79,9 +82,10 @@ function stripHtml(value) {
 }
 
 function normalizeCourseCode(value) {
-  return normalizeWhitespace(value)
+  const normalized = normalizeWhitespace(value)
     .toUpperCase()
     .replace(/\s+/g, " ");
+  return LEGACY_GRC_CODE_ALIASES.get(normalized) ?? normalized;
 }
 
 function sortCourseCodes(values) {
@@ -380,6 +384,50 @@ function materializeParsedRequirementFields(prerequisitePaths, corequisitePaths)
       result.prerequisiteAlternativeCourseCodeSets.length > 0 ||
       result.corequisiteCourseCodes.length > 0 ||
       result.corequisiteAlternativeCourseCodeSets.length > 0,
+  };
+}
+
+function extractStructuredRequirementPaths(courseCodes, alternativeCourseCodeSets) {
+  const directPath = normalizeCoursePath(courseCodes);
+  return uniqueCoursePaths([
+    ...(directPath.length ? [directPath] : []),
+    ...(alternativeCourseCodeSets ?? []),
+  ]);
+}
+
+function materializeStructuredRequirementPaths(paths) {
+  const normalizedPaths = uniqueCoursePaths(paths);
+  if (normalizedPaths.length === 1) {
+    return {
+      courseCodes: [...normalizedPaths[0]],
+      alternativeCourseCodeSets: [],
+    };
+  }
+
+  return {
+    courseCodes: [],
+    alternativeCourseCodeSets: normalizedPaths.map((path) => [...path]),
+  };
+}
+
+function mergeStructuredRequirementFields(existing, incoming, prefix) {
+  const courseCodesKey = `${prefix}CourseCodes`;
+  const alternativeCourseCodeSetsKey = `${prefix}AlternativeCourseCodeSets`;
+  const mergedPaths = uniqueCoursePaths([
+    ...extractStructuredRequirementPaths(
+      existing?.[courseCodesKey],
+      existing?.[alternativeCourseCodeSetsKey]
+    ),
+    ...extractStructuredRequirementPaths(
+      incoming?.[courseCodesKey],
+      incoming?.[alternativeCourseCodeSetsKey]
+    ),
+  ]);
+  const materialized = materializeStructuredRequirementPaths(mergedPaths);
+
+  return {
+    [courseCodesKey]: materialized.courseCodes,
+    [alternativeCourseCodeSetsKey]: materialized.alternativeCourseCodeSets,
   };
 }
 
@@ -921,20 +969,22 @@ function mergeCourseEntries(entries) {
   for (const entry of entries) {
     const key = `${entry.schoolId}|${entry.code}`;
     const existing = byCode.get(key);
+    const normalizedPrerequisiteFields = mergeStructuredRequirementFields(
+      {},
+      entry,
+      "prerequisite"
+    );
+    const normalizedCorequisiteFields = mergeStructuredRequirementFields(
+      {},
+      entry,
+      "corequisite"
+    );
     if (!existing) {
       byCode.set(key, {
         ...entry,
-        prerequisiteCourseCodes: [...(entry.prerequisiteCourseCodes ?? [])],
-        prerequisiteAlternativeCourseCodeSets: mergeAlternativeCourseCodeSets(
-          [],
-          entry.prerequisiteAlternativeCourseCodeSets
-        ),
+        ...normalizedPrerequisiteFields,
         prerequisiteNotes: [...(entry.prerequisiteNotes ?? [])],
-        corequisiteCourseCodes: [...(entry.corequisiteCourseCodes ?? [])],
-        corequisiteAlternativeCourseCodeSets: mergeAlternativeCourseCodeSets(
-          [],
-          entry.corequisiteAlternativeCourseCodeSets
-        ),
+        ...normalizedCorequisiteFields,
         corequisiteNotes: [...(entry.corequisiteNotes ?? [])],
         effectiveYearRanges: [...(entry.effectiveYearRanges ?? [])],
         sourceLinks: [...(entry.sourceLinks ?? [])],
@@ -942,6 +992,17 @@ function mergeCourseEntries(entries) {
       });
       continue;
     }
+
+    const mergedPrerequisiteFields = mergeStructuredRequirementFields(
+      existing,
+      entry,
+      "prerequisite"
+    );
+    const mergedCorequisiteFields = mergeStructuredRequirementFields(
+      existing,
+      entry,
+      "corequisite"
+    );
 
     byCode.set(key, {
       ...existing,
@@ -952,26 +1013,12 @@ function mergeCourseEntries(entries) {
           : existing.creditValue ?? null,
       creditLabel: entry.creditLabel ?? existing.creditLabel ?? null,
       catalogDescription: entry.catalogDescription ?? existing.catalogDescription ?? null,
-      prerequisiteCourseCodes: uniqueStrings([
-        ...(existing.prerequisiteCourseCodes ?? []),
-        ...(entry.prerequisiteCourseCodes ?? []),
-      ]),
-      prerequisiteAlternativeCourseCodeSets: mergeAlternativeCourseCodeSets(
-        existing.prerequisiteAlternativeCourseCodeSets,
-        entry.prerequisiteAlternativeCourseCodeSets
-      ),
+      ...mergedPrerequisiteFields,
       prerequisiteNotes: uniqueStrings([
         ...(existing.prerequisiteNotes ?? []),
         ...(entry.prerequisiteNotes ?? []),
       ]),
-      corequisiteCourseCodes: uniqueStrings([
-        ...(existing.corequisiteCourseCodes ?? []),
-        ...(entry.corequisiteCourseCodes ?? []),
-      ]),
-      corequisiteAlternativeCourseCodeSets: mergeAlternativeCourseCodeSets(
-        existing.corequisiteAlternativeCourseCodeSets,
-        entry.corequisiteAlternativeCourseCodeSets
-      ),
+      ...mergedCorequisiteFields,
       corequisiteNotes: uniqueStrings([
         ...(existing.corequisiteNotes ?? []),
         ...(entry.corequisiteNotes ?? []),

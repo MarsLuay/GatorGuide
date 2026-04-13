@@ -156,8 +156,12 @@ function decodeHtmlEntities(value) {
 }
 
 function normalizeCourseCode(value) {
-  return normalizeWhitespace(String(value ?? "").toUpperCase());
+  const normalized = normalizeWhitespace(String(value ?? "").toUpperCase());
+  return LEGACY_GRC_CODE_ALIASES.get(normalized) ?? normalized;
 }
+const LEGACY_GRC_CODE_ALIASES = new Map([
+  ["MATH& 254", "MATH& 264"],
+]);
 
 function normalizeCourseTitle(value) {
   return normalizeWhitespace(

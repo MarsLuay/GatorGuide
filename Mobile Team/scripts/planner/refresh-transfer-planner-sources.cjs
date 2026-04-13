@@ -12,6 +12,36 @@ function hasArg(flag) {
   return process.argv.slice(2).includes(flag);
 }
 
+function formatDuration(milliseconds) {
+  const totalSeconds = Math.max(0, Math.round(milliseconds / 1000));
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return `${minutes}m ${seconds}s`;
+}
+
+function summarizeList(values, limit = 8) {
+  if (!values.length) {
+    return "none";
+  }
+  return values.slice(0, limit).join(", ");
+}
+
+function printRefreshSummary(summary) {
+  const executedStepLabels = summary.steps.map((step) => step.label);
+  const skippedStepLabels = summary.skippedSteps.map((step) => step.label);
+
+  console.log("");
+  console.log("Refresh summary:");
+  console.log(`- Mode: ${summary.mode}`);
+  console.log(`- Steps executed: ${summary.steps.length}; skipped: ${summary.skippedSteps.length}`);
+  console.log(
+    `- Schedule downloads: downloaded ${summary.downloads.downloaded}; reused ${summary.downloads.reused}; fallback-used ${summary.downloads.fallbackUsed}`
+  );
+  console.log(`- Duration: ${formatDuration(summary.finishedAt - summary.startedAt)}`);
+  console.log(`  Executed steps (sample): ${summarizeList(executedStepLabels)}`);
+  console.log(`  Skipped steps (sample): ${summarizeList(skippedStepLabels)}`);
+}
+
 function runStep(label, callback) {
   console.log("");
   console.log(`== ${label} ==`);
@@ -111,11 +141,18 @@ async function downloadFileWithRetry(url, outputPath, attempts = 3) {
 }
 
 async function refreshScheduleDownloads(scheduleDownloads, forceRefresh) {
+  const stats = {
+    downloaded: 0,
+    reused: 0,
+    fallbackUsed: 0,
+  };
+
   fs.mkdirSync(TMP_DIR, { recursive: true });
 
   for (const download of scheduleDownloads) {
     if (!forceRefresh && fs.existsSync(download.outputPath)) {
       console.log(`Keeping existing ${download.label}: ${download.outputPath}`);
+      stats.reused += 1;
       continue;
     }
 
@@ -123,17 +160,21 @@ async function refreshScheduleDownloads(scheduleDownloads, forceRefresh) {
     try {
       await downloadFileWithRetry(download.url, download.outputPath);
       console.log(`Saved ${download.outputPath}`);
+      stats.downloaded += 1;
     } catch (error) {
       if (fs.existsSync(download.outputPath)) {
         console.log(
           `Download failed for ${download.label}; keeping existing cached file ${download.outputPath}.`
         );
         console.log(`Download error: ${error.message}`);
+        stats.fallbackUsed += 1;
         continue;
       }
       throw error;
     }
   }
+
+  return stats;
 }
 
 async function main() {
@@ -145,25 +186,57 @@ async function main() {
   const skipDownloads = hasArg("--skip-downloads");
   const skipVerify = hasArg("--skip-verify");
   const forceRefreshDownloads = hasArg("--refresh-downloads");
+  const summary = {
+    mode: verifyOnly ? "verify-only" : "full-refresh",
+    startedAt: Date.now(),
+    finishedAt: Date.now(),
+    steps: [],
+    skippedSteps: [],
+    downloads: {
+      downloaded: 0,
+      reused: 0,
+      fallbackUsed: 0,
+    },
+  };
+
+  const runTrackedStep = (label, callback) => {
+    runStep(label, callback);
+    summary.steps.push({ label });
+  };
+
+  const runTrackedAsyncStep = async (label, callback) => {
+    const result = await runAsyncStep(label, callback);
+    summary.steps.push({ label });
+    return result;
+  };
+
+  const markSkipped = (label, reason) => {
+    summary.skippedSteps.push({ label, reason });
+  };
 
   console.log("Starting transfer planner refresh pipeline...");
 
   if (verifyOnly) {
     runVerification();
+    summary.steps.push({ label: "Audit transfer planner owners" });
+    summary.steps.push({ label: "Run TypeScript typecheck" });
+    summary.steps.push({ label: "Run transfer planner tests" });
+    summary.finishedAt = Date.now();
+    printRefreshSummary(summary);
     console.log("Transfer planner verification complete.");
     return;
   }
 
-  const grcPublicMaterials = await runAsyncStep("Discover Green River public materials", () =>
+  const grcPublicMaterials = await runTrackedAsyncStep("Discover Green River public materials", () =>
     loadGrcPublicMaterials({
       forceRefresh: true,
       allowSnapshotFallback: true,
     })
   );
-  runStep("Check source year coverage", () =>
+  runTrackedStep("Check source year coverage", () =>
     runCommand("node", ["scripts/planner/check-transfer-planner-source-year-coverage.cjs"])
   );
-  runStep("Generate Green River associate tracks", () =>
+  runTrackedStep("Generate Green River associate tracks", () =>
     runCommand("node", ["scripts/planner/generate-transfer-planner-grc-associate-tracks.cjs"])
   );
   const scheduleDownloads = grcPublicMaterials.annualSchedules.map((entry) => ({
@@ -173,74 +246,93 @@ async function main() {
   }));
 
   if (!skipSourceCheck) {
-    runStep("Check official source links", () =>
+    runTrackedStep("Check official source links", () =>
       runCommand("node", ["scripts/planner/check-transfer-planner-sources.cjs"])
     );
+  } else {
+    markSkipped("Check official source links", "--skip-source-check");
   }
 
   if (!skipPrimaryPromotion) {
-    runStep("Discover and promote primary official sources", () =>
+    runTrackedStep("Discover and promote primary official sources", () =>
       runCommand("node", [
         "scripts/planner/promote-transfer-planner-primary-sources.cjs",
         "--discover-first",
       ])
     );
-    runStep("Build primary-source automation queue", () =>
+    runTrackedStep("Build primary-source automation queue", () =>
       runCommand("node", ["scripts/planner/build-transfer-planner-primary-source-review-queue.cjs"])
     );
-    runStep("Classify hidden source gaps", () =>
+    runTrackedStep("Classify hidden source gaps", () =>
       runCommand("node", ["scripts/planner/build-transfer-planner-source-gap-report.cjs"])
     );
+  } else {
+    markSkipped("Discover and promote primary official sources", "--skip-primary-promotion");
+    markSkipped("Build primary-source automation queue", "--skip-primary-promotion");
+    markSkipped("Classify hidden source gaps", "--skip-primary-promotion");
   }
 
   if (!skipRequirementParse) {
-    runStep("Parse UW major requirement sources", () =>
+    runTrackedStep("Parse UW major requirement sources", () =>
       runCommand("node", ["scripts/planner/parse-transfer-planner-requirement-sources.cjs"])
     );
+  } else {
+    markSkipped("Parse UW major requirement sources", "--skip-requirement-parse");
   }
 
   if (!skipRequirementPromotion) {
-    runStep("Promote source-backed requirement diffs", () =>
+    runTrackedStep("Promote source-backed requirement diffs", () =>
       runCommand("node", ["scripts/planner/promote-transfer-planner-requirement-diffs.cjs"])
     );
+  } else {
+    markSkipped("Promote source-backed requirement diffs", "--skip-requirement-promotion");
   }
 
-  runStep("Build source and parsed-fact fingerprints", () =>
+  runTrackedStep("Build source and parsed-fact fingerprints", () =>
     runCommand("node", ["scripts/planner/build-transfer-planner-source-fingerprints.cjs"])
   );
 
   if (!skipDownloads) {
-    await runAsyncStep("Snapshot Green River annual schedules", () =>
+    summary.downloads = await runTrackedAsyncStep("Snapshot Green River annual schedules", () =>
       refreshScheduleDownloads(scheduleDownloads, forceRefreshDownloads)
     );
+  } else {
+    markSkipped("Snapshot Green River annual schedules", "--skip-downloads");
   }
 
-  runStep("Generate source bootstrap", () =>
+  runTrackedStep("Generate source bootstrap", () =>
     runCommand("node", ["scripts/planner/generate-transfer-planner-source-bootstrap.cjs"])
   );
-  runStep("Parse UW Green River equivalency guide", () =>
+  runTrackedStep("Parse UW Green River equivalency guide", () =>
     runCommand("node", ["scripts/planner/parse-transfer-planner-equivalency-guide.cjs"])
   );
-  runStep("Ingest Green River course catalog", () =>
+  runTrackedStep("Ingest Green River course catalog", () =>
     runCommand("node", ["scripts/planner/ingest-grc-catalog.cjs"])
   );
-  runStep("Ingest UW course catalogs", () =>
+  runTrackedStep("Ingest UW course catalogs", () =>
     runCommand("node", ["scripts/planner/ingest-uw-catalog.cjs"])
   );
-  runStep("Generate merged course metadata", () =>
+  runTrackedStep("Generate merged course metadata", () =>
     runCommand("node", ["scripts/planner/generate-transfer-planner-course-metadata.cjs"])
   );
-  runStep("Generate Green River availability registry", () =>
+  runTrackedStep("Generate Green River availability registry", () =>
     runCommand("node", ["scripts/planner/generate-transfer-planner-grc-availability.cjs"])
   );
-  runStep("Generate planner docs", () =>
+  runTrackedStep("Generate planner docs", () =>
     runTsNode("scripts/planner/generate-transfer-planner-docs.ts")
   );
 
   if (!skipVerify) {
     runVerification();
+    summary.steps.push({ label: "Audit transfer planner owners" });
+    summary.steps.push({ label: "Run TypeScript typecheck" });
+    summary.steps.push({ label: "Run transfer planner tests" });
+  } else {
+    markSkipped("Refresh verification suite", "--skip-verify");
   }
 
+  summary.finishedAt = Date.now();
+  printRefreshSummary(summary);
   console.log("Transfer planner refresh pipeline complete.");
 }
 

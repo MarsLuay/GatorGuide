@@ -403,6 +403,7 @@ export type TransferPlannerStudentCourseEvaluation = {
   sourceCourseSet: string[];
   missingSourceCourseCodes: string[];
   effectiveTermLabel: string | null;
+  automaticGuidanceSummary: string | null;
   warnings: string[];
   notes: string[];
   sourceLinks: TransferPlannerSourceLink[];

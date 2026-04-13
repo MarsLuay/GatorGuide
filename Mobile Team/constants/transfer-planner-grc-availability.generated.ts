@@ -24,6 +24,243 @@ export type TransferPlannerGrcCourseAvailabilityEntry = {
 };
 
 export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
+  "ACCT 110": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "ACCT 111": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter",
+      "spring"
+    ]
+  },
+  "ACCT 113": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "spring"
+    ]
+  },
+  "ACCT 212": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "spring"
+    ]
+  },
+  "ACCT 215": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter"
+    ]
+  },
+  "ACCT 218": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "spring"
+    ]
+  },
+  "ACCT 221": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter"
+    ]
+  },
+  "ACCT 260": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "spring"
+    ]
+  },
   "ACCT& 201": {
     status: "published-in-latest-schedule",
     years: [
@@ -176,6 +413,71 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "AMES 103": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "AMES 105": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "spring"
+    ]
+  },
   "AMES 150": {
     status: "catalog-listed-not-in-latest-schedules",
     years: [
@@ -230,6 +532,73 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
+  "AMES 214": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "AMES 230": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ANTH 108": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter"
+    ]
+  },
   "ANTH 194": {
     status: "catalog-listed-not-in-latest-schedules",
     years: [
@@ -265,6 +634,28 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       }
     ],
     latestPublishedQuarters: []
+  },
+  "ANTH 220": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "spring"
+    ]
   },
   "ANTH 273": {
     status: "catalog-listed-not-in-latest-schedules",
@@ -375,6 +766,24 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter",
       "spring"
     ]
+  },
+  "ANTH& 106": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "ANTH& 204": {
     status: "published-in-latest-schedule",
@@ -725,6 +1134,111 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: [
       "summer",
+      "spring"
+    ]
+  },
+  "ARAB 121": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "ARAB 122": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "ARAB 123": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
       "spring"
     ]
   },
@@ -1144,6 +1658,28 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
+  "ART 123": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter"
+    ]
+  },
   "ART 130": {
     status: "published-in-latest-schedule",
     years: [
@@ -1214,8 +1750,116 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "summer"
     ]
   },
+  "ART 139": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer"
+    ]
+  },
+  "ART 140": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter"
+    ]
+  },
   "ART 150": {
-    status: "planner-course-no-current-public-source",
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ART 177": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ART 178": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ART 179": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -1374,6 +2018,59 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ART 219": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ART 240": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "ART 241": {
     status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
@@ -1873,6 +2570,1382 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter"
     ]
   },
+  "ATECH 110": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "ATECH 111": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "ATECH 112": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "ATECH 113": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "ATECH 114": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "ATECH 115": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "ATECH 116": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "ATECH 117": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "ATECH 118": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "ATECH 119": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "ATECH 150": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "ATECH 151": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "ATECH 152": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "ATECH 153": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "ATECH 154": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "ATECH 177": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "AVIA 103": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "AVIA 107": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "AVIA 110": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "AVIA 111": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "AVIA 112": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "AVIA 123": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "AVIA 160": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "AVIA 177": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "AVIA 190": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "AVIA 210": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "AVIA 211": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "AVIA 212": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "AVIA 216": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "AVIA 217": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "AVIA 218": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "spring"
+    ]
+  },
+  "AVIA 267": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "winter",
+      "spring"
+    ]
+  },
+  "AVIA 270": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "AVIA 275": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "AVIA 276": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter"
+    ]
+  },
+  "AVIA 281": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall"
+    ]
+  },
+  "AVIA 282": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter"
+    ]
+  },
+  "AVIA 286": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "spring"
+    ]
+  },
   "BIOL 103": {
     status: "published-in-latest-schedule",
     years: [
@@ -2124,6 +4197,81 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "BIOL& 160": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "BIOL& 175": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
   "BIOL& 211": {
     status: "published-in-latest-schedule",
     years: [
@@ -2317,6 +4465,1827 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "BTAC 100": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "BTAC 101": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "BTAC 102": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "BTAC 103": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter"
+    ]
+  },
+  "BTAC 107": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "BTAC 108": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BTAC 109": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "spring"
+    ]
+  },
+  "BTAC 110": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "BTAC 111": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "BTAC 112": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "spring"
+    ]
+  },
+  "BTAC 115": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BTAC 118": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BTAC 125": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "BTAC 126": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "spring"
+    ]
+  },
+  "BTAC 127": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "winter"
+    ]
+  },
+  "BTAC 130": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "spring"
+    ]
+  },
+  "BTAC 132": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "winter",
+      "spring"
+    ]
+  },
+  "BTAC 140": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BTAC 142": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall"
+    ]
+  },
+  "BTAC 145": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall"
+    ]
+  },
+  "BTAC 146": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter"
+    ]
+  },
+  "BTAC 147": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BTAC 148": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BTAC 149": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BTAC 150": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "winter"
+    ]
+  },
+  "BTAC 151": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "BTAC 152": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "BTAC 153": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "BTAC 154": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BTAC 155": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BTAC 162": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "BTAC 163": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "BTAC 164": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BTAC 165": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BTAC 166": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BTAC 167": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BTAC 175": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "BTAC 177": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "BTAC 178": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "BTAC 179": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter",
+      "spring"
+    ]
+  },
+  "BTAC 180": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "spring"
+    ]
+  },
+  "BTAC 184": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer"
+    ]
+  },
+  "BTAC 185": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter"
+    ]
+  },
+  "BTAC 187": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BTAC 188": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BTAC 189": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BTAC 191": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "BTAC 192": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "BTAC 193": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "BTAC 194": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BTAC 195": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BTAC 214": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall"
+    ]
+  },
+  "BTAC 216": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "BTAC 217": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter"
+    ]
+  },
+  "BTAC 220": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall"
+    ]
+  },
+  "BTAC 235": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter"
+    ]
+  },
+  "BTAC 245": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "spring"
+    ]
+  },
+  "BTAC 248": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall"
+    ]
+  },
+  "BTAC 250": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "spring"
+    ]
+  },
+  "BTAC 255": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "spring"
+    ]
+  },
+  "BTAC 257": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter"
+    ]
+  },
+  "BTAC 258": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "spring"
+    ]
+  },
+  "BTAC 266": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter"
+    ]
+  },
+  "BUS 103": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter"
+    ]
+  },
   "BUS 121": {
     status: "published-in-latest-schedule",
     years: [
@@ -2352,6 +6321,263 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "summer",
       "fall",
       "winter",
+      "spring"
+    ]
+  },
+  "BUS 159": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "winter",
+      "spring"
+    ]
+  },
+  "BUS 164": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "BUS 166": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "BUS 173": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "BUS 181": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "BUS 202": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "BUS 257": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
       "spring"
     ]
   },
@@ -2469,6 +6695,301 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "CARP 113": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall"
+    ]
+  },
+  "CARP 114": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter"
+    ]
+  },
+  "CARP 115": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "spring"
+    ]
+  },
+  "CARP 161": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall"
+    ]
+  },
+  "CARP 162": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "CARP 163": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CARP 164": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "CARP 167": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter"
+    ]
+  },
+  "CARP 168": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "spring"
+    ]
+  },
+  "CARP 171": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
   "CHEM 194": {
     status: "catalog-listed-not-in-latest-schedules",
     years: [
@@ -2524,6 +7045,24 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: []
   },
   "CHEM 299": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CHEM& 110": {
     status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
@@ -2871,6 +7410,24 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
+  "CHIN 146": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "CHIN& 121": {
     status: "catalog-listed-not-in-latest-schedules",
     years: [
@@ -2924,6 +7481,44 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       }
     ],
     latestPublishedQuarters: []
+  },
+  "CJ 115": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
   },
   "CJ 200": {
     status: "published-in-latest-schedule",
@@ -3159,6 +7754,36 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter"
     ]
   },
+  "CJ& 106": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter",
+      "spring"
+    ]
+  },
   "CJ& 110": {
     status: "published-in-latest-schedule",
     years: [
@@ -3189,6 +7814,35 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "CJ& 112": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter",
+      "spring"
+    ]
+  },
   "CJ& 240": {
     status: "published-in-latest-schedule",
     years: [
@@ -3201,6 +7855,118 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "CMST 105": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "CMST 106": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "CMST 117": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
           "winter",
           "spring"
         ]
@@ -3268,6 +8034,59 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "fall"
     ]
   },
+  "CMST 213": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "CMST 214": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "CMST 215": {
     status: "published-in-latest-schedule",
     years: [
@@ -3299,7 +8118,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CMST 238": {
-    status: "planner-course-no-current-public-source",
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -3416,6 +8235,44 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       }
     ],
     latestPublishedQuarters: []
+  },
+  "CMST& 101": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
   },
   "CMST& 102": {
     status: "published-in-latest-schedule",
@@ -3569,6 +8426,804 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "CMST& 240": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "COOP 171": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "spring"
+    ]
+  },
+  "CRC 101": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CRC 102": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CRC 103": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CRC 111": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CRC 112": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CRC 121": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CRC 122": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CRC 131": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CRC 132": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CRC 133": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CRC 141": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CRC 142": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CRC 143": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CRC 144": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CRC 150": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CRC 151": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CRC 211": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CRC 212": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CRC 213": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CRC 214": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CRC 221": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CRC 222": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CRC 223": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CRC 224": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CRC 250": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CRC 251": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CRC 260": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "CRJ 215": {
     status: "planner-course-no-current-public-source",
     years: [
@@ -3587,8 +9242,81 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
+  "CS 108": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "CS 109": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
   "CS 120": {
-    status: "legacy-track-only-no-current-public-source",
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -3741,7 +9469,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CS 145": {
-    status: "planner-course-no-current-public-source",
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -3817,7 +9545,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "CS& 141": {
-    status: "planner-course-no-current-public-source",
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -4101,6 +9829,32 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "fall",
       "winter",
       "spring"
+    ]
+  },
+  "DRMA 103": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter"
     ]
   },
   "DRMA 111": {
@@ -4387,6 +10141,55 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "DRMA 157": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DRMA 158": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter",
+      "spring"
+    ]
+  },
   "DRMA 211": {
     status: "published-in-latest-schedule",
     years: [
@@ -4546,6 +10349,79 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "ECED 112": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall"
+    ]
+  },
+  "ECED 141": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall"
+    ]
+  },
+  "ECED 142": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter"
+    ]
+  },
   "ECED 152": {
     status: "catalog-listed-not-in-latest-schedules",
     years: [
@@ -4641,6 +10517,67 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "fall"
     ]
   },
+  "ECED 214": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "spring"
+    ]
+  },
+  "ECED 215": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter"
+    ]
+  },
   "ECED 220": {
     status: "catalog-listed-not-in-latest-schedules",
     years: [
@@ -4658,6 +10595,34 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       }
     ],
     latestPublishedQuarters: []
+  },
+  "ECED 250": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "spring"
+    ]
   },
   "ECED& 105": {
     status: "published-in-latest-schedule",
@@ -4692,6 +10657,82 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: [
       "summer",
       "fall",
+      "spring"
+    ]
+  },
+  "ECED& 107": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "ECED& 120": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
       "spring"
     ]
   },
@@ -5102,6 +11143,34 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
+  "EDUC 210": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "spring"
+    ]
+  },
   "EDUC 240": {
     status: "published-in-recent-history-not-latest",
     years: [
@@ -5348,6 +11417,53 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "EDUC& 240": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "spring"
+    ]
+  },
+  "ENGL 099": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "ENGL 103": {
     status: "planner-course-no-current-public-source",
     years: [
@@ -5365,6 +11481,41 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       }
     ],
     latestPublishedQuarters: []
+  },
+  "ENGL 105": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter",
+      "spring"
+    ]
   },
   "ENGL 109": {
     status: "published-in-latest-schedule",
@@ -5623,6 +11774,32 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: [
       "spring"
+    ]
+  },
+  "ENGL 162": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter"
     ]
   },
   "ENGL 163": {
@@ -6012,6 +12189,81 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter"
     ]
   },
+  "ENGL 250": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter",
+      "spring"
+    ]
+  },
+  "ENGL 251": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "spring"
+    ]
+  },
+  "ENGL 252": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "ENGL 257": {
     status: "planner-course-no-current-public-source",
     years: [
@@ -6029,6 +12281,34 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       }
     ],
     latestPublishedQuarters: []
+  },
+  "ENGL 264": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter"
+    ]
   },
   "ENGL 299": {
     status: "planner-course-no-current-public-source",
@@ -6275,6 +12555,44 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
+  "ENGL& 235": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
   "ENGL& 236": {
     status: "published-in-latest-schedule",
     years: [
@@ -6517,7 +12835,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "ENGR 120": {
-    status: "legacy-track-only-no-current-public-source",
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -6600,6 +12918,40 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       }
     ],
     latestPublishedQuarters: []
+  },
+  "ENGR 271": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "spring"
+    ]
   },
   "ENGR& 104": {
     status: "published-in-latest-schedule",
@@ -6812,6 +13164,44 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "FILM 101": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
   "FILM 120": {
     status: "published-in-latest-schedule",
     years: [
@@ -6911,6 +13301,104 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: [
       "winter"
+    ]
+  },
+  "FILM 151": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "FILM 162": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter"
+    ]
+  },
+  "FILM 191": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "FRCH 193": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "spring"
     ]
   },
   "FRCH& 121": {
@@ -7038,6 +13526,44 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: [
       "winter"
     ]
+  },
+  "FRCH& 222": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "FRCH& 223": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "FREN 203": {
     status: "planner-course-no-current-public-source",
@@ -7312,6 +13838,42 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "GEOL 106": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
   "GEOL 150": {
     status: "catalog-listed-not-in-latest-schedules",
     years: [
@@ -7508,6 +14070,26 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
+  "GERM 128": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "GERM 201": {
     status: "planner-course-no-current-public-source",
     years: [
@@ -7633,6 +14215,60 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: [
       "spring"
     ]
+  },
+  "GERM& 221": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "GERM& 222": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "GERM& 223": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "GIS 100": {
     status: "planner-course-no-current-public-source",
@@ -7985,7 +14621,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: []
   },
   "HIST 232": {
-    status: "planner-course-no-current-public-source",
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -8119,7 +14755,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "HIST 245": {
-    status: "planner-course-no-current-public-source",
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -8155,7 +14791,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: []
   },
   "HIST 299": {
-    status: "planner-course-no-current-public-source",
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -8171,6 +14807,101 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       }
     ],
     latestPublishedQuarters: []
+  },
+  "HIST& 126": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "HIST& 127": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter"
+    ]
+  },
+  "HIST& 128": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter",
+      "spring"
+    ]
   },
   "HIST& 136": {
     status: "published-in-latest-schedule",
@@ -8302,6 +15033,33 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "HIST& 220": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall"
+    ]
+  },
   "HUMAN 100": {
     status: "planner-course-no-current-public-source",
     years: [
@@ -8375,7 +15133,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ]
   },
   "HUMAN 142": {
-    status: "planner-course-no-current-public-source",
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -8392,8 +15150,32 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
+  "HUMAN 160": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "HUMAN 186": {
-    status: "planner-course-no-current-public-source",
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -8411,7 +15193,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: []
   },
   "HUMAN 190": {
-    status: "planner-course-no-current-public-source",
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -8429,7 +15211,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: []
   },
   "HUMAN 191": {
-    status: "planner-course-no-current-public-source",
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -8447,7 +15229,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: []
   },
   "HUMAN 194": {
-    status: "planner-course-no-current-public-source",
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -8465,7 +15247,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: []
   },
   "HUMAN 224": {
-    status: "planner-course-no-current-public-source",
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -8535,6 +15317,648 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       }
     ],
     latestPublishedQuarters: []
+  },
+  "INDUS 101": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "INDUS 108": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer"
+    ]
+  },
+  "INDUS 111": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "INFO 110": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "IT 102": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "IT 114": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "IT 131": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "IT 135": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "IT 160": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "IT 190": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter",
+      "spring"
+    ]
+  },
+  "IT 201": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "IT 210": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "IT 214": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "IT 224": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "IT 244": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "IT 245": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "IT 295": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "JAPN 142": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall"
+    ]
   },
   "JAPN& 121": {
     status: "published-in-latest-schedule",
@@ -8612,6 +16036,89 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         label: "2024-2025",
         quarters: [
           "summer",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "spring"
+    ]
+  },
+  "JAPN& 221": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall"
+    ]
+  },
+  "JAPN& 222": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter"
+    ]
+  },
+  "JAPN& 223": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
           "spring"
         ]
       },
@@ -8785,6 +16292,40 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "JOURN 108": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
   "JOURN 110": {
     status: "planner-course-no-current-public-source",
     years: [
@@ -8839,6 +16380,54 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
+  "JOURN 115": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "JOURN 116": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "JOURN 120": {
     status: "planner-course-no-current-public-source",
     years: [
@@ -8885,6 +16474,64 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "JOURN 125": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "JOURN 140": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter",
+          "spring"
+        ]
       },
       {
         label: "2026-2027",
@@ -8982,6 +16629,74 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       }
     ],
     latestPublishedQuarters: []
+  },
+  "JOURN 157": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "JOURN 165": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
   },
   "JOURN 198": {
     status: "catalog-listed-not-in-latest-schedules",
@@ -9163,6 +16878,154 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
+  "LAS 190": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter"
+    ]
+  },
+  "LAS 191": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "LAS 193": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "LAS 195": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "LAS 200": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "LAS 201": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer"
+    ]
+  },
   "LATIN 101": {
     status: "planner-course-no-current-public-source",
     years: [
@@ -9218,7 +17081,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: []
   },
   "MATH 097": {
-    status: "planner-course-no-current-public-source",
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -9236,6 +17099,82 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: []
   },
   "MATH 106": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MATH 108": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter",
+      "spring"
+    ]
+  },
+  "MATH 109": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "MATH 126": {
     status: "planner-course-no-current-public-source",
     years: [
       {
@@ -9473,6 +17412,50 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "summer",
       "fall",
       "winter",
+      "spring"
+    ]
+  },
+  "MATH& 131": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter"
+    ]
+  },
+  "MATH& 132": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
       "spring"
     ]
   },
@@ -9801,7 +17784,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: []
   },
   "MATH& 173": {
-    status: "planner-course-no-current-public-source",
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -9818,8 +17801,36 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
-  "MATH& 254": {
-    status: "published-in-recent-history-not-latest",
+  "MATH& 264": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "MFG 101": {
+    status: "published-in-latest-schedule",
     years: [
       {
         label: "2024-2025",
@@ -9841,10 +17852,579 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       },
       {
         label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "MFG 102": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "MFG 103": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "MFG 104": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "MFG 105": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "MFG 106": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "MFG 107": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter",
+      "spring"
+    ]
+  },
+  "MFG 108": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter",
+      "spring"
+    ]
+  },
+  "MFG 109": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter",
+      "spring"
+    ]
+  },
+  "MFG 115": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
         quarters: []
       }
     ],
     latestPublishedQuarters: []
+  },
+  "MFG 162": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter",
+      "spring"
+    ]
+  },
+  "MTX 100": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "MTX 110": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "MTX 120": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "MTX 130": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "MTX 140": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "MTX 150": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
   },
   "MUSC 101": {
     status: "published-in-latest-schedule",
@@ -9870,6 +18450,44 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: [
       "summer"
+    ]
+  },
+  "MUSC 102": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
     ]
   },
   "MUSC 103": {
@@ -10361,6 +18979,108 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
+  "MUSC 137": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "MUSC 138": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "MUSC 139": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
   "MUSC 140": {
     status: "published-in-latest-schedule",
     years: [
@@ -10466,6 +19186,42 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "MUSC 150": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MUSC 151": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "MUSC 152": {
     status: "catalog-listed-not-in-latest-schedules",
     years: [
@@ -10483,6 +19239,35 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       }
     ],
     latestPublishedQuarters: []
+  },
+  "MUSC 170": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "spring"
+    ]
   },
   "MUSC 218": {
     status: "published-in-recent-history-not-latest",
@@ -10584,6 +19369,75 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "MUSC 228": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "MUSC 229": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
   "MUSC 230.1": {
     status: "planner-course-no-current-public-source",
     years: [
@@ -10622,6 +19476,60 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
   },
   "MUSC 230.3": {
     status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MUSC 250": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MUSC 251": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MUSC 252": {
+    status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
         label: "2024-2025",
@@ -11008,6 +19916,37 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "fall"
     ]
   },
+  "NATRS 114": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter",
+      "spring"
+    ]
+  },
   "NATRS 117": {
     status: "planner-course-no-current-public-source",
     years: [
@@ -11018,6 +19957,46 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "NATRS 123": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "NATRS 130": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
       },
       {
         label: "2026-2027",
@@ -11221,6 +20200,32 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "NATRS 192": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter"
+    ]
+  },
   "NATRS 198": {
     status: "catalog-listed-not-in-latest-schedules",
     years: [
@@ -11257,6 +20262,32 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
+  "NATRS 205": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall"
+    ]
+  },
   "NATRS 210": {
     status: "published-in-latest-schedule",
     years: [
@@ -11270,6 +20301,58 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         label: "2025-2026",
         quarters: [
           "summer",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "spring"
+    ]
+  },
+  "NATRS 262": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "spring"
+    ]
+  },
+  "NATRS 263": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
           "spring"
         ]
       },
@@ -11331,6 +20414,184 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       }
     ],
     latestPublishedQuarters: [
+      "spring"
+    ]
+  },
+  "NATRS 272": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall"
+    ]
+  },
+  "NATRS 277": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "NATRS 278": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "NATRS 279": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "NATRS 280": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
       "spring"
     ]
   },
@@ -11407,6 +20668,32 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "summer",
       "winter",
       "spring"
+    ]
+  },
+  "NATRS 290": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall"
     ]
   },
   "NATRS 292": {
@@ -11779,6 +21066,1030 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
+  "OTA 100": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall"
+    ]
+  },
+  "OTA 101": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall"
+    ]
+  },
+  "OTA 102": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall"
+    ]
+  },
+  "OTA 103": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall"
+    ]
+  },
+  "OTA 111": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall"
+    ]
+  },
+  "OTA 112": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall"
+    ]
+  },
+  "OTA 120": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter"
+    ]
+  },
+  "OTA 121": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter"
+    ]
+  },
+  "OTA 122": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter"
+    ]
+  },
+  "OTA 123": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "winter"
+    ]
+  },
+  "OTA 124": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter"
+    ]
+  },
+  "OTA 126": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "spring"
+    ]
+  },
+  "OTA 127": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "spring"
+    ]
+  },
+  "OTA 128": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "spring"
+    ]
+  },
+  "OTA 130": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "spring"
+    ]
+  },
+  "OTA 131": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "spring"
+    ]
+  },
+  "OTA 132": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "spring"
+    ]
+  },
+  "OTA 133": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "spring"
+    ]
+  },
+  "OTA 134": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "spring"
+    ]
+  },
+  "OTA 200": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall"
+    ]
+  },
+  "OTA 201": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall"
+    ]
+  },
+  "OTA 202": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall"
+    ]
+  },
+  "OTA 210": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall"
+    ]
+  },
+  "OTA 211": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall"
+    ]
+  },
+  "OTA 212": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall"
+    ]
+  },
+  "OTA 213": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall"
+    ]
+  },
+  "OTA 220": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "winter"
+    ]
+  },
+  "OTA 221": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "winter"
+    ]
+  },
+  "OTA 222": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter"
+    ]
+  },
+  "OTA 223": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter"
+    ]
+  },
+  "OTA 224": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter"
+    ]
+  },
+  "OTA 225": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter"
+    ]
+  },
+  "OTA 228": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter"
+    ]
+  },
+  "OTA 240": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter",
+      "spring"
+    ]
+  },
+  "OTA 241": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "spring"
+    ]
+  },
+  "OTA 245": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter",
+      "spring"
+    ]
+  },
+  "OTA 246": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "spring"
+    ]
+  },
   "PHIL 102": {
     status: "published-in-latest-schedule",
     years: [
@@ -11865,6 +22176,24 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
+  "PHIL 108": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "PHIL 110": {
     status: "published-in-latest-schedule",
     years: [
@@ -11889,6 +22218,30 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: [
       "fall",
       "spring"
+    ]
+  },
+  "PHIL 111": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer"
     ]
   },
   "PHIL 112": {
@@ -12093,6 +22446,34 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
+  "PHIL 216": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter"
+    ]
+  },
   "PHIL 220": {
     status: "published-in-recent-history-not-latest",
     years: [
@@ -12217,6 +22598,24 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "fall"
     ]
   },
+  "PHIL 244": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "PHIL 299": {
     status: "planner-course-no-current-public-source",
     years: [
@@ -12236,6 +22635,44 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: []
   },
   "PHIL& 101": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "PHIL& 115": {
     status: "published-in-latest-schedule",
     years: [
       {
@@ -12506,6 +22943,24 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter",
       "spring"
     ]
+  },
+  "PHOTO 197": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "PHYS 225": {
     status: "catalog-listed-not-in-latest-schedules",
@@ -12831,6 +23286,463 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "PNURSE 102": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "PNURSE 103": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "PNURSE 104": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "spring"
+    ]
+  },
+  "PNURSE 105": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall"
+    ]
+  },
+  "PNURSE 107": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall"
+    ]
+  },
+  "PNURSE 112": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter"
+    ]
+  },
+  "PNURSE 113": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter"
+    ]
+  },
+  "PNURSE 114": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter"
+    ]
+  },
+  "PNURSE 115": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter",
+      "spring"
+    ]
+  },
+  "PNURSE 117": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter",
+      "spring"
+    ]
+  },
+  "PNURSE 122": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "spring"
+    ]
+  },
+  "PNURSE 123": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "spring"
+    ]
+  },
+  "PNURSE 125": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "spring"
+    ]
+  },
+  "PNURSE 126": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "spring"
+    ]
+  },
+  "PNURSE 127": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "spring"
+    ]
+  },
   "POLS 194": {
     status: "catalog-listed-not-in-latest-schedules",
     years: [
@@ -12904,6 +23816,34 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       }
     ],
     latestPublishedQuarters: []
+  },
+  "POLS 225": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter"
+    ]
   },
   "POLS 298": {
     status: "catalog-listed-not-in-latest-schedules",
@@ -12994,6 +23934,41 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: [
       "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "POLS& 201": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
       "fall",
       "winter",
       "spring"
@@ -13392,6 +24367,766 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
+  "PTA 101": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 102": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 104": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 105": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 106": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 107": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 110": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 111": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 114": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 115": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 130": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 131": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 151": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 161": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 163": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 164": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 166": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 201": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 205": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 210": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 211": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 212": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 213": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 220": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 221": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 251": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 252": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 260": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 261": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 262": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 263": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 278": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 279": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PTA 280": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "SCI 100": {
     status: "planner-course-no-current-public-source",
     years: [
@@ -13464,6 +25199,321 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
+  "SDEV 101": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "SDEV 106": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "SDEV 117": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter",
+      "spring"
+    ]
+  },
+  "SDEV 121": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "winter",
+      "spring"
+    ]
+  },
+  "SDEV 201": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "SDEV 280": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "fall",
+      "spring"
+    ]
+  },
+  "SIM 101": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SIM 107": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SIM 111": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SIM 216": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SIM 218": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SK 110": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "SOC 194": {
     status: "catalog-listed-not-in-latest-schedules",
     years: [
@@ -13474,6 +25524,47 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOC 205": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOC 214": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "winter"
+        ]
       },
       {
         label: "2026-2027",
@@ -13596,6 +25687,30 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       {
         label: "2025-2026",
         quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOC 252": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
       },
       {
         label: "2026-2027",
@@ -13756,6 +25871,95 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: []
   },
   "SPAN 194": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SPAN 272": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SPAN 290": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "fall"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SPAN 291": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "SPAN 292": {
     status: "catalog-listed-not-in-latest-schedules",
     years: [
       {
@@ -13974,6 +26178,603 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter",
       "spring"
     ]
+  },
+  "WELD 107": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall"
+    ]
+  },
+  "WELD 141": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "WELD 142": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "WELD 143": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "WELD 194": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "WELD 195": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "WELD 196": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
+  "WST 177": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "WST 180": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "WST 183": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "WST 184": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "WST 185": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "WST 186": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "WST 188": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "WTECH 181": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "WTECH 182": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "WTECH 183": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "WTECH 184": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "WTECH 187": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "WTECH 188": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "WTECH 191": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "WWT 177": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "WWT 180": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "WWT 185": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "WWT 186": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "WWT 188": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   }
 } as const satisfies Record<string, TransferPlannerGrcCourseAvailabilityEntry>;
 

@@ -33,6 +33,7 @@ const OUTPUT_PATH = path.resolve(
   "transfer-planner-source",
   "bootstrap.generated.ts"
 );
+const COURSE_CODE_PATTERN = /\b[A-Z]{2,8}&?\s*\d{3}(?:\.\d+)?[A-Z]?\b/g;
 const DISABLED_UNVERIFIED_OFFICIAL_LINK_URLS = new Set([
   "https://admit.washington.edu/majors/english-language-literature-culture/",
   "https://ais.washington.edu/sites/ais/files/documents/ais_major_requirement_sheet_9.29.21.pdf",
@@ -314,6 +315,150 @@ function sanitizeValue(value) {
   return value;
 }
 
+function normalizeCourseCode(value) {
+  const normalized = String(value ?? "")
+    .toUpperCase()
+    .replace(/\s+/g, " ")
+    .trim();
+  const match = normalized.match(/^([A-Z&]+(?: [A-Z&]+)*) (\d{3}(?:\.\d+)?[A-Z]?)$/);
+  if (!match) {
+    return normalized;
+  }
+
+  const subjectTokens = match[1].split(" ").filter(Boolean);
+  const normalizedSubject = subjectTokens.every((token) => token.length === 1)
+    ? subjectTokens.join("")
+    : subjectTokens.join(" ");
+
+  return `${normalizedSubject} ${match[2]}`;
+}
+
+function collectCourseCodesFromValue(value, targetSet) {
+  if (typeof value === "string") {
+    const matches = value.match(COURSE_CODE_PATTERN) ?? [];
+    for (const match of matches) {
+      const normalized = normalizeCourseCode(match);
+      if (normalized) {
+        targetSet.add(normalized);
+      }
+    }
+    return;
+  }
+
+  if (Array.isArray(value)) {
+    for (const item of value) {
+      collectCourseCodesFromValue(item, targetSet);
+    }
+    return;
+  }
+
+  if (value && typeof value === "object") {
+    for (const entryValue of Object.values(value)) {
+      collectCourseCodesFromValue(entryValue, targetSet);
+    }
+  }
+}
+
+function toIdSet(values) {
+  const set = new Set();
+  for (const value of values ?? []) {
+    const id = String(value?.id ?? "").trim();
+    if (id) {
+      set.add(id);
+    }
+  }
+  return set;
+}
+
+function diffSets(previous, current) {
+  const added = [];
+  const removed = [];
+
+  for (const value of current) {
+    if (!previous.has(value)) {
+      added.push(value);
+    }
+  }
+
+  for (const value of previous) {
+    if (!current.has(value)) {
+      removed.push(value);
+    }
+  }
+
+  added.sort((left, right) => left.localeCompare(right));
+  removed.sort((left, right) => left.localeCompare(right));
+  return { added, removed };
+}
+
+function buildSnapshot(input) {
+  const majorIds = toIdSet(input.majorPlans);
+  const trackIds = toIdSet(input.tracks);
+  const campusIds = toIdSet(input.campuses);
+  const courseCodes = new Set();
+
+  collectCourseCodesFromValue(input.majorPlans, courseCodes);
+  collectCourseCodesFromValue(input.tracks, courseCodes);
+
+  return {
+    majorIds,
+    trackIds,
+    campusIds,
+    courseCodes,
+  };
+}
+
+function loadPreviousSnapshot() {
+  if (!fs.existsSync(OUTPUT_PATH)) {
+    return null;
+  }
+
+  try {
+    delete require.cache[require.resolve(OUTPUT_PATH)];
+    const previousModule = require(OUTPUT_PATH);
+    return buildSnapshot({
+      majorPlans: previousModule.TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS ?? [],
+      tracks: previousModule.TRANSFER_PLANNER_BOOTSTRAP_TRACKS ?? [],
+      campuses: previousModule.TRANSFER_PLANNER_BOOTSTRAP_CAMPUSES ?? [],
+    });
+  } catch (error) {
+    console.warn(`Unable to read previous bootstrap snapshot: ${error.message}`);
+    return null;
+  }
+}
+
+function printDiffSummary(previousSnapshot, currentSnapshot) {
+  if (!previousSnapshot) {
+    console.log("Bootstrap summary: no previous snapshot found; skipping added/removed diff.");
+    return;
+  }
+
+  const majorDiff = diffSets(previousSnapshot.majorIds, currentSnapshot.majorIds);
+  const trackDiff = diffSets(previousSnapshot.trackIds, currentSnapshot.trackIds);
+  const campusDiff = diffSets(previousSnapshot.campusIds, currentSnapshot.campusIds);
+  const courseDiff = diffSets(previousSnapshot.courseCodes, currentSnapshot.courseCodes);
+
+  const preview = (values) => (values.length ? values.slice(0, 12).join(", ") : "none");
+
+  console.log("Bootstrap summary:");
+  console.log(
+    `- Majors added: ${majorDiff.added.length}; removed: ${majorDiff.removed.length}`
+  );
+  console.log(
+    `- Tracks added: ${trackDiff.added.length}; removed: ${trackDiff.removed.length}`
+  );
+  console.log(
+    `- Campuses added: ${campusDiff.added.length}; removed: ${campusDiff.removed.length}`
+  );
+  console.log(
+    `- Courses added: ${courseDiff.added.length}; removed: ${courseDiff.removed.length}`
+  );
+  console.log(`  Added majors (sample): ${preview(majorDiff.added)}`);
+  console.log(`  Removed majors (sample): ${preview(majorDiff.removed)}`);
+  console.log(`  Added courses (sample): ${preview(courseDiff.added)}`);
+  console.log(`  Removed courses (sample): ${preview(courseDiff.removed)}`);
+}
+
 function serializeExport(name, typeName, value) {
   return `export const ${name}: ${typeName} = ${JSON.stringify(sanitizeValue(value), null, 2)};\n`;
 }
@@ -344,5 +489,13 @@ ${serializeExport(
 )}
 `;
 
+const previousSnapshot = loadPreviousSnapshot();
+
 fs.writeFileSync(OUTPUT_PATH, fileContents);
 console.log(`Wrote ${OUTPUT_PATH}`);
+const currentSnapshot = buildSnapshot({
+  majorPlans: TRANSFER_PLANNER_ALL_MAJOR_PLANS,
+  tracks: TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS,
+  campuses: TRANSFER_PLANNER_CAMPUSES,
+});
+printDiffSummary(previousSnapshot, currentSnapshot);

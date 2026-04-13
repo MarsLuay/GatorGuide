@@ -1,11 +1,11 @@
 # Transfer Planner Requirement Diff Promotion Report
 
-Generated: 2026-04-12T09:33:21.575Z
+Generated: 2026-04-13T03:06:26.684Z
 
 - Parsed owners inspected: 251
-- Auto-promoted requirement overrides: 206
-- Automatically classified parsed diffs: 3165
-- Non-promoted classified source-backed course codes: 2959
+- Auto-promoted requirement overrides: 152
+- Automatically classified parsed diffs: 3215
+- Non-promoted classified source-backed course codes: 3063
 - Historical unresolved review-needed bucket count: 0
 - Historical unresolved unmapped bucket count: 0
 
@@ -13,75 +13,148 @@ This report is the follow-up step after parsing primary requirement sources. Eve
 
 ## Classification Summary
 
-- source-backed-choice-set-no-public-grc-path: 1117
+- source-backed-choice-set-no-public-grc-path: 1115
 - source-backed-campus-specific-no-public-grc-equivalent: 822
-- source-backed-no-public-grc-equivalent: 527
-- auto-promoted-guide-direct-equivalent: 417
-- source-backed-guide-sequence-equivalent: 164
-- auto-promoted-exact-title-metadata-match: 50
-- auto-promoted-choice-set-resolved: 21
-- auto-promoted-guide-sequence-equivalent: 14
-- auto-promoted-single-sample-consensus: 10
-- auto-promoted-course-family-consensus: 9
+- source-backed-no-public-grc-equivalent: 595
+- auto-promoted-guide-direct-equivalent: 424
+- source-backed-guide-sequence-equivalent: 166
+- auto-promoted-guide-sequence-equivalent: 34
+- auto-promoted-course-family-consensus: 12
+- auto-promoted-choice-set-resolved: 12
+- source-backed-exact-title-multiple-grc-matches: 8
+- auto-promoted-exact-title-metadata-match: 7
 - source-backed-guide-reference-only-equivalent: 6
-- auto-promoted-guide-reference-only-equivalent: 3
+- auto-promoted-single-sample-consensus: 5
+- auto-promoted-guide-reference-only-equivalent: 4
 - source-backed-generic-topic-course: 2
-- auto-promoted-exact-title-alternative-paths: 2
-- auto-promoted-exact-consensus: 1
+- auto-promoted-exact-consensus: 2
+- auto-promoted-exact-title-alternative-paths: 1
 
 ## UW Seattle
 
 ### Auto-promoted requirement atoms
 
-#### Applied & Computational Mathematical Sciences (ACMS)
+#### Aquatic Conservation & Ecology
 
-- UW course: AMATH 301
-- Planner phase: before-enrollment
-- Green River match: ENGR 250
-- Source: https://www.washington.edu/students/gencat/program/S/AppliedandComputationalMathSciences-994.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes AMATH 301 under uw-grc-guide:0441:engineering-formerly-general-engineering:engr-250-5. The planner was missing the source-backed Green River course path ENGR 250 for this UW requirement.
-
-#### Biochemistry - B.A. route
-
-- UW course: CHEM 142
-- Planner phase: before-enrollment
-- Green River match: CHEM& 161
-- Source: https://chem.washington.edu/ba-biochemistry
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes CHEM 142 under uw-grc-guide:0204:chemistry:chemand-161-6-formerly-chem-140. The planner was missing the source-backed Green River course path CHEM& 161 for this UW requirement.
-
-#### Biochemistry - B.A. route
-
-- UW course: PHYS 121
-- Planner phase: before-enrollment
-- Green River match: PHYS& 221
-- Source: https://chem.washington.edu/ba-biochemistry
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 121 under uw-grc-guide:1196:physics:physand-221-5-formerly-phys-201. The planner was missing the source-backed Green River course path PHYS& 221 for this UW requirement.
-
-#### Biochemistry - B.S. route
-
-- UW course: CHEM 142
-- Planner phase: before-enrollment
-- Green River match: CHEM& 161
-- Source: https://chem.washington.edu/ba-biochemistry
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes CHEM 142 under uw-grc-guide:0204:chemistry:chemand-161-6-formerly-chem-140. The planner was missing the source-backed Green River course path CHEM& 161 for this UW requirement.
-
-#### Biochemistry - B.S. route
-
-- UW course: PHYS 121
-- Planner phase: before-enrollment
-- Green River match: PHYS& 221
-- Source: https://chem.washington.edu/ba-biochemistry
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 121 under uw-grc-guide:1196:physics:physand-221-5-formerly-phys-201. The planner was missing the source-backed Green River course path PHYS& 221 for this UW requirement.
-
-#### Bioengineering
-
-- UW course: MATH 207
+- UW course: CLAS 205
 - Planner phase: before-application
-- Green River match: MATH 238
-- Source: https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 207 under uw-grc-guide:0813:mathematics:math-238-5. The planner was missing the source-backed Green River course path MATH 238 for this UW requirement.
+- Green River match: CMST& 220
+- Source: https://fish.uw.edu/students/undergraduate-program/bachelor-of-science/major-requirements/
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. CLAS 205 only appeared in alternate or choice-based requirement lines, so the planner resolved the published Green River prep paths from the same source-backed choice set. Supporting UW choice-set codes: COM 220. Published Green River options now exposed: CMST& 220.
+
+#### Biochemistry - B.A. route
+
+- UW course: CHEM 237
+- Planner phase: before-enrollment
+- Green River match: CHEM& 261
+- Source: https://chem.washington.edu/ba-biochemistry
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes CHEM 237 under uw-grc-guide:0218:chemistry:chemand-261-6-formerly-chem-235. The planner was missing the source-backed Green River course path CHEM& 261 for this UW requirement.
+
+#### Biochemistry - B.A. route
+
+- UW course: CHEM 242
+- Planner phase: before-enrollment
+- Green River match: CHEM& 261, CHEM& 262, CHEM& 263
+- Source: https://chem.washington.edu/ba-biochemistry
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes CHEM 242 under uw-grc-guide:0216:chemistry:chemand-261-262-263-6-6-6-formerly-chem-235-236-237. The planner was missing the source-backed Green River course path CHEM& 261, CHEM& 262, CHEM& 263 for this UW requirement.
+
+#### Biochemistry - B.A. route
+
+- UW course: MATH 124
+- Planner phase: before-enrollment
+- Green River match: MATH& 151
+- Source: https://chem.washington.edu/ba-biochemistry
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 124 under uw-grc-guide:0792:mathematics:mathand-151-5-formerly-math-124. The planner was missing the source-backed Green River course path MATH& 151 for this UW requirement.
+
+#### Biochemistry - B.A. route
+
+- UW course: PHYS 114
+- Planner phase: before-enrollment
+- Green River match: PHYS& 114, PHYS& 154
+- Source: https://chem.washington.edu/ba-biochemistry
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 114 under uw-grc-guide:1187:physics:physand-114-154-5-5-formerly-phys-110-150. The planner was missing the source-backed Green River course path PHYS& 114, PHYS& 154 for this UW requirement.
+
+#### Biochemistry - B.S. route
+
+- UW course: CHEM 237
+- Planner phase: before-enrollment
+- Green River match: CHEM& 261
+- Source: https://chem.washington.edu/ba-biochemistry
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes CHEM 237 under uw-grc-guide:0218:chemistry:chemand-261-6-formerly-chem-235. The planner was missing the source-backed Green River course path CHEM& 261 for this UW requirement.
+
+#### Biochemistry - B.S. route
+
+- UW course: CHEM 242
+- Planner phase: before-enrollment
+- Green River match: CHEM& 261, CHEM& 262, CHEM& 263
+- Source: https://chem.washington.edu/ba-biochemistry
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes CHEM 242 under uw-grc-guide:0216:chemistry:chemand-261-262-263-6-6-6-formerly-chem-235-236-237. The planner was missing the source-backed Green River course path CHEM& 261, CHEM& 262, CHEM& 263 for this UW requirement.
+
+#### Biochemistry - B.S. route
+
+- UW course: MATH 124
+- Planner phase: before-enrollment
+- Green River match: MATH& 151
+- Source: https://chem.washington.edu/ba-biochemistry
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 124 under uw-grc-guide:0792:mathematics:mathand-151-5-formerly-math-124. The planner was missing the source-backed Green River course path MATH& 151 for this UW requirement.
+
+#### Biochemistry - B.S. route
+
+- UW course: PHYS 114
+- Planner phase: before-enrollment
+- Green River match: PHYS& 114, PHYS& 154
+- Source: https://chem.washington.edu/ba-biochemistry
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 114 under uw-grc-guide:1187:physics:physand-114-154-5-5-formerly-phys-110-150. The planner was missing the source-backed Green River course path PHYS& 114, PHYS& 154 for this UW requirement.
+
+#### Biology
+
+- UW course: PHYS 114
+- Planner phase: before-enrollment
+- Green River match: PHYS& 114, PHYS& 154
+- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 114 under uw-grc-guide:1187:physics:physand-114-154-5-5-formerly-phys-110-150. The planner was missing the source-backed Green River course path PHYS& 114, PHYS& 154 for this UW requirement.
+
+#### Biology
+
+- UW course: PHYS 115
+- Planner phase: before-enrollment
+- Green River match: PHYS& 115, PHYS& 155
+- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 115 under uw-grc-guide:1188:physics:physand-115-155-5-5-formerly-phys-111-151. The planner was missing the source-backed Green River course path PHYS& 115, PHYS& 155 for this UW requirement.
 
 #### Biology - B.A. general biology
+
+- UW course: PHYS 114
+- Planner phase: before-enrollment
+- Green River match: PHYS& 114, PHYS& 154
+- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 114 under uw-grc-guide:1187:physics:physand-114-154-5-5-formerly-phys-110-150. The planner was missing the source-backed Green River course path PHYS& 114, PHYS& 154 for this UW requirement.
+
+#### Biology - B.A. general biology
+
+- UW course: PHYS 115
+- Planner phase: before-enrollment
+- Green River match: PHYS& 115, PHYS& 155
+- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 115 under uw-grc-guide:1188:physics:physand-115-155-5-5-formerly-phys-111-151. The planner was missing the source-backed Green River course path PHYS& 115, PHYS& 155 for this UW requirement.
+
+#### Biology - B.A. general biology
+
+- UW course: PHYS 121
+- Planner phase: before-enrollment
+- Green River match: PHYS& 221
+- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 121 under uw-grc-guide:1196:physics:physand-221-5-formerly-phys-201. The planner was missing the source-backed Green River course path PHYS& 221 for this UW requirement.
+
+#### Biology - B.A. general biology
+
+- UW course: PHYS 122
+- Planner phase: before-enrollment
+- Green River match: PHYS& 222
+- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 122 under uw-grc-guide:1197:physics:physand-222-5-formerly-phys-202. The planner was missing the source-backed Green River course path PHYS& 222 for this UW requirement.
+
+#### Biology - B.S. Ecology, Evolution, and Conservation option
 
 - UW course: MATH 124
 - Planner phase: before-enrollment
@@ -89,349 +162,277 @@ This report is the follow-up step after parsing primary requirement sources. Eve
 - Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
 - Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 124 under uw-grc-guide:0792:mathematics:mathand-151-5-formerly-math-124. The planner was missing the source-backed Green River course path MATH& 151 for this UW requirement.
 
-#### Biology - B.A. general biology
+#### Biology - B.S. General Biology option
 
-- UW course: MATH 125
+- UW course: MATH 124
 - Planner phase: before-enrollment
-- Green River match: MATH& 152
+- Green River match: MATH& 151
 - Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 125 under uw-grc-guide:0793:mathematics:mathand-152-5-formerly-math-125. The planner was missing the source-backed Green River course path MATH& 152 for this UW requirement.
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 124 under uw-grc-guide:0792:mathematics:mathand-151-5-formerly-math-124. The planner was missing the source-backed Green River course path MATH& 151 for this UW requirement.
 
-#### Biology - B.S. Ecology, Evolution, and Conservation option
+#### Biology - B.S. Molecular, Cellular, and Developmental Biology option
 
-- UW course: MATH 125
+- UW course: MATH 124
 - Planner phase: before-enrollment
-- Green River match: MATH& 152
+- Green River match: MATH& 151
 - Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 125 under uw-grc-guide:0793:mathematics:mathand-152-5-formerly-math-125. The planner was missing the source-backed Green River course path MATH& 152 for this UW requirement.
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 124 under uw-grc-guide:0792:mathematics:mathand-151-5-formerly-math-124. The planner was missing the source-backed Green River course path MATH& 151 for this UW requirement.
 
-#### Biology - B.S. Ecology, Evolution, and Conservation option
+#### Biology - B.S. Physiology option
+
+- UW course: MATH 124
+- Planner phase: before-enrollment
+- Green River match: MATH& 151
+- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 124 under uw-grc-guide:0792:mathematics:mathand-151-5-formerly-math-124. The planner was missing the source-backed Green River course path MATH& 151 for this UW requirement.
+
+#### Biology - B.S. Plant Biology option
+
+- UW course: MATH 124
+- Planner phase: before-enrollment
+- Green River match: MATH& 151
+- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 124 under uw-grc-guide:0792:mathematics:mathand-151-5-formerly-math-124. The planner was missing the source-backed Green River course path MATH& 151 for this UW requirement.
+
+#### Chemistry
 
 - UW course: PHYS 114
 - Planner phase: before-enrollment
 - Green River match: PHYS& 114, PHYS& 154
-- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
+- Source: https://chem.washington.edu/ba-chemistry
 - Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 114 under uw-grc-guide:1187:physics:physand-114-154-5-5-formerly-phys-110-150. The planner was missing the source-backed Green River course path PHYS& 114, PHYS& 154 for this UW requirement.
-
-#### Biology - B.S. Ecology, Evolution, and Conservation option
-
-- UW course: PHYS 115
-- Planner phase: before-enrollment
-- Green River match: PHYS& 115, PHYS& 155
-- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 115 under uw-grc-guide:1188:physics:physand-115-155-5-5-formerly-phys-111-151. The planner was missing the source-backed Green River course path PHYS& 115, PHYS& 155 for this UW requirement.
-
-#### Biology - B.S. Ecology, Evolution, and Conservation option
-
-- UW course: PHYS 121
-- Planner phase: before-enrollment
-- Green River match: PHYS& 221
-- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 121 under uw-grc-guide:1196:physics:physand-221-5-formerly-phys-201. The planner was missing the source-backed Green River course path PHYS& 221 for this UW requirement.
-
-#### Biology - B.S. Ecology, Evolution, and Conservation option
-
-- UW course: PHYS 122
-- Planner phase: before-enrollment
-- Green River match: PHYS& 222
-- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 122 under uw-grc-guide:1197:physics:physand-222-5-formerly-phys-202. The planner was missing the source-backed Green River course path PHYS& 222 for this UW requirement.
-
-#### Biology - B.S. General Biology option
-
-- UW course: MATH 125
-- Planner phase: before-enrollment
-- Green River match: MATH& 152
-- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 125 under uw-grc-guide:0793:mathematics:mathand-152-5-formerly-math-125. The planner was missing the source-backed Green River course path MATH& 152 for this UW requirement.
-
-#### Biology - B.S. General Biology option
-
-- UW course: PHYS 114
-- Planner phase: before-enrollment
-- Green River match: PHYS& 114, PHYS& 154
-- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 114 under uw-grc-guide:1187:physics:physand-114-154-5-5-formerly-phys-110-150. The planner was missing the source-backed Green River course path PHYS& 114, PHYS& 154 for this UW requirement.
-
-#### Biology - B.S. General Biology option
-
-- UW course: PHYS 115
-- Planner phase: before-enrollment
-- Green River match: PHYS& 115, PHYS& 155
-- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 115 under uw-grc-guide:1188:physics:physand-115-155-5-5-formerly-phys-111-151. The planner was missing the source-backed Green River course path PHYS& 115, PHYS& 155 for this UW requirement.
-
-#### Biology - B.S. General Biology option
-
-- UW course: PHYS 121
-- Planner phase: before-enrollment
-- Green River match: PHYS& 221
-- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 121 under uw-grc-guide:1196:physics:physand-221-5-formerly-phys-201. The planner was missing the source-backed Green River course path PHYS& 221 for this UW requirement.
-
-#### Biology - B.S. General Biology option
-
-- UW course: PHYS 122
-- Planner phase: before-enrollment
-- Green River match: PHYS& 222
-- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 122 under uw-grc-guide:1197:physics:physand-222-5-formerly-phys-202. The planner was missing the source-backed Green River course path PHYS& 222 for this UW requirement.
-
-#### Biology - B.S. Molecular, Cellular, and Developmental Biology option
-
-- UW course: MATH 125
-- Planner phase: before-enrollment
-- Green River match: MATH& 152
-- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 125 under uw-grc-guide:0793:mathematics:mathand-152-5-formerly-math-125. The planner was missing the source-backed Green River course path MATH& 152 for this UW requirement.
-
-#### Biology - B.S. Molecular, Cellular, and Developmental Biology option
-
-- UW course: PHYS 114
-- Planner phase: before-enrollment
-- Green River match: PHYS& 114, PHYS& 154
-- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 114 under uw-grc-guide:1187:physics:physand-114-154-5-5-formerly-phys-110-150. The planner was missing the source-backed Green River course path PHYS& 114, PHYS& 154 for this UW requirement.
-
-#### Biology - B.S. Molecular, Cellular, and Developmental Biology option
-
-- UW course: PHYS 115
-- Planner phase: before-enrollment
-- Green River match: PHYS& 115, PHYS& 155
-- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 115 under uw-grc-guide:1188:physics:physand-115-155-5-5-formerly-phys-111-151. The planner was missing the source-backed Green River course path PHYS& 115, PHYS& 155 for this UW requirement.
-
-#### Biology - B.S. Molecular, Cellular, and Developmental Biology option
-
-- UW course: PHYS 121
-- Planner phase: before-enrollment
-- Green River match: PHYS& 221
-- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 121 under uw-grc-guide:1196:physics:physand-221-5-formerly-phys-201. The planner was missing the source-backed Green River course path PHYS& 221 for this UW requirement.
-
-#### Biology - B.S. Molecular, Cellular, and Developmental Biology option
-
-- UW course: PHYS 122
-- Planner phase: before-enrollment
-- Green River match: PHYS& 222
-- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 122 under uw-grc-guide:1197:physics:physand-222-5-formerly-phys-202. The planner was missing the source-backed Green River course path PHYS& 222 for this UW requirement.
-
-#### Biology - B.S. Physiology option
-
-- UW course: MATH 125
-- Planner phase: before-enrollment
-- Green River match: MATH& 152
-- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 125 under uw-grc-guide:0793:mathematics:mathand-152-5-formerly-math-125. The planner was missing the source-backed Green River course path MATH& 152 for this UW requirement.
-
-#### Biology - B.S. Physiology option
-
-- UW course: PHYS 114
-- Planner phase: before-enrollment
-- Green River match: PHYS& 114, PHYS& 154
-- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 114 under uw-grc-guide:1187:physics:physand-114-154-5-5-formerly-phys-110-150. The planner was missing the source-backed Green River course path PHYS& 114, PHYS& 154 for this UW requirement.
-
-#### Biology - B.S. Physiology option
-
-- UW course: PHYS 115
-- Planner phase: before-enrollment
-- Green River match: PHYS& 115, PHYS& 155
-- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 115 under uw-grc-guide:1188:physics:physand-115-155-5-5-formerly-phys-111-151. The planner was missing the source-backed Green River course path PHYS& 115, PHYS& 155 for this UW requirement.
-
-#### Biology - B.S. Physiology option
-
-- UW course: PHYS 121
-- Planner phase: before-enrollment
-- Green River match: PHYS& 221
-- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 121 under uw-grc-guide:1196:physics:physand-221-5-formerly-phys-201. The planner was missing the source-backed Green River course path PHYS& 221 for this UW requirement.
-
-#### Biology - B.S. Physiology option
-
-- UW course: PHYS 122
-- Planner phase: before-enrollment
-- Green River match: PHYS& 222
-- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 122 under uw-grc-guide:1197:physics:physand-222-5-formerly-phys-202. The planner was missing the source-backed Green River course path PHYS& 222 for this UW requirement.
-
-#### Biology - B.S. Plant Biology option
-
-- UW course: MATH 125
-- Planner phase: before-enrollment
-- Green River match: MATH& 152
-- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 125 under uw-grc-guide:0793:mathematics:mathand-152-5-formerly-math-125. The planner was missing the source-backed Green River course path MATH& 152 for this UW requirement.
-
-#### Biology - B.S. Plant Biology option
-
-- UW course: PHYS 114
-- Planner phase: before-enrollment
-- Green River match: PHYS& 114, PHYS& 154
-- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 114 under uw-grc-guide:1187:physics:physand-114-154-5-5-formerly-phys-110-150. The planner was missing the source-backed Green River course path PHYS& 114, PHYS& 154 for this UW requirement.
-
-#### Biology - B.S. Plant Biology option
-
-- UW course: PHYS 115
-- Planner phase: before-enrollment
-- Green River match: PHYS& 115, PHYS& 155
-- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 115 under uw-grc-guide:1188:physics:physand-115-155-5-5-formerly-phys-111-151. The planner was missing the source-backed Green River course path PHYS& 115, PHYS& 155 for this UW requirement.
-
-#### Biology - B.S. Plant Biology option
-
-- UW course: PHYS 121
-- Planner phase: before-enrollment
-- Green River match: PHYS& 221
-- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 121 under uw-grc-guide:1196:physics:physand-221-5-formerly-phys-201. The planner was missing the source-backed Green River course path PHYS& 221 for this UW requirement.
-
-#### Biology - B.S. Plant Biology option
-
-- UW course: PHYS 122
-- Planner phase: before-enrollment
-- Green River match: PHYS& 222
-- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 122 under uw-grc-guide:1197:physics:physand-222-5-formerly-phys-202. The planner was missing the source-backed Green River course path PHYS& 222 for this UW requirement.
-
-#### Chemical Engineering
-
-- UW course: MSE 170
-- Planner phase: before-enrollment
-- Green River match: ENGR 140
-- Source: https://www.cheme.washington.edu/undergraduate_students/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MSE 170 under uw-grc-guide:0421:engineering-formerly-general-engineering:engr-140-5-formerly-g-e-140. The planner was missing the source-backed Green River course path ENGR 140 for this UW requirement.
 
 #### Chemistry - B.A. route
 
-- UW course: CHEM 142
+- UW course: CHEM 237
 - Planner phase: before-enrollment
-- Green River match: CHEM& 161
+- Green River match: CHEM& 261
 - Source: https://chem.washington.edu/ba-chemistry
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes CHEM 142 under uw-grc-guide:0204:chemistry:chemand-161-6-formerly-chem-140. The planner was missing the source-backed Green River course path CHEM& 161 for this UW requirement.
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes CHEM 237 under uw-grc-guide:0218:chemistry:chemand-261-6-formerly-chem-235. The planner was missing the source-backed Green River course path CHEM& 261 for this UW requirement.
 
 #### Chemistry - B.A. route
 
-- UW course: PHYS 121
+- UW course: CHEM 242
 - Planner phase: before-enrollment
-- Green River match: PHYS& 221
+- Green River match: CHEM& 261, CHEM& 262, CHEM& 263
 - Source: https://chem.washington.edu/ba-chemistry
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 121 under uw-grc-guide:1196:physics:physand-221-5-formerly-phys-201. The planner was missing the source-backed Green River course path PHYS& 221 for this UW requirement.
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes CHEM 242 under uw-grc-guide:0216:chemistry:chemand-261-262-263-6-6-6-formerly-chem-235-236-237. The planner was missing the source-backed Green River course path CHEM& 261, CHEM& 262, CHEM& 263 for this UW requirement.
+
+#### Chemistry - B.A. route
+
+- UW course: MATH 124
+- Planner phase: before-enrollment
+- Green River match: MATH& 151
+- Source: https://chem.washington.edu/ba-chemistry
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 124 under uw-grc-guide:0792:mathematics:mathand-151-5-formerly-math-124. The planner was missing the source-backed Green River course path MATH& 151 for this UW requirement.
+
+#### Chemistry - B.A. route
+
+- UW course: PHYS 114
+- Planner phase: before-enrollment
+- Green River match: PHYS& 114, PHYS& 154
+- Source: https://chem.washington.edu/ba-chemistry
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 114 under uw-grc-guide:1187:physics:physand-114-154-5-5-formerly-phys-110-150. The planner was missing the source-backed Green River course path PHYS& 114, PHYS& 154 for this UW requirement.
 
 #### Chemistry - B.S. route
 
-- UW course: CHEM 142
+- UW course: CHEM 237
 - Planner phase: before-enrollment
-- Green River match: CHEM& 161
+- Green River match: CHEM& 261
 - Source: https://chem.washington.edu/ba-chemistry
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes CHEM 142 under uw-grc-guide:0204:chemistry:chemand-161-6-formerly-chem-140. The planner was missing the source-backed Green River course path CHEM& 161 for this UW requirement.
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes CHEM 237 under uw-grc-guide:0218:chemistry:chemand-261-6-formerly-chem-235. The planner was missing the source-backed Green River course path CHEM& 261 for this UW requirement.
 
 #### Chemistry - B.S. route
 
-- UW course: PHYS 121
+- UW course: CHEM 242
 - Planner phase: before-enrollment
-- Green River match: PHYS& 221
+- Green River match: CHEM& 261, CHEM& 262, CHEM& 263
 - Source: https://chem.washington.edu/ba-chemistry
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 121 under uw-grc-guide:1196:physics:physand-221-5-formerly-phys-201. The planner was missing the source-backed Green River course path PHYS& 221 for this UW requirement.
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes CHEM 242 under uw-grc-guide:0216:chemistry:chemand-261-262-263-6-6-6-formerly-chem-235-236-237. The planner was missing the source-backed Green River course path CHEM& 261, CHEM& 262, CHEM& 263 for this UW requirement.
 
-#### Comparative Literature
+#### Chemistry - B.S. route
 
-- UW course: GERMAN 203
-- Planner phase: before-application
-- Green River match: GERM 203
-- Source: https://cinema.washington.edu/ba-comparative-literature
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes GERMAN 203 under uw-grc-guide:0633:german:germ-203-5. The planner was missing the source-backed Green River course path GERM 203 for this UW requirement.
-
-#### Computational Finance & Risk Management
-
-- UW course: AMATH 301
+- UW course: MATH 124
 - Planner phase: before-enrollment
-- Green River match: ENGR 250
-- Source: https://www.washington.edu/students/gencat/program/S/AppliedMathematics-208.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes AMATH 301 under uw-grc-guide:0441:engineering-formerly-general-engineering:engr-250-5. The planner was missing the source-backed Green River course path ENGR 250 for this UW requirement.
+- Green River match: MATH& 151
+- Source: https://chem.washington.edu/ba-chemistry
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 124 under uw-grc-guide:0792:mathematics:mathand-151-5-formerly-math-124. The planner was missing the source-backed Green River course path MATH& 151 for this UW requirement.
 
-#### Construction Management
+#### Chemistry - B.S. route
 
-- UW course: CM 220
-- Planner phase: before-application
-- Green River match: CMST& 220
-- Source: https://www.washington.edu/students/gencat/program/S/ConstructionManagement-52.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. CM 220 only appeared in alternate or choice-based requirement lines, so the planner resolved the published Green River prep paths from the same source-backed choice set. Supporting UW choice-set codes: COM 220. Published Green River options now exposed: CMST& 220.
-
-#### Construction Management
-
-- UW course: ECON 200
-- Planner phase: before-application
-- Green River match: ECON& 201
-- Source: https://www.washington.edu/students/gencat/program/S/ConstructionManagement-52.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes ECON 200 under uw-grc-guide:0383:economics:econand-201-5-formerly-econ-201. The planner was missing the source-backed Green River course path ECON& 201 for this UW requirement.
-
-#### Drama
-
-- UW course: DRAMA 252
-- Planner phase: before-application
-- Green River match: DRMA 151
-- Source: https://www.washington.edu/students/gencat/program/S/Drama-134.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. DRAMA 252 only appeared in alternate or choice-based requirement lines, so the planner resolved the published Green River prep paths from the same source-backed choice set. Supporting UW choice-set codes: DRAMA 251. Published Green River options now exposed: DRMA 151.
-
-#### Earth & Space Sciences - B.A. route
-
-- UW course: ESS 210
-- Planner phase: before-application
-- Green River match: GEOL& 101
-- Source: https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. ESS 210 only appeared in alternate or choice-based requirement lines, so the planner resolved the published Green River prep paths from the same source-backed choice set. Supporting UW choice-set codes: ESS 212. Published Green River options now exposed: GEOL& 101.
-
-#### Earth & Space Sciences - B.S. Biology option
-
-- UW course: ESS 210
-- Planner phase: before-application
-- Green River match: GEOL& 101
-- Source: https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. ESS 210 only appeared in alternate or choice-based requirement lines, so the planner resolved the published Green River prep paths from the same source-backed choice set. Supporting UW choice-set codes: ESS 212. Published Green River options now exposed: GEOL& 101.
-
-#### Earth & Space Sciences - B.S. Geology option
-
-- UW course: ESS 211
+- UW course: PHYS 114
 - Planner phase: before-enrollment
-- Green River match: GEOL& 101
-- Source: https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. ESS 211 only appeared in alternate or choice-based requirement lines, so the planner resolved the published Green River prep paths from the same source-backed choice set. Supporting UW choice-set codes: ESS 212. Published Green River options now exposed: GEOL& 101.
-
-#### Earth & Space Sciences - B.S. Geoscience option
-
-- UW course: ESS 211
-- Planner phase: before-enrollment
-- Green River match: GEOL& 101
-- Source: https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. ESS 211 only appeared in alternate or choice-based requirement lines, so the planner resolved the published Green River prep paths from the same source-backed choice set. Supporting UW choice-set codes: ESS 212. Published Green River options now exposed: GEOL& 101.
-
-#### Earth & Space Sciences - B.S. Physics option
-
-- UW course: ESS 211
-- Planner phase: before-enrollment
-- Green River match: GEOL& 101
-- Source: https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. ESS 211 only appeared in alternate or choice-based requirement lines, so the planner resolved the published Green River prep paths from the same source-backed choice set. Supporting UW choice-set codes: ESS 212. Published Green River options now exposed: GEOL& 101.
+- Green River match: PHYS& 114, PHYS& 154
+- Source: https://chem.washington.edu/ba-chemistry
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 114 under uw-grc-guide:1187:physics:physand-114-154-5-5-formerly-phys-110-150. The planner was missing the source-backed Green River course path PHYS& 114, PHYS& 154 for this UW requirement.
 
 #### Economics
 
-- UW course: MATH 208
+- UW course: MATH 120
 - Planner phase: before-enrollment
-- Green River match: MATH 240
+- Green River match: MATH& 142
 - Source: https://www.washington.edu/students/gencat/program/S/Economics-135.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 208 under uw-grc-guide:0815:mathematics:math-240-5. The planner was missing the source-backed Green River course path MATH 240 for this UW requirement.
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 120 under uw-grc-guide:0787:mathematics:mathand-142-5-formerly-math-104. The planner was missing the source-backed Green River course path MATH& 142 for this UW requirement.
 
 #### Economics - B.A. route
 
-- UW course: MATH 208
+- UW course: MATH 120
 - Planner phase: before-enrollment
-- Green River match: MATH 240
+- Green River match: MATH& 142
 - Source: https://www.washington.edu/students/gencat/program/S/Economics-135.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 208 under uw-grc-guide:0815:mathematics:math-240-5. The planner was missing the source-backed Green River course path MATH 240 for this UW requirement.
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 120 under uw-grc-guide:0787:mathematics:mathand-142-5-formerly-math-104. The planner was missing the source-backed Green River course path MATH& 142 for this UW requirement.
+
+#### Economics - B.S. route
+
+- UW course: MATH 120
+- Planner phase: before-enrollment
+- Green River match: MATH& 142
+- Source: https://www.washington.edu/students/gencat/program/S/Economics-135.html
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 120 under uw-grc-guide:0787:mathematics:mathand-142-5-formerly-math-104. The planner was missing the source-backed Green River course path MATH& 142 for this UW requirement.
+
+#### Environmental Public Health
+
+- UW course: BIOL 180
+- Planner phase: before-application
+- Green River match: BIOL& 211, BIOL& 212, BIOL& 213
+- Source: https://www.deohs.washington.edu/degree-requirements
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes BIOL 180 under uw-grc-guide:0168:biology:bioland-211-212-213-6-6-6-formerly-biol-201-202-203. The planner was missing the source-backed Green River course path BIOL& 211, BIOL& 212, BIOL& 213 for this UW requirement.
+
+#### Environmental Public Health
+
+- UW course: ENGL 131
+- Planner phase: before-application
+- Green River match: ENGL& 101
+- Source: https://www.deohs.washington.edu/degree-requirements
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes ENGL 131 under uw-grc-guide:0446:english:england-101-5-formerly-engl-110. The planner was missing the source-backed Green River course path ENGL& 101 for this UW requirement.
+
+#### Environmental Public Health
+
+- UW course: MICROM 301
+- Planner phase: before-application
+- Green River match: BIOL& 260
+- Source: https://www.deohs.washington.edu/degree-requirements
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MICROM 301 under uw-grc-guide:0171:biology:bioland-260-5-formerly-biol-210. The planner was missing the source-backed Green River course path BIOL& 260 for this UW requirement.
+
+#### Environmental Science & Terrestrial Resource Management
+
+- UW course: BIOL 161
+- Planner phase: before-application
+- Green River match: BIOL 111
+- Source: https://www.washington.edu/students/gencat/academic/sefs.html
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes BIOL 161 under uw-grc-guide:0145:biology:biol-111-5-see-also-biol-111-combined-entry. The planner was missing the source-backed Green River course path BIOL 111 for this UW requirement.
+
+#### Food Systems, Nutrition, & Health
+
+- UW course: BIOL 118
+- Planner phase: before-enrollment
+- Green River match: BIOL& 241, BIOL& 242
+- Source: https://foodsystems.uw.edu/undergraduate/foodsystems/requirements/
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes BIOL 118 under uw-grc-guide:0169:biology:bioland-241-242-5-5-formerly-ap-205-206. The planner was missing the source-backed Green River course path BIOL& 241, BIOL& 242 for this UW requirement.
+
+#### Food Systems, Nutrition, & Health
+
+- UW course: BIOL 220
+- Planner phase: before-enrollment
+- Green River match: BIOL& 211, BIOL& 212, BIOL& 213
+- Source: https://foodsystems.uw.edu/undergraduate/foodsystems/requirements/
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes BIOL 220 under uw-grc-guide:0168:biology:bioland-211-212-213-6-6-6-formerly-biol-201-202-203. The planner was missing the source-backed Green River course path BIOL& 211, BIOL& 212, BIOL& 213 for this UW requirement.
+
+#### Food Systems, Nutrition, & Health
+
+- UW course: CHEM 120
+- Planner phase: before-enrollment
+- Green River match: CHEM& 121
+- Source: https://foodsystems.uw.edu/undergraduate/foodsystems/requirements/
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes CHEM 120 under uw-grc-guide:0196:chemistry:chemand-121-5-formerly-chem-101. The planner was missing the source-backed Green River course path CHEM& 121 for this UW requirement.
+
+#### Food Systems, Nutrition, & Health
+
+- UW course: NUTR 200
+- Planner phase: before-enrollment
+- Green River match: NUTR& 101
+- Source: https://foodsystems.uw.edu/undergraduate/foodsystems/requirements/
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes NUTR 200 under uw-grc-guide:0972:nutrition:nutrand-101-5. The planner was missing the source-backed Green River course path NUTR& 101 for this UW requirement.
+
+#### Human Centered Design & Engineering
+
+- UW course: BIOL 118
+- Planner phase: before-application
+- Green River match: BIOL& 241, BIOL& 242
+- Source: https://www.hcde.washington.edu/bs/requirements/2024
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes BIOL 118 under uw-grc-guide:0169:biology:bioland-241-242-5-5-formerly-ap-205-206. The planner was missing the source-backed Green River course path BIOL& 241, BIOL& 242 for this UW requirement.
+
+#### Human Centered Design & Engineering
+
+- UW course: CSE 142
+- Planner phase: before-application
+- Green River match: CS& 141
+- Source: https://www.hcde.washington.edu/bs/requirements/2024
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes CSE 142 under uw-grc-guide:0271:computer-science:csand-141-5-formerly-c-sci-144. The planner was missing the source-backed Green River course path CS& 141 for this UW requirement.
+
+#### Human Centered Design & Engineering
+
+- UW course: MATH 120
+- Planner phase: before-application
+- Green River match: MATH& 142
+- Source: https://www.hcde.washington.edu/bs/requirements/2024
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 120 under uw-grc-guide:0787:mathematics:mathand-142-5-formerly-math-104. The planner was missing the source-backed Green River course path MATH& 142 for this UW requirement.
+
+#### Human Centered Design & Engineering
+
+- UW course: PHYS 117
+- Planner phase: before-application
+- Green River match: PHYS& 114, PHYS& 154
+- Source: https://www.hcde.washington.edu/bs/requirements/2024
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 117 under uw-grc-guide:1187:physics:physand-114-154-5-5-formerly-phys-110-150. The planner was missing the source-backed Green River course path PHYS& 114, PHYS& 154 for this UW requirement.
+
+#### Human Centered Design & Engineering
+
+- UW course: PSYCH 202
+- Planner phase: before-application
+- Green River match: PSYC 225
+- Source: https://www.hcde.washington.edu/bs/requirements/2024
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PSYCH 202 under uw-grc-guide:1243:psychology:psyc-225-5-formerly-psych-220. The planner was missing the source-backed Green River course path PSYC 225 for this UW requirement.
+
+#### Landscape Architecture
+
+- UW course: ESS 101
+- Planner phase: before-enrollment
+- Green River match: N SCI 100
+- Source: https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes ESS 101 under uw-grc-guide:0964:natural-science:n-sci-100-5. The planner was missing the source-backed Green River course path N SCI 100 for this UW requirement.
+
+#### Latin American & Caribbean Studies
+
+- UW course: HSTLAC 185
+- Planner phase: before-enrollment
+- Green River match: HIST 233
+- Source: https://jsis.washington.edu/programs/undergraduate/latin-america-and-caribbean-studies/
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes HSTLAC 185 under uw-grc-guide:0673:history:hist-233-5. The planner was missing the source-backed Green River course path HIST 233 for this UW requirement.
+
+#### Marine Biology
+
+- UW course: CHEM 237
+- Planner phase: before-application
+- Green River match: CHEM& 261
+- Source: https://marinebiology.uw.edu/students/marine-biology-major/major-requirements/
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes CHEM 237 under uw-grc-guide:0218:chemistry:chemand-261-6-formerly-chem-235. The planner was missing the source-backed Green River course path CHEM& 261 for this UW requirement.
+
+#### Marine Biology
+
+- UW course: PHYS 114
+- Planner phase: before-application
+- Green River match: PHYS& 114, PHYS& 154
+- Source: https://marinebiology.uw.edu/students/marine-biology-major/major-requirements/
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 114 under uw-grc-guide:1187:physics:physand-114-154-5-5-formerly-phys-110-150. The planner was missing the source-backed Green River course path PHYS& 114, PHYS& 154 for this UW requirement.
+
+#### Marine Biology
+
+- UW course: PHYS 121
+- Planner phase: before-application
+- Green River match: PHYS& 221
+- Source: https://marinebiology.uw.edu/students/marine-biology-major/major-requirements/
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 121 under uw-grc-guide:1196:physics:physand-221-5-formerly-phys-201. The planner was missing the source-backed Green River course path PHYS& 221 for this UW requirement.
 
 ### Automatically classified non-promoted source-backed UW courses
 
@@ -694,405 +695,181 @@ This report is the follow-up step after parsing primary requirement sources. Eve
 
 ### Auto-promoted requirement atoms
 
-#### Applied Computing (BA)
+#### American & Ethnic Studies (BA)
 
-- UW course: BEE 271
+- UW course: BIS 181
 - Planner phase: before-enrollment
-- Green River match: ENGR 271
-- Source: https://www.uwb.edu/stem/undergraduate/majors/applied-computing/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between BEE 271 (Digital Circuits & Systems) and ENGR 271 (Digital Circuits and Systems). That exact-title Green River path was not already exposed in the current planner rows.
+- Green River match: SOC& 101
+- Source: https://www.uwb.edu/ias/undergraduate/majors/american-ethnic-studies
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between BIS 181 (Introduction to Sociology) and SOC& 101 (Introduction to Sociology). That exact-title Green River path was not already exposed in the current planner rows.
 
-#### Applied Computing (BA)
+#### Biology (BS)
 
 - UW course: BPHYS 121
 - Planner phase: before-enrollment
 - Green River match: PHYS& 221
-- Source: https://www.uwb.edu/stem/undergraduate/majors/applied-computing/curriculum
+- Source: https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum
 - Rationale: Parsed from the current primary degree page with high source-parse confidence. BPHYS 121 falls under the existing PHYS 121 lower-division UW course family, which already maps consistently to PHYS& 221 across 3/3 planner samples. Supporting UW course codes: PHYS 121. The current planner rows were still missing that stable Green River course path for this major.
 
-#### Applied Computing (BA)
+#### Biology (BS)
 
 - UW course: BPHYS 123
 - Planner phase: before-enrollment
 - Green River match: PHYS& 223
-- Source: https://www.uwb.edu/stem/undergraduate/majors/applied-computing/curriculum
+- Source: https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum
 - Rationale: Parsed from the current primary degree page with high source-parse confidence. BPHYS 123 falls under the existing PHYS 123 lower-division UW course family, which already maps consistently to PHYS& 223 across 5/5 planner samples. Supporting UW course codes: PHYS 123, T PHYS 123. The current planner rows were still missing that stable Green River course path for this major.
 
-#### Applied Computing (BA)
+#### Chemistry (BA)
 
-- UW course: STMATH 126
+- UW course: BPHYS 121
 - Planner phase: before-enrollment
-- Green River match: MATH& 153
-- Source: https://www.uwb.edu/stem/undergraduate/majors/applied-computing/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. STMATH 126 has multiple clean exact-title Green River matches for Calculus III. The planner now exposes each published Green River alternative path instead of dropping that source-backed requirement row.
+- Green River match: PHYS& 221
+- Source: https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. BPHYS 121 falls under the existing PHYS 121 lower-division UW course family, which already maps consistently to PHYS& 221 across 3/3 planner samples. Supporting UW course codes: PHYS 121. The current planner rows were still missing that stable Green River course path for this major.
 
-#### Applied Computing (BA)
+#### Chemistry (BA)
+
+- UW course: BPHYS 123
+- Planner phase: before-enrollment
+- Green River match: PHYS& 223
+- Source: https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. BPHYS 123 falls under the existing PHYS 123 lower-division UW course family, which already maps consistently to PHYS& 223 across 5/5 planner samples. Supporting UW course codes: PHYS 123, T PHYS 123. The current planner rows were still missing that stable Green River course path for this major.
+
+#### Chemistry (BA)
 
 - UW course: STMATH 207
 - Planner phase: before-enrollment
 - Green River match: MATH 238
-- Source: https://www.uwb.edu/stem/undergraduate/majors/applied-computing/curriculum
+- Source: https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum
 - Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner already has 1/1 exact-title requirement samples mapping STMATH 207 to MATH 238. The current planner rows were still missing that clean Green River course path for this major. Phase inference is high confidence and resolves to before-enrollment.
 
-#### Applied Computing (BA)
+#### Chemistry (BA)
 
 - UW course: STMATH 208
 - Planner phase: before-enrollment
 - Green River match: MATH 240
-- Source: https://www.uwb.edu/stem/undergraduate/majors/applied-computing/curriculum
+- Source: https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum
 - Rationale: Parsed from the current primary degree page with high source-parse confidence. STMATH 208 falls under the existing MATH 208 lower-division UW course family, which already maps consistently to MATH 240 across 12/12 planner samples. Supporting UW course codes: MATH 208, TMATH 208. The current planner rows were still missing that stable Green River course path for this major.
 
-#### Applied Computing (BA)
+#### Chemistry (BA)
 
 - UW course: STMATH 224
 - Planner phase: before-enrollment
-- Green River match: MATH& 254
-- Source: https://www.uwb.edu/stem/undergraduate/majors/applied-computing/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner already has 1/1 exact-title requirement samples mapping STMATH 224 to MATH& 254. The current planner rows were still missing that clean Green River course path for this major. Phase inference is high confidence and resolves to before-enrollment.
-
-#### Biology (BS)
-
-- UW course: BEE 271
-- Planner phase: before-application
-- Green River match: ENGR 271
-- Source: https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between BEE 271 (Digital Circuits & Systems) and ENGR 271 (Digital Circuits and Systems). That exact-title Green River path was not already exposed in the current planner rows.
-
-#### Biology (BS)
-
-- UW course: STMATH 126
-- Planner phase: before-application
-- Green River match: MATH& 153
-- Source: https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. STMATH 126 has multiple clean exact-title Green River matches for Calculus III. The planner now exposes each published Green River alternative path instead of dropping that source-backed requirement row.
-
-#### Biology (BS)
-
-- UW course: STMATH 207
-- Planner phase: before-application
-- Green River match: MATH 238
-- Source: https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner already has 1/1 exact-title requirement samples mapping STMATH 207 to MATH 238. The current planner rows were still missing that clean Green River course path for this major. Phase inference is high confidence and resolves to before-application.
-
-#### Biology (BS)
-
-- UW course: STMATH 208
-- Planner phase: before-application
-- Green River match: MATH 240
-- Source: https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. STMATH 208 falls under the existing MATH 208 lower-division UW course family, which already maps consistently to MATH 240 across 12/12 planner samples. Supporting UW course codes: MATH 208, TMATH 208. The current planner rows were still missing that stable Green River course path for this major.
-
-#### Biology (BS)
-
-- UW course: STMATH 224
-- Planner phase: before-application
-- Green River match: MATH& 254
-- Source: https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner already has 1/1 exact-title requirement samples mapping STMATH 224 to MATH& 254. The current planner rows were still missing that clean Green River course path for this major. Phase inference is high confidence and resolves to before-application.
-
-#### Business Administration: Finance (BA)
-
-- UW course: ENGL 111
-- Planner phase: before-application
-- Green River match: ENGL 126
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes ENGL 111 under uw-grc-guide:0466:english:engl-126-5-formerly-engl-111. The planner was missing the source-backed Green River course path ENGL 126 for this UW requirement.
-
-#### Business Administration: Marketing (BA)
-
-- UW course: ENGL 111
-- Planner phase: before-application
-- Green River match: ENGL 126
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes ENGL 111 under uw-grc-guide:0466:english:engl-126-5-formerly-engl-111. The planner was missing the source-backed Green River course path ENGL 126 for this UW requirement.
-
-#### Business Administration (BA)
-
-- UW course: ENGL 111
-- Planner phase: before-application
-- Green River match: ENGL 126
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes ENGL 111 under uw-grc-guide:0466:english:engl-126-5-formerly-engl-111. The planner was missing the source-backed Green River course path ENGL 126 for this UW requirement.
-
-#### Chemistry (BA)
-
-- UW course: BEE 271
-- Planner phase: before-application
-- Green River match: ENGR 271
+- Green River match: MATH& 264
 - Source: https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between BEE 271 (Digital Circuits & Systems) and ENGR 271 (Digital Circuits and Systems). That exact-title Green River path was not already exposed in the current planner rows.
-
-#### Chemistry (BA)
-
-- UW course: STAT 220
-- Planner phase: before-application
-- Green River match: MATH& 146
-- Source: https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes STAT 220 under uw-grc-guide:0788:mathematics:mathand-146-5. The planner was missing the source-backed Green River course path MATH& 146 for this UW requirement.
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner already has 1/1 exact-title requirement samples mapping STMATH 224 to MATH& 264. The current planner rows were still missing that clean Green River course path for this major. Phase inference is high confidence and resolves to before-enrollment.
 
 #### Chemistry: Biochemistry (BS)
 
-- UW course: BEE 271
-- Planner phase: before-application
-- Green River match: ENGR 271
+- UW course: BPHYS 121
+- Planner phase: before-enrollment
+- Green River match: PHYS& 221
 - Source: https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between BEE 271 (Digital Circuits & Systems) and ENGR 271 (Digital Circuits and Systems). That exact-title Green River path was not already exposed in the current planner rows.
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. BPHYS 121 falls under the existing PHYS 121 lower-division UW course family, which already maps consistently to PHYS& 221 across 3/3 planner samples. Supporting UW course codes: PHYS 121. The current planner rows were still missing that stable Green River course path for this major.
+
+#### Chemistry: Biochemistry (BS)
+
+- UW course: BPHYS 123
+- Planner phase: before-enrollment
+- Green River match: PHYS& 223
+- Source: https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. BPHYS 123 falls under the existing PHYS 123 lower-division UW course family, which already maps consistently to PHYS& 223 across 5/5 planner samples. Supporting UW course codes: PHYS 123, T PHYS 123. The current planner rows were still missing that stable Green River course path for this major.
 
 #### Chemistry (BS)
 
-- UW course: BEE 271
-- Planner phase: before-application
-- Green River match: ENGR 271
+- UW course: BPHYS 121
+- Planner phase: before-enrollment
+- Green River match: PHYS& 221
 - Source: https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between BEE 271 (Digital Circuits & Systems) and ENGR 271 (Digital Circuits and Systems). That exact-title Green River path was not already exposed in the current planner rows.
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. BPHYS 121 falls under the existing PHYS 121 lower-division UW course family, which already maps consistently to PHYS& 221 across 3/3 planner samples. Supporting UW course codes: PHYS 121. The current planner rows were still missing that stable Green River course path for this major.
+
+#### Chemistry (BS)
+
+- UW course: BPHYS 123
+- Planner phase: before-enrollment
+- Green River match: PHYS& 223
+- Source: https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. BPHYS 123 falls under the existing PHYS 123 lower-division UW course family, which already maps consistently to PHYS& 223 across 5/5 planner samples. Supporting UW course codes: PHYS 123, T PHYS 123. The current planner rows were still missing that stable Green River course path for this major.
 
 #### Computer Engineering
 
-- UW course: BEE 271
+- UW course: STMATH 207
 - Planner phase: before-application
-- Green River match: ENGR 271
+- Green River match: MATH 238
 - Source: https://www.uwb.edu/stem/undergraduate/majors/bscompe/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between BEE 271 (Digital Circuits & Systems) and ENGR 271 (Digital Circuits and Systems). That exact-title Green River path was not already exposed in the current planner rows.
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner already has 1/1 exact-title requirement samples mapping STMATH 207 to MATH 238. The current planner rows were still missing that clean Green River course path for this major. Phase inference is high confidence and resolves to before-application.
+
+#### Computer Engineering
+
+- UW course: STMATH 224
+- Planner phase: before-application
+- Green River match: MATH& 264
+- Source: https://www.uwb.edu/stem/undergraduate/majors/bscompe/curriculum
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner already has 1/1 exact-title requirement samples mapping STMATH 224 to MATH& 264. The current planner rows were still missing that clean Green River course path for this major. Phase inference is high confidence and resolves to before-application.
 
 #### Conservation & Restoration Science (BS)
 
-- UW course: BEARTH 154
+- UW course: MATH 120
 - Planner phase: before-enrollment
-- Green River match: OCEA& 101
+- Green River match: MATH& 142
 - Source: https://www.uwb.edu/ias/undergraduate/majors/conservation-restoration-science
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between BEARTH 154 (Intro to Oceanography) and OCEA& 101 (Introduction to Oceanography). That exact-title Green River path was not already exposed in the current planner rows.
-
-#### Computer Science & Software Engineering: Information Assurance & Cybersecurity (BS)
-
-- UW course: BEE 271
-- Planner phase: before-enrollment
-- Green River match: ENGR 271
-- Source: https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between BEE 271 (Digital Circuits & Systems) and ENGR 271 (Digital Circuits and Systems). That exact-title Green River path was not already exposed in the current planner rows.
-
-#### Computer Science & Software Engineering: Information Assurance & Cybersecurity (BS)
-
-- UW course: STMATH 207
-- Planner phase: before-enrollment
-- Green River match: MATH 238
-- Source: https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner already has 1/1 exact-title requirement samples mapping STMATH 207 to MATH 238. The current planner rows were still missing that clean Green River course path for this major. Phase inference is high confidence and resolves to before-enrollment.
-
-#### Computer Science & Software Engineering: Information Assurance & Cybersecurity (BS)
-
-- UW course: STMATH 208
-- Planner phase: before-enrollment
-- Green River match: MATH 240
-- Source: https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. STMATH 208 falls under the existing MATH 208 lower-division UW course family, which already maps consistently to MATH 240 across 12/12 planner samples. Supporting UW course codes: MATH 208, TMATH 208. The current planner rows were still missing that stable Green River course path for this major.
-
-#### Computer Science & Software Engineering: Information Assurance & Cybersecurity (BS)
-
-- UW course: STMATH 224
-- Planner phase: before-enrollment
-- Green River match: MATH& 254
-- Source: https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner already has 1/1 exact-title requirement samples mapping STMATH 224 to MATH& 254. The current planner rows were still missing that clean Green River course path for this major. Phase inference is high confidence and resolves to before-enrollment.
-
-#### Computer Science & Software Engineering
-
-- UW course: BEE 271
-- Planner phase: before-enrollment
-- Green River match: ENGR 271
-- Source: https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between BEE 271 (Digital Circuits & Systems) and ENGR 271 (Digital Circuits and Systems). That exact-title Green River path was not already exposed in the current planner rows.
-
-#### Computer Science & Software Engineering
-
-- UW course: STMATH 207
-- Planner phase: before-enrollment
-- Green River match: MATH 238
-- Source: https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner already has 1/1 exact-title requirement samples mapping STMATH 207 to MATH 238. The current planner rows were still missing that clean Green River course path for this major. Phase inference is high confidence and resolves to before-enrollment.
-
-#### Computer Science & Software Engineering
-
-- UW course: STMATH 208
-- Planner phase: before-enrollment
-- Green River match: MATH 240
-- Source: https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. STMATH 208 falls under the existing MATH 208 lower-division UW course family, which already maps consistently to MATH 240 across 12/12 planner samples. Supporting UW course codes: MATH 208, TMATH 208. The current planner rows were still missing that stable Green River course path for this major.
-
-#### Computer Science & Software Engineering
-
-- UW course: STMATH 224
-- Planner phase: before-enrollment
-- Green River match: MATH& 254
-- Source: https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner already has 1/1 exact-title requirement samples mapping STMATH 224 to MATH& 254. The current planner rows were still missing that clean Green River course path for this major. Phase inference is high confidence and resolves to before-enrollment.
-
-#### Culture, Literature & the Arts (BA)
-
-- UW course: BIS 134
-- Planner phase: before-enrollment
-- Green River match: DANCE 101
-- Source: https://www.uwb.edu/ias/undergraduate/majors/culture-literature-arts
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between BIS 134 (Introduction to Dance) and DANCE 101 (Introduction to Dance). That exact-title Green River path was not already exposed in the current planner rows.
-
-#### Data Visualization (BA)
-
-- UW course: BIS 180
-- Planner phase: before-enrollment
-- Green River match: GEOG& 200
-- Source: https://admissions.uwb.edu/register/mpw-DataVis-BA
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between BIS 180 (Human Geography) and GEOG& 200 (Human Geography). That exact-title Green River path was not already exposed in the current planner rows.
-
-#### Data Visualization (BA)
-
-- UW course: BIS 242
-- Planner phase: before-enrollment
-- Green River match: GEOG 205
-- Source: https://admissions.uwb.edu/register/mpw-DataVis-BA
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between BIS 242 (Environmental Geography) and GEOG 205 (Environmental Geography). That exact-title Green River path was not already exposed in the current planner rows.
-
-#### Data Visualization (BS)
-
-- UW course: BIS 180
-- Planner phase: before-enrollment
-- Green River match: GEOG& 200
-- Source: https://admissions.uwb.edu/register/mpw-DataVis-BS
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between BIS 180 (Human Geography) and GEOG& 200 (Human Geography). That exact-title Green River path was not already exposed in the current planner rows.
-
-#### Data Visualization (BS)
-
-- UW course: BIS 242
-- Planner phase: before-enrollment
-- Green River match: GEOG 205
-- Source: https://admissions.uwb.edu/register/mpw-DataVis-BS
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between BIS 242 (Environmental Geography) and GEOG 205 (Environmental Geography). That exact-title Green River path was not already exposed in the current planner rows.
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 120 under uw-grc-guide:0787:mathematics:mathand-142-5-formerly-math-104. The planner was missing the source-backed Green River course path MATH& 142 for this UW requirement.
 
 #### Earth System Science (BS)
 
-- UW course: BIS 231
+- UW course: STMATH 126
 - Planner phase: before-enrollment
-- Green River match: MATH 240
+- Green River match: MATH& 153
 - Source: https://www.uwb.edu/ias/undergraduate/majors/earth-system-science
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between BIS 231 (Linear Algebra) and MATH 240 (Linear Algebra). That exact-title Green River path was not already exposed in the current planner rows.
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. STMATH 126 has multiple clean exact-title Green River matches for Calculus III. The planner now exposes each published Green River alternative path instead of dropping that source-backed requirement row.
 
-#### Earth System Science (BS)
+#### Electrical Engineering (BS)
+
+- UW course: STMATH 208
+- Planner phase: before-enrollment
+- Green River match: MATH 240
+- Source: https://www.uwb.edu/stem/undergraduate/majors/electrical/curriculum
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. STMATH 208 falls under the existing MATH 208 lower-division UW course family, which already maps consistently to MATH 240 across 12/12 planner samples. Supporting UW course codes: MATH 208, TMATH 208. The current planner rows were still missing that stable Green River course path for this major.
+
+#### Law, Economics & Public Policy (BA)
+
+- UW course: STAT 220
+- Planner phase: before-enrollment
+- Green River match: MATH& 146
+- Source: https://www.uwb.edu/ias/undergraduate/majors/law-economics-public-policy
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes STAT 220 under uw-grc-guide:0788:mathematics:mathand-146-5. The planner was missing the source-backed Green River course path MATH& 146 for this UW requirement.
+
+#### Physics (BA)
+
+- UW course: STMATH 208
+- Planner phase: before-enrollment
+- Green River match: MATH 240
+- Source: https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. STMATH 208 falls under the existing MATH 208 lower-division UW course family, which already maps consistently to MATH 240 across 12/12 planner samples. Supporting UW course codes: MATH 208, TMATH 208. The current planner rows were still missing that stable Green River course path for this major.
+
+#### Physics (BA)
+
+- UW course: STMATH 224
+- Planner phase: before-enrollment
+- Green River match: MATH& 264
+- Source: https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner already has 1/1 exact-title requirement samples mapping STMATH 224 to MATH& 264. The current planner rows were still missing that clean Green River course path for this major. Phase inference is high confidence and resolves to before-enrollment.
+
+#### Society, Ethics & Human Behavior (BA)
+
+- UW course: BIS 225
+- Planner phase: before-application
+- Green River match: PSYC 240
+- Source: https://www.uwb.edu/ias/undergraduate/majors/society-ethics-human-behavior
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between BIS 225 (Social Psychology) and PSYC 240 (Social Psychology). That exact-title Green River path was not already exposed in the current planner rows.
+
+#### Society, Ethics & Human Behavior (BA)
 
 - UW course: BIS 282
-- Planner phase: before-enrollment
+- Planner phase: before-application
 - Green River match: GEOG 123
-- Source: https://www.uwb.edu/ias/undergraduate/majors/earth-system-science
+- Source: https://www.uwb.edu/ias/undergraduate/majors/society-ethics-human-behavior
 - Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between BIS 282 (Globalization) and GEOG 123 (Globalization). That exact-title Green River path was not already exposed in the current planner rows.
-
-#### Earth System Science (BS)
-
-- UW course: STMATH 224
-- Planner phase: before-enrollment
-- Green River match: MATH& 254
-- Source: https://www.uwb.edu/ias/undergraduate/majors/earth-system-science
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner already has 1/1 exact-title requirement samples mapping STMATH 224 to MATH& 254. The current planner rows were still missing that clean Green River course path for this major. Phase inference is high confidence and resolves to before-enrollment.
-
-#### Economics (BS)
-
-- UW course: ENGL 111
-- Planner phase: before-application
-- Green River match: ENGL 126
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes ENGL 111 under uw-grc-guide:0466:english:engl-126-5-formerly-engl-111. The planner was missing the source-backed Green River course path ENGL 126 for this UW requirement.
-
-#### Electrical Engineering (BS)
-
-- UW course: BEE 271
-- Planner phase: before-application
-- Green River match: ENGR 271
-- Source: https://www.uwb.edu/stem/undergraduate/majors/electrical/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between BEE 271 (Digital Circuits & Systems) and ENGR 271 (Digital Circuits and Systems). That exact-title Green River path was not already exposed in the current planner rows.
-
-#### Electrical Engineering (BS)
-
-- UW course: BPHYS 123
-- Planner phase: before-application
-- Green River match: PHYS& 223
-- Source: https://www.uwb.edu/stem/undergraduate/majors/electrical/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. BPHYS 123 falls under the existing PHYS 123 lower-division UW course family, which already maps consistently to PHYS& 223 across 5/5 planner samples. Supporting UW course codes: PHYS 123, T PHYS 123. The current planner rows were still missing that stable Green River course path for this major.
-
-#### Electrical Engineering (BS)
-
-- UW course: STAT 220
-- Planner phase: before-application
-- Green River match: MATH& 146
-- Source: https://www.uwb.edu/stem/undergraduate/majors/electrical/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes STAT 220 under uw-grc-guide:0788:mathematics:mathand-146-5. The planner was missing the source-backed Green River course path MATH& 146 for this UW requirement.
-
-#### Electrical Engineering (BS)
-
-- UW course: STMATH 207
-- Planner phase: before-application
-- Green River match: MATH 238
-- Source: https://www.uwb.edu/stem/undergraduate/majors/electrical/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner already has 1/1 exact-title requirement samples mapping STMATH 207 to MATH 238. The current planner rows were still missing that clean Green River course path for this major. Phase inference is high confidence and resolves to before-application.
-
-#### Mathematics (BS)
-
-- UW course: BEE 271
-- Planner phase: before-application
-- Green River match: ENGR 271
-- Source: https://www.uwb.edu/stem/undergraduate/majors/mathematics/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between BEE 271 (Digital Circuits & Systems) and ENGR 271 (Digital Circuits and Systems). That exact-title Green River path was not already exposed in the current planner rows.
-
-#### Mathematics (BS)
-
-- UW course: BPHYS 121
-- Planner phase: before-application
-- Green River match: PHYS& 221
-- Source: https://www.uwb.edu/stem/undergraduate/majors/mathematics/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. BPHYS 121 falls under the existing PHYS 121 lower-division UW course family, which already maps consistently to PHYS& 221 across 3/3 planner samples. Supporting UW course codes: PHYS 121. The current planner rows were still missing that stable Green River course path for this major.
-
-#### Mathematics (BS)
-
-- UW course: BPHYS 123
-- Planner phase: before-application
-- Green River match: PHYS& 223
-- Source: https://www.uwb.edu/stem/undergraduate/majors/mathematics/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. BPHYS 123 falls under the existing PHYS 123 lower-division UW course family, which already maps consistently to PHYS& 223 across 5/5 planner samples. Supporting UW course codes: PHYS 123, T PHYS 123. The current planner rows were still missing that stable Green River course path for this major.
-
-#### Mathematics (BS)
-
-- UW course: STAT 220
-- Planner phase: before-application
-- Green River match: MATH& 146
-- Source: https://www.uwb.edu/stem/undergraduate/majors/mathematics/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes STAT 220 under uw-grc-guide:0788:mathematics:mathand-146-5. The planner was missing the source-backed Green River course path MATH& 146 for this UW requirement.
-
-#### Physics (BA)
-
-- UW course: BEE 271
-- Planner phase: before-application
-- Green River match: ENGR 271
-- Source: https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between BEE 271 (Digital Circuits & Systems) and ENGR 271 (Digital Circuits and Systems). That exact-title Green River path was not already exposed in the current planner rows.
-
-#### Physics (BA)
-
-- UW course: BPHYS 222
-- Planner phase: before-application
-- Green River match: PHYS 225
-- Source: https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between BPHYS 222 (Modern Physics) and PHYS 225 (Modern Physics). That exact-title Green River path was not already exposed in the current planner rows.
-
-#### Physics (BA)
-
-- UW course: STAT 220
-- Planner phase: before-application
-- Green River match: MATH& 146
-- Source: https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes STAT 220 under uw-grc-guide:0788:mathematics:mathand-146-5. The planner was missing the source-backed Green River course path MATH& 146 for this UW requirement.
-
-#### Physics (BS)
-
-- UW course: BEE 271
-- Planner phase: before-application
-- Green River match: ENGR 271
-- Source: https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between BEE 271 (Digital Circuits & Systems) and ENGR 271 (Digital Circuits and Systems). That exact-title Green River path was not already exposed in the current planner rows.
 
 ### Automatically classified non-promoted source-backed UW courses
 
@@ -1339,147 +1116,51 @@ This report is the follow-up step after parsing primary requirement sources. Eve
 - Biology (BS)
   - UW course: BBIO 200
   - Classification: source-backed-campus-specific-no-public-grc-equivalent
-  - Suggested phase: before-application
+  - Suggested phase: before-enrollment
   - Reason: The source-backed UW course uses a campus-specific lower-division code, but the current public Green River sources do not prove a matching planner path.
 - Biology (BS)
   - UW course: BBIO 231
   - Classification: source-backed-campus-specific-no-public-grc-equivalent
-  - Suggested phase: before-application
+  - Suggested phase: before-enrollment
   - Reason: The source-backed UW course uses a campus-specific lower-division code, but the current public Green River sources do not prove a matching planner path.
 
 ## UW Tacoma
 
 ### Auto-promoted requirement atoms
 
-#### Arts, Media and Culture (BA)
-
-- UW course: TAMST 220
-- Planner phase: before-application
-- Green River match: CMST 265
-- Source: https://www.tacoma.uw.edu/sias/cac/arts-media-culture
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between TAMST 220 (Introduction to Popular Culture) and CMST 265 (Introduction to Popular Culture). That exact-title Green River path was not already exposed in the current planner rows.
-
-#### Arts, Media and Culture (BA) - American Cultures track
-
-- UW course: TAMST 220
-- Planner phase: before-enrollment
-- Green River match: CMST 265
-- Source: https://www.tacoma.uw.edu/sias/cac/american-cultures-track
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between TAMST 220 (Introduction to Popular Culture) and CMST 265 (Introduction to Popular Culture). That exact-title Green River path was not already exposed in the current planner rows.
-
-#### Arts, Media and Culture (BA) - American Cultures track
-
-- UW course: TARTS 150
-- Planner phase: before-enrollment
-- Green River match: DRMA& 101
-- Source: https://www.tacoma.uw.edu/sias/cac/american-cultures-track
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between TARTS 150 (Introduction to Theatre) and DRMA& 101 (Introduction to Theatre). That exact-title Green River path was not already exposed in the current planner rows.
-
-#### Arts, Media and Culture (BA) - Comparative Arts track
-
-- UW course: TAMST 220
-- Planner phase: before-enrollment
-- Green River match: CMST 265
-- Source: https://www.tacoma.uw.edu/sias/cac/comparative-arts-track
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between TAMST 220 (Introduction to Popular Culture) and CMST 265 (Introduction to Popular Culture). That exact-title Green River path was not already exposed in the current planner rows.
-
-#### Arts, Media and Culture (BA) - Comparative Arts track
-
-- UW course: TARTS 150
-- Planner phase: before-enrollment
-- Green River match: DRMA& 101
-- Source: https://www.tacoma.uw.edu/sias/cac/comparative-arts-track
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between TARTS 150 (Introduction to Theatre) and DRMA& 101 (Introduction to Theatre). That exact-title Green River path was not already exposed in the current planner rows.
-
-#### Arts, Media and Culture (BA) - Comparative Arts track
-
-- UW course: TFILM 201
-- Planner phase: before-enrollment
-- Green River match: FILM 101
-- Source: https://www.tacoma.uw.edu/sias/cac/comparative-arts-track
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between TFILM 201 (Introduction to Film Studies) and FILM 101 (Introduction to Film Studies). That exact-title Green River path was not already exposed in the current planner rows.
-
-#### Arts, Media and Culture (BA) - Film and Media track
-
-- UW course: TAMST 220
-- Planner phase: before-enrollment
-- Green River match: CMST 265
-- Source: https://www.tacoma.uw.edu/sias/cac/film-and-media-track
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between TAMST 220 (Introduction to Popular Culture) and CMST 265 (Introduction to Popular Culture). That exact-title Green River path was not already exposed in the current planner rows.
-
-#### Arts, Media and Culture (BA) - Film and Media track
-
-- UW course: TARTS 150
-- Planner phase: before-enrollment
-- Green River match: DRMA& 101
-- Source: https://www.tacoma.uw.edu/sias/cac/film-and-media-track
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between TARTS 150 (Introduction to Theatre) and DRMA& 101 (Introduction to Theatre). That exact-title Green River path was not already exposed in the current planner rows.
-
-#### Arts, Media and Culture (BA) - Film and Media track
-
-- UW course: TFILM 201
-- Planner phase: before-enrollment
-- Green River match: FILM 101
-- Source: https://www.tacoma.uw.edu/sias/cac/film-and-media-track
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between TFILM 201 (Introduction to Film Studies) and FILM 101 (Introduction to Film Studies). That exact-title Green River path was not already exposed in the current planner rows.
-
-#### Arts, Media and Culture (BA) - Literature track
-
-- UW course: TAMST 220
-- Planner phase: before-enrollment
-- Green River match: CMST 265
-- Source: https://www.tacoma.uw.edu/sias/cac/literature-track
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between TAMST 220 (Introduction to Popular Culture) and CMST 265 (Introduction to Popular Culture). That exact-title Green River path was not already exposed in the current planner rows.
-
-#### Arts, Media and Culture (BA) - Literature track
-
-- UW course: TARTS 150
-- Planner phase: before-enrollment
-- Green River match: DRMA& 101
-- Source: https://www.tacoma.uw.edu/sias/cac/literature-track
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between TARTS 150 (Introduction to Theatre) and DRMA& 101 (Introduction to Theatre). That exact-title Green River path was not already exposed in the current planner rows.
-
-#### Arts, Media and Culture (BA) - Visual and Performing Arts track
-
-- UW course: TAMST 220
-- Planner phase: before-enrollment
-- Green River match: CMST 265
-- Source: https://www.tacoma.uw.edu/sias/cac/visual-and-performing-arts-track
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between TAMST 220 (Introduction to Popular Culture) and CMST 265 (Introduction to Popular Culture). That exact-title Green River path was not already exposed in the current planner rows.
-
-#### Arts, Media and Culture (BA) - Visual and Performing Arts track
-
-- UW course: TARTS 150
-- Planner phase: before-enrollment
-- Green River match: DRMA& 101
-- Source: https://www.tacoma.uw.edu/sias/cac/visual-and-performing-arts-track
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between TARTS 150 (Introduction to Theatre) and DRMA& 101 (Introduction to Theatre). That exact-title Green River path was not already exposed in the current planner rows.
-
 #### Biomedical Sciences (BS)
 
-- UW course: TBIOMD 201
+- UW course: TPHYS 123
 - Planner phase: before-application
-- Green River match: HL ED 190
+- Green River match: PHYS& 223
 - Source: https://www.tacoma.uw.edu/sias/sam/biomedical-sciences
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between TBIOMD 201 (Intro to Public Health) and HL ED 190 (Introduction to Public Health). That exact-title Green River path was not already exposed in the current planner rows.
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. TPHYS 123 falls under the existing PHYS 123 lower-division UW course family, which already maps consistently to PHYS& 223 across 5/5 planner samples. Supporting UW course codes: PHYS 123, T PHYS 123. The current planner rows were still missing that stable Green River course path for this major.
 
 #### Computer Engineering
 
-- UW course: CEE 220
+- UW course: MATH 224
 - Planner phase: before-application
-- Green River match: ENGR& 225
+- Green River match: MATH& 264
 - Source: https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes CEE 220 under uw-grc-guide:0437:engineering-formerly-general-engineering:engrand-225-5-formerly-g-e-240. The planner was missing the source-backed Green River course path ENGR& 225 for this UW requirement.
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 224 under uw-grc-guide:0817:mathematics:mathand-254-5-see-also-mathand-153-combined-entry. The planner was missing the source-backed Green River course path MATH& 264 for this UW requirement.
 
 #### Computer Engineering
 
-- UW course: CHEM 142
+- UW course: TME 221
 - Planner phase: before-application
-- Green River match: CHEM& 161
+- Green River match: ENGR& 214
 - Source: https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes CHEM 142 under uw-grc-guide:0204:chemistry:chemand-161-6-formerly-chem-140. The planner was missing the source-backed Green River course path CHEM& 161 for this UW requirement.
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. TME 221 only appeared in alternate or choice-based requirement lines, so the planner resolved the published Green River prep paths from the same source-backed choice set. Supporting UW choice-set codes: A A 210. Published Green River options now exposed: ENGR& 214.
 
-#### Computer Science and Systems (BS)
+#### Computer Engineering
+
+- UW course: TME 223
+- Planner phase: before-application
+- Green River match: ENGR& 215
+- Source: https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. TME 223 only appeared in alternate or choice-based requirement lines, so the planner resolved the published Green River prep paths from the same source-backed choice set. Supporting UW choice-set codes: M E 230. Published Green River options now exposed: ENGR& 215.
+
+#### Computer Science and Systems (BA)
 
 - UW course: TBIOL 120
 - Planner phase: before-application
@@ -1487,52 +1168,84 @@ This report is the follow-up step after parsing primary requirement sources. Eve
 - Source: https://www.tacoma.uw.edu/set/programs/undergrad/css/bs
 - Rationale: Parsed from the current primary degree page with high source-parse confidence. TBIOL 120 only appeared in alternate or choice-based requirement lines, so the planner resolved the published Green River prep paths from the same source-backed choice set. Supporting UW choice-set codes: TCHEM 142. Published Green River options now exposed: CHEM& 161.
 
-#### Electrical Engineering
-
-- UW course: CEE 220
-- Planner phase: before-application
-- Green River match: ENGR& 225
-- Source: https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes CEE 220 under uw-grc-guide:0437:engineering-formerly-general-engineering:engrand-225-5-formerly-g-e-240. The planner was missing the source-backed Green River course path ENGR& 225 for this UW requirement.
-
-#### Electrical Engineering
-
-- UW course: CHEM 142
-- Planner phase: before-application
-- Green River match: CHEM& 161
-- Source: https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html
-- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes CHEM 142 under uw-grc-guide:0204:chemistry:chemand-161-6-formerly-chem-140. The planner was missing the source-backed Green River course path CHEM& 161 for this UW requirement.
-
-#### Mechanical Engineering
+#### Computer Science and Systems (BA)
 
 - UW course: TMATH 208
 - Planner phase: before-application
 - Green River match: MATH 240
-- Source: https://www.tacoma.uw.edu/set/programs/undergrad/me
+- Source: https://www.tacoma.uw.edu/set/programs/undergrad/css/bs
 - Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner already has 5/5 exact-title requirement samples mapping TMATH 208 to MATH 240. The current planner rows were still missing that clean Green River course path for this major. Phase inference is high confidence and resolves to before-application.
 
-#### Sustainable Urban Development (BA)
+#### Education (BA)
+
+- UW course: PSYCH 306
+- Planner phase: before-application
+- Green River match: PSYCH 210
+- Source: https://www.tacoma.uw.edu/soe/bachelor-arts-education
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PSYCH 306 under uw-grc-guide:1240:psychology:psych-210-5. The planner was missing the source-backed Green River course path PSYCH 210 for this UW requirement.
+
+#### Electrical Engineering
+
+- UW course: MATH 224
+- Planner phase: before-application
+- Green River match: MATH& 264
+- Source: https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 224 under uw-grc-guide:0817:mathematics:mathand-254-5-see-also-mathand-153-combined-entry. The planner was missing the source-backed Green River course path MATH& 264 for this UW requirement.
+
+#### Electrical Engineering
+
+- UW course: TME 221
+- Planner phase: before-application
+- Green River match: ENGR& 214
+- Source: https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. TME 221 only appeared in alternate or choice-based requirement lines, so the planner resolved the published Green River prep paths from the same source-backed choice set. Supporting UW choice-set codes: A A 210. Published Green River options now exposed: ENGR& 214.
+
+#### Electrical Engineering
+
+- UW course: TME 223
+- Planner phase: before-application
+- Green River match: ENGR& 215
+- Source: https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. TME 223 only appeared in alternate or choice-based requirement lines, so the planner resolved the published Green River prep paths from the same source-backed choice set. Supporting UW choice-set codes: M E 230. Published Green River options now exposed: ENGR& 215.
+
+#### Mechanical Engineering
+
+- UW course: AMATH 301
+- Planner phase: before-application
+- Green River match: ENGR 250
+- Source: https://www.tacoma.uw.edu/set/programs/undergrad/me
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes AMATH 301 under uw-grc-guide:0441:engineering-formerly-general-engineering:engr-250-5. The planner was missing the source-backed Green River course path ENGR 250 for this UW requirement.
+
+#### Mechanical Engineering
+
+- UW course: EE 215
+- Planner phase: before-application
+- Green River match: ENGR& 204
+- Source: https://www.tacoma.uw.edu/set/programs/undergrad/me
+- Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner already has 2/2 exact-title requirement samples mapping EE 215 to ENGR& 204. The current planner rows were still missing that clean Green River course path for this major. Phase inference is high confidence and resolves to before-application.
+
+#### Urban Studies (BA)
 
 - UW course: T GEOG 101
 - Planner phase: before-application
 - Green River match: GEOG& 100
-- Source: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development
+- Source: https://www.tacoma.uw.edu/urban-studies/ba-urban-studies
 - Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between T GEOG 101 (Introduction to Geography) and GEOG& 100 (Introduction to Geography). That exact-title Green River path was not already exposed in the current planner rows.
 
-#### Sustainable Urban Development (BA) - Community Engagement option
+#### Urban Studies (BA) - Community Engagement option
 
 - UW course: T GEOG 101
 - Planner phase: before-application
 - Green River match: GEOG& 100
-- Source: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development
+- Source: https://www.tacoma.uw.edu/urban-studies/ba-urban-studies
 - Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between T GEOG 101 (Introduction to Geography) and GEOG& 100 (Introduction to Geography). That exact-title Green River path was not already exposed in the current planner rows.
 
-#### Sustainable Urban Development (BA) - GIS option
+#### Urban Studies (BA) - GIS option
 
 - UW course: T GEOG 101
 - Planner phase: before-application
 - Green River match: GEOG& 100
-- Source: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development
+- Source: https://www.tacoma.uw.edu/urban-studies/ba-urban-studies
 - Rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between T GEOG 101 (Introduction to Geography) and GEOG& 100 (Introduction to Geography). That exact-title Green River path was not already exposed in the current planner rows.
 
 ### Automatically classified non-promoted source-backed UW courses

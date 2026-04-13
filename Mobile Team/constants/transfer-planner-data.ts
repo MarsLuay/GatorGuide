@@ -1634,7 +1634,7 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
         "The mathematics block is MATH 124, 125, 126, 207, 208, and 224.",
         "The 25-credit science block is CHEM 142, PHYS 121, PHYS 122, PHYS 123, plus CSE 160 or ME 123 or another approved 5-credit natural-science course.",
         "Engineering fundamentals are AA 210, CEE 220, ME 230, and AA 260.",
-        "General education includes English composition, 9 additional writing credits built into A&A core courses, and 24 credits of A&H/SSc with diversity overlap allowed.",
+        "General education includes English composition, 9 additional writing credits built into A&A core courses, 10 credits of A&H, 10 credits of SSc, and 4 additional A&H and/or SSc credits, with diversity overlap allowed.",
       ]),
       degreeMapSection("aa-core", "BSAAE required A&A courses", [
         "The A&A core is AMATH 301, AA 301, AA 302, AA 310, AA 311, AA 312, AA 320, AA 321, AA 322, AA 331, AA 332, AA 395, AA 447, and AA 460.",
@@ -5925,8 +5925,8 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
       itemAny(
         "uwt-biomed-physics1",
         "First physics requirement",
-        ["PHYS& 221", "PHYS& 114"],
-        "The transfer-credits page allows either the calculus-based PHYS& 221 route or the PHYS& 114 / 115 algebra-based physics route for the first physics requirement. The planner prefers PHYS& 221 when the student may still need a stronger STEM launch."
+        ["PHYS& 114", "PHYS& 221"],
+        "The transfer-credits page allows either the calculus-based PHYS& 221 route or the PHYS& 114 / 115 algebra-based physics route for the first physics requirement. The planner now lists PHYS& 114 first so students can see the algebra-based path before engineering physics."
       ),
     ],
     beforeEnrollmentChecklist: [
@@ -10321,7 +10321,7 @@ const TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: TransferPlannerMajorPlan
       itemAny(
         "uws-ess-physics",
         "Physics support",
-        ["PHYS& 221", "PHYS& 222", "PHYS& 114"],
+        ["PHYS& 114", "PHYS& 221", "PHYS& 222"],
         "Physics readiness supports quantitative geoscience and space-science coursework."
       ),
     ],

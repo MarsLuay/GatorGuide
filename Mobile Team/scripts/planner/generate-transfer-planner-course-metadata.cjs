@@ -55,6 +55,9 @@ const SUPPLEMENTAL_LEGACY_AVAILABILITY_STATUSES = new Set([
   "catalog-listed-not-in-latest-schedules",
   "published-in-recent-history-not-latest",
 ]);
+const LEGACY_GRC_CODE_ALIASES = new Map([
+  ["MATH& 254", "MATH& 264"],
+]);
 
 const HEADING_STOP_WORDS = new Set([
   "Course",
@@ -74,10 +77,11 @@ const HEADING_STOP_WORDS = new Set([
 ]);
 
 function normalizeCourseCode(value) {
-  return String(value ?? "")
+  const normalized = String(value ?? "")
     .toUpperCase()
     .replace(/\s+/g, " ")
     .trim();
+  return LEGACY_GRC_CODE_ALIASES.get(normalized) ?? normalized;
 }
 
 function loadGeneratedTsModule(filePath) {
@@ -248,6 +252,66 @@ function uniqueStrings(values) {
   return [...new Set((values ?? []).filter(Boolean))].sort();
 }
 
+function normalizeCoursePath(values) {
+  return uniqueStrings((values ?? []).map((value) => normalizeCourseCode(value)).filter(Boolean));
+}
+
+function uniqueCoursePaths(paths) {
+  const byKey = new Map();
+  for (const path of paths ?? []) {
+    const normalizedPath = normalizeCoursePath(path);
+    if (!normalizedPath.length) {
+      continue;
+    }
+    byKey.set(normalizedPath.join("|"), normalizedPath);
+  }
+  return [...byKey.values()].sort((left, right) => left.join("|").localeCompare(right.join("|")));
+}
+
+function extractStructuredRequirementPaths(courseCodes, alternativeCourseCodeSets) {
+  const directPath = normalizeCoursePath(courseCodes);
+  return uniqueCoursePaths([
+    ...(directPath.length ? [directPath] : []),
+    ...(alternativeCourseCodeSets ?? []),
+  ]);
+}
+
+function materializeStructuredRequirementPaths(paths) {
+  const normalizedPaths = uniqueCoursePaths(paths);
+  if (normalizedPaths.length === 1) {
+    return {
+      courseCodes: [...normalizedPaths[0]],
+      alternativeCourseCodeSets: [],
+    };
+  }
+
+  return {
+    courseCodes: [],
+    alternativeCourseCodeSets: normalizedPaths.map((path) => [...path]),
+  };
+}
+
+function mergeStructuredRequirementFields(existing, incoming, prefix) {
+  const courseCodesKey = `${prefix}CourseCodes`;
+  const alternativeCourseCodeSetsKey = `${prefix}AlternativeCourseCodeSets`;
+  const mergedPaths = uniqueCoursePaths([
+    ...extractStructuredRequirementPaths(
+      existing?.[courseCodesKey],
+      existing?.[alternativeCourseCodeSetsKey]
+    ),
+    ...extractStructuredRequirementPaths(
+      incoming?.[courseCodesKey],
+      incoming?.[alternativeCourseCodeSetsKey]
+    ),
+  ]);
+  const materialized = materializeStructuredRequirementPaths(mergedPaths);
+
+  return {
+    [courseCodesKey]: materialized.courseCodes,
+    [alternativeCourseCodeSetsKey]: materialized.alternativeCourseCodeSets,
+  };
+}
+
 function mergeRanges(left = [], right = []) {
   const byKey = new Map();
   for (const range of [...left, ...right]) {
@@ -267,6 +331,17 @@ function mergeLinks(left = [], right = []) {
 }
 
 function mergeMetadataEntry(existing, incoming) {
+  const mergedPrerequisiteFields = mergeStructuredRequirementFields(
+    existing,
+    incoming,
+    "prerequisite"
+  );
+  const mergedCorequisiteFields = mergeStructuredRequirementFields(
+    existing,
+    incoming,
+    "corequisite"
+  );
+
   return {
     schoolId: existing.schoolId,
     code: existing.code,
@@ -277,26 +352,12 @@ function mergeMetadataEntry(existing, incoming) {
         : existing.creditValue ?? null,
     creditLabel: incoming.creditLabel ?? existing.creditLabel ?? null,
     catalogDescription: incoming.catalogDescription ?? existing.catalogDescription ?? null,
-    prerequisiteCourseCodes: uniqueStrings([
-      ...(existing.prerequisiteCourseCodes ?? []),
-      ...(incoming.prerequisiteCourseCodes ?? []),
-    ]),
-    prerequisiteAlternativeCourseCodeSets: [
-      ...(existing.prerequisiteAlternativeCourseCodeSets ?? []),
-      ...(incoming.prerequisiteAlternativeCourseCodeSets ?? []),
-    ],
+    ...mergedPrerequisiteFields,
     prerequisiteNotes: uniqueStrings([
       ...(existing.prerequisiteNotes ?? []),
       ...(incoming.prerequisiteNotes ?? []),
     ]),
-    corequisiteCourseCodes: uniqueStrings([
-      ...(existing.corequisiteCourseCodes ?? []),
-      ...(incoming.corequisiteCourseCodes ?? []),
-    ]),
-    corequisiteAlternativeCourseCodeSets: [
-      ...(existing.corequisiteAlternativeCourseCodeSets ?? []),
-      ...(incoming.corequisiteAlternativeCourseCodeSets ?? []),
-    ],
+    ...mergedCorequisiteFields,
     corequisiteNotes: uniqueStrings([
       ...(existing.corequisiteNotes ?? []),
       ...(incoming.corequisiteNotes ?? []),
