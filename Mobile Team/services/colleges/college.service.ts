@@ -19,6 +19,13 @@ const ZIP_CACHE_TTL_MS = 1000 * 60 * 60 * 24 * 3; // 3 days for ZIP geocode cach
 const CACHE_VERSION = 'v4';
 const COLLEGE_CACHE_PREFIX = 'college:';
 const CACHE_CLEANUP_MARKER_KEY = 'college:cache:cleanup:version';
+const LOCAL_ONLY_QUESTIONNAIRE_KEYS = new Set([
+  'completedCourses',
+  'transferPlannerCompletedCourses',
+  'transferPlannerTranscriptSource',
+  'transferPlannerTranscriptUploadedAt',
+  'transferPlannerTranscriptParserVersion',
+]);
 
 const getCacheKey = (type: 'matches' | 'search' | 'details', payload: string) =>
   `college:${CACHE_VERSION}:${type}:${payload}`;
@@ -47,6 +54,11 @@ const writeCache = async (key: string, data: College[] | College) => {
   const payload = JSON.stringify({ timestamp: Date.now(), data });
   await AsyncStorage.setItem(key, payload);
 };
+
+const sanitizeQuestionnaireAnswersForFirestore = (answers: Record<string, unknown>) =>
+  Object.fromEntries(
+    Object.entries(answers ?? {}).filter(([key]) => !LOCAL_ONLY_QUESTIONNAIRE_KEYS.has(key))
+  );
 
 let legacyCollegeCacheCleanupPromise: Promise<void> | null = null;
 
@@ -194,9 +206,10 @@ class CollegeService {
     try {
       const user = firebaseAuth.currentUser;
       const docRef = doc(db, FIRESTORE_COLLECTIONS.questionnaires, user.uid);
+      const sanitizedAnswers = sanitizeQuestionnaireAnswersForFirestore(answers ?? {});
       await setDoc(docRef, {
         userId: user.uid,
-        answers,
+        answers: sanitizedAnswers,
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp(),
       }, { merge: true });

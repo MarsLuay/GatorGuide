@@ -1146,12 +1146,10 @@ function getRuleSourceKindRank(rule: TransferPlannerEquivalencyRule) {
   switch (rule.sourceKind) {
     case "uw-green-river-equivalency-guide":
       return 0;
-    case "manual-planner-rule":
-      return 1;
     case "chain-library":
-      return 2;
+      return 1;
     default:
-      return 3;
+      return 2;
   }
 }
 
@@ -2342,6 +2340,107 @@ function findGeneralEducationCreditValue(text: string, patterns: RegExp[]) {
   return detectedValue;
 }
 
+function normalizeGeneralEducationSignalText(value: string | null | undefined) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function isCourseLedRequirementLine(text: string | null | undefined) {
+  const trimmed = String(text ?? "").trim();
+  const leadingCourseCode = extractCourseCodes(trimmed)[0];
+
+  return Boolean(leadingCourseCode) && trimmed.toUpperCase().startsWith(leadingCourseCode);
+}
+
+function countGeneralEducationAreaSignals(text: string) {
+  return [
+    /\ba&h\b|\barts?\s+and\s+humanities\b/.test(text),
+    /\bssc\b|\bsocial sciences?\b/.test(text),
+    /\bnsc\b|\bnatural sciences?\b/.test(text),
+  ].filter(Boolean).length;
+}
+
+function isGeneralEducationSignalLine(args: {
+  line: string | null | undefined;
+  sectionTitle?: string | null | undefined;
+}) {
+  const normalizedLine = normalizeGeneralEducationSignalText(args.line);
+  if (!normalizedLine) {
+    return false;
+  }
+
+  const normalizedSectionTitle = normalizeGeneralEducationSignalText(args.sectionTitle);
+  const hasGeneralEducationContext =
+    /\bgeneral education\b|\bareas? of inquiry\b|\badditional areas? of inquiry\b/.test(
+      normalizedLine
+    ) ||
+    /\bgeneral education\b|\bareas? of inquiry\b|\badditional areas? of inquiry\b/.test(
+      normalizedSectionTitle
+    );
+  const startsWithGeneralEducationCategory =
+    /^(arts?\s+and\s+humanities|a&h|social sciences?|ssc|natural sciences?|nsc|additional a&h|additional arts?\s+and\s+humanities|additional areas?\s+of inquiry|english composition|written\s*&\s*oral communication|diversity)\b/.test(
+      normalizedLine
+    );
+  const hasCombinedBreadthMarker =
+    /\ba&h\/ssc(?:\/div)?\b|\barts?\s+and\s+humanities\s+or\s+social sciences?\b/.test(
+      normalizedLine
+    );
+  const areaSignalCount = countGeneralEducationAreaSignals(normalizedLine);
+  const hasCreditLanguage = /\b\d+\s*(?:credits?|cr)\b|\bcredits?\b/.test(normalizedLine);
+  const hasRequirementLanguage =
+    /\b(minimum|min\.?|at least|required|includes|required and can overlap|needed)\b/.test(
+      normalizedLine
+    );
+
+  if (hasGeneralEducationContext || startsWithGeneralEducationCategory) {
+    return true;
+  }
+
+  if (isCourseLedRequirementLine(args.line)) {
+    return false;
+  }
+
+  if (hasCombinedBreadthMarker && hasCreditLanguage) {
+    return true;
+  }
+
+  if (areaSignalCount >= 2 && hasCreditLanguage) {
+    return true;
+  }
+
+  if (areaSignalCount >= 1 && hasCreditLanguage && hasRequirementLanguage) {
+    return true;
+  }
+
+  return false;
+}
+
+function getGeneralEducationRequirementSignalLines(
+  plan: TransferPlannerMajorPlan | null | undefined,
+  parsedRequirementSourceLines: string[]
+) {
+  const planSignalLines = [
+    ...(plan?.degreeMapSections ?? []).flatMap((section) =>
+      section.items.filter((item) =>
+        isGeneralEducationSignalLine({ line: item, sectionTitle: section.title })
+      )
+    ),
+    plan?.summary ?? "",
+    plan?.bestTrackSummary ?? "",
+    plan?.financialAidNote ?? "",
+    ...(plan?.advisorFlags ?? []),
+    ...(plan?.manualReviewNotes ?? []),
+  ].filter((line) => isGeneralEducationSignalLine({ line }));
+
+  const parsedSignalLines = parsedRequirementSourceLines.filter((line) =>
+    isGeneralEducationSignalLine({ line })
+  );
+
+  return [...planSignalLines, ...parsedSignalLines];
+}
+
 function getDefaultGeneralEducationRequirementTargets(
   plan: TransferPlannerMajorPlan | null | undefined
 ): GeneralEducationRequirementTargets | null {
@@ -2383,22 +2482,15 @@ function buildGeneralEducationRequirementTargets(
   const selectedPathwayId =
     (sourcePlan as { selectedPathwayId?: string | null } | null | undefined)?.selectedPathwayId ?? null;
   const parsedRequirementSourceLines = sourcePlan
-    ? getTransferPlannerParsedRequirementSourceBlocks(sourcePlan.id, selectedPathwayId).flatMap((block) => [
-        ...(block.requirementCueLines ?? []),
-        ...(block.pathwayLabels ?? []),
-        ...(block.chooseStatements ?? []),
-      ])
+    ? getTransferPlannerParsedRequirementSourceBlocks(sourcePlan.id, selectedPathwayId).flatMap(
+        (block) => block.requirementCueLines ?? []
+      )
     : [];
-  const normalized = [
-    ...(sourcePlan?.degreeMapSections ?? []).flatMap((section) => section.items),
-    sourcePlan?.summary ?? "",
-    sourcePlan?.bestTrackSummary ?? "",
-    sourcePlan?.financialAidNote ?? "",
-    ...(sourcePlan?.advisorFlags ?? []),
-    ...(sourcePlan?.manualReviewNotes ?? []),
-    ...parsedRequirementSourceLines,
-  ]
-    .map((item) => String(item ?? "").toLowerCase().replace(/\s+/g, " ").trim())
+  const normalized = getGeneralEducationRequirementSignalLines(
+    sourcePlan,
+    parsedRequirementSourceLines
+  )
+    .map((line) => normalizeGeneralEducationSignalText(line))
     .filter(Boolean)
     .join(" ");
 

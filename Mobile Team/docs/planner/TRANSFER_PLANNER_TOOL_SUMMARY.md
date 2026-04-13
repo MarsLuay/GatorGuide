@@ -62,11 +62,9 @@ The current green-state maintenance baseline is:
 - A one-command refresh pipeline in:
   - `scripts/planner/check-transfer-planner-sources.cjs`
   - `scripts/planner/discover-transfer-planner-primary-sources.cjs`
-  - `scripts/planner/promote-transfer-planner-primary-sources.cjs`
   - `scripts/planner/build-transfer-planner-primary-source-review-queue.cjs`
   - `scripts/planner/build-transfer-planner-source-gap-report.cjs`
   - `scripts/planner/parse-transfer-planner-requirement-sources.cjs`
-  - `scripts/planner/promote-transfer-planner-requirement-diffs.cjs`
   - `scripts/planner/build-transfer-planner-source-fingerprints.cjs`
   - `scripts/planner/parse-transfer-planner-equivalency-guide.cjs`
   - `scripts/planner/ingest-grc-catalog.cjs`
@@ -116,7 +114,7 @@ The current green-state maintenance baseline is:
   - validation notes
 - The equivalency-rule registry now stores structured acceptance categories, weaker-than relationships, effective-year ranges, and planner warnings, so legacy-accepted and accepted-with-warning paths live in one source-backed place instead of only in scattered notes.
 - The planner page, generated campus docs, service-layer Green River availability lookups, and planner-facing maintenance scripts now read source-layer runtime helpers or source bootstrap snapshots instead of reaching straight into the mixed legacy row list.
-- `transfer-planner-data.ts` is no longer part of the operational runtime path. It now acts as a bootstrap-only source for snapshot generation, while shared planner types live in `transfer-planner-types.ts` and the structured registries keep expanding.
+- The legacy planner data module is no longer part of the operational runtime path. It now acts as a bootstrap-only source for snapshot generation, while shared planner types live in `transfer-planner-types.ts` and the structured registries keep expanding.
 - Requirement atoms now carry both a source `phase` and a student-facing `displayPhase`, so checklist bucket overrides live in the structured registry layer instead of a runtime-only rebalance list.
 - The next migration step is shrinking the remaining bootstrap-only role further by moving long-tail non-normalized fields onto the structured registries and eventually replacing temporary bootstrap snapshots with fully source-native maintenance inputs.
 - The next hardening step is improving parser depth and transcript-fixture coverage, not reintroducing hand-maintained planner facts.
@@ -279,7 +277,7 @@ The biggest remaining per-major hardcoding that should still move into structure
   - `applicationWindow`
   - `startQuarter`
   - some source-coverage notes
-- continued replacement of hand-bucketed checklist placement in `transfer-planner-data.ts` with structured major-requirement atoms and display-phase metadata
+- continued replacement of hand-bucketed checklist placement in the legacy planner data module with structured major-requirement atoms and display-phase metadata
 
 ## What the refresh automation does now
 
@@ -419,4 +417,3 @@ The detailed planner-facing equivalency and series-rule assumptions now live in:
 - [UWB_DEGREE_COURSES.md](./UWB_DEGREE_COURSES.md)
 - [UWT_DEGREE_COURSES.md](./UWT_DEGREE_COURSES.md)
 - [GRC_EQUIVALENCY_GUIDE_REFERENCE.md](./GRC_EQUIVALENCY_GUIDE_REFERENCE.md)
-- [TRANSFER_PLANNER_GENERAL_TODO.md](./TRANSFER_PLANNER_GENERAL_TODO.md)

@@ -30,7 +30,6 @@ import {
   TRANSFER_PLANNER_POLICY_REGISTRY,
   TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY,
   getTransferPlannerPrimaryDegreeRequirementsSource,
-  getTransferPlannerPromotedRequirementAtomOverrides,
 } from "./registry";
 import {
   TRANSFER_PLANNER_SOURCE_GAP_ENTRIES,
@@ -100,13 +99,6 @@ const AUTO_SOURCE_BACKED_UW_PREP_GUIDANCE_TITLE = "Source-backed UW prep guidanc
 const AUTO_SOURCE_BACKED_UW_PREP_GUIDANCE_NOTE =
   "Current official source-backed requirement materials identify more UW prep for this major, but the published Green River equivalent path is not yet provable enough for planner-ready course mapping.";
 const MAX_SOURCE_BACKED_UW_PREP_TARGET_COUNT = 18;
-const SOURCE_ONLY_FALLBACK_ALLOWED_NOTES = new Set([
-  REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE,
-  AUTO_FALLBACK_CHECKLIST_NOTE,
-  AUTO_CUSTOM_PREP_FALLBACK_NOTE,
-  AUTO_SOURCE_BACKED_UW_PREP_TARGET_NOTE,
-  AUTO_SOURCE_BACKED_UW_PREP_GUIDANCE_NOTE,
-]);
 const SOURCE_ONLY_FALLBACK_NOISE_PREFIXES = new Set([
   "AUTUMN",
   "WINTER",
@@ -413,260 +405,8 @@ for (const classification of TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_RE
   );
 }
 
-const PLANNER_OWNED_TEXT_REPLACEMENTS: Array<[RegExp, string]> = [
-  [/\bAdvisor-approved custom Green River prep\b/gi, "Custom source-backed Green River prep"],
-  [/\bbefore final advisor review\b/gi, "as the current source-backed baseline"],
-  [/\bbefore final adviser review\b/gi, "as the current source-backed baseline"],
-  [
-    /\bprogram-by-program advisor confirmation for final admission strategy\b/gi,
-    "a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves",
-  ],
-  [
-    /\badvisor review is still needed for final degree planning\b/gi,
-    "unsupported degree-planning details stay hidden until public sources can verify them",
-  ],
-  [
-    /\badvisor review is still smart before freezing the final term order\b/gi,
-    "unsupported term-order details stay hidden until public sources can verify them",
-  ],
-  [
-    /\blayer the remaining major-specific classes on top with advisor review\b/gi,
-    "layer the remaining source-backed major-specific classes on top",
-  ],
-  [
-    /\bconfirm the exact class mix with an advisor\b/gi,
-    "follow the current source-backed degree guidance instead of inventing an unsupported class mix",
-  ],
-  [
-    /\badvisor and financial-aid rules\b/gi,
-    "financial-aid rules and the current source-backed plan",
-  ],
-  [
-    /\byear-specific advisor review is still recommended\b/gi,
-    "year-specific differences should stay hidden until public sources verify them",
-  ],
-  [
-    /\bstill need direct advisor confirmation before they are hard-coded as universal substitutes\b/gi,
-    "should stay hidden until public sources verify a universal substitute",
-  ],
-  [
-    /\bstill need direct adviser confirmation before they are hard-coded as universal substitutes\b/gi,
-    "should stay hidden until public sources verify a universal substitute",
-  ],
-  [
-    /\bstill need direct advisor confirmation if the student wants them treated as universal Green River substitutes\b/gi,
-    "stay hidden unless public sources verify them as universal Green River substitutes",
-  ],
-  [
-    /\bstill need direct adviser confirmation if the student wants them treated as universal Green River substitutes\b/gi,
-    "stay hidden unless public sources verify them as universal Green River substitutes",
-  ],
-  [/\badvisor-review territory\b/gi, "hidden-until-source-backed territory"],
-  [/\badviser-review territory\b/gi, "hidden-until-source-backed territory"],
-  [
-    /\bthe department strongly recommends planning the physical-chemistry sequence with adviser input because\b/gi,
-    "The published physical-chemistry sequence is tighter here, so follow the source-backed sequencing carefully because",
-  ],
-  [
-    /\bthe department strongly recommends planning the physical-chemistry sequence with advisor input because\b/gi,
-    "The published physical-chemistry sequence is tighter here, so follow the source-backed sequencing carefully because",
-  ],
-  [
-    /\bthe public page explicitly notes that students who entered before Autumn 2024 follow older requirements and should use adviser review\b/gi,
-    "The public page explicitly notes that students who entered before Autumn 2024 follow older requirements, so older cohorts stay hidden until public-source coverage expands",
-  ],
-  [
-    /\bthe public page explicitly notes that students who entered before Autumn 2024 follow older requirements and should use advisor review\b/gi,
-    "The public page explicitly notes that students who entered before Autumn 2024 follow older requirements, so older cohorts stay hidden until public-source coverage expands",
-  ],
-  [
-    /\bany final degree plan should stay aligned with adviser-approved legacy completion guidance rather than assuming new-student policies still apply\b/gi,
-    "any final degree plan should stay aligned with the published legacy completion guidance rather than assuming new-student policies still apply",
-  ],
-  [
-    /\bany final degree plan should stay aligned with advisor-approved legacy completion guidance rather than assuming new-student policies still apply\b/gi,
-    "any final degree plan should stay aligned with the published legacy completion guidance rather than assuming new-student policies still apply",
-  ],
-  [
-    /\bbecause the option is lab-heavy and leaves less elective room, the department recommends proactive scheduling with an adviser\b/gi,
-    "Because the option is lab-heavy and leaves less elective room, follow the published sequence proactively",
-  ],
-  [
-    /\bbecause the option is lab-heavy and leaves less elective room, the department recommends proactive scheduling with an advisor\b/gi,
-    "Because the option is lab-heavy and leaves less elective room, follow the published sequence proactively",
-  ],
-  [
-    /\bstudents cannot start accounting-option courses until they meet with a Bothell adviser to confirm eligibility\b/gi,
-    "Students cannot start accounting-option courses until the published Bothell eligibility rules are satisfied",
-  ],
-  [
-    /\bstudents cannot start accounting-option courses until they meet with a Bothell advisor to confirm eligibility\b/gi,
-    "Students cannot start accounting-option courses until the published Bothell eligibility rules are satisfied",
-  ],
-  [
-    /\bthe page also says students cannot enroll in accounting-option courses until they meet with an adviser to confirm eligibility\b/gi,
-    "The page also says students cannot enroll in accounting-option courses until the published eligibility rules are satisfied",
-  ],
-  [
-    /\bthe page also says students cannot enroll in accounting-option courses until they meet with an advisor to confirm eligibility\b/gi,
-    "The page also says students cannot enroll in accounting-option courses until the published eligibility rules are satisfied",
-  ],
-  [
-    /\bTacoma Individually-designed IAS is now modeled as a proposal-driven transfer where students build a custom interdisciplinary plan with advisor approval instead of following a fixed preset option\b/gi,
-    "Tacoma Individually-designed IAS is now modeled as a proposal-driven transfer where students build a custom interdisciplinary plan through the published proposal process instead of following a fixed preset option",
-  ],
-  [
-    /\bTacoma Individually-designed IAS is now modeled as a proposal-driven transfer where students build a custom interdisciplinary plan with adviser approval instead of following a fixed preset option\b/gi,
-    "Tacoma Individually-designed IAS is now modeled as a proposal-driven transfer where students build a custom interdisciplinary plan through the published proposal process instead of following a fixed preset option",
-  ],
-  [
-    /\bThis path centers on an advisor-approved custom concentration rather than a preset major option\b/gi,
-    "This path centers on a source-backed custom concentration rather than a preset major option",
-  ],
-  [
-    /\bThis path centers on an adviser-approved custom concentration rather than a preset major option\b/gi,
-    "This path centers on a source-backed custom concentration rather than a preset major option",
-  ],
-  [/\bstays under advisor review\b/gi, "stays hidden until public sources verify the substitution"],
-  [/\bstays under adviser review\b/gi, "stays hidden until public sources verify the substitution"],
-  [
-    /\bBecause this row is a specialized partner pathway rather than a standard transfer major, the planning details should be treated as pathway-specific and adviser-verified\b/gi,
-    "Because this row is a specialized partner pathway rather than a standard transfer major, the planning details should be treated as pathway-specific and source-backed only where the public sources are explicit",
-  ],
-  [
-    /\bBecause this row is a specialized partner pathway rather than a standard transfer major, the planning details should be treated as pathway-specific and advisor-verified\b/gi,
-    "Because this row is a specialized partner pathway rather than a standard transfer major, the planning details should be treated as pathway-specific and source-backed only where the public sources are explicit",
-  ],
-  [
-    /\bUse adviser review before treating any one ACMS option as the final four-year finish, because\b/gi,
-    "Keep ACMS option-specific finishes hidden until public sources verify them, because",
-  ],
-  [
-    /\bUse advisor review before treating any one ACMS option as the final four-year finish, because\b/gi,
-    "Keep ACMS option-specific finishes hidden until public sources verify them, because",
-  ],
-  [
-    /\bstill deserve advisor review when building the exact final list\b/gi,
-    "should stay hidden unless public sources verify the exact final list",
-  ],
-  [
-    /\bstill deserve adviser review when building the exact final list\b/gi,
-    "should stay hidden unless public sources verify the exact final list",
-  ],
-  [
-    /\bUse advisor review if a student plans to submit with one in-progress prerequisite exception\b/gi,
-    "Hide the in-progress-prerequisite exception unless public sources verify it",
-  ],
-  [
-    /\bUse adviser review if a student plans to submit with one in-progress prerequisite exception\b/gi,
-    "Hide the in-progress-prerequisite exception unless public sources verify it",
-  ],
-  [
-    /\bUse advisor review if the student wants the lightest possible science mix versus the strongest long-term engineering prep\b/gi,
-    "Show the strongest source-backed science mix; lighter alternatives stay hidden until public sources verify them",
-  ],
-  [
-    /\bUse adviser review if the student wants the lightest possible science mix versus the strongest long-term engineering prep\b/gi,
-    "Show the strongest source-backed science mix; lighter alternatives stay hidden until public sources verify them",
-  ],
-  [
-    /\badviser review is still important when a student is following an older catalog year\b/gi,
-    "older catalog-year differences should stay hidden until public sources verify them",
-  ],
-  [
-    /\badvisor review is still important when a student is following an older catalog year\b/gi,
-    "older catalog-year differences should stay hidden until public sources verify them",
-  ],
-  [
-    /\badviser review is still needed to lock the exact B\.A\. versus B\.S\. finish\b/gi,
-    "the exact B.A. versus B.S. finish should stay hidden until public sources verify it",
-  ],
-  [
-    /\badvisor review is still needed to lock the exact B\.A\. versus B\.S\. finish\b/gi,
-    "the exact B.A. versus B.S. finish should stay hidden until public sources verify it",
-  ],
-  [
-    /\badviser review is still important before locking the final upper-division sequence\b/gi,
-    "upper-division sequencing differences should stay hidden until public sources verify them",
-  ],
-  [
-    /\badvisor review is still important before locking the final upper-division sequence\b/gi,
-    "upper-division sequencing differences should stay hidden until public sources verify them",
-  ],
-  [/\badviser-reviewed transfer strategy\b/gi, "source-backed transfer strategy"],
-  [/\badvisor-reviewed transfer strategy\b/gi, "source-backed transfer strategy"],
-  [
-    /\bthe exact UW course list must be finalized case by case with the approved faculty sponsors and adviser\b/gi,
-    "the exact UW course list follows a case-by-case published proposal process with the approved faculty sponsors",
-  ],
-  [
-    /\bthe exact UW course list must be finalized case by case with the approved faculty sponsors and advisor\b/gi,
-    "the exact UW course list follows a case-by-case published proposal process with the approved faculty sponsors",
-  ],
-  [
-    /\bmeet with the School of Urban Studies advisor before applying\b/gi,
-    "follow the School of Urban Studies published pre-major guidance before applying",
-  ],
-  [
-    /\bmeet with the School of Urban Studies adviser before applying\b/gi,
-    "follow the School of Urban Studies published pre-major guidance before applying",
-  ],
-  [
-    /\bStudents need at least 2 faculty sponsors, committee approval, and final approval from an Individualized Studies adviser, and transfer students must already be enrolled at UW before applying\b/gi,
-    "Students need at least 2 faculty sponsors, committee approval, and the published Individualized Studies approval process, and transfer students must already be enrolled at UW before applying",
-  ],
-  [
-    /\bStudents need at least 2 faculty sponsors, committee approval, and final approval from an Individualized Studies advisor, and transfer students must already be enrolled at UW before applying\b/gi,
-    "Students need at least 2 faculty sponsors, committee approval, and the published Individualized Studies approval process, and transfer students must already be enrolled at UW before applying",
-  ],
-  [
-    /\bThe department also notes that other courses may be substituted after discussion with the undergraduate adviser\b/gi,
-    "The department also notes that other substitutions follow the published undergraduate approval rules",
-  ],
-  [
-    /\bThe department also notes that other courses may be substituted after discussion with the undergraduate advisor\b/gi,
-    "The department also notes that other substitutions follow the published undergraduate approval rules",
-  ],
-  [
-    /\bCredits earned during study in Norway can be transferred in consultation with the department, and other substitutions can be approved by the undergraduate adviser\b/gi,
-    "Credits earned during study in Norway can transfer under the department's published approval process, and other substitutions follow the undergraduate approval rules",
-  ],
-  [
-    /\bCredits earned during study in Norway can be transferred in consultation with the department, and other substitutions can be approved by the undergraduate advisor\b/gi,
-    "Credits earned during study in Norway can transfer under the department's published approval process, and other substitutions follow the undergraduate approval rules",
-  ],
-  [
-    /\bCredits earned during study in Sweden can be transferred in consultation with the department, and the page notes that other substitutions may also be approved by the undergraduate adviser\b/gi,
-    "Credits earned during study in Sweden can transfer under the department's published approval process, and other substitutions follow the undergraduate approval rules",
-  ],
-  [
-    /\bCredits earned during study in Sweden can be transferred in consultation with the department, and the page notes that other substitutions may also be approved by the undergraduate advisor\b/gi,
-    "Credits earned during study in Sweden can transfer under the department's published approval process, and other substitutions follow the undergraduate approval rules",
-  ],
-  [/\bwith adviser approval\b/gi, "under the published approval rules"],
-  [/\bwith advisor approval\b/gi, "under the published approval rules"],
-  [/\bsubject to adviser approval\b/gi, "subject to the published approval rules"],
-  [/\bsubject to advisor approval\b/gi, "subject to the published approval rules"],
-  [/\badviser approval\b/gi, "published approval rules"],
-  [/\badvisor approval\b/gi, "published approval rules"],
-  [/\badviser input\b/gi, "the published sequence"],
-  [/\badvisor input\b/gi, "the published sequence"],
-  [/\badvisor review matters here because\b/gi, "This source-backed planner row stays broad because"],
-  [/\bUse advisor review whenever\b/gi, "Keep this planner row broad whenever"],
-  [/\bUse adviser review whenever\b/gi, "Keep this planner row broad whenever"],
-  [/\badvisor-approved\b/gi, "source-backed"],
-  [/\badviser-approved\b/gi, "source-backed"],
-];
-
 function sanitizePlannerOwnedText(value: string | null | undefined) {
-  let text = String(value ?? "").trim();
-  if (!text) return "";
-
-  for (const [pattern, replacement] of PLANNER_OWNED_TEXT_REPLACEMENTS) {
-    text = text.replace(pattern, replacement);
-  }
-
-  return text.trim();
+  return String(value ?? "").replace(/\s+/g, " ").trim();
 }
 
 function sanitizePlannerOwnedStrings(values: string[] | null | undefined) {
@@ -675,7 +415,7 @@ function sanitizePlannerOwnedStrings(values: string[] | null | undefined) {
 
 function sanitizeChecklistItemNote(note: string | null | undefined) {
   const sanitized = sanitizePlannerOwnedText(note);
-  return SOURCE_ONLY_FALLBACK_ALLOWED_NOTES.has(sanitized) ? sanitized : undefined;
+  return sanitized || undefined;
 }
 
 function sanitizeChecklistItem(item: TransferPlannerChecklistItem): TransferPlannerChecklistItem {
@@ -1236,11 +976,18 @@ function shouldExcludeSourceBackedFallbackCode(scope: {
 
 function getDominantSourceBackedFallbackPhase(
   entries: TransferPlannerRequirementDiffClassificationEntry[],
+  parsedCandidates: TransferPlannerParsedRequirementAtomCandidate[],
   fallbackPhase: TransferPlannerRequirementPhase = "before-enrollment"
 ): TransferPlannerRequirementPhase {
-  const phases = entries
+  const classificationPhases = entries
     .map((entry) => entry.displayPhase)
     .filter((phase): phase is TransferPlannerRequirementPhase => Boolean(phase));
+
+  const parsedCandidatePhases = parsedCandidates
+    .map((entry) => entry.displayPhase)
+    .filter((phase): phase is TransferPlannerRequirementPhase => Boolean(phase));
+
+  const phases = classificationPhases.length ? classificationPhases : parsedCandidatePhases;
 
   if (phases.includes("before-application")) {
     return "before-application";
@@ -1318,9 +1065,7 @@ function buildStrictSourceBackedFallbackChecklists(scope: {
   const supportsStrictFallback =
     classifications.length > 0 &&
     classifications.every(
-      (entry) =>
-        entry.classificationKind === "source-backed-choice-set-no-public-grc-path" &&
-        !entry.promotedRequirementAtomOverrideId
+      (entry) => entry.classificationKind === "source-backed-choice-set-no-public-grc-path"
     );
 
   const candidateByCode = new Map<
@@ -1396,6 +1141,7 @@ function buildStrictSourceBackedFallbackChecklists(scope: {
 
   const dominantPhase = getDominantSourceBackedFallbackPhase(
     classifications,
+    [...candidateByCode.values()].map((entry) => entry.candidate),
     supportsStrictFallback ? "before-enrollment" : "stay-at-grc"
   );
   const checklists = buildEmptySourceBackedFallbackChecklists();
@@ -1639,7 +1385,8 @@ function buildAutoTrackWhyThisTrack(scope: {
 }
 
 function buildAutoTrackFinancialAidNote(track: TransferPlannerTrack) {
-  return `Use ${track.code} as your main Green River transfer path. Then add any extra major classes it does not already cover.`;
+  void track;
+  return "";
 }
 
 export function getTransferPlannerAutoMatchedTrackRecommendation(
@@ -1738,9 +1485,16 @@ function applyAutoTrackRecommendation<T extends {
   applicationChecklist?: TransferPlannerChecklistItem[];
   beforeEnrollmentChecklist?: TransferPlannerChecklistItem[];
   stayAtGrcChecklist?: TransferPlannerChecklistItem[];
-}>(scope: T): T {
+}>(
+  scope: T,
+  options?: {
+    trackMatchCourseList?: string[];
+  }
+): T {
   const autoTrack = getTransferPlannerAutoMatchedTrackRecommendation(
-    collectPlannerCourseLabels(scope),
+    options?.trackMatchCourseList?.length
+      ? uniqueReferenceCourseLabels(options.trackMatchCourseList)
+      : collectPlannerCourseLabels(scope),
     scope.bestTrackId ?? null
   );
 
@@ -2075,13 +1829,6 @@ function getAutomaticScopeKeys(planId: string, pathwayId?: string | null) {
     : [makePathwayPlanKey(planId, null)];
 }
 
-function getAutomaticPromotedRequirementAtoms(planId: string, pathwayId?: string | null) {
-  return uniqueById([
-    ...getTransferPlannerPromotedRequirementAtomOverrides(planId, null),
-    ...(pathwayId ? getTransferPlannerPromotedRequirementAtomOverrides(planId, pathwayId) : []),
-  ]);
-}
-
 function buildAutomaticChecklistForPhase(
   planId: string,
   phase: TransferPlannerRequirementPhase,
@@ -2115,18 +1862,25 @@ function buildAutomaticChecklistForPhase(
   return runtimeItems;
 }
 
-function buildAutomaticCourseList(planId: string, pathwayId?: string | null) {
+function buildAutomaticCourseList(
+  planId: string,
+  pathwayId?: string | null,
+  options: {
+    includeRuntimeRequirementCourses?: boolean;
+  } = {}
+) {
   const scopeKeys = getAutomaticScopeKeys(planId, pathwayId);
-  const overrideCourseCodes = getAutomaticPromotedRequirementAtoms(planId, pathwayId).flatMap(
-    (entry) => [
-      ...entry.grcCourseCodes,
-      ...(entry.alternativeCourseCodeSets ?? []).flat(),
-    ]
-  );
+  const includeRuntimeRequirementCourses = options.includeRuntimeRequirementCourses ?? true;
+  const runtimeRequirementCourseCodes = includeRuntimeRequirementCourses
+    ? getRuntimeRequirementAtoms(planId, pathwayId).flatMap((atom) => [
+        ...atom.grcCourseCodes,
+        ...(atom.alternativeCourseCodeSets ?? []).flat(),
+      ])
+    : [];
 
   return orderStringsByBase(
     uniquePlannerStrings([
-      ...overrideCourseCodes,
+      ...runtimeRequirementCourseCodes,
       ...scopeKeys.flatMap(
         (scopeKey) => SOURCE_BACKED_CLASSIFICATION_COURSES_BY_KEY.get(scopeKey) ?? []
       ),
@@ -2145,6 +1899,39 @@ function buildStudentVisibleAutomaticCourseList(scope: {
   stayAtGrcChecklist: TransferPlannerChecklistItem[];
 }) {
   return collectPlannerCourseLabels(scope);
+}
+
+function buildTrackMatchSeedCourseList(items: TransferPlannerChecklistItem[]) {
+  return uniqueReferenceCourseLabels(
+    items.flatMap((item) => {
+      const targetCount = Math.max(item.minCompletedCount ?? 0, 1);
+      if (item.grcCourses.length) {
+        return item.grcCourses.slice(0, targetCount);
+      }
+
+      const [firstAlternative = []] = item.alternatives ?? [];
+      return firstAlternative.slice(0, targetCount);
+    })
+  );
+}
+
+function buildStudentVisibleTrackMatchCourseList(scope: {
+  grcCourseList: string[];
+  applicationChecklist: TransferPlannerChecklistItem[];
+  beforeEnrollmentChecklist: TransferPlannerChecklistItem[];
+  stayAtGrcChecklist: TransferPlannerChecklistItem[];
+}) {
+  const checklistSeedCourseList = buildTrackMatchSeedCourseList([
+    ...(scope.applicationChecklist ?? []),
+    ...(scope.beforeEnrollmentChecklist ?? []),
+    ...(scope.stayAtGrcChecklist ?? []),
+  ]);
+
+  if (checklistSeedCourseList.length) {
+    return checklistSeedCourseList;
+  }
+
+  return uniqueReferenceCourseLabels([...(scope.grcCourseList ?? [])]);
 }
 
 function isStudentVisibleTrackCourseLabel(label: string) {
@@ -2226,39 +2013,55 @@ function buildStudentRuntimePathway(
     ])
   );
   const automaticCourseList = buildAutomaticCourseList(basePlan.id, basePathway.id);
+  const automaticTrackMatchCourseList = buildAutomaticCourseList(basePlan.id, basePathway.id, {
+    includeRuntimeRequirementCourses: false,
+  });
   const studentVisibleCourseList = buildStudentVisibleAutomaticCourseList({
     grcCourseList: automaticCourseList,
     applicationChecklist,
     beforeEnrollmentChecklist: prunedBeforeEnrollmentChecklist,
     stayAtGrcChecklist: prunedStayAtGrcChecklist,
   });
+  const studentVisibleTrackMatchCourseList = buildStudentVisibleTrackMatchCourseList({
+    grcCourseList: automaticTrackMatchCourseList,
+    applicationChecklist,
+    beforeEnrollmentChecklist: prunedBeforeEnrollmentChecklist,
+    stayAtGrcChecklist: prunedStayAtGrcChecklist,
+  });
+
+  const runtimePathway = applyAutoChecklistFallback(
+    applyStrictSourceBackedFallback(
+      applyAutoTrackRecommendation({
+        id: basePathway.id,
+        label: basePathway.label,
+        summary: "",
+        applicationChecklist,
+        beforeEnrollmentChecklist: prunedBeforeEnrollmentChecklist,
+        stayAtGrcChecklist: prunedStayAtGrcChecklist,
+        advisorFlags: [],
+        officialLinks: [],
+        degreeMapSections: [],
+        manualReviewNotes: [],
+        grcCourseList: studentVisibleTrackMatchCourseList,
+        grcCourseListGuidance: undefined,
+        plannerNote: undefined,
+        bestTrackId: null,
+        bestTrackSummary: "",
+        whyThisTrack: [],
+        financialAidNote: "",
+      } satisfies TransferPlannerMajorPathway, {
+        trackMatchCourseList: studentVisibleTrackMatchCourseList,
+      }),
+      basePathway.id
+    ),
+    { allowCustomPrepFallback: false }
+  );
 
   return applyStudentVisibleTrackCourseList(
-    applyAutoChecklistFallback(
-      applyStrictSourceBackedFallback(
-        applyAutoTrackRecommendation({
-          id: basePathway.id,
-          label: basePathway.label,
-          summary: "",
-          applicationChecklist,
-          beforeEnrollmentChecklist: prunedBeforeEnrollmentChecklist,
-          stayAtGrcChecklist: prunedStayAtGrcChecklist,
-          advisorFlags: [],
-          officialLinks: [],
-          degreeMapSections: [],
-          manualReviewNotes: [],
-          grcCourseList: studentVisibleCourseList,
-          grcCourseListGuidance: undefined,
-          plannerNote: undefined,
-          bestTrackId: null,
-          bestTrackSummary: "",
-          whyThisTrack: [],
-          financialAidNote: "",
-        } satisfies TransferPlannerMajorPathway),
-        basePathway.id
-      ),
-      { allowCustomPrepFallback: false }
-    )
+    {
+      ...runtimePathway,
+      grcCourseList: studentVisibleCourseList,
+    }
   );
 }
 
@@ -2284,44 +2087,60 @@ function buildStudentRuntimePlan(basePlan: TransferPlannerMajorPlan): TransferPl
     ])
   );
   const automaticCourseList = buildAutomaticCourseList(basePlan.id);
+  const automaticTrackMatchCourseList = buildAutomaticCourseList(basePlan.id, null, {
+    includeRuntimeRequirementCourses: false,
+  });
   const studentVisibleCourseList = buildStudentVisibleAutomaticCourseList({
     grcCourseList: automaticCourseList,
     applicationChecklist,
     beforeEnrollmentChecklist: prunedBeforeEnrollmentChecklist,
     stayAtGrcChecklist: prunedStayAtGrcChecklist,
   });
+  const studentVisibleTrackMatchCourseList = buildStudentVisibleTrackMatchCourseList({
+    grcCourseList: automaticTrackMatchCourseList,
+    applicationChecklist,
+    beforeEnrollmentChecklist: prunedBeforeEnrollmentChecklist,
+    stayAtGrcChecklist: prunedStayAtGrcChecklist,
+  });
+
+  const runtimePlan = applyAutoChecklistFallback(
+    applyStrictSourceBackedFallback(
+      applyAutoTrackRecommendation({
+        ...basePlan,
+        summary: "",
+        bestTrackId: null,
+        bestTrackSummary: "",
+        whyThisTrack: [],
+        financialAidNote: "",
+        applicationChecklist,
+        beforeEnrollmentChecklist: prunedBeforeEnrollmentChecklist,
+        stayAtGrcChecklist: prunedStayAtGrcChecklist,
+        advisorFlags: [],
+        involvementIdeas: [],
+        projectIdeas: [],
+        officialLinks: [],
+        degreeMapSections: [],
+        manualReviewNotes: [],
+        grcCourseList: studentVisibleTrackMatchCourseList,
+        grcCourseListGuidance: undefined,
+        plannerNote: undefined,
+        pathways: orderByBaseIds(
+          (basePlan.pathways ?? []).map((pathway) => buildStudentRuntimePathway(basePlan, pathway)),
+          (basePlan.pathways ?? []).map((pathway) => pathway.id)
+        ),
+      }, {
+        trackMatchCourseList: studentVisibleTrackMatchCourseList,
+      }),
+      null
+    ),
+    { allowCustomPrepFallback: false }
+  );
 
   return applyStudentVisibleTrackCourseList(
-    applyAutoChecklistFallback(
-      applyStrictSourceBackedFallback(
-        applyAutoTrackRecommendation({
-          ...basePlan,
-          summary: "",
-          bestTrackId: null,
-          bestTrackSummary: "",
-          whyThisTrack: [],
-          financialAidNote: "",
-          applicationChecklist,
-          beforeEnrollmentChecklist: prunedBeforeEnrollmentChecklist,
-          stayAtGrcChecklist: prunedStayAtGrcChecklist,
-          advisorFlags: [],
-          involvementIdeas: [],
-          projectIdeas: [],
-          officialLinks: [],
-          degreeMapSections: [],
-          manualReviewNotes: [],
-          grcCourseList: studentVisibleCourseList,
-          grcCourseListGuidance: undefined,
-          plannerNote: undefined,
-          pathways: orderByBaseIds(
-            (basePlan.pathways ?? []).map((pathway) => buildStudentRuntimePathway(basePlan, pathway)),
-            (basePlan.pathways ?? []).map((pathway) => pathway.id)
-          ),
-        }),
-        null
-      ),
-      { allowCustomPrepFallback: false }
-    )
+    {
+      ...runtimePlan,
+      grcCourseList: studentVisibleCourseList,
+    }
   );
 }
 

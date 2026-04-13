@@ -25,6 +25,7 @@ import { ROUTES } from "@/constants/routes";
 import { StateCard } from "@/components/ui/StateCard";
 import {
   getTransferPlannerPrimaryDegreeRequirementsSource,
+  getTransferPlannerCanonicalCourse,
   getTransferPlannerEquivalencyRulesForSourceCourse,
   getTransferPlannerStudentRuntimeMajorsForCampus,
   getTransferPlannerStudentRuntimePathwaysForPlan,
@@ -461,39 +462,8 @@ function hasAnyDirectMajorEquivalencies(plan: TransferPlannerResolvedMajorPlan) 
   );
 }
 
-function joinPlannerTextList(values: string[]) {
-  if (!values.length) return "";
-  if (values.length === 1) return values[0] ?? "";
-  if (values.length === 2) {
-    return `${values[0]} and ${values[1]}`;
-  }
-
-  return `${values.slice(0, -1).join(", ")}, and ${values[values.length - 1]}`;
-}
-
-function getMajorSelectivityMessage(plan: TransferPlannerResolvedMajorPlan) {
-  const selectivityText = [
-    ...plan.advisorFlags,
-    ...(plan.manualReviewNotes ?? []),
-    plan.summary,
-  ]
-    .join(" ")
-    .toLowerCase();
-
-  if (/capacity\s*[- ]?constrain|capacity\s*[- ]?limited/.test(selectivityText)) {
-    return "Admission to this major is capacity-constrained";
-  }
-  if (/competitive\s+admission/.test(selectivityText)) {
-    return "Admission to this major is competitive";
-  }
-  if (/open\s+major|open\s+admission/.test(selectivityText)) {
-    return "This is an open-admission major";
-  }
-  return "Admission to this major is competitive";
-}
-
-function getAdmissionBaselineFragments(plan: TransferPlannerResolvedMajorPlan) {
-  const sourceText = [
+function buildAdmissionContextText(plan: TransferPlannerResolvedMajorPlan) {
+  return [
     plan.applicationWindow,
     plan.summary,
     ...(plan.degreeMapSections ?? []).flatMap((section) => section.items),
@@ -502,63 +472,20 @@ function getAdmissionBaselineFragments(plan: TransferPlannerResolvedMajorPlan) {
   ]
     .map((item) => String(item ?? "").replace(/\s+/g, " ").trim())
     .filter(Boolean)
-    .join(" ");
-
-  if (!sourceText) return [] as string[];
-
-  const fragments: string[] = [];
-  const lowerDivisionMatch =
-    sourceText.match(/\bat least\s+(\d+)\s+lower-division credits?\b/i) ??
-    sourceText.match(/\bat least\s+(\d+)\s+college-level credits?\b/i) ??
-    sourceText.match(/\b(\d+)\s+lower-division credits?\b/i);
-  if (lowerDivisionMatch?.[1]) {
-    const credits = lowerDivisionMatch[1];
-    const label = /college-level/i.test(lowerDivisionMatch[0] ?? "")
-      ? `${credits} college-level credits`
-      : `${credits} lower-division credits`;
-    fragments.push(`at least ${label}`);
-  }
-
-  const gpaMatch = sourceText.match(/\b(?:minimum|at least)\s+(\d+(?:\.\d+)?)\s+(?:cumulative\s+)?gpa\b/i);
-  if (gpaMatch?.[1]) {
-    fragments.push(`a minimum ${gpaMatch[1]} GPA`);
-  }
-
-  if (/\benglish composition\b|\bcomposition\b/i.test(sourceText)) {
-    fragments.push("the published composition requirement");
-  }
-  if (/\badvis(?:ing|er|or)\s+meeting\b|\bmeet with\b/i.test(sourceText)) {
-    fragments.push("any required advising steps");
-  }
-
-  return Array.from(new Set(fragments));
+    .join(" ")
+    .toLowerCase();
 }
 
-function getGeneralAdmissionRequirementsSummary(plan: TransferPlannerResolvedMajorPlan) {
-  const baselineFragments = getAdmissionBaselineFragments(plan);
-  const titles = Array.from(
-    new Set(
-      plan.applicationChecklist
-        .map((item) => String(item.title ?? "").trim())
-        .filter(Boolean)
-    )
+function isOpenAdmissionMajor(plan: TransferPlannerResolvedMajorPlan) {
+  const admissionText = buildAdmissionContextText(plan);
+  if (!admissionText) return false;
+  if (/\bnot an open major\b|\brather than an open major\b/.test(admissionText)) {
+    return false;
+  }
+
+  return /\bopen\s+major\b|\bopen\s+admission\b|\bdeclare (?:this|the) major at any time\b/.test(
+    admissionText
   );
-
-  if (!baselineFragments.length && !titles.length) {
-    return "complete the published prerequisite coursework listed for this major";
-  }
-
-  if (!titles.length) {
-    return joinPlannerTextList(baselineFragments);
-  }
-
-  const preview = titles.slice(0, 4);
-  const requirementFragment =
-    preview.length === 1
-      ? `published track-specific preparation such as ${preview[0]}`
-      : `published track-specific preparation such as ${joinPlannerTextList(preview)}`;
-
-  return joinPlannerTextList([...baselineFragments, requirementFragment]);
 }
 
 function getSchedulePlaceholderRequirementLinkData(courseLabel: string) {
@@ -589,6 +516,46 @@ function getSchedulePlaceholderRequirementLinkData(courseLabel: string) {
   }
 
   return { tags: [] as const };
+}
+
+function getSuggestedScheduleCourseDisplayLabel(courseLabel: string) {
+  const normalizedLabel = String(courseLabel ?? "").replace(/\s+/g, " ").trim();
+  if (!normalizedLabel) return "";
+
+  const explicitCourseCodes = extractCourseCodes(normalizedLabel);
+  if (explicitCourseCodes.length !== 1) {
+    return normalizedLabel;
+  }
+
+  const [canonicalCourseCode] = explicitCourseCodes;
+  const rawLeadingCourseCode =
+    normalizedLabel
+      .match(/^[A-Z]{2,6}&?\s*\d{3}(?:\.\d+)?[A-Z]?\b/i)?.[0]
+      ?.toUpperCase()
+      .replace(/\s+/g, " ")
+      .trim() ?? canonicalCourseCode;
+
+  if (normalizedLabel.toUpperCase() !== rawLeadingCourseCode.toUpperCase()) {
+    const normalizedCodePrefix = `${rawLeadingCourseCode} `.toUpperCase();
+    if (normalizedLabel.toUpperCase().startsWith(normalizedCodePrefix)) {
+      const remainder = normalizedLabel.slice(rawLeadingCourseCode.length).trim();
+      if (remainder && !remainder.startsWith("-")) {
+        return `${rawLeadingCourseCode} - ${remainder}`;
+      }
+    }
+    return normalizedLabel;
+  }
+
+  const canonicalCourseTitle = String(
+    getTransferPlannerCanonicalCourse("grc", rawLeadingCourseCode)?.title ??
+      getTransferPlannerCanonicalCourse("grc", canonicalCourseCode)?.title ??
+      ""
+  ).trim();
+  if (!canonicalCourseTitle) {
+    return normalizedLabel;
+  }
+
+  return `${rawLeadingCourseCode} - ${canonicalCourseTitle}`;
 }
 
 function buildTranscriptDebugSnapshot({
@@ -1029,7 +996,7 @@ function TranscriptSummaryCard({
               Upload your unofficial transcript
             </Text>
             <Text className={`${secondaryTextClass} text-sm mt-1`}>
-              This planner uses your past completed classes from the unofficial transcript PDF. It does not need current in-progress classes.
+              This planner uses the classes from your unofficial transcript PDF. The unofficial transcript is only stored locally.
             </Text>
           </View>
         </View>
@@ -1502,100 +1469,104 @@ function SuggestedScheduleCard({
             </View>
             <View className="gap-2 mt-3">
               {quarter.courses.length ? (
-                quarter.courses.map((course, courseIndex) => (
-                  <View
-                    key={`${quarter.label}-${course.label}-${courseIndex}`}
-                    className={`px-3 py-3 rounded-2xl ${
-                      course.status === "completed"
-                        ? "bg-emerald-500/10 border border-emerald-500/20"
-                        : course.status === "current"
-                          ? "bg-sky-500/10 border border-sky-500/20"
-                          : course.type === "core"
-                            ? "bg-emerald-500/10 border border-emerald-500/20"
-                            : plannedCourseContainerClass
-                    }`}
-                  >
-                    <View className="flex-row items-start justify-between gap-3">
-                      <View className="flex-row items-start flex-1 min-w-0">
-                        {course.status === "completed" ? (
-                          <Ionicons
-                            name="checkmark-circle"
-                            size={16}
-                            color="#008f4e"
-                            style={{ marginTop: 1, marginRight: 8 }}
-                          />
-                        ) : null}
-                        <View style={{ flex: 1 }}>
-                          {(() => {
-                            const courseTextClass = `text-sm font-medium ${
-                              course.status === "completed"
-                                ? "text-emerald-500"
-                                : course.status === "current"
-                                  ? "text-sky-400"
-                                  : course.type === "core"
-                                    ? "text-emerald-500"
-                                    : textClass
-                            }`;
-                            const linkData = getSchedulePlaceholderRequirementLinkData(course.label);
+                quarter.courses.map((course, courseIndex) => {
+                  const courseDisplayLabel = getSuggestedScheduleCourseDisplayLabel(course.label);
 
-                            if (!linkData) {
+                  return (
+                    <View
+                      key={`${quarter.label}-${course.label}-${courseIndex}`}
+                      className={`px-3 py-3 rounded-2xl ${
+                        course.status === "completed"
+                          ? "bg-emerald-500/10 border border-emerald-500/20"
+                          : course.status === "current"
+                            ? "bg-sky-500/10 border border-sky-500/20"
+                            : course.type === "core"
+                              ? "bg-emerald-500/10 border border-emerald-500/20"
+                              : plannedCourseContainerClass
+                      }`}
+                    >
+                      <View className="flex-row items-start justify-between gap-3">
+                        <View className="flex-row items-start flex-1 min-w-0">
+                          {course.status === "completed" ? (
+                            <Ionicons
+                              name="checkmark-circle"
+                              size={16}
+                              color="#008f4e"
+                              style={{ marginTop: 1, marginRight: 8 }}
+                            />
+                          ) : null}
+                          <View style={{ flex: 1 }}>
+                            {(() => {
+                              const courseTextClass = `text-sm font-medium ${
+                                course.status === "completed"
+                                  ? "text-emerald-500"
+                                  : course.status === "current"
+                                    ? "text-sky-400"
+                                    : course.type === "core"
+                                      ? "text-emerald-500"
+                                      : textClass
+                              }`;
+                              const linkData = getSchedulePlaceholderRequirementLinkData(course.label);
+
+                              if (!linkData) {
+                                return (
+                                  <Text className={courseTextClass}>
+                                    {courseDisplayLabel}
+                                  </Text>
+                                );
+                              }
+
+                              const params: Record<string, string> = {
+                                campusId: selectedCampusId,
+                              };
+                              if (linkData.tags.length) {
+                                params.tag = linkData.tags.join(",");
+                              }
+
                               return (
-                                <Text className={courseTextClass}>
-                                  {course.label}
+                                <Text
+                                  className={`${courseTextClass} underline`}
+                                  onPress={() =>
+                                    router.push({
+                                      pathname: ROUTES.transferEquivalencies,
+                                      params,
+                                    })
+                                  }
+                                >
+                                  {courseDisplayLabel}
                                 </Text>
                               );
-                            }
-
-                            const params: Record<string, string> = {
-                              campusId: selectedCampusId,
-                            };
-                            if (linkData.tags.length) {
-                              params.tag = linkData.tags.join(",");
-                            }
-
-                            return (
-                              <Text
-                                className={`${courseTextClass} underline`}
-                                onPress={() =>
-                                  router.push({
-                                    pathname: ROUTES.transferEquivalencies,
-                                    params,
-                                  })
-                                }
-                              >
-                                {course.label}
+                            })()}
+                            {course.guidanceSummary ? (
+                              <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                                {course.guidanceSummary}
                               </Text>
-                            );
-                          })()}
-                          {course.guidanceSummary ? (
-                            <Text className={`${secondaryTextClass} text-xs mt-1`}>
-                              {course.guidanceSummary}
-                            </Text>
-                          ) : null}
+                            ) : null}
+                          </View>
                         </View>
+                        {course.status !== "completed" ? (
+                          <Pressable
+                            onPress={() => onToggleCurrentCourse(course.label)}
+                            hitSlop={8}
+                            accessibilityRole="checkbox"
+                            accessibilityState={{ checked: currentCourseLabels.has(course.label) }}
+                            className="self-start"
+                          >
+                            <Ionicons
+                              name={
+                                currentCourseLabels.has(course.label)
+                                  ? "checkbox"
+                                  : "square-outline"
+                              }
+                              size={20}
+                              color={currentCourseLabels.has(course.label) ? "#008f4e" : "#9CA3AF"}
+                            />
+                          </Pressable>
+                        ) : null}
                       </View>
-                      {course.status !== "completed" ? (
-                        <Pressable
-                          onPress={() => onToggleCurrentCourse(course.label)}
-                          hitSlop={8}
-                          accessibilityRole="checkbox"
-                          accessibilityState={{ checked: currentCourseLabels.has(course.label) }}
-                          className="self-start"
-                        >
-                          <Ionicons
-                            name={
-                              currentCourseLabels.has(course.label)
-                                ? "checkbox"
-                                : "square-outline"
-                            }
-                            size={20}
-                            color={currentCourseLabels.has(course.label) ? "#008f4e" : "#9CA3AF"}
-                          />
-                        </Pressable>
-                      ) : null}
                     </View>
-                  </View>
-                ))
+                  );
+                })
               ) : (
                 <Text className={`${secondaryTextClass} text-sm`}>
                   Nothing else is required in this planned quarter.
@@ -1657,6 +1628,13 @@ function TranscriptEvaluationReportCard({
     return totals;
   }, [studentFacingEvaluations]);
   const activeBuckets = report.buckets.filter((bucket) => bucket.count > 0);
+  const activeBucketLabels = activeBuckets.map((bucket) => bucket.label);
+  const bucketLabelSummary =
+    activeBucketLabels.length <= 1
+      ? (activeBucketLabels[0] ?? "completed-class coverage")
+      : activeBucketLabels.length === 2
+        ? `${activeBucketLabels[0]} and ${activeBucketLabels[1]}`
+        : `${activeBucketLabels.slice(0, -1).join(", ")}, and ${activeBucketLabels[activeBucketLabels.length - 1]}`;
   const [isEvaluationOpen, setIsEvaluationOpen] = useState(false);
 
   if (!report.completedCourseCount) {
@@ -1678,7 +1656,7 @@ function TranscriptEvaluationReportCard({
           <View className="flex-1 min-w-0">
             <Text className={`${textClass} text-lg font-semibold`}>Transcript evaluation</Text>
             <Text className={`${secondaryTextClass} text-sm mt-1`}>
-              Source-backed summary for completed classes in {report.majorTitle}. These buckets come from approved equivalency rules, not custom guessing.
+              This gives you {bucketLabelSummary} for completed classes in {report.majorTitle}. These buckets come from approved equivalency rules, not custom guessing.
             </Text>
           </View>
           <View className="flex-row items-center gap-2">
@@ -2164,43 +2142,23 @@ export default function TransferPlannerPage() {
   useEffect(() => {
     let active = true;
 
-    if (!user?.uid || !user?.transcript) {
+    if (!user?.uid) {
       setTranscriptDocument(null);
       return () => {
         active = false;
       };
     }
 
-    const transcriptUrl = user.transcript;
-
     void (async () => {
       const stored = await storageService.getTranscript(user.uid).catch(() => null);
-      const fallbackName = getReadableTranscriptFileName({
-        name: "",
-        url: transcriptUrl,
-        uploadedAt: "",
-        mimeType: "application/pdf",
-        sizeBytes: null,
-      });
-      const nextDocument: TranscriptDocument =
-        stored && stored.url
-          ? stored
-          : {
-              name: fallbackName,
-              url: transcriptUrl,
-              uploadedAt: "",
-              mimeType: "application/pdf",
-              sizeBytes: null,
-            };
-
       if (!active) return;
-      setTranscriptDocument(nextDocument);
+      setTranscriptDocument(stored && stored.url ? stored : null);
     })();
 
     return () => {
       active = false;
     };
-  }, [user?.uid, user?.transcript]);
+  }, [user?.uid]);
 
   const analyzeTranscript = useCallback(
     async (document: TranscriptDocument) => {
@@ -2659,7 +2617,7 @@ export default function TransferPlannerPage() {
                   {"GRC -> UW Course Planner"}
                 </Text>
                 <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                  Classes for Green River College are cheaper/easier than the University of Washington. This tool matches you with a transfer track most compatible with the major you want while letting you take advantage of this fact by giving you every course you can possibly take here required for your major.
+                  Classes for Green River College are cheaper/easier than those at the University of Washington. This tool matches you with a transfer track most compatible with your major, letting you take advantage of it by showing you every course that directly transfers in.
                 </Text>
               </View>
             </View>
@@ -2727,17 +2685,18 @@ export default function TransferPlannerPage() {
           {hasNoDirectMajorEquivalencies ? (
             <View className={`${cardBgClass} border rounded-[28px] p-5`}>
               <Text className={`${textClass} text-lg font-semibold`}>
-                No direct major equivalencies for {plan.title}
+                No class equivalencies for {plan.title}
               </Text>
               <Text className={`${secondaryTextClass} text-sm mt-2`}>
-                There are no direct source-backed major equivalencies for this path right now.
+                There are no class equivalencies for this path right now.
               </Text>
-              <Text className={`${secondaryTextClass} text-sm mt-2`}>
-                To get into the major, plan for {getGeneralAdmissionRequirementsSummary(plan)}.
-              </Text>
-              <Text className={`${secondaryTextClass} text-sm mt-2`}>
-                {getMajorSelectivityMessage(plan)}, so plan on advisor review, early application prep, and meeting published prerequisites before transfer.
-              </Text>
+              {isOpenAdmissionMajor(plan) ? (
+                <Text className={`${secondaryTextClass} text-sm mt-2`}>
+                  This is an open major. You would transfer through general UW admission first,
+                  then declare {plan.title} through the department&apos;s current process after you
+                  enroll.
+                </Text>
+              ) : null}
             </View>
           ) : null}
 

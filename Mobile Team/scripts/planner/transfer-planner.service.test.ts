@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync, statSync } from "node:fs";
 import test from "node:test";
 
 import {
@@ -8,6 +8,10 @@ import {
 } from "@/constants/transfer-planner-grc-availability.generated";
 import { TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS } from "@/constants/transfer-planner-source/bootstrap.generated";
 import { TRANSFER_PLANNER_GENERATED_COURSE_METADATA } from "@/constants/transfer-planner-source/course-metadata.generated";
+import {
+  TRANSFER_PLANNER_COURSE_METADATA_FIELD_GAP_STATES,
+  TRANSFER_PLANNER_COURSE_METADATA_FIELD_GAPS,
+} from "@/constants/transfer-planner-source/course-metadata";
 import {
   TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACK_SUMMARY,
 } from "@/constants/transfer-planner-source/grc-associate-tracks.generated";
@@ -44,8 +48,6 @@ import {
   getTransferPlannerMajorsForCampus,
   getTransferPlannerPathwaysForPlan,
   getTransferPlannerPrimaryDegreeRequirementsSource,
-  getTransferPlannerPromotedPrimarySourceOverride,
-  getTransferPlannerPromotedRequirementAtomOverrides,
   getTransferPlannerRequirementDiffClassifications,
   getTransferPlannerSourceManifestEntriesForPlan,
   getTransferPlannerTrack,
@@ -91,131 +93,79 @@ const {
 } = require("./grc-public-materials.cjs");
 const { parseGrcEnrollmentRequirementText } = require("./ingest-grc-catalog.cjs");
 
-function getTransferPlannerPathwayOverrideCollisions() {
-  const { dirname, resolve } = require("node:path");
-  const Module = require("node:module") as any;
-  const ts = require("typescript") as typeof import("typescript");
-  const dataFilePath = resolve(process.cwd(), "constants/transfer-planner-data.ts");
-  const source =
-    readFileSync(dataFilePath, "utf8") +
-    `
-module.exports.__TEST_INTROSPECT = {
-  GENERATED_PLAN_DOC_OVERRIDES,
-  TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS,
-  buildPlannerLookupKey,
-};
-`;
-  const transpiled = ts.transpileModule(source, {
-    compilerOptions: {
-      module: ts.ModuleKind.CommonJS,
-      target: ts.ScriptTarget.ES2020,
-      esModuleInterop: true,
-    },
-    fileName: dataFilePath,
-  }).outputText;
-  const plannerDataModule = new Module(dataFilePath, module);
-  plannerDataModule.filename = dataFilePath;
-  plannerDataModule.paths = Module._nodeModulePaths(dirname(dataFilePath));
-  plannerDataModule._compile(transpiled, dataFilePath);
+const LEGACY_PLANNER_DATA_MODULE_NAME = ["transfer", "planner", "data.ts"].join("-");
 
-  const {
-    GENERATED_PLAN_DOC_OVERRIDES,
-    TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS,
-    buildPlannerLookupKey,
-  } = plannerDataModule.exports.__TEST_INTROSPECT as {
-    GENERATED_PLAN_DOC_OVERRIDES: Record<string, { pathways?: Array<{ id: string; label: string }> }>;
-    TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS: Array<{
-      id: string;
-      title: string;
-      campusId: string;
-      pathways?: Array<{ id: string; label: string }>;
-    }>;
-    buildPlannerLookupKey: (campusId: string, title: string) => string;
-  };
-
-  return TRANSFER_PLANNER_DETAILED_MAJOR_PLAN_DEFINITIONS.flatMap((plan) => {
-    const override = GENERATED_PLAN_DOC_OVERRIDES[
-      buildPlannerLookupKey(plan.campusId, plan.title)
-    ];
-    if (!plan.pathways?.length || !override?.pathways?.length) {
-      return [] as Array<{
-        planId: string;
-        title: string;
-        hardcoded: Array<{ id: string; label: string }>;
-        override: Array<{ id: string; label: string }>;
-      }>;
-    }
-
-    return [
-      {
-        planId: plan.id,
-        title: plan.title,
-        hardcoded: plan.pathways.map((pathway) => ({
-          id: pathway.id,
-          label: pathway.label,
-        })),
-        override: override.pathways.map((pathway) => ({
-          id: pathway.id,
-          label: pathway.label,
-        })),
-      },
-    ];
-  });
+function escapeRegExp(value: string) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-function getManualGrcStructuredRequirementStopgaps() {
-  const { dirname, resolve } = require("node:path");
-  const Module = require("node:module") as any;
-  const ts = require("typescript") as typeof import("typescript");
-  const metadataFilePath = resolve(
-    process.cwd(),
-    "constants/transfer-planner-source/course-metadata.ts"
-  );
-  const source =
-    readFileSync(metadataFilePath, "utf8") +
-    `
-module.exports.__TEST_INTROSPECT = {
-  TRANSFER_PLANNER_MANUAL_COURSE_METADATA_RAW,
-};
-`;
-  const transpiled = ts.transpileModule(source, {
-    compilerOptions: {
-      module: ts.ModuleKind.CommonJS,
-      target: ts.ScriptTarget.ES2020,
-      esModuleInterop: true,
-    },
-    fileName: metadataFilePath,
-  }).outputText;
-  const metadataModule = new Module(metadataFilePath, module);
-  metadataModule.filename = metadataFilePath;
-  metadataModule.paths = Module._nodeModulePaths(dirname(metadataFilePath));
-  metadataModule._compile(transpiled, metadataFilePath);
+function collectProjectTextFiles(rootDir: string) {
+  const ignoredDirectoryNames = new Set([
+    ".git",
+    ".expo",
+    ".next",
+    "node_modules",
+    "dist",
+    "build",
+    "coverage",
+    ".tmp",
+  ]);
+  const allowedExtensions = new Set([
+    ".ts",
+    ".tsx",
+    ".js",
+    ".jsx",
+    ".cjs",
+    ".mjs",
+    ".json",
+    ".md",
+    ".yml",
+    ".yaml",
+    ".txt",
+    ".ps1",
+    ".cmd",
+    ".sh",
+    ".bat",
+  ]);
+  const filePaths: string[] = [];
 
-  const {
-    TRANSFER_PLANNER_MANUAL_COURSE_METADATA_RAW,
-  } = metadataModule.exports.__TEST_INTROSPECT as {
-    TRANSFER_PLANNER_MANUAL_COURSE_METADATA_RAW: Array<{
-      schoolId: string;
-      code: string;
-      prerequisiteCourseCodes?: string[];
-      prerequisiteAlternativeCourseCodeSets?: string[][];
-      prerequisiteNotes?: string[];
-      corequisiteCourseCodes?: string[];
-      corequisiteAlternativeCourseCodeSets?: string[][];
-      corequisiteNotes?: string[];
-    }>;
+  const walk = (relativeDir: string) => {
+    const absoluteDir = relativeDir ? `${rootDir}/${relativeDir}` : rootDir;
+    for (const entry of readdirSync(absoluteDir, { withFileTypes: true })) {
+      const relativePath = relativeDir ? `${relativeDir}/${entry.name}` : entry.name;
+      if (entry.isDirectory()) {
+        if (ignoredDirectoryNames.has(entry.name)) {
+          continue;
+        }
+        walk(relativePath);
+        continue;
+      }
+
+      const extension =
+        relativePath.includes(".")
+          ? `.${relativePath.split(".").pop()?.toLowerCase() ?? ""}`
+          : "";
+      if (!allowedExtensions.has(extension)) {
+        continue;
+      }
+
+      const absolutePath = `${rootDir}/${relativePath}`;
+      if (!statSync(absolutePath).isFile()) {
+        continue;
+      }
+      filePaths.push(relativePath);
+    }
   };
 
-  return TRANSFER_PLANNER_MANUAL_COURSE_METADATA_RAW.filter(
-    (entry) =>
-      entry.schoolId === "grc" &&
-      ((entry.prerequisiteCourseCodes?.length ?? 0) > 0 ||
-        (entry.prerequisiteAlternativeCourseCodeSets?.length ?? 0) > 0 ||
-        (entry.corequisiteCourseCodes?.length ?? 0) > 0 ||
-        (entry.corequisiteAlternativeCourseCodeSets?.length ?? 0) > 0 ||
-        (entry.prerequisiteNotes?.some((note) => /Planner-normalized/i.test(note)) ?? false) ||
-        (entry.corequisiteNotes?.some((note) => /Planner-normalized/i.test(note)) ?? false))
-  ).map((entry) => entry.code);
+  walk("");
+  return filePaths.sort();
+}
+
+function getGeneratedMetadataGapEntriesForCourse(code: string) {
+  const normalizedCode = normalizeCourseCode(code);
+  return TRANSFER_PLANNER_COURSE_METADATA_FIELD_GAP_STATES.filter(
+    (entry) => entry.schoolId === "grc" && normalizeCourseCode(entry.code) === normalizedCode
+  );
 }
 
 function getRequiredPlan(id: string) {
@@ -251,42 +201,6 @@ function getChecklistCoverageForPlan(plan: TransferPlannerMajorPlan) {
   }
 
   return coverage;
-}
-
-function getPromotedClassificationExample(classificationKind: string) {
-  const classification = TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY.find(
-    (entry) =>
-      entry.classificationKind === classificationKind &&
-      Boolean(entry.promotedRequirementAtomOverrideId)
-  );
-
-  assert.ok(classification, `Expected a promoted classification for ${classificationKind}.`);
-
-  const overrides = getTransferPlannerPromotedRequirementAtomOverrides(
-    classification.planId,
-    classification.pathwayId
-  );
-  const override = overrides.find(
-    (entry) => entry.id === classification.promotedRequirementAtomOverrideId
-  );
-  assert.ok(
-    override,
-    `Expected a matching promoted requirement-diff override for ${classificationKind}.`
-  );
-
-  const basePlan = getRequiredPlan(classification.planId);
-  const resolvedPlan = classification.pathwayId
-    ? resolveTransferPlannerMajorPlan(basePlan, classification.pathwayId)
-    : basePlan;
-
-  assert.ok(resolvedPlan, `Expected a resolved plan for ${classification.planId}.`);
-
-  return {
-    classification,
-    override,
-    resolvedPlan,
-    courseList: getTransferPlannerGrcCourseList(resolvedPlan),
-  };
 }
 
 function getPlannerOwnerPrimarySourceEntries() {
@@ -3334,6 +3248,37 @@ test("Seattle Aeronautics runtime planning uses the authored 24-credit breadth t
   );
 });
 
+test("Seattle Aeronautics does not misread the science-core NSc option as a 5-credit general-education target", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-aeronautics-astronautics");
+  assert.ok(runtimePlan, "Expected the Aeronautics runtime plan.");
+
+  const completedCourses = buildTranscriptCourses("CS 123", "MATH 238", "MATH& 254");
+  const statuses = buildStatuses(runtimePlan, completedCourses);
+  const quarterPlan = buildSuggestedQuarterPlan({
+    plan: runtimePlan,
+    ...statuses,
+    completedCourses,
+    track: getTransferPlannerTrack(runtimePlan.bestTrackId ?? null),
+    includeStayAtGrcCourses: true,
+    referenceDate: new Date("2026-01-15T12:00:00.000Z"),
+  });
+  const completedGuidanceSummaries = quarterPlan
+    .filter((quarter) => quarter.phase === "completed")
+    .flatMap((quarter) =>
+      quarter.courses
+        .filter((course) => ["CS 123", "MATH 238", "MATH& 254"].includes(course.label))
+        .map((course) => course.guidanceSummary ?? "")
+    );
+
+  assert.equal(completedGuidanceSummaries.length, 3);
+  for (const guidanceSummary of completedGuidanceSummaries) {
+    assert.doesNotMatch(
+      guidanceSummary,
+      /NSc credits needed for Aeronautics & Astronautics\./i
+    );
+  }
+});
+
 test("Applied Mathematics filler guidance keeps separate A&H and SSc placeholders when the source does not define a shared A&H/SSc bucket", () => {
   const plan = getRequiredPlan("uw-seattle-applied-mathematics");
   const track = {
@@ -3427,15 +3372,35 @@ test("Seattle American Ethnic Studies planning keeps the current humanities-only
   );
 });
 
-test("Green River associate track generation now covers the current official associate program-map library", () => {
-  assert.equal(TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACK_SUMMARY.previousManualTrackCount, 4);
-  assert.equal(TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACK_SUMMARY.officialAssociateTrackCount, 85);
-  assert.equal(
-    TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACK_SUMMARY.newlyAddedOfficialAssociateTrackCount,
-    82
+test("Seattle American Ethnic Studies runtime keeps source-backed support bundles visible for track matching", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-american-ethnic-studies");
+  assert.ok(runtimePlan, "Expected the American Ethnic Studies runtime plan.");
+
+  const stayAtGrcTitles = (runtimePlan.stayAtGrcChecklist ?? []).map((item) => item.title);
+  const runtimeCourseList = getTransferPlannerGrcCourseList(runtimePlan);
+
+  assert.deepEqual(stayAtGrcTitles, [
+    "Ethnic studies and related social-science foundation",
+    "History and humanities support for concentration work",
+    "Writing-heavy humanities support",
+  ]);
+  assert.ok(runtimeCourseList.includes("AMES 100"));
+  assert.ok(runtimeCourseList.includes("HUMAN 100"));
+  assert.ok(runtimeCourseList.includes("ENGL& 101"));
+
+  const resolvedRuntimePlan = resolveTransferPlannerStudentRuntimeMajorPlan(runtimePlan, null);
+  assert.ok(resolvedRuntimePlan, "Expected the resolved American Ethnic Studies runtime plan.");
+  assert.match(
+    resolvedRuntimePlan.bestTrackSummary,
+    /matches 2 of the 3 degree-specific Green River classes currently tracked for this major\./i
   );
-  assert.equal(TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACK_SUMMARY.retainedLegacyTrackCount, 1);
-  assert.equal(TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACK_SUMMARY.generatedTrackCount, 86);
+});
+
+test("Green River associate track generation now covers the current official associate program-map library", () => {
+  assert.ok(TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACK_SUMMARY.programMapPageCount > 0);
+  assert.equal(TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACK_SUMMARY.officialAssociateTrackCount, 85);
+  assert.equal(TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACK_SUMMARY.compatibilityMappedTrackCount, 3);
+  assert.equal(TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACK_SUMMARY.generatedTrackCount, 85);
 
   const businessManagementTrack = getTransferPlannerTrack(
     "grc-associate-business-entrepreneurship-business-management-aaa"
@@ -4537,10 +4502,9 @@ test("Phase 10 refresh pipeline is the single rebuild and verification entry poi
   );
   const requiredPipelineScripts = [
     "scripts/planner/check-transfer-planner-sources.cjs",
-    "scripts/planner/promote-transfer-planner-primary-sources.cjs",
+    "scripts/planner/discover-transfer-planner-primary-sources.cjs",
     "scripts/planner/build-transfer-planner-source-gap-report.cjs",
     "scripts/planner/parse-transfer-planner-requirement-sources.cjs",
-    "scripts/planner/promote-transfer-planner-requirement-diffs.cjs",
     "scripts/planner/build-transfer-planner-source-fingerprints.cjs",
     "scripts/planner/generate-transfer-planner-source-bootstrap.cjs",
     "scripts/planner/parse-transfer-planner-equivalency-guide.cjs",
@@ -4559,6 +4523,76 @@ test("Phase 10 refresh pipeline is the single rebuild and verification entry poi
   assert.match(refreshScript, /tsc",\s*"--noEmit"/);
   assert.match(refreshScript, /Classify hidden source gaps/);
   assert.match(refreshScript, /Refresh summary:/);
+});
+
+test("Bootstrap generators stay parser-first and never import legacy planner data module", () => {
+  const guardedBootstrapScripts = [
+    "scripts/planner/generate-transfer-planner-source-bootstrap.cjs",
+    "scripts/planner/generate-transfer-planner-grc-associate-tracks.cjs",
+  ];
+  const legacyModulePattern = new RegExp(
+    `${escapeRegExp(LEGACY_PLANNER_DATA_MODULE_NAME)}(?:\\b|$)`,
+    "i"
+  );
+
+  for (const scriptPath of guardedBootstrapScripts) {
+    const scriptContents = readFileSync(scriptPath, "utf8");
+    assert.doesNotMatch(
+      scriptContents,
+      legacyModulePattern,
+      `${scriptPath} must not import ${LEGACY_PLANNER_DATA_MODULE_NAME}.`
+    );
+  }
+});
+
+test("Project files do not reference the legacy planner data module", () => {
+  const legacyModuleNeedle = LEGACY_PLANNER_DATA_MODULE_NAME.toLowerCase();
+  const matchingPaths = collectProjectTextFiles(process.cwd()).filter((relativePath) => {
+    const contents = readFileSync(relativePath, "utf8").toLowerCase();
+    return contents.includes(legacyModuleNeedle);
+  });
+
+  assert.deepEqual(
+    matchingPaths,
+    [],
+    `Unexpected references to ${LEGACY_PLANNER_DATA_MODULE_NAME}: ${matchingPaths.join(", ")}`
+  );
+});
+
+test("Runtime planner path does not reference authored override map/constants", () => {
+  const guardedRuntimePathPrefixes = [
+    "constants/transfer-planner-source/",
+    "constants/transfer-planner-types.ts",
+    "services/planning/transfer-planner.service.ts",
+  ];
+  const forbiddenAuthoredOverrideNames = [
+    "REQUIREMENT_DISPLAY_PHASE_OVERRIDES",
+    "DISABLED_UNVERIFIED_OFFICIAL_LINK_URLS",
+    "PLANNER_OWNED_TEXT_REPLACEMENTS",
+    "LEGACY_COMPATIBILITY_TRACKS_BY_PAGE_SLUG",
+  ];
+
+  const runtimeFiles = collectProjectTextFiles(process.cwd()).filter((relativePath) =>
+    guardedRuntimePathPrefixes.some(
+      (pathPrefix) => relativePath === pathPrefix || relativePath.startsWith(pathPrefix)
+    )
+  );
+  const findings: string[] = [];
+
+  for (const relativePath of runtimeFiles) {
+    const contents = readFileSync(relativePath, "utf8");
+    for (const forbiddenName of forbiddenAuthoredOverrideNames) {
+      if (contents.includes(forbiddenName)) {
+        findings.push(`${forbiddenName} in ${relativePath}`);
+      }
+    }
+  }
+
+  assert.deepEqual(
+    findings,
+    [],
+    `Unexpected authored override map/constants in runtime path: ${findings.join(", ")}`
+  );
 });
 
 test("Windows planner maintenance launcher runs refresh, installs Chromium, runs QA, and writes a summary", () => {
@@ -4642,11 +4676,6 @@ test("Single-pass planner hardening invariants hold across the five robustness f
     )
   );
   const toolSummary = readFileSync("docs/planner/TRANSFER_PLANNER_TOOL_SUMMARY.md", "utf8");
-  const generalTodo = readFileSync("docs/planner/TRANSFER_PLANNER_GENERAL_TODO.md", "utf8");
-  const automationPlan = readFileSync(
-    "docs/planner/TRANSFER_PLANNER_SOURCE_VERIFIED_AUTOMATION_PLAN.md",
-    "utf8"
-  );
 
   assert.equal(sourceGapReport.totalSourceGapOwners, 0);
   assert.equal(requirementParseReport.failedCount, 0);
@@ -4666,8 +4695,6 @@ test("Single-pass planner hardening invariants hold across the five robustness f
   );
   assert.deepEqual(invalidAvailabilityStatuses, []);
   assert.match(toolSummary, /source-backed/i);
-  assert.match(generalTodo, /source-gap/i);
-  assert.match(automationPlan, /hidden when the source is unverified/i);
 });
 
 test("Planner hardening verifier script checks the five robustness contracts in one pass", () => {
@@ -5036,11 +5063,6 @@ test("Pathway selector hides the already-selected pathway from the open option l
 
 test("Planner docs now use source-gap and source-backed language instead of review queues", () => {
   const toolSummary = readFileSync("docs/planner/TRANSFER_PLANNER_TOOL_SUMMARY.md", "utf8");
-  const generalTodo = readFileSync("docs/planner/TRANSFER_PLANNER_GENERAL_TODO.md", "utf8");
-  const automationPlan = readFileSync(
-    "docs/planner/TRANSFER_PLANNER_SOURCE_VERIFIED_AUTOMATION_PLAN.md",
-    "utf8"
-  );
   const docsReadme = readFileSync("docs/README.md", "utf8");
   const bootstrapSource = readFileSync(
     "constants/transfer-planner-source/bootstrap.generated.ts",
@@ -5057,15 +5079,6 @@ test("Planner docs now use source-gap and source-backed language instead of revi
   assert.doesNotMatch(toolSummary, /review queue/i);
   assert.match(toolSummary, /planner:windows:maintenance/);
   assert.match(toolSummary, /run-planner-maintenance\.cmd/);
-
-  assert.match(generalTodo, /source-backed/i);
-  assert.match(generalTodo, /source-gap/i);
-  assert.doesNotMatch(generalTodo, /advisor-reviewed/i);
-  assert.doesNotMatch(generalTodo, /review queue/i);
-  assert.doesNotMatch(generalTodo, /Bothell and Tacoma still need more normalized major data/i);
-
-  assert.doesNotMatch(automationPlan, /review-needed/i);
-  assert.match(automationPlan, /hidden when the source is unverified/i);
 
   assert.match(docsReadme, /planner:windows:maintenance/);
   assert.match(docsReadme, /run-planner-maintenance\.cmd/);
@@ -5730,7 +5743,7 @@ test("Requirement and degree-map registries cover all current planner rows", () 
 
   assert.equal(
     TRANSFER_PLANNER_MAJOR_REQUIREMENT_REGISTRY.length,
-    checklistItemCount + TRANSFER_PLANNER_SOURCE_SUMMARY.promotedRequirementAtomOverrideCount
+    checklistItemCount
   );
   assert.equal(TRANSFER_PLANNER_DEGREE_MAP_BLOCK_REGISTRY.length, degreeMapSectionCount);
   assert.equal(TRANSFER_PLANNER_POLICY_REGISTRY.length, policyEntryCount);
@@ -6836,7 +6849,6 @@ test("Source summary reports a non-empty layered registry bootstrap", () => {
   assert.ok(TRANSFER_PLANNER_SOURCE_SUMMARY.sourceManifestCount > 0);
   assert.ok(TRANSFER_PLANNER_SOURCE_SUMMARY.sourceManifestPrimaryCount > 0);
   assert.ok(TRANSFER_PLANNER_SOURCE_SUMMARY.sourceManifestHighConfidenceCount > 0);
-  assert.ok(TRANSFER_PLANNER_SOURCE_SUMMARY.sourceManifestPromotedPrimaryOverrideCount > 0);
   assert.equal(TRANSFER_PLANNER_SOURCE_SUMMARY.sourceGapCount, 0);
   assert.equal(TRANSFER_PLANNER_SOURCE_SUMMARY.sourceGapCountsByStatus["parser-unsupported"] ?? 0, 0);
   assert.equal(TRANSFER_PLANNER_SOURCE_SUMMARY.sourceGapCountsByStatus["source-unfindable"] ?? 0, 0);
@@ -6845,7 +6857,6 @@ test("Source summary reports a non-empty layered registry bootstrap", () => {
   assert.ok(TRANSFER_PLANNER_SOURCE_SUMMARY.catalogDescriptionCount > 1000);
   assert.ok(TRANSFER_PLANNER_SOURCE_SUMMARY.catalogPrerequisiteNoteCount > 500);
   assert.ok(TRANSFER_PLANNER_SOURCE_SUMMARY.catalogCorequisiteNoteCount > 0);
-  assert.ok(TRANSFER_PLANNER_SOURCE_SUMMARY.promotedRequirementAtomOverrideCount > 0);
   assert.equal(
     TRANSFER_PLANNER_SOURCE_SUMMARY.requirementDiffClassificationCount,
     TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY.length
@@ -7119,6 +7130,7 @@ test("Phase 3 Green River catalog ingest fills source-backed metadata for planne
   assert.equal(cs123?.creditLabel, "5");
   assert.deepEqual(cs123?.prerequisiteCourseCodes, ["CS 122"]);
   assert.ok(cs123?.catalogDescription);
+  assert.equal(engr215?.title, "Dynamics");
   assert.deepEqual(engr215?.prerequisiteCourseCodes, ["ENGR& 214", "MATH& 152", "PHYS& 221"]);
   assert.ok(
     catalogBackedPlannerCourses.length > 300,
@@ -7231,8 +7243,28 @@ test("Phase 3 catalog ingest now materializes source-backed graph edges for plan
   );
 });
 
-test("Raw manual GRC course metadata no longer carries prerequisite or corequisite stopgaps", () => {
-  assert.deepEqual(getManualGrcStructuredRequirementStopgaps(), []);
+test("Course metadata now uses generated-only entries plus explicit field-level gap states", () => {
+  const metadataModuleSource = readFileSync(
+    "constants/transfer-planner-source/course-metadata.ts",
+    "utf8"
+  );
+
+  assert.doesNotMatch(metadataModuleSource, /TRANSFER_PLANNER_MANUAL_COURSE_METADATA/i);
+  assert.ok(
+    TRANSFER_PLANNER_COURSE_METADATA_FIELD_GAP_STATES.length >=
+      TRANSFER_PLANNER_GENERATED_COURSE_METADATA.length,
+    "Expected every generated metadata entry to emit explicit field-level source-gap state metadata."
+  );
+  assert.ok(
+    TRANSFER_PLANNER_COURSE_METADATA_FIELD_GAPS.length > 0,
+    "Expected explicit source-gap entries for at least some missing metadata fields."
+  );
+
+  const engr215GapEntries = getGeneratedMetadataGapEntriesForCourse("ENGR& 215");
+  assert.equal(engr215GapEntries.length > 0, true);
+  assert.equal(engr215GapEntries[0]?.fieldStates.title, "generated-present");
+  assert.equal(engr215GapEntries[0]?.fieldStates.creditValue, "generated-present");
+  assert.equal(engr215GapEntries[0]?.fieldStates.sourceLinks, "generated-present");
 });
 
 test("Phase 3 UW catalog ingest fills planner-relevant UW course metadata", () => {
@@ -7326,30 +7358,6 @@ test("Source manifest registry now tracks parser type, role, confidence, and pri
   assert.ok(["high", "medium", "low"].includes(trackManifest?.confidence ?? ""));
 });
 
-test("Promoted primary-source overrides now feed the source manifest registry for missing majors", () => {
-  const aisOverride = getTransferPlannerPromotedPrimarySourceOverride(
-    "uw-seattle-american-indian-studies"
-  );
-  const aisPrimary = getTransferPlannerPrimaryDegreeRequirementsSource(
-    "uw-seattle-american-indian-studies",
-    null
-  );
-
-  assert.ok(aisOverride, "Expected an auto-promoted primary-source override for American Indian Studies.");
-  assert.ok(aisPrimary, "Expected American Indian Studies to expose a primary degree source after promotion.");
-  assert.equal(aisPrimary?.url, aisOverride?.url);
-  assert.equal(aisPrimary?.url, "https://ais.washington.edu/ba-american-indian-studies");
-  assert.equal(aisPrimary?.isPrimaryDegreeRequirementsLink, true);
-  assert.ok(
-    ["html-degree-page", "html-overview-page", "generic-html"].includes(
-      aisPrimary?.parserType ?? ""
-    )
-  );
-  assert.ok(
-    (aisPrimary?.validationNotes ?? []).some((note) => /auto-promoted high-confidence primary source/i.test(note))
-  );
-});
-
 test("Seattle Computer Engineering degree-map blocks stay aligned with the current CompE degree sheet", () => {
   const compEDegreeMapBlocks = TRANSFER_PLANNER_DEGREE_MAP_BLOCK_REGISTRY.filter(
     (entry) => entry.planId === "uw-seattle-computer-engineering"
@@ -7372,29 +7380,6 @@ test("Seattle Computer Engineering degree-map blocks stay aligned with the curre
   assert.equal(compEUwCourseCodes.has("CSE 401"), false);
   assert.equal(compEUwCourseCodes.has("CSE 444"), false);
   assert.equal(compEUwCourseCodes.has("EE 469"), false);
-});
-
-test("Promoted requirement-diff overrides now feed the structured requirement registry", () => {
-  const { classification, override, courseList } = getPromotedClassificationExample(
-    "auto-promoted-guide-direct-equivalent"
-  );
-  const registryAtom = TRANSFER_PLANNER_MAJOR_REQUIREMENT_REGISTRY.find(
-    (entry) => entry.id === override.id
-  );
-
-  assert.ok(
-    registryAtom,
-    "Expected promoted requirement-diff overrides to be merged into the structured requirement registry."
-  );
-  assert.equal(override.displayPhase, classification.displayPhase);
-  assert.deepEqual(override.grcCourseCodes, classification.grcCourseCodes);
-  assert.ok(courseList.includes(override.grcCourseCodes[0] ?? ""));
-  assert.equal(
-    override.note ?? "",
-    override.displayPhase === "before-enrollment"
-      ? "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
-      : ""
-  );
 });
 
 test("Automatic requirement-diff classifications eliminate legacy review-needed and unmapped buckets", () => {
@@ -7446,135 +7431,6 @@ test("Automatic requirement-diff classifications eliminate legacy review-needed 
   );
 });
 
-test("Guide-backed direct equivalents auto-promote clean requirement rows", () => {
-  const { classification, override, courseList } = getPromotedClassificationExample(
-    "auto-promoted-guide-direct-equivalent"
-  );
-  assert.equal(
-    classification.classificationKind,
-    "auto-promoted-guide-direct-equivalent"
-  );
-  assert.ok(classification.guideRuleId?.startsWith("uw-grc-guide:"));
-  assert.ok(classification.promotedRequirementAtomOverrideId);
-  assert.deepEqual(override.grcCourseCodes, classification.grcCourseCodes);
-  assert.match(override.rationale ?? "", /source-backed Green River course path/i);
-  assert.ok(classification.grcCourseCodes.every((code) => courseList.includes(code)));
-});
-
-test("Single-sample consensus classifications remain auto-promoted but medium-confidence", () => {
-  const { classification, override, courseList } = getPromotedClassificationExample(
-    "auto-promoted-single-sample-consensus"
-  );
-  assert.equal(
-    classification.classificationKind,
-    "auto-promoted-single-sample-consensus"
-  );
-  assert.equal(classification.mappingConfidence, "medium");
-  assert.equal(classification.guideRuleId, null);
-  assert.deepEqual(override.grcCourseCodes, classification.grcCourseCodes);
-  assert.equal(override.mappingConfidence, "medium");
-  assert.ok(classification.grcCourseCodes.every((code) => courseList.includes(code)));
-});
-
-test("Course-family consensus classifications now auto-promote stable campus-specific lower-division rows", () => {
-  const classification = TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY.find(
-    (entry) =>
-      entry.classificationKind === "auto-promoted-course-family-consensus" &&
-      Boolean(entry.promotedRequirementAtomOverrideId)
-  );
-
-  if (!classification) {
-    assert.equal(
-      TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY_SUMMARY.countsByKind[
-        "auto-promoted-course-family-consensus"
-      ] ?? 0,
-      0
-    );
-    return;
-  }
-
-  const override = getTransferPlannerPromotedRequirementAtomOverrides(
-    classification.planId,
-    classification.pathwayId
-  ).find((entry) => entry.id === classification.promotedRequirementAtomOverrideId);
-  const basePlan = getRequiredPlan(classification.planId);
-  const resolvedPlan = classification.pathwayId
-    ? resolveTransferPlannerMajorPlan(basePlan, classification.pathwayId)
-    : basePlan;
-  const courseList = getTransferPlannerGrcCourseList(resolvedPlan);
-
-  assert.equal(
-    classification.classificationKind,
-    "auto-promoted-course-family-consensus"
-  );
-  assert.equal(classification.guideRuleId, null);
-  assert.equal(classification.mappingConfidence, "high");
-  assert.ok(classification.promotedRequirementAtomOverrideId);
-  assert.ok(override);
-  assert.deepEqual(override.grcCourseCodes, classification.grcCourseCodes);
-  assert.match(override.rationale ?? "", /lower-division UW course family/i);
-  assert.ok(classification.grcCourseCodes.every((code) => courseList.includes(code)));
-});
-
-test("Guide-backed sequence rows auto-promote, and reference-only rows keep combined-entry guide semantics", () => {
-  const sequenceExample = getPromotedClassificationExample(
-    "auto-promoted-guide-sequence-equivalent"
-  );
-  const referenceExamples = TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY.filter(
-    (entry) => entry.classificationKind === "auto-promoted-guide-reference-only-equivalent"
-  );
-
-  assert.equal(
-    sequenceExample.classification.classificationKind,
-    "auto-promoted-guide-sequence-equivalent"
-  );
-  assert.ok(sequenceExample.classification.promotedRequirementAtomOverrideId);
-  assert.ok(sequenceExample.classification.guideRuleId?.startsWith("uw-grc-guide:"));
-  assert.ok(sequenceExample.classification.grcCourseCodes.length >= 2);
-  assert.deepEqual(
-    sequenceExample.override.grcCourseCodes,
-    sequenceExample.classification.grcCourseCodes
-  );
-  assert.match(
-    sequenceExample.override.rationale ?? "",
-    /source-backed Green River course path/i
-  );
-  assert.ok(
-    sequenceExample.classification.grcCourseCodes.every((code) =>
-      sequenceExample.courseList.includes(code)
-    )
-  );
-
-  assert.ok(
-    referenceExamples.length > 0,
-    "Expected at least one reference-only guide classification example."
-  );
-  assert.ok(
-    referenceExamples.every((entry) => /combined-entry/i.test(String(entry.note ?? "")))
-  );
-  assert.ok(
-    referenceExamples.every((entry) => entry.guideRuleId?.startsWith("uw-grc-guide:"))
-  );
-
-  for (const referenceExample of referenceExamples.filter(
-    (entry) => Boolean(entry.promotedRequirementAtomOverrideId)
-  )) {
-    const override = getTransferPlannerPromotedRequirementAtomOverrides(
-      referenceExample.planId,
-      referenceExample.pathwayId
-    ).find((entry) => entry.id === referenceExample.promotedRequirementAtomOverrideId);
-    const basePlan = getRequiredPlan(referenceExample.planId);
-    const resolvedPlan = referenceExample.pathwayId
-      ? resolveTransferPlannerMajorPlan(basePlan, referenceExample.pathwayId)
-      : basePlan;
-    const courseList = getTransferPlannerGrcCourseList(resolvedPlan);
-
-    assert.ok(override);
-    assert.deepEqual(override.grcCourseCodes, referenceExample.grcCourseCodes);
-    assert.ok(referenceExample.grcCourseCodes.every((code) => courseList.includes(code)));
-  }
-});
-
 test("Student-facing course lists now surface broader source-backed aquatic science transfer options", () => {
   const aquaticConservationPlan = getRequiredPlan("uw-seattle-aquatic-conservation-and-ecology");
   const aquaticConservationCourseList = getTransferPlannerGrcCourseList(aquaticConservationPlan);
@@ -7584,46 +7440,6 @@ test("Student-facing course lists now surface broader source-backed aquatic scie
   assert.ok(aquaticConservationCourseList.includes("CHEM& 161"));
   assert.ok(aquaticConservationCourseList.includes("MATH& 163"));
   assert.ok(aquaticConservationCourseList.includes("ENGR 250"));
-});
-
-test("Exact-consensus classifications now auto-promote safe source-backed Green River rows", () => {
-  const classification = TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY.find(
-    (entry) =>
-      entry.classificationKind === "auto-promoted-exact-consensus" &&
-      Boolean(entry.promotedRequirementAtomOverrideId)
-  );
-
-  if (!classification) {
-    assert.equal(
-      TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY_SUMMARY.countsByKind[
-        "auto-promoted-exact-consensus"
-      ] ?? 0,
-      0
-    );
-    return;
-  }
-
-  const override = getTransferPlannerPromotedRequirementAtomOverrides(
-    classification.planId,
-    classification.pathwayId
-  ).find((entry) => entry.id === classification.promotedRequirementAtomOverrideId);
-  const basePlan = getRequiredPlan(classification.planId);
-  const resolvedPlan = classification.pathwayId
-    ? resolveTransferPlannerMajorPlan(basePlan, classification.pathwayId)
-    : basePlan;
-  const courseList = getTransferPlannerGrcCourseList(resolvedPlan);
-
-  assert.equal(
-    classification.classificationKind,
-    "auto-promoted-exact-consensus"
-  );
-  assert.equal(classification.guideRuleId, null);
-  assert.equal(classification.mappingConfidence, "high");
-  assert.ok(classification.promotedRequirementAtomOverrideId);
-  assert.ok(override);
-  assert.deepEqual(override.grcCourseCodes, classification.grcCourseCodes);
-  assert.match(override.rationale ?? "", /exact-title requirement samples/i);
-  assert.ok(classification.grcCourseCodes.every((code) => courseList.includes(code)));
 });
 
 test("Former catch-all source-backed rows now land in specific machine classifications", () => {
@@ -7793,21 +7609,35 @@ test("Authored planner pathways now already match the visible materialized pathw
   assert.deepEqual(authoredPathwayDrift, []);
 });
 
-test("Legacy detailed-plan pathways do not override a different generated pathway list", () => {
-  const collisions = getTransferPlannerPathwayOverrideCollisions();
-  const differingCollisions = collisions.filter(
-    (entry) => JSON.stringify(entry.hardcoded) !== JSON.stringify(entry.override)
-  );
+test("Pathways are sourced from parser outputs, not legacy authored plan overrides", () => {
+  for (const plan of TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS) {
+    const registryPathwayIds = new Set(
+      TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY.filter(
+      (entry) => entry.planId === plan.id
+    ).map((entry) => entry.pathwayId)
+    );
 
-  assert.equal(
-    differingCollisions.length,
-    0,
-    `Expected no differing hardcoded-vs-generated pathway collisions, found ${differingCollisions.length}: ${JSON.stringify(
-      differingCollisions,
-      null,
-      2
-    )}`
-  );
+    for (const pathway of getTransferPlannerPathwaysForPlan(plan)) {
+      const isRegistryPathway = registryPathwayIds.has(pathway.id);
+      const isParserMaterializedPathway = pathway.id.startsWith("source-pathway-");
+      assert.equal(
+        isRegistryPathway || isParserMaterializedPathway,
+        true,
+        `Unexpected pathway ${plan.id}::${pathway.id}; expected registry-backed or parser-materialized source-pathway id.`
+      );
+    }
+
+    const materializedNonParserPathways = getTransferPlannerPathwaysForPlan(plan)
+      .filter((pathway) => !pathway.id.startsWith("source-pathway-"))
+      .map((pathway) => pathway.id)
+      .sort();
+    const registryNonParserPathways = [...registryPathwayIds].sort();
+    assert.deepEqual(
+      materializedNonParserPathways,
+      registryNonParserPathways,
+      `Registry pathway ids should remain stable for ${plan.id}.`
+    );
+  }
 });
 
 test("Resolving Biology pathways keeps the selected route metadata while preserving the shared source-backed prep list", () => {
@@ -8055,7 +7885,7 @@ test("Auto track matcher can diverge between the broad base course list and the 
     seattleAtmosphericClimateSciencePlan?.bestTrackSummary ?? "",
     /current closest Green River transfer path/i
   );
-  assert.ok((seattleAtmosphericClimateSciencePlan?.financialAidNote ?? "").length > 0);
+  assert.equal(seattleAtmosphericClimateSciencePlan?.financialAidNote ?? "", "");
 });
 
 test("Non-Seattle runtime majors with mapped GRC courses now get an auto-matched best track", () => {

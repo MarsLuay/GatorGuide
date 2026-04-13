@@ -11,8 +11,6 @@ require("ts-node").register({
   },
 });
 
-const { TRANSFER_PLANNER_TRACKS: LEGACY_MANUAL_TRACKS } = require("../../constants/transfer-planner-data");
-
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
 const OUTPUT_PATH = path.resolve(
@@ -34,38 +32,6 @@ const COURSE_CODE_PATTERN = /\b[A-Z]{2,6}&?\s*\d{3}(?:\.\d+)?[A-Z]?\b/g;
 const LEGACY_GRC_CODE_ALIASES = new Map([
   ["MATH& 254", "MATH& 264"],
 ]);
-
-const RETAINED_LEGACY_TRACK_IDS = new Set(["999B"]);
-const LEGACY_COMPATIBILITY_TRACKS_BY_PAGE_SLUG = new Map([
-  [
-    "associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering",
-    {
-      id: "999O",
-      code: "999O",
-      title: "AST2 / MRP Bioengineering and Chemical Engineering",
-    },
-  ],
-  [
-    "associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering",
-    {
-      id: "999Q",
-      code: "999Q",
-      title: "AST2 / MRP Civil and Mechanical Engineering",
-    },
-  ],
-  [
-    "associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering",
-    {
-      id: "999P",
-      code: "999P",
-      title: "AST2 / MRP Computer and Electrical Engineering",
-    },
-  ],
-]);
-
-const LEGACY_TRACK_BY_ID = new Map(
-  LEGACY_MANUAL_TRACKS.map((track) => [String(track.id ?? "").trim(), track])
-);
 
 function ensureTmpDir() {
   fs.mkdirSync(TMP_DIR, { recursive: true });
@@ -102,8 +68,8 @@ function decodeHtmlEntities(value) {
 
 function stripHtml(value) {
   return decodeHtmlEntities(String(value ?? ""))
-    .replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, " ")
-    .replace(/<style\b[^>]*>[\s\S]*?<\/style\s*>/gi, " ")
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script\b[^>]*>/gi, " ")
+    .replace(/<style\b[^>]*>[\s\S]*?<\/style\b[^>]*>/gi, " ")
     .replace(/<br\s*\/?>/gi, "\n")
     .replace(/<\/p>/gi, "\n")
     .replace(/<\/li>/gi, "\n")
@@ -163,7 +129,7 @@ function normalizeTrackCourseTerms(terms) {
   }));
 }
 
-function normalizeLegacyTrack(track) {
+function normalizeGeneratedTrack(track) {
   return {
     ...track,
     terms: normalizeTrackCourseTerms(track?.terms),
@@ -526,10 +492,6 @@ function buildGeneratedTrackSummary(page) {
   return `Official Green River ${programType}curriculum map for ${page.h1}. Generated automatically from the current public program-map page and catalog API.`;
 }
 
-function buildFallbackTrackSummary(page) {
-  return `Official Green River associate page for ${page.h1}. The current public page does not expose a structured curriculum-map feed, so this track is generated from the published page metadata only.`;
-}
-
 function buildGeneratedTrackNotes(page, coreTerms) {
   const notes = [];
   if (page.programType) {
@@ -553,8 +515,6 @@ function buildGeneratedTrackNotes(page, coreTerms) {
 }
 
 function buildTrackFromProgramPage(page, program) {
-  const compatibility = LEGACY_COMPATIBILITY_TRACKS_BY_PAGE_SLUG.get(page.pageSlug) ?? null;
-  const legacyTrack = compatibility ? LEGACY_TRACK_BY_ID.get(compatibility.id) ?? null : null;
   const coreTerms = flattenProgramCores(program.cores ?? []).filter(
     (term) => term.courses.length || term.description
   );
@@ -568,52 +528,16 @@ function buildTrackFromProgramPage(page, program) {
   }
 
   return {
-    id: compatibility?.id ?? `grc-associate-${page.pagePathSlug}`,
-    code: compatibility?.code ?? inferTrackCode(page),
-    title: compatibility?.title ?? cleanTrackTitle(page.h1),
+    id: `grc-associate-${page.pagePathSlug}`,
+    code: inferTrackCode(page),
+    title: cleanTrackTitle(page.h1),
     summary: buildGeneratedTrackSummary(page),
     bestFor: uniqueStrings([cleanTrackTitle(page.h1)]),
     terms,
     notes: buildGeneratedTrackNotes(page, coreTerms),
-    catalogYears: legacyTrack?.catalogYears,
     officialLinks: [
       {
         label: `${page.h1} curriculum map`,
-        url: page.url,
-      },
-    ],
-  };
-}
-
-function buildFallbackTrackFromPublicPage(page) {
-  const compatibility = LEGACY_COMPATIBILITY_TRACKS_BY_PAGE_SLUG.get(page.pageSlug) ?? null;
-  const legacyTrack = compatibility ? LEGACY_TRACK_BY_ID.get(compatibility.id) ?? null : null;
-  const courses = page.bodyCourseCodes.length
-    ? [...page.bodyCourseCodes]
-    : ["Published requirements only; no structured course grid is available yet."];
-
-  return {
-    id: compatibility?.id ?? `grc-associate-${page.pagePathSlug}`,
-    code: compatibility?.code ?? inferTrackCode(page),
-    title: compatibility?.title ?? cleanTrackTitle(page.h1),
-    summary: buildFallbackTrackSummary(page),
-    bestFor: uniqueStrings([cleanTrackTitle(page.h1)]),
-    terms: [
-      {
-        label: "Published requirements",
-        courses,
-      },
-    ],
-    notes: uniqueStrings([
-      page.programType ? `Program type: ${page.programType}.` : "",
-      page.degree ? `Degree: ${page.degree}.` : "",
-      page.duration ? `Published duration: ${page.duration}.` : "",
-      "Generated automatically from the public Green River program-map page because no structured curriculum-map connector is published for this page yet.",
-    ]),
-    catalogYears: legacyTrack?.catalogYears,
-    officialLinks: [
-      {
-        label: `${page.h1} program map`,
         url: page.url,
       },
     ],
@@ -632,10 +556,8 @@ function buildReportMarkdown(summary, records) {
     `Current catalog: ${summary.currentCatalogName} (id ${summary.currentCatalogId})`,
     "",
     `- Program-map pages scanned: ${summary.programMapPageCount}`,
-    `- Official associate curriculum maps discovered: ${summary.officialAssociateTrackCount}`,
-    `- Current manual track library before this generator: ${summary.previousManualTrackCount}`,
-    `- Official associate tracks newly added beyond the current manual library: ${summary.newlyAddedOfficialAssociateTrackCount}`,
-    `- Retained legacy non-associate compatibility tracks: ${summary.retainedLegacyTrackCount}`,
+    `- Official associate curriculum-map pages discovered: ${summary.officialAssociateTrackCount}`,
+    `- Associate curriculum maps with structured connectors: ${summary.connectedAssociateTrackCount}`,
     `- Final generated track count: ${summary.generatedTrackCount}`,
     "",
     "## Generated Tracks",
@@ -689,14 +611,9 @@ async function main() {
       const programSummary = getProgramByConnectorName(catalogPrograms, page);
       if (!programSummary) {
         console.log(
-          `[${index + 1}/${associatePages.length}] associate curriculum maps fetched - ${page.pagePathSlug} (public-page fallback)`
+          `[${index + 1}/${associatePages.length}] associate curriculum maps fetched - ${page.pagePathSlug} (skipped: no structured curriculum-map connector)`
         );
-        return {
-          page,
-          program: null,
-          programSummary: null,
-          track: buildFallbackTrackFromPublicPage(page),
-        };
+        return null;
       }
 
       console.log(
@@ -715,7 +632,7 @@ async function main() {
         track: buildTrackFromProgramPage(page, program),
       };
     }
-  );
+  )).filter(Boolean);
 
   officialAssociateTrackRecords.sort((left, right) => {
     if (left.track.id !== right.track.id) {
@@ -724,26 +641,17 @@ async function main() {
     return left.page.url.localeCompare(right.page.url);
   });
 
-  const retainedLegacyTracks = [...RETAINED_LEGACY_TRACK_IDS]
-    .map((trackId) => LEGACY_TRACK_BY_ID.get(trackId))
-    .filter(Boolean)
-    .map((track) => normalizeLegacyTrack(track));
-
-  const finalTracks = [
-    ...retainedLegacyTracks,
-    ...officialAssociateTrackRecords.map((record) => record.track),
-  ].map((track) => normalizeLegacyTrack(track));
+  const finalTracks = officialAssociateTrackRecords
+    .map((record) => record.track)
+    .map((track) => normalizeGeneratedTrack(track));
 
   const summary = {
     generatedAt: toIsoTimestamp(),
     currentCatalogId: Number(currentCatalog.id ?? 0),
     currentCatalogName: String(currentCatalog.name ?? "").trim(),
     programMapPageCount: publicPages.length,
-    officialAssociateTrackCount: officialAssociateTrackRecords.length,
-    previousManualTrackCount: LEGACY_MANUAL_TRACKS.length,
-    newlyAddedOfficialAssociateTrackCount:
-      officialAssociateTrackRecords.length - LEGACY_COMPATIBILITY_TRACKS_BY_PAGE_SLUG.size,
-    retainedLegacyTrackCount: retainedLegacyTracks.length,
+    officialAssociateTrackCount: associatePages.length,
+    connectedAssociateTrackCount: officialAssociateTrackRecords.length,
     generatedTrackCount: finalTracks.length,
   };
 
@@ -770,7 +678,7 @@ ${serializeExport(
 )}
 ${serializeExport(
   "TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACK_SUMMARY",
-  "{ generatedAt: string; currentCatalogId: number; currentCatalogName: string; programMapPageCount: number; officialAssociateTrackCount: number; previousManualTrackCount: number; newlyAddedOfficialAssociateTrackCount: number; retainedLegacyTrackCount: number; generatedTrackCount: number; }",
+  "{ generatedAt: string; currentCatalogId: number; currentCatalogName: string; programMapPageCount: number; officialAssociateTrackCount: number; connectedAssociateTrackCount: number; generatedTrackCount: number; }",
   summary
 )}
 `;

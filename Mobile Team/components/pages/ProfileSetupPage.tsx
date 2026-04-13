@@ -6,7 +6,7 @@ import * as Haptics from "expo-haptics";
 import { useAudioPlayer } from "expo-audio";
 import ConfettiCannon from "react-native-confetti-cannon";
 import * as DocumentPicker from "expo-document-picker";
-import { doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { deleteField, doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ROUTES } from "@/constants/routes";
 import { FIRESTORE_COLLECTIONS } from "@/constants/schema";
@@ -231,9 +231,13 @@ export default function ProfileSetupPage() {
         await setDoc(
           userDocRef,
           {
-            ...flatData,
+            major,
+            gpa: gpa || "",
+            resume: "",
+            isProfileComplete: true,
+            transcript: deleteField(),
             resumeFileName: "",
-            transcriptFileName: transcriptDoc?.name || "",
+            transcriptFileName: deleteField(),
             updatedAt: serverTimestamp(),
           },
           { merge: true }
@@ -253,7 +257,6 @@ export default function ProfileSetupPage() {
               ? {
                   transcripts: {
                     fileName: transcriptDoc?.name || "",
-                    fileUrl: finalTranscriptUrl,
                   },
                 }
               : {}),

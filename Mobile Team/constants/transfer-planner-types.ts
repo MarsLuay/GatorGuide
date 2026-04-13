@@ -8,6 +8,15 @@ export type TransferPlannerLink = {
   label: string;
   url: string;
   note?: string;
+  visibility?: "visible" | "hidden";
+  status?:
+    | "verified"
+    | "partially-verified"
+    | "source-unfindable"
+    | "source-conflict"
+    | "parser-unsupported";
+  reason?: string;
+  sourceConfidence?: "high" | "medium" | "low";
 };
 
 export type TransferPlannerChecklistItem = {

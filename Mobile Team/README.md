@@ -28,7 +28,6 @@ The Mobile Team helps by:
 - [`docs/planner/UWT_DEGREE_COURSES.md`](docs/planner/UWT_DEGREE_COURSES.md): current Green River -> UW Tacoma degree rows, Green River equivalent courses, and tracked requirement sequences.
 - [`docs/planner/GRC_EQUIVALENCY_GUIDE_REFERENCE.md`](docs/planner/GRC_EQUIVALENCY_GUIDE_REFERENCE.md): consolidated planner-facing Green River -> UW equivalency and transfer-track rules.
 - [`docs/planner/TRANSFER_PLANNER_TOOL_SUMMARY.md`](docs/planner/TRANSFER_PLANNER_TOOL_SUMMARY.md): summary of what the transfer planner does and what it uses.
-- [`docs/planner/TRANSFER_PLANNER_GENERAL_TODO.md`](docs/planner/TRANSFER_PLANNER_GENERAL_TODO.md): single backlog doc for the remaining planner work.
 - [`../Data Team/docs/COLLEGE_RANKING.md`](../Data Team/docs/COLLEGE_RANKING.md): shared college ranking philosophy and score model used by recommendations.
 
 ## Setup: Download and Run

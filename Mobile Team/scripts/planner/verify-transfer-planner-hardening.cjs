@@ -174,8 +174,6 @@ function main() {
         "README.md",
         "docs/README.md",
         "docs/planner/TRANSFER_PLANNER_TOOL_SUMMARY.md",
-        "docs/planner/TRANSFER_PLANNER_GENERAL_TODO.md",
-        "docs/planner/TRANSFER_PLANNER_SOURCE_VERIFIED_AUTOMATION_PLAN.md",
         "components/pages/TransferPlannerPage.tsx",
         "constants/transfer-planner-source/bootstrap.generated.ts",
       ];
@@ -192,7 +190,7 @@ function main() {
       assert.match(transferPlannerPage, /unsupported majors, rules, or sequences stay hidden/i);
 
       return [
-        "Docs checked: README, docs/README, planner summary, planner todo, automation plan, bootstrap source layer",
+        "Docs checked: README, docs/README, planner summary, bootstrap source layer",
         "UI checked: TransferPlannerPage",
       ];
     }),

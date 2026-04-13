@@ -115,6 +115,21 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return !!value && typeof value === "object" && !Array.isArray(value);
 }
 
+function roadmapHasLegacyTranscriptFileUrl(value: unknown): boolean {
+  if (Array.isArray(value)) {
+    return value.some((entry) => roadmapHasLegacyTranscriptFileUrl(entry));
+  }
+
+  if (!isRecord(value)) return false;
+
+  const transcriptDocument = value.transcripts;
+  if (isRecord(transcriptDocument) && String(transcriptDocument.fileUrl ?? "").trim()) {
+    return true;
+  }
+
+  return Object.values(value).some((entry) => roadmapHasLegacyTranscriptFileUrl(entry));
+}
+
 function uniqueStrings(values: Array<string | null | undefined>) {
   const seen = new Set<string>();
   const result: string[] = [];
@@ -183,6 +198,25 @@ function normalizeDocumentSizeBytes(value: unknown): number | null {
   return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
 }
 
+function sanitizeSeedDocuments(seedDocuments: RoadmapSeedInput["documents"] | undefined) {
+  if (!seedDocuments) return undefined;
+
+  const sanitizedEntries = Object.entries(seedDocuments).map(([key, value]) => {
+    if (!value) return [key, value] as const;
+    if (key !== "transcripts") return [key, value] as const;
+
+    return [
+      key,
+      {
+        ...value,
+        fileUrl: null,
+      },
+    ] as const;
+  });
+
+  return Object.fromEntries(sanitizedEntries) as RoadmapSeedInput["documents"];
+}
+
 function createProgress(completedCount: number, totalCount: number, updatedAt: string): RoadmapProgress {
   const safeTotal = Math.max(0, totalCount);
   const safeCompleted = Math.min(Math.max(0, completedCount), safeTotal);
@@ -241,7 +275,10 @@ function normalizeDocuments(
     const rawItem = isRecord(rawRecord[key]) ? rawRecord[key] : {};
     const seeded = seedDocuments?.[key];
     const rawFileName = String(rawItem.fileName ?? seeded?.fileName ?? "").trim() || null;
-    const rawFileUrl = String(rawItem.fileUrl ?? seeded?.fileUrl ?? "").trim() || null;
+    const rawFileUrl =
+      key === "transcripts"
+        ? null
+        : String(rawItem.fileUrl ?? seeded?.fileUrl ?? "").trim() || null;
     const rawUpdatedAt = nullableTimestampToIso(rawItem.updatedAt ?? seeded?.updatedAt);
 
     const completed = normalizeStatus(rawItem.status, rawFileName || rawFileUrl ? "completed" : "not_started");
@@ -644,7 +681,7 @@ export function buildRoadmapSeedInput(seed: RoadmapSeedInput): RoadmapSeedInput 
       ...splitList(questionnaire.internships),
       ...splitList(questionnaire.platforms),
     ]),
-    documents: seed.documents,
+    documents: sanitizeSeedDocuments(seed.documents),
   };
 }
 
@@ -814,7 +851,14 @@ export const roadmapService = {
       return seedInput ? createInitialRoadmap(userId, seedInput) : null;
     }
 
-    return normalizeRoadmapDocument(userId, docSnap.data(), seedInput);
+    const rawData = docSnap.data();
+    const normalized = normalizeRoadmapDocument(userId, rawData, seedInput);
+
+    if (roadmapHasLegacyTranscriptFileUrl(rawData)) {
+      await setDoc(doc(db!, FIRESTORE_COLLECTIONS.roadmaps, userId), normalized, { merge: true }).catch(() => {});
+    }
+
+    return normalized;
   },
 
   async ensureUserRoadmap(userId: string, seedInput: RoadmapSeedInput): Promise<UserRoadmapDocument> {

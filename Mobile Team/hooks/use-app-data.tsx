@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
-import { doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";
+import { deleteField, doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";
 import { authService, notificationsService } from "@/services";
 import {
   FIRESTORE_COLLECTIONS,
@@ -15,6 +15,7 @@ import { db, firebaseAuth } from "@/services/firebase/firebase";
 import { errorLoggingService } from "@/services/logging/error-logging.service";
 import { normalizeQuestionnaireAnswers } from "@/services/app/questionnaire.enums";
 import { savedCollegesService, type SyncSavedCollegesOptions } from "@/services/colleges/saved-colleges.service";
+import { storageService } from "@/services/storage/storage.service";
 
 export type User = {
   uid: string;
@@ -229,6 +230,32 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
       if (!userDoc.exists() || !userDoc.data()) return { profile: {}, legacySavedCollegeIds: [] };
 
       const data = userDoc.data();
+      if (
+        Object.prototype.hasOwnProperty.call(data, "transcript") ||
+        Object.prototype.hasOwnProperty.call(data, "transcriptFileName")
+      ) {
+        await setDoc(
+          doc(db, FIRESTORE_COLLECTIONS.users, uid),
+          {
+            transcript: deleteField(),
+            transcriptFileName: deleteField(),
+            updatedAt: serverTimestamp(),
+          },
+          { merge: true }
+        ).catch((error) => {
+          void errorLoggingService.captureException(error, {
+            category: "firestore",
+            operation: "clear-remote-transcript-profile-fields",
+            severity: "warn",
+            handled: true,
+            source: "use-app-data",
+            metadata: {
+              uid,
+            },
+          });
+        });
+      }
+
       return {
         profile: {
           ...(typeof data.name === "string" ? { name: data.name } : {}),
@@ -237,7 +264,6 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
           gender: data.gender ?? "",
           gpa: data.gpa ?? "",
           resume: data.resume ?? "",
-          transcript: data.transcript ?? "",
           avatar: data.avatar ?? "",
           residencyType: data.residencyType ?? "",
           englishProficiency: data.englishProficiency ?? "",
@@ -456,16 +482,53 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
     };
   }, [isHydrated, state.user?.uid, state.user?.isGuest, loadMergedSavedColleges, loadProfileFromServer]);
 
+  useEffect(() => {
+    if (!isHydrated) return;
+
+    const currentUser = state.user;
+    if (!currentUser?.uid) return;
+
+    let cancelled = false;
+    void (async () => {
+      const localTranscript = await storageService.getTranscript(currentUser.uid).catch(() => null);
+      const nextTranscriptUrl = localTranscript?.url ?? "";
+
+      if (cancelled) return;
+      setState((prev) => {
+        if (!prev.user || prev.user.uid !== currentUser.uid) return prev;
+        if (String(prev.user.transcript ?? "") === nextTranscriptUrl) return prev;
+        return {
+          ...prev,
+          user: {
+            ...prev.user,
+            transcript: nextTranscriptUrl,
+          },
+        };
+      });
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [isHydrated, state.user?.uid]);
+
   const updateUser = useCallback(async (patch: Partial<User>) => {
     const firestorePatch = buildFirestoreUserPatch(patch);
     const firestoreUid = firebaseAuth?.currentUser?.uid ?? null;
+    const shouldClearRemoteTranscript = Object.prototype.hasOwnProperty.call(patch, "transcript");
 
-    if (firestoreUid && db && Object.keys(firestorePatch).length > 0) {
+    if (firestoreUid && db && (Object.keys(firestorePatch).length > 0 || shouldClearRemoteTranscript)) {
       try {
         await setDoc(
           doc(db, FIRESTORE_COLLECTIONS.users, firestoreUid),
           {
             ...firestorePatch,
+            ...(shouldClearRemoteTranscript
+              ? {
+                  transcript: deleteField(),
+                  transcriptFileName: deleteField(),
+                }
+              : {}),
             updatedAt: serverTimestamp(),
           },
           { merge: true }

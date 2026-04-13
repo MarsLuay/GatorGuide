@@ -8,6 +8,15 @@ export type TransferPlannerSourceLink = {
   label: string;
   url: string;
   note?: string;
+  visibility?: "visible" | "hidden";
+  status?:
+    | "verified"
+    | "partially-verified"
+    | "source-unfindable"
+    | "source-conflict"
+    | "parser-unsupported";
+  reason?: string;
+  sourceConfidence?: "high" | "medium" | "low";
 };
 
 export type TransferPlannerSourceManifestOwnerType =
@@ -164,6 +173,9 @@ export type TransferPlannerParsedRequirementAtomCandidate = {
   id: string;
   title: string;
   uwCourseCode: string;
+  phase: TransferPlannerRequirementPhase | null;
+  displayPhase: TransferPlannerRequirementPhase | null;
+  phaseConfidence: "high" | "medium" | "low" | null;
   sourceLineHints: string[];
 };
 
@@ -344,7 +356,6 @@ export type TransferPlannerEquivalencyRuleStatus =
   | "deprecated";
 
 export type TransferPlannerEquivalencyRuleSourceKind =
-  | "manual-planner-rule"
   | "chain-library"
   | "uw-green-river-equivalency-guide";
 

@@ -604,15 +604,81 @@ function buildUniqueDerivedId(baseId, seenCounts) {
   return nextCount === 1 ? baseId : `${baseId}-${nextCount}`;
 }
 
+function inferParsedRequirementPhaseFromHints(sourceLineHints) {
+  const combinedHints = (Array.isArray(sourceLineHints) ? sourceLineHints : [])
+    .map((line) => normalizeWhitespace(line).toLowerCase())
+    .filter(Boolean)
+    .join(" ");
+
+  if (!combinedHints) {
+    return {
+      phase: null,
+      displayPhase: null,
+      phaseConfidence: null,
+    };
+  }
+
+  if (
+    /\b(admission|apply|application|prereq|prerequisite|eligibility|before applying)\b/.test(
+      combinedHints
+    )
+  ) {
+    return {
+      phase: "before-application",
+      displayPhase: "before-application",
+      phaseConfidence: "high",
+    };
+  }
+
+  if (
+    /\b(before enrollment|before matriculation|matriculation|before transfer|prior to transfer|pre-professional)\b/.test(
+      combinedHints
+    )
+  ) {
+    return {
+      phase: "before-enrollment",
+      displayPhase: "before-enrollment",
+      phaseConfidence: "high",
+    };
+  }
+
+  if (/\b(recommended|encouraged|suggested|optional|elective)\b/.test(combinedHints)) {
+    return {
+      phase: "stay-at-grc",
+      displayPhase: "stay-at-grc",
+      phaseConfidence: "medium",
+    };
+  }
+
+  if (/\b(requirements?|required|core courses?|degree requirements?)\b/.test(combinedHints)) {
+    return {
+      phase: "before-enrollment",
+      displayPhase: "before-enrollment",
+      phaseConfidence: "low",
+    };
+  }
+
+  return {
+    phase: null,
+    displayPhase: null,
+    phaseConfidence: null,
+  };
+}
+
 function buildParsedRequirementAtomCandidates(owner, parsedCourseCodes, snapshotLines) {
   const seenAtomIds = new Map();
   return parsedCourseCodes.map((courseCode) => {
     const baseId = `${owner.ownerId}:source-atom:${slugify(courseCode)}`;
+    const sourceLineHints = getSourceLineHints(snapshotLines, courseCode);
+    const inferredPhase = inferParsedRequirementPhaseFromHints(sourceLineHints);
     return {
       id: buildUniqueDerivedId(baseId, seenAtomIds),
       title: courseCode,
       uwCourseCode: courseCode,
-      sourceLineHints: getSourceLineHints(snapshotLines, courseCode),
+      phase: inferredPhase.phase,
+      displayPhase: inferredPhase.displayPhase,
+      phaseConfidence: inferredPhase.phaseConfidence,
+      sourceLineHints,
     };
   });
 }

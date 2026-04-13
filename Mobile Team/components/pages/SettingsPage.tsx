@@ -56,6 +56,9 @@ const TRANSCRIPT_COURSES_FIELD = "transferPlannerCompletedCourses";
 const TRANSCRIPT_SOURCE_FIELD = "transferPlannerTranscriptSource";
 const TRANSCRIPT_UPLOADED_AT_FIELD = "transferPlannerTranscriptUploadedAt";
 const TRANSCRIPT_PARSER_VERSION_FIELD = "transferPlannerTranscriptParserVersion";
+const CURRENT_PLANNED_COURSES_FIELD = "transferPlannerCurrentCoursesByPath";
+const SELECTED_PATHWAY_FIELD = "transferPlannerSelectedPathwayByPlan";
+const LAST_SELECTED_PLAN_FIELD = "transferPlannerLastSelectedPlan";
 
 export default function SettingsPage() {
   const router = useRouter();
@@ -296,23 +299,33 @@ export default function SettingsPage() {
       setIsClearingCache(true);
       const { clearedCount } = await cacheManagerService.clearRelevantCaches();
 
-      if (user?.isGuest) {
-        const nextQuestionnaireAnswers = {
-          ...(state.questionnaireAnswers ?? {}),
-        };
+      const nextQuestionnaireAnswers = {
+        ...(state.questionnaireAnswers ?? {}),
+      };
 
-        delete nextQuestionnaireAnswers.completedCourses;
-        delete nextQuestionnaireAnswers[TRANSCRIPT_COURSES_FIELD];
-        delete nextQuestionnaireAnswers[TRANSCRIPT_SOURCE_FIELD];
-        delete nextQuestionnaireAnswers[TRANSCRIPT_UPLOADED_AT_FIELD];
-        delete nextQuestionnaireAnswers[TRANSCRIPT_PARSER_VERSION_FIELD];
+      delete nextQuestionnaireAnswers.completedCourses;
+      delete nextQuestionnaireAnswers[TRANSCRIPT_COURSES_FIELD];
+      delete nextQuestionnaireAnswers[TRANSCRIPT_SOURCE_FIELD];
+      delete nextQuestionnaireAnswers[TRANSCRIPT_UPLOADED_AT_FIELD];
+      delete nextQuestionnaireAnswers[TRANSCRIPT_PARSER_VERSION_FIELD];
+      delete nextQuestionnaireAnswers[CURRENT_PLANNED_COURSES_FIELD];
+      delete nextQuestionnaireAnswers[SELECTED_PATHWAY_FIELD];
+      delete nextQuestionnaireAnswers[LAST_SELECTED_PLAN_FIELD];
 
-        await setQuestionnaireAnswers(nextQuestionnaireAnswers);
-        await updateUser({
-          transcript: undefined,
-          resume: undefined,
-          avatar: undefined,
-        });
+      await setQuestionnaireAnswers(nextQuestionnaireAnswers);
+
+      if (user) {
+        await updateUser(
+          user.isGuest
+            ? {
+                transcript: undefined,
+                resume: undefined,
+                avatar: undefined,
+              }
+            : {
+                transcript: undefined,
+              }
+        );
       }
 
       setCacheClearedCount(clearedCount);
@@ -321,7 +334,7 @@ export default function SettingsPage() {
     } finally {
       setIsClearingCache(false);
     }
-  }, [setQuestionnaireAnswers, state.questionnaireAnswers, updateUser, user?.isGuest]);
+  }, [setQuestionnaireAnswers, state.questionnaireAnswers, updateUser, user]);
 
   const sendSupportMessage = async () => {
     const message = supportMessage.trim();

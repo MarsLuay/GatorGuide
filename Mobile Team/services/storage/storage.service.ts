@@ -1,11 +1,11 @@
 // services/storage.service.ts
-// File storage service for resumes and transcripts
-// Uses Firebase Storage buckets (resume, transcript) when available; falls back to local
+// File storage service for resumes and transcripts.
+// Resumes may use Firebase Storage; unofficial transcripts stay local-only.
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as FileSystem from 'expo-file-system';
 import { Platform } from 'react-native';
-import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { deleteObject, getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import {
   LOCAL_DOCUMENTS_DIR_NAME,
   buildFirebaseUserStoragePath,
@@ -158,8 +158,20 @@ async function persistWebFileUrl(sourceUri: string): Promise<string> {
   return blobToDataUrl(blob);
 }
 
-async function copyToLocalStorage(sourceUri: string, fileName: string, subDir: string): Promise<string> {
+async function copyToLocalStorage(
+  sourceUri: string,
+  fileName: string,
+  subDir: string,
+  options?: { forceEmbeddedWebCopy?: boolean }
+): Promise<string> {
   if (Platform.OS === 'web') {
+    const normalizedUri = String(sourceUri ?? '').trim();
+    if (
+      !options?.forceEmbeddedWebCopy &&
+      (normalizedUri.startsWith('http://') || normalizedUri.startsWith('https://'))
+    ) {
+      return normalizedUri;
+    }
     return persistWebFileUrl(sourceUri);
   }
   const baseDir = (FileSystem as any).documentDirectory ?? (FileSystem as any).cacheDirectory ?? "";
@@ -179,6 +191,32 @@ async function copyToLocalStorage(sourceUri: string, fileName: string, subDir: s
   const destUri = `${dir}${Date.now()}_${fileName}`;
   await FileSystem.copyAsync({ from: sourceUri, to: destUri });
   return destUri;
+}
+
+function isRemoteTranscriptUrl(value: string | null | undefined) {
+  const raw = String(value ?? '').trim();
+  return /^https?:\/\//i.test(raw) || /^gs:\/\//i.test(raw);
+}
+
+async function deleteLegacyRemoteTranscriptCopy(url: string | null | undefined) {
+  const normalizedUrl = String(url ?? '').trim();
+  if (!storage || !isRemoteTranscriptUrl(normalizedUrl)) return;
+
+  try {
+    await deleteObject(ref(storage, normalizedUrl));
+  } catch (error) {
+    void errorLoggingService.captureException(error, {
+      category: 'storage',
+      operation: 'delete-legacy-remote-transcript',
+      severity: 'warn',
+      handled: true,
+      source: 'storage.service',
+      metadata: {
+        hasStorage: !!storage,
+        urlKind: normalizedUrl.startsWith('gs://') ? 'gs' : 'http',
+      },
+    });
+  }
 }
 
 async function uploadToFirebaseBucket(
@@ -242,14 +280,16 @@ class StorageService {
 
   async uploadTranscript(userId: string, fileUri: string, metadata?: UploadFileMetadata): Promise<UploadedFile> {
     const fileName = metadata?.fileName?.trim() || fileUri.split('/').pop() || `transcript_${Date.now()}.pdf`;
-    const firebaseUrl = await uploadToFirebaseBucket(userId, 'transcript', fileUri, fileName);
-    const url =
-      firebaseUrl ??
-      await copyToLocalStorage(
-        fileUri,
-        fileName,
-        buildLocalDocumentSubdirectory('transcript', userId)
-      );
+    const existingTranscript = await this.getTranscript(userId);
+    if (existingTranscript?.url && isRemoteTranscriptUrl(existingTranscript.url)) {
+      await deleteLegacyRemoteTranscriptCopy(existingTranscript.url);
+    }
+    const url = await copyToLocalStorage(
+      fileUri,
+      fileName,
+      buildLocalDocumentSubdirectory('transcript', userId),
+      { forceEmbeddedWebCopy: true }
+    );
     const localData: UploadedFile = {
       name: fileName,
       url,
@@ -315,11 +355,21 @@ class StorageService {
   }
 
   /**
-   * Get user's uploaded transcript (from AsyncStorage; URL may be Firebase or local)
+   * Get user's uploaded transcript from local AsyncStorage metadata.
+   * Legacy remote transcript URLs are discarded so unofficial transcripts stay local-only.
    */
   async getTranscript(userId: string): Promise<UploadedFile | null> {
-    const data = await AsyncStorage.getItem(getTranscriptStorageKey(userId));
-    return data ? normalizeUploadedFile(JSON.parse(data)) : null;
+    const storageKey = getTranscriptStorageKey(userId);
+    const data = await AsyncStorage.getItem(storageKey);
+    if (!data) return null;
+
+    const normalized = normalizeUploadedFile(JSON.parse(data));
+    if (!normalized) return null;
+    if (!isRemoteTranscriptUrl(normalized.url)) return normalized;
+
+    await deleteLegacyRemoteTranscriptCopy(normalized.url);
+    await AsyncStorage.removeItem(storageKey);
+    return null;
   }
 
   async getAvatar(userId: string): Promise<UploadedFile | null> {
@@ -329,9 +379,15 @@ class StorageService {
 
   /**
    * Delete uploaded file metadata from AsyncStorage.
-   * Firebase Storage files under users/{uid}/ are cleaned by deleteAllUserStorageFiles.
+   * Legacy remote transcript copies are cleaned up if they still exist.
    */
   async deleteFile(userId: string, fileType: 'resume' | 'transcript'): Promise<void> {
+    if (fileType === 'transcript') {
+      const existingTranscript = await this.getTranscript(userId);
+      if (existingTranscript?.url && isRemoteTranscriptUrl(existingTranscript.url)) {
+        await deleteLegacyRemoteTranscriptCopy(existingTranscript.url);
+      }
+    }
     await AsyncStorage.removeItem(
       fileType === 'resume'
         ? getResumeStorageKey(userId)

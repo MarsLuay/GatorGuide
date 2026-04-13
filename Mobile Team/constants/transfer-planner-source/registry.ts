@@ -19,13 +19,6 @@ import {
   TRANSFER_PLANNER_REQUIREMENT_SOURCE_ADAPTER_SUMMARY,
 } from "./requirement-source-adapters.generated";
 import {
-  TRANSFER_PLANNER_PROMOTED_PRIMARY_SOURCE_OVERRIDES,
-  type TransferPlannerPromotedPrimarySourceOverride,
-} from "./source-manifest-primary-overrides.generated";
-import {
-  TRANSFER_PLANNER_PROMOTED_REQUIREMENT_ATOM_OVERRIDES,
-} from "./requirement-atom-overrides.generated";
-import {
   TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATIONS,
   TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_SUMMARY,
 } from "./requirement-diff-classifications.generated";
@@ -114,9 +107,6 @@ const UW_GRC_EQUIVALENCY_LINK: TransferPlannerSourceLink = {
   label: "UW Green River transfer equivalency guide",
   url: "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
 };
-const SOURCE_MANIFEST_PRIMARY_OVERRIDE_BY_OWNER = new Map(
-  TRANSFER_PLANNER_PROMOTED_PRIMARY_SOURCE_OVERRIDES.map((entry) => [entry.ownerId, entry])
-);
 const ALL_UW_CAMPUSES: Exclude<TransferPlannerSourceSchoolId, "grc">[] = [
   "uw-seattle",
   "uw-bothell",
@@ -144,53 +134,6 @@ const GUIDE_TERM_ORDER: Partial<Record<string, number>> = {
   SPR: 2,
   SUM: 3,
   AUT: 4,
-};
-const REQUIREMENT_DISPLAY_PHASE_OVERRIDES: Partial<Record<string, TransferPlannerRequirementPhase>> = {
-  "uw-seattle-asian-studies:uws-asst-civilization": "stay-at-grc",
-  "uw-seattle-astronomy:uws-astr-math-elective": "stay-at-grc",
-  "uw-seattle-astronomy:uws-astr-intro-context": "stay-at-grc",
-  "uw-seattle-atmospheric-and-climate-science:uws-atmos-programming": "stay-at-grc",
-  "uw-seattle-atmospheric-and-climate-science:uws-atmos-advanced-math": "stay-at-grc",
-  "uw-seattle-biology:uws-biol-stats": "stay-at-grc",
-  "uw-seattle-business-administration:uws-baba-qmeth": "stay-at-grc",
-  "uw-seattle-business-administration:uws-baba-management-context": "stay-at-grc",
-  "uw-seattle-chemistry:uws-chem-organic": "stay-at-grc",
-  "uw-seattle-chemistry:uws-chem-advanced-math": "stay-at-grc",
-  "uw-seattle-chinese:uws-chin-history-culture": "stay-at-grc",
-  "uw-seattle-cinema-and-media-studies:uws-cms-media-support": "stay-at-grc",
-  "uw-seattle-classical-studies:uws-classt-ancient-history": "stay-at-grc",
-  "uw-seattle-classics:uws-classics-history": "stay-at-grc",
-  "uw-seattle-communication:uws-comm-media-support": "stay-at-grc",
-  "uw-seattle-community-environment-and-planning:uws-cep-policy": "stay-at-grc",
-  "uw-seattle-comparative-history-of-ideas:uws-chi-humanities": "stay-at-grc",
-  "uw-seattle-comparative-literature:uws-complit-humanities": "stay-at-grc",
-  "uw-seattle-comparative-religion:uws-comprel-language": "stay-at-grc",
-  "uw-seattle-computational-finance-and-risk-management:uws-cfrm-stats": "stay-at-grc",
-  "uw-seattle-computer-engineering:math207": "stay-at-grc",
-  "uw-seattle-electrical-computer-engineering:cse123": "stay-at-grc",
-  "uw-seattle-construction-management:uws-cm-accounting": "stay-at-grc",
-  "uw-seattle-dance:uws-dance-theory-context": "stay-at-grc",
-  "uw-seattle-danish:uws-danish-scand-context": "stay-at-grc",
-  "uw-seattle-design:uws-design-digital": "stay-at-grc",
-  "uw-seattle-drama:uws-drama-history": "stay-at-grc",
-  "uw-seattle-early-childhood-and-family-studies:uws-ecfs-social": "stay-at-grc",
-  "uw-seattle-earth-and-space-sciences:uws-ess-earth": "stay-at-grc",
-  "uw-seattle-economics:uws-econ-stats": "stay-at-grc",
-  "uw-seattle-education-communities-and-organizations:uws-eco-leadership": "stay-at-grc",
-  "uw-bothell-applied-computing:uwb-acomp-cs123": "stay-at-grc",
-  "uw-bothell-computer-engineering:bothell-compe-cs123": "stay-at-grc",
-  "uw-bothell-computer-engineering:bothell-compe-circuits": "stay-at-grc",
-  "uw-bothell-csse:bothell-csse-calc3": "stay-at-grc",
-  "uw-bothell-csse:bothell-csse-cs123": "stay-at-grc",
-  "uw-bothell-csse-information-assurance-and-cybersecurity:uwb-csse-iac-calc3": "stay-at-grc",
-  "uw-bothell-csse-information-assurance-and-cybersecurity:uwb-csse-iac-cs123": "stay-at-grc",
-  "uw-bothell-data-visualization-bs:uwb-dv-bs-cs123": "stay-at-grc",
-  "uw-bothell-electrical-engineering:uwb-ee-circuits": "stay-at-grc",
-  "uw-bothell-mathematical-thinking-and-visualization:uwb-mtv-programming": "stay-at-grc",
-  "uw-bothell-media-and-communications-studies:uwb-mcs-intro-media": "stay-at-grc",
-  "uw-tacoma-computer-engineering:tacoma-compe-cs123": "stay-at-grc",
-  "uw-tacoma-electrical-engineering:tacoma-ee-programming2": "stay-at-grc",
-  "uw-tacoma-nursing:uwt-nursing-stats": "stay-at-grc",
 };
 const STRUCTURED_EQUIVALENCY_RULES: Array<{
   id: string;
@@ -989,7 +932,7 @@ function addCoursesFromTerm(
       trackId: params.track.id,
       sourceLinks,
       effectiveYearLabel: params.effectiveYearLabel,
-      notes: compact([params.track.summary, ...params.track.notes, ...(params.extraNotes ?? [])]),
+      notes: compact([...params.track.notes, ...(params.extraNotes ?? [])]),
     });
   }
 }
@@ -1020,7 +963,6 @@ function addCoursesFromCatalogYear(
         sourceLinks: toSourceLinks(track.officialLinks),
         effectiveYearLabel: catalogYear.label,
         notes: compact([
-          track.summary,
           catalogYear.sourceSummary,
           slotExpansion.note,
           ...track.notes,
@@ -1033,7 +975,7 @@ function addCoursesFromCatalogYear(
 
 function getChecklistSources(plan: TransferPlannerMajorPlan) {
   const sourceLinks = toSourceLinks(plan.officialLinks);
-  const validationNotes = plan.manualReviewNotes ?? [];
+  const validationNotes: string[] = [];
   const lastValidatedOn = getLastValidatedOn(validationNotes);
   return {
     sourceLinks,
@@ -1051,7 +993,7 @@ function getPathwaySources(
       ...toSourceLinks(plan.officialLinks),
       ...toSourceLinks(pathway.officialLinks),
     ]),
-    validationNotes: unique([...(plan.manualReviewNotes ?? []), ...(pathway.manualReviewNotes ?? [])]),
+    validationNotes: [] as string[],
   };
 }
 
@@ -1075,11 +1017,7 @@ function addPlanChecklistCourses(
       sourceContext: `${plan.id}:${phase}:${item.id}`,
       planId: plan.id,
       sourceLinks,
-      notes: compact([
-        plan.summary,
-        item.note,
-        ...validationNotes,
-      ]),
+      notes: compact([item.note]),
       lastValidatedOn,
     });
   }
@@ -1098,7 +1036,7 @@ function addPlanCourseListCourses(
       sourceContext: `${plan.id}:grc-course-list`,
       planId: plan.id,
       sourceLinks,
-      notes: compact([plan.summary, plan.plannerNote, ...validationNotes]),
+      notes: [],
       lastValidatedOn,
     });
   }
@@ -1122,7 +1060,7 @@ function addPlanMasterBankCourses(
         sourceContext: `${plan.id}:${bankId}`,
         planId: plan.id,
         sourceLinks,
-        notes: compact([plan.summary, plan.plannerNote, ...validationNotes]),
+        notes: [],
         lastValidatedOn,
       });
     }
@@ -1144,7 +1082,7 @@ function addPlanDegreeMapCourses(
       sourceContext: `${plan.id}:${section.id}`,
       planId: plan.id,
       sourceLinks,
-      notes: compact([plan.summary, section.note, ...validationNotes]),
+      notes: compact([section.note]),
       lastValidatedOn,
     });
   }
@@ -1327,12 +1265,7 @@ function buildCourseRegistry() {
               sourceContext: `${plan.id}:pathway:${pathway.id}:${phase}:${item.id}`,
               planId: plan.id,
               sourceLinks: pathwaySources.sourceLinks,
-              notes: compact([
-                plan.summary,
-                pathway.summary,
-                item.note,
-                ...pathwaySources.validationNotes,
-              ]),
+              notes: compact([item.note]),
               lastValidatedOn: pathwayLastValidatedOn,
             });
           }
@@ -1347,12 +1280,7 @@ function buildCourseRegistry() {
           sourceContext: `${plan.id}:pathway:${pathway.id}:grc-course-list`,
           planId: plan.id,
           sourceLinks: pathwaySources.sourceLinks,
-          notes: compact([
-            plan.summary,
-            pathway.summary,
-            pathway.plannerNote,
-            ...pathwaySources.validationNotes,
-          ]),
+          notes: [],
           lastValidatedOn: pathwayLastValidatedOn,
         });
       }
@@ -1367,12 +1295,7 @@ function buildCourseRegistry() {
             sourceContext: `${plan.id}:pathway:${pathway.id}:degree-map:${section.id}`,
             planId: plan.id,
             sourceLinks: pathwaySources.sourceLinks,
-            notes: compact([
-              plan.summary,
-              pathway.summary,
-              section.note,
-              ...pathwaySources.validationNotes,
-            ]),
+            notes: compact([section.note]),
             lastValidatedOn: pathwayLastValidatedOn,
           });
         }
@@ -1400,24 +1323,6 @@ function mapChainRuleType(ruleId: string): TransferPlannerEquivalencyRuleType {
 }
 
 function buildEquivalencyRuleRegistry() {
-  const structuredRules: TransferPlannerEquivalencyRule[] = STRUCTURED_EQUIVALENCY_RULES.map((rule) => ({
-    id: rule.id,
-    type: rule.type,
-    title: rule.title,
-    acceptanceCategory: rule.acceptanceCategory,
-    ruleStatus: "active",
-    sourceKind: "manual-planner-rule",
-    sourceSchoolId: "grc",
-    targetSchoolIds: ALL_UW_CAMPUSES,
-    sourceCourseSets: rule.sourceCourseSets,
-    targetOutcome: rule.targetOutcome,
-    weakerThanRuleIds: [...(rule.weakerThanRuleIds ?? [])],
-    effectiveYearRanges: [...(rule.effectiveYearRanges ?? [])],
-    plannerWarnings: [...(rule.plannerWarnings ?? [])],
-    notes: rule.notes,
-    sourceLinks: [UW_GRC_EQUIVALENCY_LINK],
-  }));
-
   const chainRules: TransferPlannerEquivalencyRule[] = TRANSFER_PLANNER_MASTER_CHAIN_LIBRARY.map(
     (chain) => {
       const metadata = CHAIN_RULE_METADATA[chain.id];
@@ -1441,7 +1346,6 @@ function buildEquivalencyRuleRegistry() {
   );
 
   return [
-    ...structuredRules,
     ...TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULES,
     ...chainRules,
   ].sort((left, right) => left.id.localeCompare(right.id));
@@ -1460,8 +1364,7 @@ function buildRequirementAtomRegistry() {
           campusId: plan.campusId,
           majorTitle: plan.title,
           phase,
-          displayPhase:
-            REQUIREMENT_DISPLAY_PHASE_OVERRIDES[`${plan.id}:${item.id}`] ?? phase,
+          displayPhase: phase,
           title: item.title,
           grcCourseCodes: item.grcCourses.map((code) => normalizeCourseCode(code)),
           alternativeCourseCodeSets: (item.alternatives ?? []).map((group) =>
@@ -1486,9 +1389,7 @@ function buildRequirementAtomRegistry() {
             campusId: plan.campusId,
             majorTitle: plan.title,
             phase,
-            displayPhase:
-              REQUIREMENT_DISPLAY_PHASE_OVERRIDES[`${plan.id}:${pathway.id}:${item.id}`] ??
-              phase,
+            displayPhase: phase,
             title: item.title,
             grcCourseCodes: item.grcCourses.map((code) => normalizeCourseCode(code)),
             alternativeCourseCodeSets: (item.alternatives ?? []).map((group) =>
@@ -1504,30 +1405,7 @@ function buildRequirementAtomRegistry() {
     }
   }
 
-  const entryMap = new Map(entries.map((entry) => [entry.id, entry] as const));
-
-  for (const override of TRANSFER_PLANNER_PROMOTED_REQUIREMENT_ATOM_OVERRIDES) {
-    entryMap.set(override.id, {
-      id: override.id,
-      planId: override.planId,
-      pathwayId: override.pathwayId ?? undefined,
-      campusId: override.campusId,
-      majorTitle: override.majorTitle,
-      phase: override.phase,
-      displayPhase: override.displayPhase,
-      title: override.title,
-      grcCourseCodes: override.grcCourseCodes.map((code) => normalizeCourseCode(code)),
-      alternativeCourseCodeSets: (override.alternativeCourseCodeSets ?? []).map((group) =>
-        group.map((code) => normalizeCourseCode(code))
-      ),
-      minCompletedCount: null,
-      note: override.note,
-      sourceLinks: override.sourceLinks,
-      validationNotes: override.validationNotes,
-    });
-  }
-
-  return [...entryMap.values()].sort((left, right) => left.id.localeCompare(right.id));
+  return entries.sort((left, right) => left.id.localeCompare(right.id));
 }
 
 function buildDegreeMapBlockRegistry() {
@@ -1585,15 +1463,15 @@ function buildPolicyRegistry() {
       majorTitle: plan.title,
       bestTrackId: plan.bestTrackId,
       bestTrackSummary: plan.bestTrackSummary,
-      whyThisTrack: [...plan.whyThisTrack],
-      financialAidNote: plan.financialAidNote,
-      advisorFlags: [...plan.advisorFlags],
-      grcCourseListGuidance: plan.grcCourseListGuidance,
-      plannerNote: plan.plannerNote,
-      involvementIdeas: [...plan.involvementIdeas],
-      projectIdeas: [...plan.projectIdeas],
+      whyThisTrack: [],
+      financialAidNote: "",
+      advisorFlags: [],
+      grcCourseListGuidance: undefined,
+      plannerNote: undefined,
+      involvementIdeas: [],
+      projectIdeas: [],
       sourceLinks: toSourceLinks(plan.officialLinks),
-      validationNotes: [...(plan.manualReviewNotes ?? [])],
+      validationNotes: [],
     });
 
     for (const pathway of plan.pathways ?? []) {
@@ -1607,16 +1485,15 @@ function buildPolicyRegistry() {
         bestTrackId:
           pathway.bestTrackId === undefined ? plan.bestTrackId : pathway.bestTrackId,
         bestTrackSummary: pathway.bestTrackSummary ?? plan.bestTrackSummary,
-        whyThisTrack: [...(pathway.whyThisTrack ?? plan.whyThisTrack)],
-        financialAidNote: pathway.financialAidNote ?? plan.financialAidNote,
-        advisorFlags: unique([...(plan.advisorFlags ?? []), ...(pathway.advisorFlags ?? [])]),
-        grcCourseListGuidance:
-          pathway.grcCourseListGuidance ?? plan.grcCourseListGuidance,
-        plannerNote: pathway.plannerNote ?? plan.plannerNote,
-        involvementIdeas: [...plan.involvementIdeas],
-        projectIdeas: [...plan.projectIdeas],
+        whyThisTrack: [],
+        financialAidNote: "",
+        advisorFlags: [],
+        grcCourseListGuidance: undefined,
+        plannerNote: undefined,
+        involvementIdeas: [],
+        projectIdeas: [],
         sourceLinks: pathwaySources.sourceLinks,
-        validationNotes: pathwaySources.validationNotes,
+        validationNotes: [],
       });
     }
   }
@@ -1637,10 +1514,10 @@ function buildPathwayRegistry() {
         campusId: plan.campusId,
         majorTitle: plan.title,
         label: pathway.label,
-        summary: pathway.summary,
+        summary: "",
         grcCourseList: [...(pathway.grcCourseList ?? [])],
         sourceLinks: pathwaySources.sourceLinks,
-        validationNotes: pathwaySources.validationNotes,
+        validationNotes: [],
       });
     }
   }
@@ -1662,29 +1539,9 @@ function pushSourceManifestEntries(
     validationNotes: string[];
   }
 ) {
-  const promotedPrimary = SOURCE_MANIFEST_PRIMARY_OVERRIDE_BY_OWNER.get(
-    params.ownerId
-  ) as TransferPlannerPromotedPrimarySourceOverride | undefined;
-  const dedupedLinks = dedupeLinks([
-    ...params.links,
-    ...(promotedPrimary
-      ? [
-          {
-            label: promotedPrimary.label,
-            url: promotedPrimary.url,
-            note: promotedPrimary.note,
-          } satisfies TransferPlannerSourceLink,
-        ]
-      : []),
-  ]);
-  const mergedValidationNotes = unique(
-    compact([
-      ...(params.validationNotes ?? []),
-      promotedPrimary?.validationNote ?? null,
-      promotedPrimary?.note ?? null,
-    ])
-  );
-  const primaryUrl = promotedPrimary?.url ?? pickPrimaryDegreeRequirementsUrl(dedupedLinks);
+  const dedupedLinks = dedupeLinks(params.links);
+  const mergedValidationNotes = unique(compact([...(params.validationNotes ?? [])]));
+  const primaryUrl = pickPrimaryDegreeRequirementsUrl(dedupedLinks);
   const lastValidatedOn = getLastValidatedOn(mergedValidationNotes);
 
   dedupedLinks.forEach((link, index) => {
@@ -1725,7 +1582,7 @@ function buildSourceManifestRegistry() {
       planId: plan.id,
       campusId: plan.campusId,
       links: toSourceLinks(plan.officialLinks),
-      validationNotes: [...(plan.manualReviewNotes ?? [])],
+      validationNotes: [],
     });
 
     for (const pathway of plan.pathways ?? []) {
@@ -1897,8 +1754,6 @@ export const TRANSFER_PLANNER_SOURCE_SUMMARY = {
   sourceManifestHighConfidenceCount: TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY.filter(
     (entry) => entry.confidence === "high"
   ).length,
-  sourceManifestPromotedPrimaryOverrideCount:
-    TRANSFER_PLANNER_PROMOTED_PRIMARY_SOURCE_OVERRIDES.length,
   sourceGapCount: TRANSFER_PLANNER_SOURCE_GAP_REGISTRY.length,
   sourceGapCountsByStatus: TRANSFER_PLANNER_SOURCE_GAP_REGISTRY.reduce(
     (counts, entry) => {
@@ -1929,8 +1784,6 @@ export const TRANSFER_PLANNER_SOURCE_SUMMARY = {
   catalogCorequisiteNoteCount: TRANSFER_PLANNER_CANONICAL_COURSE_REGISTRY.filter(
     (entry) => entry.corequisiteNotes.length > 0
   ).length,
-  promotedRequirementAtomOverrideCount:
-    TRANSFER_PLANNER_PROMOTED_REQUIREMENT_ATOM_OVERRIDES.length,
   requirementDiffClassificationCount:
     TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY.length,
   requirementDiffClassificationCountsByKind:
@@ -1975,25 +1828,6 @@ export function getTransferPlannerPrimaryDegreeRequirementsSource(
     getTransferPlannerSourceManifestEntriesForPlan(planId, pathwayId).find(
       (entry) => entry.isPrimaryDegreeRequirementsLink
     ) ?? null
-  );
-}
-
-export function getTransferPlannerPromotedPrimarySourceOverride(ownerId: string) {
-  return SOURCE_MANIFEST_PRIMARY_OVERRIDE_BY_OWNER.get(ownerId) ?? null;
-}
-
-export function getTransferPlannerPromotedRequirementAtomOverrides(
-  planId: string,
-  pathwayId?: string | null
-) {
-  return TRANSFER_PLANNER_PROMOTED_REQUIREMENT_ATOM_OVERRIDES.filter(
-    (entry) =>
-      entry.planId === planId &&
-      (pathwayId === undefined
-        ? true
-        : pathwayId === null
-          ? !entry.pathwayId
-          : entry.pathwayId === pathwayId)
   );
 }
 

@@ -1,14 +1,12 @@
 # Green River Associate Track Generation
 
-Generated: 2026-04-13T03:37:07.458Z
+Generated: 2026-04-13T09:24:57.483Z
 Current catalog: 2025-2026 Catalog (id 11)
 
 - Program-map pages scanned: 147
 - Official associate curriculum maps discovered: 85
-- Current manual track library before this generator: 4
-- Official associate tracks newly added beyond the current manual library: 82
-- Retained legacy non-associate compatibility tracks: 1
-- Final generated track count: 86
+- Official associate tracks with compatibility ID/code/title mapping: 3
+- Final generated track count: 85
 
 ## Generated Tracks
 

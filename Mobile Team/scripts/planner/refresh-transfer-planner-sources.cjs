@@ -180,9 +180,7 @@ async function refreshScheduleDownloads(scheduleDownloads, forceRefresh) {
 async function main() {
   const verifyOnly = hasArg("--verify-only");
   const skipSourceCheck = hasArg("--skip-source-check");
-  const skipPrimaryPromotion = hasArg("--skip-primary-promotion");
   const skipRequirementParse = hasArg("--skip-requirement-parse");
-  const skipRequirementPromotion = hasArg("--skip-requirement-promotion");
   const skipDownloads = hasArg("--skip-downloads");
   const skipVerify = hasArg("--skip-verify");
   const forceRefreshDownloads = hasArg("--refresh-downloads");
@@ -253,24 +251,15 @@ async function main() {
     markSkipped("Check official source links", "--skip-source-check");
   }
 
-  if (!skipPrimaryPromotion) {
-    runTrackedStep("Discover and promote primary official sources", () =>
-      runCommand("node", [
-        "scripts/planner/promote-transfer-planner-primary-sources.cjs",
-        "--discover-first",
-      ])
-    );
-    runTrackedStep("Build primary-source automation queue", () =>
-      runCommand("node", ["scripts/planner/build-transfer-planner-primary-source-review-queue.cjs"])
-    );
-    runTrackedStep("Classify hidden source gaps", () =>
-      runCommand("node", ["scripts/planner/build-transfer-planner-source-gap-report.cjs"])
-    );
-  } else {
-    markSkipped("Discover and promote primary official sources", "--skip-primary-promotion");
-    markSkipped("Build primary-source automation queue", "--skip-primary-promotion");
-    markSkipped("Classify hidden source gaps", "--skip-primary-promotion");
-  }
+  runTrackedStep("Discover primary official sources", () =>
+    runCommand("node", ["scripts/planner/discover-transfer-planner-primary-sources.cjs"])
+  );
+  runTrackedStep("Build primary-source automation queue", () =>
+    runCommand("node", ["scripts/planner/build-transfer-planner-primary-source-review-queue.cjs"])
+  );
+  runTrackedStep("Classify hidden source gaps", () =>
+    runCommand("node", ["scripts/planner/build-transfer-planner-source-gap-report.cjs"])
+  );
 
   if (!skipRequirementParse) {
     runTrackedStep("Parse UW major requirement sources", () =>
@@ -278,14 +267,6 @@ async function main() {
     );
   } else {
     markSkipped("Parse UW major requirement sources", "--skip-requirement-parse");
-  }
-
-  if (!skipRequirementPromotion) {
-    runTrackedStep("Promote source-backed requirement diffs", () =>
-      runCommand("node", ["scripts/planner/promote-transfer-planner-requirement-diffs.cjs"])
-    );
-  } else {
-    markSkipped("Promote source-backed requirement diffs", "--skip-requirement-promotion");
   }
 
   runTrackedStep("Build source and parsed-fact fingerprints", () =>

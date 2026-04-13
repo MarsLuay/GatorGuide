@@ -12,18 +12,21 @@ require("ts-node").register({
 });
 
 const {
-  TRANSFER_PLANNER_ALL_MAJOR_PLANS,
-  TRANSFER_PLANNER_CAMPUSES,
-} = require("../../constants/transfer-planner-data");
-const {
   TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS,
 } = require("../../constants/transfer-planner-source/grc-associate-tracks.generated");
 const {
-  TRANSFER_PLANNER_PROMOTED_PRIMARY_SOURCE_OVERRIDES,
-} = require("../../constants/transfer-planner-source/source-manifest-primary-overrides.generated");
+  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS,
+} = require("../../constants/transfer-planner-source/requirement-source-adapters.generated");
 const {
-  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY,
+  TRANSFER_PLANNER_MAJOR_REQUIREMENT_REGISTRY,
+  TRANSFER_PLANNER_DEGREE_MAP_BLOCK_REGISTRY,
+  TRANSFER_PLANNER_POLICY_REGISTRY,
+  TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY,
+  TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY,
 } = require("../../constants/transfer-planner-source/registry");
+const {
+  TRANSFER_PLANNER_SOURCE_GAP_ENTRIES,
+} = require("../../constants/transfer-planner-source/source-gaps.generated");
 
 const OUTPUT_PATH = path.resolve(
   __dirname,
@@ -34,239 +37,483 @@ const OUTPUT_PATH = path.resolve(
   "bootstrap.generated.ts"
 );
 const COURSE_CODE_PATTERN = /\b[A-Z]{2,8}&?\s*\d{3}(?:\.\d+)?[A-Z]?\b/g;
-const DISABLED_UNVERIFIED_OFFICIAL_LINK_URLS = new Set([
-  "https://admit.washington.edu/majors/english-language-literature-culture/",
-  "https://ais.washington.edu/sites/ais/files/documents/ais_major_requirement_sheet_9.29.21.pdf",
-  "https://chem.washington.edu/bs-chemistry",
-  "https://chem.washington.edu/bs-chemistry-acs-certified",
-  "https://chem.washington.edu/undergraduate-prerequisites-and-admissions-biochemistry",
-  "https://chem.washington.edu/undergraduate-prerequisites-and-admissions-chemistry",
-  "https://chid.washington.edu/undergraduate",
-  "https://cinema.washington.edu/undergraduate-programs",
-  "https://classics.washington.edu/ba-classical-studies",
-  "https://classics.washington.edu/ba-classics",
-  "https://classics.washington.edu/ba-latin",
-  "https://classics.washington.edu/majors",
-  "https://classics.washington.edu/undergraduate-program",
-  "https://com.uw.edu/academics/undergraduate/communication-major/",
-  "https://complit.washington.edu/undergraduate",
-  "https://dance.washington.edu/undergraduate-program",
-  "https://drama.washington.edu/ba-drama-program-requirements",
-  "https://drama.washington.edu/undergraduate-programs",
-  "https://econ.washington.edu/bachelor-arts",
-  "https://econ.washington.edu/bachelor-science",
-  "https://econ.washington.edu/choosing-your-economics-degree",
-  "https://econ.washington.edu/undergraduate",
-  "https://education.washington.edu/academics/program/ba-education-studies-0",
-  "https://english.washington.edu/creative-writing",
-  "https://english.washington.edu/english-language-literature-and-culture-option",
-  "https://english.washington.edu/english-major-creative-writing-option",
-  "https://english.washington.edu/how-apply-undergraduate-creative-writing-option",
-  "https://english.washington.edu/language-literature-and-culture",
-  "https://frenchitalian.washington.edu/major-french-studies",
-  "https://frenchitalian.washington.edu/undergraduate-studies-french",
-  "https://geography.washington.edu/ba-geography",
-  "https://geography.washington.edu/ba-geography-data-science-option",
-  "https://german.washington.edu/german-studies",
-  "https://history.washington.edu/major",
-  "https://history.washington.edu/undergraduate-programs",
-  "https://linguistics.washington.edu/ba-linguistics",
-  "https://linguistics.washington.edu/undergraduate-language-requirement",
-  "https://linguistics.washington.edu/undergraduate-programs",
-  "https://lsj.washington.edu/lsj-gold-curriculum-requirements",
-  "https://math.washington.edu/bs-mathematics-major-requirements-0",
-  "https://math.washington.edu/undergraduate-major-requirements",
-  "https://music.washington.edu/ba-ethnomusicology",
-  "https://music.washington.edu/bachelor-arts",
-  "https://music.washington.edu/bachelor-arts-music-music-history-option",
-  "https://music.washington.edu/bachelor-arts-music-music-theory-option",
-  "https://music.washington.edu/bachelor-arts-music-voice-option",
-  "https://music.washington.edu/bachelor-music",
-  "https://music.washington.edu/bachelor-music-music-education-vocal-emphasis",
-  "https://music.washington.edu/bachelor-music-organ",
-  "https://music.washington.edu/bachelor-music-percussion-performance",
-  "https://music.washington.edu/bachelor-music-piano",
-  "https://music.washington.edu/bachelor-music-voice",
-  "https://phys.washington.edu/bachelor-science-physics",
-  "https://phys.washington.edu/physics-bs-degree-requirements",
-  "https://religion.washington.edu/undergraduate",
-  "https://scandinavian.washington.edu/ba-danish",
-  "https://scandinavian.washington.edu/ba-finnish",
-  "https://scandinavian.washington.edu/ba-scandinavian-area-studies",
-  "https://scandinavian.washington.edu/ba-swedish",
-  "https://scandinavian.washington.edu/undergraduate",
-  "https://scandinavian.washington.edu/undergraduate-programs",
-  "https://slavic.washington.edu/ba-global-literary-studies-glits",
-  "https://slavic.washington.edu/undergraduate-policies",
-  "https://slavic.washington.edu/undergraduate-programs",
-  "https://soc.washington.edu/current-majors",
-  "https://soc.washington.edu/declare-sociology-major",
-  "https://spanport.washington.edu/admission-spanish-major",
-  "https://spanport.washington.edu/spanish-major-requirements",
-  "https://urbdp.be.uw.edu/academic-programs/undergraduate/community-environment-and-planning/",
-  "https://web.geology.washington.edu/education/undergrad/degrees_ba.php",
-  "https://web.geology.washington.edu/education/undergrad/degrees_bs.php",
-  "https://www.be.washington.edu/academics/construction-management/",
-  "https://www.biology.washington.edu/programs/undergraduate/admissions",
-  "https://www.ce.washington.edu/future/undergrad/environmental/transfer",
-  "https://www.ece.washington.edu/academics/bachelor-of-science/bs-admissions-requirements/",
-  "https://www.polisci.washington.edu/political-science-major-declaration-and-requirements",
-  "https://www.polisci.washington.edu/undergraduate-programs",
-  "https://www.tacoma.uw.edu/sias-new/socs-new/individually-designed-concentration",
-  "https://www.tacoma.uw.edu/sias/cac/communication-degree-requirements",
-  "https://www.tacoma.uw.edu/sias/healthcare-leadership",
-  "https://www.tacoma.uw.edu/sias/interdisciplinary-arts-and-sciences",
-  "https://www.tacoma.uw.edu/sias/pppa/economics-and-policy-analysis-major-requirements",
-  "https://www.tacoma.uw.edu/sias/pppa/politics-philosophy-and-economics-ppe",
-  "https://www.tacoma.uw.edu/sias/sam/spanish-language-and-cultures",
-  "https://www.tacoma.uw.edu/sias/sam/writing-studies",
-  "https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics",
-  "https://www.tacoma.uw.edu/soe/application-information",
-  "https://www.tacoma.uw.edu/swcj/admissions",
-  "https://www.uwb.edu/stem/undergraduate/majors/interactive-media-design",
-]);
-const PRESERVED_PRIMARY_SOURCE_URLS = new Set([
-  ...TRANSFER_PLANNER_PROMOTED_PRIMARY_SOURCE_OVERRIDES.map((entry) => String(entry.url ?? "").trim()),
-  ...TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY.flatMap((block) =>
-    block.ok && !block.usedSnapshotFallback
-      ? [String(block.primarySourceUrl ?? "").trim(), String(block.sourceUrl ?? "").trim()]
-      : []
-  ),
-]);
+const CAMPUS_TITLE_BY_ID = {
+  "uw-seattle": "UW Seattle",
+  "uw-bothell": "UW Bothell",
+  "uw-tacoma": "UW Tacoma",
+};
 
-const PLANNER_OWNED_TEXT_REPLACEMENTS = [
-  [/\bAdvisor-approved custom Green River prep\b/gi, "Custom source-backed Green River prep"],
-  [/\bbefore final advisor review\b/gi, "as the current source-backed baseline"],
-  [/\bbefore final adviser review\b/gi, "as the current source-backed baseline"],
-  [
-    /\bprogram-by-program advisor confirmation for final admission strategy\b/gi,
-    "a source-backed baseline only; unsupported admission-strategy details stay hidden until public-source coverage improves",
-  ],
-  [
-    /\badvisor review is still needed for final degree planning\b/gi,
-    "unsupported degree-planning details stay hidden until public sources can verify them",
-  ],
-  [
-    /\badvisor review is still smart before freezing the final term order\b/gi,
-    "unsupported term-order details stay hidden until public sources can verify them",
-  ],
-  [
-    /\bconfirm the exact class mix with an advisor\b/gi,
-    "follow the current source-backed degree guidance instead of inventing an unsupported class mix",
-  ],
-  [
-    /\byear-specific advisor review is still recommended\b/gi,
-    "year-specific differences should stay hidden until public sources verify them",
-  ],
-  [
-    /\bstays under advisor review\b/gi,
-    "stays hidden until public sources verify the substitution",
-  ],
-  [
-    /\bUse advisor review before treating any one ACMS option as the final four-year finish, because\b/gi,
-    "Keep ACMS option-specific finishes hidden until public sources verify them, because",
-  ],
-  [
-    /\bUse adviser review before treating any one ACMS option as the final four-year finish, because\b/gi,
-    "Keep ACMS option-specific finishes hidden until public sources verify them, because",
-  ],
-  [
-    /\bstill deserve advisor review when building the exact final list\b/gi,
-    "should stay hidden unless public sources verify the exact final list",
-  ],
-  [
-    /\bstill deserve adviser review when building the exact final list\b/gi,
-    "should stay hidden unless public sources verify the exact final list",
-  ],
-  [
-    /\bUse advisor review if a student plans to submit with one in-progress prerequisite exception\b/gi,
-    "Hide the in-progress-prerequisite exception unless public sources verify it",
-  ],
-  [
-    /\bUse adviser review if a student plans to submit with one in-progress prerequisite exception\b/gi,
-    "Hide the in-progress-prerequisite exception unless public sources verify it",
-  ],
-  [
-    /\bUse advisor review if the student wants the lightest possible science mix versus the strongest long-term engineering prep\b/gi,
-    "Show the strongest source-backed science mix; lighter alternatives stay hidden until public sources verify them",
-  ],
-  [
-    /\bUse adviser review if the student wants the lightest possible science mix versus the strongest long-term engineering prep\b/gi,
-    "Show the strongest source-backed science mix; lighter alternatives stay hidden until public sources verify them",
-  ],
-  [
-    /\badvisor review is still important when a student is following an older catalog year\b/gi,
-    "older catalog-year differences should stay hidden until public sources verify them",
-  ],
-  [
-    /\badviser review is still important when a student is following an older catalog year\b/gi,
-    "older catalog-year differences should stay hidden until public sources verify them",
-  ],
-  [
-    /\badvisor review is still needed to lock the exact B\.A\. versus B\.S\. finish\b/gi,
-    "the exact B.A. versus B.S. finish should stay hidden until public sources verify it",
-  ],
-  [
-    /\badviser review is still needed to lock the exact B\.A\. versus B\.S\. finish\b/gi,
-    "the exact B.A. versus B.S. finish should stay hidden until public sources verify it",
-  ],
-  [
-    /\badvisor review is still important before locking the final upper-division sequence\b/gi,
-    "upper-division sequencing differences should stay hidden until public sources verify them",
-  ],
-  [
-    /\badviser review is still important before locking the final upper-division sequence\b/gi,
-    "upper-division sequencing differences should stay hidden until public sources verify them",
-  ],
-  [/\badvisor-reviewed transfer strategy\b/gi, "source-backed transfer strategy"],
-  [/\badviser-reviewed transfer strategy\b/gi, "source-backed transfer strategy"],
-  [/\bwith advisor approval\b/gi, "under the published approval rules"],
-  [/\bwith adviser approval\b/gi, "under the published approval rules"],
-  [/\bsubject to advisor approval\b/gi, "subject to the published approval rules"],
-  [/\bsubject to adviser approval\b/gi, "subject to the published approval rules"],
-  [/\badvisor approval\b/gi, "published approval rules"],
-  [/\badviser approval\b/gi, "published approval rules"],
-  [/\badvisor input\b/gi, "the published sequence"],
-  [/\badviser input\b/gi, "the published sequence"],
-  [/\badvisor review matters here because\b/gi, "This source-backed planner row stays broad because"],
-  [/\badviser review matters here because\b/gi, "This source-backed planner row stays broad because"],
-  [/\bUse advisor review whenever\b/gi, "Keep this planner row broad whenever"],
-  [/\bUse adviser review whenever\b/gi, "Keep this planner row broad whenever"],
-  [/\badvisor-approved\b/gi, "source-backed"],
-  [/\badviser-approved\b/gi, "source-backed"],
-  [
-    /\bthe public page explicitly notes that students who entered before Autumn 2024 follow older requirements and should use adviser review\b/gi,
-    "The public page explicitly notes that students who entered before Autumn 2024 follow older requirements, so older cohorts stay hidden until public-source coverage expands",
-  ],
-  [
-    /\bthe public page explicitly notes that students who entered before Autumn 2024 follow older requirements and should use advisor review\b/gi,
-    "The public page explicitly notes that students who entered before Autumn 2024 follow older requirements, so older cohorts stay hidden until public-source coverage expands",
-  ],
-  [/\buse advisor review to decide whether\b/gi, "use the published path guidance to decide whether"],
-  [/\buse adviser review to decide whether\b/gi, "use the published path guidance to decide whether"],
-  [/\buse advisor review to place\b/gi, "use the source-backed plan to place"],
-  [/\buse adviser review to place\b/gi, "use the source-backed plan to place"],
-  [/\buse advisor review for the remaining\b/gi, "keep the remaining"],
-  [/\buse adviser review for the remaining\b/gi, "keep the remaining"],
-  [/\bSIAS adviser review\b/gi, "the published SIAS proposal process"],
-  [/\bSIAS advisor review\b/gi, "the published SIAS proposal process"],
-  [/\badviser review\b/gi, "source-backed planning"],
-  [/\badvisor review\b/gi, "source-backed planning"],
-  [/\bsupport-only but strong /gi, "supplemental source-backed prep only with strong "],
-  [/\bsupport-only with strong /gi, "supplemental source-backed prep only with strong "],
-  [/\bsupport-only;/gi, "supplemental source-backed prep only;"],
-  [/\bsupport-only\b/gi, "supplemental source-backed prep only"],
-];
+function makePlanPathwayKey(planId, pathwayId = null) {
+  return `${String(planId ?? "").trim()}::${String(pathwayId ?? "").trim()}`;
+}
 
-function sanitizePlannerOwnedText(value) {
-  let text = String(value ?? "").trim();
-  if (!text) return "";
+function uniqueStrings(values) {
+  return Array.from(
+    new Set(
+      (Array.isArray(values) ? values : [])
+        .map((value) => String(value ?? "").trim())
+        .filter(Boolean)
+    )
+  );
+}
 
-  for (const [pattern, replacement] of PLANNER_OWNED_TEXT_REPLACEMENTS) {
-    text = text.replace(pattern, replacement);
+function uniqueLinks(values) {
+  const STATUS_RANK = {
+    verified: 5,
+    "partially-verified": 4,
+    "parser-unsupported": 3,
+    "source-conflict": 2,
+    "source-unfindable": 1,
+  };
+  const CONFIDENCE_RANK = {
+    high: 3,
+    medium: 2,
+    low: 1,
+  };
+
+  const byUrl = new Map();
+
+  for (const value of Array.isArray(values) ? values : []) {
+    if (!value || typeof value !== "object") continue;
+
+    const url = String(value.url ?? "").trim();
+    const label = String(value.label ?? "").trim();
+    const note = String(value.note ?? "").trim();
+    const visibility = String(value.visibility ?? "").trim();
+    const status = String(value.status ?? "").trim();
+    const reason = String(value.reason ?? "").trim();
+    const sourceConfidence = String(value.sourceConfidence ?? "").trim();
+    if (!url || !label) continue;
+
+    if (!byUrl.has(url)) {
+      const initial = { label, url };
+      if (note) initial.note = note;
+      if (visibility) initial.visibility = visibility;
+      if (status) initial.status = status;
+      if (reason) initial.reason = reason;
+      if (sourceConfidence) initial.sourceConfidence = sourceConfidence;
+      byUrl.set(url, initial);
+      continue;
+    }
+
+    const existing = byUrl.get(url);
+    const existingStatusRank = STATUS_RANK[String(existing.status ?? "")] ?? 0;
+    const incomingStatusRank = STATUS_RANK[status] ?? 0;
+    if (incomingStatusRank > existingStatusRank && status) {
+      existing.status = status;
+    }
+
+    const existingConfidenceRank = CONFIDENCE_RANK[String(existing.sourceConfidence ?? "")] ?? 0;
+    const incomingConfidenceRank = CONFIDENCE_RANK[sourceConfidence] ?? 0;
+    if (incomingConfidenceRank > existingConfidenceRank && sourceConfidence) {
+      existing.sourceConfidence = sourceConfidence;
+    }
+
+    if (!existing.note && note) {
+      existing.note = note;
+    }
+    if (!existing.reason && reason) {
+      existing.reason = reason;
+    }
+    if (
+      (!existing.visibility || existing.visibility === "hidden") &&
+      visibility === "visible"
+    ) {
+      existing.visibility = "visible";
+    }
+    if (!existing.visibility && visibility) {
+      existing.visibility = visibility;
+    }
   }
 
-  return text.trim();
+  return [...byUrl.values()].sort((left, right) =>
+    String(left.label ?? "").localeCompare(String(right.label ?? ""))
+  );
+}
+
+function makeOwnerKey(planId, pathwayId = null) {
+  const normalizedPlanId = String(planId ?? "").trim();
+  const normalizedPathwayId = String(pathwayId ?? "").trim();
+  return normalizedPathwayId
+    ? `pathway:${normalizedPlanId}:${normalizedPathwayId}`
+    : `major:${normalizedPlanId}`;
+}
+
+function buildSourceStatusForManifestEntry(entry, sourceGapByOwnerKey) {
+  const ownerKey = makeOwnerKey(entry.planId, entry.pathwayId ?? null);
+  const ownerGap = sourceGapByOwnerKey.get(ownerKey) ?? null;
+
+  if (ownerGap) {
+    return {
+      visibility: ownerGap.studentVisibility,
+      status: ownerGap.sourceCoverageStatus,
+      reason: ownerGap.sourceGapReason,
+      sourceConfidence: entry.confidence,
+    };
+  }
+
+  return {
+    visibility: "visible",
+    status: entry.confidence === "high" ? "verified" : "partially-verified",
+    reason: String(entry.note ?? "").trim() || undefined,
+    sourceConfidence: entry.confidence,
+  };
+}
+
+function buildSourceStatusForParsedBlock(block) {
+  if (block.ok && !block.usedSnapshotFallback) {
+    return {
+      visibility: "visible",
+      status: "verified",
+      reason: undefined,
+      sourceConfidence: block.parseConfidence,
+    };
+  }
+
+  if (block.ok && block.usedSnapshotFallback) {
+    return {
+      visibility: "visible",
+      status: "partially-verified",
+      reason: String(block.snapshotFallbackReason ?? "").trim() || undefined,
+      sourceConfidence: block.parseConfidence,
+    };
+  }
+
+  return {
+    visibility: "hidden",
+    status: "parser-unsupported",
+    reason: String(block.error ?? "").trim() || undefined,
+    sourceConfidence: block.parseConfidence,
+  };
+}
+
+function buildShortTitle(title) {
+  const normalized = String(title ?? "").trim();
+  if (!normalized) return "Major";
+
+  const acronym = normalized
+    .split(/\s+/)
+    .map((token) => token.replace(/[^A-Za-z]/g, ""))
+    .filter(Boolean)
+    .map((token) => token[0])
+    .join("")
+    .toUpperCase();
+
+  if (acronym.length >= 2 && acronym.length <= 8) {
+    return acronym;
+  }
+
+  return normalized.split(/\s+/).slice(0, 3).join(" ");
+}
+
+function mapPhaseToChecklistField(phase) {
+  switch (phase) {
+    case "before-application":
+      return "applicationChecklist";
+    case "before-enrollment":
+      return "beforeEnrollmentChecklist";
+    case "stay-at-grc":
+      return "stayAtGrcChecklist";
+    default:
+      return null;
+  }
+}
+
+function buildChecklistItem(requirement) {
+  const alternatives = (Array.isArray(requirement.alternativeCourseCodeSets)
+    ? requirement.alternativeCourseCodeSets
+    : []
+  ).map((courseSet) => uniqueStrings(courseSet));
+
+  const result = {
+    id: String(requirement.id ?? "").trim(),
+    title: String(requirement.title ?? "").trim() || String(requirement.uwCourseCode ?? "").trim(),
+    grcCourses: uniqueStrings(requirement.grcCourseCodes),
+  };
+
+  if (alternatives.some((group) => group.length > 0)) {
+    result.alternatives = alternatives.filter((group) => group.length > 0);
+  }
+
+  if (typeof requirement.minCompletedCount === "number") {
+    result.minCompletedCount = requirement.minCompletedCount;
+  }
+
+  const note = String(requirement.note ?? "").trim();
+  if (note) {
+    result.note = note;
+  }
+
+  return result;
+}
+
+function buildDegreeMapSection(block) {
+  const result = {
+    id: String(block.id ?? "").trim(),
+    title: String(block.title ?? "").trim(),
+    items: uniqueStrings(block.itemLabels),
+  };
+
+  const note = String(block.note ?? "").trim();
+  if (note) {
+    result.note = note;
+  }
+
+  return result;
+}
+
+function buildCampusesFromParsedRegistries(planRecords) {
+  const campusIds = uniqueStrings(planRecords.map((entry) => entry.campusId));
+
+  return campusIds
+    .map((campusId) => ({
+      id: campusId,
+      title: CAMPUS_TITLE_BY_ID[campusId] ?? campusId,
+      summary: "Source-generated from parsed UW requirement-source registries.",
+      coverageNote:
+        "Coverage now follows parsed official-source requirements and generated equivalency mappings.",
+      officialLinks: [],
+    }))
+    .sort((left, right) => left.id.localeCompare(right.id));
+}
+
+function buildMajorPlansFromParsedRegistries() {
+  const groupedRequirements = new Map();
+  for (const requirement of TRANSFER_PLANNER_MAJOR_REQUIREMENT_REGISTRY) {
+    const key = makePlanPathwayKey(requirement.planId, requirement.pathwayId ?? null);
+    if (!groupedRequirements.has(key)) {
+      groupedRequirements.set(key, {
+        applicationChecklist: [],
+        beforeEnrollmentChecklist: [],
+        stayAtGrcChecklist: [],
+        sourceLinks: [],
+        validationNotes: [],
+      });
+    }
+
+    const group = groupedRequirements.get(key);
+    const checklistField = mapPhaseToChecklistField(requirement.displayPhase);
+    if (checklistField) {
+      group[checklistField].push(buildChecklistItem(requirement));
+    }
+    group.sourceLinks.push(...(requirement.sourceLinks ?? []));
+    group.validationNotes.push(...(requirement.validationNotes ?? []));
+  }
+
+  const groupedDegreeMaps = new Map();
+  for (const block of TRANSFER_PLANNER_DEGREE_MAP_BLOCK_REGISTRY) {
+    const key = makePlanPathwayKey(block.planId, block.pathwayId ?? null);
+    if (!groupedDegreeMaps.has(key)) {
+      groupedDegreeMaps.set(key, {
+        sections: [],
+        sourceLinks: [],
+        validationNotes: [],
+      });
+    }
+    const group = groupedDegreeMaps.get(key);
+    group.sections.push(buildDegreeMapSection(block));
+    group.sourceLinks.push(...(block.sourceLinks ?? []));
+    group.validationNotes.push(...(block.validationNotes ?? []));
+  }
+
+  const policyByKey = new Map(
+    TRANSFER_PLANNER_POLICY_REGISTRY.map((policy) => [
+      makePlanPathwayKey(policy.planId, policy.pathwayId ?? null),
+      policy,
+    ])
+  );
+
+  const pathwaysByPlan = new Map();
+  for (const pathway of TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY) {
+    const planId = String(pathway.planId ?? "").trim();
+    if (!planId) continue;
+    if (!pathwaysByPlan.has(planId)) {
+      pathwaysByPlan.set(planId, []);
+    }
+    pathwaysByPlan.get(planId).push(pathway);
+  }
+
+  const parsedBlocksByPlan = new Map();
+  for (const block of TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS) {
+    const planId = String(block.planId ?? "").trim();
+    if (!planId) continue;
+    if (!parsedBlocksByPlan.has(planId)) {
+      parsedBlocksByPlan.set(planId, []);
+    }
+    parsedBlocksByPlan.get(planId).push(block);
+  }
+
+  const sourceManifestByPlan = new Map();
+  const sourceGapByOwnerKey = new Map(
+    TRANSFER_PLANNER_SOURCE_GAP_ENTRIES.map((entry) => [entry.ownerKey, entry])
+  );
+  for (const entry of TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY) {
+    const planId = String(entry.planId ?? "").trim();
+    if (!planId || entry.ownerType !== "major") continue;
+    if (!sourceManifestByPlan.has(planId)) {
+      sourceManifestByPlan.set(planId, []);
+    }
+    const sourceStatus = buildSourceStatusForManifestEntry(entry, sourceGapByOwnerKey);
+    sourceManifestByPlan.get(planId).push({
+      label: entry.label,
+      url: entry.url,
+      note: entry.note,
+      visibility: sourceStatus.visibility,
+      status: sourceStatus.status,
+      reason: sourceStatus.reason,
+      sourceConfidence: sourceStatus.sourceConfidence,
+    });
+  }
+
+  const planIds = uniqueStrings([
+    ...TRANSFER_PLANNER_MAJOR_REQUIREMENT_REGISTRY.map((entry) => entry.planId),
+    ...TRANSFER_PLANNER_POLICY_REGISTRY.map((entry) => entry.planId),
+    ...TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY.map((entry) => entry.planId),
+    ...TRANSFER_PLANNER_DEGREE_MAP_BLOCK_REGISTRY.map((entry) => entry.planId),
+    ...TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS.map((entry) => entry.planId),
+  ]);
+
+  const majorPlans = planIds
+    .map((planId) => {
+      const planKey = makePlanPathwayKey(planId, null);
+      const planPolicy = policyByKey.get(planKey) ?? null;
+      const planRequirements = groupedRequirements.get(planKey) ?? {
+        applicationChecklist: [],
+        beforeEnrollmentChecklist: [],
+        stayAtGrcChecklist: [],
+        sourceLinks: [],
+        validationNotes: [],
+      };
+      const planDegreeMaps = groupedDegreeMaps.get(planKey) ?? {
+        sections: [],
+        sourceLinks: [],
+        validationNotes: [],
+      };
+      const parsedBlocks = parsedBlocksByPlan.get(planId) ?? [];
+      const parsedAnchorBlock =
+        parsedBlocks.find((entry) => !entry.pathwayId) ?? parsedBlocks[0] ?? null;
+      const title =
+        String(planPolicy?.majorTitle ?? "").trim() ||
+        String(parsedAnchorBlock?.ownerTitle ?? "").trim() ||
+        planId;
+      const campusId = String(
+        planPolicy?.campusId ??
+          parsedAnchorBlock?.campusId ??
+          TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY.find((entry) => entry.planId === planId)?.campusId ??
+          TRANSFER_PLANNER_MAJOR_REQUIREMENT_REGISTRY.find((entry) => entry.planId === planId)?.campusId ??
+          "uw-seattle"
+      ).trim();
+
+      const pathEntries = (pathwaysByPlan.get(planId) ?? [])
+        .slice()
+        .sort((left, right) => String(left.pathwayId ?? "").localeCompare(String(right.pathwayId ?? "")))
+        .map((pathway) => {
+          const pathwayId = String(pathway.pathwayId ?? "").trim();
+          const pathwayKey = makePlanPathwayKey(planId, pathwayId);
+          const pathwayPolicy = policyByKey.get(pathwayKey) ?? null;
+          const pathwayRequirements = groupedRequirements.get(pathwayKey) ?? {
+            applicationChecklist: [],
+            beforeEnrollmentChecklist: [],
+            stayAtGrcChecklist: [],
+            sourceLinks: [],
+            validationNotes: [],
+          };
+          const pathwayDegreeMaps = groupedDegreeMaps.get(pathwayKey) ?? {
+            sections: [],
+            sourceLinks: [],
+            validationNotes: [],
+          };
+
+          return {
+            id: pathwayId,
+            label: String(pathway.label ?? pathwayId).trim(),
+            summary: "",
+            applicationChecklist: pathwayRequirements.applicationChecklist,
+            beforeEnrollmentChecklist: pathwayRequirements.beforeEnrollmentChecklist,
+            stayAtGrcChecklist: pathwayRequirements.stayAtGrcChecklist,
+            advisorFlags: [],
+            officialLinks: uniqueLinks([
+              ...(pathway.sourceLinks ?? []),
+              ...pathwayRequirements.sourceLinks,
+              ...pathwayDegreeMaps.sourceLinks,
+            ]),
+            degreeMapSections: pathwayDegreeMaps.sections,
+            manualReviewNotes: [],
+            grcCourseList: uniqueStrings([
+              ...(pathway.grcCourseList ?? []),
+              ...pathwayRequirements.applicationChecklist.flatMap((item) => item.grcCourses),
+              ...pathwayRequirements.beforeEnrollmentChecklist.flatMap((item) => item.grcCourses),
+              ...pathwayRequirements.stayAtGrcChecklist.flatMap((item) => item.grcCourses),
+            ]),
+            grcCourseListGuidance: "",
+            plannerNote: "",
+            bestTrackId: pathwayPolicy?.bestTrackId ?? null,
+            bestTrackSummary: "",
+            whyThisTrack: [],
+            financialAidNote: "",
+          };
+        });
+
+      return {
+        id: planId,
+        campusId,
+        title,
+        shortTitle: buildShortTitle(title),
+        coverage: "detailed",
+        summary: "",
+        applicationWindow: "",
+        startQuarter: "Varies",
+        bestTrackId: planPolicy?.bestTrackId ?? null,
+        bestTrackSummary: "",
+        whyThisTrack: [],
+        financialAidNote: "",
+        applicationChecklist: planRequirements.applicationChecklist,
+        beforeEnrollmentChecklist: planRequirements.beforeEnrollmentChecklist,
+        stayAtGrcChecklist: planRequirements.stayAtGrcChecklist,
+        advisorFlags: [],
+        involvementIdeas: [],
+        projectIdeas: [],
+        officialLinks: uniqueLinks([
+          ...(sourceManifestByPlan.get(planId) ?? []),
+          ...(planPolicy?.sourceLinks ?? []),
+          ...planRequirements.sourceLinks,
+          ...planDegreeMaps.sourceLinks,
+          ...parsedBlocks.map((entry) => {
+            const sourceStatus = buildSourceStatusForParsedBlock(entry);
+            return {
+              label: entry.sourceLabel,
+              url: entry.sourceUrl,
+              visibility: sourceStatus.visibility,
+              status: sourceStatus.status,
+              reason: sourceStatus.reason,
+              sourceConfidence: sourceStatus.sourceConfidence,
+            };
+          }),
+        ]),
+        degreeMapSections: planDegreeMaps.sections,
+        manualReviewNotes: [],
+        grcCourseList: uniqueStrings([
+          ...planRequirements.applicationChecklist.flatMap((item) => item.grcCourses),
+          ...planRequirements.beforeEnrollmentChecklist.flatMap((item) => item.grcCourses),
+          ...planRequirements.stayAtGrcChecklist.flatMap((item) => item.grcCourses),
+          ...pathEntries.flatMap((pathway) => pathway.grcCourseList ?? []),
+        ]),
+        grcCourseListGuidance: "",
+        plannerNote: "",
+        pathways: pathEntries,
+      };
+    })
+    .sort((left, right) => {
+      const campusDelta = String(left.campusId ?? "").localeCompare(String(right.campusId ?? ""));
+      if (campusDelta !== 0) return campusDelta;
+      return String(left.id ?? "").localeCompare(String(right.id ?? ""));
+    });
+
+  return majorPlans;
+}
+
+function sanitizePlannerOwnedText(value) {
+  return value == null ? "" : String(value);
 }
 
 function normalizeOfficialLinks(value) {
@@ -279,11 +526,7 @@ function normalizeOfficialLinks(value) {
     }
 
     const url = String(rawLink.url ?? "").trim();
-    if (
-      !url ||
-      (DISABLED_UNVERIFIED_OFFICIAL_LINK_URLS.has(url) && !PRESERVED_PRIMARY_SOURCE_URLS.has(url)) ||
-      seenUrls.has(url)
-    ) {
+    if (!url || seenUrls.has(url)) {
       continue;
     }
 
@@ -475,7 +718,7 @@ import type {
 ${serializeExport(
   "TRANSFER_PLANNER_BOOTSTRAP_CAMPUSES",
   "TransferPlannerCampus[]",
-  TRANSFER_PLANNER_CAMPUSES
+  buildCampusesFromParsedRegistries(buildMajorPlansFromParsedRegistries())
 )}
 ${serializeExport(
   "TRANSFER_PLANNER_BOOTSTRAP_TRACKS",
@@ -485,7 +728,7 @@ ${serializeExport(
 ${serializeExport(
   "TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS",
   "TransferPlannerMajorPlan[]",
-  TRANSFER_PLANNER_ALL_MAJOR_PLANS
+  buildMajorPlansFromParsedRegistries()
 )}
 `;
 
@@ -494,8 +737,8 @@ const previousSnapshot = loadPreviousSnapshot();
 fs.writeFileSync(OUTPUT_PATH, fileContents);
 console.log(`Wrote ${OUTPUT_PATH}`);
 const currentSnapshot = buildSnapshot({
-  majorPlans: TRANSFER_PLANNER_ALL_MAJOR_PLANS,
+  majorPlans: buildMajorPlansFromParsedRegistries(),
   tracks: TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS,
-  campuses: TRANSFER_PLANNER_CAMPUSES,
+  campuses: buildCampusesFromParsedRegistries(buildMajorPlansFromParsedRegistries()),
 });
 printDiffSummary(previousSnapshot, currentSnapshot);

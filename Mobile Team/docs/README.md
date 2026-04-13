@@ -4,7 +4,7 @@ This folder contains the mobile app's planner docs, remaining reference artifact
 
 ## Folder Layout
 
-- `planner/`: campus-specific planner docs plus the planner summary, the consolidated planner-facing equivalency reference, and the planner backlog.
+- `planner/`: campus-specific planner docs plus the planner summary and consolidated planner-facing equivalency reference.
 - `reference/`: remaining non-planner reference artifacts.
 - `product/`: product and technical implementation docs for the mobile app.
 
@@ -24,12 +24,6 @@ This folder contains the mobile app's planner docs, remaining reference artifact
 
 - [TRANSFER_PLANNER_TOOL_SUMMARY.md](./planner/TRANSFER_PLANNER_TOOL_SUMMARY.md)
   One-place summary of what the planner does and what data it uses.
-
-- [TRANSFER_PLANNER_SOURCE_VERIFIED_AUTOMATION_PLAN.md](./planner/TRANSFER_PLANNER_SOURCE_VERIFIED_AUTOMATION_PLAN.md)
-  Phased implementation plan for the fully automated, source-verified planner with hidden unverified majors.
-
-- [TRANSFER_PLANNER_GENERAL_TODO.md](./planner/TRANSFER_PLANNER_GENERAL_TODO.md)
-  One-place backlog for the remaining planner data, parser, product, and quarter-planning work.
 
 ## Planner Reference Migration
 
@@ -60,12 +54,10 @@ This folder contains the mobile app's planner docs, remaining reference artifact
 For transfer-planner work:
 
 1. [TRANSFER_PLANNER_TOOL_SUMMARY.md](./planner/TRANSFER_PLANNER_TOOL_SUMMARY.md)
-2. [TRANSFER_PLANNER_SOURCE_VERIFIED_AUTOMATION_PLAN.md](./planner/TRANSFER_PLANNER_SOURCE_VERIFIED_AUTOMATION_PLAN.md)
-3. [GRC_EQUIVALENCY_GUIDE_REFERENCE.md](./planner/GRC_EQUIVALENCY_GUIDE_REFERENCE.md)
-4. [UWS_DEGREE_COURSES.md](./planner/UWS_DEGREE_COURSES.md)
-5. [UWB_DEGREE_COURSES.md](./planner/UWB_DEGREE_COURSES.md)
-6. [UWT_DEGREE_COURSES.md](./planner/UWT_DEGREE_COURSES.md)
-7. [TRANSFER_PLANNER_GENERAL_TODO.md](./planner/TRANSFER_PLANNER_GENERAL_TODO.md)
+2. [GRC_EQUIVALENCY_GUIDE_REFERENCE.md](./planner/GRC_EQUIVALENCY_GUIDE_REFERENCE.md)
+3. [UWS_DEGREE_COURSES.md](./planner/UWS_DEGREE_COURSES.md)
+4. [UWB_DEGREE_COURSES.md](./planner/UWB_DEGREE_COURSES.md)
+5. [UWT_DEGREE_COURSES.md](./planner/UWT_DEGREE_COURSES.md)
 
 ## Notes
 
