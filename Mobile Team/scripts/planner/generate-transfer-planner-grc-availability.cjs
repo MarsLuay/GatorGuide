@@ -22,9 +22,6 @@ const {
 } = require("../../constants/transfer-planner-source/course-metadata");
 
 const COURSE_CODE_PATTERN = /\b[A-Z]{2,6}&?\s*\d{3}(?:\.\d+)?[A-Z]?\b/g;
-const LEGACY_GRC_CODE_ALIASES = new Map([
-  ["MATH& 254", "MATH& 264"],
-]);
 const QUARTER_KEYS = ["summer", "fall", "winter", "spring"];
 const QUARTER_SOURCE_LABELS = {
   summer: "Summer",
@@ -41,11 +38,10 @@ const AVAILABILITY_STATUS_ORDER = [
 ];
 
 function normalizeCourseCode(value) {
-  const normalized = String(value ?? "")
+  return String(value ?? "")
     .trim()
     .toUpperCase()
     .replace(/\s+/g, " ");
-  return LEGACY_GRC_CODE_ALIASES.get(normalized) ?? normalized;
 }
 
 function extractCourseCodes(value) {

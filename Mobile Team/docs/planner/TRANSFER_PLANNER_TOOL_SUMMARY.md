@@ -78,11 +78,9 @@ The current green-state maintenance baseline is:
   - `scripts/run-planner-maintenance.cmd`
   - `npm run planner:check-sources`
   - `npm run planner:discover-primary-sources`
-  - `npm run planner:promote-primary-sources`
   - `npm run planner:build-primary-review-queue`
   - `npm run planner:build-source-gaps`
   - `npm run planner:parse-requirement-sources`
-  - `npm run planner:promote-requirement-diffs`
   - `npm run planner:build-source-fingerprints`
   - `npm run planner:parse-equivalency-guide`
   - `npm run planner:ingest-grc-catalog`
@@ -284,11 +282,10 @@ The biggest remaining per-major hardcoding that should still move into structure
 Running `npm run planner:refresh` now does the highest-value automatic maintenance that this repo can safely do today:
 
 - checks every tracked planner source URL already attached to majors, pathways, and tracks
-- discovers and auto-promotes new `high-confidence` primary degree-requirements links into the structured source-manifest override layer
-- rebuilds internal source-gap automation reports for the remaining medium-confidence and unresolved primary-source candidates
+- discovers candidate primary degree-requirements links and records confidence-ranked recommendations in source-gap automation reports
+- rebuilds internal source-gap automation reports for medium-confidence and unresolved primary-source candidates
 - parses the current primary degree-requirements sources and compares extracted UW course codes against the structured degree-map blocks already in the planner
-- auto-promotes only high-confidence parsed requirement diffs into generated structured requirement-atom overrides when the repo already has strong exact-title consensus for the same UW-to-GRC mapping
-- leaves a requirement-diff classification report in `.tmp/` for the automatically classified and still-non-promoted course codes
+- classifies parsed requirement diffs into source-backed categories and leaves the requirement-diff classification report in `.tmp/`
 - writes source and parsed-fact fingerprints into `.tmp/`
 - writes a source snapshot plus change summary into `.tmp/`
 - parses the UW Green River equivalency guide into generated structured rules
@@ -330,15 +327,7 @@ There is now also a companion discovery script for missing primary UW degree pag
 - writes ranked suggestions into `.tmp/`
 - helps turn a `missing primary source` problem into a source-gap automation candidate list instead of manual browsing from scratch
 
-And there is now a safe promotion step:
-
-- `npm run planner:promote-primary-sources`
-- reruns discovery first
-- keeps only `high-confidence` suggestions
-- writes them into `constants/transfer-planner-source/source-manifest-primary-overrides.generated.ts`
-- lets the structured source-manifest registry treat those promoted links as the explicit primary degree page on later runs
-
-There is now also a source-gap backlog step for everything that is still not safe to auto-promote:
+There is now also a source-gap backlog step for everything that is still not high-confidence:
 
 - `npm run planner:build-primary-review-queue`
 - reruns discovery first
@@ -347,7 +336,7 @@ There is now also a source-gap backlog step for everything that is still not saf
 - writes:
   - `.tmp/transfer-planner-primary-source-review-queue.json`
   - `.tmp/transfer-planner-primary-source-review-queue.md`
-- this becomes an internal source-gap automation report after the automatic promotion pass, not a student-facing review workflow
+- this is an internal source-gap automation report, not a student-facing review workflow
 
 There is now also a first real requirement-parser layer:
 

@@ -6175,22 +6175,32 @@ test("Transcript parsing deduplicates legacy and canonical course-code variants"
   assert.equal(parsed[0]?.code, "MATH& 264");
 });
 
-test("Planner parser and generator scripts keep the shared legacy alias map", () => {
-  const plannerScriptPaths = [
+test("Legacy alias maps are parser/ingest only and removed from generators", () => {
+  const parserOrIngestScriptPaths = [
     "scripts/planner/ingest-grc-catalog.cjs",
+    "scripts/planner/parse-transfer-planner-equivalency-guide.cjs",
+    "scripts/planner/parse-transfer-planner-requirement-sources.cjs",
+  ];
+  const generatorScriptPaths = [
     "scripts/planner/generate-transfer-planner-course-metadata.cjs",
     "scripts/planner/generate-transfer-planner-grc-associate-tracks.cjs",
     "scripts/planner/generate-transfer-planner-grc-availability.cjs",
-    "scripts/planner/parse-transfer-planner-equivalency-guide.cjs",
-    "scripts/planner/parse-transfer-planner-requirement-sources.cjs",
-    "scripts/planner/promote-transfer-planner-requirement-diffs.cjs",
   ];
 
-  for (const scriptPath of plannerScriptPaths) {
+  for (const scriptPath of parserOrIngestScriptPaths) {
     const contents = readFileSync(scriptPath, "utf8");
     assert.ok(
       contents.includes('["MATH& 254", "MATH& 264"]'),
-      `${scriptPath} is missing the shared legacy alias mapping for Calculus IV.`
+      `${scriptPath} is missing the expected parser/ingest legacy alias mapping for Calculus IV.`
+    );
+  }
+
+  for (const scriptPath of generatorScriptPaths) {
+    const contents = readFileSync(scriptPath, "utf8");
+    assert.equal(
+      contents.includes('["MATH& 254", "MATH& 264"]'),
+      false,
+      `${scriptPath} should not include legacy alias maps.`
     );
   }
 });

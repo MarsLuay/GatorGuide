@@ -55,9 +55,6 @@ const SUPPLEMENTAL_LEGACY_AVAILABILITY_STATUSES = new Set([
   "catalog-listed-not-in-latest-schedules",
   "published-in-recent-history-not-latest",
 ]);
-const LEGACY_GRC_CODE_ALIASES = new Map([
-  ["MATH& 254", "MATH& 264"],
-]);
 
 const HEADING_STOP_WORDS = new Set([
   "Course",
@@ -77,11 +74,10 @@ const HEADING_STOP_WORDS = new Set([
 ]);
 
 function normalizeCourseCode(value) {
-  const normalized = String(value ?? "")
+  return String(value ?? "")
     .toUpperCase()
     .replace(/\s+/g, " ")
     .trim();
-  return LEGACY_GRC_CODE_ALIASES.get(normalized) ?? normalized;
 }
 
 function loadGeneratedTsModule(filePath) {

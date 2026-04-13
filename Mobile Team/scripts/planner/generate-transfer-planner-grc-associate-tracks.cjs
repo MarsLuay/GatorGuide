@@ -29,9 +29,6 @@ const PAGE_FETCH_CONCURRENCY = 8;
 const PROGRAM_FETCH_CONCURRENCY = 8;
 const PROGRAM_PAGE_SIZE = 100;
 const COURSE_CODE_PATTERN = /\b[A-Z]{2,6}&?\s*\d{3}(?:\.\d+)?[A-Z]?\b/g;
-const LEGACY_GRC_CODE_ALIASES = new Map([
-  ["MATH& 254", "MATH& 264"],
-]);
 
 function ensureTmpDir() {
   fs.mkdirSync(TMP_DIR, { recursive: true });
@@ -79,12 +76,11 @@ function stripHtml(value) {
 }
 
 function normalizeCourseCode(value) {
-  const normalized = String(value ?? "")
+  return String(value ?? "")
     .replace(/\u00A0/g, " ")
     .trim()
     .toUpperCase()
     .replace(/\s+/g, " ");
-  return LEGACY_GRC_CODE_ALIASES.get(normalized) ?? normalized;
 }
 
 function extractCourseCodes(value) {
@@ -108,17 +104,10 @@ function uniqueStrings(values) {
 }
 
 function normalizeTrackCourseLabel(label) {
-  let raw = String(label ?? "").trim();
+  const raw = String(label ?? "").trim();
   if (!raw) {
     return "";
   }
-
-  for (const [legacyCode, canonicalCode] of LEGACY_GRC_CODE_ALIASES.entries()) {
-    const escapedLegacyCode = legacyCode.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const legacyRegex = new RegExp(`\\b${escapedLegacyCode}\\b`, "gi");
-    raw = raw.replace(legacyRegex, canonicalCode);
-  }
-
   return raw;
 }
 

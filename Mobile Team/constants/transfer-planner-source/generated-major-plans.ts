@@ -79,19 +79,12 @@ const TRANSFER_PLANNER_CHAIN_LABELS: Record<string, string> = {
   "LANG-SP": "Spanish language sequence",
   "NATRS-COMBO": "Natural resources ESRM combo",
 };
-const AUTO_FALLBACK_CHECKLIST_LIMIT = 6;
 const AUTO_TRACK_MATCH_EXAMPLE_LIMIT = 4;
 const MIN_AUTO_TRACK_MATCH_COUNT = 3;
 const AUTO_MATCH_EXCLUDED_TRACK_TERM_LABEL_PATTERN =
   /\b(transferability of credits|generally transferable courses|section [a-z])\b/i;
 const REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE =
   "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.";
-const AUTO_FALLBACK_CORE_LABEL_PATTERN =
-  /\b(MATH|PHYS|CHEM|BIOL|ENGR|CS|STAT|ECON|ENGL|CMST|GIS|GEOG|LANG|JAPN|CHIN|SPAN|FRCH|GERM|LATIN|GREEK|MUSC|ART|DESN|DRMA)\b/i;
-const AUTO_FALLBACK_CHECKLIST_NOTE =
-  "Auto-generated from the current source-backed Green River class list for this major.";
-const AUTO_CUSTOM_PREP_FALLBACK_NOTE =
-  "Use the current source-backed Green River class list as the planning starting point. Unsupported class mixes stay hidden until public sources can verify them.";
 const AUTO_SOURCE_BACKED_UW_PREP_TARGET_PREFIX = "UW prep target:";
 const AUTO_SOURCE_BACKED_UW_PREP_TARGET_NOTE =
   "Official UW prep target found in the current source-backed requirements, but no public Green River equivalent is currently provable.";
@@ -745,73 +738,6 @@ function buildAutoChecklistItemId(label: string, index: number) {
     .replace(/^-+|-+$/g, "");
 
   return `auto-${normalized || `prep-${index + 1}`}`;
-}
-
-function buildAutoFallbackCourseLabels(
-  grcCourseList: string[],
-  bestTrackId: string | null | undefined
-) {
-  const courseList = uniqueReferenceCourseLabels(grcCourseList);
-  if (!courseList.length) {
-    return [] as string[];
-  }
-
-  const preferredTrack = bestTrackId ? TRACKS_BY_ID.get(bestTrackId) ?? null : null;
-  const firstLabelByCode = new Map<string, string>();
-  for (const label of courseList) {
-    for (const code of extractReferenceCourseCodes(label)) {
-      if (!firstLabelByCode.has(code)) {
-        firstLabelByCode.set(code, label);
-      }
-    }
-  }
-
-  const trackSeedLabels = preferredTrack
-    ? uniquePlannerStrings(
-        preferredTrack.terms.flatMap((term) =>
-          term.courses.flatMap((courseLabel) =>
-            extractReferenceCourseCodes(courseLabel)
-              .map((code) => firstLabelByCode.get(code) ?? null)
-              .filter((label): label is string => Boolean(label))
-          )
-        )
-      )
-    : [];
-
-  const coreLabels = courseList.filter((label) => AUTO_FALLBACK_CORE_LABEL_PATTERN.test(label));
-
-  return uniquePlannerStrings([...trackSeedLabels, ...coreLabels, ...courseList]).slice(
-    0,
-    AUTO_FALLBACK_CHECKLIST_LIMIT
-  );
-}
-
-function buildAutoFallbackChecklist(scope: {
-  planId: string;
-  bestTrackId: string | null | undefined;
-  grcCourseList: string[];
-  grcCourseListGuidance?: string | null | undefined;
-}) {
-  const autoCourseLabels = buildAutoFallbackCourseLabels(scope.grcCourseList, scope.bestTrackId);
-
-  if (autoCourseLabels.length) {
-    return autoCourseLabels.map<TransferPlannerChecklistItem>((label, index) => ({
-      id: buildAutoChecklistItemId(label, index),
-      title: label,
-      grcCourses: [label],
-      note: AUTO_FALLBACK_CHECKLIST_NOTE,
-    }));
-  }
-
-  const explicitGuidance = String(scope.grcCourseListGuidance ?? "").trim();
-  return [
-    {
-      id: "auto-custom-prep",
-      title: "Custom source-backed Green River prep",
-      grcCourses: [],
-      note: explicitGuidance || AUTO_CUSTOM_PREP_FALLBACK_NOTE,
-    },
-  ] satisfies TransferPlannerChecklistItem[];
 }
 
 type SourceBackedFallbackChecklistsByPhase = {
@@ -1511,43 +1437,6 @@ function applyAutoTrackRecommendation<T extends {
   };
 }
 
-function applyAutoChecklistFallback<T extends {
-  id: string;
-  bestTrackId: string | null | undefined;
-  grcCourseList?: string[];
-  grcCourseListGuidance?: string | null | undefined;
-  applicationChecklist?: TransferPlannerChecklistItem[];
-  beforeEnrollmentChecklist?: TransferPlannerChecklistItem[];
-  stayAtGrcChecklist?: TransferPlannerChecklistItem[];
-}>(scope: T, options?: { allowCustomPrepFallback?: boolean }): T {
-  if (hasAnyChecklistItems(scope)) {
-    return scope;
-  }
-
-  const rawFallbackChecklist = buildAutoFallbackChecklist({
-    planId: scope.id,
-    bestTrackId: scope.bestTrackId,
-    grcCourseList: scope.grcCourseList ?? [],
-    grcCourseListGuidance: scope.grcCourseListGuidance,
-  });
-  const fallbackChecklist =
-    options?.allowCustomPrepFallback === false
-      ? rawFallbackChecklist.filter((item) => getChecklistReferenceCoursesFromItems([item]).length)
-      : rawFallbackChecklist;
-  if (!fallbackChecklist.length) {
-    return scope;
-  }
-
-  return {
-    ...scope,
-    grcCourseList: collectPlannerCourseLabels({
-      ...scope,
-      stayAtGrcChecklist: fallbackChecklist,
-    }),
-    stayAtGrcChecklist: fallbackChecklist,
-  };
-}
-
 function buildDegreeMapSection(block: TransferPlannerDegreeMapBlock): TransferPlannerDegreeMapSection {
   return sanitizeDegreeMapSection({
     id: extractLeafId(block.id),
@@ -1714,7 +1603,7 @@ function buildPathway(basePlan: TransferPlannerMajorPlan, basePathway: TransferP
     basePathway.applicationChecklist ?? [],
     basePathway.id
   );
-  return applyAutoChecklistFallback(applyAutoTrackRecommendation({
+  return applyAutoTrackRecommendation({
     id: registryPathway?.pathwayId ?? basePathway.id,
     label: registryPathway?.label ?? basePathway.label,
     summary: sanitizePlannerOwnedText(registryPathway?.summary ?? basePathway.summary),
@@ -1770,7 +1659,7 @@ function buildPathway(basePlan: TransferPlannerMajorPlan, basePathway: TransferP
       policy?.whyThisTrack.length ? [...policy.whyThisTrack] : [...(basePathway.whyThisTrack ?? [])]
     ),
     financialAidNote: sanitizePlannerOwnedText(policy?.financialAidNote ?? basePathway.financialAidNote),
-  } satisfies TransferPlannerMajorPathway));
+  } satisfies TransferPlannerMajorPathway);
 }
 
 function buildSourceGeneratedPlan(basePlan: TransferPlannerMajorPlan): TransferPlannerMajorPlan {
@@ -1780,7 +1669,7 @@ function buildSourceGeneratedPlan(basePlan: TransferPlannerMajorPlan): TransferP
     "before-application",
     basePlan.applicationChecklist
   );
-  return applyAutoChecklistFallback(applyAutoTrackRecommendation({
+  return applyAutoTrackRecommendation({
     ...basePlan,
     summary: sanitizePlannerOwnedText(basePlan.summary),
     bestTrackId: policy?.bestTrackId ?? basePlan.bestTrackId,
@@ -1820,7 +1709,7 @@ function buildSourceGeneratedPlan(basePlan: TransferPlannerMajorPlan): TransferP
       (basePlan.pathways ?? []).map((pathway) => buildPathway(basePlan, pathway)),
       (basePlan.pathways ?? []).map((pathway) => pathway.id)
     ),
-  }));
+  });
 }
 
 function getAutomaticScopeKeys(planId: string, pathwayId?: string | null) {
@@ -2029,9 +1918,8 @@ function buildStudentRuntimePathway(
     stayAtGrcChecklist: prunedStayAtGrcChecklist,
   });
 
-  const runtimePathway = applyAutoChecklistFallback(
-    applyStrictSourceBackedFallback(
-      applyAutoTrackRecommendation({
+  const runtimePathway = applyStrictSourceBackedFallback(
+    applyAutoTrackRecommendation({
         id: basePathway.id,
         label: basePathway.label,
         summary: "",
@@ -2049,12 +1937,10 @@ function buildStudentRuntimePathway(
         bestTrackSummary: "",
         whyThisTrack: [],
         financialAidNote: "",
-      } satisfies TransferPlannerMajorPathway, {
-        trackMatchCourseList: studentVisibleTrackMatchCourseList,
-      }),
-      basePathway.id
-    ),
-    { allowCustomPrepFallback: false }
+    } satisfies TransferPlannerMajorPathway, {
+      trackMatchCourseList: studentVisibleTrackMatchCourseList,
+    }),
+    basePathway.id
   );
 
   return applyStudentVisibleTrackCourseList(
@@ -2103,9 +1989,8 @@ function buildStudentRuntimePlan(basePlan: TransferPlannerMajorPlan): TransferPl
     stayAtGrcChecklist: prunedStayAtGrcChecklist,
   });
 
-  const runtimePlan = applyAutoChecklistFallback(
-    applyStrictSourceBackedFallback(
-      applyAutoTrackRecommendation({
+  const runtimePlan = applyStrictSourceBackedFallback(
+    applyAutoTrackRecommendation({
         ...basePlan,
         summary: "",
         bestTrackId: null,
@@ -2128,12 +2013,10 @@ function buildStudentRuntimePlan(basePlan: TransferPlannerMajorPlan): TransferPl
           (basePlan.pathways ?? []).map((pathway) => buildStudentRuntimePathway(basePlan, pathway)),
           (basePlan.pathways ?? []).map((pathway) => pathway.id)
         ),
-      }, {
-        trackMatchCourseList: studentVisibleTrackMatchCourseList,
-      }),
-      null
-    ),
-    { allowCustomPrepFallback: false }
+    }, {
+      trackMatchCourseList: studentVisibleTrackMatchCourseList,
+    }),
+    null
   );
 
   return applyStudentVisibleTrackCourseList(
