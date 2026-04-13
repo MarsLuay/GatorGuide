@@ -30,10 +30,20 @@ const SYNTHETIC_DISALLOWED_CANDIDATE_PATTERN =
   /\b(courses?|coursework|faculty|advisor|adviser|requirements?|declare|declaration|graduation|application|students?|colloquium|culminating|internship|credit(?:s)?|school approval)\b/i;
 
 function decodePlannerText(value: string) {
-  return String(value ?? "")
-    .replace(/&#(\d+);/g, (_match, code) => String.fromCharCode(Number(code)))
-    .replace(/&amp;/gi, "&")
-    .replace(/&nbsp;/gi, " ");
+  return String(value ?? "").replace(/&(#\d+|amp|nbsp);/gi, (match, entity) => {
+    const normalizedEntity = String(entity ?? "").toLowerCase();
+    if (normalizedEntity === "amp") return "&";
+    if (normalizedEntity === "nbsp") return " ";
+
+    if (normalizedEntity.startsWith("#")) {
+      const codePoint = Number(normalizedEntity.slice(1));
+      if (Number.isInteger(codePoint) && codePoint >= 0 && codePoint <= 0x10ffff) {
+        return String.fromCodePoint(codePoint);
+      }
+    }
+
+    return match;
+  });
 }
 
 function normalizePlannerSpaces(value: string) {

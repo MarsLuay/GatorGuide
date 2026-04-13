@@ -117,6 +117,20 @@ Notes:
 - `qa:windows:screenshots` expects an existing app server unless you set `QA_BASE_URL` / `QA_STATIC_EXPORT` yourself.
 - `qa:windows:ci` is the full CI-style path: it exports the web build, serves it locally, runs screenshots, then runs interaction checks.
 
+## GitHub Pages
+
+This app can be exported for GitHub Pages from `Mobile Team`:
+
+```bash
+npm run web:export:pages
+```
+
+Notes:
+
+- The Pages export automatically uses the repository subpath, so this repo builds for `/GatorGuide` by default.
+- The deployment workflow lives in [`../.github/workflows/mobile-github-pages.yml`](../.github/workflows/mobile-github-pages.yml).
+- In the GitHub repository settings, set Pages to build from **GitHub Actions** so the workflow can publish the static site.
+
 ## Planner Maintenance
 
 For the full planner maintenance pass on Windows, including refresh, verification, hardening checks, Playwright Chromium setup, and Windows QA:

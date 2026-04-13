@@ -39,6 +39,8 @@
     "web:tunnel": "node scripts/dev/start-expo.cjs --web --mode=tunnel",
     "web:lan": "node scripts/dev/start-expo.cjs --web --mode=lan",
     "web:offline": "node scripts/dev/start-expo.cjs --web --mode=offline",
+    "web:export": "npx expo export --platform web --output-dir dist",
+    "web:export:pages": "node scripts/dev/export-github-pages.cjs",
     "qa:windows:build": "npx expo export --platform web --output-dir .tools/qa-web",
     "qa:windows:screenshots": "node .tools/windows-qa.mjs",
     "qa:windows:interactions": "node .tools/windows-interactions.mjs",
@@ -113,6 +115,7 @@
     "typescript": "~5.9.2"
   },
   "overrides": {
+    "basic-ftp": "5.2.2",
     "@expo/cli": {
       "picomatch": "3.0.2"
     },

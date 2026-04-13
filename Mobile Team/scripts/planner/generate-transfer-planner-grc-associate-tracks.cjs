@@ -76,19 +76,34 @@ function toIsoTimestamp() {
 }
 
 function decodeHtmlEntities(value) {
-  return String(value ?? "")
-    .replace(/&nbsp;/gi, " ")
-    .replace(/&amp;/gi, "&")
-    .replace(/&quot;/gi, '"')
-    .replace(/&#39;|&apos;/gi, "'")
-    .replace(/&ndash;/gi, "-")
-    .replace(/&mdash;/gi, "-");
+  return String(value ?? "").replace(
+    /&(nbsp|amp|quot|#39|apos|ndash|mdash);/gi,
+    (match, entity) => {
+      const normalizedEntity = String(entity ?? "").toLowerCase();
+      switch (normalizedEntity) {
+        case "nbsp":
+          return " ";
+        case "amp":
+          return "&";
+        case "quot":
+          return '"';
+        case "#39":
+        case "apos":
+          return "'";
+        case "ndash":
+        case "mdash":
+          return "-";
+        default:
+          return match;
+      }
+    }
+  );
 }
 
 function stripHtml(value) {
   return decodeHtmlEntities(String(value ?? ""))
-    .replace(/<script[\s\S]*?<\/script>/gi, " ")
-    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, " ")
+    .replace(/<style\b[^>]*>[\s\S]*?<\/style\s*>/gi, " ")
     .replace(/<br\s*\/?>/gi, "\n")
     .replace(/<\/p>/gi, "\n")
     .replace(/<\/li>/gi, "\n")
