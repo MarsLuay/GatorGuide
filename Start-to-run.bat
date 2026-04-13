@@ -25,13 +25,14 @@ echo Starting Expo...
 echo The Expo page will open in your default browser when it is ready.
 call :open_browser_when_expo_ready
 pushd "%APP_DIR%" >nul
-call npx expo start
+set "EXPO_START_PORT=%EXPO_PORT%"
+call npm run start
 set "EXPO_EXIT=%ERRORLEVEL%"
 popd >nul
 
 if not "%EXPO_EXIT%"=="0" (
   echo Failed to start Expo.
-  echo Run `npx expo start` manually from:
+  echo Run `npm run start` manually from:
   echo %APP_DIR%
   exit /b 1
 )

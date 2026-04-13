@@ -12,8 +12,6 @@ SCRIPT_SOURCE="${BASH_SOURCE[0]:-$0}"
 SCRIPT_DIR="$(cd -- "$(dirname -- "$SCRIPT_SOURCE")" && pwd)"
 ROOT_DIR="$SCRIPT_DIR"
 APP_DIR="$ROOT_DIR/Mobile Team"
-EXPO_LOG_FILE=""
-EXPO_PID_FILE=""
 
 log() {
   printf '%s %s\n' "$LOG_PREFIX" "$*"
@@ -198,8 +196,16 @@ ensure_env_file() {
 
 ensure_app_dependencies() {
   if [ -d "$APP_DIR/node_modules" ]; then
-    log "App dependencies are already installed."
-    return
+    log "Checking app dependencies..."
+    if (
+      cd "$APP_DIR"
+      npm ls --depth=0 >/dev/null 2>&1
+    ); then
+      log "App dependencies are already installed."
+      return
+    fi
+
+    log "App dependencies are incomplete. Reinstalling..."
   fi
 
   log "Installing app dependencies. This may take a few minutes..."
@@ -208,36 +214,6 @@ ensure_app_dependencies() {
     npm ci || npm install
   )
   log "App dependencies installed successfully."
-}
-
-prepare_expo_runtime_files() {
-  local runtime_dir="$APP_DIR/.tools/runtime"
-  mkdir -p "$runtime_dir"
-  EXPO_LOG_FILE="$runtime_dir/start-to-run-expo.log"
-  EXPO_PID_FILE="$runtime_dir/start-to-run-expo.pid"
-}
-
-start_expo_server() {
-  prepare_expo_runtime_files
-
-  if [ -f "$EXPO_PID_FILE" ]; then
-    local existing_pid
-    existing_pid="$(cat "$EXPO_PID_FILE" 2>/dev/null || true)"
-    if [ -n "$existing_pid" ] && kill -0 "$existing_pid" 2>/dev/null; then
-      log "Expo already appears to be running with PID $existing_pid."
-      return
-    fi
-    rm -f "$EXPO_PID_FILE"
-  fi
-
-  log "Starting Expo with tunnel -> lan -> offline fallback..."
-  (
-    cd "$APP_DIR"
-    EXPO_START_PORT="$SERVER_PORT" nohup npm run start >"$EXPO_LOG_FILE" 2>&1 </dev/null &
-    echo $! >"$EXPO_PID_FILE"
-  )
-
-  [ -f "$EXPO_PID_FILE" ] || fail "Failed to capture the Expo process ID."
 }
 
 wait_for_server() {
@@ -255,7 +231,7 @@ wait_for_server() {
   return 1
 }
 
-open_browser() {
+open_url() {
   local url="$1"
 
   if command_exists open; then
@@ -277,10 +253,15 @@ open_browser() {
   return 1
 }
 
-show_log_hint() {
-  if [ -n "$EXPO_LOG_FILE" ]; then
-    log "Check the Expo log for details: $EXPO_LOG_FILE"
-  fi
+open_browser_when_server_ready() {
+  (
+    if wait_for_server 120; then
+      if ! open_url "$SERVER_URL"; then
+        log "The browser did not open automatically."
+        log "Open this URL manually: $SERVER_URL"
+      fi
+    fi
+  ) &
 }
 
 main() {
@@ -289,24 +270,19 @@ main() {
   ensure_node_toolchain
   ensure_env_file
   ensure_app_dependencies
-  start_expo_server
 
-  log "Waiting for the server to come online..."
-  if ! wait_for_server 120; then
-    show_log_hint
-    fail "The server did not finish launching within 120 seconds."
-  fi
-
-  log "Server is live at $SERVER_URL"
-  if ! open_browser "$SERVER_URL"; then
-    show_log_hint
-    log "The browser did not open automatically."
-    log "Open this URL manually: $SERVER_URL"
-    exit 0
-  fi
-
-  show_log_hint
-  log "Your default browser should open in a moment."
+  log "Starting Expo..."
+  log "The Expo page will open in your default browser when it is ready."
+  open_browser_when_server_ready
+  (
+    cd "$APP_DIR"
+    EXPO_START_PORT="$SERVER_PORT" npm run start
+  ) || {
+    printf '%s %s\n' "$LOG_PREFIX" "Failed to start Expo." >&2
+    printf '%s %s\n' "$LOG_PREFIX" 'Run `npm run start` manually from:' >&2
+    printf '%s %s\n' "$LOG_PREFIX" "$APP_DIR" >&2
+    exit 1
+  }
 }
 
 main "$@"

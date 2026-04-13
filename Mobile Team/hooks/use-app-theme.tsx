@@ -22,7 +22,7 @@ const AppThemeContext = createContext<AppThemeContextValue | null>(null);
 
 export function AppThemeProvider({ children }: { children: React.ReactNode }) {
   const systemScheme = (useColorScheme() ?? "light") as "light" | "dark";
-  const [theme, setThemeState] = useState<AppTheme>("light");
+  const [theme, setThemeState] = useState<AppTheme>("system");
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {

@@ -37,6 +37,7 @@ import {
   type TransferPlannerStudentCourseEvaluation,
 } from "@/constants/transfer-planner-source";
 import { useAppData } from "@/hooks/use-app-data";
+import { useAppTheme } from "@/hooks/use-app-theme";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { errorLoggingService, transcriptPlannerDebugService } from "@/services";
@@ -1402,9 +1403,16 @@ function SuggestedScheduleCard({
   borderClass: string;
 }) {
   const router = useRouter();
+  const { isLight } = useAppTheme();
   const visibleQuarters = quarters.filter(
     (quarter) => quarter.phase !== "planned" || quarter.courses.length > 0
   );
+  const plannedQuarterBadgeClass = isLight
+    ? `bg-white border ${borderClass}`
+    : "bg-white/5 border-white/10";
+  const plannedCourseContainerClass = isLight
+    ? `bg-white border ${borderClass}`
+    : "bg-white/5 border border-white/10";
 
   return (
     <View className={`${cardClass} border rounded-[28px] p-5`}>
@@ -1472,7 +1480,7 @@ function SuggestedScheduleCard({
                     ? "bg-emerald-500/10 border-emerald-500/20"
                     : quarter.phase === "current"
                       ? "bg-sky-500/10 border-sky-500/20"
-                    : "bg-white/5 border-white/10"
+                    : plannedQuarterBadgeClass
                 }`}
               >
                 <Text
@@ -1504,7 +1512,7 @@ function SuggestedScheduleCard({
                           ? "bg-sky-500/10 border border-sky-500/20"
                           : course.type === "core"
                             ? "bg-emerald-500/10 border border-emerald-500/20"
-                            : "bg-white/5 border border-white/10"
+                            : plannedCourseContainerClass
                     }`}
                   >
                     <View className="flex-row items-start justify-between gap-3">
