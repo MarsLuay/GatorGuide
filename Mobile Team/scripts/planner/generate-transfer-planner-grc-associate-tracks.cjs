@@ -251,12 +251,49 @@ function extractPublicProgramPageMetadata(url, html) {
   };
 }
 
+function getSupportedProgramPageKind(page) {
+  const text = [page.h1, page.programType, page.degree, page.connectorProgramName]
+    .join(" | ")
+    .toLowerCase();
+
+  if (/\bbas\b|\bbachelor of applied science\b/i.test(text)) {
+    return "bas";
+  }
+
+  if (
+    /\bcertificate\b|certificate of completion|certificate of accomplishment|certificate of proficiency/i.test(
+      text
+    )
+  ) {
+    return "certificate";
+  }
+
+  if (
+    /\bassociate\b|\btransfer track\b|\baaa\b|\baas-t\b|\baas\b|\baa-dta\b|\bab-dta\b|\bacs-dta\b|\bapren-dta\b|\bafa\b|\bam-dta\b/i.test(
+      text
+    )
+  ) {
+    return "associate";
+  }
+
+  return null;
+}
+
 function isAssociateProgramPage(page) {
-  const text = [page.h1, page.programType, page.degree].join(" | ").toLowerCase();
-  const includePattern =
-    /\bassociate\b|\btransfer track\b|\baaa\b|\baas-t\b|\baas\b|\baa-dta\b|\bab-dta\b|\bacs-dta\b|\bapren-dta\b|\bafa\b|\bam-dta\b/;
-  const excludePattern = /\bbas\b|\bbachelor\b|\bcertificate\b/;
-  return includePattern.test(text) && !excludePattern.test(text);
+  return getSupportedProgramPageKind(page) === "associate";
+}
+
+function getGeneratedTrackId(page) {
+  const programKind = getSupportedProgramPageKind(page);
+  switch (programKind) {
+    case "bas":
+      return `grc-bas-${page.pagePathSlug}`;
+    case "certificate":
+      return `grc-certificate-${page.pagePathSlug}`;
+    case "associate":
+    default:
+      return `grc-associate-${page.pagePathSlug}`;
+  }
 }
 
 async function getCurrentCatalogRecord() {
@@ -338,6 +375,11 @@ function cleanTrackTitle(rawTitle) {
     /\s*,\s*APreN-DTA\/MRP$/i,
     /\s*,\s*AM-DTA(?:\/MRP)?(?:\s*\([^)]+\))?$/i,
     /\s*,\s*AA-DTA(?:\s*\([^)]+\))?$/i,
+    /\s*,\s*BAS(?:\s*\([^)]+\))?$/i,
+    /\s*,\s*Certificate(?:\s+of\s+(?:Completion|Accomplishment|Proficiency))?$/i,
+    /\s+BAS(?:\s*\([^)]+\))?$/i,
+    /\s+Bachelor of Applied Science$/i,
+    /\s+Certificate(?:\s+of\s+(?:Completion|Accomplishment|Proficiency))?$/i,
   ];
 
   for (const pattern of suffixPatterns) {
@@ -351,6 +393,18 @@ function cleanTrackTitle(rawTitle) {
 
 function inferTrackCode(page) {
   const text = [page.h1, page.degree, page.programType].join(" | ");
+  if (/\bbas\b|bachelor of applied science/i.test(text)) {
+    return "BAS";
+  }
+
+  if (
+    /\bcertificate\b|certificate of completion|certificate of accomplishment|certificate of proficiency/i.test(
+      text
+    )
+  ) {
+    return "Certificate";
+  }
+
   if (/associate in arts-dta|arts-dta|direct transfer agreement/i.test(text)) {
     return "AA-DTA";
   }
@@ -477,8 +531,7 @@ function flattenProgramCores(cores, prefix = []) {
 }
 
 function buildGeneratedTrackSummary(page) {
-  const programType = page.programType ? `${page.programType.toLowerCase()} ` : "";
-  return `Official Green River ${programType}curriculum map for ${page.h1}. Generated automatically from the current public program-map page and catalog API.`;
+  return `${page.h1} curriculum map.`;
 }
 
 function buildGeneratedTrackNotes(page, coreTerms) {
@@ -517,7 +570,7 @@ function buildTrackFromProgramPage(page, program) {
   }
 
   return {
-    id: `grc-associate-${page.pagePathSlug}`,
+    id: getGeneratedTrackId(page),
     code: inferTrackCode(page),
     title: cleanTrackTitle(page.h1),
     summary: buildGeneratedTrackSummary(page),
@@ -539,14 +592,16 @@ function serializeExport(name, typeName, value) {
 
 function buildReportMarkdown(summary, records) {
   const lines = [
-    "# Green River Associate Track Generation",
+    "# Green River Program Track Generation",
     "",
     `Generated: ${summary.generatedAt}`,
     `Current catalog: ${summary.currentCatalogName} (id ${summary.currentCatalogId})`,
     "",
     `- Program-map pages scanned: ${summary.programMapPageCount}`,
     `- Official associate curriculum-map pages discovered: ${summary.officialAssociateTrackCount}`,
+    `- Supported Green River program-map pages discovered: ${summary.officialSupportedProgramCount}`,
     `- Associate curriculum maps with structured connectors: ${summary.connectedAssociateTrackCount}`,
+    `- Supported program maps with structured connectors: ${summary.connectedSupportedProgramCount}`,
     `- Final generated track count: ${summary.generatedTrackCount}`,
     "",
     "## Generated Tracks",
@@ -570,7 +625,7 @@ async function main() {
   const publicProgramMapUrls = getProgramMapUrlsFromSitemap(sitemapXml);
 
   console.log(
-    `Scanning ${publicProgramMapUrls.length} Green River public program-map pages for associate curriculum maps...`
+    `Scanning ${publicProgramMapUrls.length} Green River public program-map pages for supported curriculum maps...`
   );
   const publicPages = await mapWithConcurrency(
     publicProgramMapUrls,
@@ -582,8 +637,11 @@ async function main() {
     }
   );
 
-  const associatePages = publicPages.filter((page) => isAssociateProgramPage(page));
-  console.log(`Associate curriculum-map candidates found: ${associatePages.length}`);
+  const supportedPages = publicPages.filter((page) => getSupportedProgramPageKind(page) !== null);
+  const associatePages = supportedPages.filter((page) => isAssociateProgramPage(page));
+  console.log(
+    `Supported curriculum-map candidates found: ${supportedPages.length} (${associatePages.length} associate).`
+  );
 
   const currentCatalog = await getCurrentCatalogRecord();
   console.log(`Using current Green River catalog ${currentCatalog.name} (${currentCatalog.id}).`);
@@ -593,20 +651,21 @@ async function main() {
     catalogPrograms.map((program) => [String(program?.name ?? "").trim(), program])
   );
 
-  const officialAssociateTrackRecords = await mapWithConcurrency(
-    associatePages,
+  const officialProgramTrackRecords = (await mapWithConcurrency(
+    supportedPages,
     PROGRAM_FETCH_CONCURRENCY,
     async (page, index) => {
+      const programKind = getSupportedProgramPageKind(page) ?? "program";
       const programSummary = getProgramByConnectorName(catalogPrograms, page);
       if (!programSummary) {
         console.log(
-          `[${index + 1}/${associatePages.length}] associate curriculum maps fetched - ${page.pagePathSlug} (skipped: no structured curriculum-map connector)`
+          `[${index + 1}/${supportedPages.length}] ${programKind} curriculum maps fetched - ${page.pagePathSlug} (skipped: no structured curriculum-map connector)`
         );
         return null;
       }
 
       console.log(
-        `[${index + 1}/${associatePages.length}] associate curriculum maps fetched - ${page.pagePathSlug}`
+        `[${index + 1}/${supportedPages.length}] ${programKind} curriculum maps fetched - ${page.pagePathSlug}`
       );
 
       const program = await fetchJson(
@@ -623,14 +682,14 @@ async function main() {
     }
   )).filter(Boolean);
 
-  officialAssociateTrackRecords.sort((left, right) => {
+  officialProgramTrackRecords.sort((left, right) => {
     if (left.track.id !== right.track.id) {
       return left.track.id.localeCompare(right.track.id);
     }
     return left.page.url.localeCompare(right.page.url);
   });
 
-  const finalTracks = officialAssociateTrackRecords
+  const finalTracks = officialProgramTrackRecords
     .map((record) => record.track)
     .map((track) => normalizeGeneratedTrack(track));
 
@@ -640,14 +699,19 @@ async function main() {
     currentCatalogName: String(currentCatalog.name ?? "").trim(),
     programMapPageCount: publicPages.length,
     officialAssociateTrackCount: associatePages.length,
-    connectedAssociateTrackCount: officialAssociateTrackRecords.length,
+    officialSupportedProgramCount: supportedPages.length,
+    connectedAssociateTrackCount: officialProgramTrackRecords.filter((record) =>
+      isAssociateProgramPage(record.page)
+    ).length,
+    connectedSupportedProgramCount: officialProgramTrackRecords.length,
     generatedTrackCount: finalTracks.length,
   };
 
   const reportPayload = {
     summary,
-    records: officialAssociateTrackRecords.map((record) => ({
+    records: officialProgramTrackRecords.map((record) => ({
       page: record.page,
+      programKind: getSupportedProgramPageKind(record.page),
       connectorProgramName: record.page.connectorProgramName,
       catalogProgramId: Number(record.program?.id ?? 0),
       catalogProgramName: String(record.program?.name ?? "").trim(),
@@ -667,20 +731,20 @@ ${serializeExport(
 )}
 ${serializeExport(
   "TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACK_SUMMARY",
-  "{ generatedAt: string; currentCatalogId: number; currentCatalogName: string; programMapPageCount: number; officialAssociateTrackCount: number; connectedAssociateTrackCount: number; generatedTrackCount: number; }",
+  "{ generatedAt: string; currentCatalogId: number; currentCatalogName: string; programMapPageCount: number; officialAssociateTrackCount: number; officialSupportedProgramCount: number; connectedAssociateTrackCount: number; connectedSupportedProgramCount: number; generatedTrackCount: number; }",
   summary
 )}
 `;
 
   fs.writeFileSync(OUTPUT_PATH, fileContents);
   fs.writeFileSync(REPORT_JSON_PATH, JSON.stringify(reportPayload, null, 2));
-  fs.writeFileSync(REPORT_MD_PATH, buildReportMarkdown(summary, officialAssociateTrackRecords));
+  fs.writeFileSync(REPORT_MD_PATH, buildReportMarkdown(summary, officialProgramTrackRecords));
 
   console.log(`Wrote ${OUTPUT_PATH}`);
   console.log(`JSON report: ${REPORT_JSON_PATH}`);
   console.log(`Markdown report: ${REPORT_MD_PATH}`);
   console.log(
-    `Official associate curriculum maps: ${summary.officialAssociateTrackCount}; final generated tracks: ${summary.generatedTrackCount}.`
+    `Official supported program maps: ${summary.officialSupportedProgramCount}; final generated tracks: ${summary.generatedTrackCount}.`
   );
 }
 

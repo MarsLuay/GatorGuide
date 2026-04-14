@@ -1,18 +1,15 @@
 # Green River Associate Track Generation
 
-Generated: 2026-04-13T09:24:57.483Z
+Generated: 2026-04-13T22:36:51.348Z
 Current catalog: 2025-2026 Catalog (id 11)
 
 - Program-map pages scanned: 147
-- Official associate curriculum maps discovered: 85
-- Official associate tracks with compatibility ID/code/title mapping: 3
-- Final generated track count: 85
+- Official associate curriculum-map pages discovered: 85
+- Associate curriculum maps with structured connectors: 84
+- Final generated track count: 84
 
 ## Generated Tracks
 
-- `999O` | `999O` | AST2 / MRP Bioengineering and Chemical Engineering (https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/engineering/associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering.html)
-- `999P` | `999P` | AST2 / MRP Computer and Electrical Engineering (https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/engineering/associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering.html)
-- `999Q` | `999Q` | AST2 / MRP Civil and Mechanical Engineering (https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/engineering/associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering.html)
 - `grc-associate-business-entrepreneurship-accounting-aaa` | `AAA` | Accounting (https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/accounting/aaa.html)
 - `grc-associate-business-entrepreneurship-administrative-assistant-aaa` | `AAA` | Administrative Assistant (https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/administrative-assistant/aaa.html)
 - `grc-associate-business-entrepreneurship-business-ab-dta-mrp` | `AB-DTA/MRP` | Associate in Business (https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/business/ab-dta-mrp.html)
@@ -58,7 +55,6 @@ Current catalog: 2025-2026 Catalog (id 11)
 - `grc-associate-healthcare-wellness-medical-office-administration-aaa-emphasis-front-office` | `AAA` | Medical Office Administration, AAA with emphasis in Front Office (https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/medical-office-administration/aaa-emphasis-front-office.html)
 - `grc-associate-healthcare-wellness-medical-office-administration-aaa-emphasis-medical-coding-reimbursement` | `AAA` | Medical Office Administration, AAA with emphasis in Medical Coding and Reimbursement (https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/medical-office-administration/aaa-emphasis-medical-coding-reimbursement.html)
 - `grc-associate-healthcare-wellness-nursing-associate-in-pre-nursing-apren-dta-mrp` | `AA-DTA` | Associate in Pre-Nursing (https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/associate-in-pre-nursing-apren-dta-mrp.html)
-- `grc-associate-healthcare-wellness-nursing-medical-assistant-certified-practical-nursing` | `Associate` | Medical Assistant-Certified (MA-C) to Practical Nursing (PN) (https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/medical-assistant-certified-practical-nursing.html)
 - `grc-associate-healthcare-wellness-nursing-practical-nursing-aas` | `AAS` | Practical Nursing (https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/practical-nursing-aas.html)
 - `grc-associate-healthcare-wellness-nursing-practical-nursing-aas-part-time-hybrid` | `AAS` | Practical Nursing, AAS Part-time (Hybrid) (https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/practical-nursing-aas-part-time-hybrid.html)
 - `grc-associate-healthcare-wellness-nursing-practical-nursing-aas-part-time-online` | `AAS` | Practical Nursing, AAS Part-time (Online) (https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/practical-nursing-aas-part-time-online.html)
@@ -72,6 +68,9 @@ Current catalog: 2025-2026 Catalog (id 11)
 - `grc-associate-stem-cybersecurity-networking-cybersecurity-and-networking-aas-t` | `AAS-T` | Cybersecurity and Networking (https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/cybersecurity-and-networking-aas-t.html)
 - `grc-associate-stem-data-analytics-software-development-aas-t-business-management-track` | `AAS-T` | Data Analytics and Software Development, AAS-T Business Management Track (https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/data-analytics-software-development/aas-t-business-management-track.html)
 - `grc-associate-stem-data-analytics-software-development-aas-t-software-development-track` | `AAS-T` | Data Analytics and Software Development, AAS-T Software Development Track (https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/data-analytics-software-development/aas-t-software-development-track.html)
+- `grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering` | `AST-2` | Transfer Track 2-Bioengineering and Chemical Engineering (https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/engineering/associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering.html)
+- `grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering` | `AST-2/MRP` | Transfer Track 2/MRP-Civil and Mechanical Engineering (https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/engineering/associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering.html)
+- `grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering` | `AST-2/MRP` | Transfer Track 2/MRP-Computer and Electrical Engineering (https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/engineering/associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering.html)
 - `grc-associate-stem-mathematics-math-curriculum-map-aa-dta-math-emphasis` | `AA-DTA` | Math Education (https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/mathematics/math-curriculum-map-AA-DTA-math-emphasis.html)
 - `grc-associate-stem-mathematics-math-curriculum-map-aa-dta-statistics` | `AA-DTA` | Math Education (https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/mathematics/math-curriculum-map-AA-DTA-statistics.html)
 - `grc-associate-stem-mathematics-math-curriculum-map-am-dta-mrp` | `AA-DTA` | Math Education (https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/mathematics/math-curriculum-map--am-dta-mrp.html)

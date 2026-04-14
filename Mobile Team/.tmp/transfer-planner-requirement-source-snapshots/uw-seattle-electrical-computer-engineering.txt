@@ -291,8 +291,6 @@ English Composition: In order to transfer English composition to the University 
 ENGR 101 — 1 credit
 Enriching Your Path
 Environmental Sustainability and Energy
-Event Photos
-Events Calendar
 Extracurricular activities or employment experiences.
 Facebook
 Faculty
@@ -596,6 +594,8 @@ Use the UW Equivalency Guide to determine course equivalency.
 UW Department of Electrical & Computer Engineering
 UW ECE Entrepreneurial Fellows Program
 UW ECE Entrepreneurial Fellows Program (UW ECE-EFP)
+UW ECE Event Photos
+UW ECE Events Calendar
 UW ECE holds monthly information sessions for prospective students where advisers provide information on admissions, curriculum, electrical and computer engineering as a profession and more. Information sessions are open to anyone interested in pursuing a bachelors degree in electrical and computer engineering.
 UW ECE Launches New BSECE Degree Program
 UW ECE Undergraduate Program Mission Objectives and Outcomes
@@ -633,4 +633,5 @@ Yes. The advancement of computing technology over the last few decades has trans
 You may find a syllabus for most UW courses via Google search or on the department’s website. If you cannot find the syllabus, you can use the course catalog to compare a description of the UW course (here are some common course catalogs you can reference: Math , Physics , Computer Science & Engineering , English ).
 You may want to consider coursework in the following pathways:
 YouTube
+Zoom link
 Zoom link: https://washington.zoom.us/j/94286970610

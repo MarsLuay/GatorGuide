@@ -8,9 +8,7 @@ Title: Major Requirements | School of Aquatic and Fishery Sciences
 [Supplemental official source] Honors Requirements
 [Supplemental official source] Undergraduate Capstone Project
 *FISH 460 is a replacement for FISH 324, which is no longer offered. Students wishing to use FISH 460 for Ad Hoc Honors will need to work with the SAFS adviser to submit an exception request to UW Honors.
-&#103;&#106;&#101;ns&#101;n&#64;uw&#46;edu
-&#115;&#97;fs&#100;&#101;&#115;&#107;&#64;u&#46;was&#104;&#105;ngton&#46;&#101;&#100;u
-&#115;&#97;fsd&#101;s&#107;&#64;&#117;&#46;&#119;&#97;sh&#105;&#110;gt&#111;n&#46;ed&#117;
+&#103;&#106;e&#110;se&#110;&#64;u&#119;.&#101;&#100;&#117;
 &copy; 2026 University of Washington |
 <!--
 <svg id="college_black_logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -190,7 +188,9 @@ Research
 Research opportunities provided by a field site program (e.g., Alaska Salmon Program, Friday Harbor Labs)
 Research questions provided by a faculty member
 Research Staff
-sa&#102;&#115;d&#101;&#115;k&#64;&#117;.&#119;a&#115;hi&#110;gton.&#101;du
+s&#97;f&#115;desk&#64;&#117;&#46;&#119;as&#104;&#105;&#110;&#103;&#116;on&#46;&#101;&#100;u
+sa&#102;s&#100;e&#115;&#107;&#64;&#117;.wa&#115;&#104;i&#110;gt&#111;n.e&#100;&#117;
+sa&#102;sd&#101;sk&#64;u.&#119;as&#104;i&#110;g&#116;&#111;n.e&#100;u
 SAFS majors are required to complete both the College of Environment&#8217;s General Education requirements and the School&#8217;s degree requirements listed below. These requirements lead to a Bachelor of Science degree, with a major in Aquatic Conservation and Ecology (ACE), or a major in Aquatic and Fishery Sciences (AFS).
 SAFS majors completing departmental honors must complete the following requirements in addition to the standard degree requirements in the major:
 SAFS offers outstanding students the opportunity to complete Departmental Honors for a greater intellectual challenge and to explore the major in new and creative ways.

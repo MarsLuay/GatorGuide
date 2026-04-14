@@ -2,6 +2,7 @@ Owner: uw-seattle-business-administration
 Source: https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/options/
 Title: Majors | Foster School of Business
 
+-->
 [Supplemental official source] Certificates and Special Programs
 [Supplemental official source] Curriculum
 [Supplemental official source] Foster undergraduate curriculum
@@ -21,6 +22,7 @@ Title: Majors | Foster School of Business
 *No more than 4 credits worth of ENTRE-related coursework outside of Foster will be accepted towards the ENTRE minor
 *Required accounting courses, ECON 200 Microeconomics, and Entre 370 Intro to Entrepreneurship are available each quarter during the academic year.
 © 2026 Foster School of Business , University of Washington | Seattle, WA
+<!--
 09:00-10:20
 2 Weeks Before First Day of the Quarter
 29-31 credits (6-7 courses) depending on the track you choose. Track one is 31 credits for students who choose to take ACCTG 215: Financial Accounting and ACCTG 225: Managerial Accounting as their Accounting prerequisite. Track two is 29 credits for students who choose to only take ACCTG 219: Essentials of Accounting as their Accounting prerequisite.
@@ -65,6 +67,7 @@ Application and Admission FAQs
 Application details
 Application Periods
 Application Requirements
+Apply
 Apply Contact Alumni Give CLOSE
 Apply Now
 Apply to Minor
@@ -115,6 +118,7 @@ Certificate of International Studies in Business (CISB) is a rigorous, integrati
 Certificates and Special Programs
 Certification Programs
 Check the Business Minor website for general information.
+CLOSE
 Complete the online application .
 Comprehensive Programs
 Consulting and Business Development Center
@@ -249,6 +253,7 @@ Foster’s location gives marketing undergrads the opportunity to explore real-w
 Fostering Community
 Frequently Asked Questions
 General Education Designations:
+Give
 Give to Foster
 Global Business Center
 Global Innovation Exchange

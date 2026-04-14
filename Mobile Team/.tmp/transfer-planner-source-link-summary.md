@@ -1,22 +1,22 @@
 # Transfer Planner Source Link Summary
 
-Generated: 2026-04-13T02:34:59.836Z
+Generated: 2026-04-13T22:44:28.475Z
 
-- Total tracked source URLs: 466
-- Reachable: 464
-- Failed: 2
-- Added since previous snapshot: 90
-- Changed since previous snapshot: 209
-- Removed since previous snapshot: 2
+- Total tracked source URLs: 484
+- Reachable: 484
+- Failed: 0
+- Added since previous snapshot: 0
+- Changed since previous snapshot: 118
+- Removed since previous snapshot: 0
 
 ## Changed URLs
 
-- http://www.washington.edu/students/gencat/program/S/CinemaandMediaStudies-132.html
-  - owners: uw-seattle-cinema-and-media-studies
 - https://acms.washington.edu/admissions
   - owners: uw-seattle-applied-and-computational-mathematical-sciences
 - https://acms.washington.edu/program-requirements-and-information
   - owners: uw-seattle-applied-and-computational-mathematical-sciences
+- https://admissions.uwb.edu/register/mpw-aes
+  - owners: uw-bothell-american-and-ethnic-studies
 - https://admissions.uwb.edu/register/mpw-CLA
   - owners: uw-bothell-culture-literature-and-the-arts
 - https://admissions.uwb.edu/register/mpw-compe
@@ -25,16 +25,22 @@ Generated: 2026-04-13T02:34:59.836Z
   - owners: uw-bothell-conservation-and-restoration-science
 - https://admissions.uwb.edu/register/mpw-csse
   - owners: uw-bothell-csse, uw-bothell-csse-information-assurance-and-cybersecurity
+- https://admissions.uwb.edu/register/mpw-DataVis-BA
+  - owners: uw-bothell-data-visualization-ba
 - https://admissions.uwb.edu/register/mpw-DataVis-BS
   - owners: uw-bothell-data-visualization-bs
 - https://admissions.uwb.edu/register/mpw-EE
   - owners: uw-bothell-electrical-engineering
+- https://admissions.uwb.edu/register/mpw-hs
+  - owners: uw-bothell-health-studies
 - https://admissions.uwb.edu/register/mpw-me
   - owners: uw-bothell-mechanical-engineering
 - https://admissions.uwb.edu/register/mpw-psy
   - owners: uw-bothell-psychology
 - https://aes.washington.edu/ba-american-ethnic-studies
   - owners: uw-seattle-american-ethnic-studies
+- https://ais.washington.edu/ba-american-indian-studies
+  - owners: uw-seattle-american-indian-studies
 - https://ais.washington.edu/undergraduate-programs
   - owners: uw-seattle-american-indian-studies
 - https://amath.washington.edu/undergraduate-major-applied-mathematics
@@ -63,6 +69,8 @@ Generated: 2026-04-13T02:34:59.836Z
   - owners: uw-seattle-south-asian-languages-and-cultures
 - https://astro.washington.edu/advising
   - owners: uw-seattle-astronomy
+- https://astro.washington.edu/timeline-and-requirements
+  - owners: uw-seattle-astronomy
 - https://astro.washington.edu/undergraduate-program
   - owners: uw-seattle-astronomy
 - https://catalog.greenriver.edu/
@@ -83,21 +91,4 @@ Generated: 2026-04-13T02:34:59.836Z
   - owners: uw-seattle-classical-studies
 - https://classics.washington.edu/ba-classics
   - owners: uw-seattle-classics
-- https://classics.washington.edu/ba-greek
-  - owners: uw-seattle-greek
-- https://classics.washington.edu/ba-latin
-  - owners: uw-seattle-latin
-- https://disabilitystudies.washington.edu/
-  - owners: uw-seattle-disability-studies
-- https://disabilitystudies.washington.edu/DS_major
-  - owners: uw-seattle-disability-studies
-
-## Failed URLs
-
-- https://evans.uw.edu/undergraduate-programs/public-service-and-policy-major/
-  - owners: uw-seattle-public-service-and-policy
-  - error: fetch failed
-- https://evans.uw.edu/undergraduate-programs/public-service-and-policy-major/major-requirements/
-  - owners: uw-seattle-public-service-and-policy
-  - error: fetch failed
 

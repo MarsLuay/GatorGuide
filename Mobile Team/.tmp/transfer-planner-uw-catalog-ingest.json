@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-13T03:20:32.514Z",
+  "generatedAt": "2026-04-13T23:16:30.081Z",
   "catalogYearLabel": "current-uw-course-catalog",
   "relevantCourseCount": 1039,
   "courseCount": 915,
@@ -12,10 +12,10 @@
       "label": "UW Seattle",
       "indexUrl": "https://www.washington.edu/students/crscat/",
       "indexSnapshotPath": "C:\\Users\\Marwan\\GatorGuide\\Mobile Team\\.tmp\\transfer-planner-catalog-snapshots\\uw-seattle-course-index.html",
-      "sourceFingerprint": "295ab6551d24a156aaa130a2cec74c5a3c32137c9a19c9f69405834d5487eb14",
+      "sourceFingerprint": "1f5fb000c9c02a1c578ad93b7248d1ce76e5d6d03b7ad37c367eeb6641d370f9",
       "usedIndexSnapshotFallback": false,
       "indexSnapshotFallbackReason": null,
-      "subjectSnapshotFallbackCount": 0,
+      "subjectSnapshotFallbackCount": 1,
       "relevantCourseCount": 699,
       "subjectCount": 119,
       "parsedSubjectPages": [
@@ -24,7 +24,7 @@
           "url": "https://www.washington.edu/students/crscat/aa.html",
           "wantedCourseCount": 22,
           "parsedCourseCount": 22,
-          "sourceFingerprint": "7a5fba118044016c513bf0148e9ed3d5aa194ba9aed45c4fed4df7cff05fd8da",
+          "sourceFingerprint": "e4fd98d4db12920c7fc1267c44ad8f600b97c31bdc1eb4a64c1e53867cd5e845",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -33,7 +33,7 @@
           "url": "https://www.washington.edu/students/crscat/asamst.html",
           "wantedCourseCount": 1,
           "parsedCourseCount": 1,
-          "sourceFingerprint": "4afc2bbab1160ba4d2b74d6eb103faf95340ace24604ef177dd62d97b274781a",
+          "sourceFingerprint": "01b118c88087513fa0eb8007285db10489d2c5429d9ce22327e5655bdb84fb24",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -42,7 +42,7 @@
           "url": "https://www.washington.edu/students/crscat/acctg.html",
           "wantedCourseCount": 2,
           "parsedCourseCount": 2,
-          "sourceFingerprint": "ad9be5ffae71687e0aba0df5b4f74fb485aa3ef0ecc614e51f7634f9be2bee1a",
+          "sourceFingerprint": "b07b4cb1b0c02ee215708681d024ff960c588b0ae4edc95a81d4628ac7562be3",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -51,7 +51,7 @@
           "url": "https://www.washington.edu/students/crscat/aes.html",
           "wantedCourseCount": 3,
           "parsedCourseCount": 3,
-          "sourceFingerprint": "af8ad27653b36799ef998b48d0fc8abf240f95b1c3072fb0969541787653dc94",
+          "sourceFingerprint": "5075b9418ca3e822e1f539862c35666116876fc0a2ade2ec370f6dc0f8a68239",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -60,7 +60,7 @@
           "url": "https://www.washington.edu/students/crscat/afamst.html",
           "wantedCourseCount": 1,
           "parsedCourseCount": 1,
-          "sourceFingerprint": "a46a17fe59b84d75b0ca76365f01d16f28840673b6162471907de818d9fec499",
+          "sourceFingerprint": "39cf22deae82df84e6c3e5a287ed136a81ab4389ab6c148d46f8d4531c64326a",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -69,7 +69,7 @@
           "url": "https://www.washington.edu/students/crscat/ais.html",
           "wantedCourseCount": 7,
           "parsedCourseCount": 7,
-          "sourceFingerprint": "4bec475a1a6ff89b8a12f582f4a7d0fbbfc5ef589efca3fc51d2c372f05f6093",
+          "sourceFingerprint": "b8238dea8dd10104de1ce7ffe885f0f22674d5f77f3961ebd65b091cd27be6ed",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -96,7 +96,7 @@
           "url": "https://www.washington.edu/students/crscat/archit.html",
           "wantedCourseCount": 32,
           "parsedCourseCount": 24,
-          "sourceFingerprint": "f0e4d64f629fedf2e243186b910b61a721477c387f6b5cef3560e943df995ce2",
+          "sourceFingerprint": "3225c68aafcd2bd9efa6c4e547b464738844d59bfc26f9a5f5bb2b632fccb88b",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -105,7 +105,7 @@
           "url": "https://www.washington.edu/students/crscat/archeo.html",
           "wantedCourseCount": 1,
           "parsedCourseCount": 1,
-          "sourceFingerprint": "85800998147d2957aeb98d601ff143a2637ee4354fd4163026ca81f7f38a371d",
+          "sourceFingerprint": "7168b19a5f975c67bb5c1539262522a8a1cf39d2b40b7aadcbddb423c4f29135",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -114,7 +114,7 @@
           "url": "https://www.washington.edu/students/crscat/art.html",
           "wantedCourseCount": 18,
           "parsedCourseCount": 18,
-          "sourceFingerprint": "70d120796bfd6f93ecbb0de86e78ad6bd2b6f728707c4abe60f13c252000598c",
+          "sourceFingerprint": "0ea4e56ffb7adcb12d1b7337b904573dde4c167b64646009689a01220886de06",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -123,7 +123,7 @@
           "url": "https://www.washington.edu/students/crscat/asianll.html",
           "wantedCourseCount": 1,
           "parsedCourseCount": 1,
-          "sourceFingerprint": "ae95ee5697459af1baf1dbf6c6c0decf4d92309fa0d57e61c6d038be304677d8",
+          "sourceFingerprint": "e8b70fb872a1a70d2c530ce4d4ed11db3ad5ea4653b5a19f55d4b9df5c8cfec7",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -132,7 +132,7 @@
           "url": "https://www.washington.edu/students/crscat/astro.html",
           "wantedCourseCount": 8,
           "parsedCourseCount": 8,
-          "sourceFingerprint": "9ca6d0b68bcb3696fe959294e3fabc3b329a30e91492d905d1a0d48d1fee7a88",
+          "sourceFingerprint": "7b877fb5b26bb373df3f5c94c4036f23adcd2e316bc4db8c3cc07f0111169d93",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -141,7 +141,7 @@
           "url": "https://www.washington.edu/students/crscat/atmoscs.html",
           "wantedCourseCount": 15,
           "parsedCourseCount": 15,
-          "sourceFingerprint": "2262fa5c69d12fea092ee7d2395247bfc13370c7fd1762a589bdbd96fcecb2ff",
+          "sourceFingerprint": "7c46a886e28481ff4726a1822b5b6ed94e3678e06787aa194ac8f60551d1e006",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -150,7 +150,7 @@
           "url": "https://www.washington.edu/students/crscat/bime.html",
           "wantedCourseCount": 2,
           "parsedCourseCount": 2,
-          "sourceFingerprint": "7242f31735e3afbb5c16c2f680bfc84531b1d31652a9c670cc5510ae7e2bdad5",
+          "sourceFingerprint": "888806b1e11dd34b9ec337edd15e8a36d134c9aa25470bef7a22187312809cab",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -159,7 +159,7 @@
           "url": "https://www.washington.edu/students/crscat/bioch.html",
           "wantedCourseCount": 3,
           "parsedCourseCount": 3,
-          "sourceFingerprint": "af06526d179dda9c837fafc2176e8e091a940c38f6d6e344469e6bb3e9781379",
+          "sourceFingerprint": "2d2c7ef6fd678f442392ec7cb5e95f706800cc57c89f95dd3969b87e6d357920",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -204,7 +204,7 @@
           "url": "https://www.washington.edu/students/crscat/cfrm.html",
           "wantedCourseCount": 3,
           "parsedCourseCount": 3,
-          "sourceFingerprint": "54e54e5df5ce22443e4418a2e7ec1dcea275508fa82ecf1a59bb84f181f69e94",
+          "sourceFingerprint": "b342132a63ff8d30cd93bf20ddf8ce81bfce0bf1523d62039f779ce4d0f72a56",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -213,7 +213,7 @@
           "url": "https://www.washington.edu/students/crscat/chem.html",
           "wantedCourseCount": 14,
           "parsedCourseCount": 13,
-          "sourceFingerprint": "d20cdb288638772ade39d46cd3a0bdc468a3b2106c4003e56df4a9f03fce474f",
+          "sourceFingerprint": "b17ac8b5032367817ae0144fd460c0f8145fc958a223344fae9b47384761373e",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -222,7 +222,7 @@
           "url": "https://www.washington.edu/students/crscat/chinese.html",
           "wantedCourseCount": 7,
           "parsedCourseCount": 7,
-          "sourceFingerprint": "08863a57cb97e6d012d917feb8cf2b954fc180e0464ee5bd6bf436b140b52242",
+          "sourceFingerprint": "cb3bf712f8de9f319d724c13850f601e1cfc59017acd476a27f12f5591bc343a",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -258,7 +258,7 @@
           "url": "https://www.washington.edu/students/crscat/cms.html",
           "wantedCourseCount": 17,
           "parsedCourseCount": 17,
-          "sourceFingerprint": "455f64783d99770e21f94a6c082dcbebff67edfde0a9d20214b78c253516030b",
+          "sourceFingerprint": "6977060cb5f3e5c94400e2179e0535f40540ebea3d8b88d9af9ffe235d1bdde4",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -267,7 +267,7 @@
           "url": "https://www.washington.edu/students/crscat/cse.html",
           "wantedCourseCount": 17,
           "parsedCourseCount": 17,
-          "sourceFingerprint": "8897374632d3e8026fc86d7a45dd2b92bdfa5f751fe5910a4de23f533fba4b6f",
+          "sourceFingerprint": "a54fc95b64fb11b67b649d48ffd76cc7bab09ebdc300ac3943f1721d188f79a5",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -294,7 +294,7 @@
           "url": "https://www.washington.edu/students/crscat/ee.html",
           "wantedCourseCount": 17,
           "parsedCourseCount": 17,
-          "sourceFingerprint": "aec5e5cb2c454e036cc7287af4936565ff0fb03579e60e92f1555060c639e928",
+          "sourceFingerprint": "0d282855998764a1122892aa933a02cb8acd802fa193998038eb7a199fd7cc1d",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -321,7 +321,7 @@
           "url": "https://www.washington.edu/students/crscat/epidem.html",
           "wantedCourseCount": 1,
           "parsedCourseCount": 1,
-          "sourceFingerprint": "b22b071afddedbb2bdd90ff0acfe3685a796e26ce2d3eb508f09c31b56d00724",
+          "sourceFingerprint": "6798cda9a04b017f7152bb156558974defa73ce19ce6aa29bf9035459377d1d6",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -330,7 +330,7 @@
           "url": "https://www.washington.edu/students/crscat/esrm.html",
           "wantedCourseCount": 11,
           "parsedCourseCount": 11,
-          "sourceFingerprint": "8bcc4022e44fbfe86d2c39e9cf0cbaafaf8b15ebe42961cfb0b1a293f3c7c35f",
+          "sourceFingerprint": "6896511497f8fc6e0b252d4f4c02d9942d7fd358abb7e91c7b2fdcb01517e667",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -339,7 +339,7 @@
           "url": "https://www.washington.edu/students/crscat/ess.html",
           "wantedCourseCount": 7,
           "parsedCourseCount": 4,
-          "sourceFingerprint": "181829c78ab2745be50174ca51c4b68686e8e71b01f19ee378f7c3636e0ecfbc",
+          "sourceFingerprint": "e576eb5b16edf5fb3d499a97a2dec7ad4a589c5f927f07081fdfca0fa252bfe8",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -348,7 +348,7 @@
           "url": "https://www.washington.edu/students/crscat/fhl.html",
           "wantedCourseCount": 1,
           "parsedCourseCount": 1,
-          "sourceFingerprint": "28cf071a37408d6dbf5cc994a74cc71aaa1e16a03c79f122c48ef567f5fccde0",
+          "sourceFingerprint": "323c4a085ea91333f202866061c74577bf1d9b092cfca044711ccdd05ae2e32f",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -357,7 +357,7 @@
           "url": "https://www.washington.edu/students/crscat/finance.html",
           "wantedCourseCount": 1,
           "parsedCourseCount": 1,
-          "sourceFingerprint": "b8814b8fc7ad21a8a3538cb2a01f6ce444ab970a01e2d1a6ee015b7ae33f0177",
+          "sourceFingerprint": "4fcfc1e31f41c18867be3281be209300670325c856fc216ddf8d3d69be1b9a54",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -366,7 +366,7 @@
           "url": "https://www.washington.edu/students/crscat/finnish.html",
           "wantedCourseCount": 5,
           "parsedCourseCount": 5,
-          "sourceFingerprint": "d53b170cac4402eb4ba30bf82e56deb95e36d732999ea9d60f866493bd776bff",
+          "sourceFingerprint": "475075348898574e1475fcc506943be5443656b64181690dc363485c2f27b61f",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -375,7 +375,7 @@
           "url": "https://www.washington.edu/students/crscat/fish.html",
           "wantedCourseCount": 19,
           "parsedCourseCount": 19,
-          "sourceFingerprint": "5ff5b580e9514c7e349e01d16da283dc567924270ad7c0408997aa27b71283cc",
+          "sourceFingerprint": "d15718b28dcb7842acc1ffe45b1aebdc6ad4f483098531800bfbd1fc2e6e38da",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -384,7 +384,7 @@
           "url": "https://www.washington.edu/students/crscat/french.html",
           "wantedCourseCount": 6,
           "parsedCourseCount": 5,
-          "sourceFingerprint": "7c1161ea5692b4744e27f474fb384a58f68437fa0d047cf5fcc5477409ea283f",
+          "sourceFingerprint": "5ea7515838abf3f62ec8e8311c609230bf9d1f00fd31875f6b21b278a5c53d5e",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -393,7 +393,7 @@
           "url": "https://www.washington.edu/students/crscat/geog.html",
           "wantedCourseCount": 2,
           "parsedCourseCount": 2,
-          "sourceFingerprint": "4d94ca7cee0a7d34f02f6644144792e073828bc67b23671a4905e486493b45d5",
+          "sourceFingerprint": "ad2e4083595ecb50de8b0d37fa5b0e746334828c76a1856a0350a9f70fa7f5f3",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -402,7 +402,7 @@
           "url": "https://www.washington.edu/students/crscat/germ.html",
           "wantedCourseCount": 6,
           "parsedCourseCount": 6,
-          "sourceFingerprint": "69bca47307768827dbb6b196339315e8d03326e166fa5904117e32245bd2d31c",
+          "sourceFingerprint": "9ba9c90e40ee13cfdfd8f7483c6a0c479f225b3e23594bd88d18fef81e397cd5",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -411,7 +411,7 @@
           "url": "https://www.washington.edu/students/crscat/glits.html",
           "wantedCourseCount": 5,
           "parsedCourseCount": 5,
-          "sourceFingerprint": "00963f586dd6d0d7839b84c2ab238409ab2875ebefd86c2018dcaf12d7908f2c",
+          "sourceFingerprint": "80d2cbaacee190654ed300ea86cd862c6261b3d6938cb10552041ff71930b58a",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -420,7 +420,7 @@
           "url": "https://www.washington.edu/students/crscat/greek.html",
           "wantedCourseCount": 3,
           "parsedCourseCount": 3,
-          "sourceFingerprint": "01d2d8a9f3faf4a04c295438126545a9acd3a212c9317864cadcef2c40525632",
+          "sourceFingerprint": "16861f74913cfed52b596183ef5ba2a89baa3e39cf7fbedefd781e34c9409667",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -429,7 +429,7 @@
           "url": "https://www.washington.edu/students/crscat/gwss.html",
           "wantedCourseCount": 9,
           "parsedCourseCount": 8,
-          "sourceFingerprint": "6be1053ffae9fa5d3dbeeefbd80c3cd355fc222910518926880efe8bdb3634a6",
+          "sourceFingerprint": "c5a41b38396e42cfb022ff044db2b4436476813c69a9702cc58fe4534dbb36af",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -438,7 +438,7 @@
           "url": "https://www.washington.edu/students/crscat/hcde.html",
           "wantedCourseCount": 7,
           "parsedCourseCount": 7,
-          "sourceFingerprint": "6acd6386faedb918cdacca68bc804eb89e0b0756908c96417901304b11653052",
+          "sourceFingerprint": "f934ffd974c52d2bbb14524740dc392a1327636d7074e7773e988f86857aab7b",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -447,7 +447,7 @@
           "url": "https://www.washington.edu/students/crscat/hnrs.html",
           "wantedCourseCount": 1,
           "parsedCourseCount": 0,
-          "sourceFingerprint": "ca646c1e7d7b1e8cc61ccfab90816dcff77f56b4788496848a3237b399a4b4ec",
+          "sourceFingerprint": "488ff868b8cf00b96d4e44a7c32a88601f5fd99dbb45f28c0fe02bb148f868bb",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -456,7 +456,7 @@
           "url": "https://www.washington.edu/students/crscat/hps.html",
           "wantedCourseCount": 1,
           "parsedCourseCount": 1,
-          "sourceFingerprint": "0d61beb6ca5077c944f90848c3c4f1826df627f6baec4947506fe244175cc98a",
+          "sourceFingerprint": "27a0486ba3bcabb700e251413bc760098045938774264579c688c02b6e159e2a",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -465,7 +465,7 @@
           "url": "https://www.washington.edu/students/crscat/hstcmp.html",
           "wantedCourseCount": 4,
           "parsedCourseCount": 3,
-          "sourceFingerprint": "506345f9d54a1b4a436362bbcff366a9216d6896991858118a76abaa78bfd393",
+          "sourceFingerprint": "20c272db516d0b753f0fa846bd2d37fe4a33e776a49d7af61f0b91b4aa11f81e",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -474,7 +474,7 @@
           "url": "https://www.washington.edu/students/crscat/hstry.html",
           "wantedCourseCount": 1,
           "parsedCourseCount": 1,
-          "sourceFingerprint": "374e42ab2fbe5ea166f57341d262646f0f55a0a494790acc11f6b25696717076",
+          "sourceFingerprint": "1447a5f8cae3bf1e0aacf3e6eab1dded17248c84a0f02d0b4a63dda3f70f9519",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -483,7 +483,7 @@
           "url": "https://www.washington.edu/students/crscat/intlbus.html",
           "wantedCourseCount": 1,
           "parsedCourseCount": 1,
-          "sourceFingerprint": "5dca64f34da9416dfec198631397010eae51d6cb94d099ca53e972e21acf4b55",
+          "sourceFingerprint": "7a294001e741f67ccfa10a845a6d822cdf5d7d35f0beebcd06e6bcfd0219c1f1",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -492,7 +492,7 @@
           "url": "https://www.washington.edu/students/crscat/immun.html",
           "wantedCourseCount": 1,
           "parsedCourseCount": 1,
-          "sourceFingerprint": "8a569e2919e17196ad097a45d1b2babc85c26c45fa784b8e95ad5047419a2ff4",
+          "sourceFingerprint": "c66539254970206636e572ed09cee0381eef2bbb3bf78898f37c411392f85f3b",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -501,7 +501,7 @@
           "url": "https://www.washington.edu/students/crscat/info.html",
           "wantedCourseCount": 16,
           "parsedCourseCount": 16,
-          "sourceFingerprint": "b537918ae21ce8609ba77cd8bf9cf79a7e45f7c5637ebabc64f26679d661c7c5",
+          "sourceFingerprint": "a596829f0c74eb9cb44e03e1ff91979aba268e5cba66566f209737f4484c5eda",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -510,7 +510,7 @@
           "url": "https://www.washington.edu/students/crscat/infosys.html",
           "wantedCourseCount": 3,
           "parsedCourseCount": 1,
-          "sourceFingerprint": "63e9f192a645cfcee73dd4b347c36ebb63e08d650c8a858601b2a6985978ee57",
+          "sourceFingerprint": "430e73d645e4297ebd18db580f5a56bfcf06edeeb882e55cba5492585e651f5e",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -519,7 +519,7 @@
           "url": "https://www.washington.edu/students/crscat/japanese.html",
           "wantedCourseCount": 3,
           "parsedCourseCount": 3,
-          "sourceFingerprint": "01515ff74bc3d2df1ed923b4fc4a0708df1648f6f29bd24fdf3e9525f6879bad",
+          "sourceFingerprint": "e305190c298f34db9bdf24e88a2932e4c49b4d84276df86cbee1546d2ce20a55",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -528,7 +528,7 @@
           "url": "https://www.washington.edu/students/crscat/jsis.html",
           "wantedCourseCount": 8,
           "parsedCourseCount": 8,
-          "sourceFingerprint": "a7d61b051bb6f9cbfdb25978d43aa6fd7dc27c3c250b5e98f75fd1e766da6b11",
+          "sourceFingerprint": "ea967a3c10ab11fdca76629857543532d800253b4c0f4e50c034e42e0ed780c5",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -537,16 +537,16 @@
           "url": "https://www.washington.edu/students/crscat/korean.html",
           "wantedCourseCount": 2,
           "parsedCourseCount": 2,
-          "sourceFingerprint": "69b6ff5ce53d575a6468ae3b82e96515a3dd61d009af83c32b049368d050d13e",
-          "usedSnapshotFallback": false,
-          "snapshotFallbackReason": null
+          "sourceFingerprint": "afcaadc62350dcd332d6f20e5bb47771f7b9e061fb6dc4d91e278f824d5298ad",
+          "usedSnapshotFallback": true,
+          "snapshotFallbackReason": "fetch failed"
         },
         {
           "subjectCode": "LATIN",
           "url": "https://www.washington.edu/students/crscat/latin.html",
           "wantedCourseCount": 3,
           "parsedCourseCount": 3,
-          "sourceFingerprint": "f4c6fe4a299290d10b7fbfff85303d3e07c62c0f5d57c84b7aa5a01777b304ec",
+          "sourceFingerprint": "ed537113e2ba522a034cda59f18a7a9acab14f470b6d13d16eaad03ea67f86dc",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -555,7 +555,7 @@
           "url": "https://www.washington.edu/students/crscat/ling.html",
           "wantedCourseCount": 6,
           "parsedCourseCount": 6,
-          "sourceFingerprint": "f3399402df109deb342e384bd8288003dfa0fe7da1114225f544525d3c3689a0",
+          "sourceFingerprint": "a97f30c0fe7718bfdfa605b1ea4821087f9f49106ebe91c8b2e8f2e8b63bb3fb",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -564,7 +564,7 @@
           "url": "https://www.washington.edu/students/crscat/marbio.html",
           "wantedCourseCount": 4,
           "parsedCourseCount": 4,
-          "sourceFingerprint": "5a73cdc0e09ccc5423658b1d35c73645454f26714e7ddfe02a23d911822cd050",
+          "sourceFingerprint": "db828ad64e726889a16a83006a985b3f624d3875c0b1648baba2586b7f6bf922",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -573,7 +573,7 @@
           "url": "https://www.washington.edu/students/crscat/math.html",
           "wantedCourseCount": 17,
           "parsedCourseCount": 16,
-          "sourceFingerprint": "a0f8320d43364108215f459ab35ddd6f0c075121bba38c78d3190a1a1f2570ce",
+          "sourceFingerprint": "44a73e9c7d2a90ba096e1d9ea93c3f7f4888dc2beb28ed61418f3ede1520fe51",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -582,7 +582,7 @@
           "url": "https://www.washington.edu/students/crscat/meche.html",
           "wantedCourseCount": 14,
           "parsedCourseCount": 14,
-          "sourceFingerprint": "fea0c9b340e1c9b5c630201c3901ff920a27b2e6d207629147d9e2e67b2586ec",
+          "sourceFingerprint": "dd968c519f2d79600f868f5549b0a6b3ae6bb402aaafd01e9b17eb0e77f7c0d3",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -591,7 +591,7 @@
           "url": "https://www.washington.edu/students/crscat/melc.html",
           "wantedCourseCount": 5,
           "parsedCourseCount": 5,
-          "sourceFingerprint": "b7809e7dc1b098f1ae1efeda7a8705b299b529b3e7e983b5392e99fe3f30983b",
+          "sourceFingerprint": "eb5df06733df33c9c32c4404c1fcbad29de442f69d2c548b7eb10d326dd758b7",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -600,7 +600,7 @@
           "url": "https://www.washington.edu/students/crscat/mgmt.html",
           "wantedCourseCount": 4,
           "parsedCourseCount": 4,
-          "sourceFingerprint": "4cf6bd4a0ce42838e3b027ce6dd75060660dec9d242b6cc4ed6659160b7e85e4",
+          "sourceFingerprint": "e7a51ce19cb0fc4a945d4889a297ceac9f4f8eba2e18627d38af13fd29cb2a1e",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -609,7 +609,7 @@
           "url": "https://www.washington.edu/students/crscat/microbio.html",
           "wantedCourseCount": 15,
           "parsedCourseCount": 15,
-          "sourceFingerprint": "06f725a6b07eb4877fa47d83ddf14a2ddf3c613b2b0c1f14d5a283939719ecc9",
+          "sourceFingerprint": "013d3a68453de72baa95c963456cf575d16f58b34a2bc8f55095a2e3ed3c881f",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -618,7 +618,7 @@
           "url": "https://www.washington.edu/students/crscat/mktg.html",
           "wantedCourseCount": 1,
           "parsedCourseCount": 1,
-          "sourceFingerprint": "ef840af7b4edd01b39404c85e531753be7b7e4c6b7bebd80b1a9f7b0ccd3532d",
+          "sourceFingerprint": "a9d2598bb6ecd7816dc536e0269ee52a8cc51cdf138e7d49bb5aa4dedeb5d546",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -627,7 +627,7 @@
           "url": "https://www.washington.edu/students/crscat/mse.html",
           "wantedCourseCount": 3,
           "parsedCourseCount": 2,
-          "sourceFingerprint": "6eb8353fb73bdb3929e258bdab31239480c7b89f9eb854845ae7f94e83d34821",
+          "sourceFingerprint": "29d19c989aaa301e87728033ee32f02be6a52e41b187e83635c9daaf767f73aa",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -636,7 +636,7 @@
           "url": "https://www.washington.edu/students/crscat/mushist.html",
           "wantedCourseCount": 1,
           "parsedCourseCount": 1,
-          "sourceFingerprint": "5d1bc81fcb7e5b032dadd34188609a8eb58e25c88a1aa1a453010a5dfd3c64d5",
+          "sourceFingerprint": "cbbc2c1e7f013d82d75524d23a67f17656afbbd24f7ef335b940b0037a60b297",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -654,7 +654,7 @@
           "url": "https://www.washington.edu/students/crscat/mused.html",
           "wantedCourseCount": 11,
           "parsedCourseCount": 10,
-          "sourceFingerprint": "5da822c061e2488e434e67989668fc77829dc9c5e50527e31e2fd7e3e465e360",
+          "sourceFingerprint": "e6f4c3cde8005f11617cbc481f385524f4dc368f3e1fc6e0cea873803cbe4cb2",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -663,7 +663,7 @@
           "url": "https://www.washington.edu/students/crscat/musensem.html",
           "wantedCourseCount": 8,
           "parsedCourseCount": 8,
-          "sourceFingerprint": "6de21d80f6f936bf13b03c5a6b1588387e4f54cfea4fececb64ec927f54a1a79",
+          "sourceFingerprint": "2ec00ff20eaa22e41af317d10505ea1d6c6ce40e04048744c44dcb759d8caf03",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -672,7 +672,7 @@
           "url": "https://www.washington.edu/students/crscat/music.html",
           "wantedCourseCount": 42,
           "parsedCourseCount": 41,
-          "sourceFingerprint": "0e3c9cec6ded690e9578fd4a9fdf6070060e155553816d0fb2496d33da2bf079",
+          "sourceFingerprint": "b55d219003991278f01ffc8c09145cb3fe4921e1f5faaa42cee61de5d1430017",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -717,7 +717,7 @@
           "url": "https://www.washington.edu/students/crscat/norweg.html",
           "wantedCourseCount": 2,
           "parsedCourseCount": 2,
-          "sourceFingerprint": "7c61d57c68025b72f611f0d7c74f6f1f64007f48c6beaf52863253c8ee02f456",
+          "sourceFingerprint": "6974532e1a3636083e54cc03f85d4147b66fd50ffd1591112f63902ce1b8022a",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -726,7 +726,7 @@
           "url": "https://www.washington.edu/students/crscat/nursing.html",
           "wantedCourseCount": 13,
           "parsedCourseCount": 13,
-          "sourceFingerprint": "bf9a471201b257b29af0451c04ac214d74681847230a5e847a2ebf702414c062",
+          "sourceFingerprint": "e4a5efd3204edac21c003b84b9eeb41c61382d5a77a741c21b315e02be864512",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -735,7 +735,7 @@
           "url": "https://www.washington.edu/students/crscat/nutrit.html",
           "wantedCourseCount": 6,
           "parsedCourseCount": 6,
-          "sourceFingerprint": "d62c666480641d4bfee18e0309a67b92e69268174655f6a73547f688129d382f",
+          "sourceFingerprint": "da9ffd57d4b770906fb385b231135a458da4a2a0e71d40e9d410bb8c0bf71e4d",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -744,7 +744,7 @@
           "url": "https://www.washington.edu/students/crscat/ocean.html",
           "wantedCourseCount": 15,
           "parsedCourseCount": 15,
-          "sourceFingerprint": "0ae2a073c023e9521fe45d814e19d3ee0fc21db52f8e591b1f4d562732701cad",
+          "sourceFingerprint": "cc9b23d42c07c4c1cdcbcd1ed00b7b1a71734ecd1485776c6f7bce7f7845f550",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -753,7 +753,7 @@
           "url": "https://www.washington.edu/students/crscat/opmgmt.html",
           "wantedCourseCount": 1,
           "parsedCourseCount": 1,
-          "sourceFingerprint": "704018cee35a8d7d808adee062c54974c1a9b32cc41595a37f2008bd89ec76c8",
+          "sourceFingerprint": "c3278eb35fc718aaf654d0e86333600edba8cd002e545d97996c8a2c437da76f",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -762,7 +762,7 @@
           "url": "https://www.washington.edu/students/crscat/phil.html",
           "wantedCourseCount": 7,
           "parsedCourseCount": 7,
-          "sourceFingerprint": "9c0aad18ecc06762895e01728946d28ea798059fad620c80eda604bec4f96dad",
+          "sourceFingerprint": "923dfd2daa7e8e5499790fe1e87bef7b075f2265bccb1e803a28bd9826d6b75d",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -771,7 +771,7 @@
           "url": "https://www.washington.edu/students/crscat/phys.html",
           "wantedCourseCount": 12,
           "parsedCourseCount": 12,
-          "sourceFingerprint": "5d0cb3f836a570b5ef3ff98e6319e529eb6f5bfc0f01cd2421e6a99a2a0181df",
+          "sourceFingerprint": "195900e0fd6eb8cf6bb6b3431d5918808a5ec1cc957164e77ebc445185fd8255",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -780,7 +780,7 @@
           "url": "https://www.washington.edu/students/crscat/psych.html",
           "wantedCourseCount": 5,
           "parsedCourseCount": 5,
-          "sourceFingerprint": "02af595dbf8023384df106513161ba770be06345450f47bf83b66d01ec73148f",
+          "sourceFingerprint": "a81cb1e9344b69f3aa40054948db36d2a5d6a8d3402adad7a3bc93db7beaad96",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -789,7 +789,7 @@
           "url": "https://www.washington.edu/students/crscat/pubpol.html",
           "wantedCourseCount": 6,
           "parsedCourseCount": 6,
-          "sourceFingerprint": "dfeff9ab872faa11a5832e759cfac9d9a9eed680165578b939a1edf4ba3effcf",
+          "sourceFingerprint": "d480f40f8a0ead884d8923eec66286b4b6f5a3102232939d9102afc992da8b0c",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -807,7 +807,7 @@
           "url": "https://www.washington.edu/students/crscat/religion.html",
           "wantedCourseCount": 2,
           "parsedCourseCount": 2,
-          "sourceFingerprint": "7b5f0e945b96d0359cd3cfb03934b47b2e51f77f71ea7f948769f63c4749493f",
+          "sourceFingerprint": "6e49ffc1e4b332c8554bb640eb6060b256d36b95907fe1aec3dec0442e0c3eca",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -816,7 +816,7 @@
           "url": "https://www.washington.edu/students/crscat/russian.html",
           "wantedCourseCount": 5,
           "parsedCourseCount": 5,
-          "sourceFingerprint": "ab956a8efd3b482290154f476c1b9e36366f07e5636392799eb167f247871ee6",
+          "sourceFingerprint": "b9849242ab15fe766a0a5f0773847f2da868a4e922c9a41efdb9e907f0b12166",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -825,7 +825,7 @@
           "url": "https://www.washington.edu/students/crscat/sbse.html",
           "wantedCourseCount": 1,
           "parsedCourseCount": 1,
-          "sourceFingerprint": "1eacf4f58857d703d49ffbfd3d5a3d8020b8f91159725bc31c6ba718566ae495",
+          "sourceFingerprint": "858fd44d958f7c0411cb10d7a35ef0ced722af12d620d1bf384db780ad076845",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -834,7 +834,7 @@
           "url": "https://www.washington.edu/students/crscat/scand.html",
           "wantedCourseCount": 2,
           "parsedCourseCount": 2,
-          "sourceFingerprint": "66cf5a86530bace4653980034df8031b37fe19b18055d385bbe48df36a314dd9",
+          "sourceFingerprint": "7736747a29c2ff3ff7897f7c6122a11d5d188bca480e44876e88d888ec6731dd",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -843,7 +843,7 @@
           "url": "https://www.washington.edu/students/crscat/slavic.html",
           "wantedCourseCount": 4,
           "parsedCourseCount": 4,
-          "sourceFingerprint": "faccd72f3330f36c0ebe04346276264bd588cda807d8f57fbd18047dba943a0c",
+          "sourceFingerprint": "efdb4ba528cb190d09d433b53d6736e45dc5a88a43b29d4b30684efed01926b8",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -852,7 +852,7 @@
           "url": "https://www.washington.edu/students/crscat/soc.html",
           "wantedCourseCount": 4,
           "parsedCourseCount": 4,
-          "sourceFingerprint": "9cbcbc0df39db83bcc14f3cc79cb2a8370bca08eca00e5a1662bd7f1e15416a7",
+          "sourceFingerprint": "a4a6973472ba40013798fdb25e7c0634a602df671734fde1b46472642f1b4bd3",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -861,7 +861,7 @@
           "url": "https://www.washington.edu/students/crscat/spanish.html",
           "wantedCourseCount": 7,
           "parsedCourseCount": 7,
-          "sourceFingerprint": "c7176fac958d9885ac5d64a15fbee9ba311b7a84393474b08909b0c20e0c0835",
+          "sourceFingerprint": "99a33f3fd53aa69a96de0ac96ad37bf0405765064daadc5d5b7756c467649181",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -870,7 +870,7 @@
           "url": "https://www.washington.edu/students/crscat/sph.html",
           "wantedCourseCount": 5,
           "parsedCourseCount": 5,
-          "sourceFingerprint": "608731b75da28a50097c6fc28fc999d95cd03586c5620696075290bb211a63a3",
+          "sourceFingerprint": "06be10b59a9e56f605c4d678f9d1d47c056ef168cf5569c5f9725bb76b56718f",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -18967,10 +18967,10 @@
       "label": "UW Bothell",
       "indexUrl": "https://www.washington.edu/students/crscatb/",
       "indexSnapshotPath": "C:\\Users\\Marwan\\GatorGuide\\Mobile Team\\.tmp\\transfer-planner-catalog-snapshots\\uw-bothell-course-index.html",
-      "sourceFingerprint": "dd8f231ccb70419e26263217e0e608bc063309017dce4e0e91a291ea8f2816ac",
+      "sourceFingerprint": "b4c54b0ab7ce7c78c4128a599dd972f3088c30ae740cda9eaa158fbea8e49cc5",
       "usedIndexSnapshotFallback": false,
       "indexSnapshotFallbackReason": null,
-      "subjectSnapshotFallbackCount": 0,
+      "subjectSnapshotFallbackCount": 2,
       "relevantCourseCount": 178,
       "subjectCount": 45,
       "parsedSubjectPages": [
@@ -18979,7 +18979,7 @@
           "url": "https://www.washington.edu/students/crscatb/bbecn.html",
           "wantedCourseCount": 6,
           "parsedCourseCount": 6,
-          "sourceFingerprint": "58cd6bdf31ca033dee69e1416512d582d3da1f0aa1f03aaec3a7ada85e73889e",
+          "sourceFingerprint": "72e0f1b2c6f0f5e0cd528a522d0d187d583827dad9d2b89027605ad21dabd993",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -18988,7 +18988,7 @@
           "url": "https://www.washington.edu/students/crscatb/bbio.html",
           "wantedCourseCount": 6,
           "parsedCourseCount": 6,
-          "sourceFingerprint": "dd0b85f5b5fcddc88b9a1da123270d0a7152054e3b20970f00a84c0e018ea611",
+          "sourceFingerprint": "e2b09ea3b4d4951c8a8aca66d8f03a53b8ea4b1fe389b022979982b118ddcec5",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -18997,7 +18997,7 @@
           "url": "https://www.washington.edu/students/crscatb/bbus.html",
           "wantedCourseCount": 24,
           "parsedCourseCount": 24,
-          "sourceFingerprint": "88ca9a6280cd8cf89bfac1a7fce232d3fef880179fd4d8fd4e03777e18b9c823",
+          "sourceFingerprint": "df865833847d6d4b726d914d1552894ae9ec720b58877bdb67d52e9ac0460e86",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -19006,7 +19006,7 @@
           "url": "https://www.washington.edu/students/crscatb/bce.html",
           "wantedCourseCount": 1,
           "parsedCourseCount": 1,
-          "sourceFingerprint": "03be819c4383ed243565dce6ef48da06e2cf83d2b025414c1d39428799e19808",
+          "sourceFingerprint": "16676dbeefecdd250017681ba5773350de1fd9d3d7b3f1d64e543a176ab0469f",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -19015,7 +19015,7 @@
           "url": "https://www.washington.edu/students/crscatb/bchem.html",
           "wantedCourseCount": 8,
           "parsedCourseCount": 8,
-          "sourceFingerprint": "9c1b5ef2088209b46832c6404aea75c6e4a3cf025f62b881130918c2d8e9edbe",
+          "sourceFingerprint": "88e9545341560be1be37614bf8c3bbeb356340a47eefe99776a1d4c6786ef999",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -19024,7 +19024,7 @@
           "url": "https://www.washington.edu/students/crscatb/bdata.html",
           "wantedCourseCount": 1,
           "parsedCourseCount": 1,
-          "sourceFingerprint": "ac9d365065ca867dd3719a576975ae1b7cee953ecec8f3ba526575caa388f0a0",
+          "sourceFingerprint": "f6209d83c0fe801e3c29a9e5de82d36be84a2aa515644bbf0a90164409a1401f",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -19033,7 +19033,7 @@
           "url": "https://www.washington.edu/students/crscatb/bearth.html",
           "wantedCourseCount": 1,
           "parsedCourseCount": 1,
-          "sourceFingerprint": "d4690dee8dd5d11e8bd2f300f742a5efbcfd62b8aeb38a61c38e0dd2814528e4",
+          "sourceFingerprint": "5753eb08d6b0b8018cebe14b3ac4b70b03e6eb40995a3450103c186d96d0aee3",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -19042,7 +19042,7 @@
           "url": "https://www.washington.edu/students/crscatb/bee.html",
           "wantedCourseCount": 5,
           "parsedCourseCount": 5,
-          "sourceFingerprint": "5b5c3b15bf5380a439dfc26fe1ed667617958c92c591b23b71fb365d78fca682",
+          "sourceFingerprint": "603df4b73384030b392adda468271c044f505f2c48d541ca56ec6e8032a7c83f",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -19051,7 +19051,7 @@
           "url": "https://www.washington.edu/students/crscatb/bengr.html",
           "wantedCourseCount": 2,
           "parsedCourseCount": 2,
-          "sourceFingerprint": "f7b4b804e07baeb3c48fb6a39f0fca86a7bb6f3d133fa569702e191e981ab23c",
+          "sourceFingerprint": "3db546d0de32623591a0d9204552606ec2e594788e421b4a554dd3b2036ec8ff",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -19060,7 +19060,7 @@
           "url": "https://www.washington.edu/students/crscatb/bes.html",
           "wantedCourseCount": 5,
           "parsedCourseCount": 4,
-          "sourceFingerprint": "a271f80fd5f13b52dae65ca5d544fe099a760fd843f803370370e55da959c829",
+          "sourceFingerprint": "a4ebeab147c74c97d296579fa80ef72292627b2112e37f920ed0e6331ab67f41",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -19069,16 +19069,16 @@
           "url": "https://www.washington.edu/students/crscatb/bhs.html",
           "wantedCourseCount": 1,
           "parsedCourseCount": 1,
-          "sourceFingerprint": "57689d858c5ee716689d2d730999594bdd9e08918e3fe18e7ab811bcd468adf2",
-          "usedSnapshotFallback": false,
-          "snapshotFallbackReason": null
+          "sourceFingerprint": "6e2ec9673fc702e04fbd0ee2277985d434a595bfed84ed80bf93ec6581944386",
+          "usedSnapshotFallback": true,
+          "snapshotFallbackReason": "fetch failed"
         },
         {
           "subjectCode": "BIMD",
           "url": "https://www.washington.edu/students/crscatb/bimd.html",
           "wantedCourseCount": 2,
           "parsedCourseCount": 2,
-          "sourceFingerprint": "ca0ee9999f26a415f68744018fc0863f14b8be0f2ae1bff032dd80a63d7df9d0",
+          "sourceFingerprint": "e71c93f5eb6082707c4a86ef1384e709cfadab0cfde183a45ec422fc6bac1346",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -19087,7 +19087,7 @@
           "url": "https://www.washington.edu/students/crscatb/bis.html",
           "wantedCourseCount": 29,
           "parsedCourseCount": 28,
-          "sourceFingerprint": "abb6f6743f39bfa7712b945b40efafd85096f1b9e0ef201d69914ab292ca67e8",
+          "sourceFingerprint": "641efa6ed5ff49c1d0a4efb090a7176c383c46a6d94c0eb2ade2523fedca8a12",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -19096,7 +19096,7 @@
           "url": "https://www.washington.edu/students/crscatb/bisaes.html",
           "wantedCourseCount": 2,
           "parsedCourseCount": 2,
-          "sourceFingerprint": "841df2981fdb244c1440be6252f9edbc10a0b71a6cd2faeacba5735d4db1e5c8",
+          "sourceFingerprint": "5fe5700d4cfcad6953a5c0220897fc3eba23b2f07c7bb3699c18e25b2c378bc6",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -19105,7 +19105,7 @@
           "url": "https://www.washington.edu/students/crscatb/biscla.html",
           "wantedCourseCount": 2,
           "parsedCourseCount": 2,
-          "sourceFingerprint": "079995dbc0ccb9007683eb025aed5eccf1abd4e8c9fbacabadbcb524d17618f6",
+          "sourceFingerprint": "6f709dbc3076c016e28a5aedc4465f0c7bd57330bcd940bfda16cd2413edfc54",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -19114,7 +19114,7 @@
           "url": "https://www.washington.edu/students/crscatb/bisgst.html",
           "wantedCourseCount": 1,
           "parsedCourseCount": 1,
-          "sourceFingerprint": "34dc017abb2de60d9ba59b838fcc17408103321032dcf1b7d0227ca5febbc336",
+          "sourceFingerprint": "cf16e2f9720f38fb1a984bd1a476910f673c51059dd4480d64026aa34d62f2da",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -19123,7 +19123,7 @@
           "url": "https://www.washington.edu/students/crscatb/bisgws.html",
           "wantedCourseCount": 3,
           "parsedCourseCount": 3,
-          "sourceFingerprint": "605bc5c86dc0732a41725947f6e5e57cb38b11eee91b6229481332ab05ec7525",
+          "sourceFingerprint": "130fcd6856efdc4a69d821ed10a31b6c78f04e4485455be0949ef943b983eaf6",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -19132,7 +19132,7 @@
           "url": "https://www.washington.edu/students/crscatb/bisia.html",
           "wantedCourseCount": 1,
           "parsedCourseCount": 1,
-          "sourceFingerprint": "b435cbc5c96398d105a089c004296387910d671c58d5b1099f8b4ca17aa2ee1d",
+          "sourceFingerprint": "26a54733377989dd3d6101300664ba8b1ca8ccf3787973f26205ca7953e9f515",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -19141,7 +19141,7 @@
           "url": "https://www.washington.edu/students/crscatb/bislep.html",
           "wantedCourseCount": 2,
           "parsedCourseCount": 2,
-          "sourceFingerprint": "a4b82bc5186e3ea1a12fb4ea245db5fb3c05c314c62df67bea04450676332ec8",
+          "sourceFingerprint": "f71a0c280d5ea77205a3dd31d5a983ffe6daa4de3622283b9e2a5b0b07d4e1e0",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -19150,7 +19150,7 @@
           "url": "https://www.washington.edu/students/crscatb/bismcs.html",
           "wantedCourseCount": 1,
           "parsedCourseCount": 1,
-          "sourceFingerprint": "1389176c38fc83c75f74286094331169cd558920075cbfe6bb4628d31959b7d4",
+          "sourceFingerprint": "fd4dbce659fdaeddb39ffc912c9567b0297a37d8678ceac999142755c07aa393",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -19159,7 +19159,7 @@
           "url": "https://www.washington.edu/students/crscatb/bispsy.html",
           "wantedCourseCount": 1,
           "parsedCourseCount": 1,
-          "sourceFingerprint": "641b3fe6bcb418cb3b8939c1ac59442d4006c6141cb27782804787b7c089214f",
+          "sourceFingerprint": "dbff8036f94e43091bf131406549ee5eb1cc9461d0ed885be7d4f56904487745",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -19177,7 +19177,7 @@
           "url": "https://www.washington.edu/students/crscatb/bmath.html",
           "wantedCourseCount": 1,
           "parsedCourseCount": 1,
-          "sourceFingerprint": "4072e38cd5aeadbe5a2b2f1cf688ab93bfe4a35905e5a982cd5f7e71d6132997",
+          "sourceFingerprint": "88ebace64bb67a8bfceb136dbafddcacd9d3843c855c6c5ab08967d2c6ebe099",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -19186,7 +19186,7 @@
           "url": "https://www.washington.edu/students/crscatb/bme.html",
           "wantedCourseCount": 5,
           "parsedCourseCount": 5,
-          "sourceFingerprint": "131b4898273413621f3cb691f8ae0e4b73933ee185186125d04cd93e086476c6",
+          "sourceFingerprint": "a13564df164a29d4343aff9bd30c4d1be3c807fb2bdc24f4510b674b0323913f",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -19195,7 +19195,7 @@
           "url": "https://www.washington.edu/students/crscatb/bphys.html",
           "wantedCourseCount": 6,
           "parsedCourseCount": 6,
-          "sourceFingerprint": "d3e3621f4e9bf92ec175a6f0bee110cdbce5ecfd31da169031e67ba66ed3925c",
+          "sourceFingerprint": "5cc93f73dd6e0336c0db7f54515b236746f28c22d2f7a6aa08db49abcf401bf8",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -19204,9 +19204,9 @@
           "url": "https://www.washington.edu/students/crscatb/bst.html",
           "wantedCourseCount": 1,
           "parsedCourseCount": 1,
-          "sourceFingerprint": "24054f241ad2478cca40c803a8d67b87bea0e8484e10cc189e40632d94dda441",
-          "usedSnapshotFallback": false,
-          "snapshotFallbackReason": null
+          "sourceFingerprint": "83e6b537e4454617d6332788eaf4c08762224fd34c09370864664456ffa11d56",
+          "usedSnapshotFallback": true,
+          "snapshotFallbackReason": "fetch failed"
         },
         {
           "subjectCode": "BWRIT",
@@ -19231,7 +19231,7 @@
           "url": "https://www.washington.edu/students/crscatb/stmath.html",
           "wantedCourseCount": 12,
           "parsedCourseCount": 12,
-          "sourceFingerprint": "e50d4a1c6273d5a8bb3cb17638c0726e2a8d5d3afe49a617ec7627baa928e6fa",
+          "sourceFingerprint": "8ad21a69c28ef413b9f4a433de2b30b4f146179cd5c986cb9c0568ce267cfcd7",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         }
@@ -23313,7 +23313,7 @@
       "label": "UW Tacoma",
       "indexUrl": "https://www.washington.edu/students/crscatt/",
       "indexSnapshotPath": "C:\\Users\\Marwan\\GatorGuide\\Mobile Team\\.tmp\\transfer-planner-catalog-snapshots\\uw-tacoma-course-index.html",
-      "sourceFingerprint": "3d26a35c603b3a92399653b69b2b2c835d0db592a35247597cae9e1760e68b16",
+      "sourceFingerprint": "c1e6739489a40320b4eb370c7525f889b21c2c7c94a81acc170cc39eae4d798e",
       "usedIndexSnapshotFallback": false,
       "indexSnapshotFallbackReason": null,
       "subjectSnapshotFallbackCount": 0,
@@ -23325,7 +23325,7 @@
           "url": "https://www.washington.edu/students/crscatt/tacct.html",
           "wantedCourseCount": 1,
           "parsedCourseCount": 1,
-          "sourceFingerprint": "2d5688013d1a6300be9c2b691057d53e7ed8b2d1e661fa2ee84c7e13f090ac35",
+          "sourceFingerprint": "e54dee05cfed04cb4634fd948948108fc853f0b91e041fd1cf24681346901b76",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -23334,7 +23334,7 @@
           "url": "https://www.washington.edu/students/crscatt/tbecon.html",
           "wantedCourseCount": 5,
           "parsedCourseCount": 5,
-          "sourceFingerprint": "ea71be235e80fa7351d2d7116968949d3575a7484268b156cb2b6b20ef3a1acc",
+          "sourceFingerprint": "c7d6147920c9b379945cc43e968904418c87e86af874a9183a9f0beec56fc59e",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -23343,7 +23343,7 @@
           "url": "https://www.washington.edu/students/crscatt/tbiol.html",
           "wantedCourseCount": 2,
           "parsedCourseCount": 2,
-          "sourceFingerprint": "bdd5bddc93ba541f9a40c7fb8afbf140659e28b413adcf4540bb9b5a4b9d6323",
+          "sourceFingerprint": "2ba73e0df6f300b2e437388d4c75caaa1e894243d2a8c0d1299dfc4b60ab3f7d",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -23352,7 +23352,7 @@
           "url": "https://www.washington.edu/students/crscatt/tbiomd.html",
           "wantedCourseCount": 2,
           "parsedCourseCount": 2,
-          "sourceFingerprint": "5e52d33e0e27e8e619a33c7c424ea4f094fe73b3cb5cd3a6453f944f334069b4",
+          "sourceFingerprint": "60d6756db71b8750033e3b70a434d471e6708828f744dce88c64c7b1a862b78b",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -23361,7 +23361,7 @@
           "url": "https://www.washington.edu/students/crscatt/tbus.html",
           "wantedCourseCount": 2,
           "parsedCourseCount": 2,
-          "sourceFingerprint": "ce6aee9876a7bde3e1fdcd23a35d101299f9dfceed67ecdab5b646ef174b716e",
+          "sourceFingerprint": "7ef60e53de4eac18e541502197b7fdd41294bbc283beca4ea6bc32877b92d9ca",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -23370,7 +23370,7 @@
           "url": "https://www.washington.edu/students/crscatt/tce.html",
           "wantedCourseCount": 1,
           "parsedCourseCount": 1,
-          "sourceFingerprint": "890c59e0d5190a4dd935d4d1a4ce1fe98b10ecfb7264f425e993186dfb938748",
+          "sourceFingerprint": "1832b9b9f362a6c5b315a27d7c3dd3172fd5825e89d713cdef885bb5f201ce54",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -23379,7 +23379,7 @@
           "url": "https://www.washington.edu/students/crscatt/tces.html",
           "wantedCourseCount": 13,
           "parsedCourseCount": 13,
-          "sourceFingerprint": "55019ae1f934f0c65caad36cfab2848c20976f1228d2dc8047fdaae483bb4360",
+          "sourceFingerprint": "c20d3de9c8f40c30713dfabeeb3a68f2e6d0e59de179d2792f89ee39b5f1f3aa",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -23388,7 +23388,7 @@
           "url": "https://www.washington.edu/students/crscatt/tchem.html",
           "wantedCourseCount": 3,
           "parsedCourseCount": 3,
-          "sourceFingerprint": "58e61539b00e38ec454d5e703607ec5c151e4550b6e585c58242593773f6584e",
+          "sourceFingerprint": "069cdd997868d497914d514415ecffaca6721923ab8587189b9893b1369ced6e",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -23433,7 +23433,7 @@
           "url": "https://www.washington.edu/students/crscatt/tee.html",
           "wantedCourseCount": 16,
           "parsedCourseCount": 16,
-          "sourceFingerprint": "bd7ef30b45aadc46f8679b65e3498516640045cf7d79c2ebc962c55e0b40747b",
+          "sourceFingerprint": "919aedf9dcfe02bcb3544c8901d491dfe665ab74c08c5f06f12782e6bc761c2a",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -23442,7 +23442,7 @@
           "url": "https://www.washington.edu/students/crscatt/thist.html",
           "wantedCourseCount": 6,
           "parsedCourseCount": 6,
-          "sourceFingerprint": "795870c0dd56779c999a4f50424162c668ade179e1022d8861fff3bb0c407796",
+          "sourceFingerprint": "573a739a2ab7e54da3c3924cfeac26a505d1e039ff800cf18adcaa706ae7d6fb",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -23451,7 +23451,7 @@
           "url": "https://www.washington.edu/students/crscatt/tlaw.html",
           "wantedCourseCount": 4,
           "parsedCourseCount": 4,
-          "sourceFingerprint": "1cd0c7d448a66c91f7e3c1be9c758a76832b87eab6ab1e0a5fcbb339bd4a1a35",
+          "sourceFingerprint": "023e10b03300836c0d14003b1a8c15222621e8d16dd153fb4e993dc47e9937ae",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -23460,7 +23460,7 @@
           "url": "https://www.washington.edu/students/crscatt/tlit.html",
           "wantedCourseCount": 1,
           "parsedCourseCount": 1,
-          "sourceFingerprint": "ce1d52e71bfd720c0e5e95af6c265208d392020a8ceefa6ae9ba65d90296d6f3",
+          "sourceFingerprint": "b47435ead7bb763824332ec2d21cf721beed8649107a6af306f485bfc32fa6a0",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -23469,7 +23469,7 @@
           "url": "https://www.washington.edu/students/crscatt/tmath.html",
           "wantedCourseCount": 15,
           "parsedCourseCount": 14,
-          "sourceFingerprint": "8dad744f634775b5b3dc48f7f48e5ddf9c15a0c987a09637c593c707b29d017b",
+          "sourceFingerprint": "5a2763eb8a09b49a83cfda88743d3235e42b5d8a979f2c9aeff9c00ea39ce6c4",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -23478,7 +23478,7 @@
           "url": "https://www.washington.edu/students/crscatt/tme.html",
           "wantedCourseCount": 17,
           "parsedCourseCount": 17,
-          "sourceFingerprint": "63bdea955403203b444380823f4fa994b5df2f30f8f254e1812dec84232c1ab5",
+          "sourceFingerprint": "0ad70c3c525a99d8d1d34dac4a9e2a32b0fd554bab1207034f022a5613fef367",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -23487,7 +23487,7 @@
           "url": "https://www.washington.edu/students/crscatt/tmktg.html",
           "wantedCourseCount": 1,
           "parsedCourseCount": 1,
-          "sourceFingerprint": "7458d98e7c8cdbb81f47e898c457d29fe6a4031255f76fba044cf59ba0f022e2",
+          "sourceFingerprint": "cd8409b7e5a0748f6d8593049e758ac1a1c4edf72e39135fb4572251c5e35488",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -23496,7 +23496,7 @@
           "url": "https://www.washington.edu/students/crscatt/tphil.html",
           "wantedCourseCount": 2,
           "parsedCourseCount": 2,
-          "sourceFingerprint": "03021b32d7cfe5d1e8b0126c24166328a5e97ff240b763ff3b17aa8d075caeb1",
+          "sourceFingerprint": "a75fd039ab2d670ab0de7dcc0774613031eb7f813b571dbe5fcd762031698374",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -23505,7 +23505,7 @@
           "url": "https://www.washington.edu/students/crscatt/tphys.html",
           "wantedCourseCount": 3,
           "parsedCourseCount": 3,
-          "sourceFingerprint": "d6335c8f209fde8ecba8ba4f740739a6a5ecfbc1b2d8e87dbb84334d57228fe4",
+          "sourceFingerprint": "1d5c5b4c4eac7cf27450e282a60bb1aa3a01628cbd7bd408664a220d5f9946f5",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -23514,7 +23514,7 @@
           "url": "https://www.washington.edu/students/crscatt/tpols.html",
           "wantedCourseCount": 3,
           "parsedCourseCount": 3,
-          "sourceFingerprint": "8cb3f2b15edbe825c6ca35e72b1786c2398fa749337f2ca6d79955f98702e85c",
+          "sourceFingerprint": "b244758d81a5c56b3434461d2e72d57e54ad5780d79f5f7444eee52540a2ae9b",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -23523,7 +23523,7 @@
           "url": "https://www.washington.edu/students/crscatt/tpsych.html",
           "wantedCourseCount": 2,
           "parsedCourseCount": 2,
-          "sourceFingerprint": "b93e8af1179c3d42ae7d5802a5b6865ce2e70f08866c857b496416e23a63f0b1",
+          "sourceFingerprint": "d71398a6373536de348508e373c6e55f1096a6030118837ace2ab5a93ab3ead9",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -23532,7 +23532,7 @@
           "url": "https://www.washington.edu/students/crscatt/tsocwf.html",
           "wantedCourseCount": 2,
           "parsedCourseCount": 2,
-          "sourceFingerprint": "5a7bf83493a5152f0dea07b73dc83dc6a3e16f42ee2d05c56f103df81c5e486e",
+          "sourceFingerprint": "3f8dabab03b2f31a2eb9017f8fb32ff4f1424ad039a14e03747c4f2f349a4581",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         },
@@ -23541,7 +23541,7 @@
           "url": "https://www.washington.edu/students/crscatt/twrt.html",
           "wantedCourseCount": 5,
           "parsedCourseCount": 5,
-          "sourceFingerprint": "2afd891bec39c81647b3f19e21214cf762ea2848832564602088f861aefd782e",
+          "sourceFingerprint": "e1d75ecc1bb5132faa63eabe40599f3a8d52b701809ad9171fd5c2abaf89c833",
           "usedSnapshotFallback": false,
           "snapshotFallbackReason": null
         }

@@ -11,7 +11,7 @@ Title: B.A. in Korean | Asian Languages & Literature | University of Washington
 11685
 11686
 11687
-14041
+14130
 15-45 credits , with a minimum of 15 credits beyond the second year, drawn from the following courses:
 225 Gowen Hall
 30 credits . Suggested courses include:
@@ -113,8 +113,8 @@ Khmer
 Korean
 KOREAN 101, 102, 103 First-Year Korean
 KOREAN 134 A
-KOREAN 201 A
 KOREAN 201, 202, 203 Second-Year Korean
+KOREAN 234 A
 KOREAN 301, 302, 303 Third-Year Korean
 KOREAN 304 A
 KOREAN 304 Practical Korean Through Korean Dramas
@@ -179,7 +179,7 @@ Sanskrit
 Scholarships
 Search
 Seattle, WA 98195-3521
-Second-Year Korean
+Second-Year Intensive Korean
 Section Type
 Share
 Showing results for: KOREAN

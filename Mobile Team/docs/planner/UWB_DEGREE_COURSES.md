@@ -13,28 +13,27 @@ This doc already folds together the current planner rows plus the Bothell equiva
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
-Bothell American & Ethnic Studies is best treated as a custom IAS humanities-and-social-science transfer where composition, history, and ethnic-studies support are finished early before the fixed AES core begins on campus.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
-- [UW Bothell American & Ethnic Studies requirements](https://www.uwb.edu/ias/undergraduate/majors/american-ethnic-studies)
-- [UW Bothell American & Ethnic Studies requirements](https://www.uwb.edu/ias/undergraduate/majors/american-ethnic-studies) - Auto-promoted from the parsed primary degree page on April 12, 2026.
 - [UW Bothell American & Ethnic Studies major planning worksheet](https://admissions.uwb.edu/register/mpw-aes)
+- [UW Bothell American & Ethnic Studies requirements](https://www.uwb.edu/ias/undergraduate/majors/american-ethnic-studies) - Auto-promoted by planner:discover-primary-sources on April 8, 2026 from a high-confidence source-discovery match.
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
-
-##### American & Ethnic Studies degree baseline
-
-- The current American & Ethnic Studies B.A. page says the Winter 2025 degree structure totals 75 credits in the major.
-- The fixed lower-division and early-major core is BIS 290, BISAES 305, and either BIS 312 or BIS 340.
-- Students also complete 10 credits of composition coursework through one 5-credit introductory composition course and one 5-credit advanced composition course.
 
 ##### American & Ethnic Studies area-course structure
 
 - The major requires 30 AES credits across the approved area lists: 5 credits in Historical and Social Inquiry, 5 in Textual Analysis and Interpretation, 5 in Critical Theory and Practice, and 15 more AES credits drawn from any of those three areas.
 - Students also complete 20 additional School of IAS credits to finish the major's broader interdisciplinary structure.
 - The page notes that BISAES 305 is taught only in autumn, so that core course should be treated as a sequencing anchor.
+
+##### American & Ethnic Studies degree baseline
+
+- The current American & Ethnic Studies B.A. page says the Winter 2025 degree structure totals 75 credits in the major.
+- The fixed lower-division and early-major core is BIS 290, BISAES 305, and either BIS 312 or BIS 340.
+- Students also complete 10 credits of composition coursework through one 5-credit introductory composition course and one 5-credit advanced composition course.
 
 ##### American & Ethnic Studies residency and policy notes
 
@@ -44,6 +43,7 @@ Bothell American & Ethnic Studies is best treated as a custom IAS humanities-and
 
 #### GRC Equivalent Courses
 
+- `SOC& 101`
 - `ENGL& 101`
 - `ENGL 126`
 - `ENGL 127`
@@ -59,107 +59,15 @@ Bothell American & Ethnic Studies is best treated as a custom IAS humanities-and
 - `HIST& 137`
 - `ENGL& 244`
 - `ENGL& 245`
-- `AMES 194`
-- `AMES 211`
-- `ANTH 194`
-- `ANTH& 204`
-- `ANTH& 205`
-- `ANTH& 206`
-- `ANTH& 210`
-- `ANTH 211`
-- `ANTH& 216`
-- `ANTH& 234`
-- `ANTH& 235`
-- `ANTH& 236`
-- `ANTH 273`
-- `ANTH 294`
-- `ANTH 298`
-- `ANTH 299`
-- `S SCI 194`
-- `S SCI 211`
-- `HIST 120`
-- `HIST 122`
-- `HIST 135`
-- `HIST 194`
-- `HIST& 214`
-- `HIST& 215`
-- `HIST 220`
-- `HIST 224`
-- `HIST 226`
-- `HIST 228`
-- `HIST 230`
-- `HIST 231`
-- `HIST 232`
-- `HIST 233`
-- `HIST 235`
-- `HIST 237`
-- `HIST 240`
-- `HIST 245`
-- `HIST 250`
-- `HIST 299`
-- `HUMAN 100`
-- `HUMAN 110`
-- `HUMAN 133`
-- `HUMAN 142`
-- `HUMAN 186`
-- `HUMAN 190`
-- `HUMAN 191`
-- `HUMAN 194`
-- `HUMAN 224`
-- `ENGL 103`
-- `ENGL 109`
-- `ENGL& 112`
-- `ENGL& 113`
-- `ENGL& 114`
-- `ENGL 115`
-- `ENGL 160`
-- `ENGL 161`
-- `ENGL 163`
-- `ENGL 164`
-- `ENGL 165`
-- `ENGL 168`
-- `ENGL 180`
-- `ENGL 181`
-- `ENGL 183`
-- `ENGL 185`
-- `ENGL 187`
-- `ENGL 190`
-- `ENGL 194`
-- `ENGL 199`
-- `ENGL& 220`
-- `ENGL& 226`
-- `ENGL& 227`
-- `ENGL& 228`
-- `ENGL& 236`
-- `ENGL& 237`
-- `ENGL 239`
-- `ENGL& 246`
-- `ENGL 247`
-- `ENGL 248`
-- `ENGL 249`
-- `ENGL& 254`
-- `ENGL& 255`
-- `ENGL& 256`
-- `ENGL 257`
-- `ENGL 299`
-- `SOC& 101`
 
 #### Required sequences for specific credits
 
-- Required before enrollment: First composition course -> `ENGL& 101`
-- Required before enrollment: Second composition or advanced writing course -> `ENGL 126`, `ENGL 127`, `ENGL 128`. complete at least 1 course from this set
 - Required before enrollment: BIS 181 -> `SOC& 101`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Worth finishing at Green River: American, ethnic, and social-inquiry foundation -> `AMES 100`, `AMES 150`, `ANTH& 100`, `S SCI 160`. complete at least 1 course from this set
-- Worth finishing at Green River: History support for the AES area lists -> `HIST 101`, `HIST 102`, `HIST 103`, `HIST& 136`, `HIST& 137`. complete at least 1 course from this set
-- Worth finishing at Green River: Reading and analytical-writing support -> `ENGL 128`, `ENGL& 244`, `ENGL& 245`. complete at least 1 course from this set
-- Planner flag: BISAES 305 is taught only in autumn, so start-quarter timing matters more than it does for many other IAS majors.
-- Planner flag: AES limits how much 100- and 200-level work can count into the major, so Green River classes should be treated as foundation rather than as a one-to-one replacement for the upper-division AES finish.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Exact-title match source: parsed-source-cue.
-- Source-backed note: Matched source title: Introduction to Sociology.
-- Source-backed note: Matched Green River title: Introduction to Sociology.
-- Source-backed note: Requirement cue lines: BIS 181 Introduction to Sociology
+- Required before enrollment: First composition course -> `ENGL& 101`. note: AES requires 10 composition credits in the degree, so the first composition course should be done before transfer.
+- Required before enrollment: Second composition or advanced writing course -> `ENGL 126`, `ENGL 127`, `ENGL 128`. complete at least 1 course from this set. note: Green River normally uses ENGL 126, 127, or 128 as the second composition course. Finishing one before transfer makes the upper-division AES writing load easier.
+- Worth finishing at Green River: American, ethnic, and social-inquiry foundation -> `AMES 100`, `AMES 150`, `ANTH& 100`, `S SCI 160`. complete at least 1 course from this set. note: These do not replace the fixed AES core at Bothell, but they are the clearest Green River supports before BIS 290, BISAES 305, and the AES area-course work begin.
+- Worth finishing at Green River: History support for the AES area lists -> `HIST 101`, `HIST 102`, `HIST 103`, `HIST& 136`, `HIST& 137`. complete at least 1 course from this set. note: AES later uses historical and social inquiry heavily, so early history work is a strong Green River support.
+- Worth finishing at Green River: Reading and analytical-writing support -> `ENGL 128`, `ENGL& 244`, `ENGL& 245`. complete at least 1 course from this set. note: Use one more writing-heavy humanities course if it still fits the student's load, because the AES upper division is reading- and writing-intensive.
 
 
 ### Applied Computing (BA)
@@ -167,7 +75,7 @@ Bothell American & Ethnic Studies is best treated as a custom IAS humanities-and
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
-Bothell Applied Computing is best treated as a programming-plus-second-discipline transfer. The key move is finishing writing, calculus, and the programming pair while choosing the non-computing discipline early enough to shape the Green River electives.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
@@ -196,9 +104,9 @@ Bothell Applied Computing is best treated as a programming-plus-second-disciplin
 
 #### GRC Equivalent Courses
 
+- `MATH& 151`
 - `ENGL& 101`
 - `ENGL 128`
-- `MATH& 151`
 - `CS 121`
 - `CS 122`
 - `CS 123`
@@ -208,101 +116,24 @@ Bothell Applied Computing is best treated as a programming-plus-second-disciplin
 - `BUS& 101`
 - `ECON& 201`
 - `CMST& 102`
-- `CS& 131`
-- `CS 132`
-- `CS& 141`
-- `CS 145`
-- `CS 202`
-- `MATH 106`
-- `MATH& 107`
-- `MATH& 141`
-- `MATH& 142`
-- `MATH 147`
-- `MATH& 148`
-- `MATH& 152`
-- `MATH& 163`
-- `MATH& 171`
-- `MATH& 172`
-- `MATH& 173`
-- `MATH 194`
-- `MATH 238`
-- `MATH 240`
-- `MATH& 254`
-- `MATH 297`
-- `CMST 194`
-- `CMST& 210`
-- `CMST 212`
-- `CMST 215`
-- `CMST& 220`
-- `CMST& 230`
-- `CMST 238`
-- `CMST 245`
-- `CMST 265`
-- `CMST 266`
-- `CMST 299`
-- `FILM 120`
-- `FILM 121`
-- `FILM 122`
-- `JOURN 100.1`
-- `JOURN 100.2`
-- `JOURN 100.3`
-- `JOURN 101`
-- `JOURN 103`
-- `JOURN 107`
-- `JOURN 110`
-- `JOURN 111`
-- `JOURN 112`
-- `JOURN 120`
-- `JOURN 121`
-- `JOURN 122`
-- `JOURN 150`
-- `JOURN 151`
-- `JOURN 152`
-- `JOURN 153`
-- `JOURN 198`
-- `JOURN 199`
-- `JOURN 200`
-- `JOURN 205`
-- `JOURN 206`
-- `JOURN 207`
-- `JOURN 254`
-- `JOURN 255`
-- `JOURN 298`
-- `JOURN 299`
-- `ACCT& 202`
-- `ACCT& 203`
-- `BUS 121`
-- `BUS& 201`
-- `BUS 258`
-- `ECON 100`
-- `ECON 101`
-- `ECON 194`
-- `ECON& 202`
-- `ECON 298`
-- `ECON 299`
 
 #### Required sequences for specific credits
 
-- Required before application: English Composition I -> `ENGL& 101`
-- Required before application: English Composition II or advanced writing -> `ENGL 128`
-- Required before application: Calculus I -> `MATH& 151`
-- Required before application: Programming through the two-course Bothell baseline -> `CS 121`, `CS 122`, `CS 123`. complete at least 2 courses from this set
-- Required before enrollment: Statistics for the Applied Computing core -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set
-- Worth finishing at Green River: Early second-discipline launch classes -> `ACCT& 201`, `BUS& 101`, `ECON& 201`, `CMST& 102`. complete at least 1 course from this set
-- Worth finishing at Green River: Strongest programming finish -> `CS 123`
-- GRC sequence: `CS 121 -> CS 122 -> CS 123`. Current UW equivalency entries are separate, but planner sequencing at GRC should treat them in this order.
-- GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
-- Planner flag: The second discipline is not a throwaway elective bucket. Decide it early, because it changes which Green River electives are actually useful.
-- Planner flag: The final Bothell data-structures path can run through CSS 340 or CSS 342, and the management requirement can use CSS 350 or approved BBUS 300 use, so final upper-division sequencing should still be checked with advising.
-- Source-backed note: Confirm the student's planned second discipline early, because it materially changes the final degree map and the best Green River transfer strategy.
+- Required before application: Calculus I -> `MATH& 151`. note: Applied Computing names Calculus I in the published admission baseline, so MATH& 151 should be finished before transfer.
+- Required before application: English Composition I -> `ENGL& 101`. note: Applied Computing requires the first composition course before transfer.
+- Required before application: English Composition II or advanced writing -> `ENGL 128`. note: Applied Computing requires a second writing course before admission review. ENGL 128 is the clearest current Green River advanced-writing match.
+- Required before application: Programming through the two-course Bothell baseline -> `CS 121`, `CS 122`, `CS 123`. complete at least 2 courses from this set. note: The public admissions page expects a two-course programming sequence equivalent to CSS 142 and 143 or CSS 132 and 133. The safest Green River path is CS 121 -> CS 122 -> CS 123.
+- Required before enrollment: Statistics for the Applied Computing core -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set. note: Statistics is part of the Applied Computing core, so it is good to complete before or during UW enrollment.
+- Worth finishing at Green River: Strongest programming finish -> `CS 123`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it gives the strongest launch into later data-structures and upper-division CSS work.
+- Worth finishing at Green River: Early second-discipline launch classes -> `ACCT& 201`, `BUS& 101`, `ECON& 201`, `CMST& 102`. complete at least 1 course from this set. note: Applied Computing combines CSS with a second discipline, so use Green River electives to start the intended non-computing domain instead of adding random filler.
 
 
 ### Biology (BS)
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `999O`.
-Bothell Biology is a true science-sequence transfer. The full introductory biology and chemistry series are the admission anchor, and then calculus, statistics, and the right physics sequence should be finished early enough to make the upper-division biology launch smoother.
+Planner coverage: `detailed`. Best Green River base: `AST-2`.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
@@ -310,7 +141,6 @@ Bothell Biology is a true science-sequence transfer. The full introductory biolo
 
 - [UW Bothell Biology admissions](https://www.uwb.edu/stem/undergraduate/majors/biology/admissions)
 - [UW Bothell Biology curriculum](https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum)
-- [UW Bothell Biology curriculum](https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum) - Auto-promoted from the parsed primary degree page on April 12, 2026.
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
 
 ##### Biology admission baseline
@@ -339,86 +169,27 @@ Bothell Biology is a true science-sequence transfer. The full introductory biolo
 - `CHEM& 161`
 - `CHEM& 162`
 - `CHEM& 163`
+- `PHYS& 221`
+- `PHYS& 223`
 - `MATH& 151`
-- `MATH& 146`
-- `MATH 256`
 - `PHYS& 114`
 - `PHYS& 154`
 - `PHYS& 115`
 - `PHYS& 155`
-- `PHYS& 221`
-- `PHYS& 222`
-- `AP 100`
-- `AP 102`
-- `AP 103`
-- `AP 104`
-- `AP 210`
-- `BIOL& 100`
-- `BIOL 103`
-- `BIOL 110`
-- `BIOL 125`
-- `BIOL 127`
-- `BIOL 140`
-- `BIOL 194`
-- `BIOL 195`
-- `BIOL& 241`
-- `BIOL& 242`
-- `BIOL& 260`
-- `BIOL 298`
-- `CHEM& 121`
-- `CHEM& 131`
-- `CHEM& 140`
-- `CHEM 194`
-- `CHEM 195`
-- `CHEM& 261`
-- `CHEM& 262`
-- `CHEM& 263`
-- `CHEM 296`
-- `CHEM 299`
-- `MATH 106`
-- `MATH& 107`
-- `MATH& 141`
-- `MATH& 142`
-- `MATH 147`
-- `MATH& 148`
-- `MATH& 152`
-- `MATH& 163`
-- `MATH& 171`
-- `MATH& 172`
-- `MATH& 173`
-- `MATH 194`
-- `MATH 238`
-- `MATH 240`
-- `MATH& 254`
-- `MATH 297`
+- `MATH& 146`
+- `MATH 256`
 - `ENGL& 101`
-- `PHYS& 223`
+- `PHYS& 222`
 
 #### Required sequences for specific credits
 
-- Required before application: Full introductory biology sequence -> `BIOL& 211`, `BIOL& 212`, `BIOL& 213`
-- Required before application: Full general chemistry sequence -> `CHEM& 161`, `CHEM& 162`, `CHEM& 163`
-- Required before enrollment: One calculus course -> `MATH& 151`
-- Required before enrollment: One statistics course -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set
-- Required before enrollment: Physics I and II sequence -> `PHYS& 114`, `PHYS& 154`, `PHYS& 115`, `PHYS& 155`. complete at least 4 courses from this set. alternate path `PHYS& 221`, `PHYS& 222`
+- Required before application: Full introductory biology sequence -> `BIOL& 211`, `BIOL& 212`, `BIOL& 213`. note: Bothell Biology requires the full BBIO 180 / 200 / 220-equivalent introductory biology sequence for admission.
+- Required before application: Full general chemistry sequence -> `CHEM& 161`, `CHEM& 162`, `CHEM& 163`. note: Bothell Biology requires the full general chemistry sequence for admission, and the admissions page treats it as part of the guaranteed-admission baseline.
 - Required before enrollment: BPHYS 121 -> `PHYS& 221`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 - Required before enrollment: BPHYS 123 -> `PHYS& 223`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Both: `BIOL& 211 -> BIOL& 212 -> BIOL& 213`. All three are needed for the full `BIOL 180, 200, 220, 2XX (3)` outcome.
-- Both: `CHEM& 161 -> CHEM& 162 -> CHEM& 163`. Current UW full-credit note: `CHEM& 162 + CHEM& 163` gives `CHEM 152, 162 (5, 5), 1XX (2)`; otherwise each is weaker `CHEM 1XX`.
-- GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
-- Planner flag: Bothell Biology guarantees admission when the listed prerequisites are met, but the strongest post-transfer plan still depends on whether the student is leaning ecology, cell biology, physiology, or a pre-health path.
-- Planner flag: Physics III is not required for the Biology degree itself, but it can still matter for some graduate-school or professional-school plans.
-- Source-backed note: Community-college microbiology and physiology do not always transfer into the exact Bothell biology core buckets, so confirm those matches before promising a direct slot into Cell Biology or Physiology requirements.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Course-family consensus: 3/3 samples for PHYS 121.
-- Source-backed note: Supporting UW course codes: PHYS 121.
-- Source-backed note: Added the Green River course path PHYS& 221 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Both BPHYS 121 and BPHYS 122: Calculus-based Physics I and II + Labs
-- Source-backed note: Course-family consensus: 5/5 samples for PHYS 123.
-- Source-backed note: Supporting UW course codes: PHYS 123, T PHYS 123.
-- Source-backed note: Added the Green River course path PHYS& 223 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Note on Physics III: The third course in the above two series is BPHYS 116+119 (General Physics III + Lab) or BPHYS 123 (Calculus-based Physics III + Lab) . These are not required for your Biology degree, but may be needed to apply to some graduate programs.
+- Required before enrollment: One calculus course -> `MATH& 151`. note: Bothell Biology requires one calculus course in the degree core. MATH& 151 is the clearest current Green River match.
+- Required before enrollment: Physics I and II sequence -> `PHYS& 114`, `PHYS& 154`, `PHYS& 115`, `PHYS& 155`. complete at least 4 courses from this set. alternate path `PHYS& 221`, `PHYS& 222`. note: Bothell Biology accepts either the general-physics-with-lab pair or the calculus-based pair. Finish the sequence that best fits the student's graduate-school and science plans.
+- Required before enrollment: One statistics course -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set. note: Bothell Biology also requires one statistics course before the full upper-division biology sequence is finished.
 
 
 ### Business Administration (BA)
@@ -426,7 +197,7 @@ Bothell Biology is a true science-sequence transfer. The full introductory biolo
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AB-DTA/MRP`.
-Bothell Business Administration is best treated as a shared lower-division business-prerequisite transfer. The Green River job is to finish the accounting, economics, math, law, and writing baseline cleanly before the student commits to a final Bothell option or concentration.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
@@ -434,8 +205,8 @@ Bothell Business Administration is best treated as a shared lower-division busin
 
 - [UW Bothell Bachelor of Business Administration overview](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration)
 - [UW Bothell Business admissions](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions)
-- [UW Bothell Business prerequisite courses](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses)
 - [UW Bothell Business curriculum and areas of study](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum)
+- [UW Bothell Business prerequisite courses](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses)
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
 
 ##### Business Administration admission and prerequisite baseline
@@ -457,60 +228,34 @@ Bothell Business Administration is best treated as a shared lower-division busin
 
 #### GRC Equivalent Courses
 
-- `ENGL& 101`
-- `ENGL 128`
 - `MATH& 148`
 - `MATH& 151`
-- `MATH& 146`
-- `ECON& 201`
-- `ECON& 202`
+- `ENGL& 101`
+- `ENGL 128`
 - `ACCT& 201`
 - `ACCT& 202`
-- `ACCT& 203`
 - `BUS& 201`
-- `BUS& 101`
-- `BUS 121`
-- `BUS 258`
-- `ECON 100`
-- `ECON 101`
-- `ECON 194`
-- `ECON 298`
-- `ECON 299`
-- `MATH 106`
-- `MATH& 107`
-- `MATH& 141`
-- `MATH& 142`
-- `MATH 147`
+- `ECON& 202`
+- `ACCT& 203`
+- `ECON& 201`
+- `MATH& 146`
+- `ENGL 126`
+- `MATH 256`
 - `MATH& 152`
 - `MATH& 163`
-- `MATH& 171`
-- `MATH& 172`
-- `MATH& 173`
-- `MATH 194`
-- `MATH 238`
-- `MATH 240`
-- `MATH& 254`
-- `MATH 256`
-- `MATH 297`
-- `ENGL 126`
 
 #### Required sequences for specific credits
 
-- Required before application: English composition -> `ENGL& 101`
-- Required before application: Advanced composition -> `ENGL 128`
-- Required before application: Calculus or business calculus -> `MATH& 148`, `MATH& 151`. complete at least 1 course from this set
-- Required before application: Statistics -> `MATH& 146`
-- Required before application: Microeconomics -> `ECON& 201`
-- Required before application: Macroeconomics -> `ECON& 202`
-- Required before application: Financial Accounting -> `ACCT& 201`, `ACCT& 202`. complete at least 2 courses from this set
-- Required before application: Managerial Accounting -> `ACCT& 203`
-- Required before application: Law or business law -> `BUS& 201`
-- Worth finishing at Green River: Full three-course accounting sequence -> `ACCT& 201`, `ACCT& 202`, `ACCT& 203`. complete at least 3 courses from this set
-- GRC sequence: Business / less-calculus-heavy planning commonly uses `MATH& 141 -> MATH& 142` or `MATH 147 -> MATH& 148`. `MATH& 146` and `MATH 256` are standalone quantitative options.
-- Both: `ACCT& 201 + ACCT& 202` are required for the stronger `ACCTG 215 (5), B A 2XX (5)` outcome. `ACCT& 203` then gives `ACCTG 225 (5)`.
-- Planner flag: The general BBA row is only a baseline. The final exact course map depends on which Bothell option or concentration the student chooses after admission.
-- Planner flag: Bothell Business expects the majority of the prerequisite set at application time and the whole set before matriculation, so do not wait too long on accounting, law, or advanced writing.
-- Source-backed note: This general BBA row is only a baseline. The final exact course map depends on which business option or concentration the student chooses.
+- Required before application: Calculus or business calculus -> `MATH& 148`, `MATH& 151`. complete at least 1 course from this set. note: The current Bothell prerequisite chart accepts either business calculus or the standard calculus start. Choose the one that still fits the student's broader degree options.
+- Required before application: English composition -> `ENGL& 101`. note: Bothell Business expects the first college composition course before transfer. ENGL& 101 is the clearest current Green River starting point.
+- Required before application: Advanced composition -> `ENGL 128`. note: Bothell Business also expects advanced composition before matriculation. ENGL 128 is the clearest current Green River advanced-writing match for business, science, and technical students.
+- Required before application: Financial Accounting -> `ACCT& 201`, `ACCT& 202`. complete at least 2 courses from this set. note: The current Bothell comparison chart maps Financial Accounting through ACCT& 201 and ACCT& 202 at a common-transfer-numbering school.
+- Required before application: Law or business law -> `BUS& 201`. note: BUS& 201 is the clearest current Green River law / business-law match in the Bothell prerequisite chart.
+- Required before application: Macroeconomics -> `ECON& 202`. note: Bothell Business lists Macroeconomics as a required lower-division business prerequisite.
+- Required before application: Managerial Accounting -> `ACCT& 203`. note: Bothell Business lists Managerial Accounting as a separate prerequisite on top of the financial-accounting sequence.
+- Required before application: Microeconomics -> `ECON& 201`. note: Bothell Business lists Microeconomics as a required lower-division business prerequisite.
+- Required before application: Statistics -> `MATH& 146`. note: MATH& 146 is the clearest currently tracked Green River statistics prerequisite for Bothell Business.
+- Worth finishing at Green River: Full three-course accounting sequence -> `ACCT& 201`, `ACCT& 202`, `ACCT& 203`. complete at least 3 courses from this set. note: The whole Bothell business option menu stays easier to keep open when the full Green River accounting sequence is already finished before transfer.
 
 
 ### Business Administration: Accounting (BA)
@@ -518,13 +263,13 @@ Bothell Business Administration is best treated as a shared lower-division busin
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AB-DTA/MRP`.
-Bothell Accounting is the BBA path where the lower-division accounting sequence matters most before transfer. The Green River plan should finish the full business-prerequisite set and keep the accounting grades strong enough for the internal declaration threshold.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
-- [UW Bothell Accounting option](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting)
+- [UW Bothell Accounting option](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting) - Auto-promoted by planner:discover-primary-sources on April 8, 2026 from a high-confidence source-discovery match.
 - [UW Bothell Business admissions](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions)
 - [UW Bothell Business prerequisite courses](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses)
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
@@ -533,7 +278,7 @@ Bothell Accounting is the BBA path where the lower-division accounting sequence 
 
 - Accounting students first complete the same Bothell BBA prerequisite set used for admission to the business major.
 - The accounting option page then adds a stronger internal declaration threshold: all required prerequisite accounting courses must be completed with at least a 2.5 in each course and a 3.0 cumulative average across accounting prerequisites.
-- The page also says students cannot enroll in accounting-option courses until the published eligibility rules are satisfied.
+- The page also says students cannot enroll in accounting-option courses until they meet with an adviser to confirm eligibility.
 
 ##### Accounting option required course list
 
@@ -549,58 +294,33 @@ Bothell Accounting is the BBA path where the lower-division accounting sequence 
 
 #### GRC Equivalent Courses
 
-- `ENGL& 101`
-- `ENGL 128`
 - `MATH& 148`
 - `MATH& 151`
-- `MATH& 146`
-- `ECON& 201`
-- `ECON& 202`
+- `ENGL& 101`
+- `ENGL 128`
 - `ACCT& 201`
 - `ACCT& 202`
-- `ACCT& 203`
 - `BUS& 201`
-- `BUS& 101`
-- `BUS 121`
-- `BUS 258`
-- `ECON 100`
-- `ECON 101`
-- `ECON 194`
-- `ECON 298`
-- `ECON 299`
-- `MATH 106`
-- `MATH& 107`
-- `MATH& 141`
-- `MATH& 142`
-- `MATH 147`
+- `ECON& 202`
+- `ACCT& 203`
+- `ECON& 201`
+- `MATH& 146`
+- `MATH 256`
 - `MATH& 152`
 - `MATH& 163`
-- `MATH& 171`
-- `MATH& 172`
-- `MATH& 173`
-- `MATH 194`
-- `MATH 238`
-- `MATH 240`
-- `MATH& 254`
-- `MATH 256`
-- `MATH 297`
 
 #### Required sequences for specific credits
 
-- Required before application: English composition -> `ENGL& 101`
-- Required before application: Advanced composition -> `ENGL 128`
-- Required before application: Calculus or business calculus -> `MATH& 148`, `MATH& 151`. complete at least 1 course from this set
-- Required before application: Statistics -> `MATH& 146`
-- Required before application: Microeconomics -> `ECON& 201`
-- Required before application: Macroeconomics -> `ECON& 202`
-- Required before application: Financial Accounting -> `ACCT& 201`, `ACCT& 202`. complete at least 2 courses from this set
-- Required before application: Managerial Accounting -> `ACCT& 203`
-- Required before application: Law or business law -> `BUS& 201`
-- Worth finishing at Green River: Full accounting sequence with strong grades -> `ACCT& 201`, `ACCT& 202`, `ACCT& 203`. complete at least 3 courses from this set
-- GRC sequence: Business / less-calculus-heavy planning commonly uses `MATH& 141 -> MATH& 142` or `MATH 147 -> MATH& 148`. `MATH& 146` and `MATH 256` are standalone quantitative options.
-- Both: `ACCT& 201 + ACCT& 202` are required for the stronger `ACCTG 215 (5), B A 2XX (5)` outcome. `ACCT& 203` then gives `ACCTG 225 (5)`.
-- Planner flag: The Bothell Accounting option adds a stronger declaration threshold than the shared BBA baseline: at least 2.5 in each prerequisite accounting course and a 3.0 average across the accounting prerequisites.
-- Planner flag: Students cannot start accounting-option courses until the published Bothell eligibility rules are satisfied.
+- Required before application: Calculus or business calculus -> `MATH& 148`, `MATH& 151`. complete at least 1 course from this set. note: The current Bothell prerequisite chart accepts either business calculus or the standard calculus start. Choose the one that still fits the student's broader degree options.
+- Required before application: English composition -> `ENGL& 101`. note: Bothell Business expects the first college composition course before transfer. ENGL& 101 is the clearest current Green River starting point.
+- Required before application: Advanced composition -> `ENGL 128`. note: Bothell Business also expects advanced composition before matriculation. ENGL 128 is the clearest current Green River advanced-writing match for business, science, and technical students.
+- Required before application: Financial Accounting -> `ACCT& 201`, `ACCT& 202`. complete at least 2 courses from this set. note: The current Bothell comparison chart maps Financial Accounting through ACCT& 201 and ACCT& 202 at a common-transfer-numbering school.
+- Required before application: Law or business law -> `BUS& 201`. note: BUS& 201 is the clearest current Green River law / business-law match in the Bothell prerequisite chart.
+- Required before application: Macroeconomics -> `ECON& 202`. note: Bothell Business lists Macroeconomics as a required lower-division business prerequisite.
+- Required before application: Managerial Accounting -> `ACCT& 203`. note: Bothell Business lists Managerial Accounting as a separate prerequisite on top of the financial-accounting sequence.
+- Required before application: Microeconomics -> `ECON& 201`. note: Bothell Business lists Microeconomics as a required lower-division business prerequisite.
+- Required before application: Statistics -> `MATH& 146`. note: MATH& 146 is the clearest currently tracked Green River statistics prerequisite for Bothell Business.
+- Worth finishing at Green River: Full accounting sequence with strong grades -> `ACCT& 201`, `ACCT& 202`, `ACCT& 203`. complete at least 3 courses from this set. note: The Bothell Accounting option's internal declaration rule is built on the prerequisite accounting courses, so complete the whole Green River accounting sequence before transfer if possible.
 
 
 ### Business Administration: Finance (BA)
@@ -608,15 +328,15 @@ Bothell Accounting is the BBA path where the lower-division accounting sequence 
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AB-DTA/MRP`.
-Bothell Finance still starts with the shared BBA prerequisite set, but the stronger launch comes from arriving with accounting, economics, math, and writing already clean before the student chooses the full Finance Option or the lighter Finance concentration.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
-- [UW Bothell Finance option and concentration](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option)
 - [UW Bothell Business admissions](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions)
 - [UW Bothell Business prerequisite courses](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses)
+- [UW Bothell Finance option and concentration](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option) - Auto-promoted by planner:discover-primary-sources on April 8, 2026 from a high-confidence source-discovery match.
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
 
 ##### Finance option and concentration baseline
@@ -625,73 +345,46 @@ Bothell Finance still starts with the shared BBA prerequisite set, but the stron
 - The finance page says the Finance Option normally requires BBUS 350 with at least a 3.0, although students can request a waiver if they earn at least a 3.0 across the other required finance-option courses.
 - The Finance concentration uses the same BBA core but only requires BBUS 350 before declaration.
 
-##### Finance required courses
-
-- The Finance Option requires BBUS 451, 452, 453, and 454 after the shared core.
-- The Finance concentration keeps BBUS 451, 453, and 454 as its required finance block.
-
 ##### Finance electives, capstone, and credit structure
 
 - The option then adds 10 credits of finance electives plus 5 more credits from the enrichment-elective list, while the concentration adds 5 elective credits from the shorter approved list.
 - Both pathways end with the shared BBA capstones BBUS 470 and BBUS 480 and total 90 Bothell credits.
 - The finance page also warns that accounting-option students who add the finance concentration cannot double count BBUS 361 or 373 toward the concentration.
 
+##### Finance required courses
+
+- The Finance Option requires BBUS 451, 452, 453, and 454 after the shared core.
+- The Finance concentration keeps BBUS 451, 453, and 454 as its required finance block.
+
 #### GRC Equivalent Courses
 
-- `ENGL& 101`
-- `ENGL 128`
 - `MATH& 148`
 - `MATH& 151`
-- `MATH& 146`
-- `ECON& 201`
-- `ECON& 202`
+- `ENGL& 101`
+- `ENGL 128`
 - `ACCT& 201`
 - `ACCT& 202`
-- `ACCT& 203`
 - `BUS& 201`
-- `BUS& 101`
-- `BUS 121`
-- `BUS 258`
-- `ECON 100`
-- `ECON 101`
-- `ECON 194`
-- `ECON 298`
-- `ECON 299`
-- `MATH 106`
-- `MATH& 107`
-- `MATH& 141`
-- `MATH& 142`
-- `MATH 147`
+- `ECON& 202`
+- `ACCT& 203`
+- `ECON& 201`
+- `MATH& 146`
+- `MATH 256`
 - `MATH& 152`
 - `MATH& 163`
-- `MATH& 171`
-- `MATH& 172`
-- `MATH& 173`
-- `MATH 194`
-- `MATH 238`
-- `MATH 240`
-- `MATH& 254`
-- `MATH 256`
-- `MATH 297`
-- `ENGL 126`
 
 #### Required sequences for specific credits
 
-- Required before application: English composition -> `ENGL& 101`
-- Required before application: Advanced composition -> `ENGL 128`
-- Required before application: Calculus or business calculus -> `MATH& 148`, `MATH& 151`. complete at least 1 course from this set
-- Required before application: Statistics -> `MATH& 146`
-- Required before application: Microeconomics -> `ECON& 201`
-- Required before application: Macroeconomics -> `ECON& 202`
-- Required before application: Financial Accounting -> `ACCT& 201`, `ACCT& 202`. complete at least 2 courses from this set
-- Required before application: Managerial Accounting -> `ACCT& 203`
-- Required before application: Law or business law -> `BUS& 201`
-- Worth finishing at Green River: Full accounting sequence before the finance finish -> `ACCT& 201`, `ACCT& 202`, `ACCT& 203`. complete at least 3 courses from this set
-- GRC sequence: Business / less-calculus-heavy planning commonly uses `MATH& 141 -> MATH& 142` or `MATH 147 -> MATH& 148`. `MATH& 146` and `MATH 256` are standalone quantitative options.
-- Both: `ACCT& 201 + ACCT& 202` are required for the stronger `ACCTG 215 (5), B A 2XX (5)` outcome. `ACCT& 203` then gives `ACCTG 225 (5)`.
-- Planner flag: The public Bothell finance page has 2 real finishes: the full Finance Option and the lighter Finance concentration. Confirm which one the student wants before treating the exact upper-division list as final.
-- Planner flag: The full Finance Option normally expects at least a 3.0 in BBUS 350 after transfer, while the concentration only requires BBUS 350 before declaration.
-- Source-backed note: Confirm whether the student wants the full Finance Option or the lighter Finance concentration before treating the exact upper-division list as final.
+- Required before application: Calculus or business calculus -> `MATH& 148`, `MATH& 151`. complete at least 1 course from this set. note: The current Bothell prerequisite chart accepts either business calculus or the standard calculus start. Choose the one that still fits the student's broader degree options.
+- Required before application: English composition -> `ENGL& 101`. note: Bothell Business expects the first college composition course before transfer. ENGL& 101 is the clearest current Green River starting point.
+- Required before application: Advanced composition -> `ENGL 128`. note: Bothell Business also expects advanced composition before matriculation. ENGL 128 is the clearest current Green River advanced-writing match for business, science, and technical students.
+- Required before application: Financial Accounting -> `ACCT& 201`, `ACCT& 202`. complete at least 2 courses from this set. note: The current Bothell comparison chart maps Financial Accounting through ACCT& 201 and ACCT& 202 at a common-transfer-numbering school.
+- Required before application: Law or business law -> `BUS& 201`. note: BUS& 201 is the clearest current Green River law / business-law match in the Bothell prerequisite chart.
+- Required before application: Macroeconomics -> `ECON& 202`. note: Bothell Business lists Macroeconomics as a required lower-division business prerequisite.
+- Required before application: Managerial Accounting -> `ACCT& 203`. note: Bothell Business lists Managerial Accounting as a separate prerequisite on top of the financial-accounting sequence.
+- Required before application: Microeconomics -> `ECON& 201`. note: Bothell Business lists Microeconomics as a required lower-division business prerequisite.
+- Required before application: Statistics -> `MATH& 146`. note: MATH& 146 is the clearest currently tracked Green River statistics prerequisite for Bothell Business.
+- Worth finishing at Green River: Full accounting sequence before the finance finish -> `ACCT& 201`, `ACCT& 202`, `ACCT& 203`. complete at least 3 courses from this set. note: The full accounting sequence is part of the shared Bothell business foundation and makes the finance launch cleaner before the student reaches BBUS 451 to 454.
 
 
 ### Business Administration: Leadership & Strategic Innovation (BA)
@@ -699,26 +392,21 @@ Bothell Finance still starts with the shared BBA prerequisite set, but the stron
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AB-DTA/MRP`.
-Bothell Leadership and Strategic Innovation still starts from the shared BBA prerequisite set, but it works best when the student arrives with business writing, economics, accounting, and a clear leadership or team-based story already in place.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
-- [UW Bothell Leadership and Strategic Innovation option](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership)
 - [UW Bothell Business admissions](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions)
 - [UW Bothell Business prerequisite courses](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses)
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
+- [UW Bothell Leadership and Strategic Innovation option](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership) - Auto-promoted by planner:discover-primary-sources on April 8, 2026 from a high-confidence source-discovery match.
 
 ##### Leadership and Strategic Innovation declaration baseline
 
 - The LSI option sits inside the shared BBA framework and uses the usual BBA admission prerequisites.
 - The option page adds one declaration rule on top of that baseline: students must complete BBUS 300 and BBUS 307 with at least a 3.0 in each course.
-
-##### Leadership and Strategic Innovation required courses
-
-- The LSI option uses the shared core of BBUS 300, 307, 310, 320, 340, and 350.
-- Its required option courses are BBUS 402, 461, 473, and 475, plus one of BBUS 476 or BBUS 477.
 
 ##### Leadership and Strategic Innovation electives and finish
 
@@ -726,99 +414,39 @@ Bothell Leadership and Strategic Innovation still starts from the shared BBA pre
 - The option also carries 15 credits of upper-division general electives and the shared BBA capstone pair BBUS 470 and BBUS 480.
 - The page lists the full LSI option as a 90-credit Bothell program.
 
+##### Leadership and Strategic Innovation required courses
+
+- The LSI option uses the shared core of BBUS 300, 307, 310, 320, 340, and 350.
+- Its required option courses are BBUS 402, 461, 473, and 475, plus one of BBUS 476 or BBUS 477.
+
 #### GRC Equivalent Courses
 
-- `ENGL& 101`
-- `ENGL 128`
 - `MATH& 148`
 - `MATH& 151`
-- `MATH& 146`
-- `ECON& 201`
-- `ECON& 202`
+- `ENGL& 101`
+- `ENGL 128`
 - `ACCT& 201`
 - `ACCT& 202`
-- `ACCT& 203`
 - `BUS& 201`
-- `BUS& 101`
-- `BUS 121`
-- `BUS 258`
-- `ECON 100`
-- `ECON 101`
-- `ECON 194`
-- `ECON 298`
-- `ECON 299`
-- `MATH 106`
-- `MATH& 107`
-- `MATH& 141`
-- `MATH& 142`
-- `MATH 147`
+- `ECON& 202`
+- `ACCT& 203`
+- `ECON& 201`
+- `MATH& 146`
+- `MATH 256`
 - `MATH& 152`
 - `MATH& 163`
-- `MATH& 171`
-- `MATH& 172`
-- `MATH& 173`
-- `MATH 194`
-- `MATH 238`
-- `MATH 240`
-- `MATH& 254`
-- `MATH 256`
-- `MATH 297`
-- `CMST& 102`
-- `CMST 194`
-- `CMST& 210`
-- `CMST 212`
-- `CMST 215`
-- `CMST& 220`
-- `CMST& 230`
-- `CMST 238`
-- `CMST 245`
-- `CMST 265`
-- `CMST 266`
-- `CMST 299`
-- `FILM 120`
-- `FILM 121`
-- `FILM 122`
-- `JOURN 100.1`
-- `JOURN 100.2`
-- `JOURN 100.3`
-- `JOURN 101`
-- `JOURN 103`
-- `JOURN 107`
-- `JOURN 110`
-- `JOURN 111`
-- `JOURN 112`
-- `JOURN 120`
-- `JOURN 121`
-- `JOURN 122`
-- `JOURN 150`
-- `JOURN 151`
-- `JOURN 152`
-- `JOURN 153`
-- `JOURN 198`
-- `JOURN 199`
-- `JOURN 200`
-- `JOURN 205`
-- `JOURN 206`
-- `JOURN 207`
-- `JOURN 254`
-- `JOURN 255`
-- `JOURN 298`
-- `JOURN 299`
 
 #### Required sequences for specific credits
 
-- Required before application: English composition -> `ENGL& 101`
-- Required before application: Advanced composition -> `ENGL 128`
-- Required before application: Calculus or business calculus -> `MATH& 148`, `MATH& 151`. complete at least 1 course from this set
-- Required before application: Statistics -> `MATH& 146`
-- Required before application: Microeconomics -> `ECON& 201`
-- Required before application: Macroeconomics -> `ECON& 202`
-- Required before application: Financial Accounting -> `ACCT& 201`, `ACCT& 202`. complete at least 2 courses from this set
-- Required before application: Managerial Accounting -> `ACCT& 203`
-- Required before application: Law or business law -> `BUS& 201`
-- GRC sequence: Business / less-calculus-heavy planning commonly uses `MATH& 141 -> MATH& 142` or `MATH 147 -> MATH& 148`. `MATH& 146` and `MATH 256` are standalone quantitative options.
-- Planner flag: The LSI option adds an internal declaration rule after transfer: students must complete BBUS 300 and BBUS 307 with at least a 3.0 in each course.
-- Planner flag: That declaration threshold is not something Green River can satisfy directly, so the pre-transfer focus should stay on the shared BBA prerequisite set and on building a strong writing-and-leadership profile.
+- Required before application: Calculus or business calculus -> `MATH& 148`, `MATH& 151`. complete at least 1 course from this set. note: The current Bothell prerequisite chart accepts either business calculus or the standard calculus start. Choose the one that still fits the student's broader degree options.
+- Required before application: English composition -> `ENGL& 101`. note: Bothell Business expects the first college composition course before transfer. ENGL& 101 is the clearest current Green River starting point.
+- Required before application: Advanced composition -> `ENGL 128`. note: Bothell Business also expects advanced composition before matriculation. ENGL 128 is the clearest current Green River advanced-writing match for business, science, and technical students.
+- Required before application: Financial Accounting -> `ACCT& 201`, `ACCT& 202`. complete at least 2 courses from this set. note: The current Bothell comparison chart maps Financial Accounting through ACCT& 201 and ACCT& 202 at a common-transfer-numbering school.
+- Required before application: Law or business law -> `BUS& 201`. note: BUS& 201 is the clearest current Green River law / business-law match in the Bothell prerequisite chart.
+- Required before application: Macroeconomics -> `ECON& 202`. note: Bothell Business lists Macroeconomics as a required lower-division business prerequisite.
+- Required before application: Managerial Accounting -> `ACCT& 203`. note: Bothell Business lists Managerial Accounting as a separate prerequisite on top of the financial-accounting sequence.
+- Required before application: Microeconomics -> `ECON& 201`. note: Bothell Business lists Microeconomics as a required lower-division business prerequisite.
+- Required before application: Statistics -> `MATH& 146`. note: MATH& 146 is the clearest currently tracked Green River statistics prerequisite for Bothell Business.
 
 
 ### Business Administration: Marketing (BA)
@@ -826,26 +454,21 @@ Bothell Leadership and Strategic Innovation still starts from the shared BBA pre
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AB-DTA/MRP`.
-Bothell Marketing starts from the shared BBA prerequisite set, but the strongest transfer launch also keeps communication and audience-facing work visible before the student chooses the full Marketing Option or the lighter Marketing concentration.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
-- [UW Bothell Marketing option and concentration](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing)
 - [UW Bothell Business admissions](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions)
 - [UW Bothell Business prerequisite courses](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses)
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
+- [UW Bothell Marketing option and concentration](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing) - Auto-promoted by planner:discover-primary-sources on April 8, 2026 from a high-confidence source-discovery match.
 
 ##### Marketing option and concentration baseline
 
 - Marketing students begin with the shared BBA admission prerequisites and the common BBA core of BBUS 300, 307, 310, 320, 340, and 350.
 - The current marketing page publishes separate option and concentration course lists, so the exact finish depends on which pathway the student chooses.
-
-##### Marketing required courses
-
-- The Marketing Option requires BBUS 421, 423, and 438 after the shared BBA core.
-- The Marketing concentration keeps BBUS 423 and 438 as its required specialized coursework.
 
 ##### Marketing electives, capstone, and credit structure
 
@@ -853,102 +476,43 @@ Bothell Marketing starts from the shared BBA prerequisite set, but the strongest
 - The option carries 20 credits of upper-division general electives, while the concentration carries 30 general-elective credits.
 - Both pathways finish with the shared capstones BBUS 470 and BBUS 480 and total 90 Bothell credits.
 
+##### Marketing required courses
+
+- The Marketing Option requires BBUS 421, 423, and 438 after the shared BBA core.
+- The Marketing concentration keeps BBUS 423 and 438 as its required specialized coursework.
+
 #### GRC Equivalent Courses
 
-- `ENGL& 101`
-- `ENGL 128`
 - `MATH& 148`
 - `MATH& 151`
-- `MATH& 146`
-- `ECON& 201`
-- `ECON& 202`
+- `ENGL& 101`
+- `ENGL 128`
 - `ACCT& 201`
 - `ACCT& 202`
-- `ACCT& 203`
 - `BUS& 201`
+- `ECON& 202`
+- `ACCT& 203`
+- `ECON& 201`
+- `MATH& 146`
 - `CMST& 102`
 - `CMST& 220`
 - `JOURN 100.1`
-- `BUS& 101`
-- `BUS 121`
-- `BUS 258`
-- `ECON 100`
-- `ECON 101`
-- `ECON 194`
-- `ECON 298`
-- `ECON 299`
-- `CMST 194`
-- `CMST& 210`
-- `CMST 212`
-- `CMST 215`
-- `CMST& 230`
-- `CMST 238`
-- `CMST 245`
-- `CMST 265`
-- `CMST 266`
-- `CMST 299`
-- `FILM 120`
-- `FILM 121`
-- `FILM 122`
-- `JOURN 100.2`
-- `JOURN 100.3`
-- `JOURN 101`
-- `JOURN 103`
-- `JOURN 107`
-- `JOURN 110`
-- `JOURN 111`
-- `JOURN 112`
-- `JOURN 120`
-- `JOURN 121`
-- `JOURN 122`
-- `JOURN 150`
-- `JOURN 151`
-- `JOURN 152`
-- `JOURN 153`
-- `JOURN 198`
-- `JOURN 199`
-- `JOURN 200`
-- `JOURN 205`
-- `JOURN 206`
-- `JOURN 207`
-- `JOURN 254`
-- `JOURN 255`
-- `JOURN 298`
-- `JOURN 299`
-- `MATH 106`
-- `MATH& 107`
-- `MATH& 141`
-- `MATH& 142`
-- `MATH 147`
+- `MATH 256`
 - `MATH& 152`
 - `MATH& 163`
-- `MATH& 171`
-- `MATH& 172`
-- `MATH& 173`
-- `MATH 194`
-- `MATH 238`
-- `MATH 240`
-- `MATH& 254`
-- `MATH 256`
-- `MATH 297`
-- `ENGL 126`
 
 #### Required sequences for specific credits
 
-- Required before application: English composition -> `ENGL& 101`
-- Required before application: Advanced composition -> `ENGL 128`
-- Required before application: Calculus or business calculus -> `MATH& 148`, `MATH& 151`. complete at least 1 course from this set
-- Required before application: Statistics -> `MATH& 146`
-- Required before application: Microeconomics -> `ECON& 201`
-- Required before application: Macroeconomics -> `ECON& 202`
-- Required before application: Financial Accounting -> `ACCT& 201`, `ACCT& 202`. complete at least 2 courses from this set
-- Required before application: Managerial Accounting -> `ACCT& 203`
-- Required before application: Law or business law -> `BUS& 201`
-- Worth finishing at Green River: Communication support before upper-division marketing work -> `CMST& 102`, `CMST& 220`, `JOURN 100.1`. complete at least 1 course from this set
-- GRC sequence: Business / less-calculus-heavy planning commonly uses `MATH& 141 -> MATH& 142` or `MATH 147 -> MATH& 148`. `MATH& 146` and `MATH 256` are standalone quantitative options.
-- Planner flag: The current Bothell marketing page has 2 real finishes: the full Marketing Option and the lighter Marketing concentration. Confirm which one the student wants before treating the exact upper-division list as final.
-- Planner flag: Marketing electives and the amount of upper-division general electives change between the option and concentration, so do not assume one fixed finish for every student.
-- Source-backed note: Confirm whether the student wants the transcripted Marketing Option or the Marketing concentration before treating the exact upper-division path as final.
+- Required before application: Calculus or business calculus -> `MATH& 148`, `MATH& 151`. complete at least 1 course from this set. note: The current Bothell prerequisite chart accepts either business calculus or the standard calculus start. Choose the one that still fits the student's broader degree options.
+- Required before application: English composition -> `ENGL& 101`. note: Bothell Business expects the first college composition course before transfer. ENGL& 101 is the clearest current Green River starting point.
+- Required before application: Advanced composition -> `ENGL 128`. note: Bothell Business also expects advanced composition before matriculation. ENGL 128 is the clearest current Green River advanced-writing match for business, science, and technical students.
+- Required before application: Financial Accounting -> `ACCT& 201`, `ACCT& 202`. complete at least 2 courses from this set. note: The current Bothell comparison chart maps Financial Accounting through ACCT& 201 and ACCT& 202 at a common-transfer-numbering school.
+- Required before application: Law or business law -> `BUS& 201`. note: BUS& 201 is the clearest current Green River law / business-law match in the Bothell prerequisite chart.
+- Required before application: Macroeconomics -> `ECON& 202`. note: Bothell Business lists Macroeconomics as a required lower-division business prerequisite.
+- Required before application: Managerial Accounting -> `ACCT& 203`. note: Bothell Business lists Managerial Accounting as a separate prerequisite on top of the financial-accounting sequence.
+- Required before application: Microeconomics -> `ECON& 201`. note: Bothell Business lists Microeconomics as a required lower-division business prerequisite.
+- Required before application: Statistics -> `MATH& 146`. note: MATH& 146 is the clearest currently tracked Green River statistics prerequisite for Bothell Business.
+- Worth finishing at Green River: Communication support before upper-division marketing work -> `CMST& 102`, `CMST& 220`, `JOURN 100.1`. complete at least 1 course from this set. note: Marketing is stronger when the student arrives with at least one audience-facing communication course already done, even though these are not formal BBA admission prerequisites.
 
 
 ### Business Administration: Supply Chain Management (BA)
@@ -956,26 +520,21 @@ Bothell Marketing starts from the shared BBA prerequisite set, but the strongest
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AB-DTA/MRP`.
-Bothell Supply Chain Management still starts from the shared BBA prerequisite set, but the option is more operations- and quantitative-heavy than the other business finishes, so calculus, statistics, accounting, and business-law preparation should be placed deliberately before transfer.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
-- [UW Bothell Supply Chain Management option](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain)
 - [UW Bothell Business admissions](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions)
 - [UW Bothell Business prerequisite courses](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses)
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
+- [UW Bothell Supply Chain Management option](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain) - Auto-promoted by planner:discover-primary-sources on April 8, 2026 from a high-confidence source-discovery match.
 
 ##### Supply Chain Management declaration baseline
 
 - Supply Chain Management uses the shared BBA admission prerequisites and upper-division business core.
 - The option page adds a higher internal declaration threshold: students must complete Calculus, Statistics, and BBUS 340 with at least a 3.0 in each course.
-
-##### Supply Chain Management required courses
-
-- After the shared BBA core of BBUS 300, 307, 310, 320, 340, and 350, the required SCM block is BBUS 441, 482, 483, 486, and 487.
-- Students also complete an applied terminal experience through BBUS 492 or an approved internship, independent research, or business consulting substitute.
 
 ##### Supply Chain Management electives and finish
 
@@ -983,75 +542,55 @@ Bothell Supply Chain Management still starts from the shared BBA prerequisite se
 - Students also complete 10 credits of upper-division general electives and the shared BBA capstones BBUS 470 and BBUS 480.
 - The current page lists the full SCM option as a 90-credit Bothell program and notes its STEM-designated classification.
 
+##### Supply Chain Management required courses
+
+- After the shared BBA core of BBUS 300, 307, 310, 320, 340, and 350, the required SCM block is BBUS 441, 482, 483, 486, and 487.
+- Students also complete an applied terminal experience through BBUS 492 or an approved internship, independent research, or business consulting substitute.
+
 #### GRC Equivalent Courses
 
-- `ENGL& 101`
-- `ENGL 128`
 - `MATH& 148`
 - `MATH& 151`
-- `MATH& 146`
-- `ECON& 201`
-- `ECON& 202`
+- `ENGL& 101`
+- `ENGL 128`
 - `ACCT& 201`
 - `ACCT& 202`
-- `ACCT& 203`
 - `BUS& 201`
-- `BUS& 101`
-- `BUS 121`
-- `BUS 258`
-- `ECON 100`
-- `ECON 101`
-- `ECON 194`
-- `ECON 298`
-- `ECON 299`
-- `MATH 106`
-- `MATH& 107`
-- `MATH& 141`
-- `MATH& 142`
-- `MATH 147`
+- `ECON& 202`
+- `ACCT& 203`
+- `ECON& 201`
+- `MATH& 146`
+- `MATH 256`
 - `MATH& 152`
 - `MATH& 163`
-- `MATH& 171`
-- `MATH& 172`
-- `MATH& 173`
-- `MATH 194`
-- `MATH 238`
-- `MATH 240`
-- `MATH& 254`
-- `MATH 256`
-- `MATH 297`
 
 #### Required sequences for specific credits
 
-- Required before application: English composition -> `ENGL& 101`
-- Required before application: Advanced composition -> `ENGL 128`
-- Required before application: Calculus or business calculus -> `MATH& 148`, `MATH& 151`. complete at least 1 course from this set
-- Required before application: Statistics -> `MATH& 146`
-- Required before application: Microeconomics -> `ECON& 201`
-- Required before application: Macroeconomics -> `ECON& 202`
-- Required before application: Financial Accounting -> `ACCT& 201`, `ACCT& 202`. complete at least 2 courses from this set
-- Required before application: Managerial Accounting -> `ACCT& 203`
-- Required before application: Law or business law -> `BUS& 201`
-- GRC sequence: Business / less-calculus-heavy planning commonly uses `MATH& 141 -> MATH& 142` or `MATH 147 -> MATH& 148`. `MATH& 146` and `MATH 256` are standalone quantitative options.
-- Planner flag: The Bothell Supply Chain option adds a higher internal declaration threshold after transfer: students must complete Calculus, Statistics, and BBUS 340 with at least a 3.0 in each course.
-- Planner flag: The option is STEM-designated, so it is especially important to keep the lower-division quantitative business prerequisites intact before transfer.
+- Required before application: Calculus or business calculus -> `MATH& 148`, `MATH& 151`. complete at least 1 course from this set. note: The current Bothell prerequisite chart accepts either business calculus or the standard calculus start. Choose the one that still fits the student's broader degree options.
+- Required before application: English composition -> `ENGL& 101`. note: Bothell Business expects the first college composition course before transfer. ENGL& 101 is the clearest current Green River starting point.
+- Required before application: Advanced composition -> `ENGL 128`. note: Bothell Business also expects advanced composition before matriculation. ENGL 128 is the clearest current Green River advanced-writing match for business, science, and technical students.
+- Required before application: Financial Accounting -> `ACCT& 201`, `ACCT& 202`. complete at least 2 courses from this set. note: The current Bothell comparison chart maps Financial Accounting through ACCT& 201 and ACCT& 202 at a common-transfer-numbering school.
+- Required before application: Law or business law -> `BUS& 201`. note: BUS& 201 is the clearest current Green River law / business-law match in the Bothell prerequisite chart.
+- Required before application: Macroeconomics -> `ECON& 202`. note: Bothell Business lists Macroeconomics as a required lower-division business prerequisite.
+- Required before application: Managerial Accounting -> `ACCT& 203`. note: Bothell Business lists Managerial Accounting as a separate prerequisite on top of the financial-accounting sequence.
+- Required before application: Microeconomics -> `ECON& 201`. note: Bothell Business lists Microeconomics as a required lower-division business prerequisite.
+- Required before application: Statistics -> `MATH& 146`. note: MATH& 146 is the clearest currently tracked Green River statistics prerequisite for Bothell Business.
 
 
 ### Chemistry (BA)
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `999O`.
-Bothell Chemistry B.A. is the more flexible chemistry route, but it still expects a full chemistry-and-calculus launch. The Green River job is to finish general chemistry and Calculus I-III before admission, then use organic chemistry and one full physics sequence to strengthen the Bothell start.
+Planner coverage: `detailed`. Best Green River base: `AST-2`.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
-- [UW Bothell Chemistry overview](https://www.uwb.edu/stem/undergraduate/majors/chemistry)
 - [UW Bothell Chemistry admissions](https://www.uwb.edu/stem/undergraduate/majors/chemistry/admissions)
 - [UW Bothell Chemistry curriculum](https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum)
-- [UW Bothell Chemistry curriculum](https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum) - Auto-promoted from the parsed primary degree page on April 12, 2026.
+- [UW Bothell Chemistry overview](https://www.uwb.edu/stem/undergraduate/majors/chemistry)
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
 
 ##### Chemistry B.A. admission baseline
@@ -1073,14 +612,17 @@ Bothell Chemistry B.A. is the more flexible chemistry route, but it still expect
 
 #### GRC Equivalent Courses
 
-- `CHEM& 161`
-- `CHEM& 162`
-- `CHEM& 163`
 - `MATH& 151`
 - `MATH& 152`
 - `MATH& 163`
-- `MATH& 153`
-- `MATH& 254`
+- `CHEM& 161`
+- `CHEM& 162`
+- `CHEM& 163`
+- `PHYS& 221`
+- `PHYS& 223`
+- `MATH 238`
+- `MATH 240`
+- `MATH& 264`
 - `CHEM& 261`
 - `CHEM& 262`
 - `CHEM& 263`
@@ -1090,93 +632,115 @@ Bothell Chemistry B.A. is the more flexible chemistry route, but it still expect
 - `PHYS& 155`
 - `PHYS& 116`
 - `PHYS& 156`
-- `PHYS& 221`
-- `PHYS& 222`
-- `PHYS& 223`
-- `CHEM& 121`
-- `CHEM& 131`
-- `CHEM& 140`
-- `CHEM 194`
-- `CHEM 195`
-- `CHEM 296`
-- `CHEM 299`
-- `MATH 106`
-- `MATH& 107`
-- `MATH& 141`
-- `MATH& 142`
-- `MATH& 146`
-- `MATH 147`
-- `MATH& 148`
-- `MATH& 171`
-- `MATH& 172`
-- `MATH& 173`
-- `MATH 194`
-- `MATH 238`
-- `MATH 240`
-- `MATH 256`
-- `MATH 297`
-- `PHYS& 110`
-- `PHYS 225`
-- `PHYS 229`
-- `PHYS 298`
 - `ENGL& 101`
-- `MATH& 264`
+- `MATH& 146`
+- `MATH& 153`
+- `MATH& 254`
+- `PHYS& 222`
 
 #### Required sequences for specific credits
 
-- Required before application: Full general chemistry sequence -> `CHEM& 161`, `CHEM& 162`, `CHEM& 163`
-- Required before application: Calculus I, II, and III -> `MATH& 151`, `MATH& 152`, `MATH& 163`. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`
-- Required before enrollment: Full organic chemistry sequence -> `CHEM& 261`, `CHEM& 262`, `CHEM& 263`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Required before enrollment: One full three-course physics sequence -> `PHYS& 114`, `PHYS& 154`, `PHYS& 115`, `PHYS& 155`, `PHYS& 116`, `PHYS& 156`. complete at least 6 courses from this set. alternate path `PHYS& 221`, `PHYS& 222`, `PHYS& 223`
+- Required before application: Calculus I, II, and III -> `MATH& 151`, `MATH& 152`, `MATH& 163`. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`. note: Bothell Chemistry asks for the full calculus sequence before admission, so the full Green River STEM calculus ladder should be finished before transfer.
+- Required before application: Full general chemistry sequence -> `CHEM& 161`, `CHEM& 162`, `CHEM& 163`. note: Bothell Chemistry expects the full general chemistry sequence with labs before admission.
 - Required before enrollment: BPHYS 121 -> `PHYS& 221`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 - Required before enrollment: BPHYS 123 -> `PHYS& 223`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 - Required before enrollment: STMATH 207 -> `MATH 238`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 - Required before enrollment: STMATH 208 -> `MATH 240`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 - Required before enrollment: STMATH 224 -> `MATH& 264`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Both: `CHEM& 161 -> CHEM& 162 -> CHEM& 163`. Current UW full-credit note: `CHEM& 162 + CHEM& 163` gives `CHEM 152, 162 (5, 5), 1XX (2)`; otherwise each is weaker `CHEM 1XX`.
-- Both: `CHEM& 261 -> CHEM& 262 -> CHEM& 263`. Current UW full-credit notes: `261 + 262` strengthens the outcome, and `261 + 262 + 263` yields the full `CHEM 237, 238, 239, 241, 242` package.
-- GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
-- GRC sequence: `PHYS& 221 -> PHYS& 222 -> PHYS& 223` for calculus-based physics.
-- Planner flag: The Bothell Chemistry B.A. is flexible after transfer, but it still expects the chemistry-and-calculus admission baseline to be complete before applying.
-- Planner flag: The department strongly recommends taking analytical chemistry before physical chemistry and not stacking those sequences at the same time once the student reaches Bothell.
-- Source-backed note: This row is specifically the Bothell Chemistry B.A. If the student is aiming for the more intensive B.S. general or biochemistry option, use the matching Bothell chemistry rows instead.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Course-family consensus: 3/3 samples for PHYS 121.
-- Source-backed note: Supporting UW course codes: PHYS 121.
-- Source-backed note: Added the Green River course path PHYS& 221 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Both BPHYS 121 and BPHYS 122: Calculus-based Physics I and II + Labs
-- Source-backed note: Course-family consensus: 5/5 samples for PHYS 123.
-- Source-backed note: Supporting UW course codes: PHYS 123, T PHYS 123.
-- Source-backed note: Added the Green River course path PHYS& 223 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Note on Physics III: The third course in the above two series is BPHYS 116+119 (General Physics III + Lab) or BPHYS 123 (Calculus-based Physics III + Lab) . These are not required for your Biology degree, but may be needed to apply to some graduate programs.
-- Source-backed note: Requirement-mapping consensus: 1/1 exact-title samples for STMATH 207.
-- Source-backed note: Added the Green River course path MATH 238 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: STMATH 207 Differential Equations (5) | STMATH 207 Introduction to Differential Equations (5 credits) | STMATH 207: Introduction to Differential Equations (5 credits)
-- Source-backed note: Course-family consensus: 12/12 samples for MATH 208.
-- Source-backed note: Supporting UW course codes: MATH 208, TMATH 208.
-- Source-backed note: Added the Green River course path MATH 240 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: STMATH 208 Matrix Algebra (5) | STMATH 208 Matrix Algebra with Applications (5 credits) | STMATH 208: Matrix Algebra with Applications (5 credits)
-- Source-backed note: Requirement-mapping consensus: 1/1 exact-title samples for STMATH 224.
-- Source-backed note: Added the Green River course path MATH& 264 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: STMATH 224 Multivariable Calculus (5 credits) | STMATH 224 Multivariable Calculus (5) | STMATH 224: Multivariable Calculus (5 credits)
+- Required before enrollment: Full organic chemistry sequence -> `CHEM& 261`, `CHEM& 262`, `CHEM& 263`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
+- Required before enrollment: One full three-course physics sequence -> `PHYS& 114`, `PHYS& 154`, `PHYS& 115`, `PHYS& 155`, `PHYS& 116`, `PHYS& 156`. complete at least 6 courses from this set. alternate path `PHYS& 221`, `PHYS& 222`, `PHYS& 223`. note: Bothell Chemistry accepts either the general-physics-with-lab sequence or the calculus-based sequence. Finish the sequence that best fits the student's broader science plan.
+
+
+### Chemistry: Biochemistry (BS)
+
+#### Summary
+
+Planner coverage: `detailed`. Best Green River base: `AST-2`.
+
+
+#### Exact UW Courses Needed for Full Degree at UW
+
+##### Links Used
+
+- [UW Bothell Chemistry admissions](https://www.uwb.edu/stem/undergraduate/majors/chemistry/admissions)
+- [UW Bothell Chemistry curriculum](https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum)
+- [UW Bothell Chemistry overview](https://www.uwb.edu/stem/undergraduate/majors/chemistry)
+- [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
+
+##### Chemistry B.S. Biochemistry option admission baseline
+
+- The Biochemistry option shares the same chemistry-major admissions baseline: the full general chemistry sequence with labs plus Calculus I, II, and III, each completed with at least a 2.0 grade.
+- Like the other chemistry pathways, students are expected to complete prerequisites before applying for autumn, winter, or spring entry.
+
+##### Biochemistry option required core
+
+- The Biochemistry option requires the full organic chemistry sequence, one full three-course physics sequence, and one advanced mathematics course from differential equations, linear algebra, multivariable calculus, or statistics.
+- It then adds a biology sequence through BBIO 180 and 200 plus a larger chemistry / biochemistry core: BCHEM 294, 316, 317, BBIO/BCHEM 364, 365, 366, BBIO/BCHEM 375, BCHEM 401, 402, 404, 426, and BCHEM 495.
+- The department describes this option as having more required core and less elective space than the general chemistry B.S., with substantial lab time.
+
+##### Biochemistry option electives and finish
+
+- The Biochemistry option finishes with 5 credits of upper-division chemistry electives chosen from approved courses such as BCHEM 310, 312, 313, 350, 493, 494, 497, 498, and 499.
+- The curriculum page still requires at least a 2.0 in each course applied to the major, plus the broader 180-credit UW Bothell bachelor's requirements outside the major.
+- Because the option is lab-heavy and leaves less elective room, the department recommends proactive scheduling with an adviser.
+
+#### GRC Equivalent Courses
+
+- `MATH& 151`
+- `MATH& 152`
+- `MATH& 163`
+- `CHEM& 161`
+- `CHEM& 162`
+- `CHEM& 163`
+- `PHYS& 221`
+- `PHYS& 223`
+- `MATH& 254`
+- `MATH 238`
+- `MATH 240`
+- `MATH& 146`
+- `MATH 256`
+- `BIOL& 211`
+- `BIOL& 212`
+- `BIOL& 213`
+- `CHEM& 261`
+- `CHEM& 262`
+- `CHEM& 263`
+- `PHYS& 114`
+- `PHYS& 154`
+- `PHYS& 115`
+- `PHYS& 155`
+- `PHYS& 116`
+- `PHYS& 156`
+- `ENGL& 101`
+- `MATH& 153`
+- `PHYS& 222`
+
+#### Required sequences for specific credits
+
+- Required before application: Calculus I, II, and III -> `MATH& 151`, `MATH& 152`, `MATH& 163`. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`. note: Bothell Chemistry asks for the full calculus sequence before admission, so the full Green River STEM calculus ladder should be finished before transfer.
+- Required before application: Full general chemistry sequence -> `CHEM& 161`, `CHEM& 162`, `CHEM& 163`. note: Bothell Chemistry expects the full general chemistry sequence with labs before admission.
+- Required before enrollment: BPHYS 121 -> `PHYS& 221`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
+- Required before enrollment: BPHYS 123 -> `PHYS& 223`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
+- Required before enrollment: One advanced math course for the Biochemistry option -> `MATH& 254`, `MATH 238`, `MATH 240`, `MATH& 146`, `MATH 256`. complete at least 1 course from this set. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
+- Required before enrollment: Biology through the first two majors-biology courses -> `BIOL& 211`, `BIOL& 212`, `BIOL& 213`. complete at least 2 courses from this set. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
+- Required before enrollment: Full organic chemistry sequence -> `CHEM& 261`, `CHEM& 262`, `CHEM& 263`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
+- Required before enrollment: One full three-course physics sequence -> `PHYS& 114`, `PHYS& 154`, `PHYS& 115`, `PHYS& 155`, `PHYS& 116`, `PHYS& 156`. complete at least 6 courses from this set. alternate path `PHYS& 221`, `PHYS& 222`, `PHYS& 223`. note: Bothell Biochemistry accepts either the general-physics-with-lab sequence or the calculus-based sequence. Finish the sequence that best fits the student's broader science plan.
 
 
 ### Chemistry (BS)
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `AST-1`.
-Bothell Chemistry B.S. is the heavier chemistry route. The Green River job is to finish general chemistry and Calculus I-III before admission, then use organic chemistry, physics, and one more advanced math course to make the upper-division chemistry launch cleaner.
+Planner coverage: `detailed`. Best Green River base: `AST-2`.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
-- [UW Bothell Chemistry overview](https://www.uwb.edu/stem/undergraduate/majors/chemistry)
 - [UW Bothell Chemistry admissions](https://www.uwb.edu/stem/undergraduate/majors/chemistry/admissions)
 - [UW Bothell Chemistry curriculum](https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum)
-- [UW Bothell Chemistry curriculum](https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum) - Auto-promoted from the parsed primary degree page on April 12, 2026.
+- [UW Bothell Chemistry overview](https://www.uwb.edu/stem/undergraduate/majors/chemistry)
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
 
 ##### Chemistry B.S. admission baseline
@@ -1199,14 +763,19 @@ Bothell Chemistry B.S. is the heavier chemistry route. The Green River job is to
 
 #### GRC Equivalent Courses
 
-- `CHEM& 161`
-- `CHEM& 162`
-- `CHEM& 163`
 - `MATH& 151`
 - `MATH& 152`
 - `MATH& 163`
-- `MATH& 153`
+- `CHEM& 161`
+- `CHEM& 162`
+- `CHEM& 163`
+- `PHYS& 221`
+- `PHYS& 223`
 - `MATH& 254`
+- `MATH 238`
+- `MATH 240`
+- `MATH& 146`
+- `MATH 256`
 - `CHEM& 261`
 - `CHEM& 262`
 - `CHEM& 263`
@@ -1216,213 +785,35 @@ Bothell Chemistry B.S. is the heavier chemistry route. The Green River job is to
 - `PHYS& 155`
 - `PHYS& 116`
 - `PHYS& 156`
-- `PHYS& 221`
-- `PHYS& 222`
-- `PHYS& 223`
-- `MATH 238`
-- `MATH 240`
-- `MATH& 146`
-- `MATH 256`
-- `CHEM& 121`
-- `CHEM& 131`
-- `CHEM& 140`
-- `CHEM 194`
-- `CHEM 195`
-- `CHEM 296`
-- `CHEM 299`
-- `MATH 106`
-- `MATH& 107`
-- `MATH& 141`
-- `MATH& 142`
-- `MATH 147`
-- `MATH& 148`
-- `MATH& 171`
-- `MATH& 172`
-- `MATH& 173`
-- `MATH 194`
-- `MATH 297`
-- `PHYS& 110`
-- `PHYS 225`
-- `PHYS 229`
-- `PHYS 298`
 - `ENGL& 101`
+- `MATH& 153`
+- `PHYS& 222`
 
 #### Required sequences for specific credits
 
-- Required before application: Full general chemistry sequence -> `CHEM& 161`, `CHEM& 162`, `CHEM& 163`
-- Required before application: Calculus I, II, and III -> `MATH& 151`, `MATH& 152`, `MATH& 163`. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`
-- Required before enrollment: Full organic chemistry sequence -> `CHEM& 261`, `CHEM& 262`, `CHEM& 263`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Required before enrollment: One full three-course physics sequence -> `PHYS& 114`, `PHYS& 154`, `PHYS& 115`, `PHYS& 155`, `PHYS& 116`, `PHYS& 156`. complete at least 6 courses from this set. alternate path `PHYS& 221`, `PHYS& 222`, `PHYS& 223`
+- Required before application: Calculus I, II, and III -> `MATH& 151`, `MATH& 152`, `MATH& 163`. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`. note: Bothell Chemistry asks for the full calculus sequence before admission, so the full Green River STEM calculus ladder should be finished before transfer.
+- Required before application: Full general chemistry sequence -> `CHEM& 161`, `CHEM& 162`, `CHEM& 163`. note: Bothell Chemistry expects the full general chemistry sequence with labs before admission.
+- Required before enrollment: BPHYS 121 -> `PHYS& 221`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
+- Required before enrollment: BPHYS 123 -> `PHYS& 223`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 - Required before enrollment: One advanced math course for the B.S. core -> `MATH& 254`, `MATH 238`, `MATH 240`, `MATH& 146`, `MATH 256`. complete at least 1 course from this set. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Required before enrollment: BPHYS 121 -> `PHYS& 221`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Required before enrollment: BPHYS 123 -> `PHYS& 223`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Both: `CHEM& 161 -> CHEM& 162 -> CHEM& 163`. Current UW full-credit note: `CHEM& 162 + CHEM& 163` gives `CHEM 152, 162 (5, 5), 1XX (2)`; otherwise each is weaker `CHEM 1XX`.
-- Both: `CHEM& 261 -> CHEM& 262 -> CHEM& 263`. Current UW full-credit notes: `261 + 262` strengthens the outcome, and `261 + 262 + 263` yields the full `CHEM 237, 238, 239, 241, 242` package.
-- GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
-- GRC sequence: `PHYS& 221 -> PHYS& 222 -> PHYS& 223` for calculus-based physics.
-- Planner flag: This row is specifically the Bothell Chemistry B.S. general option, not the separate Biochemistry option.
-- Planner flag: The department strongly recommends planning the physical-chemistry sequence with the published sequence because the B.S. chemistry finish is more tightly sequenced than the B.A.
-- Source-backed note: This row is specifically the Bothell Chemistry B.S. general option, not the separate Biochemistry option.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Course-family consensus: 3/3 samples for PHYS 121.
-- Source-backed note: Supporting UW course codes: PHYS 121.
-- Source-backed note: Added the Green River course path PHYS& 221 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Both BPHYS 121 and BPHYS 122: Calculus-based Physics I and II + Labs
-- Source-backed note: Course-family consensus: 5/5 samples for PHYS 123.
-- Source-backed note: Supporting UW course codes: PHYS 123, T PHYS 123.
-- Source-backed note: Added the Green River course path PHYS& 223 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Note on Physics III: The third course in the above two series is BPHYS 116+119 (General Physics III + Lab) or BPHYS 123 (Calculus-based Physics III + Lab) . These are not required for your Biology degree, but may be needed to apply to some graduate programs.
-
-
-### Chemistry: Biochemistry (BS)
-
-#### Summary
-
-Planner coverage: `detailed`. Best Green River base: `999O`.
-Bothell Biochemistry uses the same chemistry-and-calculus entry baseline as the other chemistry paths, but it adds biology and a larger lab-heavy chemistry / biochemistry core after transfer.
-
-#### Exact UW Courses Needed for Full Degree at UW
-
-##### Links Used
-
-- [UW Bothell Chemistry overview](https://www.uwb.edu/stem/undergraduate/majors/chemistry)
-- [UW Bothell Chemistry admissions](https://www.uwb.edu/stem/undergraduate/majors/chemistry/admissions)
-- [UW Bothell Chemistry curriculum](https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum)
-- [UW Bothell Chemistry curriculum](https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum) - Auto-promoted from the parsed primary degree page on April 12, 2026.
-- [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
-
-##### Chemistry B.S. Biochemistry option admission baseline
-
-- The Biochemistry option shares the same chemistry-major admissions baseline: the full general chemistry sequence with labs plus Calculus I, II, and III, each completed with at least a 2.0 grade.
-- Like the other chemistry pathways, students are expected to complete prerequisites before applying for autumn, winter, or spring entry.
-
-##### Biochemistry option required core
-
-- The Biochemistry option requires the full organic chemistry sequence, one full three-course physics sequence, and one advanced mathematics course from differential equations, linear algebra, multivariable calculus, or statistics.
-- It then adds a biology sequence through BBIO 180 and 200 plus a larger chemistry / biochemistry core: BCHEM 294, 316, 317, BBIO/BCHEM 364, 365, 366, BBIO/BCHEM 375, BCHEM 401, 402, 404, 426, and BCHEM 495.
-- The department describes this option as having more required core and less elective space than the general chemistry B.S., with substantial lab time.
-
-##### Biochemistry option electives and finish
-
-- The Biochemistry option finishes with 5 credits of upper-division chemistry electives chosen from approved courses such as BCHEM 310, 312, 313, 350, 493, 494, 497, 498, and 499.
-- The curriculum page still requires at least a 2.0 in each course applied to the major, plus the broader 180-credit UW Bothell bachelor's requirements outside the major.
-- Because the option is lab-heavy and leaves less elective room, follow the published sequence proactively.
-
-#### GRC Equivalent Courses
-
-- `CHEM& 161`
-- `CHEM& 162`
-- `CHEM& 163`
-- `MATH& 151`
-- `MATH& 152`
-- `MATH& 163`
-- `MATH& 153`
-- `MATH& 254`
-- `CHEM& 261`
-- `CHEM& 262`
-- `CHEM& 263`
-- `BIOL& 211`
-- `BIOL& 212`
-- `BIOL& 213`
-- `PHYS& 114`
-- `PHYS& 154`
-- `PHYS& 115`
-- `PHYS& 155`
-- `PHYS& 116`
-- `PHYS& 156`
-- `PHYS& 221`
-- `PHYS& 222`
-- `PHYS& 223`
-- `MATH 238`
-- `MATH 240`
-- `MATH& 146`
-- `MATH 256`
-- `CHEM& 121`
-- `CHEM& 131`
-- `CHEM& 140`
-- `CHEM 194`
-- `CHEM 195`
-- `CHEM 296`
-- `CHEM 299`
-- `AP 100`
-- `AP 102`
-- `AP 103`
-- `AP 104`
-- `AP 210`
-- `BIOL& 100`
-- `BIOL 103`
-- `BIOL 110`
-- `BIOL 125`
-- `BIOL 127`
-- `BIOL 140`
-- `BIOL 194`
-- `BIOL 195`
-- `BIOL& 241`
-- `BIOL& 242`
-- `BIOL& 260`
-- `BIOL 298`
-- `MATH 106`
-- `MATH& 107`
-- `MATH& 141`
-- `MATH& 142`
-- `MATH 147`
-- `MATH& 148`
-- `MATH& 171`
-- `MATH& 172`
-- `MATH& 173`
-- `MATH 194`
-- `MATH 297`
-- `PHYS& 110`
-- `PHYS 225`
-- `PHYS 229`
-- `PHYS 298`
-- `ENGL& 101`
-
-#### Required sequences for specific credits
-
-- Required before application: Full general chemistry sequence -> `CHEM& 161`, `CHEM& 162`, `CHEM& 163`
-- Required before application: Calculus I, II, and III -> `MATH& 151`, `MATH& 152`, `MATH& 163`. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`
 - Required before enrollment: Full organic chemistry sequence -> `CHEM& 261`, `CHEM& 262`, `CHEM& 263`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Required before enrollment: Biology through the first two majors-biology courses -> `BIOL& 211`, `BIOL& 212`, `BIOL& 213`. complete at least 2 courses from this set. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Required before enrollment: One full three-course physics sequence -> `PHYS& 114`, `PHYS& 154`, `PHYS& 115`, `PHYS& 155`, `PHYS& 116`, `PHYS& 156`. complete at least 6 courses from this set. alternate path `PHYS& 221`, `PHYS& 222`, `PHYS& 223`
-- Required before enrollment: One advanced math course for the Biochemistry option -> `MATH& 254`, `MATH 238`, `MATH 240`, `MATH& 146`, `MATH 256`. complete at least 1 course from this set. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Required before enrollment: BPHYS 121 -> `PHYS& 221`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Required before enrollment: BPHYS 123 -> `PHYS& 223`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Both: `CHEM& 161 -> CHEM& 162 -> CHEM& 163`. Current UW full-credit note: `CHEM& 162 + CHEM& 163` gives `CHEM 152, 162 (5, 5), 1XX (2)`; otherwise each is weaker `CHEM 1XX`.
-- Both: `CHEM& 261 -> CHEM& 262 -> CHEM& 263`. Current UW full-credit notes: `261 + 262` strengthens the outcome, and `261 + 262 + 263` yields the full `CHEM 237, 238, 239, 241, 242` package.
-- Both: `BIOL& 211 -> BIOL& 212 -> BIOL& 213`. All three are needed for the full `BIOL 180, 200, 220, 2XX (3)` outcome.
-- GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
-- GRC sequence: `PHYS& 221 -> PHYS& 222 -> PHYS& 223` for calculus-based physics.
-- Planner flag: The Biochemistry option leaves less elective room than the general Chemistry B.S., so the pre-transfer science sequencing matters more.
-- Planner flag: This is a lab-heavy finish, so students should still confirm the final timing of organic chemistry, biology, and physics with advising.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Course-family consensus: 3/3 samples for PHYS 121.
-- Source-backed note: Supporting UW course codes: PHYS 121.
-- Source-backed note: Added the Green River course path PHYS& 221 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Both BPHYS 121 and BPHYS 122: Calculus-based Physics I and II + Labs
-- Source-backed note: Course-family consensus: 5/5 samples for PHYS 123.
-- Source-backed note: Supporting UW course codes: PHYS 123, T PHYS 123.
-- Source-backed note: Added the Green River course path PHYS& 223 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: Note on Physics III: The third course in the above two series is BPHYS 116+119 (General Physics III + Lab) or BPHYS 123 (Calculus-based Physics III + Lab) . These are not required for your Biology degree, but may be needed to apply to some graduate programs.
+- Required before enrollment: One full three-course physics sequence -> `PHYS& 114`, `PHYS& 154`, `PHYS& 115`, `PHYS& 155`, `PHYS& 116`, `PHYS& 156`. complete at least 6 courses from this set. alternate path `PHYS& 221`, `PHYS& 222`, `PHYS& 223`. note: Bothell Chemistry accepts either the general-physics-with-lab sequence or the calculus-based sequence. Finish the sequence that best fits the student's broader science plan.
 
 
 ### Computer Engineering
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `999P`.
-Bothell CompE is now modeled as a programming, calculus, and calculus-based-physics transfer path built from the current curriculum page, degree map, and admissions notes.
+Planner coverage: `detailed`. Best Green River base: `AST-2/MRP`.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
-- [UW Bothell Computer Engineering curriculum](https://www.uwb.edu/stem/undergraduate/majors/bscompe/curriculum)
-- [UW Bothell Computer Engineering curriculum](https://www.uwb.edu/stem/undergraduate/majors/bscompe/curriculum) - Auto-promoted from the parsed primary degree page on April 12, 2026.
-- [UW Bothell Computer Engineering degree map](https://www.uwb.edu/wp-content/uploads/2023/04/B-BS-Computer-Engineering-Degree-Map-2024.pdf)
 - [UW Bothell Computer Engineering admissions](https://www.uwb.edu/stem/undergraduate/majors/bscompe/admissions)
+- [UW Bothell Computer Engineering curriculum](https://www.uwb.edu/stem/undergraduate/majors/bscompe/curriculum)
+- [UW Bothell Computer Engineering degree map](https://www.uwb.edu/wp-content/uploads/2023/04/B-BS-Computer-Engineering-Degree-Map-2024.pdf)
 - [UW Bothell Computer Engineering planning worksheet](https://admissions.uwb.edu/register/mpw-compe)
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
 
@@ -1447,101 +838,97 @@ Bothell CompE is now modeled as a programming, calculus, and calculus-based-phys
 
 #### GRC Equivalent Courses
 
+- `MATH 238`
+- `MATH& 264`
 - `MATH& 151`
 - `MATH& 152`
 - `MATH& 163`
-- `MATH& 153`
-- `MATH& 254`
+- `ENGL& 101`
 - `PHYS& 221`
 - `PHYS& 222`
 - `CS 121`
 - `CS 122`
 - `CS 123`
-- `ENGL& 101`
 - `ENGR& 204`
-- `CS& 131`
-- `CS 132`
-- `CS& 141`
-- `CS 145`
-- `CS 202`
-- `MATH 106`
-- `MATH& 107`
-- `MATH& 141`
-- `MATH& 142`
-- `MATH& 146`
-- `MATH 147`
-- `MATH& 148`
-- `MATH& 171`
-- `MATH& 172`
-- `MATH& 173`
-- `MATH 194`
-- `MATH 238`
-- `MATH 240`
-- `MATH 256`
-- `MATH 297`
-- `PHYS& 110`
-- `PHYS& 114`
-- `PHYS& 154`
-- `PHYS& 115`
-- `PHYS& 155`
-- `PHYS& 116`
-- `PHYS& 156`
-- `PHYS& 223`
-- `PHYS 225`
-- `PHYS 229`
-- `PHYS 298`
-- `ENGR 100`
-- `ENGR& 104`
-- `ENGR 106`
-- `ENGR& 114`
-- `ENGR 140`
-- `ENGR 199`
-- `ENGR& 214`
-- `ENGR& 215`
-- `ENGR& 224`
-- `ENGR& 225`
-- `ENGR 250`
-- `CHEM& 121`
-- `CHEM& 131`
-- `CHEM& 140`
-- `CHEM& 161`
-- `CHEM& 162`
-- `CHEM& 163`
-- `CHEM 194`
-- `CHEM 195`
-- `CHEM& 261`
-- `CHEM& 262`
-- `CHEM& 263`
-- `CHEM 296`
-- `CHEM 299`
-- `MATH& 264`
+- `MATH& 153`
+- `MATH& 254`
 
 #### Required sequences for specific credits
 
-- Required before application: STMATH 124, 125, 126 -> `MATH& 151`, `MATH& 152`, `MATH& 163`. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`
-- Required before application: B PHYS 121 and 122 -> `PHYS& 221`, `PHYS& 222`
-- Required before application: Programming through CSS 143-equivalent level -> `CS 121`, `CS 122`, `CS 123`. complete at least 2 courses from this set
-- Required before application: English composition -> `ENGL& 101`
 - Required before application: STMATH 207 -> `MATH 238`
 - Required before application: STMATH 224 -> `MATH& 264`
+- Required before application: STMATH 124, 125, 126 -> `MATH& 151`, `MATH& 152`, `MATH& 163`. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`. note: Current UW guidance accepts MATH& 163 for MATH 126. Older UW and Green River materials also use the MATH& 153 + MATH& 254 combination, which UW lists as transferring as MATH 126, 224, and 2XX credit when both courses are completed.
+- Required before application: English composition -> `ENGL& 101`
+- Required before application: B PHYS 121 and 122 -> `PHYS& 221`, `PHYS& 222`
+- Required before application: Programming through CSS 143-equivalent level -> `CS 121`, `CS 122`, `CS 123`. complete at least 2 courses from this set. note: Bothell's public admissions materials emphasize programming readiness; finishing CS 123 is still the safest Green River finish.
 - Worth finishing at Green River: B EE 215 -> `ENGR& 204`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Worth finishing at Green River: Strongest programming finish -> `CS 123`
-- GRC sequence: `CS 121 -> CS 122 -> CS 123`. Current UW equivalency entries are separate, but planner sequencing at GRC should treat them in this order.
-- GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
-- GRC sequence: `PHYS& 221 -> PHYS& 222 -> PHYS& 223` for calculus-based physics.
-- Both: `CHEM& 161 -> CHEM& 162 -> CHEM& 163`. Current UW full-credit note: `CHEM& 162 + CHEM& 163` gives `CHEM 152, 162 (5, 5), 1XX (2)`; otherwise each is weaker `CHEM 1XX`.
-- Planner flag: Bothell's worksheet year still matters, even though the public curriculum and admissions pages now support a more structured planner row.
-- Source-backed note: Validated against the current UW Bothell admissions page, curriculum page, degree map, and active major planning worksheet on April 2, 2026.
-- Source-backed note: Confirm the worksheet version for the student's intended entry year.
-- Source-backed note: Upper-division CSS / B EE sequencing should still be checked against the current curriculum page and degree map.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Requirement-mapping consensus: 1/1 exact-title samples for STMATH 207.
-- Source-backed note: Added the Green River course path MATH 238 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: STMATH 207: Introduction to Differential Equations (5 credits)
-- Source-backed note: Requirement-mapping consensus: 1/1 exact-title samples for STMATH 224.
-- Source-backed note: Added the Green River course path MATH& 264 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: STMATH 224: Multivariable Calculus (5 credits)
+- Worth finishing at Green River: Strongest programming finish -> `CS 123`. note: Bothell's public materials center on CSS 142 / 143-level readiness; CS 123 is the strongest Green River finish beyond those minimum admission classes.
+
+
+### Conservation & Restoration Science (BS)
+
+#### Summary
+
+Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
+
+
+#### Exact UW Courses Needed for Full Degree at UW
+
+##### Links Used
+
+- [UW Bothell Conservation and Restoration Science requirements](https://www.uwb.edu/ias/undergraduate/majors/conservation-restoration-science) - Auto-promoted by planner:discover-primary-sources on April 8, 2026 from a high-confidence source-discovery match.
+- [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
+- [UW Bothell major planning worksheet - Conservation and Restoration Science](https://admissions.uwb.edu/register/mpw-crs)
+- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
+
+##### Conservation and Restoration Science admission baseline
+
+- Conservation and Restoration Science is a minimum-requirements major according to the current planning worksheet.
+- The planning worksheet expects English composition, introductory biology, introductory chemistry, and one college-level math course such as precalculus or higher before entry review.
+- The worksheet's competitive-advice snapshot is around a 2.70 prerequisite GPA and 2.70 cumulative GPA with prerequisites finished by the time of application.
+
+##### Conservation and Restoration Science required coursework
+
+- The degree requirements page organizes the major into 31 credits of introductory science coursework, 45 credits of major core coursework, and 20 credits of approved electives.
+- The required core currently includes BES 301 or BST 301, BES 312, BES 316, BES 362, BES 485, BIS 342, BIS 380, and BIS 499 plus other approved conservation / restoration core courses listed on the page.
+- The major is designed around environmental methods, restoration ecology, GIS, and conservation practice rather than a single narrow disciplinary sequence.
+
+##### Conservation and Restoration Science electives and policies
+
+- Students complete 20 elective credits from the approved elective list, which includes advanced ecology, GIS, environmental-science, and restoration-focused coursework.
+- The IAS policies on the page require 30 credits in residence at UW Bothell and at least a 2.00 cumulative GPA in the major.
+- The degree also follows IAS upper-division limits, so students need enough 300-level and above coursework to finish the B.S. structure cleanly.
+
+#### GRC Equivalent Courses
+
+- `BIOL& 100`
+- `CHEM& 121`
+- `CHEM& 161`
+- `ENGL& 101`
+- `MATH& 141`
+- `MATH& 148`
+- `MATH& 151`
+- `MATH& 142`
+- `GIS 202`
+- `GEOG& 200`
+- `ENV S 204`
+- `NATRS 180`
+- `NATRS 210`
+- `NATRS 270`
+- `MATH& 146`
+- `BIOL& 211`
+- `BIOL& 212`
+- `BIOL& 213`
+
+#### Required sequences for specific credits
+
+- Required before application: Introductory biology -> `BIOL& 100`. complete at least 1 course from this set. alternate path `BIOL& 211`, `BIOL& 212`, `BIOL& 213`. note: The worksheet expects introductory biology. BIOL& 100 is the clearest lighter starting point, and the majors-biology sequence is a stronger alternative.
+- Required before application: Introductory chemistry -> `CHEM& 121`, `CHEM& 161`. complete at least 1 course from this set. note: The worksheet expects introductory chemistry before review. CHEM& 161 is the stronger science start, but CHEM& 121 is still relevant when the student is building a lighter entry profile.
+- Required before application: English composition -> `ENGL& 101`. note: The current CRS planning worksheet expects English composition before entry review.
+- Required before application: College-level math at precalculus or higher -> `MATH& 141`, `MATH& 148`, `MATH& 151`. complete at least 1 course from this set. note: The worksheet expects one college-level math course at precalculus or higher before review.
+- Required before enrollment: MATH 120 -> `MATH& 142`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
+- Worth finishing at Green River: GIS and spatial restoration support -> `GIS 202`, `GEOG& 200`, `ENV S 204`. complete at least 1 course from this set. note: CRS later uses GIS, environmental methods, and spatial analysis heavily, so one of these is a strong Green River add-on before transfer.
+- Worth finishing at Green River: Conservation and restoration support -> `NATRS 180`, `NATRS 210`, `NATRS 270`. complete at least 1 course from this set. note: These do not replace the Bothell CRS core, but they are strong restoration- and ecology-facing supports before the upper division begins.
 
 
 ### Computer Science & Software Engineering
@@ -1549,7 +936,7 @@ Bothell CompE is now modeled as a programming, calculus, and calculus-based-phys
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
-Bothell CSSE is now modeled from the public degree map and worksheet, with the planner centered on writing, early calculus, and programming through the CSS 143-equivalent level.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
@@ -1559,8 +946,8 @@ Bothell CSSE is now modeled from the public degree map and worksheet, with the p
 - [UW Bothell CSSE curriculum](https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum)
 - [UW Bothell CSSE degree map](https://www.uwb.edu/wp-content/uploads/2023/04/B-CSSE-Degree-Map-2024.pdf)
 - [UW Bothell CSSE planning worksheet](https://admissions.uwb.edu/register/mpw-csse)
-- [UW Bothell major planning worksheets](https://www.uwb.edu/admissions/apply/major-planning-worksheets)
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
+- [UW Bothell major planning worksheets](https://www.uwb.edu/admissions/apply/major-planning-worksheets)
 
 ##### CSSE admission baseline
 
@@ -1581,65 +968,28 @@ Bothell CSSE is now modeled from the public degree map and worksheet, with the p
 
 #### GRC Equivalent Courses
 
-- `ENGL& 101`
-- `ENGL 128`
 - `MATH& 151`
 - `MATH& 152`
 - `MATH& 163`
-- `MATH& 153`
-- `MATH& 254`
+- `ENGL& 101`
+- `ENGL 128`
 - `CS 121`
 - `CS 122`
 - `CS 123`
 - `MATH& 146`
 - `MATH 256`
-- `CS& 131`
-- `CS 132`
-- `CS& 141`
-- `CS 145`
-- `CS 202`
-- `MATH 106`
-- `MATH& 107`
-- `MATH& 141`
-- `MATH& 142`
-- `MATH 147`
-- `MATH& 148`
-- `MATH& 171`
-- `MATH& 172`
-- `MATH& 173`
-- `MATH 194`
-- `MATH 238`
-- `MATH 240`
-- `MATH 297`
-- `PHYS& 110`
-- `PHYS& 114`
-- `PHYS& 154`
-- `PHYS& 115`
-- `PHYS& 155`
-- `PHYS& 116`
-- `PHYS& 156`
-- `PHYS& 221`
-- `PHYS& 222`
-- `PHYS& 223`
-- `PHYS 225`
-- `PHYS 229`
-- `PHYS 298`
+- `MATH& 153`
+- `MATH& 254`
 
 #### Required sequences for specific credits
 
-- Required before application: English Composition I -> `ENGL& 101`
-- Required before application: English Composition II or advanced writing -> `ENGL 128`
-- Required before application: Calculus I and II -> `MATH& 151`, `MATH& 152`, `MATH& 163`. complete at least 2 courses from this set. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`
-- Required before application: Programming through the two-course Bothell baseline -> `CS 121`, `CS 122`, `CS 123`. complete at least 2 courses from this set
+- Required before application: Calculus I and II -> `MATH& 151`, `MATH& 152`, `MATH& 163`. complete at least 2 courses from this set. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`. note: The Bothell CSSE admission baseline requires the first two calculus courses. Calc III is still a strong add-on for broader STEM flexibility.
+- Required before application: English Composition I -> `ENGL& 101`. note: Bothell CSSE lists the first English composition course in the admission baseline.
+- Required before application: English Composition II or advanced writing -> `ENGL 128`. note: Bothell CSSE lists English Composition I and II in the admission baseline. ENGL 128 is the clearest current Green River second-writing match.
+- Required before application: Programming through the two-course Bothell baseline -> `CS 121`, `CS 122`, `CS 123`. complete at least 2 courses from this set. note: The public Bothell CSSE admissions materials require a two-course programming sequence equivalent to CSS 142 and 143 or CSS 132 and 133. The safest Green River path is CS 121 -> CS 122 -> CS 123.
 - Required before enrollment: Statistics for the shared CSSE core -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Worth finishing at Green River: Calc III for stronger STEM flexibility -> `MATH& 163`
-- Worth finishing at Green River: CS 123 for the strongest programming finish -> `CS 123`
-- GRC sequence: `CS 121 -> CS 122 -> CS 123`. Current UW equivalency entries are separate, but planner sequencing at GRC should treat them in this order.
-- GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
-- GRC sequence: `PHYS& 221 -> PHYS& 222 -> PHYS& 223` for calculus-based physics.
-- Planner flag: The public degree map is useful enough for a structured planner row, but Bothell worksheet review is still recommended before final schedule lock-in.
-- Source-backed note: Validated against the current UW Bothell admissions page, curriculum page, degree map, and active major planning worksheet on April 2, 2026.
-- Source-backed note: The public degree map still leaves some upper-division core details better handled through advising.
+- Worth finishing at Green River: Calc III for stronger STEM flexibility -> `MATH& 163`. note: Not part of the visible CSSE minimum admission classes, but Calc III keeps more STEM flexibility open and makes later math choices easier.
+- Worth finishing at Green River: CS 123 for the strongest programming finish -> `CS 123`. note: Bothell's public materials center on CSS 142 / 143-level readiness; CS 123 is still the strongest Green River programming finish.
 
 
 ### Computer Science & Software Engineering: Information Assurance & Cybersecurity (BS)
@@ -1647,7 +997,7 @@ Bothell CSSE is now modeled from the public degree map and worksheet, with the p
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
-Bothell CSSE Information Assurance and Cybersecurity starts from the same admissions baseline as general CSSE, then shifts the elective space toward cybersecurity after the student is already in the major.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
@@ -1677,13 +1027,11 @@ Bothell CSSE Information Assurance and Cybersecurity starts from the same admiss
 
 #### GRC Equivalent Courses
 
-- `ENGL& 101`
-- `ENGL 128`
 - `MATH& 151`
 - `MATH& 152`
 - `MATH& 163`
-- `MATH& 153`
-- `MATH& 254`
+- `ENGL& 101`
+- `ENGL 128`
 - `CS 121`
 - `CS 122`
 - `CS 123`
@@ -1693,240 +1041,19 @@ Bothell CSSE Information Assurance and Cybersecurity starts from the same admiss
 - `CMST& 220`
 - `JOURN 101`
 - `JOURN 205`
-- `CS& 131`
-- `CS 132`
-- `CS& 141`
-- `CS 145`
-- `CS 202`
-- `MATH 106`
-- `MATH& 107`
-- `MATH& 141`
-- `MATH& 142`
-- `MATH 147`
-- `MATH& 148`
-- `MATH& 171`
-- `MATH& 172`
-- `MATH& 173`
-- `MATH 194`
-- `MATH 238`
-- `MATH 240`
-- `MATH 297`
-- `CMST& 102`
-- `CMST 194`
-- `CMST 212`
-- `CMST 215`
-- `CMST& 230`
-- `CMST 238`
-- `CMST 245`
-- `CMST 265`
-- `CMST 266`
-- `CMST 299`
-- `FILM 120`
-- `FILM 121`
-- `FILM 122`
-- `JOURN 100.1`
-- `JOURN 100.2`
-- `JOURN 100.3`
-- `JOURN 103`
-- `JOURN 107`
-- `JOURN 110`
-- `JOURN 111`
-- `JOURN 112`
-- `JOURN 120`
-- `JOURN 121`
-- `JOURN 122`
-- `JOURN 150`
-- `JOURN 151`
-- `JOURN 152`
-- `JOURN 153`
-- `JOURN 198`
-- `JOURN 199`
-- `JOURN 200`
-- `JOURN 206`
-- `JOURN 207`
-- `JOURN 254`
-- `JOURN 255`
-- `JOURN 298`
-- `JOURN 299`
-
-#### Required sequences for specific credits
-
-- Required before application: English Composition I -> `ENGL& 101`
-- Required before application: English Composition II or advanced writing -> `ENGL 128`
-- Required before application: Calculus I and II -> `MATH& 151`, `MATH& 152`, `MATH& 163`. complete at least 2 courses from this set. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`
-- Required before application: Programming through the two-course Bothell baseline -> `CS 121`, `CS 122`, `CS 123`. complete at least 2 courses from this set
-- Required before enrollment: Statistics for the shared CSSE core -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set
-- Worth finishing at Green River: Communication and media support that still fits the IAC path -> `CMST& 210`, `CMST& 220`, `JOURN 101`, `JOURN 205`. complete at least 1 course from this set
-- Worth finishing at Green River: Calc III for stronger STEM flexibility -> `MATH& 163`
-- Worth finishing at Green River: CS 123 for the strongest programming finish -> `CS 123`
-- GRC sequence: `CS 121 -> CS 122 -> CS 123`. Current UW equivalency entries are separate, but planner sequencing at GRC should treat them in this order.
-- GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
-- Planner flag: Students do not apply separately to IAC as transfer students; they first enter the general CSSE major and then choose the option.
-- Planner flag: The approved IAC course list can change and can include cross-campus INFO and T INFO courses, so the exact upper-division finish still needs advising confirmation.
-- Source-backed note: Confirm current Bothell versus Seattle/Tacoma cross-campus availability for the IAC option courses before turning the option into a rigid quarter-by-quarter plan.
-
-
-### Conservation & Restoration Science (BS)
-
-#### Summary
-
-Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
-Bothell Conservation and Restoration Science is a minimum-requirements environmental major. The Green River job is to finish writing and the introductory science baseline, then add GIS, ecology, and restoration support before the fixed Bothell core begins.
-
-#### Exact UW Courses Needed for Full Degree at UW
-
-##### Links Used
-
-- [UW Bothell Conservation and Restoration Science requirements](https://www.uwb.edu/ias/undergraduate/majors/conservation-restoration-science)
-- [UW Bothell Conservation and Restoration Science requirements](https://www.uwb.edu/ias/undergraduate/majors/conservation-restoration-science) - Auto-promoted from the parsed primary degree page on April 12, 2026.
-- [UW Bothell major planning worksheet - Conservation and Restoration Science](https://admissions.uwb.edu/register/mpw-crs)
-- [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
-- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
-
-##### Conservation and Restoration Science admission baseline
-
-- Conservation and Restoration Science is a minimum-requirements major according to the current planning worksheet.
-- The planning worksheet expects English composition, introductory biology, introductory chemistry, and one college-level math course such as precalculus or higher before entry review.
-- The worksheet's competitive-advice snapshot is around a 2.70 prerequisite GPA and 2.70 cumulative GPA with prerequisites finished by the time of application.
-
-##### Conservation and Restoration Science required coursework
-
-- The degree requirements page organizes the major into 31 credits of introductory science coursework, 45 credits of major core coursework, and 20 credits of approved electives.
-- The required core currently includes BES 301 or BST 301, BES 312, BES 316, BES 362, BES 485, BIS 342, BIS 380, and BIS 499 plus other approved conservation / restoration core courses listed on the page.
-- The major is designed around environmental methods, restoration ecology, GIS, and conservation practice rather than a single narrow disciplinary sequence.
-
-##### Conservation and Restoration Science electives and policies
-
-- Students complete 20 elective credits from the approved elective list, which includes advanced ecology, GIS, environmental-science, and restoration-focused coursework.
-- The IAS policies on the page require 30 credits in residence at UW Bothell and at least a 2.00 cumulative GPA in the major.
-- The degree also follows IAS upper-division limits, so students need enough 300-level and above coursework to finish the B.S. structure cleanly.
-
-#### GRC Equivalent Courses
-
-- `ENGL& 101`
-- `BIOL& 100`
-- `BIOL& 211`
-- `BIOL& 212`
-- `BIOL& 213`
-- `CHEM& 121`
-- `CHEM& 161`
-- `MATH& 141`
-- `MATH& 148`
-- `MATH& 151`
-- `GIS 202`
-- `GEOG& 200`
-- `ENV S 204`
-- `NATRS 180`
-- `NATRS 210`
-- `NATRS 270`
-- `ASTR& 100`
-- `ASTR& 101`
-- `GIS 260`
-- `GEOG& 100`
-- `GEOG 120`
-- `GEOG 123`
-- `GEOG 190`
-- `GEOG 201`
-- `GEOG 205`
-- `GEOG 298`
-- `GEOG 299`
-- `GEOL& 101`
-- `GEOL 150`
-- `GEOL 152`
-- `GEOL 153`
-- `GEOL 200`
-- `GEOL 206`
-- `GEOL& 208`
-- `GEOL 299`
-- `NATRS 100`
-- `NATRS 117`
-- `NATRS 161`
-- `NATRS 162`
-- `NATRS 172`
-- `NATRS 181`
-- `NATRS 182`
-- `NATRS 183`
-- `NATRS 184`
-- `NATRS 198`
-- `NATRS 199`
-- `NATRS 271`
-- `NATRS 284`
-- `NATRS 285`
-- `NATRS 286`
-- `NATRS 292`
-- `NATRS 293`
-- `NATRS 294`
-- `NATRS 297`
-- `NATRS 298`
-- `NATRS 299`
-- `IDS 101`
-- `IDS 102`
-- `IDS 103`
-- `OCEA& 101`
-- `AP 100`
-- `AP 102`
-- `AP 103`
-- `AP 104`
-- `AP 210`
-- `BIOL 103`
-- `BIOL 110`
-- `BIOL 125`
-- `BIOL 127`
-- `BIOL 140`
-- `BIOL 194`
-- `BIOL 195`
-- `BIOL& 241`
-- `BIOL& 242`
-- `BIOL& 260`
-- `BIOL 298`
-- `CHEM& 131`
-- `CHEM& 140`
-- `CHEM& 162`
-- `CHEM& 163`
-- `CHEM 194`
-- `CHEM 195`
-- `CHEM& 261`
-- `CHEM& 262`
-- `CHEM& 263`
-- `CHEM 296`
-- `CHEM 299`
-- `MATH 106`
-- `MATH& 107`
-- `MATH& 142`
-- `MATH& 146`
-- `MATH 147`
-- `MATH& 152`
-- `MATH& 163`
-- `MATH& 171`
-- `MATH& 172`
-- `MATH& 173`
-- `MATH 194`
-- `MATH 238`
-- `MATH 240`
+- `MATH& 153`
 - `MATH& 254`
-- `MATH 256`
-- `MATH 297`
 
 #### Required sequences for specific credits
 
-- Required before application: English composition -> `ENGL& 101`
-- Required before application: Introductory biology -> `BIOL& 100`. complete at least 1 course from this set. alternate path `BIOL& 211`, `BIOL& 212`, `BIOL& 213`
-- Required before application: Introductory chemistry -> `CHEM& 121`, `CHEM& 161`. complete at least 1 course from this set
-- Required before application: College-level math at precalculus or higher -> `MATH& 141`, `MATH& 148`, `MATH& 151`. complete at least 1 course from this set
-- Required before enrollment: MATH 120 -> `MATH& 142`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Worth finishing at Green River: GIS and spatial restoration support -> `GIS 202`, `GEOG& 200`, `ENV S 204`. complete at least 1 course from this set
-- Worth finishing at Green River: Conservation and restoration support -> `NATRS 180`, `NATRS 210`, `NATRS 270`. complete at least 1 course from this set
-- Both: `BIOL& 211 -> BIOL& 212 -> BIOL& 213`. All three are needed for the full `BIOL 180, 200, 220, 2XX (3)` outcome.
-- Both: `CHEM& 161 -> CHEM& 162 -> CHEM& 163`. Current UW full-credit note: `CHEM& 162 + CHEM& 163` gives `CHEM 152, 162 (5, 5), 1XX (2)`; otherwise each is weaker `CHEM 1XX`.
-- GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
-- UW full-credit combo: `NATRS 180 + NATRS 292` has a special combined ESRM-major rule on the UW guide.
-- Planner flag: CRS is a minimum-requirements major, so the worksheet GPA snapshot is a competitiveness guide rather than a guaranteed-admission promise.
-- Planner flag: The public requirements page is category-based in places, so the exact final upper-division mix should still be reviewed with advising.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0787:mathematics:mathand-142-5-formerly-math-104.
-- Source-backed note: Added the Green River course path MATH& 142 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: B MATH 123 Precalculus II or MATH 120 Precalculus (5 credits)
+- Required before application: Calculus I and II -> `MATH& 151`, `MATH& 152`, `MATH& 163`. complete at least 2 courses from this set. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`. note: The Bothell CSSE admission baseline requires the first two calculus courses. Calc III is still a strong add-on for broader STEM flexibility.
+- Required before application: English Composition I -> `ENGL& 101`. note: Bothell CSSE lists the first English composition course in the admission baseline.
+- Required before application: English Composition II or advanced writing -> `ENGL 128`. note: Bothell CSSE lists English Composition I and II in the admission baseline. ENGL 128 is the clearest current Green River second-writing match.
+- Required before application: Programming through the two-course Bothell baseline -> `CS 121`, `CS 122`, `CS 123`. complete at least 2 courses from this set. note: The public Bothell CSSE admissions materials require a two-course programming sequence equivalent to CSS 142 and 143 or CSS 132 and 133. The safest Green River path is CS 121 -> CS 122 -> CS 123.
+- Required before enrollment: Statistics for the shared CSSE core -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the shared CSSE degree still needs one statistics course either way.
+- Worth finishing at Green River: Calc III for stronger STEM flexibility -> `MATH& 163`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it keeps later STEM choices cleaner.
+- Worth finishing at Green River: Communication and media support that still fits the IAC path -> `CMST& 210`, `CMST& 220`, `JOURN 101`, `JOURN 205`. complete at least 1 course from this set. note: These do not replace the cybersecurity courses at Bothell, but they are reasonable Green River support classes because the IAC option still uses communication-heavy documentation and applied project work.
+- Worth finishing at Green River: CS 123 for the strongest programming finish -> `CS 123`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it gives the strongest launch into the shared upper-division CSSE core.
 
 
 ### Culture, Literature & the Arts (BA)
@@ -1934,15 +1061,15 @@ Bothell Conservation and Restoration Science is a minimum-requirements environme
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
-Bothell Culture, Literature and the Arts is a broad IAS humanities major. Green River is best used for composition, reading-heavy humanities work, and one deliberate arts or history foundation course before the fixed CLA core begins on campus.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
-- [UW Bothell Culture, Literature and the Arts requirements](https://www.uwb.edu/ias/undergraduate/majors/culture-literature-arts)
-- [UW Bothell major planning worksheet - Culture, Literature and the Arts](https://admissions.uwb.edu/register/mpw-CLA)
+- [UW Bothell Culture, Literature and the Arts requirements](https://www.uwb.edu/ias/undergraduate/majors/culture-literature-arts) - Auto-promoted by planner:discover-primary-sources on April 8, 2026 from a high-confidence source-discovery match.
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
+- [UW Bothell major planning worksheet - Culture, Literature and the Arts](https://admissions.uwb.edu/register/mpw-CLA)
 
 ##### Culture, Literature and the Arts admission baseline
 
@@ -1974,189 +1101,13 @@ Bothell Culture, Literature and the Arts is a broad IAS humanities major. Green 
 - `ENGL& 113`
 - `ENGL& 244`
 - `ENGL& 245`
-- `ENGL 103`
-- `ENGL 109`
-- `ENGL& 114`
-- `ENGL 115`
-- `ENGL 160`
-- `ENGL 161`
-- `ENGL 163`
-- `ENGL 164`
-- `ENGL 165`
-- `ENGL 168`
-- `ENGL 180`
-- `ENGL 181`
-- `ENGL 183`
-- `ENGL 185`
-- `ENGL 187`
-- `ENGL 190`
-- `ENGL 194`
-- `ENGL 199`
-- `ENGL& 220`
-- `ENGL& 226`
-- `ENGL& 227`
-- `ENGL& 228`
-- `ENGL& 236`
-- `ENGL& 237`
-- `ENGL 239`
-- `ENGL& 246`
-- `ENGL 247`
-- `ENGL 248`
-- `ENGL 249`
-- `ENGL& 254`
-- `ENGL& 255`
-- `ENGL& 256`
-- `ENGL 257`
-- `ENGL 299`
-- `ART 105`
-- `ART 106`
-- `ART 107`
-- `ART 109`
-- `ART 110`
-- `ART 111`
-- `ART 112`
-- `ART 113`
-- `ART 114`
-- `ART 115`
-- `ART 119`
-- `ART 120`
-- `ART 130`
-- `ART 133`
-- `ART 135`
-- `ART 150`
-- `ART 180`
-- `ART 199`
-- `ART 212`
-- `ART 213`
-- `ART 214`
-- `ART 219`
-- `ART 251`
-- `ART 252`
-- `ART 253`
-- `ART 255`
-- `ART 256`
-- `ART 257`
-- `ART 275`
-- `ART 276`
-- `ART 277`
-- `ART 294`
-- `ART 295`
-- `ART 296`
-- `ART 297`
-- `ART 298`
-- `ART 299`
-- `PHOTO 101`
-- `PHOTO 102`
-- `PHOTO 103`
-- `PHOTO 111`
-- `PHOTO 112`
-- `PHOTO 113`
-- `DANCE 101`
-- `DANCE 102`
-- `DANCE 103`
-- `DANCE 110`
-- `DANCE 204`
-- `DRMA& 101`
-- `DRMA 102`
-- `DRMA 111`
-- `DRMA 112`
-- `DRMA 113`
-- `DRMA 151`
-- `DRMA 152`
-- `DRMA 153`
-- `DRMA 154`
-- `DRMA 155`
-- `DRMA 156`
-- `DRMA 211`
-- `DRMA 212`
-- `DRMA 213`
-- `DRMA 298`
-- `MUSC 101`
-- `MUSC 103`
-- `MUSC 104`
-- `MUSC& 105`
-- `MUSC 107`
-- `MUSC 108`
-- `MUSC 109`
-- `MUSC 110`
-- `MUSC 118`
-- `MUSC 119`
-- `MUSC 120`
-- `MUSC& 121`
-- `MUSC& 122`
-- `MUSC& 123`
-- `MUSC 124`
-- `MUSC 125`
-- `MUSC 127`
-- `MUSC 128`
-- `MUSC 129`
-- `MUSC 130.1`
-- `MUSC 130.2`
-- `MUSC 130.3`
-- `MUSC& 131`
-- `MUSC& 132`
-- `MUSC& 133`
-- `MUSC 140`
-- `MUSC 141`
-- `MUSC 142`
-- `MUSC 218`
-- `MUSC 219`
-- `MUSC 220`
-- `MUSC& 221`
-- `MUSC& 222`
-- `MUSC 227`
-- `MUSIC 228`
-- `MUSIC 229`
-- `MUSC 230.1`
-- `MUSC 230.2`
-- `MUSC 230.3`
-- `MUSC& 231`
-- `MUSC& 232`
-- `MUSC 298`
-- `MUSC 299`
-- `HIST 102`
-- `HIST 103`
-- `HIST 120`
-- `HIST 122`
-- `HIST 135`
-- `HIST& 136`
-- `HIST& 137`
-- `HIST 194`
-- `HIST& 214`
-- `HIST& 215`
-- `HIST 220`
-- `HIST 224`
-- `HIST 226`
-- `HIST 228`
-- `HIST 230`
-- `HIST 231`
-- `HIST 232`
-- `HIST 233`
-- `HIST 235`
-- `HIST 237`
-- `HIST 240`
-- `HIST 245`
-- `HIST 250`
-- `HIST 299`
-- `HUMAN 100`
-- `HUMAN 110`
-- `HUMAN 133`
-- `HUMAN 142`
-- `HUMAN 186`
-- `HUMAN 190`
-- `HUMAN 191`
-- `HUMAN 194`
-- `HUMAN 224`
 
 #### Required sequences for specific credits
 
-- Required before application: English composition -> `ENGL& 101`
-- Required before application: One additional Arts and Humanities course -> `ART& 100`, `ENGL& 111`, `HIST 101`. complete at least 1 course from this set
-- Required before enrollment: Second composition or advanced writing course -> `ENGL 126`, `ENGL 127`, `ENGL 128`. complete at least 1 course from this set
-- Worth finishing at Green River: Reading-heavy literature or humanities support -> `ENGL& 111`, `ENGL& 112`, `ENGL& 113`, `ENGL& 244`, `ENGL& 245`. complete at least 1 course from this set
-- UW full-credit combo: `ENGL& 244 + ENGL& 245` together yield `ENGL 250 (5)` plus additional `2XX` credit.
-- Planner flag: CLA follows IAS lower-division limits, so Green River classes should be treated as foundation rather than as one-to-one replacements for the upper-division Bothell finish.
-- Planner flag: The published CLA core changed in Winter 2026, so students should still confirm the current entry-year worksheet before locking the final plan.
+- Required before application: English composition -> `ENGL& 101`. note: The CLA worksheet expects the first composition course before entry review.
+- Required before application: One additional Arts and Humanities course -> `ART& 100`, `ENGL& 111`, `HIST 101`. complete at least 1 course from this set. note: The current CLA worksheet expects at least one more Arts and Humanities course before entry review. Choose the class that best fits the student's intended literature, writing, art, or history direction.
+- Required before enrollment: Second composition or advanced writing course -> `ENGL 126`, `ENGL 127`, `ENGL 128`. complete at least 1 course from this set. note: CLA requires 10 composition credits in the degree, so a second writing course is good to complete before or during UW enrollment.
+- Worth finishing at Green River: Reading-heavy literature or humanities support -> `ENGL& 111`, `ENGL& 112`, `ENGL& 113`, `ENGL& 244`, `ENGL& 245`. complete at least 1 course from this set. note: CLA is reading- and writing-heavy after transfer, so one more literature or humanities course is a strong Green River support.
 
 
 ### Data Visualization (BA)
@@ -2164,15 +1115,15 @@ Bothell Culture, Literature and the Arts is a broad IAS humanities major. Green 
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
-Bothell Data Visualization B.A. is the lighter entry path built around writing, statistics, and visual / spatial thinking. Green River should cover the writing-and-math baseline first, then add deliberate visual-communication support before transfer.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
-- [UW Bothell Data Visualization requirements](https://www.uwb.edu/ias/undergraduate/majors/data-visualization)
-- [UW Bothell major planning worksheet - Data Visualization (BA)](https://admissions.uwb.edu/register/mpw-DataVis-BA)
+- [UW Bothell Data Visualization requirements](https://www.uwb.edu/ias/undergraduate/majors/data-visualization) - Auto-promoted by planner:discover-primary-sources on April 8, 2026 from a high-confidence source-discovery match.
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
+- [UW Bothell major planning worksheet - Data Visualization (BA)](https://admissions.uwb.edu/register/mpw-DataVis-BA)
 
 ##### Data Visualization B.A. admission baseline
 
@@ -2205,121 +1156,14 @@ Bothell Data Visualization B.A. is the lighter entry path built around writing, 
 - `PHOTO 101`
 - `CMST& 210`
 - `JOURN 101`
-- `MATH 106`
-- `MATH& 107`
-- `MATH& 142`
-- `MATH 147`
-- `MATH& 152`
-- `MATH& 163`
-- `MATH& 171`
-- `MATH& 172`
-- `MATH& 173`
-- `MATH 194`
-- `MATH 238`
-- `MATH 240`
-- `MATH& 254`
-- `MATH 297`
-- `CS 121`
-- `CS 122`
-- `CS 123`
-- `CS& 131`
-- `CS 132`
-- `CS& 141`
-- `CS 145`
-- `CS 202`
-- `ART& 100`
-- `ART 105`
-- `ART 106`
-- `ART 107`
-- `ART 109`
-- `ART 110`
-- `ART 111`
-- `ART 112`
-- `ART 113`
-- `ART 114`
-- `ART 115`
-- `ART 119`
-- `ART 120`
-- `ART 133`
-- `ART 135`
-- `ART 150`
-- `ART 180`
-- `ART 199`
-- `ART 212`
-- `ART 213`
-- `ART 214`
-- `ART 219`
-- `ART 251`
-- `ART 252`
-- `ART 253`
-- `ART 255`
-- `ART 256`
-- `ART 257`
-- `ART 275`
-- `ART 276`
-- `ART 277`
-- `ART 294`
-- `ART 295`
-- `ART 296`
-- `ART 297`
-- `ART 298`
-- `ART 299`
-- `PHOTO 102`
-- `PHOTO 103`
-- `PHOTO 111`
-- `PHOTO 112`
-- `PHOTO 113`
-- `CMST& 102`
-- `CMST 194`
-- `CMST 212`
-- `CMST 215`
-- `CMST& 220`
-- `CMST& 230`
-- `CMST 238`
-- `CMST 245`
-- `CMST 265`
-- `CMST 266`
-- `CMST 299`
-- `FILM 120`
-- `FILM 121`
-- `FILM 122`
-- `JOURN 100.1`
-- `JOURN 100.2`
-- `JOURN 100.3`
-- `JOURN 103`
-- `JOURN 107`
-- `JOURN 110`
-- `JOURN 111`
-- `JOURN 112`
-- `JOURN 120`
-- `JOURN 121`
-- `JOURN 122`
-- `JOURN 150`
-- `JOURN 151`
-- `JOURN 152`
-- `JOURN 153`
-- `JOURN 198`
-- `JOURN 199`
-- `JOURN 200`
-- `JOURN 205`
-- `JOURN 206`
-- `JOURN 207`
-- `JOURN 254`
-- `JOURN 255`
-- `JOURN 298`
-- `JOURN 299`
 
 #### Required sequences for specific credits
 
-- Required before application: English composition -> `ENGL& 101`
-- Required before application: Advanced composition -> `ENGL 128`
-- Required before application: Precalculus or higher math -> `MATH& 141`, `MATH& 148`, `MATH& 151`. complete at least 1 course from this set
-- Required before application: Statistics -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set
-- Worth finishing at Green River: Visual communication or design support -> `ART 130`, `PHOTO 101`, `CMST& 210`, `JOURN 101`. complete at least 1 course from this set
-- GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
-- GRC sequence: `CS 121 -> CS 122 -> CS 123`. Current UW equivalency entries are separate, but planner sequencing at GRC should treat them in this order.
-- Planner flag: The B.A. is the lighter-entry Data Visualization path, so students should not assume it automatically includes the same quantitative spine as the B.S.
-- Planner flag: The IAS lower-division cap still matters, so Green River classes should be used for foundation rather than as a fake substitute for the upper-division Bothell visualization sequence.
+- Required before application: English composition -> `ENGL& 101`. note: The current Data Visualization B.A. worksheet expects the first composition course before entry review.
+- Required before application: Advanced composition -> `ENGL 128`. note: The B.A. worksheet expects advanced composition before entry review. ENGL 128 is the clearest currently tracked Green River fit.
+- Required before application: Precalculus or higher math -> `MATH& 141`, `MATH& 148`, `MATH& 151`. complete at least 1 course from this set. note: The B.A. worksheet expects precalculus before review, but a higher Green River math course also works well when the student may compare the B.A. with more quantitative paths.
+- Required before application: Statistics -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set. note: The Data Visualization B.A. worksheet expects one statistics course before entry review.
+- Worth finishing at Green River: Visual communication or design support -> `ART 130`, `PHOTO 101`, `CMST& 210`, `JOURN 101`. complete at least 1 course from this set. note: These do not replace the Bothell Data Visualization core, but they are strong Green River supports for visual storytelling and presentation work.
 
 
 ### Data Visualization (BS)
@@ -2327,15 +1171,15 @@ Bothell Data Visualization B.A. is the lighter entry path built around writing, 
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
-Bothell Data Visualization B.S. is the more quantitative version of the degree. Green River should finish the writing, programming, statistics, and initial calculus baseline first, then add the extra calculus and linear-algebra work that the B.S. still needs after transfer.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
-- [UW Bothell Data Visualization requirements](https://www.uwb.edu/ias/undergraduate/majors/data-visualization)
-- [UW Bothell major planning worksheet - Data Visualization (BS)](https://admissions.uwb.edu/register/mpw-DataVis-BS)
+- [UW Bothell Data Visualization requirements](https://www.uwb.edu/ias/undergraduate/majors/data-visualization) - Auto-promoted by planner:discover-primary-sources on April 8, 2026 from a high-confidence source-discovery match.
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
+- [UW Bothell major planning worksheet - Data Visualization (BS)](https://admissions.uwb.edu/register/mpw-DataVis-BS)
 
 ##### Data Visualization B.S. admission baseline
 
@@ -2356,13 +1200,13 @@ Bothell Data Visualization B.S. is the more quantitative version of the degree. 
 
 #### GRC Equivalent Courses
 
-- `ENGL& 101`
 - `MATH& 151`
-- `MATH& 146`
-- `MATH 256`
+- `ENGL& 101`
 - `CS 121`
 - `CS 122`
 - `CS 123`
+- `MATH& 146`
+- `MATH 256`
 - `MATH& 152`
 - `MATH& 163`
 - `MATH 240`
@@ -2370,121 +1214,18 @@ Bothell Data Visualization B.S. is the more quantitative version of the degree. 
 - `PHOTO 101`
 - `CMST& 210`
 - `JOURN 101`
-- `MATH 106`
-- `MATH& 107`
-- `MATH& 141`
-- `MATH& 142`
-- `MATH 147`
-- `MATH& 148`
-- `MATH& 171`
-- `MATH& 172`
-- `MATH& 173`
-- `MATH 194`
-- `MATH 238`
-- `MATH& 254`
-- `MATH 297`
-- `CS& 131`
-- `CS 132`
-- `CS& 141`
-- `CS 145`
-- `CS 202`
-- `ART& 100`
-- `ART 105`
-- `ART 106`
-- `ART 107`
-- `ART 109`
-- `ART 110`
-- `ART 111`
-- `ART 112`
-- `ART 113`
-- `ART 114`
-- `ART 115`
-- `ART 119`
-- `ART 120`
-- `ART 133`
-- `ART 135`
-- `ART 150`
-- `ART 180`
-- `ART 199`
-- `ART 212`
-- `ART 213`
-- `ART 214`
-- `ART 219`
-- `ART 251`
-- `ART 252`
-- `ART 253`
-- `ART 255`
-- `ART 256`
-- `ART 257`
-- `ART 275`
-- `ART 276`
-- `ART 277`
-- `ART 294`
-- `ART 295`
-- `ART 296`
-- `ART 297`
-- `ART 298`
-- `ART 299`
-- `PHOTO 102`
-- `PHOTO 103`
-- `PHOTO 111`
-- `PHOTO 112`
-- `PHOTO 113`
-- `CMST& 102`
-- `CMST 194`
-- `CMST 212`
-- `CMST 215`
-- `CMST& 220`
-- `CMST& 230`
-- `CMST 238`
-- `CMST 245`
-- `CMST 265`
-- `CMST 266`
-- `CMST 299`
-- `FILM 120`
-- `FILM 121`
-- `FILM 122`
-- `JOURN 100.1`
-- `JOURN 100.2`
-- `JOURN 100.3`
-- `JOURN 103`
-- `JOURN 107`
-- `JOURN 110`
-- `JOURN 111`
-- `JOURN 112`
-- `JOURN 120`
-- `JOURN 121`
-- `JOURN 122`
-- `JOURN 150`
-- `JOURN 151`
-- `JOURN 152`
-- `JOURN 153`
-- `JOURN 198`
-- `JOURN 199`
-- `JOURN 200`
-- `JOURN 205`
-- `JOURN 206`
-- `JOURN 207`
-- `JOURN 254`
-- `JOURN 255`
-- `JOURN 298`
-- `JOURN 299`
 
 #### Required sequences for specific credits
 
-- Required before application: English composition -> `ENGL& 101`
-- Required before application: Calculus I -> `MATH& 151`
-- Required before application: Statistics -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set
-- Required before application: Programming through the two-course Bothell baseline -> `CS 121`, `CS 122`, `CS 123`. complete at least 2 courses from this set
+- Required before application: Calculus I -> `MATH& 151`. note: The B.S. worksheet expects Calculus I before entry review.
+- Required before application: English composition -> `ENGL& 101`. note: The current Data Visualization B.S. worksheet expects the first composition course before entry review.
+- Required before application: Programming through the two-course Bothell baseline -> `CS 121`, `CS 122`, `CS 123`. complete at least 2 courses from this set. note: The B.S. worksheet expects a two-course programming sequence equivalent to CSS 142 and 143. The safest Green River path is CS 121 -> CS 122 -> CS 123.
+- Required before application: Statistics -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set. note: The B.S. worksheet expects one statistics course before entry review.
 - Required before enrollment: Calculus II -> `MATH& 152`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 - Required before enrollment: Calculus III -> `MATH& 163`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 - Required before enrollment: Linear algebra or matrix algebra -> `MATH 240`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Worth finishing at Green River: Visual communication or design support -> `ART 130`, `PHOTO 101`, `CMST& 210`, `JOURN 101`. complete at least 1 course from this set
-- Worth finishing at Green River: CS 123 for the strongest programming finish -> `CS 123`
-- GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
-- GRC sequence: `CS 121 -> CS 122 -> CS 123`. Current UW equivalency entries are separate, but planner sequencing at GRC should treat them in this order.
-- Planner flag: The B.S. and B.A. share part of the same core, but the B.S. adds a real extra quantitative spine. Do not assume the two versions can use the same lower-division plan.
-- Planner flag: The IAS lower-division cap still applies, so the visual-support classes should stay deliberate rather than turning into random extra electives.
+- Worth finishing at Green River: CS 123 for the strongest programming finish -> `CS 123`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it gives the strongest programming launch for the B.S. path.
+- Worth finishing at Green River: Visual communication or design support -> `ART 130`, `PHOTO 101`, `CMST& 210`, `JOURN 101`. complete at least 1 course from this set. note: These do not replace the Bothell Data Visualization core, but they are strong Green River supports for visual storytelling and presentation work.
 
 
 ### Developmental and Youth Studies (BA)
@@ -2492,14 +1233,14 @@ Bothell Data Visualization B.S. is the more quantitative version of the degree. 
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
-Bothell Developmental and Youth Studies is not a long STEM-style prerequisite major. The Green River job is to finish the writing baseline, build a coherent psychology / education / youth-development story, and avoid wasting space on unrelated electives before the School of Educational Studies core begins.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
-- [UW Bothell Developmental and Youth Studies degree requirements](https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements)
 - [UW Bothell Developmental and Youth Studies admissions](https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/admissions)
+- [UW Bothell Developmental and Youth Studies degree requirements](https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements)
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
 
 ##### Developmental and Youth Studies admission baseline
@@ -2507,59 +1248,35 @@ Bothell Developmental and Youth Studies is not a long STEM-style prerequisite ma
 - The admissions page expects students to complete at least 30 transferable quarter credits and one English composition course equivalent to BWRIT 134 before entry review.
 - The major is not built around a long STEM-style prerequisite ladder, but applicants still need the standard UW Bothell transfer minimums and a solid academic record.
 
-##### Developmental and Youth Studies required coursework
-
-- The current degree-requirements page begins with 25 credits of School of Educational Studies core courses: B EDUC 205, 210, 295, 300, and 310.
-- It then adds 35 credits of Developmental and Youth Studies foundation courses including B EDUC 402, 451, 453, 456, 458, 461, and 481.
-- Students also complete 15 credits of Developmental and Youth Studies electives from the approved list.
-
 ##### Developmental and Youth Studies capstone and applied experience
 
 - The capstone sequence is 10 credits: B EDUC 495 Applied Experience followed by B EDUC 499 Capstone Project.
 - The page says B EDUC 495 is the major's applied field experience, while B EDUC 499 builds a reflective portfolio tied to the School of Educational Studies core themes.
 - Outside the major, students still complete the standard UW Bothell bachelor's requirements, including 180 total credits and the university writing, diversity, reasoning, Arts and Humanities, Natural Sciences, and Social Sciences requirements.
 
+##### Developmental and Youth Studies required coursework
+
+- The current degree-requirements page begins with 25 credits of School of Educational Studies core courses: B EDUC 205, 210, 295, 300, and 310.
+- It then adds 35 credits of Developmental and Youth Studies foundation courses including B EDUC 402, 451, 453, 456, 458, 461, and 481.
+- Students also complete 15 credits of Developmental and Youth Studies electives from the approved list.
+
 #### GRC Equivalent Courses
 
 - `ENGL& 101`
-- `PSYC& 100`
-- `PSYC& 200`
-- `PSYC& 220`
 - `ECED& 105`
 - `ECED& 132`
 - `ECED& 160`
 - `ECED& 170`
 - `EDUC& 205`
-- `PSYC& 180`
-- `PSYC 201`
-- `PSYC 209`
-- `PSYC 225`
-- `PSYC 298`
-- `PSYC 299`
-- `ECED& 134`
-- `ECED& 139`
-- `ECED 152`
-- `ECED 155`
-- `ECED 165`
-- `ECED 175`
-- `ECED& 180`
-- `ECED& 190`
-- `ECED 220`
-- `EDUC& 115`
-- `EDUC& 130`
-- `EDUC& 136`
-- `EDUC& 150`
-- `EDUC& 204`
-- `EDUC 240`
-- `EDUC 245`
+- `PSYC& 100`
+- `PSYC& 200`
+- `PSYC& 220`
 
 #### Required sequences for specific credits
 
-- Required before application: English composition -> `ENGL& 101`
-- Worth finishing at Green River: Foundational psychology support -> `PSYC& 100`, `PSYC& 200`, `PSYC& 220`. complete at least 1 course from this set
-- Worth finishing at Green River: Child, youth, and education support -> `ECED& 105`, `ECED& 132`, `ECED& 160`, `ECED& 170`, `EDUC& 205`. complete at least 1 course from this set
-- Planner flag: DYS is not built around a long prerequisite ladder, so the real pre-transfer priority is a coherent education / youth-development story rather than maximum course stacking.
-- Planner flag: Students still need enough general-education space left after transfer for the wider UW Bothell bachelor's requirements.
+- Required before application: English composition -> `ENGL& 101`. note: The DYS admissions page expects one composition course equivalent to BWRIT 134 before entry review.
+- Worth finishing at Green River: Child, youth, and education support -> `ECED& 105`, `ECED& 132`, `ECED& 160`, `ECED& 170`, `EDUC& 205`. complete at least 1 course from this set. note: These do not replace the fixed School of Educational Studies core, but they are strong supports before the DYS foundation and applied-experience sequence begins.
+- Worth finishing at Green River: Foundational psychology support -> `PSYC& 100`, `PSYC& 200`, `PSYC& 220`. complete at least 1 course from this set. note: These are strong Green River supports because the DYS major later leans on developmental, social, and learning-focused work.
 
 
 ### Earth System Science (BS)
@@ -2567,14 +1284,13 @@ Bothell Developmental and Youth Studies is not a long STEM-style prerequisite ma
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AST-2`.
-Bothell Earth System Science is a broad environmental-science degree with an earth-systems entry signal rather than one narrow front-door prerequisite stack. Green River should cover writing, one clear earth-systems intro course, and early math-and-science support before the wider ESS science core begins.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
-- [UW Bothell Earth System Science requirements](https://www.uwb.edu/ias/undergraduate/majors/earth-system-science)
-- [UW Bothell Earth System Science requirements](https://www.uwb.edu/ias/undergraduate/majors/earth-system-science) - Auto-promoted from the parsed primary degree page on April 12, 2026.
+- [UW Bothell Earth System Science requirements](https://www.uwb.edu/ias/undergraduate/majors/earth-system-science) - Auto-promoted by planner:discover-primary-sources on April 8, 2026 from a high-confidence source-discovery match.
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
 
 ##### Earth System Science preparation baseline
@@ -2582,139 +1298,48 @@ Bothell Earth System Science is a broad environmental-science degree with an ear
 - The current Earth System Science page asks students to reach the major with B WRIT 134 or an equivalent composition course, one introductory Earth System Science course, and one introductory math-and-science course from the approved lists.
 - The approved introductory Earth System Science preparation courses include options such as BEARTH 153, 154, 155, 201, 202, BIS 242, BIS 243, and BPHYS 101, or approved transfer equivalents.
 
+##### Earth System Science policies and completion notes
+
+- The IAS policies on the page require 30 credits in residence at UW Bothell and at least a 2.00 cumulative GPA in the major.
+- The page says the IPR requirement can overlap with ESS major credits and notes that the ESS capstone will generally complete the IPR requirement.
+
 ##### Earth System Science degree structure
 
 - The B.S. is currently organized into 25 credits of Earth System Science base coursework, 30 to 33 credits of introductory math and science requirements, 39 to 40 credits of Earth Systems Ascent coursework, and a 5-credit capstone.
 - The page lists the overall major size as 98 to 103 credits.
 - The base block includes BIS 342 plus BES 301 or BST 301, and the introductory math-and-science block explicitly requires introductory chemistry, physics, statistics, calculus, and additional foundation science.
 
-##### Earth System Science policies and completion notes
-
-- The IAS policies on the page require 30 credits in residence at UW Bothell and at least a 2.00 cumulative GPA in the major.
-- The page says the IPR requirement can overlap with ESS major credits and notes that the ESS capstone will generally complete the IPR requirement.
-
 #### GRC Equivalent Courses
 
-- `ENGL& 101`
 - `GEOL& 101`
 - `GEOG& 100`
 - `OCEA& 101`
 - `ASTR& 100`
+- `ENGL& 101`
 - `MATH& 151`
 - `CHEM& 161`
 - `PHYS& 221`
 - `MATH& 146`
-- `MATH 256`
+- `MATH& 153`
 - `PHYS& 114`
+- `MATH 256`
 - `GIS 202`
 - `GEOG& 200`
 - `GEOL 200`
 - `ENV S 204`
-- `ASTR& 101`
-- `GIS 260`
-- `GEOG 120`
-- `GEOG 123`
-- `GEOG 190`
-- `GEOG 201`
-- `GEOG 205`
-- `GEOG 298`
-- `GEOG 299`
-- `GEOL 150`
-- `GEOL 152`
-- `GEOL 153`
-- `GEOL 206`
-- `GEOL& 208`
-- `GEOL 299`
-- `NATRS 100`
-- `NATRS 117`
-- `NATRS 161`
-- `NATRS 162`
-- `NATRS 172`
-- `NATRS 180`
-- `NATRS 181`
-- `NATRS 182`
-- `NATRS 183`
-- `NATRS 184`
-- `NATRS 198`
-- `NATRS 199`
-- `NATRS 210`
-- `NATRS 270`
-- `NATRS 271`
-- `NATRS 284`
-- `NATRS 285`
-- `NATRS 286`
-- `NATRS 292`
-- `NATRS 293`
-- `NATRS 294`
-- `NATRS 297`
-- `NATRS 298`
-- `NATRS 299`
-- `IDS 101`
-- `IDS 102`
-- `IDS 103`
-- `CHEM& 121`
-- `CHEM& 131`
-- `CHEM& 140`
-- `CHEM& 162`
-- `CHEM& 163`
-- `CHEM 194`
-- `CHEM 195`
-- `CHEM& 261`
-- `CHEM& 262`
-- `CHEM& 263`
-- `CHEM 296`
-- `CHEM 299`
-- `MATH 106`
-- `MATH& 107`
-- `MATH& 141`
-- `MATH& 142`
-- `MATH 147`
-- `MATH& 148`
-- `MATH& 152`
 - `MATH& 163`
-- `MATH& 171`
-- `MATH& 172`
-- `MATH& 173`
-- `MATH 194`
-- `MATH 238`
-- `MATH 240`
-- `MATH& 254`
-- `MATH 297`
-- `PHYS& 110`
-- `PHYS& 154`
-- `PHYS& 115`
-- `PHYS& 155`
-- `PHYS& 116`
-- `PHYS& 156`
-- `PHYS& 222`
-- `PHYS& 223`
-- `PHYS 225`
-- `PHYS 229`
-- `PHYS 298`
-- `MATH& 153`
 
 #### Required sequences for specific credits
 
-- Required before application: English composition -> `ENGL& 101`
-- Required before application: One introductory Earth System Science course -> `GEOL& 101`, `GEOG& 100`, `OCEA& 101`, `ASTR& 100`. complete at least 1 course from this set
-- Required before application: One introductory math or science course from the ESS preparation lists -> `MATH& 151`, `CHEM& 161`, `PHYS& 221`, `MATH& 146`. complete at least 1 course from this set
+- Required before application: One introductory Earth System Science course -> `GEOL& 101`, `GEOG& 100`, `OCEA& 101`, `ASTR& 100`. complete at least 1 course from this set. note: The ESS page expects one introductory Earth System Science course from the approved list before entry.
+- Required before application: English composition -> `ENGL& 101`. note: The current Earth System Science page expects B WRIT 134 or an equivalent composition course before entry.
+- Required before application: One introductory math or science course from the ESS preparation lists -> `MATH& 151`, `CHEM& 161`, `PHYS& 221`, `MATH& 146`. complete at least 1 course from this set. note: The ESS page also expects one introductory math-and-science preparation course from the approved lists before entry.
+- Required before enrollment: STMATH 126 -> `MATH& 153`. alternate path `MATH& 163`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 - Required before enrollment: Calculus I -> `MATH& 151`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Required before enrollment: Statistics -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 - Required before enrollment: Introductory chemistry start -> `CHEM& 161`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 - Required before enrollment: Introductory physics start -> `PHYS& 114`, `PHYS& 221`. complete at least 1 course from this set. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Required before enrollment: STMATH 126 -> `MATH& 153`. alternate path `MATH& 163`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Worth finishing at Green River: Earth, GIS, or spatial-science support -> `GIS 202`, `GEOG& 200`, `GEOL 200`, `ENV S 204`. complete at least 1 course from this set
-- GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
-- GRC sequence: `PHYS& 221 -> PHYS& 222 -> PHYS& 223` for calculus-based physics.
-- Both: `CHEM& 161 -> CHEM& 162 -> CHEM& 163`. Current UW full-credit note: `CHEM& 162 + CHEM& 163` gives `CHEM 152, 162 (5, 5), 1XX (2)`; otherwise each is weaker `CHEM 1XX`.
-- Planner flag: The public ESS page is category-based in places, so the exact science mix should still be confirmed with advising after transfer.
-- Planner flag: Students should keep enough space open for the larger upper-division Earth Systems Ascent block rather than overfilling lower-division electives.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Exact-title match source: catalog-metadata.
-- Source-backed note: Matched source title: Calculus III.
-- Source-backed note: Published Green River alternatives: MATH& 153 | MATH& 163.
-- Source-backed note: Requirement cue lines: STMATH 126 Calculus III
+- Required before enrollment: Statistics -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
+- Worth finishing at Green River: Earth, GIS, or spatial-science support -> `GIS 202`, `GEOG& 200`, `GEOL 200`, `ENV S 204`. complete at least 1 course from this set. note: These do not replace the ESS core, but they are strong Green River supports for spatial, earth-systems, and environmental-methods work before transfer.
 
 
 ### Economics (BS)
@@ -2722,15 +1347,15 @@ Bothell Earth System Science is a broad environmental-science degree with an ear
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AB-DTA/MRP`.
-Bothell Economics is a STEM-designated economics degree with a clear five-course entry baseline. Green River should finish that prerequisite set cleanly before transfer, then use any extra room for business or accounting support that strengthens the later BBECN and BBUS core.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
 - [UW Bothell Bachelor of Economics overview](https://www.uwb.edu/business/undergraduate/bachelor-of-economics)
-- [UW Bothell Economics prerequisites](https://www.uwb.edu/business/undergraduate/bachelor-of-economics/prerequisites)
 - [UW Bothell Economics curriculum](https://www.uwb.edu/business/undergraduate/bachelor-of-economics/curriculum)
+- [UW Bothell Economics prerequisites](https://www.uwb.edu/business/undergraduate/bachelor-of-economics/prerequisites)
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
 
 ##### Economics admission baseline
@@ -2751,55 +1376,31 @@ Bothell Economics is a STEM-designated economics degree with a clear five-course
 
 #### GRC Equivalent Courses
 
-- `MATH& 146`
-- `MATH 256`
+- `ENGL 128`
 - `MATH& 148`
 - `MATH& 151`
-- `ECON& 201`
 - `ECON& 202`
-- `ENGL 128`
+- `ECON& 201`
+- `MATH& 146`
+- `MATH 256`
 - `ACCT& 201`
 - `BUS& 101`
 - `ACCT& 202`
 - `ACCT& 203`
-- `BUS 121`
 - `BUS& 201`
-- `BUS 258`
-- `ECON 100`
-- `ECON 101`
-- `ECON 194`
-- `ECON 298`
-- `ECON 299`
-- `MATH 106`
-- `MATH& 107`
-- `MATH& 141`
-- `MATH& 142`
-- `MATH 147`
-- `MATH& 152`
-- `MATH& 163`
-- `MATH& 171`
-- `MATH& 172`
-- `MATH& 173`
-- `MATH 194`
-- `MATH 238`
-- `MATH 240`
-- `MATH& 254`
-- `MATH 297`
 - `ENGL 126`
 - `ENGL& 101`
+- `MATH& 152`
+- `MATH& 163`
 
 #### Required sequences for specific credits
 
-- Required before application: Statistics -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set
-- Required before application: Calculus -> `MATH& 148`, `MATH& 151`. complete at least 1 course from this set
-- Required before application: Microeconomics -> `ECON& 201`
-- Required before application: Macroeconomics -> `ECON& 202`
-- Required before application: Advanced composition -> `ENGL 128`
-- Worth finishing at Green River: Business or accounting support for the later BBUS and BBECN core -> `ACCT& 201`, `BUS& 101`. complete at least 1 course from this set
-- GRC sequence: Business / less-calculus-heavy planning commonly uses `MATH& 141 -> MATH& 142` or `MATH 147 -> MATH& 148`. `MATH& 146` and `MATH 256` are standalone quantitative options.
-- GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
-- Planner flag: All entry pathways use the same five prerequisites, so do not treat transfer-source differences as permission to skip any one of them.
-- Planner flag: Economics is a STEM-designated Bothell degree, so it is worth keeping the math and statistics preparation strong instead of aiming only for the minimum entry set.
+- Required before application: Advanced composition -> `ENGL 128`. note: Bothell Economics lists advanced composition in the entry prerequisite set. The public prerequisite page uses ENG& 102 as a common transfer match; ENGL 128 is the clearest currently tracked Green River advanced-writing fit.
+- Required before application: Calculus -> `MATH& 148`, `MATH& 151`. complete at least 1 course from this set. note: The current Bothell Economics prerequisite page lists either business calculus or standard calculus in the five-course entry baseline.
+- Required before application: Macroeconomics -> `ECON& 202`. note: Bothell Economics lists Macroeconomics in the published prerequisite set.
+- Required before application: Microeconomics -> `ECON& 201`. note: Bothell Economics lists Microeconomics in the published prerequisite set.
+- Required before application: Statistics -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set. note: The current Bothell Economics prerequisite page lists statistics in the five-course entry baseline.
+- Worth finishing at Green River: Business or accounting support for the later BBUS and BBECN core -> `ACCT& 201`, `BUS& 101`. complete at least 1 course from this set. note: These do not replace the five entry prerequisites, but they are useful Green River supports because the Bothell Economics core later overlaps with BBUS coursework.
 
 
 ### Educational Studies: Elementary Education (BA)
@@ -2807,15 +1408,15 @@ Bothell Economics is a STEM-designated economics degree with a clear five-course
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
-Bothell Elementary Education now allows direct entry into the option, but the strongest Green River launch still starts with composition, child-development support, and quantitative readiness before the cohorted teaching sequence begins.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
 - [UW Bothell Elementary Education admissions](https://www.uwb.edu/education/undergraduate/elementary-education/admissions)
-- [UW Bothell Elementary Education overview](https://www.uwb.edu/education/undergraduate/elementary-education)
 - [UW Bothell Elementary Education degree requirements](https://www.uwb.edu/education/undergraduate/elementary-education/degree-requirements)
+- [UW Bothell Elementary Education overview](https://www.uwb.edu/education/undergraduate/elementary-education)
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
 
 ##### Elementary Education declaration baseline
@@ -2823,16 +1424,16 @@ Bothell Elementary Education now allows direct entry into the option, but the st
 - Effective Autumn 2025, students can join the Elementary Education Option directly.
 - The admissions page lists a minimum 2.00 cumulative GPA, 30 quarter credits, one English composition course equivalent to B WRIT 134 with at least a 2.0, and state basic-skills test scores through SAT, ACT, or WEST-B as the declaration requirements.
 
-##### Elementary Education current major structure
-
-- For students declaring Autumn 2025 and after, the degree page currently organizes the option into 20 credits of School of Educational Studies core courses, 38 credits of Elementary Education endorsement academic breadth, 18 credits of teaching foundations courses, 28 credits of cohorted teaching-methods courses, 15 credits of dual-endorsement coursework, and 16 credits of student teaching.
-- The current required teaching-methods and foundations sequence includes courses such as B EDUC 402, 403, 408, 409, 410, 418, 419, 421, 423, 438, and 441.
-
 ##### Elementary Education certification and cohort finish
 
 - The degree includes a dual endorsement in either ESOL or Special Education, using the current B EDUC 442 to 444 or B EDUC 482 to 484 three-course blocks.
 - The student-teaching block is B EDUC 406, B EDUC 425, and two student-teaching registrations in B EDUC 435.
 - The certification section also says students must complete student teaching, pass the required NES and WEST-E exams or approved petitions, and submit a Professional Growth Plan for Washington teacher certification.
+
+##### Elementary Education current major structure
+
+- For students declaring Autumn 2025 and after, the degree page currently organizes the option into 20 credits of School of Educational Studies core courses, 38 credits of Elementary Education endorsement academic breadth, 18 credits of teaching foundations courses, 28 credits of cohorted teaching-methods courses, 15 credits of dual-endorsement coursework, and 16 credits of student teaching.
+- The current required teaching-methods and foundations sequence includes courses such as B EDUC 402, 403, 408, 409, 410, 418, 419, 421, 423, 438, and 441.
 
 #### GRC Equivalent Courses
 
@@ -2845,73 +1446,28 @@ Bothell Elementary Education now allows direct entry into the option, but the st
 - `MATH& 148`
 - `MATH& 151`
 - `MATH& 146`
-- `PSYC& 100`
-- `PSYC& 180`
-- `PSYC 201`
-- `PSYC 209`
-- `PSYC& 220`
-- `PSYC 225`
-- `PSYC 298`
-- `PSYC 299`
-- `ECED& 134`
-- `ECED& 139`
-- `ECED 152`
-- `ECED 155`
-- `ECED& 160`
-- `ECED 165`
-- `ECED& 170`
-- `ECED 175`
-- `ECED& 180`
-- `ECED& 190`
-- `ECED 220`
-- `EDUC& 115`
-- `EDUC& 130`
-- `EDUC& 136`
-- `EDUC& 150`
-- `EDUC& 204`
-- `EDUC 240`
-- `EDUC 245`
-- `MATH 106`
-- `MATH& 107`
-- `MATH& 142`
-- `MATH 147`
-- `MATH& 152`
-- `MATH& 163`
-- `MATH& 171`
-- `MATH& 172`
-- `MATH& 173`
-- `MATH 194`
-- `MATH 238`
-- `MATH 240`
-- `MATH& 254`
-- `MATH 256`
-- `MATH 297`
 
 #### Required sequences for specific credits
 
-- Required before application: English composition -> `ENGL& 101`
-- Worth finishing at Green River: Child-development or education foundation -> `ECED& 105`, `ECED& 132`, `PSYC& 200`, `EDUC& 205`. complete at least 1 course from this set
-- Worth finishing at Green River: Elementary-math or quantitative support -> `MATH& 141`, `MATH& 148`, `MATH& 151`, `MATH& 146`. complete at least 1 course from this set
-- GRC sequence: Business / less-calculus-heavy planning commonly uses `MATH& 141 -> MATH& 142` or `MATH 147 -> MATH& 148`. `MATH& 146` and `MATH 256` are standalone quantitative options.
-- Planner flag: The direct-entry Elementary Education option still relies on state basic-skills and certification requirements that Green River coursework alone cannot satisfy.
-- Planner flag: The final dual-endorsement block, NES / WEST-E testing, and student-teaching timeline should still be confirmed with Bothell advising.
+- Required before application: English composition -> `ENGL& 101`. note: The current Elementary Education declaration baseline requires one composition course equivalent to B WRIT 134 with at least a 2.0.
+- Worth finishing at Green River: Child-development or education foundation -> `ECED& 105`, `ECED& 132`, `PSYC& 200`, `EDUC& 205`. complete at least 1 course from this set. note: These do not replace the cohorted Bothell teaching sequence, but they are strong Green River supports before the Elementary Education foundations and methods courses begin.
+- Worth finishing at Green River: Elementary-math or quantitative support -> `MATH& 141`, `MATH& 148`, `MATH& 151`, `MATH& 146`. complete at least 1 course from this set. note: Elementary Education still includes substantial endorsement and teaching-method breadth, so one intentional math or statistics course is a useful head start before transfer.
 
 
 ### Electrical Engineering (BS)
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `999P`.
-Bothell Electrical Engineering is a calculus-and-physics entry path. Green River should finish composition, Calculus I-II, and calculus-based Physics I before admission, then use the remaining time for the strongest math, physics, and circuit preparation before transfer.
+Planner coverage: `detailed`. Best Green River base: `AST-2/MRP`.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
 - [UW Bothell Electrical Engineering admissions](https://www.uwb.edu/stem/undergraduate/majors/electrical/admissions)
-- [UW Bothell Electrical Engineering planning worksheet](https://admissions.uwb.edu/register/mpw-EE)
 - [UW Bothell Electrical Engineering curriculum](https://www.uwb.edu/stem/undergraduate/majors/electrical/curriculum)
-- [UW Bothell Electrical Engineering curriculum](https://www.uwb.edu/stem/undergraduate/majors/electrical/curriculum) - Auto-promoted from the parsed primary degree page on April 12, 2026.
+- [UW Bothell Electrical Engineering planning worksheet](https://admissions.uwb.edu/register/mpw-EE)
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
 
 ##### Electrical Engineering admission baseline
@@ -2933,97 +1489,30 @@ Bothell Electrical Engineering is a calculus-and-physics entry path. Green River
 
 #### GRC Equivalent Courses
 
-- `ENGL& 101`
 - `MATH& 151`
 - `MATH& 152`
 - `MATH& 163`
-- `MATH& 153`
-- `MATH& 254`
+- `ENGL& 101`
 - `PHYS& 221`
+- `MATH 240`
+- `MATH& 254`
 - `ENGR& 204`
 - `PHYS& 222`
 - `CS 121`
-- `ENGR 100`
-- `ENGR& 104`
-- `ENGR 106`
-- `ENGR& 114`
-- `ENGR 140`
-- `ENGR 199`
-- `ENGR& 214`
-- `ENGR& 215`
-- `ENGR& 224`
-- `ENGR& 225`
-- `ENGR 250`
-- `CS 122`
-- `CS 123`
-- `CS& 131`
-- `CS 132`
-- `CS& 141`
-- `CS 145`
-- `CS 202`
-- `MATH 106`
-- `MATH& 107`
-- `MATH& 141`
-- `MATH& 142`
 - `MATH& 146`
-- `MATH 147`
-- `MATH& 148`
-- `MATH& 171`
-- `MATH& 172`
-- `MATH& 173`
-- `MATH 194`
-- `MATH 238`
-- `MATH 240`
-- `MATH 256`
-- `MATH 297`
-- `PHYS& 110`
-- `PHYS& 114`
-- `PHYS& 154`
-- `PHYS& 115`
-- `PHYS& 155`
-- `PHYS& 116`
-- `PHYS& 156`
-- `PHYS& 223`
-- `PHYS 225`
-- `PHYS 229`
-- `PHYS 298`
-- `CHEM& 121`
-- `CHEM& 131`
-- `CHEM& 140`
-- `CHEM& 161`
-- `CHEM& 162`
-- `CHEM& 163`
-- `CHEM 194`
-- `CHEM 195`
-- `CHEM& 261`
-- `CHEM& 262`
-- `CHEM& 263`
-- `CHEM 296`
-- `CHEM 299`
+- `MATH& 153`
 
 #### Required sequences for specific credits
 
-- Required before application: English composition -> `ENGL& 101`
-- Required before application: Calculus I and II -> `MATH& 151`, `MATH& 152`, `MATH& 163`. complete at least 2 courses from this set. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`
-- Required before application: Calculus-based Physics I -> `PHYS& 221`
-- Required before enrollment: Calculus III -> `MATH& 163`
-- Required before enrollment: Differential equations -> `MATH& 254`
+- Required before application: Calculus I and II -> `MATH& 151`, `MATH& 152`, `MATH& 163`. complete at least 2 courses from this set. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`. note: The Bothell EE admission baseline requires the first two calculus courses before transfer.
+- Required before application: English composition -> `ENGL& 101`. note: Bothell EE requires English composition in the admission baseline.
+- Required before application: Calculus-based Physics I -> `PHYS& 221`. note: Bothell EE requires Engineering Physics I in the admission baseline.
 - Required before enrollment: STMATH 208 -> `MATH 240`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Worth finishing at Green River: Physics II for a stronger engineering launch -> `PHYS& 222`
-- Worth finishing at Green River: Programming support -> `CS 121`
+- Required before enrollment: Calculus III -> `MATH& 163`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because later EE math and engineering work still benefit from it either way.
+- Required before enrollment: Differential equations -> `MATH& 254`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because later EE math and engineering work still benefit from it either way.
 - Worth finishing at Green River: B EE 215 -> `ENGR& 204`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- GRC sequence: `CS 121 -> CS 122 -> CS 123`. Current UW equivalency entries are separate, but planner sequencing at GRC should treat them in this order.
-- GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
-- GRC sequence: `PHYS& 221 -> PHYS& 222 -> PHYS& 223` for calculus-based physics.
-- Both: `CHEM& 161 -> CHEM& 162 -> CHEM& 163`. Current UW full-credit note: `CHEM& 162 + CHEM& 163` gives `CHEM 152, 162 (5, 5), 1XX (2)`; otherwise each is weaker `CHEM 1XX`.
-- Planner flag: The public EE admissions page includes GPA thresholds in the STEM prerequisites, so grade quality matters as much as simple completion.
-- Planner flag: Final EE elective choices and capstone sequencing should still be checked against the current curriculum page and planning worksheet.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Course-family consensus: 12/12 samples for MATH 208.
-- Source-backed note: Supporting UW course codes: MATH 208, TMATH 208.
-- Source-backed note: Added the Green River course path MATH 240 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: STMATH 208 Matrix Algebra (5) | STMATH 208 Matrix Algebra with Applications (5 credits) | STMATH 208: Matrix Algebra with Applications (5 credits)
+- Worth finishing at Green River: Physics II for a stronger engineering launch -> `PHYS& 222`. note: Physics II is not part of the published front-door admission minimum, but it still strengthens the transition into the later EE curriculum.
+- Worth finishing at Green River: Programming support -> `CS 121`. note: Programming is not the visible EE admission minimum, but one programming course is still a useful Green River add-on before the upper-division engineering sequence begins.
 
 
 ### Environmental Studies (BA)
@@ -3031,13 +1520,13 @@ Bothell Electrical Engineering is a calculus-and-physics entry path. Green River
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
-Bothell Environmental Studies has no formal prerequisite gate, so the Green River job is to build a clean writing-and-environment foundation before the daytime Bothell core begins.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
-- [UW Bothell Environmental Studies requirements](https://www.uwb.edu/ias/undergraduate/majors/environmental-studies)
+- [UW Bothell Environmental Studies requirements](https://www.uwb.edu/ias/undergraduate/majors/environmental-studies) - Auto-promoted by planner:discover-primary-sources on April 8, 2026 from a high-confidence source-discovery match.
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
 
 ##### Environmental Studies admission baseline
@@ -3069,160 +1558,12 @@ Bothell Environmental Studies has no formal prerequisite gate, so the Green Rive
 - `GIS 202`
 - `GEOG& 200`
 - `GEOG 205`
-- `ASTR& 100`
-- `ASTR& 101`
-- `GIS 260`
-- `GEOG 120`
-- `GEOG 123`
-- `GEOG 190`
-- `GEOG 201`
-- `GEOG 298`
-- `GEOG 299`
-- `GEOL 150`
-- `GEOL 152`
-- `GEOL 153`
-- `GEOL 200`
-- `GEOL 206`
-- `GEOL& 208`
-- `GEOL 299`
-- `NATRS 100`
-- `NATRS 117`
-- `NATRS 161`
-- `NATRS 162`
-- `NATRS 172`
-- `NATRS 180`
-- `NATRS 181`
-- `NATRS 182`
-- `NATRS 183`
-- `NATRS 184`
-- `NATRS 198`
-- `NATRS 199`
-- `NATRS 210`
-- `NATRS 270`
-- `NATRS 271`
-- `NATRS 284`
-- `NATRS 285`
-- `NATRS 286`
-- `NATRS 292`
-- `NATRS 293`
-- `NATRS 294`
-- `NATRS 297`
-- `NATRS 298`
-- `NATRS 299`
-- `IDS 101`
-- `IDS 102`
-- `IDS 103`
-- `HIST 101`
-- `HIST 102`
-- `HIST 103`
-- `HIST 120`
-- `HIST 122`
-- `HIST 135`
-- `HIST& 136`
-- `HIST& 137`
-- `HIST 194`
-- `HIST& 214`
-- `HIST& 215`
-- `HIST 220`
-- `HIST 224`
-- `HIST 226`
-- `HIST 228`
-- `HIST 230`
-- `HIST 231`
-- `HIST 232`
-- `HIST 233`
-- `HIST 235`
-- `HIST 237`
-- `HIST 240`
-- `HIST 245`
-- `HIST 250`
-- `HIST 299`
-- `HUMAN 100`
-- `HUMAN 110`
-- `HUMAN 133`
-- `HUMAN 142`
-- `HUMAN 186`
-- `HUMAN 190`
-- `HUMAN 191`
-- `HUMAN 194`
-- `HUMAN 224`
-- `POLS& 101`
-- `POLS 194`
-- `POLS& 200`
-- `POLS& 202`
-- `POLS& 203`
-- `POLS& 204`
-- `POLS 207`
-- `POLS 209`
-- `POLS 298`
-- `CJ& 101`
-- `CJ& 105`
-- `CJ& 110`
-- `CJ 200`
-- `CJ 205`
-- `CJ 220`
-- `CJ 236`
-- `CJ& 240`
-- `CJ 294`
-- `CJ 299`
-- `SOC& 101`
-- `SOC 194`
-- `SOC& 201`
-- `SOC 215`
-- `SOC 220`
-- `SOC 230`
-- `SOC 240`
-- `SOC 245`
-- `SOC 260`
-- `SOC 298`
-- `ENGL 103`
-- `ENGL 109`
-- `ENGL& 112`
-- `ENGL& 113`
-- `ENGL& 114`
-- `ENGL 115`
-- `ENGL 126`
-- `ENGL 127`
-- `ENGL 160`
-- `ENGL 161`
-- `ENGL 163`
-- `ENGL 164`
-- `ENGL 165`
-- `ENGL 168`
-- `ENGL 180`
-- `ENGL 181`
-- `ENGL 183`
-- `ENGL 185`
-- `ENGL 187`
-- `ENGL 190`
-- `ENGL 194`
-- `ENGL 199`
-- `ENGL& 220`
-- `ENGL& 226`
-- `ENGL& 227`
-- `ENGL& 228`
-- `ENGL& 236`
-- `ENGL& 237`
-- `ENGL 239`
-- `ENGL& 244`
-- `ENGL& 245`
-- `ENGL& 246`
-- `ENGL 247`
-- `ENGL 248`
-- `ENGL 249`
-- `ENGL& 254`
-- `ENGL& 255`
-- `ENGL& 256`
-- `ENGL 257`
-- `ENGL 299`
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Two composition courses total -> `ENGL& 101`, `ENGL 128`
-- Worth finishing at Green River: Environmental or earth-systems foundation -> `ENV S 204`, `GEOL& 101`, `GEOG& 100`, `OCEA& 101`. complete at least 1 course from this set
-- Worth finishing at Green River: GIS or spatial support -> `GIS 202`, `GEOG& 200`, `GEOG 205`. complete at least 1 course from this set
-- Planner flag: Environmental Studies has no formal prerequisite gate, but ENST courses are offered primarily during daytime hours, so timing after transfer still matters.
-- Planner flag: Because the public page is category-based, the final elective mix should still be reviewed with advising once the student's focus is clearer.
+- Required before enrollment: Two composition courses total -> `ENGL& 101`, `ENGL 128`. note: Environmental Studies requires 10 credits of composition in the degree, so it is good to finish the writing pair before or during UW enrollment.
+- Worth finishing at Green River: Environmental or earth-systems foundation -> `ENV S 204`, `GEOL& 101`, `GEOG& 100`, `OCEA& 101`. complete at least 1 course from this set. note: These do not replace the fixed Bothell Environmental Studies core, but they are the clearest Green River foundations before the upper-division ENST sequence begins.
+- Worth finishing at Green River: GIS or spatial support -> `GIS 202`, `GEOG& 200`, `GEOG 205`. complete at least 1 course from this set. note: BGIS 342 is part of the Bothell Environmental Studies core, so earlier GIS or mapping work is a useful Green River head start.
 
 
 ### Gender, Women, & Sexuality Studies (BA)
@@ -3230,13 +1571,13 @@ Bothell Environmental Studies has no formal prerequisite gate, so the Green Rive
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
-Bothell GWSS has no formal prerequisite gate, so the strongest Green River plan is a writing-first humanities and social-science path that already shows feminist, social, historical, or cultural inquiry before transfer.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
-- [UW Bothell Gender, Women & Sexuality Studies requirements](https://www.uwb.edu/ias/undergraduate/majors/gender-women-sexuality)
+- [UW Bothell Gender, Women & Sexuality Studies requirements](https://www.uwb.edu/ias/undergraduate/majors/gender-women-sexuality) - Auto-promoted by planner:discover-primary-sources on April 8, 2026 from a high-confidence source-discovery match.
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
 
 ##### Gender, Women & Sexuality Studies admission baseline
@@ -3259,152 +1600,20 @@ Bothell GWSS has no formal prerequisite gate, so the strongest Green River plan 
 
 - `ENGL& 101`
 - `ENGL 128`
-- `SOC& 101`
-- `PSYC& 100`
-- `AMES 100`
-- `ANTH& 100`
 - `HIST& 136`
 - `HIST& 137`
 - `HUMAN 100`
 - `ENGL& 244`
-- `PHIL& 101`
-- `PHIL 102`
-- `PHIL 103`
-- `PHIL 104`
-- `PHIL 105`
-- `PHIL 110`
-- `PHIL 112`
-- `PHIL 114`
-- `PHIL 115`
-- `PHIL& 120`
-- `PHIL 160`
-- `PHIL 194`
-- `PHIL 200`
-- `PHIL 206`
-- `PHIL 210`
-- `PHIL 215`
-- `PHIL 220`
-- `PHIL 236`
-- `PHIL 238`
-- `PHIL 240`
-- `PHIL 243`
-- `PHIL 299`
-- `HIST 101`
-- `HIST 102`
-- `HIST 103`
-- `HIST 120`
-- `HIST 122`
-- `HIST 135`
-- `HIST 194`
-- `HIST& 214`
-- `HIST& 215`
-- `HIST 220`
-- `HIST 224`
-- `HIST 226`
-- `HIST 228`
-- `HIST 230`
-- `HIST 231`
-- `HIST 232`
-- `HIST 233`
-- `HIST 235`
-- `HIST 237`
-- `HIST 240`
-- `HIST 245`
-- `HIST 250`
-- `HIST 299`
-- `HUMAN 110`
-- `HUMAN 133`
-- `HUMAN 142`
-- `HUMAN 186`
-- `HUMAN 190`
-- `HUMAN 191`
-- `HUMAN 194`
-- `HUMAN 224`
-- `POLS& 101`
-- `POLS 194`
-- `POLS& 200`
-- `POLS& 202`
-- `POLS& 203`
-- `POLS& 204`
-- `POLS 207`
-- `POLS 209`
-- `POLS 298`
-- `CJ& 101`
-- `CJ& 105`
-- `CJ& 110`
-- `CJ 200`
-- `CJ 205`
-- `CJ 220`
-- `CJ 236`
-- `CJ& 240`
-- `CJ 294`
-- `CJ 299`
-- `SOC 194`
-- `SOC& 201`
-- `SOC 215`
-- `SOC 220`
-- `SOC 230`
-- `SOC 240`
-- `SOC 245`
-- `SOC 260`
-- `SOC 298`
-- `PSYC& 180`
-- `PSYC& 200`
-- `PSYC 201`
-- `PSYC 209`
-- `PSYC& 220`
-- `PSYC 225`
-- `PSYC 298`
-- `PSYC 299`
-- `ECED& 105`
-- `ECED& 132`
-- `ECED& 134`
-- `ECED& 139`
-- `ECED 152`
-- `ECED 155`
-- `ECED& 160`
-- `ECED 165`
-- `ECED& 170`
-- `ECED 175`
-- `ECED& 180`
-- `ECED& 190`
-- `ECED 220`
-- `EDUC& 115`
-- `EDUC& 130`
-- `EDUC& 136`
-- `EDUC& 150`
-- `EDUC& 204`
-- `EDUC& 205`
-- `EDUC 240`
-- `EDUC 245`
-- `AMES 150`
-- `AMES 194`
-- `AMES 211`
-- `ANTH 194`
-- `ANTH& 204`
-- `ANTH& 205`
-- `ANTH& 206`
-- `ANTH& 210`
-- `ANTH 211`
-- `ANTH& 216`
-- `ANTH& 234`
-- `ANTH& 235`
-- `ANTH& 236`
-- `ANTH 273`
-- `ANTH 294`
-- `ANTH 298`
-- `ANTH 299`
-- `S SCI 160`
-- `S SCI 194`
-- `S SCI 211`
+- `SOC& 101`
+- `PSYC& 100`
+- `AMES 100`
+- `ANTH& 100`
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Two composition courses total -> `ENGL& 101`, `ENGL 128`
-- Worth finishing at Green River: Gender, society, and social-inquiry support -> `SOC& 101`, `PSYC& 100`, `AMES 100`, `ANTH& 100`. complete at least 1 course from this set
-- Worth finishing at Green River: History or culture support -> `HIST& 136`, `HIST& 137`, `HUMAN 100`, `ENGL& 244`. complete at least 1 course from this set
-- Planner flag: GWSS has no formal prerequisite gate, but the major still relies on a strong reading and writing foundation after transfer.
-- Planner flag: The public page is category-based after the core, so the final upper-division course mix should still be reviewed with advising.
+- Required before enrollment: Two composition courses total -> `ENGL& 101`, `ENGL 128`. note: GWSS requires 10 composition credits in the degree, so it is good to finish the writing pair before or during UW enrollment.
+- Worth finishing at Green River: History or culture support -> `HIST& 136`, `HIST& 137`, `HUMAN 100`, `ENGL& 244`. complete at least 1 course from this set. note: GWSS later depends heavily on historical, cultural, and critical reading work, so one of these is a useful Green River add-on.
+- Worth finishing at Green River: Gender, society, and social-inquiry support -> `SOC& 101`, `PSYC& 100`, `AMES 100`, `ANTH& 100`. complete at least 1 course from this set. note: These do not replace the Bothell GWSS core, but they are strong Green River foundations for the later upper-division feminist and social-justice-focused work.
 
 
 ### Global Studies (BA)
@@ -3412,13 +1621,13 @@ Bothell GWSS has no formal prerequisite gate, so the strongest Green River plan 
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
-Bothell Global Studies has no formal prerequisite gate, so the strongest Green River start is a writing-heavy international, historical, language, and social-science path before the current GST core begins.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
-- [UW Bothell Global Studies requirements](https://www.uwb.edu/ias/undergraduate/majors/global-studies)
+- [UW Bothell Global Studies requirements](https://www.uwb.edu/ias/undergraduate/majors/global-studies) - Auto-promoted by planner:discover-primary-sources on April 8, 2026 from a high-confidence source-discovery match.
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
 
 ##### Global Studies admission baseline
@@ -3441,145 +1650,20 @@ Bothell Global Studies has no formal prerequisite gate, so the strongest Green R
 
 - `ENGL& 101`
 - `ENGL 128`
-- `POLS& 101`
-- `POLS& 203`
-- `HIST 101`
-- `HIST& 214`
 - `SPAN& 121`
 - `FRCH& 121`
 - `JAPN& 121`
 - `CHIN& 121`
-- `HIST 102`
-- `HIST 103`
-- `HIST 120`
-- `HIST 122`
-- `HIST 135`
-- `HIST& 136`
-- `HIST& 137`
-- `HIST 194`
-- `HIST& 215`
-- `HIST 220`
-- `HIST 224`
-- `HIST 226`
-- `HIST 228`
-- `HIST 230`
-- `HIST 231`
-- `HIST 232`
-- `HIST 233`
-- `HIST 235`
-- `HIST 237`
-- `HIST 240`
-- `HIST 245`
-- `HIST 250`
-- `HIST 299`
-- `HUMAN 100`
-- `HUMAN 110`
-- `HUMAN 133`
-- `HUMAN 142`
-- `HUMAN 186`
-- `HUMAN 190`
-- `HUMAN 191`
-- `HUMAN 194`
-- `HUMAN 224`
-- `POLS 194`
-- `POLS& 200`
-- `POLS& 202`
-- `POLS& 204`
-- `POLS 207`
-- `POLS 209`
-- `POLS 298`
-- `CJ& 101`
-- `CJ& 105`
-- `CJ& 110`
-- `CJ 200`
-- `CJ 205`
-- `CJ 220`
-- `CJ 236`
-- `CJ& 240`
-- `CJ 294`
-- `CJ 299`
-- `SOC& 101`
-- `SOC 194`
-- `SOC& 201`
-- `SOC 215`
-- `SOC 220`
-- `SOC 230`
-- `SOC 240`
-- `SOC 245`
-- `SOC 260`
-- `SOC 298`
-- `ENGL 103`
-- `ENGL 109`
-- `ENGL& 112`
-- `ENGL& 113`
-- `ENGL& 114`
-- `ENGL 115`
-- `ENGL 126`
-- `ENGL 127`
-- `ENGL 160`
-- `ENGL 161`
-- `ENGL 163`
-- `ENGL 164`
-- `ENGL 165`
-- `ENGL 168`
-- `ENGL 180`
-- `ENGL 181`
-- `ENGL 183`
-- `ENGL 185`
-- `ENGL 187`
-- `ENGL 190`
-- `ENGL 194`
-- `ENGL 199`
-- `ENGL& 220`
-- `ENGL& 226`
-- `ENGL& 227`
-- `ENGL& 228`
-- `ENGL& 236`
-- `ENGL& 237`
-- `ENGL 239`
-- `ENGL& 244`
-- `ENGL& 245`
-- `ENGL& 246`
-- `ENGL 247`
-- `ENGL 248`
-- `ENGL 249`
-- `ENGL& 254`
-- `ENGL& 255`
-- `ENGL& 256`
-- `ENGL 257`
-- `ENGL 299`
-- `CHIN 111`
-- `CHIN& 122`
-- `CHIN& 123`
-- `FRCH& 122`
-- `FRCH& 123`
-- `FRCH& 221`
-- `GERM& 121`
-- `GERM& 122`
-- `GERM& 123`
-- `JAPN& 122`
-- `JAPN& 123`
-- `SPAN 110`
-- `SPAN& 122`
-- `SPAN& 123`
-- `SPAN 194`
-- `SPAN& 221`
-- `SPAN& 222`
-- `SPAN& 223`
-- `SPAN 299`
+- `POLS& 101`
+- `POLS& 203`
+- `HIST 101`
+- `HIST& 214`
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Two composition courses total -> `ENGL& 101`, `ENGL 128`
-- Worth finishing at Green River: Global politics or history foundation -> `POLS& 101`, `POLS& 203`, `HIST 101`, `HIST& 214`. complete at least 1 course from this set
-- Worth finishing at Green River: World-language support -> `SPAN& 121`, `FRCH& 121`, `JAPN& 121`, `CHIN& 121`. complete at least 1 course from this set
-- GRC sequence: `CHIN& 121 -> CHIN& 122 -> CHIN& 123`.
-- GRC sequence: `FRCH& 121 -> FRCH& 122 -> FRCH& 123 -> FRCH& 221`.
-- GRC sequence: `GERM& 121 -> GERM& 122 -> GERM& 123`.
-- GRC sequence: `JAPN& 121 -> JAPN& 122 -> JAPN& 123`.
-- GRC sequence: `SPAN& 121 -> SPAN& 122 -> SPAN& 123 -> SPAN& 221 -> SPAN& 222 -> SPAN& 223`.
-- Planner flag: Global Studies has no formal prerequisite gate, but the methods-course choices after transfer mean students should keep some quantitative, GIS, or policy-method flexibility open.
-- Planner flag: Because the degree page is category-based, the final upper-division course mix should still be checked with advising.
+- Required before enrollment: Two composition courses total -> `ENGL& 101`, `ENGL 128`. note: Global Studies requires 10 composition credits in the degree, so it is good to finish the writing pair before or during UW enrollment.
+- Worth finishing at Green River: World-language support -> `SPAN& 121`, `FRCH& 121`, `JAPN& 121`, `CHIN& 121`. complete at least 1 course from this set. note: Language study is not a formal declaration prerequisite, but it is still a strong Green River add-on for students building a global-studies profile.
+- Worth finishing at Green River: Global politics or history foundation -> `POLS& 101`, `POLS& 203`, `HIST 101`, `HIST& 214`. complete at least 1 course from this set. note: These are strong Green River supports before the Global Studies core because the major later depends on international, historical, and policy-oriented work.
 
 
 ### Health Studies (BA)
@@ -3587,16 +1671,16 @@ Bothell Global Studies has no formal prerequisite gate, so the strongest Green R
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AAS`.
-Bothell Health Studies is a broad health-focused degree with a real lower-division breadth baseline. Green River should finish the writing, reasoning, and area-of-inquiry spread first, then add health-facing science and social-context support before transfer.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
+- [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
 - [UW Bothell Health Studies admissions](https://www.uwb.edu/nhs/undergraduate/health-studies/admissions)
 - [UW Bothell Health Studies overview and curriculum](https://www.uwb.edu/nhs/undergraduate/health-studies/overview)
 - [UW Bothell Health Studies planning worksheet](https://admissions.uwb.edu/register/mpw-hs)
-- [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
 
 ##### Health Studies admission baseline
 
@@ -3617,6 +1701,10 @@ Bothell Health Studies is a broad health-focused degree with a real lower-divisi
 
 - `ENGL& 101`
 - `ENGL 128`
+- `BIOL& 100`
+- `BIOL& 211`
+- `AP 100`
+- `NUTR& 101`
 - `MATH& 146`
 - `MATH 256`
 - `MATH& 148`
@@ -3624,79 +1712,18 @@ Bothell Health Studies is a broad health-focused degree with a real lower-divisi
 - `PSYC& 200`
 - `SOC& 101`
 - `ECON& 201`
-- `BIOL& 100`
-- `BIOL& 211`
-- `AP 100`
-- `NUTR& 101`
 - `HL ED 190`
 - `BIOL& 241`
 - `BIOL& 242`
-- `AP 102`
-- `AP 103`
-- `AP 104`
-- `AP 210`
-- `BIOL 103`
-- `BIOL 110`
-- `BIOL 125`
-- `BIOL 127`
-- `BIOL 140`
-- `BIOL 194`
-- `BIOL 195`
-- `BIOL& 212`
-- `BIOL& 213`
-- `BIOL& 260`
-- `BIOL 298`
-- `OT 100`
-- `OT 105`
-- `OT 110`
-- `OT 115`
-- `OT 116`
-- `OT 194`
-- `OT 198`
-- `OT 202`
-- `OT 250`
-- `OT 251`
-- `PSYC& 180`
-- `PSYC 201`
-- `PSYC 209`
-- `PSYC& 220`
-- `PSYC 225`
-- `PSYC 298`
-- `PSYC 299`
-- `ECED& 105`
-- `ECED& 132`
-- `ECED& 134`
-- `ECED& 139`
-- `ECED 152`
-- `ECED 155`
-- `ECED& 160`
-- `ECED 165`
-- `ECED& 170`
-- `ECED 175`
-- `ECED& 180`
-- `ECED& 190`
-- `ECED 220`
-- `EDUC& 115`
-- `EDUC& 130`
-- `EDUC& 136`
-- `EDUC& 150`
-- `EDUC& 204`
-- `EDUC& 205`
-- `EDUC 240`
-- `EDUC 245`
 
 #### Required sequences for specific credits
 
-- Required before application: First composition course -> `ENGL& 101`
-- Required before application: Second composition or advanced writing -> `ENGL 128`
-- Required before application: Reasoning course with statistics preferred -> `MATH& 146`, `MATH 256`, `MATH& 148`. complete at least 1 course from this set
-- Required before application: 10 credits of Social Sciences -> `PSYC& 100`, `PSYC& 200`, `SOC& 101`, `ECON& 201`. complete at least 2 courses from this set
-- Required before application: 10 credits of Natural Sciences -> `BIOL& 100`, `BIOL& 211`, `AP 100`, `NUTR& 101`. complete at least 2 courses from this set
-- Worth finishing at Green River: Health and life-science support -> `NUTR& 101`, `HL ED 190`, `BIOL& 241`, `BIOL& 242`. complete at least 1 course from this set
-- Both: `BIOL& 241 -> BIOL& 242`. Both are needed for `BIOL 118`, `BIOL 119`, and `NURS 301` credit.
-- Planner flag: The public admissions page also requires 10 Arts and Humanities credits before application, so students should still confirm that breadth area while building the final Green River plan.
-- Planner flag: The exact elective mix depends on the student's intended health pathway and the annually approved Health Studies elective lists.
-- Source-backed note: The current public materials describe the curriculum cleanly, but the exact elective mix still depends on the student's intended health pathway and the annually approved elective lists.
+- Required before application: First composition course -> `ENGL& 101`. note: Health Studies requires two composition courses before application, so the first composition course should be finished early.
+- Required before application: Second composition or advanced writing -> `ENGL 128`. note: Health Studies requires two composition courses before application. ENGL 128 is the clearest currently tracked Green River second-writing fit.
+- Required before application: 10 credits of Natural Sciences -> `BIOL& 100`, `BIOL& 211`, `AP 100`, `NUTR& 101`. complete at least 2 courses from this set. note: Health Studies requires 10 credits of Natural Sciences before application.
+- Required before application: Reasoning course with statistics preferred -> `MATH& 146`, `MATH 256`, `MATH& 148`. complete at least 1 course from this set. note: The current Health Studies admissions page requires 5 credits of Reasoning, with statistics preferred.
+- Required before application: 10 credits of Social Sciences -> `PSYC& 100`, `PSYC& 200`, `SOC& 101`, `ECON& 201`. complete at least 2 courses from this set. note: Health Studies requires 10 credits of Social Sciences before application.
+- Worth finishing at Green River: Health and life-science support -> `NUTR& 101`, `HL ED 190`, `BIOL& 241`, `BIOL& 242`. complete at least 1 course from this set. note: These do not replace the Bothell Health Studies core, but they are strong Green River supports before the later health-focused elective blocks begin.
 
 
 ### Interactive Media Design (BA)
@@ -3704,20 +1731,15 @@ Bothell Health Studies is a broad health-focused degree with a real lower-divisi
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
-Bothell Interactive Media Design is an archival planner row only. The public program is permanently suspended, so the planner can only preserve the old admission and studio-pattern guidance for students who were already in the pipeline.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
-- [UW Bothell archived IMD planning worksheet](https://www.uwb.edu/premajor/wp-content/uploads/sites/26/2023/07/fillable-imd.pdf)
 - [UW Bothell archived 2017-2018 catalog - Interactive Media Design](https://www.uwb.edu/catalog/wp-content/uploads/sites/44/2023/07/catalog17-18-in-final.pdf)
+- [UW Bothell archived IMD planning worksheet](https://www.uwb.edu/premajor/wp-content/uploads/sites/26/2023/07/fillable-imd.pdf)
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
-
-##### Interactive Media Design current program status
-
-- The current IMD page says the program has been permanently suspended and no longer accepts applications for admission, while students already in the major are not affected.
-- Because of that suspension, the remaining degree-planning details are necessarily archival rather than current-admissions guidance.
 
 ##### Interactive Media Design archived admission baseline
 
@@ -3730,13 +1752,18 @@ Bothell Interactive Media Design is an archival planner row only. The public pro
 - The catalog's exact core is BIMD 351, 352, 353, 362, 363, 481, 482, 483, 491, 492, and 493, each requiring at least a 2.0.
 - The archived worksheet also notes the cohort model and the program's integrated portfolio / studio structure, including BIMD 481 as part of the writing requirement inside the degree.
 
+##### Interactive Media Design current program status
+
+- The current IMD page says the program has been permanently suspended and no longer accepts applications for admission, while students already in the major are not affected.
+- Because of that suspension, the remaining degree-planning details are necessarily archival rather than current-admissions guidance.
+
 #### GRC Equivalent Courses
 
-- `ENGL& 101`
 - `ART& 100`
 - `ART 130`
 - `CMST& 210`
 - `JOURN 101`
+- `ENGL& 101`
 - `CS 121`
 - `CS 122`
 - `MATH& 146`
@@ -3745,101 +1772,14 @@ Bothell Interactive Media Design is an archival planner row only. The public pro
 - `ART 251`
 - `JOURN 205`
 - `CMST& 220`
-- `ART 105`
-- `ART 106`
-- `ART 107`
-- `ART 109`
-- `ART 110`
-- `ART 111`
-- `ART 112`
-- `ART 113`
-- `ART 114`
-- `ART 115`
-- `ART 119`
-- `ART 120`
-- `ART 133`
-- `ART 135`
-- `ART 150`
-- `ART 180`
-- `ART 199`
-- `ART 212`
-- `ART 213`
-- `ART 214`
-- `ART 219`
-- `ART 252`
-- `ART 253`
-- `ART 255`
-- `ART 256`
-- `ART 257`
-- `ART 275`
-- `ART 276`
-- `ART 277`
-- `ART 294`
-- `ART 295`
-- `ART 296`
-- `ART 297`
-- `ART 298`
-- `ART 299`
-- `PHOTO 102`
-- `PHOTO 103`
-- `PHOTO 111`
-- `PHOTO 112`
-- `PHOTO 113`
-- `CMST& 102`
-- `CMST 194`
-- `CMST 212`
-- `CMST 215`
-- `CMST& 230`
-- `CMST 238`
-- `CMST 245`
-- `CMST 265`
-- `CMST 266`
-- `CMST 299`
-- `FILM 120`
-- `FILM 121`
-- `FILM 122`
-- `JOURN 100.1`
-- `JOURN 100.2`
-- `JOURN 100.3`
-- `JOURN 103`
-- `JOURN 107`
-- `JOURN 110`
-- `JOURN 111`
-- `JOURN 112`
-- `JOURN 120`
-- `JOURN 121`
-- `JOURN 122`
-- `JOURN 150`
-- `JOURN 151`
-- `JOURN 152`
-- `JOURN 153`
-- `JOURN 198`
-- `JOURN 199`
-- `JOURN 200`
-- `JOURN 206`
-- `JOURN 207`
-- `JOURN 254`
-- `JOURN 255`
-- `JOURN 298`
-- `JOURN 299`
-- `CS 123`
-- `CS& 131`
-- `CS 132`
-- `CS& 141`
-- `CS 145`
-- `CS 202`
 
 #### Required sequences for specific credits
 
-- Required before application: English composition -> `ENGL& 101`
-- Required before application: Interactive media or design foundation -> `ART& 100`, `ART 130`, `CMST& 210`, `JOURN 101`. complete at least 1 course from this set
-- Required before application: Web development or programming foundation -> `CS 121`, `CS 122`. complete at least 1 course from this set
-- Required before application: Statistics or quantitative-methods foundation -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set
-- Worth finishing at Green River: Visual and media support -> `PHOTO 101`, `ART 251`, `JOURN 205`, `CMST& 220`. complete at least 1 course from this set
-- GRC sequence: `CS 121 -> CS 122 -> CS 123`. Current UW equivalency entries are separate, but planner sequencing at GRC should treat them in this order.
-- Planner flag: IMD is permanently suspended and no longer accepts applications, so this row should be treated as archival guidance only.
-- Planner flag: Any current student still finishing IMD should rely on source-backed archived materials rather than assuming the old public plan still runs unchanged.
-- Source-backed note: This is an archival row only. Because IMD no longer accepts new applicants, any current student still finishing the degree should use source-backed archived materials rather than assume the old public plan still runs unchanged.
+- Required before application: Interactive media or design foundation -> `ART& 100`, `ART 130`, `CMST& 210`, `JOURN 101`. complete at least 1 course from this set. note: The archived IMD worksheet expects one introductory course in interactive media, design thinking, or visual arts.
+- Required before application: English composition -> `ENGL& 101`. note: The archived IMD materials include composition in the prerequisite baseline.
+- Required before application: Web development or programming foundation -> `CS 121`, `CS 122`. complete at least 1 course from this set. note: The archived IMD worksheet expects one web-development or programming course before admission review.
+- Required before application: Statistics or quantitative-methods foundation -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set. note: The archived IMD worksheet expects one statistics, quantitative-methods, or data-visualization course.
+- Worth finishing at Green River: Visual and media support -> `PHOTO 101`, `ART 251`, `JOURN 205`, `CMST& 220`. complete at least 1 course from this set. note: These do not replace the suspended Bothell IMD studio sequence, but they are the clearest archived Green River supports for students still finishing that older path.
 
 
 ### Interdisciplinary Arts (BA)
@@ -3847,14 +1787,14 @@ Bothell Interactive Media Design is an archival planner row only. The public pro
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
-Bothell Interdisciplinary Arts has no formal prerequisite gate, so the strongest Green River launch is a writing-plus-creative-practice path with one clear artistic direction before the daytime IA core begins.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
-- [UW Bothell Interdisciplinary Arts requirements](https://www.uwb.edu/ias/undergraduate/majors/interdisciplinary-arts)
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
+- [UW Bothell Interdisciplinary Arts requirements](https://www.uwb.edu/ias/undergraduate/majors/interdisciplinary-arts) - Auto-promoted by planner:discover-primary-sources on April 8, 2026 from a high-confidence source-discovery match.
 
 ##### Interdisciplinary Arts admission baseline
 
@@ -3883,154 +1823,12 @@ Bothell Interdisciplinary Arts has no formal prerequisite gate, so the strongest
 - `ENGL& 244`
 - `ENGL& 245`
 - `ENGL 239`
-- `ART& 100`
-- `ART 105`
-- `ART 106`
-- `ART 107`
-- `ART 109`
-- `ART 110`
-- `ART 111`
-- `ART 112`
-- `ART 113`
-- `ART 114`
-- `ART 115`
-- `ART 119`
-- `ART 120`
-- `ART 133`
-- `ART 135`
-- `ART 150`
-- `ART 180`
-- `ART 199`
-- `ART 212`
-- `ART 213`
-- `ART 214`
-- `ART 219`
-- `ART 251`
-- `ART 252`
-- `ART 253`
-- `ART 255`
-- `ART 256`
-- `ART 257`
-- `ART 275`
-- `ART 276`
-- `ART 277`
-- `ART 294`
-- `ART 295`
-- `ART 296`
-- `ART 297`
-- `ART 298`
-- `ART 299`
-- `PHOTO 102`
-- `PHOTO 103`
-- `PHOTO 111`
-- `PHOTO 112`
-- `PHOTO 113`
-- `DANCE 101`
-- `DANCE 102`
-- `DANCE 103`
-- `DANCE 110`
-- `DANCE 204`
-- `DRMA 102`
-- `DRMA 111`
-- `DRMA 112`
-- `DRMA 113`
-- `DRMA 151`
-- `DRMA 152`
-- `DRMA 153`
-- `DRMA 154`
-- `DRMA 155`
-- `DRMA 156`
-- `DRMA 211`
-- `DRMA 212`
-- `DRMA 213`
-- `DRMA 298`
-- `MUSC 103`
-- `MUSC 104`
-- `MUSC& 105`
-- `MUSC 107`
-- `MUSC 108`
-- `MUSC 109`
-- `MUSC 110`
-- `MUSC 118`
-- `MUSC 119`
-- `MUSC 120`
-- `MUSC& 121`
-- `MUSC& 122`
-- `MUSC& 123`
-- `MUSC 124`
-- `MUSC 125`
-- `MUSC 127`
-- `MUSC 128`
-- `MUSC 129`
-- `MUSC 130.1`
-- `MUSC 130.2`
-- `MUSC 130.3`
-- `MUSC& 131`
-- `MUSC& 132`
-- `MUSC& 133`
-- `MUSC 140`
-- `MUSC 141`
-- `MUSC 142`
-- `MUSC 218`
-- `MUSC 219`
-- `MUSC 220`
-- `MUSC& 221`
-- `MUSC& 222`
-- `MUSC 227`
-- `MUSIC 228`
-- `MUSIC 229`
-- `MUSC 230.1`
-- `MUSC 230.2`
-- `MUSC 230.3`
-- `MUSC& 231`
-- `MUSC& 232`
-- `MUSC 298`
-- `MUSC 299`
-- `ENGL 103`
-- `ENGL 109`
-- `ENGL& 112`
-- `ENGL& 113`
-- `ENGL& 114`
-- `ENGL 115`
-- `ENGL 126`
-- `ENGL 127`
-- `ENGL 160`
-- `ENGL 161`
-- `ENGL 163`
-- `ENGL 164`
-- `ENGL 165`
-- `ENGL 168`
-- `ENGL 180`
-- `ENGL 181`
-- `ENGL 183`
-- `ENGL 185`
-- `ENGL 187`
-- `ENGL 190`
-- `ENGL 194`
-- `ENGL 199`
-- `ENGL& 220`
-- `ENGL& 226`
-- `ENGL& 227`
-- `ENGL& 228`
-- `ENGL& 236`
-- `ENGL& 237`
-- `ENGL& 246`
-- `ENGL 247`
-- `ENGL 248`
-- `ENGL 249`
-- `ENGL& 254`
-- `ENGL& 255`
-- `ENGL& 256`
-- `ENGL 257`
-- `ENGL 299`
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Two composition courses total -> `ENGL& 101`, `ENGL 128`
-- Worth finishing at Green River: Visual, performing, or digital-arts foundation -> `ART 130`, `PHOTO 101`, `DRMA& 101`, `MUSC 101`. complete at least 1 course from this set
-- Worth finishing at Green River: Writing or literary-arts support -> `ENGL& 244`, `ENGL& 245`, `ENGL 239`. complete at least 1 course from this set
-- Planner flag: IA classes are offered primarily during daytime hours, so timing after transfer still matters even though there is no formal prerequisite gate.
-- Planner flag: Because the public page is category-based, the final studio and upper-division mix should still be reviewed with advising.
+- Required before enrollment: Two composition courses total -> `ENGL& 101`, `ENGL 128`. note: Interdisciplinary Arts requires 10 composition credits in the degree, so it is good to finish the writing pair before or during UW enrollment.
+- Worth finishing at Green River: Visual, performing, or digital-arts foundation -> `ART 130`, `PHOTO 101`, `DRMA& 101`, `MUSC 101`. complete at least 1 course from this set. note: These do not replace the Bothell IA core, but they are strong Green River foundations before the art-studios, workshops, and upper-division interdisciplinary sequence begins.
+- Worth finishing at Green River: Writing or literary-arts support -> `ENGL& 244`, `ENGL& 245`, `ENGL 239`. complete at least 1 course from this set. note: Interdisciplinary Arts often combines studio and written work, so one more writing- or literature-based course is a useful Green River support.
 
 
 ### Interdisciplinary Studies: Individualized Study (BA)
@@ -4038,20 +1836,15 @@ Bothell Interdisciplinary Arts has no formal prerequisite gate, so the strongest
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
-Bothell Individualized Study is a proposal-based degree. The Green River plan should stay broad but intentional: finish writing and reasoning, then begin a clear theme that can later be shaped into a faculty-reviewed portfolio proposal at Bothell.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
 - [UW Bothell 2023-2024 general catalog - Interdisciplinary Studies](https://www.uwb.edu/catalog/wp-content/uploads/sites/44/2024/09/2023-2024-General-Catalog_a11y.pdf)
-- [UW Bothell IAS degree portfolio overview](https://www.uwb.edu/ias/undergraduate/ias-degree-portfolio)
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
-
-##### Individualized Study public program model
-
-- The current UW Bothell catalog describes Individualized Study as the self-designed option inside Interdisciplinary Studies for highly motivated students who want to build their own course of study.
-- Students work closely with one or more faculty mentors in IAS or other UW Bothell programs, and the public catalog frames the degree as a portfolio-based, student-driven path that can support focuses like science communication, environmental education, gender studies, or digital arts.
+- [UW Bothell IAS degree portfolio overview](https://www.uwb.edu/ias/undergraduate/ias-degree-portfolio)
 
 ##### Individualized Study admission and proposal baseline
 
@@ -4062,6 +1855,11 @@ Bothell Individualized Study is a proposal-based degree. The Green River plan sh
 
 - Once the proposal is approved, exact major requirements vary from proposal to proposal rather than following one fixed public course sheet.
 - The standard UW and IAS degree requirements still remain in effect, including BIS 300, the portfolio capstone, the areas-of-knowledge structure, and the overall 180-credit graduation minimum.
+
+##### Individualized Study public program model
+
+- The current UW Bothell catalog describes Individualized Study as the self-designed option inside Interdisciplinary Studies for highly motivated students who want to build their own course of study.
+- Students work closely with one or more faculty mentors in IAS or other UW Bothell programs, and the public catalog frames the degree as a portfolio-based, student-driven path that can support focuses like science communication, environmental education, gender studies, or digital arts.
 
 #### GRC Equivalent Courses
 
@@ -4078,13 +1876,10 @@ Bothell Individualized Study is a proposal-based degree. The Green River plan sh
 
 #### Required sequences for specific credits
 
-- Required before application: English composition -> `ENGL& 101`
-- Required before application: Reasoning foundation -> `MATH& 146`, `MATH& 148`, `MATH& 151`. complete at least 1 course from this set
-- Required before enrollment: Second composition or advanced writing course -> `ENGL 128`
-- Worth finishing at Green River: Theme-aligned starter course -> `ENV S 204`, `AMES 100`, `ART 130`, `CMST& 210`, `GEOG& 200`. complete at least 1 course from this set
-- Planner flag: This is intentionally a proposal-based degree. The exact UW course list must stay faculty-approved rather than being treated like a frozen universal checklist.
-- Planner flag: Students normally apply to the individualized option after IAS coursework at Bothell, so the pre-transfer goal is coherent theme-building, not overfitting a fake major map.
-- Source-backed note: This is intentionally a proposal-based degree. The exact UW course list must stay faculty-approved rather than being treated like a frozen universal checklist.
+- Required before application: English composition -> `ENGL& 101`. note: The public Individualized Study model still sits inside the standard IAS composition expectations.
+- Required before application: Reasoning foundation -> `MATH& 146`, `MATH& 148`, `MATH& 151`. complete at least 1 course from this set. note: The catalog keeps the normal IAS reasoning expectation in place before the proposal-based finish begins.
+- Required before enrollment: Second composition or advanced writing course -> `ENGL 128`. note: It is good to complete a second writing course before or during UW enrollment because the later Individualized Study proposal and portfolio work are writing-heavy.
+- Worth finishing at Green River: Theme-aligned starter course -> `ENV S 204`, `AMES 100`, `ART 130`, `CMST& 210`, `GEOG& 200`. complete at least 1 course from this set. note: Choose the Green River course that best matches the student's intended proposal theme instead of pretending there is one fake universal course list for every Individualized Study student.
 
 
 ### Law, Economics & Public Policy (BA)
@@ -4092,15 +1887,14 @@ Bothell Individualized Study is a proposal-based degree. The Green River plan sh
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AB-DTA/MRP`.
-Bothell LEPP has a clearer front-door baseline than many IAS majors: writing, microeconomics, and American politics should be finished before declaration, then Green River can add policy, philosophy, and social-analysis support before transfer.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
-- [UW Bothell Law, Economics & Public Policy requirements](https://www.uwb.edu/ias/undergraduate/majors/law-economics-public-policy)
-- [UW Bothell Law, Economics & Public Policy requirements](https://www.uwb.edu/ias/undergraduate/majors/law-economics-public-policy) - Auto-promoted from the parsed primary degree page on April 12, 2026.
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
+- [UW Bothell Law, Economics & Public Policy requirements](https://www.uwb.edu/ias/undergraduate/majors/law-economics-public-policy) - Auto-promoted by planner:discover-primary-sources on April 8, 2026 from a high-confidence source-discovery match.
 - [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
 ##### Law, Economics & Public Policy admission baseline
@@ -4122,89 +1916,23 @@ Bothell LEPP has a clearer front-door baseline than many IAS majors: writing, mi
 
 - `ENGL& 101`
 - `ENGL 128`
-- `ECON& 201`
 - `POLS& 101`
+- `ECON& 201`
+- `MATH& 146`
 - `BUS& 201`
 - `PHIL& 101`
 - `SOC& 101`
 - `CJ& 101`
-- `POLS 194`
-- `POLS& 200`
 - `POLS& 202`
-- `POLS& 203`
-- `POLS& 204`
-- `POLS 207`
-- `POLS 209`
-- `POLS 298`
-- `CJ& 105`
-- `CJ& 110`
-- `CJ 200`
-- `CJ 205`
-- `CJ 220`
-- `CJ 236`
-- `CJ& 240`
-- `CJ 294`
-- `CJ 299`
-- `SOC 194`
-- `SOC& 201`
-- `SOC 215`
-- `SOC 220`
-- `SOC 230`
-- `SOC 240`
-- `SOC 245`
-- `SOC 260`
-- `SOC 298`
-- `ACCT& 201`
-- `ACCT& 202`
-- `ACCT& 203`
-- `BUS& 101`
-- `BUS 121`
-- `BUS 258`
-- `ECON 100`
-- `ECON 101`
-- `ECON 194`
-- `ECON& 202`
-- `ECON 298`
-- `ECON 299`
-- `PHIL 102`
-- `PHIL 103`
-- `PHIL 104`
-- `PHIL 105`
-- `PHIL 110`
-- `PHIL 112`
-- `PHIL 114`
-- `PHIL 115`
-- `PHIL& 120`
-- `PHIL 160`
-- `PHIL 194`
-- `PHIL 200`
-- `PHIL 206`
-- `PHIL 210`
-- `PHIL 215`
-- `PHIL 220`
-- `PHIL 236`
-- `PHIL 238`
-- `PHIL 240`
-- `PHIL 243`
-- `PHIL 299`
-- `MATH& 146`
 
 #### Required sequences for specific credits
 
-- Required before application: First composition course -> `ENGL& 101`
-- Required before application: Second composition or advanced writing course -> `ENGL 128`
-- Required before application: Microeconomics -> `ECON& 201`
-- Required before application: American government or American politics -> `POLS& 101`
+- Required before application: First composition course -> `ENGL& 101`. note: LEPP requires two composition courses before declaration, so the first writing course should be finished early.
+- Required before application: Second composition or advanced writing course -> `ENGL 128`. note: LEPP requires two composition courses before declaration. ENGL 128 is the clearest currently tracked Green River second-writing fit.
+- Required before application: American government or American politics -> `POLS& 101`. note: LEPP requires one American government or American politics course before declaration.
+- Required before application: Microeconomics -> `ECON& 201`. note: LEPP requires introductory microeconomics before declaration.
 - Required before enrollment: STAT 220 -> `MATH& 146`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Worth finishing at Green River: Policy, law, or social-analysis support -> `BUS& 201`, `PHIL& 101`, `SOC& 101`, `CJ& 101`. complete at least 1 course from this set
-- GRC sequence: Business / less-calculus-heavy planning commonly uses `MATH& 141 -> MATH& 142` or `MATH 147 -> MATH& 148`. `MATH& 146` and `MATH 256` are standalone quantitative options.
-- Planner flag: LEPP publishes upper-division course buckets instead of one single fixed finish, so the final Skills and Methods / Policy Foundation / Policy Problem mix should still be checked with advising.
-- Planner flag: LEPP courses are offered primarily during daytime hours, so start-quarter timing after transfer still matters.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0788:mathematics:mathand-146-5.
-- Source-backed note: Added the Green River course path MATH& 146 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: STAT 220 Statistical Reasoning
+- Worth finishing at Green River: Policy, law, or social-analysis support -> `BUS& 201`, `PHIL& 101`, `SOC& 101`, `CJ& 101`. complete at least 1 course from this set. note: These do not replace the LEPP core, but they are strong Green River supports before the later policy-foundation and policy-problem blocks begin.
 
 
 ### Mathematical Thinking & Visualization (BA)
@@ -4212,19 +1940,14 @@ Bothell LEPP has a clearer front-door baseline than many IAS majors: writing, mi
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
-Bothell Mathematical Thinking & Visualization is now a legacy continuing-student row because the major shifted into Data Visualization. For students still attached to MTV, the Green River plan should cover calculus, statistics, light programming, and visual-design support before the archived Bothell finish.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
-- [UW Bothell Mathematical Thinking & Visualization requirements](https://www.uwb.edu/ias/undergraduate/majors/mathematical-thinking-visualization)
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
-
-##### Mathematical Thinking & Visualization current status
-
-- The current MTV page says the major is no longer accepting new students.
-- That page also says the major began changing its name to Data Visualization in Autumn 2024 and that degree requirements were changing with that transition.
+- [UW Bothell Mathematical Thinking & Visualization requirements](https://www.uwb.edu/ias/undergraduate/majors/mathematical-thinking-visualization) - Auto-promoted by planner:discover-primary-sources on April 8, 2026 from a high-confidence source-discovery match.
 
 ##### Mathematical Thinking & Visualization legacy admission baseline
 
@@ -4235,6 +1958,11 @@ Bothell Mathematical Thinking & Visualization is now a legacy continuing-student
 
 - The legacy MTV degree page lists a 70-credit structure: BIS 300, BIS 232, BIS 231 or STMATH 208, 5 credits of MTV Art coursework, 10 credits of Mathematical Reasoning coursework, 10 credits of Visualization Practice and Methods coursework, one additional MR or VPM course, BIS 499, and 20 additional IAS credits.
 - The page also requires at least a 2.5 in BIS 499 and notes that MTV classes are offered primarily during daytime hours.
+
+##### Mathematical Thinking & Visualization current status
+
+- The current MTV page says the major is no longer accepting new students.
+- That page also says the major began changing its name to Data Visualization in Autumn 2024 and that degree requirements were changing with that transition.
 
 #### GRC Equivalent Courses
 
@@ -4247,98 +1975,30 @@ Bothell Mathematical Thinking & Visualization is now a legacy continuing-student
 - `ART 130`
 - `PHOTO 101`
 - `CMST& 210`
-- `MATH 106`
-- `MATH& 107`
-- `MATH& 141`
-- `MATH& 142`
-- `MATH 147`
-- `MATH& 163`
-- `MATH& 171`
-- `MATH& 172`
-- `MATH& 173`
-- `MATH 194`
-- `MATH 238`
-- `MATH 240`
-- `MATH& 254`
-- `MATH 297`
-- `CS 122`
-- `CS 123`
-- `CS& 131`
-- `CS 132`
-- `CS& 141`
-- `CS 145`
-- `CS 202`
-- `ART& 100`
-- `ART 105`
-- `ART 106`
-- `ART 107`
-- `ART 109`
-- `ART 110`
-- `ART 111`
-- `ART 112`
-- `ART 113`
-- `ART 114`
-- `ART 115`
-- `ART 119`
-- `ART 120`
-- `ART 133`
-- `ART 135`
-- `ART 150`
-- `ART 180`
-- `ART 199`
-- `ART 212`
-- `ART 213`
-- `ART 214`
-- `ART 219`
-- `ART 251`
-- `ART 252`
-- `ART 253`
-- `ART 255`
-- `ART 256`
-- `ART 257`
-- `ART 275`
-- `ART 276`
-- `ART 277`
-- `ART 294`
-- `ART 295`
-- `ART 296`
-- `ART 297`
-- `ART 298`
-- `ART 299`
-- `PHOTO 102`
-- `PHOTO 103`
-- `PHOTO 111`
-- `PHOTO 112`
-- `PHOTO 113`
 
 #### Required sequences for specific credits
 
-- Required before application: One quarter of calculus -> `MATH& 151`, `MATH& 148`. complete at least 1 course from this set
-- Required before application: One quarter of statistics -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set
-- Required before enrollment: Second-quarter calculus -> `MATH& 152`
-- Worth finishing at Green River: Interaction design or visual-art support -> `ART 130`, `PHOTO 101`, `CMST& 210`. complete at least 1 course from this set
-- Worth finishing at Green River: Early programming support -> `CS 121`
-- GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
-- GRC sequence: `CS 121 -> CS 122 -> CS 123`. Current UW equivalency entries are separate, but planner sequencing at GRC should treat them in this order.
-- Planner flag: MTV is no longer accepting new students and changed into Data Visualization, so this row should be treated as a continuing-students-only legacy path.
-- Planner flag: Any current student still finishing MTV should rely on source-backed legacy guidance rather than assuming the old public plan still runs unchanged.
-- Source-backed note: Treat this as a legacy row for continuing students. New students should not be planned into MTV as if it were still the active admission path.
+- Required before application: One quarter of calculus -> `MATH& 151`, `MATH& 148`. complete at least 1 course from this set. note: The legacy MTV page lists one quarter of calculus in the minimum prerequisite baseline.
+- Required before application: One quarter of statistics -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set. note: The legacy MTV page lists one quarter of statistics in the minimum prerequisite baseline.
+- Required before enrollment: Second-quarter calculus -> `MATH& 152`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the archived MTV page recommends a second calculus course.
+- Worth finishing at Green River: Early programming support -> `CS 121`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because the archived MTV page recommends early programming.
+- Worth finishing at Green River: Interaction design or visual-art support -> `ART 130`, `PHOTO 101`, `CMST& 210`. complete at least 1 course from this set. note: These do not replace the archived MTV upper division, but they are the clearest Green River visual-support courses for students still finishing that older path.
 
 
 ### Mathematics (BS)
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `999B`.
-Bothell Mathematics is an open major, but the strongest Green River launch still looks like a full quantitative spine: calculus, differential equations, matrix algebra, multivariable calculus, and an early programming start.
+Planner coverage: `detailed`. Best Green River base: `AST-2/MRP`.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
+- [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
 - [UW Bothell Mathematics admissions](https://www.uwb.edu/stem/undergraduate/majors/mathematics/admissions)
 - [UW Bothell Mathematics curriculum](https://www.uwb.edu/stem/undergraduate/majors/mathematics/curriculum)
-- [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
 
 ##### Mathematics admission baseline
 
@@ -4362,76 +2022,39 @@ Bothell Mathematics is an open major, but the strongest Green River launch still
 - `MATH& 151`
 - `MATH& 152`
 - `MATH& 163`
-- `MATH& 153`
 - `MATH& 254`
-- `MATH 238`
 - `MATH 240`
+- `MATH 238`
 - `CS 121`
-- `MATH 106`
-- `MATH& 107`
-- `MATH& 141`
-- `MATH& 142`
-- `MATH& 146`
-- `MATH 147`
-- `MATH& 148`
-- `MATH& 171`
-- `MATH& 172`
-- `MATH& 173`
-- `MATH 194`
-- `MATH 256`
-- `MATH 297`
-- `PHYS& 110`
-- `PHYS& 114`
-- `PHYS& 154`
-- `PHYS& 115`
-- `PHYS& 155`
-- `PHYS& 116`
-- `PHYS& 156`
-- `PHYS& 221`
-- `PHYS& 222`
-- `PHYS& 223`
-- `PHYS 225`
-- `PHYS 229`
-- `PHYS 298`
-- `CS 122`
-- `CS 123`
-- `CS& 131`
-- `CS 132`
-- `CS& 141`
-- `CS 145`
-- `CS 202`
 - `ENGL& 101`
+- `MATH& 146`
+- `MATH& 153`
 
 #### Required sequences for specific credits
 
 - Required before enrollment: Calculus I, II, and III -> `MATH& 151`, `MATH& 152`, `MATH& 163`. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 - Required before enrollment: Differential equations -> `MATH& 254`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Required before enrollment: Multivariable calculus -> `MATH 238`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 - Required before enrollment: Matrix algebra / linear algebra -> `MATH 240`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
+- Required before enrollment: Multivariable calculus -> `MATH 238`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 - Required before enrollment: Introductory programming -> `CS 121`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
-- GRC sequence: `PHYS& 221 -> PHYS& 222 -> PHYS& 223` for calculus-based physics.
-- GRC sequence: `CS 121 -> CS 122 -> CS 123`. Current UW equivalency entries are separate, but planner sequencing at GRC should treat them in this order.
-- Planner flag: The Bothell Mathematics admissions page says Washington-state Calculus III transfer work can still require an added Calculus IV course after transfer, so the exact calculus placement should be confirmed with advising.
-- Planner flag: The final probability-statistics and numerical-modeling choices are still option-style course decisions inside the math core, not one single fixed upper-division sequence.
 
 
 ### Mechanical Engineering
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `999B`.
-Bothell Mechanical is now modeled from the public curriculum PDF, with the Green River plan centered on calculus, full physics, chemistry, and the mechanics backbone.
+Planner coverage: `detailed`. Best Green River base: `AST-2/MRP`.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
+- [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
 - [UW Bothell Mechanical Engineering admissions](https://www.uwb.edu/stem/undergraduate/majors/mechanical/admissions)
 - [UW Bothell Mechanical Engineering curriculum](https://www.uwb.edu/stem/undergraduate/majors/mechanical/curriculum)
 - [UW Bothell Mechanical Engineering curriculum PDF](https://www.uwb.edu/stem/wp-content/uploads/sites/31/2025/01/B-ME-Curriculum-AY24_25.pdf)
 - [UW Bothell Mechanical Engineering planning worksheet](https://admissions.uwb.edu/register/mpw-me)
-- [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
 
 ##### Mechanical Engineering admission baseline
 
@@ -4455,79 +2078,32 @@ Bothell Mechanical is now modeled from the public curriculum PDF, with the Green
 - `MATH& 151`
 - `MATH& 152`
 - `MATH& 163`
-- `MATH& 153`
-- `MATH& 254`
-- `PHYS& 221`
-- `PHYS& 222`
-- `PHYS& 223`
 - `CHEM& 161`
 - `CHEM& 162`
 - `CHEM& 163`
 - `ENGL& 101`
+- `PHYS& 221`
+- `PHYS& 222`
+- `PHYS& 223`
 - `MATH 238`
+- `MATH& 254`
 - `ENGR& 214`
 - `ENGR& 215`
 - `ENGR& 225`
-- `ENGR 100`
-- `ENGR& 104`
-- `ENGR 106`
-- `ENGR& 114`
 - `ENGR 140`
-- `ENGR 199`
-- `ENGR& 204`
-- `ENGR& 224`
 - `ENGR 250`
-- `MATH 106`
-- `MATH& 107`
-- `MATH& 141`
-- `MATH& 142`
-- `MATH& 146`
-- `MATH 147`
-- `MATH& 148`
-- `MATH& 171`
-- `MATH& 172`
-- `MATH& 173`
-- `MATH 194`
-- `MATH 240`
-- `MATH 256`
-- `MATH 297`
-- `PHYS& 110`
-- `PHYS& 114`
-- `PHYS& 154`
-- `PHYS& 115`
-- `PHYS& 155`
-- `PHYS& 116`
-- `PHYS& 156`
-- `PHYS 225`
-- `PHYS 229`
-- `PHYS 298`
-- `CHEM& 121`
-- `CHEM& 131`
-- `CHEM& 140`
-- `CHEM 194`
-- `CHEM 195`
-- `CHEM& 261`
-- `CHEM& 262`
-- `CHEM& 263`
-- `CHEM 296`
-- `CHEM 299`
+- `ENGR& 114`
+- `MATH& 153`
 
 #### Required sequences for specific credits
 
-- Required before application: STMATH 124, 125, 126 -> `MATH& 151`, `MATH& 152`, `MATH& 163`. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`
-- Required before application: B PHYS 121, 122, and 123 -> `PHYS& 221`, `PHYS& 222`, `PHYS& 223`
+- Required before application: STMATH 124, 125, 126 -> `MATH& 151`, `MATH& 152`, `MATH& 163`. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`. note: Current UW guidance accepts MATH& 163 for MATH 126. Older UW and Green River materials also use the MATH& 153 + MATH& 254 combination, which UW lists as transferring as MATH 126, 224, and 2XX credit when both courses are completed.
 - Required before application: B CHEM 143/144 preparation -> `CHEM& 161`, `CHEM& 162`, `CHEM& 163`
 - Required before application: English composition -> `ENGL& 101`
-- Required before enrollment: STMATH 207 -> `MATH 238`
-- Required before enrollment: STMATH 224 -> `MATH& 254`
-- Worth finishing at Green River: Mechanics sequence -> `ENGR& 214`, `ENGR& 215`, `ENGR& 225`
-- GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
-- GRC sequence: `PHYS& 221 -> PHYS& 222 -> PHYS& 223` for calculus-based physics.
-- Both: `CHEM& 161 -> CHEM& 162 -> CHEM& 163`. Current UW full-credit note: `CHEM& 162 + CHEM& 163` gives `CHEM 152, 162 (5, 5), 1XX (2)`; otherwise each is weaker `CHEM 1XX`.
-- Planner flag: Bothell worksheet review is still worth doing because curriculum PDFs and worksheet years can drift slightly.
-- Source-backed note: Validated against the current UW Bothell admissions page, curriculum page, AY24-25 curriculum PDF, and active major planning worksheet on April 2, 2026.
-- Source-backed note: Use the worksheet year that matches the student's intended entry term.
-- Source-backed note: The public curriculum PDF is now reflected in planner data, but unsupported term-order details stay hidden until public sources can verify them.
+- Required before application: B PHYS 121, 122, and 123 -> `PHYS& 221`, `PHYS& 222`, `PHYS& 223`
+- Required before enrollment: STMATH 207 -> `MATH 238`. note: Bothell Mechanical explicitly lists STMATH 207 in the admission baseline, so MATH 238 should be finished before transfer.
+- Required before enrollment: STMATH 224 -> `MATH& 254`. note: Bothell Mechanical explicitly lists STMATH 224 in the admission baseline, so MATH& 254 should be finished before transfer.
+- Worth finishing at Green River: Mechanics sequence -> `ENGR& 214`, `ENGR& 215`, `ENGR& 225`. note: These are not the front-door admission minimums, but they are the clearest Green River head start for Bothell Mechanical's engineering block.
 
 
 ### Media & Communications Studies (BA)
@@ -4535,14 +2111,14 @@ Bothell Mechanical is now modeled from the public curriculum PDF, with the Green
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
-Bothell Media and Communication Studies has no formal prerequisite gate, but the strongest Green River launch still looks like writing plus clear media-production and communication support before the Bothell MCS core begins.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
-- [UW Bothell Media & Communication Studies requirements](https://www.uwb.edu/ias/undergraduate/majors/media-communication)
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
+- [UW Bothell Media & Communication Studies requirements](https://www.uwb.edu/ias/undergraduate/majors/media-communication) - Auto-promoted by planner:discover-primary-sources on April 8, 2026 from a high-confidence source-discovery match.
 
 ##### Media & Communication Studies admission baseline
 
@@ -4573,48 +2149,12 @@ Bothell Media and Communication Studies has no formal prerequisite gate, but the
 - `JOURN 110`
 - `CMST 238`
 - `JOURN 207`
-- `CMST& 102`
-- `CMST 194`
-- `CMST 212`
-- `CMST 215`
-- `CMST& 230`
-- `CMST 245`
-- `CMST 265`
-- `CMST 266`
-- `CMST 299`
-- `FILM 121`
-- `FILM 122`
-- `JOURN 100.1`
-- `JOURN 100.2`
-- `JOURN 100.3`
-- `JOURN 103`
-- `JOURN 107`
-- `JOURN 111`
-- `JOURN 112`
-- `JOURN 120`
-- `JOURN 121`
-- `JOURN 122`
-- `JOURN 150`
-- `JOURN 151`
-- `JOURN 152`
-- `JOURN 153`
-- `JOURN 198`
-- `JOURN 199`
-- `JOURN 200`
-- `JOURN 206`
-- `JOURN 254`
-- `JOURN 255`
-- `JOURN 298`
-- `JOURN 299`
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Two composition courses total -> `ENGL& 101`, `ENGL 128`
-- Worth finishing at Green River: Media production or storytelling support -> `FILM 120`, `JOURN 110`, `CMST 238`, `JOURN 207`. complete at least 1 course from this set
-- Worth finishing at Green River: Introductory media / communication foundation -> `CMST& 210`, `CMST& 220`, `JOURN 101`, `JOURN 205`. complete at least 1 course from this set
-- UW full-credit combo: `CMST 266` yields `CMS 272` only if taken for `5` credits; otherwise it stays `CMS 2XX`.
-- Planner flag: MCS publishes upper-division course buckets instead of one fixed sequence, so the final production and elective mix should still be checked with advising.
-- Planner flag: The major page is clear enough for a structured row, but the exact upper-division mix is still partly category-based after transfer.
+- Required before enrollment: Two composition courses total -> `ENGL& 101`, `ENGL 128`. note: MCS requires 10 composition credits in the degree, so it is good to finish the writing pair before or during UW enrollment.
+- Worth finishing at Green River: Introductory media / communication foundation -> `CMST& 210`, `CMST& 220`, `JOURN 101`, `JOURN 205`. complete at least 1 course from this set. note: BISMCS 333 expects an introductory MCS-style course before enrollment, so one communication or media-production course is a useful Green River head start.
+- Worth finishing at Green River: Media production or storytelling support -> `FILM 120`, `JOURN 110`, `CMST 238`, `JOURN 207`. complete at least 1 course from this set. note: These do not replace the MCS upper division, but they are strong Green River supports before the later communication-practice and media-production coursework begins.
 
 
 ### Nursing (BS), First Year RN to BSN (Direct Entry)
@@ -4622,167 +2162,55 @@ Bothell Media and Communication Studies has no formal prerequisite gate, but the
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AAS`.
-Bothell First Year RN-to-BSN is a specialized partner pathway, not a normal community-college transfer finish. The only honest Green River use here is understanding the nursing-school prerequisite spine that sits behind the ADN plus RN-to-BSN completion model.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
 - [UW Bothell 2023-2024 general catalog - School of Nursing & Health Studies](https://www.uwb.edu/catalog/wp-content/uploads/sites/44/2024/09/2023-2024-General-Catalog_a11y.pdf)
-- [UW Bothell RN to BSN overview](https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview)
 - [UW Bothell Become a Registered Nurse pathway page](https://www.uwb.edu/nhs/undergraduate/rn-bsn/becomearn)
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
-
-##### First Year RN to BSN direct-entry pathway model
-
-- The current UW Bothell catalog describes this row as a dual-admission pathway between UW Bothell and Everett Community College for university first-year applicants.
-- Students complete the Everett Community College and RN-to-BSN prerequisites during the first year at UW Bothell, spend two years in the partner ADN program off-site, then return to UW Bothell for the senior-year RN-to-BSN finish.
+- [UW Bothell RN to BSN overview](https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview)
 
 ##### First Year RN to BSN direct-entry completion structure
 
 - The current catalog lists the completion structure as 90 transfer credits, 45 NCLEX-RN exam completion credits, 35 upper-division nursing credits, and 10 upper-division non-nursing UW Bothell elective credits.
 - The same catalog entry also requires 90 upper-division credits overall, completion of the last 45 credits at UW Bothell, a cumulative 2.0 GPA, and minimum 2.0 grades in all BSN degree coursework.
 
+##### First Year RN to BSN direct-entry pathway model
+
+- The current UW Bothell catalog describes this row as a dual-admission pathway between UW Bothell and Everett Community College for university first-year applicants.
+- Students complete the Everett Community College and RN-to-BSN prerequisites during the first year at UW Bothell, spend two years in the partner ADN program off-site, then return to UW Bothell for the senior-year RN-to-BSN finish.
+
 ##### First Year RN to BSN prerequisite spine behind the pathway
 
 - The current public nursing-pathway pages still frame the RN-to-BSN route around nursing-school prerequisites such as composition, general chemistry with lab, microbiology, anatomy and physiology, statistics, and broader general-education preparation before the ADN plus NCLEX stage.
-- Because this row is a specialized partner pathway rather than a standard transfer major, the planning details should be treated as pathway-specific and source-backed only where the public sources are explicit.
+- Because this row is a specialized partner pathway rather than a standard transfer major, the planning details should be treated as pathway-specific and adviser-verified.
 
 #### GRC Equivalent Courses
 
-- `ENGL& 101`
+- `BIOL& 241`
+- `BIOL& 242`
 - `CHEM& 161`
 - `CHEM& 162`
 - `CHEM& 163`
+- `ENGL& 101`
 - `BIOL& 260`
-- `BIOL& 241`
-- `BIOL& 242`
 - `MATH& 146`
 - `MATH 256`
 - `NUTR& 101`
 - `PSYC& 200`
 - `HL ED 190`
-- `AP 100`
-- `AP 102`
-- `AP 103`
-- `AP 104`
-- `AP 210`
-- `BIOL& 100`
-- `BIOL 103`
-- `BIOL 110`
-- `BIOL 125`
-- `BIOL 127`
-- `BIOL 140`
-- `BIOL 194`
-- `BIOL 195`
-- `BIOL& 211`
-- `BIOL& 212`
-- `BIOL& 213`
-- `BIOL 298`
-- `CHEM& 121`
-- `CHEM& 131`
-- `CHEM& 140`
-- `CHEM 194`
-- `CHEM 195`
-- `CHEM& 261`
-- `CHEM& 262`
-- `CHEM& 263`
-- `CHEM 296`
-- `CHEM 299`
-- `OT 100`
-- `OT 105`
-- `OT 110`
-- `OT 115`
-- `OT 116`
-- `OT 194`
-- `OT 198`
-- `OT 202`
-- `OT 250`
-- `OT 251`
-- `PSYC& 100`
-- `PSYC& 180`
-- `PSYC 201`
-- `PSYC 209`
-- `PSYC& 220`
-- `PSYC 225`
-- `PSYC 298`
-- `PSYC 299`
-- `ECED& 105`
-- `ECED& 132`
-- `ECED& 134`
-- `ECED& 139`
-- `ECED 152`
-- `ECED 155`
-- `ECED& 160`
-- `ECED 165`
-- `ECED& 170`
-- `ECED 175`
-- `ECED& 180`
-- `ECED& 190`
-- `ECED 220`
-- `EDUC& 115`
-- `EDUC& 130`
-- `EDUC& 136`
-- `EDUC& 150`
-- `EDUC& 204`
-- `EDUC& 205`
-- `EDUC 240`
-- `EDUC 245`
-- `CMST& 102`
-- `CMST 194`
-- `CMST& 210`
-- `CMST 212`
-- `CMST 215`
-- `CMST& 220`
-- `CMST& 230`
-- `CMST 238`
-- `CMST 245`
-- `CMST 265`
-- `CMST 266`
-- `CMST 299`
-- `FILM 120`
-- `FILM 121`
-- `FILM 122`
-- `JOURN 100.1`
-- `JOURN 100.2`
-- `JOURN 100.3`
-- `JOURN 101`
-- `JOURN 103`
-- `JOURN 107`
-- `JOURN 110`
-- `JOURN 111`
-- `JOURN 112`
-- `JOURN 120`
-- `JOURN 121`
-- `JOURN 122`
-- `JOURN 150`
-- `JOURN 151`
-- `JOURN 152`
-- `JOURN 153`
-- `JOURN 198`
-- `JOURN 199`
-- `JOURN 200`
-- `JOURN 205`
-- `JOURN 206`
-- `JOURN 207`
-- `JOURN 254`
-- `JOURN 255`
-- `JOURN 298`
-- `JOURN 299`
 
 #### Required sequences for specific credits
 
-- Required before application: English composition -> `ENGL& 101`
-- Required before application: General chemistry with lab -> `CHEM& 161`, `CHEM& 162`, `CHEM& 163`
-- Required before application: Microbiology -> `BIOL& 260`
-- Required before application: Anatomy and Physiology I and II -> `BIOL& 241`, `BIOL& 242`
-- Required before application: Statistics -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set
-- Worth finishing at Green River: Health and human-development support -> `NUTR& 101`, `PSYC& 200`, `HL ED 190`. complete at least 1 course from this set
-- Both: `BIOL& 241 -> BIOL& 242`. Both are needed for `BIOL 118`, `BIOL 119`, and `NURS 301` credit.
-- Both: `CHEM& 161 -> CHEM& 162 -> CHEM& 163`. Current UW full-credit note: `CHEM& 162 + CHEM& 163` gives `CHEM 152, 162 (5, 5), 1XX (2)`; otherwise each is weaker `CHEM 1XX`.
-- Planner flag: This is a specialized first-year partner pathway, not a normal community-college transfer finish.
-- Planner flag: Use School of Nursing advising before treating it like a standard Green River transfer target, because the Everett partner ADN and NCLEX stages are central to the published model.
-- Source-backed note: This row is a specialized first-year partner pathway, not a normal community-college transfer finish. Use School of Nursing advising before treating it like a standard Green River transfer target.
+- Required before application: Anatomy and Physiology I and II -> `BIOL& 241`, `BIOL& 242`. note: The Bothell nursing-pathway materials include Anatomy and Physiology I and II in the prerequisite spine.
+- Required before application: General chemistry with lab -> `CHEM& 161`, `CHEM& 162`, `CHEM& 163`. note: The Bothell nursing-pathway materials still frame the prerequisite spine around general chemistry with lab.
+- Required before application: English composition -> `ENGL& 101`. note: The Bothell RN-to-BSN pathway materials include English composition in the prerequisite baseline.
+- Required before application: Microbiology -> `BIOL& 260`. note: The Bothell nursing-pathway materials include microbiology in the prerequisite spine.
+- Required before application: Statistics -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set. note: The Bothell nursing-pathway materials include statistics in the prerequisite spine.
+- Worth finishing at Green River: Health and human-development support -> `NUTR& 101`, `PSYC& 200`, `HL ED 190`. complete at least 1 course from this set. note: These do not replace the ADN-plus-RN pathway, but they are reasonable Green River supports for students comparing nursing-related preparation paths.
 
 
 ### Nursing (BS), RN to BSN
@@ -4790,184 +2218,68 @@ Bothell First Year RN-to-BSN is a specialized partner pathway, not a normal comm
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AST-1`.
-Bothell RN-to-BSN is a degree-completion path for already licensed or pending-licensure nurses after ADN preparation. The Green River value is understanding the published prerequisite spine, not pretending this is a normal pre-major transfer finish.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
-- [UW Bothell RN to BSN admissions](https://www.uwb.edu/nhs/undergraduate/rn-bsn/admissions)
-- [UW Bothell RN to BSN overview](https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview)
-- [UW Bothell RN to BSN how to apply](https://www.uwb.edu/nhs/undergraduate/rn-bsn/how-to-apply)
 - [UW Bothell 2023-2024 general catalog - School of Nursing & Health Studies](https://www.uwb.edu/catalog/wp-content/uploads/sites/44/2024/09/2023-2024-General-Catalog_a11y.pdf)
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
+- [UW Bothell RN to BSN admissions](https://www.uwb.edu/nhs/undergraduate/rn-bsn/admissions)
+- [UW Bothell RN to BSN how to apply](https://www.uwb.edu/nhs/undergraduate/rn-bsn/how-to-apply)
+- [UW Bothell RN to BSN overview](https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview)
 
 ##### RN to BSN admission baseline
 
 - The current RN to BSN admissions page requires English composition, General Chemistry with lab, Microbiology, Anatomy and Physiology I and II, Statistics, 10 Arts and Humanities credits, an Associate Degree in Nursing or Nursing diploma, and a current or pending Washington RN license.
 - Applicants also need at least 90 transferable quarter credits, and the public page says the program currently starts in autumn or winter depending on location.
 
-##### RN to BSN completion structure
-
-- The current catalog and overview describe the RN-to-BSN degree as a completion program built from 90 transfer credits, 45 NCLEX-RN exam credits, 35 upper-division nursing credits, and 10 upper-division non-nursing UW Bothell elective credits.
-- The same public materials require 90 upper-division credits overall, the last 45 credits at UW Bothell, a 2.0 cumulative GPA, and minimum 2.0 grades in all BSN degree coursework.
-
 ##### RN to BSN schedule and finish
 
 - The overview page says the program runs in a hybrid format across Bothell, Everett, and Shoreline, with a full-time one-year option or a part-time two-year option.
 - The public materials also describe the curriculum as aligned to AACN essentials and built for working nurses rather than first-time pre-nursing students.
 
+##### RN to BSN completion structure
+
+- The current catalog and overview describe the RN-to-BSN degree as a completion program built from 90 transfer credits, 45 NCLEX-RN exam credits, 35 upper-division nursing credits, and 10 upper-division non-nursing UW Bothell elective credits.
+- The same public materials require 90 upper-division credits overall, the last 45 credits at UW Bothell, a 2.0 cumulative GPA, and minimum 2.0 grades in all BSN degree coursework.
+
 #### GRC Equivalent Courses
 
-- `ENGL& 101`
+- `BIOL& 241`
+- `BIOL& 242`
 - `CHEM& 161`
 - `CHEM& 162`
 - `CHEM& 163`
+- `ENGL& 101`
 - `BIOL& 260`
-- `BIOL& 241`
-- `BIOL& 242`
 - `MATH& 146`
 - `MATH 256`
-- `AP 100`
-- `AP 102`
-- `AP 103`
-- `AP 104`
-- `AP 210`
-- `BIOL& 100`
-- `BIOL 103`
-- `BIOL 110`
-- `BIOL 125`
-- `BIOL 127`
-- `BIOL 140`
-- `BIOL 194`
-- `BIOL 195`
-- `BIOL& 211`
-- `BIOL& 212`
-- `BIOL& 213`
-- `BIOL 298`
-- `CHEM& 121`
-- `CHEM& 131`
-- `CHEM& 140`
-- `CHEM 194`
-- `CHEM 195`
-- `CHEM& 261`
-- `CHEM& 262`
-- `CHEM& 263`
-- `CHEM 296`
-- `CHEM 299`
-- `HL ED 190`
-- `NUTR& 101`
-- `OT 100`
-- `OT 105`
-- `OT 110`
-- `OT 115`
-- `OT 116`
-- `OT 194`
-- `OT 198`
-- `OT 202`
-- `OT 250`
-- `OT 251`
-- `PSYC& 100`
-- `PSYC& 180`
-- `PSYC& 200`
-- `PSYC 201`
-- `PSYC 209`
-- `PSYC& 220`
-- `PSYC 225`
-- `PSYC 298`
-- `PSYC 299`
-- `ECED& 105`
-- `ECED& 132`
-- `ECED& 134`
-- `ECED& 139`
-- `ECED 152`
-- `ECED 155`
-- `ECED& 160`
-- `ECED 165`
-- `ECED& 170`
-- `ECED 175`
-- `ECED& 180`
-- `ECED& 190`
-- `ECED 220`
-- `EDUC& 115`
-- `EDUC& 130`
-- `EDUC& 136`
-- `EDUC& 150`
-- `EDUC& 204`
-- `EDUC& 205`
-- `EDUC 240`
-- `EDUC 245`
-- `CMST& 102`
-- `CMST 194`
-- `CMST& 210`
-- `CMST 212`
-- `CMST 215`
-- `CMST& 220`
-- `CMST& 230`
-- `CMST 238`
-- `CMST 245`
-- `CMST 265`
-- `CMST 266`
-- `CMST 299`
-- `FILM 120`
-- `FILM 121`
-- `FILM 122`
-- `JOURN 100.1`
-- `JOURN 100.2`
-- `JOURN 100.3`
-- `JOURN 101`
-- `JOURN 103`
-- `JOURN 107`
-- `JOURN 110`
-- `JOURN 111`
-- `JOURN 112`
-- `JOURN 120`
-- `JOURN 121`
-- `JOURN 122`
-- `JOURN 150`
-- `JOURN 151`
-- `JOURN 152`
-- `JOURN 153`
-- `JOURN 198`
-- `JOURN 199`
-- `JOURN 200`
-- `JOURN 205`
-- `JOURN 206`
-- `JOURN 207`
-- `JOURN 254`
-- `JOURN 255`
-- `JOURN 298`
-- `JOURN 299`
 
 #### Required sequences for specific credits
 
-- Required before application: English composition -> `ENGL& 101`
-- Required before application: General chemistry with lab -> `CHEM& 161`, `CHEM& 162`, `CHEM& 163`
-- Required before application: Microbiology -> `BIOL& 260`
-- Required before application: Anatomy and Physiology I and II -> `BIOL& 241`, `BIOL& 242`
-- Required before application: Statistics -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set
-- Both: `BIOL& 241 -> BIOL& 242`. Both are needed for `BIOL 118`, `BIOL 119`, and `NURS 301` credit.
-- Both: `CHEM& 161 -> CHEM& 162 -> CHEM& 163`. Current UW full-credit note: `CHEM& 162 + CHEM& 163` gives `CHEM 152, 162 (5, 5), 1XX (2)`; otherwise each is weaker `CHEM 1XX`.
-- Planner flag: This is a degree-completion path for already licensed or pending-licensure nurses after ADN preparation, not a normal direct Green River transfer finish.
-- Planner flag: The current or pending Washington RN license and ADN / diploma requirement cannot be replaced by extra Green River coursework.
-- Source-backed note: This is a degree-completion path for already licensed or pending-licensure nurses after ADN preparation, so it is not a normal direct Green River pre-major finish.
+- Required before application: Anatomy and Physiology I and II -> `BIOL& 241`, `BIOL& 242`. note: The Bothell nursing-pathway materials include Anatomy and Physiology I and II in the prerequisite spine.
+- Required before application: General chemistry with lab -> `CHEM& 161`, `CHEM& 162`, `CHEM& 163`. note: The Bothell nursing-pathway materials still frame the prerequisite spine around general chemistry with lab.
+- Required before application: English composition -> `ENGL& 101`. note: The Bothell RN-to-BSN pathway materials include English composition in the prerequisite baseline.
+- Required before application: Microbiology -> `BIOL& 260`. note: The Bothell nursing-pathway materials include microbiology in the prerequisite spine.
+- Required before application: Statistics -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set. note: The Bothell nursing-pathway materials include statistics in the prerequisite spine.
 
 
 ### Physics (BA)
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `999O`.
-Bothell Physics B.A. uses the same calc-based physics entry baseline as the B.S., but it is the more flexible physics route after transfer. Green River should finish the published admissions stack first, then add chemistry and the next math course before the upper-division physics core begins.
+Planner coverage: `detailed`. Best Green River base: `AST-2`.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
+- [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
 - [UW Bothell Physics admissions](https://www.uwb.edu/stem/undergraduate/majors/physics/admissions)
 - [UW Bothell Physics curriculum](https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum)
-- [UW Bothell Physics curriculum](https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum) - Auto-promoted from the parsed primary degree page on April 12, 2026.
-- [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
 
 ##### Physics admission baseline
 
@@ -4989,91 +2301,45 @@ Bothell Physics B.A. uses the same calc-based physics entry baseline as the B.S.
 - `MATH& 151`
 - `MATH& 152`
 - `MATH& 163`
-- `MATH& 153`
-- `MATH& 254`
 - `PHYS& 221`
 - `PHYS& 222`
 - `PHYS& 223`
-- `MATH 238`
+- `MATH 240`
+- `MATH& 264`
 - `CHEM& 161`
 - `CHEM& 162`
 - `CHEM& 163`
-- `PHYS& 110`
-- `PHYS& 114`
-- `PHYS& 154`
-- `PHYS& 115`
-- `PHYS& 155`
-- `PHYS& 116`
-- `PHYS& 156`
-- `PHYS 225`
-- `PHYS 229`
-- `PHYS 298`
-- `MATH 106`
-- `MATH& 107`
-- `MATH& 141`
-- `MATH& 142`
-- `MATH& 146`
-- `MATH 147`
-- `MATH& 148`
-- `MATH& 171`
-- `MATH& 172`
-- `MATH& 173`
-- `MATH 194`
-- `MATH 240`
-- `MATH 256`
-- `MATH 297`
-- `CHEM& 121`
-- `CHEM& 131`
-- `CHEM& 140`
-- `CHEM 194`
-- `CHEM 195`
-- `CHEM& 261`
-- `CHEM& 262`
-- `CHEM& 263`
-- `CHEM 296`
-- `CHEM 299`
+- `MATH 238`
 - `ENGL& 101`
-- `MATH& 264`
+- `MATH& 146`
+- `MATH& 153`
+- `MATH& 254`
 
 #### Required sequences for specific credits
 
-- Required before application: Calculus I and II -> `MATH& 151`, `MATH& 152`, `MATH& 163`. complete at least 2 courses from this set. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`
-- Required before application: Full calculus-based introductory physics sequence -> `PHYS& 221`, `PHYS& 222`, `PHYS& 223`
-- Required before enrollment: Calculus III -> `MATH& 163`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Required before enrollment: Multivariable calculus -> `MATH 238`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Required before enrollment: General chemistry preparation -> `CHEM& 161`, `CHEM& 162`, `CHEM& 163`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
+- Required before application: Calculus I and II -> `MATH& 151`, `MATH& 152`, `MATH& 163`. complete at least 2 courses from this set. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`. note: The Bothell Physics admission baseline requires Calculus I and II before application.
+- Required before application: Full calculus-based introductory physics sequence -> `PHYS& 221`, `PHYS& 222`, `PHYS& 223`. note: The Bothell Physics admission baseline requires the full one-year calculus-based introductory physics sequence before application.
 - Required before enrollment: STMATH 208 -> `MATH 240`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 - Required before enrollment: STMATH 224 -> `MATH& 264`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- GRC sequence: `PHYS& 221 -> PHYS& 222 -> PHYS& 223` for calculus-based physics.
-- GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
-- Both: `CHEM& 161 -> CHEM& 162 -> CHEM& 163`. Current UW full-credit note: `CHEM& 162 + CHEM& 163` gives `CHEM 152, 162 (5, 5), 1XX (2)`; otherwise each is weaker `CHEM 1XX`.
-- Planner flag: The public Physics page uses the same admission baseline for the B.A. and B.S., but the two degrees diverge after transfer, so do not treat them as identical long-term plans.
-- Planner flag: The B.A. is the more flexible physics option for students pairing physics with another focus.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Course-family consensus: 12/12 samples for MATH 208.
-- Source-backed note: Supporting UW course codes: MATH 208, TMATH 208.
-- Source-backed note: Added the Green River course path MATH 240 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: STMATH 208 Matrix Algebra with Applications (5 credits) | STMATH 208: Matrix Algebra | STMATH 208: Matrix Algebra with Applications (5 credits)
-- Source-backed note: Requirement-mapping consensus: 1/1 exact-title samples for STMATH 224.
-- Source-backed note: Added the Green River course path MATH& 264 because the current planner rows did not expose it yet.
-- Source-backed note: Requirement cue lines: STMATH 224 Multivariable Calculus (5 credits) | STMATH 224: Multivariable Calculus | STMATH 224: Multivariable Calculus (5 credits)
+- Required before enrollment: Calculus III -> `MATH& 163`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
+- Required before enrollment: General chemistry preparation -> `CHEM& 161`, `CHEM& 162`, `CHEM& 163`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
+- Required before enrollment: Multivariable calculus -> `MATH 238`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 
 
 ### Physics (BS)
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `999B`.
-Bothell Physics B.S. uses the same calc-based physics admissions stack as the B.A., but it adds a stronger math, programming, and upper-division physics spine after transfer.
+Planner coverage: `detailed`. Best Green River base: `AST-2/MRP`.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
+- [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
 - [UW Bothell Physics admissions](https://www.uwb.edu/stem/undergraduate/majors/physics/admissions)
 - [UW Bothell Physics curriculum](https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum)
-- [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
 
 ##### Physics admission baseline
 
@@ -5095,66 +2361,26 @@ Bothell Physics B.S. uses the same calc-based physics admissions stack as the B.
 - `MATH& 151`
 - `MATH& 152`
 - `MATH& 163`
-- `MATH& 153`
-- `MATH& 254`
 - `PHYS& 221`
 - `PHYS& 222`
 - `PHYS& 223`
-- `MATH 238`
+- `MATH& 254`
 - `MATH 240`
+- `MATH 238`
 - `CS 121`
-- `PHYS& 110`
-- `PHYS& 114`
-- `PHYS& 154`
-- `PHYS& 115`
-- `PHYS& 155`
-- `PHYS& 116`
-- `PHYS& 156`
-- `PHYS 225`
-- `PHYS 229`
-- `PHYS 298`
-- `MATH 106`
-- `MATH& 107`
-- `MATH& 141`
-- `MATH& 142`
-- `MATH& 146`
-- `MATH 147`
-- `MATH& 148`
-- `MATH& 171`
-- `MATH& 172`
-- `MATH& 173`
-- `MATH 194`
-- `MATH 256`
-- `MATH 297`
-- `CHEM& 121`
-- `CHEM& 131`
-- `CHEM& 140`
-- `CHEM& 161`
-- `CHEM& 162`
-- `CHEM& 163`
-- `CHEM 194`
-- `CHEM 195`
-- `CHEM& 261`
-- `CHEM& 262`
-- `CHEM& 263`
-- `CHEM 296`
-- `CHEM 299`
 - `ENGL& 101`
+- `MATH& 146`
+- `MATH& 153`
 
 #### Required sequences for specific credits
 
-- Required before application: Calculus I and II -> `MATH& 151`, `MATH& 152`, `MATH& 163`. complete at least 2 courses from this set. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`
-- Required before application: Full calculus-based introductory physics sequence -> `PHYS& 221`, `PHYS& 222`, `PHYS& 223`
+- Required before application: Calculus I and II -> `MATH& 151`, `MATH& 152`, `MATH& 163`. complete at least 2 courses from this set. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`. note: The Bothell Physics admission baseline requires Calculus I and II before application.
+- Required before application: Full calculus-based introductory physics sequence -> `PHYS& 221`, `PHYS& 222`, `PHYS& 223`. note: The Bothell Physics admission baseline requires the full one-year calculus-based introductory physics sequence before application.
 - Required before enrollment: Calculus III -> `MATH& 163`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 - Required before enrollment: Differential equations -> `MATH& 254`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Required before enrollment: Multivariable calculus -> `MATH 238`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 - Required before enrollment: Linear algebra / matrix algebra -> `MATH 240`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
+- Required before enrollment: Multivariable calculus -> `MATH 238`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 - Required before enrollment: Introductory programming -> `CS 121`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- GRC sequence: `PHYS& 221 -> PHYS& 222 -> PHYS& 223` for calculus-based physics.
-- GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
-- Both: `CHEM& 161 -> CHEM& 162 -> CHEM& 163`. Current UW full-credit note: `CHEM& 162 + CHEM& 163` gives `CHEM 152, 162 (5, 5), 1XX (2)`; otherwise each is weaker `CHEM 1XX`.
-- Planner flag: The public Physics page uses the same admission baseline for the B.A. and B.S., but the B.S. adds a stronger post-transfer math and programming spine.
-- Planner flag: The current B.S. concentrations are non-transcripted emphasis paths, so the final upper-division elective mix should still be reviewed with advising.
 
 
 ### Psychology (BA)
@@ -5162,97 +2388,50 @@ Bothell Physics B.S. uses the same calc-based physics admissions stack as the B.
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
-Bothell Psychology has a real lower-division declaration baseline: intro psych, statistics, and the writing pair should be finished before transfer, then Green River can add more psychology support before the category-based upper division begins.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
-- [UW Bothell Psychology requirements](https://www.uwb.edu/ias/undergraduate/majors/psychology)
-- [UW Bothell Psychology planning worksheet](https://admissions.uwb.edu/register/mpw-psy)
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
+- [UW Bothell Psychology planning worksheet](https://admissions.uwb.edu/register/mpw-psy)
+- [UW Bothell Psychology requirements](https://www.uwb.edu/ias/undergraduate/majors/psychology) - Auto-promoted by planner:discover-primary-sources on April 8, 2026 from a high-confidence source-discovery match.
 
 ##### Psychology admission baseline
 
 - Students currently complete BIS 170 or an equivalent introductory psychology course, one introductory statistics course, one composition course, and one advanced-composition course, all with minimum 2.0 grades, before declaring the major.
 - The current page also recommends early preparation through courses like BIS 220, BIS 222, BIS 225, and BIS 270.
 
-##### Psychology required structure
-
-- The current Psychology B.A. is a 70-credit major.
-- Its required structure is one Psychology Core course, BIS 312, 10 credits of 200-level Psychology courses, 15 credits of Upper-Division Psychology courses, 15 credits of Psychology electives, and 20 additional IAS credits.
-
 ##### Psychology course categories and policies
 
 - The current core-course list is BISPSY 337, 343, 348, or 350; the public page also publishes the current 200-level, upper-division, and elective course buckets instead of one single locked upper-division sequence.
 - IAS policy on the page requires 30 credits in residence, a 2.00 major GPA, IPR completion, and enough upper-division coursework to stay within the 35-credit lower-division cap.
 
+##### Psychology required structure
+
+- The current Psychology B.A. is a 70-credit major.
+- Its required structure is one Psychology Core course, BIS 312, 10 credits of 200-level Psychology courses, 15 credits of Upper-Division Psychology courses, 15 credits of Psychology electives, and 20 additional IAS credits.
+
 #### GRC Equivalent Courses
 
+- `ENGL& 101`
+- `ENGL 128`
 - `PSYC& 100`
 - `MATH& 146`
 - `MATH 256`
-- `ENGL& 101`
-- `ENGL 128`
 - `PSYC& 200`
 - `PSYC& 220`
 - `PSYC 225`
 - `PSYC& 180`
-- `PSYC 201`
-- `PSYC 209`
-- `PSYC 298`
-- `PSYC 299`
-- `ECED& 105`
-- `ECED& 132`
-- `ECED& 134`
-- `ECED& 139`
-- `ECED 152`
-- `ECED 155`
-- `ECED& 160`
-- `ECED 165`
-- `ECED& 170`
-- `ECED 175`
-- `ECED& 180`
-- `ECED& 190`
-- `ECED 220`
-- `EDUC& 115`
-- `EDUC& 130`
-- `EDUC& 136`
-- `EDUC& 150`
-- `EDUC& 204`
-- `EDUC& 205`
-- `EDUC 240`
-- `EDUC 245`
-- `AP 100`
-- `AP 102`
-- `AP 103`
-- `AP 104`
-- `AP 210`
-- `BIOL& 100`
-- `BIOL 103`
-- `BIOL 110`
-- `BIOL 125`
-- `BIOL 127`
-- `BIOL 140`
-- `BIOL 194`
-- `BIOL 195`
-- `BIOL& 211`
-- `BIOL& 212`
-- `BIOL& 213`
-- `BIOL& 241`
-- `BIOL& 242`
-- `BIOL& 260`
-- `BIOL 298`
 
 #### Required sequences for specific credits
 
-- Required before application: Introductory psychology -> `PSYC& 100`
-- Required before application: Introductory statistics -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set
-- Required before application: First composition course -> `ENGL& 101`
-- Required before application: Advanced composition -> `ENGL 128`
-- Worth finishing at Green River: Additional psychology support -> `PSYC& 200`, `PSYC& 220`, `PSYC 225`, `PSYC& 180`. complete at least 1 course from this set
-- Planner flag: Bothell Psychology publishes upper-division category buckets instead of one single locked sequence, so the final psych-core and elective mix should still be checked with advising.
-- Planner flag: The page also recommends preparation in additional psychology areas beyond the minimum declaration set, so students should use remaining elective room intentionally.
+- Required before application: First composition course -> `ENGL& 101`. note: Bothell Psychology requires one composition course before declaration.
+- Required before application: Advanced composition -> `ENGL 128`. note: Bothell Psychology requires one advanced-composition course before declaration. ENGL 128 is the clearest currently tracked Green River fit.
+- Required before application: Introductory psychology -> `PSYC& 100`. note: Bothell Psychology requires an introductory psychology course equivalent to BIS 170 before declaration.
+- Required before application: Introductory statistics -> `MATH& 146`, `MATH 256`. complete at least 1 course from this set. note: Bothell Psychology requires one introductory statistics course before declaration.
+- Worth finishing at Green River: Additional psychology support -> `PSYC& 200`, `PSYC& 220`, `PSYC 225`, `PSYC& 180`. complete at least 1 course from this set. note: These do not replace the category-based Bothell Psychology upper division, but they are strong Green River supports before the later 200-level, upper-division, and elective psych buckets begin.
 
 
 ### Science, Technology & Society (BA)
@@ -5260,167 +2439,47 @@ Bothell Psychology has a real lower-division declaration baseline: intro psych, 
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
-Bothell STS has no formal prerequisite gate, but the strongest Green River launch still looks like writing plus a deliberate mix of philosophy, history, science, technology, and data support before the STS core begins.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
-- [UW Bothell Science, Technology & Society requirements](https://www.uwb.edu/ias/undergraduate/majors/science-technology-society)
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
+- [UW Bothell Science, Technology & Society requirements](https://www.uwb.edu/ias/undergraduate/majors/science-technology-society) - Auto-promoted by planner:discover-primary-sources on April 8, 2026 from a high-confidence source-discovery match.
 
 ##### Science, Technology & Society admission baseline
 
 - Science, Technology, & Society has no official prerequisites in the School of IAS.
 - The current page says students in good academic standing can declare it at any time, and incoming students can apply directly into the major.
 
-##### Science, Technology & Society required structure
-
-- For students using the current Autumn 2024+ degree, STS is a 70-credit major with 10 credits of composition, BISSTS 307, BISSTS 355, BES 301, one methods course from BIS 312 or BIS 340, 25 credits of STS coursework, 5 credits of approaches-to-data coursework, and 20 additional IAS credits.
-- The public page explicitly notes that students who entered before Autumn 2024 follow older requirements, so older cohorts stay hidden until public-source coverage expands.
-
 ##### Science, Technology & Society course categories and policies
 
 - The page publishes separate current buckets for STS core, methods, data, and STS elective coursework rather than one single upper-division sequence.
 - IAS policy on the page requires 30 credits in residence, a 2.00 major GPA, IPR completion, and enough upper-division work to stay within the 35-credit lower-division cap.
 
+##### Science, Technology & Society required structure
+
+- For students using the current Autumn 2024+ degree, STS is a 70-credit major with 10 credits of composition, BISSTS 307, BISSTS 355, BES 301, one methods course from BIS 312 or BIS 340, 25 credits of STS coursework, 5 credits of approaches-to-data coursework, and 20 additional IAS credits.
+- The public page explicitly notes that students who entered before Autumn 2024 follow older requirements, so older cohorts stay hidden until public-source coverage expands.
+
 #### GRC Equivalent Courses
 
 - `ENGL& 101`
 - `ENGL 128`
+- `CS 121`
+- `MATH& 146`
+- `MATH 256`
 - `PHIL& 101`
 - `HIST 101`
 - `HUMAN 100`
 - `ENGL& 244`
-- `CS 121`
-- `MATH& 146`
-- `MATH 256`
-- `ENGL 103`
-- `ENGL 109`
-- `ENGL& 112`
-- `ENGL& 113`
-- `ENGL& 114`
-- `ENGL 115`
-- `ENGL 126`
-- `ENGL 127`
-- `ENGL 160`
-- `ENGL 161`
-- `ENGL 163`
-- `ENGL 164`
-- `ENGL 165`
-- `ENGL 168`
-- `ENGL 180`
-- `ENGL 181`
-- `ENGL 183`
-- `ENGL 185`
-- `ENGL 187`
-- `ENGL 190`
-- `ENGL 194`
-- `ENGL 199`
-- `ENGL& 220`
-- `ENGL& 226`
-- `ENGL& 227`
-- `ENGL& 228`
-- `ENGL& 236`
-- `ENGL& 237`
-- `ENGL 239`
-- `ENGL& 245`
-- `ENGL& 246`
-- `ENGL 247`
-- `ENGL 248`
-- `ENGL 249`
-- `ENGL& 254`
-- `ENGL& 255`
-- `ENGL& 256`
-- `ENGL 257`
-- `ENGL 299`
-- `HIST 102`
-- `HIST 103`
-- `HIST 120`
-- `HIST 122`
-- `HIST 135`
-- `HIST& 136`
-- `HIST& 137`
-- `HIST 194`
-- `HIST& 214`
-- `HIST& 215`
-- `HIST 220`
-- `HIST 224`
-- `HIST 226`
-- `HIST 228`
-- `HIST 230`
-- `HIST 231`
-- `HIST 232`
-- `HIST 233`
-- `HIST 235`
-- `HIST 237`
-- `HIST 240`
-- `HIST 245`
-- `HIST 250`
-- `HIST 299`
-- `HUMAN 110`
-- `HUMAN 133`
-- `HUMAN 142`
-- `HUMAN 186`
-- `HUMAN 190`
-- `HUMAN 191`
-- `HUMAN 194`
-- `HUMAN 224`
-- `PHIL 102`
-- `PHIL 103`
-- `PHIL 104`
-- `PHIL 105`
-- `PHIL 110`
-- `PHIL 112`
-- `PHIL 114`
-- `PHIL 115`
-- `PHIL& 120`
-- `PHIL 160`
-- `PHIL 194`
-- `PHIL 200`
-- `PHIL 206`
-- `PHIL 210`
-- `PHIL 215`
-- `PHIL 220`
-- `PHIL 236`
-- `PHIL 238`
-- `PHIL 240`
-- `PHIL 243`
-- `PHIL 299`
-- `CS 122`
-- `CS 123`
-- `CS& 131`
-- `CS 132`
-- `CS& 141`
-- `CS 145`
-- `CS 202`
-- `MATH 106`
-- `MATH& 107`
-- `MATH& 141`
-- `MATH& 142`
-- `MATH 147`
-- `MATH& 148`
-- `MATH& 151`
-- `MATH& 152`
-- `MATH& 163`
-- `MATH& 171`
-- `MATH& 172`
-- `MATH& 173`
-- `MATH 194`
-- `MATH 238`
-- `MATH 240`
-- `MATH& 254`
-- `MATH 297`
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Two composition courses total -> `ENGL& 101`, `ENGL 128`
-- Worth finishing at Green River: Humanities or history foundation for STS -> `PHIL& 101`, `HIST 101`, `HUMAN 100`, `ENGL& 244`. complete at least 1 course from this set
-- Worth finishing at Green River: Data or technology support -> `CS 121`, `MATH& 146`, `MATH 256`. complete at least 1 course from this set
-- GRC sequence: `CS 121 -> CS 122 -> CS 123`. Current UW equivalency entries are separate, but planner sequencing at GRC should treat them in this order.
-- GRC sequence: `MATH& 151 -> MATH& 152 -> MATH& 163 -> MATH& 254 -> MATH 238 -> MATH 240`. Current UW outcomes in order are `MATH 124`, `125`, `126`, `224 (4) + 2XX (1)`, `207 (4) + 2XX (1)`, and `208 (4) + 2XX (1)`.
-- Planner flag: STS changed requirements for Autumn 2024 and after, so students who entered under older requirements should still confirm the correct plan year with advising.
-- Planner flag: The public page is category-based after the core, so the final methods, data, and elective mix should still be reviewed with advising.
+- Required before enrollment: Two composition courses total -> `ENGL& 101`, `ENGL 128`. note: STS requires 10 composition credits in the degree, so it is good to finish the writing pair before or during UW enrollment.
+- Worth finishing at Green River: Data or technology support -> `CS 121`, `MATH& 146`, `MATH 256`. complete at least 1 course from this set. note: STS still includes methods and data coursework, so one light computing or statistics course is a useful Green River head start.
+- Worth finishing at Green River: Humanities or history foundation for STS -> `PHIL& 101`, `HIST 101`, `HUMAN 100`, `ENGL& 244`. complete at least 1 course from this set. note: These do not replace the STS core, but they are strong Green River supports before the later science-and-society upper-division work begins.
 
 
 ### Society, Ethics & Human Behavior (BA)
@@ -5428,15 +2487,19 @@ Bothell STS has no formal prerequisite gate, but the strongest Green River launc
 #### Summary
 
 Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
-Bothell Society, Ethics and Human Behavior is now a continuing-students-only legacy row. The honest Green River plan is writing plus psychology, sociology, philosophy, and reasoning support before the archived SEHB finish.
+
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
-- [UW Bothell Society, Ethics & Human Behavior requirements](https://www.uwb.edu/ias/undergraduate/majors/society-ethics-human-behavior)
-- [UW Bothell Society, Ethics & Human Behavior requirements](https://www.uwb.edu/ias/undergraduate/majors/society-ethics-human-behavior) - Auto-promoted from the parsed primary degree page on April 12, 2026.
 - [UW Bothell Green River equivalency guide](https://www.uwb.edu/registrar/policies/community-college-course-equivalency-guide/green-river-college)
+- [UW Bothell Society, Ethics & Human Behavior requirements](https://www.uwb.edu/ias/undergraduate/majors/society-ethics-human-behavior) - Auto-promoted by planner:discover-primary-sources on April 8, 2026 from a high-confidence source-discovery match.
+
+##### Society, Ethics & Human Behavior course categories and completion notes
+
+- The current public page still publishes the legacy SEB Core list, the methods list, and the broader SEB course buckets instead of one fixed upper-division sequence.
+- Because SEHB is a continuing-students-only row, any final degree plan should stay aligned with source-backed legacy completion guidance rather than assuming new-student policies still apply.
 
 ##### Society, Ethics & Human Behavior current status
 
@@ -5448,13 +2511,10 @@ Bothell Society, Ethics and Human Behavior is now a continuing-students-only leg
 - The legacy SEHB degree page lists a 70-credit structure: BIS 300, one SEB Core course, one methods choice from BIS 215, BIS 312, or BIS 410, 30 credits of SEB coursework, BIS 499, and 20 additional IAS credits.
 - The page says there are no official prerequisites beyond normal IAS admission, though psychology, sociology, statistics, and philosophy are recommended preparation.
 
-##### Society, Ethics & Human Behavior course categories and completion notes
-
-- The current public page still publishes the legacy SEB Core list, the methods list, and the broader SEB course buckets instead of one fixed upper-division sequence.
-- Because SEHB is a continuing-students-only row, any final degree plan should stay aligned with source-backed legacy completion guidance rather than assuming new-student policies still apply.
-
 #### GRC Equivalent Courses
 
+- `PSYC 240`
+- `GEOG 123`
 - `ENGL& 101`
 - `MATH& 146`
 - `MATH 256`
@@ -5464,138 +2524,12 @@ Bothell Society, Ethics and Human Behavior is now a continuing-students-only leg
 - `SOC& 101`
 - `PHIL& 101`
 - `POLS& 101`
-- `PHIL 102`
-- `PHIL 103`
-- `PHIL 104`
-- `PHIL 105`
-- `PHIL 110`
-- `PHIL 112`
-- `PHIL 114`
-- `PHIL 115`
-- `PHIL& 120`
-- `PHIL 160`
-- `PHIL 194`
-- `PHIL 200`
-- `PHIL 206`
-- `PHIL 210`
-- `PHIL 215`
-- `PHIL 220`
-- `PHIL 236`
-- `PHIL 238`
-- `PHIL 240`
-- `PHIL 243`
-- `PHIL 299`
-- `POLS 194`
-- `POLS& 200`
-- `POLS& 202`
-- `POLS& 203`
-- `POLS& 204`
-- `POLS 207`
-- `POLS 209`
-- `POLS 298`
-- `CJ& 101`
-- `CJ& 105`
-- `CJ& 110`
-- `CJ 200`
-- `CJ 205`
-- `CJ 220`
-- `CJ 236`
-- `CJ& 240`
-- `CJ 294`
-- `CJ 299`
-- `SOC 194`
-- `SOC& 201`
-- `SOC 215`
-- `SOC 220`
-- `SOC 230`
-- `SOC 240`
-- `SOC 245`
-- `SOC 260`
-- `SOC 298`
-- `PSYC& 180`
-- `PSYC& 200`
-- `PSYC 201`
-- `PSYC 209`
-- `PSYC& 220`
-- `PSYC 225`
-- `PSYC 298`
-- `PSYC 299`
-- `ECED& 105`
-- `ECED& 132`
-- `ECED& 134`
-- `ECED& 139`
-- `ECED 152`
-- `ECED 155`
-- `ECED& 160`
-- `ECED 165`
-- `ECED& 170`
-- `ECED 175`
-- `ECED& 180`
-- `ECED& 190`
-- `ECED 220`
-- `EDUC& 115`
-- `EDUC& 130`
-- `EDUC& 136`
-- `EDUC& 150`
-- `EDUC& 204`
-- `EDUC& 205`
-- `EDUC 240`
-- `EDUC 245`
-- `HIST 101`
-- `HIST 102`
-- `HIST 103`
-- `HIST 120`
-- `HIST 122`
-- `HIST 135`
-- `HIST& 136`
-- `HIST& 137`
-- `HIST 194`
-- `HIST& 214`
-- `HIST& 215`
-- `HIST 220`
-- `HIST 224`
-- `HIST 226`
-- `HIST 228`
-- `HIST 230`
-- `HIST 231`
-- `HIST 232`
-- `HIST 233`
-- `HIST 235`
-- `HIST 237`
-- `HIST 240`
-- `HIST 245`
-- `HIST 250`
-- `HIST 299`
-- `HUMAN 100`
-- `HUMAN 110`
-- `HUMAN 133`
-- `HUMAN 142`
-- `HUMAN 186`
-- `HUMAN 190`
-- `HUMAN 191`
-- `HUMAN 194`
-- `HUMAN 224`
-- `GEOG 123`
-- `PSYC 240`
 
 #### Required sequences for specific credits
 
-- Required before application: English composition -> `ENGL& 101`
-- Required before application: Reasoning or statistics foundation -> `MATH& 146`, `MATH 256`, `MATH& 148`. complete at least 1 course from this set
 - Required before application: BIS 225 -> `PSYC 240`
 - Required before application: BIS 282 -> `GEOG 123`
-- Required before enrollment: Second composition or advanced writing course -> `ENGL 128`
-- Worth finishing at Green River: Psychology, sociology, or philosophy support -> `PSYC& 100`, `SOC& 101`, `PHIL& 101`, `POLS& 101`. complete at least 1 course from this set
-- Planner flag: SEHB is no longer accepting new students and should be treated as a continuing-students-only legacy row.
-- Planner flag: Because SEHB is a legacy category-based finish, the final course mix should stay aligned with source-backed completion guidance.
-- Source-backed note: SEHB is a legacy completion row only. New applicants should not be planned into it as if it were still an actively admitting major.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Exact-title match source: catalog-metadata.
-- Source-backed note: Matched source title: Social Psychology.
-- Source-backed note: Matched Green River title: Social Psychology.
-- Source-backed note: Requirement cue lines: BIS 225 Social Psychology
-- Source-backed note: Exact-title match source: parsed-source-cue.
-- Source-backed note: Matched source title: Globalization.
-- Source-backed note: Matched Green River title: Globalization.
-- Source-backed note: Requirement cue lines: BIS 282 Globalization
+- Required before application: English composition -> `ENGL& 101`. note: The public SEHB model still sits inside the normal IAS writing expectations.
+- Required before application: Reasoning or statistics foundation -> `MATH& 146`, `MATH 256`, `MATH& 148`. complete at least 1 course from this set. note: The public SEHB materials recommend statistics as part of the strongest preparation before the archived upper division.
+- Required before enrollment: Second composition or advanced writing course -> `ENGL 128`. note: It is good to complete a second writing course before or during UW enrollment because the SEHB finish is still writing-intensive.
+- Worth finishing at Green River: Psychology, sociology, or philosophy support -> `PSYC& 100`, `SOC& 101`, `PHIL& 101`, `POLS& 101`. complete at least 1 course from this set. note: These do not replace the legacy SEHB upper division, but they are the clearest Green River supports for continuing students still finishing the archived degree.

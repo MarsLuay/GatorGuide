@@ -128,6 +128,12 @@ const TARGETED_OFFICIAL_SOURCE_CANDIDATES = {
       url: "https://www.tacoma.uw.edu/sias/cac/visual-and-performing-arts-track",
     },
   ],
+  "uw-tacoma-communications": [
+    {
+      label: "UW Tacoma Communications major requirements",
+      url: "https://www.tacoma.uw.edu/sias/cac/communication",
+    },
+  ],
   "uw-tacoma-environmental-sustainability:pathway:business-nonprofit-leadership-option": [
     {
       label: "UW Tacoma Environmental Sustainability Business and Nonprofit Leadership option",

@@ -75,9 +75,9 @@ Emily Hammermeister Interview
 Facility Maps
 For the BA degree there is no requirement to complete the senior thesis, and with fewer and more flexible upper division elective requirements students have the flexibility to tailor their upper division work to complement their work in other fields, or their plans for post-graduate work or study.
 For the BS degree , at the 400 level, majors complete a year-long senior thesis and take a selection of upper division special topics courses that provide both breadth and depth.
-Frankie Pavia Named Sloan Fellow
 Friday Harbor Laboratories
 General Questions: <a href="mailto:oceanadmin@uw.edu?subject=I%20have%20a%20Question"
+Graduate Education
 Latest News
 Make a Gift
 Marine Biology
@@ -119,6 +119,7 @@ Size: 110 kb
 sizes="(max-width: 479px) 94vw, (max-width: 767px) 366px, (max-width: 991px) 354px, 366px"
 src="/images/uw-coe-logo.png"
 srcset="/images/uw-coe-logo.png 500w, /images/uw-coe-logo.png 800w, /images/uw-coe-logo.png 962w"
+Student Seaglider Center was awarded funding from the Student Technology Fee!
 Students apply the knowledge they get from their Oceanography courses in a wide variety of research and experiential learning settings. Explore related stories below to sample this range of experiences.
 Suquamish, Tulalip and Muckleshoot nations.
 Technical Issues: <a href="mailto:thomassd@uw.edu"

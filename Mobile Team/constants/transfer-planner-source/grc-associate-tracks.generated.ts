@@ -5,317 +5,6 @@ import type { TransferPlannerTrack } from "../transfer-planner-types";
 
 export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTrack[] = [
   {
-    "id": "999O",
-    "code": "999O",
-    "title": "AST2 / MRP Bioengineering and Chemical Engineering",
-    "summary": "Official Green River associate degree - transfer track 2 curriculum map for Transfer Track 2-Bioengineering and Chemical Engineering. Generated automatically from the current public program-map page and catalog API.",
-    "bestFor": [
-      "Transfer Track 2-Bioengineering and Chemical Engineering"
-    ],
-    "terms": [
-      {
-        "label": "Quarter 0",
-        "courses": [
-          "CHEM& 140",
-          "PHYS& 114",
-          "MATH& 141",
-          "MATH& 142"
-        ]
-      },
-      {
-        "label": "Quarter 1 (18 credits)",
-        "courses": [
-          "CHEM& 161",
-          "ENGL& 101",
-          "ENGR 100",
-          "MATH& 151"
-        ]
-      },
-      {
-        "label": "Quarter 2 (14 credits)",
-        "courses": [
-          "CHEM& 162",
-          "ENGR 106",
-          "MATH& 152"
-        ]
-      },
-      {
-        "label": "Quarter 3 (16 credits)",
-        "courses": [
-          "CHEM& 163",
-          "MATH& 163",
-          "2 C - Humanities/Fine Arts/English or Social Science"
-        ]
-      },
-      {
-        "label": "Quarter 4 (15 credits)",
-        "courses": [
-          "MATH& 264",
-          "PHYS& 221",
-          "2 C - Humanities/Fine Arts/English or Social Science"
-        ]
-      },
-      {
-        "label": "Quarter 5 (16 credits)",
-        "courses": [
-          "MATH 238",
-          "PHYS& 222",
-          "BIOL& 211",
-          "CHEM& 261"
-        ]
-      },
-      {
-        "label": "Quarter 6 (15 credits)",
-        "courses": [
-          "MATH 240",
-          "PHYS& 223",
-          "2 C - Humanities/Fine Arts/English or Social Science"
-        ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
-        ]
-      }
-    ],
-    "notes": [
-      "Program type: Associate Degree - Transfer Track 2.",
-      "Degree: Associate in Science Degree.",
-      "Published duration: 107 Credits.",
-      "CHEM& 140 is only required if no prior chemistry experience. PHYS& 114 is only required if no prior physics experience.",
-      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
-      "Generated automatically from Green River's current program-map curriculum data."
-    ],
-    "officialLinks": [
-      {
-        "label": "Transfer Track 2-Bioengineering and Chemical Engineering curriculum map",
-        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/engineering/associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering.html"
-      }
-    ]
-  },
-  {
-    "id": "999P",
-    "code": "999P",
-    "title": "AST2 / MRP Computer and Electrical Engineering",
-    "summary": "Official Green River associate degree - transfer track 2 curriculum map for Transfer Track 2/MRP-Computer and Electrical Engineering. Generated automatically from the current public program-map page and catalog API.",
-    "bestFor": [
-      "Transfer Track 2/MRP-Computer and Electrical Engineering"
-    ],
-    "terms": [
-      {
-        "label": "Quarter 0",
-        "courses": [
-          "CHEM& 140",
-          "PHYS& 114",
-          "MATH& 141",
-          "MATH& 142"
-        ]
-      },
-      {
-        "label": "Fall 1 (18 credits)",
-        "courses": [
-          "CHEM& 161",
-          "ENGL& 101",
-          "ENGR 100",
-          "MATH& 151"
-        ]
-      },
-      {
-        "label": "Winter 1 (16 credits)",
-        "courses": [
-          "MATH& 152",
-          "2 C - Humanities/Fine Arts/English or Social Science",
-          "CS 121",
-          "CS& 131"
-        ]
-      },
-      {
-        "label": "Spring 1 (15 credits)",
-        "courses": [
-          "MATH& 163",
-          "CS 122",
-          "CS 132",
-          "ENGR 271"
-        ]
-      },
-      {
-        "label": "Summer",
-        "courses": [
-          "H 1 - Humanities/Fine Arts/English",
-          "S 1 - Social Science"
-        ]
-      },
-      {
-        "label": "Fall 2 (15 credits)",
-        "courses": [
-          "MATH& 264",
-          "PHYS& 221",
-          "CS 123",
-          "2 C - Humanities/Fine Arts/English or Social Science"
-        ]
-      },
-      {
-        "label": "Winter 2 (15 credits)",
-        "courses": [
-          "ENGL& 235",
-          "MATH 238",
-          "PHYS& 222"
-        ]
-      },
-      {
-        "label": "Spring 2 (15 credits)",
-        "courses": [
-          "MATH 240",
-          "ENGR& 204",
-          "PHYS& 223"
-        ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
-        ]
-      }
-    ],
-    "notes": [
-      "Program type: Associate Degree - Transfer Track 2.",
-      "Degree: Associate in Science Degree.",
-      "Published duration: 90 credits.",
-      "CHEM& 140 is only required if no prior chemistry experience. PHYS& 114 is only required if no prior physics experience.",
-      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
-      "Generated automatically from Green River's current program-map curriculum data."
-    ],
-    "officialLinks": [
-      {
-        "label": "Transfer Track 2/MRP-Computer and Electrical Engineering curriculum map",
-        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/engineering/associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering.html"
-      }
-    ]
-  },
-  {
-    "id": "999Q",
-    "code": "999Q",
-    "title": "AST2 / MRP Civil and Mechanical Engineering",
-    "summary": "Official Green River associate degree - transfer track 2 curriculum map for Transfer Track 2/MRP-Civil and Mechanical Engineering. Generated automatically from the current public program-map page and catalog API.",
-    "bestFor": [
-      "Transfer Track 2/MRP-Civil and Mechanical Engineering"
-    ],
-    "terms": [
-      {
-        "label": "Quarter 0",
-        "courses": [
-          "CHEM& 140",
-          "PHYS& 114",
-          "MATH& 141",
-          "MATH& 142"
-        ]
-      },
-      {
-        "label": "Fall 1 (15 credits)",
-        "courses": [
-          "ENGL& 101",
-          "ENGR 100",
-          "ENGR 106",
-          "MATH& 151"
-        ]
-      },
-      {
-        "label": "Winter 1 (16 credits)",
-        "courses": [
-          "CHEM& 161",
-          "MATH& 152",
-          "PHYS& 221"
-        ]
-      },
-      {
-        "label": "Spring 1 (15 credits)",
-        "courses": [
-          "CHEM& 162",
-          "MATH& 163",
-          "PHYS& 222"
-        ]
-      },
-      {
-        "label": "Summer 1 (10 credits)",
-        "courses": [
-          "H 1 - Humanities/Fine Arts/English",
-          "S 1 - Social Science"
-        ]
-      },
-      {
-        "label": "Fall 2 (15 credits)",
-        "courses": [
-          "ENGR& 214",
-          "MATH& 264",
-          "PHYS& 223"
-        ]
-      },
-      {
-        "label": "Winter 2 (15 credits)",
-        "courses": [
-          "MATH 238",
-          "ENGR& 215",
-          "ENGR 250",
-          "or other from section D (see below)"
-        ]
-      },
-      {
-        "label": "Spring 2 (15 credits)",
-        "courses": [
-          "MATH 240",
-          "ENGR& 225",
-          "ENGR& 224",
-          "or other section D course (see below)"
-        ]
-      },
-      {
-        "label": "Summer 2 (5 credits)",
-        "courses": [
-          "2 C - Humanities/Fine Arts/English or Social Science"
-        ]
-      },
-      {
-        "label": "Section D",
-        "courses": [
-          "CS 121",
-          "CS 122",
-          "CS& 131",
-          "ENGL 128",
-          "ENGL& 235",
-          "ENGR& 104",
-          "ENGR& 114",
-          "ENGR 140",
-          "ENGR& 204",
-          "ENGR& 224",
-          "ENGR 250"
-        ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
-        ]
-      }
-    ],
-    "notes": [
-      "Program type: Associate Degree - Transfer Track 2.",
-      "Degree: Associate in Science Degree.",
-      "Published duration: 90 credits.",
-      "CHEM& 140 is only required if no prior chemistry experience. PHYS& 114 is only required if no prior physics experience.",
-      "10 credits of Humanities/Fine Arts/English Distribution or Social Science Distribution courses.",
-      "Select 2 courses from the following after consultation with a Science/Engineering advisor:",
-      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
-      "Generated automatically from Green River's current program-map curriculum data."
-    ],
-    "officialLinks": [
-      {
-        "label": "Transfer Track 2/MRP-Civil and Mechanical Engineering curriculum map",
-        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/engineering/associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering.html"
-      }
-    ]
-  },
-  {
     "id": "grc-associate-business-entrepreneurship-accounting-aaa",
     "code": "AAA",
     "title": "Accounting",
@@ -1562,7 +1251,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-education-law-social-science-geography-aa-dta-with-emphasis-geography",
     "code": "AA-DTA",
     "title": "Associate in Arts-DTA with Emphasis in Geography",
-    "summary": "Official Green River curriculum map for Associate in Arts-DTA with Emphasis in Geography. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Associate in Arts-DTA with Emphasis in Geography curriculum map.",
     "bestFor": [
       "Associate in Arts-DTA with Emphasis in Geography"
     ],
@@ -4769,35 +4458,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     ]
   },
   {
-    "id": "grc-associate-healthcare-wellness-nursing-medical-assistant-certified-practical-nursing",
-    "code": "Associate",
-    "title": "Medical Assistant-Certified (MA-C) to Practical Nursing (PN)",
-    "summary": "Official Green River associate page for Medical Assistant-Certified (MA-C) to Practical Nursing (PN). The current public page does not expose a structured curriculum-map feed, so this track is generated from the published page metadata only.",
-    "bestFor": [
-      "Medical Assistant-Certified (MA-C) to Practical Nursing (PN)"
-    ],
-    "terms": [
-      {
-        "label": "Published requirements",
-        "courses": [
-          "Published requirements only; no structured course grid is available yet."
-        ]
-      }
-    ],
-    "notes": [
-      "Program type: Associate.",
-      "Degree: Associate in Applied Science.",
-      "Published duration: 90 credits.",
-      "Generated automatically from the public Green River program-map page because no structured curriculum-map connector is published for this page yet."
-    ],
-    "officialLinks": [
-      {
-        "label": "Medical Assistant-Certified (MA-C) to Practical Nursing (PN) program map",
-        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/medical-assistant-certified-practical-nursing.html"
-      }
-    ]
-  },
-  {
     "id": "grc-associate-healthcare-wellness-nursing-practical-nursing-aas",
     "code": "AAS",
     "title": "Practical Nursing",
@@ -5669,7 +5329,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "CS 123",
           "PHYS& 222",
-          "MATH& 264",
+          "MATH& 254",
           "CS 109",
           "CS& 131",
           "CS 132",
@@ -5945,6 +5605,317 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     ]
   },
   {
+    "id": "grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering",
+    "code": "AST-2",
+    "title": "Transfer Track 2-Bioengineering and Chemical Engineering",
+    "summary": "Official Green River associate degree - transfer track 2 curriculum map for Transfer Track 2-Bioengineering and Chemical Engineering. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Transfer Track 2-Bioengineering and Chemical Engineering"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 0",
+        "courses": [
+          "CHEM& 140",
+          "PHYS& 114",
+          "MATH& 141",
+          "MATH& 142"
+        ]
+      },
+      {
+        "label": "Quarter 1 (18 credits)",
+        "courses": [
+          "CHEM& 161",
+          "ENGL& 101",
+          "ENGR 100",
+          "MATH& 151"
+        ]
+      },
+      {
+        "label": "Quarter 2 (14 credits)",
+        "courses": [
+          "CHEM& 162",
+          "ENGR 106",
+          "MATH& 152"
+        ]
+      },
+      {
+        "label": "Quarter 3 (16 credits)",
+        "courses": [
+          "CHEM& 163",
+          "MATH& 163",
+          "2 C - Humanities/Fine Arts/English or Social Science"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "MATH& 254",
+          "PHYS& 221",
+          "2 C - Humanities/Fine Arts/English or Social Science"
+        ]
+      },
+      {
+        "label": "Quarter 5 (16 credits)",
+        "courses": [
+          "MATH 238",
+          "PHYS& 222",
+          "BIOL& 211",
+          "CHEM& 261"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "MATH 240",
+          "PHYS& 223",
+          "2 C - Humanities/Fine Arts/English or Social Science"
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate Degree - Transfer Track 2.",
+      "Degree: Associate in Science Degree.",
+      "Published duration: 107 Credits.",
+      "CHEM& 140 is only required if no prior chemistry experience. PHYS& 114 is only required if no prior physics experience.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Transfer Track 2-Bioengineering and Chemical Engineering curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/engineering/associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering",
+    "code": "AST-2/MRP",
+    "title": "Transfer Track 2/MRP-Civil and Mechanical Engineering",
+    "summary": "Official Green River associate degree - transfer track 2 curriculum map for Transfer Track 2/MRP-Civil and Mechanical Engineering. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Transfer Track 2/MRP-Civil and Mechanical Engineering"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 0",
+        "courses": [
+          "CHEM& 140",
+          "PHYS& 114",
+          "MATH& 141",
+          "MATH& 142"
+        ]
+      },
+      {
+        "label": "Fall 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "ENGR 100",
+          "ENGR 106",
+          "MATH& 151"
+        ]
+      },
+      {
+        "label": "Winter 1 (16 credits)",
+        "courses": [
+          "CHEM& 161",
+          "MATH& 152",
+          "PHYS& 221"
+        ]
+      },
+      {
+        "label": "Spring 1 (15 credits)",
+        "courses": [
+          "CHEM& 162",
+          "MATH& 163",
+          "PHYS& 222"
+        ]
+      },
+      {
+        "label": "Summer 1 (10 credits)",
+        "courses": [
+          "H 1 - Humanities/Fine Arts/English",
+          "S 1 - Social Science"
+        ]
+      },
+      {
+        "label": "Fall 2 (15 credits)",
+        "courses": [
+          "ENGR& 214",
+          "MATH& 254",
+          "PHYS& 223"
+        ]
+      },
+      {
+        "label": "Winter 2 (15 credits)",
+        "courses": [
+          "MATH 238",
+          "ENGR& 215",
+          "ENGR 250",
+          "or other from section D (see below)"
+        ]
+      },
+      {
+        "label": "Spring 2 (15 credits)",
+        "courses": [
+          "MATH 240",
+          "ENGR& 225",
+          "ENGR& 224",
+          "or other section D course (see below)"
+        ]
+      },
+      {
+        "label": "Summer 2 (5 credits)",
+        "courses": [
+          "2 C - Humanities/Fine Arts/English or Social Science"
+        ]
+      },
+      {
+        "label": "Section D",
+        "courses": [
+          "CS 121",
+          "CS 122",
+          "CS& 131",
+          "ENGL 128",
+          "ENGL& 235",
+          "ENGR& 104",
+          "ENGR& 114",
+          "ENGR 140",
+          "ENGR& 204",
+          "ENGR& 224",
+          "ENGR 250"
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate Degree - Transfer Track 2.",
+      "Degree: Associate in Science Degree.",
+      "Published duration: 90 credits.",
+      "CHEM& 140 is only required if no prior chemistry experience. PHYS& 114 is only required if no prior physics experience.",
+      "10 credits of Humanities/Fine Arts/English Distribution or Social Science Distribution courses.",
+      "Select 2 courses from the following after consultation with a Science/Engineering advisor:",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Transfer Track 2/MRP-Civil and Mechanical Engineering curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/engineering/associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering",
+    "code": "AST-2/MRP",
+    "title": "Transfer Track 2/MRP-Computer and Electrical Engineering",
+    "summary": "Official Green River associate degree - transfer track 2 curriculum map for Transfer Track 2/MRP-Computer and Electrical Engineering. Generated automatically from the current public program-map page and catalog API.",
+    "bestFor": [
+      "Transfer Track 2/MRP-Computer and Electrical Engineering"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 0",
+        "courses": [
+          "CHEM& 140",
+          "PHYS& 114",
+          "MATH& 141",
+          "MATH& 142"
+        ]
+      },
+      {
+        "label": "Fall 1 (18 credits)",
+        "courses": [
+          "CHEM& 161",
+          "ENGL& 101",
+          "ENGR 100",
+          "MATH& 151"
+        ]
+      },
+      {
+        "label": "Winter 1 (16 credits)",
+        "courses": [
+          "MATH& 152",
+          "2 C - Humanities/Fine Arts/English or Social Science",
+          "CS 121",
+          "CS& 131"
+        ]
+      },
+      {
+        "label": "Spring 1 (15 credits)",
+        "courses": [
+          "MATH& 163",
+          "CS 122",
+          "CS 132",
+          "ENGR 271"
+        ]
+      },
+      {
+        "label": "Summer",
+        "courses": [
+          "H 1 - Humanities/Fine Arts/English",
+          "S 1 - Social Science"
+        ]
+      },
+      {
+        "label": "Fall 2 (15 credits)",
+        "courses": [
+          "MATH& 254",
+          "PHYS& 221",
+          "CS 123",
+          "2 C - Humanities/Fine Arts/English or Social Science"
+        ]
+      },
+      {
+        "label": "Winter 2 (15 credits)",
+        "courses": [
+          "ENGL& 235",
+          "MATH 238",
+          "PHYS& 222"
+        ]
+      },
+      {
+        "label": "Spring 2 (15 credits)",
+        "courses": [
+          "MATH 240",
+          "ENGR& 204",
+          "PHYS& 223"
+        ]
+      },
+      {
+        "label": "Transferability of Credits",
+        "courses": [
+          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate Degree - Transfer Track 2.",
+      "Degree: Associate in Science Degree.",
+      "Published duration: 90 credits.",
+      "CHEM& 140 is only required if no prior chemistry experience. PHYS& 114 is only required if no prior physics experience.",
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Transfer Track 2/MRP-Computer and Electrical Engineering curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/engineering/associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering.html"
+      }
+    ]
+  },
+  {
     "id": "grc-associate-stem-mathematics-math-curriculum-map-aa-dta-math-emphasis",
     "code": "AA-DTA",
     "title": "Math Education",
@@ -5991,7 +5962,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       {
         "label": "Quarter 4 (15 credits)",
         "courses": [
-          "MATH& 264",
+          "MATH& 254",
           "PHYS& 221",
           "H 3 - Humanities/Fine Arts/English",
           "ART 105",
@@ -6024,7 +5995,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "MATH& 153",
           "MATH 126",
-          "MATH& 264",
+          "MATH& 254",
           "MATH 238",
           "MATH 240",
           "MATH 147",
@@ -6108,7 +6079,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       {
         "label": "Quarter 5 (15 credits)",
         "courses": [
-          "MATH& 264",
+          "MATH& 254",
           "S 2 - Social Science",
           "N 2 - Natural Science List A",
           "Recommend: Something from the Diversity Course List"
@@ -6186,7 +6157,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       {
         "label": "Quarter 4 (15 credits)",
         "courses": [
-          "MATH& 264",
+          "MATH& 254",
           "N 1 - Natural Science List A (Lab)",
           "PHYS& 114",
           "PHYS& 221",
@@ -6289,7 +6260,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       {
         "label": "Quarter 4 (15 credits)",
         "courses": [
-          "MATH& 264",
+          "MATH& 254",
           "PHYS& 223",
           "Natural Science Distribution electives Consult with transfer university for program requirements and work with advisor"
         ]
@@ -7825,7 +7796,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "MATH& 132",
           "MATH 238",
           "MATH 240",
-          "MATH& 264",
+          "MATH& 254",
           "MATH 256",
           "PHIL& 120",
           "Select one of the following:"
@@ -7914,13 +7885,13 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
   }
 ];
 
-export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACK_SUMMARY: { generatedAt: string; currentCatalogId: number; currentCatalogName: string; programMapPageCount: number; officialAssociateTrackCount: number; compatibilityMappedTrackCount: number; generatedTrackCount: number; } = {
-  "generatedAt": "2026-04-13T09:24:57.483Z",
+export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACK_SUMMARY: { generatedAt: string; currentCatalogId: number; currentCatalogName: string; programMapPageCount: number; officialAssociateTrackCount: number; connectedAssociateTrackCount: number; generatedTrackCount: number; } = {
+  "generatedAt": "2026-04-13T22:36:51.348Z",
   "currentCatalogId": 11,
   "currentCatalogName": "2025-2026 Catalog",
   "programMapPageCount": 147,
   "officialAssociateTrackCount": 85,
-  "compatibilityMappedTrackCount": 3,
-  "generatedTrackCount": 85
+  "connectedAssociateTrackCount": 84,
+  "generatedTrackCount": 84
 };
 

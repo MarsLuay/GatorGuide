@@ -834,6 +834,194 @@ function getResolvedTrackTermsForPlanning(
   return buildHistoricalGrcTrackComparison({ track, completedCourses, referenceDate })?.terms ?? [];
 }
 
+export function getResolvedTrackTermsForRequirementDisplay(
+  track: TransferPlannerTrack | null,
+  completedCourses: TranscriptCourseEntry[],
+  referenceDate?: Date
+) {
+  return getResolvedTrackTermsForPlanning(track, completedCourses, referenceDate);
+}
+
+const PREPARATORY_TRACK_TERM_LABEL_PATTERN = /\bquarter 0\b/i;
+const PREPARATORY_TRACK_NOTE_PATTERN =
+  /\bonly required if\b|\bdepending on placement\b|\bprogram prerequisite\b/i;
+
+function getNormalizedCourseSubjectKey(courseCode: string) {
+  const match = normalizeCourseCode(courseCode).match(/^([A-Z&]+(?: [A-Z&]+)*)\s+\d/);
+  if (!match) return null;
+  return match[1].replace(/[^A-Z]/g, "");
+}
+
+function getNormalizedCourseCatalogNumber(courseCode: string) {
+  const match = normalizeCourseCode(courseCode).match(/\b(\d{3})(?:\.\d+)?[A-Z]?\b/);
+  if (!match) return null;
+  return Number.parseInt(match[1] ?? "", 10);
+}
+
+function buildPreparatoryTrackCourseCodeSet(track: TransferPlannerTrack | null | undefined) {
+  if (!track) {
+    return new Set<string>();
+  }
+
+  const preparatoryCourseCodes = new Set<string>();
+
+  for (const term of track.terms) {
+    if (!PREPARATORY_TRACK_TERM_LABEL_PATTERN.test(String(term.label ?? "").trim())) {
+      continue;
+    }
+
+    for (const courseCode of term.courses.flatMap((label) => extractCourseCodes(label))) {
+      preparatoryCourseCodes.add(courseCode);
+    }
+  }
+
+  for (const note of track.notes ?? []) {
+    if (!PREPARATORY_TRACK_NOTE_PATTERN.test(String(note ?? "").trim())) {
+      continue;
+    }
+
+    for (const courseCode of extractCourseCodes(note)) {
+      preparatoryCourseCodes.add(courseCode);
+    }
+  }
+
+  return preparatoryCourseCodes;
+}
+
+export function getPreparatoryTrackCourseCodeSet(
+  track: TransferPlannerTrack | null | undefined
+) {
+  return buildPreparatoryTrackCourseCodeSet(track);
+}
+
+function courseDependsOnTargetCourseCode(
+  courseCode: string,
+  targetCourseCode: string,
+  visitedCourseCodes = new Set<string>()
+) {
+  const normalizedCourseCode = normalizeCourseCode(courseCode);
+  const normalizedTargetCourseCode = normalizeCourseCode(targetCourseCode);
+  if (!normalizedCourseCode || !normalizedTargetCourseCode) return false;
+  if (visitedCourseCodes.has(normalizedCourseCode)) return false;
+
+  visitedCourseCodes.add(normalizedCourseCode);
+  const canonicalCourse = getTransferPlannerCanonicalCourse("grc", normalizedCourseCode);
+  if (!canonicalCourse) return false;
+
+  const prerequisiteCourseCodes = unique(
+    [
+      ...(canonicalCourse.prerequisiteCourseCodes ?? []),
+      ...(canonicalCourse.prerequisiteAlternativeCourseCodeSets ?? []).flat(),
+    ]
+      .map((entry) => normalizeCourseCode(entry))
+      .filter(Boolean)
+  );
+
+  for (const prerequisiteCourseCode of prerequisiteCourseCodes) {
+    if (prerequisiteCourseCode === normalizedTargetCourseCode) {
+      return true;
+    }
+
+    if (
+      courseDependsOnTargetCourseCode(
+        prerequisiteCourseCode,
+        normalizedTargetCourseCode,
+        visitedCourseCodes
+      )
+    ) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function hasCompletedHigherPreparatorySubjectCourse(args: {
+  courseCode: string;
+  completedCourseCodes: Set<string>;
+  preparatoryCourseCodes: Set<string>;
+}) {
+  const normalizedCourseCode = normalizeCourseCode(args.courseCode);
+  if (!args.preparatoryCourseCodes.has(normalizedCourseCode)) {
+    return false;
+  }
+
+  const targetSubjectKey = getNormalizedCourseSubjectKey(normalizedCourseCode);
+  const targetCatalogNumber = getNormalizedCourseCatalogNumber(normalizedCourseCode);
+  if (!targetSubjectKey || targetCatalogNumber === null) {
+    return false;
+  }
+
+  for (const completedCourseCode of args.completedCourseCodes) {
+    const completedSubjectKey = getNormalizedCourseSubjectKey(completedCourseCode);
+    const completedCatalogNumber = getNormalizedCourseCatalogNumber(completedCourseCode);
+    if (!completedSubjectKey || completedCatalogNumber === null) {
+      continue;
+    }
+
+    if (
+      completedSubjectKey === targetSubjectKey &&
+      completedCatalogNumber > targetCatalogNumber
+    ) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function isTrackCourseLabelSupersededByCompletedProgress(args: {
+  label: string;
+  completedCourseCodes: Set<string>;
+  preparatoryCourseCodes: Set<string>;
+}) {
+  const explicitCourseCodes = extractCourseCodes(args.label);
+  if (explicitCourseCodes.length !== 1) {
+    return false;
+  }
+
+  const [courseCode] = explicitCourseCodes;
+  if (!courseCode) return false;
+
+  for (const completedCourseCode of args.completedCourseCodes) {
+    if (courseDependsOnTargetCourseCode(completedCourseCode, courseCode)) {
+      return true;
+    }
+  }
+
+  return hasCompletedHigherPreparatorySubjectCourse({
+    courseCode,
+    completedCourseCodes: args.completedCourseCodes,
+    preparatoryCourseCodes: args.preparatoryCourseCodes,
+  });
+}
+
+export function getResolvedTrackTermsForStudentProgress(
+  track: TransferPlannerTrack | null,
+  completedCourses: TranscriptCourseEntry[],
+  referenceDate?: Date
+) {
+  const resolvedTerms = getResolvedTrackTermsForPlanning(track, completedCourses, referenceDate);
+  const completedCourseCodes = new Set(
+    completedCourses.map((course) => normalizeCourseCode(course.code)).filter(Boolean)
+  );
+  const preparatoryCourseCodes = buildPreparatoryTrackCourseCodeSet(track);
+
+  return resolvedTerms
+    .map((term) => ({
+      ...term,
+      courses: term.courses.filter(
+        (label) =>
+          !isTrackCourseLabelSupersededByCompletedProgress({
+            label,
+            completedCourseCodes,
+            preparatoryCourseCodes,
+          })
+      ),
+    }))
+    .filter((term) => term.courses.length > 0);
+}
+
 type RequirementCourseOption = {
   courseLabels: string[];
   explicitCourseCodes: string[];
@@ -1398,11 +1586,11 @@ export function buildTransferPlannerStudentCourseEvaluations(
   });
 }
 
-const STUDENT_EVALUATION_REPORT_BUCKETS: Array<{
+const STUDENT_EVALUATION_REPORT_BUCKETS: {
   id: TransferPlannerStudentCourseEvaluation["outcome"];
   label: string;
   description: string;
-}> = [
+}[] = [
   {
     id: "auto-approved",
     label: "Completed and applies",
@@ -1861,7 +2049,7 @@ function getResolvedTrackSupplementalCourseLabels(input: {
     [...input.coveredCourseCodes].map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean)
   );
 
-  for (const term of getResolvedTrackTermsForPlanning(
+  for (const term of getResolvedTrackTermsForStudentProgress(
     input.track,
     input.completedCourses,
     input.referenceDate
@@ -1974,7 +2162,7 @@ type GeneralEducationPlaceholder = {
   kind: GeneralEducationPlaceholderKind;
 };
 
-type GeneralEducationRequirementTargets = {
+export type GeneralEducationRequirementTargets = {
   ahCredits: number | null;
   sscCredits: number | null;
   nscCredits: number | null;
@@ -2475,7 +2663,7 @@ function getGeneralEducationRequirementTargetSourcePlan(
   return resolveTransferPlannerMajorPlan(authoredBasePlan, selectedPathwayId) ?? authoredBasePlan;
 }
 
-function buildGeneralEducationRequirementTargets(
+export function buildGeneralEducationRequirementTargets(
   plan: TransferPlannerMajorPlan | null | undefined
 ): GeneralEducationRequirementTargets {
   const sourcePlan = getGeneralEducationRequirementTargetSourcePlan(plan);

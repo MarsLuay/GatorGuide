@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-04-13T02:35:17.689Z",
-  "totalReviewOwners": 0,
+  "generatedAt": "2026-04-13T22:45:05.866Z",
+  "totalReviewOwners": 1,
   "mediumConfidenceCount": 0,
-  "unresolvedCount": 0,
+  "unresolvedCount": 1,
   "campuses": [
     {
       "campusId": "uw-seattle",
@@ -23,10 +23,61 @@
     {
       "campusId": "uw-tacoma",
       "campusLabel": "UW Tacoma",
-      "totalReviewOwners": 0,
+      "totalReviewOwners": 1,
       "mediumConfidenceCount": 0,
-      "unresolvedCount": 0,
-      "entries": []
+      "unresolvedCount": 1,
+      "entries": [
+        {
+          "ownerType": "major",
+          "ownerKey": "uw-tacoma-communications",
+          "planId": "uw-tacoma-communications",
+          "pathwayId": null,
+          "title": "Communications (BA)",
+          "campusId": "uw-tacoma",
+          "status": "needs-source-automation",
+          "suggestedPrimary": null,
+          "candidateCount": 67,
+          "officialLinkCount": 4,
+          "topReviewCandidates": [
+            {
+              "url": "https://www.tacoma.uw.edu/registrar/graduation-requirements",
+              "label": null,
+              "score": -5,
+              "confidence": "low",
+              "reasons": [
+                "discovered from an official source page",
+                "does not clearly mention the selected major",
+                "generic campus requirements wording",
+                "graduation requirements wording",
+                "stays on an official UW domain"
+              ]
+            },
+            {
+              "url": "https://www.tacoma.uw.edu/sias/cac/professional-track",
+              "label": "Professional Track",
+              "score": -8,
+              "confidence": "low",
+              "reasons": [
+                "already stored as an official source",
+                "does not clearly mention the selected major",
+                "page title fetched successfully",
+                "stays on an official UW domain"
+              ]
+            },
+            {
+              "url": "https://www.tacoma.uw.edu/sias/cac/communication",
+              "label": "UW Tacoma Communication overview",
+              "score": -11,
+              "confidence": "low",
+              "reasons": [
+                "discovered from an official source page",
+                "does not clearly mention the selected major",
+                "stays on an official UW domain"
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

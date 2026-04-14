@@ -1,35 +1,34 @@
 # Transfer Planner Requirement Source Parse Report
 
-Generated: 2026-04-13T03:06:17.860Z
+Generated: 2026-04-13T23:02:07.410Z
 
-- Primary degree sources parsed: 251
-- Parsed successfully: 251
+- Primary degree sources parsed: 154
+- Parsed successfully: 154
 - Parse failures: 0
-- Parsed requirement source adapter blocks: 251
-- Parsed requirement atom candidates: 12552
-- Parsed degree-map block candidates: 251
-- Parsed from cached snapshots after live-source failures: 1
-- Parsed from alternate official source URLs: 33
-- Owners with parsed UW course codes: 251
-- Owners with source-only UW course codes not currently in structured degree-map blocks: 249
+- Parsed requirement source adapter blocks: 154
+- Parsed requirement atom candidates: 8845
+- Parsed degree-map block candidates: 154
+- Parsed from cached snapshots after live-source failures: 0
+- Parsed from alternate official source URLs: 24
+- Owners with parsed UW course codes: 154
+- Owners with source-only UW course codes not currently in structured degree-map blocks: 154
 - Owners with no parsed UW course codes: 0
 
 ## Parser Adapters
 
-- generic-official-html-page: 50
-- generic-official-pdf-degree-sheet: 15
-- uw-bothell-html-degree-page: 39
+- generic-official-html-page: 10
+- generic-official-pdf-degree-sheet: 16
+- uw-bothell-html-degree-page: 20
 - uw-bothell-pdf-worksheet: 2
 - uw-seattle-catalog-page: 39
-- uw-seattle-html-degree-page: 68
+- uw-seattle-html-degree-page: 60
 - uw-tacoma-catalog-page: 3
-- uw-tacoma-html-degree-page: 35
+- uw-tacoma-html-degree-page: 4
 
 ## Resolution Strategies
 
-- alternate-official-source: 33
-- cached-snapshot: 1
-- primary-source: 217
+- alternate-official-source: 24
+- primary-source: 130
 
 ## uw-seattle
 
@@ -57,17 +56,6 @@ Generated: 2026-04-13T03:06:17.860Z
 - Source-only UW course codes: AAS 206, AAS 210, AAS 220, AAS 320, AAS 330, AAS 350, AAS 360, AAS 370, AAS 372, AAS 380, AAS 385, AAS 392, AAS 395, AAS 401, AAS 402, AAS 498, AAS 499, AES 250, AES 322, AES 333, AES 335, AES 442, AES 487, AES 496, AES 498, AES 499, AFRAM 150, AFRAM 214, AFRAM 220, AFRAM 246, AFRAM 260, AFRAM 270, AFRAM 272, AFRAM 315, AFRAM 318, AFRAM 321, AFRAM 330, AFRAM 334, AFRAM 337, AFRAM 340, AFRAM 350, AFRAM 358, AFRAM 370, AFRAM 437, AFRAM 498, AFRAM 499, CHSTU 200, CHSTU 254, CHSTU 256, CHSTU 330, CHSTU 332, CHSTU 340, CHSTU 342, CHSTU 352, CHSTU 356, CHSTU 416, CHSTU 465, CHSTU 466, CHSTU 498, CHSTU 499, ENGL 131
 - Requirement cues: [Arts and Humanities Focus] AAS 220 , 320 , 330 , 392 , 401 , 402 , 498 , 499 | [Arts and Humanities Focus] AFRAM 150 , 214 , 220 , 318 , 337 , 340 , 350 , 358 , 498 , 499 | [Arts and Humanities Focus] CHSTU 330 , 332 , 340 , 465 , 466 , 498 , 499
 - Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-american-ethnic-studies.txt
-
-#### American Indian Studies
-
-- Source: https://ais.washington.edu/ba-american-indian-studies
-- Parser type: generic-html
-- Parser adapter: generic-official-html-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: AIS 212, AIS 215, AIS 230, AIS 270, AIS 306, AIS 307, AIS 308, AIS 309, AIS 310, AIS 311, AIS 313, AIS 314, AIS 315, AIS 330, AIS 335, AIS 340, AIS 360, AIS 443, AIS 451, AIS 492
-- Requirement cues: Many students find the depth of knowledge they gain from American Indian Studies provides necessary context for a second major in a professional field, the sciences, social sciences, or liberal arts. Alumni use their expertise for diverse careers in the public and private sectors, as well as in leading graduate programs. | Degree Requirements | In order to graduate with the Bachelor of Arts in American Indian Studies, students must complete 55 credits as follows (in addition to the general education requirements of the university and college):
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-american-indian-studies.txt
 
 #### Anthropology
 
@@ -170,17 +158,6 @@ Generated: 2026-04-13T03:06:17.860Z
 - Requirement cues: Transferring Credits | Degree Requirements | The Asian Languages and Cultures major requires a total of 60 credits. Complete the following with a minimum 2.0 cumulative grade point average in courses applied to major requirements. At least 30 credits must be earned at the 300- and/or 400-level. A minimum of 30 credits must be taken in residence through the University of Washington. At least one class must be taken in a language area other than the student's primary language area.
 - Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-asian-languages-and-cultures.txt
 
-#### Asian Studies
-
-- Source: https://jsis.washington.edu/programs/undergraduate/asia-studies/
-- Parser type: html-overview-page
-- Parser adapter: uw-seattle-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: AAS 360, ANTH 314, ANTH 357, ART H 212, ART H 310, ART H 419, ASIAN 202, ASIAN 205, BENG 301, BUS 461, ECON 494, HINDI 301, HSTAS 212, HSTAS 214, HSTAS 421, HSTAS 456, HSTAS 481, HSTAS 482, HSTAS 484, JSIS 484, JSIS 485, JSIS A 202, JSIS A 207, JSIS A 466, JSIS A 469, JSIS A 472, JSIS B 385, KOREAN 411, KOREAN 412, POL S 480
-- Requirement cues: § A maximum of 5 credits of lower-division coursework (200-level) may be counted in the &#8220;LIST B&#8221; section of the Asian Studies-Japan Concentration. | * A maximum of 5 credits of lower-division coursework (200-level) may be allowed in the 30 credits of Korea/East Asia coursework in the Concentration. | ** A maximum of 5 credits at the lower division level may be counted toward the 35 credits comprising the Asian Option and the Thematic/Cross-Regional requirement.
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-asian-studies.txt
-
 #### Astronomy
 
 - Source: https://astro.washington.edu/timeline-and-requirements
@@ -268,24 +245,25 @@ Generated: 2026-04-13T03:06:17.860Z
 #### Biochemistry - B.A. route
 
 - Source: https://chem.washington.edu/ba-biochemistry
+- Primary source: https://chem.washington.edu/sites/chem/files/documents/undergrad/babioccheck2017_001.pdf
 - Parser type: generic-html
 - Parser adapter: generic-official-html-page
-- Resolution strategy: primary-source
+- Resolution strategy: alternate-official-source
 - Parse confidence: high
-- Source-only UW course codes: AMATH 351, AMATH 352, AMATH 422, AMATH 423, ATM S 358, ATM S 458, B H 311, BIOC 406, BIOC 426, BIOC 440, BIOC 441, BIOC 442, BIOL 220, BIOL 355, BIOL 401, BIOL 402, BIOL 411, BIOL 457, BIOL 459, BIOST 310, BOTH MATH 207, BOTH MATH 208, BOTH MATH 307, BOTH MATH 308, BSE 406, CHEM 142, CHEM 143, CHEM 145, CHEM 152, CHEM 153, CHEM 155, CHEM 162, CHEM 165, CHEM 237, CHEM 238, CHEM 239, CHEM 242, CHEM 257, CHEM 258, CHEM 259, CHEM 299, CHEM 299W, CHEM 312, CHEM 317, CHEM 321, CHEM 335, CHEM 336, CHEM 337, CHEM 347, CHEM 399, CHEM 400, CHEM 416, CHEM 426, CHEM 428, CHEM 432, CHEM 436, CHEM 453, CHEM 455, CHEM 456, CHEM 457, CHEM 461, CHEM 462, CHEM 463, CHEM 464, CHEM 466, CHEM 499, CHEM CHEM 399, GENOME 361, GENOME 371, GENOME 372, HONORS 134, HONORS 135, HONORS 136, LANGUAGE 101, MATH 125, MATH 126, MATH 134, MATH 135, MATH 136, MATH 207, MATH 208, NEUSCI 404, PHYS 114, PHYS 115, PHYS 116, PHYS 117, PHYS 118, PHYS 119, PHYS 121, PHYS 122, PHYS 123, Q SCI 381, STAT 311
-- Requirement cues: * Arts and Humanities (A&H), Social Science (SSc). | * Arts and Humanities (A&H), Social Science (SSc). Students are expected to understand and complete all general education requirements as detailed in the General Catalog. | * Arts and Humanities (A&H), Social Science (SSc). They are general education requirements. Students are expected to understand and complete all general education requirements as detailed in the General Catalog.
+- Source-only UW course codes: AMATH 351, AMATH 352, AMATH 422, AMATH 423, ATM S 358, ATM S 458, B H 311, BIOC 406, BIOC 426, BIOC 440, BIOC 441, BIOC 442, BIOL 220, BIOL 300, BIOL 355, BIOL 401, BIOL 402, BIOL 411, BIOL 457, BIOL 459, BIOST 310, BOTH MATH 207, BOTH MATH 208, BOTH MATH 307, BOTH MATH 308, BSE 406, CHEM 142, CHEM 143, CHEM 145, CHEM 152, CHEM 153, CHEM 155, CHEM 162, CHEM 165, CHEM 237, CHEM 238, CHEM 239, CHEM 242, CHEM 257, CHEM 258, CHEM 259, CHEM 299, CHEM 299W, CHEM 312, CHEM 317, CHEM 321, CHEM 335, CHEM 336, CHEM 337, CHEM 347, CHEM 399, CHEM 400, CHEM 410, CHEM 416, CHEM 417, CHEM 418, CHEM 419, CHEM 425, CHEM 426, CHEM 428, CHEM 429, CHEM 430, CHEM 431, CHEM 432, CHEM 434, CHEM 436, CHEM 453, CHEM 455, CHEM 456, CHEM 457, CHEM 458, CHEM 460, CHEM 461, CHEM 462, CHEM 463, CHEM 464, CHEM 465, CHEM 466, CHEM 484, CHEM 485, CHEM 486, CHEM 491, CHEM 499, CHEM CHEM 399, CSE 427, ENV H 431, ESS 312, ESS 457, GENOME 361, GENOME 371, GENOME 372, HONORS 134, HONORS 135, HONORS 136, IMMUN 441, LANGUAGE 101, MATH 125, MATH 126, MATH 134, MATH 135, MATH 136, MATH 207, MATH 208, MATH 307, MICROM 402, MICROM 410, MICROM 411, MICROM 412, MICROM 431, MICROM 445, MSE 471, MSE 475, NBIO 404, NEUSCI 404, OCEAN 400, PHYS 114, PHYS 115, PHYS 116, PHYS 117, PHYS 118, PHYS 119, PHYS 121, PHYS 122, PHYS 123, Q SCI 381, STAT 311
+- Requirement cues: [Page 1] Bachelor of Arts in Biochemistry Degree Requirements 1) Mathematics (MATH) Regular or Honors Calculus  124 (5)  134 (5)  125 (5)  135 (5)  126 (5)  136 (5) 2) General Chemistry (CHEM) Regular or Honors or Accelerated  142 (5)  145 (5)  143 (6)  152 (5)  155 (5)  153 (6)  162 (5)  165 (5) 3) Organic Chemistry (CHEM) Regular or Honors  237 (4)  335 (4)  238 (4)  336 (4)  239 (4)  337 (4) Laboratory  241 (3)  346 (3)  242 (3)  347 (3) 4) Biology (BIOL)  180 (5)  200 (5) 5) Physics (PHYS) Calculus-based or Algebra-based   121 (5)  114 (4)  122 (5)  115 (4)  123 (5)  116 (4) **The calculus-based series is recommended. Students taking the calculus based course can apply one credit toward the science elective requirement. Students taking the algebra-based course may count one credit of physics lab (Phys 117, 118, 119) as a science elective. 6) Biochemistry (BIOC)  405 (3)  406 (3) 7) Physical Chemistry (CHEM)  452 (3)  453 (3) 8) Science Electives Nine credits from the following list AMATH 351 or 352 or MATH 307 or 308 ATM S 358, 458 B H 311 BIOL 220, 300, 355, 401, 402, 411, 457 BIOST 310 BSE 406 CHEM 312, 317, 321, 410, 416, 417, 418, CHEM 419, 425, 426, 429, 430, 431, 432, CHEM 434, 436, 458, 460, 461, 462, 463, CHEM 464, 465, 484, 485, 486, 491 CSE 427 ENV H 431 ESS 312, 457 GENOME 361 or 371, 372, 373, 465 IMMUN 441 MICROM 402, 410, 411, 412, 431, 445 MSE 471, 475 NBIO 404 OCEAN 400 PHYS LAB** (one credit only) Q SCI 381 or STAT 311 ADVANCED RESEARCH : Up to 3 credits of advanced undergraduate research may count toward this requirement. Research conducted outside of Chemistry or Biochemistry must first be approved by one of the undergraduate advisers. Additional 400 level science courses may be considered for science electives after consultation and a petition is submitted to the biochemistry advisers. | * Arts and Humanities (A&H), Social Science (SSc). | * Arts and Humanities (A&H), Social Science (SSc). Students are expected to understand and complete all general education requirements as detailed in the General Catalog.
 - Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-biochemistry-pathway-ba-route.txt
 
 #### Biochemistry - B.S. route
 
 - Source: https://chem.washington.edu/ba-biochemistry
-- Primary source: https://chem.washington.edu/bs-biochemistry
+- Primary source: https://chem.washington.edu/sites/chem/files/documents/undergrad/babioccheck2017_001.pdf
 - Parser type: generic-html
 - Parser adapter: generic-official-html-page
 - Resolution strategy: alternate-official-source
 - Parse confidence: high
-- Source-only UW course codes: AMATH 351, AMATH 352, AMATH 422, AMATH 423, ATM S 358, ATM S 458, B H 311, BIOC 405, BIOC 406, BIOC 441, BIOC 442, BIOL 220, BIOL 355, BIOL 401, BIOL 402, BIOL 411, BIOL 457, BIOL 459, BIOST 310, BOTH MATH 207, BOTH MATH 208, BOTH MATH 307, BOTH MATH 308, BSE 406, CHEM 142, CHEM 143, CHEM 145, CHEM 152, CHEM 153, CHEM 155, CHEM 162, CHEM 165, CHEM 237, CHEM 238, CHEM 239, CHEM 242, CHEM 257, CHEM 258, CHEM 259, CHEM 299, CHEM 299W, CHEM 312, CHEM 317, CHEM 321, CHEM 335, CHEM 336, CHEM 337, CHEM 347, CHEM 399, CHEM 400, CHEM 416, CHEM 426, CHEM 428, CHEM 432, CHEM 436, CHEM 452, CHEM 453, CHEM 455, CHEM 456, CHEM 457, CHEM 461, CHEM 462, CHEM 463, CHEM 464, CHEM 466, CHEM 499, CHEM CHEM 399, GENOME 361, GENOME 371, GENOME 372, HONORS 134, HONORS 135, HONORS 136, LANGUAGE 101, MATH 125, MATH 126, MATH 134, MATH 135, MATH 136, MATH 207, MATH 208, NEUSCI 404, PHYS 114, PHYS 115, PHYS 116, PHYS 117, PHYS 118, PHYS 119, PHYS 121, PHYS 122, PHYS 123, Q SCI 381, STAT 311
-- Requirement cues: * Arts and Humanities (A&H), Social Science (SSc). | * Arts and Humanities (A&H), Social Science (SSc). Students are expected to understand and complete all general education requirements as detailed in the General Catalog. | * Arts and Humanities (A&H), Social Science (SSc). They are general education requirements. Students are expected to understand and complete all general education requirements as detailed in the General Catalog.
+- Source-only UW course codes: AMATH 351, AMATH 352, AMATH 422, AMATH 423, ATM S 358, ATM S 458, B H 311, BIOC 405, BIOC 406, BIOC 441, BIOC 442, BIOL 220, BIOL 300, BIOL 355, BIOL 401, BIOL 402, BIOL 411, BIOL 457, BIOL 459, BIOST 310, BOTH MATH 207, BOTH MATH 208, BOTH MATH 307, BOTH MATH 308, BSE 406, CHEM 142, CHEM 143, CHEM 145, CHEM 152, CHEM 153, CHEM 155, CHEM 162, CHEM 165, CHEM 237, CHEM 238, CHEM 239, CHEM 242, CHEM 257, CHEM 258, CHEM 259, CHEM 299W, CHEM 312, CHEM 317, CHEM 321, CHEM 335, CHEM 336, CHEM 337, CHEM 347, CHEM 399, CHEM 400, CHEM 410, CHEM 416, CHEM 417, CHEM 418, CHEM 419, CHEM 425, CHEM 426, CHEM 428, CHEM 429, CHEM 430, CHEM 431, CHEM 432, CHEM 434, CHEM 436, CHEM 452, CHEM 453, CHEM 455, CHEM 456, CHEM 457, CHEM 458, CHEM 460, CHEM 461, CHEM 462, CHEM 463, CHEM 464, CHEM 465, CHEM 466, CHEM 484, CHEM 485, CHEM 486, CHEM 491, CHEM 499, CHEM CHEM 399, CSE 427, ENV H 431, ESS 312, ESS 457, GENOME 361, GENOME 371, GENOME 372, HONORS 134, HONORS 135, HONORS 136, IMMUN 441, MATH 125, MATH 126, MATH 134, MATH 135, MATH 136, MATH 207, MATH 208, MATH 307, MICROM 402, MICROM 410, MICROM 411, MICROM 412, MICROM 431, MICROM 445, MSE 471, MSE 475, NBIO 404, NEUSCI 404, OCEAN 400, PHYS 114, PHYS 115, PHYS 116, PHYS 117, PHYS 118, PHYS 119, PHYS 121, PHYS 122, PHYS 123, Q SCI 381, STAT 311
+- Requirement cues: [Page 1] Bachelor of Arts in Biochemistry Degree Requirements 1) Mathematics (MATH) Regular or Honors Calculus  124 (5)  134 (5)  125 (5)  135 (5)  126 (5)  136 (5) 2) General Chemistry (CHEM) Regular or Honors or Accelerated  142 (5)  145 (5)  143 (6)  152 (5)  155 (5)  153 (6)  162 (5)  165 (5) 3) Organic Chemistry (CHEM) Regular or Honors  237 (4)  335 (4)  238 (4)  336 (4)  239 (4)  337 (4) Laboratory  241 (3)  346 (3)  242 (3)  347 (3) 4) Biology (BIOL)  180 (5)  200 (5) 5) Physics (PHYS) Calculus-based or Algebra-based   121 (5)  114 (4)  122 (5)  115 (4)  123 (5)  116 (4) **The calculus-based series is recommended. Students taking the calculus based course can apply one credit toward the science elective requirement. Students taking the algebra-based course may count one credit of physics lab (Phys 117, 118, 119) as a science elective. 6) Biochemistry (BIOC)  405 (3)  406 (3) 7) Physical Chemistry (CHEM)  452 (3)  453 (3) 8) Science Electives Nine credits from the following list AMATH 351 or 352 or MATH 307 or 308 ATM S 358, 458 B H 311 BIOL 220, 300, 355, 401, 402, 411, 457 BIOST 310 BSE 406 CHEM 312, 317, 321, 410, 416, 417, 418, CHEM 419, 425, 426, 429, 430, 431, 432, CHEM 434, 436, 458, 460, 461, 462, 463, CHEM 464, 465, 484, 485, 486, 491 CSE 427 ENV H 431 ESS 312, 457 GENOME 361 or 371, 372, 373, 465 IMMUN 441 MICROM 402, 410, 411, 412, 431, 445 MSE 471, 475 NBIO 404 OCEAN 400 PHYS LAB** (one credit only) Q SCI 381 or STAT 311 ADVANCED RESEARCH : Up to 3 credits of advanced undergraduate research may count toward this requirement. Research conducted outside of Chemistry or Biochemistry must first be approved by one of the undergraduate advisers. Additional 400 level science courses may be considered for science electives after consultation and a petition is submitted to the biochemistry advisers. | * Arts and Humanities (A&H), Social Science (SSc). | * Arts and Humanities (A&H), Social Science (SSc). Students are expected to understand and complete all general education requirements as detailed in the General Catalog.
 - Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-biochemistry-pathway-bs-route.txt
 
 #### Bioengineering
@@ -403,14 +381,14 @@ Generated: 2026-04-13T03:06:17.860Z
 
 #### Chemistry
 
-- Source: https://chem.washington.edu/ba-chemistry
-- Primary source: https://chem.washington.edu/sites/chem/files/documents/undergrad/bachemcheck2017_001.pdf
-- Parser type: generic-html
-- Parser adapter: generic-official-html-page
-- Resolution strategy: alternate-official-source
+- Source: https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf
+- Parser type: pdf-degree-sheet
+- Parser adapter: generic-official-pdf-degree-sheet
+- Resolution strategy: primary-source
 - Parse confidence: high
-- Source-only UW course codes: AMATH 351, AMATH 352, AMATH 422, AMATH 423, ATM S 358, ATM S 458, B H 311, BIOC 405, BIOC 406, BIOC 426, BIOC 440, BIOC 441, BIOC 442, BIOL 180, BIOL 200, BIOL 220, BIOL 355, BIOL 401, BIOL 402, BIOL 411, BIOL 457, BIOL 459, BIOST 310, BOTH MATH 207, BOTH MATH 208, BOTH MATH 307, BOTH MATH 308, BSE 406, CHEM 142, CHEM 143, CHEM 145, CHEM 152, CHEM 153, CHEM 155, CHEM 162, CHEM 165, CHEM 237, CHEM 238, CHEM 239, CHEM 242, CHEM 257, CHEM 258, CHEM 259, CHEM 299, CHEM 299W, CHEM 312, CHEM 321, CHEM 335, CHEM 336, CHEM 337, CHEM 347, CHEM 399, CHEM 400, CHEM 416, CHEM 426, CHEM 428, CHEM 432, CHEM 436, CHEM 453, CHEM 456, CHEM 457, CHEM 462, CHEM 463, CHEM 464, CHEM 466, CHEM 499, CHEM CHEM 399, GENOME 361, GENOME 371, GENOME 372, HONORS 134, HONORS 135, HONORS 136, LANGUAGE 101, MATH 125, MATH 126, MATH 134, MATH 135, MATH 136, MATH 207, MATH 208, NEUSCI 404, PHYS 114, PHYS 115, PHYS 116, PHYS 117, PHYS 118, PHYS 119, PHYS 121, PHYS 122, PHYS 123, Q SCI 381, STAT 311
-- Requirement cues: [Page 1] Bachelor of Arts in Chemistry Degree Requirements 1) Mathematics (MATH) Regular or Honors Calculus  124 (5)  134 (5)  125 (5)  135 (5)  126 (5)  136 (5) 1) Physics (PHYS) Calculus-based or Algebra-based   121 (5)  114 (4)  122 (5)  115 (4)  123 (5)  116 (4) The calculus-based series is recommended. NOTE: One credit lab is included with each course in the calculus–based physics. If algebra-based physics taken, students must take one lab from below. One quarter of physics laboratory  117, 118, 119 (1) 3) General Chemistry (CHEM) Regular or Accelerated or Honors  142 (5)  143 (6)  145 (5)  152 (5)  153 (6)  155 (5)  162 (5)  165 (5) 4) Organic Chemistry (CHEM) a) Regular or Honors  237 (4)  335 (4)  238 (4)  336 (4)  239 (4)  337 (4) b) Laboratory  241 (3) or  346 (3)  242 (3)  347 (3) 5) Inorganic Chemistry (CHEM)  312 Lecture (3) 6) Analytical Lab (CHEM)  321 (5) Quantitative Analysis (5) 7) Advanced Chemistry (CHEM) Eleven credits of numerically graded CHEM 400 level courses to include either: a)  455 (3) or  452 (3)  456 (3)  453 (3)  457 (3) b)  Additional 400-level chemistry courses, not previously mentioned, taken for a numerical grade. The two parts of this requirement must total eleven credits 8) Advanced Chem Lab (CHEM)  CHEM 317 (4) Inorganic Chem Lab or 461(3) Physical Chemistry Lab | * Arts and Humanities (A&H), Social Science (SSc). | * Arts and Humanities (A&H), Social Science (SSc). Students are expected to understand and complete all general education requirements as detailed in the General Catalog.
+- Source-only UW course codes: AMATH 118, AMATH 119, AMATH 351, AMATH 352, BIOC 405, CHEM 399, CHEM 400, CHEM 432, CHEM 436
+- Structured-only UW course codes not seen in the parsed source: CHEM 452, CHEM 455, CHEM 461, MATH 124
+- Requirement cues: [Page 1] Bachelor of Arts in Chemistry Degree Requirements 1) Mathematics (MATH) Regular or Honors Calculus  124 (5)  134 (5)  125 (5)  135 (5)  126 (5)  136 (5) 1) Physics (PHYS) Calculus-based or Algebra-based   121 (5)  114 (4)  122 (5)  115 (4)  123 (5)  116 (4) The calculus-based series is recommended. NOTE: One credit lab is included with each course in the calculus–based physics. If algebra-based physics taken, students must take one lab from below. One quarter of physics laboratory  117, 118, 119 (1) 3) General Chemistry (CHEM) Regular or Accelerated or Honors  142 (5)  143 (6)  145 (5)  152 (5)  153 (6)  155 (5)  162 (5)  165 (5) 4) Organic Chemistry (CHEM) a) Regular or Honors  237 (4)  335 (4)  238 (4)  336 (4)  239 (4)  337 (4) b) Laboratory  241 (3) or  346 (3)  242 (3)  347 (3) 5) Inorganic Chemistry (CHEM)  312 Lecture (3) 6) Analytical Lab (CHEM)  321 (5) Quantitative Analysis (5) 7) Advanced Chemistry (CHEM) Eleven credits of numerically graded CHEM 400 level courses to include either: a)  455 (3) or  452 (3)  456 (3)  453 (3)  457 (3) b)  Additional 400-level chemistry courses, not previously mentioned, taken for a numerical grade. The two parts of this requirement must total eleven credits 8) Advanced Chem Lab (CHEM)  CHEM 317 (4) Inorganic Chem Lab or 461(3) Physical Chemistry Lab | [Page 1] Bachelor of Science in Chemistry ACS certified Degree Requirements 1) Mathematics (MATH) a) Calculus or Honors Calculus  124 (5)  134 (5)  125 (5)  135 (5)  126 (5)  136 (5) b) Two additional math courses above the 200 level are required if the regular calculus sequence is taken. Recommended:  307 (3) or  AMATH 351 (3)  308 (3) or  AMATH 352 (3) 2) Physics (PHYS) a) Calculus-based or Algebra-based  121 (5)  114 (4)  122 (5)  115 (4)  123 (5)  116 (4) Calculus-based series is recommended. One credit lab is included in the calculus-based physics series. b) One credit of laboratory  117, 118, 119 (1) 3) General Chemistry (CHEM) Regular or Accelerated or Honors  142 (5)  143 (6)  145 (5)  152 (5)  153 (6)  155 (5)  162 (5)  165 (5) 4) Analytical Lab (CHEM)  321 (5)  426 (3) or 428 (3) 5) Inorganic Chemistry (CHEM)  312 Lecture (3)  317 Laboratory (4)  416 Transition Metals (3) Students completing 155 and 165 are exempt from CHEM 312. 6) Organic Chemistry (CHEM) a) Lecture Regular or Honors  237 (4)  335 (4)  238 (4)  336 (4)  239 (4)  337 (4) b) Laboratory  241 (3)  346 (3)  242 (3)  347 (3) 7) Physical Chemistry (CHEM)  455 (3)  456 (3)  457 (3)  461 (3) 8) Biochemistry  BIOC 405 or CHEM 432 or CHEM 436 9) Advanced Chemistry The two parts of this requirement must total a minimum of 5 credits a) Choose one 400 level lab from the following:  462 Organic Synthesis  463 Spectroscopy  464 Computers in Data Acquisition  466 Energy Materials, Devices b) Additional 400-level CHEM/BIOC course not previously taken. __________________________ Honors students only may apply Chem 399 or 499 for Part B.
 - Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-chemistry.txt
 
 #### Chemistry - ACS-certified B.S. route
@@ -427,36 +405,26 @@ Generated: 2026-04-13T03:06:17.860Z
 #### Chemistry - B.A. route
 
 - Source: https://chem.washington.edu/ba-chemistry
+- Primary source: https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf
 - Parser type: generic-html
 - Parser adapter: generic-official-html-page
-- Resolution strategy: primary-source
+- Resolution strategy: alternate-official-source
 - Parse confidence: high
-- Source-only UW course codes: AMATH 351, AMATH 352, AMATH 422, AMATH 423, ATM S 358, ATM S 458, B H 311, BIOC 405, BIOC 406, BIOC 426, BIOC 440, BIOC 441, BIOC 442, BIOL 180, BIOL 200, BIOL 220, BIOL 355, BIOL 401, BIOL 402, BIOL 411, BIOL 457, BIOL 459, BIOST 310, BOTH MATH 207, BOTH MATH 208, BOTH MATH 307, BOTH MATH 308, BSE 406, CHEM 142, CHEM 143, CHEM 145, CHEM 152, CHEM 153, CHEM 155, CHEM 162, CHEM 165, CHEM 237, CHEM 238, CHEM 239, CHEM 242, CHEM 257, CHEM 258, CHEM 259, CHEM 299, CHEM 299W, CHEM 312, CHEM 321, CHEM 335, CHEM 336, CHEM 337, CHEM 347, CHEM 399, CHEM 400, CHEM 416, CHEM 426, CHEM 428, CHEM 432, CHEM 436, CHEM 453, CHEM 456, CHEM 457, CHEM 462, CHEM 463, CHEM 464, CHEM 466, CHEM 499, CHEM CHEM 399, GENOME 361, GENOME 371, GENOME 372, HONORS 134, HONORS 135, HONORS 136, LANGUAGE 101, MATH 125, MATH 126, MATH 134, MATH 135, MATH 136, MATH 207, MATH 208, NEUSCI 404, PHYS 114, PHYS 115, PHYS 116, PHYS 117, PHYS 118, PHYS 119, PHYS 121, PHYS 122, PHYS 123, Q SCI 381, STAT 311
-- Requirement cues: * Arts and Humanities (A&H), Social Science (SSc). | * Arts and Humanities (A&H), Social Science (SSc). Students are expected to understand and complete all general education requirements as detailed in the General Catalog. | * Arts and Humanities (A&H), Social Science (SSc). They are general education requirements. Students are expected to understand and complete all general education requirements as detailed in the General Catalog.
+- Source-only UW course codes: AMATH 118, AMATH 119, AMATH 351, AMATH 352, AMATH 422, AMATH 423, ATM S 358, ATM S 458, B H 311, BIOC 405, BIOC 406, BIOC 426, BIOC 440, BIOC 441, BIOC 442, BIOL 180, BIOL 200, BIOL 220, BIOL 355, BIOL 401, BIOL 402, BIOL 411, BIOL 457, BIOL 459, BIOST 310, BOTH MATH 207, BOTH MATH 208, BOTH MATH 307, BOTH MATH 308, BSE 406, CHEM 142, CHEM 143, CHEM 145, CHEM 152, CHEM 153, CHEM 155, CHEM 162, CHEM 165, CHEM 237, CHEM 238, CHEM 239, CHEM 242, CHEM 257, CHEM 258, CHEM 259, CHEM 299, CHEM 299W, CHEM 312, CHEM 321, CHEM 335, CHEM 336, CHEM 337, CHEM 347, CHEM 399, CHEM 400, CHEM 416, CHEM 426, CHEM 428, CHEM 432, CHEM 436, CHEM 453, CHEM 456, CHEM 457, CHEM 462, CHEM 463, CHEM 464, CHEM 466, CHEM 499, CHEM CHEM 399, GENOME 361, GENOME 371, GENOME 372, HONORS 134, HONORS 135, HONORS 136, LANGUAGE 101, MATH 125, MATH 126, MATH 134, MATH 135, MATH 136, MATH 207, MATH 208, NEUSCI 404, PHYS 114, PHYS 115, PHYS 116, PHYS 117, PHYS 118, PHYS 119, PHYS 121, PHYS 122, PHYS 123, Q SCI 381, STAT 311
+- Requirement cues: [Page 1] Bachelor of Science in Chemistry ACS certified Degree Requirements 1) Mathematics (MATH) a) Calculus or Honors Calculus  124 (5)  134 (5)  125 (5)  135 (5)  126 (5)  136 (5) b) Two additional math courses above the 200 level are required if the regular calculus sequence is taken. Recommended:  307 (3) or  AMATH 351 (3)  308 (3) or  AMATH 352 (3) 2) Physics (PHYS) a) Calculus-based or Algebra-based  121 (5)  114 (4)  122 (5)  115 (4)  123 (5)  116 (4) Calculus-based series is recommended. One credit lab is included in the calculus-based physics series. b) One credit of laboratory  117, 118, 119 (1) 3) General Chemistry (CHEM) Regular or Accelerated or Honors  142 (5)  143 (6)  145 (5)  152 (5)  153 (6)  155 (5)  162 (5)  165 (5) 4) Analytical Lab (CHEM)  321 (5)  426 (3) or 428 (3) 5) Inorganic Chemistry (CHEM)  312 Lecture (3)  317 Laboratory (4)  416 Transition Metals (3) Students completing 155 and 165 are exempt from CHEM 312. 6) Organic Chemistry (CHEM) a) Lecture Regular or Honors  237 (4)  335 (4)  238 (4)  336 (4)  239 (4)  337 (4) b) Laboratory  241 (3)  346 (3)  242 (3)  347 (3) 7) Physical Chemistry (CHEM)  455 (3)  456 (3)  457 (3)  461 (3) 8) Biochemistry  BIOC 405 or CHEM 432 or CHEM 436 9) Advanced Chemistry The two parts of this requirement must total a minimum of 5 credits a) Choose one 400 level lab from the following:  462 Organic Synthesis  463 Spectroscopy  464 Computers in Data Acquisition  466 Energy Materials, Devices b) Additional 400-level CHEM/BIOC course not previously taken. __________________________ Honors students only may apply Chem 399 or 499 for Part B. | * Arts and Humanities (A&H), Social Science (SSc). | * Arts and Humanities (A&H), Social Science (SSc). Students are expected to understand and complete all general education requirements as detailed in the General Catalog.
 - Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-chemistry-pathway-ba-route.txt
 
 #### Chemistry - B.S. route
 
 - Source: https://chem.washington.edu/ba-chemistry
-- Primary source: https://chem.washington.edu/bs-chemistry
+- Primary source: https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf
 - Parser type: generic-html
 - Parser adapter: generic-official-html-page
 - Resolution strategy: alternate-official-source
 - Parse confidence: high
-- Source-only UW course codes: AMATH 351, AMATH 352, AMATH 422, AMATH 423, ATM S 358, ATM S 458, B H 311, BIOC 405, BIOC 406, BIOC 426, BIOC 440, BIOC 441, BIOC 442, BIOL 180, BIOL 200, BIOL 220, BIOL 355, BIOL 401, BIOL 402, BIOL 411, BIOL 457, BIOL 459, BIOST 310, BOTH MATH 207, BOTH MATH 208, BOTH MATH 307, BOTH MATH 308, BSE 406, CHEM 142, CHEM 143, CHEM 145, CHEM 152, CHEM 153, CHEM 155, CHEM 162, CHEM 165, CHEM 237, CHEM 238, CHEM 239, CHEM 242, CHEM 257, CHEM 258, CHEM 259, CHEM 299, CHEM 299W, CHEM 312, CHEM 317, CHEM 321, CHEM 335, CHEM 336, CHEM 337, CHEM 347, CHEM 399, CHEM 400, CHEM 416, CHEM 426, CHEM 428, CHEM 432, CHEM 436, CHEM 452, CHEM 453, CHEM 455, CHEM 456, CHEM 457, CHEM 461, CHEM 462, CHEM 463, CHEM 464, CHEM 466, CHEM 499, CHEM CHEM 399, GENOME 361, GENOME 371, GENOME 372, HONORS 134, HONORS 135, HONORS 136, LANGUAGE 101, MATH 124, MATH 125, MATH 126, MATH 134, MATH 135, MATH 136, MATH 207, MATH 208, NEUSCI 404, PHYS 114, PHYS 115, PHYS 116, PHYS 117, PHYS 118, PHYS 119, PHYS 121, PHYS 122, PHYS 123, Q SCI 381, STAT 311
-- Requirement cues: * Arts and Humanities (A&H), Social Science (SSc). | * Arts and Humanities (A&H), Social Science (SSc). Students are expected to understand and complete all general education requirements as detailed in the General Catalog. | * Arts and Humanities (A&H), Social Science (SSc). They are general education requirements. Students are expected to understand and complete all general education requirements as detailed in the General Catalog.
+- Source-only UW course codes: AMATH 118, AMATH 119, AMATH 351, AMATH 352, AMATH 422, AMATH 423, ATM S 358, ATM S 458, B H 311, BIOC 405, BIOC 406, BIOC 426, BIOC 440, BIOC 441, BIOC 442, BIOL 180, BIOL 200, BIOL 220, BIOL 355, BIOL 401, BIOL 402, BIOL 411, BIOL 457, BIOL 459, BIOST 310, BOTH MATH 207, BOTH MATH 208, BOTH MATH 307, BOTH MATH 308, BSE 406, CHEM 142, CHEM 143, CHEM 145, CHEM 152, CHEM 153, CHEM 155, CHEM 162, CHEM 165, CHEM 237, CHEM 238, CHEM 239, CHEM 242, CHEM 257, CHEM 258, CHEM 259, CHEM 299, CHEM 299W, CHEM 312, CHEM 317, CHEM 321, CHEM 335, CHEM 336, CHEM 337, CHEM 347, CHEM 399, CHEM 400, CHEM 416, CHEM 426, CHEM 428, CHEM 432, CHEM 436, CHEM 452, CHEM 453, CHEM 455, CHEM 456, CHEM 457, CHEM 461, CHEM 462, CHEM 463, CHEM 464, CHEM 466, CHEM 499, CHEM CHEM 399, GENOME 361, GENOME 371, GENOME 372, HONORS 134, HONORS 135, HONORS 136, LANGUAGE 101, MATH 124, MATH 125, MATH 126, MATH 134, MATH 135, MATH 136, MATH 207, MATH 208, NEUSCI 404, PHYS 114, PHYS 115, PHYS 116, PHYS 117, PHYS 118, PHYS 119, PHYS 121, PHYS 122, PHYS 123, Q SCI 381, STAT 311
+- Requirement cues: [Page 1] Bachelor of Science in Chemistry ACS certified Degree Requirements 1) Mathematics (MATH) a) Calculus or Honors Calculus  124 (5)  134 (5)  125 (5)  135 (5)  126 (5)  136 (5) b) Two additional math courses above the 200 level are required if the regular calculus sequence is taken. Recommended:  307 (3) or  AMATH 351 (3)  308 (3) or  AMATH 352 (3) 2) Physics (PHYS) a) Calculus-based or Algebra-based  121 (5)  114 (4)  122 (5)  115 (4)  123 (5)  116 (4) Calculus-based series is recommended. One credit lab is included in the calculus-based physics series. b) One credit of laboratory  117, 118, 119 (1) 3) General Chemistry (CHEM) Regular or Accelerated or Honors  142 (5)  143 (6)  145 (5)  152 (5)  153 (6)  155 (5)  162 (5)  165 (5) 4) Analytical Lab (CHEM)  321 (5)  426 (3) or 428 (3) 5) Inorganic Chemistry (CHEM)  312 Lecture (3)  317 Laboratory (4)  416 Transition Metals (3) Students completing 155 and 165 are exempt from CHEM 312. 6) Organic Chemistry (CHEM) a) Lecture Regular or Honors  237 (4)  335 (4)  238 (4)  336 (4)  239 (4)  337 (4) b) Laboratory  241 (3)  346 (3)  242 (3)  347 (3) 7) Physical Chemistry (CHEM)  455 (3)  456 (3)  457 (3)  461 (3) 8) Biochemistry  BIOC 405 or CHEM 432 or CHEM 436 9) Advanced Chemistry The two parts of this requirement must total a minimum of 5 credits a) Choose one 400 level lab from the following:  462 Organic Synthesis  463 Spectroscopy  464 Computers in Data Acquisition  466 Energy Materials, Devices b) Additional 400-level CHEM/BIOC course not previously taken. __________________________ Honors students only may apply Chem 399 or 499 for Part B. | * Arts and Humanities (A&H), Social Science (SSc). | * Arts and Humanities (A&H), Social Science (SSc). Students are expected to understand and complete all general education requirements as detailed in the General Catalog.
 - Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-chemistry-pathway-bs-route.txt
-
-#### Chinese
-
-- Source: https://asian.washington.edu/ba-chinese
-- Parser type: generic-html
-- Parser adapter: generic-official-html-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: ASIAN 200, ASIAN 201, ASIAN 204, ASIAN 207, ASIAN 211, ASIAN 263, ASIAN 401, ASIAN 404, ASIAN 498, BUS 490, CHIN 134, CHIN 211, CHIN 212, CHIN 301, CHIN 302, CHIN 331, CHIN 411, CHIN 412, CHIN 413, CHIN 443, CHIN 452, CHIN 453, CHIN 462, CHIN 470, CHIN 482, CHIN 496
-- Requirement cues: 10 credits : | 10 credits from among the following (if the course has not already been used to satisfy other requirements): | 15 credits , MUST INCLUDE:
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-chinese.txt
 
 #### Cinema & Media Studies
 
@@ -480,17 +448,6 @@ Generated: 2026-04-13T03:06:17.860Z
 - Source-only UW course codes: AMATH 301, AMATH 351, AMATH 352, ATMS 101, ATMS 211, ATMS 212, BIOL 180, CEE 442, CEE 444, CHEM 152, CSE 121, CSE 122, CSE 123, CSE 142, ECON 200, ECON 201, ENGL 131, ENVIR 235, ESRM 100, ESRM 101, ESRM 210, ESS 101, ESS 106, ESS 201, ESS 211, ESS 212, INDE 250, INDE 315, MATH 124, MATH 125, MATH 208, OCEAN 102, OCEAN 200, QSCI 381, STAT 290, STAT 390
 - Requirement cues: [Page 1] Bachelor of Science in Civil Engineering (BSCE/CIVE) University of Washington Prerequisites & General Elective Coursework Prerequisite Course Key ᐅ Application Requirements - Transfer/Interest Changers must complete by time of application (April 5). ᐅᐅ Enrollment Requirements - Transfer/Interest Changers must complete prior to enrollment in major. ENGRUD Students: Plan to complete all BSCE prerequisite courses (application and enrollment requirements) before starting CEE Core Curriculum (Junior Year). Mathematics (24 credits) ᐅ Calculus w/ Analytic Geo. (Math 124/125/126) 15cr Di ff erential Equations (MATH 207 or AMATH 351) 3cr ᐅ ᐅ Matrix/Linear Algebra (MATH 208 or AMATH 352) 3cr Statistics (INDE 315, QSCI 381, STAT 390 or STAT 290) 3-4cr Sciences (28+ credits) ᐅ General Chemistry 1 (CHEM 142) 5cr General Chemistry 2 (CHEM 152) 5cr (Transfers: CIVE can accept any second chemistry course after CHEM 142) ᐅ Mechanics (PHYS 121) 5cr ᐅ Elect-Mag & Oscillation (PHYS 122) 5cr Waves (PHYS 123) 5cr Basic Science Elective 3-5cr (Choose from: BIOL 180 (5cr), ATMS 101 (5cr), ATMS 211 (5cr, SSc), ATMS 212 (3cr, SSc), ESRM 100 (5cr, SSc), ESRM 101 (5cr, SSc), ESRM 210 (5cr), ESS 101 (5cr, SSc) ESS 106 (3cr, SSc), ESS 201 (3cr), ESS 211 (5cr), ESS 212 (5cr), OCEAN 102 (5cr, SSc), or OCEAN 200 (3cr)) Engineering Fundamentals (16 credits) ᐅ ᐅ Computer Programming 4cr (AMATH 301, CSE 121, 122, 123, 142 or 160) ᐅ Statics (AA 210) 4cr ᐅ ᐅ Mechanics of Materials (CEE 220) 4cr ᐅ ᐅ Dynamics & Kinematics (ME 230) 4cr Written Communication (12 credits) ᐅ English Composition 5cr Additional Composition or Writing 7cr Economics (4-5 credits) CEE Topic Requirement 4-5cr (INDE 250 , ECON 200/201, or ESRM/ECON/ENVIR 235) *ECON/ESRM/ENVIR courses may also be applied to SSc req. Areas of Inquiry (24 credits) Arts and Humanities (A&H) 10cr Social Sciences (SSc) 10cr Additional A&H and/or SSc 4cr Diversity (5 credit minimum) 5cr One course from UW’s approved DIV list. See MyPlan. BSCE Major Coursework The BSCE degree covers six areas of interest: Construction, Environmental, Hydrology, Geotechnical, Structural, and Transportation. The 300-level CEE Core Curriculum provides a foundation in all areas. Technical Electives and Engineering & Science Electives, typically taken in the senior year, allow students to develop depth in their preferred area(s) of interest. Seniors also complete a capstone design course in an area of their choice. Core Curriculum (40 credits) (See sample 4 year plan on page 2 for core curriculum sequencing (Track 1 and Track 2)) Construction Engineering (CEE 307) 5cr GeoSurveying (CEE 317) 5cr Transportation Engineering (CEE 327) 5cr Construction Materials (CEE 337) 5cr Intro to Fluid Mechanics (CEE 347) 5cr Environmental Engineering (CEE 357) 5cr Geotechnical Engineering (CEE 367) 5cr Intro to Structural Design (CEE 377) 5cr Capstone & Professional Practice (7 credits) Capstone Design Course 5cr ● CEE 441, 442, 444, or 445, taken SPR qtr of senior year Professional Practice (CEE 440) 2cr ● CEE 440 is taken in junior year. Technical Electives (TE) (15 credits, 3 areas) ● Technical Electives are CEE 400-level courses that provide students with in-depth knowledge and design experience. ● Area Requirement: Students are required to take at least 3 credits from 3 of the 6 areas. (see BSCE TE list for details) Engineering & Science Electives (E&S) (12 cr.) Choice of additional CEE Technical Elective courses or courses from an approved list. See the BSCE E&S Elective list for complete details. General Electives Additional credits to meet the 180 total required for the BSCE degree. Academic Planning Notes: • Areas of Inquiry courses can also count toward Diversity and Additional Writing. Use MyPlan fi lters to identify courses that satisfy multiple requirements.. • CEE Study Abroad opportunities are a great way to satisfy degree requirements. www.ce.washington.edu ● 201 More Hall, Box 352700, Seattle, WA 98195 ● ceadvice@uw.edu | [Page 2] Bachelor of Science in Civil Engineering (BSCE/CIVE) University of Washington Sample 4-year Plan Freshman Year AUT WIN SPR MATH 124 5 MATH 125 5 MATH 126 5 CHEM 142 5 CHEM 152* 5 PHYS 121 5 Engl. Comp. 5 A&H/SSc/W 5 A&H/SSc/DIV 5 ENGR 101 2 Total 17 15 15 Sophomore Year AUT WIN SPR AA 210 4 CEE 220 4 ME 230 4 PHYS 122 5 PHYS 123 5 AMATH 301 4 MATH 208 3 MATH 207 3 Basic Science 5 INDE 250/ECON 4 Elective 3 A&H/SSc/DIV 3 Total 16 15 16 Junior Year (Students Choose Track 1 or Track 2) AUT WIN SPR Jr. Track 1 - Academic Year 2025-2026 only CEE 317 5 CEE 307 5 CEE 327 5 CEE 337 5 CEE 347 5 CEE 367 5 CEE 377 5 CEE 357 5 CEE 378 (if structures) or TE/E&S/other + CEE 440 2 Total 17 15 10+ Jr. Track 2 - Academic Year 2025-2026 only CEE 307 5 CEE 327 5 CEE 337 5 CEE 317 5 CEE 367 5 CEE 357 5 CEE 347 5 CEE 377 5 CEE 378 (if structures) or TE/E&S/other + CEE 440 2 Total 17 15 10+ Senior Year AUT WIN SPR Technical Elective 3 Technical Elective 3 Capstone 5 Technical Elective 3 E&S Elective 4 Technical Elective 3 Technical Elective 3 Statistics 3 Elective 4 E&S Elective 3 + Additional credits as desired or needed to reach 180. *Transfers: CIVE can accept any second chemistry course after CHEM 142 BSCE ADMISSIONS: The BSCE program admits students once a year for autumn quarter only. See the CEE website for detailed application information. Transfer students must also submit a UW admissions application for autumn. See UW Admissions for more information. Transfer students seeking course substitutions should be prepared to present a course description and syllabus. WA State Community College Transfers should consult the UW Equivalency Guide. BSCE TECHNICAL ELECTIVES: COURSE LIST Students must take 3cr from 3 of 6 areas. Courses with an * are listed in multiple areas but will only satisfy one TE area req. This list is for AY 25-26 and may not include all TE options. Construction, Energy & Sustainable Infrastructure CEE 422* Energy & Transportation (3) CEE 424 GIS for Civil Engineers (3) CEE 433* Design and Construction of Temporary Structures (3) CEE 434 Project Estimating (3) CEE 435 Project Scheduling (3) CEE 450 Behavioral Science for Engineering Designers (3, DIV) CEE 454* Design of Timber Structures (3) CEE 498 Sustainable Construction (3) CEE 498 Civil Infrastructure Resiliency (3) Environmental Engineering CEE 437* Advanced Surveying (5) CEE 459* Stormwater Management & Treatment (3) CEE 462 Applied Limnology (3) CEE 465* Data Analysis in Water Sciences (3) CEE 467* Geospatial Data Analysis (5) CEE 480* Air-Quality Modeling (4) CEE 481* Hydraulic Design for Environmental Engineering (3) CEE 482 Wastewater Reuse & Resource Recovery (3) CEE 483 Drinking Water Treatment (3) CEE 498* Antimicro. Resis. Impact on Env. & Public Health (3) Geotechnical Engineering CEE 436 Foundation Design (3) Hydrology/Hydrodynamics (Water) CEE 432 Advanced Remote Sensing (4) CEE 437* Advanced Surveying (5) CEE 459* Stormwater Management & Treatment (3) CEE 465* Data Analysis in Water Sciences (3) CEE 467* Geospatial Data Analysis (5) CEE 473 Coastal Engineering (3) CEE 475 Analysis Techniques for Groundwater Flow (3) CEE 476 Physical Hydrology (3) CEE 477 Open-Channel Engr (3) CEE 478 Water Systems Management and Operations (3) CEE 480* Air-Quality Modeling (3) CEE 481* Hydraulic Design for Environmental Engineering (3) CEE 498 Coastal Hazards (3) Structural Engineering CEE 378 Structural Analysis (Formerly CEE 456) (5) CEE 433* Design and Construction of Temporary Structures (3) CEE 451 Design of Metal Structures (3) CEE 452 Design Reinforced Concrete Structures (3) CEE 453 Prestressed Concrete Design (3) CEE 454* Design Timber Structures (3) CEE 457 Advanced Structures I (3) Transportation Engineering CEE 410 Tra ffi c Engr Fundamentals (3) CEE 412 Transportation Data Mgmt. (3) CEE 415 Machine Learning for Civil Engineers (4) CEE 416 Urban Transportation Planning & Design (3) CEE 419 Transit Systems Planning (3) CEE 422* Energy & Transportation Non-Area-Speci fi c Courses (WIll not satisfy area requirement) = CEE 463 Applied Limnology Lab (2) CEE 498 Engineering, Environment & Justice (3, DIV) CEE 498 Engr. for Socioeconomic & Env. Justice (2, DIV) CEE Study Abroad Opportunities (Rome (CEE 409), India, Jordan, etc.) BSCE Degree Sheet (as of AUT24) Updated 2/2025
 - Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-civil-engineering.txt
-
-#### Classics
-
-- Source: https://classics.washington.edu/ba-classics
-- Parser type: generic-html
-- Parser adapter: generic-official-html-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: CLAS 495, GREEK 101, GREEK 102, GREEK 103, GREEK 300, GREEK 301, LATIN 101, LATIN 102, LATIN 103, LATIN 300, LATIN 301, THROUGH 307
-- Requirement cues: 10 credits from approved classics in English, classical art and archaeology, ancient history, the history of ancient philosophy, and the history of ancient science. See list of acceptable courses . | 15 credits of 300-level classical Greek, excluding GREEK 300, GREEK 301 | 15 credits of 300-level GREEK courses, excluding GREEK 300 and GREEK 301
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-classics.txt
 
 #### Communication
 
@@ -524,17 +481,6 @@ Generated: 2026-04-13T03:06:17.860Z
 - Source-only UW course codes: CHID 101, CHID 390, CHID 491, CHID 492, CHID 493
 - Requirement cues: Suggested First- and Second-Year College Courses: Introductory courses in history, philosophy, English, comparative literature, ethnic and gender studies, American Indian studies, and other areas of the humanities and social sciences. | Admission Requirements | Completion Requirements
 - Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-comparative-history-of-ideas.txt
-
-#### Comparative Literature
-
-- Source: https://cinema.washington.edu/ba-comparative-literature
-- Parser type: html-overview-page
-- Parser adapter: uw-seattle-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: C LIT 250, C LIT 251, C LIT 300, C LIT 320, C LIT 321, C LIT 322, C LIT 323, C LIT 360, C LIT 361, C LIT 362, C LIT 400, ENGL 131, FRENCH 302, FRENCH 304, GERMAN 203, GERMAN 311
-- Requirement cues: *Note: Minimum foreign language prerequisite to meet this requirement: completion of the second year (often higher) of the foreign language. Students should consult the departmental adviser to determine the prerequisite language course for the foreign literature course, e.g. German 203 for German 311; French 302 for French 304. | C LIT 400 (5 credits) | Completion of one of C Lit 250, 251 or 252 (5 credits count toward the 50 credit major requirements)
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-comparative-literature.txt
 
 #### Comparative Religion
 
@@ -604,21 +550,64 @@ Generated: 2026-04-13T03:06:17.860Z
 - Requirement cues: The Dance Major is a liberal arts degree which takes a broad approach to studying dance as: a movement practice, a performance activity, a choreographic enterprise, a social practice, a cultural practice, a creative endeavor, a subject of scientific inquiry, a subject of historical inquiry, and an agent of sociopolitical change. The curriculum includes study in a variety of genres, including African and African-Diasporic dance, Western concert dance, somatic practices, and social dance. Embodied learning is brought into dialogue with artistic, scientific, and humanistic modes of inquiry throughout the curriculum, which is designed for students with diverse backgrounds and interests. Students have opportunities to engage in academic or creative research, perform, choreograph, and contribute to community projects. Dance majors can elect to pursue an honors track. | Admission Requirements | Applicants who meet the following requirements are accepted during autumn, winter, and spring quarters on a rolling basis.
 - Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-dance.txt
 
+#### Design
+
+- Source: https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html
+- Parser type: catalog-page
+- Parser adapter: uw-seattle-catalog-page
+- Resolution strategy: primary-source
+- Parse confidence: high
+- Source-only UW course codes: ART 101, ART 140, ART 190, ART 191, ART 233, ART 240, ART 245, ART 246, ART 253, ART 260, ART 272, ART 280, ART 285, ART 290, ART 292, ART 300, ART 301, ART 302, ART 303, ART 333, ART 345, ART 350, ART 353, ART 355, ART 358, ART 360, ART 365, ART 372, ART 390, ART 392, ART 393, ART 395, ART 400, ART 440, ART 450, ART 453, ART 457, ART 485, ART 490, ART 492, ART 494, ART 496
+- Requirement cues: Admission Requirements | 5 credits college-level art with a minimum 2.5 grade | Transfer Students: Complete any 5-credit introductory art class with a minimum 2.5 grade prior to transferring to UW. During initial orientation and advising appointment, meet with an academic adviser (room 104 Art) to declare the major.
+- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-design.txt
+
+#### Disability Studies
+
+- Source: https://disabilitystudies.washington.edu/DS_major
+- Parser type: html-degree-page
+- Parser adapter: uw-seattle-html-degree-page
+- Resolution strategy: primary-source
+- Parse confidence: high
+- Source-only UW course codes: CHID 230, CHID 430, DIS ST 300, DIS ST 337, DIS ST 384, DIS ST 430, DIS ST 499, INDIV 493, LSJ 430, SOC 337, THROUGH 103
+- Requirement cues: 35 credits must be upper division. | A final independent study project/paper on a topic of interest to you within the field of disability studies, and a presentation or other public engagement component. This represents the culmination of your studies in the major. You must take a minimum of 5 credits and may take a maximum of 15 credits. | After your advisor has been assigned, Disability Studies Advisors will send you the INDIV 493 Proposal form and you will complete it by adding the following:
+- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-disability-studies.txt
+
+#### Drama
+
+- Source: https://www.washington.edu/students/gencat/program/S/Drama-134.html
+- Parser type: catalog-page
+- Parser adapter: uw-seattle-catalog-page
+- Resolution strategy: primary-source
+- Parse confidence: high
+- Source-only UW course codes: DANCE 530, DRAMA 201, DRAMA 202, DRAMA 203, DRAMA 213, DRAMA 215, DRAMA 221, DRAMA 222, DRAMA 251, DRAMA 252, DRAMA 290, DRAMA 291, DRAMA 292, DRAMA 302, DRAMA 303, DRAMA 316, DRAMA 317, DRAMA 319, DRAMA 351, DRAMA 352, DRAMA 353, DRAMA 365, DRAMA 371, DRAMA 372, DRAMA 373, DRAMA 391, DRAMA 410, DRAMA 414, DRAMA 415, DRAMA 416, DRAMA 417, DRAMA 418, DRAMA 419, DRAMA 420, DRAMA 421, DRAMA 430, DRAMA 451, DRAMA 452, DRAMA 453, DRAMA 454, DRAMA 455, DRAMA 456, DRAMA 457, DRAMA 460, DRAMA 461, DRAMA 466, DRAMA 490, DRAMA 491, DRAMA 493, DRAMA 494, DRAMA 498, DRAMA 499, DRAMA 506, DRAMA 508, DRAMA 509, DRAMA 510, DRAMA 512, DRAMA 514, DRAMA 518, DRAMA 519, DRAMA 530, DRAMA 551, DRAMA 552, DRAMA 557, DRAMA 558, DRAMA 559, DRAMA 562, DRAMA 564, DRAMA 599, DRAMA 600, DRAMA 700
+- Requirement cues: Admission Requirements | No audition is required to enter the program. | Completion Requirements
+- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-drama.txt
+
+#### Earth & Space Sciences
+
+- Source: https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html
+- Parser type: html-degree-page
+- Parser adapter: uw-seattle-html-degree-page
+- Resolution strategy: primary-source
+- Parse confidence: high
+- Source-only UW course codes: AMATH 351, BIOL 200, BIOL 240, BIOL 475, BOTH BIOL 180, CHEM 142, CHEM 152, CHEM 162, ESS 202, ESS 203, ESS 204, ESS 205, ESS 210, ESS 211, ESS 212, ESS 213, ESS 230, ESS 310, ESS 311, ESS 312, ESS 313, ESS 314, ESS 316, ESS 400, ESS 401, ESS 418, ESS 426, ESS 427, ESS 441, ESS 447, ESS 449, ESS 454, ESS 455, ESS 456, ESS 457, ESS 463, ESS 482, ESS 489, ESS 499, MATH 124, MATH 125, MATH 126, MATH 136, MATH 307, MATH 308, MATH 324, PHYS 114, PHYS 115, PHYS 116, PHYS 117, PHYS 118, PHYS 119, PHYS 121, PHYS 122, PHYS 123, PHYS 227, PHYS 228, PHYS 321, PHYS 322, Q SCI 291, Q SCI 292, Q SCI 381, REQUIRED 200, REQUIRED 300, STAT 290, STAT 311, STAT 390
+- Requirement cues: The Bachelor of Science in Earth and Space Sciences is designed for students interested in geology and geophysics, and a career path in graduate studies or in the private sector where field and technology experiences and problem-solving skills are an important asset. Students pursuing the B.S. in Earth and Space Sciences choose from one of four options: Geology, Biology, Physics, or Environmental Earth Sciences. The Bachelor of Arts in Earth and Space Sciences enables students to obtain a broad understanding of earth sciences as a background for professional careers such as science journalism, environmental law, science education, and environmental policy. | Admission Requirements | Completion Requirements
+- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-earth-and-space-sciences.txt
+
+#### Earth & Space Sciences - B.A. route
+
+- Source: https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html
+- Parser type: html-degree-page
+- Parser adapter: uw-seattle-html-degree-page
+- Resolution strategy: primary-source
+- Parse confidence: high
+- Source-only UW course codes: AMATH 351, BIOL 200, BIOL 240, BIOL 475, BOTH BIOL 180, CHEM 152, CHEM 162, ESS 202, ESS 203, ESS 204, ESS 205, ESS 210, ESS 211, ESS 212, ESS 213, ESS 230, ESS 310, ESS 311, ESS 312, ESS 313, ESS 314, ESS 316, ESS 400, ESS 401, ESS 418, ESS 426, ESS 427, ESS 441, ESS 447, ESS 449, ESS 454, ESS 455, ESS 456, ESS 457, ESS 463, ESS 482, ESS 489, ESS 499, MATH 124, MATH 125, MATH 126, MATH 136, MATH 307, MATH 308, MATH 324, PHYS 114, PHYS 115, PHYS 116, PHYS 117, PHYS 118, PHYS 119, PHYS 121, PHYS 122, PHYS 123, PHYS 227, PHYS 228, PHYS 321, PHYS 322, Q SCI 291, Q SCI 292, Q SCI 381, REQUIRED 200, REQUIRED 300, STAT 290, STAT 311, STAT 390
+- Requirement cues: The Bachelor of Science in Earth and Space Sciences is designed for students interested in geology and geophysics, and a career path in graduate studies or in the private sector where field and technology experiences and problem-solving skills are an important asset. Students pursuing the B.S. in Earth and Space Sciences choose from one of four options: Geology, Biology, Physics, or Environmental Earth Sciences. The Bachelor of Arts in Earth and Space Sciences enables students to obtain a broad understanding of earth sciences as a background for professional careers such as science journalism, environmental law, science education, and environmental policy. | Admission Requirements | Completion Requirements
+- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-earth-and-space-sciences-pathway-ba-route.txt
+
 ## uw-bothell
 
 ### Possible source-vs-structured drift
-
-#### American & Ethnic Studies (BA)
-
-- Source: https://www.uwb.edu/ias/undergraduate/majors/american-ethnic-studies
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: BCWRIT 500, BCWRIT 501, BCWRIT 502, BCWRIT 510, BCWRIT 511, BCWRIT 512, BCWRIT 599, BCWRIT 700, BIS 140, BIS 162, BIS 163, BIS 164, BIS 165, BIS 166, BIS 167, BIS 174, BIS 175, BIS 180, BIS 181, BIS 216, BIS 293, BIS 393, BIS 490, BIS 493, BISCLA 384, BISSTS 420, BISSTS 455, BWRIT 133, BWRIT 134, BWRIT 135, ENGL 131, ENGL 141
-- Structured-only UW course codes not seen in the parsed source: FROM 100
-- Requirement cues: 10 credits of Composition Coursework | Additional Elective Options | Additional School of IAS Coursework (20 credits)
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-american-and-ethnic-studies.txt
 
 #### Applied Computing (BA)
 
@@ -654,64 +643,6 @@ Generated: 2026-04-13T03:06:17.860Z
 - Source-only UW course codes: B ACCT 500, B ACCT 501, B ACCT 502, B ACCT 503, B ACCT 505, B ACCT 506, B ACCT 510, B ACCT 568, BBUS 215, BBUS 220, BBUS 221, BBUS 307, BBUS 310, BBUS 320, BBUS 340, BBUS 350, BBUS 361, BBUS 451, BBUS 453, BBUS 454, BBUS 504, BBUS 506, BBUS 510, BIS 200, BIS 201, BIS 215, BIS 315, BMATH 144, BMATH 215, BWRIT 135, ECON 200, ECON 201, ENGL 111, ENGL 121, ENGL 131, ENGL 182, ENGL 197, ENGL 198, ENGL 199, ENGL 281, ENGL 282, ENGL 297, ENGL 298, ENGL 299, ENGL 381, IND E 315, MATH 112, MATH 124, MATH 125, MATH 126, MATH 134, MATH 390, PSYCH 315, PSYCH 317, Q SCI 291, Q SCI 381, QMETH 201, STAT 220, STAT 221, STAT 311, STMATH 113, STMATH 114, STMATH 124, STMATH 125, STMATH 341
 - Requirement cues: (*Note: Students in the process of completing a course will not be considered for the Accounting Option until the course has been completed.) | (1 credit) | (4 credits)
 - Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-business-administration.txt
-
-#### Business Administration: Accounting (BA)
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: B ACCT 500, B ACCT 501, B ACCT 502, B ACCT 503, B ACCT 505, B ACCT 506, B ACCT 510, B ACCT 568, BBUS 215, BBUS 307, BBUS 310, BBUS 320, BBUS 340, BBUS 350, BBUS 362, BBUS 363, BBUS 373, BBUS 411, BBUS 449, BBUS 451, BBUS 453, BBUS 454, BBUS 458, BBUS 463, BBUS 504, BBUS 506, BBUS 510, BIS 215, BIS 315, BMATH 144, BMATH 215, ENGL 131, IND E 315, MATH 112, MATH 124, MATH 125, MATH 126, MATH 134, MATH 390, PSYCH 315, PSYCH 317, Q SCI 291, Q SCI 381, QMETH 201, STAT 220, STAT 221, STAT 311, STMATH 113, STMATH 114, STMATH 124, STMATH 125, STMATH 341
-- Structured-only UW course codes not seen in the parsed source: BBUS 490
-- Requirement cues: (*Note: Students in the process of completing a course will not be considered for the Accounting Option until the course has been completed.) | (1 credit) | (4 credits)
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-business-administration-accounting.txt
-
-#### Business Administration: Finance (BA)
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: B ACCT 500, B ACCT 501, B ACCT 502, B ACCT 503, B ACCT 505, B ACCT 506, B ACCT 510, B ACCT 568, BBUS 215, BBUS 220, BBUS 221, BBUS 307, BBUS 310, BBUS 320, BBUS 340, BBUS 452, BBUS 453, BBUS 454, BBUS 504, BBUS 506, BBUS 510, BIS 200, BIS 201, BIS 215, BIS 315, BMATH 144, BMATH 215, BWRIT 135, ECON 200, ECON 201, ENGL 111, ENGL 121, ENGL 131, ENGL 182, ENGL 197, ENGL 198, ENGL 199, ENGL 281, ENGL 282, ENGL 297, ENGL 298, ENGL 299, ENGL 381, IND E 315, MATH 112, MATH 124, MATH 125, MATH 126, MATH 134, MATH 390, PSYCH 315, PSYCH 317, Q SCI 291, Q SCI 381, QMETH 201, STAT 220, STAT 221, STAT 311, STMATH 113, STMATH 114, STMATH 124, STMATH 125, STMATH 341
-- Structured-only UW course codes not seen in the parsed source: BBUS 361, BBUS 470, BBUS 480
-- Requirement cues: (1 credit) | (4 credits) | 10 credits from the following:
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-business-administration-finance.txt
-
-#### Business Administration: Leadership & Strategic Innovation (BA)
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: B ACCT 500, B ACCT 501, B ACCT 502, B ACCT 503, B ACCT 505, B ACCT 506, B ACCT 510, B ACCT 568, BBUS 215, BBUS 310, BBUS 320, BBUS 340, BBUS 350, BBUS 443, BBUS 444, BBUS 460, BBUS 461, BBUS 462, BBUS 473, BBUS 475, BBUS 504, BBUS 506, BBUS 510, BIS 215, BIS 315, BMATH 144, BMATH 215, ENGL 131, IND E 315, MATH 112, MATH 124, MATH 125, MATH 126, MATH 134, MATH 390, PSYCH 315, PSYCH 317, Q SCI 291, Q SCI 381, QMETH 201, STAT 220, STAT 221, STAT 311, STMATH 113, STMATH 124, STMATH 125, STMATH 341
-- Requirement cues: (1 credit) | (4 credits) | 10 credits – Complete 2 courses from this list:
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-business-administration-leadership-and-strategic-innovation.txt
-
-#### Business Administration: Marketing (BA)
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: B ACCT 500, B ACCT 501, B ACCT 502, B ACCT 503, B ACCT 505, B ACCT 506, B ACCT 510, B ACCT 568, BBUS 215, BBUS 220, BBUS 221, BBUS 307, BBUS 310, BBUS 320, BBUS 340, BBUS 350, BBUS 426, BBUS 427, BBUS 429, BBUS 431, BBUS 438, BBUS 445, BBUS 491, BBUS 497, BBUS 499, BBUS 504, BBUS 506, BBUS 510, BIS 200, BIS 201, BIS 215, BIS 315, BMATH 144, BMATH 215, BWRIT 135, ECON 200, ECON 201, ENGL 111, ENGL 121, ENGL 131, ENGL 182, ENGL 197, ENGL 198, ENGL 199, ENGL 281, ENGL 282, ENGL 297, ENGL 298, ENGL 299, ENGL 381, IND E 315, MATH 112, MATH 124, MATH 125, MATH 126, MATH 134, MATH 390, PSYCH 315, PSYCH 317, Q SCI 291, Q SCI 381, QMETH 201, STAT 220, STAT 221, STAT 311, STMATH 113, STMATH 114, STMATH 124, STMATH 125, STMATH 341
-- Requirement cues: (1 credit) | (4 credits) | 10 credits – Complete 2 courses from this list:
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-business-administration-marketing.txt
-
-#### Business Administration: Supply Chain Management (BA)
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: B ACCT 500, B ACCT 501, B ACCT 502, B ACCT 503, B ACCT 505, B ACCT 506, B ACCT 510, B ACCT 568, BBUS 215, BBUS 307, BBUS 310, BBUS 320, BBUS 350, BBUS 402, BBUS 447, BBUS 460, BBUS 462, BBUS 482, BBUS 483, BBUS 486, BBUS 487, BIS 215, BIS 315, BMATH 144, BMATH 215, ENGL 131, IND E 315, MATH 112, MATH 124, MATH 125, MATH 126, MATH 134, MATH 390, PSYCH 315, PSYCH 317, Q SCI 291, Q SCI 381, QMETH 201, STAT 220, STAT 221, STAT 311, STMATH 113, STMATH 124, STMATH 125, STMATH 341
-- Structured-only UW course codes not seen in the parsed source: BBUS 492
-- Requirement cues: (*Note: Students in the process of completing a course will not be considered for the Supply Chain Management Option until the course has been completed. Talk with an advisor for more information). | (1 credit) | (4 credits)
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-business-administration-supply-chain-management.txt
 
 #### Chemistry (BA)
 
@@ -784,55 +715,6 @@ Generated: 2026-04-13T03:06:17.860Z
 - Requirement cues: * The above information regarding CSSSKL 511 and 594 applies to students who began their program in Autumn 2025 or after. For students who began before this date, CSSSKL 511 and 594 are either required or waived based on your results from the Writing Skills Assessment that you completed at the start of your program. | 10 credits at 300-level or higher in any subject area | 300-400 Level Electives (15 credits / usually 3 courses)
 - Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-csse-information-assurance-and-cybersecurity.txt
 
-#### Conservation & Restoration Science (BS)
-
-- Source: https://www.uwb.edu/ias/undergraduate/majors/conservation-restoration-science
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: BBIO 180, BBIO 471, BBUS 215, BCHEM 143, BCHEM 144, BCWRIT 500, BCWRIT 501, BCWRIT 502, BCWRIT 510, BCWRIT 511, BCWRIT 512, BCWRIT 599, BCWRIT 700, BEARTH 153, BEARTH 154, BEARTH 155, BEARTH 201, BEARTH 202, BEARTH 317, BEARTH 318, BEARTH 320, BEARTH 321, BES 385, BIO 180, BIS 215, BIS 242, BIS 243, BIS 245, BIS 304, BIS 307, BIS 356, BIS 386, BIS 456, BMATH 123, BMATH 215, CHEM 120, CHEM 142, CHEM 143, CHEM 145, MATH 120, STAT 220, STAT 290
-- Structured-only UW course codes not seen in the parsed source: BES 485, BIS 380, BIS 499, ENOUGH 300
-- Requirement cues: Additional Elective Options | American & Ethnic Studies Applied Computing Biochemistry Biology Business Business ELC: Entrepreneurship Business ELC: General Business Business ELC: Supply Chain Management Business: Accounting Business: Finance Business: Leadership and Strategic Innovation Business: Management Business: Management Information Systems Business: Marketing Business: Retail Management Business: Supply Chain Management Business: Technology and Innovation Management Chemistry Computer Engineering Computer Science & Software Engineering Conservation and Restoration Science Culture, Literature & the Arts Data Visualization (BA) Data Visualization (BS) Developmental and Youth Studies Earth System Science Economics (BS) Educational Studies: Elementary Education Option Electrical Engineering Elementary (K-5) Teacher Certification Environmental Studies Gender, Women and Sexuality Studies Global Studies Health Studies Interdisciplinary Arts Interdisciplinary Social Science Law, Economics and Public Policy Mathematics Mechanical Engineering Media and Communication Studies Nursing Nursing: RN to BSN (Bothell) Nursing: RN to BSN (Everett) Nursing: RN to BSN (Shoreline) Physics Psychology Science, Technology and Society Undeclared/Pre-Major | Apply scientific understanding to the concepts of biological diversity, sustainability, ecological integrity and the socio-political systems with which they interact.
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-conservation-and-restoration-science.txt
-
-#### Culture, Literature & the Arts (BA)
-
-- Source: https://www.uwb.edu/ias/undergraduate/majors/culture-literature-arts
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: BCWRIT 500, BCWRIT 501, BCWRIT 502, BCWRIT 510, BCWRIT 511, BCWRIT 512, BCWRIT 599, BCWRIT 700, BIS 115, BIS 121, BIS 131, BIS 132, BIS 133, BIS 134, BIS 136, BIS 140, BIS 162, BIS 163, BIS 165, BIS 167, BIS 179, BIS 290, BISCLA 384, BISIA 207, BISIA 310, BISIA 311, BISIA 484, BISMCS 279, BWRIT 133, BWRIT 134, BWRIT 135, ENGL 131, ENGL 141
-- Requirement cues: 10 credits of Composition Coursework | 35 credits from any of the courses below in any of the areas | Additional CLA Major Coursework (35 credits)
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-culture-literature-and-the-arts.txt
-
-#### Data Visualization (BA)
-
-- Source: https://admissions.uwb.edu/register/mpw-DataVis-BA
-- Primary source: https://www.uwb.edu/ias/undergraduate/majors/data-visualization
-- Parser type: generic-html
-- Parser adapter: generic-official-html-page
-- Resolution strategy: alternate-official-source
-- Parse confidence: high
-- Source-only UW course codes: B GIS 342, B GIS 343, B GIS 344, B GIS 442, BBUS 301, BCWRIT 500, BCWRIT 501, BCWRIT 502, BCWRIT 510, BCWRIT 511, BCWRIT 512, BCWRIT 599, BCWRIT 700, BDATA 200, BDATA 232, BDATA 411, BDATA 412, BDATA 497, BEARTH 201, BEARTH 202, BES 303, BES 440, BIS 111, BIS 115, BIS 140, BIS 180, BIS 235, BIS 236, BIS 242, BIS 312, BIS 332, BIS 340, BIS 342, BIS 352, BIS 372, BIS 380, BIS 406, BIS 410, BIS 421, BIS 447, BIS 490, BISIA 244, BISIA 250, BISIA 344, BISIA 350, BISMCS 473, CSS 101, ENGL 131
-- Structured-only UW course codes not seen in the parsed source: DATA 200, DATA 232, GIS 342
-- Requirement cues: Additional Elective Options | All prerequisites complete at time of application | American & Ethnic Studies Applied Computing Biochemistry Biology Business Business ELC: Entrepreneurship Business ELC: General Business Business ELC: Supply Chain Management Business: Accounting Business: Finance Business: Leadership and Strategic Innovation Business: Management Business: Management Information Systems Business: Marketing Business: Retail Management Business: Supply Chain Management Business: Technology and Innovation Management Chemistry Computer Engineering Computer Science & Software Engineering Conservation and Restoration Science Culture, Literature & the Arts Data Visualization (BA) Data Visualization (BS) Developmental and Youth Studies Earth System Science Economics (BS) Educational Studies: Elementary Education Option Electrical Engineering Elementary (K-5) Teacher Certification Environmental Studies Gender, Women and Sexuality Studies Global Studies Health Studies Interdisciplinary Arts Interdisciplinary Social Science Law, Economics and Public Policy Mathematics Mechanical Engineering Media and Communication Studies Nursing Nursing: RN to BSN (Bothell) Nursing: RN to BSN (Everett) Nursing: RN to BSN (Shoreline) Physics Psychology Science, Technology and Society Undeclared/Pre-Major
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-data-visualization-ba.txt
-
-#### Data Visualization (BS)
-
-- Source: https://admissions.uwb.edu/register/mpw-DataVis-BS
-- Primary source: https://www.uwb.edu/ias/undergraduate/majors/data-visualization
-- Parser type: generic-html
-- Parser adapter: generic-official-html-page
-- Resolution strategy: alternate-official-source
-- Parse confidence: high
-- Source-only UW course codes: B GIS 342, B GIS 343, B GIS 344, B GIS 442, BBUS 301, BCWRIT 500, BCWRIT 501, BCWRIT 502, BCWRIT 510, BCWRIT 511, BCWRIT 512, BCWRIT 599, BCWRIT 700, BDATA 200, BDATA 232, BDATA 411, BDATA 412, BDATA 497, BEARTH 201, BEARTH 202, BES 303, BES 440, BIS 111, BIS 115, BIS 140, BIS 180, BIS 235, BIS 236, BIS 242, BIS 312, BIS 332, BIS 340, BIS 342, BIS 352, BIS 372, BIS 380, BIS 406, BIS 410, BIS 421, BIS 447, BIS 490, BISIA 244, BISIA 250, BISIA 344, BISIA 350, BISMCS 473, CSS 101, ENGL 131
-- Structured-only UW course codes not seen in the parsed source: CSS 142, DATA 200, GIS 342
-- Requirement cues: Additional Elective Options | All prerequisites complete at time of application | American & Ethnic Studies Applied Computing Biochemistry Biology Business Business ELC: Entrepreneurship Business ELC: General Business Business ELC: Supply Chain Management Business: Accounting Business: Finance Business: Leadership and Strategic Innovation Business: Management Business: Management Information Systems Business: Marketing Business: Retail Management Business: Supply Chain Management Business: Technology and Innovation Management Chemistry Computer Engineering Computer Science & Software Engineering Conservation and Restoration Science Culture, Literature & the Arts Data Visualization (BA) Data Visualization (BS) Developmental and Youth Studies Earth System Science Economics (BS) Educational Studies: Elementary Education Option Electrical Engineering Elementary (K-5) Teacher Certification Environmental Studies Gender, Women and Sexuality Studies Global Studies Health Studies Interdisciplinary Arts Interdisciplinary Social Science Law, Economics and Public Policy Mathematics Mechanical Engineering Media and Communication Studies Nursing Nursing: RN to BSN (Bothell) Nursing: RN to BSN (Everett) Nursing: RN to BSN (Shoreline) Physics Psychology Science, Technology and Society Undeclared/Pre-Major
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-data-visualization-bs.txt
-
 #### Developmental and Youth Studies (BA)
 
 - Source: https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements
@@ -844,18 +726,6 @@ Generated: 2026-04-13T03:06:17.860Z
 - Structured-only UW course codes not seen in the parsed source: EDUC 205, EDUC 402, EDUC 495, EDUC 499
 - Requirement cues: As outlined by the State of Washington Professional Educator Standards Board , Washington state elementary school teachers must be certified to teach and must hold an elementary education endorsement. To be eligible for the elementary endorsement, students must complete college-level coursework which demonstrates their knowledge and understanding of the subject areas elementary school teachers cover in their classrooms: Social Studies, English Language Arts, Mathematics, Science and Art. | B EDUC 250 Topics in Education & Popular Culture: Adolescent Literacy, Graphic Novels, and Young Adult Fiction (A&H) | B EDUC 250 Topics in Education & Popular Culture: Banned Books & Controversial Topics in Children’s Literature & Young Adult Fiction (A&H)
 - Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-developmental-and-youth-studies.txt
-
-#### Earth System Science (BS)
-
-- Source: https://www.uwb.edu/ias/undergraduate/majors/earth-system-science
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: B GIS 342, B GIS 343, B HLTH 407, BBIO 180, BBIO 330, BBIO 335, BBIO 471, BBIO 495, BCHEM 143, BCHEM 144, BCHEM 153, BCHEM 154, BCHEM 163, BCHEM 164, BCHEM 315, BCHEM 350, BCHEM 495, BCHEM 496, BCWRIT 500, BCWRIT 501, BCWRIT 502, BCWRIT 510, BCWRIT 511, BCWRIT 512, BCWRIT 599, BCWRIT 700, BEARTH 154, BEARTH 155, BEARTH 201, BEARTH 202, BEARTH 310, BENGR 310, BES 440, BES 491, BES 492, BES 493, BES 498, BIS 141, BIS 215, BIS 218, BIS 231, BIS 245, BIS 252, BIS 282, BIS 304, BIS 392, BIS 495, BMATH 144, BMATH 215, BPHYS 114, BPHYS 115, BPHYS 116, BPHYS 117, BPHYS 118, BPHYS 119, BPHYS 121, BWRIT 134, STMATH 124, STMATH 126, STMATH 224, STMATH 341
-- Structured-only UW course codes not seen in the parsed source: BIS 242, BIS 243, WRIT 134
-- Requirement cues: Additional Elective Options | Additional Foundation Science Courses (14-17 credits) | B GIS 342 Geographic Information Systems (5 Credits)
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-earth-system-science.txt
 
 #### Economics (BS)
 
@@ -893,41 +763,6 @@ Generated: 2026-04-13T03:06:17.860Z
 - Requirement cues: * Admission prerequisite courses . Please visit our admissions page for more information. | * The above information regarding CSSSKL 511 and 594 applies to students who began their program in Autumn 2025 or after. For students who began before this date, CSSSKL 511 and 594 are either required or waived based on your results from the Writing Skills Assessment that you completed at the start of your program. | 10 credits at 100-level or higher
 - Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-electrical-engineering.txt
 
-#### Environmental Studies (BA)
-
-- Source: https://www.uwb.edu/ias/undergraduate/majors/environmental-studies
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: B GIS 342, BCWRIT 500, BCWRIT 501, BCWRIT 502, BCWRIT 510, BCWRIT 511, BCWRIT 512, BCWRIT 599, BCWRIT 700, BEARTH 153, BEARTH 154, BEARTH 155, BEARTH 201, BEARTH 202, BPOLST 502, BPOLST 509, BPOLST 510, BPOLST 511, BPOLST 513, BPOLST 514, BPOLST 515, BPOLST 520, BPOLST 594, BPOLST 598, BWRIT 133, BWRIT 134, BWRIT 135, ENGL 131, ENGL 141
-- Structured-only UW course codes not seen in the parsed source: BGIS 342
-- Requirement cues: (1-2 credits x 4 quarters) | (5 credits, Autumn) | (5 credits, Early Fall)
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-environmental-studies.txt
-
-#### Gender, Women, & Sexuality Studies (BA)
-
-- Source: https://www.uwb.edu/ias/undergraduate/majors/gender-women-sexuality
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: B EDUC 461, B HLTH 223, B HTLH 420, BCORE 107, BCORE 115, BIS 162, BIS 163, BIS 166, BIS 203, BIS 219, BIS 222, BIS 224, BIS 227, BISSTS 420, BST 205, BWRIT 133, BWRIT 134, BWRIT 135, ENGL 131, ENGL 141
-- Requirement cues: ** GWSS faculty HIGHLY recommend students take both BISGWS 302 & 303. If a student completes both BISGWS 302 and BISGWS 303, 5 credits from these courses can be applied toward the student&#8217;s GWSS coursework requirement. | 10 credits of Composition Coursework | Additional GWSS Major Coursework (30 credits)
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-gender-women-and-sexuality-studies.txt
-
-#### Global Studies (BA)
-
-- Source: https://www.uwb.edu/ias/undergraduate/majors/global-studies
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: B GIS 342, BCWRIT 500, BCWRIT 501, BCWRIT 502, BCWRIT 510, BCWRIT 511, BCWRIT 512, BCWRIT 599, BCWRIT 700, BIS 136, BIS 163, BIS 164, BIS 180, BIS 183, BIS 227, BPOLST 502, BPOLST 509, BPOLST 510, BPOLST 511, BPOLST 513, BPOLST 514, BPOLST 515, BPOLST 520, BPOLST 594, BPOLST 598, BWRIT 133, BWRIT 134, BWRIT 135, ENGL 131, ENGL 141
-- Structured-only UW course codes not seen in the parsed source: BGIS 342
-- Requirement cues: (1-2 credits x 4 quarters) | (5 credits, Autumn) | (5 credits, Early Fall)
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-global-studies.txt
-
 #### Health Studies (BA)
 
 - Source: https://www.uwb.edu/nhs/undergraduate/health-studies/overview
@@ -952,17 +787,6 @@ Generated: 2026-04-13T03:06:17.860Z
 - Requirement cues: [Page 1] Pre-Major Contact: UWBAdvis@uw.edu | (425) 352-3427 Approved: 4/30/21 AG INTERACTIVE MEDIA DESIGN (IMD) Planning Worksheet 2021-2022 Interactive Media Design website Prerequisite Courses: Grade  Composition Course ______________________________________________________ (B WRIT 134, B WRIT 132/133 or other composition course) ____________ X  Introductory Course in Interactive Media/Design Thinking/Visual Art*_________ (Choose 1 from: B IMD 250, BIS 236, BIS 233, or BIS 209) ____________  Introductory Course in Web Development and Programming* _______________ (B IMD 233**) ____________  Statistics/Quantitative Methods/Data Visualization __________________________ (Choose 1 from: BIS 232, BIS 215, B BUS 215, B MATH 215, or STMATH 341) ____________ • A minimum 2.0 grade is required for each prerequisite • It is recommended to take CSS 142 (limited programming section), if you have no programming experience. • *Recommended to take as early as possible • **Can instead take CSS 142/CSSSKL142 and a Web Design course at community college. See IMD website for details. • Please review additional courses Pre-Major students can take towards graduation requirements on page 2. General Education and Areas of Knowledge (+ courses count towards major prerequisites) Writing Requirement – 15 credits Natural World (NW) – 15 credits  + B WRIT 134 or B WRIT 132/133 Composition or __________  Course: ___________________________________  B WRIT 135 Research Writing ____________________________  Course: ___________________________________  B IMD 481 Integrative Studio I (taken when in major)  Course: ___________________________________ Visual, Literary, Performing Arts (VLPA) – 15 credits Individuals & Societies (I&S) – 15 credits  Course: _____________________________________  Course: _____________________________________  Course: _____________________________________  Course: _____________________________________  Course: _____________________________________  Course: _____________________________________ Quantitative & Symbolic Reasoning (QSR) – 5 cr Diversity (DIV) – 3 credits  + B IMD 233, BIS 232, BIS 215, B BUS 215, B MATH 215, or STMATH 341  Course: _____________________________________ General Electives or Other Courses  __________________________________________________________________________________________________  __________________________________________________________________________________________________  __________________________________________________________________________________________________ | [Page 12] 12 General Catalog 2017-2018 University Core Subject Requirements (Required for students with more than 40 transfer credits) Subject If completed in high school If completed in college Mathematics 3 years including completion of Algebra II Completion of Intermediate Algebra with minimum GPA of 2.0 World Languages 2 years of the same language 10 credits of the same language or completion of 102 level College Academic Distribution Requirements (CADRs) See the College Academic Distribution Requirements [CADRs] section in this catalog for more detailed information on these requirements. Grading Restrictions In general, a student must earn a passing* grade as defined by the issuing school’s grading scale to satisfy a College Academic Distribution Requirement [CADR]. A grade of 'Pass' in a course taken on a 'Pass/Not Pass' basis is acceptable; however, students completing CADR through college course work are strongly encouraged to choose a letter or numerical grade, because the y may later want to apply the course(s) towards major and/or University graduation requirements, for which grading restrictions pertain. *While a passing grade is the absolute minimum grade required for a CADR to be satisfied, this does not reflect the gr ades required of a competitive applicant to UW Bothell. Applicability of Transfer Credit to Degree Requirements The Office of Admissions has the authority to make decisions on transfer of credit to the University and the application of transfer credits to fulfill University core subject, general education and proficiency requirements. Academic program offices have the authority to determine application of transfer credits to fulfill major requirements. During the first quarter of enrollment, a student shou ld meet with an academic advisor to plan a program of study and learn how their transfer credits will apply towards degree requirements. Academic Credit Guidelines governing the awarding of undergraduate transfer credit at UW Bothell are listed below. In general, it is University policy to accept credits earned at regionally accredited institutions, provided that such credits have been earned through college - level courses (see exceptions below). For courses taken at a Washington community college, UW Bothe ll follows the listing of transferable courses published in the University of Washington Equivalency Guide: www.admit.washington.edu/EquivalencyGuide . A maximum of 90 credits from lower - division course work (100 and 200 level courses) may be applied towa rd the credits required for the baccalaureate degree. Students can petition their program to transfer additional credits beyond 90 lower - division credits to apply toward their major. No more than 135 transfer credits (lower or upper division) may be accept ed to count toward a baccalaureate degree. Notable Restrictions on Transfer Credit College in the High School Additional credit restrictions may apply when students enrolled in high school have been awarded college - level credit by a college or university other than the University of Washington, and the course work was completed on the high school campus rather tha n the college campus. Extension Credit from Other Schools No more than 45 credits earned as extension credit from other schools may be applied toward a UW | [Page 13] 13 General Catalog 2017-2018 Bothell degree. Military credit, discussed below, is included in the 45 extension credit limit. Gu idance/Personal Development A maximum of 3 credits is awarded for courses in this area as part of the 15 credits allowed for vocational/technical courses (see below). Military Credit Credits earned in Armed Forces Training Schools [AFTS] and through USAFI and DANTES may not exceed 30 credits and are included in the 45 extension credit limit. Official transcripts or DD - 214 or DD - 295 forms must be submitted, and credit will not be awarded until after the student has enrolled. Scores received in such course w ork are not included in the transfer GPA. No credit is awarded for Military Occupational Specialty [MOS] programs. Regionally accredited military schools are evaluated under the same guidelines as all other regionally accredited two - and four - year schools . Native Language First-year (elementary) or second-year (intermediate) world language credit is not granted either by examination or by course completion in a student's native language. "Native language" is defined as the language spoken in the student's home during the first six years of his or her life and in which he or she received instruction through the seventh grade. Parallel / Overlapping Content If a department considers two of its courses to have overlapping content, credit will be awarded for only one. For example, credit is granted for either CHEM 120 or CHEM 142, not both. Other departments in which such overlapping courses occur include Astronomy, Computer Science, Economics, Genetics, Geological Sciences, Linguistics, Physics, Psychology, and Statistics. Out - of - Sequence Courses Credit is not awarded for prerequisite courses in mathematics or world languages completed after a more advanced - level course has been completed. For example, students will not be awarded credit for Spanish 102 if it was taken after Spanish 103. Physical Education No more than 3 quarter credits will be allowed for physical education activity courses. Repeated Courses The transfer GPA is calculated using the repeat policy of the home institution. In the case that a s tudent takes a course at one college, and then repeats it at another college, and then transfers to UW Bothell, the most recent grade will be included in the transfer GPA calculation. ROTC Credit Credits earned in first - and second - year military training courses may not be counted in the basic 180 credits that are required for graduation. Some third - and fourth - year courses may count, depending on the institution the student attended previously. Senior Residency Requirement The University generally requir es that at least the last 45 of final 60 credits of a baccalaureate degree be completed in residence at UW Bothell. Vocational/Technical Credits A maximum of 15 vocational/technical quarter credits (or 10 semester credits) may be awarded. Courses in this category are those which would ordinarily provide specialized training for an occupation (e.g., allied health, bookkeeping, electronics, or physic al therapy assistant). When allowed, these credits will apply only toward the elective credit component of a baccalaureate degree at UW Bothell. Such courses are not included in the transfer GPA. World Language Courses Students who have completed two or more years of a world language in high school receive no college credit for an entry-level course (e.g., FRENCH 101) in the same language when that course is completed after matriculation at the University. Transfer students who complete such a course before matriculation at UW Bothell are eligible to receive transfer credit.
 - Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-interactive-media-design.txt
 
-#### Interdisciplinary Arts (BA)
-
-- Source: https://www.uwb.edu/ias/undergraduate/majors/interdisciplinary-arts
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: BCWRIT 500, BCWRIT 501, BCWRIT 502, BCWRIT 510, BCWRIT 511, BCWRIT 512, BCWRIT 599, BCWRIT 700, BIS 121, BIS 130, BIS 131, BIS 132, BIS 133, BIS 135, BISIA 207, BISIA 230, BISIA 240, BISIA 244, BISIA 250, BISIA 484, BPOLST 502, BPOLST 509, BPOLST 510, BPOLST 511, BPOLST 513, BPOLST 514, BPOLST 515, BPOLST 520, BPOLST 594, BPOLST 598, BWRIT 133, BWRIT 134, BWRIT 135, ENGL 131, ENGL 141
-- Requirement cues: (1-2 credits x 4 quarters) | (5 credits, Autumn) | (5 credits, Early Fall)
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-interdisciplinary-arts.txt
-
 #### Interdisciplinary Studies: Individualized Study (BA)
 
 - Source: https://www.uwb.edu/ias/undergraduate/ias-degree-portfolio
@@ -975,28 +799,6 @@ Generated: 2026-04-13T03:06:17.860Z
 - Structured-only UW course codes not seen in the parsed source: BIS 300, OVERALL 180
 - Requirement cues: (1-2 credits x 4 quarters) | (5 credits, Autumn) | (5 credits, Early Fall)
 - Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-interdisciplinary-studies-individualized-study.txt
-
-#### Law, Economics & Public Policy (BA)
-
-- Source: https://www.uwb.edu/ias/undergraduate/majors/law-economics-public-policy
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: BBUS 215, BBUS 220, BBUS 221, BEARTH 155, BIS 175, BIS 180, BIS 183, BIS 200, BIS 201, BIS 203, BIS 219, BIS 226, BIS 227, BIS 280, BIS 293, BIS 304, BIS 312, BIS 314, BIS 316, BIS 339, BIS 340, BIS 342, BIS 343, BIS 352, BIS 497, BISGST 497, BISLEP 497, BMATH 215, BPOLST 502, BPOLST 509, BPOLST 510, BPOLST 511, BPOLST 513, BPOLST 514, BPOLST 515, BPOLST 520, BPOLST 594, BPOLST 598, BWRIT 133, BWRIT 134, BWRIT 135, ECON 200, ENGL 131, ENGL 141, POL S 202, STAT 220
-- Requirement cues: (1-2 credits x 4 quarters) | (5 credits, Autumn) | (5 credits, Early Fall)
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-law-economics-and-public-policy.txt
-
-#### Mathematical Thinking & Visualization (BA)
-
-- Source: https://www.uwb.edu/ias/undergraduate/majors/mathematical-thinking-visualization
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: BBUS 215, BEARTH 201, BES 440, BIS 215, BIS 218, BIS 233, BIS 236, BIS 302, BIS 319, BIS 329, BIS 342, BIS 343, BIS 385, BIS 411, BIS 447, BISIA 250, BISIA 319, BMATH 144, BMATH 215, CSS 107, CSS 142, CSS 143, MATH 124, STAT 220, STMATH 124, STMATH 125, STMATH 310
-- Requirement cues: Additional IAS Coursework (20 credits) | B MATH 144 Calculus for Life Sciences (does not satisfy prerequisite for STMATH 125: Calculus 2) | Beginning Autumn 2024 Quarter, the MTV major will be changing its name to Data Visualization. With this name change, degree requirements will be changing. An updated website will be posted in Spring Quarter with the new program and degree requirements. Please contact an IAS Academic Advisor for questions.
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-mathematical-thinking-and-visualization.txt
 
 #### Mathematics (BS)
 
@@ -1021,17 +823,6 @@ Generated: 2026-04-13T03:06:17.860Z
 - Structured-only UW course codes not seen in the parsed source: BME 493, BME 495
 - Requirement cues: (1-5) max 4 counted as degree credit | (reduced from 5) and does not currently fulfill the Social Science (SSc) Area | [Page 1] University of Washington Bothell Mechanical Engineering Curriculum AY24/25 Natural Science: 21 credits *B CHEM 143/144: General Chemistry I w/ Lab 6 *B PHYS 121: Mechanics 5 *B PHYS 122: Electromagnetism and Oscillatory 5 B PHYS 123: Waves 5 B ENGR 321: Materials Engineering Lab 2 *B ME 221: Statics 4 Mathematics: 30 credits *B ME 222: Mechanics of Materials 4 *STMATH 124: Calculus I 5 *B ME 223: Dynamics 4 *STMATH 125: Calculus II 5 B ME 301: Intro Seminar for Mechanical Engineering 1 *STMATH 126: Calculus III 5 *STMATH 207: Intro to Differential Equations 5 *STMATH 224: Multivariable Calculus 5 B ME 410: Electric Power and Machinery 5 STMATH 390: Probability & Statistics in Engineering 5 B ME 481: Citizen Engineer 5 General education and additional courses: 39 credits B ME 331: Thermodynamics 4 *B WRIT134: Composition 5 B ME 332: Fluid Mechanics 4 B ME 333: Heat Transfer 4 B ME 334: Thermal Fulds Lab 2 Any A&H (BIS 121 or equivalent suggested) 5 Any A&H 5 B ME 341: Mechanical Systems Design I 4 Any A&H 1 B ME 342: Mechanical Systems Design II 4 Any SSc 5 B ME 343: Mechanical Systems Design III 5 Any SSc 5 B ENGR 494: Enineering Design & Innovation 3 B ENGR 495: Capstone Project in Engineering I 3 B ENGR 496: Capstone Project in Engineering II 4 Mechanical Engineering Electives (16 credits) 4 4 4 4 Student # B ME policies and notes A minimum grade of 2.0 is required in each departmental requirement and prerequisite. Electives - Maximum of 4 credits of BME498/499 can be counted as BME elective credits. Courses in other disciplines require the department's approval. UW Policies Additional Writing (W): BWRIT135 (or ENGL141, ENGL182, HCDE231, ENGR231) 5 *Program Prerequisites Diversity, Natural World, and QSR requirements are fufilled by program requirements. Residency - 45 out of the final 60 credits must be earned at your home campus. Cross Campus Enrollment - after earning 15 crdits at your home campus, students are able to take up to 15 credits a year at another UW campus. Thermal Fluid Systems Analysis Mechanical Systems Design Capstone Sequence B ME 315: Intro to 3D Modeling, Design & Analysis (ME 123 allowed) 4 Additional credit as neede to reach 180 minimum for graduation CSS 112: Intro to Programming for Scientific Applications 4 Name: Mechanical Engineering: 90 credits B ENGR 320: Fundamentals of Material Science (MSE 170 allowed) 4 4 B ENGR 310: Computational Physical Modeling (or AMATH 301 & STMATH 208) 7/10/2024
 - Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-mechanical-engineering.txt
-
-#### Media & Communications Studies (BA)
-
-- Source: https://www.uwb.edu/ias/undergraduate/majors/media-communication
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: BCWRIT 500, BCWRIT 501, BCWRIT 502, BCWRIT 510, BCWRIT 511, BCWRIT 512, BCWRIT 599, BCWRIT 700, BIS 115, BIS 161, BIS 162, BIS 177, BIS 178, BIS 179, BIS 217, BIS 237, BIS 293, BIS 322, BIS 339, BISIA 244, BISIA 344, BISIA 483, BISMCS 475, BISSTS 307, BPOLST 502, BPOLST 509, BPOLST 510, BPOLST 511, BPOLST 513, BPOLST 514, BPOLST 515, BPOLST 520, BPOLST 594, BPOLST 598, BWRIT 133, BWRIT 134, BWRIT 135, ENGL 131, ENGL 141
-- Requirement cues: (1-2 credits x 4 quarters) | (5 credits, Autumn) | (5 credits, Early Fall)
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-media-and-communications-studies.txt
 
 #### Nursing (BS), First Year RN to BSN (Direct Entry)
 
@@ -1079,109 +870,9 @@ Generated: 2026-04-13T03:06:17.860Z
 - Requirement cues: * The above information regarding CSSSKL 511 and 594 applies to students who began their program in Autumn 2025 or after. For students who began before this date, CSSSKL 511 and 594 are either required or waived based on your results from the Writing Skills Assessment that you completed at the start of your program. | 10 credits at 100-level or higher | 10 credits at 200-level or higher
 - Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-physics-bs.txt
 
-#### Psychology (BA)
-
-- Source: https://www.uwb.edu/ias/undergraduate/majors/psychology
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: BBUS 215, BCWRIT 500, BCWRIT 501, BCWRIT 502, BCWRIT 510, BCWRIT 511, BCWRIT 512, BCWRIT 599, BCWRIT 700, BEFORE 300, BEFORE 400, BIS 115, BIS 140, BIS 162, BIS 165, BIS 180, BIS 215, BIS 316, BIS 337, BIS 348, BIS 349, BIS 352, BIS 364, BIS 365, BIS 367, BIS 368, BIS 422, BIS 438, BIS 449, BIS 490, BISCP 489, BISPSY 343, BISPSY 348, BISPSY 350, BISPSY 489, BMATH 215, BPOLST 502, BPOLST 509, BPOLST 510, BPOLST 511, BPOLST 513, BPOLST 514, BPOLST 515, BPOLST 520, BPOLST 594, BPOLST 598, BWRIT 133, BWRIT 134, BWRIT 135, ENGL 131, ENGL 141, PSYCH 101, PSYCH 210, PSYCH 245, SOME 400, STAT 220, STAT 290, TAKING 300
-- Structured-only UW course codes not seen in the parsed source: CURRENT 200
-- Requirement cues: (1-2 credits x 4 quarters) | (5 credits, Autumn) | (5 credits, Early Fall)
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-psychology.txt
-
-#### Science, Technology & Society (BA)
-
-- Source: https://www.uwb.edu/ias/undergraduate/majors/science-technology-society
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: BBIO 231, BBIO 233, BBIO 235, BBIO 305, BDATA 200, BDATA 232, BEARTH 153, BEARTH 154, BEARTH 155, BEARTH 341, BIS 111, BIS 115, BIS 215, BIS 218, BIS 242, BIS 300, BIS 315, BIS 319, BIS 329, BIS 332, BIS 342, BIS 343, BIS 344, BIS 346, BIS 499, BISSTS 420, BMATH 215, BWRIT 133, BWRIT 134, BWRIT 135, CSS 101, ENGL 131, ENGL 141
-- Requirement cues: 10 credits of Composition Coursework | Additional IAS Coursework (20 credits) | Approaches to Data Coursework (5 credits)
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-science-technology-and-society.txt
-
-#### Society, Ethics & Human Behavior (BA)
-
-- Source: https://www.uwb.edu/ias/undergraduate/majors/society-ethics-human-behavior
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: BEDUC 220, BEDUC 461, BEDUC 475, BEDUC 493, BIS 181, BIS 193, BIS 205, BIS 216, BIS 217, BIS 220, BIS 221, BIS 222, BIS 225, BIS 226, BIS 227, BIS 270, BIS 281, BIS 282, BIS 313, BIS 316, BIS 327, BIS 330, BIS 332, BIS 341, BIS 345, BIS 356, BIS 357, BIS 380, BIS 447, BIS 449, BIS 468, BIS 497, BISLEP 301, BISLEP 302, BISPSY 350, BISSTA 304, BISSTA 331, BISSTA 333, BISSTA 359, BISSTS 231, BISSTS 232, BISSTS 307
-- Requirement cues: Additional IAS Coursework (20 credits) | BEDUC 220 Education & Society (3 credits) | BEDUC 475 Global Perspectives on Diversity and Citizenship Education
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-society-ethics-and-human-behavior.txt
-
 ## uw-tacoma
 
 ### Possible source-vs-structured drift
-
-#### Arts, Media and Culture (BA)
-
-- Source: https://www.tacoma.uw.edu/sias/cac/arts-media-culture
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: ENGL 131, TAMST 101, TAMST 120, TAMST 210, TAMST 220, TAMST 410, TAMST 450, TARTS 150, TARTS 151, TARTS 160, TARTS 200, TARTS 203, TARTS 225, TARTS 240, TARTS 251, TARTS 252, TARTS 266, TARTS 280, TARTS 281, TCOM 201, TCOM 221, TCOM 230, TFILM 220, THIST 150, THIST 151, THIST 200, THIST 201, TLAX 267, TLAX 277, TLAX 355, TLAX 465, TLAX 476, TLIT 101, TLIT 220, TPOLS 350, TSPAN 351, TWOMN 345, TWRT 340, TWRT 480
-- Requirement cues: *For students admitted to the University prior to autumn quarter 2023, the DIV requirement is a minimum of 3 credits. | 40 additional credits | 5 credits Foundation (5 credits)
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-arts-media-culture.txt
-
-#### Arts, Media and Culture (BA) - American Cultures track
-
-- Source: https://www.tacoma.uw.edu/sias/cac/american-cultures-track
-- Parser type: generic-html
-- Parser adapter: generic-official-html-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: TAMST 101, TAMST 120, TAMST 210, TAMST 220, TAMST 250, TAMST 410, TAMST 450, TARTS 150, TARTS 151, TARTS 160, TARTS 200, TARTS 203, TARTS 225, TARTS 240, TARTS 251, TARTS 252, TARTS 266, TARTS 280, TARTS 281, TCOM 201, TCOM 221, TCOM 230, TFILM 220, THIST 150, THIST 151, THIST 200, THIST 201, THIST 220, THIST 221, THIST 320, THIST 340, THIST 349, TLAX 267, TLAX 277, TLAX 333, TLAX 355, TLAX 465, TLAX 476, TLIT 101, TLIT 220, TPOLS 350, TSPAN 351, TWOMN 345, TWRT 340, TWRT 480
-- Requirement cues: American Cultures Track | Culture, Arts & Communication | University of Washington Tacoma | American Cultures Track | American Cultures Track
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-arts-media-culture-pathway-american-cultures-track.txt
-
-#### Arts, Media and Culture (BA) - Comparative Arts track
-
-- Source: https://www.tacoma.uw.edu/sias/cac/comparative-arts-track
-- Parser type: generic-html
-- Parser adapter: generic-official-html-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: TAMST 101, TAMST 120, TAMST 210, TAMST 220, TAMST 410, TAMST 450, TARTS 150, TARTS 151, TARTS 160, TARTS 200, TARTS 203, TARTS 225, TARTS 240, TARTS 251, TARTS 252, TARTS 266, TARTS 280, TARTS 281, TCOM 201, TCOM 221, TCOM 230, TCOM 347, TFILM 201, TFILM 220, THIST 150, THIST 151, THIST 200, THIST 201, TLAX 267, TLAX 277, TLAX 355, TLAX 465, TLAX 476, TLIT 101, TLIT 210, TLIT 220, TLIT 230, TLIT 237, TLIT 253, TPOLS 350, TSPAN 351, TWOMN 345, TWRT 340, TWRT 480
-- Requirement cues: Comparative Arts Track | Culture, Arts & Communication | University of Washington Tacoma | Comparative Arts Track | Comparative Arts Track
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-arts-media-culture-pathway-comparative-arts-track.txt
-
-#### Arts, Media and Culture (BA) - Film and Media track
-
-- Source: https://www.tacoma.uw.edu/sias/cac/film-and-media-track
-- Parser type: generic-html
-- Parser adapter: generic-official-html-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: TAMST 101, TAMST 120, TAMST 210, TAMST 220, TAMST 410, TAMST 450, TARTS 150, TARTS 151, TARTS 160, TARTS 200, TARTS 203, TARTS 225, TARTS 240, TARTS 251, TARTS 252, TARTS 266, TARTS 280, TARTS 281, TCOM 201, TCOM 221, TCOM 230, TCOM 347, TFILM 201, TFILM 220, THIST 150, THIST 151, THIST 200, THIST 201, TLAX 267, TLAX 277, TLAX 355, TLAX 465, TLAX 476, TLIT 101, TLIT 220, TPOLS 350, TSPAN 351, TWOMN 345, TWRT 340, TWRT 480
-- Requirement cues: Film and Media Track | Culture, Arts & Communication | University of Washington Tacoma | Film and Media Track | Film and Media Track
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-arts-media-culture-pathway-film-media-track.txt
-
-#### Arts, Media and Culture (BA) - Literature track
-
-- Source: https://www.tacoma.uw.edu/sias/cac/literature-track
-- Parser type: generic-html
-- Parser adapter: generic-official-html-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: TAMST 101, TAMST 120, TAMST 210, TAMST 220, TAMST 410, TAMST 450, TARTS 150, TARTS 151, TARTS 160, TARTS 200, TARTS 203, TARTS 225, TARTS 240, TARTS 251, TARTS 252, TARTS 266, TARTS 280, TARTS 281, TCOM 201, TCOM 221, TCOM 230, TFILM 220, THIST 150, THIST 151, THIST 200, THIST 201, TLAX 267, TLAX 277, TLAX 355, TLAX 465, TLAX 476, TLIT 101, TLIT 210, TLIT 220, TLIT 230, TLIT 237, TLIT 253, TPOLS 350, TSPAN 351, TWOMN 345, TWRT 340, TWRT 480
-- Requirement cues: Literature Track | Culture, Arts & Communication | University of Washington Tacoma | Literature Track | Literature Track
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-arts-media-culture-pathway-literature-track.txt
-
-#### Arts, Media and Culture (BA) - Visual and Performing Arts track
-
-- Source: https://www.tacoma.uw.edu/sias/cac/visual-and-performing-arts-track
-- Parser type: generic-html
-- Parser adapter: generic-official-html-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: TAMST 101, TAMST 120, TAMST 210, TAMST 220, TAMST 410, TAMST 450, TARTS 150, TARTS 151, TARTS 160, TARTS 200, TARTS 203, TARTS 225, TARTS 240, TARTS 251, TARTS 252, TARTS 266, TARTS 280, TARTS 281, TCOM 201, TCOM 221, TCOM 230, TFILM 220, THIST 150, THIST 151, THIST 200, THIST 201, TLAX 267, TLAX 277, TLAX 355, TLAX 465, TLAX 476, TLIT 101, TLIT 220, TPOLS 350, TSPAN 351, TWOMN 345, TWRT 340, TWRT 480
-- Requirement cues: Visual and Performing Arts Track | Culture, Arts & Communication | University of Washington Tacoma | Visual and Performing Arts Track | Visual and Performing Arts Track
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-arts-media-culture-pathway-visual-performing-arts-track.txt
 
 #### Bachelor of Arts in Business Administration (BABA)
 
@@ -1256,65 +947,6 @@ Generated: 2026-04-13T03:06:17.860Z
 - Requirement cues: *For students admitted to the University prior to autumn quarter 2023, the DIV requirement is a minimum of 3 credits. | 15 credits from Marketing that include: | 30 credits from 300- and 400-level TFIN or TBECON courses. TBANLT 433 counts for the this option.
 - Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-bachelor-of-arts-in-business-administration-pathway-marketing-option.txt
 
-#### Biomedical Sciences (BS)
-
-- Source: https://www.tacoma.uw.edu/sias/sam/biomedical-sciences
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: ENGL 131, PHYS 117, TBIOL 252, TBIOL 270, TBIOL 302, TBIOL 303, TBIOL 304, TBIOL 305, TBIOL 312, TBIOL 320, TBIOL 350, TBIOMD 199, TBIOMD 201, TBIOMD 490, TBIOMD 491, TBIOMD 492, TBIOMD 494, TBIOMD 495, TBIOMD 496, TCHEM 152, TCHEM 162, TCHEM 271, TCHEM 406, TEGL 202, TEGL 210, TEGL 401, THLEAD 410, THLTH 325, THLTH 355, TMATH 210, TPHIL 361, TPHIL 455, TPHYS 123
-- Structured-only UW course codes not seen in the parsed source: BIOL& 211, CHEM& 161, CHEM& 261, MATH& 151, PHYS& 114, PHYS& 221, TCHEM 251, TCHEM 405, TMATH 124
-- Requirement cues: *For students admitted to the University prior to autumn quarter 2023, the DIV requirement is a minimum of 3 credits. | 40 additional credits | A minimum of 180 college credits must be completed (with more required in some programs) and include academic credits in the following areas:
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-biomedical-sciences.txt
-
-#### Civil Engineering (BSCE)
-
-- Source: https://www.tacoma.uw.edu/set/programs/undergrad/civil
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: AA 210, ME 230, TCE 305, TCE 307, TCE 309, TCE 327, TCE 426, TCE 429, TCE 451, TCE 452, TCHEM 142, TMATH 124, TMATH 125, TMATH 126, TMATH 207, TME 221, TME 223, TPHYS 121, TPHYS 122, TPHYS 123
-- Structured-only UW course codes not seen in the parsed source: TEE 225, TME 310, TME 351, TME 403
-- Requirement cues: Diversity, Equity and Inclusion at SET | Internships for Credit | Admission Requirements
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-civil-engineering.txt
-
-#### Communications (BA)
-
-- Source: https://www.tacoma.uw.edu/sias/cac/communication
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: medium
-- Source-only UW course codes: ENGL 131
-- Structured-only UW course codes not seen in the parsed source: TCOM 444, TCOM 453, TCOM 495, TWRT 211
-- Requirement cues: *For students admitted to the University prior to autumn quarter 2023, the DIV requirement is a minimum of 3 credits. | 40 additional credits | A minimum of 180 college credits must be completed (with more required in some programs) and include academic credits in the following areas:
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-communications.txt
-
-#### Communications (BA) - Professional track
-
-- Source: https://www.tacoma.uw.edu/sias/cac/professional-track
-- Parser type: generic-html
-- Parser adapter: generic-official-html-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: FILM TLAX 441, TCOM 101, TCOM 220, TCOM 247, TCOM 275, TCOM 320, TCOM 330, TCOM 347, TCOM 348, TCOM 440, TCOM 454, TCOM 460, TCOM 461, TCOM 465, TCOM 470, TLAX 376, TWRT 487
-- Requirement cues: Professional Track | Culture, Arts & Communication | University of Washington Tacoma | Professional Track | Professional Track
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-communications-pathway-professional-track.txt
-
-#### Communications (BA) - Research track
-
-- Source: https://www.tacoma.uw.edu/sias/cac/research-track
-- Parser type: generic-html
-- Parser adapter: generic-official-html-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: TCOM 101, TCOM 220, TCOM 247, TCOM 440, TCOM 454, TCOM 460, TCOM 461, TCOM 465, TCOM 470, TLAX 441
-- Structured-only UW course codes not seen in the parsed source: TCOM 495
-- Requirement cues: Research Track | Culture, Arts & Communication | University of Washington Tacoma | Research Track | Research Track
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-communications-pathway-research-track.txt
-
 #### Computer Engineering
 
 - Source: https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html
@@ -1326,31 +958,6 @@ Generated: 2026-04-13T03:06:17.860Z
 - Structured-only UW course codes not seen in the parsed source: TCES 480, TCSS 460
 - Requirement cues: Admission Requirements | Completion of a minimum of 45 college-level credits | Minimum grade of 2.0 in each prerequisite course
 - Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-computer-engineering.txt
-
-#### Computer Science and Systems (BA)
-
-- Source: https://www.tacoma.uw.edu/set/programs/undergrad/css/bs
-- Primary source: https://www.tacoma.uw.edu/set/programs/undergrad/css/ba
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: alternate-official-source
-- Parse confidence: high
-- Source-only UW course codes: TBIOL 110, TBIOL 120, TCHEM 105, TCHEM 131, TCHEM 142, TCSS 321, TCSS 325, TCSS 342, TCSS 343, TCSS 360, TCSS 372, TCSS 380, TCSS 422, TCSS 437, TCSS 440, TCSS 445, TCSS 450, TCSS 452, TCSS 460, TCSS 461, TCSS 465, TCSS 497, TCSS 498, TCSS 499, TGEOS 117, TMATH 126, TMATH 208, TMATH 310, TMATH 390, TPHYS 121, TPHYS 122
-- Structured-only UW course codes not seen in the parsed source: TCSS 101, TCSS 141
-- Requirement cues: **UW Tacoma students are encouraged to complete lab sciences from the following: TBIOL 110, TCHEM 105, TCHEM 131, TGEOS 117, TPHYS 121, and TPHYS 122. We do accept lab based science courses other than these options. | 10 credits of graded TCSS 499 research on one project under the supervision of a CSS faculty member. (The faculty advisor must be a full-time CSS faculty member. If you are working on a research project in another unit or with a part-time faculty, you must have a full-time CSS faculty member approve the project and sign off on the thesis and presentation. In the rare instance that your original advisor is not able to work with you through completion of the project, another faculty member within the same research area can become your advisor.) | 5 credits from the following approved design electives: TCSS 437, 445, 450, 452, 460, 461, 465, or 491
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-computer-science-and-systems-ba.txt
-
-#### Computer Science and Systems (BS)
-
-- Source: https://www.tacoma.uw.edu/set/programs/undergrad/css/bs
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: TBIOL 110, TBIOL 120, TCHEM 105, TCHEM 131, TCHEM 142, TCSS 321, TCSS 325, TCSS 342, TCSS 343, TCSS 360, TCSS 372, TCSS 380, TCSS 390, TCSS 422, TCSS 437, TCSS 440, TCSS 445, TCSS 450, TCSS 452, TCSS 460, TCSS 461, TCSS 465, TCSS 497, TCSS 498, TCSS 499, TGEOS 117, TMATH 110, TMATH 124, TPHYS 121, TPHYS 122
-- Structured-only UW course codes not seen in the parsed source: EXTRA 300, MORE 400
-- Requirement cues: **UW Tacoma students are encouraged to complete lab sciences from the following: TBIOL 110, TCHEM 105, TCHEM 131, TGEOS 117, TPHYS 121, and TPHYS 122. We do accept lab based science courses other than these options. | 10 credits of graded TCSS 499 research on one project under the supervision of a CSS faculty member. (The faculty advisor must be a full-time CSS faculty member. If you are working on a research project in another unit or with a part-time faculty, you must have a full-time CSS faculty member approve the project and sign off on the thesis and presentation. In the rare instance that your original advisor is not able to work with you through completion of the project, another faculty member within the same research area can become your advisor.) | 5 credits from the following approved design electives: TCSS 437, 445, 450, 452, 460, 461, 465, or 491
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-computer-science-and-systems-bs.txt
 
 #### Criminal Justice (BA)
 
@@ -1364,29 +971,6 @@ Generated: 2026-04-13T03:06:17.860Z
 - Requirement cues: (2) Minimum grade of 2.0/C required in each course. | (3) Writing-intensive coursework requirements can also be met with core TSOCWF coursework (3 courses) | (4) One course can fulfill multiple GER areas, but the credits completed can only count once toward the 180 total credits needed to graduate.
 - Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-criminal-justice.txt
 
-#### Economics and Policy Analysis (BA)
-
-- Source: https://www.tacoma.uw.edu/sias/socs/economics-and-policy-analysis-epa
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: ENGL 131, TECON 320, TECON 321, TECON 325, TECON 350, TECON 496
-- Structured-only UW course codes not seen in the parsed source: ECON 201, ECON 202, TBECON 420, TBECON 421, TBECON 422, TMATH 116, TMATH 120, TMATH 410
-- Requirement cues: *For students admitted to the University prior to autumn quarter 2023, the DIV requirement is a minimum of 3 credits. | 40 additional credits | A minimum of 180 college credits must be completed (with more required in some programs) and include academic credits in the following areas:
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-economics-and-policy-analysis.txt
-
-#### Education (BA)
-
-- Source: https://www.tacoma.uw.edu/soe/bachelor-arts-education
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: ENGL 131, ENVIR 100, GROCERY 324, PSYCH 220, PSYCH 306, PSYCH 319, PSYCH 320, PSYCH 321, SOCWF 354, T EDUC 290, T EDUC 292, T EDUC 301, T EGL 101, T EGL 112, T EGL 266, T EGL 301, T EGL 302, T EGL 303, T EGL 304, T EGL 305, T EGL 306, T EGL 365, T LAX 360, T WOMN 101, TBIOL 100, TBIOL 102, TCORE 101, TCORE 102, TEDSP 448, TEDSP 451, TEDUC 310, TEDUC 410, TEDUC 441, TEDUC 448, TEDUC 449, TEDUC 461, TEDUC 464, TEDUC 471, TEDUC 482, TLIT 230, TLIT 320, TMATH 173, TPSYCH 101, TWRT 320, TWRT 340, TWRT 388
-- Requirement cues: - Select - I am registered for classes at UW Tacoma I am applying to transfer to UW Tacoma autumn quarter 2023 I am applying as a Running Start freshman to UW Tacoma autumn quarter 2023 I am a returning former UWT student (last quarter enrolled spring 2022 or earlier) Other | - Select - Special Education English Language Learners (ELL) | - Select - Yes No
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-education.txt
-
 #### Electrical Engineering
 
 - Source: https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html
@@ -1398,162 +982,6 @@ Generated: 2026-04-13T03:06:17.860Z
 - Structured-only UW course codes not seen in the parsed source: TCES 421, TCES 450, TCSS 487, TCSS 488, TEE 331, TEE 341, TEE 372, TEE 431, TEE 453, TEE 461, TEE 480, TEE 490, TEE 497, TEE 498, TEE 499
 - Requirement cues: Admission Requirements | Completion of a minimum of 45 college-level credits | Minimum grade of 2.0 in each prerequisite course
 - Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-electrical-engineering.txt
-
-#### Environmental Science (BS)
-
-- Source: https://www.tacoma.uw.edu/sias/sam/environmental-science
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: ENGL 131, TESC 239, TGEOS 337, TMATH 210, WCG 424
-- Requirement cues: *For students admitted to the University prior to autumn quarter 2023, the DIV requirement is a minimum of 3 credits. | 40 additional credits | A minimum of 180 college credits must be completed (with more required in some programs) and include academic credits in the following areas:
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-environmental-science.txt
-
-#### Environmental Sustainability (BA)
-
-- Source: https://www.tacoma.uw.edu/sias/sam/environmental-sustainability
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: ENGL 131, TBIOL 110, TBIOL 232, TBIOMD 490, TBIOMD 491, TCHEM 131, TECON 200, TEGL 304, TESC 201, TESC 301, TESC 345, TESC 495, TESC 496, TESC 497, TEST 200, TGEOS 243, TGEOS 341, TMATH 110, TMGMT 465, TMGMT 466, TPHIL 456, TRELIG 350, TWRT 331, WCG 424
-- Requirement cues: *For students admitted to the University prior to autumn quarter 2023, the DIV requirement is a minimum of 3 credits. | 40 additional credits | A minimum of 180 college credits must be completed (with more required in some programs) and include academic credits in the following areas:
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-environmental-sustainability.txt
-
-#### Environmental Sustainability (BA) - Business and Non-Profit Leadership option
-
-- Source: https://www.tacoma.uw.edu/sias/sam/environmental-sustainability
-- Parser type: generic-html
-- Parser adapter: generic-official-html-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: ENGL 131, TBGEN 212, TBUS 300, TEDUC 290, TEDUC 471, TEDUC 482, TMGMT 420, TMGMT 452, TMGMT 457, TMGMT 466, TPSYCH 220, TPSYCH 320, TPSYCH 321, TWRT 391, WCG 424
-- Requirement cues: *For students admitted to the University prior to autumn quarter 2023, the DIV requirement is a minimum of 3 credits. | 40 additional credits | A minimum of 180 college credits must be completed (with more required in some programs) and include academic credits in the following areas:
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-environmental-sustainability-pathway-business-nonprofit-leadership-option.txt
-
-#### Environmental Sustainability (BA) - Education option
-
-- Source: https://www.tacoma.uw.edu/sias/sam/pre-environmental-education-option
-- Parser type: generic-html
-- Parser adapter: generic-official-html-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: TBIOL 110, TBIOL 232, TBIOMD 490, TBIOMD 491, TCHEM 131, TECON 200, TEDUC 290, TEDUC 471, TEDUC 482, TEGL 304, TESC 201, TESC 301, TESC 345, TESC 495, TESC 496, TESC 497, TEST 200, TGEOS 243, TGEOS 341, TMATH 110, TMGMT 465, TMGMT 466, TPHIL 456, TPSYCH 220, TPSYCH 320, TPSYCH 321, TRELIG 350, TWRT 211, TWRT 291, TWRT 331
-- Requirement cues: Pre-Environmental Education Option | Department of Sciences and Mathematics | University of Washington Tacoma | Pre-Environmental Education Option | Pre-Environmental Education Option
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-environmental-sustainability-pathway-education-option.txt
-
-#### Environmental Sustainability (BA) - Environmental Communication option
-
-- Source: https://www.tacoma.uw.edu/sias/sam/environmental-communication-option
-- Parser type: generic-html
-- Parser adapter: generic-official-html-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: TBIOL 110, TBIOL 232, TBIOMD 490, TBIOMD 491, TCHEM 131, TCOM 275, TCOM 310, TCOM 312, TCOM 482, TECON 200, TEGL 304, TESC 201, TESC 232, TESC 301, TESC 345, TESC 404, TESC 495, TESC 496, TESC 497, TEST 200, TGEOS 243, TGEOS 341, TMATH 110, TMGMT 466, TPHIL 456, TRELIG 350, TWRT 211, TWRT 291, TWRT 331, TWRT 391
-- Requirement cues: Environmental Communication Option | Department of Sciences and Mathematics | University of Washington Tacoma | Environmental Communication Option | Environmental Communication Option
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-environmental-sustainability-pathway-environmental-communication-option.txt
-
-#### Environmental Sustainability (BA) - Policy and Law option
-
-- Source: https://www.tacoma.uw.edu/sias/sam/environmental-policy-and-law-option
-- Parser type: generic-html
-- Parser adapter: generic-official-html-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: TBIOL 110, TBIOL 232, TBIOMD 490, TBIOMD 491, TCHEM 131, TECON 200, TECON 210, TECON 410, TECON 421, TEGL 304, TESC 201, TESC 301, TESC 345, TESC 404, TESC 495, TESC 496, TESC 497, TEST 200, TEST 337, TGEOS 243, TGEOS 341, TMATH 110, TMGMT 465, TMGMT 466, TPHIL 456, TPOLS 270, TRELIG 350, TWRT 211, TWRT 291, TWRT 331
-- Requirement cues: Environmental Policy and Law Option | Department of Sciences and Mathematics | University of Washington Tacoma | Environmental Policy and Law Option | Environmental Policy and Law Option
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-environmental-sustainability-pathway-policy-law-option.txt
-
-#### Ethnic, Gender and Labor Studies (BA)
-
-- Source: https://www.tacoma.uw.edu/sias-new/socs-new/ethnic-gender-and-labor-studies
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: ENGL 131, TEGL 101, TEGL 112, TEGL 202, TEGL 210, TEGL 266, TEGL 401, THIST 220, THIST 221, THIST 222, THIST 322, THIST 437, TPOLS 270, TSOC 270, TSOC 439, TSOC 460, TWOMN 101
-- Requirement cues: *For students admitted to the University prior to autumn quarter 2023, the DIV requirement is a minimum of 3 credits. | 40 additional credits | A minimum of 180 college credits must be completed (with more required in some programs) and include academic credits in the following areas:
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-ethnic-gender-and-labor-studies.txt
-
-#### Ethnic, Gender and Labor Studies (BA) - Ethnic Studies option
-
-- Source: https://www.tacoma.uw.edu/sias-new/socs-new/ethnic-studies-option
-- Parser type: generic-html
-- Parser adapter: generic-official-html-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: TEGL 101, TEGL 112, TEGL 202, TEGL 210, TEGL 266, TEGL 401, THIST 220, THIST 221, THIST 222, THIST 322, THIST 437, TPOLS 270, TSOC 270, TSOC 439, TSOC 460, TWOMN 101
-- Requirement cues: Department of Social Sciences | Department of Social Sciences | Global Studies Concentration
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-ethnic-gender-and-labor-studies-pathway-ethnic-studies-option.txt
-
-#### Ethnic, Gender and Labor Studies (BA) - Gender Studies option
-
-- Source: https://www.tacoma.uw.edu/sias-new/socs-new/ethnic-gender-and-labor-studies
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: ENGL 131, TCOM 444, TECON 320, TEGL 101, TEGL 112, TEGL 202, TEGL 210, TEGL 266, TEGL 401, THIST 220, THIST 221, THIST 222, THIST 322, THIST 437, TPOLS 270, TSOC 270, TSOC 439, TSOC 460, TWOMN 101, TWOMN 302
-- Requirement cues: *For students admitted to the University prior to autumn quarter 2023, the DIV requirement is a minimum of 3 credits. | 40 additional credits | A minimum of 180 college credits must be completed (with more required in some programs) and include academic credits in the following areas:
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-ethnic-gender-and-labor-studies-pathway-gender-studies-option.txt
-
-#### Ethnic, Gender and Labor Studies (BA) - Labor Studies option
-
-- Source: https://www.tacoma.uw.edu/sias-new/socs-new/ethnic-gender-and-labor-studies
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: ENGL 131, TCOM 444, TECON 320, TEGL 101, TEGL 112, TEGL 202, TEGL 210, TEGL 266, TEGL 401, THIST 220, THIST 221, THIST 222, THIST 322, THIST 437, TPOLS 270, TSOC 270, TSOC 439, TSOC 460, TWOMN 101, TWOMN 302
-- Requirement cues: *For students admitted to the University prior to autumn quarter 2023, the DIV requirement is a minimum of 3 credits. | 40 additional credits | A minimum of 180 college credits must be completed (with more required in some programs) and include academic credits in the following areas:
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-ethnic-gender-and-labor-studies-pathway-labor-studies-option.txt
-
-#### Healthcare Leadership (BA)
-
-- Source: https://www.tacoma.uw.edu/nursing/healthcare-leadership-sample-program-plan
-- Primary source: https://www.tacoma.uw.edu/nursing/declare-healthcare-leadership-major
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: alternate-official-source
-- Parse confidence: high
-- Source-only UW course codes: T HLTH 310, T HLTH 320, T HLTH 440, T NURS 414, THLEAD 405, THLEAD 406, THLEAD 480
-- Requirement cues: 5 credits of English composition (10 additional writing-intensive credits completed via required Healthcare Leadership course work) | A minimum 60 quarter credits completed | Clarifying major requirements
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-healthcare-leadership.txt
-
-#### History (BA)
-
-- Source: https://www.tacoma.uw.edu/sias/socs/history
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: ENGL 131, THIST 101
-- Requirement cues: *For students admitted to the University prior to autumn quarter 2023, the DIV requirement is a minimum of 3 credits. | 30 credits from the list below; 25 credits must be upper-division (300–400) level THIST courses | 30 credits from the list below; 25 credits must be upper-division (300–400) level THIST courses.
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-history.txt
-
-#### Information Technology (BS)
-
-- Source: https://www.tacoma.uw.edu/set/programs/undergrad/it
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: T INFO 240, T INFO 390, T INFO 481, T INFO 482, T INFO 497, TCSS 141, TINFO 200, TINFO 210, TINFO 220, TINFO 230, TINFO 240, TINFO 410, TINFO 441, TINFO 442, TINFO 443, TINFO 444, TINFO 445, TINFO 446, TINFO 481, TINFO 482, TINFO 497
-- Structured-only UW course codes not seen in the parsed source: TCSS 305, TMATH 126, TMATH 208
-- Requirement cues: Diversity, Equity and Inclusion at SET | Internships for Credit | Admission Requirements
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-information-technology.txt
-
-#### Interdisciplinary Arts and Sciences (BA)
-
-- Source: https://www.tacoma.uw.edu/sias-new/socs-new/interdisciplinary-arts-and-sciences
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: ENGL 131, TARTS 200, TARTS 240, TARTS 280, TARTS 281, TARTS 284, TARTS 311, TBIOL 203, TBIOL 204, TBIOL 422, TCOM 254, TECON 101, TECON 350, TEGL 301, TESC 102, TESC 201, TFILM 201, THIST 150, THIST 151, THIST 200, THIST 201, TIAS 305, TLAX 277, TLAX 355, TLAX 476, TLIT 101, TLIT 371, TPOLS 202, TPSYCH 101, TURB 340, TWOMN 211
-- Requirement cues: (At least 5 credits from each list.) | *For students admitted to the University prior to autumn quarter 2023, the DIV requirement is a minimum of 3 credits. | 40 additional credits
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-interdisciplinary-arts-and-sciences.txt
 
 #### Interdisciplinary Arts and Sciences: Individually-designed (BA)
 
@@ -1578,17 +1006,6 @@ Generated: 2026-04-13T03:06:17.860Z
 - Requirement cues: *For students admitted to the University prior to autumn quarter 2023, the DIV requirement is a minimum of 3 credits. | 40 additional credits | A minimum of 180 college credits must be completed (with more required in some programs) and include academic credits in the following areas:
 - Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-law-and-policy.txt
 
-#### Mathematics (BS)
-
-- Source: https://www.tacoma.uw.edu/sias/sam/mathematics
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: BEFORE 450, ENGL 131, TBECON 420, TBGEN 210, TCSS 142, TCSS 143, TCSS 321, TCSS 325, TCSS 487, TESC 430, TESC 490, TMATH 125, TMATH 126, TMATH 172, TMATH 207, TMATH 208, TMATH 210, TMATH 300, TMATH 302, TMATH 342, TMATH 344, TMATH 350, TMATH 390, TMATH 393, TMATH 412, TMATH 420, TMATH 427, TMATH 473, TMATH 495, TMATH 496, TMATH 498, TMATH 499, TME 311, TME 351, TPHYS 122, TSTAT 280, TURB 225, TWOMN 211, WCG 424
-- Requirement cues: *For students admitted to the University prior to autumn quarter 2023, the DIV requirement is a minimum of 3 credits. | 40 additional credits | A grade of at least 1.5 is required for TMATH 402 and TMATH 424 to satisfy the major requirements. A 2.0 is required if you wish to take the second class in the sequence TMATH 403 or TMATH 425.
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-mathematics.txt
-
 #### Mechanical Engineering
 
 - Source: https://www.tacoma.uw.edu/set/programs/undergrad/me
@@ -1602,40 +1019,6 @@ Generated: 2026-04-13T03:06:17.860Z
 - Requirement cues: 5 credits of computer programming (Courses in Python, Java, C, C++, or the equivalent of AMATH 301: Beginning Scientific Computing will meet this requirement. If you are not sure if the course you plan to take will count, please check with a SET advisor.) | A minimum of 30 credits of required courses for the BSME must also be taken in residence at the UW Tacoma. | A total of 180 quarter credits are required to complete the BSME program. Follow the ME Schedule Planning Grids (in the next tabs) to make sure you complete all courses required to graduate.
 - Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-mechanical-engineering.txt
 
-#### Nursing (BSN)
-
-- Source: https://www.tacoma.uw.edu/nursing/rn-bsn-sample-program-plans
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: T HLTH 340, T HLTH 415, T NURS 360, T NURS 414, T NURS 420, T NURS 440
-- Requirement cues: 5 credits of English composition (10 additional writing-intensive credits completed via required Healthcare Leadership course work) | A minimum 60 quarter credits completed | Clarifying major requirements
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-nursing.txt
-
-#### Politics, Philosophy and Economics (BA)
-
-- Source: https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-ppe
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: ENGL 131, TBECON 220, TBECON 221, TECON 200, TECON 201, TGH 301, TGH 303, THIST 322, TPHIL 250, TPHIL 251, TPOLS 260
-- Requirement cues: *For students admitted to the University prior to autumn quarter 2023, the DIV requirement is a minimum of 3 credits. | 40 additional credits | A minimum of 180 college credits must be completed (with more required in some programs) and include academic credits in the following areas:
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-politics-philosophy-and-economics.txt
-
-#### Psychology (BA)
-
-- Source: https://www.tacoma.uw.edu/sias/socs/psychology
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: ENGL 131, TPSYCH 101, TPSYCH 202, TPSYCH 209, TPSYCH 210, TPSYCH 220, TPSYCH 230, TPSYCH 240, TPSYCH 250, TPSYCH 260, TPSYCH 306, TPSYCH 308, TPSYCH 310, TPSYCH 311, TPSYCH 312, TPSYCH 313, TPSYCH 314, TPSYCH 319, TPSYCH 320, TPSYCH 321, TPSYCH 322, TPSYCH 344, TPSYCH 345, TPSYCH 346, TPSYCH 347, TPSYCH 349, TPSYCH 350, TPSYCH 351, TPSYCH 352, TPSYCH 400, TPSYCH 401, TPSYCH 402, TPSYCH 403, TPSYCH 404, TPSYCH 472, TPSYCH 496, TPSYCH 498, TPSYCH 499
-- Structured-only UW course codes not seen in the parsed source: TPSYCH 300
-- Requirement cues: *For students admitted to the University prior to autumn quarter 2023, the DIV requirement is a minimum of 3 credits. | 40 additional credits | 5 additional credits from Arts and Humanities (A&H) OR Social Sciences (SSc) OR Natural Sciences (NSc)
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-psychology.txt
-
 #### Social Welfare (BA)
 
 - Source: https://www.tacoma.uw.edu/swcj/basw-curriculum
@@ -1647,50 +1030,4 @@ Generated: 2026-04-13T03:06:17.860Z
 - Structured-only UW course codes not seen in the parsed source: TSOCWF 390
 - Requirement cues: 3-year Program | Advanced Standing Program | Independent Study | Academic Review Policy & Procedures | Program Goals | Graduation Requirements | 5 Credits of English Composition | BASW Admission Requirements and How to Apply
 - Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-social-welfare.txt
-
-#### Spanish Language and Cultures (BA)
-
-- Source: https://www.tacoma.uw.edu/sias/cac/spanish-language-and-cultures
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: ENGL 131, TSPAN 299, TSPAN 301, TSPAN 302, TSPAN 303, TSPAN 335, TSPAN 345, TSPAN 348, TSPAN 351, TSPAN 352, TSPAN 361, TSPAN 371, TSPAN 374, TSPAN 376, TSPAN 388, TSPAN 393, TSPAN 420, TSPAN 425, TSPAN 430, TSPAN 480
-- Requirement cues: *For students admitted to the University prior to autumn quarter 2023, the DIV requirement is a minimum of 3 credits. | 40 additional credits | A minimum of 180 college credits must be completed (with more required in some programs) and include academic credits in the following areas:
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-spanish-language-and-cultures.txt
-
-#### Sustainable Urban Development (BA)
-
-- Source: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: ENGL 131, T GEOG 101, T GIS 311, T GIS 312, T GIS 313, T GIS 414, T GIS 415, T SUD 222, T SUD 240, T SUD 444, T SUD 445, T SUD 475, T UDE 210, T UDE 260, T UDE 340, T URB 101, T URB 102, T URB 103, T URB 110, T URB 200, T URB 220, T URB 225, T URB 235, T URB 314, T URB 379, T URB 403, T URB 470, T URB 479, T URB 498, TESC 201, TEST 332
-- Requirement cues: * Students choosing the Community Engagement formal option cannot apply T URB 220 to their foundation course credits. | *** Students choosing the GIS formal option cannot apply T GIS 311 to their foundation course credits. | *For students admitted to the University prior to autumn quarter 2023, the DIV requirement is a minimum of 3 credits.
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-sustainable-urban-development.txt
-
-#### Sustainable Urban Development (BA) - Community Engagement option
-
-- Source: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: ENGL 131, T GEOG 101, T GIS 311, T GIS 312, T GIS 313, T GIS 350, T GIS 414, T GIS 415, T GIS 450, T GIS 460, T GIS 470, T SUD 222, T SUD 240, T SUD 444, T SUD 445, T SUD 475, T UDE 210, T UDE 260, T UDE 310, T UDE 340, T URB 101, T URB 102, T URB 103, T URB 110, T URB 200, T URB 210, T URB 220, T URB 225, T URB 235, T URB 250, T URB 312, T URB 314, T URB 316, T URB 345, T URB 379, T URB 403, T URB 432, T URB 470, T URB 479, T URB 480, T URB 498, TESC 201, TEST 332
-- Structured-only UW course codes not seen in the parsed source: UDE 340, URB 220, URB 235
-- Requirement cues: * Students choosing the Community Engagement formal option cannot apply T URB 220 to their foundation course credits. | *** Students choosing the GIS formal option cannot apply T GIS 311 to their foundation course credits. | *For students admitted to the University prior to autumn quarter 2023, the DIV requirement is a minimum of 3 credits.
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-sustainable-urban-development-pathway-community-engagement-option.txt
-
-#### Sustainable Urban Development (BA) - GIS option
-
-- Source: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: ENGL 131, T GEOG 101, T GIS 311, T GIS 312, T GIS 313, T GIS 350, T GIS 414, T GIS 415, T GIS 450, T GIS 460, T GIS 470, T SUD 222, T SUD 240, T SUD 444, T SUD 445, T SUD 475, T UDE 210, T UDE 260, T UDE 310, T UDE 340, T URB 101, T URB 102, T URB 103, T URB 110, T URB 200, T URB 210, T URB 220, T URB 225, T URB 235, T URB 250, T URB 312, T URB 314, T URB 316, T URB 345, T URB 379, T URB 403, T URB 432, T URB 470, T URB 479, T URB 480, T URB 498, TESC 201, TEST 332
-- Structured-only UW course codes not seen in the parsed source: GIS 311
-- Requirement cues: * Students choosing the Community Engagement formal option cannot apply T URB 220 to their foundation course credits. | *** Students choosing the GIS formal option cannot apply T GIS 311 to their foundation course credits. | *For students admitted to the University prior to autumn quarter 2023, the DIV requirement is a minimum of 3 credits.
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-sustainable-urban-development-pathway-gis-option.txt
 

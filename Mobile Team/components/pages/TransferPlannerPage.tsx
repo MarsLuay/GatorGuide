@@ -27,15 +27,19 @@ import {
   getTransferPlannerPrimaryDegreeRequirementsSource,
   getTransferPlannerCanonicalCourse,
   getTransferPlannerEquivalencyRulesForSourceCourse,
+  getTransferPlannerRequirementDiffClassifications,
   getTransferPlannerStudentRuntimeMajorsForCampus,
   getTransferPlannerStudentRuntimePathwaysForPlan,
   getTransferPlannerTrack,
+  TRANSFER_PLANNER_TRACKS,
   resolveTransferPlannerStudentRuntimeMajorPlan,
   TRANSFER_PLANNER_CAMPUSES,
   type TransferPlannerCampusId,
+  type TransferPlannerEquivalencyRule,
   type TransferPlannerMajorPathway,
   type TransferPlannerResolvedMajorPlan,
   type TransferPlannerStudentCourseEvaluation,
+  type TransferPlannerTrack,
 } from "@/constants/transfer-planner-source";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppTheme } from "@/hooks/use-app-theme";
@@ -44,11 +48,14 @@ import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { errorLoggingService, transcriptPlannerDebugService } from "@/services";
 import { storageService, type UploadedFile } from "@/services/storage/storage.service";
 import {
+  buildGeneralEducationRequirementTargets,
   buildSuggestedQuarterPlan,
   buildRequirementStatuses,
   buildTransferPlannerStudentCourseEvaluations,
   buildTransferPlannerStudentEvaluationReport,
   extractCourseCodes,
+  getPreparatoryTrackCourseCodeSet,
+  getResolvedTrackTermsForRequirementDisplay,
   parseCompletedTranscriptCourses,
   type SuggestedQuarterPlan,
   type TransferPlannerStudentEvaluationReport,
@@ -67,6 +74,16 @@ const CURRENT_PLANNED_COURSES_FIELD = "transferPlannerCurrentCoursesByPath";
 const SELECTED_PATHWAY_FIELD = "transferPlannerSelectedPathwayByPlan";
 const LAST_SELECTED_PLAN_FIELD = "transferPlannerLastSelectedPlan";
 const TRANSCRIPT_PARSER_VERSION = 2;
+const GRC_PLANNER_CAMPUS_ID = "grc";
+const GENERATED_PROGRAM_MAP_SUMMARY_SENTENCE = [
+  "Generated automatically",
+  "from the current public program-map page",
+  "and catalog API.",
+].join(" ");
+
+type PlannerCollegeId = "uw" | "grc";
+type PlannerCampusSelectionId = TransferPlannerCampusId | typeof GRC_PLANNER_CAMPUS_ID;
+type PlannerSelectorKey = "college" | "campus" | "major" | null;
 
 type TranscriptDocument = UploadedFile;
 
@@ -217,17 +234,135 @@ function normalizePlannerLastSelectedPlan(rawValue: unknown) {
     return null;
   }
 
+  const rawCollegeId = (rawValue as Record<string, unknown>).collegeId;
   const rawCampusId = (rawValue as Record<string, unknown>).campusId;
   const rawMajorId = (rawValue as Record<string, unknown>).majorId;
+  const collegeId = String(rawCollegeId ?? "").trim().toLowerCase();
   const campusId = String(rawCampusId ?? "").trim();
   const majorId = String(rawMajorId ?? "").trim();
   if (!campusId || !majorId) return null;
 
-  return { campusId, majorId };
+  return {
+    collegeId: collegeId === "grc" || campusId === GRC_PLANNER_CAMPUS_ID ? "grc" : "uw",
+    campusId,
+    majorId,
+  } as {
+    collegeId: PlannerCollegeId;
+    campusId: PlannerCampusSelectionId;
+    majorId: string;
+  };
 }
 
-function getScheduleCampusLabel(campusLabel: string) {
+function isPlannerUwCampusId(value: string): value is TransferPlannerCampusId {
+  return TRANSFER_PLANNER_CAMPUSES.some((entry) => entry.id === value);
+}
+
+function getDefaultPlannerCampusId(collegeId: PlannerCollegeId): PlannerCampusSelectionId {
+  return collegeId === "grc" ? GRC_PLANNER_CAMPUS_ID : "uw-seattle";
+}
+
+function getCollegeOptionLabel(collegeId: PlannerCollegeId) {
+  return collegeId === "grc" ? "Green River College" : "University of Washington";
+}
+
+function getPlannerHeroContent(collegeId: PlannerCollegeId) {
+  if (collegeId === "grc") {
+    return {
+      title: "Green River Course Planner",
+      description:
+        "This planner reads your completed Green River classes and maps them against the currently tracked Green River program paths so you can see what is already done and what is still needed for the program you pick.",
+    };
+  }
+
+  return {
+    title: "GRC -> UW Course Planner",
+    description:
+      "Classes for Green River College are cheaper/easier than those at the University of Washington. This tool matches you with a transfer track most compatible with your major, letting you take advantage of it by showing you every course that directly transfers in.",
+  };
+}
+
+function getPlannerSelectionHelperText(
+  collegeId: PlannerCollegeId,
+  field: "college" | "campus" | "major"
+) {
+  if (field === "college") {
+    return "Pick the college whose program requirements you want this planner to follow.";
+  }
+
+  if (field === "campus") {
+    return collegeId === "grc"
+      ? "Green River currently has one supported campus in this planner."
+      : "Set the UW campus and major you want this Green River plan to match against.";
+  }
+
+  return collegeId === "grc"
+    ? "Pick the Green River program you want the course plan to follow."
+    : "Pick the UW bachelor's degree you want the course plan to follow.";
+}
+
+function getPlannerMajorSearchPlaceholder(collegeId: PlannerCollegeId) {
+  return collegeId === "grc" ? "Search programs" : "Search majors";
+}
+
+function getPlannerNoDataMessage(collegeId: PlannerCollegeId) {
+  return collegeId === "grc"
+    ? "There is not a Green River program plan for this path yet."
+    : "There is not a course plan for this campus yet.";
+}
+
+function stripGeneratedProgramMapSummarySentence(text: string | null | undefined) {
+  return String(text ?? "")
+    .replace(GENERATED_PROGRAM_MAP_SUMMARY_SENTENCE, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+
+type GrcTrackCredentialKind = "associate" | "certificate" | "bas";
+
+function getGrcTrackCredentialKind(
+  track: TransferPlannerTrack | null | undefined
+): GrcTrackCredentialKind {
+  const normalizedText = [
+    String(track?.code ?? ""),
+    String(track?.title ?? ""),
+    String(track?.summary ?? ""),
+    ...(Array.isArray(track?.notes) ? track.notes : []),
+  ]
+    .join(" ")
+    .toLowerCase();
+
+  if (/\bbas\b|bachelor of applied science/i.test(normalizedText)) {
+    return "bas";
+  }
+
+  if (
+    /\bcertificate\b|certificate of completion|certificate of accomplishment|certificate of proficiency/i.test(
+      normalizedText
+    )
+  ) {
+    return "certificate";
+  }
+
+  return "associate";
+}
+
+function getGrcTrackRequirementNoun(track: TransferPlannerTrack | null | undefined) {
+  return getGrcTrackCredentialKind(track) === "associate" ? "degree" : "program";
+}
+
+function getGrcTrackSpecificsTitle(track: TransferPlannerTrack | null | undefined) {
+  return getGrcTrackRequirementNoun(track) === "degree" ? "Degree Specifics" : "Program Specifics";
+}
+
+function getGrcTrackClassesLabelSuffix(track: TransferPlannerTrack | null | undefined) {
+  return getGrcTrackRequirementNoun(track) === "degree" ? "Degree Classes" : "Program Classes";
+}
+
+function getScheduleCampusLabel(collegeId: PlannerCollegeId, campusLabel: string) {
   const trimmed = String(campusLabel ?? "").trim();
+  if (collegeId === "grc") {
+    return trimmed || "Green River College";
+  }
   if (!trimmed) return "UW";
   if (/^UW\s+/i.test(trimmed)) return trimmed;
   return `UW ${trimmed}`;
@@ -319,29 +454,682 @@ function getRequirementTagLabel(normalizedTag: string) {
   }
 }
 
+function getRequirementTagSearchLabels(normalizedTag: string) {
+  switch (normalizedTag) {
+    case "AH":
+      return ["A&H", "Arts and Humanities", "Humanities"];
+    case "SSC":
+      return ["SSc", "Social Sciences", "Social Science"];
+    case "NSC":
+      return ["NSc", "Natural Sciences", "Natural Science"];
+    case "QSR":
+      return ["QSR", "Quantitative and Symbolic Reasoning"];
+    case "VLPA":
+      return ["VLPA", "Visual, Literary, and Performing Arts"];
+    case "DIV":
+      return ["DIV", "Diversity"];
+    case "NW":
+      return ["NW", "Natural World"];
+    case "IANDS":
+      return ["I&S", "Individuals and Societies"];
+    default:
+      return [getRequirementTagLabel(normalizedTag)];
+  }
+}
+
 function escapeRegExp(value: string) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 function inferRequirementCreditTotalFromText(text: string, normalizedTag: string) {
-  const tagLabel = getRequirementTagLabel(normalizedTag);
-  const escapedTag = escapeRegExp(tagLabel);
-  const patterns = [
-    new RegExp(`${escapedTag}[^\\n]{0,60}?(\\d+(?:\\.\\d+)?)\\s*credits`, "i"),
-    new RegExp(`(\\d+(?:\\.\\d+)?)\\s*credits[^\\n]{0,60}?${escapedTag}`, "i"),
-  ];
+  const tagSearchLabels = Array.from(new Set(getRequirementTagSearchLabels(normalizedTag)));
 
-  for (const pattern of patterns) {
-    const match = text.match(pattern);
-    if (!match) continue;
+  for (const tagLabel of tagSearchLabels) {
+    const escapedTag = escapeRegExp(tagLabel);
+    const patterns = [
+      new RegExp(`${escapedTag}[^\\n]{0,80}?(\\d+(?:\\.\\d+)?)\\s*credits`, "i"),
+      new RegExp(`(\\d+(?:\\.\\d+)?)\\s*credits[^\\n]{0,80}?${escapedTag}`, "i"),
+    ];
 
-    const parsed = Number.parseFloat(match[1] ?? "");
-    if (Number.isFinite(parsed) && parsed > 0) {
-      return parsed;
+    for (const pattern of patterns) {
+      const match = text.match(pattern);
+      if (!match) continue;
+
+      const parsed = Number.parseFloat(match[1] ?? "");
+      if (Number.isFinite(parsed) && parsed > 0) {
+        return parsed;
+      }
     }
   }
 
   return null;
+}
+
+function normalizePlannerCourseCode(value: string) {
+  const normalized = String(value ?? "")
+    .toUpperCase()
+    .replace(/\s+/g, " ")
+    .trim();
+  const match = normalized.match(/^([A-Z&]+(?: [A-Z&]+)*) (\d{3}(?:\.\d+)?[A-Z]?)$/);
+  if (!match) {
+    return normalized;
+  }
+
+  const subjectTokens = match[1].split(" ").filter(Boolean);
+  const normalizedSubject = subjectTokens.every((token) => token.length === 1)
+    ? subjectTokens.join("")
+    : subjectTokens.join(" ");
+
+  return `${normalizedSubject} ${match[2]}`;
+}
+
+function joinPlannerLabelList(labels: string[]) {
+  if (labels.length <= 1) return labels[0] ?? "";
+  if (labels.length === 2) return `${labels[0]} and ${labels[1]}`;
+  return `${labels.slice(0, -1).join(", ")}, and ${labels[labels.length - 1]}`;
+}
+
+function getPlanDegreeMapSearchText(plan: TransferPlannerResolvedMajorPlan) {
+  return (plan.degreeMapSections ?? [])
+    .flatMap((section) => [section.title, section.note ?? "", ...section.items])
+    .join("\n");
+}
+
+type MajorSpecificsGeneralEducationCategoryId =
+  | "ah"
+  | "ssc"
+  | "nsc"
+  | "breadth"
+  | "div"
+  | "qsr"
+  | "vlpa"
+  | "nw"
+  | "iands";
+
+type MajorSpecificsGeneralEducationCreditLine = {
+  id: MajorSpecificsGeneralEducationCategoryId;
+  label: string;
+  credits: number;
+};
+
+const MAJOR_SPECIFICS_GENERAL_ED_CATEGORIES: {
+  id: MajorSpecificsGeneralEducationCategoryId;
+  label: string;
+}[] = [
+  { id: "ah", label: "Arts & Humanities Classes" },
+  { id: "ssc", label: "Social Science Classes" },
+  { id: "nsc", label: "Natural Science Classes" },
+  { id: "breadth", label: "Flexible Breadth Classes" },
+  { id: "div", label: "Diversity Classes" },
+  { id: "qsr", label: "Quantitative & Symbolic Reasoning Classes" },
+  { id: "vlpa", label: "Visual, Literary & Performing Arts Classes" },
+  { id: "nw", label: "Natural World Classes" },
+  { id: "iands", label: "Individuals & Societies Classes" },
+];
+
+type MajorSpecificsGeneralEducationCreditTotals = Record<
+  MajorSpecificsGeneralEducationCategoryId,
+  number
+>;
+
+function createEmptyMajorSpecificsGeneralEducationCreditTotals(): MajorSpecificsGeneralEducationCreditTotals {
+  return {
+    ah: 0,
+    ssc: 0,
+    nsc: 0,
+    breadth: 0,
+    div: 0,
+    qsr: 0,
+    vlpa: 0,
+    nw: 0,
+    iands: 0,
+  };
+}
+
+function buildMajorSpecificsGeneralEducationCreditLinesFromTotals(
+  totals: MajorSpecificsGeneralEducationCreditTotals
+): MajorSpecificsGeneralEducationCreditLine[] {
+  return MAJOR_SPECIFICS_GENERAL_ED_CATEGORIES.map((entry) => ({
+    id: entry.id,
+    label: entry.label,
+    credits: totals[entry.id] ?? 0,
+  }));
+}
+
+function inferMajorSpecificsGeneralEducationCreditsFromTrackLabel(courseLabel: string) {
+  const normalizedLabel = String(courseLabel ?? "").replace(/\s+/g, " ").trim();
+  if (!normalizedLabel) return 0;
+
+  const explicitCreditsMatch = normalizedLabel.match(/(\d+(?:\.\d+)?)\s*(?:credits?|cr)\b/i);
+  if (explicitCreditsMatch) {
+    const parsedCredits = Number.parseFloat(explicitCreditsMatch[1] ?? "");
+    if (Number.isFinite(parsedCredits) && parsedCredits > 0) {
+      return parsedCredits;
+    }
+  }
+
+  const repeatedCourseCountMatch = normalizedLabel.match(/^(\d+)\s+[A-Z]\b/i);
+  if (repeatedCourseCountMatch) {
+    const parsedCourseCount = Number.parseInt(repeatedCourseCountMatch[1] ?? "", 10);
+    if (Number.isFinite(parsedCourseCount) && parsedCourseCount > 0) {
+      return parsedCourseCount * 5;
+    }
+  }
+
+  if (/^[A-Z]\s*\d+\b/i.test(normalizedLabel)) {
+    return 5;
+  }
+
+  if (
+    /\b(?:humanit|fine arts|arts and humanities|social sciences?|natural sciences?|diversity|qsr|quantitative|vlpa|visual,\s*literary|natural world|individuals?\s+and\s+societies|i&s)\b/i.test(
+      normalizedLabel
+    )
+  ) {
+    return 5;
+  }
+
+  return 0;
+}
+
+function getMajorSpecificsGeneralEducationCategoryIdsForTrackLabel(
+  courseLabel: string
+): MajorSpecificsGeneralEducationCategoryId[] {
+  const normalizedLabel = String(courseLabel ?? "").replace(/\s+/g, " ").trim();
+  if (!normalizedLabel || extractCourseCodes(normalizedLabel).length > 0) {
+    return [];
+  }
+
+  if (
+    /^(?:suggested|recommend|consider|see\b|discuss\b|students?\s+are\s+responsible\b|green river college is fully accredited\b)/i.test(
+      normalizedLabel
+    )
+  ) {
+    return [];
+  }
+
+  const lower = normalizedLabel.toLowerCase();
+  const categories = new Set<MajorSpecificsGeneralEducationCategoryId>();
+  const hasHumanities =
+    lower.includes("humanit") ||
+    lower.includes("fine arts") ||
+    lower.includes("arts and humanities") ||
+    /\ba&h\b/i.test(normalizedLabel) ||
+    /^\s*h\s*\d+\b/i.test(normalizedLabel);
+  const hasSocialScience =
+    lower.includes("social science") ||
+    /\bssc\b/i.test(normalizedLabel) ||
+    /^\s*s\s*\d+\b/i.test(normalizedLabel);
+  const hasNaturalScience =
+    lower.includes("natural science") ||
+    /\bnsc\b/i.test(normalizedLabel) ||
+    /^\s*n\s*\d+\b/i.test(normalizedLabel);
+  const hasFlexibleBreadth =
+    /(?:\badditional areas?\s+of inquiry\b|\bor\b)/i.test(normalizedLabel) &&
+    [hasHumanities, hasSocialScience, hasNaturalScience].filter(Boolean).length >= 2;
+
+  if (hasFlexibleBreadth) {
+    categories.add("breadth");
+  } else {
+    if (hasHumanities) categories.add("ah");
+    if (hasSocialScience) categories.add("ssc");
+    if (hasNaturalScience) categories.add("nsc");
+  }
+
+  if (
+    /^\s*d\s*\d+\b/i.test(normalizedLabel) ||
+    /\bdiversity\b[^.]{0,48}\b(?:requirement|required|minimum|must|need)\b/i.test(normalizedLabel) ||
+    /\b\d+\s*(?:credits?|cr)\b[^.]{0,48}\bdiversity\b/i.test(normalizedLabel)
+  ) {
+    categories.add("div");
+  }
+
+  if (
+    /\bqsr\b/i.test(normalizedLabel) ||
+    /quantitative(?:\s+and)?\s+symbolic reasoning/i.test(normalizedLabel)
+  ) {
+    categories.add("qsr");
+  }
+
+  if (
+    /\bvlpa\b/i.test(normalizedLabel) ||
+    /visual,\s*literary(?:,\s*and)?\s+performing arts/i.test(normalizedLabel)
+  ) {
+    categories.add("vlpa");
+  }
+
+  if (/\bnw\b/i.test(normalizedLabel) || /natural world/i.test(normalizedLabel)) {
+    categories.add("nw");
+  }
+
+  if (/\bi&s\b/i.test(normalizedLabel) || /individuals?\s+and\s+societies/i.test(normalizedLabel)) {
+    categories.add("iands");
+  }
+
+  return Array.from(categories);
+}
+
+function buildMajorSpecificsUwGeneralEducationCreditLines(plan: TransferPlannerResolvedMajorPlan) {
+  const searchableText = getPlanDegreeMapSearchText(plan);
+  const parsedTargets = buildGeneralEducationRequirementTargets(plan);
+  const totals = createEmptyMajorSpecificsGeneralEducationCreditTotals();
+
+  totals.ah = parsedTargets.ahCredits ?? inferRequirementCreditTotalFromText(searchableText, "AH") ?? 0;
+  totals.ssc = parsedTargets.sscCredits ?? inferRequirementCreditTotalFromText(searchableText, "SSC") ?? 0;
+  totals.nsc = parsedTargets.nscCredits ?? inferRequirementCreditTotalFromText(searchableText, "NSC") ?? 0;
+  totals.breadth = parsedTargets.breadthCredits ?? 0;
+  totals.div = inferRequirementCreditTotalFromText(searchableText, "DIV") ?? 0;
+  totals.qsr = inferRequirementCreditTotalFromText(searchableText, "QSR") ?? 0;
+  totals.vlpa = inferRequirementCreditTotalFromText(searchableText, "VLPA") ?? 0;
+  totals.nw = inferRequirementCreditTotalFromText(searchableText, "NW") ?? 0;
+  totals.iands = inferRequirementCreditTotalFromText(searchableText, "IANDS") ?? 0;
+
+  return buildMajorSpecificsGeneralEducationCreditLinesFromTotals(totals);
+}
+
+function buildMajorSpecificsGrcGeneralEducationCreditLines(args: {
+  plan: TransferPlannerResolvedMajorPlan | null;
+  track: TransferPlannerTrack | null;
+  completedCourses: TranscriptCourseEntry[];
+}) {
+  const { plan, track, completedCourses } = args;
+  if (!track) {
+    return plan ? buildMajorSpecificsUwGeneralEducationCreditLines(plan) : [];
+  }
+
+  const totals = createEmptyMajorSpecificsGeneralEducationCreditTotals();
+  const resolvedTerms = getResolvedTrackTermsForRequirementDisplay(track, completedCourses).filter(
+    (term) => !GRC_TRACK_NOTE_TERM_LABEL_PATTERN.test(String(term.label ?? "").trim())
+  );
+
+  for (const courseLabel of resolvedTerms.flatMap((term) => term.courses)) {
+    const categoryIds = getMajorSpecificsGeneralEducationCategoryIdsForTrackLabel(courseLabel);
+    if (!categoryIds.length) continue;
+
+    const credits = inferMajorSpecificsGeneralEducationCreditsFromTrackLabel(courseLabel);
+    if (!credits) continue;
+
+    for (const categoryId of categoryIds) {
+      totals[categoryId] += credits;
+    }
+  }
+
+  return buildMajorSpecificsGeneralEducationCreditLinesFromTotals(totals);
+}
+
+function buildCourseDisplayLabel(
+  schoolId: "grc" | TransferPlannerCampusId,
+  courseCodeOrLabel: string
+) {
+  const rawValue = String(courseCodeOrLabel ?? "").trim();
+  if (!rawValue) return "";
+  if (rawValue.includes(" - ")) return rawValue;
+
+  const extractedCourseCode = extractCourseCodes(rawValue)[0] ?? rawValue;
+  const normalizedCourseCode = normalizePlannerCourseCode(extractedCourseCode);
+  const canonicalCourse = getTransferPlannerCanonicalCourse(schoolId, normalizedCourseCode);
+  if (canonicalCourse?.title) {
+    return `${normalizedCourseCode} - ${canonicalCourse.title}`;
+  }
+
+  return rawValue === normalizedCourseCode ? rawValue : normalizedCourseCode;
+}
+
+function appendUniqueCourseCode(
+  orderedCourseCodes: string[],
+  seenCourseCodes: Set<string>,
+  courseCode: string
+) {
+  const normalizedCourseCode = normalizePlannerCourseCode(courseCode);
+  if (!normalizedCourseCode || seenCourseCodes.has(normalizedCourseCode)) return;
+  seenCourseCodes.add(normalizedCourseCode);
+  orderedCourseCodes.push(normalizedCourseCode);
+}
+
+function appendUniqueCourseCodesFromLabels(
+  orderedCourseCodes: string[],
+  seenCourseCodes: Set<string>,
+  labels: string[]
+) {
+  for (const label of labels) {
+    const extractedCourseCodes = extractCourseCodes(label);
+    if (extractedCourseCodes.length) {
+      for (const courseCode of extractedCourseCodes) {
+        appendUniqueCourseCode(orderedCourseCodes, seenCourseCodes, courseCode);
+      }
+      continue;
+    }
+
+    appendUniqueCourseCode(orderedCourseCodes, seenCourseCodes, label);
+  }
+}
+
+function getPreferredAlternativeCourseSet(
+  alternativeCourseCodeSets: string[][],
+  preferredCourseCodes: Set<string>
+) {
+  if (!alternativeCourseCodeSets.length) return [] as string[];
+
+  const preferredSet =
+    alternativeCourseCodeSets.find((courseSet) =>
+      courseSet.some((courseCode) => preferredCourseCodes.has(normalizePlannerCourseCode(courseCode)))
+    ) ?? alternativeCourseCodeSets[0];
+
+  return preferredSet ?? [];
+}
+
+function buildMajorSpecificsFallbackGrcCourseLabels(plan: TransferPlannerResolvedMajorPlan) {
+  const orderedLabels: string[] = [];
+  const seenLabels = new Set<string>();
+  const addLabel = (label: string) => {
+    const normalizedLabel = String(label ?? "").trim();
+    if (!normalizedLabel || seenLabels.has(normalizedLabel)) return;
+    seenLabels.add(normalizedLabel);
+    orderedLabels.push(normalizedLabel);
+  };
+
+  for (const courseLabel of plan.grcCourseList ?? []) {
+    addLabel(buildCourseDisplayLabel("grc", courseLabel));
+  }
+
+  if (orderedLabels.length) {
+    return orderedLabels;
+  }
+
+  const fallbackCourseCodes: string[] = [];
+  const seenCourseCodes = new Set<string>();
+  const checklistItems = [...plan.applicationChecklist, ...plan.beforeEnrollmentChecklist];
+  for (const item of checklistItems) {
+    appendUniqueCourseCodesFromLabels(fallbackCourseCodes, seenCourseCodes, item.grcCourses ?? []);
+  }
+
+  const preferredPlanCourseCodes = new Set(
+    (plan.grcCourseList ?? [])
+      .flatMap((entry) => extractCourseCodes(entry))
+      .map((courseCode) => normalizePlannerCourseCode(courseCode))
+      .filter(Boolean)
+  );
+
+  for (const classification of getTransferPlannerRequirementDiffClassifications(
+    plan.id,
+    plan.selectedPathwayId
+  )) {
+    if (classification.displayPhase === "stay-at-grc") continue;
+    appendUniqueCourseCodesFromLabels(
+      fallbackCourseCodes,
+      seenCourseCodes,
+      classification.grcCourseCodes
+    );
+    appendUniqueCourseCodesFromLabels(
+      fallbackCourseCodes,
+      seenCourseCodes,
+      getPreferredAlternativeCourseSet(
+        classification.alternativeCourseCodeSets ?? [],
+        preferredPlanCourseCodes
+      )
+    );
+  }
+
+  return fallbackCourseCodes.map((courseCode) => buildCourseDisplayLabel("grc", courseCode));
+}
+
+const GRC_TRACK_NOTE_TERM_LABEL_PATTERN = /\btransferability of credits\b/i;
+
+function buildRequiredCourseSentence(courseLabel: string, uwEquivalentLabel?: string | null) {
+  const normalizedCourseLabel = String(courseLabel ?? "").replace(/\s+/g, " ").trim();
+  if (!normalizedCourseLabel) return "";
+
+  if (!uwEquivalentLabel) {
+    return `${normalizedCourseLabel} is required.`;
+  }
+
+  return `${normalizedCourseLabel} is required. UW equivalent: ${uwEquivalentLabel}.`;
+}
+
+function buildMajorSpecificsGrcRequiredMajorCourseLines(args: {
+  plan: TransferPlannerResolvedMajorPlan | null;
+  track: TransferPlannerTrack | null;
+  completedCourses: TranscriptCourseEntry[];
+}) {
+  const { plan, track, completedCourses } = args;
+  const orderedLines: { id: string; text: string }[] = [];
+  const seenCourseCodes = new Set<string>();
+  const preparatoryCourseCodes = getPreparatoryTrackCourseCodeSet(track);
+  const addCourseLabel = (courseLabel: string) => {
+    const normalizedLabel = String(courseLabel ?? "").replace(/\s+/g, " ").trim();
+    const explicitCourseCodes = extractCourseCodes(normalizedLabel);
+    if (!normalizedLabel || explicitCourseCodes.length !== 1) return;
+
+    const normalizedCourseCode = normalizePlannerCourseCode(explicitCourseCodes[0]);
+    if (
+      !normalizedCourseCode ||
+      preparatoryCourseCodes.has(normalizedCourseCode) ||
+      seenCourseCodes.has(normalizedCourseCode)
+    ) {
+      return;
+    }
+
+    seenCourseCodes.add(normalizedCourseCode);
+    orderedLines.push({
+      id: normalizedCourseCode,
+      text: buildRequiredCourseSentence(getSuggestedScheduleCourseDisplayLabel(normalizedLabel)),
+    });
+  };
+
+  if (track) {
+    for (const term of getResolvedTrackTermsForRequirementDisplay(track, completedCourses)) {
+      if (GRC_TRACK_NOTE_TERM_LABEL_PATTERN.test(String(term.label ?? "").trim())) {
+        continue;
+      }
+
+      for (const courseLabel of term.courses) {
+        addCourseLabel(courseLabel);
+      }
+    }
+  }
+
+  if (orderedLines.length > 0) {
+    return orderedLines;
+  }
+
+  if (plan) {
+    for (const courseLabel of buildMajorSpecificsFallbackGrcCourseLabels(plan)) {
+      addCourseLabel(courseLabel);
+    }
+  }
+
+  return orderedLines;
+}
+
+function getTransferGuidanceRuleStatusScore(rule: TransferPlannerEquivalencyRule) {
+  switch (rule.ruleStatus) {
+    case "active":
+      return 3;
+    case "legacy":
+      return 2;
+    case "deprecated":
+      return 1;
+    default:
+      return 2;
+  }
+}
+
+function getTransferGuidanceRuleAcceptanceScore(rule: TransferPlannerEquivalencyRule) {
+  switch (rule.acceptanceCategory) {
+    case "preferred":
+      return 4;
+    case "accepted":
+      return 3;
+    case "accepted-with-warning":
+      return 2;
+    case "legacy-accepted":
+      return 1;
+    default:
+      return 0;
+  }
+}
+
+function getTransferGuidanceRuleTypeScore(rule: TransferPlannerEquivalencyRule) {
+  switch (rule.type) {
+    case "direct-course":
+      return 5;
+    case "full-credit-combo":
+      return 4;
+    case "sequence":
+      return 3;
+    case "alternate-path":
+      return 2;
+    default:
+      return 1;
+  }
+}
+
+function compareTransferGuidanceRules(
+  left: TransferPlannerEquivalencyRule,
+  right: TransferPlannerEquivalencyRule
+) {
+  const statusDelta =
+    getTransferGuidanceRuleStatusScore(right) - getTransferGuidanceRuleStatusScore(left);
+  if (statusDelta !== 0) return statusDelta;
+
+  const acceptanceDelta =
+    getTransferGuidanceRuleAcceptanceScore(right) -
+    getTransferGuidanceRuleAcceptanceScore(left);
+  if (acceptanceDelta !== 0) return acceptanceDelta;
+
+  const typeDelta = getTransferGuidanceRuleTypeScore(right) - getTransferGuidanceRuleTypeScore(left);
+  if (typeDelta !== 0) return typeDelta;
+
+  const targetCodeCountDelta =
+    (left.targetCourseCodes?.length ?? Number.MAX_SAFE_INTEGER) -
+    (right.targetCourseCodes?.length ?? Number.MAX_SAFE_INTEGER);
+  if (targetCodeCountDelta !== 0) return targetCodeCountDelta;
+
+  return left.id.localeCompare(right.id);
+}
+
+function isSpecificTransferTargetCourseCode(courseCode: string) {
+  return !/\b\dXX(?:\.\d+)?[A-Z]?\b/i.test(String(courseCode ?? "").trim());
+}
+
+function getTransferGuidanceCandidateRulesForSourceCourse(
+  sourceCourseCode: string,
+  campusId: TransferPlannerCampusId
+) {
+  const allCandidateRules = getTransferPlannerEquivalencyRulesForSourceCourse(sourceCourseCode)
+    .filter((rule) => rule.sourceKind === "uw-green-river-equivalency-guide")
+    .filter((rule) => rule.acceptanceCategory !== "no-credit")
+    .filter((rule) => (rule.targetCourseCodes ?? []).length > 0);
+
+  const campusScopedRules = allCandidateRules.filter((rule) =>
+    rule.targetSchoolIds.includes(campusId)
+  );
+  if (campusScopedRules.length || campusId === "uw-seattle") {
+    return campusScopedRules;
+  }
+
+  return allCandidateRules.filter((rule) => rule.targetSchoolIds.includes("uw-seattle"));
+}
+
+function buildBestSingleCourseUwEquivalentLabel(
+  sourceCourseCode: string,
+  campusId: TransferPlannerCampusId
+) {
+  const normalizedSourceCourseCode = normalizePlannerCourseCode(sourceCourseCode);
+  const candidateRules = getTransferGuidanceCandidateRulesForSourceCourse(
+    normalizedSourceCourseCode,
+    campusId
+  )
+    .filter((rule) =>
+      (rule.sourceCourseSets ?? []).some((courseSet) => {
+        const normalizedCourseSet = courseSet.map((courseCode) =>
+          normalizePlannerCourseCode(courseCode)
+        );
+        return (
+          normalizedCourseSet.length === 1 &&
+          normalizedCourseSet[0] === normalizedSourceCourseCode
+        );
+      })
+    )
+    .sort(compareTransferGuidanceRules);
+
+  const selectedRule = candidateRules[0];
+  if (!selectedRule) return null;
+
+  const targetCourseCodes = Array.from(
+    new Set(
+      (selectedRule.targetCourseCodes ?? [])
+        .map((courseCode) => normalizePlannerCourseCode(courseCode))
+        .filter(isSpecificTransferTargetCourseCode)
+    )
+  );
+  if (!targetCourseCodes.length) return null;
+
+  return joinPlannerLabelList(targetCourseCodes);
+}
+
+function buildRequiredPlannerCourseCodes(plan: TransferPlannerResolvedMajorPlan) {
+  const orderedCourseCodes: string[] = [];
+  const seenCourseCodes = new Set<string>();
+  const checklistItems = [...plan.applicationChecklist, ...plan.beforeEnrollmentChecklist];
+
+  for (const item of checklistItems) {
+    appendUniqueCourseCodesFromLabels(orderedCourseCodes, seenCourseCodes, item.grcCourses ?? []);
+  }
+
+  const preferredPlanCourseCodes = new Set(
+    (plan.grcCourseList ?? [])
+      .flatMap((entry) => extractCourseCodes(entry))
+      .map((courseCode) => normalizePlannerCourseCode(courseCode))
+      .filter(Boolean)
+  );
+
+  for (const classification of getTransferPlannerRequirementDiffClassifications(
+    plan.id,
+    plan.selectedPathwayId
+  )) {
+    if (classification.displayPhase === "stay-at-grc") continue;
+    appendUniqueCourseCodesFromLabels(
+      orderedCourseCodes,
+      seenCourseCodes,
+      classification.grcCourseCodes
+    );
+    appendUniqueCourseCodesFromLabels(
+      orderedCourseCodes,
+      seenCourseCodes,
+      getPreferredAlternativeCourseSet(
+        classification.alternativeCourseCodeSets ?? [],
+        preferredPlanCourseCodes
+      )
+    );
+  }
+
+  if (!orderedCourseCodes.length) {
+    appendUniqueCourseCodesFromLabels(
+      orderedCourseCodes,
+      seenCourseCodes,
+      plan.grcCourseList ?? []
+    );
+  }
+
+  return orderedCourseCodes;
+}
+
+function buildUwRequiredPathCourseEntries(plan: TransferPlannerResolvedMajorPlan) {
+  const requiredCourseCodes = buildRequiredPlannerCourseCodes(plan);
+  if (!requiredCourseCodes.length) {
+    return [] as {
+      id: string;
+      text: string;
+    }[];
+  }
+
+  return requiredCourseCodes.map((courseCode) => ({
+    id: courseCode,
+    text: buildRequiredCourseSentence(
+      buildCourseDisplayLabel("grc", courseCode),
+      buildBestSingleCourseUwEquivalentLabel(courseCode, plan.campusId)
+    ),
+  }));
 }
 
 function buildRequirementCreditTotalsByTag(
@@ -653,7 +1441,7 @@ async function openExternalLink(url: string) {
 }
 
 function getAutoTrackSummaryText(trackSummary: string) {
-  return String(trackSummary ?? "").trim();
+  return stripGeneratedProgramMapSummarySentence(trackSummary);
 }
 
 function normalizeSelectorSearchValue(value: string) {
@@ -845,7 +1633,7 @@ function SelectorField({
         >
           {searchable && !effectiveQuery ? (
             <Text className={`${secondaryTextClass} text-xs mb-2`}>
-              Scroll to browse all majors, or type to filter.
+              Scroll to browse all options, or type to filter.
             </Text>
           ) : null}
 
@@ -878,7 +1666,7 @@ function SelectorField({
 
             {searchable && effectiveQuery && !filteredOptions.length ? (
               <Text className={`${secondaryTextClass} text-sm`}>
-                No majors match that search yet.
+                No options match that search yet.
               </Text>
             ) : null}
           </ScrollView>
@@ -888,7 +1676,318 @@ function SelectorField({
   );
 }
 
+function PlannerSelectionFields({
+  collegeId,
+  selectedCollegeId,
+  selectedCollegeLabel,
+  selectedCampusId,
+  selectedCampusLabel,
+  selectedMajorId,
+  selectedMajorLabel,
+  openSelector,
+  collegeOptions,
+  campusOptions,
+  majorOptions,
+  onToggleCollege,
+  onToggleCampus,
+  onToggleMajor,
+  onDismissCollege,
+  onDismissCampus,
+  onDismissMajor,
+  onSelectCollege,
+  onSelectCampus,
+  onSelectMajor,
+  onSelectorTouchStartInside,
+  isDesktop,
+  textClass,
+  secondaryTextClass,
+  borderClass,
+  dropdownBackgroundColor,
+}: {
+  collegeId: PlannerCollegeId;
+  selectedCollegeId: PlannerCollegeId;
+  selectedCollegeLabel: string;
+  selectedCampusId: PlannerCampusSelectionId;
+  selectedCampusLabel: string;
+  selectedMajorId: string;
+  selectedMajorLabel: string;
+  openSelector: PlannerSelectorKey;
+  collegeOptions: { id: string; label: string; description?: string }[];
+  campusOptions: { id: string; label: string; description?: string }[];
+  majorOptions: { id: string; label: string; description?: string }[];
+  onToggleCollege: () => void;
+  onToggleCampus: () => void;
+  onToggleMajor: () => void;
+  onDismissCollege: () => void;
+  onDismissCampus: () => void;
+  onDismissMajor: () => void;
+  onSelectCollege: (id: string) => void;
+  onSelectCampus: (id: string) => void;
+  onSelectMajor: (id: string) => void;
+  onSelectorTouchStartInside: () => void;
+  isDesktop: boolean;
+  textClass: string;
+  secondaryTextClass: string;
+  borderClass: string;
+  dropdownBackgroundColor: string;
+}) {
+  return (
+    <View
+      className="mt-4"
+      style={
+        isDesktop ? { flexDirection: "row", alignItems: "flex-start", gap: 16 } : { gap: 16 }
+      }
+    >
+      <View style={isDesktop ? { flex: 1, minWidth: 0 } : undefined}>
+        <SelectorField
+          label="College"
+          value={selectedCollegeLabel}
+          helper={getPlannerSelectionHelperText(collegeId, "college")}
+          open={openSelector === "college"}
+          onToggle={onToggleCollege}
+          onTouchStartInside={onSelectorTouchStartInside}
+          onDismiss={onDismissCollege}
+          options={collegeOptions}
+          onSelect={onSelectCollege}
+          selectedOptionId={selectedCollegeId}
+          hideSelectedOptionWhenOpen
+          textClass={textClass}
+          secondaryTextClass={secondaryTextClass}
+          borderClass={borderClass}
+          dropdownBackgroundColor={dropdownBackgroundColor}
+        />
+      </View>
+
+      <View style={isDesktop ? { flex: 1, minWidth: 0 } : undefined}>
+        <SelectorField
+          label="Campus"
+          value={selectedCampusLabel}
+          helper={getPlannerSelectionHelperText(collegeId, "campus")}
+          open={openSelector === "campus"}
+          onToggle={onToggleCampus}
+          onTouchStartInside={onSelectorTouchStartInside}
+          onDismiss={onDismissCampus}
+          options={campusOptions}
+          onSelect={onSelectCampus}
+          selectedOptionId={selectedCampusId}
+          hideSelectedOptionWhenOpen
+          textClass={textClass}
+          secondaryTextClass={secondaryTextClass}
+          borderClass={borderClass}
+          dropdownBackgroundColor={dropdownBackgroundColor}
+        />
+      </View>
+
+      <View style={isDesktop ? { flex: 1, minWidth: 0 } : undefined}>
+        <SelectorField
+          label="Major"
+          value={selectedMajorLabel}
+          helper={getPlannerSelectionHelperText(collegeId, "major")}
+          open={openSelector === "major"}
+          onToggle={onToggleMajor}
+          onTouchStartInside={onSelectorTouchStartInside}
+          onDismiss={onDismissMajor}
+          options={majorOptions}
+          onSelect={onSelectMajor}
+          selectedOptionId={selectedMajorId}
+          searchable
+          searchPlaceholder={getPlannerMajorSearchPlaceholder(collegeId)}
+          textClass={textClass}
+          secondaryTextClass={secondaryTextClass}
+          borderClass={borderClass}
+          dropdownBackgroundColor={dropdownBackgroundColor}
+        />
+      </View>
+    </View>
+  );
+}
+
+function PlannerTrackOverviewCard({
+  collegeId,
+  trackCode,
+  trackTitle,
+  trackSummary,
+  financialAidNote,
+  hasNoDirectMajorEquivalencies,
+  textClass,
+  secondaryTextClass,
+  borderClass,
+}: {
+  collegeId: PlannerCollegeId;
+  trackCode: string | null;
+  trackTitle: string;
+  trackSummary: string;
+  financialAidNote: string;
+  hasNoDirectMajorEquivalencies: boolean;
+  textClass: string;
+  secondaryTextClass: string;
+  borderClass: string;
+}) {
+  const visibleTrackSummary = getAutoTrackSummaryText(trackSummary);
+  const visibleFinancialAidNote = String(financialAidNote ?? "").trim();
+  const shouldShowBestTrackCard =
+    collegeId === "uw" ? Boolean(trackCode) && !hasNoDirectMajorEquivalencies : Boolean(trackTitle);
+
+  if (!shouldShowBestTrackCard) {
+    return null;
+  }
+
+  return (
+    <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-4`}>
+      <Text className={`${textClass} text-base font-semibold`}>
+        {collegeId === "grc"
+          ? "Selected Green River Program Path"
+          : "Best Green River Transfer Associates path"}
+      </Text>
+      <Text className={`${secondaryTextClass} text-sm mt-1`}>
+        {collegeId === "grc"
+          ? "This is the Green River program path the planner is currently following."
+          : "This shows the Green River degree path that best matches the UW degree you picked."}
+      </Text>
+
+      <View className={`mt-4 border ${borderClass} rounded-2xl px-4 py-4`}>
+        <Text className={`${textClass} font-semibold`}>
+          {trackCode ? `${trackCode} | ${trackTitle}` : trackTitle}
+        </Text>
+        {visibleTrackSummary ? (
+          <Text className={`${secondaryTextClass} text-sm mt-2`}>{visibleTrackSummary}</Text>
+        ) : null}
+        {visibleFinancialAidNote && collegeId === "uw" ? (
+          <Text className={`${secondaryTextClass} text-sm mt-3`}>{visibleFinancialAidNote}</Text>
+        ) : null}
+      </View>
+    </View>
+  );
+}
+
+function GrcDegreeSpecificsSection({
+  track,
+  completedCourses,
+  textClass,
+  secondaryTextClass,
+  borderClass,
+}: {
+  track: TransferPlannerTrack | null;
+  completedCourses: TranscriptCourseEntry[];
+  textClass: string;
+  secondaryTextClass: string;
+  borderClass: string;
+}) {
+  const [isReferenceOpen, setIsReferenceOpen] = useState(false);
+  const [isGrcClassesOpen, setIsGrcClassesOpen] = useState(false);
+  const grcGeneralEducationCreditLines = useMemo(
+    () => buildMajorSpecificsGrcGeneralEducationCreditLines({ plan: null, track, completedCourses }),
+    [completedCourses, track]
+  );
+  const grcRequiredMajorCourseLines = useMemo(
+    () => buildMajorSpecificsGrcRequiredMajorCourseLines({ plan: null, track, completedCourses }),
+    [completedCourses, track]
+  );
+  const grcTrackRequirementNoun = getGrcTrackRequirementNoun(track);
+  const grcSpecificsTitle = getGrcTrackSpecificsTitle(track);
+  const grcClassesLabelSuffix = getGrcTrackClassesLabelSuffix(track);
+  const grcTrackTitle = String(track?.title ?? "").trim() || "Selected Green River program";
+  const grcTrackDescription = track
+    ? `Open this dropdown for all classes needed to complete the ${grcTrackTitle} ${grcTrackRequirementNoun} at GRC.`
+    : "Open this dropdown for the Green River class list attached to this program.";
+  const grcRequiredMajorCourseFallbackText =
+    grcTrackRequirementNoun === "degree"
+      ? "No Green River degree-counting major-course list is available for this degree yet."
+      : "No Green River major-course list is available for this program yet.";
+
+  if (!track) {
+    return null;
+  }
+
+  return (
+    <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-4`}>
+      <AnimatedCardPressable
+        onPress={() => setIsReferenceOpen((currentValue) => !currentValue)}
+        accessibilityRole="button"
+        accessibilityState={{ expanded: isReferenceOpen }}
+      >
+        <View className="flex-row items-start justify-between gap-3">
+          <View className="flex-1 min-w-0">
+            <Text className={`${textClass} text-lg font-semibold`}>{grcSpecificsTitle}</Text>
+            <Text className={`${secondaryTextClass} text-sm mt-1`}>
+              {`Open this dropdown for the currently tracked Green River ${grcTrackRequirementNoun} requirements.`}
+            </Text>
+          </View>
+          <Ionicons
+            name={isReferenceOpen ? "chevron-up" : "chevron-down"}
+            size={20}
+            color="#9CA3AF"
+          />
+        </View>
+      </AnimatedCardPressable>
+
+      {isReferenceOpen ? (
+        <View className="mt-5 gap-4">
+          <View className={`border ${borderClass} rounded-2xl px-4 py-4`}>
+            <AnimatedCardPressable
+              onPress={() => setIsGrcClassesOpen((currentValue) => !currentValue)}
+              accessibilityRole="button"
+              accessibilityState={{ expanded: isGrcClassesOpen }}
+            >
+              <View className="flex-row items-start justify-between gap-3">
+                <View className="flex-1 min-w-0">
+                  <Text className={`${textClass} text-base font-semibold`}>
+                    {`GRC ${grcTrackTitle} ${grcClassesLabelSuffix}`}
+                  </Text>
+                  <Text className={`${secondaryTextClass} text-sm mt-1`}>
+                    {grcTrackDescription}
+                  </Text>
+                </View>
+                <Ionicons
+                  name={isGrcClassesOpen ? "chevron-up" : "chevron-down"}
+                  size={20}
+                  color="#9CA3AF"
+                />
+              </View>
+            </AnimatedCardPressable>
+
+            {isGrcClassesOpen ? (
+              <View className="mt-4 gap-4">
+                <View>
+                  <Text className={`${textClass} text-sm font-semibold`}>Gen-Ed Courses</Text>
+                  <View className="mt-2 gap-2">
+                    {grcGeneralEducationCreditLines.map((entry) => (
+                      <Text key={entry.id} className={`${secondaryTextClass} text-sm`}>
+                        {`${entry.label}: ${entry.credits} credits`}
+                      </Text>
+                    ))}
+                  </View>
+                </View>
+
+                <View>
+                  <Text className={`${textClass} text-sm font-semibold`}>
+                    Required Major Courses
+                  </Text>
+                  {grcRequiredMajorCourseLines.length ? (
+                    <View className="mt-2 gap-2">
+                      {grcRequiredMajorCourseLines.map((entry) => (
+                        <Text key={entry.id} className={`${secondaryTextClass} text-sm`}>
+                          {entry.text}
+                        </Text>
+                      ))}
+                    </View>
+                  ) : (
+                    <Text className={`${secondaryTextClass} text-sm mt-2`}>
+                      {grcRequiredMajorCourseFallbackText}
+                    </Text>
+                  )}
+                </View>
+              </View>
+            ) : null}
+          </View>
+        </View>
+      ) : null}
+    </View>
+  );
+}
+
 function TranscriptSummaryCard({
+  collegeId,
   transcriptDocument,
   isAnalyzing,
   errorMessage,
@@ -898,24 +1997,30 @@ function TranscriptSummaryCard({
   pathwayOptions,
   selectedPathwayLabel,
   hasNoDirectMajorEquivalencies,
+  selectedCollegeId,
+  selectedCollegeLabel,
   selectedCampusId,
   selectedCampusLabel,
   selectedMajorId,
   selectedMajorLabel,
+  track,
   trackCode,
   trackTitle,
   trackSummary,
   financialAidNote,
   completedCourses,
-  currentCourseLabels,
   openSelector,
+  collegeOptions,
   campusOptions,
   majorOptions,
+  onToggleCollege,
   onToggleCampus,
   onToggleMajor,
   onSelectorTouchStartInside,
+  onDismissCollege,
   onDismissCampus,
   onDismissMajor,
+  onSelectCollege,
   onSelectCampus,
   onSelectMajor,
   onSelectPathway,
@@ -928,33 +2033,40 @@ function TranscriptSummaryCard({
   borderClass,
   dropdownBackgroundColor,
 }: {
+  collegeId: PlannerCollegeId;
   transcriptDocument: TranscriptDocument | null;
   isAnalyzing: boolean;
   errorMessage: string | null;
   studentEvaluationReport: TransferPlannerStudentEvaluationReport | null;
   studentCourseEvaluations: TransferPlannerStudentCourseEvaluation[];
-  plan: TransferPlannerResolvedMajorPlan;
+  plan: TransferPlannerResolvedMajorPlan | null;
   pathwayOptions: TransferPlannerMajorPathway[];
   selectedPathwayLabel: string | null;
   hasNoDirectMajorEquivalencies: boolean;
-  selectedCampusId: TransferPlannerCampusId;
+  selectedCollegeId: PlannerCollegeId;
+  selectedCollegeLabel: string;
+  selectedCampusId: PlannerCampusSelectionId;
   selectedCampusLabel: string;
   selectedMajorId: string;
   selectedMajorLabel: string;
+  track: TransferPlannerTrack | null;
   trackCode: string | null;
   trackTitle: string;
   trackSummary: string;
   financialAidNote: string;
   completedCourses: TranscriptCourseEntry[];
-  currentCourseLabels: Set<string>;
-  openSelector: "campus" | "major" | null;
+  openSelector: PlannerSelectorKey;
+  collegeOptions: { id: string; label: string; description?: string }[];
   campusOptions: { id: string; label: string; description?: string }[];
   majorOptions: { id: string; label: string; description?: string }[];
+  onToggleCollege: () => void;
   onToggleCampus: () => void;
   onToggleMajor: () => void;
   onSelectorTouchStartInside: () => void;
+  onDismissCollege: () => void;
   onDismissCampus: () => void;
   onDismissMajor: () => void;
+  onSelectCollege: (id: string) => void;
   onSelectCampus: (id: string) => void;
   onSelectMajor: (id: string) => void;
   onSelectPathway: (pathwayId: string) => void;
@@ -968,9 +2080,7 @@ function TranscriptSummaryCard({
   dropdownBackgroundColor: string;
 }) {
   const [isPathwaySelectorOpen, setIsPathwaySelectorOpen] = useState(false);
-  const visibleTrackSummary = getAutoTrackSummaryText(trackSummary);
-  const visibleFinancialAidNote = String(financialAidNote ?? "").trim();
-  const shouldShowBestTrackCard = Boolean(trackCode) && !hasNoDirectMajorEquivalencies;
+  const isUwPlanner = collegeId === "uw";
   const hasOpenSelectorOverlay = openSelector !== null || isPathwaySelectorOpen;
   const cardOverlayStyle = hasOpenSelectorOverlay
     ? {
@@ -983,6 +2093,36 @@ function TranscriptSummaryCard({
         position: "relative" as const,
         overflow: "visible" as const,
       };
+  const selectionFields = (
+    <PlannerSelectionFields
+      collegeId={collegeId}
+      selectedCollegeId={selectedCollegeId}
+      selectedCollegeLabel={selectedCollegeLabel}
+      selectedCampusId={selectedCampusId}
+      selectedCampusLabel={selectedCampusLabel}
+      selectedMajorId={selectedMajorId}
+      selectedMajorLabel={selectedMajorLabel}
+      openSelector={openSelector}
+      collegeOptions={collegeOptions}
+      campusOptions={campusOptions}
+      majorOptions={majorOptions}
+      onToggleCollege={onToggleCollege}
+      onToggleCampus={onToggleCampus}
+      onToggleMajor={onToggleMajor}
+      onDismissCollege={onDismissCollege}
+      onDismissCampus={onDismissCampus}
+      onDismissMajor={onDismissMajor}
+      onSelectCollege={onSelectCollege}
+      onSelectCampus={onSelectCampus}
+      onSelectMajor={onSelectMajor}
+      onSelectorTouchStartInside={onSelectorTouchStartInside}
+      isDesktop={isDesktop}
+      textClass={textClass}
+      secondaryTextClass={secondaryTextClass}
+      borderClass={borderClass}
+      dropdownBackgroundColor={dropdownBackgroundColor}
+    />
+  );
 
   if (!transcriptDocument) {
     return (
@@ -1016,103 +2156,82 @@ function TranscriptSummaryCard({
           </AnimatedChipPressable>
         </View>
 
-      <View
-        className={`border ${borderClass} rounded-2xl px-4 py-4 mt-5`}
-        style={
-          hasOpenSelectorOverlay
-            ? { position: "relative", overflow: "visible", zIndex: 90, elevation: 90 }
-            : { position: "relative", overflow: "visible" }
-        }
-      >
-          <View
-            className="mt-4"
-            style={isDesktop ? { flexDirection: "row", alignItems: "flex-start", gap: 16 } : { gap: 16 }}
-          >
-            <View style={isDesktop ? { flex: 1, minWidth: 0 } : undefined}>
-              <SelectorField
-                label="Campus"
-                value={selectedCampusLabel}
-                helper="Set the campus and major you want this Green River plan to match against."
-                open={openSelector === "campus"}
-                onToggle={onToggleCampus}
-                onTouchStartInside={onSelectorTouchStartInside}
-                onDismiss={onDismissCampus}
-                options={campusOptions}
-                onSelect={onSelectCampus}
-                selectedOptionId={selectedCampusId}
-                hideSelectedOptionWhenOpen
-                textClass={textClass}
-                secondaryTextClass={secondaryTextClass}
-                borderClass={borderClass}
-                dropdownBackgroundColor={dropdownBackgroundColor}
-              />
-            </View>
-
-            <View style={isDesktop ? { flex: 1, minWidth: 0 } : undefined}>
-              <SelectorField
-                label="Major"
-                value={selectedMajorLabel}
-                helper="Pick the UW bachelor's degree you want the course plan to follow."
-                open={openSelector === "major"}
-                onToggle={onToggleMajor}
-                onTouchStartInside={onSelectorTouchStartInside}
-                onDismiss={onDismissMajor}
-                options={majorOptions}
-                onSelect={onSelectMajor}
-                selectedOptionId={selectedMajorId}
-                searchable
-                searchPlaceholder="Search majors"
-                textClass={textClass}
-                secondaryTextClass={secondaryTextClass}
-                borderClass={borderClass}
-                dropdownBackgroundColor={dropdownBackgroundColor}
-              />
-          </View>
+        <View
+          className={`border ${borderClass} rounded-2xl px-4 py-4 mt-5`}
+          style={
+            hasOpenSelectorOverlay
+              ? { position: "relative", overflow: "visible", zIndex: 90, elevation: 90 }
+              : { position: "relative", overflow: "visible" }
+          }
+        >
+          {selectionFields}
         </View>
-      </View>
 
-      <MajorPathwaySection
-        pathwayOptions={pathwayOptions}
-        selectedPathwayId={plan.selectedPathwayId}
-        selectedPathwayLabel={selectedPathwayLabel}
-        isPathwaySelectorOpen={isPathwaySelectorOpen}
-        onTogglePathway={() => setIsPathwaySelectorOpen((currentValue) => !currentValue)}
-        onSelectPathway={(pathwayId) => {
-          setIsPathwaySelectorOpen(false);
-          onSelectPathway(pathwayId);
-        }}
-        textClass={textClass}
-        secondaryTextClass={secondaryTextClass}
-        borderClass={borderClass}
-        dropdownBackgroundColor={dropdownBackgroundColor}
-      />
+        {isUwPlanner && plan ? (
+          <>
+            <MajorPathwaySection
+              pathwayOptions={pathwayOptions}
+              selectedPathwayId={plan.selectedPathwayId}
+              selectedPathwayLabel={selectedPathwayLabel}
+              isPathwaySelectorOpen={isPathwaySelectorOpen}
+              onTogglePathway={() => setIsPathwaySelectorOpen((currentValue) => !currentValue)}
+              onSelectPathway={(pathwayId) => {
+                setIsPathwaySelectorOpen(false);
+                onSelectPathway(pathwayId);
+              }}
+              textClass={textClass}
+              secondaryTextClass={secondaryTextClass}
+              borderClass={borderClass}
+              dropdownBackgroundColor={dropdownBackgroundColor}
+            />
 
-      {shouldShowBestTrackCard ? (
-        <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-4`}>
-          <Text className={`${textClass} text-base font-semibold`}>Best Green River Transfer Associates path</Text>
-          <Text className={`${secondaryTextClass} text-sm mt-1`}>
-            This shows the Green River degree path that best matches the UW degree you picked.
-          </Text>
+            <PlannerTrackOverviewCard
+              collegeId={collegeId}
+              trackCode={trackCode}
+              trackTitle={trackTitle}
+              trackSummary={trackSummary}
+              financialAidNote={financialAidNote}
+              hasNoDirectMajorEquivalencies={hasNoDirectMajorEquivalencies}
+              textClass={textClass}
+              secondaryTextClass={secondaryTextClass}
+              borderClass={borderClass}
+            />
 
-          <View className={`mt-4 border ${borderClass} rounded-2xl px-4 py-4`}>
-            <Text className={`${textClass} font-semibold`}>
-              {trackCode ? `${trackCode} | ${trackTitle}` : trackTitle}
-            </Text>
-            <Text className={`${secondaryTextClass} text-sm mt-2`}>{visibleTrackSummary}</Text>
-            {visibleFinancialAidNote ? (
-              <Text className={`${secondaryTextClass} text-sm mt-3`}>{visibleFinancialAidNote}</Text>
-            ) : null}
-          </View>
-        </View>
-      ) : null}
+            <MajorSpecificsSection
+              plan={plan}
+              track={track}
+              completedCourses={completedCourses}
+              selectedPathwayLabel={selectedPathwayLabel}
+              textClass={textClass}
+              secondaryTextClass={secondaryTextClass}
+              borderClass={borderClass}
+            />
+          </>
+        ) : null}
 
-      <MajorSpecificsSection
-        plan={plan}
-        selectedPathwayLabel={selectedPathwayLabel}
-        textClass={textClass}
-        secondaryTextClass={secondaryTextClass}
-        borderClass={borderClass}
-      />
+        {!isUwPlanner ? (
+          <>
+            <PlannerTrackOverviewCard
+              collegeId={collegeId}
+              trackCode={trackCode}
+              trackTitle={trackTitle}
+              trackSummary={trackSummary}
+              financialAidNote={financialAidNote}
+              hasNoDirectMajorEquivalencies={false}
+              textClass={textClass}
+              secondaryTextClass={secondaryTextClass}
+              borderClass={borderClass}
+            />
+
+            <GrcDegreeSpecificsSection
+              track={track}
+              completedCourses={completedCourses}
+              textClass={textClass}
+              secondaryTextClass={secondaryTextClass}
+              borderClass={borderClass}
+            />
+          </>
+        ) : null}
     </View>
   );
   }
@@ -1170,107 +2289,86 @@ function TranscriptSummaryCard({
             : { position: "relative", overflow: "visible" }
         }
       >
-        <View
-          className="mt-4"
-          style={isDesktop ? { flexDirection: "row", alignItems: "flex-start", gap: 16 } : { gap: 16 }}
-        >
-          <View style={isDesktop ? { flex: 1, minWidth: 0 } : undefined}>
-            <SelectorField
-              label="Campus"
-              value={selectedCampusLabel}
-              helper="Set the campus and major you want this Green River plan to match against."
-              open={openSelector === "campus"}
-              onToggle={onToggleCampus}
-              onTouchStartInside={onSelectorTouchStartInside}
-              onDismiss={onDismissCampus}
-              options={campusOptions}
-              onSelect={onSelectCampus}
-              selectedOptionId={selectedCampusId}
-              hideSelectedOptionWhenOpen
-              textClass={textClass}
-              secondaryTextClass={secondaryTextClass}
-              borderClass={borderClass}
-              dropdownBackgroundColor={dropdownBackgroundColor}
-            />
-          </View>
-
-          <View style={isDesktop ? { flex: 1, minWidth: 0 } : undefined}>
-            <SelectorField
-              label="Major"
-              value={selectedMajorLabel}
-              helper="Pick the UW bachelor's degree you want the course plan to follow."
-              open={openSelector === "major"}
-              onToggle={onToggleMajor}
-              onTouchStartInside={onSelectorTouchStartInside}
-              onDismiss={onDismissMajor}
-              options={majorOptions}
-              onSelect={onSelectMajor}
-              selectedOptionId={selectedMajorId}
-              searchable
-              searchPlaceholder="Search majors"
-              textClass={textClass}
-              secondaryTextClass={secondaryTextClass}
-              borderClass={borderClass}
-              dropdownBackgroundColor={dropdownBackgroundColor}
-            />
-          </View>
-        </View>
+        {selectionFields}
       </View>
 
-      <MajorPathwaySection
-        pathwayOptions={pathwayOptions}
-        selectedPathwayId={plan.selectedPathwayId}
-        selectedPathwayLabel={selectedPathwayLabel}
-        isPathwaySelectorOpen={isPathwaySelectorOpen}
-        onTogglePathway={() => setIsPathwaySelectorOpen((currentValue) => !currentValue)}
-        onSelectPathway={(pathwayId) => {
-          setIsPathwaySelectorOpen(false);
-          onSelectPathway(pathwayId);
-        }}
-        textClass={textClass}
-        secondaryTextClass={secondaryTextClass}
-        borderClass={borderClass}
-        dropdownBackgroundColor={dropdownBackgroundColor}
-      />
+      {isUwPlanner && plan ? (
+        <>
+          <MajorPathwaySection
+            pathwayOptions={pathwayOptions}
+            selectedPathwayId={plan.selectedPathwayId}
+            selectedPathwayLabel={selectedPathwayLabel}
+            isPathwaySelectorOpen={isPathwaySelectorOpen}
+            onTogglePathway={() => setIsPathwaySelectorOpen((currentValue) => !currentValue)}
+            onSelectPathway={(pathwayId) => {
+              setIsPathwaySelectorOpen(false);
+              onSelectPathway(pathwayId);
+            }}
+            textClass={textClass}
+            secondaryTextClass={secondaryTextClass}
+            borderClass={borderClass}
+            dropdownBackgroundColor={dropdownBackgroundColor}
+          />
 
-      {shouldShowBestTrackCard ? (
-        <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-4`}>
-          <Text className={`${textClass} text-base font-semibold`}>Best Green River Transfer Associates path</Text>
-          <Text className={`${secondaryTextClass} text-sm mt-1`}>
-            This shows the Green River degree path that best matches the UW degree you picked.
-          </Text>
+          <PlannerTrackOverviewCard
+            collegeId={collegeId}
+            trackCode={trackCode}
+            trackTitle={trackTitle}
+            trackSummary={trackSummary}
+            financialAidNote={financialAidNote}
+            hasNoDirectMajorEquivalencies={hasNoDirectMajorEquivalencies}
+            textClass={textClass}
+            secondaryTextClass={secondaryTextClass}
+            borderClass={borderClass}
+          />
 
-          <View className={`mt-4 border ${borderClass} rounded-2xl px-4 py-4`}>
-            <Text className={`${textClass} font-semibold`}>
-              {trackCode ? `${trackCode} | ${trackTitle}` : trackTitle}
-            </Text>
-            <Text className={`${secondaryTextClass} text-sm mt-2`}>{visibleTrackSummary}</Text>
-            {visibleFinancialAidNote ? (
-              <Text className={`${secondaryTextClass} text-sm mt-3`}>{visibleFinancialAidNote}</Text>
-            ) : null}
-          </View>
-        </View>
+          <MajorSpecificsSection
+            plan={plan}
+            track={track}
+            completedCourses={completedCourses}
+            selectedPathwayLabel={selectedPathwayLabel}
+            textClass={textClass}
+            secondaryTextClass={secondaryTextClass}
+            borderClass={borderClass}
+          />
+
+          {studentEvaluationReport && completedCourses.length ? (
+            <TranscriptEvaluationReportCard
+              report={studentEvaluationReport}
+              evaluations={studentCourseEvaluations}
+              plan={plan}
+              textClass={textClass}
+              secondaryTextClass={secondaryTextClass}
+              cardClass={cardClass}
+              borderClass={borderClass}
+              embedded
+            />
+          ) : null}
+        </>
       ) : null}
 
-      <MajorSpecificsSection
-        plan={plan}
-        selectedPathwayLabel={selectedPathwayLabel}
-        textClass={textClass}
-        secondaryTextClass={secondaryTextClass}
-        borderClass={borderClass}
-      />
+      {!isUwPlanner ? (
+        <>
+          <PlannerTrackOverviewCard
+            collegeId={collegeId}
+            trackCode={trackCode}
+            trackTitle={trackTitle}
+            trackSummary={trackSummary}
+            financialAidNote={financialAidNote}
+            hasNoDirectMajorEquivalencies={false}
+            textClass={textClass}
+            secondaryTextClass={secondaryTextClass}
+            borderClass={borderClass}
+          />
 
-      {studentEvaluationReport && completedCourses.length ? (
-        <TranscriptEvaluationReportCard
-          report={studentEvaluationReport}
-          evaluations={studentCourseEvaluations}
-          plan={plan}
-          textClass={textClass}
-          secondaryTextClass={secondaryTextClass}
-          cardClass={cardClass}
-          borderClass={borderClass}
-          embedded
-        />
+          <GrcDegreeSpecificsSection
+            track={track}
+            completedCourses={completedCourses}
+            textClass={textClass}
+            secondaryTextClass={secondaryTextClass}
+            borderClass={borderClass}
+          />
+        </>
       ) : null}
 
     </View>
@@ -1337,8 +2435,10 @@ function MajorPathwaySection({
 }
 
 function SuggestedScheduleCard({
+  collegeId,
   quarters,
   degreeTitle,
+  grcTrack,
   campusLabel,
   selectedCampusId,
   onlyUwEssentialClasses,
@@ -1353,10 +2453,12 @@ function SuggestedScheduleCard({
   cardClass,
   borderClass,
 }: {
+  collegeId: PlannerCollegeId;
   quarters: SuggestedQuarterPlan[];
   degreeTitle: string;
+  grcTrack: TransferPlannerTrack | null;
   campusLabel: string;
-  selectedCampusId: TransferPlannerCampusId;
+  selectedCampusId: TransferPlannerCampusId | null;
   onlyUwEssentialClasses: boolean;
   showOnlyUwEssentialClassesToggle: boolean;
   onToggleOnlyUwEssentialClasses: () => void;
@@ -1380,37 +2482,50 @@ function SuggestedScheduleCard({
   const plannedCourseContainerClass = isLight
     ? `bg-white border ${borderClass}`
     : "bg-white/5 border border-white/10";
+  const grcTrackRequirementNoun = getGrcTrackRequirementNoun(grcTrack);
+  const scheduleTitle =
+    collegeId === "grc"
+      ? grcTrackRequirementNoun === "degree"
+        ? "GRC Degree Plan"
+        : "GRC Program Plan"
+      : "GRC Quarter Plan";
+  const scheduleDescription =
+    collegeId === "grc"
+      ? `This is your Green River plan for finishing the ${degreeTitle} ${grcTrackRequirementNoun} at ${getScheduleCampusLabel(collegeId, campusLabel)}. Completed transcript classes stay marked as done, and the planner fills in the remaining GRC ${grcTrackRequirementNoun} courses still ahead.`
+      : `This is your transfer plan for finishing the ${degreeTitle} degree at ${getScheduleCampusLabel(collegeId, campusLabel)}. Press the Classes for UW transfer only button to hide optional Green River track classes and focus on UW-required classes plus prerequisite dependencies.`;
 
   return (
     <View className={`${cardClass} border rounded-[28px] p-5`}>
       <View className="flex-row items-start justify-between gap-3">
         <View className="flex-1 min-w-0">
-          <Text className={`${textClass} text-lg font-semibold`}>GRC Quarter Plan</Text>
+          <Text className={`${textClass} text-lg font-semibold`}>{scheduleTitle}</Text>
           <Text className={`${secondaryTextClass} text-sm mt-1`}>
-            {`This is your transfer plan for finishing the ${degreeTitle} degree at ${getScheduleCampusLabel(campusLabel)}. Press the Classes for UW transfer only button to hide optional Green River track classes and focus on UW-required classes plus prerequisite dependencies.`}
+            {scheduleDescription}
           </Text>
         </View>
 
-        {showOnlyUwEssentialClassesToggle ? (
+        {showOnlyUwEssentialClassesToggle || collegeId === "grc" ? (
           <View className="gap-2">
-            <Pressable
-              onPress={onToggleOnlyUwEssentialClasses}
-              accessibilityRole="checkbox"
-              accessibilityState={{ checked: onlyUwEssentialClasses }}
-              accessibilityLabel="Only show classes that transfer into UW on this track"
-              accessibilityHint="Hides nonessential Green River track classes while keeping prerequisite classes that still unlock UW-required work."
-              className={`border ${borderClass} rounded-xl px-3 py-2 flex-row items-center justify-center gap-2`}
-              hitSlop={8}
-            >
-              <Text className={`${secondaryTextClass} text-xs font-medium`}>
-                Classes for UW transfer only
-              </Text>
-              <Ionicons
-                name={onlyUwEssentialClasses ? "checkbox" : "square-outline"}
-                size={20}
-                color={onlyUwEssentialClasses ? "#008f4e" : "#9CA3AF"}
-              />
-            </Pressable>
+            {showOnlyUwEssentialClassesToggle ? (
+              <Pressable
+                onPress={onToggleOnlyUwEssentialClasses}
+                accessibilityRole="checkbox"
+                accessibilityState={{ checked: onlyUwEssentialClasses }}
+                accessibilityLabel="Only show classes that transfer into UW on this track"
+                accessibilityHint="Hides nonessential Green River track classes while keeping prerequisite classes that still unlock UW-required work."
+                className={`border ${borderClass} rounded-xl px-3 py-2 flex-row items-center justify-center gap-2`}
+                hitSlop={8}
+              >
+                <Text className={`${secondaryTextClass} text-xs font-medium`}>
+                  Classes for UW transfer only
+                </Text>
+                <Ionicons
+                  name={onlyUwEssentialClasses ? "checkbox" : "square-outline"}
+                  size={20}
+                  color={onlyUwEssentialClasses ? "#008f4e" : "#9CA3AF"}
+                />
+              </Pressable>
+            ) : null}
             <Pressable
               onPress={onToggleAllowSummerClasses}
               accessibilityRole="checkbox"
@@ -1508,7 +2623,7 @@ function SuggestedScheduleCard({
                               }`;
                               const linkData = getSchedulePlaceholderRequirementLinkData(course.label);
 
-                              if (!linkData) {
+                              if (!linkData || !selectedCampusId) {
                                 return (
                                   <Text className={courseTextClass}>
                                     {courseDisplayLabel}
@@ -1792,18 +2907,35 @@ function TranscriptEvaluationReportCard({
 
 function MajorSpecificsSection({
   plan,
+  track,
+  completedCourses,
   selectedPathwayLabel,
   textClass,
   secondaryTextClass,
   borderClass,
 }: {
   plan: TransferPlannerResolvedMajorPlan;
+  track: TransferPlannerTrack | null;
+  completedCourses: TranscriptCourseEntry[];
   selectedPathwayLabel: string | null;
   textClass: string;
   secondaryTextClass: string;
   borderClass: string;
 }) {
   const degreeMapSections = plan.degreeMapSections ?? [];
+  const grcGeneralEducationCreditLines = useMemo(
+    () => buildMajorSpecificsGrcGeneralEducationCreditLines({ plan, track, completedCourses }),
+    [completedCourses, plan, track]
+  );
+  const grcRequiredMajorCourseLines = useMemo(
+    () => buildMajorSpecificsGrcRequiredMajorCourseLines({ plan, track, completedCourses }),
+    [completedCourses, plan, track]
+  );
+  const uwGeneralEducationCreditLines = useMemo(
+    () => buildMajorSpecificsUwGeneralEducationCreditLines(plan),
+    [plan]
+  );
+  const uwRequiredPathCourseEntries = useMemo(() => buildUwRequiredPathCourseEntries(plan), [plan]);
   const primaryDegreeSource = getTransferPlannerPrimaryDegreeRequirementsSource(
     plan.id,
     plan.selectedPathwayId
@@ -1822,6 +2954,12 @@ function MajorSpecificsSection({
       ? "Open this dropdown for degree-specific requirement sections for your selected major."
       : "Open this dropdown for major details as they become available.";
   const [isReferenceOpen, setIsReferenceOpen] = useState(false);
+  const [isGrcClassesOpen, setIsGrcClassesOpen] = useState(false);
+  const [isUwClassesOpen, setIsUwClassesOpen] = useState(false);
+  const grcTrackTitle = String(track?.title ?? "").trim() || plan.title;
+  const grcTrackDescription = track
+    ? `Open this dropdown for all classes needed to complete the ${grcTrackTitle} transfer track at GRC.`
+    : "Open this dropdown for the Green River class list currently attached to this major.";
 
   return (
     <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-4`}>
@@ -1899,6 +3037,122 @@ function MajorSpecificsSection({
               ))}
             </View>
           ) : null}
+
+          <View className="mt-5 gap-4">
+            <View className={`border ${borderClass} rounded-2xl px-4 py-4`}>
+              <AnimatedCardPressable
+                onPress={() => setIsGrcClassesOpen((currentValue) => !currentValue)}
+                accessibilityRole="button"
+                accessibilityState={{ expanded: isGrcClassesOpen }}
+              >
+                <View className="flex-row items-start justify-between gap-3">
+                  <View className="flex-1 min-w-0">
+                    <Text className={`${textClass} text-base font-semibold`}>
+                      {`GRC ${grcTrackTitle} Degree Classes`}
+                    </Text>
+                    <Text className={`${secondaryTextClass} text-sm mt-1`}>
+                      {grcTrackDescription}
+                    </Text>
+                  </View>
+                  <Ionicons
+                    name={isGrcClassesOpen ? "chevron-up" : "chevron-down"}
+                    size={20}
+                    color="#9CA3AF"
+                  />
+                </View>
+              </AnimatedCardPressable>
+
+              {isGrcClassesOpen ? (
+                <View className="mt-4 gap-4">
+                  <View>
+                    <Text className={`${textClass} text-sm font-semibold`}>Gen-Ed Courses</Text>
+                    <View className="mt-2 gap-2">
+                      {grcGeneralEducationCreditLines.map((entry) => (
+                        <Text key={entry.id} className={`${secondaryTextClass} text-sm`}>
+                          {`${entry.label}: ${entry.credits} credits`}
+                        </Text>
+                      ))}
+                    </View>
+                  </View>
+
+                  <View>
+                    <Text className={`${textClass} text-sm font-semibold`}>Required Major Courses</Text>
+                    {grcRequiredMajorCourseLines.length ? (
+                      <View className="mt-2 gap-2">
+                        {grcRequiredMajorCourseLines.map((entry) => (
+                          <Text key={entry.id} className={`${secondaryTextClass} text-sm`}>
+                            {entry.text}
+                          </Text>
+                        ))}
+                      </View>
+                    ) : (
+                      <Text className={`${secondaryTextClass} text-sm mt-2`}>
+                        No Green River degree-counting major-course list is available for this track yet.
+                      </Text>
+                    )}
+                  </View>
+                </View>
+              ) : null}
+            </View>
+
+            <View className={`border ${borderClass} rounded-2xl px-4 py-4`}>
+              <AnimatedCardPressable
+                onPress={() => setIsUwClassesOpen((currentValue) => !currentValue)}
+                accessibilityRole="button"
+                accessibilityState={{ expanded: isUwClassesOpen }}
+              >
+                <View className="flex-row items-start justify-between gap-3">
+                  <View className="flex-1 min-w-0">
+                    <Text className={`${textClass} text-base font-semibold`}>
+                      {`UW ${plan.title} Required Classes`}
+                    </Text>
+                    <Text className={`${secondaryTextClass} text-sm mt-1`}>
+                      {uwRequiredPathCourseEntries.length
+                        ? "Open this dropdown for the Green River classes that count toward the UW-required path for this major."
+                        : "Open this dropdown for the UW-required path and mapped Green River equivalents as they become available."}
+                    </Text>
+                  </View>
+                  <Ionicons
+                    name={isUwClassesOpen ? "chevron-up" : "chevron-down"}
+                    size={20}
+                    color="#9CA3AF"
+                  />
+                </View>
+              </AnimatedCardPressable>
+
+              {isUwClassesOpen ? (
+                <View className="mt-4 gap-4">
+                  <View>
+                    <Text className={`${textClass} text-sm font-semibold`}>Gen-Ed Courses</Text>
+                    <View className="mt-2 gap-2">
+                      {uwGeneralEducationCreditLines.map((entry) => (
+                        <Text key={entry.id} className={`${secondaryTextClass} text-sm`}>
+                          {`${entry.label}: ${entry.credits} credits`}
+                        </Text>
+                      ))}
+                    </View>
+                  </View>
+
+                  <View>
+                    <Text className={`${textClass} text-sm font-semibold`}>Required Major Courses</Text>
+                    {uwRequiredPathCourseEntries.length ? (
+                      <View className="mt-2 gap-2">
+                        {uwRequiredPathCourseEntries.map((entry) => (
+                          <Text key={entry.id} className={`${secondaryTextClass} text-sm`}>
+                            {entry.text}
+                          </Text>
+                        ))}
+                      </View>
+                    ) : (
+                      <Text className={`${secondaryTextClass} text-sm mt-2`}>
+                        No source-backed UW-required major-course path is available for this major yet.
+                      </Text>
+                    )}
+                  </View>
+                </View>
+              ) : null}
+            </View>
+          </View>
         </>
       ) : null}
     </View>
@@ -1914,12 +3168,13 @@ export default function TransferPlannerPage() {
   const { isHydrated, state, updateUser, setQuestionnaireAnswers } = useAppData();
   const { getScrollContentPadding } = useResponsiveLayout();
 
+  const [selectedCollegeId, setSelectedCollegeId] = useState<PlannerCollegeId>("uw");
   const [selectedCampusId, setSelectedCampusId] =
-    useState<TransferPlannerCampusId>("uw-seattle");
+    useState<PlannerCampusSelectionId>("uw-seattle");
   const [selectedMajorId, setSelectedMajorId] = useState<string>(
     getTransferPlannerStudentRuntimeMajorsForCampus("uw-seattle")[0]?.id ?? ""
   );
-  const [openSelector, setOpenSelector] = useState<"campus" | "major" | null>(null);
+  const [openSelector, setOpenSelector] = useState<PlannerSelectorKey>(null);
   const [transcriptDocument, setTranscriptDocument] = useState<TranscriptDocument | null>(null);
   const [isAnalyzingTranscript, setIsAnalyzingTranscript] = useState(false);
   const [transcriptError, setTranscriptError] = useState<string | null>(null);
@@ -1975,19 +3230,53 @@ export default function TransferPlannerPage() {
     hasDetailedCompletedCourses &&
     storedTranscriptParserVersion !== TRANSCRIPT_PARSER_VERSION;
 
+  const isUwPlanner = selectedCollegeId === "uw";
+  const selectedUwCampusId = useMemo<TransferPlannerCampusId>(
+    () =>
+      isUwPlanner && isPlannerUwCampusId(selectedCampusId)
+        ? selectedCampusId
+        : "uw-seattle",
+    [isUwPlanner, selectedCampusId]
+  );
+  const effectiveSelectedCampusId = useMemo<PlannerCampusSelectionId>(
+    () => (isUwPlanner ? selectedUwCampusId : GRC_PLANNER_CAMPUS_ID),
+    [isUwPlanner, selectedUwCampusId]
+  );
   const campus = useMemo(
     () =>
-      TRANSFER_PLANNER_CAMPUSES.find((entry) => entry.id === selectedCampusId) ??
-      TRANSFER_PLANNER_CAMPUSES[0],
-    [selectedCampusId]
+      isUwPlanner
+        ? TRANSFER_PLANNER_CAMPUSES.find((entry) => entry.id === selectedUwCampusId) ??
+          TRANSFER_PLANNER_CAMPUSES[0]
+        : null,
+    [isUwPlanner, selectedUwCampusId]
   );
   const campusMajors = useMemo(
-    () => getTransferPlannerStudentRuntimeMajorsForCampus(selectedCampusId),
-    [selectedCampusId]
+    () =>
+      isUwPlanner ? getTransferPlannerStudentRuntimeMajorsForCampus(selectedUwCampusId) : [],
+    [isUwPlanner, selectedUwCampusId]
   );
   const selectedBasePlan = useMemo(
-    () => campusMajors.find((entry) => entry.id === selectedMajorId) ?? campusMajors[0] ?? null,
-    [campusMajors, selectedMajorId]
+    () =>
+      isUwPlanner
+        ? campusMajors.find((entry) => entry.id === selectedMajorId) ?? campusMajors[0] ?? null
+        : null,
+    [campusMajors, isUwPlanner, selectedMajorId]
+  );
+  const selectedGrcTrack = useMemo(
+    () =>
+      !isUwPlanner
+        ? TRANSFER_PLANNER_TRACKS.find((entry) => entry.id === selectedMajorId) ??
+          TRANSFER_PLANNER_TRACKS[0] ??
+          null
+        : null,
+    [isUwPlanner, selectedMajorId]
+  );
+  const effectiveSelectedMajorId = useMemo(
+    () =>
+      isUwPlanner
+        ? selectedBasePlan?.id ?? campusMajors[0]?.id ?? selectedMajorId
+        : selectedGrcTrack?.id ?? TRANSFER_PLANNER_TRACKS[0]?.id ?? selectedMajorId,
+    [campusMajors, isUwPlanner, selectedBasePlan?.id, selectedGrcTrack?.id, selectedMajorId]
   );
   const selectedPathwayByPlan = useMemo(
     () =>
@@ -2001,25 +3290,31 @@ export default function TransferPlannerPage() {
     [state.questionnaireAnswers]
   );
   const pathwayOptions = useMemo(
-    () => getTransferPlannerStudentRuntimePathwaysForPlan(selectedBasePlan),
-    [selectedBasePlan]
+    () => (isUwPlanner ? getTransferPlannerStudentRuntimePathwaysForPlan(selectedBasePlan) : []),
+    [isUwPlanner, selectedBasePlan]
   );
   const selectedPathwayId = useMemo(() => {
-    if (!selectedBasePlan) return null;
+    if (!isUwPlanner || !selectedBasePlan) return null;
     const storedPathwayId = selectedPathwayByPlan[selectedBasePlan.id] ?? null;
     if (storedPathwayId && pathwayOptions.some((entry) => entry.id === storedPathwayId)) {
       return storedPathwayId;
     }
     return pathwayOptions[0]?.id ?? null;
-  }, [pathwayOptions, selectedBasePlan, selectedPathwayByPlan]);
+  }, [isUwPlanner, pathwayOptions, selectedBasePlan, selectedPathwayByPlan]);
   const plan = useMemo(
-    () => resolveTransferPlannerStudentRuntimeMajorPlan(selectedBasePlan, selectedPathwayId),
-    [selectedBasePlan, selectedPathwayId]
+    () =>
+      isUwPlanner
+        ? resolveTransferPlannerStudentRuntimeMajorPlan(selectedBasePlan, selectedPathwayId)
+        : null,
+    [isUwPlanner, selectedBasePlan, selectedPathwayId]
   );
-  const track = useMemo(() => getTransferPlannerTrack(plan?.bestTrackId ?? null), [plan]);
+  const track = useMemo(
+    () => (isUwPlanner ? getTransferPlannerTrack(plan?.bestTrackId ?? null) : selectedGrcTrack),
+    [isUwPlanner, plan, selectedGrcTrack]
+  );
   const plannerPathKey = useMemo(
-    () => getPlannerPathKey(selectedCampusId, plan?.id ?? selectedMajorId, selectedPathwayId),
-    [plan?.id, selectedCampusId, selectedMajorId, selectedPathwayId]
+    () => getPlannerPathKey(effectiveSelectedCampusId, plan?.id ?? effectiveSelectedMajorId, selectedPathwayId),
+    [effectiveSelectedCampusId, effectiveSelectedMajorId, plan?.id, selectedPathwayId]
   );
   const currentCourseSelectionsByPath = useMemo(
     () =>
@@ -2079,6 +3374,19 @@ export default function TransferPlannerPage() {
     hydratedLastSelectionRef.current = true;
     if (!storedLastSelectedPlan) return;
 
+    if (storedLastSelectedPlan.collegeId === "grc") {
+      const matchedTrack = TRANSFER_PLANNER_TRACKS.find(
+        (entry) => entry.id === storedLastSelectedPlan.majorId
+      );
+      if (!matchedTrack) return;
+
+      autoMajorSelectionRef.current = true;
+      setSelectedCollegeId("grc");
+      setSelectedCampusId(GRC_PLANNER_CAMPUS_ID);
+      setSelectedMajorId(matchedTrack.id);
+      return;
+    }
+
     const matchedCampus = TRANSFER_PLANNER_CAMPUSES.find(
       (entry) => entry.id === storedLastSelectedPlan.campusId
     );
@@ -2089,49 +3397,109 @@ export default function TransferPlannerPage() {
     if (!matchedMajor) return;
 
     autoMajorSelectionRef.current = true;
+    setSelectedCollegeId("uw");
     setSelectedCampusId(matchedCampus.id);
     setSelectedMajorId(matchedMajor.id);
   }, [isHydrated, storedLastSelectedPlan]);
 
   useEffect(() => {
-    const nextFirstMajorId = campusMajors[0]?.id ?? "";
+    const nextCampusId = getDefaultPlannerCampusId(selectedCollegeId);
+    if (selectedCollegeId === "grc") {
+      if (selectedCampusId !== GRC_PLANNER_CAMPUS_ID) {
+        setSelectedCampusId(GRC_PLANNER_CAMPUS_ID);
+      }
+      return;
+    }
+
+    if (!isPlannerUwCampusId(selectedCampusId)) {
+      setSelectedCampusId(nextCampusId);
+    }
+  }, [selectedCollegeId, selectedCampusId]);
+
+  useEffect(() => {
+    const nextFirstMajorId =
+      selectedCollegeId === "grc"
+        ? TRANSFER_PLANNER_TRACKS[0]?.id ?? ""
+        : campusMajors[0]?.id ?? "";
+
+    if (selectedCollegeId === "grc") {
+      if (!TRANSFER_PLANNER_TRACKS.some((entry) => entry.id === selectedMajorId)) {
+        setSelectedMajorId(nextFirstMajorId);
+      }
+      return;
+    }
+
     if (!campusMajors.some((entry) => entry.id === selectedMajorId)) {
       setSelectedMajorId(nextFirstMajorId);
     }
-  }, [campusMajors, selectedMajorId]);
+  }, [campusMajors, selectedCollegeId, selectedMajorId]);
 
   useEffect(() => {
     if (autoMajorSelectionRef.current) return;
     const rawMajor = String(user?.major ?? "").trim().toLowerCase();
     if (!rawMajor) return;
 
-    const matchedMajor = campusMajors.find((entry) =>
-      entry.title.toLowerCase().includes(rawMajor) ||
-      rawMajor.includes(entry.shortTitle.toLowerCase()) ||
-      rawMajor.includes(entry.title.toLowerCase())
-    );
+    const matchedMajor =
+      selectedCollegeId === "grc"
+        ? TRANSFER_PLANNER_TRACKS.find((entry) => {
+            const trackTitle = entry.title.toLowerCase();
+            const trackCode = entry.code.toLowerCase();
+            return (
+              trackTitle.includes(rawMajor) ||
+              rawMajor.includes(trackTitle) ||
+              rawMajor.includes(trackCode)
+            );
+          })
+        : campusMajors.find((entry) =>
+            entry.title.toLowerCase().includes(rawMajor) ||
+            rawMajor.includes(entry.shortTitle.toLowerCase()) ||
+            rawMajor.includes(entry.title.toLowerCase())
+          );
 
     if (!matchedMajor) return;
     autoMajorSelectionRef.current = true;
     setSelectedMajorId(matchedMajor.id);
-  }, [campusMajors, user?.major]);
+  }, [campusMajors, selectedCollegeId, user?.major]);
 
   useEffect(() => {
     if (!isHydrated || !selectedMajorId) return;
+    if (selectedCollegeId === "uw" && !isPlannerUwCampusId(selectedCampusId)) return;
+    if (selectedCollegeId === "grc" && selectedCampusId !== GRC_PLANNER_CAMPUS_ID) return;
+    if (selectedCollegeId === "uw" && !campusMajors.some((entry) => entry.id === effectiveSelectedMajorId)) {
+      return;
+    }
+    if (
+      selectedCollegeId === "grc" &&
+      !TRANSFER_PLANNER_TRACKS.some((entry) => entry.id === effectiveSelectedMajorId)
+    ) {
+      return;
+    }
 
+    const currentCollegeId = String(storedLastSelectedPlan?.collegeId ?? "").trim().toLowerCase();
     const currentCampusId = String(storedLastSelectedPlan?.campusId ?? "").trim();
     const currentMajorId = String(storedLastSelectedPlan?.majorId ?? "").trim();
-    if (currentCampusId === selectedCampusId && currentMajorId === selectedMajorId) return;
+    if (
+      currentCollegeId === selectedCollegeId &&
+      currentCampusId === effectiveSelectedCampusId &&
+      currentMajorId === effectiveSelectedMajorId
+    ) {
+      return;
+    }
 
     void setQuestionnaireAnswers({
       ...state.questionnaireAnswers,
       [LAST_SELECTED_PLAN_FIELD]: {
-        campusId: selectedCampusId,
-        majorId: selectedMajorId,
+        collegeId: selectedCollegeId,
+        campusId: effectiveSelectedCampusId,
+        majorId: effectiveSelectedMajorId,
       },
     });
   }, [
+    campusMajors,
+    effectiveSelectedMajorId,
+    effectiveSelectedCampusId,
     isHydrated,
+    selectedCollegeId,
     selectedCampusId,
     selectedMajorId,
     setQuestionnaireAnswers,
@@ -2365,34 +3733,35 @@ export default function TransferPlannerPage() {
 
   const applicationStatuses = useMemo(
     () =>
-      plan ? buildRequirementStatuses(plan.applicationChecklist, completedCourses) : [],
-    [completedCourses, plan]
+      isUwPlanner && plan ? buildRequirementStatuses(plan.applicationChecklist, completedCourses) : [],
+    [completedCourses, isUwPlanner, plan]
   );
   const beforeEnrollmentStatuses = useMemo(
     () =>
-      plan ? buildRequirementStatuses(plan.beforeEnrollmentChecklist, completedCourses) : [],
-    [completedCourses, plan]
+      isUwPlanner && plan ? buildRequirementStatuses(plan.beforeEnrollmentChecklist, completedCourses) : [],
+    [completedCourses, isUwPlanner, plan]
   );
   const stayAtGrcStatuses = useMemo(
     () =>
-      plan ? buildRequirementStatuses(plan.stayAtGrcChecklist, completedCourses) : [],
-    [completedCourses, plan]
+      isUwPlanner && plan ? buildRequirementStatuses(plan.stayAtGrcChecklist, completedCourses) : [],
+    [completedCourses, isUwPlanner, plan]
   );
   const hasOptionalStayAtGrcChecklist = plan?.stayAtGrcChecklist.length
     ? plan.stayAtGrcChecklist.some((item) => item.grcCourses.length > 0)
     : false;
-  const shouldShowUwOnlyToggle = Boolean(track) || hasOptionalStayAtGrcChecklist;
+  const shouldShowUwOnlyToggle =
+    isUwPlanner && (Boolean(track) || hasOptionalStayAtGrcChecklist);
   const suggestedQuarterPlan = useMemo(
     () =>
       buildSuggestedQuarterPlan({
-        plan,
+        plan: isUwPlanner ? plan : null,
         applicationStatuses,
         beforeEnrollmentStatuses,
         stayAtGrcStatuses,
         completedCourses,
         currentCourseLabels: currentPlannedCourseLabels,
         track,
-        includeStayAtGrcCourses: !onlyUwEssentialClasses,
+        includeStayAtGrcCourses: isUwPlanner ? !onlyUwEssentialClasses : true,
         includeSummerQuarter: allowSummerClasses,
       }),
     [
@@ -2400,6 +3769,7 @@ export default function TransferPlannerPage() {
       beforeEnrollmentStatuses,
       completedCourses,
       currentPlannedCourseLabels,
+      isUwPlanner,
       allowSummerClasses,
       onlyUwEssentialClasses,
       plan,
@@ -2409,7 +3779,7 @@ export default function TransferPlannerPage() {
   );
   const studentCourseEvaluations = useMemo(
     () =>
-      plan
+      isUwPlanner && plan
         ? buildTransferPlannerStudentCourseEvaluations({
             plan,
             completedCourses,
@@ -2422,38 +3792,43 @@ export default function TransferPlannerPage() {
       applicationStatuses,
       beforeEnrollmentStatuses,
       completedCourses,
+      isUwPlanner,
       plan,
       stayAtGrcStatuses,
     ]
   );
   const studentEvaluationReport = useMemo(
     () =>
-      plan
+      isUwPlanner && plan
         ? buildTransferPlannerStudentEvaluationReport({
             plan,
-            campusLabel: campus.title,
+            campusLabel: campus?.title ?? getCollegeOptionLabel(selectedCollegeId),
             completedCourses,
             evaluations: studentCourseEvaluations,
             suggestedQuarterPlan,
           })
         : null,
     [
-      campus.title,
+      campus?.title,
       completedCourses,
+      isUwPlanner,
       plan,
+      selectedCollegeId,
       studentCourseEvaluations,
       suggestedQuarterPlan,
     ]
   );
   const hasStructuredPlannerData = useMemo(
     () =>
-      !!plan &&
-      (
-        plan.applicationChecklist.length > 0 ||
-        plan.beforeEnrollmentChecklist.length > 0 ||
-        plan.stayAtGrcChecklist.length > 0
-      ),
-    [plan]
+      isUwPlanner
+        ? !!plan &&
+          (
+            plan.applicationChecklist.length > 0 ||
+            plan.beforeEnrollmentChecklist.length > 0 ||
+            plan.stayAtGrcChecklist.length > 0
+          )
+        : Boolean(track),
+    [isUwPlanner, plan, track]
   );
   const handleToggleCurrentCourse = useCallback(
     async (courseLabel: string) => {
@@ -2507,25 +3882,100 @@ export default function TransferPlannerPage() {
       state.questionnaireAnswers,
     ]
   );
+  const plannerHeroContent = useMemo(
+    () => getPlannerHeroContent(selectedCollegeId),
+    [selectedCollegeId]
+  );
+  const selectedCollegeLabel = useMemo(
+    () => getCollegeOptionLabel(selectedCollegeId),
+    [selectedCollegeId]
+  );
+  const selectedCampusLabel = useMemo(
+    () => (isUwPlanner ? campus?.title ?? "UW Seattle" : "Green River College"),
+    [campus?.title, isUwPlanner]
+  );
+  const selectedMajorLabel = useMemo(() => {
+    if (!isUwPlanner) {
+      return selectedGrcTrack
+        ? `${selectedGrcTrack.code} | ${selectedGrcTrack.title}`
+        : "Select program";
+    }
+
+    return plan?.title ?? selectedBasePlan?.title ?? "Select major";
+  }, [isUwPlanner, plan?.title, selectedBasePlan?.title, selectedGrcTrack]);
+  const selectedGrcTrackRequirementNoun = useMemo(
+    () => getGrcTrackRequirementNoun(selectedGrcTrack),
+    [selectedGrcTrack]
+  );
+  const activeDegreeTitle = useMemo(() => {
+    if (!isUwPlanner) {
+      return selectedGrcTrack?.title ?? "Selected Green River program";
+    }
+
+    return plan?.selectedPathwayLabel ? `${plan.title} (${plan.selectedPathwayLabel})` : plan?.title ?? "Selected UW degree";
+  }, [isUwPlanner, plan, selectedGrcTrack]);
+  const activeTrackCode = track?.code ?? null;
+  const activeTrackTitle = useMemo(
+    () =>
+      track?.title ??
+      (isUwPlanner
+        ? "Custom Green River path"
+        : selectedGrcTrack?.title ?? "Selected Green River program"),
+    [isUwPlanner, selectedGrcTrack, track]
+  );
+  const activeTrackSummary = useMemo(
+    () => (isUwPlanner ? plan?.bestTrackSummary ?? "" : track?.summary ?? ""),
+    [isUwPlanner, plan?.bestTrackSummary, track]
+  );
+  const activeFinancialAidNote = useMemo(
+    () => (isUwPlanner ? plan?.financialAidNote ?? "" : ""),
+    [isUwPlanner, plan?.financialAidNote]
+  );
+  const collegeOptions = useMemo(
+    () => [
+      {
+        id: "uw",
+        label: getCollegeOptionLabel("uw"),
+      },
+      {
+        id: "grc",
+        label: getCollegeOptionLabel("grc"),
+      },
+    ],
+    []
+  );
   const campusOptions = useMemo(
     () =>
-      TRANSFER_PLANNER_CAMPUSES.map((entry) => ({
-        id: entry.id,
-        label: entry.title,
-      })),
-    []
+      isUwPlanner
+        ? TRANSFER_PLANNER_CAMPUSES.map((entry) => ({
+            id: entry.id,
+            label: entry.title,
+          }))
+        : [
+            {
+              id: GRC_PLANNER_CAMPUS_ID,
+              label: "Green River College",
+            },
+          ],
+    [isUwPlanner]
   );
   const majorOptions = useMemo(
     () =>
-      campusMajors.map((entry) => ({
-        id: entry.id,
-        label: entry.title,
-      })),
-    [campusMajors]
+      isUwPlanner
+        ? campusMajors.map((entry) => ({
+            id: entry.id,
+            label: entry.title,
+          }))
+        : TRANSFER_PLANNER_TRACKS.map((entry) => ({
+            id: entry.id,
+            label: `${entry.code} | ${entry.title}`,
+            description: stripGeneratedProgramMapSummarySentence(entry.summary),
+          })),
+    [campusMajors, isUwPlanner]
   );
   const hasNoDirectMajorEquivalencies = useMemo(
-    () => !!plan && !hasAnyDirectMajorEquivalencies(plan),
-    [plan]
+    () => isUwPlanner && !!plan && !hasAnyDirectMajorEquivalencies(plan),
+    [isUwPlanner, plan]
   );
 
   if (!user) {
@@ -2535,21 +3985,35 @@ export default function TransferPlannerPage() {
           <StateCard
             variant="empty"
             title="Open this as a student profile first"
-            message="Start as a guest or sign in, then come back here to build a transcript-based transfer course plan."
+            message="Start as a guest or sign in, then come back here to build a transcript-based course plan."
           />
         </View>
       </ScreenBackground>
     );
   }
 
-  if (!plan) {
+  if (isUwPlanner && !plan) {
     return (
       <ScreenBackground includeTopInset includeBottomInset={false}>
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center", padding: 24 }}>
           <StateCard
             variant="empty"
             title="No planner data yet"
-            message="There is not a course plan for this campus yet."
+            message={getPlannerNoDataMessage(selectedCollegeId)}
+          />
+        </View>
+      </ScreenBackground>
+    );
+  }
+
+  if (!isUwPlanner && !selectedGrcTrack) {
+    return (
+      <ScreenBackground includeTopInset includeBottomInset={false}>
+        <View style={{ flex: 1, alignItems: "center", justifyContent: "center", padding: 24 }}>
+          <StateCard
+            variant="empty"
+            title="No planner data yet"
+            message={getPlannerNoDataMessage(selectedCollegeId)}
           />
         </View>
       </ScreenBackground>
@@ -2614,16 +4078,17 @@ export default function TransferPlannerPage() {
               </View>
               <View className="flex-1">
                 <Text className={`${textClass} text-2xl font-semibold`}>
-                  {"GRC -> UW Course Planner"}
+                  {plannerHeroContent.title}
                 </Text>
                 <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                  Classes for Green River College are cheaper/easier than those at the University of Washington. This tool matches you with a transfer track most compatible with your major, letting you take advantage of it by showing you every course that directly transfers in.
+                  {plannerHeroContent.description}
                 </Text>
               </View>
             </View>
           </View>
 
           <TranscriptSummaryCard
+            collegeId={selectedCollegeId}
             transcriptDocument={transcriptDocument}
             isAnalyzing={isAnalyzingTranscript || needsTranscriptReparse}
             errorMessage={transcriptError}
@@ -2631,21 +4096,27 @@ export default function TransferPlannerPage() {
             studentCourseEvaluations={studentCourseEvaluations}
             plan={plan}
             pathwayOptions={pathwayOptions}
-            selectedPathwayLabel={plan.selectedPathwayLabel}
+            selectedPathwayLabel={plan?.selectedPathwayLabel ?? null}
             hasNoDirectMajorEquivalencies={hasNoDirectMajorEquivalencies}
-            selectedCampusId={selectedCampusId}
-            selectedCampusLabel={campus.title}
-            selectedMajorId={selectedMajorId}
-            selectedMajorLabel={plan?.title ?? "Select major"}
-            trackCode={track?.code ?? null}
-            trackTitle={track?.title ?? "Custom Green River path"}
-            trackSummary={plan.bestTrackSummary}
-            financialAidNote={plan.financialAidNote}
+            selectedCollegeId={selectedCollegeId}
+            selectedCollegeLabel={selectedCollegeLabel}
+            selectedCampusId={effectiveSelectedCampusId}
+            selectedCampusLabel={selectedCampusLabel}
+            selectedMajorId={effectiveSelectedMajorId}
+            selectedMajorLabel={selectedMajorLabel}
+            track={track}
+            trackCode={activeTrackCode}
+            trackTitle={activeTrackTitle}
+            trackSummary={activeTrackSummary}
+            financialAidNote={activeFinancialAidNote}
             completedCourses={completedCourses}
-            currentCourseLabels={currentPlannedCourseSet}
             openSelector={openSelector}
+            collegeOptions={collegeOptions}
             campusOptions={campusOptions}
             majorOptions={majorOptions}
+            onToggleCollege={() =>
+              setOpenSelector((current) => (current === "college" ? null : "college"))
+            }
             onToggleCampus={() =>
               setOpenSelector((current) => (current === "campus" ? null : "campus"))
             }
@@ -2661,8 +4132,17 @@ export default function TransferPlannerPage() {
             onDismissMajor={() =>
               setOpenSelector((current) => (current === "major" ? null : current))
             }
+            onDismissCollege={() =>
+              setOpenSelector((current) => (current === "college" ? null : current))
+            }
+            onSelectCollege={(id) => {
+              setSelectedCollegeId(id === "grc" ? "grc" : "uw");
+              setOpenSelector(null);
+            }}
             onSelectCampus={(id) => {
-              setSelectedCampusId(id as TransferPlannerCampusId);
+              setSelectedCampusId(
+                id === GRC_PLANNER_CAMPUS_ID ? GRC_PLANNER_CAMPUS_ID : (id as TransferPlannerCampusId)
+              );
               setOpenSelector(null);
             }}
             onSelectMajor={(id) => {
@@ -2682,19 +4162,18 @@ export default function TransferPlannerPage() {
             dropdownBackgroundColor={dropdownSurfaceColor}
           />
 
-          {hasNoDirectMajorEquivalencies ? (
+          {isUwPlanner && hasNoDirectMajorEquivalencies ? (
             <View className={`${cardBgClass} border rounded-[28px] p-5`}>
               <Text className={`${textClass} text-lg font-semibold`}>
-                No class equivalencies for {plan.title}
+                No class equivalencies for {plan?.title ?? selectedMajorLabel}
               </Text>
               <Text className={`${secondaryTextClass} text-sm mt-2`}>
                 There are no class equivalencies for this path right now.
               </Text>
-              {isOpenAdmissionMajor(plan) ? (
+              {plan && isOpenAdmissionMajor(plan) ? (
                 <Text className={`${secondaryTextClass} text-sm mt-2`}>
-                  This is an open major. You would transfer through general UW admission first,
-                  then declare {plan.title} through the department&apos;s current process after you
-                  enroll.
+                  This is an open major. You would transfer through general UW admission first, then
+                  declare {plan.title} through the department&apos;s current process after you enroll.
                 </Text>
               ) : null}
             </View>
@@ -2706,7 +4185,9 @@ export default function TransferPlannerPage() {
                 Quarter plan note
               </Text>
               <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                This degree does not have a fixed quarter-by-quarter plan yet. Use the Green River class list and source-backed class-order notes above as your starting point. Unsupported ordering details stay hidden until public sources can verify them.
+                {isUwPlanner
+                  ? "This degree does not have a fixed quarter-by-quarter plan yet. Use the Green River class list and source-backed class-order notes above as your starting point. This planner only shows a source-backed plan, and unsupported majors, rules, or sequences stay hidden until public sources can verify them."
+                  : `This ${selectedGrcTrackRequirementNoun} does not have a fixed quarter-by-quarter plan yet. Use the tracked Green River ${selectedGrcTrackRequirementNoun} classes above as your starting point while more source-backed sequencing data is added.`}
               </Text>
             </View>
           ) : null}
@@ -2716,13 +4197,11 @@ export default function TransferPlannerPage() {
               <SuggestedScheduleCard
                 key={plannerPathKey}
                 quarters={suggestedQuarterPlan}
-                degreeTitle={
-                  plan.selectedPathwayLabel
-                    ? `${plan.title} (${plan.selectedPathwayLabel})`
-                    : plan.title
-                }
-                campusLabel={campus.title}
-                selectedCampusId={plan.campusId}
+                collegeId={selectedCollegeId}
+                degreeTitle={activeDegreeTitle}
+                grcTrack={track}
+                campusLabel={selectedCampusLabel}
+                selectedCampusId={isUwPlanner ? plan?.campusId ?? null : null}
                 onlyUwEssentialClasses={onlyUwEssentialClasses}
                 showOnlyUwEssentialClassesToggle={shouldShowUwOnlyToggle}
                 onToggleOnlyUwEssentialClasses={() =>

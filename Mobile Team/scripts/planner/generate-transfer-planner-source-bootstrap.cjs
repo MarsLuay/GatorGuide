@@ -18,13 +18,6 @@ const {
   TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS,
 } = require("../../constants/transfer-planner-source/requirement-source-adapters.generated");
 const {
-  TRANSFER_PLANNER_MAJOR_REQUIREMENT_REGISTRY,
-  TRANSFER_PLANNER_DEGREE_MAP_BLOCK_REGISTRY,
-  TRANSFER_PLANNER_POLICY_REGISTRY,
-  TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY,
-  TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY,
-} = require("../../constants/transfer-planner-source/registry");
-const {
   TRANSFER_PLANNER_SOURCE_GAP_ENTRIES,
 } = require("../../constants/transfer-planner-source/source-gaps.generated");
 
@@ -277,239 +270,214 @@ function buildCampusesFromParsedRegistries(planRecords) {
     .sort((left, right) => left.id.localeCompare(right.id));
 }
 
-function buildMajorPlansFromParsedRegistries() {
-  const groupedRequirements = new Map();
-  for (const requirement of TRANSFER_PLANNER_MAJOR_REQUIREMENT_REGISTRY) {
-    const key = makePlanPathwayKey(requirement.planId, requirement.pathwayId ?? null);
-    if (!groupedRequirements.has(key)) {
-      groupedRequirements.set(key, {
-        applicationChecklist: [],
-        beforeEnrollmentChecklist: [],
-        stayAtGrcChecklist: [],
-        sourceLinks: [],
-        validationNotes: [],
-      });
-    }
+function titleCasePathwayLabel(value) {
+  return String(value ?? "")
+    .trim()
+    .split(/[-_\s]+/)
+    .filter(Boolean)
+    .map((token) => token.charAt(0).toUpperCase() + token.slice(1).toLowerCase())
+    .join(" ");
+}
 
-    const group = groupedRequirements.get(key);
-    const checklistField = mapPhaseToChecklistField(requirement.displayPhase);
-    if (checklistField) {
-      group[checklistField].push(buildChecklistItem(requirement));
-    }
-    group.sourceLinks.push(...(requirement.sourceLinks ?? []));
-    group.validationNotes.push(...(requirement.validationNotes ?? []));
+function buildPathwayLabelFromBlock(block) {
+  const parsedLabel = uniqueStrings(block.pathwayLabels ?? [])[0] ?? "";
+  if (parsedLabel) {
+    return parsedLabel;
   }
 
-  const groupedDegreeMaps = new Map();
-  for (const block of TRANSFER_PLANNER_DEGREE_MAP_BLOCK_REGISTRY) {
-    const key = makePlanPathwayKey(block.planId, block.pathwayId ?? null);
-    if (!groupedDegreeMaps.has(key)) {
-      groupedDegreeMaps.set(key, {
-        sections: [],
-        sourceLinks: [],
-        validationNotes: [],
-      });
-    }
-    const group = groupedDegreeMaps.get(key);
-    group.sections.push(buildDegreeMapSection(block));
-    group.sourceLinks.push(...(block.sourceLinks ?? []));
-    group.validationNotes.push(...(block.validationNotes ?? []));
+  const pathwayId = String(block.pathwayId ?? "").trim();
+  if (pathwayId) {
+    return titleCasePathwayLabel(pathwayId);
   }
 
-  const policyByKey = new Map(
-    TRANSFER_PLANNER_POLICY_REGISTRY.map((policy) => [
-      makePlanPathwayKey(policy.planId, policy.pathwayId ?? null),
-      policy,
-    ])
-  );
+  return "Pathway";
+}
 
-  const pathwaysByPlan = new Map();
-  for (const pathway of TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY) {
-    const planId = String(pathway.planId ?? "").trim();
-    if (!planId) continue;
-    if (!pathwaysByPlan.has(planId)) {
-      pathwaysByPlan.set(planId, []);
-    }
-    pathwaysByPlan.get(planId).push(pathway);
-  }
+function buildBasePlansFromParsedBlocks(parsedBlocks) {
+  const groupedByPlanId = new Map();
 
-  const parsedBlocksByPlan = new Map();
-  for (const block of TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS) {
+  for (const block of parsedBlocks) {
     const planId = String(block.planId ?? "").trim();
     if (!planId) continue;
-    if (!parsedBlocksByPlan.has(planId)) {
-      parsedBlocksByPlan.set(planId, []);
-    }
-    parsedBlocksByPlan.get(planId).push(block);
+
+    const existing = groupedByPlanId.get(planId) ?? [];
+    existing.push(block);
+    groupedByPlanId.set(planId, existing);
   }
 
-  const sourceManifestByPlan = new Map();
-  const sourceGapByOwnerKey = new Map(
-    TRANSFER_PLANNER_SOURCE_GAP_ENTRIES.map((entry) => [entry.ownerKey, entry])
-  );
-  for (const entry of TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY) {
-    const planId = String(entry.planId ?? "").trim();
-    if (!planId || entry.ownerType !== "major") continue;
-    if (!sourceManifestByPlan.has(planId)) {
-      sourceManifestByPlan.set(planId, []);
-    }
-    const sourceStatus = buildSourceStatusForManifestEntry(entry, sourceGapByOwnerKey);
-    sourceManifestByPlan.get(planId).push({
-      label: entry.label,
-      url: entry.url,
-      note: entry.note,
-      visibility: sourceStatus.visibility,
-      status: sourceStatus.status,
-      reason: sourceStatus.reason,
-      sourceConfidence: sourceStatus.sourceConfidence,
-    });
-  }
+  const plans = [];
 
-  const planIds = uniqueStrings([
-    ...TRANSFER_PLANNER_MAJOR_REQUIREMENT_REGISTRY.map((entry) => entry.planId),
-    ...TRANSFER_PLANNER_POLICY_REGISTRY.map((entry) => entry.planId),
-    ...TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY.map((entry) => entry.planId),
-    ...TRANSFER_PLANNER_DEGREE_MAP_BLOCK_REGISTRY.map((entry) => entry.planId),
-    ...TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS.map((entry) => entry.planId),
-  ]);
+  for (const [planId, planBlocks] of groupedByPlanId.entries()) {
+    const rootBlock =
+      planBlocks.find((entry) => String(entry.pathwayId ?? "").trim().length === 0) ??
+      planBlocks[0] ??
+      null;
 
-  const majorPlans = planIds
-    .map((planId) => {
-      const planKey = makePlanPathwayKey(planId, null);
-      const planPolicy = policyByKey.get(planKey) ?? null;
-      const planRequirements = groupedRequirements.get(planKey) ?? {
+    if (!rootBlock) continue;
+
+    const campusId = String(rootBlock.campusId ?? "").trim();
+    if (!campusId) continue;
+
+    const title = String(rootBlock.ownerTitle ?? "").trim() || planId;
+    const pathwayById = new Map();
+
+    for (const block of planBlocks) {
+      const pathwayId = String(block.pathwayId ?? "").trim();
+      if (!pathwayId || pathwayById.has(pathwayId)) {
+        continue;
+      }
+
+      const label = buildPathwayLabelFromBlock(block);
+      pathwayById.set(pathwayId, {
+        id: pathwayId,
+        label,
+        summary: "",
         applicationChecklist: [],
         beforeEnrollmentChecklist: [],
         stayAtGrcChecklist: [],
-        sourceLinks: [],
-        validationNotes: [],
-      };
-      const planDegreeMaps = groupedDegreeMaps.get(planKey) ?? {
-        sections: [],
-        sourceLinks: [],
-        validationNotes: [],
-      };
-      const parsedBlocks = parsedBlocksByPlan.get(planId) ?? [];
-      const parsedAnchorBlock =
-        parsedBlocks.find((entry) => !entry.pathwayId) ?? parsedBlocks[0] ?? null;
-      const title =
-        String(planPolicy?.majorTitle ?? "").trim() ||
-        String(parsedAnchorBlock?.ownerTitle ?? "").trim() ||
-        planId;
-      const campusId = String(
-        planPolicy?.campusId ??
-          parsedAnchorBlock?.campusId ??
-          TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY.find((entry) => entry.planId === planId)?.campusId ??
-          TRANSFER_PLANNER_MAJOR_REQUIREMENT_REGISTRY.find((entry) => entry.planId === planId)?.campusId ??
-          "uw-seattle"
-      ).trim();
-
-      const pathEntries = (pathwaysByPlan.get(planId) ?? [])
-        .slice()
-        .sort((left, right) => String(left.pathwayId ?? "").localeCompare(String(right.pathwayId ?? "")))
-        .map((pathway) => {
-          const pathwayId = String(pathway.pathwayId ?? "").trim();
-          const pathwayKey = makePlanPathwayKey(planId, pathwayId);
-          const pathwayPolicy = policyByKey.get(pathwayKey) ?? null;
-          const pathwayRequirements = groupedRequirements.get(pathwayKey) ?? {
-            applicationChecklist: [],
-            beforeEnrollmentChecklist: [],
-            stayAtGrcChecklist: [],
-            sourceLinks: [],
-            validationNotes: [],
-          };
-          const pathwayDegreeMaps = groupedDegreeMaps.get(pathwayKey) ?? {
-            sections: [],
-            sourceLinks: [],
-            validationNotes: [],
-          };
-
-          return {
-            id: pathwayId,
-            label: String(pathway.label ?? pathwayId).trim(),
-            summary: "",
-            applicationChecklist: pathwayRequirements.applicationChecklist,
-            beforeEnrollmentChecklist: pathwayRequirements.beforeEnrollmentChecklist,
-            stayAtGrcChecklist: pathwayRequirements.stayAtGrcChecklist,
-            advisorFlags: [],
-            officialLinks: uniqueLinks([
-              ...(pathway.sourceLinks ?? []),
-              ...pathwayRequirements.sourceLinks,
-              ...pathwayDegreeMaps.sourceLinks,
-            ]),
-            degreeMapSections: pathwayDegreeMaps.sections,
-            manualReviewNotes: [],
-            grcCourseList: uniqueStrings([
-              ...(pathway.grcCourseList ?? []),
-              ...pathwayRequirements.applicationChecklist.flatMap((item) => item.grcCourses),
-              ...pathwayRequirements.beforeEnrollmentChecklist.flatMap((item) => item.grcCourses),
-              ...pathwayRequirements.stayAtGrcChecklist.flatMap((item) => item.grcCourses),
-            ]),
-            grcCourseListGuidance: "",
-            plannerNote: "",
-            bestTrackId: pathwayPolicy?.bestTrackId ?? null,
-            bestTrackSummary: "",
-            whyThisTrack: [],
-            financialAidNote: "",
-          };
-        });
-
-      return {
-        id: planId,
-        campusId,
-        title,
-        shortTitle: buildShortTitle(title),
-        coverage: "detailed",
-        summary: "",
-        applicationWindow: "",
-        startQuarter: "Varies",
-        bestTrackId: planPolicy?.bestTrackId ?? null,
+        advisorFlags: [],
+        officialLinks: [],
+        degreeMapSections: [],
+        manualReviewNotes: [],
+        grcCourseList: [],
+        grcCourseListGuidance: "",
+        plannerNote: "",
+        bestTrackId: null,
         bestTrackSummary: "",
         whyThisTrack: [],
         financialAidNote: "",
-        applicationChecklist: planRequirements.applicationChecklist,
-        beforeEnrollmentChecklist: planRequirements.beforeEnrollmentChecklist,
-        stayAtGrcChecklist: planRequirements.stayAtGrcChecklist,
-        advisorFlags: [],
-        involvementIdeas: [],
-        projectIdeas: [],
-        officialLinks: uniqueLinks([
-          ...(sourceManifestByPlan.get(planId) ?? []),
-          ...(planPolicy?.sourceLinks ?? []),
-          ...planRequirements.sourceLinks,
-          ...planDegreeMaps.sourceLinks,
-          ...parsedBlocks.map((entry) => {
-            const sourceStatus = buildSourceStatusForParsedBlock(entry);
-            return {
-              label: entry.sourceLabel,
-              url: entry.sourceUrl,
-              visibility: sourceStatus.visibility,
-              status: sourceStatus.status,
-              reason: sourceStatus.reason,
-              sourceConfidence: sourceStatus.sourceConfidence,
-            };
-          }),
-        ]),
-        degreeMapSections: planDegreeMaps.sections,
-        manualReviewNotes: [],
-        grcCourseList: uniqueStrings([
-          ...planRequirements.applicationChecklist.flatMap((item) => item.grcCourses),
-          ...planRequirements.beforeEnrollmentChecklist.flatMap((item) => item.grcCourses),
-          ...planRequirements.stayAtGrcChecklist.flatMap((item) => item.grcCourses),
-          ...pathEntries.flatMap((pathway) => pathway.grcCourseList ?? []),
-        ]),
-        grcCourseListGuidance: "",
-        plannerNote: "",
-        pathways: pathEntries,
+      });
+    }
+
+    plans.push({
+      id: planId,
+      campusId,
+      title,
+      shortTitle: buildShortTitle(title),
+      coverage: "partial",
+      summary: "Source-generated from parsed UW requirement-source registries.",
+      applicationWindow: "",
+      startQuarter: "",
+      bestTrackId: null,
+      bestTrackSummary: "",
+      whyThisTrack: [],
+      financialAidNote: "",
+      applicationChecklist: [],
+      beforeEnrollmentChecklist: [],
+      stayAtGrcChecklist: [],
+      advisorFlags: [],
+      involvementIdeas: [],
+      projectIdeas: [],
+      officialLinks: [],
+      degreeMapSections: [],
+      manualReviewNotes: [],
+      grcCourseList: [],
+      grcCourseListGuidance: "",
+      bankIds: [],
+      chainIds: [],
+      plannerNote: "",
+      sourceType: "master-generated",
+      pathways: [...pathwayById.values()].sort((left, right) => left.id.localeCompare(right.id)),
+    });
+  }
+
+  return plans.sort((left, right) => {
+    const campusDelta = String(left.campusId ?? "").localeCompare(String(right.campusId ?? ""));
+    if (campusDelta !== 0) return campusDelta;
+    return String(left.id ?? "").localeCompare(String(right.id ?? ""));
+  });
+}
+
+function buildMajorPlansFromParsedRegistries() {
+  const basePlans = buildBasePlansFromParsedBlocks(TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS);
+
+  const parsedBlocksByOwnerScope = new Map();
+  for (const block of TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS) {
+    const key = makePlanPathwayKey(block.planId, block.pathwayId ?? null);
+    if (!parsedBlocksByOwnerScope.has(key)) {
+      parsedBlocksByOwnerScope.set(key, []);
+    }
+    parsedBlocksByOwnerScope.get(key).push(block);
+  }
+
+  const sourceGapByOwnerKey = new Map(
+    TRANSFER_PLANNER_SOURCE_GAP_ENTRIES.map((entry) => [entry.ownerKey, entry])
+  );
+  const getOwnerLinkDefaults = (planId, pathwayId) => {
+    const ownerGap = sourceGapByOwnerKey.get(makeOwnerKey(planId, pathwayId ?? null)) ?? null;
+    const parsedBlocks =
+      parsedBlocksByOwnerScope.get(makePlanPathwayKey(planId, pathwayId ?? null)) ?? [];
+    const topConfidence =
+      parsedBlocks.find((entry) => entry.parseConfidence)?.parseConfidence ?? undefined;
+
+    if (ownerGap) {
+      return {
+        visibility: ownerGap.studentVisibility,
+        status: ownerGap.sourceCoverageStatus,
+        reason: ownerGap.sourceGapReason,
+        sourceConfidence: topConfidence,
       };
-    })
+    }
+
+    const hasVerified = parsedBlocks.some((entry) => entry.ok && !entry.usedSnapshotFallback);
+    const hasPartial = parsedBlocks.some((entry) => entry.ok && entry.usedSnapshotFallback);
+    return {
+      visibility: "visible",
+      status: hasVerified ? "verified" : hasPartial ? "partially-verified" : "partially-verified",
+      reason:
+        parsedBlocks.find((entry) => entry.ok && entry.usedSnapshotFallback)?.snapshotFallbackReason ??
+        undefined,
+      sourceConfidence: topConfidence,
+    };
+  };
+
+  const enrichOfficialLinks = (links, planId, pathwayId) => {
+    const defaults = getOwnerLinkDefaults(planId, pathwayId);
+    const parsedBlocks =
+      parsedBlocksByOwnerScope.get(makePlanPathwayKey(planId, pathwayId ?? null)) ?? [];
+
+    return uniqueLinks([
+      ...(Array.isArray(links) ? links : []).map((entry) => ({
+        label: String(entry?.label ?? "").trim(),
+        url: String(entry?.url ?? "").trim(),
+        note: String(entry?.note ?? "").trim() || undefined,
+        visibility: defaults.visibility,
+        status: defaults.status,
+        reason: defaults.reason,
+        sourceConfidence: defaults.sourceConfidence,
+      })),
+      ...parsedBlocks.map((entry) => {
+        const sourceStatus = buildSourceStatusForParsedBlock(entry);
+        return {
+          label: entry.sourceLabel,
+          url: entry.sourceUrl,
+          visibility: sourceStatus.visibility,
+          status: sourceStatus.status,
+          reason: sourceStatus.reason,
+          sourceConfidence: sourceStatus.sourceConfidence,
+        };
+      }),
+    ]);
+  };
+
+  return basePlans
+    .map((plan) => ({
+      ...plan,
+      officialLinks: enrichOfficialLinks(plan.officialLinks ?? [], plan.id, null),
+      pathways: (plan.pathways ?? []).map((pathway) => ({
+        ...pathway,
+        officialLinks: enrichOfficialLinks(
+          pathway.officialLinks ?? plan.officialLinks ?? [],
+          plan.id,
+          pathway.id
+        ),
+      })),
+    }))
     .sort((left, right) => {
       const campusDelta = String(left.campusId ?? "").localeCompare(String(right.campusId ?? ""));
       if (campusDelta !== 0) return campusDelta;
       return String(left.id ?? "").localeCompare(String(right.id ?? ""));
     });
-
-  return majorPlans;
 }
 
 function sanitizePlannerOwnedText(value) {
